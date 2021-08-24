@@ -8,7 +8,17 @@
     End Sub
 
     Sub load_list()
+        Dim q As String = "SELECT c.comp_name,cal.id_pre_cal_fgpo,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
+FROM
+`tb_pre_cal_fgpo` cal
+INNER JOIN tb_m_user usr ON usr.`id_user`=cal.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_m_comp c ON c.id_comp=cal.id_comp"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCPreCal.DataSource = dt
+        GVPreCal.BestFitColumns()
 
+        check_menu()
     End Sub
 
     Private Sub FormAWBOther_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated

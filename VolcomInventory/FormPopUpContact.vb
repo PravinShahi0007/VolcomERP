@@ -1286,6 +1286,14 @@
                 FormAWBInv.GVInvoice.SetFocusedRowCellValue("comp_name", GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString)
                 Close()
             End If
+        ElseIf id_pop_up = "94" Then
+            'pre cal
+            If GVCompany.RowCount > 0 Then
+                FormPreCalFGPODet.GVVendor.SetFocusedRowCellValue("id_comp", GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString)
+                FormPreCalFGPODet.GVVendor.SetFocusedRowCellValue("comp_number", GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString)
+                FormPreCalFGPODet.GVVendor.SetFocusedRowCellValue("comp_name", GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString)
+                Close()
+            End If
         End If
         Cursor = Cursors.Default
     End Sub

@@ -14,7 +14,7 @@
 
         If id = "-1" Then
             'new
-
+            load_list_fgpo()
         Else
             'edit
             Dim q As String = "SELECT cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
@@ -34,13 +34,14 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
             TEPOL.Text = dt.Rows(0)("pol").ToString
             TECBM.EditValue = dt.Rows(0)("cbm")
             TECTN.EditValue = dt.Rows(0)("ctn")
+            TEWeight.EditValue = dt.Rows(0)("weight")
             SLEVendorFGPO.EditValue = dt.Rows(0)("id_comp").ToString
             SLETypeImport.EditValue = dt.Rows(0)("id_type").ToString
 
             view_but()
-        End If
 
-        load_list_fgpo()
+            load_list_fgpo()
+        End If
     End Sub
 
     Sub load_list_fgpo()
@@ -104,7 +105,17 @@ SELECT 2 AS id_type,'FCL' AS type"
             PCFreight.Visible = False
             PCAdm.Visible = False
         ElseIf steps = "2" Then
-
+            XTPFGPO.PageVisible = True
+            XTPVendor.PageVisible = True
+            XTPOrignCharges.PageVisible = False
+            XTPFreightCharges.PageVisible = False
+            XTPAdmCharges.PageVisible = False
+            '
+            PCFGPOList.Visible = False
+            PCVendor.Visible = True
+            PCOrign.Visible = False
+            PCFreight.Visible = False
+            PCAdm.Visible = False
         End If
     End Sub
 
@@ -133,9 +144,23 @@ VALUES(NOW(),'" & id_user & "','1','2','" & SLEVendorFGPO.EditValue.ToString & "
 
                 execute_non_query(q, True, "", "", "", "")
             End If
+
+            load_head()
         Else
             'edit
 
+        End If
+    End Sub
+
+    Private Sub BAddVendor_Click(sender As Object, e As EventArgs) Handles BAddVendor.Click
+        FormPopUpContact.id_pop_up = "94"
+        FormPopUpContact.is_must_active = "1"
+        FormPopUpContact.ShowDialog()
+    End Sub
+
+    Private Sub BDeleteVendor_Click(sender As Object, e As EventArgs) Handles BDeleteVendor.Click
+        If GVVendor.RowCount > 0 Then
+            GVVendor.DeleteRow(GVVendor.FocusedRowHandle)
         End If
     End Sub
 End Class

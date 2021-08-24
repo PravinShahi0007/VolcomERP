@@ -58,7 +58,7 @@ Partial Class FormPreCalFGPODet
         Me.BPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPVendor = New DevExpress.XtraTab.XtraTabPage()
         Me.PCVendor = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton8 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrevVendor = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPOrignCharges = New DevExpress.XtraTab.XtraTabPage()
         Me.PCOrign = New DevExpress.XtraEditors.PanelControl()
@@ -80,6 +80,15 @@ Partial Class FormPreCalFGPODet
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TECTN = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.BDeleteVendor = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAddVendor = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCVendor = New DevExpress.XtraGrid.GridControl()
+        Me.GVVendor = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,6 +130,12 @@ Partial Class FormPreCalFGPODet
         CType(Me.TECTN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl7.SuspendLayout()
+        CType(Me.GCVendor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVVendor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -476,6 +491,8 @@ Partial Class FormPreCalFGPODet
         '
         'XTPVendor
         '
+        Me.XTPVendor.Controls.Add(Me.GCVendor)
+        Me.XTPVendor.Controls.Add(Me.PanelControl3)
         Me.XTPVendor.Controls.Add(Me.PCVendor)
         Me.XTPVendor.Name = "XTPVendor"
         Me.XTPVendor.Size = New System.Drawing.Size(1016, 388)
@@ -483,7 +500,7 @@ Partial Class FormPreCalFGPODet
         '
         'PCVendor
         '
-        Me.PCVendor.Controls.Add(Me.SimpleButton8)
+        Me.PCVendor.Controls.Add(Me.BPrevVendor)
         Me.PCVendor.Controls.Add(Me.SimpleButton1)
         Me.PCVendor.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PCVendor.Location = New System.Drawing.Point(0, 346)
@@ -491,24 +508,24 @@ Partial Class FormPreCalFGPODet
         Me.PCVendor.Size = New System.Drawing.Size(1016, 42)
         Me.PCVendor.TabIndex = 5
         '
-        'SimpleButton8
+        'BPrevVendor
         '
-        Me.SimpleButton8.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.SimpleButton8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.SimpleButton8.Appearance.ForeColor = System.Drawing.Color.White
-        Me.SimpleButton8.Appearance.Options.UseBackColor = True
-        Me.SimpleButton8.Appearance.Options.UseFont = True
-        Me.SimpleButton8.Appearance.Options.UseForeColor = True
-        Me.SimpleButton8.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton8.Location = New System.Drawing.Point(2, 2)
-        Me.SimpleButton8.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.SimpleButton8.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.SimpleButton8.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.SimpleButton8.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.SimpleButton8.Name = "SimpleButton8"
-        Me.SimpleButton8.Size = New System.Drawing.Size(133, 38)
-        Me.SimpleButton8.TabIndex = 23
-        Me.SimpleButton8.Text = "Previous"
+        Me.BPrevVendor.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BPrevVendor.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BPrevVendor.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BPrevVendor.Appearance.Options.UseBackColor = True
+        Me.BPrevVendor.Appearance.Options.UseFont = True
+        Me.BPrevVendor.Appearance.Options.UseForeColor = True
+        Me.BPrevVendor.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BPrevVendor.Location = New System.Drawing.Point(2, 2)
+        Me.BPrevVendor.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BPrevVendor.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BPrevVendor.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BPrevVendor.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BPrevVendor.Name = "BPrevVendor"
+        Me.BPrevVendor.Size = New System.Drawing.Size(133, 38)
+        Me.BPrevVendor.TabIndex = 23
+        Me.BPrevVendor.Text = "Previous"
         '
         'SimpleButton1
         '
@@ -795,6 +812,88 @@ Partial Class FormPreCalFGPODet
         Me.PanelControl6.Size = New System.Drawing.Size(1022, 42)
         Me.PanelControl6.TabIndex = 157
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.PanelControl7)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1016, 43)
+        Me.PanelControl3.TabIndex = 6
+        '
+        'PanelControl7
+        '
+        Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl7.Controls.Add(Me.BDeleteVendor)
+        Me.PanelControl7.Controls.Add(Me.BAddVendor)
+        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl7.Location = New System.Drawing.Point(725, 2)
+        Me.PanelControl7.Name = "PanelControl7"
+        Me.PanelControl7.Size = New System.Drawing.Size(289, 39)
+        Me.PanelControl7.TabIndex = 7
+        '
+        'BDeleteVendor
+        '
+        Me.BDeleteVendor.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDeleteVendor.Image = CType(resources.GetObject("BDeleteVendor.Image"), System.Drawing.Image)
+        Me.BDeleteVendor.Location = New System.Drawing.Point(32, 0)
+        Me.BDeleteVendor.Name = "BDeleteVendor"
+        Me.BDeleteVendor.Size = New System.Drawing.Size(124, 39)
+        Me.BDeleteVendor.TabIndex = 4
+        Me.BDeleteVendor.Text = "Delete Vendor"
+        '
+        'BAddVendor
+        '
+        Me.BAddVendor.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAddVendor.Image = CType(resources.GetObject("BAddVendor.Image"), System.Drawing.Image)
+        Me.BAddVendor.Location = New System.Drawing.Point(156, 0)
+        Me.BAddVendor.Name = "BAddVendor"
+        Me.BAddVendor.Size = New System.Drawing.Size(133, 39)
+        Me.BAddVendor.TabIndex = 5
+        Me.BAddVendor.Text = "Add Vendor"
+        '
+        'GCVendor
+        '
+        Me.GCVendor.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCVendor.Location = New System.Drawing.Point(0, 43)
+        Me.GCVendor.MainView = Me.GVVendor
+        Me.GCVendor.Name = "GCVendor"
+        Me.GCVendor.Size = New System.Drawing.Size(1016, 303)
+        Me.GCVendor.TabIndex = 7
+        Me.GCVendor.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVVendor})
+        '
+        'GVVendor
+        '
+        Me.GVVendor.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10})
+        Me.GVVendor.GridControl = Me.GCVendor
+        Me.GVVendor.Name = "GVVendor"
+        Me.GVVendor.OptionsView.ShowFooter = True
+        Me.GVVendor.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "ID"
+        Me.GridColumn8.FieldName = "id_comp"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Vendor Code"
+        Me.GridColumn9.FieldName = "comp_number"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 0
+        Me.GridColumn9.Width = 401
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Vendor"
+        Me.GridColumn10.FieldName = "comp_name"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 1
+        Me.GridColumn10.Width = 1215
+        '
         'FormPreCalFGPODet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -854,6 +953,12 @@ Partial Class FormPreCalFGPODet
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl7.ResumeLayout(False)
+        CType(Me.GCVendor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVVendor, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -905,7 +1010,7 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PCVendor As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton8 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrevVendor As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTPOrignCharges As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PCOrign As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SimpleButton7 As DevExpress.XtraEditors.SimpleButton
@@ -918,4 +1023,13 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents PCAdm As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SimpleButton5 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton4 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCVendor As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVVendor As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BDeleteVendor As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAddVendor As DevExpress.XtraEditors.SimpleButton
 End Class
