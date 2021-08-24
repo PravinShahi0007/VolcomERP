@@ -3172,6 +3172,12 @@
     <Compile Include="FormMasterSampleNR.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterSilhouette.Designer.vb">
+      <DependentUpon>FormMasterSilhouette.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterSilhouette.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterStore.Designer.vb">
       <DependentUpon>FormMasterStore.vb</DependentUpon>
     </Compile>
@@ -11587,6 +11593,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterSampleNR.resx">
       <DependentUpon>FormMasterSampleNR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterSilhouette.resx">
+      <DependentUpon>FormMasterSilhouette.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterStore.resx">
       <DependentUpon>FormMasterStore.vb</DependentUpon>
