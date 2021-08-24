@@ -174,7 +174,7 @@ GROUP BY po.id_purc_order,dep.id_main_comp"
         Dim query As String = "
             SELECT po.is_active_payment,po.id_coa_tag,po.purc_order_number,po.is_active_payment,po.pph_account,po.inv_number, c.comp_number, c.comp_name
 ,IFNULL(po.due_date, DATE(NOW())) AS due_date, po.vat_percent
-,ROUND((SUM(pod.`value` * recd.qty)-IF(po.is_disc_percent=2,po.disc_value,(po.disc_percent * SUM(pod.`value` * recd.qty))))*(po.dpp_percent/100)*(po.vat_percent/100),2) AS vat_value
+,ROUND((SUM(pod.`value` * recd.qty)-IF(po.is_disc_percent=2,po.disc_value,((po.disc_percent/100) * SUM(pod.`value` * recd.qty))))*(po.dpp_percent/100)*(po.vat_percent/100),2) AS vat_value
 , po.is_disc_percent ,po.disc_percent, po.disc_value , IFNULL(po.pph_reff_date, DATE(NOW())) AS pph_reff_date
 FROM tb_purc_rec_det recd
 INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_report_status`=6

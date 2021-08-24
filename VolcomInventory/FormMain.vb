@@ -3300,7 +3300,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormPreCalFGPO" Then
                 If FormPreCalFGPO.GVPreCal.RowCount > 0 Then
                     FormPreCalFGPODet.id = FormPreCalFGPO.GVPreCal.GetFocusedRowCellValue("id_pre_cal_fgpo").ToString
-                    FormSNIOut.ShowDialog()
+                    FormPreCalFGPODet.ShowDialog()
                 End If
             Else
                 RPSubMenu.Visible = False

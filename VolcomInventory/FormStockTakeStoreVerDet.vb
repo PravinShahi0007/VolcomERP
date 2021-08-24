@@ -159,6 +159,30 @@
                         data_detail.Rows(j)("qty_ver") += Decimal.Parse(data_ver.Rows(i)("qty").ToString)
                     End If
                 Next
+            ElseIf data_ver.Rows(i)("report_mark_type").ToString = "336" Or data_ver.Rows(i)("report_mark_type").ToString = "337" Then
+                For j = 0 To data_detail.Rows.Count - 1
+                    If data_detail.Rows(j)("id_product").ToString = data_ver.Rows(i)("id_product").ToString Then
+                        If data_detail.Rows(j)("report_mark_type").ToString = "" Then
+                            data_detail.Rows(j)("report_mark_type") = data_ver.Rows(i)("report_mark_type").ToString
+                        Else
+                            data_detail.Rows(j)("report_mark_type") += "," + data_ver.Rows(i)("report_mark_type").ToString
+                        End If
+
+                        If data_detail.Rows(j)("report_mark_type_name").ToString = "" Then
+                            data_detail.Rows(j)("report_mark_type_name") = data_ver.Rows(i)("report_mark_type_name").ToString
+                        Else
+                            data_detail.Rows(j)("report_mark_type_name") += "," + data_ver.Rows(i)("report_mark_type_name").ToString
+                        End If
+
+                        If data_detail.Rows(j)("note").ToString = "" Then
+                            data_detail.Rows(j)("note") = data_ver.Rows(i)("note").ToString
+                        Else
+                            data_detail.Rows(j)("note") += "," + data_ver.Rows(i)("note").ToString
+                        End If
+
+                        data_detail.Rows(j)("qty_ver") += Decimal.Parse(data_ver.Rows(i)("qty").ToString)
+                    End If
+                Next
             Else
                 For j = 0 To data_detail.Rows.Count - 1
                     If data_detail.Rows(j)("id_product").ToString = data_ver.Rows(i)("id_product").ToString Then
@@ -494,5 +518,20 @@
         FormReportMark.ShowDialog()
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBDownloadTemplate_Click(sender As Object, e As EventArgs) Handles SBDownloadTemplate.Click
+        Dim save As SaveFileDialog = New SaveFileDialog
+
+        save.Filter = "Excel File | *.xlsx"
+        save.FileName = "Template Verifikasi Stock Take.xlsx"
+
+        save.ShowDialog()
+
+        If Not save.FileName = "" Then
+            My.Computer.Network.DownloadFile("\\192.168.1.2\dataapp$\template\Template Verifikasi Stock Take.xlsx", save.FileName)
+
+            infoCustom("File downloaded.")
+        End If
     End Sub
 End Class
