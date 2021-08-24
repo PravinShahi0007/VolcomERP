@@ -4211,6 +4211,42 @@ GROUP BY ol.checkout_id
                         data_temp.Rows(i)("id_st_store_bap_det") = id_st_store_bap_det
                         data_temp.Rows(i)("status") = "Ok"
                     End If
+                ElseIf report_type = "TA IN" Then
+                    Dim id_st_store_bap_det As String = execute_query("
+                        SELECT d.id_st_store_bap_det
+                        FROM tb_st_store_bap_det AS d
+                        LEFT JOIN tb_m_product AS p ON d.id_product = p.id_product
+                        WHERE d.id_st_store_bap = " + id_st_store_bap + " AND p.product_full_code = '" + barcode + "'
+                        UNION ALL 
+                        SELECT 0 AS id_st_store_bap_det
+                    ", 0, True, "", "", "", "")
+
+                    If id_st_store_bap_det = "0" Then
+                        data_temp.Rows(i)("status") = "Product not found"
+                    Else
+                        data_temp.Rows(i)("id_st_store_bap_det") = id_st_store_bap_det
+                        data_temp.Rows(i)("report_mark_type") = "336"
+                        data_temp.Rows(i)("report_mark_type_name") = "Transfer Account In"
+                        data_temp.Rows(i)("status") = "Ok"
+                    End If
+                ElseIf report_type = "TA OUT" Then
+                    Dim id_st_store_bap_det As String = execute_query("
+                        SELECT d.id_st_store_bap_det
+                        FROM tb_st_store_bap_det AS d
+                        LEFT JOIN tb_m_product AS p ON d.id_product = p.id_product
+                        WHERE d.id_st_store_bap = " + id_st_store_bap + " AND p.product_full_code = '" + barcode + "'
+                        UNION ALL 
+                        SELECT 0 AS id_st_store_bap_det
+                    ", 0, True, "", "", "", "")
+
+                    If id_st_store_bap_det = "0" Then
+                        data_temp.Rows(i)("status") = "Product not found"
+                    Else
+                        data_temp.Rows(i)("id_st_store_bap_det") = id_st_store_bap_det
+                        data_temp.Rows(i)("report_mark_type") = "337"
+                        data_temp.Rows(i)("report_mark_type_name") = "Transfer Account Out"
+                        data_temp.Rows(i)("status") = "Ok"
+                    End If
                 Else
                     data_temp.Rows(i)("status") = "report_type not found"
                 End If
@@ -7122,7 +7158,7 @@ GROUP BY ol.checkout_id
 
                         Dim qty As String = GVData.GetRowCellValue(i, "qty").ToString
 
-                        If GVData.GetRowCellValue(i, "report_type").ToString = "ADJ OUT" Then
+                        If GVData.GetRowCellValue(i, "report_type").ToString = "ADJ OUT" Or GVData.GetRowCellValue(i, "report_type").ToString = "TA OUT" Then
                             qty = "-" + qty
                         End If
 
