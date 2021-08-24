@@ -112,6 +112,20 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl42 = New DevExpress.XtraEditors.LabelControl()
+        Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
+        Me.TECargoCode = New DevExpress.XtraEditors.TextEdit()
+        Me.TECargoZone = New DevExpress.XtraEditors.TextEdit()
+        Me.TECargoDest = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
+        Me.BPickDrawer = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl28 = New DevExpress.XtraEditors.LabelControl()
+        Me.BClearDrawer = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEDefDrawer = New DevExpress.XtraEditors.TextEdit()
+        Me.BtnWHType = New DevExpress.XtraEditors.SimpleButton()
+        Me.LEWHType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEStoreCompany = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -142,13 +156,6 @@ Partial Class FormMasterCompanySingle
         Me.LEAllocation = New DevExpress.XtraEditors.LookUpEdit()
         Me.LEStoreType = New DevExpress.XtraEditors.LookUpEdit()
         Me.TxtCommission = New DevExpress.XtraEditors.TextEdit()
-        Me.BPickDrawer = New DevExpress.XtraEditors.SimpleButton()
-        Me.TEDefDrawer = New DevExpress.XtraEditors.TextEdit()
-        Me.BClearDrawer = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl28 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnWHType = New DevExpress.XtraEditors.SimpleButton()
-        Me.LEWHType = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BResetMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -187,13 +194,6 @@ Partial Class FormMasterCompanySingle
         Me.LELegalType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl49 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPSetup = New DevExpress.XtraTab.XtraTabPage()
-        Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
-        Me.TECargoCode = New DevExpress.XtraEditors.TextEdit()
-        Me.TECargoZone = New DevExpress.XtraEditors.TextEdit()
-        Me.TECargoDest = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPCOA = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.GroupControl9 = New DevExpress.XtraEditors.GroupControl()
@@ -294,6 +294,13 @@ Partial Class FormMasterCompanySingle
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
+        CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl6.SuspendLayout()
+        CType(Me.TECargoCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECargoZone.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECargoDest.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEDefDrawer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEWHType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStoreCompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECommerceType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -304,8 +311,6 @@ Partial Class FormMasterCompanySingle
         CType(Me.LEAllocation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEStoreType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCommission.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEDefDrawer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEWHType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.XTCCompany, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -329,11 +334,6 @@ Partial Class FormMasterCompanySingle
         Me.PanelControl2.SuspendLayout()
         CType(Me.LELegalType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSetup.SuspendLayout()
-        CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl6.SuspendLayout()
-        CType(Me.TECargoCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TECargoZone.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TECargoDest.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPCOA.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -1144,7 +1144,7 @@ Partial Class FormMasterCompanySingle
         Me.TECompanyPrintedName.Name = "TECompanyPrintedName"
         Me.TECompanyPrintedName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TECompanyPrintedName.Properties.Appearance.Options.UseFont = True
-        Me.TECompanyPrintedName.Properties.MaxLength = 49
+        Me.TECompanyPrintedName.Properties.MaxLength = 89
         Me.TECompanyPrintedName.Size = New System.Drawing.Size(230, 20)
         Me.TECompanyPrintedName.TabIndex = 3
         '
@@ -1174,7 +1174,7 @@ Partial Class FormMasterCompanySingle
         Me.TECompanyName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TECompanyName.Properties.Appearance.Options.UseBackColor = True
         Me.TECompanyName.Properties.Appearance.Options.UseFont = True
-        Me.TECompanyName.Properties.MaxLength = 49
+        Me.TECompanyName.Properties.MaxLength = 89
         Me.TECompanyName.Size = New System.Drawing.Size(375, 20)
         Me.TECompanyName.TabIndex = 2
         '
@@ -1315,6 +1315,161 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl42.Size = New System.Drawing.Size(74, 13)
         Me.LabelControl42.TabIndex = 53
         Me.LabelControl42.Text = "Store Company"
+        '
+        'GroupControl6
+        '
+        Me.GroupControl6.Controls.Add(Me.TECargoCode)
+        Me.GroupControl6.Controls.Add(Me.TECargoZone)
+        Me.GroupControl6.Controls.Add(Me.TECargoDest)
+        Me.GroupControl6.Controls.Add(Me.LabelControl32)
+        Me.GroupControl6.Controls.Add(Me.LabelControl31)
+        Me.GroupControl6.Controls.Add(Me.BPickDrawer)
+        Me.GroupControl6.Controls.Add(Me.LabelControl30)
+        Me.GroupControl6.Controls.Add(Me.LabelControl28)
+        Me.GroupControl6.Controls.Add(Me.BClearDrawer)
+        Me.GroupControl6.Controls.Add(Me.TEDefDrawer)
+        Me.GroupControl6.Controls.Add(Me.LEDepartement)
+        Me.GroupControl6.Controls.Add(Me.LabelControl21)
+        Me.GroupControl6.Controls.Add(Me.BtnWHType)
+        Me.GroupControl6.Controls.Add(Me.LEWHType)
+        Me.GroupControl6.Controls.Add(Me.LabelControl27)
+        Me.GroupControl6.Location = New System.Drawing.Point(1, 185)
+        Me.GroupControl6.Name = "GroupControl6"
+        Me.GroupControl6.Size = New System.Drawing.Size(639, 116)
+        Me.GroupControl6.TabIndex = 17
+        Me.GroupControl6.Text = "Cargo"
+        '
+        'TECargoCode
+        '
+        Me.TECargoCode.Location = New System.Drawing.Point(409, 28)
+        Me.TECargoCode.Name = "TECargoCode"
+        Me.TECargoCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECargoCode.Properties.Appearance.Options.UseFont = True
+        Me.TECargoCode.Size = New System.Drawing.Size(223, 20)
+        Me.TECargoCode.TabIndex = 37
+        Me.TECargoCode.TabStop = False
+        '
+        'TECargoZone
+        '
+        Me.TECargoZone.Location = New System.Drawing.Point(98, 54)
+        Me.TECargoZone.Name = "TECargoZone"
+        Me.TECargoZone.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECargoZone.Properties.Appearance.Options.UseFont = True
+        Me.TECargoZone.Size = New System.Drawing.Size(215, 20)
+        Me.TECargoZone.TabIndex = 36
+        Me.TECargoZone.TabStop = False
+        '
+        'TECargoDest
+        '
+        Me.TECargoDest.Location = New System.Drawing.Point(98, 28)
+        Me.TECargoDest.Name = "TECargoDest"
+        Me.TECargoDest.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECargoDest.Properties.Appearance.Options.UseFont = True
+        Me.TECargoDest.Size = New System.Drawing.Size(215, 20)
+        Me.TECargoDest.TabIndex = 35
+        Me.TECargoDest.TabStop = False
+        '
+        'LabelControl32
+        '
+        Me.LabelControl32.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl32.Location = New System.Drawing.Point(331, 31)
+        Me.LabelControl32.Name = "LabelControl32"
+        Me.LabelControl32.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl32.TabIndex = 34
+        Me.LabelControl32.Text = "Cargo Code"
+        '
+        'LabelControl31
+        '
+        Me.LabelControl31.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl31.Location = New System.Drawing.Point(10, 57)
+        Me.LabelControl31.Name = "LabelControl31"
+        Me.LabelControl31.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl31.TabIndex = 32
+        Me.LabelControl31.Text = "Zone"
+        '
+        'BPickDrawer
+        '
+        Me.BPickDrawer.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BPickDrawer.Appearance.Options.UseFont = True
+        Me.BPickDrawer.Location = New System.Drawing.Point(241, 80)
+        Me.BPickDrawer.Name = "BPickDrawer"
+        Me.BPickDrawer.Size = New System.Drawing.Size(25, 20)
+        Me.BPickDrawer.TabIndex = 49
+        Me.BPickDrawer.Text = "..."
+        Me.BPickDrawer.Visible = False
+        '
+        'LabelControl30
+        '
+        Me.LabelControl30.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl30.Location = New System.Drawing.Point(10, 31)
+        Me.LabelControl30.Name = "LabelControl30"
+        Me.LabelControl30.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl30.TabIndex = 30
+        Me.LabelControl30.Text = "Destination"
+        '
+        'LabelControl28
+        '
+        Me.LabelControl28.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl28.Location = New System.Drawing.Point(10, 84)
+        Me.LabelControl28.Name = "LabelControl28"
+        Me.LabelControl28.Size = New System.Drawing.Size(73, 13)
+        Me.LabelControl28.TabIndex = 46
+        Me.LabelControl28.Text = "Default Drawer"
+        '
+        'BClearDrawer
+        '
+        Me.BClearDrawer.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BClearDrawer.Appearance.Options.UseFont = True
+        Me.BClearDrawer.Location = New System.Drawing.Point(270, 81)
+        Me.BClearDrawer.Name = "BClearDrawer"
+        Me.BClearDrawer.Size = New System.Drawing.Size(47, 20)
+        Me.BClearDrawer.TabIndex = 47
+        Me.BClearDrawer.Text = "Clear"
+        Me.BClearDrawer.Visible = False
+        '
+        'TEDefDrawer
+        '
+        Me.TEDefDrawer.Location = New System.Drawing.Point(98, 80)
+        Me.TEDefDrawer.Name = "TEDefDrawer"
+        Me.TEDefDrawer.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEDefDrawer.Properties.Appearance.Options.UseFont = True
+        Me.TEDefDrawer.Properties.ReadOnly = True
+        Me.TEDefDrawer.Size = New System.Drawing.Size(137, 20)
+        Me.TEDefDrawer.TabIndex = 48
+        Me.TEDefDrawer.TabStop = False
+        '
+        'BtnWHType
+        '
+        Me.BtnWHType.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnWHType.Appearance.Options.UseFont = True
+        Me.BtnWHType.Location = New System.Drawing.Point(588, 80)
+        Me.BtnWHType.Name = "BtnWHType"
+        Me.BtnWHType.Size = New System.Drawing.Size(47, 20)
+        Me.BtnWHType.TabIndex = 41
+        Me.BtnWHType.Text = "Clear"
+        '
+        'LEWHType
+        '
+        Me.LEWHType.Location = New System.Drawing.Point(409, 80)
+        Me.LEWHType.Name = "LEWHType"
+        Me.LEWHType.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LEWHType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LEWHType.Properties.Appearance.Options.UseFont = True
+        Me.LEWHType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEWHType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_wh_type", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("wh_type", "Type")})
+        Me.LEWHType.Properties.NullText = ""
+        Me.LEWHType.Size = New System.Drawing.Size(175, 20)
+        Me.LEWHType.TabIndex = 6
+        Me.LEWHType.TabStop = False
+        '
+        'LabelControl27
+        '
+        Me.LabelControl27.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl27.Location = New System.Drawing.Point(333, 83)
+        Me.LabelControl27.Name = "LabelControl27"
+        Me.LabelControl27.Size = New System.Drawing.Size(44, 13)
+        Me.LabelControl27.TabIndex = 35
+        Me.LabelControl27.Text = "WH Type"
         '
         'SLEStoreCompany
         '
@@ -1603,81 +1758,6 @@ Partial Class FormMasterCompanySingle
         Me.TxtCommission.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TxtCommission.Size = New System.Drawing.Size(215, 20)
         Me.TxtCommission.TabIndex = 1
-        '
-        'BPickDrawer
-        '
-        Me.BPickDrawer.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BPickDrawer.Appearance.Options.UseFont = True
-        Me.BPickDrawer.Location = New System.Drawing.Point(241, 80)
-        Me.BPickDrawer.Name = "BPickDrawer"
-        Me.BPickDrawer.Size = New System.Drawing.Size(25, 20)
-        Me.BPickDrawer.TabIndex = 49
-        Me.BPickDrawer.Text = "..."
-        Me.BPickDrawer.Visible = False
-        '
-        'TEDefDrawer
-        '
-        Me.TEDefDrawer.Location = New System.Drawing.Point(98, 80)
-        Me.TEDefDrawer.Name = "TEDefDrawer"
-        Me.TEDefDrawer.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TEDefDrawer.Properties.Appearance.Options.UseFont = True
-        Me.TEDefDrawer.Properties.ReadOnly = True
-        Me.TEDefDrawer.Size = New System.Drawing.Size(137, 20)
-        Me.TEDefDrawer.TabIndex = 48
-        Me.TEDefDrawer.TabStop = False
-        '
-        'BClearDrawer
-        '
-        Me.BClearDrawer.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BClearDrawer.Appearance.Options.UseFont = True
-        Me.BClearDrawer.Location = New System.Drawing.Point(270, 81)
-        Me.BClearDrawer.Name = "BClearDrawer"
-        Me.BClearDrawer.Size = New System.Drawing.Size(47, 20)
-        Me.BClearDrawer.TabIndex = 47
-        Me.BClearDrawer.Text = "Clear"
-        Me.BClearDrawer.Visible = False
-        '
-        'LabelControl28
-        '
-        Me.LabelControl28.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl28.Location = New System.Drawing.Point(10, 84)
-        Me.LabelControl28.Name = "LabelControl28"
-        Me.LabelControl28.Size = New System.Drawing.Size(73, 13)
-        Me.LabelControl28.TabIndex = 46
-        Me.LabelControl28.Text = "Default Drawer"
-        '
-        'BtnWHType
-        '
-        Me.BtnWHType.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnWHType.Appearance.Options.UseFont = True
-        Me.BtnWHType.Location = New System.Drawing.Point(588, 80)
-        Me.BtnWHType.Name = "BtnWHType"
-        Me.BtnWHType.Size = New System.Drawing.Size(47, 20)
-        Me.BtnWHType.TabIndex = 41
-        Me.BtnWHType.Text = "Clear"
-        '
-        'LEWHType
-        '
-        Me.LEWHType.Location = New System.Drawing.Point(409, 80)
-        Me.LEWHType.Name = "LEWHType"
-        Me.LEWHType.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LEWHType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LEWHType.Properties.Appearance.Options.UseFont = True
-        Me.LEWHType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEWHType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_wh_type", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("wh_type", "Type")})
-        Me.LEWHType.Properties.NullText = ""
-        Me.LEWHType.Size = New System.Drawing.Size(175, 20)
-        Me.LEWHType.TabIndex = 6
-        Me.LEWHType.TabStop = False
-        '
-        'LabelControl27
-        '
-        Me.LabelControl27.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl27.Location = New System.Drawing.Point(333, 83)
-        Me.LabelControl27.Name = "LabelControl27"
-        Me.LabelControl27.Size = New System.Drawing.Size(44, 13)
-        Me.LabelControl27.TabIndex = 35
-        Me.LabelControl27.Text = "WH Type"
         '
         'PanelControl1
         '
@@ -2084,86 +2164,6 @@ Partial Class FormMasterCompanySingle
         Me.XTPSetup.Name = "XTPSetup"
         Me.XTPSetup.Size = New System.Drawing.Size(639, 628)
         Me.XTPSetup.Text = "Advanced Setup"
-        '
-        'GroupControl6
-        '
-        Me.GroupControl6.Controls.Add(Me.TECargoCode)
-        Me.GroupControl6.Controls.Add(Me.TECargoZone)
-        Me.GroupControl6.Controls.Add(Me.TECargoDest)
-        Me.GroupControl6.Controls.Add(Me.LabelControl32)
-        Me.GroupControl6.Controls.Add(Me.LabelControl31)
-        Me.GroupControl6.Controls.Add(Me.BPickDrawer)
-        Me.GroupControl6.Controls.Add(Me.LabelControl30)
-        Me.GroupControl6.Controls.Add(Me.LabelControl28)
-        Me.GroupControl6.Controls.Add(Me.BClearDrawer)
-        Me.GroupControl6.Controls.Add(Me.TEDefDrawer)
-        Me.GroupControl6.Controls.Add(Me.LEDepartement)
-        Me.GroupControl6.Controls.Add(Me.LabelControl21)
-        Me.GroupControl6.Controls.Add(Me.BtnWHType)
-        Me.GroupControl6.Controls.Add(Me.LEWHType)
-        Me.GroupControl6.Controls.Add(Me.LabelControl27)
-        Me.GroupControl6.Location = New System.Drawing.Point(1, 185)
-        Me.GroupControl6.Name = "GroupControl6"
-        Me.GroupControl6.Size = New System.Drawing.Size(639, 116)
-        Me.GroupControl6.TabIndex = 17
-        Me.GroupControl6.Text = "Cargo"
-        '
-        'TECargoCode
-        '
-        Me.TECargoCode.Location = New System.Drawing.Point(409, 28)
-        Me.TECargoCode.Name = "TECargoCode"
-        Me.TECargoCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TECargoCode.Properties.Appearance.Options.UseFont = True
-        Me.TECargoCode.Size = New System.Drawing.Size(223, 20)
-        Me.TECargoCode.TabIndex = 37
-        Me.TECargoCode.TabStop = False
-        '
-        'TECargoZone
-        '
-        Me.TECargoZone.Location = New System.Drawing.Point(98, 54)
-        Me.TECargoZone.Name = "TECargoZone"
-        Me.TECargoZone.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TECargoZone.Properties.Appearance.Options.UseFont = True
-        Me.TECargoZone.Size = New System.Drawing.Size(215, 20)
-        Me.TECargoZone.TabIndex = 36
-        Me.TECargoZone.TabStop = False
-        '
-        'TECargoDest
-        '
-        Me.TECargoDest.Location = New System.Drawing.Point(98, 28)
-        Me.TECargoDest.Name = "TECargoDest"
-        Me.TECargoDest.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TECargoDest.Properties.Appearance.Options.UseFont = True
-        Me.TECargoDest.Size = New System.Drawing.Size(215, 20)
-        Me.TECargoDest.TabIndex = 35
-        Me.TECargoDest.TabStop = False
-        '
-        'LabelControl32
-        '
-        Me.LabelControl32.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl32.Location = New System.Drawing.Point(331, 31)
-        Me.LabelControl32.Name = "LabelControl32"
-        Me.LabelControl32.Size = New System.Drawing.Size(57, 13)
-        Me.LabelControl32.TabIndex = 34
-        Me.LabelControl32.Text = "Cargo Code"
-        '
-        'LabelControl31
-        '
-        Me.LabelControl31.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl31.Location = New System.Drawing.Point(10, 57)
-        Me.LabelControl31.Name = "LabelControl31"
-        Me.LabelControl31.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl31.TabIndex = 32
-        Me.LabelControl31.Text = "Zone"
-        '
-        'LabelControl30
-        '
-        Me.LabelControl30.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl30.Location = New System.Drawing.Point(10, 31)
-        Me.LabelControl30.Name = "LabelControl30"
-        Me.LabelControl30.Size = New System.Drawing.Size(54, 13)
-        Me.LabelControl30.TabIndex = 30
-        Me.LabelControl30.Text = "Destination"
         '
         'XTPCOA
         '
@@ -2704,6 +2704,14 @@ Partial Class FormMasterCompanySingle
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl4.ResumeLayout(False)
         Me.GroupControl4.PerformLayout()
+        CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl6.ResumeLayout(False)
+        Me.GroupControl6.PerformLayout()
+        CType(Me.TECargoCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECargoZone.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECargoDest.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEDefDrawer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEWHType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStoreCompany.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECommerceType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2714,8 +2722,6 @@ Partial Class FormMasterCompanySingle
         CType(Me.LEAllocation.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEStoreType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCommission.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEDefDrawer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEWHType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.XTCCompany, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2742,12 +2748,6 @@ Partial Class FormMasterCompanySingle
         Me.PanelControl2.PerformLayout()
         CType(Me.LELegalType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSetup.ResumeLayout(False)
-        CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl6.ResumeLayout(False)
-        Me.GroupControl6.PerformLayout()
-        CType(Me.TECargoCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TECargoZone.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TECargoDest.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPCOA.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
