@@ -41,6 +41,7 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
             view_but()
 
             load_list_fgpo()
+            load_list_forwarder()
         End If
     End Sub
 
@@ -53,6 +54,16 @@ INNER JOIN tb_m_design d ON b.id_design = d.id_design
 WHERE pcl.id_pre_cal_fgpo='" & id & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCListFGPO.DataSource = dt
+    End Sub
+
+    Sub load_list_forwarder()
+        Dim q As String = "SELECT c.id_comp,c.comp_number,c.comp_name
+FROM tb_pre_cal_fgpo_vendor v
+INNER JOIN tb_m_comp c ON c.id_comp=v.id_comp 
+WHERE v.id_pre_cal_fgpo='" & id & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCVendor.DataSource = dt
+        viewSearchLookupQuery(SLEVendorOrign, q, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Sub load_vendor()
@@ -160,7 +171,19 @@ VALUES(NOW(),'" & id_user & "','1','2','" & SLEVendorFGPO.EditValue.ToString & "
 
     Private Sub BDeleteVendor_Click(sender As Object, e As EventArgs) Handles BDeleteVendor.Click
         If GVVendor.RowCount > 0 Then
-            GVVendor.DeleteRow(GVVendor.FocusedRowHandle)
+            Dim q As String = "DELETE FROM tb_pre_cal_fgpo_vendor WHERE id_pre_cal_fgpo='' AND id_comp='" & GVVendor.GetFocusedRowCellValue("id_comp").ToString & "'"
+            execute_non_query(q, True, "", "", "", "")
+            load_list_forwarder()
         End If
+    End Sub
+
+    Private Sub BPrevVendor_Click(sender As Object, e As EventArgs) Handles BPrevVendor.Click
+        execute_non_query("UPDATE tb_pre_cal_fgpo SET step='1' WHERE id_pre_cal_fgpo='" & id & "'", True, "", "", "", "")
+        load_head()
+    End Sub
+
+    Private Sub BNextVendor_Click(sender As Object, e As EventArgs) Handles BNextVendor.Click
+        execute_non_query("UPDATE tb_pre_cal_fgpo SET step='3' WHERE id_pre_cal_fgpo='" & id & "'", True, "", "", "", "")
+        load_head()
     End Sub
 End Class

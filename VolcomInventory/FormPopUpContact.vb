@@ -1289,10 +1289,21 @@
         ElseIf id_pop_up = "94" Then
             'pre cal
             If GVCompany.RowCount > 0 Then
-                FormPreCalFGPODet.GVVendor.SetFocusedRowCellValue("id_comp", GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString)
-                FormPreCalFGPODet.GVVendor.SetFocusedRowCellValue("comp_number", GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString)
-                FormPreCalFGPODet.GVVendor.SetFocusedRowCellValue("comp_name", GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString)
-                Close()
+                'check first
+                Dim q As String = ""
+
+                q = "SELECT * FROM tb_pre_cal_fgpo_vendor WHERE id_comp='" & GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString & "' AND id_pre_cal_fgpo='" & FormPreCalFGPODet.id & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    warningCustom("Vendor already registered")
+                Else
+                    q = "INSERT INTO tb_pre_cal_fgpo_vendor(id_pre_cal_fgpo,id_comp) VALUES('" & FormPreCalFGPODet.id & "','" & GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString & "')"
+                    execute_non_query(q, True, "", "", "", "")
+
+                    FormPreCalFGPODet.load_list_forwarder()
+
+                    Close()
+                End If
             End If
         End If
         Cursor = Cursors.Default
