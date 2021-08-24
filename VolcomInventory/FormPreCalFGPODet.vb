@@ -1,8 +1,11 @@
 ﻿Public Class FormPreCalFGPODet
     Public id As String = "-1"
     Public is_view As String = "-1"
-    Private Sub FormPreCalFGPODet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+    Dim steps As String = "1"
+
+    Private Sub FormPreCalFGPODet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_head()
     End Sub
 
     Sub load_head()
@@ -14,8 +17,27 @@
 
         Else
             'edit
-            Dim q As String = ""
+            Dim q As String = "SELECT cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
+FROM
+`tb_pre_cal_fgpo` cal
+INNER JOIN tb_m_user usr ON usr.`id_user`=cal.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+WHERE cal.id_pre_cal_fgpo='" & id & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                steps = dt.Rows(0)("step").ToString
+            End If
 
+            TENumber.Text = dt.Rows(0)("number").ToString
+            DEProposeDate.EditValue = dt.Rows(0)("created_date")
+            TEProposedBy.EditValue = dt.Rows(0)("employee_name").ToString
+            TEPOL.Text = dt.Rows(0)("pol").ToString
+            TECBM.EditValue = dt.Rows(0)("cbm")
+            TECTN.EditValue = dt.Rows(0)("ctn")
+            SLEVendorFGPO.EditValue = dt.Rows(0)("id_comp").ToString
+            SLETypeImport.EditValue = dt.Rows(0)("id_type").ToString
+
+            view_but()
         End If
 
         load_list_fgpo()
@@ -34,7 +56,7 @@ WHERE pcl.id_pre_cal_fgpo='" & id & "'"
 
     Sub load_vendor()
         Dim query As String = "(SELECT id_comp, comp_name AS comp_name FROM tb_m_comp WHERE id_comp_cat = 1)"
-        viewSearchLookupQuery(SLE3PLImport, query, "id_comp", "comp_name", "id_comp")
+        viewSearchLookupQuery(SLEVendorFGPO, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Sub load_type()
@@ -56,15 +78,33 @@ SELECT 2 AS id_type,'FCL' AS type"
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         FormPopUpProd.id_pop_up = "12"
-        FormPopUpProd.id_comp = SLE3PLImport.EditValue.ToString
+        FormPopUpProd.id_comp = SLEVendorFGPO.EditValue.ToString
         FormPopUpProd.ShowDialog()
     End Sub
 
-    Private Sub SLE3PLImport_EditValueChanged(sender As Object, e As EventArgs) Handles SLE3PLImport.EditValueChanged
+    Private Sub SLE3PLImport_EditValueChanged(sender As Object, e As EventArgs) Handles SLEVendorFGPO.EditValueChanged
         If Not GVListFGPO.RowCount = 0 Then
             For i = GVListFGPO.RowCount - 1 To 0 Step -1
                 delete_row(i)
             Next
+        End If
+    End Sub
+
+    Sub view_but()
+        If steps = "1" Then
+            XTPFGPO.PageVisible = True
+            XTPVendor.PageVisible = False
+            XTPOrignCharges.PageVisible = False
+            XTPFreightCharges.PageVisible = False
+            XTPAdmCharges.PageVisible = False
+            '
+            PCFGPOList.Visible = True
+            PCVendor.Visible = False
+            PCOrign.Visible = False
+            PCFreight.Visible = False
+            PCAdm.Visible = False
+        ElseIf steps = "2" Then
+
         End If
     End Sub
 
@@ -73,10 +113,11 @@ SELECT 2 AS id_type,'FCL' AS type"
             'new
             If GVListFGPO.RowCount = 0 Then
                 warningCustom("Please pick PO")
-            ElseIf TECBM.EditValue <= 0 Or TECTN.EditValue <= 0 Or TEWeight.EditValue <= 0 Then
+            ElseIf TECBM.EditValue <= 0 Or TECTN.EditValue <= 0 Or TEWeight.EditValue <= 0 Or TEPOL.Text = "" Then
                 warningCustom("Please complete all your input")
             Else
-                Dim q As String = "INSERT INTO `tb_pre_cal_fgpo`(created_date,created_by,id_report_status) VALUES(NOW(),'" & id_user & "','1');SELECT LAST_INSERT_ID();"
+                Dim q As String = "INSERT INTO `tb_pre_cal_fgpo`(created_date,created_by,id_report_status,step,`id_comp`,`id_type`,`weight`,`cbm`,`pol`,`ctn`) 
+VALUES(NOW(),'" & id_user & "','1','2','" & SLEVendorFGPO.EditValue.ToString & "','" & SLETypeImport.EditValue.ToString & "','" & decimalSQL(Decimal.Parse(TEWeight.EditValue.ToString).ToString) & "','" & decimalSQL(Decimal.Parse(TECBM.EditValue.ToString).ToString) & "','" & addSlashes(TEPOL.Text) & "','" & decimalSQL(Decimal.Parse(TECTN.EditValue.ToString).ToString) & "');SELECT LAST_INSERT_ID();"
                 id = execute_query(q, 0, True, "", "", "", "")
 
                 execute_non_query("CALL gen_number('" & id & "','334')", True, "", "", "", "")
