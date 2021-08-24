@@ -21,59 +21,118 @@ Partial Class FormMasterSilhouette
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterSilhouette))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnMapping = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCClass = New DevExpress.XtraGrid.GridControl()
+        Me.GVClass = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_class = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass_desc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_sht = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht_name = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.GCClass, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVClass, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BtnExportToXLS)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
-        Me.PanelControl1.Controls.Add(Me.BtnMapping)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(685, 45)
         Me.PanelControl1.TabIndex = 1
         '
-        'BtnMapping
+        'BtnExportToXLS
         '
-        Me.BtnMapping.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnMapping.Image = CType(resources.GetObject("BtnMapping.Image"), System.Drawing.Image)
-        Me.BtnMapping.Location = New System.Drawing.Point(597, 2)
-        Me.BtnMapping.Name = "BtnMapping"
-        Me.BtnMapping.Size = New System.Drawing.Size(86, 41)
-        Me.BtnMapping.TabIndex = 0
-        Me.BtnMapping.Text = "Setup"
+        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(481, 2)
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(120, 41)
+        Me.BtnExportToXLS.TabIndex = 2
+        Me.BtnExportToXLS.Text = "Export to XLS"
         '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(515, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(601, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(82, 41)
         Me.BtnPrint.TabIndex = 1
         Me.BtnPrint.Text = "Print"
         '
-        'BtnExportToXLS
+        'GCClass
         '
-        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
-        Me.BtnExportToXLS.Location = New System.Drawing.Point(395, 2)
-        Me.BtnExportToXLS.Name = "BtnExportToXLS"
-        Me.BtnExportToXLS.Size = New System.Drawing.Size(120, 41)
-        Me.BtnExportToXLS.TabIndex = 2
-        Me.BtnExportToXLS.Text = "Export to XLS"
+        Me.GCClass.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCClass.Location = New System.Drawing.Point(0, 45)
+        Me.GCClass.MainView = Me.GVClass
+        Me.GCClass.Name = "GCClass"
+        Me.GCClass.Size = New System.Drawing.Size(685, 446)
+        Me.GCClass.TabIndex = 2
+        Me.GCClass.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVClass})
+        '
+        'GVClass
+        '
+        Me.GVClass.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_class, Me.GridColumnclass, Me.GridColumnclass_desc, Me.GridColumnid_sht, Me.GridColumnsht_name})
+        Me.GVClass.GridControl = Me.GCClass
+        Me.GVClass.Name = "GVClass"
+        Me.GVClass.OptionsBehavior.Editable = False
+        Me.GVClass.OptionsFind.AlwaysVisible = True
+        Me.GVClass.OptionsView.AllowCellMerge = True
+        Me.GVClass.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_class
+        '
+        Me.GridColumnid_class.Caption = "id_class"
+        Me.GridColumnid_class.FieldName = "id_class"
+        Me.GridColumnid_class.Name = "GridColumnid_class"
+        Me.GridColumnid_class.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 0
+        '
+        'GridColumnclass_desc
+        '
+        Me.GridColumnclass_desc.Caption = "Class Description"
+        Me.GridColumnclass_desc.FieldName = "class_desc"
+        Me.GridColumnclass_desc.Name = "GridColumnclass_desc"
+        Me.GridColumnclass_desc.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridColumnclass_desc.Visible = True
+        Me.GridColumnclass_desc.VisibleIndex = 1
+        '
+        'GridColumnid_sht
+        '
+        Me.GridColumnid_sht.Caption = "id_sht"
+        Me.GridColumnid_sht.FieldName = "id_sht"
+        Me.GridColumnid_sht.Name = "GridColumnid_sht"
+        Me.GridColumnid_sht.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'GridColumnsht_name
+        '
+        Me.GridColumnsht_name.Caption = "Silhouette "
+        Me.GridColumnsht_name.FieldName = "sht_name"
+        Me.GridColumnsht_name.Name = "GridColumnsht_name"
+        Me.GridColumnsht_name.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnsht_name.Visible = True
+        Me.GridColumnsht_name.VisibleIndex = 2
         '
         'FormMasterSilhouette
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(685, 491)
+        Me.Controls.Add(Me.GCClass)
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormMasterSilhouette"
@@ -81,6 +140,8 @@ Partial Class FormMasterSilhouette
         Me.Text = "Master Silhouette"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.GCClass, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVClass, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -94,5 +155,11 @@ Partial Class FormMasterSilhouette
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnMapping As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCClass As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVClass As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_class As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass_desc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_sht As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsht_name As DevExpress.XtraGrid.Columns.GridColumn
 End Class
