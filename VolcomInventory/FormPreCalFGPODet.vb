@@ -483,7 +483,7 @@ WHERE ot.`is_active`='1'"
         save_other()
     End Sub
 
-    Private Sub BPreview_Click(sender As Object, e As EventArgs) Handles BPreview.Click
+    Private Sub BPreview_Click(sender As Object, e As EventArgs)
 
     End Sub
 End Class

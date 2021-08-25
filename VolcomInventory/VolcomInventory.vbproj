@@ -15137,6 +15137,9 @@
     <EmbeddedResource Include="ReportPOSClosingNoStock.resx">
       <DependentUpon>ReportPOSClosingNoStock.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportPreCalBudget.resx">
+      <DependentUpon>ReportPreCalBudget.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportProdBOM.resx">
       <DependentUpon>ReportProdBOM.vb</DependentUpon>
       <SubType>Designer</SubType>
