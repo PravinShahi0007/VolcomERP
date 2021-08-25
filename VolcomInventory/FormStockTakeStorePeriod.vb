@@ -35,9 +35,9 @@
         Dim id_period As String = GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString
 
         Dim query As String = "
-            (SELECT 0 AS `no`, p.full_code, p.name, p.size, s.qty AS qty_volcom, IFNULL(t.qty, 0) AS qty_store, (s.qty - IFNULL(t.qty, 0)) AS diff, '' AS note, IFNULL(t.id_comp, s.id_comp) AS id_comp, IFNULL(t.comp_name, CONCAT(c.comp_number, ' - ', c.comp_name)) AS comp_name, t.is_auto, 'no' AS is_select, s.id_product,
+            (SELECT 0 AS `no`, p.full_code, p.name, p.size, s.qty AS qty_volcom, IFNULL(t.qty, 0) AS qty_store, (s.qty - IFNULL(t.qty, 0) - IFNULL(v.qty, 0)) AS diff, '' AS note, IFNULL(t.id_comp, s.id_comp) AS id_comp, IFNULL(t.comp_name, CONCAT(c.comp_number, ' - ', c.comp_name)) AS comp_name, t.is_auto, 'no' AS is_select, s.id_product,
             IF(IFNULL(t.id_store_type,c.id_store_type)=1,s.id_design_price_normal, s.id_design_price) AS `id_price`,
-            IF(IFNULL(t.id_store_type,c.id_store_type)=1,s.design_price_normal, s.design_price) AS `unit_price`, n.note AS store_note
+            IF(IFNULL(t.id_store_type,c.id_store_type)=1,s.design_price_normal, s.design_price) AS `unit_price`, n.note AS store_note, IFNULL(v.qty, 0) AS qty_ver
             FROM tb_st_store_soh AS s
             LEFT JOIN (
                 SELECT s.id_product, SUM(s.qty) AS qty, s.id_comp, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto, c.id_store_type
@@ -49,13 +49,21 @@
             LEFT JOIN tb_m_product_store AS p ON s.id_product = p.id_product
             LEFT JOIN tb_m_comp AS c ON s.id_comp = c.id_comp
             LEFT JOIN tb_st_store_note AS n ON s.id_product = n.id_product AND n.id_st_store_period = " + id_period + "
+            LEFT JOIN (
+                SELECT d.id_product, b.id_comp, SUM(v.qty) AS qty
+                FROM tb_st_store_bap_ver AS v
+                LEFT JOIN tb_st_store_bap_det AS d ON v.id_st_store_bap_det = d.id_st_store_bap_det
+                LEFT JOIN tb_st_store_bap AS b ON d.id_st_store_bap = b.id_st_store_bap
+                WHERE b.id_st_store_period = " + id_period + " AND b.id_report_status <> 5
+                GROUP BY d.id_product, b.id_comp
+            ) AS v ON s.id_product = v.id_product AND s.id_comp = v.id_comp
             WHERE s.id_st_store_period = " + id_period + ")
         
             UNION ALL
 
-            (SELECT 0 AS `no`, p.full_code, p.name, p.size, 0 AS qty_volcom, q.qty AS qty_store, -q.qty AS diff, '' AS note, q.id_comp, q.comp_name, q.is_auto, 'no' AS is_select, p.id_product,
+            (SELECT 0 AS `no`, p.full_code, p.name, p.size, 0 AS qty_volcom, q.qty AS qty_store, (-q.qty - IFNULL(v.qty, 0)) AS diff, '' AS note, q.id_comp, q.comp_name, q.is_auto, 'no' AS is_select, p.id_product,
             IF(IFNULL(q.id_store_type,0)=1,prn.id_design_price, prc.id_design_price) AS id_price,
-            IF(IFNULL(q.id_store_type,0)=1,prn.design_price, prc.design_price) AS `unit_price`, n.note AS store_note
+            IF(IFNULL(q.id_store_type,0)=1,prn.design_price, prc.design_price) AS `unit_price`, n.note AS store_note, v.qty AS qty_ver
             FROM tb_m_product_store AS p
             INNER JOIN (
                 SELECT s.id_product, SUM(s.qty) AS qty, c.id_comp, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto, c.id_store_type
@@ -85,7 +93,15 @@
                     WHERE design_price_start_date <= DATE(NOW()) AND is_active_wh = 1 AND is_design_cost = 0 AND id_design_price_type = 1
                     GROUP BY id_design
                 )
-            ) AS prn ON op.id_design = prn.id_design)
+            ) AS prn ON op.id_design = prn.id_design
+            LEFT JOIN (
+                SELECT d.id_product, b.id_comp, SUM(v.qty) AS qty
+                FROM tb_st_store_bap_ver AS v
+                LEFT JOIN tb_st_store_bap_det AS d ON v.id_st_store_bap_det = d.id_st_store_bap_det
+                LEFT JOIN tb_st_store_bap AS b ON d.id_st_store_bap = b.id_st_store_bap
+                WHERE b.id_st_store_period = " + id_period + " AND b.id_report_status <> 5
+                GROUP BY d.id_product, b.id_comp
+            ) AS v ON q.id_product = v.id_product AND q.id_comp = v.id_comp)
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -118,12 +134,49 @@
         ", 0, True, "", "", "", "")
 
         If view_bap = "0" Then
-            SBBAPPelaksanaan.Visible = False
+            DDBBAPPelaksanaan.Visible = False
             SBStopScan.Visible = True
         Else
-            SBBAPPelaksanaan.Visible = True
+            DDBBAPPelaksanaan.Visible = True
             SBStopScan.Visible = False
         End If
+
+        PopupMenu.ClearLinks()
+
+        Dim comp_in As DataTable = execute_query("
+            SELECT t.id_comp, t.comp_name
+            FROM (
+                (SELECT s.id_st_store_period, s.id_comp, c.comp_name
+                FROM tb_st_store_soh AS s
+                LEFT JOIN tb_m_comp AS c ON s.id_comp = c.id_comp
+                WHERE s.id_st_store_period = " + id_period + ")
+                UNION ALL
+                (SELECT s.id_st_store_period, s.id_comp, c.comp_name
+                FROM tb_st_store AS s
+                LEFT JOIN tb_m_comp AS c ON s.id_comp = c.id_comp
+                WHERE s.id_st_store_period = " + id_period + ")
+            ) AS t
+            GROUP BY t.id_comp, t.comp_name
+        ", -1, True, "", "", "", "")
+
+        Dim volcomClientHost As String = get_setup_field("volcom_client_host")
+
+        Dim url As String = volcomClientHost + "/stocktake/getBAPPelakasanaan/"
+
+        For i = 0 To comp_in.Rows.Count - 1
+            Dim itm As DevExpress.XtraBars.BarItem = New DevExpress.XtraBars.BarButtonItem
+
+            itm.Tag = url + id_period + "/" + comp_in.Rows(i)("id_comp").ToString
+            itm.Caption = comp_in.Rows(i)("comp_name").ToString
+
+            AddHandler itm.ItemClick, AddressOf itemClick
+
+            PopupMenu.AddItem(itm)
+        Next
+    End Sub
+
+    Sub itemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs)
+        Process.Start(e.Item.Tag)
     End Sub
 
     Private Sub GVPeriod_DoubleClick(sender As Object, e As EventArgs) Handles GVPeriod.DoubleClick
@@ -295,12 +348,6 @@
 
     Private Sub SBVerification_Click(sender As Object, e As EventArgs) Handles SBVerification.Click
         FormStockTakeStoreVer.ShowDialog()
-    End Sub
-
-    Private Sub SBBAPPelaksanaan_Click(sender As Object, e As EventArgs) Handles SBBAPPelaksanaan.Click
-        Dim volcomClientHost As String = get_setup_field("volcom_client_host")
-
-        Process.Start(volcomClientHost + "/stocktake/getBAPPelakasanaan/" + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString)
     End Sub
 
     Private Sub SBStopScan_Click(sender As Object, e As EventArgs) Handles SBStopScan.Click

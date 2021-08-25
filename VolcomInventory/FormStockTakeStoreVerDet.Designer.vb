@@ -33,6 +33,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBDownloadTemplate = New DevExpress.XtraEditors.SimpleButton()
         Me.SBImportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
@@ -68,7 +69,6 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.SBDownloadTemplate = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -208,6 +208,14 @@ Partial Class FormStockTakeStoreVerDet
         Me.PanelControl1.Size = New System.Drawing.Size(784, 122)
         Me.PanelControl1.TabIndex = 10
         '
+        'SBDownloadTemplate
+        '
+        Me.SBDownloadTemplate.Location = New System.Drawing.Point(112, 90)
+        Me.SBDownloadTemplate.Name = "SBDownloadTemplate"
+        Me.SBDownloadTemplate.Size = New System.Drawing.Size(130, 23)
+        Me.SBDownloadTemplate.TabIndex = 12
+        Me.SBDownloadTemplate.Text = "Download Template"
+        '
         'SBImportExcel
         '
         Me.SBImportExcel.Location = New System.Drawing.Point(16, 90)
@@ -284,6 +292,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.BGVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn21})
         Me.BGVData.GridControl = Me.GCData
         Me.BGVData.Name = "BGVData"
+        Me.BGVData.OptionsView.ShowFooter = True
         Me.BGVData.OptionsView.ShowGroupPanel = False
         '
         'GridBand1
@@ -347,6 +356,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn5.FieldName = "qty_awal"
         Me.BandedGridColumn5.Name = "BandedGridColumn5"
         Me.BandedGridColumn5.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_awal", "{0:N0}")})
         Me.BandedGridColumn5.Visible = True
         '
         'BandedGridColumn6
@@ -357,6 +367,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn6.FieldName = "value_awal"
         Me.BandedGridColumn6.Name = "BandedGridColumn6"
         Me.BandedGridColumn6.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_awal", "{0:N0}")})
         Me.BandedGridColumn6.UnboundExpression = "[qty_awal] * [price]"
         Me.BandedGridColumn6.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.BandedGridColumn6.Visible = True
@@ -378,6 +389,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn7.FieldName = "qty_ver"
         Me.BandedGridColumn7.Name = "BandedGridColumn7"
         Me.BandedGridColumn7.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ver", "{0:N0}")})
         Me.BandedGridColumn7.Visible = True
         '
         'BandedGridColumn8
@@ -388,6 +400,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn8.FieldName = "value_ver"
         Me.BandedGridColumn8.Name = "BandedGridColumn8"
         Me.BandedGridColumn8.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_ver", "{0:N0}")})
         Me.BandedGridColumn8.UnboundExpression = "[qty_ver] * [price]"
         Me.BandedGridColumn8.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.BandedGridColumn8.Visible = True
@@ -409,6 +422,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn9.FieldName = "qty_akhir"
         Me.BandedGridColumn9.Name = "BandedGridColumn9"
         Me.BandedGridColumn9.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_akhir", "{0:N0}")})
         Me.BandedGridColumn9.UnboundExpression = "[qty_awal] - [qty_ver]"
         Me.BandedGridColumn9.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.BandedGridColumn9.Visible = True
@@ -421,6 +435,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn10.FieldName = "value_akhir"
         Me.BandedGridColumn10.Name = "BandedGridColumn10"
         Me.BandedGridColumn10.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_akhir", "{0:N0}")})
         Me.BandedGridColumn10.UnboundExpression = "[qty_akhir] * [price]"
         Me.BandedGridColumn10.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.BandedGridColumn10.Visible = True
@@ -521,14 +536,6 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn21.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn21.UnboundExpression = "[qty_scan] * [price]"
         Me.BandedGridColumn21.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
-        '
-        'SBDownloadTemplate
-        '
-        Me.SBDownloadTemplate.Location = New System.Drawing.Point(112, 90)
-        Me.SBDownloadTemplate.Name = "SBDownloadTemplate"
-        Me.SBDownloadTemplate.Size = New System.Drawing.Size(130, 23)
-        Me.SBDownloadTemplate.TabIndex = 12
-        Me.SBDownloadTemplate.Text = "Download Template"
         '
         'FormStockTakeStoreVerDet
         '

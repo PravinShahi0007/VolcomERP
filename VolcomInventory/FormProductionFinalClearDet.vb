@@ -907,6 +907,10 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
 
     Sub countQty(ByVal id_prod_order_detx As String)
         Dim tot As Decimal = 0.0
+
+        GVBarcode.ActiveFilterString = ""
+        GVBarcode.ApplyFindFilter("")
+
         For i As Integer = 0 To GVBarcode.RowCount - 1
             Dim id_prod_order_det As String = GVBarcode.GetRowCellValue(i, "id_prod_order_det").ToString
             If id_prod_order_det = id_prod_order_detx Then

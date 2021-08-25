@@ -469,6 +469,12 @@
     <Compile Include="FormAREvaluation.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAREvaluationRelease.Designer.vb">
+      <DependentUpon>FormAREvaluationRelease.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAREvaluationRelease.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAwbInv.Designer.vb">
       <DependentUpon>FormAwbInv.vb</DependentUpon>
     </Compile>
@@ -10185,6 +10191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAREvaluation.resx">
       <DependentUpon>FormAREvaluation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAREvaluationRelease.resx">
+      <DependentUpon>FormAREvaluationRelease.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAwbInv.resx">
       <DependentUpon>FormAwbInv.vb</DependentUpon>

@@ -19,6 +19,7 @@ Partial Class FormStockTakeStorePeriod
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStockTakeStorePeriod))
         Me.GCPeriod = New DevExpress.XtraGrid.GridControl()
         Me.GVPeriod = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -44,6 +45,9 @@ Partial Class FormStockTakeStorePeriod
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnstore_amount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndiff_amount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -61,11 +65,18 @@ Partial Class FormStockTakeStorePeriod
         Me.SBVerification = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSelectAccount = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SBBAPPelaksanaan = New DevExpress.XtraEditors.SimpleButton()
+        Me.DDBBAPPelaksanaan = New DevExpress.XtraEditors.DropDownButton()
+        Me.PopupMenu = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarManager = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.SBStopScan = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnScanList = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSync = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBStopScan = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,6 +90,8 @@ Partial Class FormStockTakeStorePeriod
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.PopupMenu, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCPeriod
@@ -175,8 +188,8 @@ Partial Class FormStockTakeStorePeriod
         '
         'BGVCompare
         '
-        Me.BGVCompare.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand4, Me.gridBand5})
-        Me.BGVCompare.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn13, Me.BandedGridColumn9, Me.BandedGridColumn11, Me.BandedGridColumn10, Me.BandedGridColumn12, Me.BandedGridColumnunit_price, Me.BandedGridColumnsoh_amount, Me.BandedGridColumnstore_amount, Me.BandedGridColumndiff_amount, Me.BandedGridColumn15, Me.BandedGridColumn14})
+        Me.BGVCompare.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand6, Me.gridBand4, Me.gridBand5})
+        Me.BGVCompare.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn13, Me.BandedGridColumn9, Me.BandedGridColumn11, Me.BandedGridColumn10, Me.BandedGridColumn12, Me.BandedGridColumnunit_price, Me.BandedGridColumnsoh_amount, Me.BandedGridColumnstore_amount, Me.BandedGridColumndiff_amount, Me.BandedGridColumn15, Me.BandedGridColumn14, Me.BandedGridColumn16, Me.BandedGridColumn17})
         Me.BGVCompare.GridControl = Me.GCCompare
         Me.BGVCompare.GroupCount = 1
         Me.BGVCompare.Name = "BGVCompare"
@@ -301,6 +314,39 @@ Partial Class FormStockTakeStorePeriod
         Me.BandedGridColumnstore_amount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnstore_amount.Visible = True
         '
+        'gridBand6
+        '
+        Me.gridBand6.Caption = "Verifikasi"
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn16)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn17)
+        Me.gridBand6.Name = "gridBand6"
+        Me.gridBand6.VisibleIndex = 3
+        Me.gridBand6.Width = 150
+        '
+        'BandedGridColumn16
+        '
+        Me.BandedGridColumn16.Caption = "Qty"
+        Me.BandedGridColumn16.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn16.FieldName = "qty_ver"
+        Me.BandedGridColumn16.Name = "BandedGridColumn16"
+        Me.BandedGridColumn16.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn16.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ver", "{0:N0}")})
+        Me.BandedGridColumn16.Visible = True
+        '
+        'BandedGridColumn17
+        '
+        Me.BandedGridColumn17.Caption = "Amount"
+        Me.BandedGridColumn17.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn17.FieldName = "ver_amount"
+        Me.BandedGridColumn17.Name = "BandedGridColumn17"
+        Me.BandedGridColumn17.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ver_amount", "{0:N0}")})
+        Me.BandedGridColumn17.UnboundExpression = "[unit_price]*[qty_ver]"
+        Me.BandedGridColumn17.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn17.Visible = True
+        '
         'gridBand4
         '
         Me.gridBand4.Caption = "Note"
@@ -309,7 +355,7 @@ Partial Class FormStockTakeStorePeriod
         Me.gridBand4.Columns.Add(Me.BandedGridColumn8)
         Me.gridBand4.Columns.Add(Me.BandedGridColumn13)
         Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 3
+        Me.gridBand4.VisibleIndex = 4
         Me.gridBand4.Width = 300
         '
         'BandedGridColumn7
@@ -357,7 +403,7 @@ Partial Class FormStockTakeStorePeriod
         Me.gridBand5.Columns.Add(Me.BandedGridColumn9)
         Me.gridBand5.Columns.Add(Me.BandedGridColumn11)
         Me.gridBand5.Name = "gridBand5"
-        Me.gridBand5.VisibleIndex = 4
+        Me.gridBand5.VisibleIndex = 5
         Me.gridBand5.Width = 150
         '
         'BandedGridColumn9
@@ -440,8 +486,8 @@ Partial Class FormStockTakeStorePeriod
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.DDBBAPPelaksanaan)
         Me.PanelControl1.Controls.Add(Me.SBStopScan)
-        Me.PanelControl1.Controls.Add(Me.SBBAPPelaksanaan)
         Me.PanelControl1.Controls.Add(Me.BtnExportToXLS)
         Me.PanelControl1.Controls.Add(Me.BtnScanList)
         Me.PanelControl1.Controls.Add(Me.SBSync)
@@ -451,15 +497,76 @@ Partial Class FormStockTakeStorePeriod
         Me.PanelControl1.Size = New System.Drawing.Size(1002, 45)
         Me.PanelControl1.TabIndex = 0
         '
-        'SBBAPPelaksanaan
+        'DDBBAPPelaksanaan
         '
-        Me.SBBAPPelaksanaan.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBBAPPelaksanaan.Image = CType(resources.GetObject("SBBAPPelaksanaan.Image"), System.Drawing.Image)
-        Me.SBBAPPelaksanaan.Location = New System.Drawing.Point(765, 2)
-        Me.SBBAPPelaksanaan.Name = "SBBAPPelaksanaan"
-        Me.SBBAPPelaksanaan.Size = New System.Drawing.Size(141, 41)
-        Me.SBBAPPelaksanaan.TabIndex = 3
-        Me.SBBAPPelaksanaan.Text = "BAP Pelaksanaan"
+        Me.DDBBAPPelaksanaan.Dock = System.Windows.Forms.DockStyle.Right
+        Me.DDBBAPPelaksanaan.DropDownControl = Me.PopupMenu
+        Me.DDBBAPPelaksanaan.Image = CType(resources.GetObject("DDBBAPPelaksanaan.Image"), System.Drawing.Image)
+        Me.DDBBAPPelaksanaan.Location = New System.Drawing.Point(636, 2)
+        Me.DDBBAPPelaksanaan.Name = "DDBBAPPelaksanaan"
+        Me.DDBBAPPelaksanaan.Size = New System.Drawing.Size(160, 41)
+        Me.DDBBAPPelaksanaan.TabIndex = 5
+        Me.DDBBAPPelaksanaan.Text = "BAP Pelaksanaan"
+        '
+        'PopupMenu
+        '
+        Me.PopupMenu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem1)})
+        Me.PopupMenu.Manager = Me.BarManager
+        Me.PopupMenu.Name = "PopupMenu"
+        '
+        'BarButtonItem1
+        '
+        Me.BarButtonItem1.Caption = "BarButtonItem1"
+        Me.BarButtonItem1.Id = 0
+        Me.BarButtonItem1.Name = "BarButtonItem1"
+        '
+        'BarManager
+        '
+        Me.BarManager.DockControls.Add(Me.barDockControlTop)
+        Me.BarManager.DockControls.Add(Me.barDockControlBottom)
+        Me.BarManager.DockControls.Add(Me.barDockControlLeft)
+        Me.BarManager.DockControls.Add(Me.barDockControlRight)
+        Me.BarManager.Form = Me
+        Me.BarManager.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1})
+        Me.BarManager.MaxItemId = 1
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1008, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 729)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1008, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 729)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(1008, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 729)
+        '
+        'SBStopScan
+        '
+        Me.SBStopScan.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBStopScan.Image = CType(resources.GetObject("SBStopScan.Image"), System.Drawing.Image)
+        Me.SBStopScan.Location = New System.Drawing.Point(796, 2)
+        Me.SBStopScan.Name = "SBStopScan"
+        Me.SBStopScan.Size = New System.Drawing.Size(110, 41)
+        Me.SBStopScan.TabIndex = 4
+        Me.SBStopScan.Text = "Stop Scan"
         '
         'BtnExportToXLS
         '
@@ -491,22 +598,16 @@ Partial Class FormStockTakeStorePeriod
         Me.SBSync.TabIndex = 0
         Me.SBSync.Text = "Sync"
         '
-        'SBStopScan
-        '
-        Me.SBStopScan.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBStopScan.Image = CType(resources.GetObject("SBStopScan.Image"), System.Drawing.Image)
-        Me.SBStopScan.Location = New System.Drawing.Point(655, 2)
-        Me.SBStopScan.Name = "SBStopScan"
-        Me.SBStopScan.Size = New System.Drawing.Size(110, 41)
-        Me.SBStopScan.TabIndex = 4
-        Me.SBStopScan.Text = "Stop Scan"
-        '
         'FormStockTakeStorePeriod
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.XtraTabControl)
+        Me.Controls.Add(Me.barDockControlLeft)
+        Me.Controls.Add(Me.barDockControlRight)
+        Me.Controls.Add(Me.barDockControlBottom)
+        Me.Controls.Add(Me.barDockControlTop)
         Me.Name = "FormStockTakeStorePeriod"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Stock Take Store"
@@ -523,7 +624,10 @@ Partial Class FormStockTakeStorePeriod
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PopupMenu, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents GCPeriod As DevExpress.XtraGrid.GridControl
@@ -561,15 +665,25 @@ Partial Class FormStockTakeStorePeriod
     Friend WithEvents BandedGridColumnsoh_amount As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnstore_amount As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumndiff_amount As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn13 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents SBVerification As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BandedGridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn15 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents SBStopScan As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BandedGridColumn16 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn17 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumn13 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents SBVerification As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BandedGridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumn15 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents SBBAPPelaksanaan As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SBStopScan As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DDBBAPPelaksanaan As DevExpress.XtraEditors.DropDownButton
+    Friend WithEvents PopupMenu As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents BarManager As DevExpress.XtraBars.BarManager
+    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents BarButtonItem1 As DevExpress.XtraBars.BarButtonItem
 End Class
