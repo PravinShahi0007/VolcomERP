@@ -28,6 +28,7 @@ Partial Class FormAREvaluation
         Dim FormatConditionRuleValue2 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.PanelNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnRelease = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtAREvalNumber = New DevExpress.XtraEditors.TextEdit()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
@@ -174,6 +175,7 @@ Partial Class FormAREvaluation
         '
         'PanelNav
         '
+        Me.PanelNav.Controls.Add(Me.BtnRelease)
         Me.PanelNav.Controls.Add(Me.TxtAREvalNumber)
         Me.PanelNav.Controls.Add(Me.BtnLog)
         Me.PanelNav.Controls.Add(Me.BtnViewData)
@@ -186,6 +188,16 @@ Partial Class FormAREvaluation
         Me.PanelNav.Name = "PanelNav"
         Me.PanelNav.Size = New System.Drawing.Size(1194, 50)
         Me.PanelNav.TabIndex = 0
+        '
+        'BtnRelease
+        '
+        Me.BtnRelease.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRelease.Location = New System.Drawing.Point(888, 2)
+        Me.BtnRelease.Name = "BtnRelease"
+        Me.BtnRelease.Size = New System.Drawing.Size(67, 46)
+        Me.BtnRelease.TabIndex = 7
+        Me.BtnRelease.Text = "Release"
+        Me.BtnRelease.Visible = False
         '
         'TxtAREvalNumber
         '
@@ -251,11 +263,11 @@ Partial Class FormAREvaluation
         '
         Me.BtnLog.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnLog.Image = CType(resources.GetObject("BtnLog.Image"), System.Drawing.Image)
-        Me.BtnLog.Location = New System.Drawing.Point(911, 2)
+        Me.BtnLog.Location = New System.Drawing.Point(955, 2)
         Me.BtnLog.Name = "BtnLog"
-        Me.BtnLog.Size = New System.Drawing.Size(104, 46)
+        Me.BtnLog.Size = New System.Drawing.Size(60, 46)
         Me.BtnLog.TabIndex = 3
-        Me.BtnLog.Text = "Execution Log"
+        Me.BtnLog.Text = "Log"
         Me.BtnLog.Visible = False
         '
         'BtnViewData
@@ -1379,4 +1391,5 @@ Partial Class FormAREvaluation
     Friend WithEvents GridColumndiffsum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TxtAREvalNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BtnNote As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnRelease As DevExpress.XtraEditors.SimpleButton
 End Class
