@@ -78,7 +78,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCUOrign = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCPOrign = New DevExpress.XtraEditors.PanelControl()
         Me.BDelOrign = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddOrign = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
@@ -99,7 +99,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCUDest = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCPDest = New DevExpress.XtraEditors.PanelControl()
         Me.BDelDest = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddDest = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
@@ -161,8 +161,8 @@ Partial Class FormPreCalFGPODet
         CType(Me.GVOrign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCUOrign, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCUOrign.SuspendLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        CType(Me.PCPOrign, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCPOrign.SuspendLayout()
         CType(Me.SLEVendorOrign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCOrign, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -172,8 +172,8 @@ Partial Class FormPreCalFGPODet
         CType(Me.GVDest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCUDest, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCUDest.SuspendLayout()
-        CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl8.SuspendLayout()
+        CType(Me.PCPDest, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCPDest.SuspendLayout()
         CType(Me.SLEVendorDest.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCDest, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -771,7 +771,7 @@ Partial Class FormPreCalFGPODet
         '
         'PCUOrign
         '
-        Me.PCUOrign.Controls.Add(Me.PanelControl3)
+        Me.PCUOrign.Controls.Add(Me.PCPOrign)
         Me.PCUOrign.Controls.Add(Me.LabelControl10)
         Me.PCUOrign.Controls.Add(Me.SLEVendorOrign)
         Me.PCUOrign.Dock = System.Windows.Forms.DockStyle.Top
@@ -780,16 +780,16 @@ Partial Class FormPreCalFGPODet
         Me.PCUOrign.Size = New System.Drawing.Size(1016, 43)
         Me.PCUOrign.TabIndex = 7
         '
-        'PanelControl3
+        'PCPOrign
         '
-        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Controls.Add(Me.BDelOrign)
-        Me.PanelControl3.Controls.Add(Me.BAddOrign)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl3.Location = New System.Drawing.Point(794, 2)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(220, 39)
-        Me.PanelControl3.TabIndex = 101
+        Me.PCPOrign.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCPOrign.Controls.Add(Me.BDelOrign)
+        Me.PCPOrign.Controls.Add(Me.BAddOrign)
+        Me.PCPOrign.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PCPOrign.Location = New System.Drawing.Point(794, 2)
+        Me.PCPOrign.Name = "PCPOrign"
+        Me.PCPOrign.Size = New System.Drawing.Size(220, 39)
+        Me.PCPOrign.TabIndex = 101
         '
         'BDelOrign
         '
@@ -1010,7 +1010,7 @@ Partial Class FormPreCalFGPODet
         '
         'PCUDest
         '
-        Me.PCUDest.Controls.Add(Me.PanelControl8)
+        Me.PCUDest.Controls.Add(Me.PCPDest)
         Me.PCUDest.Controls.Add(Me.LabelControl11)
         Me.PCUDest.Controls.Add(Me.SLEVendorDest)
         Me.PCUDest.Dock = System.Windows.Forms.DockStyle.Top
@@ -1019,16 +1019,16 @@ Partial Class FormPreCalFGPODet
         Me.PCUDest.Size = New System.Drawing.Size(1016, 43)
         Me.PCUDest.TabIndex = 8
         '
-        'PanelControl8
+        'PCPDest
         '
-        Me.PanelControl8.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl8.Controls.Add(Me.BDelDest)
-        Me.PanelControl8.Controls.Add(Me.BAddDest)
-        Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl8.Location = New System.Drawing.Point(794, 2)
-        Me.PanelControl8.Name = "PanelControl8"
-        Me.PanelControl8.Size = New System.Drawing.Size(220, 39)
-        Me.PanelControl8.TabIndex = 101
+        Me.PCPDest.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCPDest.Controls.Add(Me.BDelDest)
+        Me.PCPDest.Controls.Add(Me.BAddDest)
+        Me.PCPDest.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PCPDest.Location = New System.Drawing.Point(794, 2)
+        Me.PCPDest.Name = "PCPDest"
+        Me.PCPDest.Size = New System.Drawing.Size(220, 39)
+        Me.PCPDest.TabIndex = 101
         '
         'BDelDest
         '
@@ -1368,8 +1368,8 @@ Partial Class FormPreCalFGPODet
         CType(Me.PCUOrign, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCUOrign.ResumeLayout(False)
         Me.PCUOrign.PerformLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PCPOrign, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCPOrign.ResumeLayout(False)
         CType(Me.SLEVendorOrign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCOrign, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1380,8 +1380,8 @@ Partial Class FormPreCalFGPODet
         CType(Me.PCUDest, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCUDest.ResumeLayout(False)
         Me.PCUDest.PerformLayout()
-        CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl8.ResumeLayout(False)
+        CType(Me.PCPDest, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCPDest.ResumeLayout(False)
         CType(Me.SLEVendorDest.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCDest, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1481,7 +1481,7 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCPOrign As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BDelOrign As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAddOrign As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BDraftOrign As DevExpress.XtraEditors.SimpleButton
@@ -1493,7 +1493,7 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PCUDest As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents PanelControl8 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCPDest As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BDelDest As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAddDest As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
