@@ -46,6 +46,7 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                 ElseIf steps > 3 Then
                     load_list_orign()
                     load_list_dest()
+                    load_list_adm()
                 End If
             End If
         End If
@@ -60,6 +61,15 @@ INNER JOIN tb_m_design d ON b.id_design = d.id_design
 WHERE pcl.id_pre_cal_fgpo='" & id & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCListFGPO.DataSource = dt
+    End Sub
+
+    Sub load_list_adm()
+        Dim q As String = "SELECT ot.`id_pre_cal_fgpo_other`,ot.desc,ot.`id_currency`,cur.currency,ot.`unit_price`,ot.`kurs`,ot.`unit_price_in_rp`,ot.`qty`
+FROM `tb_pre_cal_fgpo_other` ot
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=ot.`id_currency`
+WHERE ot.`id_pre_cal_fgpo`='" & id & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCAdm.DataSource = dt
     End Sub
 
     Sub load_list_orign()
@@ -143,6 +153,7 @@ SELECT 2 AS id_type,'FCL' AS type"
             PCUVendor.Visible = False
             PCPOrign.Visible = False
             PCPDest.Visible = False
+            PCUAdm.Visible = False
 
             XTC.SelectedTabPageIndex = 0
         ElseIf steps = "2" Then
@@ -162,6 +173,7 @@ SELECT 2 AS id_type,'FCL' AS type"
             PCUVendor.Visible = True
             PCPOrign.Visible = False
             PCPDest.Visible = False
+            PCUAdm.Visible = False
 
             XTC.SelectedTabPageIndex = 1
         ElseIf steps = "3" Then
@@ -181,6 +193,7 @@ SELECT 2 AS id_type,'FCL' AS type"
             PCUVendor.Visible = False
             PCPOrign.Visible = True
             PCPDest.Visible = False
+            PCUAdm.Visible = False
             '
             XTC.SelectedTabPageIndex = 2
         ElseIf steps = "4" Then
@@ -200,8 +213,29 @@ SELECT 2 AS id_type,'FCL' AS type"
             PCUVendor.Visible = False
             PCPOrign.Visible = False
             PCPDest.Visible = True
+            PCUAdm.Visible = False
             '
             XTC.SelectedTabPageIndex = 3
+        ElseIf steps = "5" Then
+            XTPFGPO.PageVisible = True
+            XTPVendor.PageVisible = True
+            XTPOrignCharges.PageVisible = True
+            XTPDestCharges.PageVisible = True
+            XTPAdmCharges.PageVisible = True
+            '
+            PCFGPOList.Visible = False
+            PCVendor.Visible = False
+            PCOrign.Visible = False
+            PCDest.Visible = False
+            PCAdm.Visible = True
+            '
+            PCUFGPO.Visible = False
+            PCUVendor.Visible = False
+            PCPOrign.Visible = False
+            PCPDest.Visible = False
+            PCUAdm.Visible = True
+            '
+            XTC.SelectedTabPageIndex = 4
         End If
     End Sub
 
@@ -364,7 +398,7 @@ HAVING tot=0"
         Cursor = Cursors.WaitCursor
         If GVDest.RowCount > 0 Then
             Dim q As String = ""
-            q = "DELETE FROM tb_pre_cal_fgpo_det WHERE id_pre_cal_fgpo='" & id & "' AND id_comp='" & SLEVendorOrign.EditValue.ToString & "' AND id_type='2'"
+            q = "DELETE FROM tb_pre_cal_fgpo_det WHERE id_pre_cal_fgpo='" & id & "' AND id_comp='" & SLEVendorDest.EditValue.ToString & "' AND id_type='2'"
             execute_non_query(q, True, "", "", "", "")
             '
             q = "INSERT INTO `tb_pre_cal_fgpo_det`(`id_pre_cal_fgpo`,`id_type`,`id_comp`,`desc`,`id_currency`,`unit_price`,`kurs`,`unit_price_in_rp`,`qty`,`total_in_rp`) VALUES"
@@ -372,7 +406,7 @@ HAVING tot=0"
                 If Not i = 0 Then
                     q += ","
                 End If
-                q += "('" & id & "',2,'" & SLEVendorOrign.EditValue.ToString & "','" & addSlashes(GVDest.GetRowCellValue(i, "desc").ToString) & "','1','" & decimalSQL(Decimal.Parse(GVDest.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "','1','" & decimalSQL(Decimal.Parse(GVDest.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVDest.GetRowCellValue(i, "qty").ToString).ToString) & "','" & decimalSQL(Decimal.Parse((GVDest.GetRowCellValue(i, "unit_price_in_rp") * GVDest.GetRowCellValue(i, "qty")).ToString).ToString) & "')"
+                q += "('" & id & "',2,'" & SLEVendorDest.EditValue.ToString & "','" & addSlashes(GVDest.GetRowCellValue(i, "desc").ToString) & "','1','" & decimalSQL(Decimal.Parse(GVDest.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "','1','" & decimalSQL(Decimal.Parse(GVDest.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVDest.GetRowCellValue(i, "qty").ToString).ToString) & "','" & decimalSQL(Decimal.Parse((GVDest.GetRowCellValue(i, "unit_price_in_rp") * GVDest.GetRowCellValue(i, "qty")).ToString).ToString) & "')"
             Next
 
             execute_non_query(q, True, "", "", "", "")
@@ -407,5 +441,45 @@ HAVING tot=0"
 
     Private Sub SLEVendordest_EditValueChanged(sender As Object, e As EventArgs) Handles SLEVendorDest.EditValueChanged
         load_list_dest()
+    End Sub
+
+    Private Sub BLoadCharges_Click(sender As Object, e As EventArgs) Handles BLoadCharges.Click
+        TEDutyPercent.EditValue = 10
+
+        Dim q As String = "SELECT '' AS `id_pre_cal_fgpo_other`,ot.desc,ot.`id_currency`,cur.currency,ot.amo AS `unit_price`,(SELECT kurs_trans+fixed_floating FROM tb_kurs_trans WHERE id_kurs_trans = (SELECT MAX(id_kurs_trans) FROM `tb_kurs_trans`)) AS `kurs`
+,(SELECT unit_price) * (SELECT kurs) AS `unit_price_in_rp`,1 AS `qty`
+FROM `tb_lookup_adm_precal` ot
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=ot.`id_currency`
+WHERE ot.`is_active`='1'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+        GCAdm.DataSource = dt
+    End Sub
+
+    Sub save_other()
+        Dim q As String = ""
+        q = "UPDATE tb_pre_cal_fgpo SET duty_percent='" & decimalSQL(Decimal.Parse(TEDutyPercent.EditValue.ToString)) & "' WHERE id_pre_cal_fgpo='" & id & "'"
+        execute_non_query(q, True, "", "", "", "")
+        '
+        q = "DELETE FROM tb_pre_cal_fgpo_other WHERE id_pre_cal_fgpo='" & id & "'"
+        execute_non_query(q, True, "", "", "", "")
+        '`id_pre_cal_fgpo_other`,`id_currency`,`unit_price`,`kurs`,`unit_price_in_rp`,`qty`
+        q = "INSERT INTO `tb_pre_cal_fgpo_other`(`id_pre_cal_fgpo`,`desc`,`id_currency`,`unit_price`,`kurs`,`unit_price_in_rp`,`qty`,`total_in_rp`) VALUES"
+        For i = 0 To GVAdm.RowCount - 1
+            If Not i = 0 Then
+                q += ","
+            End If
+            q += "('" & id & "','" & addSlashes(GVAdm.GetRowCellValue(i, "desc").ToString) & "','" & GVAdm.GetRowCellValue(i, "id_currency").ToString & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "unit_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "kurs").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "qty").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "')"
+        Next
+
+        execute_non_query(q, True, "", "", "", "")
+    End Sub
+
+    Private Sub BDraftAdm_Click(sender As Object, e As EventArgs) Handles BDraftAdm.Click
+        save_other()
+    End Sub
+
+    Private Sub BPreview_Click(sender As Object, e As EventArgs) Handles BPreview.Click
+
     End Sub
 End Class
