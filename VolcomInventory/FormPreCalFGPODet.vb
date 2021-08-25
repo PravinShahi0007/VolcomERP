@@ -73,7 +73,7 @@ WHERE v.id_pre_cal_fgpo='" & id & "' AND v.id_comp='" & SLEVendorOrign.EditValue
     Sub load_list_dest()
         Dim q As String = "SELECT v.desc,v.unit_price_in_rp,v.qty
 FROM `tb_pre_cal_fgpo_det` v
-WHERE v.id_pre_cal_fgpo='" & id & "' AND v.id_type=2"
+WHERE v.id_pre_cal_fgpo='" & id & "' AND v.id_comp='" & SLEVendorDest.EditValue.ToString & "' AND v.id_type=2"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCDest.DataSource = dt
     End Sub
@@ -86,6 +86,7 @@ WHERE v.id_pre_cal_fgpo='" & id & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCVendor.DataSource = dt
         viewSearchLookupQuery(SLEVendorOrign, q, "id_comp", "comp_name", "id_comp")
+        viewSearchLookupQuery(SLEVendorDest, q, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Sub load_vendor()
@@ -140,7 +141,8 @@ SELECT 2 AS id_type,'FCL' AS type"
             '
             PCUFGPO.Visible = True
             PCUVendor.Visible = False
-            PCUOrign.Visible = False
+            PCPOrign.Visible = False
+            PCPDest.Visible = False
 
             XTC.SelectedTabPageIndex = 0
         ElseIf steps = "2" Then
@@ -158,7 +160,8 @@ SELECT 2 AS id_type,'FCL' AS type"
             '
             PCUFGPO.Visible = False
             PCUVendor.Visible = True
-            PCUOrign.Visible = False
+            PCPOrign.Visible = False
+            PCPDest.Visible = False
 
             XTC.SelectedTabPageIndex = 1
         ElseIf steps = "3" Then
@@ -176,9 +179,29 @@ SELECT 2 AS id_type,'FCL' AS type"
             '
             PCUFGPO.Visible = False
             PCUVendor.Visible = False
-            PCUOrign.Visible = True
+            PCPOrign.Visible = True
+            PCPDest.Visible = False
             '
             XTC.SelectedTabPageIndex = 2
+        ElseIf steps = "4" Then
+            XTPFGPO.PageVisible = True
+            XTPVendor.PageVisible = True
+            XTPOrignCharges.PageVisible = True
+            XTPDestCharges.PageVisible = True
+            XTPAdmCharges.PageVisible = False
+            '
+            PCFGPOList.Visible = False
+            PCVendor.Visible = False
+            PCOrign.Visible = False
+            PCDest.Visible = True
+            PCAdm.Visible = False
+            '
+            PCUFGPO.Visible = False
+            PCUVendor.Visible = False
+            PCPOrign.Visible = False
+            PCPDest.Visible = True
+            '
+            XTC.SelectedTabPageIndex = 3
         End If
     End Sub
 
@@ -223,9 +246,14 @@ VALUES(NOW(),'" & id_user & "','1','2','" & SLEVendorFGPO.EditValue.ToString & "
 
     Private Sub BDeleteVendor_Click(sender As Object, e As EventArgs) Handles BDeleteVendor.Click
         If GVVendor.RowCount > 0 Then
-            Dim q As String = "DELETE FROM tb_pre_cal_fgpo_vendor WHERE id_pre_cal_fgpo='" & id & "' AND id_comp='" & GVVendor.GetFocusedRowCellValue("id_comp").ToString & "'"
+            Dim q As String = ""
+            q = "DELETE FROM tb_pre_cal_fgpo_vendor WHERE id_pre_cal_fgpo='" & id & "' AND id_comp='" & GVVendor.GetFocusedRowCellValue("id_comp").ToString & "'"
             execute_non_query(q, True, "", "", "", "")
-            load_list_forwarder()
+            '
+            q = "DELETE FROM tb_pre_cal_fgpo_det WHERE id_pre_cal_fgpo='" & id & "' AND id_comp='" & GVVendor.GetFocusedRowCellValue("id_comp").ToString & "'"
+            execute_non_query(q, True, "", "", "", "")
+            '
+            load_head()
         End If
     End Sub
 
@@ -325,5 +353,59 @@ HAVING tot=0"
         If GVDest.RowCount > 0 Then
             GVDest.DeleteSelectedRows()
         End If
+    End Sub
+
+    Private Sub BPrevDest_Click(sender As Object, e As EventArgs) Handles BPrevDest.Click
+        execute_non_query("UPDATE tb_pre_cal_fgpo SET step='3' WHERE id_pre_cal_fgpo='" & id & "'", True, "", "", "", "")
+        load_head()
+    End Sub
+
+    Sub save_dest()
+        Cursor = Cursors.WaitCursor
+        If GVDest.RowCount > 0 Then
+            Dim q As String = ""
+            q = "DELETE FROM tb_pre_cal_fgpo_det WHERE id_pre_cal_fgpo='" & id & "' AND id_comp='" & SLEVendorOrign.EditValue.ToString & "' AND id_type='2'"
+            execute_non_query(q, True, "", "", "", "")
+            '
+            q = "INSERT INTO `tb_pre_cal_fgpo_det`(`id_pre_cal_fgpo`,`id_type`,`id_comp`,`desc`,`id_currency`,`unit_price`,`kurs`,`unit_price_in_rp`,`qty`,`total_in_rp`) VALUES"
+            For i = 0 To GVDest.RowCount - 1
+                If Not i = 0 Then
+                    q += ","
+                End If
+                q += "('" & id & "',2,'" & SLEVendorOrign.EditValue.ToString & "','" & addSlashes(GVDest.GetRowCellValue(i, "desc").ToString) & "','1','" & decimalSQL(Decimal.Parse(GVDest.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "','1','" & decimalSQL(Decimal.Parse(GVDest.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVDest.GetRowCellValue(i, "qty").ToString).ToString) & "','" & decimalSQL(Decimal.Parse((GVDest.GetRowCellValue(i, "unit_price_in_rp") * GVDest.GetRowCellValue(i, "qty")).ToString).ToString) & "')"
+            Next
+
+            execute_non_query(q, True, "", "", "", "")
+        Else
+            warningCustom("Please input Dest charges")
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BNextDest_Click(sender As Object, e As EventArgs) Handles BNextDest.Click
+        save_dest()
+
+        'check
+        Dim qc As String = "SELECT v.id_comp,SUM(IFNULL(det.total_in_rp,0)) AS tot
+FROM `tb_pre_cal_fgpo_vendor` v
+LEFT JOIN tb_pre_cal_fgpo_det det ON det.id_pre_cal_fgpo=v.id_pre_cal_fgpo AND v.id_comp=det.id_comp AND det.id_type=2
+WHERE v.id_pre_cal_fgpo = '" & id & "'
+GROUP BY v.id_comp
+HAVING tot=0"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            warningCustom("Make sure all forwarder vendor have dest charges")
+        Else
+            execute_non_query("UPDATE tb_pre_cal_fgpo SET step='5' WHERE id_pre_cal_fgpo='" & id & "'", True, "", "", "", "")
+            load_head()
+        End If
+    End Sub
+
+    Private Sub BDraftDest_Click(sender As Object, e As EventArgs) Handles BDraftDest.Click
+        save_dest()
+    End Sub
+
+    Private Sub SLEVendordest_EditValueChanged(sender As Object, e As EventArgs) Handles SLEVendorDest.EditValueChanged
+        load_list_dest()
     End Sub
 End Class
