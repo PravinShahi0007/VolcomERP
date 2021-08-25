@@ -7167,7 +7167,7 @@ GROUP BY ol.checkout_id
 
                         Dim qty As String = GVData.GetRowCellValue(i, "qty").ToString
 
-                        If GVData.GetRowCellValue(i, "report_type").ToString = "ADJ OUT" Or GVData.GetRowCellValue(i, "report_type").ToString = "TA OUT" Then
+                        If GVData.GetRowCellValue(i, "report_type").ToString = "ADJ IN" Or GVData.GetRowCellValue(i, "report_type").ToString = "TA IN" Then
                             qty = "-" + qty
                         End If
 
