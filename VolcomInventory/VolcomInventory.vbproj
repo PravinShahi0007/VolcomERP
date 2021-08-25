@@ -287,6 +287,7 @@
     <Compile Include="ClassItemRequest.vb" />
     <Compile Include="ClassMailManage.vb" />
     <Compile Include="ClassMailManageReturn.vb" />
+    <Compile Include="ClassMasterSilhouette.vb" />
     <Compile Include="ClassMOS.vb" />
     <Compile Include="ClassOLReturnRefuse.vb" />
     <Compile Include="ClassOLStore.vb" />
@@ -3176,6 +3177,12 @@
       <DependentUpon>FormMasterSilhouette.vb</DependentUpon>
     </Compile>
     <Compile Include="FormMasterSilhouette.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMasterSilhouetteDet.Designer.vb">
+      <DependentUpon>FormMasterSilhouetteDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterSilhouetteDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMasterStore.Designer.vb">
@@ -11596,6 +11603,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterSilhouette.resx">
       <DependentUpon>FormMasterSilhouette.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterSilhouetteDet.resx">
+      <DependentUpon>FormMasterSilhouetteDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterStore.resx">
       <DependentUpon>FormMasterStore.vb</DependentUpon>
