@@ -134,12 +134,49 @@
         ", 0, True, "", "", "", "")
 
         If view_bap = "0" Then
-            SBBAPPelaksanaan.Visible = False
+            DDBBAPPelaksanaan.Visible = False
             SBStopScan.Visible = True
         Else
-            SBBAPPelaksanaan.Visible = True
+            DDBBAPPelaksanaan.Visible = True
             SBStopScan.Visible = False
         End If
+
+        PopupMenu.ClearLinks()
+
+        Dim comp_in As DataTable = execute_query("
+            SELECT t.id_comp, t.comp_name
+            FROM (
+                (SELECT s.id_st_store_period, s.id_comp, c.comp_name
+                FROM tb_st_store_soh AS s
+                LEFT JOIN tb_m_comp AS c ON s.id_comp = c.id_comp
+                WHERE s.id_st_store_period = " + id_period + ")
+                UNION ALL
+                (SELECT s.id_st_store_period, s.id_comp, c.comp_name
+                FROM tb_st_store AS s
+                LEFT JOIN tb_m_comp AS c ON s.id_comp = c.id_comp
+                WHERE s.id_st_store_period = " + id_period + ")
+            ) AS t
+            GROUP BY t.id_comp, t.comp_name
+        ", -1, True, "", "", "", "")
+
+        Dim volcomClientHost As String = get_setup_field("volcom_client_host")
+
+        Dim url As String = volcomClientHost + "/stocktake/getBAPPelakasanaan/"
+
+        For i = 0 To comp_in.Rows.Count - 1
+            Dim itm As DevExpress.XtraBars.BarItem = New DevExpress.XtraBars.BarButtonItem
+
+            itm.Tag = url + id_period + "/" + comp_in.Rows(i)("id_comp").ToString
+            itm.Caption = comp_in.Rows(i)("comp_name").ToString
+
+            AddHandler itm.ItemClick, AddressOf itemClick
+
+            PopupMenu.AddItem(itm)
+        Next
+    End Sub
+
+    Sub itemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs)
+        Process.Start(e.Item.Tag)
     End Sub
 
     Private Sub GVPeriod_DoubleClick(sender As Object, e As EventArgs) Handles GVPeriod.DoubleClick
@@ -311,12 +348,6 @@
 
     Private Sub SBVerification_Click(sender As Object, e As EventArgs) Handles SBVerification.Click
         FormStockTakeStoreVer.ShowDialog()
-    End Sub
-
-    Private Sub SBBAPPelaksanaan_Click(sender As Object, e As EventArgs) Handles SBBAPPelaksanaan.Click
-        Dim volcomClientHost As String = get_setup_field("volcom_client_host")
-
-        Process.Start(volcomClientHost + "/stocktake/getBAPPelakasanaan/" + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString)
     End Sub
 
     Private Sub SBStopScan_Click(sender As Object, e As EventArgs) Handles SBStopScan.Click
