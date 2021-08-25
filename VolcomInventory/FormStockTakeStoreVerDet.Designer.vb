@@ -69,6 +69,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.SBExportExcel = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -190,6 +191,7 @@ Partial Class FormStockTakeStoreVerDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SBExportExcel)
         Me.PanelControl1.Controls.Add(Me.SBDownloadTemplate)
         Me.PanelControl1.Controls.Add(Me.SBImportExcel)
         Me.PanelControl1.Controls.Add(Me.TECreatedBy)
@@ -210,7 +212,7 @@ Partial Class FormStockTakeStoreVerDet
         '
         'SBDownloadTemplate
         '
-        Me.SBDownloadTemplate.Location = New System.Drawing.Point(112, 90)
+        Me.SBDownloadTemplate.Location = New System.Drawing.Point(208, 90)
         Me.SBDownloadTemplate.Name = "SBDownloadTemplate"
         Me.SBDownloadTemplate.Size = New System.Drawing.Size(130, 23)
         Me.SBDownloadTemplate.TabIndex = 12
@@ -537,6 +539,14 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn21.UnboundExpression = "[qty_scan] * [price]"
         Me.BandedGridColumn21.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         '
+        'SBExportExcel
+        '
+        Me.SBExportExcel.Location = New System.Drawing.Point(112, 90)
+        Me.SBExportExcel.Name = "SBExportExcel"
+        Me.SBExportExcel.Size = New System.Drawing.Size(90, 23)
+        Me.SBExportExcel.TabIndex = 13
+        Me.SBExportExcel.Text = "Export Excel"
+        '
         'FormStockTakeStoreVerDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -616,4 +626,5 @@ Partial Class FormStockTakeStoreVerDet
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents SBDownloadTemplate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBExportExcel As DevExpress.XtraEditors.SimpleButton
 End Class
