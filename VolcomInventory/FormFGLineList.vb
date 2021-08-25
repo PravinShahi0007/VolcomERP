@@ -1113,7 +1113,7 @@ Public Class FormFGLineList
                       MAX(CASE WHEN d.id_code=31 THEN d.id_code_detail END) AS `id_subkat`
                       FROM tb_m_design_code AS c
                       INNER JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
-                      WHERE d.id_code IN (31,32) AND d.id_code_detail=14696 AND AND d.id_code_detail!=3822
+                      WHERE d.id_code IN (31,32) AND d.id_code_detail=14696 AND d.id_code_detail!=3822
                       GROUP BY c.id_design
                     ) i ON i.id_design = d.id_design
                     INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = d.id_prod_demand_design_line
