@@ -59,7 +59,13 @@
 
     Private Sub GVClass_DoubleClick(sender As Object, e As EventArgs) Handles GVClass.DoubleClick
         If GVClass.RowCount > 0 And GVClass.FocusedRowHandle >= 0 Then
-
+            Dim id_cls As String = GVClass.GetFocusedRowCellValue("id_class").ToString
+            FormMasterSilhouetteDet.id_class = id_cls
+            FormMasterSilhouetteDet.TxtClass.Text = GVClass.GetFocusedRowCellValue("class").ToString
+            FormMasterSilhouetteDet.TxtClassDesc.Text = GVClass.GetFocusedRowCellValue("class_desc").ToString
+            FormMasterSilhouetteDet.ShowDialog()
+            viewClass()
+            GVClass.FocusedRowHandle = find_row(GVClass, "id_class", id_cls)
         End If
     End Sub
 End Class
