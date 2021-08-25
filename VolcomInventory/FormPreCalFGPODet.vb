@@ -17,7 +17,7 @@
             load_list_fgpo()
         Else
             'edit
-            Dim q As String = "SELECT cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
+            Dim q As String = "SELECT cal.duty_percent,cal.commission,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
 FROM
 `tb_pre_cal_fgpo` cal
 INNER JOIN tb_m_user usr ON usr.`id_user`=cal.`created_by`
@@ -35,6 +35,9 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                 TEWeight.EditValue = dt.Rows(0)("weight")
                 SLEVendorFGPO.EditValue = dt.Rows(0)("id_comp").ToString
                 SLETypeImport.EditValue = dt.Rows(0)("id_type").ToString
+
+                TEDutyPercent.EditValue = dt.Rows(0)("duty_percent")
+                TECommision.EditValue = dt.Rows(0)("commission")
 
                 view_but()
 
@@ -445,6 +448,7 @@ HAVING tot=0"
 
     Private Sub BLoadCharges_Click(sender As Object, e As EventArgs) Handles BLoadCharges.Click
         TEDutyPercent.EditValue = 10
+        TECommision.EditValue = 6
 
         Dim q As String = "SELECT '' AS `id_pre_cal_fgpo_other`,ot.desc,ot.`id_currency`,cur.currency,ot.amo AS `unit_price`,(SELECT kurs_trans+fixed_floating FROM tb_kurs_trans WHERE id_kurs_trans = (SELECT MAX(id_kurs_trans) FROM `tb_kurs_trans`)) AS `kurs`
 ,(SELECT unit_price) * (SELECT kurs) AS `unit_price_in_rp`,1 AS `qty`
@@ -458,7 +462,7 @@ WHERE ot.`is_active`='1'"
 
     Sub save_other()
         Dim q As String = ""
-        q = "UPDATE tb_pre_cal_fgpo SET duty_percent='" & decimalSQL(Decimal.Parse(TEDutyPercent.EditValue.ToString)) & "' WHERE id_pre_cal_fgpo='" & id & "'"
+        q = "UPDATE tb_pre_cal_fgpo SET duty_percent='" & decimalSQL(Decimal.Parse(TEDutyPercent.EditValue.ToString)) & "',commission='" & decimalSQL(Decimal.Parse(TECommision.EditValue.ToString)) & "' WHERE id_pre_cal_fgpo='" & id & "'"
         execute_non_query(q, True, "", "", "", "")
         '
         q = "DELETE FROM tb_pre_cal_fgpo_other WHERE id_pre_cal_fgpo='" & id & "'"

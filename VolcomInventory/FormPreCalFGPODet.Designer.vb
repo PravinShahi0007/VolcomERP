@@ -121,6 +121,9 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCUAdm = New DevExpress.XtraEditors.PanelControl()
+        Me.TECommision = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.TEDutyPercent = New DevExpress.XtraEditors.TextEdit()
         Me.BLoadCharges = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
@@ -198,6 +201,7 @@ Partial Class FormPreCalFGPODet
         CType(Me.GVAdm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCUAdm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCUAdm.SuspendLayout()
+        CType(Me.TECommision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDutyPercent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCAdm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAdm.SuspendLayout()
@@ -1284,6 +1288,9 @@ Partial Class FormPreCalFGPODet
         '
         'PCUAdm
         '
+        Me.PCUAdm.Controls.Add(Me.TECommision)
+        Me.PCUAdm.Controls.Add(Me.LabelControl14)
+        Me.PCUAdm.Controls.Add(Me.LabelControl15)
         Me.PCUAdm.Controls.Add(Me.TEDutyPercent)
         Me.PCUAdm.Controls.Add(Me.BLoadCharges)
         Me.PCUAdm.Controls.Add(Me.LabelControl13)
@@ -1294,9 +1301,42 @@ Partial Class FormPreCalFGPODet
         Me.PCUAdm.Size = New System.Drawing.Size(1016, 48)
         Me.PCUAdm.TabIndex = 7
         '
+        'TECommision
+        '
+        Me.TECommision.Location = New System.Drawing.Point(292, 14)
+        Me.TECommision.Name = "TECommision"
+        Me.TECommision.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECommision.Properties.Appearance.Options.UseFont = True
+        Me.TECommision.Properties.Appearance.Options.UseTextOptions = True
+        Me.TECommision.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TECommision.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TECommision.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TECommision.Properties.DisplayFormat.FormatString = "N2"
+        Me.TECommision.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TECommision.Properties.Mask.EditMask = "N2"
+        Me.TECommision.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TECommision.Size = New System.Drawing.Size(81, 20)
+        Me.TECommision.TabIndex = 156
+        '
+        'LabelControl14
+        '
+        Me.LabelControl14.Location = New System.Drawing.Point(379, 17)
+        Me.LabelControl14.Name = "LabelControl14"
+        Me.LabelControl14.Size = New System.Drawing.Size(11, 13)
+        Me.LabelControl14.TabIndex = 155
+        Me.LabelControl14.Text = "%"
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Location = New System.Drawing.Point(209, 17)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(77, 13)
+        Me.LabelControl15.TabIndex = 154
+        Me.LabelControl15.Text = "KGS Commission"
+        '
         'TEDutyPercent
         '
-        Me.TEDutyPercent.Location = New System.Drawing.Point(92, 13)
+        Me.TEDutyPercent.Location = New System.Drawing.Point(81, 15)
         Me.TEDutyPercent.Name = "TEDutyPercent"
         Me.TEDutyPercent.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEDutyPercent.Properties.Appearance.Options.UseFont = True
@@ -1323,7 +1363,7 @@ Partial Class FormPreCalFGPODet
         '
         'LabelControl13
         '
-        Me.LabelControl13.Location = New System.Drawing.Point(179, 16)
+        Me.LabelControl13.Location = New System.Drawing.Point(168, 18)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(11, 13)
         Me.LabelControl13.TabIndex = 2
@@ -1331,7 +1371,7 @@ Partial Class FormPreCalFGPODet
         '
         'LabelControl12
         '
-        Me.LabelControl12.Location = New System.Drawing.Point(12, 16)
+        Me.LabelControl12.Location = New System.Drawing.Point(12, 18)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(63, 13)
         Me.LabelControl12.TabIndex = 0
@@ -1606,6 +1646,7 @@ Partial Class FormPreCalFGPODet
         CType(Me.PCUAdm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCUAdm.ResumeLayout(False)
         Me.PCUAdm.PerformLayout()
+        CType(Me.TECommision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDutyPercent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCAdm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAdm.ResumeLayout(False)
@@ -1737,4 +1778,7 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents BPreview As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BDraftAdm As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TECommision As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
 End Class

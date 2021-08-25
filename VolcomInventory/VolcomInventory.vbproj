@@ -9343,6 +9343,12 @@
     <Compile Include="ReportPOSClosingNoStock.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPreCalBudget.Designer.vb">
+      <DependentUpon>ReportPreCalBudget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPreCalBudget.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProdBOM.designer.vb">
       <DependentUpon>ReportProdBOM.vb</DependentUpon>
     </Compile>
