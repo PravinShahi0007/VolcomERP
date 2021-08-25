@@ -133,9 +133,9 @@
                         Dim inOut As String = ""
 
                         If Decimal.Parse(data_ver.Rows(i)("qty").ToString) > 0 Then
-                            inOut = "In"
-                        Else
                             inOut = "Out"
+                        Else
+                            inOut = "In"
                         End If
 
                         If data_detail.Rows(j)("report_mark_type").ToString = "" Then

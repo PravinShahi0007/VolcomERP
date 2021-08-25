@@ -4254,7 +4254,7 @@ GROUP BY ol.checkout_id
                 'check qty
                 For j = 0 To FormStockTakeStoreVerDet.BGVData.RowCount - 1
                     If barcode = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "full_code").ToString Then
-                        If data_temp.Rows(i)("qty") > FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal") Then
+                        If data_temp.Rows(i)("qty") > Math.Abs(FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal")) Then
                             data_temp.Rows(i)("status") = "Qty larger than " + FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal").ToString
                         End If
                     End If
@@ -7167,7 +7167,7 @@ GROUP BY ol.checkout_id
 
                         Dim qty As String = GVData.GetRowCellValue(i, "qty").ToString
 
-                        If GVData.GetRowCellValue(i, "report_type").ToString = "ADJ OUT" Or GVData.GetRowCellValue(i, "report_type").ToString = "TA OUT" Then
+                        If GVData.GetRowCellValue(i, "report_type").ToString = "ADJ IN" Or GVData.GetRowCellValue(i, "report_type").ToString = "TA IN" Then
                             qty = "-" + qty
                         End If
 
