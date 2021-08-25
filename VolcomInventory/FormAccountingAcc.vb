@@ -193,9 +193,9 @@ SELECT id_tax_report,tax_report FROM `tb_lookup_tax_report`"
                 End If
                 '
                 If SLEParentAccount.EditValue = "-1" Then
-                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_cat,id_is_det,id_status,id_dc, id_coa_type) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}');SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, LEType.EditValue.ToString, LECOAType.EditValue.ToString)
+                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_cat,id_is_det,id_status,id_dc, id_coa_type) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}');SELECT LAST_INSERT_ID()", TEAccount.Text, addSlashes(MEAccDesc.Text), LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, LEType.EditValue.ToString, LECOAType.EditValue.ToString)
                 Else
-                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det,id_status,id_dc, id_coa_type, is_tax_report,id_tax_report,id_consolidation) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',{6}, '{7}','{8}',{9},{10});SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, SLEParentAccount.Properties.View.GetFocusedRowCellValue("id_acc").ToString, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, LEType.EditValue.ToString, LECOAType.EditValue.ToString, is_tax_report, id_tax_report, id_consolidation)
+                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det,id_status,id_dc, id_coa_type, is_tax_report,id_tax_report,id_consolidation) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',{6}, '{7}','{8}',{9},{10});SELECT LAST_INSERT_ID()", TEAccount.Text, addSlashes(MEAccDesc.Text), SLEParentAccount.Properties.View.GetFocusedRowCellValue("id_acc").ToString, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, LEType.EditValue.ToString, LECOAType.EditValue.ToString, is_tax_report, id_tax_report, id_consolidation)
                 End If
 
                 id_acc = execute_query(query, 0, True, "", "", "", "")
@@ -216,7 +216,7 @@ SELECT id_tax_report,tax_report FROM `tb_lookup_tax_report`"
                 Close()
             Else
                 'edit
-                query = String.Format("UPDATE tb_a_acc SET acc_description='{0}',id_acc_cat='{1}',id_is_det='{2}',id_status='{3}',id_dc='{5}' WHERE id_acc='{4}'", MEAccDesc.Text, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, id_acc, LEType.EditValue.ToString)
+                query = String.Format("UPDATE tb_a_acc SET acc_description='{0}',id_acc_cat='{1}',id_is_det='{2}',id_status='{3}',id_dc='{5}' WHERE id_acc='{4}'", addSlashes(MEAccDesc.Text), LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, id_acc, LEType.EditValue.ToString)
                 execute_non_query(query, True, "", "", "", "")
                 FormAccounting.view_acc()
                 FormAccounting.CreateNodes(FormAccounting.TreeList1)

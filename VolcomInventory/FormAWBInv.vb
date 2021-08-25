@@ -516,7 +516,7 @@ WHERE inv.id_awb_inv_sum='" & id_verification & "'"
         oledbconn.ConnectionString = strConn
         Dim MyCommand As OleDbDataAdapter
 
-        MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] WHERE not ([awb]='')", oledbconn)
+        MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] WHERE not (CStr([awb])='')", oledbconn)
 
         Try
             MyCommand.Fill(data_temp)

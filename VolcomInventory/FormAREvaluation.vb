@@ -8,6 +8,7 @@
         getLastEvaluation()
         If id_role_super_admin = id_role_login Then
             BtnLog.Visible = True
+            BtnRelease.Visible = True
         End If
     End Sub
 
@@ -54,7 +55,7 @@
         IFNULL(pyd.`value`,0.00) - CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS total_due,
         IF(e.is_paid=1,'Paid', 'Not Paid') AS `paid_status`, 
         NULL AS `id_propose_delay_payment`, '' as `memo_number`,
-        e.release_date, e.note,  IFNULL(eh.jum_hold,0) AS `jum_hold`,IF(e.is_active=1,'Active', 'Not Active') AS `active_status`
+        e.release_date, e.note,  IFNULL(eh.jum_hold,0) AS `jum_hold`,IF(e.is_active=1,'Active', 'Not Active') AS `active_status`, IF(e.is_manual_release=1,'Yes', 'No') AS `manual_release_status`
         FROM tb_ar_eval e 
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = e.id_sales_pos
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -87,7 +88,7 @@
 
     Sub viewSummary()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT cg.description AS `store_group`, IF(SUM(CASE WHEN e.is_paid=2 THEN 1 ELSE 0 END)>0,'Hold', 'Release') AS `status`,
+        Dim query As String = "SELECT cg.description AS `store_group`, IF(SUM(CASE WHEN e.is_paid=2 THEN 1 ELSE 0 END)>0,IF(e.is_manual_release=1,'Manual Release', 'Hold'), 'Release') AS `status`,
         SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) ) AS `inv_amount`,
         SUM(IFNULL(pyd.`value`,0.00)) AS total_rec,
         SUM(IFNULL(pyd.`value`,0.00) - CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS `diff`
@@ -644,5 +645,9 @@
         FormAREvalNote.id = id_note
         FormAREvalNote.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnRelease_Click(sender As Object, e As EventArgs) Handles BtnRelease.Click
+        FormAREvaluationRelease.ShowDialog()
     End Sub
 End Class
