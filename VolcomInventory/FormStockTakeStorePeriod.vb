@@ -37,7 +37,7 @@
         Dim query As String = "
             (SELECT 0 AS `no`, p.full_code, p.name, p.size, s.qty AS qty_volcom, IFNULL(t.qty, 0) AS qty_store, (s.qty - IFNULL(t.qty, 0) - IFNULL(v.qty, 0)) AS diff, '' AS note, IFNULL(t.id_comp, s.id_comp) AS id_comp, IFNULL(t.comp_name, CONCAT(c.comp_number, ' - ', c.comp_name)) AS comp_name, t.is_auto, 'no' AS is_select, s.id_product,
             IF(IFNULL(t.id_store_type,c.id_store_type)=1,s.id_design_price_normal, s.id_design_price) AS `id_price`,
-            IF(IFNULL(t.id_store_type,c.id_store_type)=1,s.design_price_normal, s.design_price) AS `unit_price`, n.note AS store_note, IFNULL(v.qty, 0) AS qty_ver
+            IF(IFNULL(t.id_store_type,c.id_store_type)=1,s.design_price_normal, s.design_price) AS `unit_price`, n.note AS store_note, IFNULL(v.qty, 0) AS qty_ver, IF(IFNULL(t.id_store_type,c.id_store_type)=1,'Normal', h.design_price_type) AS design_price_type
             FROM tb_st_store_soh AS s
             LEFT JOIN (
                 SELECT s.id_product, SUM(s.qty) AS qty, s.id_comp, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto, c.id_store_type
@@ -57,13 +57,14 @@
                 WHERE b.id_st_store_period = " + id_period + " AND b.id_report_status <> 5
                 GROUP BY d.id_product, b.id_comp
             ) AS v ON s.id_product = v.id_product AND s.id_comp = v.id_comp
+            LEFT JOIN tb_lookup_design_price_type AS h ON s.id_design_price_type = h.id_design_price_type
             WHERE s.id_st_store_period = " + id_period + ")
         
             UNION ALL
 
             (SELECT 0 AS `no`, p.full_code, p.name, p.size, 0 AS qty_volcom, q.qty AS qty_store, (-q.qty - IFNULL(v.qty, 0)) AS diff, '' AS note, q.id_comp, q.comp_name, q.is_auto, 'no' AS is_select, p.id_product,
             IF(IFNULL(q.id_store_type,0)=1,prn.id_design_price, prc.id_design_price) AS id_price,
-            IF(IFNULL(q.id_store_type,0)=1,prn.design_price, prc.design_price) AS `unit_price`, n.note AS store_note, v.qty AS qty_ver
+            IF(IFNULL(q.id_store_type,0)=1,prn.design_price, prc.design_price) AS `unit_price`, n.note AS store_note, v.qty AS qty_ver, IF(IFNULL(q.id_store_type,0)=1,prn.design_price_type, prc.design_price_type) AS design_price_type
             FROM tb_m_product_store AS p
             INNER JOIN (
                 SELECT s.id_product, SUM(s.qty) AS qty, c.id_comp, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto, c.id_store_type
@@ -75,9 +76,10 @@
             INNER JOIN tb_m_product op ON op.id_product = p.id_product
             LEFT JOIN tb_st_store_note AS n ON p.id_product = n.id_product AND n.id_st_store_period = " + id_period + "
             LEFT JOIN (
-                SELECT id_design, id_design_price, ROUND(design_price) AS design_price, id_design_price_type
-                FROM tb_m_design_price
-                WHERE id_design_price IN (
+                SELECT c.id_design, c.id_design_price, ROUND(c.design_price) AS design_price, c.id_design_price_type, h.design_price_type
+                FROM tb_m_design_price AS c
+                LEFT JOIN tb_lookup_design_price_type AS h ON c.id_design_price_type = h.id_design_price_type
+                WHERE c.id_design_price IN (
                     SELECT MAX(id_design_price) AS id_design_price
                     FROM tb_m_design_price
                     WHERE design_price_start_date <= DATE(NOW()) AND is_active_wh = 1 AND is_design_cost = 0
@@ -85,9 +87,10 @@
                 )
             ) AS prc ON op.id_design = prc.id_design
             LEFT JOIN (
-                SELECT id_design, id_design_price, ROUND(design_price) AS design_price
-                FROM tb_m_design_price
-                WHERE id_design_price IN (
+                SELECT c.id_design, c.id_design_price, ROUND(c.design_price) AS design_price, h.design_price_type
+                FROM tb_m_design_price AS c
+                LEFT JOIN tb_lookup_design_price_type AS h ON c.id_design_price_type = h.id_design_price_type
+                WHERE c.id_design_price IN (
                     SELECT MAX(id_design_price) AS id_design_price
                     FROM tb_m_design_price
                     WHERE design_price_start_date <= DATE(NOW()) AND is_active_wh = 1 AND is_design_cost = 0 AND id_design_price_type = 1
