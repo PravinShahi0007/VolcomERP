@@ -112,6 +112,9 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+        'siluet list
+        'FormMasterSilhouette.is_show_master_sht = True
+        'FormMasterSilhouette.ShowDialog()
         'test store activation
         'FormStoreStatus.id_comp_cat = "6"
         'FormStoreStatus.ShowDialog()

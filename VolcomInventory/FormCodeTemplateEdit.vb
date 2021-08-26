@@ -2,9 +2,14 @@
     Public id_template_code As String = "-1"
     Public id_pop_up As String = "-1"
     Dim id_code_price_policy As String = get_setup_field("id_code_price_policy")
+    Public id_code As String = "-1"
 
     Private Sub FormCodeTemplateEdit_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         view_code()
+        If id_code <> "-1" Then
+            XTCCode.SelectedTabPageIndex = 1
+            XTPCode.PageEnabled = False
+        End If
     End Sub
 
     Sub view_code()
@@ -12,6 +17,9 @@
         query += " FROM tb_template_code_det tc_d"
         query += " LEFT JOIN tb_m_code codex ON tc_d.id_code=codex.id_code"
         query += " WHERE tc_d.id_template_code='" & id_template_code & "'"
+        If id_code <> "-1" Then
+            query += "AND codex.id_code='" + id_code + "' "
+        End If
         query += " ORDER BY codex.code_name"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCode.DataSource = data

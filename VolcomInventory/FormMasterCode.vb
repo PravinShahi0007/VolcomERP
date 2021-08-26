@@ -4,6 +4,7 @@
     Dim bdel_active As String = "1"
 
     Public id_template As String = "-1"
+    Public id_code As String = "-1"
 
     Private Sub FormMasterCode_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
