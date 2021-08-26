@@ -159,6 +159,7 @@ Partial Class FormMasterSilhouetteDet
         Me.BtnList.Size = New System.Drawing.Size(97, 23)
         Me.BtnList.TabIndex = 4
         Me.BtnList.Text = "Silhouette List"
+        Me.BtnList.Visible = False
         '
         'BtnSet
         '

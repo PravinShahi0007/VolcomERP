@@ -1,6 +1,11 @@
 ﻿Public Class FormMasterSilhouette
+    Public is_show_master_sht As Boolean = False
+
     Private Sub FormMasterSilhouette_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewClass()
+        If is_show_master_sht Then
+            BtnSilhouetteList.Visible = True
+        End If
     End Sub
 
     Sub viewClass()
@@ -67,5 +72,12 @@
             viewClass()
             GVClass.FocusedRowHandle = find_row(GVClass, "id_class", id_cls)
         End If
+    End Sub
+
+    Private Sub BtnSilhouetteList_Click(sender As Object, e As EventArgs) Handles BtnSilhouetteList.Click
+        Cursor = Cursors.WaitCursor
+        Dim cms As New ClassMasterSilhouette()
+        cms.openSHTList()
+        Cursor = Cursors.Default
     End Sub
 End Class

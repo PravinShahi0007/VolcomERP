@@ -1,5 +1,6 @@
 ﻿Public Class FormMasterSilhouetteDet
     Public id_class As String = "-1"
+    Public is_show_master_sht As Boolean = False
 
     Sub viewSht()
         Dim query As String = "SELECT 
@@ -28,6 +29,9 @@
     Private Sub FormMasterSilhouetteDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSht()
         viewData()
+        If is_show_master_sht Then
+            BtnList.Visible = True
+        End If
     End Sub
 
     Private Sub BtnSet_Click(sender As Object, e As EventArgs) Handles BtnSet.Click
@@ -46,5 +50,12 @@
             viewSht()
             viewData()
         End If
+    End Sub
+
+    Private Sub BtnList_Click(sender As Object, e As EventArgs) Handles BtnList.Click
+        Cursor = Cursors.WaitCursor
+        Dim cms As New ClassMasterSilhouette()
+        cms.openSHTList()
+        Cursor = Cursors.Default
     End Sub
 End Class

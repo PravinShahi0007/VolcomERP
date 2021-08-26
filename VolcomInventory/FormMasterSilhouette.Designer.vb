@@ -30,6 +30,7 @@ Partial Class FormMasterSilhouette
         Me.GridColumnclass_desc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_sht = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsht_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnSilhouetteList = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCClass, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -38,6 +39,7 @@ Partial Class FormMasterSilhouette
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnSilhouetteList)
         Me.PanelControl1.Controls.Add(Me.BtnExportToXLS)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -127,6 +129,17 @@ Partial Class FormMasterSilhouette
         Me.GridColumnsht_name.Visible = True
         Me.GridColumnsht_name.VisibleIndex = 2
         '
+        'BtnSilhouetteList
+        '
+        Me.BtnSilhouetteList.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnSilhouetteList.Image = CType(resources.GetObject("BtnSilhouetteList.Image"), System.Drawing.Image)
+        Me.BtnSilhouetteList.Location = New System.Drawing.Point(2, 2)
+        Me.BtnSilhouetteList.Name = "BtnSilhouetteList"
+        Me.BtnSilhouetteList.Size = New System.Drawing.Size(120, 41)
+        Me.BtnSilhouetteList.TabIndex = 3
+        Me.BtnSilhouetteList.Text = "Silhouette List"
+        Me.BtnSilhouetteList.Visible = False
+        '
         'FormMasterSilhouette
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -162,4 +175,5 @@ Partial Class FormMasterSilhouette
     Friend WithEvents GridColumnclass_desc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_sht As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsht_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnSilhouetteList As DevExpress.XtraEditors.SimpleButton
 End Class
