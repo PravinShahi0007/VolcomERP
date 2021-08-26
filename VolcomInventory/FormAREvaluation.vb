@@ -648,6 +648,8 @@
     End Sub
 
     Private Sub BtnRelease_Click(sender As Object, e As EventArgs) Handles BtnRelease.Click
+        FormAREvaluationRelease.id_ar_eval_pps = id_ar_eval_pps
+        FormAREvaluationRelease.action = "ins"
         FormAREvaluationRelease.ShowDialog()
     End Sub
 End Class
