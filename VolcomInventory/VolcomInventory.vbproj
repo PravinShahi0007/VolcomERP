@@ -9356,6 +9356,12 @@
     <Compile Include="ReportPOSClosingNoStock.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPreCalBudget.Designer.vb">
+      <DependentUpon>ReportPreCalBudget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPreCalBudget.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProdBOM.designer.vb">
       <DependentUpon>ReportProdBOM.vb</DependentUpon>
     </Compile>
@@ -15149,6 +15155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPOSClosingNoStock.resx">
       <DependentUpon>ReportPOSClosingNoStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPreCalBudget.resx">
+      <DependentUpon>ReportPreCalBudget.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProdBOM.resx">
       <DependentUpon>ReportProdBOM.vb</DependentUpon>
