@@ -16544,4 +16544,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBSilhouette_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSilhouette.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormMasterSilhouette.MdiParent = Me
+            FormMasterSilhouette.is_show_master_sht = True
+            FormMasterSilhouette.Show()
+            FormMasterSilhouette.WindowState = FormWindowState.Maximized
+            FormMasterSilhouette.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+
+    End Sub
 End Class
