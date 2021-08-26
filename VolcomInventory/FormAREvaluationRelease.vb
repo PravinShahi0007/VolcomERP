@@ -57,15 +57,19 @@
             TxtMemoNo.Enabled = False
             SLECompGroup.Enabled = False
             MENote.Enabled = False
+            If id_report_status = "6" Or id_report_status = "5" Then
+                BtnRelease.Enabled = False
+            End If
         End If
-        Cursor = Cursors.Default
+            Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnRelease_Click(sender As Object, e As EventArgs) Handles BtnRelease.Click
         Cursor = Cursors.WaitCursor
         Dim id_comp_group As String = SLECompGroup.EditValue.ToString
         Dim note As String = addSlashes(MENote.Text.ToString)
-        Dim query As String = "UPDATE tb_ar_eval e SET release_date=NOW(), is_manual_release=1,note='" + note + "',e.is_active=2, id_ar_eval_release='" + id + "' WHERE e.id_ar_eval_pps='" + id_ar_eval_pps + "' AND e.is_active=1 AND e.id_comp_group='" + id_comp_group + "' "
+        Dim query As String = "UPDATE tb_ar_eval e SET release_date=NOW(), is_manual_release=1,note='" + note + "',e.is_active=2, id_ar_eval_release='" + id + "' WHERE e.id_ar_eval_pps='" + id_ar_eval_pps + "' AND e.is_active=1 AND e.id_comp_group='" + id_comp_group + "'; 
+        UPDATE tb_ar_eval_release SET id_report_status=6 WHERE id_ar_eval_release='" + id + "'; "
         execute_non_query(query, True, "", "", "", "")
         Dim ev As New ClassAREvaluation()
         Dim data_cek_email_release As DataTable = ev.dtCekEmailRelease(id_comp_group)

@@ -55,7 +55,7 @@
         IFNULL(pyd.`value`,0.00) - CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS total_due,
         IF(e.is_paid=1,'Paid', 'Not Paid') AS `paid_status`, 
         NULL AS `id_propose_delay_payment`, '' as `memo_number`,
-        e.release_date, e.note,  IFNULL(eh.jum_hold,0) AS `jum_hold`,IF(e.is_active=1,'Active', 'Not Active') AS `active_status`, IF(e.is_manual_release=1,'Yes', 'No') AS `manual_release_status`
+        e.release_date, e.note,  IFNULL(eh.jum_hold,0) AS `jum_hold`,IF(e.is_active=1,'Active', 'Not Active') AS `active_status`, IF(e.is_manual_release=1,'Yes', 'No') AS `manual_release_status`, er.memo_number AS `memo_number_release`, IFNULL(er.id_ar_eval_release,0) AS `id_ar_eval_release`
         FROM tb_ar_eval e 
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = e.id_sales_pos
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -78,6 +78,7 @@
 	        WHERE e.eval_date<='" + eval_date + "'
 	        GROUP BY e.id_sales_pos
         ) eh ON eh.id_sales_pos = e.id_sales_pos
+        LEFT JOIN tb_ar_eval_release er ON er.id_ar_eval_release = e.id_ar_eval_release AND er.id_report_status!=5
         WHERE e.eval_date='" + eval_date + "'
         ORDER BY cg.description ASC,e.id_sales_pos ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -651,5 +652,15 @@
         FormAREvaluationRelease.id_ar_eval_pps = id_ar_eval_pps
         FormAREvaluationRelease.action = "ins"
         FormAREvaluationRelease.ShowDialog()
+    End Sub
+
+    Private Sub RepositoryItemHyperLinkEdit1_Click(sender As Object, e As EventArgs) Handles RepositoryItemHyperLinkEdit1.Click
+        If GVInvoiceDetail.RowCount > 0 And GVInvoiceDetail.GetFocusedRowCellValue("id_ar_eval_release").ToString <> "0" Then
+            Cursor = Cursors.WaitCursor
+            FormAREvaluationRelease.id = GVInvoiceDetail.GetFocusedRowCellValue("id_ar_eval_release").ToString
+            FormAREvaluationRelease.action = "upd"
+            FormAREvaluationRelease.ShowDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
