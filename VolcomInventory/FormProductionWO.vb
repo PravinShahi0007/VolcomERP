@@ -247,6 +247,7 @@
             view_delivery(data.Rows(0)("id_season").ToString, LEDelivery)
         End If
     End Sub
+
     Sub view_delivery(ByVal id_season As String, ByVal lookup As DevExpress.XtraEditors.SearchLookUpEdit)
         Dim query As String = "SELECT id_delivery,delivery FROM tb_season_delivery WHERE id_season='" & id_season & "' ORDER BY id_delivery DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
