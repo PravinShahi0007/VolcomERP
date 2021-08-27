@@ -414,9 +414,9 @@
             row_adj("price") = dt_adj.Rows(i)("price")
             row_adj("amount") = dt_adj.Rows(i)("price") * Math.Abs(dt_adj.Rows(i)("qty"))
 
-            If dt_adj.Rows(i)("qty") > 0 Then
+            If dt_adj.Rows(i)("qty") < 0 Then
                 row_adj("remark") = "Adjustment In"
-            ElseIf dt_adj.Rows(i)("qty") < 0 Then
+            ElseIf dt_adj.Rows(i)("qty") > 0 Then
                 row_adj("remark") = "Adjustment Out"
             End If
 
