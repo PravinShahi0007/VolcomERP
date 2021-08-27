@@ -1635,6 +1635,16 @@
             filter_string = FormFGDesignList.GVDesign.ActiveFilterString
         End If
 
+        'cek utk design dept
+        If id_pop_up = "5" Then
+            For i As Integer = 0 To GVCodeDsg.RowCount - 1
+                If GVCodeDsg.GetRowCellValue(i, "value").ToString = "" Then
+                    stopCustom("Please complete all 'Design Detail'")
+                    Exit Sub
+                End If
+            Next
+        End If
+
         Cursor = Cursors.WaitCursor
         'save
         If is_propose_changes Then
@@ -3399,5 +3409,11 @@
             End If
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub TEName_KeyUp(sender As Object, e As KeyEventArgs) Handles TEName.KeyUp
+        If TEName.Enabled = True Then
+            TEPrimaryName.Text = TEName.Text
+        End If
     End Sub
 End Class
