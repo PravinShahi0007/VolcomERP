@@ -17,7 +17,7 @@
             load_list_fgpo()
         Else
             'edit
-            Dim q As String = "SELECT cal.duty_percent,cal.commission,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
+            Dim q As String = "SELECT cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
 FROM
 `tb_pre_cal_fgpo` cal
 INNER JOIN tb_m_user usr ON usr.`id_user`=cal.`created_by`
@@ -36,12 +36,10 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                 SLEVendorFGPO.EditValue = dt.Rows(0)("id_comp").ToString
                 SLETypeImport.EditValue = dt.Rows(0)("id_type").ToString
 
-                TEDutyPercent.EditValue = dt.Rows(0)("duty_percent")
-                TECommision.EditValue = dt.Rows(0)("commission")
-
                 view_but()
 
                 load_list_fgpo()
+
                 load_list_forwarder()
 
                 If steps > 2 Then
@@ -50,13 +48,14 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                     load_list_orign()
                     load_list_dest()
                     load_list_adm()
+                    load_list_chosen()
                 End If
             End If
         End If
     End Sub
 
     Sub load_list_fgpo()
-        Dim q As String = "SELECT d.`design_display_name`,d.`design_code`,pcl.id_prod_order,a.prod_order_number,pcl.qty,pcl.id_currency,pcl.price
+        Dim q As String = "SELECT d.`design_display_name`,d.`design_code`,pcl.id_prod_order,a.prod_order_number,pcl.qty,pcl.id_currency,pcl.price,pcl.duty
 FROM `tb_pre_cal_fgpo_list` pcl
 INNER JOIN tb_prod_order a ON a.id_prod_order=pcl.id_prod_order 
 INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 
@@ -107,8 +106,11 @@ INNER JOIN tb_m_comp c ON c.id_comp=v.id_comp
 WHERE v.id_pre_cal_fgpo='" & id & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCVendor.DataSource = dt
-        viewSearchLookupQuery(SLEVendorOrign, q, "id_comp", "comp_name", "id_comp")
-        viewSearchLookupQuery(SLEVendorDest, q, "id_comp", "comp_name", "id_comp")
+
+        If steps > 2 Then
+            viewSearchLookupQuery(SLEVendorOrign, q, "id_comp", "comp_name", "id_comp")
+            viewSearchLookupQuery(SLEVendorDest, q, "id_comp", "comp_name", "id_comp")
+        End If
     End Sub
 
     Sub load_vendor()
@@ -119,7 +121,9 @@ WHERE v.id_pre_cal_fgpo='" & id & "'"
     Sub load_type()
         Dim q As String = "SELECT 1 AS id_type,'LCL' AS type
 UNION ALL
-SELECT 2 AS id_type,'FCL' AS type"
+SELECT 2 AS id_type,'FCL' AS type
+UNION ALL
+SELECT 3 AS id_type,'Courier' AS type"
         viewSearchLookupQuery(SLETypeImport, q, "id_type", "type", "id_type")
     End Sub
 
@@ -278,6 +282,8 @@ SELECT 2 AS id_type,'FCL' AS type"
     End Sub
 
     Private Sub BPropose_Click(sender As Object, e As EventArgs) Handles BPropose.Click
+        'check duty first
+
         If id = "-1" Then
             'new
             If GVListFGPO.RowCount = 0 Then
@@ -292,12 +298,12 @@ VALUES(NOW(),'" & id_user & "','1','2','" & SLEVendorFGPO.EditValue.ToString & "
                 execute_non_query("CALL gen_number('" & id & "','334')", True, "", "", "", "")
 
                 'detail
-                q = "INSERT INTO `tb_pre_cal_fgpo_list`(`id_pre_cal_fgpo`,`id_prod_order`,`id_currency`,`price`,`qty`) VALUES"
+                q = "INSERT INTO `tb_pre_cal_fgpo_list`(`id_pre_cal_fgpo`,`id_prod_order`,`id_currency`,`price`,`qty`,`duty`) VALUES"
                 For i As Integer = 0 To GVListFGPO.RowCount - 1
                     If Not i = 0 Then
                         q += ","
                     End If
-                    q += "('" & id & "','" & GVListFGPO.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVListFGPO.GetRowCellValue(i, "id_currency").ToString & "','" & decimalSQL(Decimal.Parse(GVListFGPO.GetRowCellValue(i, "id_prod_order").ToString).ToString) & "','" & GVListFGPO.GetRowCellValue(i, "id_prod_order").ToString & "')"
+                    q += "('" & id & "','" & GVListFGPO.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVListFGPO.GetRowCellValue(i, "id_currency").ToString & "','" & decimalSQL(Decimal.Parse(GVListFGPO.GetRowCellValue(i, "price").ToString).ToString) & "','" & GVListFGPO.GetRowCellValue(i, "qty").ToString & "','" & decimalSQL(Decimal.Parse(GVListFGPO.GetRowCellValue(i, "duty").ToString).ToString) & "')"
                 Next
 
                 execute_non_query(q, True, "", "", "", "")
@@ -370,12 +376,12 @@ VALUES(NOW(),'" & id_user & "','1','2','" & SLEVendorFGPO.EditValue.ToString & "
             q = "DELETE FROM tb_pre_cal_fgpo_det WHERE id_pre_cal_fgpo='" & id & "' AND id_comp='" & SLEVendorOrign.EditValue.ToString & "' AND id_type='1'"
             execute_non_query(q, True, "", "", "", "")
             '
-            q = "INSERT INTO `tb_pre_cal_fgpo_det`(`id_pre_cal_fgpo`,`id_type`,`id_comp`,`desc`,`id_currency`,`unit_price`,`kurs`,`unit_price_in_rp`,`qty`,`total_in_rp`) VALUES"
+            q = "INSERT INTO `tb_pre_cal_fgpo_det`(`id_pre_cal_fgpo`,id_pre_cal_temp,`id_type`,`id_comp`,`desc`,`id_currency`,`unit_price`,`kurs`,`unit_price_in_rp`,`qty`,`total_in_rp`) VALUES"
             For i = 0 To GVOrign.RowCount - 1
                 If Not i = 0 Then
                     q += ","
                 End If
-                q += "('" & id & "',1,'" & SLEVendorOrign.EditValue.ToString & "','" & addSlashes(GVOrign.GetRowCellValue(i, "desc").ToString) & "','1','" & decimalSQL(Decimal.Parse(GVOrign.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "','1','" & decimalSQL(Decimal.Parse(GVOrign.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVOrign.GetRowCellValue(i, "qty").ToString).ToString) & "','" & decimalSQL(Decimal.Parse((GVOrign.GetRowCellValue(i, "unit_price_in_rp") * GVOrign.GetRowCellValue(i, "qty")).ToString).ToString) & "')"
+                q += "('" & id & "','" & GVOrign.GetRowCellValue(i, "id_pre_cal_temp").ToString & "',1,'" & SLEVendorOrign.EditValue.ToString & "','" & addSlashes(GVOrign.GetRowCellValue(i, "desc").ToString) & "','1','" & decimalSQL(Decimal.Parse(GVOrign.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "','1','" & decimalSQL(Decimal.Parse(GVOrign.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVOrign.GetRowCellValue(i, "qty").ToString).ToString) & "','" & decimalSQL(Decimal.Parse((GVOrign.GetRowCellValue(i, "unit_price_in_rp") * GVOrign.GetRowCellValue(i, "qty")).ToString).ToString) & "')"
             Next
 
             execute_non_query(q, True, "", "", "", "")
@@ -392,9 +398,7 @@ VALUES(NOW(),'" & id_user & "','1','2','" & SLEVendorFGPO.EditValue.ToString & "
         Dim qc As String = "SELECT v.id_comp,SUM(IFNULL(det.total_in_rp,0)) AS tot
 FROM `tb_pre_cal_fgpo_vendor` v
 LEFT JOIN tb_pre_cal_fgpo_det det ON det.id_pre_cal_fgpo=v.id_pre_cal_fgpo AND v.id_comp=det.id_comp AND det.id_type=1
-WHERE v.id_pre_cal_fgpo = '" & id & "'
-GROUP BY v.id_comp
-HAVING tot=0"
+WHERE v.id_pre_cal_fgpo = '" & id & "' GROUP BY v.id_comp HAVING tot=0"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count > 0 Then
             warningCustom("Make sure all forwarder vendor have orign charges")
@@ -482,9 +486,6 @@ HAVING tot=0"
     End Sub
 
     Private Sub BLoadCharges_Click(sender As Object, e As EventArgs) Handles BLoadCharges.Click
-        TEDutyPercent.EditValue = 10
-        TECommision.EditValue = 6
-
         Dim q As String = "SELECT '' AS `id_pre_cal_fgpo_other`,ot.desc,ot.`id_currency`,cur.currency,ot.amo AS `unit_price`,(SELECT kurs_trans+fixed_floating FROM tb_kurs_trans WHERE id_kurs_trans = (SELECT MAX(id_kurs_trans) FROM `tb_kurs_trans`)) AS `kurs`
 ,(SELECT unit_price) * (SELECT kurs) AS `unit_price_in_rp`,1 AS `qty`
 FROM `tb_lookup_adm_precal` ot
@@ -497,11 +498,9 @@ WHERE ot.`is_active`='1'"
 
     Sub save_other()
         Dim q As String = ""
-        q = "UPDATE tb_pre_cal_fgpo SET duty_percent='" & decimalSQL(Decimal.Parse(TEDutyPercent.EditValue.ToString)) & "',commission='" & decimalSQL(Decimal.Parse(TECommision.EditValue.ToString)) & "' WHERE id_pre_cal_fgpo='" & id & "'"
-        execute_non_query(q, True, "", "", "", "")
-        '
         q = "DELETE FROM tb_pre_cal_fgpo_other WHERE id_pre_cal_fgpo='" & id & "'"
         execute_non_query(q, True, "", "", "", "")
+
         '`id_pre_cal_fgpo_other`,`id_currency`,`unit_price`,`kurs`,`unit_price_in_rp`,`qty`
         q = "INSERT INTO `tb_pre_cal_fgpo_other`(`id_pre_cal_fgpo`,`desc`,`id_currency`,`unit_price`,`kurs`,`unit_price_in_rp`,`qty`,`total_in_rp`) VALUES"
         For i = 0 To GVAdm.RowCount - 1
@@ -552,8 +551,32 @@ AND NOT ISNULL(choosen_id_comp)"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count > 0 Then
             'print
+
         Else
             warningCustom("Please choose vendor first")
         End If
+    End Sub
+
+    Private Sub BLoadOrign_Click(sender As Object, e As EventArgs) Handles BLoadOrign.Click
+        Dim q As String = "SELECT t.`id_pre_cal_temp`,t.`desc`,0 AS unit_price_in_rp,IF(t.`is_use_cbm`=1,IF(t.`min_cbm`>cal.`cbm`,t.`min_cbm`,cal.`cbm`),1) AS qty
+FROM `tb_pre_cal_temp` t
+INNER JOIN `tb_pre_cal_fgpo` cal ON cal.`id_type`=t.`vendor_type` AND t.`id_type`='1' AND t.`is_active`='1' 
+WHERE cal.`id_pre_cal_fgpo`='" & id & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+        GCOrign.DataSource = dt
+    End Sub
+
+    Private Sub BLoadDest_Click(sender As Object, e As EventArgs) Handles BLoadDest.Click
+        Dim q As String = "SELECT t.`id_pre_cal_temp`,t.`desc`,0 AS unit_price_in_rp,IF(t.`is_use_cbm`=1,IF(t.`min_cbm`>cal.`cbm`,t.`min_cbm`,cal.`cbm`),1) AS qty
+FROM `tb_pre_cal_temp` t
+INNER JOIN `tb_pre_cal_fgpo` cal ON cal.`id_type`=t.`vendor_type` AND t.`id_type`='2' AND t.`is_active`='1' AND cal.`id_pre_cal_fgpo`='" & id & "'
+UNION ALL
+SELECT 11 AS id_pre_cal_temp,'EST STORAGE FEE AND COST PEROUTLAY' AS `desc`, SUM(IF(st.`is_use_cbm`=1,IF(st.`min_cbm`>cal.`cbm`,st.`min_cbm`,CEIL(cal.`cbm`)),1)*st.price) AS unit_price_in_rp,1 AS qty
+FROM `tb_pre_cal_storage` st
+INNER JOIN `tb_pre_cal_fgpo` cal ON st.`is_active`='1'  AND  cal.`id_pre_cal_fgpo`='" & id & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+        GCDest.DataSource = dt
     End Sub
 End Class
