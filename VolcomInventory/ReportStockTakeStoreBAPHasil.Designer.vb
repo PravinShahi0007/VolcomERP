@@ -753,7 +753,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.XrLabel25.SizeF = New System.Drawing.SizeF(733.0!, 23.0!)
         Me.XrLabel25.StylePriority.UseFont = False
         Me.XrLabel25.StylePriority.UseTextAlignment = False
-        Me.XrLabel25.Text = "BERITA ACARA HASIL  REMOTE STOCKTAKE"
+        Me.XrLabel25.Text = "BERITA ACARA FINAL REKONSILIASI DATA [type]REMOTE STOCKTAKE"
         Me.XrLabel25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XLNo
@@ -796,7 +796,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.XLPerihal.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLPerihal.SizeF = New System.Drawing.SizeF(612.9998!, 17.0!)
         Me.XLPerihal.StylePriority.UseFont = False
-        Me.XLPerihal.Text = "Berita Acara Final Hasil Remote Stocktake"
+        Me.XLPerihal.Text = "Berita Acara Final Rekonsiliasi Data [type]Remote Stocktake"
         '
         'XLDari
         '
