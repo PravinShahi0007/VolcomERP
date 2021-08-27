@@ -133,9 +133,9 @@
                         Dim inOut As String = ""
 
                         If Decimal.Parse(data_ver.Rows(i)("qty").ToString) > 0 Then
-                            inOut = "In"
-                        Else
                             inOut = "Out"
+                        Else
+                            inOut = "In"
                         End If
 
                         If data_detail.Rows(j)("report_mark_type").ToString = "" Then
@@ -304,9 +304,9 @@
         ", 0, True, "", "", "", "")
 
         Dim date_created As String = execute_query("
-            SELECT DATE_FORMAT(created_at, '%d %M %Y') AS created_at
-            FROM tb_st_store_bap
-            WHERE id_st_store_bap = " + id_st_store_bap + "
+            SELECT DATE_FORMAT(report_mark_datetime, '%d %M %Y') AS created_at
+            FROM tb_report_mark
+            WHERE id_report_status = 1 AND id_report = " + id_st_store_bap + " AND report_mark_type = (SELECT report_mark_type FROM tb_st_store_bap WHERE id_st_store_bap = " + id_st_store_bap + ")
         ", 0, True, "", "", "", "")
 
         Dim report_mark_type As String = execute_query("
@@ -532,6 +532,25 @@
             My.Computer.Network.DownloadFile("\\192.168.1.2\dataapp$\template\Template Verifikasi Stock Take.xlsx", save.FileName)
 
             infoCustom("File downloaded.")
+        End If
+    End Sub
+
+    Private Sub SBExportExcel_Click(sender As Object, e As EventArgs) Handles SBExportExcel.Click
+        Dim save As SaveFileDialog = New SaveFileDialog
+
+        save.Filter = "Excel File | *.xlsx"
+        save.FileName = "Verifikasi Stock Take.xlsx"
+
+        save.ShowDialog()
+
+        If Not save.FileName = "" Then
+            Dim op As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx
+
+            op.ExportType = DevExpress.Export.ExportType.WYSIWYG
+
+            BGVData.ExportToXlsx(save.FileName, op)
+
+            infoCustom("File saved.")
         End If
     End Sub
 End Class

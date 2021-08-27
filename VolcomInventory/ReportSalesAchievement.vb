@@ -24,7 +24,7 @@
         '
         Dim row_inc_dec As DevExpress.XtraReports.UI.XRTableRow = XRIncDecPy
         For i = 0 To dt.Rows.Count - 1
-            insert_row(row_inc_dec, If(dt.Rows(i)("month_desc_py").ToString.Contains("GRAND TOTAL") Or dt.Rows(i)("month_desc").ToString.Contains("YTD"), "bold", ""), XTIncDecPy, dt.Rows(i)("month_desc_py").ToString, Decimal.Parse(dt.Rows(i)("bruto_percent_target").ToString).ToString("N2") & " %", Decimal.Parse(dt.Rows(i)("nett_percent_target").ToString).ToString("N2") & " %")
+            insert_row(row_inc_dec, If(dt.Rows(i)("month_desc_py").ToString.Contains("GRAND TOTAL") Or dt.Rows(i)("month_desc").ToString.Contains("YTD"), "bold", ""), XTIncDecPy, dt.Rows(i)("month_desc_py").ToString, Decimal.Parse(dt.Rows(i)("bruto_percent_py").ToString).ToString("N2") & " %", Decimal.Parse(dt.Rows(i)("nett_percent_py").ToString).ToString("N2") & " %")
         Next
     End Sub
 

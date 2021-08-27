@@ -287,6 +287,7 @@
     <Compile Include="ClassItemRequest.vb" />
     <Compile Include="ClassMailManage.vb" />
     <Compile Include="ClassMailManageReturn.vb" />
+    <Compile Include="ClassMasterSilhouette.vb" />
     <Compile Include="ClassMOS.vb" />
     <Compile Include="ClassOLReturnRefuse.vb" />
     <Compile Include="ClassOLStore.vb" />
@@ -3176,6 +3177,18 @@
       <DependentUpon>FormMasterSampleNR.vb</DependentUpon>
     </Compile>
     <Compile Include="FormMasterSampleNR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMasterSilhouette.Designer.vb">
+      <DependentUpon>FormMasterSilhouette.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterSilhouette.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMasterSilhouetteDet.Designer.vb">
+      <DependentUpon>FormMasterSilhouetteDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterSilhouetteDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMasterStore.Designer.vb">
@@ -9343,6 +9356,12 @@
     <Compile Include="ReportPOSClosingNoStock.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPreCalBudget.Designer.vb">
+      <DependentUpon>ReportPreCalBudget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPreCalBudget.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProdBOM.designer.vb">
       <DependentUpon>ReportProdBOM.vb</DependentUpon>
     </Compile>
@@ -11596,6 +11615,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterSampleNR.resx">
       <DependentUpon>FormMasterSampleNR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterSilhouette.resx">
+      <DependentUpon>FormMasterSilhouette.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterSilhouetteDet.resx">
+      <DependentUpon>FormMasterSilhouetteDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterStore.resx">
       <DependentUpon>FormMasterStore.vb</DependentUpon>
@@ -15130,6 +15155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPOSClosingNoStock.resx">
       <DependentUpon>ReportPOSClosingNoStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPreCalBudget.resx">
+      <DependentUpon>ReportPreCalBudget.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProdBOM.resx">
       <DependentUpon>ReportProdBOM.vb</DependentUpon>

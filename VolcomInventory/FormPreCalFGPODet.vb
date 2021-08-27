@@ -17,7 +17,7 @@
             load_list_fgpo()
         Else
             'edit
-            Dim q As String = "SELECT cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
+            Dim q As String = "SELECT cal.duty_percent,cal.commission,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
 FROM
 `tb_pre_cal_fgpo` cal
 INNER JOIN tb_m_user usr ON usr.`id_user`=cal.`created_by`
@@ -35,6 +35,9 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                 TEWeight.EditValue = dt.Rows(0)("weight")
                 SLEVendorFGPO.EditValue = dt.Rows(0)("id_comp").ToString
                 SLETypeImport.EditValue = dt.Rows(0)("id_type").ToString
+
+                TEDutyPercent.EditValue = dt.Rows(0)("duty_percent")
+                TECommision.EditValue = dt.Rows(0)("commission")
 
                 view_but()
 
@@ -61,6 +64,15 @@ INNER JOIN tb_m_design d ON b.id_design = d.id_design
 WHERE pcl.id_pre_cal_fgpo='" & id & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCListFGPO.DataSource = dt
+    End Sub
+
+    Sub load_list_chosen()
+        Dim q As String = "SELECT c.id_comp,c.comp_number,c.comp_name
+FROM tb_pre_cal_fgpo_vendor v
+INNER JOIN tb_m_comp c ON c.id_comp=v.id_comp 
+WHERE v.id_pre_cal_fgpo='" & id & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCPickVendor.DataSource = dt
     End Sub
 
     Sub load_list_adm()
@@ -142,6 +154,7 @@ SELECT 2 AS id_type,'FCL' AS type"
             XTPOrignCharges.PageVisible = False
             XTPDestCharges.PageVisible = False
             XTPAdmCharges.PageVisible = False
+            XTPChoosen.PageVisible = False
             '
             PCFGPOList.Visible = True
             PCVendor.Visible = False
@@ -162,6 +175,7 @@ SELECT 2 AS id_type,'FCL' AS type"
             XTPOrignCharges.PageVisible = False
             XTPDestCharges.PageVisible = False
             XTPAdmCharges.PageVisible = False
+            XTPChoosen.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = True
@@ -182,6 +196,7 @@ SELECT 2 AS id_type,'FCL' AS type"
             XTPOrignCharges.PageVisible = True
             XTPDestCharges.PageVisible = False
             XTPAdmCharges.PageVisible = False
+            XTPChoosen.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
@@ -202,6 +217,7 @@ SELECT 2 AS id_type,'FCL' AS type"
             XTPOrignCharges.PageVisible = True
             XTPDestCharges.PageVisible = True
             XTPAdmCharges.PageVisible = False
+            XTPChoosen.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
@@ -222,6 +238,7 @@ SELECT 2 AS id_type,'FCL' AS type"
             XTPOrignCharges.PageVisible = True
             XTPDestCharges.PageVisible = True
             XTPAdmCharges.PageVisible = True
+            XTPChoosen.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
@@ -234,6 +251,27 @@ SELECT 2 AS id_type,'FCL' AS type"
             PCPOrign.Visible = False
             PCPDest.Visible = False
             PCUAdm.Visible = True
+            '
+            XTC.SelectedTabPageIndex = 4
+        ElseIf steps = "6" Then 'pick vendor
+            XTPFGPO.PageVisible = True
+            XTPVendor.PageVisible = True
+            XTPOrignCharges.PageVisible = True
+            XTPDestCharges.PageVisible = True
+            XTPAdmCharges.PageVisible = True
+            XTPChoosen.PageVisible = True
+            '
+            PCFGPOList.Visible = False
+            PCVendor.Visible = False
+            PCOrign.Visible = False
+            PCDest.Visible = False
+            PCAdm.Visible = False
+            '
+            PCUFGPO.Visible = False
+            PCUVendor.Visible = False
+            PCPOrign.Visible = False
+            PCPDest.Visible = False
+            PCUAdm.Visible = False
             '
             XTC.SelectedTabPageIndex = 4
         End If
@@ -445,6 +483,7 @@ HAVING tot=0"
 
     Private Sub BLoadCharges_Click(sender As Object, e As EventArgs) Handles BLoadCharges.Click
         TEDutyPercent.EditValue = 10
+        TECommision.EditValue = 6
 
         Dim q As String = "SELECT '' AS `id_pre_cal_fgpo_other`,ot.desc,ot.`id_currency`,cur.currency,ot.amo AS `unit_price`,(SELECT kurs_trans+fixed_floating FROM tb_kurs_trans WHERE id_kurs_trans = (SELECT MAX(id_kurs_trans) FROM `tb_kurs_trans`)) AS `kurs`
 ,(SELECT unit_price) * (SELECT kurs) AS `unit_price_in_rp`,1 AS `qty`
@@ -458,7 +497,7 @@ WHERE ot.`is_active`='1'"
 
     Sub save_other()
         Dim q As String = ""
-        q = "UPDATE tb_pre_cal_fgpo SET duty_percent='" & decimalSQL(Decimal.Parse(TEDutyPercent.EditValue.ToString)) & "' WHERE id_pre_cal_fgpo='" & id & "'"
+        q = "UPDATE tb_pre_cal_fgpo SET duty_percent='" & decimalSQL(Decimal.Parse(TEDutyPercent.EditValue.ToString)) & "',commission='" & decimalSQL(Decimal.Parse(TECommision.EditValue.ToString)) & "' WHERE id_pre_cal_fgpo='" & id & "'"
         execute_non_query(q, True, "", "", "", "")
         '
         q = "DELETE FROM tb_pre_cal_fgpo_other WHERE id_pre_cal_fgpo='" & id & "'"
@@ -479,7 +518,42 @@ WHERE ot.`is_active`='1'"
         save_other()
     End Sub
 
-    Private Sub BPreview_Click(sender As Object, e As EventArgs) Handles BPreview.Click
+    Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
+        If GVPickVendor.RowCount > 0 Then
+            Dim q As String = "UPDATE tb_pre_cal_fgpo SET choosen_id_comp='" & GVPickVendor.GetFocusedRowCellValue("id_comp").ToString & "' WHERE id_pre_cal_fgpo='" & id & "'"
+            execute_non_query(q, True, "", "", "", "")
+        End If
+        load_head()
+    End Sub
 
+    Private Sub BNext_Click(sender As Object, e As EventArgs) Handles BNext.Click
+        If GVAdm.RowCount > 0 Then
+            save_other()
+            execute_non_query("UPDATE tb_pre_cal_fgpo SET step='6' WHERE id_pre_cal_fgpo='" & id & "'", True, "", "", "", "")
+            load_head()
+        End If
+    End Sub
+
+    Private Sub BPrevAdm_Click(sender As Object, e As EventArgs) Handles BPrevAdm.Click
+        execute_non_query("UPDATE tb_pre_cal_fgpo SET step='4' WHERE id_pre_cal_fgpo='" & id & "'", True, "", "", "", "")
+        load_head()
+    End Sub
+
+    Private Sub BPrevPickVendor_Click(sender As Object, e As EventArgs) Handles BPrevPickVendor.Click
+        execute_non_query("UPDATE tb_pre_cal_fgpo SET step='5' WHERE id_pre_cal_fgpo='" & id & "'", True, "", "", "", "")
+        load_head()
+    End Sub
+
+    Private Sub BPrintBudget_Click(sender As Object, e As EventArgs) Handles BPrintBudget.Click
+        Dim qc As String = "SELECT choosen_id_comp
+FROM `tb_pre_cal_fgpo`
+WHERE id_pre_cal_fgpo='" & id & "'
+AND NOT ISNULL(choosen_id_comp)"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            'print
+        Else
+            warningCustom("Please choose vendor first")
+        End If
     End Sub
 End Class

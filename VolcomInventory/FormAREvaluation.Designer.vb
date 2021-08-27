@@ -77,6 +77,8 @@ Partial Class FormAREvaluation
         Me.GridColumntotal_rec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntotal_due = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnjum_hold = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnmemo_number_manual_release = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -149,6 +151,7 @@ Partial Class FormAREvaluation
         CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoBtnBBM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkMemo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSummary.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -367,7 +370,7 @@ Partial Class FormAREvaluation
         Me.GCInvoiceDetail.Location = New System.Drawing.Point(0, 0)
         Me.GCInvoiceDetail.MainView = Me.GVInvoiceDetail
         Me.GCInvoiceDetail.Name = "GCInvoiceDetail"
-        Me.GCInvoiceDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoBtnBBM, Me.RepoLinkInvoice, Me.RepoLinkMemo})
+        Me.GCInvoiceDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoBtnBBM, Me.RepoLinkInvoice, Me.RepoLinkMemo, Me.RepositoryItemHyperLinkEdit1})
         Me.GCInvoiceDetail.Size = New System.Drawing.Size(1157, 380)
         Me.GCInvoiceDetail.TabIndex = 0
         Me.GCInvoiceDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVInvoiceDetail})
@@ -377,7 +380,7 @@ Partial Class FormAREvaluation
         Me.GVInvoiceDetail.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GVInvoiceDetail.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVInvoiceDetail.ColumnPanelRowHeight = 50
-        Me.GVInvoiceDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group, Me.GridColumngroup_store, Me.GridColumnid_inv, Me.GridColumninv_number, Me.GridColumninv_rmt, Me.GridColumninv_amount, Me.GridColumnpaid_status, Me.GridColumnrelease_date, Me.GridColumnote, Me.GridColumnactive_status, Me.GridColumnbtn_bbm, Me.GridColumnid_propose_delay_payment, Me.GridColumnmemo_number, Me.GridColumnstore_acc, Me.GridColumnstorereport, Me.GridColumninv_date, Me.GridColumninv_due_date, Me.GridColumndue_days_age_origin, Me.GridColumnage, Me.GridColumnstart_period, Me.GridColumnend_period, Me.GridColumntotal_rec, Me.GridColumntotal_due, Me.GridColumnjum_hold})
+        Me.GVInvoiceDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group, Me.GridColumngroup_store, Me.GridColumnid_inv, Me.GridColumninv_number, Me.GridColumninv_rmt, Me.GridColumninv_amount, Me.GridColumnpaid_status, Me.GridColumnrelease_date, Me.GridColumnote, Me.GridColumnactive_status, Me.GridColumnbtn_bbm, Me.GridColumnid_propose_delay_payment, Me.GridColumnmemo_number, Me.GridColumnstore_acc, Me.GridColumnstorereport, Me.GridColumninv_date, Me.GridColumninv_due_date, Me.GridColumndue_days_age_origin, Me.GridColumnage, Me.GridColumnstart_period, Me.GridColumnend_period, Me.GridColumntotal_rec, Me.GridColumntotal_due, Me.GridColumnjum_hold, Me.GridColumnmemo_number_manual_release})
         GridFormatRule1.ApplyToRow = True
         GridFormatRule1.Name = "Format0"
         FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
@@ -507,7 +510,7 @@ Partial Class FormAREvaluation
         Me.GridColumnbtn_bbm.FieldName = "btn_bbm"
         Me.GridColumnbtn_bbm.Name = "GridColumnbtn_bbm"
         Me.GridColumnbtn_bbm.Visible = True
-        Me.GridColumnbtn_bbm.VisibleIndex = 15
+        Me.GridColumnbtn_bbm.VisibleIndex = 16
         '
         'RepoBtnBBM
         '
@@ -653,6 +656,20 @@ Partial Class FormAREvaluation
         Me.GridColumnjum_hold.Visible = True
         Me.GridColumnjum_hold.VisibleIndex = 13
         Me.GridColumnjum_hold.Width = 56
+        '
+        'GridColumnmemo_number_manual_release
+        '
+        Me.GridColumnmemo_number_manual_release.Caption = "Manual Release Memo"
+        Me.GridColumnmemo_number_manual_release.ColumnEdit = Me.RepositoryItemHyperLinkEdit1
+        Me.GridColumnmemo_number_manual_release.FieldName = "memo_number_release"
+        Me.GridColumnmemo_number_manual_release.Name = "GridColumnmemo_number_manual_release"
+        Me.GridColumnmemo_number_manual_release.Visible = True
+        Me.GridColumnmemo_number_manual_release.VisibleIndex = 15
+        '
+        'RepositoryItemHyperLinkEdit1
+        '
+        Me.RepositoryItemHyperLinkEdit1.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit1.Name = "RepositoryItemHyperLinkEdit1"
         '
         'XTPSummary
         '
@@ -1260,6 +1277,7 @@ Partial Class FormAREvaluation
         CType(Me.RepoLinkInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoBtnBBM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkMemo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1392,4 +1410,6 @@ Partial Class FormAREvaluation
     Friend WithEvents TxtAREvalNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BtnNote As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnRelease As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnmemo_number_manual_release As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemHyperLinkEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
 End Class
