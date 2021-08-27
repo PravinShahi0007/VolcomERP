@@ -222,25 +222,28 @@
             Dim insert As Boolean = False
             Dim insert_note As Boolean = False
 
-            For Each row In json("content")("scan").ToList
-                Dim id_st_store As String = row("id_st_store").ToString
-                Dim id_st_store_period As String = row("id_st_store_period").ToString
-                Dim id_product As String = row("id_product").ToString
-                Dim created_date As String = row("created_date").ToString
-                Dim scanned_code As String = row("scanned_code").ToString
-                Dim qty As String = row("qty").ToString
-                Dim note As String = row("note").ToString
-                Dim is_unique_not_found As String = row("is_unique_not_found").ToString
-                Dim is_no_tag As String = row("is_no_tag").ToString
-                Dim image As String = row("image").ToString
-                Dim id_comp As String = row("id_comp").ToString
+            Try
+                For Each row In json("content")("scan").ToList
+                    Dim id_st_store As String = row("id_st_store").ToString
+                    Dim id_st_store_period As String = row("id_st_store_period").ToString
+                    Dim id_product As String = row("id_product").ToString
+                    Dim created_date As String = row("created_date").ToString
+                    Dim scanned_code As String = row("scanned_code").ToString
+                    Dim qty As String = row("qty").ToString
+                    Dim note As String = row("note").ToString
+                    Dim is_unique_not_found As String = row("is_unique_not_found").ToString
+                    Dim is_no_tag As String = row("is_no_tag").ToString
+                    Dim image As String = row("image").ToString
+                    Dim id_comp As String = row("id_comp").ToString
 
-                query += "(" + id_st_store + ", " + id_st_store_period + ", " + id_product + ", '" + created_date + "', '" + scanned_code + "', " + qty + ", '" + addSlashes(note) + "', " + is_unique_not_found + ", " + is_no_tag + ", '" + addSlashes(image) + "', " + id_comp + "), "
+                    query += "(" + id_st_store + ", " + id_st_store_period + ", " + id_product + ", '" + created_date + "', '" + scanned_code + "', " + qty + ", '" + addSlashes(note) + "', " + is_unique_not_found + ", " + is_no_tag + ", '" + addSlashes(image) + "', " + id_comp + "), "
 
-                insert = True
-            Next
+                    insert = True
+                Next
+            Catch ex As Exception
+            End Try
 
-            If json("content")("note") Then
+            Try
                 For Each row In json("content")("note").ToList
                     Dim id_st_store_note As String = row("id_st_store_note").ToString
                     Dim id_st_store_period As String = row("id_st_store_period").ToString
@@ -253,16 +256,20 @@
 
                     insert_note = True
                 Next
-            End If
+            Catch ex As Exception
+            End Try
 
-            For Each row In json("content")("period").ToList
-                Dim is_stop_scan As String = row("is_stop_scan").ToString
-                Dim stop_scan_date As String = If(row("stop_scan_date").ToString = "", "NULL", "'" + row("stop_scan_date").ToString + "'")
+            Try
+                For Each row In json("content")("period").ToList
+                    Dim is_stop_scan As String = row("is_stop_scan").ToString
+                    Dim stop_scan_date As String = If(row("stop_scan_date").ToString = "", "NULL", "'" + row("stop_scan_date").ToString + "'")
 
-                Dim query_period As String = "UPDATE tb_st_store_period SET is_stop_scan = " + is_stop_scan + ", stop_scan_date = " + stop_scan_date + " WHERE id_st_store_period = " + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString
+                    Dim query_period As String = "UPDATE tb_st_store_period SET is_stop_scan = " + is_stop_scan + ", stop_scan_date = " + stop_scan_date + " WHERE id_st_store_period = " + GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString
 
-                execute_non_query(query_period, True, "", "", "", "")
-            Next
+                    execute_non_query(query_period, True, "", "", "", "")
+                Next
+            Catch ex As Exception
+            End Try
 
             If insert Then
                 query = query.Substring(0, query.Length - 2)
