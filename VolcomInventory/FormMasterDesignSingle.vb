@@ -2735,8 +2735,43 @@
             End Try
             clone_dsg = New DataView(table)
 
+            'id sht
+            Dim id_code_fg_sht As String = get_setup_field("id_code_fg_sht")
+            Dim id_code_fg_class As String = get_setup_field("id_code_fg_class")
+
             row = view.GetDataRow(view.FocusedRowHandle)
-            clone_dsg.RowFilter = "[id_code] = " + row("code").ToString()
+            If id_code_fg_sht = row("code").ToString() Then
+                Dim id_class_selected As String = ""
+                For f As Integer = 0 To GVCodeDsg.RowCount - 1
+                    If GVCodeDsg.GetRowCellValue(f, "code").ToString = id_code_fg_class Then
+                        id_class_selected = GVCodeDsg.GetRowCellValue(f, "value").ToString
+                        Exit For
+                    End If
+                Next
+                Dim qm As String = "SELECT IFNULL(s.id_sht,0) AS `id_sht` FROM tb_mapping_sht s WHERE s.id_class='" + id_class_selected + "' "
+                Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
+                Dim fs As String = ""
+                For d As Integer = 0 To dm.Rows.Count - 1
+                    If d > 0 Then
+                        fs += "OR "
+                    End If
+                    fs += "[id_code_detail]='" + dm.Rows(d)("id_sht").ToString + "'"
+                Next
+                If fs = "" Then
+                    fs = "[id_code_detail]=0"
+                End If
+                clone_dsg.RowFilter = "[id_code] = " + row("code").ToString() + "AND (" + fs + ")"
+            ElseIf id_code_fg_class = row("code").ToString() Then
+                For f As Integer = 0 To GVCodeDsg.RowCount - 1
+                    If GVCodeDsg.GetRowCellValue(f, "code").ToString = id_code_fg_sht Then
+                        GVCodeDsg.SetRowCellValue(f, "value", Nothing)
+                        Exit For
+                    End If
+                Next
+                clone_dsg.RowFilter = "[id_code] = " + row("code").ToString()
+            Else
+                clone_dsg.RowFilter = "[id_code] = " + row("code").ToString()
+            End If
             edit.Properties.DataSource = clone_dsg
         End If
     End Sub
