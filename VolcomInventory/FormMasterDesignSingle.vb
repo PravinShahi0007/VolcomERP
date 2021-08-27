@@ -1637,12 +1637,19 @@
 
         'cek utk design dept
         If id_pop_up = "5" Then
+            'cek design detail
             For i As Integer = 0 To GVCodeDsg.RowCount - 1
                 If GVCodeDsg.GetRowCellValue(i, "value").ToString = "" Then
                     stopCustom("Please complete all 'Design Detail'")
                     Exit Sub
                 End If
             Next
+
+            'cek name
+            If Not isNewDesc() And TEName.Text.Length > 17 Then
+                stopCustom("Design name maximum 17 character")
+                Exit Sub
+            End If
         End If
 
         Cursor = Cursors.WaitCursor
@@ -2783,7 +2790,11 @@
         If id_pop_up = "3" Then 'non merch
             full_desc = promo_name & " " & class_name & " " & TEName.Text.ToUpper & string_name.ToUpper
         Else
-            full_desc = class_name & " " & TEName.Text.ToUpper.TrimStart(" ").TrimEnd(" ") & string_name.ToUpper
+            If Not isNewDesc() Then
+                full_desc = class_name & " " & TEName.Text.ToUpper.TrimStart(" ").TrimEnd(" ") & string_name.ToUpper
+            Else
+                full_desc = TEName.Text.ToUpper.TrimStart(" ").TrimEnd(" ")
+            End If
         End If
 
         If full_desc.Length > 25 Then
@@ -3416,4 +3427,13 @@
             TEPrimaryName.Text = TEName.Text
         End If
     End Sub
+
+    Function isNewDesc() As Boolean
+        Dim is_new_desc As String = execute_query("SELECT ss.is_new_desc FROM tb_season ss WHERE ss.id_season=" + LESeason.EditValue.ToString + "", 0, True, "", "", "", "")
+        If is_new_desc = "1" Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 End Class
