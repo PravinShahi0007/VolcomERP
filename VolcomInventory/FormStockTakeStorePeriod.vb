@@ -139,9 +139,11 @@
         If view_bap = "0" Then
             DDBBAPPelaksanaan.Visible = False
             SBStopScan.Visible = True
+            SBVerification.Visible = False
         Else
             DDBBAPPelaksanaan.Visible = True
             SBStopScan.Visible = False
+            SBVerification.Visible = True
         End If
 
         PopupMenu.ClearLinks()
