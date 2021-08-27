@@ -37,7 +37,7 @@
         Dim query As String = "
             (SELECT 0 AS `no`, p.full_code, p.name, p.size, s.qty AS qty_volcom, IFNULL(t.qty, 0) AS qty_store, (s.qty - IFNULL(t.qty, 0)) AS diff, '' AS note, IFNULL(t.id_comp, s.id_comp) AS id_comp, IFNULL(t.comp_name, CONCAT(c.comp_number, ' - ', c.comp_name)) AS comp_name, t.is_auto, 'no' AS is_select, s.id_product,
             IF(IFNULL(t.id_store_type,c.id_store_type)=1,s.id_design_price_normal, s.id_design_price) AS `id_price`,
-            IF(IFNULL(t.id_store_type,c.id_store_type)=1,s.design_price_normal, s.design_price) AS `unit_price`, n.note AS store_note, IF(IFNULL(t.id_store_type,c.id_store_type)=1,'Normal', h.design_price_type) AS design_price_type
+            IF(IFNULL(t.id_store_type,c.id_store_type)=1,s.design_price_normal, s.design_price) AS `unit_price`, n.note AS store_note, h.design_price_type
             FROM tb_st_store_soh AS s
             LEFT JOIN (
                 SELECT s.id_product, SUM(s.qty) AS qty, s.id_comp, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto, c.id_store_type
@@ -56,7 +56,7 @@
 
             (SELECT 0 AS `no`, p.full_code, p.name, p.size, 0 AS qty_volcom, q.qty AS qty_store, -q.qty AS diff, '' AS note, q.id_comp, q.comp_name, q.is_auto, 'no' AS is_select, p.id_product,
             IF(IFNULL(q.id_store_type,0)=1,prn.id_design_price, prc.id_design_price) AS id_price,
-            IF(IFNULL(q.id_store_type,0)=1,prn.design_price, prc.design_price) AS `unit_price`, n.note AS store_note, IF(IFNULL(q.id_store_type,0)=1,prn.design_price_type, prc.design_price_type) AS design_price_type
+            IF(IFNULL(q.id_store_type,0)=1,prn.design_price, prc.design_price) AS `unit_price`, n.note AS store_note, IFNULL(prc.design_price_type, prn.design_price_type) AS design_price_type
             FROM tb_m_product_store AS p
             INNER JOIN (
                 SELECT s.id_product, SUM(s.qty) AS qty, c.id_comp, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, s.is_auto, c.id_store_type
@@ -74,7 +74,7 @@
                 WHERE c.id_design_price IN (
                     SELECT MAX(id_design_price) AS id_design_price
                     FROM tb_m_design_price
-                    WHERE design_price_start_date <= DATE(NOW()) AND is_active_wh = 1 AND is_design_cost = 0
+                    WHERE design_price_start_date <= DATE((SELECT soh_date FROM tb_st_store_period WHERE id_st_store_period = " + id_period + ")) AND is_active_wh = 1 AND is_design_cost = 0
                     GROUP BY id_design
                 )
             ) AS prc ON op.id_design = prc.id_design
@@ -85,7 +85,7 @@
                 WHERE c.id_design_price IN (
                     SELECT MAX(id_design_price) AS id_design_price
                     FROM tb_m_design_price
-                    WHERE design_price_start_date <= DATE(NOW()) AND is_active_wh = 1 AND is_design_cost = 0 AND id_design_price_type = 1
+                    WHERE design_price_start_date <= DATE((SELECT soh_date FROM tb_st_store_period WHERE id_st_store_period = " + id_period + ")) AND is_active_wh = 1 AND is_design_cost = 0 AND id_design_price_type = 1
                     GROUP BY id_design
                 )
             ) AS prn ON op.id_design = prn.id_design)
