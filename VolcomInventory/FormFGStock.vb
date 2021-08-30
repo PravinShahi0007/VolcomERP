@@ -1818,7 +1818,78 @@
         'setup column
         GVSOHVA.Bands.Clear()
         GVSOHVA.Columns.Clear()
+        Dim column As List(Of String) = New List(Of String)
+        For i = 0 To data.Columns.Count - 1
+            Dim bandName As String = data.Columns(i).Caption.Split("|")(0)
 
+            If Not column.Contains(bandName) Then
+                column.Add(bandName)
+            End If
+        Next
+        For i = 0 To column.Count - 1
+            Dim band As DevExpress.XtraGrid.Views.BandedGrid.GridBand = New DevExpress.XtraGrid.Views.BandedGrid.GridBand
+
+            band.Caption = column(i)
+
+            GVData.Bands.Add(band)
+
+            For j = 0 To data.Columns.Count - 1
+                Dim bandName As String = data.Columns(j).Caption.Split("|")(0)
+                Dim coluName As String = data.Columns(j).Caption.Split("|")(1)
+
+                If bandName = column(i) Then
+                    Dim col As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+
+                    col.Caption = coluName
+                    col.VisibleIndex = j
+                    col.FieldName = data.Columns(j).Caption
+
+                    band.Columns.Add(col)
+
+                    If data.Columns(j).Caption = "Product Info|Division" Or data.Columns(j).Caption = "Product Info|Category" Or data.Columns(j).Caption = "Product Info|Class" Then
+                        col.Group()
+                    End If
+
+                    If bandName.Contains("WH Received") Or bandName.Contains("Store Received") Or bandName.Contains("TOTAL") Or bandName.Contains("STORE :") Or bandName.Contains("Stock") Then
+                        'display format
+                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        If col.FieldName.Contains("Thru") Then
+                            col.DisplayFormat.FormatString = "{0:n0}%"
+                        Else
+                            col.DisplayFormat.FormatString = "{0:n0}"
+                        End If
+
+                        'summary
+                        If col.FieldName.Contains("Thru") Then
+                            col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.None
+                        Else
+                            col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        End If
+                        col.SummaryItem.DisplayFormat = "{0:n0}"
+
+
+                        'group summary
+                        Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
+                        summary.DisplayFormat = "{0:N0}"
+                        summary.FieldName = data.Columns(j).Caption
+                        summary.ShowInGroupColumnFooter = col
+                        If col.FieldName.Contains("Thru") Then
+                            summary.SummaryType = DevExpress.Data.SummaryItemType.None
+                        Else
+                            summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        End If
+                        GVData.GroupSummary.Add(summary)
+                    ElseIf bandName = "Price" Then
+                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        col.DisplayFormat.FormatString = "{0:n0}"
+                    End If
+
+                    If bandName = "Product Info" Then
+                        band.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+                    End If
+                End If
+            Next
+        Next
 
         'fill data
         GCSOHVA.DataSource = data
