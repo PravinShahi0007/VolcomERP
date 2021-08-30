@@ -45,7 +45,6 @@ Partial Class FormFGDesignListChanges
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New VolcomMRP.MyXtraGrid.MyGridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.gridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnNo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnnameview = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -53,38 +52,27 @@ Partial Class FormFGDesignListChanges
         Me.RepoLinkPD = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnPDView = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnprod_order_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandCodeImport = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumncode_import = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncode_import_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandName = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnname = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnname_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandSor = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnseason_orign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnseason_orign_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandFabrication = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumndesign_fabrication = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndesign_fabrication_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandDesignDetail = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumndesign_detail = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.BandedGridColumndesign_detail_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandSource = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnsource = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsource_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandDivision = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumndivision = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndivision_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandSubCat = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnsub_category = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsub_category_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandClass = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnclass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnclass_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandColor = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumncolor = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncolor_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandCoolStorage = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnCoolStorage = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnCoolStorage_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_prod_demand = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -96,6 +84,21 @@ Partial Class FormFGDesignListChanges
         Me.XTCType = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPMDProduct = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPNonMDProduct = New DevExpress.XtraTab.XtraTabPage()
+        Me.BandedGridColumnsht = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnsht_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandCodeImport = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandName = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandSor = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandFabrication = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandDesignDetail = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandSource = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandDivision = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandSubCat = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandClass = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandColor = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandCoolStorage = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandSHT = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -396,8 +399,8 @@ Partial Class FormFGDesignListChanges
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVData.AppearancePrint.Row.ForeColor = System.Drawing.Color.Black
         Me.GVData.AppearancePrint.Row.Options.UseForeColor = True
-        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandGeneral, Me.gridBandCodeImport, Me.gridBandName, Me.gridBandSor, Me.gridBandFabrication, Me.gridBandDesignDetail, Me.gridBandSource, Me.gridBandDivision, Me.gridBandSubCat, Me.gridBandClass, Me.gridBandColor, Me.gridBandCoolStorage})
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_prod_demand, Me.BandedGridColumnprod_demand_number, Me.BandedGridColumnid_prod_order, Me.BandedGridColumnprod_order_number, Me.BandedGridColumnid_design, Me.BandedGridColumnid_design_new, Me.BandedGridColumncode, Me.BandedGridColumnnameview, Me.BandedGridColumncode_import, Me.BandedGridColumncode_import_new, Me.BandedGridColumnname, Me.BandedGridColumnname_new, Me.BandedGridColumnseason_orign, Me.BandedGridColumnseason_orign_new, Me.BandedGridColumndesign_fabrication, Me.BandedGridColumndesign_fabrication_new, Me.BandedGridColumndesign_detail, Me.BandedGridColumndesign_detail_new, Me.BandedGridColumnsource, Me.BandedGridColumnsource_new, Me.BandedGridColumndivision, Me.BandedGridColumndivision_new, Me.BandedGridColumnsub_category, Me.BandedGridColumnsub_category_new, Me.BandedGridColumnclass, Me.BandedGridColumnclass_new, Me.BandedGridColumncolor, Me.BandedGridColumncolor_new, Me.BandedGridColumnNo, Me.BandedGridColumnPDView, Me.BandedGridColumnCoolStorage, Me.BandedGridColumnCoolStorage_new})
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandGeneral, Me.gridBandCodeImport, Me.gridBandName, Me.gridBandSor, Me.gridBandFabrication, Me.gridBandDesignDetail, Me.gridBandSource, Me.gridBandDivision, Me.gridBandSubCat, Me.gridBandClass, Me.gridBandColor, Me.gridBandCoolStorage, Me.gridBandSHT})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_prod_demand, Me.BandedGridColumnprod_demand_number, Me.BandedGridColumnid_prod_order, Me.BandedGridColumnprod_order_number, Me.BandedGridColumnid_design, Me.BandedGridColumnid_design_new, Me.BandedGridColumncode, Me.BandedGridColumnnameview, Me.BandedGridColumncode_import, Me.BandedGridColumncode_import_new, Me.BandedGridColumnname, Me.BandedGridColumnname_new, Me.BandedGridColumnseason_orign, Me.BandedGridColumnseason_orign_new, Me.BandedGridColumndesign_fabrication, Me.BandedGridColumndesign_fabrication_new, Me.BandedGridColumndesign_detail, Me.BandedGridColumndesign_detail_new, Me.BandedGridColumnsource, Me.BandedGridColumnsource_new, Me.BandedGridColumndivision, Me.BandedGridColumndivision_new, Me.BandedGridColumnsub_category, Me.BandedGridColumnsub_category_new, Me.BandedGridColumnclass, Me.BandedGridColumnclass_new, Me.BandedGridColumncolor, Me.BandedGridColumncolor_new, Me.BandedGridColumnNo, Me.BandedGridColumnPDView, Me.BandedGridColumnCoolStorage, Me.BandedGridColumnCoolStorage_new, Me.BandedGridColumnsht, Me.BandedGridColumnsht_new})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_manag_rate", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_manag_rate_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_sale", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_sale_min_add", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up", Nothing, "{0:n2}", "b"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_mng", Nothing, "{0:n2}", "b_mng"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_sale", Nothing, "{0:n2}", "b_sale"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_mng_sale", Nothing, "{0:n2}", "b_mng_sale")})
         Me.GVData.LevelIndent = 0
@@ -411,18 +414,6 @@ Partial Class FormFGDesignListChanges
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         Me.GVData.RowHeight = 17
-        '
-        'gridBandGeneral
-        '
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnNo)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumncode)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnnameview)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnprod_demand_number)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnPDView)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnprod_order_number)
-        Me.gridBandGeneral.Name = "gridBandGeneral"
-        Me.gridBandGeneral.VisibleIndex = 0
-        Me.gridBandGeneral.Width = 336
         '
         'BandedGridColumnNo
         '
@@ -486,17 +477,6 @@ Partial Class FormFGDesignListChanges
         Me.BandedGridColumnprod_order_number.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnprod_order_number.Visible = True
         '
-        'gridBandCodeImport
-        '
-        Me.gridBandCodeImport.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gridBandCodeImport.AppearanceHeader.Options.UseFont = True
-        Me.gridBandCodeImport.Caption = "Code Import"
-        Me.gridBandCodeImport.Columns.Add(Me.BandedGridColumncode_import)
-        Me.gridBandCodeImport.Columns.Add(Me.BandedGridColumncode_import_new)
-        Me.gridBandCodeImport.Name = "gridBandCodeImport"
-        Me.gridBandCodeImport.VisibleIndex = 1
-        Me.gridBandCodeImport.Width = 150
-        '
         'BandedGridColumncode_import
         '
         Me.BandedGridColumncode_import.AppearanceCell.Options.UseTextOptions = True
@@ -516,17 +496,6 @@ Partial Class FormFGDesignListChanges
         Me.BandedGridColumncode_import_new.Name = "BandedGridColumncode_import_new"
         Me.BandedGridColumncode_import_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumncode_import_new.Visible = True
-        '
-        'gridBandName
-        '
-        Me.gridBandName.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandName.AppearanceHeader.Options.UseFont = True
-        Me.gridBandName.Caption = "Name"
-        Me.gridBandName.Columns.Add(Me.BandedGridColumnname)
-        Me.gridBandName.Columns.Add(Me.BandedGridColumnname_new)
-        Me.gridBandName.Name = "gridBandName"
-        Me.gridBandName.VisibleIndex = 2
-        Me.gridBandName.Width = 150
         '
         'BandedGridColumnname
         '
@@ -548,17 +517,6 @@ Partial Class FormFGDesignListChanges
         Me.BandedGridColumnname_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnname_new.Visible = True
         '
-        'gridBandSor
-        '
-        Me.gridBandSor.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandSor.AppearanceHeader.Options.UseFont = True
-        Me.gridBandSor.Caption = "Season Orign"
-        Me.gridBandSor.Columns.Add(Me.BandedGridColumnseason_orign)
-        Me.gridBandSor.Columns.Add(Me.BandedGridColumnseason_orign_new)
-        Me.gridBandSor.Name = "gridBandSor"
-        Me.gridBandSor.VisibleIndex = 3
-        Me.gridBandSor.Width = 150
-        '
         'BandedGridColumnseason_orign
         '
         Me.BandedGridColumnseason_orign.AppearanceCell.Options.UseTextOptions = True
@@ -579,17 +537,6 @@ Partial Class FormFGDesignListChanges
         Me.BandedGridColumnseason_orign_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnseason_orign_new.Visible = True
         '
-        'gridBandFabrication
-        '
-        Me.gridBandFabrication.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandFabrication.AppearanceHeader.Options.UseFont = True
-        Me.gridBandFabrication.Caption = "Fabrication"
-        Me.gridBandFabrication.Columns.Add(Me.BandedGridColumndesign_fabrication)
-        Me.gridBandFabrication.Columns.Add(Me.BandedGridColumndesign_fabrication_new)
-        Me.gridBandFabrication.Name = "gridBandFabrication"
-        Me.gridBandFabrication.VisibleIndex = 4
-        Me.gridBandFabrication.Width = 150
-        '
         'BandedGridColumndesign_fabrication
         '
         Me.BandedGridColumndesign_fabrication.AppearanceCell.Options.UseTextOptions = True
@@ -609,17 +556,6 @@ Partial Class FormFGDesignListChanges
         Me.BandedGridColumndesign_fabrication_new.Name = "BandedGridColumndesign_fabrication_new"
         Me.BandedGridColumndesign_fabrication_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumndesign_fabrication_new.Visible = True
-        '
-        'gridBandDesignDetail
-        '
-        Me.gridBandDesignDetail.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandDesignDetail.AppearanceHeader.Options.UseFont = True
-        Me.gridBandDesignDetail.Caption = "Design Detail"
-        Me.gridBandDesignDetail.Columns.Add(Me.BandedGridColumndesign_detail)
-        Me.gridBandDesignDetail.Columns.Add(Me.BandedGridColumndesign_detail_new)
-        Me.gridBandDesignDetail.Name = "gridBandDesignDetail"
-        Me.gridBandDesignDetail.VisibleIndex = 5
-        Me.gridBandDesignDetail.Width = 150
         '
         'BandedGridColumndesign_detail
         '
@@ -649,17 +585,6 @@ Partial Class FormFGDesignListChanges
         Me.BandedGridColumndesign_detail_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumndesign_detail_new.Visible = True
         '
-        'gridBandSource
-        '
-        Me.gridBandSource.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandSource.AppearanceHeader.Options.UseFont = True
-        Me.gridBandSource.Caption = "Source"
-        Me.gridBandSource.Columns.Add(Me.BandedGridColumnsource)
-        Me.gridBandSource.Columns.Add(Me.BandedGridColumnsource_new)
-        Me.gridBandSource.Name = "gridBandSource"
-        Me.gridBandSource.VisibleIndex = 6
-        Me.gridBandSource.Width = 150
-        '
         'BandedGridColumnsource
         '
         Me.BandedGridColumnsource.AppearanceCell.Options.UseTextOptions = True
@@ -679,17 +604,6 @@ Partial Class FormFGDesignListChanges
         Me.BandedGridColumnsource_new.Name = "BandedGridColumnsource_new"
         Me.BandedGridColumnsource_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnsource_new.Visible = True
-        '
-        'gridBandDivision
-        '
-        Me.gridBandDivision.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandDivision.AppearanceHeader.Options.UseFont = True
-        Me.gridBandDivision.Caption = "Division"
-        Me.gridBandDivision.Columns.Add(Me.BandedGridColumndivision)
-        Me.gridBandDivision.Columns.Add(Me.BandedGridColumndivision_new)
-        Me.gridBandDivision.Name = "gridBandDivision"
-        Me.gridBandDivision.VisibleIndex = 7
-        Me.gridBandDivision.Width = 150
         '
         'BandedGridColumndivision
         '
@@ -711,17 +625,6 @@ Partial Class FormFGDesignListChanges
         Me.BandedGridColumndivision_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumndivision_new.Visible = True
         '
-        'gridBandSubCat
-        '
-        Me.gridBandSubCat.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandSubCat.AppearanceHeader.Options.UseFont = True
-        Me.gridBandSubCat.Caption = "Sub Category"
-        Me.gridBandSubCat.Columns.Add(Me.BandedGridColumnsub_category)
-        Me.gridBandSubCat.Columns.Add(Me.BandedGridColumnsub_category_new)
-        Me.gridBandSubCat.Name = "gridBandSubCat"
-        Me.gridBandSubCat.VisibleIndex = 8
-        Me.gridBandSubCat.Width = 150
-        '
         'BandedGridColumnsub_category
         '
         Me.BandedGridColumnsub_category.AppearanceCell.Options.UseTextOptions = True
@@ -741,17 +644,6 @@ Partial Class FormFGDesignListChanges
         Me.BandedGridColumnsub_category_new.Name = "BandedGridColumnsub_category_new"
         Me.BandedGridColumnsub_category_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnsub_category_new.Visible = True
-        '
-        'gridBandClass
-        '
-        Me.gridBandClass.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandClass.AppearanceHeader.Options.UseFont = True
-        Me.gridBandClass.Caption = "Class"
-        Me.gridBandClass.Columns.Add(Me.BandedGridColumnclass)
-        Me.gridBandClass.Columns.Add(Me.BandedGridColumnclass_new)
-        Me.gridBandClass.Name = "gridBandClass"
-        Me.gridBandClass.VisibleIndex = 9
-        Me.gridBandClass.Width = 150
         '
         'BandedGridColumnclass
         '
@@ -773,17 +665,6 @@ Partial Class FormFGDesignListChanges
         Me.BandedGridColumnclass_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnclass_new.Visible = True
         '
-        'gridBandColor
-        '
-        Me.gridBandColor.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandColor.AppearanceHeader.Options.UseFont = True
-        Me.gridBandColor.Caption = "Color"
-        Me.gridBandColor.Columns.Add(Me.BandedGridColumncolor)
-        Me.gridBandColor.Columns.Add(Me.BandedGridColumncolor_new)
-        Me.gridBandColor.Name = "gridBandColor"
-        Me.gridBandColor.VisibleIndex = 10
-        Me.gridBandColor.Width = 150
-        '
         'BandedGridColumncolor
         '
         Me.BandedGridColumncolor.AppearanceCell.Options.UseTextOptions = True
@@ -803,17 +684,6 @@ Partial Class FormFGDesignListChanges
         Me.BandedGridColumncolor_new.Name = "BandedGridColumncolor_new"
         Me.BandedGridColumncolor_new.OptionsColumn.AllowEdit = False
         Me.BandedGridColumncolor_new.Visible = True
-        '
-        'gridBandCoolStorage
-        '
-        Me.gridBandCoolStorage.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandCoolStorage.AppearanceHeader.Options.UseFont = True
-        Me.gridBandCoolStorage.Caption = "Cool Storage"
-        Me.gridBandCoolStorage.Columns.Add(Me.BandedGridColumnCoolStorage)
-        Me.gridBandCoolStorage.Columns.Add(Me.BandedGridColumnCoolStorage_new)
-        Me.gridBandCoolStorage.Name = "gridBandCoolStorage"
-        Me.gridBandCoolStorage.VisibleIndex = 11
-        Me.gridBandCoolStorage.Width = 150
         '
         'BandedGridColumnCoolStorage
         '
@@ -904,6 +774,164 @@ Partial Class FormFGDesignListChanges
         Me.XTPNonMDProduct.Name = "XTPNonMDProduct"
         Me.XTPNonMDProduct.Size = New System.Drawing.Size(1001, 338)
         Me.XTPNonMDProduct.Text = "Non MD Product"
+        '
+        'BandedGridColumnsht
+        '
+        Me.BandedGridColumnsht.Caption = "From"
+        Me.BandedGridColumnsht.FieldName = "sht"
+        Me.BandedGridColumnsht.Name = "BandedGridColumnsht"
+        Me.BandedGridColumnsht.Visible = True
+        '
+        'BandedGridColumnsht_new
+        '
+        Me.BandedGridColumnsht_new.Caption = "To"
+        Me.BandedGridColumnsht_new.FieldName = "sht_new"
+        Me.BandedGridColumnsht_new.Name = "BandedGridColumnsht_new"
+        Me.BandedGridColumnsht_new.Visible = True
+        '
+        'gridBandGeneral
+        '
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnNo)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumncode)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnnameview)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnprod_demand_number)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnPDView)
+        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnprod_order_number)
+        Me.gridBandGeneral.Name = "gridBandGeneral"
+        Me.gridBandGeneral.VisibleIndex = 0
+        Me.gridBandGeneral.Width = 336
+        '
+        'gridBandCodeImport
+        '
+        Me.gridBandCodeImport.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridBandCodeImport.AppearanceHeader.Options.UseFont = True
+        Me.gridBandCodeImport.Caption = "Code Import"
+        Me.gridBandCodeImport.Columns.Add(Me.BandedGridColumncode_import)
+        Me.gridBandCodeImport.Columns.Add(Me.BandedGridColumncode_import_new)
+        Me.gridBandCodeImport.Name = "gridBandCodeImport"
+        Me.gridBandCodeImport.VisibleIndex = 1
+        Me.gridBandCodeImport.Width = 150
+        '
+        'gridBandName
+        '
+        Me.gridBandName.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandName.AppearanceHeader.Options.UseFont = True
+        Me.gridBandName.Caption = "Name"
+        Me.gridBandName.Columns.Add(Me.BandedGridColumnname)
+        Me.gridBandName.Columns.Add(Me.BandedGridColumnname_new)
+        Me.gridBandName.Name = "gridBandName"
+        Me.gridBandName.VisibleIndex = 2
+        Me.gridBandName.Width = 150
+        '
+        'gridBandSor
+        '
+        Me.gridBandSor.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandSor.AppearanceHeader.Options.UseFont = True
+        Me.gridBandSor.Caption = "Season Orign"
+        Me.gridBandSor.Columns.Add(Me.BandedGridColumnseason_orign)
+        Me.gridBandSor.Columns.Add(Me.BandedGridColumnseason_orign_new)
+        Me.gridBandSor.Name = "gridBandSor"
+        Me.gridBandSor.VisibleIndex = 3
+        Me.gridBandSor.Width = 150
+        '
+        'gridBandFabrication
+        '
+        Me.gridBandFabrication.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandFabrication.AppearanceHeader.Options.UseFont = True
+        Me.gridBandFabrication.Caption = "Fabrication"
+        Me.gridBandFabrication.Columns.Add(Me.BandedGridColumndesign_fabrication)
+        Me.gridBandFabrication.Columns.Add(Me.BandedGridColumndesign_fabrication_new)
+        Me.gridBandFabrication.Name = "gridBandFabrication"
+        Me.gridBandFabrication.VisibleIndex = 4
+        Me.gridBandFabrication.Width = 150
+        '
+        'gridBandDesignDetail
+        '
+        Me.gridBandDesignDetail.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandDesignDetail.AppearanceHeader.Options.UseFont = True
+        Me.gridBandDesignDetail.Caption = "Design Detail"
+        Me.gridBandDesignDetail.Columns.Add(Me.BandedGridColumndesign_detail)
+        Me.gridBandDesignDetail.Columns.Add(Me.BandedGridColumndesign_detail_new)
+        Me.gridBandDesignDetail.Name = "gridBandDesignDetail"
+        Me.gridBandDesignDetail.VisibleIndex = 5
+        Me.gridBandDesignDetail.Width = 150
+        '
+        'gridBandSource
+        '
+        Me.gridBandSource.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandSource.AppearanceHeader.Options.UseFont = True
+        Me.gridBandSource.Caption = "Source"
+        Me.gridBandSource.Columns.Add(Me.BandedGridColumnsource)
+        Me.gridBandSource.Columns.Add(Me.BandedGridColumnsource_new)
+        Me.gridBandSource.Name = "gridBandSource"
+        Me.gridBandSource.VisibleIndex = 6
+        Me.gridBandSource.Width = 150
+        '
+        'gridBandDivision
+        '
+        Me.gridBandDivision.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandDivision.AppearanceHeader.Options.UseFont = True
+        Me.gridBandDivision.Caption = "Division"
+        Me.gridBandDivision.Columns.Add(Me.BandedGridColumndivision)
+        Me.gridBandDivision.Columns.Add(Me.BandedGridColumndivision_new)
+        Me.gridBandDivision.Name = "gridBandDivision"
+        Me.gridBandDivision.VisibleIndex = 7
+        Me.gridBandDivision.Width = 150
+        '
+        'gridBandSubCat
+        '
+        Me.gridBandSubCat.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandSubCat.AppearanceHeader.Options.UseFont = True
+        Me.gridBandSubCat.Caption = "Sub Category"
+        Me.gridBandSubCat.Columns.Add(Me.BandedGridColumnsub_category)
+        Me.gridBandSubCat.Columns.Add(Me.BandedGridColumnsub_category_new)
+        Me.gridBandSubCat.Name = "gridBandSubCat"
+        Me.gridBandSubCat.VisibleIndex = 8
+        Me.gridBandSubCat.Width = 150
+        '
+        'gridBandClass
+        '
+        Me.gridBandClass.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandClass.AppearanceHeader.Options.UseFont = True
+        Me.gridBandClass.Caption = "Class"
+        Me.gridBandClass.Columns.Add(Me.BandedGridColumnclass)
+        Me.gridBandClass.Columns.Add(Me.BandedGridColumnclass_new)
+        Me.gridBandClass.Name = "gridBandClass"
+        Me.gridBandClass.VisibleIndex = 9
+        Me.gridBandClass.Width = 150
+        '
+        'gridBandColor
+        '
+        Me.gridBandColor.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandColor.AppearanceHeader.Options.UseFont = True
+        Me.gridBandColor.Caption = "Color"
+        Me.gridBandColor.Columns.Add(Me.BandedGridColumncolor)
+        Me.gridBandColor.Columns.Add(Me.BandedGridColumncolor_new)
+        Me.gridBandColor.Name = "gridBandColor"
+        Me.gridBandColor.VisibleIndex = 10
+        Me.gridBandColor.Width = 150
+        '
+        'gridBandCoolStorage
+        '
+        Me.gridBandCoolStorage.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandCoolStorage.AppearanceHeader.Options.UseFont = True
+        Me.gridBandCoolStorage.Caption = "Cool Storage"
+        Me.gridBandCoolStorage.Columns.Add(Me.BandedGridColumnCoolStorage)
+        Me.gridBandCoolStorage.Columns.Add(Me.BandedGridColumnCoolStorage_new)
+        Me.gridBandCoolStorage.Name = "gridBandCoolStorage"
+        Me.gridBandCoolStorage.VisibleIndex = 11
+        Me.gridBandCoolStorage.Width = 150
+        '
+        'gridBandSHT
+        '
+        Me.gridBandSHT.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridBandSHT.AppearanceHeader.Options.UseFont = True
+        Me.gridBandSHT.Caption = "Silhouette "
+        Me.gridBandSHT.Columns.Add(Me.BandedGridColumnsht)
+        Me.gridBandSHT.Columns.Add(Me.BandedGridColumnsht_new)
+        Me.gridBandSHT.Name = "gridBandSHT"
+        Me.gridBandSHT.VisibleIndex = 12
+        Me.gridBandSHT.Width = 150
         '
         'FormFGDesignListChanges
         '
@@ -1010,6 +1038,10 @@ Partial Class FormFGDesignListChanges
     Friend WithEvents BandedGridColumnNo As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnPDView As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents BandedGridColumnCoolStorage As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnCoolStorage_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnsht As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnsht_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandCodeImport As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandName As DevExpress.XtraGrid.Views.BandedGrid.GridBand
@@ -1022,6 +1054,5 @@ Partial Class FormFGDesignListChanges
     Friend WithEvents gridBandClass As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandColor As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandCoolStorage As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumnCoolStorage As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnCoolStorage_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandSHT As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class
