@@ -98,6 +98,7 @@
     Dim first_load_card As Boolean = True
     Public show_cost As Boolean = False
     Public id_design_soh As String = "-1"
+    Public id_design_soh_va As String = "-1"
     Dim id_super_admin As String = get_setup_field("id_role_super_admin")
 
     Private Sub FormFGStock_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -109,6 +110,7 @@
             'viewWHStockCard()
             viewWHStockSum()
             viewWH()
+            viewVAAccount()
             viewPriceType()
             XTPFGStockQC.PageVisible = False
             setCaptionSize(GVSOHCode)
@@ -126,6 +128,7 @@
         DEUntilStockFG.EditValue = data_dt.Rows(0)("dt")
         DEUntilStockQC.EditValue = data_dt.Rows(0)("dt")
         DEUntilAcc.EditValue = data_dt.Rows(0)("dt")
+        DEUntilAccVA.EditValue = data_dt.Rows(0)("dt")
         ActiveControl = TxtDesignCode
 
         If id_role_login <> id_super_admin Then
@@ -317,6 +320,15 @@
         query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label 
         FROM tb_m_comp e "
         viewSearchLookupQuery(SLEAccount, query, "id_comp", "comp_name_label", "id_comp")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewVAAccount()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = ""
+        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label
+        FROM tb_m_comp e WHERE e.id_comp IN (SELECT c.id_wh_group FROM tb_m_comp c GROUP BY c.id_wh_group) "
+        viewSearchLookupQuery(SLEAccountVA, query, "id_comp", "comp_name_label", "id_comp")
         Cursor = Cursors.Default
     End Sub
 
@@ -1738,5 +1750,81 @@
                 e.Appearance.BackColor = Color.SkyBlue
             End If
         End If
+    End Sub
+
+    Private Sub XTCFGStock_Click(sender As Object, e As EventArgs) Handles XTCFGStock.Click
+
+    End Sub
+
+    Private Sub BtnViewAccVA_Click(sender As Object, e As EventArgs) Handles BtnViewAccVA.Click
+        viewSOHVA
+    End Sub
+
+    Sub viewSOHVA()
+        Cursor = Cursors.WaitCursor
+        'get time 
+        Dim startd As String = DateTime.Parse(DEUntilAccVA.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim cm_beg_startd As String = ""
+        Dim beg_date As String = ""
+        Dim beg_year As String = ""
+        Dim beg_month As String = ""
+        Dim qbeg As String = "SELECT STR_TO_DATE(CONCAT(YEAR('" + startd + "'),'-', MONTH('" + startd + "'),'-', '01'),'%Y-%m-%d') AS `cm_beg_startd`,
+	    STR_TO_DATE(DATE_SUB(CONCAT(YEAR('" + startd + "'),'-', MONTH('" + startd + "'),'-', '01'),INTERVAL 1 DAY),'%Y-%m-%d') AS `beg_date`, 
+	    YEAR((SELECT beg_date)) AS `beg_year`, MONTH((SELECT beg_date)) AS `beg_month` "
+        Dim dbeg As DataTable = execute_query(qbeg, -1, True, "", "", "", "")
+        cm_beg_startd = dbeg.Rows(0)("cm_beg_startd").ToString
+        beg_date = dbeg.Rows(0)("beg_date").ToString
+        beg_year = dbeg.Rows(0)("beg_year").ToString
+        beg_month = dbeg.Rows(0)("beg_month").ToString
+
+        'filter comp 
+        Dim id_comp_param As String = SLEAccountVA.EditValue.ToString
+        Dim cond_comp As String = ""
+        If id_comp_param <> "0" Then
+            cond_comp = "AND loc.id_comp=" + id_comp_param + " "
+        End If
+
+        'filter desgin
+        Dim id_design_param As String = id_design_soh_va
+        Dim cond_design As String = ""
+        If id_design_param <> "0" Then
+            cond_design = "AND d.id_design='" + id_design_param + "' "
+        End If
+
+        'comp in
+        Dim id_comp_in As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) FROM tb_m_comp c WHERE c.id_wh_group='" + id_comp_param + "' ", 0, True, "", "", "", "")
+
+        'build query
+        Dim query As String = "SELECT a.id_product ,SUM(qty_avl) AS `Total Qty|Available`, SUM(qty_rsv) AS `Total Qty|Reserved`, SUM(qty_ttl) AS `Total Qty|Total`
+		FROM (
+			SELECT f.id_wh_drawer, f.id_product, f.`qty_avl`, f.`qty_rsv`, f.`qty_ttl`
+			FROM tb_storage_fg_" + beg_year + " f
+			WHERE f.month='" + beg_month + "'
+			UNION ALL
+			SELECT f.id_wh_drawer, f.id_product, 
+			SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS `qty_avl`, 
+			SUM(IF(f.id_stock_status=2, (IF(f.id_storage_category=1, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `qty_rsv` ,
+			SUM(IF(f.id_stock_status=1, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `qty_ttl` 
+			FROM tb_storage_fg f
+			WHERE f.storage_product_datetime>='" + cm_beg_startd + " 00:00:00'  AND f.storage_product_datetime<='" + startd + " 23:59:59' 
+			GROUP BY f.id_wh_drawer, f.id_product
+		) a
+		INNER JOIN tb_m_wh_drawer drw ON  drw.id_wh_drawer= a.id_wh_drawer
+		INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack
+		INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator AND loc.id_comp IN (" + id_comp_in + ")
+		GROUP BY a.id_product"
+        Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
+
+        'setup column
+        GVSOHVA.Bands.Clear()
+        GVSOHVA.Columns.Clear()
+
+
+        'fill data
+        GCSOHVA.DataSource = data
+
+        'bestfit
+        GVSOHVA.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 End Class
