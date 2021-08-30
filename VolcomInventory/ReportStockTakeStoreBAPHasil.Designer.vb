@@ -203,16 +203,25 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         '
         'GVAdjustment
         '
+        Me.GVAdjustment.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.GVAdjustment.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVAdjustment.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVAdjustment.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVAdjustment.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.GVAdjustment.AppearancePrint.FooterPanel.Options.UseFont = True
         Me.GVAdjustment.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
         Me.GVAdjustment.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVAdjustment.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GVAdjustment.AppearancePrint.HeaderPanel.Options.UseBackColor = True
         Me.GVAdjustment.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.GVAdjustment.AppearancePrint.HeaderPanel.Options.UseFont = True
         Me.GVAdjustment.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
         Me.GVAdjustment.AppearancePrint.Lines.Options.UseBackColor = True
         Me.GVAdjustment.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27})
         Me.GVAdjustment.GridControl = Me.GCAdjustment
         Me.GVAdjustment.Name = "GVAdjustment"
         Me.GVAdjustment.OptionsBehavior.Editable = False
+        Me.GVAdjustment.OptionsView.ShowFooter = True
         Me.GVAdjustment.OptionsView.ShowGroupPanel = False
         '
         'GridColumn19
@@ -273,6 +282,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn24.FieldName = "qty"
         Me.GridColumn24.MaxWidth = 50
         Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 5
         Me.GridColumn24.Width = 50
@@ -299,6 +309,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn26.FieldName = "amount"
         Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N0}")})
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 7
         Me.GridColumn26.Width = 78
@@ -363,16 +374,25 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         '
         'GVOver
         '
+        Me.GVOver.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.GVOver.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVOver.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVOver.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVOver.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.GVOver.AppearancePrint.FooterPanel.Options.UseFont = True
         Me.GVOver.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
         Me.GVOver.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVOver.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GVOver.AppearancePrint.HeaderPanel.Options.UseBackColor = True
         Me.GVOver.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.GVOver.AppearancePrint.HeaderPanel.Options.UseFont = True
         Me.GVOver.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
         Me.GVOver.AppearancePrint.Lines.Options.UseBackColor = True
         Me.GVOver.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18})
         Me.GVOver.GridControl = Me.GCOver
         Me.GVOver.Name = "GVOver"
         Me.GVOver.OptionsBehavior.Editable = False
+        Me.GVOver.OptionsView.ShowFooter = True
         Me.GVOver.OptionsView.ShowGroupPanel = False
         '
         'GridColumn10
@@ -433,6 +453,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn15.FieldName = "qty"
         Me.GridColumn15.MaxWidth = 50
         Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 5
         Me.GridColumn15.Width = 50
@@ -459,6 +480,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn17.FieldName = "amount"
         Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N0}")})
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 7
         Me.GridColumn17.Width = 76
@@ -490,16 +512,25 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         '
         'GVMissing
         '
+        Me.GVMissing.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.GVMissing.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVMissing.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVMissing.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVMissing.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.GVMissing.AppearancePrint.FooterPanel.Options.UseFont = True
         Me.GVMissing.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
         Me.GVMissing.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.GVMissing.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GVMissing.AppearancePrint.HeaderPanel.Options.UseBackColor = True
         Me.GVMissing.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.GVMissing.AppearancePrint.HeaderPanel.Options.UseFont = True
         Me.GVMissing.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
         Me.GVMissing.AppearancePrint.Lines.Options.UseBackColor = True
         Me.GVMissing.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
         Me.GVMissing.GridControl = Me.GCMissing
         Me.GVMissing.Name = "GVMissing"
         Me.GVMissing.OptionsBehavior.Editable = False
+        Me.GVMissing.OptionsView.ShowFooter = True
         Me.GVMissing.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -560,6 +591,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn6.FieldName = "qty"
         Me.GridColumn6.MaxWidth = 50
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
         Me.GridColumn6.Width = 50
@@ -586,6 +618,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn8.FieldName = "amount"
         Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N0}")})
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 7
         Me.GridColumn8.Width = 76
@@ -720,7 +753,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.XrLabel25.SizeF = New System.Drawing.SizeF(733.0!, 23.0!)
         Me.XrLabel25.StylePriority.UseFont = False
         Me.XrLabel25.StylePriority.UseTextAlignment = False
-        Me.XrLabel25.Text = "BERITA ACARA HASIL  REMOTE STOCKTAKE"
+        Me.XrLabel25.Text = "BERITA ACARA FINAL REKONSILIASI DATA [type]REMOTE STOCKTAKE"
         Me.XrLabel25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XLNo
@@ -763,7 +796,7 @@ Partial Public Class ReportStockTakeStoreBAPHasil
         Me.XLPerihal.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLPerihal.SizeF = New System.Drawing.SizeF(612.9998!, 17.0!)
         Me.XLPerihal.StylePriority.UseFont = False
-        Me.XLPerihal.Text = "Berita Acara Final Hasil Remote Stocktake"
+        Me.XLPerihal.Text = "Berita Acara Final Rekonsiliasi Data [type]Remote Stocktake"
         '
         'XLDari
         '

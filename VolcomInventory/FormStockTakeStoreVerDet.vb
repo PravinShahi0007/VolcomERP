@@ -34,7 +34,7 @@
 
         'detail
         Dim query_detail As String = "
-            SELECT d.id_product, p.full_code, p.name, p.size, d.price, (d.soh_qty - d.scan_qty) AS qty_awal, 0 AS qty_ver, '' AS note, '' AS id_report, '' AS report_number, '' AS report_mark_type, '' AS report_mark_type_name, d.id_price, d.soh_qty AS qty_soh, d.scan_qty AS qty_scan
+            SELECT d.id_product, p.full_code, p.name, p.size, d.price, (d.soh_qty - d.scan_qty) AS qty_awal, 0 AS qty_ver, '' AS note, '' AS id_report, '' AS report_number, '' AS report_mark_type, '' AS report_mark_type_name, d.id_price, d.soh_qty AS qty_volcom, d.scan_qty AS qty_store
             FROM tb_st_store_bap_det AS d
             LEFT JOIN tb_m_product_store AS p ON d.id_product = p.id_product
             WHERE d.id_st_store_bap = " + id_st_store_bap + "
@@ -315,12 +315,20 @@
             WHERE id_st_store_bap = " + id_st_store_bap + "
         ", 0, True, "", "", "", "")
 
+        Dim type_stocktake As String = execute_query("
+            SELECT IF(is_all_design = 1, '', 'Partial ')
+            FROM tb_st_store_period
+            WHERE id_st_store_period = " + FormStockTakeStorePeriod.GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString + "
+        ", 0, True, "", "", "", "")
+
         Report.XLDateCreated.Text = Report.XLDateCreated.Text.Replace("[date_created]", date_created)
         Report.XLKepada.Text = director + " / " + vice_director
         Report.XLDari.Text = ia_manager
         Report.XLToko.Text = SLUEAccount.Text
         Report.XLNo.Text = TENumber.Text
         Report.XLText.Text = Report.XLText.Text.Replace("[account]", SLUEAccount.Text).Replace("[start_period]", start_period)
+        Report.XrLabel25.Text = Report.XrLabel25.Text.Replace("[type]", type_stocktake.ToUpper)
+        Report.XLPerihal.Text = Report.XLPerihal.Text.Replace("[type]", type_stocktake)
 
         Dim data_missing As DataTable = New DataTable
 
@@ -329,9 +337,9 @@
         data_missing.Columns.Add("code", GetType(String))
         data_missing.Columns.Add("description", GetType(String))
         data_missing.Columns.Add("size", GetType(String))
-        data_missing.Columns.Add("qty", GetType(String))
-        data_missing.Columns.Add("price", GetType(String))
-        data_missing.Columns.Add("amount", GetType(String))
+        data_missing.Columns.Add("qty", GetType(Integer))
+        data_missing.Columns.Add("price", GetType(Integer))
+        data_missing.Columns.Add("amount", GetType(Integer))
         data_missing.Columns.Add("remark", GetType(String))
 
         Dim data_over As DataTable = New DataTable
@@ -341,9 +349,9 @@
         data_over.Columns.Add("code", GetType(String))
         data_over.Columns.Add("description", GetType(String))
         data_over.Columns.Add("size", GetType(String))
-        data_over.Columns.Add("qty", GetType(String))
-        data_over.Columns.Add("price", GetType(String))
-        data_over.Columns.Add("amount", GetType(String))
+        data_over.Columns.Add("qty", GetType(Integer))
+        data_over.Columns.Add("price", GetType(Integer))
+        data_over.Columns.Add("amount", GetType(Integer))
         data_over.Columns.Add("remark", GetType(String))
 
         Dim data_adj As DataTable = New DataTable
@@ -353,9 +361,9 @@
         data_adj.Columns.Add("code", GetType(String))
         data_adj.Columns.Add("description", GetType(String))
         data_adj.Columns.Add("size", GetType(String))
-        data_adj.Columns.Add("qty", GetType(String))
-        data_adj.Columns.Add("price", GetType(String))
-        data_adj.Columns.Add("amount", GetType(String))
+        data_adj.Columns.Add("qty", GetType(Integer))
+        data_adj.Columns.Add("price", GetType(Integer))
+        data_adj.Columns.Add("amount", GetType(Integer))
         data_adj.Columns.Add("remark", GetType(String))
 
         For i = 0 To BGVData.RowCount - 1
@@ -383,8 +391,8 @@
                     row_over("description") = BGVData.GetRowCellValue(i, "name").ToString
                     row_over("size") = BGVData.GetRowCellValue(i, "size").ToString
                     row_over("qty") = Math.Abs(BGVData.GetRowCellValue(i, "qty_akhir"))
-                    row_over("price") = BGVData.GetRowCellValue(i, "price")
-                    row_over("amount") = BGVData.GetRowCellValue(i, "price") * BGVData.GetRowCellValue(i, "qty_akhir")
+                    row_over("price") = Math.Abs(BGVData.GetRowCellValue(i, "price"))
+                    row_over("amount") = Math.Abs(BGVData.GetRowCellValue(i, "price") * BGVData.GetRowCellValue(i, "qty_akhir"))
                     row_over("remark") = "Over Fisik"
 
                     data_over.Rows.Add(row_over)
@@ -410,13 +418,13 @@
             row_adj("code") = dt_adj.Rows(i)("full_code").ToString.ToString.Substring(0, 9)
             row_adj("description") = dt_adj.Rows(i)("name").ToString
             row_adj("size") = dt_adj.Rows(i)("size").ToString
-            row_adj("qty") = Math.Abs(dt_adj.Rows(i)("qty"))
+            row_adj("qty") = dt_adj.Rows(i)("qty")
             row_adj("price") = dt_adj.Rows(i)("price")
-            row_adj("amount") = dt_adj.Rows(i)("price") * Math.Abs(dt_adj.Rows(i)("qty"))
+            row_adj("amount") = dt_adj.Rows(i)("price") * dt_adj.Rows(i)("qty")
 
-            If dt_adj.Rows(i)("qty") > 0 Then
+            If dt_adj.Rows(i)("qty") < 0 Then
                 row_adj("remark") = "Adjustment In"
-            ElseIf dt_adj.Rows(i)("qty") < 0 Then
+            ElseIf dt_adj.Rows(i)("qty") > 0 Then
                 row_adj("remark") = "Adjustment Out"
             End If
 
@@ -432,8 +440,8 @@
             row_missing("code") = "NIHIL"
             row_missing("description") = "NIHIL"
             row_missing("size") = "NIHIL"
-            row_missing("qty") = "NIHIL"
-            row_missing("price") = "NIHIL"
+            'row_missing("qty") = "NIHIL"
+            'row_missing("price") = "NIHIL"
             row_missing("remark") = "NIHIL"
 
             data_missing.Rows.Add(row_missing)
@@ -449,14 +457,16 @@
             row_over("code") = "NIHIL"
             row_over("description") = "NIHIL"
             row_over("size") = "NIHIL"
-            row_over("qty") = "NIHIL"
-            row_over("price") = "NIHIL"
+            'row_over("qty") = "NIHIL"
+            'row_over("price") = "NIHIL"
             row_over("remark") = "NIHIL"
 
             data_over.Rows.Add(row_over)
 
             Report.XLOver.Text = "Tidak dilakukan adjustment apapun di system"
         End If
+
+        Report.XLOver.Text = "Tidak dilakukan adjustment apapun di system"
 
         If data_adj.Rows.Count = 0 Then
             Dim row_adj As DataRow = data_adj.NewRow
@@ -466,8 +476,8 @@
             row_adj("code") = "NIHIL"
             row_adj("description") = "NIHIL"
             row_adj("size") = "NIHIL"
-            row_adj("qty") = "NIHIL"
-            row_adj("price") = "NIHIL"
+            'row_adj("qty") = "NIHIL"
+            'row_adj("price") = "NIHIL"
             row_adj("remark") = "NIHIL"
 
             data_adj.Rows.Add(row_adj)

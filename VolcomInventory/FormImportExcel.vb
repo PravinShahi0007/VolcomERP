@@ -4083,6 +4083,8 @@ GROUP BY ol.checkout_id
             data_temp.Columns.Add("report_mark_type", GetType(Integer))
             data_temp.Columns.Add("report_mark_type_name", GetType(String))
             data_temp.Columns.Add("status", GetType(String))
+            data_temp.Columns.Add("description", GetType(String))
+            data_temp.Columns.Add("size", GetType(String))
 
             Dim id_comp As String = FormStockTakeStoreVerDet.SLUEAccount.EditValue.ToString
 
@@ -4091,6 +4093,23 @@ GROUP BY ol.checkout_id
                 Dim barcode As String = data_temp.Rows(i)("barcode").ToString
                 Dim report_type As String = data_temp.Rows(i)("report_type").ToString
                 Dim number As String = data_temp.Rows(i)("number").ToString
+
+                'code & size
+                Dim data_product As DataTable = execute_query("
+                    SELECT p.product_display_name, s.display_name AS size
+                    FROM tb_m_product AS p
+                    LEFT JOIN (
+			            SELECT c.id_product, d.display_name
+			            FROM tb_m_product_code AS c
+			            LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
+                    ) AS s ON p.id_product = s.id_product
+                    WHERE p.product_full_code = '" + barcode + "'
+                ", -1, True, "", "", "", "")
+
+                If data_product.Rows.Count > 0 Then
+                    data_temp.Rows(i)("description") = data_product.Rows(0)("product_display_name").ToString
+                    data_temp.Rows(i)("size") = data_product.Rows(0)("size").ToString
+                End If
 
                 If report_type = "SAL" Then
                     'invoice
@@ -4260,6 +4279,9 @@ GROUP BY ol.checkout_id
                     End If
                 Next
             Next
+
+            data_temp.Columns(10).SetOrdinal(1)
+            data_temp.Columns(11).SetOrdinal(2)
 
             GCData.DataSource = data_temp
         End If
