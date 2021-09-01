@@ -36,17 +36,13 @@
         '
     End Sub
 
-    Private Sub Detail_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles Detail.BeforePrint
-
-    End Sub
-
     Private Sub GVListPurchase_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
 
-    Private Sub TopMargin_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles TopMargin.BeforePrint
+    Private Sub ReportPLSample_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles MyBase.BeforePrint
         'Fetch from db main
         Dim query As String = "SELECT i.id_prod_order,i.prod_order_mrs_number,m.design_name,m.design_display_name,k.prod_order_number,j.prod_order_wo_number,a.id_prod_order_mrs, a.id_pl_mrs ,a.id_comp_contact_from , a.id_comp_contact_to,a.pl_mrs_date, a.pl_mrs_note, a.pl_mrs_number, (d.comp_name) AS comp_name_from, (d.comp_number) AS comp_code_from, (d.id_comp) AS id_comp_from, (f.comp_name) AS comp_name_to, (f.comp_number) AS comp_code_to, (f.id_comp) AS id_comp_to,(f.address_primary) AS comp_address_to, a.id_report_status, "
         query += "DATE_FORMAT(a.pl_mrs_date,'%Y-%m-%d') as pl_mrs_datex, k.prod_order_number "
@@ -89,16 +85,13 @@
 
         LPLNumber.Text = data.Rows(0)("pl_mrs_number").ToString
         LabelNote.Text = data.Rows(0)("pl_mrs_note").ToString
-    End Sub
 
-    Private Sub ReportPLSample_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles MyBase.BeforePrint
         viewPLMRS()
         If is_pre = "1" Then
-            pre_load_mark_horz("30", id_pl_mrs, "2", "2", XrTable1)
+            pre_load_mark_horz("30", id_pl_mrs, LTo.Text, "2", XrTable1)
         Else
-            load_mark_horz("30", id_pl_mrs, "2", "1", XrTable1)
+            load_mark_horz("30", id_pl_mrs, LTo.Text, "1", XrTable1)
         End If
-
     End Sub
 
     Public Sub ExpandAllRows(ByVal View As DevExpress.XtraGrid.Views.Grid.GridView)

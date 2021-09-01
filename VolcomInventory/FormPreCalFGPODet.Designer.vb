@@ -29,6 +29,10 @@ Partial Class FormPreCalFGPODet
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.TERatePayment = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.TERateManagement = New DevExpress.XtraEditors.TextEdit()
         Me.TEPOL = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEVendorFGPO = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -54,6 +58,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCUFGPO = New DevExpress.XtraEditors.PanelControl()
         Me.PCFGPOList = New DevExpress.XtraEditors.PanelControl()
         Me.BPropose = New DevExpress.XtraEditors.SimpleButton()
@@ -80,6 +85,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCUOrign = New DevExpress.XtraEditors.PanelControl()
         Me.PCPOrign = New DevExpress.XtraEditors.PanelControl()
+        Me.BLoadOrign = New DevExpress.XtraEditors.SimpleButton()
         Me.BDelOrign = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddOrign = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
@@ -101,6 +107,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCUDest = New DevExpress.XtraEditors.PanelControl()
         Me.PCPDest = New DevExpress.XtraEditors.PanelControl()
+        Me.BLoadDest = New DevExpress.XtraEditors.SimpleButton()
         Me.BDelDest = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddDest = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
@@ -122,13 +129,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCUAdm = New DevExpress.XtraEditors.PanelControl()
-        Me.TECommision = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEDutyPercent = New DevExpress.XtraEditors.TextEdit()
         Me.BLoadCharges = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.PCAdm = New DevExpress.XtraEditors.PanelControl()
         Me.BDraftAdm = New DevExpress.XtraEditors.SimpleButton()
         Me.BNext = New DevExpress.XtraEditors.SimpleButton()
@@ -170,6 +171,8 @@ Partial Class FormPreCalFGPODet
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TERatePayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TERateManagement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPOL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEVendorFGPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -222,8 +225,6 @@ Partial Class FormPreCalFGPODet
         CType(Me.GVAdm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCUAdm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCUAdm.SuspendLayout()
-        CType(Me.TECommision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEDutyPercent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCAdm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAdm.SuspendLayout()
         Me.XTPChoosen.SuspendLayout()
@@ -310,6 +311,10 @@ Partial Class FormPreCalFGPODet
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.LabelControl13)
+        Me.PanelControl2.Controls.Add(Me.TERatePayment)
+        Me.PanelControl2.Controls.Add(Me.LabelControl12)
+        Me.PanelControl2.Controls.Add(Me.TERateManagement)
         Me.PanelControl2.Controls.Add(Me.TEPOL)
         Me.PanelControl2.Controls.Add(Me.LabelControl6)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
@@ -317,6 +322,58 @@ Partial Class FormPreCalFGPODet
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1022, 42)
         Me.PanelControl2.TabIndex = 1
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Location = New System.Drawing.Point(785, 14)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl13.TabIndex = 157
+        Me.LabelControl13.Text = "Rate Payment"
+        '
+        'TERatePayment
+        '
+        Me.TERatePayment.Location = New System.Drawing.Point(859, 11)
+        Me.TERatePayment.Name = "TERatePayment"
+        Me.TERatePayment.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TERatePayment.Properties.Appearance.Options.UseFont = True
+        Me.TERatePayment.Properties.Appearance.Options.UseTextOptions = True
+        Me.TERatePayment.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TERatePayment.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TERatePayment.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TERatePayment.Properties.DisplayFormat.FormatString = "N2"
+        Me.TERatePayment.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TERatePayment.Properties.Mask.EditMask = "N2"
+        Me.TERatePayment.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TERatePayment.Properties.ReadOnly = True
+        Me.TERatePayment.Size = New System.Drawing.Size(134, 20)
+        Me.TERatePayment.TabIndex = 158
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Location = New System.Drawing.Point(551, 14)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(88, 13)
+        Me.LabelControl12.TabIndex = 155
+        Me.LabelControl12.Text = "Management Rate"
+        '
+        'TERateManagement
+        '
+        Me.TERateManagement.Location = New System.Drawing.Point(645, 11)
+        Me.TERateManagement.Name = "TERateManagement"
+        Me.TERateManagement.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TERateManagement.Properties.Appearance.Options.UseFont = True
+        Me.TERateManagement.Properties.Appearance.Options.UseTextOptions = True
+        Me.TERateManagement.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TERateManagement.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TERateManagement.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TERateManagement.Properties.DisplayFormat.FormatString = "N2"
+        Me.TERateManagement.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TERateManagement.Properties.Mask.EditMask = "N2"
+        Me.TERateManagement.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TERateManagement.Properties.ReadOnly = True
+        Me.TERateManagement.Size = New System.Drawing.Size(134, 20)
+        Me.TERateManagement.TabIndex = 156
         '
         'TEPOL
         '
@@ -465,7 +522,7 @@ Partial Class FormPreCalFGPODet
         '
         'GVListFGPO
         '
-        Me.GVListFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn6, Me.GridColumn3, Me.GridColumn4, Me.GridColumn7})
+        Me.GVListFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn5, Me.GridColumn6, Me.GridColumn3, Me.GridColumn4, Me.GridColumn7, Me.GridColumn47})
         Me.GVListFGPO.GridControl = Me.GCListFGPO
         Me.GVListFGPO.Name = "GVListFGPO"
         Me.GVListFGPO.OptionsView.ShowFooter = True
@@ -476,12 +533,18 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn1.Caption = "ID"
         Me.GridColumn1.FieldName = "id_prod_order"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.AllowFocus = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "FGPO Number"
         Me.GridColumn2.FieldName = "prod_order_number"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.AllowFocus = False
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
         Me.GridColumn2.Width = 141
@@ -491,6 +554,9 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn5.Caption = "Design"
         Me.GridColumn5.FieldName = "design_display_name"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        Me.GridColumn5.OptionsColumn.AllowFocus = False
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 2
         Me.GridColumn5.Width = 293
@@ -500,6 +566,9 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn6.Caption = "Design Code"
         Me.GridColumn6.FieldName = "design_code"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.OptionsColumn.AllowFocus = False
+        Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 1
         Me.GridColumn6.Width = 168
@@ -515,6 +584,9 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn3.FieldName = "price"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.AllowFocus = False
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "price", "{0:N2}")})
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 3
@@ -531,6 +603,9 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "qty"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.AllowFocus = False
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 4
@@ -547,12 +622,29 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn7.FieldName = "total_amount"
         Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.OptionsColumn.AllowFocus = False
+        Me.GridColumn7.OptionsColumn.ReadOnly = True
         Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", "{0:N2}")})
         Me.GridColumn7.UnboundExpression = "[qty] * [price]"
         Me.GridColumn7.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 5
         Me.GridColumn7.Width = 150
+        '
+        'GridColumn47
+        '
+        Me.GridColumn47.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn47.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn47.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn47.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn47.Caption = "Duty %"
+        Me.GridColumn47.DisplayFormat.FormatString = "N2"
+        Me.GridColumn47.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn47.FieldName = "duty"
+        Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.Visible = True
+        Me.GridColumn47.VisibleIndex = 6
         '
         'PCUFGPO
         '
@@ -762,12 +854,18 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn13.Caption = "ID"
         Me.GridColumn13.FieldName = "id_pre_cal_fgpo_det"
         Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.OptionsColumn.AllowFocus = False
+        Me.GridColumn13.OptionsColumn.ReadOnly = True
         '
         'GridColumn14
         '
         Me.GridColumn14.Caption = "Description"
         Me.GridColumn14.FieldName = "desc"
         Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.AllowEdit = False
+        Me.GridColumn14.OptionsColumn.AllowFocus = False
+        Me.GridColumn14.OptionsColumn.ReadOnly = True
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 0
         Me.GridColumn14.Width = 387
@@ -798,6 +896,9 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn18.FieldName = "qty"
         Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.OptionsColumn.AllowEdit = False
+        Me.GridColumn18.OptionsColumn.AllowFocus = False
+        Me.GridColumn18.OptionsColumn.ReadOnly = True
         Me.GridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 2
@@ -814,6 +915,9 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn19.FieldName = "total_in_rp"
         Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.OptionsColumn.AllowEdit = False
+        Me.GridColumn19.OptionsColumn.AllowFocus = False
+        Me.GridColumn19.OptionsColumn.ReadOnly = True
         Me.GridColumn19.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_in_rp", "{0:N2}")})
         Me.GridColumn19.UnboundExpression = "[unit_price_in_rp] * [qty]"
         Me.GridColumn19.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
@@ -835,19 +939,30 @@ Partial Class FormPreCalFGPODet
         'PCPOrign
         '
         Me.PCPOrign.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCPOrign.Controls.Add(Me.BLoadOrign)
         Me.PCPOrign.Controls.Add(Me.BDelOrign)
         Me.PCPOrign.Controls.Add(Me.BAddOrign)
         Me.PCPOrign.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PCPOrign.Location = New System.Drawing.Point(794, 2)
+        Me.PCPOrign.Location = New System.Drawing.Point(674, 2)
         Me.PCPOrign.Name = "PCPOrign"
-        Me.PCPOrign.Size = New System.Drawing.Size(220, 39)
+        Me.PCPOrign.Size = New System.Drawing.Size(340, 39)
         Me.PCPOrign.TabIndex = 101
+        '
+        'BLoadOrign
+        '
+        Me.BLoadOrign.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BLoadOrign.Image = CType(resources.GetObject("BLoadOrign.Image"), System.Drawing.Image)
+        Me.BLoadOrign.Location = New System.Drawing.Point(22, 0)
+        Me.BLoadOrign.Name = "BLoadOrign"
+        Me.BLoadOrign.Size = New System.Drawing.Size(133, 39)
+        Me.BLoadOrign.TabIndex = 6
+        Me.BLoadOrign.Text = "Load Charges"
         '
         'BDelOrign
         '
         Me.BDelOrign.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDelOrign.Image = CType(resources.GetObject("BDelOrign.Image"), System.Drawing.Image)
-        Me.BDelOrign.Location = New System.Drawing.Point(35, 0)
+        Me.BDelOrign.Location = New System.Drawing.Point(155, 0)
         Me.BDelOrign.Name = "BDelOrign"
         Me.BDelOrign.Size = New System.Drawing.Size(93, 39)
         Me.BDelOrign.TabIndex = 4
@@ -857,11 +972,12 @@ Partial Class FormPreCalFGPODet
         '
         Me.BAddOrign.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAddOrign.Image = CType(resources.GetObject("BAddOrign.Image"), System.Drawing.Image)
-        Me.BAddOrign.Location = New System.Drawing.Point(128, 0)
+        Me.BAddOrign.Location = New System.Drawing.Point(248, 0)
         Me.BAddOrign.Name = "BAddOrign"
         Me.BAddOrign.Size = New System.Drawing.Size(92, 39)
         Me.BAddOrign.TabIndex = 5
         Me.BAddOrign.Text = "Add"
+        Me.BAddOrign.Visible = False
         '
         'LabelControl10
         '
@@ -1074,19 +1190,30 @@ Partial Class FormPreCalFGPODet
         'PCPDest
         '
         Me.PCPDest.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCPDest.Controls.Add(Me.BLoadDest)
         Me.PCPDest.Controls.Add(Me.BDelDest)
         Me.PCPDest.Controls.Add(Me.BAddDest)
         Me.PCPDest.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PCPDest.Location = New System.Drawing.Point(794, 2)
+        Me.PCPDest.Location = New System.Drawing.Point(654, 2)
         Me.PCPDest.Name = "PCPDest"
-        Me.PCPDest.Size = New System.Drawing.Size(220, 39)
+        Me.PCPDest.Size = New System.Drawing.Size(360, 39)
         Me.PCPDest.TabIndex = 101
+        '
+        'BLoadDest
+        '
+        Me.BLoadDest.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BLoadDest.Image = CType(resources.GetObject("BLoadDest.Image"), System.Drawing.Image)
+        Me.BLoadDest.Location = New System.Drawing.Point(24, 0)
+        Me.BLoadDest.Name = "BLoadDest"
+        Me.BLoadDest.Size = New System.Drawing.Size(151, 39)
+        Me.BLoadDest.TabIndex = 7
+        Me.BLoadDest.Text = "Load Dest Charges"
         '
         'BDelDest
         '
         Me.BDelDest.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDelDest.Image = CType(resources.GetObject("BDelDest.Image"), System.Drawing.Image)
-        Me.BDelDest.Location = New System.Drawing.Point(35, 0)
+        Me.BDelDest.Location = New System.Drawing.Point(175, 0)
         Me.BDelDest.Name = "BDelDest"
         Me.BDelDest.Size = New System.Drawing.Size(93, 39)
         Me.BDelDest.TabIndex = 4
@@ -1096,11 +1223,12 @@ Partial Class FormPreCalFGPODet
         '
         Me.BAddDest.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAddDest.Image = CType(resources.GetObject("BAddDest.Image"), System.Drawing.Image)
-        Me.BAddDest.Location = New System.Drawing.Point(128, 0)
+        Me.BAddDest.Location = New System.Drawing.Point(268, 0)
         Me.BAddDest.Name = "BAddDest"
         Me.BAddDest.Size = New System.Drawing.Size(92, 39)
         Me.BAddDest.TabIndex = 5
         Me.BAddDest.Text = "Add"
+        Me.BAddDest.Visible = False
         '
         'LabelControl11
         '
@@ -1316,68 +1444,12 @@ Partial Class FormPreCalFGPODet
         '
         'PCUAdm
         '
-        Me.PCUAdm.Controls.Add(Me.TECommision)
-        Me.PCUAdm.Controls.Add(Me.LabelControl14)
-        Me.PCUAdm.Controls.Add(Me.LabelControl15)
-        Me.PCUAdm.Controls.Add(Me.TEDutyPercent)
         Me.PCUAdm.Controls.Add(Me.BLoadCharges)
-        Me.PCUAdm.Controls.Add(Me.LabelControl13)
-        Me.PCUAdm.Controls.Add(Me.LabelControl12)
         Me.PCUAdm.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCUAdm.Location = New System.Drawing.Point(0, 0)
         Me.PCUAdm.Name = "PCUAdm"
         Me.PCUAdm.Size = New System.Drawing.Size(1016, 48)
         Me.PCUAdm.TabIndex = 7
-        '
-        'TECommision
-        '
-        Me.TECommision.Location = New System.Drawing.Point(292, 14)
-        Me.TECommision.Name = "TECommision"
-        Me.TECommision.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TECommision.Properties.Appearance.Options.UseFont = True
-        Me.TECommision.Properties.Appearance.Options.UseTextOptions = True
-        Me.TECommision.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TECommision.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TECommision.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TECommision.Properties.DisplayFormat.FormatString = "N2"
-        Me.TECommision.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TECommision.Properties.Mask.EditMask = "N2"
-        Me.TECommision.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TECommision.Size = New System.Drawing.Size(81, 20)
-        Me.TECommision.TabIndex = 156
-        '
-        'LabelControl14
-        '
-        Me.LabelControl14.Location = New System.Drawing.Point(379, 17)
-        Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(11, 13)
-        Me.LabelControl14.TabIndex = 155
-        Me.LabelControl14.Text = "%"
-        '
-        'LabelControl15
-        '
-        Me.LabelControl15.Location = New System.Drawing.Point(209, 17)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(77, 13)
-        Me.LabelControl15.TabIndex = 154
-        Me.LabelControl15.Text = "KGS Commission"
-        '
-        'TEDutyPercent
-        '
-        Me.TEDutyPercent.Location = New System.Drawing.Point(81, 15)
-        Me.TEDutyPercent.Name = "TEDutyPercent"
-        Me.TEDutyPercent.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TEDutyPercent.Properties.Appearance.Options.UseFont = True
-        Me.TEDutyPercent.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEDutyPercent.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEDutyPercent.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TEDutyPercent.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEDutyPercent.Properties.DisplayFormat.FormatString = "N2"
-        Me.TEDutyPercent.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TEDutyPercent.Properties.Mask.EditMask = "N2"
-        Me.TEDutyPercent.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEDutyPercent.Size = New System.Drawing.Size(81, 20)
-        Me.TEDutyPercent.TabIndex = 153
         '
         'BLoadCharges
         '
@@ -1388,22 +1460,6 @@ Partial Class FormPreCalFGPODet
         Me.BLoadCharges.Size = New System.Drawing.Size(133, 44)
         Me.BLoadCharges.TabIndex = 3
         Me.BLoadCharges.Text = "Load Charges"
-        '
-        'LabelControl13
-        '
-        Me.LabelControl13.Location = New System.Drawing.Point(168, 18)
-        Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(11, 13)
-        Me.LabelControl13.TabIndex = 2
-        Me.LabelControl13.Text = "%"
-        '
-        'LabelControl12
-        '
-        Me.LabelControl12.Location = New System.Drawing.Point(12, 18)
-        Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(63, 13)
-        Me.LabelControl12.TabIndex = 0
-        Me.LabelControl12.Text = "Duty Percent"
         '
         'PCAdm
         '
@@ -1870,6 +1926,8 @@ Partial Class FormPreCalFGPODet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TERatePayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TERateManagement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPOL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEVendorFGPO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1924,9 +1982,6 @@ Partial Class FormPreCalFGPODet
         CType(Me.GVAdm, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCUAdm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCUAdm.ResumeLayout(False)
-        Me.PCUAdm.PerformLayout()
-        CType(Me.TECommision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEDutyPercent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCAdm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAdm.ResumeLayout(False)
         Me.XTPChoosen.ResumeLayout(False)
@@ -2057,15 +2112,9 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PCUAdm As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BLoadCharges As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents TEDutyPercent As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BDraftAdm As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents TECommision As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents XTPChoosen As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCPickVendor As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVPickVendor As DevExpress.XtraGrid.Views.Grid.GridView
@@ -2087,4 +2136,11 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BLoadOrign As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BLoadDest As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TERatePayment As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TERateManagement As DevExpress.XtraEditors.TextEdit
 End Class

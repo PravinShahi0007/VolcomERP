@@ -19,6 +19,7 @@ Partial Class FormStockTakeStoreVerDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStockTakeStoreVerDet))
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
@@ -75,6 +76,9 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn26 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.PromoPriceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,6 +92,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -293,6 +298,7 @@ Partial Class FormStockTakeStoreVerDet
         '
         'GCData
         '
+        Me.GCData.ContextMenuStrip = Me.ContextMenuStrip
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCData.Location = New System.Drawing.Point(0, 122)
         Me.GCData.MainView = Me.BGVData
@@ -304,7 +310,7 @@ Partial Class FormStockTakeStoreVerDet
         'BGVData
         '
         Me.BGVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand6, Me.gridBand7, Me.gridBand2, Me.gridBand3, Me.gridBand4, Me.gridBand5})
-        Me.BGVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn21, Me.BandedGridColumn22, Me.BandedGridColumn23, Me.BandedGridColumn24, Me.BandedGridColumn25})
+        Me.BGVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn21, Me.BandedGridColumn22, Me.BandedGridColumn23, Me.BandedGridColumn24, Me.BandedGridColumn25, Me.BandedGridColumn26})
         Me.BGVData.GridControl = Me.GCData
         Me.BGVData.Name = "BGVData"
         Me.BGVData.OptionsView.ColumnAutoWidth = False
@@ -610,6 +616,24 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn21.UnboundExpression = "[qty_scan] * [price]"
         Me.BandedGridColumn21.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         '
+        'BandedGridColumn26
+        '
+        Me.BandedGridColumn26.FieldName = "is_edited_price"
+        Me.BandedGridColumn26.Name = "BandedGridColumn26"
+        Me.BandedGridColumn26.OptionsColumn.AllowEdit = False
+        '
+        'ContextMenuStrip
+        '
+        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PromoPriceToolStripMenuItem})
+        Me.ContextMenuStrip.Name = "ContextMenuStrip"
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(140, 26)
+        '
+        'PromoPriceToolStripMenuItem
+        '
+        Me.PromoPriceToolStripMenuItem.Name = "PromoPriceToolStripMenuItem"
+        Me.PromoPriceToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.PromoPriceToolStripMenuItem.Text = "Promo Price"
+        '
         'FormStockTakeStoreVerDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -636,6 +660,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BGVData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -695,4 +720,7 @@ Partial Class FormStockTakeStoreVerDet
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn26 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents ContextMenuStrip As ContextMenuStrip
+    Friend WithEvents PromoPriceToolStripMenuItem As ToolStripMenuItem
 End Class

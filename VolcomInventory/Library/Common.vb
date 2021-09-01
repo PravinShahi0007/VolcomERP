@@ -4644,7 +4644,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
     Sub pre_load_mark_horz(ByVal report_mark_type As String, ByVal id_report As String, ByVal opt As String, ByVal include_time As String, ByVal xrtable As DevExpress.XtraReports.UI.XRTable)
         'opt
-        'X = include received by <-- old --> else than 1 -> name
+        'X = include received by 
         '2 = not include
         'include time
         '1 = true

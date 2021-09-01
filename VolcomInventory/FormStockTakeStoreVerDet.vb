@@ -34,7 +34,7 @@
 
         'detail
         Dim query_detail As String = "
-            SELECT d.id_product, p.full_code, p.name, p.size, d.price, (d.soh_qty - d.scan_qty) AS qty_awal, 0 AS qty_ver, '' AS note, '' AS id_report, '' AS report_number, '' AS report_mark_type, '' AS report_mark_type_name, d.id_price, d.soh_qty AS qty_volcom, d.scan_qty AS qty_store
+            SELECT d.id_product, p.full_code, p.name, p.size, d.price, (d.soh_qty - d.scan_qty) AS qty_awal, 0 AS qty_ver, '' AS note, '' AS id_report, '' AS report_number, '' AS report_mark_type, '' AS report_mark_type_name, d.id_price, d.soh_qty AS qty_volcom, d.scan_qty AS qty_store, d.is_edited_price
             FROM tb_st_store_bap_det AS d
             LEFT JOIN tb_m_product_store AS p ON d.id_product = p.id_product
             WHERE d.id_st_store_bap = " + id_st_store_bap + "
@@ -539,9 +539,12 @@
         save.ShowDialog()
 
         If Not save.FileName = "" Then
-            My.Computer.Network.DownloadFile("\\192.168.1.2\dataapp$\template\Template Verifikasi Stock Take.xlsx", save.FileName)
+            Try
+                My.Computer.Network.DownloadFile("\\192.168.1.2\dataapp$\template\Template Verifikasi Stock Take.xlsx", save.FileName)
 
-            infoCustom("File downloaded.")
+                infoCustom("File downloaded.")
+            Catch ex As Exception
+            End Try
         End If
     End Sub
 
@@ -561,6 +564,26 @@
             BGVData.ExportToXlsx(save.FileName, op)
 
             infoCustom("File saved.")
+        End If
+    End Sub
+
+    Private Sub PromoPriceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PromoPriceToolStripMenuItem.Click
+        FormStockTakeStoreEditPromo.ShowDialog()
+    End Sub
+
+    Private Sub BGVData_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles BGVData.PopupMenuShowing
+        If SLUEReportStatus.EditValue.ToString = "0" Then
+            If BGVData.GetFocusedRowCellValue("is_edited_price").ToString = "1" Then
+                PromoPriceToolStripMenuItem.Visible = True
+            Else
+                If BGVData.GetFocusedRowCellValue("value_volcom") = 0 And BGVData.GetFocusedRowCellValue("value_store") = 0 Then
+                    PromoPriceToolStripMenuItem.Visible = True
+                Else
+                    PromoPriceToolStripMenuItem.Visible = False
+                End If
+            End If
+        Else
+            PromoPriceToolStripMenuItem.Visible = False
         End If
     End Sub
 End Class
