@@ -29,6 +29,10 @@ Partial Class FormPreCalFGPODet
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.TERatePayment = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.TERateManagement = New DevExpress.XtraEditors.TextEdit()
         Me.TEPOL = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEVendorFGPO = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -167,6 +171,8 @@ Partial Class FormPreCalFGPODet
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TERatePayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TERateManagement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPOL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEVendorFGPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -305,6 +311,10 @@ Partial Class FormPreCalFGPODet
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.LabelControl13)
+        Me.PanelControl2.Controls.Add(Me.TERatePayment)
+        Me.PanelControl2.Controls.Add(Me.LabelControl12)
+        Me.PanelControl2.Controls.Add(Me.TERateManagement)
         Me.PanelControl2.Controls.Add(Me.TEPOL)
         Me.PanelControl2.Controls.Add(Me.LabelControl6)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
@@ -312,6 +322,58 @@ Partial Class FormPreCalFGPODet
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1022, 42)
         Me.PanelControl2.TabIndex = 1
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Location = New System.Drawing.Point(785, 14)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl13.TabIndex = 157
+        Me.LabelControl13.Text = "Rate Payment"
+        '
+        'TERatePayment
+        '
+        Me.TERatePayment.Location = New System.Drawing.Point(859, 11)
+        Me.TERatePayment.Name = "TERatePayment"
+        Me.TERatePayment.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TERatePayment.Properties.Appearance.Options.UseFont = True
+        Me.TERatePayment.Properties.Appearance.Options.UseTextOptions = True
+        Me.TERatePayment.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TERatePayment.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TERatePayment.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TERatePayment.Properties.DisplayFormat.FormatString = "N2"
+        Me.TERatePayment.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TERatePayment.Properties.Mask.EditMask = "N2"
+        Me.TERatePayment.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TERatePayment.Properties.ReadOnly = True
+        Me.TERatePayment.Size = New System.Drawing.Size(134, 20)
+        Me.TERatePayment.TabIndex = 158
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Location = New System.Drawing.Point(551, 14)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(88, 13)
+        Me.LabelControl12.TabIndex = 155
+        Me.LabelControl12.Text = "Management Rate"
+        '
+        'TERateManagement
+        '
+        Me.TERateManagement.Location = New System.Drawing.Point(645, 11)
+        Me.TERateManagement.Name = "TERateManagement"
+        Me.TERateManagement.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TERateManagement.Properties.Appearance.Options.UseFont = True
+        Me.TERateManagement.Properties.Appearance.Options.UseTextOptions = True
+        Me.TERateManagement.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TERateManagement.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TERateManagement.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TERateManagement.Properties.DisplayFormat.FormatString = "N2"
+        Me.TERateManagement.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TERateManagement.Properties.Mask.EditMask = "N2"
+        Me.TERateManagement.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TERateManagement.Properties.ReadOnly = True
+        Me.TERateManagement.Size = New System.Drawing.Size(134, 20)
+        Me.TERateManagement.TabIndex = 156
         '
         'TEPOL
         '
@@ -1864,6 +1926,8 @@ Partial Class FormPreCalFGPODet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TERatePayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TERateManagement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPOL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEVendorFGPO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2075,4 +2139,8 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BLoadOrign As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BLoadDest As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TERatePayment As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TERateManagement As DevExpress.XtraEditors.TextEdit
 End Class

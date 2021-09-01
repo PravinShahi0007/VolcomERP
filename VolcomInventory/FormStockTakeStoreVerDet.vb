@@ -229,13 +229,11 @@
             SBMark.Enabled = False
             SBPrint.Enabled = False
             SBSubmit.Enabled = True
-            SBEditPromo.Enabled = True
         Else
             SBImportExcel.Enabled = False
             SBMark.Enabled = True
             SBPrint.Enabled = True
             SBSubmit.Enabled = False
-            SBEditPromo.Enabled = False
         End If
 
         BGVData.BestFitColumns()
@@ -569,15 +567,23 @@
         End If
     End Sub
 
-    Private Sub SBEditPromo_Click(sender As Object, e As EventArgs) Handles SBEditPromo.Click
-        If BGVData.GetFocusedRowCellValue("is_edited_price").ToString = "1" Then
-            FormStockTakeStoreEditPromo.ShowDialog()
-        Else
-            If BGVData.GetFocusedRowCellValue("value_volcom") = 0 And BGVData.GetFocusedRowCellValue("value_store") = 0 Then
-                FormStockTakeStoreEditPromo.ShowDialog()
+    Private Sub PromoPriceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PromoPriceToolStripMenuItem.Click
+        FormStockTakeStoreEditPromo.ShowDialog()
+    End Sub
+
+    Private Sub BGVData_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles BGVData.PopupMenuShowing
+        If SLUEReportStatus.EditValue.ToString = "0" Then
+            If BGVData.GetFocusedRowCellValue("is_edited_price").ToString = "1" Then
+                PromoPriceToolStripMenuItem.Visible = True
             Else
-                stopCustom("Edit price only for promo product.")
+                If BGVData.GetFocusedRowCellValue("value_volcom") = 0 And BGVData.GetFocusedRowCellValue("value_store") = 0 Then
+                    PromoPriceToolStripMenuItem.Visible = True
+                Else
+                    PromoPriceToolStripMenuItem.Visible = False
+                End If
             End If
+        Else
+            PromoPriceToolStripMenuItem.Visible = False
         End If
     End Sub
 End Class

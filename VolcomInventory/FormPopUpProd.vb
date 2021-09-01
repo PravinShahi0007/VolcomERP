@@ -26,7 +26,7 @@
         query += "b.id_design,b.id_delivery, e.delivery, f.season, e.id_season, "
         query += "DATE_FORMAT(a.prod_order_date,'%d %M %Y') AS prod_order_date, "
         query += "DATE_FORMAT(DATE_ADD(a.prod_order_date,INTERVAL a.prod_order_lead_time DAY),'%d %M %Y') AS prod_order_lead_time, "
-        query += "cm.comp_number AS `vendor_code`, cm.comp_name AS `vendor`,SUM(pod.prod_order_qty) AS qty,IFNULL(wo.id_currency,1) AS id_currency,IFNULL(ovh.ovh_price,0) AS price "
+        query += "wo.comp_number AS `vendor_code`, wo.comp_name AS `vendor`,SUM(pod.prod_order_qty) AS qty,IFNULL(wo.id_currency,1) AS id_currency,IFNULL(wo.prod_order_wo_det_price,0) AS price "
         query += "FROM tb_prod_order_det pod
 INNER JOIN tb_prod_order a ON a.id_prod_order=pod.id_prod_order "
         query += "INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design "
@@ -36,10 +36,16 @@ INNER JOIN tb_prod_order a ON a.id_prod_order=pod.id_prod_order "
         query += "INNER JOIN tb_season f ON f.id_season=e.id_season "
         query += "INNER JOIN tb_lookup_po_type g ON g.id_po_type=a.id_po_type "
         query += "INNER JOIN tb_lookup_term_production h ON h.id_term_production=a.id_term_production "
-        query += "LEFT JOIN tb_prod_order_wo wo ON wo.id_prod_order = a.id_prod_order AND wo.is_main_vendor=1
-        LEFT JOIN tb_m_ovh_price ovh ON ovh.id_ovh_price = wo.id_ovh_price
-        LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovh.id_comp_contact
-        LEFT JOIN tb_m_comp cm ON cm.id_comp = cc.id_comp "
+        query += "LEFT JOIN (
+    SELECT wo.id_prod_order,wo.id_currency,wod.prod_order_wo_det_price,cm.comp_name,cm.comp_number,cm.id_comp
+    FROM tb_prod_order_wo wo
+    INNER JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo=wo.id_prod_order_wo
+    INNER JOIN tb_m_ovh_price ovh ON ovh.id_ovh_price = wo.id_ovh_price
+    INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovh.id_comp_contact
+    INNER JOIN tb_m_comp cm ON cm.id_comp = cc.id_comp
+    WHERE wo.is_main_vendor=1 AND wo.id_report_status=6
+    GROUP BY wo.id_prod_order
+) wo ON wo.id_prod_order=a.id_prod_order "
 
         If id_pop_up = "12" Then
             query += "LEFT JOIN (
@@ -62,7 +68,7 @@ INNER JOIN tb_prod_order a ON a.id_prod_order=pod.id_prod_order "
         End If
 
         If Not id_comp = "-1" Then
-            query += " AND cm.id_comp='" & id_comp & "'"
+            query += " AND wo.id_comp='" & id_comp & "'"
         End If
 
         If id_pop_up = "12" Then
