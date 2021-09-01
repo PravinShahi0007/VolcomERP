@@ -394,6 +394,7 @@ INNER JOIN tb_prod_order a ON a.id_prod_order=pod.id_prod_order "
                     FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("id_currency", GVProd.GetFocusedRowCellValue("id_currency").ToString)
                     FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("price", GVProd.GetFocusedRowCellValue("price"))
                     FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("qty", GVProd.GetFocusedRowCellValue("qty"))
+                    FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("duty", 10)
                     FormPreCalFGPODet.GVListFGPO.RefreshData()
                     FormPreCalFGPODet.GVListFGPO.UpdateTotalSummary()
                     FormPreCalFGPODet.GCListFGPO.Refresh()

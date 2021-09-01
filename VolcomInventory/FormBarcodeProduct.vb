@@ -50,6 +50,14 @@
     'End Sub
 
     Sub viewProd()
+        'cek season
+        Dim is_new_desc As String = execute_query("SELECT ss.is_new_desc FROM tb_season ss WHERE ss.id_season=" + SLESeason.EditValue.ToString + " ", 0, True, "", "", "", "")
+        If is_new_desc = "1" Then
+            warningCustom("Untuk saat ini menu print barcode belum tersedia untuk season : " + SLESeason.Text)
+            GCProdList.DataSource = Nothing
+            Exit Sub
+        End If
+
         Dim query As String = "CALL view_product_opt(1,' WHERE e.id_season=" & SLESeason.EditValue.ToString & " AND IFNULL(qtyq.qty_order,0)>0 ')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProdList.DataSource = data
@@ -68,5 +76,9 @@
 
     Private Sub FormBarcodeProduct_Deactivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
+    End Sub
+
+    Private Sub SLESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLESeason.EditValueChanged
+        GCProdList.DataSource = Nothing
     End Sub
 End Class
