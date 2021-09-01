@@ -541,9 +541,12 @@
         save.ShowDialog()
 
         If Not save.FileName = "" Then
-            My.Computer.Network.DownloadFile("\\192.168.1.2\dataapp$\template\Template Verifikasi Stock Take.xlsx", save.FileName)
+            Try
+                My.Computer.Network.DownloadFile("\\192.168.1.2\dataapp$\template\Template Verifikasi Stock Take.xlsx", save.FileName)
 
-            infoCustom("File downloaded.")
+                infoCustom("File downloaded.")
+            Catch ex As Exception
+            End Try
         End If
     End Sub
 
