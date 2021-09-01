@@ -15,7 +15,9 @@ Public Class FormAWBInv
     Sub load_type()
         Dim q As String = "SELECT 1 AS id_type,'Outbound' AS type
 UNION ALL
-SELECT 2 AS id_type,'Inbound' AS type"
+SELECT 2 AS id_type,'Inbound' AS type
+UNION ALL
+SELECT 3 AS id_type,'Return Online Store' AS type"
         viewSearchLookupQuery(SLETypeImport, q, "id_type", "type", "id_type")
         viewSearchLookupQuery(SLEType, q, "id_type", "type", "id_type")
     End Sub
@@ -103,9 +105,55 @@ UNION ALL
 FROM tb_awb_inv_sum_det id
 LEFT JOIN tb_m_comp c ON id.id_comp=c.id_comp
 WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb))"
-        Else
+        ElseIf SLEType.EditValue.ToString = "2" Then
             'inbound
             q = "(SELECT '' AS `no`,'' AS `id_del_manifest`,dd.id_inbound_awb,dis.sub_district,d.id_comp,store.comp_number AS comp_number,store.comp_name AS comp_name,store.id_comp AS id_store
+,d.`awb_inv_number` AS awbill_inv_no,id.awb_no AS `awbill_no`,d.`created_date` AS rec_by_store_date,emp.employee_name AS `rec_by_store_person`
+,rate.`cargo_rate`
+,rn.date_return_note AS pickup_date
+,COUNT(dd.`id_inbound_koli`) AS collie
+,id.`berat_wh` AS `c_weight`,id.`amount_wh` AS `c_tot_price`,id.`berat_cargo` AS `a_weight`,id.`amount_cargo` AS `a_tot_price`
+,id.note_wh,id.berat_final,id.amount_final
+,id.time_verification
+,id.rate_wh,id.rate_cargo
+FROM tb_awb_inv_sum_det id
+INNER JOIN tb_inbound_koli dd ON dd.`id_inbound_awb`=id.`id_inbound_awb`
+INNER JOIN `tb_inbound_awb` d ON dd.`id_inbound_awb`=d.`id_inbound_awb`
+INNER JOIN tb_3pl_rate rate ON rate.id_3pl_rate=d.id_3pl_rate
+INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=rate.id_sub_district
+INNER JOIN tb_m_user usr ON usr.id_user=d.`created_by`
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN 
+(
+	SELECT st.id_inbound_awb,st.id_comp,c.`comp_number`,c.`comp_name`
+	FROM `tb_inbound_store` st
+	INNER JOIN tb_m_comp c ON c.id_comp=st.`id_comp`
+	GROUP BY id_inbound_awb
+)store ON store.id_inbound_awb=d.id_inbound_awb 
+INNER JOIN
+(
+	SELECT rn.`id_inbound_awb`,rn.`date_return_note`
+	FROM tb_return_note rn 
+	GROUP BY rn.`id_inbound_awb`
+)rn ON rn.`id_inbound_awb`=d.id_inbound_awb 
+WHERE id.id_awb_inv_sum='" & id_verification & "'
+GROUP BY d.`id_inbound_awb`)
+UNION ALL
+(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS sub_district,'' AS id_comp,IFNULL(c.comp_number,'') AS comp_number,IFNULL(c.comp_name,'') AS comp_name,IFNULL(id.id_comp,'') AS id_store
+,'' AS `awbill_inv_no`,id.awb_no AS `awbill_no`,NULL AS `rec_by_store_date`,'' AS `rec_by_store_person`
+,0 AS `cargo_rate`
+,NULL AS pickup_date
+,1 AS collie
+,id.`berat_wh` AS `c_weight`,id.`amount_wh` AS `c_tot_price`,id.`berat_cargo` AS `a_weight`,id.`amount_cargo` AS `a_tot_price`
+,id.note_wh,id.berat_final,id.amount_final
+,id.time_verification
+,id.rate_wh,id.rate_cargo
+FROM tb_awb_inv_sum_det id
+LEFT JOIN tb_m_comp c ON id.id_comp=c.id_comp
+WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb))"
+        ElseIf SLEType.EditValue.ToString = "3" Then
+            'return online store
+            q = "(SELECT '' AS `no`,'' AS `id_del_manifest`,'' AS id_inbound_awb,dis.sub_district,d.id_comp,store.comp_number AS comp_number,store.comp_name AS comp_name,store.id_comp AS id_store
 ,d.`awb_inv_number` AS awbill_inv_no,id.awb_no AS `awbill_no`,d.`created_date` AS rec_by_store_date,emp.employee_name AS `rec_by_store_person`
 ,rate.`cargo_rate`
 ,rn.date_return_note AS pickup_date
@@ -516,7 +564,7 @@ WHERE inv.id_awb_inv_sum='" & id_verification & "'"
         oledbconn.ConnectionString = strConn
         Dim MyCommand As OleDbDataAdapter
 
-        MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] WHERE not (CStr(Nz([awb],''))='')", oledbconn)
+        MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] WHERE not (CStr(IIf(IsNull([awb]),'',[awb]))='')", oledbconn)
 
         Try
             MyCommand.Fill(data_temp)
@@ -530,7 +578,7 @@ WHERE inv.id_awb_inv_sum='" & id_verification & "'"
 
             Dim queryx As String = ""
             If SLETypeImport.EditValue.ToString = "1" Then
-                queryx = "SELECT '' AS `no`,d.`id_del_manifest`,'' AS id_inbound_awb,dis.sub_district,d.id_comp,IF(d.`is_ol_shop`=1,cg.comp_group,store.comp_number) AS comp_number,IF(d.`is_ol_shop`=1,cg.description,store.comp_name) AS comp_name
+                queryx = "SELECT '' AS `no`,d.`id_del_manifest`,'' AS id_inbound_awb,'' AS id_awbill,dis.sub_district,d.id_comp,IF(d.`is_ol_shop`=1,cg.comp_group,store.comp_number) AS comp_number,IF(d.`is_ol_shop`=1,cg.description,store.comp_name) AS comp_name
 ,d.`awbill_inv_no`,d.`awbill_no`,d.`rec_by_store_date`,d.`rec_by_store_person`
 ,d.`cargo_rate`
 ,odm.created_date AS pickup_date
@@ -544,8 +592,8 @@ INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=d.id_comp_group
 INNER JOIN tb_odm_sc_det odmd ON odmd.id_del_manifest=d.`id_del_manifest`
 INNER JOIN tb_odm_sc odm ON odm.id_odm_sc=odmd.id_odm_sc
 GROUP BY d.`id_del_manifest`"
-            Else
-                queryx = "SELECT '' AS `no`,'' AS `id_del_manifest`,dd.id_inbound_awb,dis.sub_district,d.id_comp,store.comp_number AS comp_number,store.comp_name AS comp_name
+            ElseIf SLETypeImport.EditValue.ToString = "2" Then
+                queryx = "SELECT '' AS `no`,'' AS `id_del_manifest`,dd.id_inbound_awb,'' AS id_awbill,dis.sub_district,d.id_comp,store.comp_number AS comp_number,store.comp_name AS comp_name
 ,d.`awb_inv_number` AS awbill_inv_no,d.awb_number AS `awbill_no`,d.`created_date` AS rec_by_store_date,emp.employee_name AS `rec_by_store_person`
 ,rate.`cargo_rate`
 ,rn.date_return_note AS pickup_date
@@ -572,6 +620,18 @@ INNER JOIN
 	GROUP BY rn.`id_inbound_awb`
 )rn ON rn.`id_inbound_awb`=d.id_inbound_awb 
 GROUP BY d.`id_inbound_awb`"
+            ElseIf SLETypeImport.EditValue.ToString = "3" Then
+                queryx = "SELECT '' AS `no`,'' AS `id_del_manifest`,'' AS id_inbound_awb, d.id_awbill,'' AS sub_district,d.id_store AS id_comp,cg.comp_group AS comp_number,cg.description AS comp_name
+,d.`awbill_inv_no`,d.`awbill_no`,d.rec_by_store_date,d.`rec_by_store_person`
+,d.`cargo_rate`
+,d.awbill_date AS pickup_date
+,1 AS collie
+,d.`c_weight`
+,d.`c_tot_price`,d.`a_weight`,d.`a_tot_price`
+FROM `tb_wh_awbill` d
+INNER JOIN tb_m_comp c ON c.id_comp=d.`id_store`
+INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=c.id_comp_group
+WHERE d.awbill_type=2 AND c.id_commerce_type='2'"
             End If
 
             Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
@@ -588,6 +648,7 @@ GROUP BY d.`id_inbound_awb`"
                                 .id_del_manifest = If(result_awb Is Nothing, "", result_awb("id_del_manifest")),
                                 .inv_number = If(table1("Nomor Invoice").ToString = "", "", table1("Nomor Invoice")),
                                 .id_inbound_awb = If(result_awb Is Nothing, "", result_awb("id_inbound_awb")),
+                                .id_awbill = If(result_awb Is Nothing, "", result_awb("id-awbill")),
                                 .awbill_no = If(result_awb Is Nothing, table1("AWB").ToString.Replace("'", ""), result_awb("awbill_no").ToString),
                                 .sub_district = If(result_awb Is Nothing, "", result_awb("sub_district")),
                                 .comp_name = If(result_awb Is Nothing, "", result_awb("comp_name")),
@@ -720,7 +781,7 @@ WHERE awb_no IN (" & list_awb & ") AND inv.id_comp='" & SLE3PLImport.EditValue.T
                         Dim q As String = "INSERT INTO tb_awb_inv_sum(created_by,created_date,id_report_status,id_comp,inv_number,id_type) VALUES('" & id_user & "',NOW(),1,'" & SLE3PLImport.EditValue.ToString & "','" & addSlashes(TEInvNumberImport.EditValue.ToString) & "','" & SLETypeImport.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
                         id_verification = execute_query(q, 0, True, "", "", "", "")
                         'detail
-                        q = "INSERT INTO tb_awb_inv_sum_det(`id_awb_inv_sum`,awb_no,`id_del_manifest`,`id_inbound_awb`,`berat_wh`,`berat_cargo`,rate_wh,rate_cargo,`amount_wh`,`amount_cargo`,`berat_final`,`amount_final`) VALUES"
+                        q = "INSERT INTO tb_awb_inv_sum_det(`id_awb_inv_sum`,awb_no,`id_del_manifest`,`id_inbound_awb`,`id_awbill`,`berat_wh`,`berat_cargo`,rate_wh,rate_cargo,`amount_wh`,`amount_cargo`,`berat_final`,`amount_final`) VALUES"
                         For i As Integer = 0 To GVData.RowCount - 1
                             If Not i = 0 Then
                                 q += ","
@@ -738,6 +799,13 @@ WHERE awb_no IN (" & list_awb & ") AND inv.id_comp='" & SLE3PLImport.EditValue.T
                                 id_inbound_a = "'" & GVData.GetRowCellValue(i, "id_inbound_awb").ToString & "'"
                             Else
                                 id_inbound_a = "NULL"
+                            End If
+
+                            Dim id_a As String = ""
+                            If Not GVData.GetRowCellValue(i, "id_awbill").ToString = "" Then
+                                id_a = "'" & GVData.GetRowCellValue(i, "id_awbill").ToString & "'"
+                            Else
+                                id_a = "NULL"
                             End If
 
                             Dim berat_final As String = "0"
