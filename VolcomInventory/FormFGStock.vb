@@ -1787,7 +1787,7 @@
         'filter desgin
         Dim id_design_param As String = id_design_soh_va
         Dim cond_design As String = ""
-        If id_design_param <> "0" Then
+        If id_design_param <> "0" And id_design_param <> "-1" Then
             cond_design = "AND d.id_design='" + id_design_param + "' "
         End If
 
@@ -1819,7 +1819,11 @@
         Next
 
         'query
-        Dim query As String = "SELECT f.id_product AS `Product Description|id_product`,  " + col_draw_combine + ",
+        Dim query As String = "SELECT p.product_full_code AS `Product Description|Code`,  d.design_code AS `Product Description|Main Code`,d.design_display_name AS `Product Description|Description`,
+        b.code_detail_name AS `Product Description|Size`, cls.class AS `Product Description|Class`, ss.season AS `Product Description|Season`, UPPER(LEFT(prc.design_cat,1)) AS `Product Description|Status`,
+	    IFNULL(prc.design_price,0) AS `Price|Unit Price`,
+        UPPER(LEFT(prc.design_price_type,1)) AS `Price|Price Type`,
+        " + col_draw_combine + ",
         SUM(f.`Total|Available Qty`) AS `Total|Available Qty`, SUM(f.`Total|Reserved Qty`) AS `Total|Reserved Qty`, SUM(f.`Total|Total Qty`) AS `Total|Total Qty`
         FROM (
             SELECT f.id_wh_drawer, f.id_product, 
@@ -1839,7 +1843,33 @@
             AND f.id_wh_drawer IN (" + id_drawer_in + ")
             GROUP BY f.id_product 
         ) f
-        GROUP BY f.id_product "
+        INNER JOIN tb_m_product p ON p.id_product = f.id_product
+        INNER JOIN tb_m_design d ON d.id_design = p.id_design AND d.id_lookup_status_order!=2 " + cond_design + "
+        INNER JOIN tb_season ss ON ss.id_season = d.id_season
+	    INNER JOIN tb_range rg ON rg.id_range = ss.id_range
+	    INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+	    INNER JOIN tb_m_code_detail b ON b.id_code_detail = pc.id_code_detail
+	    LEFT JOIN (
+	      SELECT dc.id_design, cd.id_code_detail AS `id_class`, cd.display_name AS `class` 
+	      FROM tb_m_design_code dc
+	      INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code IN (SELECT o.id_code_fg_class FROM tb_opt o)
+	      GROUP BY dc.id_design
+	    ) cls ON cls.id_design = d.id_design
+        LEFT JOIN (
+		    SELECT prc.id_design, prc.id_design_price, prc.design_price, prc.id_design_cat,prc.design_cat, prc.design_price_type
+		    FROM (
+			    SELECT prc.id_design, prc.id_design_price, prc.design_price, cat.id_design_cat, cat.design_cat, pt.design_price_type
+			    FROM tb_m_design_price prc
+			    INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
+			    INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = pt.id_design_cat
+			    WHERE design_price_start_date<=NOW() AND is_active_wh=1 AND is_design_cost=0
+			    ORDER BY design_price_start_date DESC, id_design_price DESC
+		    ) prc
+		    GROUP BY id_design
+	    ) prc ON prc.id_design = d.id_design
+        GROUP BY f.id_product 
+        HAVING (`Total|Available Qty`!=0 OR `Total|Reserved Qty`!=0 OR `Total|Total Qty`!=0)
+        ORDER BY p.product_display_name ASC, b.id_code_detail ASC "
         Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
 
         'setup column
@@ -1873,7 +1903,7 @@
 
                     band.Columns.Add(col)
 
-                    If bandName.Contains("Total Qty") Or bandName.Contains("Account") Then
+                    If bandName.Contains("Total") Or bandName.Contains("Account") Then
                         'display format
                         col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                         col.DisplayFormat.FormatString = "{0:n0}"
