@@ -19,6 +19,7 @@ Partial Class FormStockTakeStoreVerDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStockTakeStoreVerDet))
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
@@ -33,7 +34,6 @@ Partial Class FormStockTakeStoreVerDet
         Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SBEditPromo = New DevExpress.XtraEditors.SimpleButton()
         Me.SBExportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.SBDownloadTemplate = New DevExpress.XtraEditors.SimpleButton()
         Me.SBImportExcel = New DevExpress.XtraEditors.SimpleButton()
@@ -77,6 +77,8 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn26 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.PromoPriceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,6 +92,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -198,7 +201,6 @@ Partial Class FormStockTakeStoreVerDet
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.SBEditPromo)
         Me.PanelControl1.Controls.Add(Me.SBExportExcel)
         Me.PanelControl1.Controls.Add(Me.SBDownloadTemplate)
         Me.PanelControl1.Controls.Add(Me.SBImportExcel)
@@ -217,15 +219,6 @@ Partial Class FormStockTakeStoreVerDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(784, 122)
         Me.PanelControl1.TabIndex = 10
-        '
-        'SBEditPromo
-        '
-        Me.SBEditPromo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SBEditPromo.Location = New System.Drawing.Point(657, 90)
-        Me.SBEditPromo.Name = "SBEditPromo"
-        Me.SBEditPromo.Size = New System.Drawing.Size(115, 23)
-        Me.SBEditPromo.TabIndex = 14
-        Me.SBEditPromo.Text = "Edit Promo Price"
         '
         'SBExportExcel
         '
@@ -305,6 +298,7 @@ Partial Class FormStockTakeStoreVerDet
         '
         'GCData
         '
+        Me.GCData.ContextMenuStrip = Me.ContextMenuStrip
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCData.Location = New System.Drawing.Point(0, 122)
         Me.GCData.MainView = Me.BGVData
@@ -628,6 +622,18 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn26.Name = "BandedGridColumn26"
         Me.BandedGridColumn26.OptionsColumn.AllowEdit = False
         '
+        'ContextMenuStrip
+        '
+        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PromoPriceToolStripMenuItem})
+        Me.ContextMenuStrip.Name = "ContextMenuStrip"
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(140, 26)
+        '
+        'PromoPriceToolStripMenuItem
+        '
+        Me.PromoPriceToolStripMenuItem.Name = "PromoPriceToolStripMenuItem"
+        Me.PromoPriceToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.PromoPriceToolStripMenuItem.Text = "Promo Price"
+        '
         'FormStockTakeStoreVerDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -654,6 +660,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BGVData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -713,6 +720,7 @@ Partial Class FormStockTakeStoreVerDet
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents SBEditPromo As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BandedGridColumn26 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents ContextMenuStrip As ContextMenuStrip
+    Friend WithEvents PromoPriceToolStripMenuItem As ToolStripMenuItem
 End Class
