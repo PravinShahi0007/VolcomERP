@@ -120,6 +120,7 @@ Partial Class FormFGDesignList
         Me.GridColumncreated_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht_name = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -547,7 +548,7 @@ Partial Class FormFGDesignList
         Me.GVDesign.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVDesign.Appearance.Row.Options.UseTextOptions = True
         Me.GVDesign.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect, Me.GridColumnIsApproved, Me.GridColumnSampleOrign, Me.GridColumnFabrication, Me.GridColumnDetailDesc, Me.GridColumnDivision, Me.GridColumnSubcategory, Me.GridColumnTotalOrder, Me.GridColumnStatusOrder, Me.GridColumn5, Me.GridColumn6, Me.GridColumn8, Me.GCRequestChangesBy, Me.GCRequestChangesDate, Me.GridColumnpd_number, Me.GridColumnpd_created_date, Me.GridColumnpd_status, Me.GridColumntotal_receive_qc, Me.GridColumnSpesifikasi, Me.GridColumnBahan, Me.GridColumnPetunjukPerawatan, Me.GridColumnUkuran, Me.GridColumnModelInfo})
+        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect, Me.GridColumnIsApproved, Me.GridColumnSampleOrign, Me.GridColumnFabrication, Me.GridColumnDetailDesc, Me.GridColumnDivision, Me.GridColumnSubcategory, Me.GridColumnTotalOrder, Me.GridColumnStatusOrder, Me.GridColumn5, Me.GridColumn6, Me.GridColumn8, Me.GCRequestChangesBy, Me.GCRequestChangesDate, Me.GridColumnpd_number, Me.GridColumnpd_created_date, Me.GridColumnpd_status, Me.GridColumntotal_receive_qc, Me.GridColumnSpesifikasi, Me.GridColumnBahan, Me.GridColumnPetunjukPerawatan, Me.GridColumnUkuran, Me.GridColumnModelInfo, Me.GridColumnsht_name})
         Me.GVDesign.GridControl = Me.GCDesign
         Me.GVDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ord", Me.GridColumnTotalOrder, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_receive_qc", Me.GridColumntotal_receive_qc, "{0:N0}")})
         Me.GVDesign.Name = "GVDesign"
@@ -673,7 +674,7 @@ Partial Class FormFGDesignList
         Me.GridColumnBreakSize.Name = "GridColumnBreakSize"
         Me.GridColumnBreakSize.OptionsColumn.AllowEdit = False
         Me.GridColumnBreakSize.Visible = True
-        Me.GridColumnBreakSize.VisibleIndex = 10
+        Me.GridColumnBreakSize.VisibleIndex = 11
         Me.GridColumnBreakSize.Width = 87
         '
         'GridColumnPrice
@@ -754,7 +755,7 @@ Partial Class FormFGDesignList
         Me.GridColumnApp.Name = "GridColumnApp"
         Me.GridColumnApp.OptionsColumn.AllowEdit = False
         Me.GridColumnApp.Visible = True
-        Me.GridColumnApp.VisibleIndex = 21
+        Me.GridColumnApp.VisibleIndex = 22
         Me.GridColumnApp.Width = 84
         '
         'GridColumnAppDate
@@ -767,7 +768,7 @@ Partial Class FormFGDesignList
         Me.GridColumnAppDate.Name = "GridColumnAppDate"
         Me.GridColumnAppDate.OptionsColumn.AllowEdit = False
         Me.GridColumnAppDate.Visible = True
-        Me.GridColumnAppDate.VisibleIndex = 20
+        Me.GridColumnAppDate.VisibleIndex = 21
         '
         'GridColumnUpdBy
         '
@@ -776,7 +777,7 @@ Partial Class FormFGDesignList
         Me.GridColumnUpdBy.Name = "GridColumnUpdBy"
         Me.GridColumnUpdBy.OptionsColumn.AllowEdit = False
         Me.GridColumnUpdBy.Visible = True
-        Me.GridColumnUpdBy.VisibleIndex = 25
+        Me.GridColumnUpdBy.VisibleIndex = 26
         Me.GridColumnUpdBy.Width = 60
         '
         'GridColumnLastUpdated
@@ -789,7 +790,7 @@ Partial Class FormFGDesignList
         Me.GridColumnLastUpdated.Name = "GridColumnLastUpdated"
         Me.GridColumnLastUpdated.OptionsColumn.AllowEdit = False
         Me.GridColumnLastUpdated.Visible = True
-        Me.GridColumnLastUpdated.VisibleIndex = 24
+        Me.GridColumnLastUpdated.VisibleIndex = 25
         Me.GridColumnLastUpdated.Width = 54
         '
         'GridColumnSelect
@@ -819,7 +820,7 @@ Partial Class FormFGDesignList
         Me.GridColumnSampleOrign.Name = "GridColumnSampleOrign"
         Me.GridColumnSampleOrign.OptionsColumn.AllowEdit = False
         Me.GridColumnSampleOrign.Visible = True
-        Me.GridColumnSampleOrign.VisibleIndex = 11
+        Me.GridColumnSampleOrign.VisibleIndex = 12
         '
         'GridColumnFabrication
         '
@@ -828,7 +829,7 @@ Partial Class FormFGDesignList
         Me.GridColumnFabrication.Name = "GridColumnFabrication"
         Me.GridColumnFabrication.OptionsColumn.AllowEdit = False
         Me.GridColumnFabrication.Visible = True
-        Me.GridColumnFabrication.VisibleIndex = 12
+        Me.GridColumnFabrication.VisibleIndex = 13
         Me.GridColumnFabrication.Width = 118
         '
         'GridColumnDetailDesc
@@ -840,7 +841,7 @@ Partial Class FormFGDesignList
         Me.GridColumnDetailDesc.Name = "GridColumnDetailDesc"
         Me.GridColumnDetailDesc.OptionsColumn.AllowEdit = False
         Me.GridColumnDetailDesc.Visible = True
-        Me.GridColumnDetailDesc.VisibleIndex = 13
+        Me.GridColumnDetailDesc.VisibleIndex = 14
         Me.GridColumnDetailDesc.Width = 243
         '
         'GridColumnDivision
@@ -874,7 +875,7 @@ Partial Class FormFGDesignList
         Me.GridColumnTotalOrder.Name = "GridColumnTotalOrder"
         Me.GridColumnTotalOrder.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ord", "{0:n0}")})
         Me.GridColumnTotalOrder.Visible = True
-        Me.GridColumnTotalOrder.VisibleIndex = 18
+        Me.GridColumnTotalOrder.VisibleIndex = 19
         Me.GridColumnTotalOrder.Width = 58
         '
         'GridColumnStatusOrder
@@ -884,7 +885,7 @@ Partial Class FormFGDesignList
         Me.GridColumnStatusOrder.Name = "GridColumnStatusOrder"
         Me.GridColumnStatusOrder.OptionsColumn.AllowEdit = False
         Me.GridColumnStatusOrder.Visible = True
-        Me.GridColumnStatusOrder.VisibleIndex = 14
+        Me.GridColumnStatusOrder.VisibleIndex = 15
         Me.GridColumnStatusOrder.Width = 79
         '
         'GridColumn5
@@ -903,7 +904,7 @@ Partial Class FormFGDesignList
         Me.GridColumn6.UnboundExpression = "Iif([is_design_app_us] = '1', 'Yes', 'No')"
         Me.GridColumn6.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 22
+        Me.GridColumn6.VisibleIndex = 23
         '
         'GridColumn8
         '
@@ -915,7 +916,7 @@ Partial Class FormFGDesignList
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.AllowEdit = False
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 23
+        Me.GridColumn8.VisibleIndex = 24
         '
         'GCRequestChangesBy
         '
@@ -937,7 +938,7 @@ Partial Class FormFGDesignList
         Me.GridColumnpd_number.FieldName = "pd_number"
         Me.GridColumnpd_number.Name = "GridColumnpd_number"
         Me.GridColumnpd_number.Visible = True
-        Me.GridColumnpd_number.VisibleIndex = 15
+        Me.GridColumnpd_number.VisibleIndex = 16
         '
         'GridColumnpd_created_date
         '
@@ -947,7 +948,7 @@ Partial Class FormFGDesignList
         Me.GridColumnpd_created_date.FieldName = "pd_created_date"
         Me.GridColumnpd_created_date.Name = "GridColumnpd_created_date"
         Me.GridColumnpd_created_date.Visible = True
-        Me.GridColumnpd_created_date.VisibleIndex = 16
+        Me.GridColumnpd_created_date.VisibleIndex = 17
         '
         'GridColumnpd_status
         '
@@ -955,7 +956,7 @@ Partial Class FormFGDesignList
         Me.GridColumnpd_status.FieldName = "pd_status"
         Me.GridColumnpd_status.Name = "GridColumnpd_status"
         Me.GridColumnpd_status.Visible = True
-        Me.GridColumnpd_status.VisibleIndex = 17
+        Me.GridColumnpd_status.VisibleIndex = 18
         '
         'GridColumntotal_receive_qc
         '
@@ -966,7 +967,7 @@ Partial Class FormFGDesignList
         Me.GridColumntotal_receive_qc.Name = "GridColumntotal_receive_qc"
         Me.GridColumntotal_receive_qc.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_receive_qc", "{0:N0}")})
         Me.GridColumntotal_receive_qc.Visible = True
-        Me.GridColumntotal_receive_qc.VisibleIndex = 19
+        Me.GridColumntotal_receive_qc.VisibleIndex = 20
         Me.GridColumntotal_receive_qc.Width = 71
         '
         'GridColumnSpesifikasi
@@ -977,7 +978,7 @@ Partial Class FormFGDesignList
         Me.GridColumnSpesifikasi.Name = "GridColumnSpesifikasi"
         Me.GridColumnSpesifikasi.OptionsColumn.AllowEdit = False
         Me.GridColumnSpesifikasi.Visible = True
-        Me.GridColumnSpesifikasi.VisibleIndex = 26
+        Me.GridColumnSpesifikasi.VisibleIndex = 27
         '
         'GridColumnBahan
         '
@@ -987,7 +988,7 @@ Partial Class FormFGDesignList
         Me.GridColumnBahan.Name = "GridColumnBahan"
         Me.GridColumnBahan.OptionsColumn.AllowEdit = False
         Me.GridColumnBahan.Visible = True
-        Me.GridColumnBahan.VisibleIndex = 27
+        Me.GridColumnBahan.VisibleIndex = 28
         '
         'GridColumnPetunjukPerawatan
         '
@@ -997,7 +998,7 @@ Partial Class FormFGDesignList
         Me.GridColumnPetunjukPerawatan.Name = "GridColumnPetunjukPerawatan"
         Me.GridColumnPetunjukPerawatan.OptionsColumn.AllowEdit = False
         Me.GridColumnPetunjukPerawatan.Visible = True
-        Me.GridColumnPetunjukPerawatan.VisibleIndex = 28
+        Me.GridColumnPetunjukPerawatan.VisibleIndex = 29
         '
         'GridColumnUkuran
         '
@@ -1007,7 +1008,7 @@ Partial Class FormFGDesignList
         Me.GridColumnUkuran.Name = "GridColumnUkuran"
         Me.GridColumnUkuran.OptionsColumn.AllowEdit = False
         Me.GridColumnUkuran.Visible = True
-        Me.GridColumnUkuran.VisibleIndex = 29
+        Me.GridColumnUkuran.VisibleIndex = 30
         '
         'GridColumnModelInfo
         '
@@ -1017,7 +1018,7 @@ Partial Class FormFGDesignList
         Me.GridColumnModelInfo.Name = "GridColumnModelInfo"
         Me.GridColumnModelInfo.OptionsColumn.AllowEdit = False
         Me.GridColumnModelInfo.Visible = True
-        Me.GridColumnModelInfo.VisibleIndex = 30
+        Me.GridColumnModelInfo.VisibleIndex = 31
         '
         'XTPDesign
         '
@@ -1105,6 +1106,14 @@ Partial Class FormFGDesignList
         Me.GridColumnreport_status.Name = "GridColumnreport_status"
         Me.GridColumnreport_status.Visible = True
         Me.GridColumnreport_status.VisibleIndex = 3
+        '
+        'GridColumnsht_name
+        '
+        Me.GridColumnsht_name.Caption = "Silhouette"
+        Me.GridColumnsht_name.FieldName = "sht_name"
+        Me.GridColumnsht_name.Name = "GridColumnsht_name"
+        Me.GridColumnsht_name.Visible = True
+        Me.GridColumnsht_name.VisibleIndex = 10
         '
         'FormFGDesignList
         '
@@ -1264,4 +1273,5 @@ Partial Class FormFGDesignList
     Friend WithEvents GridColumnPetunjukPerawatan As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnUkuran As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnModelInfo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsht_name As DevExpress.XtraGrid.Columns.GridColumn
 End Class

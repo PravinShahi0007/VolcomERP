@@ -1987,6 +1987,8 @@
     End Function
 
     Public Function queryPCDBodyDetail(ByVal id) As String
+        Dim id_code_fg_sht As String = get_setup_field("id_code_fg_sht")
+
         Dim query As String = "FROM tb_m_design_changes_det det
         INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = det.id_prod_demand_design
         INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand AND pd.is_pd=1
@@ -2033,6 +2035,14 @@
 	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
 	        WHERE det.id_changes=" + id + " AND cd.id_code=14
         ) col_new ON col_new.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.display_name AS `sht_name_new`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=" + id_code_fg_sht + "
+        ) sht_new ON sht_new.id_design = d.id_design
         INNER JOIN tb_m_design dr ON dr.id_design = d.id_design_rev_from
         INNER JOIN tb_season_orign sordr ON sordr.id_season_orign = dr.id_season_orign
         LEFT JOIN (
@@ -2075,6 +2085,14 @@
 	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
 	        WHERE det.id_changes=" + id + " AND cd.id_code=14
         ) col ON col.id_design = dr.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, cd.id_code, cd.display_name AS `sht_name`
+	        FROM tb_m_design_changes_det det
+	        INNER JOIN tb_m_design d ON d.id_design = det.id_design
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design_rev_from
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        WHERE det.id_changes=" + id + " AND cd.id_code=" + id_code_fg_sht + "
+        ) sht ON sht.id_design = dr.id_design
         LEFT JOIN tb_lookup_cool_storage AS cst ON d.is_cold_storage = cst.id_cool_storage
         LEFT JOIN tb_lookup_cool_storage AS cstdr ON dr.is_cold_storage = cstdr.id_cool_storage
         WHERE det.id_changes=" + id + " "

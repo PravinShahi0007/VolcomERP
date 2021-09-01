@@ -254,7 +254,7 @@
                 End If
                 ReportProdDemandRevBreakSize.id_report_status = LEReportStatus.EditValue.ToString
 
-                ReportProdDemandRevBreakSize.rmt = rmt
+                ReportProdDemandRevBreakSize.rmt = rmt_appr
                 Dim Report As New ReportProdDemandRevBreakSize()
 
                 '' '... 
@@ -362,7 +362,7 @@
                 End If
                 ReportProdDemandRev.id_report_status = LEReportStatus.EditValue.ToString
 
-                ReportProdDemandRev.rmt = rmt
+                ReportProdDemandRev.rmt = rmt_appr
                 Dim Report As New ReportProdDemandRev()
 
                 '' '... 

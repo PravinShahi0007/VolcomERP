@@ -1635,6 +1635,23 @@
             filter_string = FormFGDesignList.GVDesign.ActiveFilterString
         End If
 
+        'cek utk design dept
+        If id_pop_up = "5" Then
+            'cek design detail
+            For i As Integer = 0 To GVCodeDsg.RowCount - 1
+                If GVCodeDsg.GetRowCellValue(i, "value").ToString = "" Then
+                    stopCustom("Please complete all 'Design Detail'")
+                    Exit Sub
+                End If
+            Next
+
+            'cek name
+            If Not isNewDesc() And TEName.Text.Length > 17 Then
+                stopCustom("Design name maximum 17 character")
+                Exit Sub
+            End If
+        End If
+
         Cursor = Cursors.WaitCursor
         'save
         If is_propose_changes Then
@@ -2718,8 +2735,43 @@
             End Try
             clone_dsg = New DataView(table)
 
+            'id sht
+            Dim id_code_fg_sht As String = get_setup_field("id_code_fg_sht")
+            Dim id_code_fg_class As String = get_setup_field("id_code_fg_class")
+
             row = view.GetDataRow(view.FocusedRowHandle)
-            clone_dsg.RowFilter = "[id_code] = " + row("code").ToString()
+            If id_code_fg_sht = row("code").ToString() Then
+                Dim id_class_selected As String = ""
+                For f As Integer = 0 To GVCodeDsg.RowCount - 1
+                    If GVCodeDsg.GetRowCellValue(f, "code").ToString = id_code_fg_class Then
+                        id_class_selected = GVCodeDsg.GetRowCellValue(f, "value").ToString
+                        Exit For
+                    End If
+                Next
+                Dim qm As String = "SELECT IFNULL(s.id_sht,0) AS `id_sht` FROM tb_mapping_sht s WHERE s.id_class='" + id_class_selected + "' "
+                Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
+                Dim fs As String = ""
+                For d As Integer = 0 To dm.Rows.Count - 1
+                    If d > 0 Then
+                        fs += "OR "
+                    End If
+                    fs += "[id_code_detail]='" + dm.Rows(d)("id_sht").ToString + "'"
+                Next
+                If fs = "" Then
+                    fs = "[id_code_detail]=0"
+                End If
+                clone_dsg.RowFilter = "[id_code] = " + row("code").ToString() + "AND (" + fs + ")"
+            ElseIf id_code_fg_class = row("code").ToString() Then
+                For f As Integer = 0 To GVCodeDsg.RowCount - 1
+                    If GVCodeDsg.GetRowCellValue(f, "code").ToString = id_code_fg_sht Then
+                        GVCodeDsg.SetRowCellValue(f, "value", Nothing)
+                        Exit For
+                    End If
+                Next
+                clone_dsg.RowFilter = "[id_code] = " + row("code").ToString()
+            Else
+                clone_dsg.RowFilter = "[id_code] = " + row("code").ToString()
+            End If
             edit.Properties.DataSource = clone_dsg
         End If
     End Sub
@@ -2773,7 +2825,11 @@
         If id_pop_up = "3" Then 'non merch
             full_desc = promo_name & " " & class_name & " " & TEName.Text.ToUpper & string_name.ToUpper
         Else
-            full_desc = class_name & " " & TEName.Text.ToUpper.TrimStart(" ").TrimEnd(" ") & string_name.ToUpper
+            If Not isNewDesc() Then
+                full_desc = class_name & " " & TEName.Text.ToUpper.TrimStart(" ").TrimEnd(" ") & string_name.ToUpper
+            Else
+                full_desc = TEName.Text.ToUpper.TrimStart(" ").TrimEnd(" ")
+            End If
         End If
 
         If full_desc.Length > 25 Then
@@ -3400,4 +3456,19 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub TEName_KeyUp(sender As Object, e As KeyEventArgs) Handles TEName.KeyUp
+        If TEName.Enabled = True Then
+            TEPrimaryName.Text = TEName.Text
+        End If
+    End Sub
+
+    Function isNewDesc() As Boolean
+        Dim is_new_desc As String = execute_query("SELECT ss.is_new_desc FROM tb_season ss WHERE ss.id_season=" + LESeason.EditValue.ToString + "", 0, True, "", "", "", "")
+        If is_new_desc = "1" Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 End Class

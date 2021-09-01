@@ -1637,7 +1637,7 @@ Partial Class FormMasterDesignSingle
         Me.TEName.Location = New System.Drawing.Point(10, 26)
         Me.TEName.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.TEName.Name = "TEName"
-        Me.TEName.Properties.MaxLength = 17
+        Me.TEName.Properties.MaxLength = 25
         Me.TEName.Size = New System.Drawing.Size(234, 20)
         Me.TEName.TabIndex = 1
         '
