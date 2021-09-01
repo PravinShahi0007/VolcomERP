@@ -1792,27 +1792,37 @@
         End If
 
         'comp in
-        Dim id_comp_in As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) FROM tb_m_comp c WHERE c.id_wh_group='" + id_comp_param + "' ", 0, True, "", "", "", "")
+        Dim id_drawer_in As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_drawer_def) FROM tb_m_comp c WHERE c.id_wh_group='" + id_comp_param + "' ", 0, True, "", "", "", "")
 
         'build query
-        Dim query As String = "SELECT SUM(qty_avl) AS `Total Qty|Available`, SUM(qty_rsv) AS `Total Qty|Reserved`, SUM(qty_ttl) AS `Total Qty|Total`
-		FROM (
-			SELECT f.id_wh_drawer, f.id_product, f.`qty_avl`, f.`qty_rsv`, f.`qty_ttl`
-			FROM tb_storage_fg_" + beg_year + " f
-			WHERE f.month='" + beg_month + "'
-			UNION ALL
-			SELECT f.id_wh_drawer, f.id_product, 
-			SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS `qty_avl`, 
-			SUM(IF(f.id_stock_status=2, (IF(f.id_storage_category=1, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `qty_rsv` ,
-			SUM(IF(f.id_stock_status=1, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `qty_ttl` 
-			FROM tb_storage_fg f
-			WHERE f.storage_product_datetime>='" + cm_beg_startd + " 00:00:00'  AND f.storage_product_datetime<='" + startd + " 23:59:59' 
-			GROUP BY f.id_wh_drawer, f.id_product
-		) a
-		INNER JOIN tb_m_wh_drawer drw ON  drw.id_wh_drawer= a.id_wh_drawer
-		INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack
-		INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator AND loc.id_comp IN (" + id_comp_in + ")
-		GROUP BY a.id_product"
+        Dim qd As String = "SELECT c.comp_number,c.id_drawer_def 
+        FROM tb_m_comp c 
+        WHERE c.id_drawer_def IN(" + id_drawer_in + ")
+        ORDER BY c.comp_number ASC "
+        Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
+        For d As Integer = 0 To dd.Rows.Count - 1
+            'samapai dsni
+        Next
+
+        'query
+        Dim query As String = "SELECT f.id_wh_drawer, f.id_product, 
+        SUM(IF(f.id_wh_drawer=393,f.qty_avl,0)) AS `G78|Available Qty`, SUM(IF(f.id_wh_drawer=393,f.`qty_rsv`,0)) AS `G78|Reserved Qty`, SUM(IF(f.id_wh_drawer=393,f.`qty_ttl`,0)) AS `G78|Total Qty`,
+        SUM(f.`qty_avl`) AS `Total|Available Qty`, SUM(f.`qty_rsv`) AS `Total|Reserved Qty`, SUM(f.`qty_ttl`) AS `Total|Total Qty`
+        FROM tb_storage_fg_" + beg_year + " f
+        WHERE f.month='" + beg_month + "' AND f.id_wh_drawer IN (" + id_drawer_in + ")
+        GROUP BY f.id_product
+        UNION ALL
+        SELECT f.id_wh_drawer, f.id_product, 
+        SUM(IF(f.id_storage_category=2 AND f.id_wh_drawer=393, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS `G78|Available Qty`, 
+        SUM(IF(f.id_stock_status=2 AND f.id_wh_drawer=393, (IF(f.id_storage_category=1, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `G78|Reserved Qty` ,
+        SUM(IF(f.id_stock_status=1 AND f.id_wh_drawer=393, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `G78|Total Qty`, 
+        SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS `Total|Available Qty`, 
+        SUM(IF(f.id_stock_status=2, (IF(f.id_storage_category=1, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `Total|Reserved Qty` ,
+        SUM(IF(f.id_stock_status=1, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `Total|Total Qty` 
+        FROM tb_storage_fg f
+        WHERE f.storage_product_datetime>='" + cm_beg_startd + " 00:00:00'  AND f.storage_product_datetime<='" + startd + " 23:59:59' 
+        AND f.id_wh_drawer IN (" + id_drawer_in + ")
+        GROUP BY f.id_product "
         Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
 
         'setup column
