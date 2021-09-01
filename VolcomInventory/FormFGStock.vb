@@ -1795,7 +1795,7 @@
         Dim id_comp_in As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) FROM tb_m_comp c WHERE c.id_wh_group='" + id_comp_param + "' ", 0, True, "", "", "", "")
 
         'build query
-        Dim query As String = "SELECT a.id_product ,SUM(qty_avl) AS `Total Qty|Available`, SUM(qty_rsv) AS `Total Qty|Reserved`, SUM(qty_ttl) AS `Total Qty|Total`
+        Dim query As String = "SELECT SUM(qty_avl) AS `Total Qty|Available`, SUM(qty_rsv) AS `Total Qty|Reserved`, SUM(qty_ttl) AS `Total Qty|Total`
 		FROM (
 			SELECT f.id_wh_drawer, f.id_product, f.`qty_avl`, f.`qty_rsv`, f.`qty_ttl`
 			FROM tb_storage_fg_" + beg_year + " f
@@ -1831,7 +1831,7 @@
 
             band.Caption = column(i)
 
-            GVData.Bands.Add(band)
+            GVSOHVA.Bands.Add(band)
 
             For j = 0 To data.Columns.Count - 1
                 Dim bandName As String = data.Columns(j).Caption.Split("|")(0)
@@ -1846,46 +1846,25 @@
 
                     band.Columns.Add(col)
 
-                    If data.Columns(j).Caption = "Product Info|Division" Or data.Columns(j).Caption = "Product Info|Category" Or data.Columns(j).Caption = "Product Info|Class" Then
-                        col.Group()
-                    End If
-
-                    If bandName.Contains("WH Received") Or bandName.Contains("Store Received") Or bandName.Contains("TOTAL") Or bandName.Contains("STORE :") Or bandName.Contains("Stock") Then
+                    If bandName.Contains("Total Qty") Then
                         'display format
                         col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                        If col.FieldName.Contains("Thru") Then
-                            col.DisplayFormat.FormatString = "{0:n0}%"
-                        Else
-                            col.DisplayFormat.FormatString = "{0:n0}"
-                        End If
+                        col.DisplayFormat.FormatString = "{0:n0}"
 
                         'summary
-                        If col.FieldName.Contains("Thru") Then
-                            col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.None
-                        Else
-                            col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
-                        End If
+                        col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
                         col.SummaryItem.DisplayFormat = "{0:n0}"
-
 
                         'group summary
                         Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
                         summary.DisplayFormat = "{0:N0}"
                         summary.FieldName = data.Columns(j).Caption
                         summary.ShowInGroupColumnFooter = col
-                        If col.FieldName.Contains("Thru") Then
-                            summary.SummaryType = DevExpress.Data.SummaryItemType.None
-                        Else
-                            summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
-                        End If
-                        GVData.GroupSummary.Add(summary)
+                        summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        GVSOHVA.GroupSummary.Add(summary)
                     ElseIf bandName = "Price" Then
                         col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                         col.DisplayFormat.FormatString = "{0:n0}"
-                    End If
-
-                    If bandName = "Product Info" Then
-                        band.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                     End If
                 End If
             Next
