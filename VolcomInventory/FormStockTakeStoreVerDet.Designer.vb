@@ -33,6 +33,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBEditPromo = New DevExpress.XtraEditors.SimpleButton()
         Me.SBExportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.SBDownloadTemplate = New DevExpress.XtraEditors.SimpleButton()
         Me.SBImportExcel = New DevExpress.XtraEditors.SimpleButton()
@@ -75,6 +76,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn26 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -196,6 +198,7 @@ Partial Class FormStockTakeStoreVerDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SBEditPromo)
         Me.PanelControl1.Controls.Add(Me.SBExportExcel)
         Me.PanelControl1.Controls.Add(Me.SBDownloadTemplate)
         Me.PanelControl1.Controls.Add(Me.SBImportExcel)
@@ -214,6 +217,15 @@ Partial Class FormStockTakeStoreVerDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(784, 122)
         Me.PanelControl1.TabIndex = 10
+        '
+        'SBEditPromo
+        '
+        Me.SBEditPromo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SBEditPromo.Location = New System.Drawing.Point(657, 90)
+        Me.SBEditPromo.Name = "SBEditPromo"
+        Me.SBEditPromo.Size = New System.Drawing.Size(115, 23)
+        Me.SBEditPromo.TabIndex = 14
+        Me.SBEditPromo.Text = "Edit Promo Price"
         '
         'SBExportExcel
         '
@@ -304,7 +316,7 @@ Partial Class FormStockTakeStoreVerDet
         'BGVData
         '
         Me.BGVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand6, Me.gridBand7, Me.gridBand2, Me.gridBand3, Me.gridBand4, Me.gridBand5})
-        Me.BGVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn21, Me.BandedGridColumn22, Me.BandedGridColumn23, Me.BandedGridColumn24, Me.BandedGridColumn25})
+        Me.BGVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn21, Me.BandedGridColumn22, Me.BandedGridColumn23, Me.BandedGridColumn24, Me.BandedGridColumn25, Me.BandedGridColumn26})
         Me.BGVData.GridControl = Me.GCData
         Me.BGVData.Name = "BGVData"
         Me.BGVData.OptionsView.ColumnAutoWidth = False
@@ -610,6 +622,12 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn21.UnboundExpression = "[qty_scan] * [price]"
         Me.BandedGridColumn21.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         '
+        'BandedGridColumn26
+        '
+        Me.BandedGridColumn26.FieldName = "is_edited_price"
+        Me.BandedGridColumn26.Name = "BandedGridColumn26"
+        Me.BandedGridColumn26.OptionsColumn.AllowEdit = False
+        '
         'FormStockTakeStoreVerDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -695,4 +713,6 @@ Partial Class FormStockTakeStoreVerDet
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents SBEditPromo As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BandedGridColumn26 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

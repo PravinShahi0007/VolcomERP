@@ -34,7 +34,7 @@
 
         'detail
         Dim query_detail As String = "
-            SELECT d.id_product, p.full_code, p.name, p.size, d.price, (d.soh_qty - d.scan_qty) AS qty_awal, 0 AS qty_ver, '' AS note, '' AS id_report, '' AS report_number, '' AS report_mark_type, '' AS report_mark_type_name, d.id_price, d.soh_qty AS qty_volcom, d.scan_qty AS qty_store
+            SELECT d.id_product, p.full_code, p.name, p.size, d.price, (d.soh_qty - d.scan_qty) AS qty_awal, 0 AS qty_ver, '' AS note, '' AS id_report, '' AS report_number, '' AS report_mark_type, '' AS report_mark_type_name, d.id_price, d.soh_qty AS qty_volcom, d.scan_qty AS qty_store, d.is_edited_price
             FROM tb_st_store_bap_det AS d
             LEFT JOIN tb_m_product_store AS p ON d.id_product = p.id_product
             WHERE d.id_st_store_bap = " + id_st_store_bap + "
@@ -229,11 +229,13 @@
             SBMark.Enabled = False
             SBPrint.Enabled = False
             SBSubmit.Enabled = True
+            SBEditPromo.Enabled = True
         Else
             SBImportExcel.Enabled = False
             SBMark.Enabled = True
             SBPrint.Enabled = True
             SBSubmit.Enabled = False
+            SBEditPromo.Enabled = False
         End If
 
         BGVData.BestFitColumns()
@@ -561,6 +563,18 @@
             BGVData.ExportToXlsx(save.FileName, op)
 
             infoCustom("File saved.")
+        End If
+    End Sub
+
+    Private Sub SBEditPromo_Click(sender As Object, e As EventArgs) Handles SBEditPromo.Click
+        If BGVData.GetFocusedRowCellValue("is_edited_price").ToString = "1" Then
+            FormStockTakeStoreEditPromo.ShowDialog()
+        Else
+            If BGVData.GetFocusedRowCellValue("value_volcom") = 0 And BGVData.GetFocusedRowCellValue("value_store") = 0 Then
+                FormStockTakeStoreEditPromo.ShowDialog()
+            Else
+                stopCustom("Edit price only for promo product.")
+            End If
         End If
     End Sub
 End Class
