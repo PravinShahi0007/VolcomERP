@@ -1772,7 +1772,7 @@
 	    STR_TO_DATE(DATE_SUB(CONCAT(YEAR('" + startd + "'),'-', MONTH('" + startd + "'),'-', '01'),INTERVAL 1 DAY),'%Y-%m-%d') AS `beg_date`, 
 	    YEAR((SELECT beg_date)) AS `beg_year`, MONTH((SELECT beg_date)) AS `beg_month` "
         Dim dbeg As DataTable = execute_query(qbeg, -1, True, "", "", "", "")
-        cm_beg_startd = dbeg.Rows(0)("cm_beg_startd").ToString
+        cm_beg_startd = DateTime.Parse(dbeg.Rows(0)("cm_beg_startd").ToString).ToString("yyyy-MM-dd")
         beg_date = dbeg.Rows(0)("beg_date").ToString
         beg_year = dbeg.Rows(0)("beg_year").ToString
         beg_month = dbeg.Rows(0)("beg_month").ToString
@@ -1802,10 +1802,12 @@
         Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
         Dim col_draw_beg As String = ""
         Dim col_draw_curr As String = ""
+        Dim col_draw_combine As String = ""
         For d As Integer = 0 To dd.Rows.Count - 1
             If d > 0 Then
                 col_draw_beg += ","
                 col_draw_curr += ","
+                col_draw_combine += ","
             End If
             Dim id_drawer As String = dd.Rows(d)("id_drawer_def").ToString
             Dim acc As String = dd.Rows(d)("comp_number").ToString
@@ -1813,24 +1815,30 @@
             col_draw_curr += "SUM(IF(f.id_storage_category=2 AND f.id_wh_drawer=" + id_drawer + ", CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS `" + acc + "|Available Qty`, 
             SUM(IF(f.id_stock_status=2 AND f.id_wh_drawer=" + id_drawer + ", (IF(f.id_storage_category=1, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `" + acc + "|Reserved Qty` ,
             SUM(IF(f.id_stock_status=1 AND f.id_wh_drawer=" + id_drawer + ", (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `" + acc + "|Total Qty` "
+            col_draw_combine += "SUM(f.`" + acc + "|Available Qty`) AS `Account:" + acc + "|Available Qty`, SUM(f.`" + acc + "|Reserved Qty`) AS `Account:" + acc + "|Reserved Qty`, SUM(f.`" + acc + "|Total Qty`) AS `Account:" + acc + "|Total Qty` "
         Next
 
         'query
-        Dim query As String = "SELECT f.id_wh_drawer, f.id_product, 
-        " + col_draw_beg + ",
-        SUM(f.`qty_avl`) AS `Total|Available Qty`, SUM(f.`qty_rsv`) AS `Total|Reserved Qty`, SUM(f.`qty_ttl`) AS `Total|Total Qty`
-        FROM tb_storage_fg_" + beg_year + " f
-        WHERE f.month='" + beg_month + "' AND f.id_wh_drawer IN (" + id_drawer_in + ")
-        GROUP BY f.id_product
-        UNION ALL
-        SELECT f.id_wh_drawer, f.id_product, 
-        " + col_draw_curr + ", 
-        SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS `Total|Available Qty`, 
-        SUM(IF(f.id_stock_status=2, (IF(f.id_storage_category=1, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `Total|Reserved Qty` ,
-        SUM(IF(f.id_stock_status=1, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `Total|Total Qty` 
-        FROM tb_storage_fg f
-        WHERE f.storage_product_datetime>='" + cm_beg_startd + " 00:00:00'  AND f.storage_product_datetime<='" + startd + " 23:59:59' 
-        AND f.id_wh_drawer IN (" + id_drawer_in + ")
+        Dim query As String = "SELECT f.id_product AS `Product Description|id_product`,  " + col_draw_combine + ",
+        SUM(f.`Total|Available Qty`) AS `Total|Available Qty`, SUM(f.`Total|Reserved Qty`) AS `Total|Reserved Qty`, SUM(f.`Total|Total Qty`) AS `Total|Total Qty`
+        FROM (
+            SELECT f.id_wh_drawer, f.id_product, 
+            " + col_draw_beg + ",
+            SUM(f.`qty_avl`) AS `Total|Available Qty`, SUM(f.`qty_rsv`) AS `Total|Reserved Qty`, SUM(f.`qty_ttl`) AS `Total|Total Qty`
+            FROM tb_storage_fg_" + beg_year + " f
+            WHERE f.month='" + beg_month + "' AND f.id_wh_drawer IN (" + id_drawer_in + ")
+            GROUP BY f.id_product
+            UNION ALL
+            SELECT f.id_wh_drawer, f.id_product, 
+            " + col_draw_curr + ", 
+            SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS `Total|Available Qty`, 
+            SUM(IF(f.id_stock_status=2, (IF(f.id_storage_category=1, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `Total|Reserved Qty` ,
+            SUM(IF(f.id_stock_status=1, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `Total|Total Qty` 
+            FROM tb_storage_fg f
+            WHERE f.storage_product_datetime>='" + cm_beg_startd + " 00:00:00'  AND f.storage_product_datetime<='" + startd + " 23:59:59' 
+            AND f.id_wh_drawer IN (" + id_drawer_in + ")
+            GROUP BY f.id_product 
+        ) f
         GROUP BY f.id_product "
         Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
 
@@ -1865,7 +1873,7 @@
 
                     band.Columns.Add(col)
 
-                    If bandName.Contains("Total Qty") Then
+                    If bandName.Contains("Total Qty") Or bandName.Contains("Account") Then
                         'display format
                         col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                         col.DisplayFormat.FormatString = "{0:n0}"
