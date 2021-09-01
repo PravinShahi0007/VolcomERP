@@ -119,7 +119,7 @@ LEFT JOIN
     SELECT pn.id_pn_fgpo,pnd.id_report
     FROM `tb_pn_fgpo_det` pnd 
     INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
-    WHERE pn.id_report_status!=5 AND pnd.report_mark_type=13 AND pn.type=2
+    WHERE pn.id_report_status!=5 AND pnd.report_mark_type=13 AND pn.type=1
 )pn ON pn.id_report=po.id_mat_purc
 WHERE po.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) AND py.dp_amount>0
 GROUP BY pod.id_mat_purc"
@@ -137,7 +137,7 @@ LEFT JOIN
     SELECT pn.id_pn_fgpo,pnd.id_report
     FROM `tb_pn_fgpo_det` pnd 
     INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
-    WHERE pn.id_report_status!=5 AND pnd.report_mark_type=13 AND pn.type=1
+    WHERE pn.id_report_status!=5 AND pnd.report_mark_type=13 AND pn.type=2
 )pn ON pn.id_report=po.id_mat_purc
 WHERE po.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo)
 GROUP BY pod.id_mat_purc"

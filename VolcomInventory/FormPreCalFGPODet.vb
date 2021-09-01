@@ -8,6 +8,30 @@
         load_head()
     End Sub
 
+    Sub load_kurs()
+        'check kurs first
+        Dim query_kurs As String = "SELECT * FROM tb_kurs_trans WHERE DATE(DATE_ADD(created_date, INTERVAL 6 DAY)) >= DATE(NOW()) ORDER BY id_kurs_trans DESC LIMIT 1"
+        Dim data_kurs As DataTable = execute_query(query_kurs, -1, True, "", "", "", "")
+
+        If Not data_kurs.Rows.Count > 0 Then
+            warningCustom("Get kurs error.")
+            TERateManagement.EditValue = 0.00
+        Else
+            TERateManagement.EditValue = data_kurs.Rows(0)("kurs_trans") + data_kurs.Rows(0)("fixed_floating")
+        End If
+
+        'rate payment average
+        Dim q As String = "SELECT * FROM `tb_stock_valas` 
+WHERE id_valas_bank=1 AND id_currency=2
+ORDER BY id_stock_valas DESC LIMIT 1"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            TERatePayment.EditValue = dt.Rows(0)("kurs_rata_rata")
+        Else
+            TERatePayment.EditValue = 1
+        End If
+    End Sub
+
     Sub load_head()
         load_type()
         load_vendor()
@@ -15,9 +39,10 @@
         If id = "-1" Then
             'new
             load_list_fgpo()
+            load_kurs()
         Else
             'edit
-            Dim q As String = "SELECT cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
+            Dim q As String = "SELECT cal.rate_current,cal.rate_management,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
 FROM
 `tb_pre_cal_fgpo` cal
 INNER JOIN tb_m_user usr ON usr.`id_user`=cal.`created_by`
@@ -35,6 +60,8 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                 TEWeight.EditValue = dt.Rows(0)("weight")
                 SLEVendorFGPO.EditValue = dt.Rows(0)("id_comp").ToString
                 SLETypeImport.EditValue = dt.Rows(0)("id_type").ToString
+                TERateManagement.EditValue = dt.Rows(0)("rate_management")
+                TERatePayment.EditValue = dt.Rows(0)("rate_current")
 
                 view_but()
 
@@ -290,9 +317,11 @@ SELECT 3 AS id_type,'Courier' AS type"
                 warningCustom("Please pick PO")
             ElseIf TECBM.EditValue <= 0 Or TECTN.EditValue <= 0 Or TEWeight.EditValue <= 0 Or TEPOL.Text = "" Then
                 warningCustom("Please complete all your input")
+            ElseIf TERatePayment.EditValue <= 1 Or TERateManagement.EditValue <= 1 Then
+                warningCustom("Kurs not found, please contact Accounting Departement")
             Else
-                Dim q As String = "INSERT INTO `tb_pre_cal_fgpo`(created_date,created_by,id_report_status,step,`id_comp`,`id_type`,`weight`,`cbm`,`pol`,`ctn`) 
-VALUES(NOW(),'" & id_user & "','1','2','" & SLEVendorFGPO.EditValue.ToString & "','" & SLETypeImport.EditValue.ToString & "','" & decimalSQL(Decimal.Parse(TEWeight.EditValue.ToString).ToString) & "','" & decimalSQL(Decimal.Parse(TECBM.EditValue.ToString).ToString) & "','" & addSlashes(TEPOL.Text) & "','" & decimalSQL(Decimal.Parse(TECTN.EditValue.ToString).ToString) & "');SELECT LAST_INSERT_ID();"
+                Dim q As String = "INSERT INTO `tb_pre_cal_fgpo`(created_date,created_by,id_report_status,step,`id_comp`,`id_type`,`weight`,`cbm`,`pol`,`ctn`,`rate_management`,`rate_current`) 
+VALUES(NOW(),'" & id_user & "','1','2','" & SLEVendorFGPO.EditValue.ToString & "','" & SLETypeImport.EditValue.ToString & "','" & decimalSQL(Decimal.Parse(TEWeight.EditValue.ToString).ToString) & "','" & decimalSQL(Decimal.Parse(TECBM.EditValue.ToString).ToString) & "','" & addSlashes(TEPOL.Text) & "','" & decimalSQL(Decimal.Parse(TECTN.EditValue.ToString).ToString) & "','" & decimalSQL(Decimal.Parse(TERateManagement.EditValue.ToString).ToString) & "','" & decimalSQL(Decimal.Parse(TERatePayment.EditValue.ToString).ToString) & "');SELECT LAST_INSERT_ID();"
                 id = execute_query(q, 0, True, "", "", "", "")
 
                 execute_non_query("CALL gen_number('" & id & "','334')", True, "", "", "", "")
@@ -578,5 +607,9 @@ INNER JOIN `tb_pre_cal_fgpo` cal ON st.`is_active`='1'  AND  cal.`id_pre_cal_fgp
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
         GCDest.DataSource = dt
+    End Sub
+
+    Private Sub FormPreCalFGPODet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class
