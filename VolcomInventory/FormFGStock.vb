@@ -1800,22 +1800,31 @@
         WHERE c.id_drawer_def IN(" + id_drawer_in + ")
         ORDER BY c.comp_number ASC "
         Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
+        Dim col_draw_beg As String = ""
+        Dim col_draw_curr As String = ""
         For d As Integer = 0 To dd.Rows.Count - 1
-            'samapai dsni
+            If d > 0 Then
+                col_draw_beg += ","
+                col_draw_curr += ","
+            End If
+            Dim id_drawer As String = dd.Rows(d)("id_drawer_def").ToString
+            Dim acc As String = dd.Rows(d)("comp_number").ToString
+            col_draw_beg += "SUM(IF(f.id_wh_drawer=" + id_drawer + ",f.qty_avl,0)) AS `" + acc + "|Available Qty`, SUM(IF(f.id_wh_drawer=" + id_drawer + ",f.`qty_rsv`,0)) AS `" + acc + "|Reserved Qty`, SUM(IF(f.id_wh_drawer=" + id_drawer + ",f.`qty_ttl`,0)) AS `" + acc + "|Total Qty` "
+            col_draw_curr += "SUM(IF(f.id_storage_category=2 AND f.id_wh_drawer=" + id_drawer + ", CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS `" + acc + "|Available Qty`, 
+            SUM(IF(f.id_stock_status=2 AND f.id_wh_drawer=" + id_drawer + ", (IF(f.id_storage_category=1, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `" + acc + "|Reserved Qty` ,
+            SUM(IF(f.id_stock_status=1 AND f.id_wh_drawer=" + id_drawer + ", (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `" + acc + "|Total Qty` "
         Next
 
         'query
         Dim query As String = "SELECT f.id_wh_drawer, f.id_product, 
-        SUM(IF(f.id_wh_drawer=393,f.qty_avl,0)) AS `G78|Available Qty`, SUM(IF(f.id_wh_drawer=393,f.`qty_rsv`,0)) AS `G78|Reserved Qty`, SUM(IF(f.id_wh_drawer=393,f.`qty_ttl`,0)) AS `G78|Total Qty`,
+        " + col_draw_beg + ",
         SUM(f.`qty_avl`) AS `Total|Available Qty`, SUM(f.`qty_rsv`) AS `Total|Reserved Qty`, SUM(f.`qty_ttl`) AS `Total|Total Qty`
         FROM tb_storage_fg_" + beg_year + " f
         WHERE f.month='" + beg_month + "' AND f.id_wh_drawer IN (" + id_drawer_in + ")
         GROUP BY f.id_product
         UNION ALL
         SELECT f.id_wh_drawer, f.id_product, 
-        SUM(IF(f.id_storage_category=2 AND f.id_wh_drawer=393, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS `G78|Available Qty`, 
-        SUM(IF(f.id_stock_status=2 AND f.id_wh_drawer=393, (IF(f.id_storage_category=1, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `G78|Reserved Qty` ,
-        SUM(IF(f.id_stock_status=1 AND f.id_wh_drawer=393, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `G78|Total Qty`, 
+        " + col_draw_curr + ", 
         SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS `Total|Available Qty`, 
         SUM(IF(f.id_stock_status=2, (IF(f.id_storage_category=1, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `Total|Reserved Qty` ,
         SUM(IF(f.id_stock_status=1, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `Total|Total Qty` 
