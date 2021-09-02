@@ -4145,6 +4145,36 @@ GROUP BY ol.checkout_id
                     Else
                         data_temp.Rows(i)("status") = "Invoice not found"
                     End If
+                ElseIf report_type = "CN" Then
+                    'credit note
+                    Dim query_sal As String = "
+                        SELECT b.id_st_store_bap_det, h.id_sales_pos AS id_report, h.report_mark_type, r.report_mark_type_name, d.sales_pos_det_qty AS qty
+                        FROM tb_sales_pos_det AS d
+                        LEFT JOIN tb_sales_pos AS h ON d.id_sales_pos = h.id_sales_pos
+                        LEFT JOIN tb_m_comp_contact c ON c.id_comp_contact = IF(h.id_memo_type = 8 OR h.id_memo_type = 9, h.id_comp_contact_bill, h.id_store_contact_from)
+                        LEFT JOIN tb_lookup_report_mark_type AS r ON r.report_mark_type = h.report_mark_type
+                        LEFT JOIN tb_m_product AS p ON d.id_product = p.id_product
+                        LEFT JOIN tb_st_store_bap_det AS b ON p.id_product = b.id_product AND b.id_st_store_bap = " + id_st_store_bap + "
+                        LEFT JOIN tb_lookup_memo_type AS m ON h.id_memo_type = m.id_memo_type
+                        WHERE h.sales_pos_number = '" + number + "' AND c.id_comp = '" + id_comp + "' AND p.product_full_code = '" + barcode + "' AND m.is_receive_payment = 2
+                        GROUP BY d.id_product
+                    "
+
+                    Dim data_sal As DataTable = execute_query(query_sal, -1, True, "", "", "", "")
+
+                    If data_sal.Rows.Count > 0 Then
+                        If Not data_sal.Rows(0)("id_st_store_bap_det").ToString = "" Then
+                            data_temp.Rows(i)("id_st_store_bap_det") = data_sal.Rows(0)("id_st_store_bap_det")
+                            data_temp.Rows(i)("id_report") = data_sal.Rows(0)("id_report")
+                            data_temp.Rows(i)("report_mark_type") = data_sal.Rows(0)("report_mark_type")
+                            data_temp.Rows(i)("report_mark_type_name") = data_sal.Rows(0)("report_mark_type_name")
+                            data_temp.Rows(i)("status") = "Ok"
+                        Else
+                            data_temp.Rows(i)("status") = "Product not found"
+                        End If
+                    Else
+                        data_temp.Rows(i)("status") = "Invoice not found"
+                    End If
                 ElseIf report_type = "RTS" Then
                     'return
                     Dim query_rts As String = "
@@ -7327,7 +7357,7 @@ GROUP BY ol.checkout_id
 
                         Dim qty As String = GVData.GetRowCellValue(i, "qty").ToString
 
-                        If GVData.GetRowCellValue(i, "report_type").ToString = "ADJ IN" Or GVData.GetRowCellValue(i, "report_type").ToString = "TA IN" Then
+                        If GVData.GetRowCellValue(i, "report_type").ToString = "ADJ IN" Or GVData.GetRowCellValue(i, "report_type").ToString = "TA IN" Or GVData.GetRowCellValue(i, "report_type").ToString = "CN" Then
                             qty = "-" + qty
                         End If
 
