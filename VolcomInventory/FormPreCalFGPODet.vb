@@ -102,10 +102,18 @@ WHERE v.id_pre_cal_fgpo='" & id & "'"
     End Sub
 
     Sub load_list_adm()
-        Dim q As String = "SELECT ot.`id_pre_cal_fgpo_other`,ot.desc,ot.`id_currency`,cur.currency,ot.`unit_price`,ot.`kurs`,ot.`unit_price_in_rp`,ot.`qty`
-FROM `tb_pre_cal_fgpo_other` ot
-INNER JOIN tb_lookup_currency cur ON cur.id_currency=ot.`id_currency`
-WHERE ot.`id_pre_cal_fgpo`='" & id & "'"
+        Dim q As String = ""
+
+        'q = "SELECT ot.`id_pre_cal_fgpo_other`,ot.desc,ot.`id_currency`,cur.currency,ot.`unit_price`,ot.`kurs`,ot.`unit_price_in_rp`,ot.`qty`
+        'FROM `tb_pre_cal_fgpo_other` ot
+        'INNER JOIN tb_lookup_currency cur ON cur.id_currency=ot.`id_currency`
+        'WHERE ot.`id_pre_cal_fgpo`='" & id & "'"
+
+        q = "SELECT ot.`id_pre_cal_fgpo_det`,ot.desc,ot.`id_currency`,cur.currency,ot.`unit_price`,ot.`kurs`,ot.`unit_price_in_rp`,ot.`qty`
+        FROM `tb_pre_cal_fgpo_det` ot
+        INNER JOIN tb_lookup_currency cur ON cur.id_currency=ot.`id_currency`
+        WHERE ot.`id_pre_cal_fgpo`='" & id & "' AND id_comp='" & SLECompOther.EditValue.ToString & "' AND id_type='3'"
+
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCAdm.DataSource = dt
     End Sub
@@ -137,6 +145,7 @@ WHERE v.id_pre_cal_fgpo='" & id & "'"
         If steps > 2 Then
             viewSearchLookupQuery(SLEVendorOrign, q, "id_comp", "comp_name", "id_comp")
             viewSearchLookupQuery(SLEVendorDest, q, "id_comp", "comp_name", "id_comp")
+            viewSearchLookupQuery(SLECompOther, q, "id_comp", "comp_name", "id_comp")
         End If
     End Sub
 
@@ -515,28 +524,43 @@ HAVING tot=0"
     End Sub
 
     Private Sub BLoadCharges_Click(sender As Object, e As EventArgs) Handles BLoadCharges.Click
-        Dim q As String = "SELECT '' AS `id_pre_cal_fgpo_other`,ot.desc,ot.`id_currency`,cur.currency,ot.amo AS `unit_price`,(SELECT kurs_trans+fixed_floating FROM tb_kurs_trans WHERE id_kurs_trans = (SELECT MAX(id_kurs_trans) FROM `tb_kurs_trans`)) AS `kurs`
-,(SELECT unit_price) * (SELECT kurs) AS `unit_price_in_rp`,1 AS `qty`
-FROM `tb_lookup_adm_precal` ot
-INNER JOIN tb_lookup_currency cur ON cur.id_currency=ot.`id_currency`
-WHERE ot.`is_active`='1'"
-        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        '        Dim q As String = "SELECT '' AS `id_pre_cal_fgpo_other`,ot.desc,ot.`id_currency`,cur.currency,ot.amo AS `unit_price`,(SELECT kurs_trans+fixed_floating FROM tb_kurs_trans WHERE id_kurs_trans = (SELECT MAX(id_kurs_trans) FROM `tb_kurs_trans`)) AS `kurs`
+        ',(SELECT unit_price) * (SELECT kurs) AS `unit_price_in_rp`,1 AS `qty`
+        'FROM `tb_lookup_adm_precal` ot
+        'INNER JOIN tb_lookup_currency cur ON cur.id_currency=ot.`id_currency`
+        'WHERE ot.`is_active`='1'"
+        '        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
-        GCAdm.DataSource = dt
+        '        GCAdm.DataSource = dt
     End Sub
 
     Sub save_other()
+        'Dim q As String = ""
+        'q = "DELETE FROM tb_pre_cal_fgpo_other WHERE id_pre_cal_fgpo='" & id & "'"
+        'execute_non_query(q, True, "", "", "", "")
+
+        ''`id_pre_cal_fgpo_other`,`id_currency`,`unit_price`,`kurs`,`unit_price_in_rp`,`qty`
+        'q = "INSERT INTO `tb_pre_cal_fgpo_other`(`id_pre_cal_fgpo`,`desc`,`id_currency`,`unit_price`,`kurs`,`unit_price_in_rp`,`qty`,`total_in_rp`) VALUES"
+        'For i = 0 To GVAdm.RowCount - 1
+        '    If Not i = 0 Then
+        '        q += ","
+        '    End If
+        '    q += "('" & id & "','" & addSlashes(GVAdm.GetRowCellValue(i, "desc").ToString) & "','" & GVAdm.GetRowCellValue(i, "id_currency").ToString & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "unit_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "kurs").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "qty").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "')"
+        'Next
+
+        'execute_non_query(q, True, "", "", "", "")
+
         Dim q As String = ""
-        q = "DELETE FROM tb_pre_cal_fgpo_other WHERE id_pre_cal_fgpo='" & id & "'"
+        q = "DELETE FROM tb_pre_cal_fgpo_det WHERE id_pre_cal_fgpo='" & id & "' AND id_type=3 AND id_comp='" & SLECompOther.EditValue.ToString & "'"
         execute_non_query(q, True, "", "", "", "")
 
         '`id_pre_cal_fgpo_other`,`id_currency`,`unit_price`,`kurs`,`unit_price_in_rp`,`qty`
-        q = "INSERT INTO `tb_pre_cal_fgpo_other`(`id_pre_cal_fgpo`,`desc`,`id_currency`,`unit_price`,`kurs`,`unit_price_in_rp`,`qty`,`total_in_rp`) VALUES"
+        q = "INSERT INTO `tb_pre_cal_fgpo_det`(`id_pre_cal_fgpo`,`desc`,`id_currency`,`unit_price`,`kurs`,`unit_price_in_rp`,`qty`,`total_in_rp`,`id_type`,`id_comp`) VALUES"
         For i = 0 To GVAdm.RowCount - 1
             If Not i = 0 Then
                 q += ","
             End If
-            q += "('" & id & "','" & addSlashes(GVAdm.GetRowCellValue(i, "desc").ToString) & "','" & GVAdm.GetRowCellValue(i, "id_currency").ToString & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "unit_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "kurs").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "qty").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "')"
+            q += "('" & id & "','" & addSlashes(GVAdm.GetRowCellValue(i, "desc").ToString) & "','" & GVAdm.GetRowCellValue(i, "id_currency").ToString & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "unit_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "kurs").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "qty").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVAdm.GetRowCellValue(i, "unit_price_in_rp").ToString).ToString) & "','3','" & SLECompOther.EditValue.ToString & "')"
         Next
 
         execute_non_query(q, True, "", "", "", "")

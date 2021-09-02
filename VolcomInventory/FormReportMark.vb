@@ -9985,12 +9985,20 @@ INNER JOIN tb_awb_inv_sum ai ON ai.`id_awb_inv_sum`=aid.`id_awb_inv_sum`
 SET d.`a_weight`=aid.`berat_final`,d.`a_tot_price`=aid.`amount_final`,d.`awbill_inv_no`=ai.`inv_number`
 WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
                         execute_non_query(q, True, "", "", "", "")
-                    Else
+                    ElseIf dt.Rows(0)("id_type").ToString = "2" Then
                         'inbound
                         Dim qu As String = "UPDATE `tb_inbound_awb` ia
 INNER JOIN `tb_awb_inv_sum_det` aid ON aid.`id_inbound_awb`=ia.`id_inbound_awb`
 INNER JOIN tb_awb_inv_sum ai ON ai.`id_awb_inv_sum`=aid.`id_awb_inv_sum` 
 SET ia.`a_weight`=aid.`berat_final`,ia.`a_tot_price`=aid.`amount_final`,ia.`awb_inv_number`=ai.`inv_number`
+WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
+                        execute_non_query(q, True, "", "", "", "")
+                    ElseIf dt.Rows(0)("id_type").ToString = "4" Then
+                        'return online store
+                        Dim qu As String = "UPDATE `tb_wh_awbill` ia
+INNER JOIN `tb_awb_inv_sum_det` aid ON aid.`id_awbill`=ia.`id_awbill`
+INNER JOIN tb_awb_inv_sum ai ON ai.`id_awb_inv_sum`=aid.`id_awb_inv_sum` 
+SET ia.`a_weight`=aid.`berat_final`,ia.`a_tot_price`=aid.`amount_final`,ia.`awbill_inv_no`=ai.`inv_number`
 WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
                         execute_non_query(q, True, "", "", "", "")
                     End If

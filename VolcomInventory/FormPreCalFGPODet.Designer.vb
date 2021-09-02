@@ -129,6 +129,11 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCUAdm = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLECompOther = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BLoadCharges = New DevExpress.XtraEditors.SimpleButton()
         Me.PCAdm = New DevExpress.XtraEditors.PanelControl()
         Me.BDraftAdm = New DevExpress.XtraEditors.SimpleButton()
@@ -225,6 +230,8 @@ Partial Class FormPreCalFGPODet
         CType(Me.GVAdm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCUAdm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCUAdm.SuspendLayout()
+        CType(Me.SLECompOther.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCAdm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAdm.SuspendLayout()
         Me.XTPChoosen.SuspendLayout()
@@ -1444,12 +1451,52 @@ Partial Class FormPreCalFGPODet
         '
         'PCUAdm
         '
+        Me.PCUAdm.Controls.Add(Me.LabelControl14)
+        Me.PCUAdm.Controls.Add(Me.SLECompOther)
         Me.PCUAdm.Controls.Add(Me.BLoadCharges)
         Me.PCUAdm.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCUAdm.Location = New System.Drawing.Point(0, 0)
         Me.PCUAdm.Name = "PCUAdm"
         Me.PCUAdm.Size = New System.Drawing.Size(1016, 48)
         Me.PCUAdm.TabIndex = 7
+        '
+        'LabelControl14
+        '
+        Me.LabelControl14.Location = New System.Drawing.Point(11, 17)
+        Me.LabelControl14.Name = "LabelControl14"
+        Me.LabelControl14.Size = New System.Drawing.Size(87, 13)
+        Me.LabelControl14.TabIndex = 101
+        Me.LabelControl14.Text = "Vendor Forwarder"
+        '
+        'SLECompOther
+        '
+        Me.SLECompOther.Location = New System.Drawing.Point(104, 14)
+        Me.SLECompOther.Name = "SLECompOther"
+        Me.SLECompOther.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECompOther.Properties.View = Me.GridView5
+        Me.SLECompOther.Size = New System.Drawing.Size(212, 20)
+        Me.SLECompOther.TabIndex = 102
+        '
+        'GridView5
+        '
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn48, Me.GridColumn49})
+        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView5.Name = "GridView5"
+        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView5.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn48
+        '
+        Me.GridColumn48.FieldName = "id_comp"
+        Me.GridColumn48.Name = "GridColumn48"
+        '
+        'GridColumn49
+        '
+        Me.GridColumn49.Caption = "Forwarder"
+        Me.GridColumn49.FieldName = "comp_name"
+        Me.GridColumn49.Name = "GridColumn49"
+        Me.GridColumn49.Visible = True
+        Me.GridColumn49.VisibleIndex = 0
         '
         'BLoadCharges
         '
@@ -1982,6 +2029,9 @@ Partial Class FormPreCalFGPODet
         CType(Me.GVAdm, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCUAdm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCUAdm.ResumeLayout(False)
+        Me.PCUAdm.PerformLayout()
+        CType(Me.SLECompOther.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCAdm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAdm.ResumeLayout(False)
         Me.XTPChoosen.ResumeLayout(False)
@@ -2143,4 +2193,9 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents TERatePayment As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TERateManagement As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLECompOther As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
