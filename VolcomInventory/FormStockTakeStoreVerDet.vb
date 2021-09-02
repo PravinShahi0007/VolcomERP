@@ -34,7 +34,7 @@
 
         'detail
         Dim query_detail As String = "
-            SELECT d.id_product, p.full_code, p.name, p.size, d.price, (d.soh_qty - d.scan_qty) AS qty_awal, 0 AS qty_ver, '' AS note, '' AS id_report, '' AS report_number, '' AS report_mark_type, '' AS report_mark_type_name, d.id_price, d.soh_qty AS qty_volcom, d.scan_qty AS qty_store, d.is_edited_price
+            SELECT d.id_product, p.full_code, p.name, p.size, d.price, (d.soh_qty - d.scan_qty) AS qty_awal, 0 AS qty_ver, '' AS note, '' AS id_report, '' AS report_number, '' AS report_mark_type, '' AS report_mark_type_name, d.id_price, d.soh_qty AS qty_volcom, d.scan_qty AS qty_store, d.is_edited_price, d.is_added_product
             FROM tb_st_store_bap_det AS d
             LEFT JOIN tb_m_product_store AS p ON d.id_product = p.id_product
             WHERE d.id_st_store_bap = " + id_st_store_bap + "
