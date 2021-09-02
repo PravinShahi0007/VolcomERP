@@ -179,6 +179,7 @@ Partial Class FormPurcReceiveDet
         Me.CEAlreadyDeliver.Properties.Caption = "Already Delivered (Based on PR Shipping Address)"
         Me.CEAlreadyDeliver.Size = New System.Drawing.Size(271, 19)
         Me.CEAlreadyDeliver.TabIndex = 152
+        Me.CEAlreadyDeliver.Visible = False
         '
         'LabelControl8
         '
