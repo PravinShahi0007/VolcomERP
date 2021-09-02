@@ -636,4 +636,8 @@ INNER JOIN `tb_pre_cal_fgpo` cal ON st.`is_active`='1'  AND  cal.`id_pre_cal_fgp
     Private Sub FormPreCalFGPODet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
+
+    Private Sub SLECompOther_EditValueChanged(sender As Object, e As EventArgs) Handles SLECompOther.EditValueChanged
+        load_list_adm()
+    End Sub
 End Class
