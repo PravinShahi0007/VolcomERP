@@ -43,6 +43,8 @@ Partial Class FormStockTakeStoreVerDet
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.PromoPriceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BGVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -77,8 +79,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn26 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.PromoPriceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BandedGridColumn27 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,8 +92,8 @@ Partial Class FormStockTakeStoreVerDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BGVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip.SuspendLayout()
+        CType(Me.BGVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -307,10 +308,22 @@ Partial Class FormStockTakeStoreVerDet
         Me.GCData.TabIndex = 12
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVData})
         '
+        'ContextMenuStrip
+        '
+        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PromoPriceToolStripMenuItem})
+        Me.ContextMenuStrip.Name = "ContextMenuStrip"
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(140, 26)
+        '
+        'PromoPriceToolStripMenuItem
+        '
+        Me.PromoPriceToolStripMenuItem.Name = "PromoPriceToolStripMenuItem"
+        Me.PromoPriceToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
+        Me.PromoPriceToolStripMenuItem.Text = "Promo Price"
+        '
         'BGVData
         '
         Me.BGVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand6, Me.gridBand7, Me.gridBand2, Me.gridBand3, Me.gridBand4, Me.gridBand5})
-        Me.BGVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn21, Me.BandedGridColumn22, Me.BandedGridColumn23, Me.BandedGridColumn24, Me.BandedGridColumn25, Me.BandedGridColumn26})
+        Me.BGVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn21, Me.BandedGridColumn22, Me.BandedGridColumn23, Me.BandedGridColumn24, Me.BandedGridColumn25, Me.BandedGridColumn26, Me.BandedGridColumn27})
         Me.BGVData.GridControl = Me.GCData
         Me.BGVData.Name = "BGVData"
         Me.BGVData.OptionsView.ColumnAutoWidth = False
@@ -622,17 +635,11 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn26.Name = "BandedGridColumn26"
         Me.BandedGridColumn26.OptionsColumn.AllowEdit = False
         '
-        'ContextMenuStrip
+        'BandedGridColumn27
         '
-        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PromoPriceToolStripMenuItem})
-        Me.ContextMenuStrip.Name = "ContextMenuStrip"
-        Me.ContextMenuStrip.Size = New System.Drawing.Size(140, 26)
-        '
-        'PromoPriceToolStripMenuItem
-        '
-        Me.PromoPriceToolStripMenuItem.Name = "PromoPriceToolStripMenuItem"
-        Me.PromoPriceToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.PromoPriceToolStripMenuItem.Text = "Promo Price"
+        Me.BandedGridColumn27.FieldName = "is_added_product"
+        Me.BandedGridColumn27.Name = "BandedGridColumn27"
+        Me.BandedGridColumn27.OptionsColumn.AllowEdit = False
         '
         'FormStockTakeStoreVerDet
         '
@@ -659,8 +666,8 @@ Partial Class FormStockTakeStoreVerDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BGVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip.ResumeLayout(False)
+        CType(Me.BGVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -723,4 +730,5 @@ Partial Class FormStockTakeStoreVerDet
     Friend WithEvents BandedGridColumn26 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents ContextMenuStrip As ContextMenuStrip
     Friend WithEvents PromoPriceToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BandedGridColumn27 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
