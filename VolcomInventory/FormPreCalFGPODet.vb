@@ -313,7 +313,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPDest.Visible = False
             PCUAdm.Visible = False
             '
-            XTC.SelectedTabPageIndex = 4
+            XTC.SelectedTabPageIndex = 5
         End If
     End Sub
 
@@ -524,14 +524,43 @@ HAVING tot=0"
     End Sub
 
     Private Sub BLoadCharges_Click(sender As Object, e As EventArgs) Handles BLoadCharges.Click
-        '        Dim q As String = "SELECT '' AS `id_pre_cal_fgpo_other`,ot.desc,ot.`id_currency`,cur.currency,ot.amo AS `unit_price`,(SELECT kurs_trans+fixed_floating FROM tb_kurs_trans WHERE id_kurs_trans = (SELECT MAX(id_kurs_trans) FROM `tb_kurs_trans`)) AS `kurs`
-        ',(SELECT unit_price) * (SELECT kurs) AS `unit_price_in_rp`,1 AS `qty`
-        'FROM `tb_lookup_adm_precal` ot
-        'INNER JOIN tb_lookup_currency cur ON cur.id_currency=ot.`id_currency`
-        'WHERE ot.`is_active`='1'"
-        '        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        Dim q As String = "SELECT 'Duty' AS `desc`,1 AS `id_currency`,'Rp' AS currency,SUM(duty.duty_amo) AS `unit_price`,duty.rate_management AS `kurs`,SUM(duty.duty_amo) AS `unit_price_in_rp`,1 AS `qty`
+FROM
+(
+	SELECT l.id_pre_cal_fgpo,(l.price*l.qty) AS tot_fob,(l.duty/100) AS duty,fr.tot_freight,h.`rate_management`,l.`qty`,tq.tot_qty,(fr.tot_freight/tq.tot_qty)*l.`qty` AS freight_per_po
+	,ROUND((((fr.tot_freight/tq.tot_qty)*l.`qty`)+(l.price*l.qty*h.rate_management))*(l.duty/100)) AS duty_amo
+	FROM `tb_pre_cal_fgpo_list` l
+	INNER JOIN tb_pre_cal_fgpo h ON h.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo`
+	INNER JOIN
+	(
+		SELECT id_pre_cal_fgpo,SUM(d.`total_in_rp`) AS tot_freight
+		FROM `tb_pre_cal_fgpo_det` d
+		WHERE d.id_comp='" & SLECompOther.EditValue.ToString & "' AND d.`id_type`=1 AND d.id_pre_cal_fgpo='" & id & "'
+	)fr ON fr.id_pre_cal_fgpo=l.`id_pre_cal_fgpo`
+	INNER JOIN
+	(
+		SELECT id_pre_cal_fgpo,SUM(qty) AS tot_qty
+		FROM `tb_pre_cal_fgpo_list` l
+		WHERE l.id_pre_cal_fgpo='" & id & "'
+	)tq ON tq.id_pre_cal_fgpo=l.`id_pre_cal_fgpo`
+	WHERE l.id_pre_cal_fgpo='" & id & "'
+) duty
+UNION ALL
+SELECT 'KSO' AS `desc`,2 AS `id_currency`,'$' AS currency,315 AS `unit_price`,h.rate_management AS `kurs`,(h.rate_management*315) AS `unit_price_in_rp`,1 AS `qty`
+FROM tb_pre_cal_fgpo h
+WHERE h.id_pre_cal_fgpo='" & id & "'
+UNION ALL
+SELECT 'Adm Insurance' AS `desc`,2 AS `id_currency`,'$' AS currency,4 AS `unit_price`,h.rate_management AS `kurs`,(h.rate_management*4) AS `unit_price_in_rp`,1 AS `qty`
+FROM tb_pre_cal_fgpo h
+WHERE h.id_pre_cal_fgpo='" & id & "'
+UNION ALL
+SELECT 'Insurance Rate' AS `desc`,2 AS `id_currency`,'$' AS currency,ROUND(SUM(l.qty * l.price)*0.00175,2) AS `unit_price`,h.rate_management AS `kurs`,ROUND(SUM(l.qty * l.price)*0.00175 * h.rate_management,2) AS `unit_price_in_rp`,1 AS `qty`
+FROM `tb_pre_cal_fgpo_list` l
+INNER JOIN tb_pre_cal_fgpo h ON h.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo`
+WHERE h.id_pre_cal_fgpo='" & id & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
-        '        GCAdm.DataSource = dt
+        GCAdm.DataSource = dt
     End Sub
 
     Sub save_other()
@@ -635,5 +664,9 @@ INNER JOIN `tb_pre_cal_fgpo` cal ON st.`is_active`='1'  AND  cal.`id_pre_cal_fgp
 
     Private Sub FormPreCalFGPODet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub SLECompOther_EditValueChanged(sender As Object, e As EventArgs) Handles SLECompOther.EditValueChanged
+        load_list_adm()
     End Sub
 End Class
