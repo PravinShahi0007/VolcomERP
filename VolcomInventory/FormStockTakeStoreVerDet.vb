@@ -11,7 +11,10 @@
     Private Sub FormStockTakeStoreVerDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
 
-        FormStockTakeStoreVer.form_load()
+        Try
+            FormStockTakeStoreVer.form_load()
+        Catch ex As Exception
+        End Try
     End Sub
 
     Sub form_load()
@@ -243,7 +246,7 @@
         Dim query As String = "
             SELECT c.id_comp, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name
             FROM tb_m_comp AS c
-            WHERE c.id_comp IN (SELECT id_comp FROM tb_st_store_soh WHERE id_st_store_period = " + FormStockTakeStorePeriod.GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString + ")
+            WHERE c.id_comp IN (SELECT id_comp FROM tb_st_store_soh WHERE id_st_store_period = (SELECT id_st_store_period FROM tb_st_store_bap WHERE id_st_store_bap = " + id_st_store_bap + "))
         "
 
         viewSearchLookupQuery(SLUEAccount, query, "id_comp", "comp_name", "id_comp")
@@ -318,7 +321,7 @@
         Dim type_stocktake As String = execute_query("
             SELECT IF(is_all_design = 1, '', 'Partial ')
             FROM tb_st_store_period
-            WHERE id_st_store_period = " + FormStockTakeStorePeriod.GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString + "
+            WHERE id_st_store_period = (SELECT id_st_store_period FROM tb_st_store_bap WHERE id_st_store_bap = " + id_st_store_bap + ")
         ", 0, True, "", "", "", "")
 
         Report.XLDateCreated.Text = Report.XLDateCreated.Text.Replace("[date_created]", date_created)
