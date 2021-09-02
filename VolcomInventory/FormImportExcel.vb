@@ -4125,7 +4125,8 @@ GROUP BY ol.checkout_id
                         LEFT JOIN tb_lookup_report_mark_type AS r ON r.report_mark_type = h.report_mark_type
                         LEFT JOIN tb_m_product AS p ON d.id_product = p.id_product
                         LEFT JOIN tb_st_store_bap_det AS b ON p.id_product = b.id_product AND b.id_st_store_bap = " + id_st_store_bap + "
-                        WHERE h.sales_pos_number = '" + number + "' AND c.id_comp = '" + id_comp + "' AND p.product_full_code = '" + barcode + "'
+                        LEFT JOIN tb_lookup_memo_type AS m ON h.id_memo_type = m.id_memo_type
+                        WHERE h.sales_pos_number = '" + number + "' AND c.id_comp = '" + id_comp + "' AND p.product_full_code = '" + barcode + "' AND m.is_receive_payment = 1
                         GROUP BY d.id_product
                     "
 
