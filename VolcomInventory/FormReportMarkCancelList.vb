@@ -98,20 +98,28 @@
 
     Private Sub SMVoid_Click(sender As Object, e As EventArgs) Handles SMVoid.Click
         'check
+
         If GVListCancel.RowCount > 0 Then
             Dim q As String = "SELECT IF(id_report_status!=6,'1','2') as able_void FROM tb_report_mark_cancel WHERE id_report_mark_cancel='" & GVListCancel.GetFocusedRowCellValue("id_report_mark_cancel").ToString & "'"
             Dim able_void As String = execute_query(q, 0, True, "", "", "", "")
             If able_void = "1" Then
-                'update status
-                Dim query As String = "UPDATE tb_report_mark_cancel SET id_report_status=5,is_void=1,void_by='" & id_user & "',void_datetime=NOW() WHERE id_report_mark_cancel='" + GVListCancel.GetFocusedRowCellValue("id_report_mark_cancel").ToString + "'"
-                execute_non_query(query, True, "", "", "", "")
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to void this process ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
 
-                'nonaktif mark
-                Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "142", GVListCancel.GetFocusedRowCellValue("id_report_mark_cancel").ToString)
-                execute_non_query(queryrm, True, "", "", "", "")
+                    'update status
+                    Dim query As String = "UPDATE tb_report_mark_cancel SET id_report_status=5,is_void=1,void_by='" & id_user & "',void_datetime=NOW() WHERE id_report_mark_cancel='" + GVListCancel.GetFocusedRowCellValue("id_report_mark_cancel").ToString + "'"
+                    execute_non_query(query, True, "", "", "", "")
 
-                infoCustom("Void cancel form success")
-                load_cancel_form()
+                    'nonaktif mark
+                    Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "142", GVListCancel.GetFocusedRowCellValue("id_report_mark_cancel").ToString)
+                    execute_non_query(queryrm, True, "", "", "", "")
+
+                    infoCustom("Void cancel form success")
+                    load_cancel_form()
+
+                    Cursor = Cursors.Default
+                End If
             Else
                 warningCustom("This cancellation already approved")
             End If

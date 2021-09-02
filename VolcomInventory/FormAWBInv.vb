@@ -17,7 +17,7 @@ Public Class FormAWBInv
 UNION ALL
 SELECT 2 AS id_type,'Inbound' AS type
 UNION ALL
-SELECT 3 AS id_type,'Return Online Store' AS type"
+SELECT 4 AS id_type,'Return Online Store' AS type"
         viewSearchLookupQuery(SLETypeImport, q, "id_type", "type", "id_type")
         viewSearchLookupQuery(SLEType, q, "id_type", "type", "id_type")
     End Sub
@@ -73,7 +73,7 @@ WHERE id_awb_inv_sum='" & id_verification & "'"
     Sub load_det()
         Dim q As String = ""
         If SLEType.EditValue.ToString = "1" Then 'outbound
-            q = "(SELECT '' AS no,d.`id_del_manifest`,'' AS id_inbound_awb,dis.sub_district,d.id_comp,IF(d.`is_ol_shop`=1,cg.comp_group,store.comp_number) AS comp_number,IF(d.`is_ol_shop`=1,cg.description,store.comp_name) AS comp_name,store.id_comp AS id_store
+            q = "(SELECT '' AS no,d.`id_del_manifest`,'' AS id_inbound_awb,'' AS id_awbill,dis.sub_district,d.id_comp,IF(d.`is_ol_shop`=1,cg.comp_group,store.comp_number) AS comp_number,IF(d.`is_ol_shop`=1,cg.description,store.comp_name) AS comp_name,store.id_comp AS id_store
 ,d.`awbill_inv_no`,id.awb_no AS `awbill_no`,d.`rec_by_store_date`,d.`rec_by_store_person`
 ,d.`cargo_rate`
 ,odm.created_date AS pickup_date
@@ -93,7 +93,7 @@ INNER JOIN tb_odm_sc odm ON odm.id_odm_sc=odmd.id_odm_sc
 WHERE id.id_awb_inv_sum='" & id_verification & "' AND NOT ISNULL(id.id_del_manifest)
 GROUP BY d.`id_del_manifest`)
 UNION ALL
-(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS sub_district,'' AS id_comp,IFNULL(c.comp_number,'') AS comp_number,IFNULL(c.comp_name,'') AS comp_name,IFNULL(id.id_comp,'') AS id_store
+(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS id_awbill,'' AS sub_district,'' AS id_comp,IFNULL(c.comp_number,'') AS comp_number,IFNULL(c.comp_name,'') AS comp_name,IFNULL(id.id_comp,'') AS id_store
 ,'' AS `awbill_inv_no`,id.awb_no AS `awbill_no`,NULL AS `rec_by_store_date`,'' AS `rec_by_store_person`
 ,0 AS `cargo_rate`
 ,NULL AS pickup_date
@@ -104,10 +104,10 @@ UNION ALL
 ,id.rate_wh,id.rate_cargo
 FROM tb_awb_inv_sum_det id
 LEFT JOIN tb_m_comp c ON id.id_comp=c.id_comp
-WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb))"
+WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb) AND ISNULL(id.id_awbill))"
         ElseIf SLEType.EditValue.ToString = "2" Then
             'inbound
-            q = "(SELECT '' AS `no`,'' AS `id_del_manifest`,dd.id_inbound_awb,dis.sub_district,d.id_comp,store.comp_number AS comp_number,store.comp_name AS comp_name,store.id_comp AS id_store
+            q = "(SELECT '' AS `no`,'' AS `id_del_manifest`,dd.id_inbound_awb,'' AS id_awbill,dis.sub_district,d.id_comp,store.comp_number AS comp_number,store.comp_name AS comp_name,store.id_comp AS id_store
 ,d.`awb_inv_number` AS awbill_inv_no,id.awb_no AS `awbill_no`,d.`created_date` AS rec_by_store_date,emp.employee_name AS `rec_by_store_person`
 ,rate.`cargo_rate`
 ,rn.date_return_note AS pickup_date
@@ -139,7 +139,7 @@ INNER JOIN
 WHERE id.id_awb_inv_sum='" & id_verification & "'
 GROUP BY d.`id_inbound_awb`)
 UNION ALL
-(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS sub_district,'' AS id_comp,IFNULL(c.comp_number,'') AS comp_number,IFNULL(c.comp_name,'') AS comp_name,IFNULL(id.id_comp,'') AS id_store
+(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS id_awbill,'' AS sub_district,'' AS id_comp,IFNULL(c.comp_number,'') AS comp_number,IFNULL(c.comp_name,'') AS comp_name,IFNULL(id.id_comp,'') AS id_store
 ,'' AS `awbill_inv_no`,id.awb_no AS `awbill_no`,NULL AS `rec_by_store_date`,'' AS `rec_by_store_person`
 ,0 AS `cargo_rate`
 ,NULL AS pickup_date
@@ -150,42 +150,27 @@ UNION ALL
 ,id.rate_wh,id.rate_cargo
 FROM tb_awb_inv_sum_det id
 LEFT JOIN tb_m_comp c ON id.id_comp=c.id_comp
-WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb))"
-        ElseIf SLEType.EditValue.ToString = "3" Then
+WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb) AND ISNULL(id.id_awbill))"
+        ElseIf SLEType.EditValue.ToString = "4" Then
             'return online store
-            q = "(SELECT '' AS `no`,'' AS `id_del_manifest`,'' AS id_inbound_awb,dis.sub_district,d.id_comp,store.comp_number AS comp_number,store.comp_name AS comp_name,store.id_comp AS id_store
-,d.`awb_inv_number` AS awbill_inv_no,id.awb_no AS `awbill_no`,d.`created_date` AS rec_by_store_date,emp.employee_name AS `rec_by_store_person`
-,rate.`cargo_rate`
-,rn.date_return_note AS pickup_date
-,COUNT(dd.`id_inbound_koli`) AS collie
+            q = "(SELECT '' AS `no`,'' AS `id_del_manifest`,'' AS id_inbound_awb,id.id_awbill,dis.sub_district,d.id_cargo AS id_comp,IF(store.`id_commerce_type`=2,cg.comp_group,store.comp_number) AS comp_number,IF(store.`id_commerce_type`=2,cg.description,store.comp_name) AS comp_name,store.id_comp AS id_store
+,d.`awbill_inv_no`,id.awb_no AS `awbill_no`,d.`rec_by_store_date`,d.`rec_by_store_person`
+,d.`cargo_rate`
+,d.awbill_date AS pickup_date
+,1 AS collie
 ,id.`berat_wh` AS `c_weight`,id.`amount_wh` AS `c_tot_price`,id.`berat_cargo` AS `a_weight`,id.`amount_cargo` AS `a_tot_price`
 ,id.note_wh,id.berat_final,id.amount_final
 ,id.time_verification
 ,id.rate_wh,id.rate_cargo
 FROM tb_awb_inv_sum_det id
-INNER JOIN tb_inbound_koli dd ON dd.`id_inbound_awb`=id.`id_inbound_awb`
-INNER JOIN `tb_inbound_awb` d ON dd.`id_inbound_awb`=d.`id_inbound_awb`
-INNER JOIN tb_3pl_rate rate ON rate.id_3pl_rate=d.id_3pl_rate
-INNER JOIN tb_m_sub_district dis ON dis.id_sub_district=rate.id_sub_district
-INNER JOIN tb_m_user usr ON usr.id_user=d.`created_by`
-INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
-INNER JOIN 
-(
-	SELECT st.id_inbound_awb,st.id_comp,c.`comp_number`,c.`comp_name`
-	FROM `tb_inbound_store` st
-	INNER JOIN tb_m_comp c ON c.id_comp=st.`id_comp`
-	GROUP BY id_inbound_awb
-)store ON store.id_inbound_awb=d.id_inbound_awb 
-INNER JOIN
-(
-	SELECT rn.`id_inbound_awb`,rn.`date_return_note`
-	FROM tb_return_note rn 
-	GROUP BY rn.`id_inbound_awb`
-)rn ON rn.`id_inbound_awb`=d.id_inbound_awb 
-WHERE id.id_awb_inv_sum='" & id_verification & "'
-GROUP BY d.`id_inbound_awb`)
+INNER JOIN `tb_wh_awbill` d ON id.`id_awbill`=d.`id_awbill`
+LEFT JOIN tb_m_sub_district dis ON dis.id_sub_district=d.id_sub_district 
+INNER JOIN tb_m_comp store ON store.id_comp=d.id_store 
+INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=store.id_comp_group
+WHERE id.id_awb_inv_sum='" & id_verification & "' AND NOT ISNULL(id.id_awbill)
+GROUP BY d.`id_awbill`)
 UNION ALL
-(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS sub_district,'' AS id_comp,IFNULL(c.comp_number,'') AS comp_number,IFNULL(c.comp_name,'') AS comp_name,IFNULL(id.id_comp,'') AS id_store
+(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS id_awbill,'' AS sub_district,'' AS id_comp,IFNULL(c.comp_number,'') AS comp_number,IFNULL(c.comp_name,'') AS comp_name,IFNULL(id.id_comp,'') AS id_store
 ,'' AS `awbill_inv_no`,id.awb_no AS `awbill_no`,NULL AS `rec_by_store_date`,'' AS `rec_by_store_person`
 ,0 AS `cargo_rate`
 ,NULL AS pickup_date
@@ -196,7 +181,7 @@ UNION ALL
 ,id.rate_wh,id.rate_cargo
 FROM tb_awb_inv_sum_det id
 LEFT JOIN tb_m_comp c ON id.id_comp=c.id_comp
-WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb))"
+WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb) AND ISNULL(id.id_awbill))"
         End If
 
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -375,7 +360,7 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
                         q += "('" & addSlashes(GVInvoice.GetRowCellValue(i, "awbill_no").ToString) & "','" & id_verification & "'," & id_reff & ",'" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "rate_wh").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "rate_cargo").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "amount_final").ToString).ToString) & "','" & addSlashes(GVInvoice.GetRowCellValue(i, "note_wh").ToString) & "','" & GVInvoice.GetRowCellValue(i, "time_verification").ToString & "'," & id_comp & ")"
                     Next
                     execute_non_query(q, True, "", "", "", "")
-                Else
+                ElseIf SLEType.EditValue.ToString = "2" Then
                     q = "INSERT INTO tb_awb_inv_sum_det(awb_no,`id_awb_inv_sum`,`id_inbound_awb`,`berat_wh`,`berat_cargo`,`rate_wh`,`rate_cargo`,`amount_wh`,`amount_cargo`,berat_final,amount_final,`note_wh`,time_verification,id_comp) VALUES"
                     For i As Integer = 0 To GVInvoice.RowCount - 1
                         If Not i = 0 Then
@@ -387,6 +372,30 @@ WHERE id.id_awb_inv_sum='" & id_verification & "' AND ISNULL(id.id_del_manifest)
                             id_reff = "NULL"
                         Else
                             id_reff = "'" & GVInvoice.GetRowCellValue(i, "id_inbound_awb").ToString & "'"
+                        End If
+
+                        Dim id_comp As String = ""
+                        If GVInvoice.GetRowCellValue(i, "id_store").ToString = "" Then
+                            id_comp = "NULL"
+                        Else
+                            id_comp = "'" & GVInvoice.GetRowCellValue(i, "id_store").ToString & "'"
+                        End If
+
+                        q += "('" & addSlashes(GVInvoice.GetRowCellValue(i, "awbill_no").ToString) & "','" & id_verification & "'," & id_reff & ",'" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "rate_wh").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "rate_cargo").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "c_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "a_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "berat_final").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVInvoice.GetRowCellValue(i, "amount_final").ToString).ToString) & "','" & addSlashes(GVInvoice.GetRowCellValue(i, "note_wh").ToString) & "','" & GVInvoice.GetRowCellValue(i, "time_verification").ToString & "'," & id_comp & ")"
+                    Next
+                    execute_non_query(q, True, "", "", "", "")
+                ElseIf SLEType.EditValue.ToString = "4" Then
+                    q = "INSERT INTO tb_awb_inv_sum_det(awb_no,`id_awb_inv_sum`,`id_awbill`,`berat_wh`,`berat_cargo`,`rate_wh`,`rate_cargo`,`amount_wh`,`amount_cargo`,berat_final,amount_final,`note_wh`,time_verification,id_comp) VALUES"
+                    For i As Integer = 0 To GVInvoice.RowCount - 1
+                        If Not i = 0 Then
+                            q += ","
+                        End If
+
+                        Dim id_reff As String = ""
+                        If GVInvoice.GetRowCellValue(i, "id_awbill").ToString = "" Then
+                            id_reff = "NULL"
+                        Else
+                            id_reff = "'" & GVInvoice.GetRowCellValue(i, "id_awbill").ToString & "'"
                         End If
 
                         Dim id_comp As String = ""
@@ -620,7 +629,7 @@ INNER JOIN
 	GROUP BY rn.`id_inbound_awb`
 )rn ON rn.`id_inbound_awb`=d.id_inbound_awb 
 GROUP BY d.`id_inbound_awb`"
-            ElseIf SLETypeImport.EditValue.ToString = "3" Then
+            ElseIf SLETypeImport.EditValue.ToString = "4" Then
                 queryx = "SELECT '' AS `no`,'' AS `id_del_manifest`,'' AS id_inbound_awb, d.id_awbill,'' AS sub_district,d.id_store AS id_comp,cg.comp_group AS comp_number,cg.description AS comp_name
 ,d.`awbill_inv_no`,d.`awbill_no`,d.rec_by_store_date,d.`rec_by_store_person`
 ,d.`cargo_rate`
@@ -648,7 +657,7 @@ WHERE d.awbill_type=2 AND c.id_commerce_type='2'"
                                 .id_del_manifest = If(result_awb Is Nothing, "", result_awb("id_del_manifest")),
                                 .inv_number = If(table1("Nomor Invoice").ToString = "", "", table1("Nomor Invoice")),
                                 .id_inbound_awb = If(result_awb Is Nothing, "", result_awb("id_inbound_awb")),
-                                .id_awbill = If(result_awb Is Nothing, "", result_awb("id-awbill")),
+                                .id_awbill = If(result_awb Is Nothing, "", result_awb("id_awbill")),
                                 .awbill_no = If(result_awb Is Nothing, table1("AWB").ToString.Replace("'", ""), result_awb("awbill_no").ToString),
                                 .sub_district = If(result_awb Is Nothing, "", result_awb("sub_district")),
                                 .comp_name = If(result_awb Is Nothing, "", result_awb("comp_name")),
@@ -823,7 +832,7 @@ WHERE awb_no IN (" & list_awb & ") AND inv.id_comp='" & SLE3PLImport.EditValue.T
                                 amount_final = "0"
                             End If
 
-                            q += "('" & id_verification & "','" & GVData.GetRowCellValue(i, "awbill_no").ToString & "'," & id_del_m & "," & id_inbound_a & ",'" & decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "c_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "a_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "c_rate").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "a_rate").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "c_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "a_tot_price").ToString).ToString) & "','" & berat_final & "','" & amount_final & "')"
+                            q += "('" & id_verification & "','" & GVData.GetRowCellValue(i, "awbill_no").ToString & "'," & id_del_m & "," & id_inbound_a & "," & id_a & ",'" & decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "c_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "a_weight").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "c_rate").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "a_rate").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "c_tot_price").ToString).ToString) & "','" & decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "a_tot_price").ToString).ToString) & "','" & berat_final & "','" & amount_final & "')"
                         Next
                         execute_non_query(q, True, "", "", "", "")
 
