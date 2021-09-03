@@ -7423,6 +7423,28 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
                     Tool.ShowPreview()
                 End If
+            ElseIf FormFGStock.XTCFGStock.SelectedTabPageIndex = 6 Then 'SOH VA
+                '... 
+                ' creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                FormFGStock.GVSOHVA.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                ReportFGStockSOH.dt = FormFGStock.GCSOHVA.DataSource
+                Dim Report As New ReportFGStockSOH()
+                Report.XrLabeltitle.Text = "SOH - VIRTUAL ACC. ALLOCATION"
+                Report.DetailReportSize.Visible = True
+                Report.DetailReportCode.Visible = False
+                Report.GVSOH.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Report.LabelDesign.Text = If(FormFGStock.CEFindAllProductVA.Checked, "ALL DESIGN", FormFGStock.TxtProductVA.Text)
+                Report.LabelAccount.Text = FormFGStock.SLEAccountVA.Text
+                Report.LabelUnit.Text = FormFGStock.DEUntilAccVA.Text
+                ReportStyleGridview(Report.GVSOH)
+
+                ' Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreview()
             End If
             Cursor = Cursors.Default
         ElseIf formName = "FormMatStock" Then
