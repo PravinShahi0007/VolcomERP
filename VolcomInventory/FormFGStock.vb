@@ -98,6 +98,7 @@
     Dim first_load_card As Boolean = True
     Public show_cost As Boolean = False
     Public id_design_soh As String = "-1"
+    Public id_design_soh_va As String = "-1"
     Dim id_super_admin As String = get_setup_field("id_role_super_admin")
 
     Private Sub FormFGStock_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -109,6 +110,7 @@
             'viewWHStockCard()
             viewWHStockSum()
             viewWH()
+            viewVAAccount()
             viewPriceType()
             XTPFGStockQC.PageVisible = False
             setCaptionSize(GVSOHCode)
@@ -126,6 +128,7 @@
         DEUntilStockFG.EditValue = data_dt.Rows(0)("dt")
         DEUntilStockQC.EditValue = data_dt.Rows(0)("dt")
         DEUntilAcc.EditValue = data_dt.Rows(0)("dt")
+        DEUntilAccVA.EditValue = data_dt.Rows(0)("dt")
         ActiveControl = TxtDesignCode
 
         If id_role_login <> id_super_admin Then
@@ -317,6 +320,15 @@
         query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label 
         FROM tb_m_comp e "
         viewSearchLookupQuery(SLEAccount, query, "id_comp", "comp_name_label", "id_comp")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewVAAccount()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = ""
+        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label
+        FROM tb_m_comp e WHERE e.id_comp IN (SELECT c.id_wh_group FROM tb_m_comp c GROUP BY c.id_wh_group) "
+        viewSearchLookupQuery(SLEAccountVA, query, "id_comp", "comp_name_label", "id_comp")
         Cursor = Cursors.Default
     End Sub
 
@@ -1738,5 +1750,264 @@
                 e.Appearance.BackColor = Color.SkyBlue
             End If
         End If
+    End Sub
+
+    Private Sub XTCFGStock_Click(sender As Object, e As EventArgs) Handles XTCFGStock.Click
+
+    End Sub
+
+    Private Sub BtnViewAccVA_Click(sender As Object, e As EventArgs) Handles BtnViewAccVA.Click
+        viewSOHVA
+    End Sub
+
+    Sub viewSOHVA()
+        Cursor = Cursors.WaitCursor
+        'get time 
+        Dim startd As String = DateTime.Parse(DEUntilAccVA.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim cm_beg_startd As String = ""
+        Dim beg_date As String = ""
+        Dim beg_year As String = ""
+        Dim beg_month As String = ""
+        Dim qbeg As String = "SELECT STR_TO_DATE(CONCAT(YEAR('" + startd + "'),'-', MONTH('" + startd + "'),'-', '01'),'%Y-%m-%d') AS `cm_beg_startd`,
+	    STR_TO_DATE(DATE_SUB(CONCAT(YEAR('" + startd + "'),'-', MONTH('" + startd + "'),'-', '01'),INTERVAL 1 DAY),'%Y-%m-%d') AS `beg_date`, 
+	    YEAR((SELECT beg_date)) AS `beg_year`, MONTH((SELECT beg_date)) AS `beg_month` "
+        Dim dbeg As DataTable = execute_query(qbeg, -1, True, "", "", "", "")
+        cm_beg_startd = DateTime.Parse(dbeg.Rows(0)("cm_beg_startd").ToString).ToString("yyyy-MM-dd")
+        beg_date = dbeg.Rows(0)("beg_date").ToString
+        beg_year = dbeg.Rows(0)("beg_year").ToString
+        beg_month = dbeg.Rows(0)("beg_month").ToString
+
+        'filter comp 
+        Dim id_comp_param As String = SLEAccountVA.EditValue.ToString
+        Dim cond_comp As String = ""
+        If id_comp_param <> "0" Then
+            cond_comp = "AND loc.id_comp=" + id_comp_param + " "
+        End If
+
+        'filter desgin
+        Dim id_design_param As String = id_design_soh_va
+        Dim cond_design As String = ""
+        If id_design_param <> "0" And id_design_param <> "-1" Then
+            cond_design = "AND d.id_design='" + id_design_param + "' "
+        End If
+
+        'comp in
+        Dim id_drawer_in As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_drawer_def) FROM tb_m_comp c WHERE c.id_wh_group='" + id_comp_param + "' ", 0, True, "", "", "", "")
+
+        'build query
+        Dim qd As String = "SELECT c.comp_number,c.id_drawer_def 
+        FROM tb_m_comp c 
+        WHERE c.id_drawer_def IN(" + id_drawer_in + ")
+        ORDER BY c.comp_number ASC "
+        Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
+        Dim col_draw_beg As String = ""
+        Dim col_draw_curr As String = ""
+        Dim col_draw_combine As String = ""
+        For d As Integer = 0 To dd.Rows.Count - 1
+            If d > 0 Then
+                col_draw_beg += ","
+                col_draw_curr += ","
+                col_draw_combine += ","
+            End If
+            Dim id_drawer As String = dd.Rows(d)("id_drawer_def").ToString
+            Dim acc As String = dd.Rows(d)("comp_number").ToString
+            col_draw_beg += "SUM(CASE WHEN f.id_wh_drawer="+id_drawer+" THEN f.qty_avl END) AS `" + acc + "|Available Qty`, 
+            SUM(CASE WHEN f.id_wh_drawer=" + id_drawer + " THEN f.`qty_rsv` END) AS `" + acc + "|Reserved Qty`, 
+            SUM(CASE WHEN f.id_wh_drawer=" + id_drawer + " THEN f.`qty_ttl` END) AS `" + acc + "|Total Qty` "
+            col_draw_curr += "SUM(CASE WHEN f.id_wh_drawer=" + id_drawer + " THEN IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty) END) AS `" + acc + "|Available Qty`, 
+            SUM(CASE WHEN f.id_wh_drawer=" + id_drawer + " THEN IF(f.id_stock_status=2, (IF(f.id_storage_category=1, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0) END) AS `" + acc + "|Reserved Qty` ,
+            SUM(CASE WHEN f.id_wh_drawer=" + id_drawer + " THEN IF(f.id_stock_status=1, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0) END) AS `" + acc + "|Total Qty` "
+            col_draw_combine += "IFNULL(SUM(f.`" + acc + "|Available Qty`),0) AS `Account:" + acc + "|Available Qty`, IFNULL(SUM(f.`" + acc + "|Reserved Qty`),0) AS `Account:" + acc + "|Reserved Qty`, IFNULL(SUM(f.`" + acc + "|Total Qty`),0) AS `Account:" + acc + "|Total Qty` "
+        Next
+
+        'query
+        Dim query As String = "SELECT p.product_full_code AS `Product Description|Code`,  d.design_code AS `Product Description|Main Code`,d.design_display_name AS `Product Description|Description`,
+        b.code_detail_name AS `Product Description|Size`, cls.class AS `Product Description|Class`, ss.season AS `Product Description|Season`, UPPER(LEFT(prc.design_cat,1)) AS `Product Description|Status`,
+	    IFNULL(prc.design_price,0) AS `Price|Unit Price`,
+        UPPER(LEFT(prc.design_price_type,1)) AS `Price|Price Type`,
+        " + col_draw_combine + ",
+        SUM(f.`Total|Available Qty`) AS `Total|Available Qty`, SUM(f.`Total|Reserved Qty`) AS `Total|Reserved Qty`, SUM(f.`Total|Total Qty`) AS `Total|Total Qty`, SUM(f.`Total|Total Qty`) * IFNULL(prc.design_price,0) AS `Total|Amount`
+        FROM (
+            SELECT f.id_wh_drawer, f.id_product, 
+            " + col_draw_beg + ",
+            SUM(f.`qty_avl`) AS `Total|Available Qty`, SUM(f.`qty_rsv`) AS `Total|Reserved Qty`, SUM(f.`qty_ttl`) AS `Total|Total Qty`
+            FROM tb_storage_fg_" + beg_year + " f
+            WHERE f.month='" + beg_month + "' AND f.id_wh_drawer IN (" + id_drawer_in + ")
+            GROUP BY f.id_product
+            UNION ALL
+            SELECT f.id_wh_drawer, f.id_product, 
+            " + col_draw_curr + ", 
+            SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS `Total|Available Qty`, 
+            SUM(IF(f.id_stock_status=2, (IF(f.id_storage_category=1, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `Total|Reserved Qty` ,
+            SUM(IF(f.id_stock_status=1, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `Total|Total Qty` 
+            FROM tb_storage_fg f
+            WHERE f.storage_product_datetime>='" + cm_beg_startd + " 00:00:00'  AND f.storage_product_datetime<='" + startd + " 23:59:59' 
+            AND f.id_wh_drawer IN (" + id_drawer_in + ")
+            GROUP BY f.id_product 
+        ) f
+        INNER JOIN tb_m_product p ON p.id_product = f.id_product
+        INNER JOIN tb_m_design d ON d.id_design = p.id_design AND d.id_lookup_status_order!=2 " + cond_design + "
+        INNER JOIN tb_season ss ON ss.id_season = d.id_season
+	    INNER JOIN tb_range rg ON rg.id_range = ss.id_range
+	    INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+	    INNER JOIN tb_m_code_detail b ON b.id_code_detail = pc.id_code_detail
+	    LEFT JOIN (
+	      SELECT dc.id_design, cd.id_code_detail AS `id_class`, cd.display_name AS `class` 
+	      FROM tb_m_design_code dc
+	      INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code IN (SELECT o.id_code_fg_class FROM tb_opt o)
+	      GROUP BY dc.id_design
+	    ) cls ON cls.id_design = d.id_design
+        LEFT JOIN (
+		    SELECT prc.id_design, prc.id_design_price, prc.design_price, prc.id_design_cat,prc.design_cat, prc.design_price_type
+		    FROM (
+			    SELECT prc.id_design, prc.id_design_price, prc.design_price, cat.id_design_cat, cat.design_cat, pt.design_price_type
+			    FROM tb_m_design_price prc
+			    INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
+			    INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = pt.id_design_cat
+			    WHERE design_price_start_date<=NOW() AND is_active_wh=1 AND is_design_cost=0
+			    ORDER BY design_price_start_date DESC, id_design_price DESC
+		    ) prc
+		    GROUP BY id_design
+	    ) prc ON prc.id_design = d.id_design
+        GROUP BY f.id_product 
+        HAVING (`Total|Available Qty`!=0 OR `Total|Reserved Qty`!=0 OR `Total|Total Qty`!=0)
+        ORDER BY p.product_display_name ASC, b.id_code_detail ASC "
+        Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
+
+        'setup column
+        GVSOHVA.Bands.Clear()
+        GVSOHVA.Columns.Clear()
+        Dim column As List(Of String) = New List(Of String)
+        For i = 0 To data.Columns.Count - 1
+            Dim bandName As String = data.Columns(i).Caption.Split("|")(0)
+
+            If Not column.Contains(bandName) Then
+                column.Add(bandName)
+            End If
+        Next
+        For i = 0 To column.Count - 1
+            Dim band As DevExpress.XtraGrid.Views.BandedGrid.GridBand = New DevExpress.XtraGrid.Views.BandedGrid.GridBand
+
+            band.Caption = column(i)
+
+            GVSOHVA.Bands.Add(band)
+
+            For j = 0 To data.Columns.Count - 1
+                Dim bandName As String = data.Columns(j).Caption.Split("|")(0)
+                Dim coluName As String = data.Columns(j).Caption.Split("|")(1)
+
+                If bandName = column(i) Then
+                    Dim col As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+
+                    col.Caption = coluName
+                    col.VisibleIndex = j
+                    col.FieldName = data.Columns(j).Caption
+
+                    band.Columns.Add(col)
+
+                    If bandName.Contains("Total") Or bandName.Contains("Account") Then
+                        'display format
+                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        col.DisplayFormat.FormatString = "{0:n0}"
+
+                        'summary
+                        col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        col.SummaryItem.DisplayFormat = "{0:n0}"
+
+                        'group summary
+                        Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
+                        summary.DisplayFormat = "{0:N0}"
+                        summary.FieldName = data.Columns(j).Caption
+                        summary.ShowInGroupColumnFooter = col
+                        summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        GVSOHVA.GroupSummary.Add(summary)
+                    ElseIf bandName = "Price" Then
+                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        col.DisplayFormat.FormatString = "{0:n0}"
+                    End If
+                End If
+            Next
+        Next
+
+        'fill data
+        GCSOHVA.DataSource = data
+
+        'bestfit
+        GVSOHVA.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnExportToXLSAccVA_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSAccVA.Click
+        If GVSOHVA.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            'column option creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVSOHVA.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            For i As Integer = 0 To GVSOHVA.Columns.Count - 1
+                Try
+                    GVSOHVA.Columns(i).Caption = GVSOHVA.Columns(i).OwnerBand.ToString + " | " + GVSOHVA.Columns(i).Caption.ToString
+                Catch ex As Exception
+                End Try
+            Next
+
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "stock_soh_va_by_barcode.xlsx"
+            exportToXLS(path, "soh", GCSOHVA)
+
+            'restore column opt
+            GVSOHVA.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnHideFilterAccVA_Click(sender As Object, e As EventArgs) Handles BtnHideFilterAccVA.Click
+        PanelControlSOHVA.Visible = False
+        BtnShowFilterVA.Visible = True
+    End Sub
+
+    Private Sub BtnShowFilterVA_Click(sender As Object, e As EventArgs) Handles BtnShowFilterVA.Click
+        PanelControlSOHVA.Visible = True
+        BtnShowFilterVA.Visible = False
+    End Sub
+
+    Sub resetViewSOHVA()
+        GCSOHVA.DataSource = Nothing
+    End Sub
+
+    Private Sub SLEAccountVA_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAccountVA.EditValueChanged
+        resetViewSOHVA()
+    End Sub
+
+    Private Sub TxtProductVA_EditValueChanged(sender As Object, e As EventArgs) Handles TxtProductVA.EditValueChanged
+        resetViewSOHVA()
+    End Sub
+
+    Private Sub DEUntilAccVA_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntilAccVA.EditValueChanged
+        resetViewSOHVA()
+    End Sub
+
+    Private Sub CEFindAllProductVA_EditValueChanged(sender As Object, e As EventArgs) Handles CEFindAllProductVA.EditValueChanged
+        id_design_soh_va = "-1"
+        TxtProductVA.Text = ""
+        resetViewSOHVA()
+        If CEFindAllProductVA.EditValue = True Then
+            BtnBrowseProductVA.Enabled = False
+        Else
+            BtnBrowseProductVA.Enabled = True
+        End If
+    End Sub
+
+    Private Sub BtnBrowseProductVA_Click(sender As Object, e As EventArgs) Handles BtnBrowseProductVA.Click
+        Cursor = Cursors.WaitCursor
+        FormSearchDesign.id_pop_up = "6"
+        FormSearchDesign.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -40,6 +40,10 @@
                 FormFGStock.id_design_soh = data.Rows("0")("id_design").ToString
                 FormFGStock.TxtProduct.Text = data.Rows("0")("code").ToString + " - " + data.Rows("0")("name").ToString
                 Close()
+            ElseIf id_pop_up = "6" Then
+                FormFGStock.id_design_soh_va = data.Rows("0")("id_design").ToString
+                FormFGStock.TxtProductVA.Text = data.Rows("0")("code").ToString + " - " + data.Rows("0")("name").ToString
+                Close()
             End If
         Else
             stopCustom("Product not found")

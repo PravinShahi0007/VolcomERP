@@ -226,6 +226,7 @@ Partial Class FormFGStock
         Me.GridColumndesign_first_rec_wh = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnseason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnrange = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPByCodeSOH = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSOHCode = New DevExpress.XtraGrid.GridControl()
         Me.GVSOHCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
@@ -241,6 +242,7 @@ Partial Class FormFGStock
         Me.BandedGridColumngroup_store = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndesign_first_rec_wh_code = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsize_type = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnavl_qty1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnavl_qty2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -314,9 +316,98 @@ Partial Class FormFGStock
         Me.LabelControl29 = New DevExpress.XtraEditors.LabelControl()
         Me.DEUntilAcc = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl35 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPVAAlloc = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCVA = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSOHVA = New DevExpress.XtraGrid.GridControl()
+        Me.GVSOHVA = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
+        Me.BandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand9 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand10 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand11 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn19 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn22 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn24 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn25 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn26 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn27 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand12 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn28 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn29 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn30 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn31 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn32 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn33 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn34 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn35 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn36 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn37 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn38 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand13 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn39 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn40 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn41 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn42 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn43 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn44 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn45 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn46 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn47 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn48 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn49 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn50 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn51 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn52 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn53 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn54 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn55 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn56 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn57 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn58 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn59 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn60 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn61 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn62 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn63 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BtnShowFilterVA = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControlSOHVA = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LookUpEdit2 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl37 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEAccountVA = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn66 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn67 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnViewAccVA = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportToXLSAccVA = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnHideFilterAccVA = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnBrowseProductVA = New DevExpress.XtraEditors.SimpleButton()
+        Me.CEFindAllProductVA = New DevExpress.XtraEditors.CheckEdit()
+        Me.TxtProductVA = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl38 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEUntilAccVA = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl39 = New DevExpress.XtraEditors.LabelControl()
         Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.XTCFGStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCFGStock.SuspendLayout()
         Me.XTPFGStockWHSum.SuspendLayout()
@@ -425,6 +516,28 @@ Partial Class FormFGStock
         CType(Me.TxtProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPVAAlloc.SuspendLayout()
+        CType(Me.XTCVA, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCVA.SuspendLayout()
+        Me.XtraTabPage1.SuspendLayout()
+        CType(Me.GCSOHVA, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSOHVA, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage2.SuspendLayout()
+        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlSOHVA, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlSOHVA.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.LookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEAccountVA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.CEFindAllProductVA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtProductVA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilAccVA.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilAccVA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCFGStock
@@ -436,7 +549,7 @@ Partial Class FormFGStock
         Me.XTCFGStock.SelectedTabPage = Me.XTPFGStockWHSum
         Me.XTCFGStock.Size = New System.Drawing.Size(1170, 607)
         Me.XTCFGStock.TabIndex = 0
-        Me.XTCFGStock.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFGStockWHSum, Me.XTPFGStockCardWH, Me.XTPFGStockStore, Me.XTPFGStockQC, Me.XTPFGReserved, Me.XTPSOH12Digit})
+        Me.XTCFGStock.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFGStockWHSum, Me.XTPFGStockCardWH, Me.XTPFGStockStore, Me.XTPFGStockQC, Me.XTPFGReserved, Me.XTPSOH12Digit, Me.XTPVAAlloc})
         '
         'XTPFGStockWHSum
         '
@@ -2487,6 +2600,15 @@ Partial Class FormFGStock
         Me.GridColumnrange.Name = "GridColumnrange"
         Me.GridColumnrange.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Design Type"
+        Me.GridColumn34.FieldName = "design_type"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 18
+        '
         'XTPByCodeSOH
         '
         Me.XTPByCodeSOH.Controls.Add(Me.GCSOHCode)
@@ -2631,6 +2753,14 @@ Partial Class FormFGStock
         Me.BandedGridColumnsize_type.Name = "BandedGridColumnsize_type"
         Me.BandedGridColumnsize_type.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnsize_type.Visible = True
+        '
+        'BandedGridColumn5
+        '
+        Me.BandedGridColumn5.Caption = "Design Type"
+        Me.BandedGridColumn5.FieldName = "design_type"
+        Me.BandedGridColumn5.Name = "BandedGridColumn5"
+        Me.BandedGridColumn5.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn5.Visible = True
         '
         'gridBand7
         '
@@ -3403,6 +3533,953 @@ Partial Class FormFGStock
         Me.LabelControl35.TabIndex = 8915
         Me.LabelControl35.Text = "Account"
         '
+        'XTPVAAlloc
+        '
+        Me.XTPVAAlloc.Controls.Add(Me.XTCVA)
+        Me.XTPVAAlloc.Controls.Add(Me.BtnShowFilterVA)
+        Me.XTPVAAlloc.Controls.Add(Me.PanelControlSOHVA)
+        Me.XTPVAAlloc.Name = "XTPVAAlloc"
+        Me.XTPVAAlloc.Size = New System.Drawing.Size(1164, 579)
+        Me.XTPVAAlloc.Text = "SOH - Virtual Account Allocation"
+        '
+        'XTCVA
+        '
+        Me.XTCVA.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCVA.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XTCVA.Location = New System.Drawing.Point(0, 168)
+        Me.XTCVA.Name = "XTCVA"
+        Me.XTCVA.SelectedTabPage = Me.XtraTabPage1
+        Me.XTCVA.Size = New System.Drawing.Size(1164, 411)
+        Me.XTCVA.TabIndex = 8932
+        Me.XTCVA.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Controls.Add(Me.GCSOHVA)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1135, 405)
+        Me.XtraTabPage1.Text = "By Size Barcode"
+        '
+        'GCSOHVA
+        '
+        Me.GCSOHVA.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSOHVA.Location = New System.Drawing.Point(0, 0)
+        Me.GCSOHVA.MainView = Me.GVSOHVA
+        Me.GCSOHVA.Name = "GCSOHVA"
+        Me.GCSOHVA.Size = New System.Drawing.Size(1135, 405)
+        Me.GCSOHVA.TabIndex = 0
+        Me.GCSOHVA.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSOHVA})
+        '
+        'GVSOHVA
+        '
+        Me.GVSOHVA.ColumnPanelRowHeight = 30
+        Me.GVSOHVA.GridControl = Me.GCSOHVA
+        Me.GVSOHVA.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_avl", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rsv", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ttl", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_normal", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_cost", Nothing, "{0:N2}")})
+        Me.GVSOHVA.Name = "GVSOHVA"
+        Me.GVSOHVA.OptionsBehavior.ReadOnly = True
+        Me.GVSOHVA.OptionsFind.AlwaysVisible = True
+        Me.GVSOHVA.OptionsView.ColumnAutoWidth = False
+        Me.GVSOHVA.OptionsView.ShowFooter = True
+        Me.GVSOHVA.OptionsView.ShowGroupPanel = False
+        '
+        'XtraTabPage2
+        '
+        Me.XtraTabPage2.Controls.Add(Me.GridControl2)
+        Me.XtraTabPage2.Name = "XtraTabPage2"
+        Me.XtraTabPage2.PageVisible = False
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1135, 405)
+        Me.XtraTabPage2.Text = "By Code"
+        '
+        'GridControl2
+        '
+        Me.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridControl2.Location = New System.Drawing.Point(0, 0)
+        Me.GridControl2.MainView = Me.BandedGridView1
+        Me.GridControl2.Name = "GridControl2"
+        Me.GridControl2.Size = New System.Drawing.Size(1135, 405)
+        Me.GridControl2.TabIndex = 0
+        Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BandedGridView1})
+        '
+        'BandedGridView1
+        '
+        Me.BandedGridView1.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand9, Me.GridBand10, Me.GridBand11, Me.GridBand12, Me.GridBand13})
+        Me.BandedGridView1.ColumnPanelRowHeight = 35
+        Me.BandedGridView1.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn53, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn54, Me.BandedGridColumn8, Me.BandedGridColumn55, Me.BandedGridColumn56, Me.BandedGridColumn10, Me.BandedGridColumn57, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn58, Me.BandedGridColumn15, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn21, Me.BandedGridColumn22, Me.BandedGridColumn23, Me.BandedGridColumn24, Me.BandedGridColumn25, Me.BandedGridColumn26, Me.BandedGridColumn27, Me.BandedGridColumn28, Me.BandedGridColumn29, Me.BandedGridColumn30, Me.BandedGridColumn31, Me.BandedGridColumn32, Me.BandedGridColumn33, Me.BandedGridColumn34, Me.BandedGridColumn35, Me.BandedGridColumn36, Me.BandedGridColumn37, Me.BandedGridColumn38, Me.BandedGridColumn39, Me.BandedGridColumn40, Me.BandedGridColumn41, Me.BandedGridColumn42, Me.BandedGridColumn43, Me.BandedGridColumn44, Me.BandedGridColumn45, Me.BandedGridColumn46, Me.BandedGridColumn47, Me.BandedGridColumn48, Me.BandedGridColumn49, Me.BandedGridColumn59, Me.BandedGridColumn51, Me.BandedGridColumn60, Me.BandedGridColumn61, Me.BandedGridColumn52, Me.BandedGridColumn62, Me.BandedGridColumn50, Me.BandedGridColumn14, Me.BandedGridColumn9, Me.BandedGridColumn63, Me.BandedGridColumn16})
+        Me.BandedGridView1.GridControl = Me.GridControl2
+        Me.BandedGridView1.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty1", Me.BandedGridColumn17, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty2", Me.BandedGridColumn18, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty3", Me.BandedGridColumn19, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty4", Me.BandedGridColumn20, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty5", Me.BandedGridColumn21, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty6", Me.BandedGridColumn22, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty7", Me.BandedGridColumn23, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty8", Me.BandedGridColumn24, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty9", Me.BandedGridColumn25, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty0", Me.BandedGridColumn26, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty", Me.BandedGridColumn27, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty1", Me.BandedGridColumn28, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty2", Me.BandedGridColumn29, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty3", Me.BandedGridColumn30, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty4", Me.BandedGridColumn31, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty5", Me.BandedGridColumn32, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty6", Me.BandedGridColumn33, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty7", Me.BandedGridColumn34, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty8", Me.BandedGridColumn35, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty9", Me.BandedGridColumn36, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty0", Me.BandedGridColumn37, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty", Me.BandedGridColumn38, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty1", Me.BandedGridColumn39, "{0:N0})"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty2", Me.BandedGridColumn40, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty3", Me.BandedGridColumn41, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty4", Me.BandedGridColumn42, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty5", Me.BandedGridColumn43, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty6", Me.BandedGridColumn44, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty7", Me.BandedGridColumn45, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty8", Me.BandedGridColumn46, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty9", Me.BandedGridColumn47, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty0", Me.BandedGridColumn48, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty", Me.BandedGridColumn49, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_normal", Me.BandedGridColumn61, "{0:N0}")})
+        Me.BandedGridView1.Name = "BandedGridView1"
+        Me.BandedGridView1.OptionsBehavior.ReadOnly = True
+        Me.BandedGridView1.OptionsFind.AlwaysVisible = True
+        Me.BandedGridView1.OptionsPrint.AllowMultilineHeaders = True
+        Me.BandedGridView1.OptionsView.ColumnAutoWidth = False
+        Me.BandedGridView1.OptionsView.ShowFooter = True
+        Me.BandedGridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridBand9
+        '
+        Me.GridBand9.Columns.Add(Me.BandedGridColumn6)
+        Me.GridBand9.Columns.Add(Me.BandedGridColumn7)
+        Me.GridBand9.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridBand9.Name = "GridBand9"
+        Me.GridBand9.VisibleIndex = 0
+        Me.GridBand9.Width = 241
+        '
+        'BandedGridColumn6
+        '
+        Me.BandedGridColumn6.Caption = "Code"
+        Me.BandedGridColumn6.FieldName = "code"
+        Me.BandedGridColumn6.Name = "BandedGridColumn6"
+        Me.BandedGridColumn6.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn6.Visible = True
+        Me.BandedGridColumn6.Width = 77
+        '
+        'BandedGridColumn7
+        '
+        Me.BandedGridColumn7.Caption = "Description"
+        Me.BandedGridColumn7.FieldName = "name"
+        Me.BandedGridColumn7.Name = "BandedGridColumn7"
+        Me.BandedGridColumn7.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn7.Visible = True
+        Me.BandedGridColumn7.Width = 164
+        '
+        'GridBand10
+        '
+        Me.GridBand10.Columns.Add(Me.BandedGridColumn8)
+        Me.GridBand10.Columns.Add(Me.BandedGridColumn9)
+        Me.GridBand10.Columns.Add(Me.BandedGridColumn10)
+        Me.GridBand10.Columns.Add(Me.BandedGridColumn11)
+        Me.GridBand10.Columns.Add(Me.BandedGridColumn12)
+        Me.GridBand10.Columns.Add(Me.BandedGridColumn13)
+        Me.GridBand10.Columns.Add(Me.BandedGridColumn14)
+        Me.GridBand10.Columns.Add(Me.BandedGridColumn15)
+        Me.GridBand10.Columns.Add(Me.BandedGridColumn16)
+        Me.GridBand10.Name = "GridBand10"
+        Me.GridBand10.VisibleIndex = 1
+        Me.GridBand10.Width = 697
+        '
+        'BandedGridColumn8
+        '
+        Me.BandedGridColumn8.Caption = "Class"
+        Me.BandedGridColumn8.FieldName = "class"
+        Me.BandedGridColumn8.Name = "BandedGridColumn8"
+        Me.BandedGridColumn8.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn8.Visible = True
+        Me.BandedGridColumn8.Width = 70
+        '
+        'BandedGridColumn9
+        '
+        Me.BandedGridColumn9.Caption = "Season"
+        Me.BandedGridColumn9.FieldName = "season"
+        Me.BandedGridColumn9.Name = "BandedGridColumn9"
+        Me.BandedGridColumn9.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn9.Visible = True
+        '
+        'BandedGridColumn10
+        '
+        Me.BandedGridColumn10.Caption = "Status"
+        Me.BandedGridColumn10.FieldName = "stt"
+        Me.BandedGridColumn10.Name = "BandedGridColumn10"
+        Me.BandedGridColumn10.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn10.Visible = True
+        Me.BandedGridColumn10.Width = 59
+        '
+        'BandedGridColumn11
+        '
+        Me.BandedGridColumn11.Caption = "Account"
+        Me.BandedGridColumn11.FieldName = "comp_number"
+        Me.BandedGridColumn11.Name = "BandedGridColumn11"
+        Me.BandedGridColumn11.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn11.Visible = True
+        Me.BandedGridColumn11.Width = 65
+        '
+        'BandedGridColumn12
+        '
+        Me.BandedGridColumn12.Caption = "Acc Description"
+        Me.BandedGridColumn12.FieldName = "comp_name"
+        Me.BandedGridColumn12.Name = "BandedGridColumn12"
+        Me.BandedGridColumn12.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn12.Visible = True
+        Me.BandedGridColumn12.Width = 130
+        '
+        'BandedGridColumn13
+        '
+        Me.BandedGridColumn13.Caption = "Store Group"
+        Me.BandedGridColumn13.FieldName = "group_store"
+        Me.BandedGridColumn13.Name = "BandedGridColumn13"
+        Me.BandedGridColumn13.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn13.Visible = True
+        Me.BandedGridColumn13.Width = 73
+        '
+        'BandedGridColumn14
+        '
+        Me.BandedGridColumn14.Caption = "Rec. in WH"
+        Me.BandedGridColumn14.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn14.FieldName = "design_first_rec_wh"
+        Me.BandedGridColumn14.Name = "BandedGridColumn14"
+        Me.BandedGridColumn14.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn14.Visible = True
+        '
+        'BandedGridColumn15
+        '
+        Me.BandedGridColumn15.Caption = "Sizetype"
+        Me.BandedGridColumn15.FieldName = "size_type"
+        Me.BandedGridColumn15.Name = "BandedGridColumn15"
+        Me.BandedGridColumn15.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn15.Visible = True
+        '
+        'BandedGridColumn16
+        '
+        Me.BandedGridColumn16.Caption = "Design Type"
+        Me.BandedGridColumn16.FieldName = "design_type"
+        Me.BandedGridColumn16.Name = "BandedGridColumn16"
+        Me.BandedGridColumn16.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn16.Visible = True
+        '
+        'GridBand11
+        '
+        Me.GridBand11.Caption = "AVAILABLE"
+        Me.GridBand11.Columns.Add(Me.BandedGridColumn17)
+        Me.GridBand11.Columns.Add(Me.BandedGridColumn18)
+        Me.GridBand11.Columns.Add(Me.BandedGridColumn19)
+        Me.GridBand11.Columns.Add(Me.BandedGridColumn20)
+        Me.GridBand11.Columns.Add(Me.BandedGridColumn21)
+        Me.GridBand11.Columns.Add(Me.BandedGridColumn22)
+        Me.GridBand11.Columns.Add(Me.BandedGridColumn23)
+        Me.GridBand11.Columns.Add(Me.BandedGridColumn24)
+        Me.GridBand11.Columns.Add(Me.BandedGridColumn25)
+        Me.GridBand11.Columns.Add(Me.BandedGridColumn26)
+        Me.GridBand11.Columns.Add(Me.BandedGridColumn27)
+        Me.GridBand11.Name = "GridBand11"
+        Me.GridBand11.VisibleIndex = 2
+        Me.GridBand11.Width = 825
+        '
+        'BandedGridColumn17
+        '
+        Me.BandedGridColumn17.Caption = "avl_qty1"
+        Me.BandedGridColumn17.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn17.FieldName = "avl_qty1"
+        Me.BandedGridColumn17.Name = "BandedGridColumn17"
+        Me.BandedGridColumn17.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty1", "{0:N0}")})
+        Me.BandedGridColumn17.Visible = True
+        '
+        'BandedGridColumn18
+        '
+        Me.BandedGridColumn18.Caption = "avl_qty2"
+        Me.BandedGridColumn18.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn18.FieldName = "avl_qty2"
+        Me.BandedGridColumn18.Name = "BandedGridColumn18"
+        Me.BandedGridColumn18.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty2", "{0:N0}")})
+        Me.BandedGridColumn18.Visible = True
+        '
+        'BandedGridColumn19
+        '
+        Me.BandedGridColumn19.Caption = "avl_qty3"
+        Me.BandedGridColumn19.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn19.FieldName = "avl_qty3"
+        Me.BandedGridColumn19.Name = "BandedGridColumn19"
+        Me.BandedGridColumn19.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn19.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty3", "{0:N0}")})
+        Me.BandedGridColumn19.Visible = True
+        '
+        'BandedGridColumn20
+        '
+        Me.BandedGridColumn20.Caption = "avl_qty4"
+        Me.BandedGridColumn20.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn20.FieldName = "avl_qty4"
+        Me.BandedGridColumn20.Name = "BandedGridColumn20"
+        Me.BandedGridColumn20.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty4", "{0:N0}")})
+        Me.BandedGridColumn20.Visible = True
+        '
+        'BandedGridColumn21
+        '
+        Me.BandedGridColumn21.Caption = "avl_qty5"
+        Me.BandedGridColumn21.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn21.FieldName = "avl_qty5"
+        Me.BandedGridColumn21.Name = "BandedGridColumn21"
+        Me.BandedGridColumn21.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty5", "{0:N0}")})
+        Me.BandedGridColumn21.Visible = True
+        '
+        'BandedGridColumn22
+        '
+        Me.BandedGridColumn22.Caption = "avl_qty6"
+        Me.BandedGridColumn22.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn22.FieldName = "avl_qty6"
+        Me.BandedGridColumn22.Name = "BandedGridColumn22"
+        Me.BandedGridColumn22.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty6", "{0:N0}")})
+        Me.BandedGridColumn22.Visible = True
+        '
+        'BandedGridColumn23
+        '
+        Me.BandedGridColumn23.Caption = "avl_qty7"
+        Me.BandedGridColumn23.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn23.FieldName = "avl_qty7"
+        Me.BandedGridColumn23.Name = "BandedGridColumn23"
+        Me.BandedGridColumn23.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn23.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty7", "{0:N0}")})
+        Me.BandedGridColumn23.Visible = True
+        '
+        'BandedGridColumn24
+        '
+        Me.BandedGridColumn24.Caption = "avl_qty8"
+        Me.BandedGridColumn24.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn24.FieldName = "avl_qty8"
+        Me.BandedGridColumn24.Name = "BandedGridColumn24"
+        Me.BandedGridColumn24.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty8", "{0:N0}")})
+        Me.BandedGridColumn24.Visible = True
+        '
+        'BandedGridColumn25
+        '
+        Me.BandedGridColumn25.Caption = "avl_qty9"
+        Me.BandedGridColumn25.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn25.FieldName = "avl_qty9"
+        Me.BandedGridColumn25.Name = "BandedGridColumn25"
+        Me.BandedGridColumn25.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn25.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty9", "{0:N0}")})
+        Me.BandedGridColumn25.Visible = True
+        '
+        'BandedGridColumn26
+        '
+        Me.BandedGridColumn26.Caption = "avl_qty0"
+        Me.BandedGridColumn26.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn26.FieldName = "avl_qty0"
+        Me.BandedGridColumn26.Name = "BandedGridColumn26"
+        Me.BandedGridColumn26.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn26.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty0", "{0:N0}")})
+        Me.BandedGridColumn26.Visible = True
+        '
+        'BandedGridColumn27
+        '
+        Me.BandedGridColumn27.Caption = "Total"
+        Me.BandedGridColumn27.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn27.FieldName = "avl_qty"
+        Me.BandedGridColumn27.Name = "BandedGridColumn27"
+        Me.BandedGridColumn27.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn27.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty", "{0:N0}")})
+        Me.BandedGridColumn27.Visible = True
+        '
+        'GridBand12
+        '
+        Me.GridBand12.Caption = "RESERVED"
+        Me.GridBand12.Columns.Add(Me.BandedGridColumn28)
+        Me.GridBand12.Columns.Add(Me.BandedGridColumn29)
+        Me.GridBand12.Columns.Add(Me.BandedGridColumn30)
+        Me.GridBand12.Columns.Add(Me.BandedGridColumn31)
+        Me.GridBand12.Columns.Add(Me.BandedGridColumn32)
+        Me.GridBand12.Columns.Add(Me.BandedGridColumn33)
+        Me.GridBand12.Columns.Add(Me.BandedGridColumn34)
+        Me.GridBand12.Columns.Add(Me.BandedGridColumn35)
+        Me.GridBand12.Columns.Add(Me.BandedGridColumn36)
+        Me.GridBand12.Columns.Add(Me.BandedGridColumn37)
+        Me.GridBand12.Columns.Add(Me.BandedGridColumn38)
+        Me.GridBand12.Name = "GridBand12"
+        Me.GridBand12.VisibleIndex = 3
+        Me.GridBand12.Width = 825
+        '
+        'BandedGridColumn28
+        '
+        Me.BandedGridColumn28.Caption = "rsv_qty1"
+        Me.BandedGridColumn28.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn28.FieldName = "rsv_qty1"
+        Me.BandedGridColumn28.Name = "BandedGridColumn28"
+        Me.BandedGridColumn28.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn28.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty1", "{0:N0}")})
+        Me.BandedGridColumn28.Visible = True
+        '
+        'BandedGridColumn29
+        '
+        Me.BandedGridColumn29.Caption = "rsv_qty2"
+        Me.BandedGridColumn29.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn29.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn29.FieldName = "rsv_qty2"
+        Me.BandedGridColumn29.Name = "BandedGridColumn29"
+        Me.BandedGridColumn29.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn29.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty2", "{0:N0}")})
+        Me.BandedGridColumn29.Visible = True
+        '
+        'BandedGridColumn30
+        '
+        Me.BandedGridColumn30.Caption = "rsv_qty3"
+        Me.BandedGridColumn30.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn30.FieldName = "rsv_qty3"
+        Me.BandedGridColumn30.Name = "BandedGridColumn30"
+        Me.BandedGridColumn30.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn30.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty3", "{0:N0}")})
+        Me.BandedGridColumn30.Visible = True
+        '
+        'BandedGridColumn31
+        '
+        Me.BandedGridColumn31.Caption = "rsv_qty4"
+        Me.BandedGridColumn31.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn31.FieldName = "rsv_qty4"
+        Me.BandedGridColumn31.Name = "BandedGridColumn31"
+        Me.BandedGridColumn31.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn31.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty4", "{0:N0}")})
+        Me.BandedGridColumn31.Visible = True
+        '
+        'BandedGridColumn32
+        '
+        Me.BandedGridColumn32.Caption = "rsv_qty5"
+        Me.BandedGridColumn32.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn32.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn32.FieldName = "rsv_qty5"
+        Me.BandedGridColumn32.Name = "BandedGridColumn32"
+        Me.BandedGridColumn32.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn32.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty5", "{0:N0}")})
+        Me.BandedGridColumn32.Visible = True
+        '
+        'BandedGridColumn33
+        '
+        Me.BandedGridColumn33.Caption = "rsv_qty6"
+        Me.BandedGridColumn33.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn33.FieldName = "rsv_qty6"
+        Me.BandedGridColumn33.Name = "BandedGridColumn33"
+        Me.BandedGridColumn33.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn33.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty6", "{0:N0}")})
+        Me.BandedGridColumn33.Visible = True
+        '
+        'BandedGridColumn34
+        '
+        Me.BandedGridColumn34.Caption = "rsv_qty7"
+        Me.BandedGridColumn34.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn34.FieldName = "rsv_qty7"
+        Me.BandedGridColumn34.Name = "BandedGridColumn34"
+        Me.BandedGridColumn34.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn34.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty7", "{0:N0}")})
+        Me.BandedGridColumn34.Visible = True
+        '
+        'BandedGridColumn35
+        '
+        Me.BandedGridColumn35.Caption = "rsv_qty8"
+        Me.BandedGridColumn35.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn35.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn35.FieldName = "rsv_qty8"
+        Me.BandedGridColumn35.Name = "BandedGridColumn35"
+        Me.BandedGridColumn35.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn35.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty8", "{0:N0}")})
+        Me.BandedGridColumn35.Visible = True
+        '
+        'BandedGridColumn36
+        '
+        Me.BandedGridColumn36.Caption = "rsv_qty9"
+        Me.BandedGridColumn36.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn36.FieldName = "rsv_qty9"
+        Me.BandedGridColumn36.Name = "BandedGridColumn36"
+        Me.BandedGridColumn36.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn36.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty9", "{0:N0}")})
+        Me.BandedGridColumn36.Visible = True
+        '
+        'BandedGridColumn37
+        '
+        Me.BandedGridColumn37.Caption = "rsv_qty0"
+        Me.BandedGridColumn37.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn37.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn37.FieldName = "rsv_qty0"
+        Me.BandedGridColumn37.Name = "BandedGridColumn37"
+        Me.BandedGridColumn37.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn37.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty0", "{0:N0}")})
+        Me.BandedGridColumn37.Visible = True
+        '
+        'BandedGridColumn38
+        '
+        Me.BandedGridColumn38.Caption = "Total"
+        Me.BandedGridColumn38.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn38.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn38.FieldName = "rsv_qty"
+        Me.BandedGridColumn38.Name = "BandedGridColumn38"
+        Me.BandedGridColumn38.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn38.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty", "{0:N0}")})
+        Me.BandedGridColumn38.Visible = True
+        '
+        'GridBand13
+        '
+        Me.GridBand13.Caption = "TOTAL"
+        Me.GridBand13.Columns.Add(Me.BandedGridColumn39)
+        Me.GridBand13.Columns.Add(Me.BandedGridColumn40)
+        Me.GridBand13.Columns.Add(Me.BandedGridColumn41)
+        Me.GridBand13.Columns.Add(Me.BandedGridColumn42)
+        Me.GridBand13.Columns.Add(Me.BandedGridColumn43)
+        Me.GridBand13.Columns.Add(Me.BandedGridColumn44)
+        Me.GridBand13.Columns.Add(Me.BandedGridColumn45)
+        Me.GridBand13.Columns.Add(Me.BandedGridColumn46)
+        Me.GridBand13.Columns.Add(Me.BandedGridColumn47)
+        Me.GridBand13.Columns.Add(Me.BandedGridColumn48)
+        Me.GridBand13.Columns.Add(Me.BandedGridColumn49)
+        Me.GridBand13.Columns.Add(Me.BandedGridColumn50)
+        Me.GridBand13.Columns.Add(Me.BandedGridColumn51)
+        Me.GridBand13.Columns.Add(Me.BandedGridColumn52)
+        Me.GridBand13.Name = "GridBand13"
+        Me.GridBand13.VisibleIndex = 4
+        Me.GridBand13.Width = 1050
+        '
+        'BandedGridColumn39
+        '
+        Me.BandedGridColumn39.Caption = "ttl_qty1"
+        Me.BandedGridColumn39.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn39.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn39.FieldName = "ttl_qty1"
+        Me.BandedGridColumn39.Name = "BandedGridColumn39"
+        Me.BandedGridColumn39.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn39.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty1", "{0:N0}")})
+        Me.BandedGridColumn39.Visible = True
+        '
+        'BandedGridColumn40
+        '
+        Me.BandedGridColumn40.Caption = "ttl_qty2"
+        Me.BandedGridColumn40.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn40.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn40.FieldName = "ttl_qty2"
+        Me.BandedGridColumn40.Name = "BandedGridColumn40"
+        Me.BandedGridColumn40.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn40.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty2", "{0:N0}")})
+        Me.BandedGridColumn40.Visible = True
+        '
+        'BandedGridColumn41
+        '
+        Me.BandedGridColumn41.Caption = "ttl_qty3"
+        Me.BandedGridColumn41.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn41.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn41.FieldName = "ttl_qty3"
+        Me.BandedGridColumn41.Name = "BandedGridColumn41"
+        Me.BandedGridColumn41.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn41.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty3", "{0:N0}")})
+        Me.BandedGridColumn41.Visible = True
+        '
+        'BandedGridColumn42
+        '
+        Me.BandedGridColumn42.Caption = "ttl_qty4"
+        Me.BandedGridColumn42.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn42.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn42.FieldName = "ttl_qty4"
+        Me.BandedGridColumn42.Name = "BandedGridColumn42"
+        Me.BandedGridColumn42.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn42.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty4", "{0:N0}")})
+        Me.BandedGridColumn42.Visible = True
+        '
+        'BandedGridColumn43
+        '
+        Me.BandedGridColumn43.Caption = "ttl_qty5"
+        Me.BandedGridColumn43.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn43.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn43.FieldName = "ttl_qty5"
+        Me.BandedGridColumn43.Name = "BandedGridColumn43"
+        Me.BandedGridColumn43.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn43.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty5", "{0:N0}")})
+        Me.BandedGridColumn43.Visible = True
+        '
+        'BandedGridColumn44
+        '
+        Me.BandedGridColumn44.Caption = "ttl_qty6"
+        Me.BandedGridColumn44.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn44.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn44.FieldName = "ttl_qty6"
+        Me.BandedGridColumn44.Name = "BandedGridColumn44"
+        Me.BandedGridColumn44.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn44.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty6", "{0:N0}")})
+        Me.BandedGridColumn44.Visible = True
+        '
+        'BandedGridColumn45
+        '
+        Me.BandedGridColumn45.Caption = "ttl_qty7"
+        Me.BandedGridColumn45.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn45.FieldName = "ttl_qty7"
+        Me.BandedGridColumn45.Name = "BandedGridColumn45"
+        Me.BandedGridColumn45.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn45.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty7", "{0:N0}")})
+        Me.BandedGridColumn45.Visible = True
+        '
+        'BandedGridColumn46
+        '
+        Me.BandedGridColumn46.Caption = "ttl_qty8"
+        Me.BandedGridColumn46.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn46.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn46.FieldName = "ttl_qty8"
+        Me.BandedGridColumn46.Name = "BandedGridColumn46"
+        Me.BandedGridColumn46.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn46.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty8", "{0:N0}")})
+        Me.BandedGridColumn46.Visible = True
+        '
+        'BandedGridColumn47
+        '
+        Me.BandedGridColumn47.Caption = "ttl_qty9"
+        Me.BandedGridColumn47.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn47.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn47.FieldName = "ttl_qty9"
+        Me.BandedGridColumn47.Name = "BandedGridColumn47"
+        Me.BandedGridColumn47.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn47.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty9", "{0:N0}")})
+        Me.BandedGridColumn47.Visible = True
+        '
+        'BandedGridColumn48
+        '
+        Me.BandedGridColumn48.Caption = "ttl_qty0"
+        Me.BandedGridColumn48.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn48.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn48.FieldName = "ttl_qty0"
+        Me.BandedGridColumn48.Name = "BandedGridColumn48"
+        Me.BandedGridColumn48.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn48.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty0", "{0:N0}")})
+        Me.BandedGridColumn48.Visible = True
+        '
+        'BandedGridColumn49
+        '
+        Me.BandedGridColumn49.Caption = "Total"
+        Me.BandedGridColumn49.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn49.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn49.FieldName = "ttl_qty"
+        Me.BandedGridColumn49.Name = "BandedGridColumn49"
+        Me.BandedGridColumn49.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn49.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty", "{0:N0}")})
+        Me.BandedGridColumn49.Visible = True
+        '
+        'BandedGridColumn50
+        '
+        Me.BandedGridColumn50.Caption = "Price Type"
+        Me.BandedGridColumn50.FieldName = "price_type"
+        Me.BandedGridColumn50.Name = "BandedGridColumn50"
+        Me.BandedGridColumn50.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn50.Visible = True
+        '
+        'BandedGridColumn51
+        '
+        Me.BandedGridColumn51.Caption = "Unit Price"
+        Me.BandedGridColumn51.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn51.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn51.FieldName = "unit_price"
+        Me.BandedGridColumn51.Name = "BandedGridColumn51"
+        Me.BandedGridColumn51.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn51.Visible = True
+        '
+        'BandedGridColumn52
+        '
+        Me.BandedGridColumn52.Caption = "Amount"
+        Me.BandedGridColumn52.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn52.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn52.FieldName = "amount"
+        Me.BandedGridColumn52.Name = "BandedGridColumn52"
+        Me.BandedGridColumn52.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn52.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N0}")})
+        Me.BandedGridColumn52.Visible = True
+        '
+        'BandedGridColumn53
+        '
+        Me.BandedGridColumn53.Caption = "id_design"
+        Me.BandedGridColumn53.FieldName = "id_design"
+        Me.BandedGridColumn53.Name = "BandedGridColumn53"
+        Me.BandedGridColumn53.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        '
+        'BandedGridColumn54
+        '
+        Me.BandedGridColumn54.Caption = "id_class"
+        Me.BandedGridColumn54.FieldName = "id_class"
+        Me.BandedGridColumn54.Name = "BandedGridColumn54"
+        Me.BandedGridColumn54.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        '
+        'BandedGridColumn55
+        '
+        Me.BandedGridColumn55.Caption = "id_design_cat"
+        Me.BandedGridColumn55.FieldName = "id_design_cat"
+        Me.BandedGridColumn55.Name = "BandedGridColumn55"
+        Me.BandedGridColumn55.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        '
+        'BandedGridColumn56
+        '
+        Me.BandedGridColumn56.Caption = "design_cat"
+        Me.BandedGridColumn56.FieldName = "design_cat"
+        Me.BandedGridColumn56.Name = "BandedGridColumn56"
+        Me.BandedGridColumn56.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        '
+        'BandedGridColumn57
+        '
+        Me.BandedGridColumn57.Caption = "id_comp"
+        Me.BandedGridColumn57.FieldName = "id_comp"
+        Me.BandedGridColumn57.Name = "BandedGridColumn57"
+        Me.BandedGridColumn57.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        '
+        'BandedGridColumn58
+        '
+        Me.BandedGridColumn58.Caption = "Store Group Desc"
+        Me.BandedGridColumn58.FieldName = "group_store_desc"
+        Me.BandedGridColumn58.Name = "BandedGridColumn58"
+        Me.BandedGridColumn58.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        '
+        'BandedGridColumn59
+        '
+        Me.BandedGridColumn59.Caption = "Normal Price"
+        Me.BandedGridColumn59.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn59.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn59.FieldName = "normal_price"
+        Me.BandedGridColumn59.Name = "BandedGridColumn59"
+        Me.BandedGridColumn59.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn59.Visible = True
+        '
+        'BandedGridColumn60
+        '
+        Me.BandedGridColumn60.Caption = "Unit Cost"
+        Me.BandedGridColumn60.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn60.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn60.FieldName = "unit_cost"
+        Me.BandedGridColumn60.Name = "BandedGridColumn60"
+        Me.BandedGridColumn60.OptionsColumn.ShowInCustomizationForm = False
+        Me.BandedGridColumn60.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        '
+        'BandedGridColumn61
+        '
+        Me.BandedGridColumn61.Caption = "Amount Normal"
+        Me.BandedGridColumn61.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn61.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn61.FieldName = "amount_normal"
+        Me.BandedGridColumn61.Name = "BandedGridColumn61"
+        Me.BandedGridColumn61.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn61.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_normal", "{0:N0}")})
+        '
+        'BandedGridColumn62
+        '
+        Me.BandedGridColumn62.Caption = "Amount Cost"
+        Me.BandedGridColumn62.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn62.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn62.FieldName = "amount_cost"
+        Me.BandedGridColumn62.Name = "BandedGridColumn62"
+        Me.BandedGridColumn62.OptionsColumn.ShowInCustomizationForm = False
+        Me.BandedGridColumn62.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn62.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_cost", "{0:N2}")})
+        '
+        'BandedGridColumn63
+        '
+        Me.BandedGridColumn63.Caption = "Range"
+        Me.BandedGridColumn63.FieldName = "range"
+        Me.BandedGridColumn63.Name = "BandedGridColumn63"
+        Me.BandedGridColumn63.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
+        Me.BandedGridColumn63.Visible = True
+        '
+        'BtnShowFilterVA
+        '
+        Me.BtnShowFilterVA.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnShowFilterVA.Appearance.Options.UseFont = True
+        Me.BtnShowFilterVA.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BtnShowFilterVA.Image = CType(resources.GetObject("BtnShowFilterVA.Image"), System.Drawing.Image)
+        Me.BtnShowFilterVA.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BtnShowFilterVA.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftTop
+        Me.BtnShowFilterVA.Location = New System.Drawing.Point(0, 148)
+        Me.BtnShowFilterVA.LookAndFeel.SkinName = "Blue"
+        Me.BtnShowFilterVA.Name = "BtnShowFilterVA"
+        Me.BtnShowFilterVA.Size = New System.Drawing.Size(1164, 20)
+        Me.BtnShowFilterVA.TabIndex = 8931
+        Me.BtnShowFilterVA.Text = "Show Filter"
+        Me.BtnShowFilterVA.Visible = False
+        '
+        'PanelControlSOHVA
+        '
+        Me.PanelControlSOHVA.Controls.Add(Me.PanelControl2)
+        Me.PanelControlSOHVA.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlSOHVA.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlSOHVA.Name = "PanelControlSOHVA"
+        Me.PanelControlSOHVA.Size = New System.Drawing.Size(1164, 148)
+        Me.PanelControlSOHVA.TabIndex = 8930
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.LookUpEdit2)
+        Me.PanelControl2.Controls.Add(Me.LabelControl37)
+        Me.PanelControl2.Controls.Add(Me.SLEAccountVA)
+        Me.PanelControl2.Controls.Add(Me.PanelControl5)
+        Me.PanelControl2.Controls.Add(Me.BtnBrowseProductVA)
+        Me.PanelControl2.Controls.Add(Me.CEFindAllProductVA)
+        Me.PanelControl2.Controls.Add(Me.TxtProductVA)
+        Me.PanelControl2.Controls.Add(Me.LabelControl38)
+        Me.PanelControl2.Controls.Add(Me.DEUntilAccVA)
+        Me.PanelControl2.Controls.Add(Me.LabelControl39)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl2.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(444, 144)
+        Me.PanelControl2.TabIndex = 8927
+        '
+        'LookUpEdit2
+        '
+        Me.LookUpEdit2.Location = New System.Drawing.Point(183, 172)
+        Me.LookUpEdit2.Name = "LookUpEdit2"
+        Me.LookUpEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LookUpEdit2.Size = New System.Drawing.Size(185, 20)
+        Me.LookUpEdit2.TabIndex = 8930
+        '
+        'LabelControl37
+        '
+        Me.LabelControl37.Location = New System.Drawing.Point(96, 175)
+        Me.LabelControl37.Name = "LabelControl37"
+        Me.LabelControl37.Size = New System.Drawing.Size(50, 13)
+        Me.LabelControl37.TabIndex = 8929
+        Me.LabelControl37.Text = "Price Type"
+        '
+        'SLEAccountVA
+        '
+        Me.SLEAccountVA.Location = New System.Drawing.Point(96, 12)
+        Me.SLEAccountVA.Name = "SLEAccountVA"
+        Me.SLEAccountVA.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEAccountVA.Properties.Appearance.Options.UseFont = True
+        Me.SLEAccountVA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEAccountVA.Properties.ShowClearButton = False
+        Me.SLEAccountVA.Properties.View = Me.GridView6
+        Me.SLEAccountVA.Size = New System.Drawing.Size(329, 20)
+        Me.SLEAccountVA.TabIndex = 8928
+        '
+        'GridView6
+        '
+        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn66, Me.GridColumn67, Me.GridColumn68})
+        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn66
+        '
+        Me.GridColumn66.Caption = "Id Comp"
+        Me.GridColumn66.FieldName = "id_comp"
+        Me.GridColumn66.Name = "GridColumn66"
+        '
+        'GridColumn67
+        '
+        Me.GridColumn67.Caption = "Account"
+        Me.GridColumn67.FieldName = "comp_number"
+        Me.GridColumn67.Name = "GridColumn67"
+        Me.GridColumn67.Visible = True
+        Me.GridColumn67.VisibleIndex = 0
+        '
+        'GridColumn68
+        '
+        Me.GridColumn68.Caption = "Description"
+        Me.GridColumn68.FieldName = "comp_name_label"
+        Me.GridColumn68.Name = "GridColumn68"
+        Me.GridColumn68.Visible = True
+        Me.GridColumn68.VisibleIndex = 1
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.Controls.Add(Me.BtnViewAccVA)
+        Me.PanelControl5.Controls.Add(Me.BtnExportToXLSAccVA)
+        Me.PanelControl5.Controls.Add(Me.BtnHideFilterAccVA)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl5.Location = New System.Drawing.Point(2, 105)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(440, 37)
+        Me.PanelControl5.TabIndex = 8925
+        '
+        'BtnViewAccVA
+        '
+        Me.BtnViewAccVA.Image = CType(resources.GetObject("BtnViewAccVA.Image"), System.Drawing.Image)
+        Me.BtnViewAccVA.Location = New System.Drawing.Point(354, 9)
+        Me.BtnViewAccVA.LookAndFeel.SkinName = "Blue"
+        Me.BtnViewAccVA.Name = "BtnViewAccVA"
+        Me.BtnViewAccVA.Size = New System.Drawing.Size(69, 20)
+        Me.BtnViewAccVA.TabIndex = 8906
+        Me.BtnViewAccVA.Text = "View"
+        '
+        'BtnExportToXLSAccVA
+        '
+        Me.BtnExportToXLSAccVA.Image = CType(resources.GetObject("BtnExportToXLSAccVA.Image"), System.Drawing.Image)
+        Me.BtnExportToXLSAccVA.Location = New System.Drawing.Point(257, 9)
+        Me.BtnExportToXLSAccVA.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLSAccVA.Name = "BtnExportToXLSAccVA"
+        Me.BtnExportToXLSAccVA.Size = New System.Drawing.Size(94, 20)
+        Me.BtnExportToXLSAccVA.TabIndex = 8907
+        Me.BtnExportToXLSAccVA.Text = "Export to XLS"
+        '
+        'BtnHideFilterAccVA
+        '
+        Me.BtnHideFilterAccVA.Image = CType(resources.GetObject("BtnHideFilterAccVA.Image"), System.Drawing.Image)
+        Me.BtnHideFilterAccVA.Location = New System.Drawing.Point(169, 9)
+        Me.BtnHideFilterAccVA.LookAndFeel.SkinName = "Blue"
+        Me.BtnHideFilterAccVA.Name = "BtnHideFilterAccVA"
+        Me.BtnHideFilterAccVA.Size = New System.Drawing.Size(84, 20)
+        Me.BtnHideFilterAccVA.TabIndex = 8926
+        Me.BtnHideFilterAccVA.Text = "Hide Filter"
+        '
+        'BtnBrowseProductVA
+        '
+        Me.BtnBrowseProductVA.Enabled = False
+        Me.BtnBrowseProductVA.Image = CType(resources.GetObject("BtnBrowseProductVA.Image"), System.Drawing.Image)
+        Me.BtnBrowseProductVA.Location = New System.Drawing.Point(399, 38)
+        Me.BtnBrowseProductVA.LookAndFeel.SkinName = "Blue"
+        Me.BtnBrowseProductVA.Name = "BtnBrowseProductVA"
+        Me.BtnBrowseProductVA.Size = New System.Drawing.Size(26, 20)
+        Me.BtnBrowseProductVA.TabIndex = 8904
+        Me.BtnBrowseProductVA.Text = "..."
+        '
+        'CEFindAllProductVA
+        '
+        Me.CEFindAllProductVA.EditValue = True
+        Me.CEFindAllProductVA.Location = New System.Drawing.Point(8, 38)
+        Me.CEFindAllProductVA.Name = "CEFindAllProductVA"
+        Me.CEFindAllProductVA.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CEFindAllProductVA.Properties.Appearance.Options.UseFont = True
+        Me.CEFindAllProductVA.Properties.Caption = "All Product "
+        Me.CEFindAllProductVA.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.CEFindAllProductVA.Size = New System.Drawing.Size(72, 19)
+        Me.CEFindAllProductVA.TabIndex = 8907
+        '
+        'TxtProductVA
+        '
+        Me.TxtProductVA.EditValue = ""
+        Me.TxtProductVA.Enabled = False
+        Me.TxtProductVA.Location = New System.Drawing.Point(96, 38)
+        Me.TxtProductVA.Name = "TxtProductVA"
+        Me.TxtProductVA.Size = New System.Drawing.Size(297, 20)
+        Me.TxtProductVA.TabIndex = 8906
+        '
+        'LabelControl38
+        '
+        Me.LabelControl38.Location = New System.Drawing.Point(9, 67)
+        Me.LabelControl38.Name = "LabelControl38"
+        Me.LabelControl38.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl38.TabIndex = 8903
+        Me.LabelControl38.Text = "Until"
+        '
+        'DEUntilAccVA
+        '
+        Me.DEUntilAccVA.EditValue = Nothing
+        Me.DEUntilAccVA.Location = New System.Drawing.Point(96, 64)
+        Me.DEUntilAccVA.Name = "DEUntilAccVA"
+        Me.DEUntilAccVA.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEUntilAccVA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilAccVA.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEUntilAccVA.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntilAccVA.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilAccVA.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEUntilAccVA.Size = New System.Drawing.Size(329, 20)
+        Me.DEUntilAccVA.TabIndex = 8905
+        '
+        'LabelControl39
+        '
+        Me.LabelControl39.Location = New System.Drawing.Point(9, 15)
+        Me.LabelControl39.Name = "LabelControl39"
+        Me.LabelControl39.Size = New System.Drawing.Size(39, 13)
+        Me.LabelControl39.TabIndex = 8915
+        Me.LabelControl39.Text = "Account"
+        '
         'GridColumn51
         '
         Me.GridColumn51.Caption = "Total"
@@ -3413,23 +4490,6 @@ Partial Class FormFGStock
         Me.GridColumn51.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", "{0:n2}")})
         Me.GridColumn51.Visible = True
         Me.GridColumn51.VisibleIndex = 0
-        '
-        'GridColumn34
-        '
-        Me.GridColumn34.Caption = "Design Type"
-        Me.GridColumn34.FieldName = "design_type"
-        Me.GridColumn34.Name = "GridColumn34"
-        Me.GridColumn34.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
-        Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 18
-        '
-        'BandedGridColumn5
-        '
-        Me.BandedGridColumn5.Caption = "Design Type"
-        Me.BandedGridColumn5.FieldName = "design_type"
-        Me.BandedGridColumn5.Name = "BandedGridColumn5"
-        Me.BandedGridColumn5.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
-        Me.BandedGridColumn5.Visible = True
         '
         'FormFGStock
         '
@@ -3560,6 +4620,29 @@ Partial Class FormFGStock
         CType(Me.TxtProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPVAAlloc.ResumeLayout(False)
+        CType(Me.XTCVA, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCVA.ResumeLayout(False)
+        Me.XtraTabPage1.ResumeLayout(False)
+        CType(Me.GCSOHVA, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSOHVA, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage2.ResumeLayout(False)
+        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlSOHVA, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlSOHVA.ResumeLayout(False)
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.LookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEAccountVA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        CType(Me.CEFindAllProductVA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtProductVA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilAccVA.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilAccVA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3859,4 +4942,95 @@ Partial Class FormFGStock
     Friend WithEvents BandedGridColumnrange_code As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BandedGridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents XTPVAAlloc As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTCVA As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCSOHVA As DevExpress.XtraGrid.GridControl
+    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents BandedGridView1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridBand9 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn6 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand10 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn12 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn13 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn15 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn16 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand11 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn17 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn18 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn19 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn20 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn21 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn22 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn23 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn24 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn25 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn26 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn27 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand12 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn28 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn29 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn30 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn31 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn32 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn33 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn34 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn35 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn36 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn37 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn38 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand13 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn39 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn40 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn41 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn42 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn43 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn44 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn45 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn46 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn47 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn48 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn49 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn50 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn51 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn52 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn53 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn54 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn55 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn56 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn57 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn58 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn59 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn60 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn61 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn62 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn63 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BtnShowFilterVA As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControlSOHVA As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LookUpEdit2 As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl37 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEAccountVA As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn66 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn67 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn68 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnViewAccVA As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnExportToXLSAccVA As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnHideFilterAccVA As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnBrowseProductVA As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents CEFindAllProductVA As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents TxtProductVA As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl38 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEUntilAccVA As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl39 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GVSOHVA As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
 End Class
