@@ -388,9 +388,8 @@ Partial Class FormFGStock
         Me.BandedGridColumn62 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn63 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BtnShowFilterVA = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlSOHVA = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl34 = New DevExpress.XtraEditors.LabelControl()
         Me.LookUpEdit2 = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl37 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEAccountVA = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -526,8 +525,8 @@ Partial Class FormFGStock
         Me.XtraTabPage2.SuspendLayout()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
+        CType(Me.PanelControlSOHVA, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlSOHVA.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.LookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3538,7 +3537,7 @@ Partial Class FormFGStock
         '
         Me.XTPVAAlloc.Controls.Add(Me.XTCVA)
         Me.XTPVAAlloc.Controls.Add(Me.BtnShowFilterVA)
-        Me.XTPVAAlloc.Controls.Add(Me.PanelControl1)
+        Me.XTPVAAlloc.Controls.Add(Me.PanelControlSOHVA)
         Me.XTPVAAlloc.Name = "XTPVAAlloc"
         Me.XTPVAAlloc.Size = New System.Drawing.Size(1164, 579)
         Me.XTPVAAlloc.Text = "SOH - Virtual Account Allocation"
@@ -3547,10 +3546,10 @@ Partial Class FormFGStock
         '
         Me.XTCVA.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCVA.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
-        Me.XTCVA.Location = New System.Drawing.Point(0, 174)
+        Me.XTCVA.Location = New System.Drawing.Point(0, 168)
         Me.XTCVA.Name = "XTCVA"
         Me.XTCVA.SelectedTabPage = Me.XtraTabPage1
-        Me.XTCVA.Size = New System.Drawing.Size(1164, 405)
+        Me.XTCVA.Size = New System.Drawing.Size(1164, 411)
         Me.XTCVA.TabIndex = 8932
         Me.XTCVA.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
         '
@@ -3558,7 +3557,7 @@ Partial Class FormFGStock
         '
         Me.XtraTabPage1.Controls.Add(Me.GCSOHVA)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(1135, 399)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1135, 405)
         Me.XtraTabPage1.Text = "By Size Barcode"
         '
         'GCSOHVA
@@ -3567,7 +3566,7 @@ Partial Class FormFGStock
         Me.GCSOHVA.Location = New System.Drawing.Point(0, 0)
         Me.GCSOHVA.MainView = Me.GVSOHVA
         Me.GCSOHVA.Name = "GCSOHVA"
-        Me.GCSOHVA.Size = New System.Drawing.Size(1135, 399)
+        Me.GCSOHVA.Size = New System.Drawing.Size(1135, 405)
         Me.GCSOHVA.TabIndex = 0
         Me.GCSOHVA.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSOHVA})
         '
@@ -3588,7 +3587,7 @@ Partial Class FormFGStock
         Me.XtraTabPage2.Controls.Add(Me.GridControl2)
         Me.XtraTabPage2.Name = "XtraTabPage2"
         Me.XtraTabPage2.PageVisible = False
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1135, 399)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1135, 405)
         Me.XtraTabPage2.Text = "By Code"
         '
         'GridControl2
@@ -3597,7 +3596,7 @@ Partial Class FormFGStock
         Me.GridControl2.Location = New System.Drawing.Point(0, 0)
         Me.GridControl2.MainView = Me.BandedGridView1
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(1135, 399)
+        Me.GridControl2.Size = New System.Drawing.Size(1135, 405)
         Me.GridControl2.TabIndex = 0
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BandedGridView1})
         '
@@ -4285,7 +4284,7 @@ Partial Class FormFGStock
         Me.BtnShowFilterVA.Image = CType(resources.GetObject("BtnShowFilterVA.Image"), System.Drawing.Image)
         Me.BtnShowFilterVA.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
         Me.BtnShowFilterVA.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftTop
-        Me.BtnShowFilterVA.Location = New System.Drawing.Point(0, 154)
+        Me.BtnShowFilterVA.Location = New System.Drawing.Point(0, 148)
         Me.BtnShowFilterVA.LookAndFeel.SkinName = "Blue"
         Me.BtnShowFilterVA.Name = "BtnShowFilterVA"
         Me.BtnShowFilterVA.Size = New System.Drawing.Size(1164, 20)
@@ -4293,18 +4292,17 @@ Partial Class FormFGStock
         Me.BtnShowFilterVA.Text = "Show Filter"
         Me.BtnShowFilterVA.Visible = False
         '
-        'PanelControl1
+        'PanelControlSOHVA
         '
-        Me.PanelControl1.Controls.Add(Me.PanelControl2)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1164, 154)
-        Me.PanelControl1.TabIndex = 8930
+        Me.PanelControlSOHVA.Controls.Add(Me.PanelControl2)
+        Me.PanelControlSOHVA.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlSOHVA.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlSOHVA.Name = "PanelControlSOHVA"
+        Me.PanelControlSOHVA.Size = New System.Drawing.Size(1164, 148)
+        Me.PanelControlSOHVA.TabIndex = 8930
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.LabelControl34)
         Me.PanelControl2.Controls.Add(Me.LookUpEdit2)
         Me.PanelControl2.Controls.Add(Me.LabelControl37)
         Me.PanelControl2.Controls.Add(Me.SLEAccountVA)
@@ -4318,16 +4316,8 @@ Partial Class FormFGStock
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl2.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(444, 150)
+        Me.PanelControl2.Size = New System.Drawing.Size(444, 144)
         Me.PanelControl2.TabIndex = 8927
-        '
-        'LabelControl34
-        '
-        Me.LabelControl34.Location = New System.Drawing.Point(299, 90)
-        Me.LabelControl34.Name = "LabelControl34"
-        Me.LabelControl34.Size = New System.Drawing.Size(126, 13)
-        Me.LabelControl34.TabIndex = 8928
-        Me.LabelControl34.Text = "Press F7 to show unit cost"
         '
         'LookUpEdit2
         '
@@ -4393,7 +4383,7 @@ Partial Class FormFGStock
         Me.PanelControl5.Controls.Add(Me.BtnExportToXLSAccVA)
         Me.PanelControl5.Controls.Add(Me.BtnHideFilterAccVA)
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl5.Location = New System.Drawing.Point(2, 111)
+        Me.PanelControl5.Location = New System.Drawing.Point(2, 105)
         Me.PanelControl5.Name = "PanelControl5"
         Me.PanelControl5.Size = New System.Drawing.Size(440, 37)
         Me.PanelControl5.TabIndex = 8925
@@ -4639,8 +4629,8 @@ Partial Class FormFGStock
         Me.XtraTabPage2.ResumeLayout(False)
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PanelControlSOHVA, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlSOHVA.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -5023,9 +5013,8 @@ Partial Class FormFGStock
     Friend WithEvents BandedGridColumn62 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn63 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BtnShowFilterVA As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControlSOHVA As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents LabelControl34 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LookUpEdit2 As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl37 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SLEAccountVA As DevExpress.XtraEditors.SearchLookUpEdit

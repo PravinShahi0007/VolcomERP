@@ -1826,7 +1826,7 @@
 	    IFNULL(prc.design_price,0) AS `Price|Unit Price`,
         UPPER(LEFT(prc.design_price_type,1)) AS `Price|Price Type`,
         " + col_draw_combine + ",
-        SUM(f.`Total|Available Qty`) AS `Total|Available Qty`, SUM(f.`Total|Reserved Qty`) AS `Total|Reserved Qty`, SUM(f.`Total|Total Qty`) AS `Total|Total Qty`
+        SUM(f.`Total|Available Qty`) AS `Total|Available Qty`, SUM(f.`Total|Reserved Qty`) AS `Total|Reserved Qty`, SUM(f.`Total|Total Qty`) AS `Total|Total Qty`, SUM(f.`Total|Total Qty`) * IFNULL(prc.design_price,0) AS `Total|Amount`
         FROM (
             SELECT f.id_wh_drawer, f.id_product, 
             " + col_draw_beg + ",
@@ -1934,6 +1934,80 @@
 
         'bestfit
         GVSOHVA.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnExportToXLSAccVA_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSAccVA.Click
+        If GVSOHVA.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            'column option creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVSOHVA.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            For i As Integer = 0 To GVSOHVA.Columns.Count - 1
+                Try
+                    GVSOHVA.Columns(i).Caption = GVSOHVA.Columns(i).OwnerBand.ToString + " | " + GVSOHVA.Columns(i).Caption.ToString
+                Catch ex As Exception
+                End Try
+            Next
+
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "stock_soh_va_by_barcode.xlsx"
+            exportToXLS(path, "soh", GCSOHVA)
+
+            'restore column opt
+            GVSOHVA.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnHideFilterAccVA_Click(sender As Object, e As EventArgs) Handles BtnHideFilterAccVA.Click
+        PanelControlSOHVA.Visible = False
+        BtnShowFilterVA.Visible = True
+    End Sub
+
+    Private Sub BtnShowFilterVA_Click(sender As Object, e As EventArgs) Handles BtnShowFilterVA.Click
+        PanelControlSOHVA.Visible = True
+        BtnShowFilterVA.Visible = False
+    End Sub
+
+    Sub resetViewSOHVA()
+        GCSOHVA.DataSource = Nothing
+    End Sub
+
+    Private Sub SLEAccountVA_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAccountVA.EditValueChanged
+        resetViewSOHVA()
+    End Sub
+
+    Private Sub TxtProductVA_EditValueChanged(sender As Object, e As EventArgs) Handles TxtProductVA.EditValueChanged
+        resetViewSOHVA()
+    End Sub
+
+    Private Sub DEUntilAccVA_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntilAccVA.EditValueChanged
+        resetViewSOHVA()
+    End Sub
+
+    Private Sub CEFindAllProductVA_EditValueChanged(sender As Object, e As EventArgs) Handles CEFindAllProductVA.EditValueChanged
+        id_design_soh_va = "-1"
+        TxtProductVA.Text = ""
+        resetViewSOHVA()
+        If CEFindAllProductVA.EditValue = True Then
+            BtnBrowseProductVA.Enabled = False
+        Else
+            BtnBrowseProductVA.Enabled = True
+        End If
+    End Sub
+
+    Private Sub BtnBrowseProductVA_Click(sender As Object, e As EventArgs) Handles BtnBrowseProductVA.Click
+        Cursor = Cursors.WaitCursor
+        FormSearchDesign.id_pop_up = "6"
+        FormSearchDesign.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class
