@@ -1811,11 +1811,13 @@
             End If
             Dim id_drawer As String = dd.Rows(d)("id_drawer_def").ToString
             Dim acc As String = dd.Rows(d)("comp_number").ToString
-            col_draw_beg += "SUM(IF(f.id_wh_drawer=" + id_drawer + ",f.qty_avl,0)) AS `" + acc + "|Available Qty`, SUM(IF(f.id_wh_drawer=" + id_drawer + ",f.`qty_rsv`,0)) AS `" + acc + "|Reserved Qty`, SUM(IF(f.id_wh_drawer=" + id_drawer + ",f.`qty_ttl`,0)) AS `" + acc + "|Total Qty` "
-            col_draw_curr += "SUM(IF(f.id_storage_category=2 AND f.id_wh_drawer=" + id_drawer + ", CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS `" + acc + "|Available Qty`, 
-            SUM(IF(f.id_stock_status=2 AND f.id_wh_drawer=" + id_drawer + ", (IF(f.id_storage_category=1, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `" + acc + "|Reserved Qty` ,
-            SUM(IF(f.id_stock_status=1 AND f.id_wh_drawer=" + id_drawer + ", (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `" + acc + "|Total Qty` "
-            col_draw_combine += "SUM(f.`" + acc + "|Available Qty`) AS `Account:" + acc + "|Available Qty`, SUM(f.`" + acc + "|Reserved Qty`) AS `Account:" + acc + "|Reserved Qty`, SUM(f.`" + acc + "|Total Qty`) AS `Account:" + acc + "|Total Qty` "
+            col_draw_beg += "SUM(CASE WHEN f.id_wh_drawer="+id_drawer+" THEN f.qty_avl END) AS `" + acc + "|Available Qty`, 
+            SUM(CASE WHEN f.id_wh_drawer=" + id_drawer + " THEN f.`qty_rsv` END) AS `" + acc + "|Reserved Qty`, 
+            SUM(CASE WHEN f.id_wh_drawer=" + id_drawer + " THEN f.`qty_ttl` END) AS `" + acc + "|Total Qty` "
+            col_draw_curr += "SUM(CASE WHEN f.id_wh_drawer=" + id_drawer + " THEN IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty) END) AS `" + acc + "|Available Qty`, 
+            SUM(CASE WHEN f.id_wh_drawer=" + id_drawer + " THEN IF(f.id_stock_status=2, (IF(f.id_storage_category=1, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0) END) AS `" + acc + "|Reserved Qty` ,
+            SUM(CASE WHEN f.id_wh_drawer=" + id_drawer + " THEN IF(f.id_stock_status=1, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0) END) AS `" + acc + "|Total Qty` "
+            col_draw_combine += "IFNULL(SUM(f.`" + acc + "|Available Qty`),0) AS `Account:" + acc + "|Available Qty`, IFNULL(SUM(f.`" + acc + "|Reserved Qty`),0) AS `Account:" + acc + "|Reserved Qty`, IFNULL(SUM(f.`" + acc + "|Total Qty`),0) AS `Account:" + acc + "|Total Qty` "
         Next
 
         'query
