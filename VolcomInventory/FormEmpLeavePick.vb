@@ -9,8 +9,14 @@
     End Sub
 
     Private Sub FormEmpLeavePick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DEStart.EditValue = Now
-        DEUntil.EditValue = Now
+        Dim now_date As Date
+
+        Dim q As String = "SELECT NOW() as now_date"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        now_date = dt.Rows(0)("now_date")
+
+        DEStart.EditValue = now_date
+        DEUntil.EditValue = now_date
         '
         view_schedule()
         '
@@ -29,8 +35,8 @@
                 Dim leave_min_day As Integer = CType(get_opt_emp_field("leave_min_day"), Integer)
 
                 If leave_min_day > 0 Then
-                    DEStart.Properties.MinValue = Now.Date.AddDays(leave_min_day)
-                    DEUntil.Properties.MinValue = Now.Date.AddDays(leave_min_day)
+                    DEStart.Properties.MinValue = now_date.Date.AddDays(leave_min_day)
+                    DEUntil.Properties.MinValue = now_date.Date.AddDays(leave_min_day)
                 End If
             End If
         End If

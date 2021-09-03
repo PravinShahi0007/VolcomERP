@@ -80,7 +80,7 @@ WHERE id.id_awb_inv_sum='" & id_awb_inv_sum & "' AND ISNULL(id.id_del_manifest) 
 )det
 INNER JOIN `tb_coa_map_departement` coa ON coa.`type`=8 AND coa.`id_departement`=6
 GROUP BY det.id_store"
-                ElseIf dth.Rows(0)("id_type").ToString = "2" Then 'iinbound
+                ElseIf dth.Rows(0)("id_type").ToString = "2" Then 'inbound
                     qg = "
 SELECT coa.id_acc,det.id_store,SUM(det.amount_final) AS amount_final
 FROM (
@@ -123,6 +123,37 @@ UNION ALL
 ,id.note_wh,id.berat_final,id.amount_final
 FROM tb_awb_inv_sum_det id
 WHERE id.id_awb_inv_sum='" & id_awb_inv_sum & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb))
+)det
+INNER JOIN `tb_coa_map_departement` coa ON coa.`type`=8 AND coa.`id_departement`=6
+GROUP BY det.id_store"
+                ElseIf dth.Rows(0)("id_type").ToString = "4" Then 'return online store
+                    qg = "SELECT coa.id_acc,det.id_store,SUM(det.amount_final) AS amount_final
+FROM (
+(SELECT '' AS `no`,'' AS `id_del_manifest`,'' AS id_inbound_awb,d.id_awbill,dis.sub_district,d.id_cargo AS id_comp,IF(store.`id_commerce_type`=2,cg.comp_group,store.comp_number) AS comp_number,IF(store.`id_commerce_type`=2,cg.description,store.comp_name) AS comp_name,ncc.id_comp AS id_store
+,d.`awbill_inv_no`,id.awb_no AS `awbill_no`,d.`rec_by_store_date`,d.`rec_by_store_person`
+,d.`cargo_rate`
+,d.awbill_date AS pickup_date
+,1 AS collie
+,id.`berat_wh` AS `c_weight`,id.`amount_wh` AS `c_tot_price`,id.`berat_cargo` AS `a_weight`,id.`amount_cargo` AS `a_tot_price`
+,id.note_wh,id.berat_final,id.amount_final
+FROM tb_awb_inv_sum_det id
+INNER JOIN `tb_wh_awbill` d ON id.`id_awbill`=d.`id_awbill`
+LEFT JOIN tb_m_sub_district dis ON dis.id_sub_district=d.id_sub_district 
+INNER JOIN tb_m_comp store ON store.id_comp=d.id_store 
+INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=store.id_comp_group
+INNER JOIN tb_m_comp_contact ncc ON ncc.id_comp_contact=cg.id_store_contact_normal 
+WHERE id.id_awb_inv_sum='" & id_awb_inv_sum & "' AND NOT ISNULL(id.id_awbill)
+GROUP BY d.`id_awbill`)
+UNION ALL
+(SELECT '' AS no,'' AS `id_del_manifest`,'' AS id_inbound_awb,'' AS id_awbill,'' AS sub_district,'' AS id_comp,id.id_comp AS id_store,'' AS comp_number,'' AS comp_name
+,'' AS `awbill_inv_no`,id.awb_no AS `awbill_no`,'' AS `rec_by_store_date`,'' AS `rec_by_store_person`
+,0 AS `cargo_rate`
+,'' AS pickup_date
+,1 AS collie
+,id.`berat_wh` AS `c_weight`,id.`amount_wh` AS `c_tot_price`,id.`berat_cargo` AS `a_weight`,id.`amount_cargo` AS `a_tot_price`
+,id.note_wh,id.berat_final,id.amount_final
+FROM tb_awb_inv_sum_det id
+WHERE id.id_awb_inv_sum='" & id_awb_inv_sum & "' AND ISNULL(id.id_del_manifest) AND ISNULL(id.id_inbound_awb) AND ISNULL(id.id_awbill))
 )det
 INNER JOIN `tb_coa_map_departement` coa ON coa.`type`=8 AND coa.`id_departement`=6
 GROUP BY det.id_store"

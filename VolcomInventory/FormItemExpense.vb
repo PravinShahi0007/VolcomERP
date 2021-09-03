@@ -140,7 +140,7 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
     Sub load_verification()
         Dim q As String = "SELECT inv.id_awb_inv_sum,sts.report_status,c.comp_name,inv.created_date,inv.inv_number,emp.employee_name
 ,SUM(invd.amount_final) AS final_tot
-,IF(inv.id_type=1,'Outbound','Inbound') AS `type`
+,IF(inv.id_type=1,'Outbound',IF(inv.id_type=2,'Inbound','Return Online Store')) AS `type`
 FROM `tb_awb_inv_sum_det` invd
 INNER JOIN tb_awb_inv_sum inv ON inv.id_awb_inv_sum=invd.id_awb_inv_sum
 INNER JOIN tb_m_comp c ON c.id_comp=inv.id_comp
