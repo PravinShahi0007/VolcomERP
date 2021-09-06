@@ -3372,7 +3372,6 @@ LIMIT 1 "
             ElseIf report_mark_type = "33" Then
                 'pl to wh
                 query_view = "Select 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
-                                ,c.`comp_name`,et.expense_type
                                 FROM " & table_name & " tb
                                 LEFT JOIN `pl_prod_order_rec` rec ON rec.`id_pl_prod_order`=tb." & field_id & "  AND rec.id_report_status!=5
                                 WHERE tb.id_report_status='6' AND ISNULL(rec.id_pl_prod_order)"
@@ -3388,7 +3387,7 @@ LIMIT 1 "
                                 FROM tb_report_mark_cancel_report rmcr
                                " & generate_left_join_cancel("query") & "
                                INNER JOIN " & table_name & " tb ON tb." & field_id & "=rmcr.id_report
-                               WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "' AND ISNULL(rec.`id_pl_prod_order`)
+                               WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "' 
                                GROUP BY tb." & field_id
             ElseIf report_mark_type = "139" Then 'PO Opex
                 query_view = "Select 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
