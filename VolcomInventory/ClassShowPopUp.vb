@@ -3550,6 +3550,21 @@ WHERE tb.id_report_status='6' AND IF(ISNULL(rec.id_prod_order),2,1)=2 "
 	                WHERE f.id_report_status=6
 	                GROUP BY fd.id_prod_fc
                 ) fd ON fd.id_prod_fc = f.id_prod_fc
+                LEFT JOIN
+                (
+                    SELECT dnd.`id_reff`
+                    FROM tb_debit_note_det dnd
+                    INNER JOIN tb_prod_fc f ON f.`id_prod_fc`=dnd.`id_reff`
+                    INNER JOIN tb_debit_note dn ON dn.`id_debit_note`=dnd.`id_debit_note` AND dn.`id_report_status` !=5 AND (dn.`id_dn_type`=1 OR dn.`id_dn_type`=4)
+                    GROUP BY dnd.`id_reff`
+                )dn ON dn.id_reff=f.id_prod_fc
+                LEFT JOIN
+                (
+                    SELECT id_prod_fc
+                    FROM `tb_pl_prod_order_qc` q
+                    INNER JOIN `tb_pl_prod_order` pl ON pl.`id_pl_prod_order`=q.`id_pl_prod_order` AND pl.`id_report_status`!=5
+                    GROUP BY q.`id_prod_fc`
+                )pl ON pl.id_prod_fc=f.id_prod_fc
                 INNER JOIN tb_lookup_pl_category cat ON cat.id_pl_category = f.id_pl_category
                 INNER JOIN tb_prod_order po ON po.id_prod_order = f.id_prod_order
                 INNER JOIN (
@@ -3564,7 +3579,8 @@ WHERE tb.id_report_status='6' AND IF(ISNULL(rec.id_prod_order),2,1)=2 "
                 )ovh ON ovh.id_prod_order=po.id_prod_order
                 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
                 INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
-                WHERE f.id_report_status=6 AND po.is_closing_rec=2 "
+                WHERE f.id_report_status=6 AND po.is_closing_rec=2 AND ISNULL(dn.id_reff) AND ISNULL(pl.id_prod_fc) 
+                ORDER BY f.id_prod_fc DESC "
                 'Left Join(
                 ' SELECT pl.id_prod_order, pl.id_pl_category
                 '    From tb_pl_prod_order pl
