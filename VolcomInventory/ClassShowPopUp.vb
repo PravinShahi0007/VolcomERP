@@ -3369,6 +3369,28 @@ LIMIT 1 "
                                 INNER JOIN `tb_mat_purc_det` det ON det.`id_mat_purc`=tb.`id_mat_purc`
                                WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
                                GROUP BY tb." & field_id
+            ElseIf report_mark_type = "33" Then
+                'pl to wh
+                query_view = "Select 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
+                                ,c.`comp_name`,et.expense_type
+                                FROM " & table_name & " tb
+                                LEFT JOIN `pl_prod_order_rec` rec ON rec.`id_pl_prod_order`=tb." & field_id & "  AND rec.id_report_status!=5
+                                WHERE tb.id_report_status='6' AND ISNULL(rec.id_pl_prod_order)"
+                If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
+                    query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
+                End If
+                query_view += " GROUP BY tb." & field_id & ""
+                '
+                query_view_blank = "SELECT tb. " & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
+                                    ,c.`comp_name`,et.expense_type
+                                    FROM " & table_name & " tb
+                                   WHERE tb.id_report_status='-1'"
+                query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr,c.`comp_name`,et.expense_type " & generate_left_join_cancel("column") & "
+                                FROM tb_report_mark_cancel_report rmcr
+                               " & generate_left_join_cancel("query") & "
+                               INNER JOIN " & table_name & " tb ON tb." & field_id & "=rmcr.id_report
+                               WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "' AND ISNULL(rec.`id_pl_prod_order`)
+                               GROUP BY tb." & field_id
             ElseIf report_mark_type = "139" Then 'PO Opex
                 query_view = "Select 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
                                 ,c.`comp_name`,et.expense_type
