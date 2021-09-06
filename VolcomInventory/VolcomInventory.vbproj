@@ -3785,6 +3785,12 @@
     <Compile Include="FormPriceForSync.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPriceMKDVios.Designer.vb">
+      <DependentUpon>FormPriceMKDVios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPriceMKDVios.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPricePolicyCode.Designer.vb">
       <DependentUpon>FormPricePolicyCode.vb</DependentUpon>
     </Compile>
@@ -11922,6 +11928,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPriceForSync.resx">
       <DependentUpon>FormPriceForSync.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPriceMKDVios.resx">
+      <DependentUpon>FormPriceMKDVios.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPricePolicyCode.resx">
       <DependentUpon>FormPricePolicyCode.vb</DependentUpon>
