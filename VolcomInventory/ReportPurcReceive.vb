@@ -4,7 +4,7 @@
 
     Private Sub ReportPurcReceive_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         GCData.DataSource = dt
-        pre_load_mark_horz("148", id, "2", "2", XrTable1)
+        load_mark_horz_prep_n_rec("148", id, "2", "2", XrTable1)
     End Sub
 
     Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
