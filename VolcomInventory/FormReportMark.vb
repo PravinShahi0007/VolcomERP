@@ -11,6 +11,7 @@
     Public report_number As String = ""
     Public is_view_finalize As String = "-1"
     Public id_report_mark_cancel As String = "-1"
+    Public id_report_cancel_form As String = "-1"
 
     Public is_bbk_tolakan As Boolean = False
     '
@@ -2364,13 +2365,23 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
                 id_status_reportx = "6"
             End If
 
-            query = String.Format("UPDATE tb_pl_prod_order SET id_report_status='{0}' WHERE id_pl_prod_order ='{1}'", id_status_reportx, id_report)
-            execute_non_query(query, True, "", "", "", "")
-            'infoCustom("Status changed.")
-            '
-            If id_status_reportx = "6" Then
-                query = String.Format("UPDATE tb_pl_prod_order SET complete_date=NOW() WHERE id_pl_prod_order ='{0}'", id_report)
+            'cari status di db
+            Dim id_report_now As String = execute_query("SELECT id_report_status FROM tb_pl_prod_order WHERE id_pl_prod_order='" & id_report & "'", 0, True, "", "", "", "")
+
+            If id_report_now = "6" And id_status_reportx = "5" Then
+                'sudah dicomplete dan mau cancel
+                query = String.Format("UPDATE tb_pl_prod_order SET id_report_status='5',is_cancel_form=1,id_cancel_form='" & id_report_cancel_form & "' WHERE id_pl_prod_order ='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
+                'infoCustom("Status changed.")
+            Else
+                query = String.Format("UPDATE tb_pl_prod_order SET id_report_status='{0}' WHERE id_pl_prod_order ='{1}'", id_status_reportx, id_report)
+                execute_non_query(query, True, "", "", "", "")
+                'infoCustom("Status changed.")
+                '
+                If id_status_reportx = "6" Then
+                    query = String.Format("UPDATE tb_pl_prod_order SET complete_date=NOW() WHERE id_pl_prod_order ='{0}'", id_report)
+                    execute_non_query(query, True, "", "", "", "")
+                End If
             End If
 
             Try
@@ -4614,9 +4625,19 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 id_status_reportx = "6"
             End If
 
-            query = String.Format("UPDATE tb_prod_fc SET id_report_status='{0}' WHERE id_prod_fc ='{1}'", id_status_reportx, id_report)
-            execute_non_query(query, True, "", "", "", "")
-            'infoCustom("Status changed.")
+            'cari status di db
+            Dim id_report_now As String = execute_query("SELECT id_report_status FROM tb_prod_fc WHERE id_prod_fc='" & id_report & "'", 0, True, "", "", "", "")
+
+            If id_report_now = "6" And id_status_reportx = "5" Then
+                'sudah dicomplete dan mau cancel
+                query = String.Format("UPDATE tb_prod_fc SET id_report_status='5',is_cancel_form=1,id_cancel_form='" & id_report_cancel_form & "' WHERE id_prod_fc ='{1}'", id_status_reportx, id_report)
+                execute_non_query(query, True, "", "", "", "")
+                'infoCustom("Status changed.")
+            Else
+                query = String.Format("UPDATE tb_prod_fc SET id_report_status='{0}' WHERE id_prod_fc ='{1}'", id_status_reportx, id_report)
+                execute_non_query(query, True, "", "", "", "")
+                'infoCustom("Status changed.")
+            End If
 
             If form_origin = "FormProductionFinalClearDet" Then
                 FormProductionFinalClearDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -5457,6 +5478,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 Dim data_cancel As DataTable = execute_query(query_cancel, -1, True, "", "", "", "")
                 For j As Integer = 0 To data_cancel.Rows.Count - 1
                     Dim xf As New FormReportMark
+                    xf.id_report_cancel_form = id_report
                     xf.id_report = data_cancel.Rows(j)("id_report").ToString
                     xf.report_mark_type = data_cancel.Rows(j)("report_mark_type").ToString
                     xf.change_status("5")
