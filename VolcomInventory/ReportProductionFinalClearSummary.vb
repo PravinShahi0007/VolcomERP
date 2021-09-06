@@ -29,6 +29,16 @@
         Next
     End Sub
 
+    Private Sub GVSummary_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVSummary.RowCellStyle
+        Try
+            If GVSummary.GetRowCellValue(e.RowHandle, "prod_fc_date").ToString.Contains("Cancel") Then
+                e.Appearance.BackColor = Color.Salmon
+                e.Appearance.FontStyleDelta = FontStyle.Bold
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+
     Private Sub GVSummary_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVSummary.CustomSummaryCalculate
         Dim item As DevExpress.XtraGrid.GridSummaryItem = TryCast(e.Item, DevExpress.XtraGrid.GridSummaryItem)
 

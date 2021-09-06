@@ -20,12 +20,16 @@ Partial Public Class ReportProductionFinalClearSummary
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XLNote = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
         Me.GVSummary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -54,11 +58,9 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.XrTable = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XLNote = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -69,6 +71,35 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XLNote
+        '
+        Me.XLNote.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.XLNote.LocationFloat = New DevExpress.Utils.PointFloat(110.0!, 114.0!)
+        Me.XLNote.Name = "XLNote"
+        Me.XLNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLNote.SizeF = New System.Drawing.SizeF(909.0!, 60.0!)
+        Me.XLNote.StylePriority.UseFont = False
+        '
+        'XrLabel3
+        '
+        Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(100.0!, 114.0!)
+        Me.XrLabel3.Name = "XrLabel3"
+        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(10.0!, 20.0!)
+        Me.XrLabel3.StylePriority.UseFont = False
+        Me.XrLabel3.Text = ":"
+        '
+        'XrLabel2
+        '
+        Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 7.25!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 114.0!)
+        Me.XrLabel2.Name = "XrLabel2"
+        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(100.0!, 20.0!)
+        Me.XrLabel2.StylePriority.UseFont = False
+        Me.XrLabel2.Text = "Note"
         '
         'WinControlContainer1
         '
@@ -82,6 +113,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GCSummary.Location = New System.Drawing.Point(0, 0)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
+        Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1})
         Me.GCSummary.Size = New System.Drawing.Size(978, 100)
         Me.GCSummary.TabIndex = 2
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
@@ -142,6 +174,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.GVSummary.OptionsBehavior.Editable = False
         Me.GVSummary.OptionsPrint.AllowMultilineHeaders = True
         Me.GVSummary.OptionsView.ColumnAutoWidth = False
+        Me.GVSummary.OptionsView.RowAutoHeight = True
         Me.GVSummary.OptionsView.ShowFooter = True
         Me.GVSummary.OptionsView.ShowGroupPanel = False
         Me.GVSummary.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn3, DevExpress.Data.ColumnSortOrder.Ascending)})
@@ -170,12 +203,19 @@ Partial Public Class ReportProductionFinalClearSummary
         'GridColumn16
         '
         Me.GridColumn16.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn16.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn16.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.GridColumn16.Caption = "Number"
+        Me.GridColumn16.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.GridColumn16.FieldName = "prod_fc_number"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.Width = 65
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Appearance.Options.UseTextOptions = True
+        Me.RepositoryItemMemoEdit1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
         'GridColumn2
         '
@@ -406,7 +446,7 @@ Partial Public Class ReportProductionFinalClearSummary
         'BottomMargin
         '
         Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
-        Me.BottomMargin.HeightF = 75.16667!
+        Me.BottomMargin.HeightF = 18.71793!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -456,40 +496,11 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
         '
-        'XrLabel2
-        '
-        Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 114.0!)
-        Me.XrLabel2.Name = "XrLabel2"
-        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(100.0!, 20.0!)
-        Me.XrLabel2.StylePriority.UseFont = False
-        Me.XrLabel2.Text = "Note"
-        '
-        'XrLabel3
-        '
-        Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(100.0!, 114.0!)
-        Me.XrLabel3.Name = "XrLabel3"
-        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel3.SizeF = New System.Drawing.SizeF(10.0!, 20.0!)
-        Me.XrLabel3.StylePriority.UseFont = False
-        Me.XrLabel3.Text = ":"
-        '
-        'XLNote
-        '
-        Me.XLNote.Font = New System.Drawing.Font("Tahoma", 7.25!)
-        Me.XLNote.LocationFloat = New DevExpress.Utils.PointFloat(110.0!, 114.0!)
-        Me.XLNote.Name = "XLNote"
-        Me.XLNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLNote.SizeF = New System.Drawing.SizeF(909.0!, 60.0!)
-        Me.XLNote.StylePriority.UseFont = False
-        '
         'ReportProductionFinalClearSummary
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter})
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(75, 75, 100, 75)
+        Me.Margins = New System.Drawing.Printing.Margins(75, 75, 100, 19)
         Me.PageHeight = 827
         Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -497,6 +508,7 @@ Partial Public Class ReportProductionFinalClearSummary
         Me.Version = "15.1"
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
@@ -539,4 +551,5 @@ Partial Public Class ReportProductionFinalClearSummary
     Friend WithEvents XLNote As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class
