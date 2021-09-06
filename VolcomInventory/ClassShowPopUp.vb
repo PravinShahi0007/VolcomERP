@@ -3382,7 +3382,6 @@ LIMIT 1 "
                 query_view += " GROUP BY tb." & field_id & ""
                 '
                 query_view_blank = "SELECT tb. " & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
-                                    ,c.`comp_name`,et.expense_type
                                     FROM " & table_name & " tb
                                    WHERE tb.id_report_status='-1'"
                 query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr " & generate_left_join_cancel("column") & "
