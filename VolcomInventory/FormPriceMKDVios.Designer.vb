@@ -21,24 +21,24 @@ Partial Class FormPriceMKDVios
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPriceMKDVios))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnImportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.DEEffDate = New DevExpress.XtraEditors.DateEdit()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtProposeNo = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.BtnUpdatePrice = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnImportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnLastPropose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnHistory = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEffDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEffDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtProposeNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -46,61 +46,37 @@ Partial Class FormPriceMKDVios
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BtnImportToXLS)
+        Me.PanelControl1.Controls.Add(Me.BtnHistory)
         Me.PanelControl1.Controls.Add(Me.PanelControl2)
-        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
-        Me.PanelControl1.Controls.Add(Me.SimpleButton2)
+        Me.PanelControl1.Controls.Add(Me.BtnLastPropose)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(860, 42)
         Me.PanelControl1.TabIndex = 0
         '
-        'SimpleButton1
+        'BtnImportToXLS
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(696, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(87, 38)
-        Me.SimpleButton1.TabIndex = 1
-        Me.SimpleButton1.Text = "Browse"
+        Me.BtnImportToXLS.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnImportToXLS.Image = CType(resources.GetObject("BtnImportToXLS.Image"), System.Drawing.Image)
+        Me.BtnImportToXLS.Location = New System.Drawing.Point(211, 2)
+        Me.BtnImportToXLS.Name = "BtnImportToXLS"
+        Me.BtnImportToXLS.Size = New System.Drawing.Size(116, 38)
+        Me.BtnImportToXLS.TabIndex = 3
+        Me.BtnImportToXLS.Text = "Export as XLS"
         '
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl2.Controls.Add(Me.DEEffDate)
         Me.PanelControl2.Controls.Add(Me.LabelControl2)
-        Me.PanelControl2.Controls.Add(Me.TextEdit1)
+        Me.PanelControl2.Controls.Add(Me.TxtProposeNo)
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl2.Location = New System.Drawing.Point(260, 2)
+        Me.PanelControl2.Location = New System.Drawing.Point(422, 2)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(436, 38)
         Me.PanelControl2.TabIndex = 2
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(8, 12)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(17, 13)
-        Me.LabelControl1.TabIndex = 1
-        Me.LabelControl1.Text = "No."
-        '
-        'TextEdit1
-        '
-        Me.TextEdit1.Enabled = False
-        Me.TextEdit1.Location = New System.Drawing.Point(31, 9)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Size = New System.Drawing.Size(143, 20)
-        Me.TextEdit1.TabIndex = 2
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(180, 12)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(69, 13)
-        Me.LabelControl2.TabIndex = 2
-        Me.LabelControl2.Text = "Effective Date"
         '
         'DEEffDate
         '
@@ -114,15 +90,29 @@ Partial Class FormPriceMKDVios
         Me.DEEffDate.Size = New System.Drawing.Size(173, 20)
         Me.DEEffDate.TabIndex = 1
         '
-        'SimpleButton2
+        'LabelControl2
         '
-        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton2.Image = CType(resources.GetObject("SimpleButton2.Image"), System.Drawing.Image)
-        Me.SimpleButton2.Location = New System.Drawing.Point(783, 2)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(75, 38)
-        Me.SimpleButton2.TabIndex = 1
-        Me.SimpleButton2.Text = "Log"
+        Me.LabelControl2.Location = New System.Drawing.Point(180, 12)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(69, 13)
+        Me.LabelControl2.TabIndex = 2
+        Me.LabelControl2.Text = "Effective Date"
+        '
+        'TxtProposeNo
+        '
+        Me.TxtProposeNo.Enabled = False
+        Me.TxtProposeNo.Location = New System.Drawing.Point(31, 9)
+        Me.TxtProposeNo.Name = "TxtProposeNo"
+        Me.TxtProposeNo.Size = New System.Drawing.Size(143, 20)
+        Me.TxtProposeNo.TabIndex = 2
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(8, 12)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(17, 13)
+        Me.LabelControl1.TabIndex = 1
+        Me.LabelControl1.Text = "No."
         '
         'GCData
         '
@@ -162,15 +152,25 @@ Partial Class FormPriceMKDVios
         Me.BtnUpdatePrice.Text = "Update Price"
         Me.BtnUpdatePrice.Visible = False
         '
-        'BtnImportToXLS
+        'BtnLastPropose
         '
-        Me.BtnImportToXLS.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnImportToXLS.Image = CType(resources.GetObject("BtnImportToXLS.Image"), System.Drawing.Image)
-        Me.BtnImportToXLS.Location = New System.Drawing.Point(2, 2)
-        Me.BtnImportToXLS.Name = "BtnImportToXLS"
-        Me.BtnImportToXLS.Size = New System.Drawing.Size(116, 38)
-        Me.BtnImportToXLS.TabIndex = 3
-        Me.BtnImportToXLS.Text = "Export as XLS"
+        Me.BtnLastPropose.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnLastPropose.Image = CType(resources.GetObject("BtnLastPropose.Image"), System.Drawing.Image)
+        Me.BtnLastPropose.Location = New System.Drawing.Point(2, 2)
+        Me.BtnLastPropose.Name = "BtnLastPropose"
+        Me.BtnLastPropose.Size = New System.Drawing.Size(125, 38)
+        Me.BtnLastPropose.TabIndex = 4
+        Me.BtnLastPropose.Text = "Latest Proposal"
+        '
+        'BtnHistory
+        '
+        Me.BtnHistory.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnHistory.Image = CType(resources.GetObject("BtnHistory.Image"), System.Drawing.Image)
+        Me.BtnHistory.Location = New System.Drawing.Point(127, 2)
+        Me.BtnHistory.Name = "BtnHistory"
+        Me.BtnHistory.Size = New System.Drawing.Size(84, 38)
+        Me.BtnHistory.TabIndex = 5
+        Me.BtnHistory.Text = "History"
         '
         'FormPriceMKDVios
         '
@@ -188,9 +188,9 @@ Partial Class FormPriceMKDVios
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEffDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEffDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtProposeNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -201,12 +201,12 @@ Partial Class FormPriceMKDVios
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents DEEffDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtProposeNo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents BtnUpdatePrice As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnImportToXLS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnHistory As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnLastPropose As DevExpress.XtraEditors.SimpleButton
 End Class
