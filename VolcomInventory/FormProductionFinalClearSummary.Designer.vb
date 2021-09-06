@@ -55,6 +55,7 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumnQtyPO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTanggalInput = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SBRemove = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
@@ -83,7 +84,6 @@ Partial Class FormProductionFinalClearSummary
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -480,6 +480,18 @@ Partial Class FormProductionFinalClearSummary
         Me.GridColumnTanggalInput.VisibleIndex = 9
         Me.GridColumnTanggalInput.Width = 77
         '
+        'GridColumn17
+        '
+        Me.GridColumn17.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn17.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn17.Caption = "Status"
+        Me.GridColumn17.FieldName = "report_status"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 10
+        '
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.SBRemove)
@@ -786,18 +798,6 @@ Partial Class FormProductionFinalClearSummary
         Me.Label6.Size = New System.Drawing.Size(30, 13)
         Me.Label6.TabIndex = 18
         Me.Label6.Text = "Note"
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn17.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn17.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn17.Caption = "Status"
-        Me.GridColumn17.FieldName = "report_status"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 10
         '
         'FormProductionFinalClearSummary
         '
