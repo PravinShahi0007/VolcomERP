@@ -3385,7 +3385,7 @@ LIMIT 1 "
                                     ,c.`comp_name`,et.expense_type
                                     FROM " & table_name & " tb
                                    WHERE tb.id_report_status='-1'"
-                query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr,c.`comp_name`,et.expense_type " & generate_left_join_cancel("column") & "
+                query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr " & generate_left_join_cancel("column") & "
                                 FROM tb_report_mark_cancel_report rmcr
                                " & generate_left_join_cancel("query") & "
                                INNER JOIN " & table_name & " tb ON tb." & field_id & "=rmcr.id_report

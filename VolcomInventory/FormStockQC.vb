@@ -92,7 +92,7 @@
         LEFT JOIN(
 	        SELECT j1.id_prod_order_det, j2.id_pl_prod_order,SUM(j1.pl_prod_order_det_qty) AS tot_pl FROM tb_pl_prod_order_det j1 
 	        INNER JOIN tb_pl_prod_order j2 ON j1.id_pl_prod_order = j2.id_pl_prod_order 
-	        WHERE j2.id_report_status !=5 AND j2.complete_date<='" + date_filter + "'
+	        WHERE (j2.id_report_status !=5 OR j2.is_cancel_form=1) AND j2.complete_date<='" + date_filter + "'
 	        GROUP BY j1.id_prod_order_det
         ) pl ON pl.id_prod_order_det = pod.id_prod_order_det
         LEFT JOIN(
@@ -103,11 +103,17 @@
 	        GROUP BY adj_in_d.id_prod_order_det
         ) adj_in ON adj_in.id_prod_order_det = pod.id_prod_order_det 
         LEFT JOIN (
-	        SELECT adj_out_d.id_prod_order_det, adj_out_d.id_prod_order_qc_adj_out_det,SUM(adj_out_d.prod_order_qc_adj_out_det_qty) AS tot_adj_out
+	        SELECT adj_out_d.id_prod_order_det,SUM(adj_out_d.prod_order_qc_adj_out_det_qty) AS tot_adj_out
 	        FROM tb_prod_order_qc_adj_out_det adj_out_d
 	        INNER JOIN tb_prod_order_qc_adj_out adj_out ON adj_out_d.id_prod_order_qc_adj_out = adj_out.id_prod_order_qc_adj_out 
 	        WHERE adj_out.id_report_status !=5 AND adj_out.complete_date<='" + date_filter + "'
 	        GROUP BY adj_out_d.id_prod_order_det
+            UNION ALL
+            SELECT j1.id_prod_order_det,SUM(j1.pl_prod_order_det_qty) AS tot_pl FROM tb_pl_prod_order_det j1 
+            INNER JOIN tb_pl_prod_order j2 ON j1.id_pl_prod_order = j2.id_pl_prod_order 
+            INNER JOIN tb_report_mark_cancel c ON c.id_report_mark_cancel=j2.id_cancel_form
+            WHERE j2.is_cancel_form=1 AND DATE(c.complete_datetime)<=DATE('" + date_filter + "')
+            GROUP BY j1.id_prod_order_det
         ) adj_out ON adj_out.id_prod_order_det = pod.id_prod_order_det 
         LEFT JOIN (
 	        SELECT acd.id_prod_order_det, SUM(acd.prod_ass_comp_qty_det) AS `tot_ass` 
