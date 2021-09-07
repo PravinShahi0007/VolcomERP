@@ -295,7 +295,7 @@ ROUND((SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))*(IF((get_claim_rej
 ,ko.po_type,ko.dsg_cat
 FROM tb_prod_fc_sum_det fcsd
 INNER JOIN tb_prod_fc_sum fcs ON fcs.`id_prod_fc_sum`=fcsd.`id_prod_fc_sum` AND fcs.`id_report_status`='6'
-INNER JOIN tb_prod_fc fc ON fc.`id_prod_fc`=fcsd.`id_prod_fc` 
+INNER JOIN tb_prod_fc fc ON fc.`id_prod_fc`=fcsd.`id_prod_fc` AND fc.id_report_status=6
 LEFT JOIN (
     SELECT rec.`id_prod_order_rec`,SUM(recd.`prod_order_rec_det_qty`) AS qty_rec,rec.claim_percent,rec.prod_order_rec_number,rec.id_pl_category
     FROM tb_prod_order_rec_det recd

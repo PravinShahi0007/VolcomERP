@@ -3369,6 +3369,26 @@ LIMIT 1 "
                                 INNER JOIN `tb_mat_purc_det` det ON det.`id_mat_purc`=tb.`id_mat_purc`
                                WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
                                GROUP BY tb." & field_id
+            ElseIf report_mark_type = "33" Then
+                'pl to wh
+                query_view = "Select 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
+                                FROM " & table_name & " tb
+                                LEFT JOIN `pl_prod_order_rec` rec ON rec.`id_pl_prod_order`=tb." & field_id & "  AND rec.id_report_status!=5
+                                WHERE tb.id_report_status='6' AND ISNULL(rec.id_pl_prod_order)"
+                If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
+                    query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
+                End If
+                query_view += " GROUP BY tb." & field_id & ""
+                '
+                query_view_blank = "SELECT tb. " & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
+                                    FROM " & table_name & " tb
+                                   WHERE tb.id_report_status='-1'"
+                query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr " & generate_left_join_cancel("column") & "
+                                FROM tb_report_mark_cancel_report rmcr
+                               " & generate_left_join_cancel("query") & "
+                               INNER JOIN " & table_name & " tb ON tb." & field_id & "=rmcr.id_report
+                               WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "' 
+                               GROUP BY tb." & field_id
             ElseIf report_mark_type = "139" Then 'PO Opex
                 query_view = "Select 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
                                 ,c.`comp_name`,et.expense_type
@@ -3528,6 +3548,21 @@ WHERE tb.id_report_status='6' AND IF(ISNULL(rec.id_prod_order),2,1)=2 "
 	                WHERE f.id_report_status=6
 	                GROUP BY fd.id_prod_fc
                 ) fd ON fd.id_prod_fc = f.id_prod_fc
+                LEFT JOIN
+                (
+                    SELECT dnd.`id_reff`
+                    FROM tb_debit_note_det dnd
+                    INNER JOIN tb_prod_fc f ON f.`id_prod_fc`=dnd.`id_reff`
+                    INNER JOIN tb_debit_note dn ON dn.`id_debit_note`=dnd.`id_debit_note` AND dn.`id_report_status` !=5 AND (dn.`id_dn_type`=1 OR dn.`id_dn_type`=4)
+                    GROUP BY dnd.`id_reff`
+                )dn ON dn.id_reff=f.id_prod_fc
+                LEFT JOIN
+                (
+                    SELECT id_prod_fc
+                    FROM `tb_pl_prod_order_qc` q
+                    INNER JOIN `tb_pl_prod_order` pl ON pl.`id_pl_prod_order`=q.`id_pl_prod_order` AND pl.`id_report_status`!=5
+                    GROUP BY q.`id_prod_fc`
+                )pl ON pl.id_prod_fc=f.id_prod_fc
                 INNER JOIN tb_lookup_pl_category cat ON cat.id_pl_category = f.id_pl_category
                 INNER JOIN tb_prod_order po ON po.id_prod_order = f.id_prod_order
                 INNER JOIN (
@@ -3542,7 +3577,8 @@ WHERE tb.id_report_status='6' AND IF(ISNULL(rec.id_prod_order),2,1)=2 "
                 )ovh ON ovh.id_prod_order=po.id_prod_order
                 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
                 INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
-                WHERE f.id_report_status=6 AND po.is_closing_rec=2 "
+                WHERE f.id_report_status=6 AND po.is_closing_rec=2 AND ISNULL(dn.id_reff) AND ISNULL(pl.id_prod_fc) 
+                ORDER BY f.id_prod_fc DESC "
                 'Left Join(
                 ' SELECT pl.id_prod_order, pl.id_pl_category
                 '    From tb_pl_prod_order pl

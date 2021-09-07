@@ -241,55 +241,96 @@
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        If id_report_status = "6" Then
-            Dim title As String = ""
-            Dim gcx As DevExpress.XtraGrid.GridControl = Nothing
-            Dim gvx As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
-            If XTCDel.SelectedTabPageIndex = 0 Then
-                gcx = GCData
-                gvx = GVData
-                title = "DELIVERY SLIP"
-            ElseIf XTCDel.SelectedTabPageIndex = 1 Then
-                gcx = GCDetail
-                gvx = GVDetail
-                title = "DELIVERY SLIP"
-            End If
+        'If id_report_status = "6" Then
+        '    Dim title As String = ""
+        '    Dim gcx As DevExpress.XtraGrid.GridControl = Nothing
+        '    Dim gvx As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+        '    If XTCDel.SelectedTabPageIndex = 0 Then
+        '        gcx = GCData
+        '        gvx = GVData
+        '        title = "DELIVERY SLIP"
+        '    ElseIf XTCDel.SelectedTabPageIndex = 1 Then
+        '        gcx = GCDetail
+        '        gvx = GVDetail
+        '        title = "DELIVERY SLIP"
+        '    End If
 
-            ReportItemDel.rmt = rmt
-            ReportItemDel.id = id
-            ReportItemDel.dt = gcx.DataSource
-            Dim Report As New ReportItemDel()
-
-
-            'creating And saving the view's layout to a new memory stream 
-            Dim str As System.IO.Stream
-            str = New System.IO.MemoryStream()
-            gvx.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
-            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
-
-            'Grid Detail
-            ReportStyleGridview(Report.GVData)
-
-            'Parse Val
-            Report.LabelNumber.Text = TxtNumber.Text.ToUpper
-            Report.LabelRequestNo.Text = TxtRequestNo.Text.ToUpper
-            Report.LabelDept.Text = TxtDept.Text.ToUpper
-            Report.LabelDate.Text = DECreated.Text.ToString
-            Report.LNote.Text = MENote.Text.ToString
+        '    ReportItemDel.rmt = rmt
+        '    ReportItemDel.id = id
+        '    ReportItemDel.dt = gcx.DataSource
+        '    Dim Report As New ReportItemDel()
 
 
-            'Show the report's preview. 
-            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            Tool.ShowPreviewDialog()
-        Else
-            If XTCDel.SelectedTabPageIndex = 0 Then
-                print_raw_no_export(GCData)
-            ElseIf XTCDel.SelectedTabPageIndex = 1 Then
-                print_raw_no_export(GCDetail)
-            End If
+        '    'creating And saving the view's layout to a new memory stream 
+        '    Dim str As System.IO.Stream
+        '    str = New System.IO.MemoryStream()
+        '    gvx.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        '    str.Seek(0, System.IO.SeekOrigin.Begin)
+        '    Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        '    str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        '    'Grid Detail
+        '    ReportStyleGridview(Report.GVData)
+
+        '    'Parse Val
+        '    Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+        '    Report.LabelRequestNo.Text = TxtRequestNo.Text.ToUpper
+        '    Report.LabelDept.Text = TxtDept.Text.ToUpper
+        '    Report.LabelDate.Text = DECreated.Text.ToString
+        '    Report.LNote.Text = MENote.Text.ToString
+
+
+        '    'Show the report's preview. 
+        '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        '    Tool.ShowPreviewDialog()
+        'Else
+        '    If XTCDel.SelectedTabPageIndex = 0 Then
+        '        print_raw_no_export(GCData)
+        '    ElseIf XTCDel.SelectedTabPageIndex = 1 Then
+        '        print_raw_no_export(GCDetail)
+        '    End If
+        'End If
+
+        Dim title As String = ""
+        Dim gcx As DevExpress.XtraGrid.GridControl = Nothing
+        Dim gvx As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+        If XTCDel.SelectedTabPageIndex = 0 Then
+            gcx = GCData
+            gvx = GVData
+            title = "DELIVERY SLIP"
+        ElseIf XTCDel.SelectedTabPageIndex = 1 Then
+            gcx = GCDetail
+            gvx = GVDetail
+            title = "DELIVERY SLIP"
         End If
+
+        ReportItemDel.rmt = rmt
+        ReportItemDel.id = id
+        ReportItemDel.dt = gcx.DataSource
+        Dim Report As New ReportItemDel()
+
+        'creating And saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        gvx.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVData)
+
+        'Parse Val
+        Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+        Report.LabelRequestNo.Text = TxtRequestNo.Text.ToUpper
+        Report.LabelDept.Text = TxtDept.Text.ToUpper
+        Report.LabelDate.Text = DECreated.Text.ToString
+        Report.LNote.Text = MENote.Text.ToString
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+
         Cursor = Cursors.Default
     End Sub
 

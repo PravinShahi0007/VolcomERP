@@ -86,7 +86,7 @@
 
         'detail
         Dim query_detail As String = "
-            SELECT fc_sum_det.id_prod_fc, 0 AS no, comp.comp_name AS vendor, d.design_display_name AS name, fc.prod_fc_number, cat.pl_category, cat_sub.pl_category_sub, qty.prod_fc_det_qty, fc_sum_det.qty_po, fc_sum_det.qty_rec, DATE_FORMAT(fc.prod_fc_date, '%d %b %Y') AS prod_fc_date,sts.report_status
+            SELECT fc_sum_det.id_prod_fc, 0 AS no, comp.comp_name AS vendor, d.design_display_name AS name, fc.prod_fc_number, cat.pl_category, cat_sub.pl_category_sub, qty.prod_fc_det_qty, fc_sum_det.qty_po, fc_sum_det.qty_rec, DATE_FORMAT(fc.prod_fc_date, '%d %b %Y') AS prod_fc_date,sts.report_status,sts.id_report_status
             FROM tb_prod_fc_sum_det AS fc_sum_det
             LEFT JOIN tb_prod_fc AS fc ON fc_sum_det.id_prod_fc = fc.id_prod_fc
             LEFT JOIN tb_lookup_report_status sts ON sts.id_report_status=fc.id_report_status
@@ -351,10 +351,11 @@ GROUP BY po.`id_prod_order`"
 	            GROUP BY rec.id_prod_order
             ) AS qty_rec ON po.id_prod_order = qty_rec.id_prod_order
             LEFT JOIN (
-                SELECT id_prod_order, GROUP_CONCAT(DISTINCT prod_fc_number ORDER BY prod_fc_number ASC SEPARATOR ', ') AS prod_fc_number, GROUP_CONCAT(DISTINCT DATE_FORMAT(prod_fc_date, '%d %b %Y') ORDER BY prod_fc_date ASC SEPARATOR ', ') AS prod_fc_date
-                FROM tb_prod_fc
-                WHERE id_prod_fc IN (" + include + ")
-                GROUP BY id_prod_order
+                SELECT fc.id_prod_order, GROUP_CONCAT(DISTINCT fc.prod_fc_number ORDER BY fc.prod_fc_number ASC SEPARATOR ', ') AS prod_fc_number, IF(fc.is_cancel_form=1,CONCAT('Cancelled-',rc.number),GROUP_CONCAT(DISTINCT DATE_FORMAT(fc.prod_fc_date, '%d %b %Y') ORDER BY fc.prod_fc_date ASC SEPARATOR ', ')) AS prod_fc_date
+                FROM tb_prod_fc fc
+                LEFT JOIN tb_report_mark_cancel rc ON fc.id_cancel_form=rc.id_report_mark_cancel
+                WHERE fc.id_prod_fc IN (" + include + ")
+                GROUP BY fc.id_prod_order,rc.id_report_mark_cancel
             ) AS fc ON po.id_prod_order = fc.id_prod_order
             WHERE po.id_prod_order IN (SELECT id_prod_order FROM tb_prod_fc WHERE id_prod_fc IN (" + include + "))
             GROUP BY po.id_prod_order
@@ -464,5 +465,25 @@ GROUP BY po.`id_prod_order`"
                 Close()
             End Try
         End If
+    End Sub
+
+    Private Sub GVList_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVList.RowCellStyle
+        Try
+            If GVList.GetRowCellValue(e.RowHandle, "id_report_status").ToString = "5" Then
+                e.Appearance.BackColor = Color.Salmon
+                e.Appearance.FontStyleDelta = FontStyle.Bold
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub GVSummary_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVSummary.RowCellStyle
+        Try
+            If GVSummary.GetRowCellValue(e.RowHandle, "prod_fc_date").ToString.Contains("Cancel") Then
+                e.Appearance.BackColor = Color.Salmon
+                e.Appearance.FontStyleDelta = FontStyle.Bold
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
 End Class
