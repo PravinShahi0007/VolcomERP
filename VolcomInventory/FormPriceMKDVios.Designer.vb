@@ -22,16 +22,31 @@ Partial Class FormPriceMKDVios
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPriceMKDVios))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.DEEffDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtProposeNo = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnLastPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_report = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrmt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnproduct_full_code = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnproduct_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnormal_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpropose_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshopify_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsync_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsync_note = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsync_stt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnvariant_id = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BtnUpdatePrice = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnLastPropose = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnHistory = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,6 +80,16 @@ Partial Class FormPriceMKDVios
         Me.BtnImportToXLS.TabIndex = 3
         Me.BtnImportToXLS.Text = "Export as XLS"
         '
+        'BtnHistory
+        '
+        Me.BtnHistory.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnHistory.Image = CType(resources.GetObject("BtnHistory.Image"), System.Drawing.Image)
+        Me.BtnHistory.Location = New System.Drawing.Point(127, 2)
+        Me.BtnHistory.Name = "BtnHistory"
+        Me.BtnHistory.Size = New System.Drawing.Size(84, 38)
+        Me.BtnHistory.TabIndex = 5
+        Me.BtnHistory.Text = "History"
+        '
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -81,6 +106,7 @@ Partial Class FormPriceMKDVios
         'DEEffDate
         '
         Me.DEEffDate.EditValue = Nothing
+        Me.DEEffDate.Enabled = False
         Me.DEEffDate.Location = New System.Drawing.Point(255, 9)
         Me.DEEffDate.Name = "DEEffDate"
         Me.DEEffDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -114,6 +140,16 @@ Partial Class FormPriceMKDVios
         Me.LabelControl1.TabIndex = 1
         Me.LabelControl1.Text = "No."
         '
+        'BtnLastPropose
+        '
+        Me.BtnLastPropose.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnLastPropose.Image = CType(resources.GetObject("BtnLastPropose.Image"), System.Drawing.Image)
+        Me.BtnLastPropose.Location = New System.Drawing.Point(2, 2)
+        Me.BtnLastPropose.Name = "BtnLastPropose"
+        Me.BtnLastPropose.Size = New System.Drawing.Size(125, 38)
+        Me.BtnLastPropose.TabIndex = 4
+        Me.BtnLastPropose.Text = "Latest Proposal"
+        '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
@@ -126,11 +162,130 @@ Partial Class FormPriceMKDVios
         '
         'GVData
         '
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_report, Me.GridColumnrmt, Me.GridColumnid_product, Me.GridColumnproduct_full_code, Me.GridColumnclass, Me.GridColumnproduct_name, Me.GridColumnsht_name, Me.GridColumnsize, Me.GridColumnnormal_price, Me.GridColumnpropose_price, Me.GridColumnshopify_price, Me.GridColumnsync_date, Me.GridColumnsync_note, Me.GridColumnsync_stt, Me.GridColumnvariant_id})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_report
+        '
+        Me.GridColumnid_report.Caption = "id_report"
+        Me.GridColumnid_report.FieldName = "id_report"
+        Me.GridColumnid_report.Name = "GridColumnid_report"
+        '
+        'GridColumnrmt
+        '
+        Me.GridColumnrmt.Caption = "rmt"
+        Me.GridColumnrmt.FieldName = "rmt"
+        Me.GridColumnrmt.Name = "GridColumnrmt"
+        '
+        'GridColumnid_product
+        '
+        Me.GridColumnid_product.Caption = "id_product"
+        Me.GridColumnid_product.FieldName = "id_product"
+        Me.GridColumnid_product.Name = "GridColumnid_product"
+        '
+        'GridColumnproduct_full_code
+        '
+        Me.GridColumnproduct_full_code.Caption = "SKU"
+        Me.GridColumnproduct_full_code.FieldName = "product_full_code"
+        Me.GridColumnproduct_full_code.Name = "GridColumnproduct_full_code"
+        Me.GridColumnproduct_full_code.Visible = True
+        Me.GridColumnproduct_full_code.VisibleIndex = 0
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 1
+        '
+        'GridColumnproduct_name
+        '
+        Me.GridColumnproduct_name.Caption = "Description"
+        Me.GridColumnproduct_name.FieldName = "product_name"
+        Me.GridColumnproduct_name.Name = "GridColumnproduct_name"
+        Me.GridColumnproduct_name.Visible = True
+        Me.GridColumnproduct_name.VisibleIndex = 2
+        '
+        'GridColumnsht_name
+        '
+        Me.GridColumnsht_name.Caption = "Silhouette"
+        Me.GridColumnsht_name.FieldName = "sht_name"
+        Me.GridColumnsht_name.Name = "GridColumnsht_name"
+        Me.GridColumnsht_name.Visible = True
+        Me.GridColumnsht_name.VisibleIndex = 3
+        '
+        'GridColumnsize
+        '
+        Me.GridColumnsize.Caption = "Size"
+        Me.GridColumnsize.FieldName = "size"
+        Me.GridColumnsize.Name = "GridColumnsize"
+        Me.GridColumnsize.Visible = True
+        Me.GridColumnsize.VisibleIndex = 4
+        '
+        'GridColumnnormal_price
+        '
+        Me.GridColumnnormal_price.Caption = "Normal Price"
+        Me.GridColumnnormal_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumnnormal_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnnormal_price.FieldName = "normal_price"
+        Me.GridColumnnormal_price.Name = "GridColumnnormal_price"
+        '
+        'GridColumnpropose_price
+        '
+        Me.GridColumnpropose_price.Caption = "Propose Price"
+        Me.GridColumnpropose_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumnpropose_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnpropose_price.FieldName = "propose_price"
+        Me.GridColumnpropose_price.Name = "GridColumnpropose_price"
+        Me.GridColumnpropose_price.Visible = True
+        Me.GridColumnpropose_price.VisibleIndex = 5
+        '
+        'GridColumnshopify_price
+        '
+        Me.GridColumnshopify_price.Caption = "Current VIOS Price"
+        Me.GridColumnshopify_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumnshopify_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnshopify_price.FieldName = "shopify_price"
+        Me.GridColumnshopify_price.Name = "GridColumnshopify_price"
+        Me.GridColumnshopify_price.Visible = True
+        Me.GridColumnshopify_price.VisibleIndex = 6
+        '
+        'GridColumnsync_date
+        '
+        Me.GridColumnsync_date.Caption = "Sync Date"
+        Me.GridColumnsync_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumnsync_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnsync_date.FieldName = "sync_date"
+        Me.GridColumnsync_date.Name = "GridColumnsync_date"
+        Me.GridColumnsync_date.Visible = True
+        Me.GridColumnsync_date.VisibleIndex = 7
+        '
+        'GridColumnsync_note
+        '
+        Me.GridColumnsync_note.Caption = "Sync Note"
+        Me.GridColumnsync_note.FieldName = "sync_note"
+        Me.GridColumnsync_note.Name = "GridColumnsync_note"
+        Me.GridColumnsync_note.Visible = True
+        Me.GridColumnsync_note.VisibleIndex = 8
+        '
+        'GridColumnsync_stt
+        '
+        Me.GridColumnsync_stt.Caption = "Sync Status"
+        Me.GridColumnsync_stt.FieldName = "sync_stt"
+        Me.GridColumnsync_stt.Name = "GridColumnsync_stt"
+        Me.GridColumnsync_stt.UnboundExpression = "Iif([sync_note] = '', '', 'Done')"
+        Me.GridColumnsync_stt.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        '
+        'GridColumnvariant_id
+        '
+        Me.GridColumnvariant_id.Caption = "variant_id"
+        Me.GridColumnvariant_id.FieldName = "variant_id"
+        Me.GridColumnvariant_id.Name = "GridColumnvariant_id"
         '
         'BtnUpdatePrice
         '
@@ -151,26 +306,6 @@ Partial Class FormPriceMKDVios
         Me.BtnUpdatePrice.TabIndex = 19
         Me.BtnUpdatePrice.Text = "Update Price"
         Me.BtnUpdatePrice.Visible = False
-        '
-        'BtnLastPropose
-        '
-        Me.BtnLastPropose.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnLastPropose.Image = CType(resources.GetObject("BtnLastPropose.Image"), System.Drawing.Image)
-        Me.BtnLastPropose.Location = New System.Drawing.Point(2, 2)
-        Me.BtnLastPropose.Name = "BtnLastPropose"
-        Me.BtnLastPropose.Size = New System.Drawing.Size(125, 38)
-        Me.BtnLastPropose.TabIndex = 4
-        Me.BtnLastPropose.Text = "Latest Proposal"
-        '
-        'BtnHistory
-        '
-        Me.BtnHistory.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnHistory.Image = CType(resources.GetObject("BtnHistory.Image"), System.Drawing.Image)
-        Me.BtnHistory.Location = New System.Drawing.Point(127, 2)
-        Me.BtnHistory.Name = "BtnHistory"
-        Me.BtnHistory.Size = New System.Drawing.Size(84, 38)
-        Me.BtnHistory.TabIndex = 5
-        Me.BtnHistory.Text = "History"
         '
         'FormPriceMKDVios
         '
@@ -209,4 +344,19 @@ Partial Class FormPriceMKDVios
     Friend WithEvents BtnImportToXLS As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnHistory As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnLastPropose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnid_report As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnrmt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_product As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnproduct_full_code As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnproduct_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsht_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnormal_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpropose_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnshopify_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsync_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsync_note As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsync_stt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnvariant_id As DevExpress.XtraGrid.Columns.GridColumn
 End Class
