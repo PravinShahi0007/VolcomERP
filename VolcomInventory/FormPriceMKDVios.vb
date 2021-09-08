@@ -81,6 +81,7 @@
 	                FROM tb_ol_store_mkd_price mp
 	                WHERE mp.report_mark_type=" + rmt + " AND mp.id_report=" + id_report + "
 	                AND mp.sync_note ='OK'
+                    GROUP BY mp.id_product
                 ) l ON l.id_product = p.id_product
                 WHERE ppd.id_fg_price=" + id_report + "  AND ISNULL(pv.id_product)
                 ORDER BY p.product_display_name ASC, p.product_full_code ASC "
@@ -125,6 +126,7 @@
 	                FROM tb_ol_store_mkd_price mp
 	                WHERE mp.report_mark_type=306 AND mp.id_report=" + id_report + "
 	                AND mp.sync_note ='OK'
+                    GROUP BY mp.id_product
                 ) l ON l.id_product = p.id_product
                 WHERE ppd.id_pp_change=" + id_report + "  AND ISNULL(pv.id_product)
                 ORDER BY p.product_display_name ASC, p.product_full_code ASC "
@@ -235,6 +237,23 @@
                 FormMain.SplashScreenManager1.CloseWaitForm()
                 viewLatestProposal()
             End If
+        End If
+    End Sub
+
+    Private Sub BtnImportToXLS_Click(sender As Object, e As EventArgs) Handles BtnImportToXLS.Click
+        Dim save As SaveFileDialog = New SaveFileDialog
+
+        save.Filter = "Excel File | *.xlsx"
+        save.ShowDialog()
+
+        If Not save.FileName = "" Then
+            Dim op As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx
+
+            op.ExportType = DevExpress.Export.ExportType.DataAware
+
+            GVData.ExportToXlsx(save.FileName, op)
+
+            infoCustom("File saved.")
         End If
     End Sub
 End Class

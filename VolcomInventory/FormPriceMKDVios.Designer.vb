@@ -46,8 +46,8 @@ Partial Class FormPriceMKDVios
         Me.GridColumnsync_note = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsync_stt = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnvariant_id = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnUpdatePrice = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumncheck = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnUpdatePrice = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -292,6 +292,16 @@ Partial Class FormPriceMKDVios
         Me.GridColumnvariant_id.FieldName = "variant_id"
         Me.GridColumnvariant_id.Name = "GridColumnvariant_id"
         '
+        'GridColumncheck
+        '
+        Me.GridColumncheck.Caption = "Check Status"
+        Me.GridColumncheck.FieldName = "check"
+        Me.GridColumncheck.Name = "GridColumncheck"
+        Me.GridColumncheck.UnboundExpression = "Iif([propose_price] = [shopify_price], 'Match', 'Not Match')"
+        Me.GridColumncheck.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumncheck.Visible = True
+        Me.GridColumncheck.VisibleIndex = 8
+        '
         'BtnUpdatePrice
         '
         Me.BtnUpdatePrice.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
@@ -311,16 +321,6 @@ Partial Class FormPriceMKDVios
         Me.BtnUpdatePrice.TabIndex = 19
         Me.BtnUpdatePrice.Text = "Update Price"
         Me.BtnUpdatePrice.Visible = False
-        '
-        'GridColumncheck
-        '
-        Me.GridColumncheck.Caption = "Check Status"
-        Me.GridColumncheck.FieldName = "check"
-        Me.GridColumncheck.Name = "GridColumncheck"
-        Me.GridColumncheck.UnboundExpression = "Iif([propose_price] = [shopify_price], 'Match', 'Not Match')"
-        Me.GridColumncheck.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.GridColumncheck.Visible = True
-        Me.GridColumncheck.VisibleIndex = 8
         '
         'FormPriceMKDVios
         '
