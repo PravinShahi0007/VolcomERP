@@ -8795,6 +8795,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormPreCalFGPO.GCPreCal, "List Pre Calculation ")
         ElseIf formName = "FormStoreStatus" Then
             print(FormStoreStatus.GCData, "Store Status List")
+        ElseIf formName = "FormPriceMKDVios" Then
+            print(FormPriceMKDVios.GCData, "Turun Harga - Online Store")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9819,6 +9821,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormStoreStatus" Then
             FormStoreStatus.Close()
             FormStoreStatus.Dispose()
+        ElseIf formName = "FormPriceMKDVios" Then
+            FormPriceMKDVios.Close()
+            FormPriceMKDVios.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -16575,6 +16580,20 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormMasterSilhouette.Show()
             FormMasterSilhouette.WindowState = FormWindowState.Maximized
             FormMasterSilhouette.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub NBPriceMKDVios_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPriceMKDVios.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPriceMKDVios.MdiParent = Me
+            FormPriceMKDVios.Show()
+            FormPriceMKDVios.WindowState = FormWindowState.Maximized
+            FormPriceMKDVios.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

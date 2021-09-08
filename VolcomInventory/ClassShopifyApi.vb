@@ -989,4 +989,16 @@ GROUP BY p.sku"
 
         Return data_out
     End Function
+
+    Sub upd_price_by_variant(ByVal variant_id As String, ByVal normal_price As String, ByVal current_price As String)
+        Dim data = Text.Encoding.UTF8.GetBytes("{
+  ""variant"": {
+    ""id"": " & variant_id & ",
+    ""price"": """ & current_price & """,
+    ""compare_at_price"": """ & normal_price & """
+  }
+}")
+        Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/" + api_new_version + "/variants/" & variant_id & ".json", data, "application/json", "PUT", username, password)
+        'Console.WriteLine(result_post.ToString)
+    End Sub
 End Class
