@@ -3,7 +3,7 @@
     Public rmt As String = "-1"
 
     Private Sub FormPriceMKDVios_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        viewLatestProposal()
+        'viewLatestProposal()
     End Sub
 
     Private Sub BtnBrowse_Click(sender As Object, e As EventArgs)
@@ -129,6 +129,7 @@
                     GROUP BY mp.id_product
                 ) l ON l.id_product = p.id_product
                 WHERE ppd.id_pp_change=" + id_report + "  AND ISNULL(pv.id_product)
+                AND (ppd.propose_price_final>0 AND !ISNULL(ppd.propose_price_final))
                 ORDER BY p.product_display_name ASC, p.product_full_code ASC "
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCData.DataSource = data
@@ -261,5 +262,22 @@
         Cursor = Cursors.WaitCursor
         FormPriceMKDViosHist.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FormPriceMKDVios_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        FormMain.show_rb(Name)
+        checkFormAccess(Name)
+    End Sub
+
+    Private Sub FormPriceMKDVios_CursorChanged(sender As Object, e As EventArgs) Handles MyBase.CursorChanged
+
+    End Sub
+
+    Private Sub FormPriceMKDVios_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
+    End Sub
+
+    Private Sub FormPriceMKDVios_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class
