@@ -3797,6 +3797,12 @@
     <Compile Include="FormPriceMKDViosBrowse.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPriceMKDViosHist.Designer.vb">
+      <DependentUpon>FormPriceMKDViosHist.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPriceMKDViosHist.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPricePolicyCode.Designer.vb">
       <DependentUpon>FormPricePolicyCode.vb</DependentUpon>
     </Compile>
@@ -11940,6 +11946,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPriceMKDViosBrowse.resx">
       <DependentUpon>FormPriceMKDViosBrowse.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPriceMKDViosHist.resx">
+      <DependentUpon>FormPriceMKDViosHist.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPricePolicyCode.resx">
       <DependentUpon>FormPricePolicyCode.vb</DependentUpon>

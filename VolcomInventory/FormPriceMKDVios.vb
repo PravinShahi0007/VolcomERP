@@ -256,4 +256,10 @@
             infoCustom("File saved.")
         End If
     End Sub
+
+    Private Sub BtnHistory_Click(sender As Object, e As EventArgs) Handles BtnHistory.Click
+        Cursor = Cursors.WaitCursor
+        FormPriceMKDViosHist.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
