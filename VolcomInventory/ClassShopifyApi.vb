@@ -990,76 +990,15 @@ GROUP BY p.sku"
         Return data_out
     End Function
 
-    Function get_product_price_dec() As DataTable
-        Net.ServicePointManager.Expect100Continue = True
-        Net.ServicePointManager.SecurityProtocol = CType(3072, Net.SecurityProtocolType)
-
-        Dim data As DataTable = New DataTable
-
-        data.Columns.Add("variant_id", GetType(String))
-        data.Columns.Add("product_id", GetType(String))
-        data.Columns.Add("sku", GetType(String))
-        data.Columns.Add("inventory_item_id", GetType(String))
-        data.Columns.Add("compare_price", GetType(Decimal))
-        data.Columns.Add("design_price", GetType(Decimal))
-        data.Columns.Add("inventory_quantity", GetType(String))
-
-        Dim url As String = "https://" + username + ":" + password + "@" + shop + "/admin/api/" + api_new_version + "/products.json?limit=250"
-
-        Dim page_info As String = ""
-
-        For i = 0 To 1000
-            Dim url_page_info As String = url + (If(Not page_info = "", "&page_info=" + page_info, ""))
-
-            Dim request As Net.WebRequest = Net.WebRequest.Create(url_page_info)
-
-            request.Method = "GET"
-
-            request.Credentials = New Net.NetworkCredential(username, password)
-
-            Dim response As Net.WebResponse = request.GetResponse()
-
-            If Not page_info = "" Or i = 0 Then
-                Using dataStream As IO.Stream = response.GetResponseStream()
-                    Dim reader As IO.StreamReader = New IO.StreamReader(dataStream)
-
-                    Dim responseFromServer As String = reader.ReadToEnd()
-
-                    Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
-
-                    For Each row In json("products").ToList
-                        For Each row2 In row("variants").ToList
-                            data.Rows.Add(row2("id"), row2("product_id"), row2("sku"), row2("inventory_item_id"), Decimal.Parse(row2("compare_at_price").ToString), Decimal.Parse(row2("price").ToString), row2("inventory_quantity"))
-                        Next
-                    Next
-                End Using
-            Else
-                Exit For
-            End If
-
-            'get next page
-            Dim link_pos As Integer = 0
-
-            For l = 0 To response.Headers.AllKeys.Count - 1
-                If response.Headers.AllKeys(l) = "Link" Then
-                    link_pos = l
-                End If
-            Next
-
-            Dim link As String() = response.Headers.GetValues(link_pos)
-
-            Dim j1 As Integer = link(link.Count - 1).LastIndexOf(">; rel=""next")
-            Dim j2 As Integer = link(link.Count - 1).LastIndexOf("o=") + 2
-
-            If j1 > 0 And j2 > 0 Then
-                page_info = link(link.Count - 1).Substring(0, j1).Substring(j2)
-            Else
-                page_info = ""
-            End If
-
-            response.Close()
-        Next
-
-        Return data
-    End Function
+    Sub upd_price_by_variant(ByVal variant_id As String, ByVal normal_price As String, ByVal current_price As String)
+        Dim data = Text.Encoding.UTF8.GetBytes("{
+  ""variant"": {
+    ""id"": " & variant_id & ",
+    ""price"": """ & current_price & """,
+    ""compare_at_price"": """ & normal_price & """
+  }
+}")
+        Dim result_post As String = SendRequest("https://" & username & ":" & password & "@" & shop & "/admin/api/" + api_new_version + "/variants/" & variant_id & ".json", data, "application/json", "PUT", username, password)
+        'Console.WriteLine(result_post.ToString)
+    End Sub
 End Class

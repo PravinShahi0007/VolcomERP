@@ -45,7 +45,7 @@
             Dim err_get_product As String = ""
             If rmt = "82" Then 'propose by excel
                 Dim query As String = "SELECT ppd.id_fg_price AS `id_report`, 82 AS `rmt`,p.id_product, p.product_full_code, cls.class, p.product_name, sht.sht_name, sz.code_detail_name AS `size`, 
-                price_normal.design_price AS `normal_price`, ppd.design_price AS `propose_price`, 0 AS `shopify_price`, l.sync_date, IFNULL(l.sync_note,'') AS `sync_note`, '' AS `variant_id`
+                CAST(price_normal.design_price AS DECIMAL(15,0)) AS `normal_price`, CAST(ppd.design_price AS DECIMAL(15,0)) AS `propose_price`, 0 AS `shopify_price`, l.sync_date, IFNULL(l.sync_note,'') AS `sync_note`, '' AS `variant_id`
                 FROM tb_fg_price_det ppd
                 INNER JOIN tb_m_design d ON d.id_design = ppd.id_design
                 INNER JOIN tb_m_product p ON p.id_design = d.id_design
@@ -89,7 +89,7 @@
                 GVData.BestFitColumns()
             ElseIf rmt = "306" Then 'real propose 
                 Dim query As String = "SELECT ppd.id_pp_change AS `id_report`, 306 AS `rmt`,p.id_product, p.product_full_code, cls.class, p.product_name, sht.sht_name, sz.code_detail_name AS `size`, 
-                price_normal.design_price AS `normal_price`, ppd.propose_price_final AS `propose_price`, 0 AS `shopify_price`, l.sync_date, IFNULL(l.sync_note,'') AS `sync_note`, '' AS `variant_id`
+                CAST(price_normal.design_price AS DECIMAL(15,0)) AS `normal_price`, CAST(ppd.propose_price_final AS DECIMAL(15,0)) AS `propose_price`, 0 AS `shopify_price`, l.sync_date, IFNULL(l.sync_note,'') AS `sync_note`, '' AS `variant_id`
                 FROM tb_pp_change_det ppd
                 INNER JOIN tb_m_design d ON d.id_design = ppd.id_design
                 INNER JOIN tb_m_product p ON p.id_design = d.id_design
@@ -141,7 +141,7 @@
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Get VIOS Product")
                 Dim dtp As DataTable
                 Try
-                    dtp = vios.get_product_price_dec()
+                    dtp = vios.get_product()
                 Catch ex As Exception
                     dtp = Nothing
                     err_get_product = ex.ToString
@@ -157,8 +157,9 @@
                             GVData.SetRowCellValue(i, "variant_id", "")
                             GVData.SetRowCellValue(i, "shopify_price", 0)
                         Else
+                            Dim col_prc As String() = Split(dtp_filter(0)("design_price").ToString, ".")
                             GVData.SetRowCellValue(i, "variant_id", dtp_filter(0)("variant_id").ToString)
-                            GVData.SetRowCellValue(i, "shopify_price", dtp_filter(0)("design_price"))
+                            GVData.SetRowCellValue(i, "shopify_price", Decimal.Parse(col_prc(0)))
                         End If
                     Next
                 End If
@@ -180,5 +181,60 @@
         DEEffDate.EditValue = Nothing
         GCData.DataSource = Nothing
         BtnUpdatePrice.Visible = False
+    End Sub
+
+    Private Sub BtnUpdatePrice_Click(sender As Object, e As EventArgs) Handles BtnUpdatePrice.Click
+        'check date
+        Dim curr_date As DateTime = getTimeDB()
+        If curr_date < DEEffDate.EditValue Then
+            warningCustom("Please update the price on or after the effective date")
+            Exit Sub
+        End If
+
+        'check match
+        makeSafeGV(GVData)
+        GVData.ActiveFilterString = "[check]='Not Match'"
+        If GVData.RowCount <= 0 Then
+            warningCustom("All product price already match")
+            GVData.ActiveFilterString = ""
+            Exit Sub
+        End If
+
+        'check variant id
+        GVData.ActiveFilterString = ""
+        GVData.ActiveFilterString = "[variant_id]=''"
+        Dim err_vid As String = ""
+        For c As Integer = 0 To GVData.RowCount - 1
+            If c > 0 Then
+                err_vid += System.Environment.NewLine
+            End If
+            err_vid += GVData.GetRowCellValue(c, "product_full_code").ToString + " - " + GVData.GetRowCellValue(c, "product_name").ToString
+        Next
+        GVData.ActiveFilterString = ""
+
+        If err_vid <> "" Then
+            warningCustom("These product not found in VIOS product list : " + System.Environment.NewLine + err_vid)
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to update price to VIOS?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+                GVData.ActiveFilterString = "[check]='Not Match'"
+                For i As Integer = 0 To GVData.RowCount - 1
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Sync " + (i + 1).ToString + "/" + GVData.RowCount.ToString)
+                    Try
+                        Dim vios As New ClassShopifyApi()
+                        vios.upd_price_by_variant(GVData.GetRowCellValue(i, "variant_id").ToString, GVData.GetRowCellValue(i, "normal_price").ToString, GVData.GetRowCellValue(i, "propose_price").ToString)
+                        execute_non_query("INSERT INTO tb_ol_store_mkd_price(id_report, report_mark_type, id_product, sync_date, sync_note) VALUES('" + id_report + "', '" + rmt + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', NOW(), 'OK')", True, "", "", "", "")
+                    Catch ex As Exception
+                        execute_non_query("INSERT INTO tb_ol_store_mkd_price(id_report, report_mark_type, id_product, sync_date, sync_note) VALUES('" + id_report + "', '" + rmt + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', NOW(), 'Failed:" + addSlashes(ex.ToString) + "')", True, "", "", "", "")
+                    End Try
+                Next
+                GVData.ActiveFilterString = ""
+                FormMain.SplashScreenManager1.CloseWaitForm()
+                viewLatestProposal()
+            End If
+        End If
     End Sub
 End Class
