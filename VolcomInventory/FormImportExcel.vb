@@ -4419,6 +4419,81 @@ GROUP BY ol.checkout_id
                         data_temp.Rows(i)("report_mark_type_name") = "Transfer Account Out"
                         data_temp.Rows(i)("status") = "Ok"
                     End If
+                ElseIf report_type = "IN WH" Then
+                    Dim id_st_store_bap_det As String = execute_query("
+                        SELECT d.id_st_store_bap_det
+                        FROM tb_st_store_bap_det AS d
+                        LEFT JOIN tb_m_product AS p ON d.id_product = p.id_product
+                        WHERE d.id_st_store_bap = " + id_st_store_bap + " AND p.product_full_code = '" + barcode + "' AND d.is_added_product = 2
+                        UNION ALL 
+                        SELECT 0 AS id_st_store_bap_det
+                    ", 0, True, "", "", "", "")
+
+                    If id_st_store_bap_det = "0" Then
+                        Dim design_code As String = ""
+
+                        Try
+                            design_code = barcode.Substring(0, 9)
+                        Catch ex As Exception
+                        End Try
+
+                        Dim id_design As String = execute_query("
+                            SELECT id_design
+                            FROM tb_m_design
+                            WHERE design_code = '" + design_code + "'
+                            UNION ALL
+                            SELECT 0 AS id_design
+                        ", 0, True, "", "", "", "")
+
+                        If id_design = "0" Or data_product.Rows.Count = 0 Then
+                            data_temp.Rows(i)("status") = "Product not found"
+                        Else
+                            Dim id_period As String = FormStockTakeStorePeriod.GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString
+
+                            Dim id_store_type As String = execute_query("
+                                SELECT c.id_store_type
+                                FROM tb_st_store_bap AS s
+                                LEFT JOIN tb_m_comp AS c ON s.id_comp = c.id_comp
+                                WHERE s.id_st_store_bap = " + id_st_store_bap + "
+                            ", 0, True, "", "", "", "")
+
+                            Dim data_price As DataTable = execute_query("
+                                SELECT IF(" + id_store_type + " = 1, prn.id_design_price, prc.id_design_price) AS id_design_price, IF(" + id_store_type + " = 1, prn.design_price, prc.design_price) AS design_price
+                                FROM tb_m_design AS d
+                                LEFT JOIN (
+                                    SELECT c.id_design, c.id_design_price, ROUND(c.design_price) AS design_price
+                                    FROM tb_m_design_price AS c
+                                    LEFT JOIN tb_lookup_design_price_type AS h ON c.id_design_price_type = h.id_design_price_type
+                                    WHERE c.id_design_price IN (
+                                        SELECT MAX(id_design_price) AS id_design_price
+                                        FROM tb_m_design_price
+                                        WHERE design_price_start_date <= DATE((SELECT soh_date FROM tb_st_store_period WHERE id_st_store_period = " + id_period + ")) AND is_active_wh = 1 AND is_design_cost = 0
+                                        GROUP BY id_design
+                                    )
+                                ) AS prc ON d.id_design = prc.id_design
+                                LEFT JOIN (
+                                    SELECT c.id_design, c.id_design_price, ROUND(c.design_price) AS design_price
+                                    FROM tb_m_design_price AS c
+                                    LEFT JOIN tb_lookup_design_price_type AS h ON c.id_design_price_type = h.id_design_price_type
+                                    WHERE c.id_design_price IN (
+                                        SELECT MAX(id_design_price) AS id_design_price
+                                        FROM tb_m_design_price
+                                        WHERE design_price_start_date <= DATE((SELECT soh_date FROM tb_st_store_period WHERE id_st_store_period = " + id_period + ")) AND is_active_wh = 1 AND is_design_cost = 0 AND id_design_price_type = 1
+                                        GROUP BY id_design
+                                    )
+                                ) AS prn ON d.id_design = prn.id_design
+                                WHERE d.id_design = " + id_design + "
+                            ", -1, True, "", "", "", "")
+
+                            data_temp.Rows(i)("id_st_store_bap_det") = "0"
+                            data_temp.Rows(i)("id_price") = data_price.Rows(0)("id_design_price")
+                            data_temp.Rows(i)("price") = data_price.Rows(0)("design_price")
+                            data_temp.Rows(i)("status") = "Ok"
+                        End If
+                    Else
+                        data_temp.Rows(i)("id_st_store_bap_det") = id_st_store_bap_det
+                        data_temp.Rows(i)("status") = "Ok"
+                    End If
                 Else
                     data_temp.Rows(i)("status") = "report_type not found"
                 End If
@@ -4426,9 +4501,21 @@ GROUP BY ol.checkout_id
                 'check qty
                 For j = 0 To FormStockTakeStoreVerDet.BGVData.RowCount - 1
                     If FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "is_added_product").ToString = "2" Then
-                        If barcode = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "full_code").ToString Then
-                            If data_temp.Rows(i)("qty") > Math.Abs(FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal")) Then
-                                data_temp.Rows(i)("status") = "Qty larger than " + FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal").ToString
+                        Dim qty_wh As Integer = 0
+
+                        For w = 0 To data_temp.Rows.Count - 1
+                            If data_temp.Rows(w)("report_type").ToString = "IN WH" Then
+                                If barcode = data_temp.Rows(w)("barcode").ToString Then
+                                    qty_wh += data_temp.Rows(w)("qty")
+                                End If
+                            End If
+                        Next
+
+                        If Not data_temp.Rows(i)("report_type").ToString = "IN WH" Then
+                            If barcode = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "full_code").ToString Then
+                                If data_temp.Rows(i)("qty") > (Math.Abs(FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal")) + qty_wh) Then
+                                    data_temp.Rows(i)("status") = "Qty larger than " + (FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal") + qty_wh).ToString
+                                End If
                             End If
                         End If
                     End If
@@ -7337,37 +7424,64 @@ GROUP BY ol.checkout_id
 
                 execute_non_query("DELETE FROM tb_st_store_bap_det WHERE is_added_product = 1 AND id_st_store_bap = " + FormStockTakeStoreVerDet.id_st_store_bap, True, "", "", "", "")
 
+                execute_non_query("UPDATE tb_st_store_bap_det SET wh_qty = 0 WHERE id_st_store_bap = " + FormStockTakeStoreVerDet.id_st_store_bap, True, "", "", "", "")
+
                 If GVData.RowCount > 0 Then
+                    'in wh
+                    For i = 0 To GVData.RowCount - 1
+                        If GVData.GetRowCellValue(i, "report_type").ToString = "IN WH" Then
+                            Dim id_st_store_bap_det As String = GVData.GetRowCellValue(i, "id_st_store_bap_det").ToString
+                            Dim id_product As String = GVData.GetRowCellValue(i, "id_product").ToString
+                            Dim id_price As String = GVData.GetRowCellValue(i, "id_price").ToString
+                            Dim price As String = GVData.GetRowCellValue(i, "price").ToString
+                            Dim qty As String = GVData.GetRowCellValue(i, "qty").ToString
+
+                            If id_st_store_bap_det = "0" Then
+                                id_st_store_bap_det = execute_query("
+                                    INSERT INTO tb_st_store_bap_det (id_st_store_bap, id_product, soh_qty, scan_qty, wh_qty, id_price, price, is_edited_price, is_added_product) VALUES (" + id_st_store_bap + ", " + id_product + ", 0, 0, '" + qty + "', " + id_price + ", " + price + ", 2, 1); SELECT LAST_INSERT_ID();
+                                ", 0, True, "", "", "", "")
+                            Else
+                                execute_non_query("
+                                    UPDATE tb_st_store_bap_det SET wh_qty = '" + qty + "' WHERE id_st_store_bap_det = '" + id_st_store_bap_det + "'
+                                ", True, "", "", "", "")
+                            End If
+                        End If
+                    Next
+
                     Dim query As String = "INSERT INTO tb_st_store_bap_ver (id_st_store_bap_det, id_report, report_number, report_mark_type, qty, note) VALUES "
 
                     For i = 0 To GVData.RowCount - 1
-                        Dim id_st_store_bap_det As String = GVData.GetRowCellValue(i, "id_st_store_bap_det").ToString
-                        Dim id_report As String = GVData.GetRowCellValue(i, "id_report").ToString
-                        Dim report_number As String = GVData.GetRowCellValue(i, "number").ToString
-                        Dim report_mark_type As String = GVData.GetRowCellValue(i, "report_mark_type").ToString
-                        Dim id_product As String = GVData.GetRowCellValue(i, "id_product").ToString
-                        Dim id_price As String = GVData.GetRowCellValue(i, "id_price").ToString
-                        Dim price As String = GVData.GetRowCellValue(i, "price").ToString
+                        If Not GVData.GetRowCellValue(i, "report_type").ToString = "IN WH" Then
+                            Dim id_st_store_bap_det As String = GVData.GetRowCellValue(i, "id_st_store_bap_det").ToString
+                            Dim id_report As String = GVData.GetRowCellValue(i, "id_report").ToString
+                            Dim report_number As String = GVData.GetRowCellValue(i, "number").ToString
+                            Dim report_mark_type As String = GVData.GetRowCellValue(i, "report_mark_type").ToString
+                            Dim id_product As String = GVData.GetRowCellValue(i, "id_product").ToString
+                            Dim id_price As String = GVData.GetRowCellValue(i, "id_price").ToString
+                            Dim price As String = GVData.GetRowCellValue(i, "price").ToString
 
-                        If id_st_store_bap_det = "0" Then
-                            id_st_store_bap_det = execute_query("
-                                INSERT INTO tb_st_store_bap_det (id_st_store_bap, id_product, soh_qty, scan_qty, id_price, price, is_edited_price, is_added_product) VALUES (" + id_st_store_bap + ", " + id_product + ", 0, 0, " + id_price + ", " + price + ", 2, 1); SELECT LAST_INSERT_ID();
-                            ", 0, True, "", "", "", "")
+                            If id_st_store_bap_det = "0" Then
+                                id_st_store_bap_det = execute_query("
+                                    SELECT id_st_store_bap_det
+                                    FROM tb_st_store_bap_det
+                                    WHERE id_st_store_bap = " + id_st_store_bap + " AND id_product = " + id_product + "
+                                ", 0, True, "", "", "", "")
+                            End If
+
+                            Dim qty As String = GVData.GetRowCellValue(i, "qty").ToString
+
+                            If GVData.GetRowCellValue(i, "report_type").ToString = "ADJ IN" Or GVData.GetRowCellValue(i, "report_type").ToString = "TA IN" Or GVData.GetRowCellValue(i, "report_type").ToString = "CN" Then
+                                qty = "-" + qty
+                            End If
+
+                            Dim note As String = GVData.GetRowCellValue(i, "note").ToString
+
+                            If i > 0 Then
+                                query += ", "
+                            End If
+
+                            query += "('" + id_st_store_bap_det + "', '" + id_report + "', '" + report_number + "', '" + report_mark_type + "', '" + qty + "', '" + addSlashes(note) + "')"
                         End If
-
-                        Dim qty As String = GVData.GetRowCellValue(i, "qty").ToString
-
-                        If GVData.GetRowCellValue(i, "report_type").ToString = "ADJ IN" Or GVData.GetRowCellValue(i, "report_type").ToString = "TA IN" Or GVData.GetRowCellValue(i, "report_type").ToString = "CN" Then
-                            qty = "-" + qty
-                        End If
-
-                        Dim note As String = GVData.GetRowCellValue(i, "note").ToString
-
-                        If i > 0 Then
-                            query += ", "
-                        End If
-
-                        query += "('" + id_st_store_bap_det + "', '" + id_report + "', '" + report_number + "', '" + report_mark_type + "', '" + qty + "', '" + addSlashes(note) + "')"
                     Next
 
                     execute_non_query(query, True, "", "", "", "")
