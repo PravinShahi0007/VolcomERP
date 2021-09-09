@@ -808,6 +808,7 @@ Partial Class FormDebitNoteDet
         Me.GCClaimPcs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCClaimPcs.FieldName = "claim_pcs"
         Me.GCClaimPcs.Name = "GCClaimPcs"
+        Me.GCClaimPcs.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "claim_pcs", "TOTAL")})
         Me.GCClaimPcs.Visible = True
         Me.GCClaimPcs.VisibleIndex = 10
         Me.GCClaimPcs.Width = 143
