@@ -153,6 +153,7 @@ Partial Public Class ReportDebitNote
         Me.GridColumn4.Caption = "Number"
         Me.GridColumn4.FieldName = "report_number"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "report_number", "TOTAL")})
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 1
         Me.GridColumn4.Width = 138
