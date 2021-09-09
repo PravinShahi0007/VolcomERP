@@ -48,6 +48,7 @@ Partial Class FormPriceMKDVios
         Me.GridColumnvariant_id = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncheck = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BtnUpdatePrice = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumncheck_prod = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -163,7 +164,7 @@ Partial Class FormPriceMKDVios
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_report, Me.GridColumnrmt, Me.GridColumnid_product, Me.GridColumnproduct_full_code, Me.GridColumnclass, Me.GridColumnproduct_name, Me.GridColumnsht_name, Me.GridColumnsize, Me.GridColumnnormal_price, Me.GridColumnpropose_price, Me.GridColumnshopify_price, Me.GridColumnsync_date, Me.GridColumnsync_note, Me.GridColumnsync_stt, Me.GridColumnvariant_id, Me.GridColumncheck})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_report, Me.GridColumnrmt, Me.GridColumnid_product, Me.GridColumnproduct_full_code, Me.GridColumnclass, Me.GridColumnproduct_name, Me.GridColumnsht_name, Me.GridColumnsize, Me.GridColumnnormal_price, Me.GridColumnpropose_price, Me.GridColumnshopify_price, Me.GridColumnsync_date, Me.GridColumnsync_note, Me.GridColumnsync_stt, Me.GridColumnvariant_id, Me.GridColumncheck, Me.GridColumncheck_prod})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -268,7 +269,7 @@ Partial Class FormPriceMKDVios
         Me.GridColumnsync_date.FieldName = "sync_date"
         Me.GridColumnsync_date.Name = "GridColumnsync_date"
         Me.GridColumnsync_date.Visible = True
-        Me.GridColumnsync_date.VisibleIndex = 9
+        Me.GridColumnsync_date.VisibleIndex = 10
         '
         'GridColumnsync_note
         '
@@ -276,7 +277,7 @@ Partial Class FormPriceMKDVios
         Me.GridColumnsync_note.FieldName = "sync_note"
         Me.GridColumnsync_note.Name = "GridColumnsync_note"
         Me.GridColumnsync_note.Visible = True
-        Me.GridColumnsync_note.VisibleIndex = 10
+        Me.GridColumnsync_note.VisibleIndex = 11
         '
         'GridColumnsync_stt
         '
@@ -294,7 +295,7 @@ Partial Class FormPriceMKDVios
         '
         'GridColumncheck
         '
-        Me.GridColumncheck.Caption = "Check Status"
+        Me.GridColumncheck.Caption = "Check Price Status"
         Me.GridColumncheck.FieldName = "check"
         Me.GridColumncheck.Name = "GridColumncheck"
         Me.GridColumncheck.UnboundExpression = "Iif([propose_price] = [shopify_price], 'Match', 'Not Match')"
@@ -321,6 +322,17 @@ Partial Class FormPriceMKDVios
         Me.BtnUpdatePrice.TabIndex = 19
         Me.BtnUpdatePrice.Text = "Update Price"
         Me.BtnUpdatePrice.Visible = False
+        '
+        'GridColumncheck_prod
+        '
+        Me.GridColumncheck_prod.Caption = "Check VIOS SKU"
+        Me.GridColumncheck_prod.FieldName = "check_prod"
+        Me.GridColumncheck_prod.Name = "GridColumncheck_prod"
+        Me.GridColumncheck_prod.UnboundExpression = "Iif([variant_id] = '', 'Not Found', Iif([variant_id] = '?', 'Duplicate', 'OK'))"
+        Me.GridColumncheck_prod.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumncheck_prod.Visible = True
+        Me.GridColumncheck_prod.VisibleIndex = 9
+        Me.GridColumncheck_prod.Width = 119
         '
         'FormPriceMKDVios
         '
@@ -375,4 +387,5 @@ Partial Class FormPriceMKDVios
     Friend WithEvents GridColumnsync_stt As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnvariant_id As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncheck As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncheck_prod As DevExpress.XtraGrid.Columns.GridColumn
 End Class

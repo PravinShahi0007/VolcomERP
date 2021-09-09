@@ -28,6 +28,7 @@
 
             Dim query_detail As String = "INSERT INTO tb_st_store_bap_det (id_st_store_bap, id_product, soh_qty, scan_qty, id_price, price) VALUES "
 
+            FormStockTakeStorePeriod.BGVCompare.FindFilterText = ""
             FormStockTakeStorePeriod.BGVCompare.ActiveFilterString = ""
             FormStockTakeStorePeriod.BGVCompare.ClearColumnsFilter()
 

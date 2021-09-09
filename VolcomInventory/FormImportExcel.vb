@@ -4526,6 +4526,32 @@ GROUP BY ol.checkout_id
 
             GVData.Columns(10).VisibleIndex = 1
             GVData.Columns(11).VisibleIndex = 2
+        ElseIf id_pop_up = "61" Then
+            FormStockTakePartialDet.GVProduct.FindFilterText = ""
+            FormStockTakePartialDet.GVProduct.ActiveFilterString = ""
+            FormStockTakePartialDet.GVProduct.ClearColumnsFilter()
+
+            data_temp.Columns.Add("status", GetType(String))
+
+            For i = 0 To data_temp.Rows.Count - 1
+                Dim total_design As Integer = 0
+
+                For j = 0 To FormStockTakePartialDet.GVProduct.RowCount - 1
+                    If FormStockTakePartialDet.GVProduct.IsValidRowHandle(j) Then
+                        If data_temp.Rows(i)("code").ToString = FormStockTakePartialDet.GVProduct.GetRowCellValue(j, "design_code").ToString Then
+                            total_design += 1
+                        End If
+                    End If
+                Next
+
+                If total_design = 0 Then
+                    data_temp.Rows(i)("status") = "code not found"
+                Else
+                    data_temp.Rows(i)("status") = "ok"
+                End If
+            Next
+
+            GCData.DataSource = data_temp
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -7495,6 +7521,30 @@ GROUP BY ol.checkout_id
                 End If
 
                 FormStockTakeStoreVerDet.form_load()
+
+                infoCustom("Import success")
+
+                Close()
+            ElseIf id_pop_up = "61" Then
+                makeSafeGV(GVData)
+
+                For j = 0 To FormStockTakePartialDet.GVProduct.RowCount - 1
+                    If FormStockTakePartialDet.GVProduct.IsValidRowHandle(j) Then
+                        FormStockTakePartialDet.GVProduct.SetRowCellValue(j, "is_select", "no")
+                    End If
+                Next
+
+                GVData.ActiveFilterString = "[status] = 'ok'"
+
+                For i = 0 To GVData.RowCount - 1
+                    For j = 0 To FormStockTakePartialDet.GVProduct.RowCount - 1
+                        If FormStockTakePartialDet.GVProduct.IsValidRowHandle(j) Then
+                            If GVData.GetRowCellValue(i, "code").ToString = FormStockTakePartialDet.GVProduct.GetRowCellValue(j, "design_code").ToString Then
+                                FormStockTakePartialDet.GVProduct.SetRowCellValue(j, "is_select", "yes")
+                            End If
+                        End If
+                    Next
+                Next
 
                 infoCustom("Import success")
 

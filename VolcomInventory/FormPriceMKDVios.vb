@@ -156,8 +156,11 @@
                         FormMain.SplashScreenManager1.SetWaitFormDescription("Get current VIOS Price : " + (i + 1).ToString + "/" + GVData.RowCount.ToString)
                         Dim sku_find As String = GVData.GetRowCellValue(i, "product_full_code").ToString
                         Dim dtp_filter As DataRow() = dtp.Select("[sku]='" + sku_find + "' ")
-                        If dtp_filter.Length <= 0 Or dtp_filter.Length > 1 Then
+                        If dtp_filter.Length <= 0 Then
                             GVData.SetRowCellValue(i, "variant_id", "")
+                            GVData.SetRowCellValue(i, "shopify_price", 0)
+                        ElseIf dtp_filter.Length > 1 Then
+                            GVData.SetRowCellValue(i, "variant_id", "?")
                             GVData.SetRowCellValue(i, "shopify_price", 0)
                         Else
                             Dim col_prc As String() = Split(dtp_filter(0)("design_price").ToString, ".")
@@ -169,6 +172,8 @@
             Else
                 refreshView()
             End If
+            GCData.Refresh()
+            GVData.RefreshData()
             FormMain.SplashScreenManager1.CloseWaitForm()
             If err_get_product <> "" Then
                 warningCustom("Problem get product : " + err_get_product)
@@ -203,27 +208,34 @@
             Exit Sub
         End If
 
-        'check variant id
+        'check variant id kosong
+        Dim err_vid As String = ""
+        Dim jum_vid_not_found As Integer = 0
         GVData.ActiveFilterString = ""
         GVData.ActiveFilterString = "[variant_id]=''"
-        Dim err_vid As String = ""
-        For c As Integer = 0 To GVData.RowCount - 1
-            If c > 0 Then
-                err_vid += System.Environment.NewLine
-            End If
-            err_vid += GVData.GetRowCellValue(c, "product_full_code").ToString + " - " + GVData.GetRowCellValue(c, "product_name").ToString
-        Next
+        jum_vid_not_found = GVData.RowCount
+        'check variant id duplikat
+        Dim jum_vid_dupe As Integer = 0
+        GVData.ActiveFilterString = "[variant_id]='?'"
+        jum_vid_dupe = GVData.RowCount
+        'check variant id OK
+        Dim jum_vid_ok As Integer = 0
+        GVData.ActiveFilterString = "[variant_id]<>'' AND [variant_id]<>'?'"
+        jum_vid_ok = GVData.RowCount
         GVData.ActiveFilterString = ""
+        Dim var_check As String = "OK : " + jum_vid_ok.ToString + System.Environment.NewLine
+        var_check += "Not found : " + jum_vid_not_found.ToString + System.Environment.NewLine
+        var_check += "Duplicate : " + jum_vid_dupe.ToString + System.Environment.NewLine
 
         If err_vid <> "" Then
             warningCustom("These product not found in VIOS product list : " + System.Environment.NewLine + err_vid)
         Else
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to update price to VIOS?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("SKU check result : " + System.Environment.NewLine + var_check + "Are you sure you want to update price to VIOS?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
                     FormMain.SplashScreenManager1.ShowWaitForm()
                 End If
-                GVData.ActiveFilterString = "[check]='Not Match'"
+                GVData.ActiveFilterString = "[check]='Not Match' AND [variant_id]<>'' AND [variant_id]<>'?'"
                 For i As Integer = 0 To GVData.RowCount - 1
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Sync " + (i + 1).ToString + "/" + GVData.RowCount.ToString)
                     Try
