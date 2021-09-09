@@ -71,7 +71,9 @@
         If id_trans = "-1" Then 'new
             Dim dt_now As DateTime = getTimeDB()
             DERefDate.EditValue = dt_now
-
+            '
+            DERefDate.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='" & SLEUnit.EditValue.ToString & "'", 0, True, "", "", "", "")
+            '
             load_number()
             view_det()
             but_check()
@@ -883,5 +885,7 @@ WHERE a.id_acc_trans='" & id_trans & "'"
             GVJournalDet.DeleteRow(i)
         Next
         but_check()
+        '
+        DERefDate.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='" & SLEUnit.EditValue.ToString & "'", 0, True, "", "", "", "")
     End Sub
 End Class

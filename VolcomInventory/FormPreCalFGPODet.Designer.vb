@@ -150,9 +150,6 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -1610,7 +1607,7 @@ Partial Class FormPreCalFGPODet
         '
         'GVPickVendor
         '
-        Me.GVPickVendor.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn31, Me.GridColumn36, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn37, Me.GridColumn43, Me.GridColumn38, Me.GridColumn44, Me.GridColumn35, Me.GridColumn45, Me.GridColumn46})
+        Me.GVPickVendor.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn31, Me.GridColumn36, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn44, Me.GridColumn35, Me.GridColumn45, Me.GridColumn46})
         Me.GVPickVendor.GridControl = Me.GCPickVendor
         Me.GVPickVendor.Name = "GVPickVendor"
         Me.GVPickVendor.OptionsBehavior.Editable = False
@@ -1698,58 +1695,18 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn34.VisibleIndex = 3
         Me.GridColumn34.Width = 103
         '
-        'GridColumn37
-        '
-        Me.GridColumn37.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn37.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn37.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn37.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn37.Caption = "Duty"
-        Me.GridColumn37.DisplayFormat.FormatString = "N2"
-        Me.GridColumn37.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn37.Name = "GridColumn37"
-        Me.GridColumn37.Visible = True
-        Me.GridColumn37.VisibleIndex = 4
-        '
-        'GridColumn43
-        '
-        Me.GridColumn43.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn43.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn43.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn43.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn43.Caption = "KSO"
-        Me.GridColumn43.DisplayFormat.FormatString = "N2"
-        Me.GridColumn43.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn43.Name = "GridColumn43"
-        Me.GridColumn43.Visible = True
-        Me.GridColumn43.VisibleIndex = 5
-        '
-        'GridColumn38
-        '
-        Me.GridColumn38.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn38.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn38.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn38.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn38.Caption = "Adm Insurance"
-        Me.GridColumn38.DisplayFormat.FormatString = "N2"
-        Me.GridColumn38.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn38.Name = "GridColumn38"
-        Me.GridColumn38.Visible = True
-        Me.GridColumn38.VisibleIndex = 6
-        Me.GridColumn38.Width = 95
-        '
         'GridColumn44
         '
         Me.GridColumn44.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn44.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn44.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn44.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn44.Caption = "Insurance Rate"
+        Me.GridColumn44.Caption = "Other"
         Me.GridColumn44.DisplayFormat.FormatString = "N2"
         Me.GridColumn44.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn44.Name = "GridColumn44"
         Me.GridColumn44.Visible = True
-        Me.GridColumn44.VisibleIndex = 7
+        Me.GridColumn44.VisibleIndex = 4
         Me.GridColumn44.Width = 82
         '
         'GridColumn35
@@ -1768,7 +1725,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn35.OptionsColumn.ReadOnly = True
         Me.GridColumn35.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn35.Visible = True
-        Me.GridColumn35.VisibleIndex = 8
+        Me.GridColumn35.VisibleIndex = 5
         Me.GridColumn35.Width = 109
         '
         'GridColumn45
@@ -1782,7 +1739,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn45.Name = "GridColumn45"
         Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 9
+        Me.GridColumn45.VisibleIndex = 6
         Me.GridColumn45.Width = 50
         '
         'GridColumn46
@@ -1796,7 +1753,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn46.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn46.Name = "GridColumn46"
         Me.GridColumn46.Visible = True
-        Me.GridColumn46.VisibleIndex = 10
+        Me.GridColumn46.VisibleIndex = 7
         Me.GridColumn46.Width = 81
         '
         'PanelControl3
@@ -2180,9 +2137,6 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
