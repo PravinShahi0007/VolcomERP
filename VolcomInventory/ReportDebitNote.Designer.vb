@@ -67,6 +67,7 @@ Partial Public Class ReportDebitNote
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.LSummary = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIMDescription, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -452,14 +453,14 @@ Partial Public Class ReportDebitNote
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LTerbilang, Me.LSay, Me.XrLabel12, Me.XrLabel13, Me.LDengan, Me.XrLabel15, Me.XrTable1})
-        Me.ReportFooter.HeightF = 116.125!
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LSummary, Me.LTerbilang, Me.LSay, Me.XrLabel12, Me.XrLabel13, Me.LDengan, Me.XrLabel15, Me.XrTable1})
+        Me.ReportFooter.HeightF = 144.25!
         Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
         '
         'LTerbilang
         '
-        Me.LTerbilang.LocationFloat = New DevExpress.Utils.PointFloat(0!, 28.12498!)
+        Me.LTerbilang.LocationFloat = New DevExpress.Utils.PointFloat(0!, 56.24999!)
         Me.LTerbilang.Name = "LTerbilang"
         Me.LTerbilang.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LTerbilang.SizeF = New System.Drawing.SizeF(87.51717!, 18.0!)
@@ -467,14 +468,14 @@ Partial Public Class ReportDebitNote
         '
         'LSay
         '
-        Me.LSay.LocationFloat = New DevExpress.Utils.PointFloat(100.2624!, 28.125!)
+        Me.LSay.LocationFloat = New DevExpress.Utils.PointFloat(100.2624!, 56.25001!)
         Me.LSay.Name = "LSay"
         Me.LSay.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LSay.SizeF = New System.Drawing.SizeF(953.7374!, 18.00001!)
         '
         'XrLabel12
         '
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(87.51718!, 28.12498!)
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(87.51718!, 56.24999!)
         Me.XrLabel12.Name = "XrLabel12"
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel12.SizeF = New System.Drawing.SizeF(12.74515!, 18.00002!)
@@ -482,7 +483,7 @@ Partial Public Class ReportDebitNote
         '
         'XrLabel13
         '
-        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(87.51713!, 46.12495!)
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(87.51713!, 74.24995!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel13.SizeF = New System.Drawing.SizeF(12.74515!, 18.00002!)
@@ -490,7 +491,7 @@ Partial Public Class ReportDebitNote
         '
         'LDengan
         '
-        Me.LDengan.LocationFloat = New DevExpress.Utils.PointFloat(100.2624!, 46.12503!)
+        Me.LDengan.LocationFloat = New DevExpress.Utils.PointFloat(100.2624!, 74.25004!)
         Me.LDengan.Name = "LDengan"
         Me.LDengan.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LDengan.SizeF = New System.Drawing.SizeF(953.7375!, 18.00003!)
@@ -498,7 +499,7 @@ Partial Public Class ReportDebitNote
         '
         'XrLabel15
         '
-        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(0!, 46.125!)
+        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(0!, 74.25001!)
         Me.XrLabel15.Name = "XrLabel15"
         Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel15.SizeF = New System.Drawing.SizeF(87.51717!, 18.0!)
@@ -507,7 +508,7 @@ Partial Public Class ReportDebitNote
         'XrTable1
         '
         Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 91.12498!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 119.25!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
         Me.XrTable1.SizeF = New System.Drawing.SizeF(1054.0!, 25.0!)
@@ -527,6 +528,15 @@ Partial Public Class ReportDebitNote
         Me.XrTableCell1.Text = "Here Table Mark Goes, Please Ignore This"
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
+        '
+        'LSummary
+        '
+        Me.LSummary.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Italic)
+        Me.LSummary.LocationFloat = New DevExpress.Utils.PointFloat(0!, 14.0!)
+        Me.LSummary.Name = "LSummary"
+        Me.LSummary.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LSummary.SizeF = New System.Drawing.SizeF(1054.0!, 18.00001!)
+        Me.LSummary.StylePriority.UseFont = False
         '
         'ReportDebitNote
         '
@@ -593,4 +603,5 @@ Partial Public Class ReportDebitNote
     Friend WithEvents GCClaimPcs As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents LSummary As DevExpress.XtraReports.UI.XRLabel
 End Class
