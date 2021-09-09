@@ -7424,7 +7424,7 @@ GROUP BY ol.checkout_id
 
                 execute_non_query("DELETE FROM tb_st_store_bap_det WHERE is_added_product = 1 AND id_st_store_bap = " + FormStockTakeStoreVerDet.id_st_store_bap, True, "", "", "", "")
 
-                execute_non_query("UPDATE tb_st_store_bap_det SET wh_qty = 0 WHERE id_st_store_bap = " + FormStockTakeStoreVerDet.id_st_store_bap, True, "", "", "", "")
+                execute_non_query("UPDATE tb_st_store_bap_det SET wh_qty = 0, note = NULL WHERE id_st_store_bap = " + FormStockTakeStoreVerDet.id_st_store_bap, True, "", "", "", "")
 
                 If GVData.RowCount > 0 Then
                     'in wh
@@ -7435,18 +7435,21 @@ GROUP BY ol.checkout_id
                             Dim id_price As String = GVData.GetRowCellValue(i, "id_price").ToString
                             Dim price As String = GVData.GetRowCellValue(i, "price").ToString
                             Dim qty As String = GVData.GetRowCellValue(i, "qty").ToString
+                            Dim note As String = GVData.GetRowCellValue(i, "note").ToString
 
                             If id_st_store_bap_det = "0" Then
                                 id_st_store_bap_det = execute_query("
-                                    INSERT INTO tb_st_store_bap_det (id_st_store_bap, id_product, soh_qty, scan_qty, wh_qty, id_price, price, is_edited_price, is_added_product) VALUES (" + id_st_store_bap + ", " + id_product + ", 0, 0, '" + qty + "', " + id_price + ", " + price + ", 2, 1); SELECT LAST_INSERT_ID();
+                                    INSERT INTO tb_st_store_bap_det (id_st_store_bap, id_product, soh_qty, scan_qty, wh_qty, id_price, price, is_edited_price, is_added_product, note) VALUES (" + id_st_store_bap + ", " + id_product + ", 0, 0, '" + qty + "', " + id_price + ", " + price + ", 2, 1, '" + addSlashes(note) + "'); SELECT LAST_INSERT_ID();
                                 ", 0, True, "", "", "", "")
                             Else
                                 execute_non_query("
-                                    UPDATE tb_st_store_bap_det SET wh_qty = '" + qty + "' WHERE id_st_store_bap_det = '" + id_st_store_bap_det + "'
+                                    UPDATE tb_st_store_bap_det SET wh_qty = '" + qty + "', note = '" + addSlashes(note) + "' WHERE id_st_store_bap_det = '" + id_st_store_bap_det + "'
                                 ", True, "", "", "", "")
                             End If
                         End If
                     Next
+
+                    Dim insert_ver As Boolean = False
 
                     Dim query As String = "INSERT INTO tb_st_store_bap_ver (id_st_store_bap_det, id_report, report_number, report_mark_type, qty, note) VALUES "
 
@@ -7476,15 +7479,17 @@ GROUP BY ol.checkout_id
 
                             Dim note As String = GVData.GetRowCellValue(i, "note").ToString
 
-                            If i > 0 Then
-                                query += ", "
-                            End If
+                            query += "('" + id_st_store_bap_det + "', '" + id_report + "', '" + report_number + "', '" + report_mark_type + "', '" + qty + "', '" + addSlashes(note) + "'), "
 
-                            query += "('" + id_st_store_bap_det + "', '" + id_report + "', '" + report_number + "', '" + report_mark_type + "', '" + qty + "', '" + addSlashes(note) + "')"
+                            insert_ver = True
                         End If
                     Next
 
-                    execute_non_query(query, True, "", "", "", "")
+                    If insert_ver Then
+                        query = query.Substring(0, query.Length - 2)
+
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
                 Else
                     stopCustom("No valid data, please make sure again")
                 End If
