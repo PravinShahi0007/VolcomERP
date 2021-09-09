@@ -154,6 +154,7 @@ HAVING debit+credit!=0;"
         'WHERE trx.`is_close`='2' AND trx.id_report_status!=5 AND DATE(trx.`date_reference`)<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(trx.`date_reference`)>='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-01") & "' AND trxd.`id_coa_tag`='" & SLEUnit.EditValue.ToString & "'
         'GROUP BY trxd.id_coa_tag
         'HAVING (credit+debit)>0"
+
         Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_comp, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,id_coa_tag)
         SELECT " + id_acc_trans + " AS `id_trans`,1,coal.`id_acc`,1 AS qty,IF(SUM(((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit))*(IF(acc.id_dc=1,1,-1)))<0,0,SUM(((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit))*(IF(acc.id_dc=1,1,-1)))) AS debit,IF(SUM(((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit))*(IF(acc.id_dc=1,1,-1)))<0,SUM(((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit))*(IF(acc.id_dc=1,1,-1)))*-1,0) AS credit,'Closing Bulanan' AS note,0 AS rmt,0 AS id_report,'' AS number, trxd.id_coa_tag
         FROM tb_a_acc_trans_det trxd
