@@ -287,6 +287,9 @@
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        BGVData.ActiveFilterString = ""
+        BGVData.ClearColumnsFilter()
+
         Dim Report As New ReportStockTakeStoreBAPHasil()
 
         Dim director As String = execute_query("
