@@ -287,6 +287,7 @@
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        BGVData.FindFilterText = ""
         BGVData.ActiveFilterString = ""
         BGVData.ClearColumnsFilter()
 
