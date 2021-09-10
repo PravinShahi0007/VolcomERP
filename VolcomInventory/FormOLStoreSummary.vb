@@ -1004,6 +1004,24 @@
     Private Sub BtnExportToXLS_Click(sender As Object, e As EventArgs) Handles BtnExportToXLS.Click
         If GVDetail.RowCount > 0 Then
             Cursor = Cursors.WaitCursor
+            'column option creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVDetail.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            For i As Integer = 0 To GVDetail.Columns.Count - 1
+                Try
+                    Dim hdr As String = GVDetail.Columns(i).OwnerBand.ToString = ""
+                    If GVDetail.Columns(i).OwnerBand.ToString = "  " Then
+                        hdr = ""
+                    Else
+                        hdr = GVDetail.Columns(i).OwnerBand.ToString + " | "
+                    End If
+                    GVDetail.Columns(i).Caption = hdr + GVDetail.Columns(i).Caption.ToString
+                Catch ex As Exception
+                End Try
+            Next
+
             Dim path As String = Application.StartupPath & "\download\"
             'create directory if not exist
             If Not IO.Directory.Exists(path) Then
@@ -1011,6 +1029,10 @@
             End If
             path = path + "ol_store_report_detail.xlsx"
             exportToXLS(path, "ol_store_report_detail", GCDetail)
+
+            'restore column opt
+            GVDetail.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
             Cursor = Cursors.Default
         End If
     End Sub
