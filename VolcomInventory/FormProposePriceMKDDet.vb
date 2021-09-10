@@ -176,6 +176,7 @@
             BtnFinalPropose.Visible = False
             gridBandAction.Visible = True
             BtnBulkEdit.Visible = True
+            BtnUseERPRecom.Visible = True
             PanelOpt.Visible = True
         Else
             BtnConfirm.Visible = False
@@ -191,6 +192,7 @@
             BtnFinalPropose.Visible = True
             gridBandAction.Visible = False
             BtnBulkEdit.Visible = False
+            BtnUseERPRecom.Visible = False
             PanelOpt.Visible = False
         End If
 
@@ -218,6 +220,7 @@
             gridBandAction.Visible = False
             LEPriceType.Enabled = False
             BtnBulkEdit.Visible = False
+            BtnUseERPRecom.Visible = False
             PanelOpt.Visible = False
         End If
     End Sub
@@ -876,6 +879,82 @@
             FormDesignInfo.id_design = GVData.GetFocusedRowCellValue("id_design").ToString
             FormDesignInfo.ShowDialog()
             Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnUseERPRecom_Click(sender As Object, e As EventArgs) Handles BtnUseERPRecom.Click
+        Dim id_mkd_type As String = LEMKDType.EditValue.ToString
+        If id_mkd_type <> "3" Then 'slain internal sale
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this Propose Price ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                is_enable_custom_calc = False
+                Dim last_filter As String = GVData.ActiveFilterString.ToString
+                Dim ftr As String = "[is_select]='Yes' "
+                If last_filter <> "" Then
+                    ftr += "AND " + last_filter
+                End If
+                GVData.ActiveFilterString = ftr
+                If GVData.RowCount > 0 Then
+                    If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                        FormMain.SplashScreenManager1.ShowWaitForm()
+                    End If
+                    For i As Integer = (GVData.RowCount - 1) - GetGroupRowCount(GVData) To 0 Step -1
+                        Dim normal_price As Decimal = GVData.GetRowCellValue(i, "design_price_normal")
+                        Dim erp_discount_cek As String = GVData.GetRowCellValue(i, "erp_discount").ToString
+                        If erp_discount_cek = "" Then
+                            GVData.SetRowCellValue(i, "propose_disc", Nothing)
+                            GVData.SetRowCellValue(i, "propose_price", Nothing)
+                            GVData.SetRowCellValue(i, "propose_price_final", Nothing)
+                            GVData.SetRowCellValue(i, "propose_disc_group", "")
+                            GVData.SetRowCellValue(i, "propose_status", "")
+                        Else
+                            Dim erp_discount As Decimal = GVData.GetRowCellValue(i, "erp_discount")
+                            If id_mkd_type = "1" Then
+                                'eos
+                                If erp_discount > 30 Then
+                                    GVData.SetRowCellValue(i, "propose_disc", Nothing)
+                                    GVData.SetRowCellValue(i, "propose_price", Nothing)
+                                    GVData.SetRowCellValue(i, "propose_price_final", Nothing)
+                                    GVData.SetRowCellValue(i, "propose_disc_group", "")
+                                    GVData.SetRowCellValue(i, "propose_status", "")
+                                Else
+                                    Dim propose_disc As Decimal = GVData.GetRowCellValue(i, "erp_discount")
+                                    Dim propose_price As Decimal = normal_price * ((100 - propose_disc) / 100)
+                                    Dim propose_price_final As Decimal = Math.Floor(Decimal.Parse(propose_price) / 1000D) * 1000
+                                    GVData.SetRowCellValue(i, "propose_disc", propose_disc)
+                                    GVData.SetRowCellValue(i, "propose_price", propose_price)
+                                    GVData.SetRowCellValue(i, "propose_price_final", propose_price_final)
+                                    GVData.SetRowCellValue(i, "propose_disc_group", "Up to " + Decimal.Parse(propose_disc.ToString).ToString("N0") + "%")
+                                    GVData.SetRowCellValue(i, "propose_status", "Turun")
+                                End If
+                            Else
+                                Dim propose_disc As Decimal = GVData.GetRowCellValue(i, "erp_discount")
+                                Dim propose_price As Decimal = normal_price * ((100 - propose_disc) / 100)
+                                Dim propose_price_final As Decimal = Math.Floor(Decimal.Parse(propose_price) / 1000D) * 1000
+                                GVData.SetRowCellValue(i, "propose_disc", propose_disc)
+                                GVData.SetRowCellValue(i, "propose_price", propose_price)
+                                GVData.SetRowCellValue(i, "propose_price_final", propose_price_final)
+                                GVData.SetRowCellValue(i, "propose_disc_group", "Up to " + Decimal.Parse(propose_disc.ToString).ToString("N0") + "%")
+                                GVData.SetRowCellValue(i, "propose_status", "Turun")
+                            End If
+                        End If
+                        GVData.SetRowCellValue(i, "check_stt", "2")
+                        GVData.SetRowCellValue(i, "is_select", "No")
+                    Next
+                    GCData.Refresh()
+                    GVData.RefreshData()
+                    FormMain.SplashScreenManager1.CloseWaitForm()
+                Else
+                    stopCustom("No selected items")
+                End If
+                CESelectAll.EditValue = False
+                GVData.ActiveFilterString = "" + last_filter
+                is_enable_custom_calc = True
+                Cursor = Cursors.Default
+            End If
+        Else
+            warningCustom("Fitur ini tidak tersedia untuk pengajuan internal sale")
         End If
     End Sub
 End Class

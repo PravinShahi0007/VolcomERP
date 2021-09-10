@@ -42,6 +42,8 @@ Partial Class FormStockTakePartialDet
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBImportExcel = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBDownloadTemplate = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLUEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,6 +59,8 @@ Partial Class FormStockTakePartialDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SBDownloadTemplate)
+        Me.PanelControl1.Controls.Add(Me.SBImportExcel)
         Me.PanelControl1.Controls.Add(Me.SLUEReportStatus)
         Me.PanelControl1.Controls.Add(Me.LabelControl3)
         Me.PanelControl1.Controls.Add(Me.TENote)
@@ -254,6 +258,22 @@ Partial Class FormStockTakePartialDet
         Me.SBSave.TabIndex = 0
         Me.SBSave.Text = "Save"
         '
+        'SBImportExcel
+        '
+        Me.SBImportExcel.Location = New System.Drawing.Point(65, 36)
+        Me.SBImportExcel.Name = "SBImportExcel"
+        Me.SBImportExcel.Size = New System.Drawing.Size(75, 23)
+        Me.SBImportExcel.TabIndex = 5
+        Me.SBImportExcel.Text = "Import Excel"
+        '
+        'SBDownloadTemplate
+        '
+        Me.SBDownloadTemplate.Location = New System.Drawing.Point(146, 36)
+        Me.SBDownloadTemplate.Name = "SBDownloadTemplate"
+        Me.SBDownloadTemplate.Size = New System.Drawing.Size(117, 23)
+        Me.SBDownloadTemplate.TabIndex = 6
+        Me.SBDownloadTemplate.Text = "Download Template"
+        '
         'FormStockTakePartialDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -303,4 +323,6 @@ Partial Class FormStockTakePartialDet
     Friend WithEvents RepositoryItemCheckEdit As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBDownloadTemplate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBImportExcel As DevExpress.XtraEditors.SimpleButton
 End Class

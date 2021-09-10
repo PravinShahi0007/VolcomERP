@@ -311,7 +311,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCUVendor.Visible = False
             PCPOrign.Visible = False
             PCPDest.Visible = False
-            PCUAdm.Visible = False
+            BLoadCharges.Visible = False
             '
             XTC.SelectedTabPageIndex = 5
         End If

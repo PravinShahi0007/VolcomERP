@@ -4500,21 +4500,23 @@ GROUP BY ol.checkout_id
 
                 'check qty
                 For j = 0 To FormStockTakeStoreVerDet.BGVData.RowCount - 1
-                    If FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "is_added_product").ToString = "2" Then
-                        Dim qty_wh As Integer = 0
+                    If FormStockTakeStoreVerDet.BGVData.IsValidRowHandle(j) Then
+                        If FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "is_added_product").ToString = "2" Then
+                            Dim qty_wh As Integer = 0
 
-                        For w = 0 To data_temp.Rows.Count - 1
-                            If data_temp.Rows(w)("report_type").ToString = "IN WH" Then
-                                If barcode = data_temp.Rows(w)("barcode").ToString Then
-                                    qty_wh += data_temp.Rows(w)("qty")
+                            For w = 0 To data_temp.Rows.Count - 1
+                                If data_temp.Rows(w)("report_type").ToString = "IN WH" Then
+                                    If barcode = data_temp.Rows(w)("barcode").ToString Then
+                                        qty_wh += data_temp.Rows(w)("qty")
+                                    End If
                                 End If
-                            End If
-                        Next
+                            Next
 
-                        If Not data_temp.Rows(i)("report_type").ToString = "IN WH" Then
-                            If barcode = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "full_code").ToString Then
-                                If data_temp.Rows(i)("qty") > (Math.Abs(FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal")) + qty_wh) Then
-                                    data_temp.Rows(i)("status") = "Qty larger than " + (FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal") + qty_wh).ToString
+                            If Not data_temp.Rows(i)("report_type").ToString = "IN WH" Then
+                                If barcode = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "full_code").ToString Then
+                                    If data_temp.Rows(i)("qty") > (Math.Abs(FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal")) + qty_wh) Then
+                                        data_temp.Rows(i)("status") = "Qty larger than " + (FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal") + qty_wh).ToString
+                                    End If
                                 End If
                             End If
                         End If
@@ -4526,6 +4528,32 @@ GROUP BY ol.checkout_id
 
             GVData.Columns(10).VisibleIndex = 1
             GVData.Columns(11).VisibleIndex = 2
+        ElseIf id_pop_up = "61" Then
+            FormStockTakePartialDet.GVProduct.FindFilterText = ""
+            FormStockTakePartialDet.GVProduct.ActiveFilterString = ""
+            FormStockTakePartialDet.GVProduct.ClearColumnsFilter()
+
+            data_temp.Columns.Add("status", GetType(String))
+
+            For i = 0 To data_temp.Rows.Count - 1
+                Dim total_design As Integer = 0
+
+                For j = 0 To FormStockTakePartialDet.GVProduct.RowCount - 1
+                    If FormStockTakePartialDet.GVProduct.IsValidRowHandle(j) Then
+                        If data_temp.Rows(i)("code").ToString = FormStockTakePartialDet.GVProduct.GetRowCellValue(j, "design_code").ToString Then
+                            total_design += 1
+                        End If
+                    End If
+                Next
+
+                If total_design = 0 Then
+                    data_temp.Rows(i)("status") = "code not found"
+                Else
+                    data_temp.Rows(i)("status") = "ok"
+                End If
+            Next
+
+            GCData.DataSource = data_temp
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -7424,7 +7452,7 @@ GROUP BY ol.checkout_id
 
                 execute_non_query("DELETE FROM tb_st_store_bap_det WHERE is_added_product = 1 AND id_st_store_bap = " + FormStockTakeStoreVerDet.id_st_store_bap, True, "", "", "", "")
 
-                execute_non_query("UPDATE tb_st_store_bap_det SET wh_qty = 0 WHERE id_st_store_bap = " + FormStockTakeStoreVerDet.id_st_store_bap, True, "", "", "", "")
+                execute_non_query("UPDATE tb_st_store_bap_det SET wh_qty = 0, note = NULL WHERE id_st_store_bap = " + FormStockTakeStoreVerDet.id_st_store_bap, True, "", "", "", "")
 
                 If GVData.RowCount > 0 Then
                     'in wh
@@ -7435,18 +7463,21 @@ GROUP BY ol.checkout_id
                             Dim id_price As String = GVData.GetRowCellValue(i, "id_price").ToString
                             Dim price As String = GVData.GetRowCellValue(i, "price").ToString
                             Dim qty As String = GVData.GetRowCellValue(i, "qty").ToString
+                            Dim note As String = GVData.GetRowCellValue(i, "note").ToString
 
                             If id_st_store_bap_det = "0" Then
                                 id_st_store_bap_det = execute_query("
-                                    INSERT INTO tb_st_store_bap_det (id_st_store_bap, id_product, soh_qty, scan_qty, wh_qty, id_price, price, is_edited_price, is_added_product) VALUES (" + id_st_store_bap + ", " + id_product + ", 0, 0, '" + qty + "', " + id_price + ", " + price + ", 2, 1); SELECT LAST_INSERT_ID();
+                                    INSERT INTO tb_st_store_bap_det (id_st_store_bap, id_product, soh_qty, scan_qty, wh_qty, id_price, price, is_edited_price, is_added_product, note) VALUES (" + id_st_store_bap + ", " + id_product + ", 0, 0, '" + qty + "', " + id_price + ", " + price + ", 2, 1, '" + addSlashes(note) + "'); SELECT LAST_INSERT_ID();
                                 ", 0, True, "", "", "", "")
                             Else
                                 execute_non_query("
-                                    UPDATE tb_st_store_bap_det SET wh_qty = '" + qty + "' WHERE id_st_store_bap_det = '" + id_st_store_bap_det + "'
+                                    UPDATE tb_st_store_bap_det SET wh_qty = '" + qty + "', note = '" + addSlashes(note) + "' WHERE id_st_store_bap_det = '" + id_st_store_bap_det + "'
                                 ", True, "", "", "", "")
                             End If
                         End If
                     Next
+
+                    Dim insert_ver As Boolean = False
 
                     Dim query As String = "INSERT INTO tb_st_store_bap_ver (id_st_store_bap_det, id_report, report_number, report_mark_type, qty, note) VALUES "
 
@@ -7476,20 +7507,46 @@ GROUP BY ol.checkout_id
 
                             Dim note As String = GVData.GetRowCellValue(i, "note").ToString
 
-                            If i > 0 Then
-                                query += ", "
-                            End If
+                            query += "('" + id_st_store_bap_det + "', '" + id_report + "', '" + report_number + "', '" + report_mark_type + "', '" + qty + "', '" + addSlashes(note) + "'), "
 
-                            query += "('" + id_st_store_bap_det + "', '" + id_report + "', '" + report_number + "', '" + report_mark_type + "', '" + qty + "', '" + addSlashes(note) + "')"
+                            insert_ver = True
                         End If
                     Next
 
-                    execute_non_query(query, True, "", "", "", "")
+                    If insert_ver Then
+                        query = query.Substring(0, query.Length - 2)
+
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
                 Else
                     stopCustom("No valid data, please make sure again")
                 End If
 
                 FormStockTakeStoreVerDet.form_load()
+
+                infoCustom("Import success")
+
+                Close()
+            ElseIf id_pop_up = "61" Then
+                makeSafeGV(GVData)
+
+                For j = 0 To FormStockTakePartialDet.GVProduct.RowCount - 1
+                    If FormStockTakePartialDet.GVProduct.IsValidRowHandle(j) Then
+                        FormStockTakePartialDet.GVProduct.SetRowCellValue(j, "is_select", "no")
+                    End If
+                Next
+
+                GVData.ActiveFilterString = "[status] = 'ok'"
+
+                For i = 0 To GVData.RowCount - 1
+                    For j = 0 To FormStockTakePartialDet.GVProduct.RowCount - 1
+                        If FormStockTakePartialDet.GVProduct.IsValidRowHandle(j) Then
+                            If GVData.GetRowCellValue(i, "code").ToString = FormStockTakePartialDet.GVProduct.GetRowCellValue(j, "design_code").ToString Then
+                                FormStockTakePartialDet.GVProduct.SetRowCellValue(j, "is_select", "yes")
+                            End If
+                        End If
+                    Next
+                Next
 
                 infoCustom("Import success")
 

@@ -640,6 +640,7 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         Cursor = Cursors.WaitCursor
         makeSafeGV(GVItemList)
+        delBlankRow()
 
         'check existing code in other trans
         makeSafeGV(GVBarcode)
@@ -936,6 +937,26 @@ WHERE rec.id_prod_order_rec='" & id_prod_order_rec & "'"
         GVItemList.OptionsBehavior.Editable = True
         ControlBox = True
         LEPLCategory.Enabled = True
+
+        'For i As Integer = 0 To (GVBarcode.RowCount - 1)
+        '    Dim check_code As String = ""
+        '    Try
+        '        check_code = GVBarcode.GetRowCellValue(i, "code").ToString()
+        '    Catch ex As Exception
+
+        '    End Try
+        '    If check_code = "" Or check_code = Nothing Or IsDBNull(check_code) Then
+        '        GVBarcode.DeleteRow(i)
+        '    End If
+        'Next
+
+        delBlankRow()
+    End Sub
+
+    Sub delBlankRow()
+        GVBarcode.ActiveFilterString = ""
+        GVBarcode.ApplyFindFilter("")
+
         For i As Integer = 0 To (GVBarcode.RowCount - 1)
             Dim check_code As String = ""
             Try

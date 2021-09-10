@@ -116,11 +116,13 @@
             GVProduct.OptionsBehavior.Editable = True
             SBSave.Enabled = True
             SBMark.Enabled = False
+            SBImportExcel.Enabled = True
         Else
             TENote.ReadOnly = True
             GVProduct.OptionsBehavior.Editable = False
             SBSave.Enabled = False
             SBMark.Enabled = True
+            SBImportExcel.Enabled = False
         End If
     End Sub
 
@@ -133,5 +135,28 @@
         FormReportMark.ShowDialog()
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBDownloadTemplate_Click(sender As Object, e As EventArgs) Handles SBDownloadTemplate.Click
+        Dim save As SaveFileDialog = New SaveFileDialog
+
+        save.Filter = "Excel File | *.xlsx"
+        save.FileName = "Template Partial Stock Take.xlsx"
+
+        save.ShowDialog()
+
+        If Not save.FileName = "" Then
+            Try
+                My.Computer.Network.DownloadFile("\\192.168.1.2\dataapp$\template\Template Partial Stock Take.xlsx", save.FileName)
+
+                infoCustom("File downloaded.")
+            Catch ex As Exception
+            End Try
+        End If
+    End Sub
+
+    Private Sub SBImportExcel_Click(sender As Object, e As EventArgs) Handles SBImportExcel.Click
+        FormImportExcel.id_pop_up = "61"
+        FormImportExcel.ShowDialog()
     End Sub
 End Class

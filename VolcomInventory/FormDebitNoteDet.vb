@@ -519,4 +519,15 @@ WHERE dn.id_debit_note='" & id_dn & "'"
         End If
         Cursor = Cursors.Default
     End Sub
+
+    'Private Sub GVItemList_CustomDrawFooter(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVItemList.CustomDrawFooter
+    '    Dim stringFormat As StringFormat = New StringFormat()
+    '    stringFormat.Alignment = StringAlignment.Near
+    '    stringFormat.LineAlignment = StringAlignment.Center
+    '    Dim rect = e.Bounds
+    '    rect.X += 10
+    '    e.DefaultDraw()
+    '    e.Cache.DrawString("TOTAL", e.Appearance.GetFont(), e.Appearance.GetForeBrush(e.Cache), rect, stringFormat)
+    '    e.Handled = True
+    'End Sub
 End Class
