@@ -443,7 +443,7 @@
         ish.id_invoice_ship, ish.`invoice_ship_number`, 
         ish.`invoice_ship_status`, ish.`invoice_ship_date`, IFNULL(ish.invoice_ship_value,0.00) AS `invoice_ship_value`,
         '0' AS `report_mark_type`, 
-        IFNULL(stt.`status`, 'Pending') AS `ol_store_status`, IFNULL(stt.status_date, sales_order_ol_shop_date) AS `ol_store_date`,
+        IF(c.id_comp_group=76,'',IFNULL(stt.`status`, 'Pending')) AS `ol_store_status`, IFNULL(stt.status_date, sales_order_ol_shop_date) AS `ol_store_date`,
         IFNULL(stt_internal.`status`, '-') AS `ol_store_status_internal`, IFNULL(stt_internal.status_date, sales_order_ol_shop_date) AS `ol_store_date_internal`,
         so.sales_order_ol_shop_date,  so.`customer_name` , so.`shipping_name` , so.`shipping_address`, so.`shipping_phone` , so.`shipping_city` , 
         so.`shipping_post_code` , so.`shipping_region` , so.`payment_method`, so.`tracking_code`, cg.lead_time_return, '' AS view_shipping_label,
