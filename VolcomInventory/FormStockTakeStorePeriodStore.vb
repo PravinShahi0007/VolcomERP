@@ -22,7 +22,7 @@
 
     Private Sub FormStockTakeStorePeriodStore_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         FormStockTakeStorePeriodDet.view_user()
-        FormStockTakeStorePeriodDet.min_start_date()
+        'FormStockTakeStorePeriodDet.min_start_date()
 
         Dispose()
     End Sub
