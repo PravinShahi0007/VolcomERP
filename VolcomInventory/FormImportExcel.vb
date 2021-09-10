@@ -4500,21 +4500,23 @@ GROUP BY ol.checkout_id
 
                 'check qty
                 For j = 0 To FormStockTakeStoreVerDet.BGVData.RowCount - 1
-                    If FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "is_added_product").ToString = "2" Then
-                        Dim qty_wh As Integer = 0
+                    If FormStockTakeStoreVerDet.BGVData.IsValidRowHandle(j) Then
+                        If FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "is_added_product").ToString = "2" Then
+                            Dim qty_wh As Integer = 0
 
-                        For w = 0 To data_temp.Rows.Count - 1
-                            If data_temp.Rows(w)("report_type").ToString = "IN WH" Then
-                                If barcode = data_temp.Rows(w)("barcode").ToString Then
-                                    qty_wh += data_temp.Rows(w)("qty")
+                            For w = 0 To data_temp.Rows.Count - 1
+                                If data_temp.Rows(w)("report_type").ToString = "IN WH" Then
+                                    If barcode = data_temp.Rows(w)("barcode").ToString Then
+                                        qty_wh += data_temp.Rows(w)("qty")
+                                    End If
                                 End If
-                            End If
-                        Next
+                            Next
 
-                        If Not data_temp.Rows(i)("report_type").ToString = "IN WH" Then
-                            If barcode = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "full_code").ToString Then
-                                If data_temp.Rows(i)("qty") > (Math.Abs(FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal")) + qty_wh) Then
-                                    data_temp.Rows(i)("status") = "Qty larger than " + (FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal") + qty_wh).ToString
+                            If Not data_temp.Rows(i)("report_type").ToString = "IN WH" Then
+                                If barcode = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "full_code").ToString Then
+                                    If data_temp.Rows(i)("qty") > (Math.Abs(FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal")) + qty_wh) Then
+                                        data_temp.Rows(i)("status") = "Qty larger than " + (FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal") + qty_wh).ToString
+                                    End If
                                 End If
                             End If
                         End If

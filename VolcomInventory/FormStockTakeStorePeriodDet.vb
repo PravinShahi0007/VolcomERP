@@ -41,6 +41,49 @@
             Exit Sub
         End If
 
+        Dim id_store_in As String = "0"
+
+        For i = 0 To id_store.Count - 1
+            id_store_in += ", " + id_store(i)
+        Next
+
+        Dim total_store_on_process As String = execute_query("
+            SELECT COUNT(*) AS total
+            FROM (
+                SELECT p.id_store, IF(IFNULL(b.total, 0) = IFNULL(s.total, 0), 'Completed', 'On Process') AS status
+                FROM tb_st_store_period AS p
+                LEFT JOIN (
+                    SELECT id_st_store_period, COUNT(*) AS total
+                    FROM tb_st_store_bap
+                    WHERE id_report_status NOT IN (0, 5)
+                    GROUP BY id_st_store_period
+                ) AS b ON p.id_st_store_period = b.id_st_store_period
+                LEFT JOIN (
+                    SELECT id_st_store_period, COUNT(*) AS total
+                    FROM (
+                        SELECT tb.id_st_store_period, tb.id_comp
+                        FROM (
+                            (SELECT id_st_store_period, id_comp
+                            FROM tb_st_store_soh)
+                            UNION ALL
+                            (SELECT id_st_store_period, id_comp
+                            FROM tb_st_store)
+                        ) AS tb
+                        GROUP BY tb.id_st_store_period, tb.id_comp
+                    ) AS tb
+                    GROUP BY tb.id_st_store_period
+                ) AS s ON p.id_st_store_period = s.id_st_store_period
+                WHERE p.id_store IN (" + id_store_in + ")
+            ) AS tb
+            WHERE tb.status = 'On Process'
+        ", 0, True, "", "", "", "")
+
+        If Not total_store_on_process = "0" Then
+            stopCustom("There are some On Process stock take period.")
+
+            Exit Sub
+        End If
+
         FormMain.SplashScreenManager1.ShowWaitForm()
 
         FormMain.SplashScreenManager1.SetWaitFormDescription("Save data...")
