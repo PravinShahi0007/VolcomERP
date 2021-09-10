@@ -1612,6 +1612,10 @@ Partial Class FormPreCalFGPODet
         Me.GVPickVendor.Name = "GVPickVendor"
         Me.GVPickVendor.OptionsBehavior.Editable = False
         Me.GVPickVendor.OptionsBehavior.ReadOnly = True
+        Me.GVPickVendor.OptionsCustomization.AllowFilter = False
+        Me.GVPickVendor.OptionsCustomization.AllowSort = False
+        Me.GVPickVendor.OptionsFilter.AllowFilterEditor = False
+        Me.GVPickVendor.OptionsFind.AllowFindPanel = False
         Me.GVPickVendor.OptionsView.ShowFooter = True
         Me.GVPickVendor.OptionsView.ShowGroupPanel = False
         '
@@ -1667,7 +1671,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn33.Caption = "Freight"
         Me.GridColumn33.DisplayFormat.FormatString = "N2"
         Me.GridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn33.FieldName = "unit_price_in_rp"
+        Me.GridColumn33.FieldName = "tot_orign"
         Me.GridColumn33.Name = "GridColumn33"
         Me.GridColumn33.OptionsColumn.AllowEdit = False
         Me.GridColumn33.OptionsColumn.AllowFocus = False
@@ -1685,7 +1689,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn34.Caption = "Local Handling"
         Me.GridColumn34.DisplayFormat.FormatString = "N2"
         Me.GridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn34.FieldName = "qty"
+        Me.GridColumn34.FieldName = "tot_loc"
         Me.GridColumn34.Name = "GridColumn34"
         Me.GridColumn34.OptionsColumn.AllowEdit = False
         Me.GridColumn34.OptionsColumn.AllowFocus = False
@@ -1704,6 +1708,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn44.Caption = "Other"
         Me.GridColumn44.DisplayFormat.FormatString = "N2"
         Me.GridColumn44.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn44.FieldName = "tot_adm"
         Me.GridColumn44.Name = "GridColumn44"
         Me.GridColumn44.Visible = True
         Me.GridColumn44.VisibleIndex = 4
@@ -1718,7 +1723,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn35.Caption = "Total"
         Me.GridColumn35.DisplayFormat.FormatString = "N2"
         Me.GridColumn35.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn35.FieldName = "total_in_rp"
+        Me.GridColumn35.FieldName = "tot_in_rp"
         Me.GridColumn35.Name = "GridColumn35"
         Me.GridColumn35.OptionsColumn.AllowEdit = False
         Me.GridColumn35.OptionsColumn.AllowFocus = False
@@ -1737,6 +1742,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn45.Caption = "Qty Order"
         Me.GridColumn45.DisplayFormat.FormatString = "N0"
         Me.GridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn45.FieldName = "tot_qty"
         Me.GridColumn45.Name = "GridColumn45"
         Me.GridColumn45.Visible = True
         Me.GridColumn45.VisibleIndex = 6
@@ -1751,6 +1757,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn46.Caption = "Cost per Pcs"
         Me.GridColumn46.DisplayFormat.FormatString = "N2"
         Me.GridColumn46.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn46.FieldName = "unit_cost"
         Me.GridColumn46.Name = "GridColumn46"
         Me.GridColumn46.Visible = True
         Me.GridColumn46.VisibleIndex = 7
