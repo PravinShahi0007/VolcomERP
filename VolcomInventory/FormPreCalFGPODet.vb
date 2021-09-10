@@ -666,7 +666,14 @@ AND NOT ISNULL(choosen_id_comp)"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count > 0 Then
             'print
+            Cursor = Cursors.WaitCursor
+            ReportPreCalBudget.id_report = id
+            Dim Report As New ReportPreCalBudget()
 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+
+            Cursor = Cursors.Default
         Else
             warningCustom("Please choose vendor first")
         End If
