@@ -89,6 +89,7 @@ Partial Class FormViewProdDemand
         Me.GridColumnSNI_add_report_column = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTOTALCOSTSNI_add_report_column = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTOTALAMOUNTSNI_add_report_column = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSILHOUETTE_desc_report_column = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlCompleted = New DevExpress.XtraEditors.PanelControl()
         Me.CEBreakSizeDetail = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnSizeDetail = New DevExpress.XtraEditors.SimpleButton()
@@ -114,7 +115,6 @@ Partial Class FormViewProdDemand
         Me.GridColumnPDNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSTT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnSILHOUETTE_desc_report_column = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -968,6 +968,18 @@ Partial Class FormViewProdDemand
         Me.GridColumnTOTALAMOUNTSNI_add_report_column.Visible = True
         Me.GridColumnTOTALAMOUNTSNI_add_report_column.VisibleIndex = 43
         '
+        'GridColumnSILHOUETTE_desc_report_column
+        '
+        Me.GridColumnSILHOUETTE_desc_report_column.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnSILHOUETTE_desc_report_column.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnSILHOUETTE_desc_report_column.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnSILHOUETTE_desc_report_column.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnSILHOUETTE_desc_report_column.Caption = "SILHOUETTE"
+        Me.GridColumnSILHOUETTE_desc_report_column.FieldName = "SILHOUETTE_desc_report_column"
+        Me.GridColumnSILHOUETTE_desc_report_column.Name = "GridColumnSILHOUETTE_desc_report_column"
+        Me.GridColumnSILHOUETTE_desc_report_column.Visible = True
+        Me.GridColumnSILHOUETTE_desc_report_column.VisibleIndex = 9
+        '
         'PanelControlCompleted
         '
         Me.PanelControlCompleted.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -1194,16 +1206,6 @@ Partial Class FormViewProdDemand
         Me.GridColumnDate.Visible = True
         Me.GridColumnDate.VisibleIndex = 2
         Me.GridColumnDate.Width = 345
-        '
-        'GridColumnSILHOUETTE_desc_report_column
-        '
-        Me.GridColumnSILHOUETTE_desc_report_column.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridColumnSILHOUETTE_desc_report_column.AppearanceHeader.Options.UseFont = True
-        Me.GridColumnSILHOUETTE_desc_report_column.Caption = "SILHOUETTE"
-        Me.GridColumnSILHOUETTE_desc_report_column.FieldName = "SILHOUETTE_desc_report_column"
-        Me.GridColumnSILHOUETTE_desc_report_column.Name = "GridColumnSILHOUETTE_desc_report_column"
-        Me.GridColumnSILHOUETTE_desc_report_column.Visible = True
-        Me.GridColumnSILHOUETTE_desc_report_column.VisibleIndex = 9
         '
         'FormViewProdDemand
         '
