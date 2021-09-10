@@ -59,24 +59,26 @@
                 FormStockTakeStoreVerDet.id_st_store_bap = GVData.GetRowCellValue(i, "id_st_store_bap").ToString
                 FormStockTakeStoreVerDet.Show()
 
-                For j = 1 To FormStockTakeStoreVerDet.BGVData.RowCount - 1
-                    Dim row As DataRow = data.NewRow
+                For j = 0 To FormStockTakeStoreVerDet.BGVData.RowCount - 1
+                    If FormStockTakeStoreVerDet.BGVData.IsValidRowHandle(j) Then
+                        Dim row As DataRow = data.NewRow
 
-                    row("id_st_store_period") = FormStockTakeStorePeriod.GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString
-                    row("id_comp") = FormStockTakeStoreVerDet.SLUEAccount.EditValue.ToString
-                    row("id_product") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "id_product")
-                    row("id_price") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "id_price")
-                    row("price") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "price")
-                    row("soh_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_volcom")
-                    row("scan_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_store")
-                    row("wh_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_wh")
-                    row("selisih_awal_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal")
-                    row("verifikasi_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_ver")
-                    row("selisih_akhir_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_akhir")
-                    row("remark") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "report_mark_type_name")
-                    row("note") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "note")
+                        row("id_st_store_period") = FormStockTakeStorePeriod.GVPeriod.GetFocusedRowCellValue("id_st_store_period").ToString
+                        row("id_comp") = FormStockTakeStoreVerDet.SLUEAccount.EditValue.ToString
+                        row("id_product") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "id_product")
+                        row("id_price") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "id_price")
+                        row("price") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "price")
+                        row("soh_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_volcom")
+                        row("scan_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_store")
+                        row("wh_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_wh")
+                        row("selisih_awal_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_awal")
+                        row("verifikasi_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_ver")
+                        row("selisih_akhir_qty") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "qty_akhir")
+                        row("remark") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "report_mark_type_name")
+                        row("note") = FormStockTakeStoreVerDet.BGVData.GetRowCellValue(j, "note")
 
-                    data.Rows.Add(row)
+                        data.Rows.Add(row)
+                    End If
                 Next
 
                 FormStockTakeStoreVerDet.Close()
