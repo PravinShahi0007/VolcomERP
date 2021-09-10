@@ -426,7 +426,7 @@
         FormDocumentUpload.report_mark_type = rmt
         FormDocumentUpload.id_report = id
         If is_view = "1" Or id_report_status = "6" Or id_report_status = "5" Or is_confirm = "1" Then
-            FormDocumentUpload.is_view = "1"
+            FormDocumentUpload.is_no_delete = "1"
         End If
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
