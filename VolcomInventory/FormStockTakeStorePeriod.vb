@@ -18,14 +18,16 @@
 
     Sub load_form()
         Dim query As String = "
-            SELECT p.id_st_store_period, DATE_FORMAT(p.soh_date, '%d %M %Y') AS soh_date, s.store_name, DATE_FORMAT(p.schedule_start, '%d %M %Y / %H:%i') AS schedule_start, DATE_FORMAT(p.schedule_end, '%d %M %Y / %H:%i') AS schedule_end, IF(IFNULL(b.total, 0) = IFNULL(s.total, 0), 'Completed', 'On Process') AS status
+            SELECT p.id_st_store_period, DATE_FORMAT(p.soh_date, '%d %M %Y') AS soh_date, s.store_name, DATE_FORMAT(p.schedule_start, '%d %M %Y / %H:%i') AS schedule_start, DATE_FORMAT(p.schedule_end, '%d %M %Y / %H:%i') AS schedule_end, IF(IFNULL(b.total, 0) = IFNULL(s.total, 0), 'Completed', 'On Process') AS status, b.verification_by
             FROM tb_st_store_period AS p
             LEFT JOIN tb_m_store AS s ON p.id_store = s.id_store
             LEFT JOIN (
-                SELECT id_st_store_period, COUNT(*) AS total
-                FROM tb_st_store_bap
-                WHERE id_report_status NOT IN (0, 5)
-                GROUP BY id_st_store_period
+                SELECT b.id_st_store_period, GROUP_CONCAT(DISTINCT e.employee_name SEPARATOR ', ') AS verification_by, COUNT(*) AS total
+                FROM tb_st_store_bap AS b
+                LEFT JOIN tb_m_user AS u ON b.created_by = u.id_user
+                LEFT JOIN tb_m_employee AS e ON u.id_employee = e.id_employee
+                WHERE b.id_report_status NOT IN (0, 5)
+                GROUP BY b.id_st_store_period
             ) AS b ON p.id_st_store_period = b.id_st_store_period
             LEFT JOIN (
                 SELECT id_st_store_period, COUNT(*) AS total
