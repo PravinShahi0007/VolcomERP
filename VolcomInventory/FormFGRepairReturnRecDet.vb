@@ -187,6 +187,8 @@ Public Class FormFGRepairReturnRecDet
         TxtCodeCompTo.Enabled = False
         GridColumnQty.OptionsColumn.AllowEdit = False
         GVScan.OptionsCustomization.AllowGroup = True
+        BtnSummary.Visible = False
+        PanelControlSummary.Visible = False
 
         'ATTACH
         If check_attach_report_status(id_report_status, "94", id_fg_repair_return_rec) Then
@@ -348,9 +350,8 @@ Public Class FormFGRepairReturnRecDet
         printing()
     End Sub
 
-    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        makeSafeGV(GVScan)
-        Dim cond_stc As Boolean = True
+    Function checkStock() As Boolean
+        Dim cond_stc As Boolean
 
         If action = "ins" And GVScan.RowCount > 0 Then
             Cursor = Cursors.WaitCursor
@@ -412,6 +413,7 @@ Public Class FormFGRepairReturnRecDet
                             .available_qty = If(y1 Is Nothing, 0, y1("qty_scan")),
                             .design_price_retail = table1("design_price_retail"),
                             .id_product = table1("id_product").ToString,
+                            .design_first_rec_wh_year = table1("design_first_rec_wh_year").ToString,
                             .status = If(table1("qty") = If(y1 Is Nothing, 0, y1("qty_scan")), "OK", "Scanned qty is not equal with demand qty.")
                         }
             GCScanSum.DataSource = Nothing
@@ -429,6 +431,13 @@ Public Class FormFGRepairReturnRecDet
             GVScanSum.ActiveFilterString = ""
             Cursor = Cursors.Default
         End If
+        Return cond_stc
+    End Function
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        makeSafeGV(GVScan)
+        Dim cond_stc As Boolean = True
+        cond_stc = checkStock()
 
         If id_wh_drawer_from = "-1" Or id_wh_drawer_to = "-1" Then
             stopCustom("Account can't blank!")
@@ -818,6 +827,25 @@ Public Class FormFGRepairReturnRecDet
         If e.KeyCode = Keys.F7 Then
             FormMenuAuth.type = "10"
             FormMenuAuth.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BtnSummary_Click(sender As Object, e As EventArgs) Handles BtnSummary.Click
+        Dim cond_stc As Boolean = checkStock()
+        If Not cond_stc Then
+            stopCustom("Some item can't exceed qty limit, please see error in column status!")
+        End If
+    End Sub
+
+    Private Sub BtnBackToScan_Click(sender As Object, e As EventArgs) Handles BtnBackToScan.Click
+        If action = "ins" Then
+            XtraTabControl1.SelectedTabPageIndex = 0
+        End If
+    End Sub
+
+    Private Sub BtnPrintPrev_Click(sender As Object, e As EventArgs) Handles BtnPrintPrev.Click
+        If action = "ins" Then
+            print(GCScanSum, "Preview Scan")
         End If
     End Sub
 End Class

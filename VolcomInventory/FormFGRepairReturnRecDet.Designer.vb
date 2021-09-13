@@ -74,6 +74,7 @@ Partial Class FormFGRepairReturnRecDet
         Me.GridColumnStyle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdFGRepairDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnSummary = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
         Me.TxtScannedCode = New DevExpress.XtraEditors.TextEdit()
         Me.LblScannedCode = New DevExpress.XtraEditors.LabelControl()
@@ -93,7 +94,10 @@ Partial Class FormFGRepairReturnRecDet
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnSummary = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControlSummary = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnBackToScan = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrintPrev = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumndesign_first_rec_wh_year = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,6 +136,8 @@ Partial Class FormFGRepairReturnRecDet
         Me.XTPSummary.SuspendLayout()
         CType(Me.GCScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlSummary.SuspendLayout()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -683,6 +689,26 @@ Partial Class FormFGRepairReturnRecDet
         Me.GridColumnIdFGRepairDet.FieldName = "id_fg_repair_det"
         Me.GridColumnIdFGRepairDet.Name = "GridColumnIdFGRepairDet"
         '
+        'BtnSummary
+        '
+        Me.BtnSummary.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BtnSummary.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnSummary.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnSummary.Appearance.Options.UseBackColor = True
+        Me.BtnSummary.Appearance.Options.UseFont = True
+        Me.BtnSummary.Appearance.Options.UseForeColor = True
+        Me.BtnSummary.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnSummary.Location = New System.Drawing.Point(0, 159)
+        Me.BtnSummary.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnSummary.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Red
+        Me.BtnSummary.LookAndFeel.SkinName = "Metropolis"
+        Me.BtnSummary.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnSummary.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnSummary.Name = "BtnSummary"
+        Me.BtnSummary.Size = New System.Drawing.Size(831, 31)
+        Me.BtnSummary.TabIndex = 5
+        Me.BtnSummary.Text = "View Summary"
+        '
         'PanelNavBarcode
         '
         Me.PanelNavBarcode.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -758,6 +784,7 @@ Partial Class FormFGRepairReturnRecDet
         'XTPSummary
         '
         Me.XTPSummary.Controls.Add(Me.GCScanSum)
+        Me.XTPSummary.Controls.Add(Me.PanelControlSummary)
         Me.XTPSummary.Name = "XTPSummary"
         Me.XTPSummary.Size = New System.Drawing.Size(831, 190)
         Me.XTPSummary.Text = "Summary"
@@ -765,16 +792,16 @@ Partial Class FormFGRepairReturnRecDet
         'GCScanSum
         '
         Me.GCScanSum.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCScanSum.Location = New System.Drawing.Point(0, 0)
+        Me.GCScanSum.Location = New System.Drawing.Point(0, 40)
         Me.GCScanSum.MainView = Me.GVScanSum
         Me.GCScanSum.Name = "GCScanSum"
-        Me.GCScanSum.Size = New System.Drawing.Size(831, 190)
+        Me.GCScanSum.Size = New System.Drawing.Size(831, 150)
         Me.GCScanSum.TabIndex = 4
         Me.GCScanSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScanSum})
         '
         'GVScanSum
         '
-        Me.GVScanSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSum, Me.GridColumnCodeSum, Me.GridColumn4, Me.GridColumn5, Me.GridColumnQty, Me.GridColumnQtyAvail, Me.GridColumn2, Me.GridColumn6, Me.GridColumnAmount, Me.GridColumnStatus})
+        Me.GVScanSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSum, Me.GridColumnCodeSum, Me.GridColumn4, Me.GridColumn5, Me.GridColumnQty, Me.GridColumnQtyAvail, Me.GridColumn2, Me.GridColumn6, Me.GridColumnAmount, Me.GridColumnStatus, Me.GridColumndesign_first_rec_wh_year})
         Me.GVScanSum.GridControl = Me.GCScanSum
         Me.GVScanSum.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "available_qty", Me.GridColumnQtyAvail, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:n0}")})
         Me.GVScanSum.Name = "GVScanSum"
@@ -827,7 +854,7 @@ Partial Class FormFGRepairReturnRecDet
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 4
+        Me.GridColumnQty.VisibleIndex = 5
         Me.GridColumnQty.Width = 67
         '
         'GridColumnQtyAvail
@@ -839,7 +866,7 @@ Partial Class FormFGRepairReturnRecDet
         Me.GridColumnQtyAvail.Name = "GridColumnQtyAvail"
         Me.GridColumnQtyAvail.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "available_qty", "{0:n0}")})
         Me.GridColumnQtyAvail.Visible = True
-        Me.GridColumnQtyAvail.VisibleIndex = 5
+        Me.GridColumnQtyAvail.VisibleIndex = 6
         Me.GridColumnQtyAvail.Width = 79
         '
         'GridColumn2
@@ -856,7 +883,7 @@ Partial Class FormFGRepairReturnRecDet
         Me.GridColumn6.FieldName = "design_price_retail"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 6
+        Me.GridColumn6.VisibleIndex = 7
         Me.GridColumn6.Width = 112
         '
         'GridColumnAmount
@@ -870,7 +897,7 @@ Partial Class FormFGRepairReturnRecDet
         Me.GridColumnAmount.UnboundExpression = "[qty] * [design_price_retail]"
         Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 7
+        Me.GridColumnAmount.VisibleIndex = 8
         Me.GridColumnAmount.Width = 112
         '
         'GridColumnStatus
@@ -879,28 +906,46 @@ Partial Class FormFGRepairReturnRecDet
         Me.GridColumnStatus.FieldName = "status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 8
+        Me.GridColumnStatus.VisibleIndex = 9
         Me.GridColumnStatus.Width = 126
         '
-        'BtnSummary
+        'PanelControlSummary
         '
-        Me.BtnSummary.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.BtnSummary.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnSummary.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BtnSummary.Appearance.Options.UseBackColor = True
-        Me.BtnSummary.Appearance.Options.UseFont = True
-        Me.BtnSummary.Appearance.Options.UseForeColor = True
-        Me.BtnSummary.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnSummary.Location = New System.Drawing.Point(0, 159)
-        Me.BtnSummary.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BtnSummary.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Red
-        Me.BtnSummary.LookAndFeel.SkinName = "Metropolis"
-        Me.BtnSummary.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BtnSummary.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnSummary.Name = "BtnSummary"
-        Me.BtnSummary.Size = New System.Drawing.Size(831, 31)
-        Me.BtnSummary.TabIndex = 5
-        Me.BtnSummary.Text = "View Summary"
+        Me.PanelControlSummary.Controls.Add(Me.BtnBackToScan)
+        Me.PanelControlSummary.Controls.Add(Me.BtnPrintPrev)
+        Me.PanelControlSummary.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlSummary.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlSummary.Name = "PanelControlSummary"
+        Me.PanelControlSummary.Size = New System.Drawing.Size(831, 40)
+        Me.PanelControlSummary.TabIndex = 6
+        '
+        'BtnBackToScan
+        '
+        Me.BtnBackToScan.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnBackToScan.Image = CType(resources.GetObject("BtnBackToScan.Image"), System.Drawing.Image)
+        Me.BtnBackToScan.Location = New System.Drawing.Point(595, 2)
+        Me.BtnBackToScan.Name = "BtnBackToScan"
+        Me.BtnBackToScan.Size = New System.Drawing.Size(117, 36)
+        Me.BtnBackToScan.TabIndex = 1
+        Me.BtnBackToScan.Text = "Back to Scan"
+        '
+        'BtnPrintPrev
+        '
+        Me.BtnPrintPrev.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrintPrev.Image = CType(resources.GetObject("BtnPrintPrev.Image"), System.Drawing.Image)
+        Me.BtnPrintPrev.Location = New System.Drawing.Point(712, 2)
+        Me.BtnPrintPrev.Name = "BtnPrintPrev"
+        Me.BtnPrintPrev.Size = New System.Drawing.Size(117, 36)
+        Me.BtnPrintPrev.TabIndex = 0
+        Me.BtnPrintPrev.Text = "Print Preview"
+        '
+        'GridColumndesign_first_rec_wh_year
+        '
+        Me.GridColumndesign_first_rec_wh_year.Caption = "Rec. in WH"
+        Me.GridColumndesign_first_rec_wh_year.FieldName = "design_first_rec_wh_year"
+        Me.GridColumndesign_first_rec_wh_year.Name = "GridColumndesign_first_rec_wh_year"
+        Me.GridColumndesign_first_rec_wh_year.Visible = True
+        Me.GridColumndesign_first_rec_wh_year.VisibleIndex = 4
         '
         'FormFGRepairReturnRecDet
         '
@@ -962,6 +1007,8 @@ Partial Class FormFGRepairReturnRecDet
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCScanSum, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVScanSum, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlSummary.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1040,4 +1087,8 @@ Partial Class FormFGRepairReturnRecDet
     Friend WithEvents BtnBrowseWH As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TxtCodeWH As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BtnSummary As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControlSummary As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnBackToScan As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnPrintPrev As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumndesign_first_rec_wh_year As DevExpress.XtraGrid.Columns.GridColumn
 End Class
