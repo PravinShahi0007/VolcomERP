@@ -93,6 +93,7 @@ Partial Class FormFGRepairReturnRecDet
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnSummary = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -608,6 +609,7 @@ Partial Class FormFGRepairReturnRecDet
         'XTPScan
         '
         Me.XTPScan.Controls.Add(Me.GCScan)
+        Me.XTPScan.Controls.Add(Me.BtnSummary)
         Me.XTPScan.Controls.Add(Me.PanelNavBarcode)
         Me.XTPScan.Name = "XTPScan"
         Me.XTPScan.Size = New System.Drawing.Size(831, 190)
@@ -619,7 +621,7 @@ Partial Class FormFGRepairReturnRecDet
         Me.GCScan.Location = New System.Drawing.Point(0, 33)
         Me.GCScan.MainView = Me.GVScan
         Me.GCScan.Name = "GCScan"
-        Me.GCScan.Size = New System.Drawing.Size(831, 157)
+        Me.GCScan.Size = New System.Drawing.Size(831, 126)
         Me.GCScan.TabIndex = 3
         Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
         '
@@ -880,6 +882,26 @@ Partial Class FormFGRepairReturnRecDet
         Me.GridColumnStatus.VisibleIndex = 8
         Me.GridColumnStatus.Width = 126
         '
+        'BtnSummary
+        '
+        Me.BtnSummary.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BtnSummary.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnSummary.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnSummary.Appearance.Options.UseBackColor = True
+        Me.BtnSummary.Appearance.Options.UseFont = True
+        Me.BtnSummary.Appearance.Options.UseForeColor = True
+        Me.BtnSummary.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnSummary.Location = New System.Drawing.Point(0, 159)
+        Me.BtnSummary.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnSummary.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Red
+        Me.BtnSummary.LookAndFeel.SkinName = "Metropolis"
+        Me.BtnSummary.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnSummary.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnSummary.Name = "BtnSummary"
+        Me.BtnSummary.Size = New System.Drawing.Size(831, 31)
+        Me.BtnSummary.TabIndex = 5
+        Me.BtnSummary.Text = "View Summary"
+        '
         'FormFGRepairReturnRecDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1017,4 +1039,5 @@ Partial Class FormFGRepairReturnRecDet
     Friend WithEvents TxtNameWH As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BtnBrowseWH As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TxtCodeWH As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BtnSummary As DevExpress.XtraEditors.SimpleButton
 End Class
