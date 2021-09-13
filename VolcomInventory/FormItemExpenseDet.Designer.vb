@@ -140,6 +140,7 @@ Partial Class FormItemExpenseDet
         Me.GCCCDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCurrView = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnLock = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.XTPDraftJournal = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
@@ -154,7 +155,6 @@ Partial Class FormItemExpenseDet
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnLock = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LEPaymentMethod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -272,16 +272,16 @@ Partial Class FormItemExpenseDet
         Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
         Me.PanelControlBottom.Controls.Add(Me.BtnSave)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 599)
+        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 577)
         Me.PanelControlBottom.Name = "PanelControlBottom"
-        Me.PanelControlBottom.Size = New System.Drawing.Size(1052, 41)
+        Me.PanelControlBottom.Size = New System.Drawing.Size(1042, 41)
         Me.PanelControlBottom.TabIndex = 11
         '
         'BtnViewJournal
         '
         Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
-        Me.BtnViewJournal.Location = New System.Drawing.Point(670, 2)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(660, 2)
         Me.BtnViewJournal.Name = "BtnViewJournal"
         Me.BtnViewJournal.Size = New System.Drawing.Size(105, 37)
         Me.BtnViewJournal.TabIndex = 11
@@ -303,7 +303,7 @@ Partial Class FormItemExpenseDet
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(775, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(765, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(103, 37)
         Me.BtnAttachment.TabIndex = 4
@@ -325,7 +325,7 @@ Partial Class FormItemExpenseDet
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(878, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(868, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(88, 37)
         Me.BtnPrint.TabIndex = 3
@@ -336,7 +336,7 @@ Partial Class FormItemExpenseDet
         '
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
-        Me.BtnSave.Location = New System.Drawing.Point(966, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(956, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(84, 37)
         Me.BtnSave.TabIndex = 6
@@ -350,9 +350,9 @@ Partial Class FormItemExpenseDet
         Me.PanelControl3.Controls.Add(Me.LabelControl6)
         Me.PanelControl3.Controls.Add(Me.PanelControl4)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 404)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 382)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1052, 195)
+        Me.PanelControl3.Size = New System.Drawing.Size(1042, 195)
         Me.PanelControl3.TabIndex = 14
         '
         'LabelControl13
@@ -410,7 +410,7 @@ Partial Class FormItemExpenseDet
         Me.PanelControl4.Controls.Add(Me.TxtSubTotal)
         Me.PanelControl4.Controls.Add(Me.LabelControl10)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl4.Location = New System.Drawing.Point(670, 2)
+        Me.PanelControl4.Location = New System.Drawing.Point(660, 2)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(380, 191)
         Me.PanelControl4.TabIndex = 6
@@ -539,7 +539,7 @@ Partial Class FormItemExpenseDet
         Me.PanelControlPay.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlPay.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlPay.Name = "PanelControlPay"
-        Me.PanelControlPay.Size = New System.Drawing.Size(1052, 148)
+        Me.PanelControlPay.Size = New System.Drawing.Size(1042, 148)
         Me.PanelControlPay.TabIndex = 16
         '
         'SLEUnit
@@ -703,7 +703,7 @@ Partial Class FormItemExpenseDet
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
         Me.PanelControl2.Controls.Add(Me.TxtNumber)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl2.Location = New System.Drawing.Point(758, 2)
+        Me.PanelControl2.Location = New System.Drawing.Point(748, 2)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(292, 144)
         Me.PanelControl2.TabIndex = 5
@@ -806,14 +806,14 @@ Partial Class FormItemExpenseDet
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(1046, 38)
+        Me.PanelControlNav.Size = New System.Drawing.Size(1036, 38)
         Me.PanelControlNav.TabIndex = 17
         '
         'BtnDelete
         '
         Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(890, 2)
+        Me.BtnDelete.Location = New System.Drawing.Point(880, 2)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(79, 34)
         Me.BtnDelete.TabIndex = 23
@@ -823,7 +823,7 @@ Partial Class FormItemExpenseDet
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(969, 2)
+        Me.BtnAdd.Location = New System.Drawing.Point(959, 2)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(75, 34)
         Me.BtnAdd.TabIndex = 22
@@ -837,7 +837,7 @@ Partial Class FormItemExpenseDet
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSearchLookUpEdit1, Me.RepositoryItemTextEdit1, Me.RepositoryItemSpinEdit1, Me.RISLEType, Me.RISLECatExpense, Me.RISLECC, Me.RISLECOAPPH, Me.RepositoryItemTextEdit2, Me.RepositoryItemTextEdit3, Me.RISLECurrency, Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoEdit2, Me.RepositoryItemMemoEdit3})
-        Me.GCData.Size = New System.Drawing.Size(1046, 190)
+        Me.GCData.Size = New System.Drawing.Size(1036, 168)
         Me.GCData.TabIndex = 18
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -1406,6 +1406,12 @@ Partial Class FormItemExpenseDet
         Me.GridColumn7.FieldName = "id_acc_cat"
         Me.GridColumn7.Name = "GridColumn7"
         '
+        'GridColumnLock
+        '
+        Me.GridColumnLock.Caption = "Locked"
+        Me.GridColumnLock.FieldName = "is_lock"
+        Me.GridColumnLock.Name = "GridColumnLock"
+        '
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
@@ -1421,7 +1427,7 @@ Partial Class FormItemExpenseDet
         Me.XTPDraftJournal.Location = New System.Drawing.Point(0, 148)
         Me.XTPDraftJournal.Name = "XTPDraftJournal"
         Me.XTPDraftJournal.SelectedTabPage = Me.XTPDetail
-        Me.XTPDraftJournal.Size = New System.Drawing.Size(1052, 256)
+        Me.XTPDraftJournal.Size = New System.Drawing.Size(1042, 234)
         Me.XTPDraftJournal.TabIndex = 19
         Me.XTPDraftJournal.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPDraft})
         '
@@ -1430,7 +1436,7 @@ Partial Class FormItemExpenseDet
         Me.XTPDetail.Controls.Add(Me.GCData)
         Me.XTPDetail.Controls.Add(Me.PanelControlNav)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(1046, 228)
+        Me.XTPDetail.Size = New System.Drawing.Size(1036, 206)
         Me.XTPDetail.Text = "Detail"
         '
         'XTPDraft
@@ -1541,17 +1547,11 @@ Partial Class FormItemExpenseDet
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
         '
-        'GridColumnLock
-        '
-        Me.GridColumnLock.Caption = "Locked"
-        Me.GridColumnLock.FieldName = "is_lock"
-        Me.GridColumnLock.Name = "GridColumnLock"
-        '
         'FormItemExpenseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1052, 640)
+        Me.ClientSize = New System.Drawing.Size(1042, 618)
         Me.Controls.Add(Me.XTPDraftJournal)
         Me.Controls.Add(Me.PanelControlPay)
         Me.Controls.Add(Me.PanelControl3)

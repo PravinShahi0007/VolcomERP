@@ -30,6 +30,7 @@
         LabelClass.Text = ""
         LabelColor.Text = ""
         LabelSeason.Text = ""
+        LabelRecInWH.Text = ""
         PictureEdit1.EditValue = Nothing
     End Sub
 
@@ -51,7 +52,7 @@
         End If
         Dim query As String = "SELECT d.id_design, d.design_code, d.design_display_name, cls.class_display, cls.class, 
         col.color_display, col.color, ss.season, IFNULL(prc.design_price,0) AS `design_price`, 
-        prc.design_price_type, prc.`price_effective_date`
+        prc.design_price_type, prc.`price_effective_date`, DATE_FORMAT(d.design_first_rec_wh, '%d %M %Y') AS `rec_in_wh_date`
         FROM tb_m_design d
         LEFT JOIN (
 	        SELECT d.id_design, cd.display_name AS `class_display`, cd.code_detail_name AS `class`
@@ -91,6 +92,7 @@
             LabelClass.Text = data.Rows(0)("class").ToString + " (" + data.Rows(0)("class_display").ToString + ")"
             LabelColor.Text = data.Rows(0)("color").ToString + " (" + data.Rows(0)("color_display").ToString + ")"
             LabelSeason.Text = data.Rows(0)("season").ToString
+            LabelRecInWH.Text = data.Rows(0)("rec_in_wh_date").ToString
             TxtScannedCode.Focus()
 
             'image

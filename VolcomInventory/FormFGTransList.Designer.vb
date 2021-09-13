@@ -115,6 +115,7 @@ Partial Class FormFGTransList
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdSalesDelOrder = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -147,6 +148,7 @@ Partial Class FormFGTransList
         Me.GridColumn127 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn128 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn129 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn130 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn131 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn132 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -688,11 +690,13 @@ Partial Class FormFGTransList
         Me.XTPDelBarcode.SuspendLayout()
         CType(Me.GCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDelMainCode.SuspendLayout()
         CType(Me.GCSalesDelOrderMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesDelOrderMain, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1703,7 +1707,7 @@ Partial Class FormFGTransList
         Me.GCSalesDelOrder.Location = New System.Drawing.Point(0, 0)
         Me.GCSalesDelOrder.MainView = Me.GVSalesDelOrder
         Me.GCSalesDelOrder.Name = "GCSalesDelOrder"
-        Me.GCSalesDelOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
+        Me.GCSalesDelOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemMemoEdit1})
         Me.GCSalesDelOrder.Size = New System.Drawing.Size(1136, 449)
         Me.GCSalesDelOrder.TabIndex = 5
         Me.GCSalesDelOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesDelOrder, Me.GridView6})
@@ -1719,9 +1723,11 @@ Partial Class FormFGTransList
         Me.GVSalesDelOrder.OptionsFind.AlwaysVisible = True
         Me.GVSalesDelOrder.OptionsView.ColumnAutoWidth = False
         Me.GVSalesDelOrder.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVSalesDelOrder.OptionsView.RowAutoHeight = True
         Me.GVSalesDelOrder.OptionsView.ShowFooter = True
         Me.GVSalesDelOrder.OptionsView.ShowGroupedColumns = True
         Me.GVSalesDelOrder.OptionsView.ShowGroupPanel = False
+        Me.GVSalesDelOrder.RowHeight = 35
         '
         'GridColumn20
         '
@@ -1768,11 +1774,16 @@ Partial Class FormFGTransList
         'GridColumn23
         '
         Me.GridColumn23.Caption = "Note"
+        Me.GridColumn23.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.GridColumn23.FieldName = "pl_sales_order_del_note"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.OptionsColumn.AllowEdit = False
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 20
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
         'GridColumn24
         '
@@ -1987,6 +1998,7 @@ Partial Class FormFGTransList
         'GridColumncombine_note
         '
         Me.GridColumncombine_note.Caption = "Combine Note"
+        Me.GridColumncombine_note.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.GridColumncombine_note.FieldName = "combine_note"
         Me.GridColumncombine_note.Name = "GridColumncombine_note"
         Me.GridColumncombine_note.Visible = True
@@ -2010,7 +2022,7 @@ Partial Class FormFGTransList
         Me.GCSalesDelOrderMain.Location = New System.Drawing.Point(0, 0)
         Me.GCSalesDelOrderMain.MainView = Me.GVSalesDelOrderMain
         Me.GCSalesDelOrderMain.Name = "GCSalesDelOrderMain"
-        Me.GCSalesDelOrderMain.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit8})
+        Me.GCSalesDelOrderMain.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit8, Me.RepositoryItemMemoEdit2})
         Me.GCSalesDelOrderMain.Size = New System.Drawing.Size(1136, 449)
         Me.GCSalesDelOrderMain.TabIndex = 6
         Me.GCSalesDelOrderMain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesDelOrderMain, Me.GridView12})
@@ -2028,9 +2040,11 @@ Partial Class FormFGTransList
         Me.GVSalesDelOrderMain.OptionsPrint.AllowMultilineHeaders = True
         Me.GVSalesDelOrderMain.OptionsView.ColumnAutoWidth = False
         Me.GVSalesDelOrderMain.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVSalesDelOrderMain.OptionsView.RowAutoHeight = True
         Me.GVSalesDelOrderMain.OptionsView.ShowFooter = True
         Me.GVSalesDelOrderMain.OptionsView.ShowGroupedColumns = True
         Me.GVSalesDelOrderMain.OptionsView.ShowGroupPanel = False
+        Me.GVSalesDelOrderMain.RowHeight = 35
         '
         'GridColumn125
         '
@@ -2077,11 +2091,16 @@ Partial Class FormFGTransList
         'GridColumn129
         '
         Me.GridColumn129.Caption = "Note"
+        Me.GridColumn129.ColumnEdit = Me.RepositoryItemMemoEdit2
         Me.GridColumn129.FieldName = "pl_sales_order_del_note"
         Me.GridColumn129.Name = "GridColumn129"
         Me.GridColumn129.OptionsColumn.AllowEdit = False
         Me.GridColumn129.Visible = True
         Me.GridColumn129.VisibleIndex = 29
+        '
+        'RepositoryItemMemoEdit2
+        '
+        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
         '
         'GridColumn130
         '
@@ -2397,6 +2416,7 @@ Partial Class FormFGTransList
         'GridColumncombine_note_main
         '
         Me.GridColumncombine_note_main.Caption = "Combine Note"
+        Me.GridColumncombine_note_main.ColumnEdit = Me.RepositoryItemMemoEdit2
         Me.GridColumncombine_note_main.FieldName = "combine_note"
         Me.GridColumncombine_note_main.Name = "GridColumncombine_note_main"
         Me.GridColumncombine_note_main.Visible = True
@@ -7021,11 +7041,13 @@ Partial Class FormFGTransList
         Me.XTPDelBarcode.ResumeLayout(False)
         CType(Me.GCSalesDelOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSalesDelOrder, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDelMainCode.ResumeLayout(False)
         CType(Me.GCSalesDelOrderMain, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSalesDelOrderMain, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -7823,4 +7845,6 @@ Partial Class FormFGTransList
     Friend WithEvents GridColumncommerce_typecode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl33 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents CCBEStore As DevExpress.XtraEditors.CheckedComboBoxEdit
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents RepositoryItemMemoEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class

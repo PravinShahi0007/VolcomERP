@@ -100,6 +100,8 @@ Public Class FormFGRepairDet
         BtnBrowseTo.Enabled = False
         GridColumnQty.OptionsColumn.AllowEdit = False
         GVScan.OptionsCustomization.AllowGroup = True
+        BtnSummary.Visible = False
+        PanelControlSummary.Visible = False
 
         'ATTACH
         If check_attach_report_status(id_report_status, rmt, id_fg_repair) Then
@@ -534,10 +536,8 @@ Public Class FormFGRepairDet
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        makeSafeGV(GVScan)
+    Function checkStock()
         Dim cond_stc As Boolean = True
-
         If action = "ins" And GVScan.RowCount > 0 Then
             'insert to temporary
             XTPSummary.PageVisible = True
@@ -649,6 +649,13 @@ Public Class FormFGRepairDet
             'End If
             'GVScanSum.ActiveFilterString = ""
         End If
+        Return cond_stc
+    End Function
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        makeSafeGV(GVScan)
+        Dim cond_stc As Boolean = True
+        cond_stc = checkStock()
 
         If id_wh_drawer_from = "-1" Or id_wh_drawer_to = "-1" Then
             stopCustom("Account can't blank!")
@@ -929,6 +936,25 @@ Public Class FormFGRepairDet
         If e.KeyCode = Keys.F7 Then
             FormMenuAuth.type = "9"
             FormMenuAuth.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BtnSummary_Click(sender As Object, e As EventArgs) Handles BtnSummary.Click
+        Dim cond_stc As Boolean = checkStock()
+        If Not cond_stc Then
+            stopCustom("Some item can't exceed qty limit, please see error in column status!")
+        End If
+    End Sub
+
+    Private Sub BtnPrintPrev_Click(sender As Object, e As EventArgs) Handles BtnPrintPrev.Click
+        If action = "ins" Then
+            prePrinting()
+        End If
+    End Sub
+
+    Private Sub BtnBackToScan_Click(sender As Object, e As EventArgs) Handles BtnBackToScan.Click
+        If action = "ins" Then
+            XtraTabControl1.SelectedTabPageIndex = 0
         End If
     End Sub
 End Class
