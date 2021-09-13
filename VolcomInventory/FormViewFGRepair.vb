@@ -245,40 +245,80 @@
 
     Sub printing()
         Cursor = Cursors.WaitCursor
-        ReportSamplePLToWH.id_pre = "-1"
+        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+            ReportFGRepairDet.id_pre = "-1"
+        Else
+            ReportFGRepair.id_pre = "-1"
+        End If
         getReport()
         Cursor = Cursors.Default
     End Sub
 
     Sub getReport()
-        'Cursor = Cursors.WaitCursor
-        'ReportSamplePLToWH.id_sample_pl = id_sample_pl
-        'ReportSamplePLToWH.dt = GCItemList.DataSource
-        'Dim Report As New ReportSamplePLToWH()
+        Cursor = Cursors.WaitCursor
+        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+            GridColumnStatus.Visible = False
+            ReportFGRepairDet.id_fg_repair = id_fg_repair
+            ReportFGRepairDet.id_type = "-1"
+            ReportFGRepairDet.dt = GCScan.DataSource
+            Dim Report As New ReportFGRepairDet()
 
-        '' '... 
-        '' ' creating and saving the view's layout to a new memory stream 
-        'Dim str As System.IO.Stream
-        'str = New System.IO.MemoryStream()
-        'GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
-        'Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVScan.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        ''Grid Detail
-        'ReportStyleGridview(Report.GVItemList)
+            'Grid Detail
+            ReportStyleGridview(Report.GVScan)
 
-        ''Parse val
-        'Report.LabelNumber.Text = TxtNumber.Text
-        'Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
-        'Report.LabelTo.Text = TxtCodeCompTo.Text + " - " + TxtNameCompTo.Text
-        'Report.LabelCreated.Text = DEForm.Text
-        'Report.LabelNote.Text = MENote.Text
+            'Parse val
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
+            Report.LabelTo.Text = TxtCodeCompTo.Text + " - " + TxtNameCompTo.Text
+            Report.LRecNumber.Text = TxtNumber.Text
+            Report.LRecDate.Text = DEForm.Text
+            Report.LabelNote.Text = MENote.Text
+            Report.XrPanel2.Visible = False
 
-        '' Show the report's preview. 
-        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        'Tool.ShowPreview()
-        'Cursor = Cursors.Default
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+        Else
+            GridColumnStatus.Visible = False
+            ReportFGRepair.rmt = rmt
+            ReportFGRepair.id_fg_repair = id_fg_repair
+            ReportFGRepair.id_type = "-1"
+            ReportFGRepair.dt = GCScanSum.DataSource
+            Dim Report As New ReportFGRepair()
+
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVScanSum.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVScanSum.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVScanSum)
+
+            'Parse val
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
+            Report.LabelTo.Text = TxtCodeCompTo.Text + " - " + TxtNameCompTo.Text
+            Report.LRecNumber.Text = TxtNumber.Text
+            Report.LRecDate.Text = DEForm.Text
+            Report.LabelNote.Text = MENote.Text
+            Report.XrPanel2.Visible = False
+
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+        End If
+        Cursor = Cursors.Default
     End Sub
 
 
@@ -306,5 +346,9 @@
         Cursor = Cursors.Default
     End Sub
 
-
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        printing()
+        Cursor = Cursors.Default
+    End Sub
 End Class
