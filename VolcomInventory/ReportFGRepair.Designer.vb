@@ -56,6 +56,7 @@ Partial Public Class ReportFGRepair
         Me.LabelNote = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelPreviewScan = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -260,7 +261,7 @@ Partial Public Class ReportFGRepair
         Me.XrPanel1.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrPanel1.CanGrow = False
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelTo, Me.XrLabel11, Me.XrLabel10, Me.LabelFrom, Me.XrLabel2, Me.XrLabel3})
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelPreviewScan, Me.LabelTo, Me.XrLabel11, Me.XrLabel10, Me.LabelFrom, Me.XrLabel2, Me.XrLabel3})
         Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 50.08334!)
         Me.XrPanel1.Name = "XrPanel1"
         Me.XrPanel1.SizeF = New System.Drawing.SizeF(774.0001!, 74.91666!)
@@ -439,6 +440,23 @@ Partial Public Class ReportFGRepair
         Me.XrLabel14.StylePriority.UseBorders = False
         Me.XrLabel14.Text = ":"
         '
+        'LabelPreviewScan
+        '
+        Me.LabelPreviewScan.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LabelPreviewScan.Font = New System.Drawing.Font("Times New Roman", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelPreviewScan.ForeColor = System.Drawing.Color.DimGray
+        Me.LabelPreviewScan.LocationFloat = New DevExpress.Utils.PointFloat(647.0833!, 6.166712!)
+        Me.LabelPreviewScan.Name = "LabelPreviewScan"
+        Me.LabelPreviewScan.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelPreviewScan.SizeF = New System.Drawing.SizeF(124.9167!, 23.0!)
+        Me.LabelPreviewScan.StylePriority.UseBorders = False
+        Me.LabelPreviewScan.StylePriority.UseFont = False
+        Me.LabelPreviewScan.StylePriority.UseForeColor = False
+        Me.LabelPreviewScan.StylePriority.UseTextAlignment = False
+        Me.LabelPreviewScan.Text = "(Preview Scan)"
+        Me.LabelPreviewScan.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.LabelPreviewScan.Visible = False
+        '
         'ReportFGRepair
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
@@ -488,4 +506,5 @@ Partial Public Class ReportFGRepair
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelPreviewScan As DevExpress.XtraReports.UI.XRLabel
 End Class

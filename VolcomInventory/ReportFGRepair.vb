@@ -43,5 +43,11 @@
             End If
 
         End If
+
+        If LRecNumber.Text = "" Then
+            LabelPreviewScan.Visible = True
+        Else
+            LabelPreviewScan.Visible = False
+        End If
     End Sub
 End Class
