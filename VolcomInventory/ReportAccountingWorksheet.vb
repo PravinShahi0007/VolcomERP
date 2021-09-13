@@ -26,6 +26,11 @@
         Dim c_last_parent_2 As Decimal = 0.00
         Dim e_last_parent_2 As Decimal = 0.00
 
+        Dim total_beginning As Decimal = 0.0
+        Dim total_debit As Decimal = 0.0
+        Dim total_credit As Decimal = 0.0
+        Dim total_ending As Decimal = 0.0
+
         For i = 0 To data.Rows.Count - 1
             If Not i = 0 Then
                 'total
@@ -115,6 +120,11 @@
             c_last_parent_2 = c_last_parent_2 + data.Rows(i)("credit")
             e_last_parent_2 = e_last_parent_2 + data.Rows(i)("ending")
 
+            total_beginning += data.Rows(i)("beginning")
+            total_debit += data.Rows(i)("debit")
+            total_credit += data.Rows(i)("credit")
+            total_ending += data.Rows(i)("ending")
+
             If i = data.Rows.Count - 1 Then
                 'total
                 data_group.Rows.Add(
@@ -141,6 +151,28 @@
             last_parent_1 = data.Rows(i)("acc_name_1").ToString
             last_parent_2 = data.Rows(i)("acc_name_2").ToString
         Next
+
+        Dim row_unit As DataRow = data_group.NewRow
+
+        row_unit("number") = FormAccountingWorksheet.SLEUnit.Text
+        row_unit("acc_name") = ""
+        row_unit("beginning") = 0.00
+        row_unit("debit") = 0.00
+        row_unit("credit") = 0.00
+        row_unit("ending") = 0.00
+        row_unit("type") = "group"
+
+        data_group.Rows.InsertAt(row_unit, 0)
+
+        data_group.Rows.Add(
+            "SUB TOTAL: " + FormAccountingWorksheet.SLEUnit.Text,
+            "",
+            total_beginning,
+            total_debit,
+            total_credit,
+            total_ending,
+            "total"
+        )
 
         'add table row
         XrTable.BeginInit()

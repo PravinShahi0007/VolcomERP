@@ -21,6 +21,9 @@ Partial Public Class ReportAccountingWorksheet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportAccountingWorksheet))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LUnit = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrTable = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCellNo = New DevExpress.XtraReports.UI.XRTableCell()
@@ -42,9 +45,6 @@ Partial Public Class ReportAccountingWorksheet
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.XLTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
-        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LUnit = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XrTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -55,6 +55,41 @@ Partial Public Class ReportAccountingWorksheet
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel5
+        '
+        Me.XrLabel5.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0!, 28.00001!)
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(60.0!, 23.0!)
+        Me.XrLabel5.StylePriority.UseFont = False
+        Me.XrLabel5.StylePriority.UseTextAlignment = False
+        Me.XrLabel5.Text = "Unit"
+        Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel6
+        '
+        Me.XrLabel6.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(60.00001!, 28.00001!)
+        Me.XrLabel6.Name = "XrLabel6"
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
+        Me.XrLabel6.StylePriority.UseFont = False
+        Me.XrLabel6.StylePriority.UseTextAlignment = False
+        Me.XrLabel6.Text = ":"
+        Me.XrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'LUnit
+        '
+        Me.LUnit.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.LUnit.LocationFloat = New DevExpress.Utils.PointFloat(75.0!, 28.00001!)
+        Me.LUnit.Name = "LUnit"
+        Me.LUnit.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LUnit.SizeF = New System.Drawing.SizeF(1000.0!, 23.0!)
+        Me.LUnit.StylePriority.UseFont = False
+        Me.LUnit.StylePriority.UseTextAlignment = False
+        Me.LUnit.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'XrTable
         '
@@ -82,7 +117,7 @@ Partial Public Class ReportAccountingWorksheet
         Me.XrTableCellNo.StylePriority.UseBorders = False
         Me.XrTableCellNo.StylePriority.UsePadding = False
         Me.XrTableCellNo.Text = "No"
-        Me.XrTableCellNo.Weight = 0.10671144229503343R
+        Me.XrTableCellNo.Weight = 0.106711442295033R
         '
         'XrTableCellAccount
         '
@@ -92,7 +127,7 @@ Partial Public Class ReportAccountingWorksheet
         Me.XrTableCellAccount.StylePriority.UseBorders = False
         Me.XrTableCellAccount.StylePriority.UsePadding = False
         Me.XrTableCellAccount.Text = "Account"
-        Me.XrTableCellAccount.Weight = 2.3825451756719294R
+        Me.XrTableCellAccount.Weight = 2.2078223436651951R
         '
         'XrTableCellBeginning
         '
@@ -102,7 +137,7 @@ Partial Public Class ReportAccountingWorksheet
         Me.XrTableCellBeginning.StylePriority.UseBorders = False
         Me.XrTableCellBeginning.StylePriority.UsePadding = False
         Me.XrTableCellBeginning.Text = "Beginning"
-        Me.XrTableCellBeginning.Weight = 0.36660628260973421R
+        Me.XrTableCellBeginning.Weight = 0.4102869906114176R
         '
         'XrTableCellDebit
         '
@@ -112,7 +147,7 @@ Partial Public Class ReportAccountingWorksheet
         Me.XrTableCellDebit.StylePriority.UseBorders = False
         Me.XrTableCellDebit.StylePriority.UsePadding = False
         Me.XrTableCellDebit.Text = "Debit"
-        Me.XrTableCellDebit.Weight = 0.36660628718814231R
+        Me.XrTableCellDebit.Weight = 0.41028699518982559R
         '
         'XrTableCellCredit
         '
@@ -122,7 +157,7 @@ Partial Public Class ReportAccountingWorksheet
         Me.XrTableCellCredit.StylePriority.UseBorders = False
         Me.XrTableCellCredit.StylePriority.UsePadding = False
         Me.XrTableCellCredit.Text = "Credit"
-        Me.XrTableCellCredit.Weight = 0.36660629248300625R
+        Me.XrTableCellCredit.Weight = 0.41028700048468963R
         '
         'XrTableCellEnding
         '
@@ -132,7 +167,7 @@ Partial Public Class ReportAccountingWorksheet
         Me.XrTableCellEnding.StylePriority.UseBorders = False
         Me.XrTableCellEnding.StylePriority.UsePadding = False
         Me.XrTableCellEnding.Text = "Ending"
-        Me.XrTableCellEnding.Weight = 0.36660636875475527R
+        Me.XrTableCellEnding.Weight = 0.41028707675643861R
         '
         'XLPeriod
         '
@@ -266,41 +301,6 @@ Partial Public Class ReportAccountingWorksheet
         Me.XrPictureBox1.Name = "XrPictureBox1"
         Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(220.0!, 41.15!)
         Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
-        '
-        'XrLabel5
-        '
-        Me.XrLabel5.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0!, 28.00001!)
-        Me.XrLabel5.Name = "XrLabel5"
-        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel5.SizeF = New System.Drawing.SizeF(60.0!, 23.0!)
-        Me.XrLabel5.StylePriority.UseFont = False
-        Me.XrLabel5.StylePriority.UseTextAlignment = False
-        Me.XrLabel5.Text = "Unit"
-        Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XrLabel6
-        '
-        Me.XrLabel6.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(60.00001!, 28.00001!)
-        Me.XrLabel6.Name = "XrLabel6"
-        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(15.0!, 23.0!)
-        Me.XrLabel6.StylePriority.UseFont = False
-        Me.XrLabel6.StylePriority.UseTextAlignment = False
-        Me.XrLabel6.Text = ":"
-        Me.XrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'LUnit
-        '
-        Me.LUnit.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.LUnit.LocationFloat = New DevExpress.Utils.PointFloat(75.0!, 28.00001!)
-        Me.LUnit.Name = "LUnit"
-        Me.LUnit.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LUnit.SizeF = New System.Drawing.SizeF(1000.0!, 23.0!)
-        Me.LUnit.StylePriority.UseFont = False
-        Me.LUnit.StylePriority.UseTextAlignment = False
-        Me.LUnit.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'ReportAccountingWorksheet
         '
