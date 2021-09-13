@@ -192,9 +192,11 @@
     Sub insert_row_manual(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)
         Dim font_row_style As New Font(XTDetail.Font.FontFamily, XTDetail.Font.Size, FontStyle.Bold)
 
-        If Not row_i = 0 Then
-            row = XTDetail.InsertRowBelow(row)
-        End If
+        'If Not row_i = 0 Then
+        '    row = XTDetail.InsertRowBelow(row)
+        'End If
+
+        row = XTDetail.InsertRowBelow(row)
 
         row.Borders = DevExpress.XtraPrinting.BorderSide.All
         row.BorderWidth = 1
