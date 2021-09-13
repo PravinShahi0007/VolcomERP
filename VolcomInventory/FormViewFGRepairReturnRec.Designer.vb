@@ -66,6 +66,8 @@ Partial Class FormViewFGRepairReturnRec
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_first_rec_wh_year = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,17 +102,18 @@ Partial Class FormViewFGRepairReturnRec
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.BtnPrint)
         Me.GroupControl3.Controls.Add(Me.BtnAttachment)
         Me.GroupControl3.Controls.Add(Me.BMark)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 413)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 387)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(859, 56)
+        Me.GroupControl3.Size = New System.Drawing.Size(859, 82)
         Me.GroupControl3.TabIndex = 204
         '
         'BtnAttachment
         '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Top
         Me.BtnAttachment.Location = New System.Drawing.Point(20, 28)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(837, 26)
@@ -300,7 +303,7 @@ Partial Class FormViewFGRepairReturnRec
         Me.GroupControl1.Controls.Add(Me.MENote)
         Me.GroupControl1.Controls.Add(Me.LabelControl18)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 332)
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 306)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(859, 81)
         Me.GroupControl1.TabIndex = 209
@@ -361,7 +364,7 @@ Partial Class FormViewFGRepairReturnRec
         Me.GroupControlItemList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlItemList.Location = New System.Drawing.Point(0, 93)
         Me.GroupControlItemList.Name = "GroupControlItemList"
-        Me.GroupControlItemList.Size = New System.Drawing.Size(859, 239)
+        Me.GroupControlItemList.Size = New System.Drawing.Size(859, 213)
         Me.GroupControlItemList.TabIndex = 210
         '
         'XtraTabControl1
@@ -370,7 +373,7 @@ Partial Class FormViewFGRepairReturnRec
         Me.XtraTabControl1.Location = New System.Drawing.Point(20, 2)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XTPScan
-        Me.XtraTabControl1.Size = New System.Drawing.Size(837, 235)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(837, 209)
         Me.XtraTabControl1.TabIndex = 3
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPSummary})
         '
@@ -453,7 +456,7 @@ Partial Class FormViewFGRepairReturnRec
         '
         Me.XTPSummary.Controls.Add(Me.GCScanSum)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(831, 226)
+        Me.XTPSummary.Size = New System.Drawing.Size(831, 181)
         Me.XTPSummary.Text = "Summary"
         '
         'GCScanSum
@@ -462,13 +465,13 @@ Partial Class FormViewFGRepairReturnRec
         Me.GCScanSum.Location = New System.Drawing.Point(0, 0)
         Me.GCScanSum.MainView = Me.GVScanSum
         Me.GCScanSum.Name = "GCScanSum"
-        Me.GCScanSum.Size = New System.Drawing.Size(831, 226)
+        Me.GCScanSum.Size = New System.Drawing.Size(831, 181)
         Me.GCScanSum.TabIndex = 4
         Me.GCScanSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScanSum})
         '
         'GVScanSum
         '
-        Me.GVScanSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSum, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnQty, Me.GridColumnQtyAvail, Me.GridColumn2, Me.GridColumn6, Me.GridColumnAmount, Me.GridColumnStatus})
+        Me.GVScanSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSum, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnQty, Me.GridColumnQtyAvail, Me.GridColumn2, Me.GridColumn6, Me.GridColumnAmount, Me.GridColumnStatus, Me.GridColumndesign_first_rec_wh_year})
         Me.GVScanSum.GridControl = Me.GCScanSum
         Me.GVScanSum.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "available_qty", Me.GridColumnQtyAvail, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:n0}")})
         Me.GVScanSum.Name = "GVScanSum"
@@ -521,7 +524,7 @@ Partial Class FormViewFGRepairReturnRec
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 4
+        Me.GridColumnQty.VisibleIndex = 5
         Me.GridColumnQty.Width = 67
         '
         'GridColumnQtyAvail
@@ -533,7 +536,7 @@ Partial Class FormViewFGRepairReturnRec
         Me.GridColumnQtyAvail.Name = "GridColumnQtyAvail"
         Me.GridColumnQtyAvail.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "available_qty", "{0:n0}")})
         Me.GridColumnQtyAvail.Visible = True
-        Me.GridColumnQtyAvail.VisibleIndex = 5
+        Me.GridColumnQtyAvail.VisibleIndex = 6
         Me.GridColumnQtyAvail.Width = 79
         '
         'GridColumn2
@@ -550,7 +553,7 @@ Partial Class FormViewFGRepairReturnRec
         Me.GridColumn6.FieldName = "design_price_retail"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 6
+        Me.GridColumn6.VisibleIndex = 7
         Me.GridColumn6.Width = 112
         '
         'GridColumnAmount
@@ -564,7 +567,7 @@ Partial Class FormViewFGRepairReturnRec
         Me.GridColumnAmount.UnboundExpression = "[qty] * [design_price_retail]"
         Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 7
+        Me.GridColumnAmount.VisibleIndex = 8
         Me.GridColumnAmount.Width = 112
         '
         'GridColumnStatus
@@ -573,8 +576,25 @@ Partial Class FormViewFGRepairReturnRec
         Me.GridColumnStatus.FieldName = "status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 8
+        Me.GridColumnStatus.VisibleIndex = 9
         Me.GridColumnStatus.Width = 126
+        '
+        'GridColumndesign_first_rec_wh_year
+        '
+        Me.GridColumndesign_first_rec_wh_year.Caption = "Rec in WH"
+        Me.GridColumndesign_first_rec_wh_year.FieldName = "design_first_rec_wh_year"
+        Me.GridColumndesign_first_rec_wh_year.Name = "GridColumndesign_first_rec_wh_year"
+        Me.GridColumndesign_first_rec_wh_year.Visible = True
+        Me.GridColumndesign_first_rec_wh_year.VisibleIndex = 4
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BtnPrint.Location = New System.Drawing.Point(20, 54)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(837, 26)
+        Me.BtnPrint.TabIndex = 6
+        Me.BtnPrint.Text = "Print"
         '
         'FormViewFGRepairReturnRec
         '
@@ -672,4 +692,6 @@ Partial Class FormViewFGRepairReturnRec
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumndesign_first_rec_wh_year As DevExpress.XtraGrid.Columns.GridColumn
 End Class

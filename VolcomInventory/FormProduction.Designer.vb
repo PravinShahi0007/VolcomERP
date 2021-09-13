@@ -24,6 +24,8 @@ Partial Class FormProduction
         Me.XTCTabProduction = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPListProduction = New DevExpress.XtraTab.XtraTabPage()
         Me.GCProd = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewReceivingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVProd = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -274,12 +276,12 @@ Partial Class FormProduction
         Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BSearchCopyProto2 = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewReceivingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BReportView = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -360,7 +362,6 @@ Partial Class FormProduction
         Me.PanelControl7.SuspendLayout()
         CType(Me.SLEVendorCopyProto2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCTabProduction
@@ -394,6 +395,18 @@ Partial Class FormProduction
         Me.GCProd.Size = New System.Drawing.Size(992, 251)
         Me.GCProd.TabIndex = 2
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewReceivingToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(154, 26)
+        '
+        'ViewReceivingToolStripMenuItem
+        '
+        Me.ViewReceivingToolStripMenuItem.Name = "ViewReceivingToolStripMenuItem"
+        Me.ViewReceivingToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
+        Me.ViewReceivingToolStripMenuItem.Text = "View Receiving"
         '
         'GVProd
         '
@@ -847,6 +860,7 @@ Partial Class FormProduction
         '
         'PCFilterDate
         '
+        Me.PCFilterDate.Controls.Add(Me.BReportView)
         Me.PCFilterDate.Controls.Add(Me.PCSelAll)
         Me.PCFilterDate.Controls.Add(Me.BClearFilter)
         Me.PCFilterDate.Controls.Add(Me.BPrint)
@@ -2762,17 +2776,13 @@ Partial Class FormProduction
         Me.LabelControl13.TabIndex = 8901
         Me.LabelControl13.Text = "Vendor"
         '
-        'ContextMenuStrip1
+        'BReportView
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewReceivingToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(154, 48)
-        '
-        'ViewReceivingToolStripMenuItem
-        '
-        Me.ViewReceivingToolStripMenuItem.Name = "ViewReceivingToolStripMenuItem"
-        Me.ViewReceivingToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
-        Me.ViewReceivingToolStripMenuItem.Text = "View Receiving"
+        Me.BReportView.Location = New System.Drawing.Point(567, 7)
+        Me.BReportView.Name = "BReportView"
+        Me.BReportView.Size = New System.Drawing.Size(84, 23)
+        Me.BReportView.TabIndex = 8912
+        Me.BReportView.Text = "Report View"
         '
         'FormProduction
         '
@@ -2791,6 +2801,7 @@ Partial Class FormProduction
         Me.XTCTabProduction.ResumeLayout(False)
         Me.XTPListProduction.ResumeLayout(False)
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2879,7 +2890,6 @@ Partial Class FormProduction
         Me.PanelControl7.PerformLayout()
         CType(Me.SLEVendorCopyProto2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -3138,4 +3148,5 @@ Partial Class FormProduction
     Friend WithEvents RepositoryItemMemoEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ViewReceivingToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BReportView As DevExpress.XtraEditors.SimpleButton
 End Class

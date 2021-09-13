@@ -1,5 +1,7 @@
 ﻿Public Class FormProductionPrint
     Public dt As DataTable
+    Public is_report_view As Boolean = False
+
     Private Sub FormProductionPrint_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -9,17 +11,26 @@
     End Sub
 
     Private Sub FormProductionPrint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If is_report_view Then
+            BGenKO.Visible = False
+            BGenKP.Visible = False
+            BGenerateCopyProto2Order.Visible = False
+        End If
+        '
         LSeason.Text = FormProduction.SLESeason.Text
-        LPeriod.Text = Date.Parse(FormProduction.DEStart.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(FormProduction.DEStart.EditValue.ToString).ToString("dd MMMM yyyy")
+        LPeriod.Text = Date.Parse(FormProduction.DEStart.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(FormProduction.DEEnd.EditValue.ToString).ToString("dd MMMM yyyy")
         '
         GCProd.DataSource = dt
 
         Dim string_awal As String = ""
         string_awal = GVProd.ActiveFilterString
-        If string_awal = "" Then
-            GVProd.ActiveFilterString += "[po_kurs] > 1"
-        Else
-            GVProd.ActiveFilterString += " AND [po_kurs] > 1"
+
+        If Not is_report_view Then
+            If string_awal = "" Then
+                GVProd.ActiveFilterString += "[po_kurs] > 1"
+            Else
+                GVProd.ActiveFilterString += " AND [po_kurs] > 1"
+            End If
         End If
 
         If GVProd.RowCount > 0 Then
@@ -38,40 +49,45 @@
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
         Cursor = Cursors.WaitCursor
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            '
-            GridColumnNo.VisibleIndex = 0
-            For i As Integer = 0 To GVProd.RowCount - 1
-                GVProd.SetRowCellValue(i, "no", (i + 1).ToString)
-            Next
-            ReportListProd.dt = GCProd.DataSource
-            ReportListProd.rmt = "22"
-            Dim Report As New ReportListProd()
-            ' '... 
-            ' ' creating and saving the view's layout to a new memory stream 
-            Dim str As System.IO.Stream
-            str = New System.IO.MemoryStream()
-            GVProd.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
-            Report.GVProd.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
+        If is_report_view Then
+            print(GCProd, LPeriod.Text)
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                '
+                GridColumnNo.VisibleIndex = 0
+                For i As Integer = 0 To GVProd.RowCount - 1
+                    GVProd.SetRowCellValue(i, "no", (i + 1).ToString)
+                Next
+                ReportListProd.dt = GCProd.DataSource
+                ReportListProd.rmt = "22"
+                Dim Report As New ReportListProd()
+                ' '... 
+                ' ' creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                GVProd.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Report.GVProd.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
 
-            'Grid Detail
-            ReportStyleGridview(Report.GVProd)
-            Report.GVProd.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
-            Report.GVProd.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
-            Report.GVProd.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
-            '
-            'Parse val
-            Report.LSeason.Text = LSeason.Text
-            Report.LPeriod.Text = LPeriod.Text
+                'Grid Detail
+                ReportStyleGridview(Report.GVProd)
+                Report.GVProd.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+                Report.GVProd.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
+                Report.GVProd.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+                '
+                'Parse val
+                Report.LSeason.Text = LSeason.Text
+                Report.LPeriod.Text = LPeriod.Text
 
-            'Show the report's preview. 
-            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            Tool.ShowPreview()
-            GridColumnNo.Visible = False
+                'Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreview()
+                GridColumnNo.Visible = False
+            End If
         End If
+
         Cursor = Cursors.Default
     End Sub
 

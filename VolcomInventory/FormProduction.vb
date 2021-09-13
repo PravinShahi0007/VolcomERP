@@ -631,6 +631,9 @@ GROUP BY recd.id_prod_order_det
         GVProd.ActiveFilterString = "[is_check]='yes'"
         Dim is_approved As Boolean = True
         For i As Integer = 0 To GVProd.RowCount - 1 - GetGroupRowCount(GVProd)
+            'If GVProd.GetRowCellValue(i, "id_report_status").ToString = "1" Or GVProd.GetRowCellValue(i, "id_report_status").ToString = "5" Then
+            '    is_approved = False
+            'End If
             If Not check_allow_print(GVProd.GetRowCellValue(i, "id_report_status").ToString, "22", GVProd.GetRowCellValue(i, "id_prod_order").ToString) Then
                 is_approved = False
             End If
@@ -639,13 +642,12 @@ GROUP BY recd.id_prod_order_det
 
         If is_approved = True Then
             FormProductionPrint.dt = GCProd.DataSource
+            FormProductionPrint.is_report_view = False
             FormProductionPrint.GVProd.ActiveFilterString = "[is_check]='yes'"
             FormProductionPrint.ShowDialog()
         Else
             warningCustom("Please complete approval on PO first before create summary.")
         End If
-
-
     End Sub
 
     Private Sub BFilter_Click(sender As Object, e As EventArgs) Handles BFilter.Click
@@ -803,5 +805,33 @@ GROUP BY id_prod_order_cps2_reff) AND is_purc_mat=2 " & query_where & " ORDER BY
     Private Sub ViewReceivingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewReceivingToolStripMenuItem.Click
         FormPopUpProdRec.id_po = GVProd.GetFocusedRowCellValue("id_prod_order").ToString
         FormPopUpProdRec.ShowDialog()
+    End Sub
+
+    Private Sub BReportView_Click(sender As Object, e As EventArgs) Handles BReportView.Click
+        'GVProd.ActiveFilterString = "[is_check]='yes' AND "
+        'Dim is_approved As Boolean = True
+        'For i As Integer = 0 To GVProd.RowCount - 1 - GetGroupRowCount(GVProd)
+        '    'If GVProd.GetRowCellValue(i, "id_report_status").ToString = "1" Or GVProd.GetRowCellValue(i, "id_report_status").ToString = "5" Then
+        '    '    is_approved = False
+        '    'End If
+        '    If Not check_allow_print(GVProd.GetRowCellValue(i, "id_report_status").ToString, "22", GVProd.GetRowCellValue(i, "id_prod_order").ToString) Then
+        '        is_approved = False
+        '    End If
+        'Next
+        'GVProd.ActiveFilterString = ""
+
+        'If is_approved = True Then
+        '    FormProductionPrint.dt = GCProd.DataSource
+        '    FormProductionPrint.GVProd.ActiveFilterString = "[is_check]='yes'"
+        '    FormProductionPrint.ShowDialog()
+        'Else
+        '    warningCustom("Please complete approval on PO first before create summary.")
+        'End If
+
+        FormProductionPrint.dt = GCProd.DataSource
+        Dim dr As DataRow() = FormProductionPrint.dt.Select(GVProd.ActiveFilterString)
+        FormProductionPrint.dt = dr.CopyToDataTable
+        FormProductionPrint.is_report_view = True
+        FormProductionPrint.ShowDialog()
     End Sub
 End Class
