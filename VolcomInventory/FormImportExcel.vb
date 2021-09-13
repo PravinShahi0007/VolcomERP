@@ -496,7 +496,7 @@ Public Class FormImportExcel
             'Console.WriteLine(qry)
 
             Dim data As New DataTable
-            Dim adapter As New MySqlDataAdapter("CALL view_return_order_single_temp(" + FormSalesReturnOrderDet.id_comp + ", '" + id_user + "')", connection)
+            Dim adapter As New MySqlDataAdapter("CALL view_return_order_single_temp_less(" + FormSalesReturnOrderDet.id_comp + ", '" + id_user + "')", connection)
             adapter.SelectCommand.CommandTimeout = 300
             adapter.Fill(data)
             adapter.Dispose()
