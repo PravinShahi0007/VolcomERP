@@ -860,6 +860,7 @@ WHERE h.`id_pre_cal_fgpo`='" & id & "'"
             Cursor = Cursors.WaitCursor
 
             Dim Report As New ReportPreCalReport()
+            Report.id_report = id
             Report.DataSource = dtc
 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)

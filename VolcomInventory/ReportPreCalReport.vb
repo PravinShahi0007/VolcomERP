@@ -47,7 +47,7 @@ GROUP BY l.duty"
         'cif
         Dim cif As String = Decimal.Parse(dt.Rows(row_i)("tot_cif").ToString).ToString("N2")
 
-        Dim tot_cif As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+        Dim tot_cif As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
         tot_cif.Text = cif
         tot_cif.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         tot_cif.Font = font_row_style
@@ -55,13 +55,13 @@ GROUP BY l.duty"
         'duty percent
         Dim duty As String = Decimal.Parse(dt.Rows(row_i)("duty").ToString).ToString("N2") & " %"
 
-        Dim duty_t As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+        Dim duty_t As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
         duty_t.Text = duty
         duty_t.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         duty_t.Font = font_row_style
 
         '=
-        Dim separator As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+        Dim separator As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
         separator.Text = "="
         separator.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         separator.Font = font_row_style
@@ -69,7 +69,7 @@ GROUP BY l.duty"
         'tot_duty
         Dim tot_duty As String = Decimal.Parse(dt.Rows(row_i)("tot_duty").ToString).ToString("N2")
 
-        Dim tot_duty_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+        Dim tot_duty_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
         tot_duty_col.Text = tot_duty
         tot_duty_col.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         tot_duty_col.Font = font_row_style
