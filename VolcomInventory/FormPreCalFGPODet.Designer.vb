@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormPreCalFGPODet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormPreCalFGPODet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPreCalFGPODet))
@@ -154,9 +154,28 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.MERemark = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
+        Me.BUpdateReason = New DevExpress.XtraEditors.SimpleButton()
+        Me.PCPickVendor = New DevExpress.XtraEditors.PanelControl()
         Me.BPrintBudget = New DevExpress.XtraEditors.SimpleButton()
+        Me.BNextPickVendor = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrevPickVendor = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPDutyReport = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCDuty = New DevExpress.XtraGrid.GridControl()
+        Me.GVDuty = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
+        Me.BUpdate = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEPPH = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPPN = New DevExpress.XtraEditors.TextEdit()
+        Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrintDuty = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrintBudget2 = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.TECBM = New DevExpress.XtraEditors.TextEdit()
@@ -236,8 +255,20 @@ Partial Class FormPreCalFGPODet
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVPickVendor, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCPickVendor, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCPickVendor.SuspendLayout()
+        Me.XTPDutyReport.SuspendLayout()
+        CType(Me.GCDuty, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDuty, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl9.SuspendLayout()
+        CType(Me.TEPPH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEPPN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl8.SuspendLayout()
         CType(Me.TECBM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECTN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -400,7 +431,7 @@ Partial Class FormPreCalFGPODet
         Me.SLEVendorFGPO.Name = "SLEVendorFGPO"
         Me.SLEVendorFGPO.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEVendorFGPO.Properties.View = Me.GridView3
-        Me.SLEVendorFGPO.Size = New System.Drawing.Size(212, 20)
+        Me.SLEVendorFGPO.Size = New System.Drawing.Size(172, 20)
         Me.SLEVendorFGPO.TabIndex = 98
         '
         'GridView3
@@ -426,7 +457,7 @@ Partial Class FormPreCalFGPODet
         '
         'SLETypeImport
         '
-        Me.SLETypeImport.Location = New System.Drawing.Point(341, 11)
+        Me.SLETypeImport.Location = New System.Drawing.Point(290, 12)
         Me.SLETypeImport.Name = "SLETypeImport"
         Me.SLETypeImport.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLETypeImport.Properties.View = Me.GridView2
@@ -503,7 +534,7 @@ Partial Class FormPreCalFGPODet
         Me.XTC.SelectedTabPage = Me.XTPFGPO
         Me.XTC.Size = New System.Drawing.Size(1022, 416)
         Me.XTC.TabIndex = 2
-        Me.XTC.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFGPO, Me.XTPVendor, Me.XTPOrignCharges, Me.XTPDestCharges, Me.XTPAdmCharges, Me.XTPChoosen})
+        Me.XTC.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFGPO, Me.XTPVendor, Me.XTPOrignCharges, Me.XTPDestCharges, Me.XTPAdmCharges, Me.XTPChoosen, Me.XTPDutyReport})
         '
         'XTPFGPO
         '
@@ -1578,7 +1609,9 @@ Partial Class FormPreCalFGPODet
         'XTPChoosen
         '
         Me.XTPChoosen.Controls.Add(Me.GCPickVendor)
-        Me.XTPChoosen.Controls.Add(Me.PanelControl3)
+        Me.XTPChoosen.Controls.Add(Me.PanelControl5)
+        Me.XTPChoosen.Controls.Add(Me.BUpdateReason)
+        Me.XTPChoosen.Controls.Add(Me.PCPickVendor)
         Me.XTPChoosen.Name = "XTPChoosen"
         Me.XTPChoosen.Size = New System.Drawing.Size(1016, 388)
         Me.XTPChoosen.Text = "Pick Vendor"
@@ -1591,7 +1624,7 @@ Partial Class FormPreCalFGPODet
         Me.GCPickVendor.MainView = Me.GVPickVendor
         Me.GCPickVendor.Name = "GCPickVendor"
         Me.GCPickVendor.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck})
-        Me.GCPickVendor.Size = New System.Drawing.Size(1016, 346)
+        Me.GCPickVendor.Size = New System.Drawing.Size(1016, 244)
         Me.GCPickVendor.TabIndex = 9
         Me.GCPickVendor.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPickVendor})
         '
@@ -1765,15 +1798,60 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn46.VisibleIndex = 7
         Me.GridColumn46.Width = 81
         '
-        'PanelControl3
+        'PanelControl5
         '
-        Me.PanelControl3.Controls.Add(Me.BPrintBudget)
-        Me.PanelControl3.Controls.Add(Me.BPrevPickVendor)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 346)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1016, 42)
-        Me.PanelControl3.TabIndex = 7
+        Me.PanelControl5.Controls.Add(Me.MERemark)
+        Me.PanelControl5.Controls.Add(Me.LabelControl17)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 244)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(1016, 71)
+        Me.PanelControl5.TabIndex = 23
+        '
+        'MERemark
+        '
+        Me.MERemark.Location = New System.Drawing.Point(64, 10)
+        Me.MERemark.Name = "MERemark"
+        Me.MERemark.Size = New System.Drawing.Size(935, 43)
+        Me.MERemark.TabIndex = 1
+        '
+        'LabelControl17
+        '
+        Me.LabelControl17.Location = New System.Drawing.Point(11, 12)
+        Me.LabelControl17.Name = "LabelControl17"
+        Me.LabelControl17.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl17.TabIndex = 0
+        Me.LabelControl17.Text = "Remark"
+        '
+        'BUpdateReason
+        '
+        Me.BUpdateReason.Appearance.BackColor = System.Drawing.Color.MediumOrchid
+        Me.BUpdateReason.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BUpdateReason.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BUpdateReason.Appearance.Options.UseBackColor = True
+        Me.BUpdateReason.Appearance.Options.UseFont = True
+        Me.BUpdateReason.Appearance.Options.UseForeColor = True
+        Me.BUpdateReason.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BUpdateReason.Location = New System.Drawing.Point(0, 315)
+        Me.BUpdateReason.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BUpdateReason.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BUpdateReason.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BUpdateReason.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BUpdateReason.Name = "BUpdateReason"
+        Me.BUpdateReason.Size = New System.Drawing.Size(1016, 31)
+        Me.BUpdateReason.TabIndex = 22
+        Me.BUpdateReason.Text = "Update Remark"
+        '
+        'PCPickVendor
+        '
+        Me.PCPickVendor.Controls.Add(Me.BPrintBudget)
+        Me.PCPickVendor.Controls.Add(Me.BNextPickVendor)
+        Me.PCPickVendor.Controls.Add(Me.BPrevPickVendor)
+        Me.PCPickVendor.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCPickVendor.Location = New System.Drawing.Point(0, 346)
+        Me.PCPickVendor.Name = "PCPickVendor"
+        Me.PCPickVendor.Size = New System.Drawing.Size(1016, 42)
+        Me.PCPickVendor.TabIndex = 7
         '
         'BPrintBudget
         '
@@ -1784,7 +1862,7 @@ Partial Class FormPreCalFGPODet
         Me.BPrintBudget.Appearance.Options.UseFont = True
         Me.BPrintBudget.Appearance.Options.UseForeColor = True
         Me.BPrintBudget.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrintBudget.Location = New System.Drawing.Point(887, 2)
+        Me.BPrintBudget.Location = New System.Drawing.Point(760, 2)
         Me.BPrintBudget.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BPrintBudget.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BPrintBudget.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -1793,6 +1871,25 @@ Partial Class FormPreCalFGPODet
         Me.BPrintBudget.Size = New System.Drawing.Size(127, 38)
         Me.BPrintBudget.TabIndex = 21
         Me.BPrintBudget.Text = "Print Budget"
+        '
+        'BNextPickVendor
+        '
+        Me.BNextPickVendor.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BNextPickVendor.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BNextPickVendor.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BNextPickVendor.Appearance.Options.UseBackColor = True
+        Me.BNextPickVendor.Appearance.Options.UseFont = True
+        Me.BNextPickVendor.Appearance.Options.UseForeColor = True
+        Me.BNextPickVendor.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BNextPickVendor.Location = New System.Drawing.Point(887, 2)
+        Me.BNextPickVendor.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BNextPickVendor.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BNextPickVendor.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BNextPickVendor.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BNextPickVendor.Name = "BNextPickVendor"
+        Me.BNextPickVendor.Size = New System.Drawing.Size(127, 38)
+        Me.BNextPickVendor.TabIndex = 23
+        Me.BNextPickVendor.Text = "Submit"
         '
         'BPrevPickVendor
         '
@@ -1813,9 +1910,187 @@ Partial Class FormPreCalFGPODet
         Me.BPrevPickVendor.TabIndex = 22
         Me.BPrevPickVendor.Text = "Previous"
         '
+        'XTPDutyReport
+        '
+        Me.XTPDutyReport.Controls.Add(Me.GCDuty)
+        Me.XTPDutyReport.Controls.Add(Me.PanelControl9)
+        Me.XTPDutyReport.Controls.Add(Me.PanelControl8)
+        Me.XTPDutyReport.Name = "XTPDutyReport"
+        Me.XTPDutyReport.Size = New System.Drawing.Size(1016, 388)
+        Me.XTPDutyReport.Text = "Duty Report"
+        '
+        'GCDuty
+        '
+        Me.GCDuty.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDuty.Location = New System.Drawing.Point(0, 42)
+        Me.GCDuty.MainView = Me.GVDuty
+        Me.GCDuty.Name = "GCDuty"
+        Me.GCDuty.Size = New System.Drawing.Size(1016, 304)
+        Me.GCDuty.TabIndex = 25
+        Me.GCDuty.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDuty})
+        '
+        'GVDuty
+        '
+        Me.GVDuty.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn37})
+        Me.GVDuty.GridControl = Me.GCDuty
+        Me.GVDuty.Name = "GVDuty"
+        Me.GVDuty.OptionsView.ColumnAutoWidth = False
+        Me.GVDuty.OptionsView.ShowFooter = True
+        Me.GVDuty.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "ID"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.OptionsColumn.AllowEdit = False
+        Me.GridColumn37.OptionsColumn.AllowFocus = False
+        Me.GridColumn37.OptionsColumn.ReadOnly = True
+        '
+        'PanelControl9
+        '
+        Me.PanelControl9.Controls.Add(Me.BUpdate)
+        Me.PanelControl9.Controls.Add(Me.TEPPH)
+        Me.PanelControl9.Controls.Add(Me.LabelControl15)
+        Me.PanelControl9.Controls.Add(Me.LabelControl16)
+        Me.PanelControl9.Controls.Add(Me.TEPPN)
+        Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl9.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl9.Name = "PanelControl9"
+        Me.PanelControl9.Size = New System.Drawing.Size(1016, 42)
+        Me.PanelControl9.TabIndex = 24
+        '
+        'BUpdate
+        '
+        Me.BUpdate.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BUpdate.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BUpdate.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BUpdate.Appearance.Options.UseBackColor = True
+        Me.BUpdate.Appearance.Options.UseFont = True
+        Me.BUpdate.Appearance.Options.UseForeColor = True
+        Me.BUpdate.Location = New System.Drawing.Point(370, 8)
+        Me.BUpdate.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BUpdate.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BUpdate.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BUpdate.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BUpdate.Name = "BUpdate"
+        Me.BUpdate.Size = New System.Drawing.Size(133, 26)
+        Me.BUpdate.TabIndex = 161
+        Me.BUpdate.Text = "Update and Refresh"
+        '
+        'TEPPH
+        '
+        Me.TEPPH.Location = New System.Drawing.Point(215, 11)
+        Me.TEPPH.Name = "TEPPH"
+        Me.TEPPH.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEPPH.Properties.Appearance.Options.UseFont = True
+        Me.TEPPH.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEPPH.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEPPH.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEPPH.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEPPH.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEPPH.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEPPH.Properties.Mask.EditMask = "N2"
+        Me.TEPPH.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEPPH.Size = New System.Drawing.Size(149, 20)
+        Me.TEPPH.TabIndex = 160
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Location = New System.Drawing.Point(11, 14)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(19, 13)
+        Me.LabelControl15.TabIndex = 157
+        Me.LabelControl15.Text = "PPN"
+        '
+        'LabelControl16
+        '
+        Me.LabelControl16.Location = New System.Drawing.Point(190, 14)
+        Me.LabelControl16.Name = "LabelControl16"
+        Me.LabelControl16.Size = New System.Drawing.Size(19, 13)
+        Me.LabelControl16.TabIndex = 159
+        Me.LabelControl16.Text = "PPH"
+        '
+        'TEPPN
+        '
+        Me.TEPPN.Location = New System.Drawing.Point(37, 11)
+        Me.TEPPN.Name = "TEPPN"
+        Me.TEPPN.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEPPN.Properties.Appearance.Options.UseFont = True
+        Me.TEPPN.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEPPN.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEPPN.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEPPN.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEPPN.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEPPN.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEPPN.Properties.Mask.EditMask = "N2"
+        Me.TEPPN.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEPPN.Size = New System.Drawing.Size(147, 20)
+        Me.TEPPN.TabIndex = 158
+        '
+        'PanelControl8
+        '
+        Me.PanelControl8.Controls.Add(Me.BMark)
+        Me.PanelControl8.Controls.Add(Me.BPrintDuty)
+        Me.PanelControl8.Controls.Add(Me.BPrintBudget2)
+        Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl8.Location = New System.Drawing.Point(0, 346)
+        Me.PanelControl8.Name = "PanelControl8"
+        Me.PanelControl8.Size = New System.Drawing.Size(1016, 42)
+        Me.PanelControl8.TabIndex = 8
+        '
+        'BMark
+        '
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.Image = CType(resources.GetObject("BMark.Image"), System.Drawing.Image)
+        Me.BMark.ImageIndex = 4
+        Me.BMark.Location = New System.Drawing.Point(2, 2)
+        Me.BMark.Name = "BMark"
+        Me.BMark.Size = New System.Drawing.Size(84, 38)
+        Me.BMark.TabIndex = 23
+        Me.BMark.TabStop = False
+        Me.BMark.Text = "Mark"
+        '
+        'BPrintDuty
+        '
+        Me.BPrintDuty.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BPrintDuty.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BPrintDuty.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BPrintDuty.Appearance.Options.UseBackColor = True
+        Me.BPrintDuty.Appearance.Options.UseFont = True
+        Me.BPrintDuty.Appearance.Options.UseForeColor = True
+        Me.BPrintDuty.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrintDuty.Location = New System.Drawing.Point(760, 2)
+        Me.BPrintDuty.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BPrintDuty.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BPrintDuty.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BPrintDuty.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BPrintDuty.Name = "BPrintDuty"
+        Me.BPrintDuty.Size = New System.Drawing.Size(127, 38)
+        Me.BPrintDuty.TabIndex = 22
+        Me.BPrintDuty.Text = "Print Duty"
+        '
+        'BPrintBudget2
+        '
+        Me.BPrintBudget2.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BPrintBudget2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BPrintBudget2.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BPrintBudget2.Appearance.Options.UseBackColor = True
+        Me.BPrintBudget2.Appearance.Options.UseFont = True
+        Me.BPrintBudget2.Appearance.Options.UseForeColor = True
+        Me.BPrintBudget2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrintBudget2.Location = New System.Drawing.Point(887, 2)
+        Me.BPrintBudget2.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BPrintBudget2.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BPrintBudget2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BPrintBudget2.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BPrintBudget2.Name = "BPrintBudget2"
+        Me.BPrintBudget2.Size = New System.Drawing.Size(127, 38)
+        Me.BPrintBudget2.TabIndex = 21
+        Me.BPrintBudget2.Text = "Print Budget"
+        '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(311, 14)
+        Me.LabelControl5.Location = New System.Drawing.Point(260, 15)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl5.TabIndex = 97
@@ -1823,7 +2098,7 @@ Partial Class FormPreCalFGPODet
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(448, 14)
+        Me.LabelControl7.Location = New System.Drawing.Point(397, 15)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl7.TabIndex = 151
@@ -1831,7 +2106,7 @@ Partial Class FormPreCalFGPODet
         '
         'TECBM
         '
-        Me.TECBM.Location = New System.Drawing.Point(475, 11)
+        Me.TECBM.Location = New System.Drawing.Point(424, 12)
         Me.TECBM.Name = "TECBM"
         Me.TECBM.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TECBM.Properties.Appearance.Options.UseFont = True
@@ -1843,12 +2118,12 @@ Partial Class FormPreCalFGPODet
         Me.TECBM.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TECBM.Properties.Mask.EditMask = "N2"
         Me.TECBM.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TECBM.Size = New System.Drawing.Size(134, 20)
+        Me.TECBM.Size = New System.Drawing.Size(94, 20)
         Me.TECBM.TabIndex = 152
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(615, 14)
+        Me.LabelControl8.Location = New System.Drawing.Point(524, 15)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl8.TabIndex = 153
@@ -1856,7 +2131,7 @@ Partial Class FormPreCalFGPODet
         '
         'TEWeight
         '
-        Me.TEWeight.Location = New System.Drawing.Point(655, 11)
+        Me.TEWeight.Location = New System.Drawing.Point(564, 12)
         Me.TEWeight.Name = "TEWeight"
         Me.TEWeight.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEWeight.Properties.Appearance.Options.UseFont = True
@@ -1868,12 +2143,12 @@ Partial Class FormPreCalFGPODet
         Me.TEWeight.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEWeight.Properties.Mask.EditMask = "N2"
         Me.TEWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEWeight.Size = New System.Drawing.Size(134, 20)
+        Me.TEWeight.Size = New System.Drawing.Size(101, 20)
         Me.TEWeight.TabIndex = 154
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(795, 14)
+        Me.LabelControl9.Location = New System.Drawing.Point(671, 15)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(20, 13)
         Me.LabelControl9.TabIndex = 155
@@ -1881,7 +2156,7 @@ Partial Class FormPreCalFGPODet
         '
         'TECTN
         '
-        Me.TECTN.Location = New System.Drawing.Point(821, 11)
+        Me.TECTN.Location = New System.Drawing.Point(697, 12)
         Me.TECTN.Name = "TECTN"
         Me.TECTN.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TECTN.Properties.Appearance.Options.UseFont = True
@@ -1893,7 +2168,7 @@ Partial Class FormPreCalFGPODet
         Me.TECTN.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TECTN.Properties.Mask.EditMask = "N2"
         Me.TECTN.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TECTN.Size = New System.Drawing.Size(134, 20)
+        Me.TECTN.Size = New System.Drawing.Size(82, 20)
         Me.TECTN.TabIndex = 156
         '
         'PanelControl6
@@ -2005,8 +2280,22 @@ Partial Class FormPreCalFGPODet
         Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVPickVendor, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        Me.PanelControl5.PerformLayout()
+        CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCPickVendor, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCPickVendor.ResumeLayout(False)
+        Me.XTPDutyReport.ResumeLayout(False)
+        CType(Me.GCDuty, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDuty, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl9.ResumeLayout(False)
+        Me.PanelControl9.PerformLayout()
+        CType(Me.TEPPH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEPPN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl8.ResumeLayout(False)
         CType(Me.TECBM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEWeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECTN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2139,7 +2428,7 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCPickVendor As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BPrintBudget As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPrevPickVendor As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
@@ -2161,4 +2450,23 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TEPPH As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEPPN As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents MERemark As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BUpdateReason As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BNextPickVendor As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPDutyReport As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl8 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BPrintBudget2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrintDuty As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl9 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BUpdate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCDuty As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDuty As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

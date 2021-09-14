@@ -42,7 +42,7 @@ ORDER BY id_stock_valas DESC LIMIT 1"
             load_kurs()
         Else
             'edit
-            Dim q As String = "SELECT cal.rate_current,cal.rate_management,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
+            Dim q As String = "SELECT cal.reason,cal.ppn,cal.pph,cal.rate_current,cal.rate_management,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
 FROM
 `tb_pre_cal_fgpo` cal
 INNER JOIN tb_m_user usr ON usr.`id_user`=cal.`created_by`
@@ -62,6 +62,9 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                 SLETypeImport.EditValue = dt.Rows(0)("id_type").ToString
                 TERateManagement.EditValue = dt.Rows(0)("rate_management")
                 TERatePayment.EditValue = dt.Rows(0)("rate_current")
+                MERemark.Text = dt.Rows(0)("reason").ToString
+                TEPPH.EditValue = dt.Rows(0)("pph")
+                TEPPN.EditValue = dt.Rows(0)("ppn")
 
                 view_but()
 
@@ -220,6 +223,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPDestCharges.PageVisible = False
             XTPAdmCharges.PageVisible = False
             XTPChoosen.PageVisible = False
+            XTPDutyReport.PageVisible = False
             '
             PCFGPOList.Visible = True
             PCVendor.Visible = False
@@ -232,6 +236,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = False
             PCPDest.Visible = False
             PCUAdm.Visible = False
+            PCPickVendor.Visible = False
+            BUpdateReason.Visible = False
 
             XTC.SelectedTabPageIndex = 0
         ElseIf steps = "2" Then
@@ -241,6 +247,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPDestCharges.PageVisible = False
             XTPAdmCharges.PageVisible = False
             XTPChoosen.PageVisible = False
+            XTPDutyReport.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = True
@@ -253,6 +260,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = False
             PCPDest.Visible = False
             PCUAdm.Visible = False
+            PCPickVendor.Visible = False
+            BUpdateReason.Visible = False
 
             XTC.SelectedTabPageIndex = 1
         ElseIf steps = "3" Then
@@ -262,6 +271,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPDestCharges.PageVisible = False
             XTPAdmCharges.PageVisible = False
             XTPChoosen.PageVisible = False
+            XTPDutyReport.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
@@ -274,6 +284,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = True
             PCPDest.Visible = False
             PCUAdm.Visible = False
+            PCPickVendor.Visible = False
+            BUpdateReason.Visible = False
             '
             XTC.SelectedTabPageIndex = 2
         ElseIf steps = "4" Then
@@ -283,6 +295,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPDestCharges.PageVisible = True
             XTPAdmCharges.PageVisible = False
             XTPChoosen.PageVisible = False
+            XTPDutyReport.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
@@ -295,6 +308,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = False
             PCPDest.Visible = True
             PCUAdm.Visible = False
+            PCPickVendor.Visible = False
+            BUpdateReason.Visible = False
             '
             XTC.SelectedTabPageIndex = 3
         ElseIf steps = "5" Then
@@ -304,6 +319,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPDestCharges.PageVisible = True
             XTPAdmCharges.PageVisible = True
             XTPChoosen.PageVisible = False
+            XTPDutyReport.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
@@ -316,6 +332,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = False
             PCPDest.Visible = False
             PCUAdm.Visible = True
+            PCPickVendor.Visible = False
+            BUpdateReason.Visible = False
             '
             XTC.SelectedTabPageIndex = 4
         ElseIf steps = "6" Then 'pick vendor
@@ -325,12 +343,39 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPDestCharges.PageVisible = True
             XTPAdmCharges.PageVisible = True
             XTPChoosen.PageVisible = True
+            XTPDutyReport.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
             PCOrign.Visible = False
             PCDest.Visible = False
             PCAdm.Visible = False
+            PCPickVendor.Visible = True
+            BUpdateReason.Visible = True
+            '
+            PCUFGPO.Visible = False
+            PCUVendor.Visible = False
+            PCPOrign.Visible = False
+            PCPDest.Visible = False
+            BLoadCharges.Visible = False
+            '
+            XTC.SelectedTabPageIndex = 5
+        ElseIf steps = "7" Then 'duty
+            XTPFGPO.PageVisible = True
+            XTPVendor.PageVisible = True
+            XTPOrignCharges.PageVisible = True
+            XTPDestCharges.PageVisible = True
+            XTPAdmCharges.PageVisible = True
+            XTPChoosen.PageVisible = True
+            XTPDutyReport.PageVisible = True
+            '
+            PCFGPOList.Visible = False
+            PCVendor.Visible = False
+            PCOrign.Visible = False
+            PCDest.Visible = False
+            PCAdm.Visible = False
+            PCPickVendor.Visible = False
+            BUpdateReason.Visible = False
             '
             PCUFGPO.Visible = False
             PCUVendor.Visible = False
@@ -715,5 +760,56 @@ INNER JOIN `tb_pre_cal_fgpo` cal ON st.`is_active`='1'  AND  cal.`id_pre_cal_fgp
 
     Private Sub SLECompOther_EditValueChanged(sender As Object, e As EventArgs) Handles SLECompOther.EditValueChanged
         load_list_adm()
+    End Sub
+
+    Private Sub BUpdateReason_Click(sender As Object, e As EventArgs) Handles BUpdateReason.Click
+        Dim q As String = "UPDATE tb_pre_cal_fgpo SET reason='" & addSlashes(MERemark.Text) & "' WHERE id_pre_cal_fgpo='" & id & "'"
+        execute_non_query(q, True, "", "", "", "")
+        load_head()
+    End Sub
+
+    Private Sub BNextPickVendor_Click(sender As Object, e As EventArgs) Handles BNextPickVendor.Click
+        If GVAdm.RowCount > 0 Then
+            execute_non_query("UPDATE tb_pre_cal_fgpo SET reason='7' WHERE id_pre_cal_fgpo='" & id & "'", True, "", "", "", "")
+            load_head()
+        End If
+    End Sub
+
+    Private Sub BPrintBudget2_Click(sender As Object, e As EventArgs) Handles BPrintBudget2.Click
+        Dim qc As String = "SELECT number,f.reason,FORMAT(SUM(l.`qty`),0,'id_ID') AS qtyf,SUM(l.`qty`) AS qty,FORMAT(SUM(l.`price`*l.`qty`),2,'id_ID') AS fob_tot,c.`comp_name` AS best,cs.`comp_name` AS second_best,FORMAT(f.`cbm`,2,'id_ID') AS cbm,FORMAT(f.`ctn`,0,'id_ID') AS ctn,FORMAT(f.`weight`,0,'id_ID') AS weight,f.`pol`,cv.`comp_name` AS vendor_comp,FORMAT(f.`rate_management`,2,'id_ID') AS rate_management
+FROM `tb_pre_cal_fgpo` f
+INNER JOIN tb_m_comp cv ON cv.`id_comp`=f.`id_comp`
+INNER JOIN tb_pre_cal_fgpo_list l ON l.`id_pre_cal_fgpo`=f.`id_pre_cal_fgpo`
+INNER JOIN tb_m_comp c ON c.`id_comp`=f.`choosen_id_comp`
+INNER JOIN tb_m_comp cs ON cs.`id_comp`=f.`second_best_comp`
+WHERE f.`id_pre_cal_fgpo`='" & id & "'
+AND NOT ISNULL(choosen_id_comp)"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            'print
+            Cursor = Cursors.WaitCursor
+
+            ReportPreCalBudget.id_report = id
+            Dim Report As New ReportPreCalBudget()
+            Report.DataSource = dtc
+            Report.qty = dtc.Rows(0)("qty")
+
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+
+            Cursor = Cursors.Default
+        Else
+            warningCustom("Please choose vendor first")
+        End If
+    End Sub
+
+    Private Sub BUpdate_Click(sender As Object, e As EventArgs) Handles BUpdate.Click
+        Dim q As String = "UPDATE tb_pre_cal_fgpo SET ppn='" & decimalSQL(Decimal.Parse(TEPPN.EditValue.ToString)) & "',pph='" & decimalSQL(Decimal.Parse(TEPPH.EditValue.ToString)) & "' WHERE id_pre_cal_fgpo='" & id & "'"
+        execute_non_query(q, True, "", "", "", "")
+        load_head()
+    End Sub
+
+    Private Sub BPrintDuty_Click(sender As Object, e As EventArgs) Handles BPrintDuty.Click
+
     End Sub
 End Class
