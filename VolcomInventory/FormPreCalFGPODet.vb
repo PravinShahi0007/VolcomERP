@@ -383,7 +383,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPDest.Visible = False
             BLoadCharges.Visible = False
             '
-            XTC.SelectedTabPageIndex = 5
+            XTC.SelectedTabPageIndex = 6
         End If
     End Sub
 
