@@ -810,6 +810,62 @@ AND NOT ISNULL(choosen_id_comp)"
     End Sub
 
     Private Sub BPrintDuty_Click(sender As Object, e As EventArgs) Handles BPrintDuty.Click
+        Dim qc As String = "SELECT SUM(bm.tot_fob) AS tot_fob,bm.total_freight_po AS tot_freight,bm.tot_qty_royalty,SUM(bm.tot_royalty) AS tot_freight_cost_royalty,SUM(bm.qty) AS tot_qty,SUM(bm.tot_fob_rp) AS tot_fob_rp,SUM(bm.tot_cif) AS tot_cif,SUM(bm.tot_duty) AS tot_bm,SUM(bm.tot_cif)+SUM(bm.tot_duty) AS tot_cif_bm
+,h.ppn,ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.ppn/100),2) AS tot_ppn
+,h.pph,ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.pph/100),2) AS tot_pph
+,(SUM(bm.tot_cif)+SUM(bm.tot_duty)) + ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.ppn/100),2) + ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.pph/100),2) AS total_bm_ppn_pph
+,ROUND(h.sales_percent) AS sales_percent,ROUND(h.sales_commission) AS sales_commission,ROUND(h.sales_royalty) AS sales_royalty,ROUND(h.sales_ppn) AS sales_ppn
+,h.rate_management
+FROM `tb_pre_cal_fgpo` h 
+INNER JOIN
+(
+	SELECT l.duty
+	,SUM((l.`price`*cal.`rate_management`)*l.`qty`) AS tot_fob_rp
+	,SUM(l.qty) AS qty
+	,SUM(l.`price`*l.`qty`) AS tot_fob
+	,tot_freight.tot_freight AS total_freight_po
+	,tot_fgpo.tot_qty_sales AS tot_qty_royalty
+	,SUM(ROUND((tot_freight.tot_freight/tot_fgpo.tot_qty_sales)*l.`qty`*(cal.`sales_percent`/100),2)) AS tot_freight
+	,SUM(ROUND((tot_freight.tot_freight/tot_fgpo.tot_qty_sales)*l.`qty`*(cal.`sales_percent`/100),2))+SUM((l.`price`*cal.`rate_management`)*l.`qty`) AS tot_cif
+	,ROUND((SUM(ROUND((tot_freight.tot_freight/tot_fgpo.tot_qty_sales)*l.`qty`*(cal.`sales_percent`/100),2))+SUM((l.`price`*cal.`rate_management`)*l.`qty`))*(l.duty/100),2) AS tot_duty
+	,SUM(ROUND((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100) * ROUND(l.`qty`*(cal.`sales_percent`/100)),2)) AS tot_royalty
+	FROM `tb_pre_cal_fgpo_list` l
+	INNER JOIN tb_pre_cal_fgpo cal ON cal.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo`
+	INNER JOIN tb_prod_order po ON po.`id_prod_order`=l.`id_prod_order`
+	INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+	INNER JOIN tb_m_design d ON d.`id_design`=pdd.`id_design`
+	INNER JOIN 
+	(
+		SELECT det.`total_in_rp` AS tot_freight
+		FROM tb_pre_cal_fgpo_det det
+		INNER JOIN tb_pre_cal_fgpo f ON f.`id_pre_cal_fgpo`=det.`id_pre_cal_fgpo` AND f.`choosen_id_comp`=det.`id_comp`
+		WHERE det.`id_pre_cal_fgpo`='7' AND det.id_type=1
+	)tot_freight 
+	INNER JOIN 
+	(
+		SELECT SUM(l.`qty`) AS tot_qty,SUM(ROUND(l.`qty`*(f.`sales_percent`/100))) AS tot_qty_sales
+		FROM tb_pre_cal_fgpo_list l
+		INNER JOIN tb_pre_cal_fgpo f ON f.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo` 
+		WHERE f.`id_pre_cal_fgpo`='" & id & "'
+	)tot_fgpo
+	WHERE l.`id_pre_cal_fgpo`='" & id & "'
+	GROUP BY l.duty
+)bm 
+WHERE h.`id_pre_cal_fgpo`='" & id & "'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            'print
+            Cursor = Cursors.WaitCursor
 
+            Dim Report As New ReportPreCalReport()
+            Report.DataSource = dtc
+
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+
+            Cursor = Cursors.Default
+        Else
+            warningCustom("Please choose vendor first")
+        End If
     End Sub
 End Class
