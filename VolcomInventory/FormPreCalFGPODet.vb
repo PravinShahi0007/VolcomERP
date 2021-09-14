@@ -815,7 +815,7 @@ AND NOT ISNULL(choosen_id_comp)"
 ,FORMAT(SUM(bm.tot_fob_rp),2,'ID_id') AS tot_fob_rp,FORMAT(SUM(bm.tot_cif),2,'ID_id') AS tot_cif,FORMAT(SUM(bm.tot_duty),2,'ID_id') AS tot_bm,FORMAT(SUM(bm.tot_cif)+SUM(bm.tot_duty),2,'ID_id') AS tot_cif_bm
 ,FORMAT(h.ppn,2,'ID_id') AS ppn,FORMAT(ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.ppn/100),2),2,'ID_id') AS tot_ppn
 ,FORMAT(h.pph,2,'ID_id') AS pph,FORMAT(ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.pph/100),2),2,'ID_id') AS tot_pph
-,FORMAT((SUM(bm.tot_cif)+SUM(bm.tot_duty)) + ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.ppn/100),2) + ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.pph/100),2),2,'ID_id') AS tot_bm_ppn_pph
+,FORMAT((SUM(bm.tot_duty)) + ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.ppn/100),2) + ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.pph/100),2),2,'ID_id') AS tot_bm_ppn_pph
 ,ROUND(h.sales_percent) AS sales_percent,ROUND(h.sales_commission) AS sales_commission,ROUND(h.sales_royalty) AS sales_royalty,ROUND(h.sales_ppn) AS sales_ppn
 ,FORMAT(h.rate_management,2,'ID_id') AS rate_management
 FROM `tb_pre_cal_fgpo` h 
