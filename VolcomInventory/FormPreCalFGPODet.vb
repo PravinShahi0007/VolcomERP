@@ -659,16 +659,23 @@ WHERE h.id_pre_cal_fgpo='" & id & "'"
     End Sub
 
     Private Sub BPrintBudget_Click(sender As Object, e As EventArgs) Handles BPrintBudget.Click
-        Dim qc As String = "SELECT choosen_id_comp
-FROM `tb_pre_cal_fgpo`
-WHERE id_pre_cal_fgpo='" & id & "'
+        Dim qc As String = "SELECT number,FORMAT(SUM(l.`qty`),0,'id_ID') AS qtyf,SUM(l.`qty`) AS qty,FORMAT(SUM(l.`price`*l.`qty`),2,'id_ID') AS fob_tot,c.`comp_name` AS best,cs.`comp_name` AS second_best,FORMAT(f.`cbm`,2,'id_ID') AS cbm,FORMAT(f.`ctn`,0,'id_ID') AS ctn,FORMAT(f.`weight`,0,'id_ID') AS weight,f.`pol`,cv.`comp_name` AS vendor_comp,FORMAT(f.`rate_management`,2,'id_ID') AS rate_management
+FROM `tb_pre_cal_fgpo` f
+INNER JOIN tb_m_comp cv ON cv.`id_comp`=f.`id_comp`
+INNER JOIN tb_pre_cal_fgpo_list l ON l.`id_pre_cal_fgpo`=f.`id_pre_cal_fgpo`
+INNER JOIN tb_m_comp c ON c.`id_comp`=f.`choosen_id_comp`
+INNER JOIN tb_m_comp cs ON cs.`id_comp`=f.`second_best_comp`
+WHERE f.`id_pre_cal_fgpo`='" & id & "'
 AND NOT ISNULL(choosen_id_comp)"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count > 0 Then
             'print
             Cursor = Cursors.WaitCursor
+
             ReportPreCalBudget.id_report = id
             Dim Report As New ReportPreCalBudget()
+            Report.DataSource = dtc
+            Report.qty = dtc.Rows(0)("qty")
 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreview()

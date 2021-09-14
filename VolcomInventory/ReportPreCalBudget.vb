@@ -1,5 +1,6 @@
 ﻿Public Class ReportPreCalBudget
     Public Shared id_report As String = "-1"
+    Public qty As Integer = 1
     'tot qty + vendor + kurs
     Sub insert_row(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)
         Dim font_row_style As New Font(XTDetail.Font.FontFamily, XTDetail.Font.Size - 1, FontStyle.Regular)
@@ -26,12 +27,22 @@
 
         'desc
         Dim curr As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
-        curr.Text = dt.Rows(row_i)("curr").ToString
+
+        If dt.Rows(row_i)("unit_price") = 0 Then
+            curr.Text = ""
+        Else
+            curr.Text = dt.Rows(row_i)("curr").ToString
+        End If
+
         curr.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         curr.Font = font_row_style
 
         'value
         Dim harga As String = Decimal.Parse(dt.Rows(row_i)("unit_price").ToString).ToString("N2")
+
+        If dt.Rows(row_i)("unit_price") = 0 Then
+            harga = ""
+        End If
 
         Dim total_nilai As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
         total_nilai.Text = harga
@@ -41,6 +52,10 @@
         'qty
         Dim qty As String = Decimal.Parse(dt.Rows(row_i)("qty").ToString).ToString("N2")
 
+        If dt.Rows(row_i)("qty") = 0 Then
+            qty = ""
+        End If
+
         Dim col_qty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
         col_qty.Text = qty
         col_qty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
@@ -48,6 +63,10 @@
 
         'sub_amount
         Dim sub_amount As String = Decimal.Parse(dt.Rows(row_i)("total_in_rp").ToString).ToString("N2")
+
+        If dt.Rows(row_i)("total_in_rp") = 0 Then
+            sub_amount = ""
+        End If
 
         Dim sub_amount_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
         sub_amount_col.Text = sub_amount
@@ -63,12 +82,22 @@
 
         'desc
         Dim currc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
-        currc.Text = dt.Rows(row_i)("currc").ToString
+
+        If dt.Rows(row_i)("unit_pricec") = 0 Then
+            currc.Text = ""
+        Else
+            currc.Text = dt.Rows(row_i)("currc").ToString
+        End If
+
         currc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         currc.Font = font_row_style
 
         'value
         Dim hargac As String = Decimal.Parse(dt.Rows(row_i)("unit_pricec").ToString).ToString("N2")
+
+        If dt.Rows(row_i)("unit_pricec") = 0 Then
+            hargac = ""
+        End If
 
         Dim total_nilaic As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
         total_nilaic.Text = hargac
@@ -78,6 +107,10 @@
         'qty
         Dim qtyc As String = Decimal.Parse(dt.Rows(row_i)("qtyc").ToString).ToString("N2")
 
+        If dt.Rows(row_i)("qtyc") = 0 Then
+            qtyc = ""
+        End If
+
         Dim col_qtyc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(9)
         col_qtyc.Text = qtyc
         col_qtyc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
@@ -85,6 +118,10 @@
 
         'sub_amount
         Dim sub_amountc As String = Decimal.Parse(dt.Rows(row_i)("total_in_rpc").ToString).ToString("N2")
+
+        If dt.Rows(row_i)("total_in_rpc") = 0 Then
+            sub_amountc = ""
+        End If
 
         Dim sub_amount_colc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(10)
         sub_amount_colc.Text = sub_amountc
@@ -350,7 +387,7 @@ ORDER BY `id_pre_cal_temp` ASC"
         Next
 
         '
-        Dim qadm As String = "SELECT d.`id_pre_cal_temp`,d.`desc`,cur.currency_display AS curr,IFNULL(d.`unit_price`,0) AS unit_price,IFNULL(d.`qty`,0) AS qty,IFNULL(d.`unit_price_in_rp`,0) AS unit_price_in_rp,IFNULL(d.`total_in_rp`,0) AS total_in_rp, dc.`desc` AS descc,curc.currency_display AS currc,IFNULL(dc.`unit_price`,0) AS unit_pricec,IFNULL(dc.`qty`,0) AS qtyc,IFNULL(dc.`unit_price_in_rp`,0) AS unit_price_in_rpc,IFNULL(dc.`total_in_rp`,0) AS total_in_rpc
+        Dim qadm As String = "SELECT d.`id_pre_cal_temp`,d.`desc`,cur.currency_display AS curr,IF(d.id_currency=1,0,IFNULL(d.`unit_price`,0)) AS unit_price,IFNULL(d.`qty`,0) AS qty,IFNULL(d.`unit_price_in_rp`,0) AS unit_price_in_rp,IFNULL(d.`total_in_rp`,0) AS total_in_rp, dc.`desc` AS descc,curc.currency_display AS currc,IF(dc.id_currency=1,0,IFNULL(dc.`unit_price`,0)) AS unit_pricec,IFNULL(dc.`qty`,0) AS qtyc,IFNULL(dc.`unit_price_in_rp`,0) AS unit_price_in_rpc,IFNULL(dc.`total_in_rp`,0) AS total_in_rpc
 FROM `tb_pre_cal_fgpo_det` d
 INNER JOIN tb_pre_cal_fgpo h ON h.`id_pre_cal_fgpo`=d.`id_pre_cal_fgpo` AND d.id_type=3 AND d.`id_comp`=h.`choosen_id_comp`
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=d.id_currency
@@ -358,8 +395,8 @@ LEFT JOIN tb_pre_cal_fgpo_det dc ON dc.`id_pre_cal_fgpo`=d.`id_pre_cal_fgpo` AND
 LEFT JOIN tb_lookup_currency curc ON curc.id_currency=dc.id_currency
 WHERE d.`id_pre_cal_fgpo`='" & id_report & "' 
 UNION
-SELECT d.`id_pre_cal_temp`,dc.`desc`,curc.currency_display AS curr,IFNULL(dc.`unit_price`,0) AS unit_price,IFNULL(dc.`qty`,0) AS qty,IFNULL(dc.`unit_price_in_rp`,0) AS unit_price_in_rp,IFNULL(dc.`total_in_rp`,0) AS total_in_rp
-,d.`desc` AS descc,cur.currency_display AS currc,IFNULL(d.`unit_price`,0) AS unit_pricec,IFNULL(d.`qty`,0) AS qtyc,IFNULL(d.`unit_price_in_rp`,0) AS unit_price_in_rpc,IFNULL(d.`total_in_rp`,0) AS total_in_rpc
+SELECT d.`id_pre_cal_temp`,dc.`desc`,curc.currency_display AS curr,IF(dc.id_currency=1,0,IFNULL(dc.`unit_price`,0)) AS unit_price,IFNULL(dc.`qty`,0) AS qty,IFNULL(dc.`unit_price_in_rp`,0) AS unit_price_in_rp,IFNULL(dc.`total_in_rp`,0) AS total_in_rp
+,d.`desc` AS descc,cur.currency_display AS currc,IF(d.id_currency=1,0,IFNULL(d.`unit_price`,0)) AS unit_pricec,IFNULL(d.`qty`,0) AS qtyc,IFNULL(d.`unit_price_in_rp`,0) AS unit_price_in_rpc,IFNULL(d.`total_in_rp`,0) AS total_in_rpc
 FROM `tb_pre_cal_fgpo_det` d
 INNER JOIN tb_pre_cal_fgpo h ON h.`id_pre_cal_fgpo`=d.`id_pre_cal_fgpo` AND d.id_type=3 AND d.`id_comp`=h.`second_best_comp`
 INNER JOIN tb_lookup_currency cur ON cur.id_currency=d.id_currency
@@ -387,7 +424,12 @@ SELECT 'DESTINATION CHARGES' AS `desc`,'' AS curr,0 AS unit_price,0 AS qty,0 AS 
         Next
 
         insert_row_manual(row_baru, execute_query("SELECT 'TOTAL SHIP COST' AS `desc`,'' AS curr,'' AS unit_price,'' AS qty,'' AS unit_price_in_rp,'" & Decimal.Parse(total_orign + total_dest + total_adm.ToString).ToString("N2") & "' AS total_in_rp, 'TOTAL SHIP COST' AS descc,'' AS currc,'' AS unit_pricec,'' AS qtyc,'' AS unit_price_in_rpc,'" & Decimal.Parse(total_orignc + total_destc + total_admc.ToString).ToString("N2") & "' AS total_in_rpc", -1, True, "", "", "", ""), 0)
-        insert_header(row_baru, "TOTAL QTY", "[tot_qty]")
-        insert_row_manual(row_baru, execute_query("SELECT 'TOTAL SHIP COST' AS `desc`,'' AS curr,'' AS unit_price,'' AS qty,'' AS unit_price_in_rp,'" & Decimal.Parse(total_orign + total_dest + total_adm.ToString).ToString("N2") & "' AS total_in_rp, 'TOTAL SHIP COST' AS descc,'' AS currc,'' AS unit_pricec,'' AS qtyc,'' AS unit_price_in_rpc,'" & Decimal.Parse(total_orignc + total_destc + total_admc.ToString).ToString("N2") & "' AS total_in_rpc", -1, True, "", "", "", ""), 0)
+
+        Dim qqty As String = "SELECT 'TOTAL QTY' AS `desc`,'' AS curr,0 AS unit_price,0 AS qty,0 AS unit_price_in_rp," & decimalSQL(Decimal.Parse(qty.ToString).ToString) & " AS total_in_rp, 'TOTAL QTY' AS descc,'' AS currc,0 AS unit_pricec,0 AS qtyc,0 AS unit_price_in_rpc," & decimalSQL(Decimal.Parse(qty.ToString).ToString) & " AS total_in_rpc"
+        Dim dtqty As DataTable = execute_query(qqty, -1, True, "", "", "", "")
+        '
+        insert_row(row_baru, dtqty, 0)
+
+        insert_row_manual(row_baru, execute_query("SELECT 'TOTAL SHIP COST' AS `desc`,'' AS curr,'' AS unit_price,'' AS qty,'' AS unit_price_in_rp,'" & Decimal.Parse((total_orign + total_dest + total_adm) / qty.ToString).ToString("N2") & "' AS total_in_rp, 'TOTAL SHIP COST' AS descc,'' AS currc,'' AS unit_pricec,'' AS qtyc,'' AS unit_price_in_rpc,'" & Decimal.Parse((total_orignc + total_destc + total_admc) / qty.ToString).ToString("N2") & "' AS total_in_rpc", -1, True, "", "", "", ""), 0)
     End Sub
 End Class
