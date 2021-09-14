@@ -1364,6 +1364,7 @@ Partial Class FormPreCalFGPODet
         Me.GVAdm.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn25, Me.GridColumn30, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29})
         Me.GVAdm.GridControl = Me.GCAdm
         Me.GVAdm.Name = "GVAdm"
+        Me.GVAdm.OptionsView.ShowFooter = True
         Me.GVAdm.OptionsView.ShowGroupPanel = False
         '
         'GridColumn25
@@ -1442,6 +1443,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn29.OptionsColumn.AllowEdit = False
         Me.GridColumn29.OptionsColumn.AllowFocus = False
         Me.GridColumn29.OptionsColumn.ReadOnly = True
+        Me.GridColumn29.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "unit_price_in_rp", "{0:N2}")})
         Me.GridColumn29.Visible = True
         Me.GridColumn29.VisibleIndex = 4
         Me.GridColumn29.Width = 337
