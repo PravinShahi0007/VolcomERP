@@ -770,7 +770,7 @@ INNER JOIN `tb_pre_cal_fgpo` cal ON st.`is_active`='1'  AND  cal.`id_pre_cal_fgp
 
     Private Sub BNextPickVendor_Click(sender As Object, e As EventArgs) Handles BNextPickVendor.Click
         If GVAdm.RowCount > 0 Then
-            execute_non_query("UPDATE tb_pre_cal_fgpo SET reason='7' WHERE id_pre_cal_fgpo='" & id & "'", True, "", "", "", "")
+            execute_non_query("UPDATE tb_pre_cal_fgpo SET step='7' WHERE id_pre_cal_fgpo='" & id & "'", True, "", "", "", "")
             load_head()
         End If
     End Sub
@@ -810,12 +810,14 @@ AND NOT ISNULL(choosen_id_comp)"
     End Sub
 
     Private Sub BPrintDuty_Click(sender As Object, e As EventArgs) Handles BPrintDuty.Click
-        Dim qc As String = "SELECT SUM(bm.tot_fob) AS tot_fob,bm.total_freight_po AS tot_freight,bm.tot_qty_royalty,SUM(bm.tot_royalty) AS tot_freight_cost_royalty,SUM(bm.qty) AS tot_qty,SUM(bm.tot_fob_rp) AS tot_fob_rp,SUM(bm.tot_cif) AS tot_cif,SUM(bm.tot_duty) AS tot_bm,SUM(bm.tot_cif)+SUM(bm.tot_duty) AS tot_cif_bm
-,h.ppn,ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.ppn/100),2) AS tot_ppn
-,h.pph,ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.pph/100),2) AS tot_pph
-,(SUM(bm.tot_cif)+SUM(bm.tot_duty)) + ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.ppn/100),2) + ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.pph/100),2) AS total_bm_ppn_pph
+        Dim qc As String = "SELECT FORMAT(SUM(bm.tot_fob),2,'ID_id') AS tot_fob,FORMAT(bm.total_freight_po,2,'ID_id') AS tot_freight,FORMAT(bm.tot_qty_royalty,'ID_id') AS tot_qty_royalty
+,FORMAT(SUM(bm.tot_royalty),2,'ID_id') AS tot_freight_cost_royalty,FORMAT(SUM(bm.qty),'ID_id') AS tot_qty
+,FORMAT(SUM(bm.tot_fob_rp),2,'ID_id') AS tot_fob_rp,FORMAT(SUM(bm.tot_cif),2,'ID_id') AS tot_cif,FORMAT(SUM(bm.tot_duty),2,'ID_id') AS tot_bm,FORMAT(SUM(bm.tot_cif)+SUM(bm.tot_duty),2,'ID_id') AS tot_cif_bm
+,FORMAT(h.ppn,2,'ID_id') AS ppn,FORMAT(ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.ppn/100),2),2,'ID_id') AS tot_ppn
+,FORMAT(h.pph,2,'ID_id') AS pph,FORMAT(ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.pph/100),2),2,'ID_id') AS tot_pph
+,FORMAT((SUM(bm.tot_cif)+SUM(bm.tot_duty)) + ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.ppn/100),2) + ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.pph/100),2),2,'ID_id') AS tot_bm_ppn_pph
 ,ROUND(h.sales_percent) AS sales_percent,ROUND(h.sales_commission) AS sales_commission,ROUND(h.sales_royalty) AS sales_royalty,ROUND(h.sales_ppn) AS sales_ppn
-,h.rate_management
+,FORMAT(h.rate_management,2,'ID_id') AS rate_management
 FROM `tb_pre_cal_fgpo` h 
 INNER JOIN
 (
