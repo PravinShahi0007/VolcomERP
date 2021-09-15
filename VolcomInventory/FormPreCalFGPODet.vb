@@ -42,7 +42,7 @@ ORDER BY id_stock_valas DESC LIMIT 1"
             load_kurs()
         Else
             'edit
-            Dim q As String = "SELECT cal.rate_current,cal.rate_management,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
+            Dim q As String = "SELECT cal.reason,cal.ppn,cal.pph,cal.rate_current,cal.rate_management,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
 FROM
 `tb_pre_cal_fgpo` cal
 INNER JOIN tb_m_user usr ON usr.`id_user`=cal.`created_by`
@@ -62,6 +62,9 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                 SLETypeImport.EditValue = dt.Rows(0)("id_type").ToString
                 TERateManagement.EditValue = dt.Rows(0)("rate_management")
                 TERatePayment.EditValue = dt.Rows(0)("rate_current")
+                MERemark.Text = dt.Rows(0)("reason").ToString
+                TEPPH.EditValue = dt.Rows(0)("pph")
+                TEPPN.EditValue = dt.Rows(0)("ppn")
 
                 view_but()
 
@@ -220,6 +223,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPDestCharges.PageVisible = False
             XTPAdmCharges.PageVisible = False
             XTPChoosen.PageVisible = False
+            XTPDutyReport.PageVisible = False
             '
             PCFGPOList.Visible = True
             PCVendor.Visible = False
@@ -232,6 +236,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = False
             PCPDest.Visible = False
             PCUAdm.Visible = False
+            PCPickVendor.Visible = False
+            BUpdateReason.Visible = False
 
             XTC.SelectedTabPageIndex = 0
         ElseIf steps = "2" Then
@@ -241,6 +247,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPDestCharges.PageVisible = False
             XTPAdmCharges.PageVisible = False
             XTPChoosen.PageVisible = False
+            XTPDutyReport.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = True
@@ -253,6 +260,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = False
             PCPDest.Visible = False
             PCUAdm.Visible = False
+            PCPickVendor.Visible = False
+            BUpdateReason.Visible = False
 
             XTC.SelectedTabPageIndex = 1
         ElseIf steps = "3" Then
@@ -262,6 +271,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPDestCharges.PageVisible = False
             XTPAdmCharges.PageVisible = False
             XTPChoosen.PageVisible = False
+            XTPDutyReport.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
@@ -274,6 +284,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = True
             PCPDest.Visible = False
             PCUAdm.Visible = False
+            PCPickVendor.Visible = False
+            BUpdateReason.Visible = False
             '
             XTC.SelectedTabPageIndex = 2
         ElseIf steps = "4" Then
@@ -283,6 +295,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPDestCharges.PageVisible = True
             XTPAdmCharges.PageVisible = False
             XTPChoosen.PageVisible = False
+            XTPDutyReport.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
@@ -295,6 +308,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = False
             PCPDest.Visible = True
             PCUAdm.Visible = False
+            PCPickVendor.Visible = False
+            BUpdateReason.Visible = False
             '
             XTC.SelectedTabPageIndex = 3
         ElseIf steps = "5" Then
@@ -304,6 +319,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPDestCharges.PageVisible = True
             XTPAdmCharges.PageVisible = True
             XTPChoosen.PageVisible = False
+            XTPDutyReport.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
@@ -316,6 +332,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = False
             PCPDest.Visible = False
             PCUAdm.Visible = True
+            PCPickVendor.Visible = False
+            BUpdateReason.Visible = False
             '
             XTC.SelectedTabPageIndex = 4
         ElseIf steps = "6" Then 'pick vendor
@@ -325,12 +343,15 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPDestCharges.PageVisible = True
             XTPAdmCharges.PageVisible = True
             XTPChoosen.PageVisible = True
+            XTPDutyReport.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
             PCOrign.Visible = False
             PCDest.Visible = False
             PCAdm.Visible = False
+            PCPickVendor.Visible = True
+            BUpdateReason.Visible = True
             '
             PCUFGPO.Visible = False
             PCUVendor.Visible = False
@@ -339,6 +360,30 @@ SELECT 3 AS id_type,'Courier' AS type"
             BLoadCharges.Visible = False
             '
             XTC.SelectedTabPageIndex = 5
+        ElseIf steps = "7" Then 'duty
+            XTPFGPO.PageVisible = True
+            XTPVendor.PageVisible = True
+            XTPOrignCharges.PageVisible = True
+            XTPDestCharges.PageVisible = True
+            XTPAdmCharges.PageVisible = True
+            XTPChoosen.PageVisible = True
+            XTPDutyReport.PageVisible = True
+            '
+            PCFGPOList.Visible = False
+            PCVendor.Visible = False
+            PCOrign.Visible = False
+            PCDest.Visible = False
+            PCAdm.Visible = False
+            PCPickVendor.Visible = False
+            BUpdateReason.Visible = False
+            '
+            PCUFGPO.Visible = False
+            PCUVendor.Visible = False
+            PCPOrign.Visible = False
+            PCPDest.Visible = False
+            BLoadCharges.Visible = False
+            '
+            XTC.SelectedTabPageIndex = 6
         End If
     End Sub
 
@@ -659,16 +704,23 @@ WHERE h.id_pre_cal_fgpo='" & id & "'"
     End Sub
 
     Private Sub BPrintBudget_Click(sender As Object, e As EventArgs) Handles BPrintBudget.Click
-        Dim qc As String = "SELECT choosen_id_comp
-FROM `tb_pre_cal_fgpo`
-WHERE id_pre_cal_fgpo='" & id & "'
+        Dim qc As String = "SELECT number,FORMAT(SUM(l.`qty`),0,'id_ID') AS qtyf,SUM(l.`qty`) AS qty,FORMAT(SUM(l.`price`*l.`qty`),2,'id_ID') AS fob_tot,c.`comp_name` AS best,cs.`comp_name` AS second_best,FORMAT(f.`cbm`,2,'id_ID') AS cbm,FORMAT(f.`ctn`,0,'id_ID') AS ctn,FORMAT(f.`weight`,0,'id_ID') AS weight,f.`pol`,cv.`comp_name` AS vendor_comp,FORMAT(f.`rate_management`,2,'id_ID') AS rate_management
+FROM `tb_pre_cal_fgpo` f
+INNER JOIN tb_m_comp cv ON cv.`id_comp`=f.`id_comp`
+INNER JOIN tb_pre_cal_fgpo_list l ON l.`id_pre_cal_fgpo`=f.`id_pre_cal_fgpo`
+INNER JOIN tb_m_comp c ON c.`id_comp`=f.`choosen_id_comp`
+INNER JOIN tb_m_comp cs ON cs.`id_comp`=f.`second_best_comp`
+WHERE f.`id_pre_cal_fgpo`='" & id & "'
 AND NOT ISNULL(choosen_id_comp)"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count > 0 Then
             'print
             Cursor = Cursors.WaitCursor
+
             ReportPreCalBudget.id_report = id
             Dim Report As New ReportPreCalBudget()
+            Report.DataSource = dtc
+            Report.qty = dtc.Rows(0)("qty")
 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreview()
@@ -708,5 +760,115 @@ INNER JOIN `tb_pre_cal_fgpo` cal ON st.`is_active`='1'  AND  cal.`id_pre_cal_fgp
 
     Private Sub SLECompOther_EditValueChanged(sender As Object, e As EventArgs) Handles SLECompOther.EditValueChanged
         load_list_adm()
+    End Sub
+
+    Private Sub BUpdateReason_Click(sender As Object, e As EventArgs) Handles BUpdateReason.Click
+        Dim q As String = "UPDATE tb_pre_cal_fgpo SET reason='" & addSlashes(MERemark.Text) & "' WHERE id_pre_cal_fgpo='" & id & "'"
+        execute_non_query(q, True, "", "", "", "")
+        load_head()
+    End Sub
+
+    Private Sub BNextPickVendor_Click(sender As Object, e As EventArgs) Handles BNextPickVendor.Click
+        If GVAdm.RowCount > 0 Then
+            execute_non_query("UPDATE tb_pre_cal_fgpo SET step='7' WHERE id_pre_cal_fgpo='" & id & "'", True, "", "", "", "")
+            load_head()
+        End If
+    End Sub
+
+    Private Sub BPrintBudget2_Click(sender As Object, e As EventArgs) Handles BPrintBudget2.Click
+        Dim qc As String = "SELECT number,f.reason,FORMAT(SUM(l.`qty`),0,'id_ID') AS qtyf,SUM(l.`qty`) AS qty,FORMAT(SUM(l.`price`*l.`qty`),2,'id_ID') AS fob_tot,c.`comp_name` AS best,cs.`comp_name` AS second_best,FORMAT(f.`cbm`,2,'id_ID') AS cbm,FORMAT(f.`ctn`,0,'id_ID') AS ctn,FORMAT(f.`weight`,0,'id_ID') AS weight,f.`pol`,cv.`comp_name` AS vendor_comp,FORMAT(f.`rate_management`,2,'id_ID') AS rate_management
+FROM `tb_pre_cal_fgpo` f
+INNER JOIN tb_m_comp cv ON cv.`id_comp`=f.`id_comp`
+INNER JOIN tb_pre_cal_fgpo_list l ON l.`id_pre_cal_fgpo`=f.`id_pre_cal_fgpo`
+INNER JOIN tb_m_comp c ON c.`id_comp`=f.`choosen_id_comp`
+INNER JOIN tb_m_comp cs ON cs.`id_comp`=f.`second_best_comp`
+WHERE f.`id_pre_cal_fgpo`='" & id & "'
+AND NOT ISNULL(choosen_id_comp)"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            'print
+            Cursor = Cursors.WaitCursor
+
+            ReportPreCalBudget.id_report = id
+            Dim Report As New ReportPreCalBudget()
+            Report.DataSource = dtc
+            Report.qty = dtc.Rows(0)("qty")
+
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+
+            Cursor = Cursors.Default
+        Else
+            warningCustom("Please choose vendor first")
+        End If
+    End Sub
+
+    Private Sub BUpdate_Click(sender As Object, e As EventArgs) Handles BUpdate.Click
+        Dim q As String = "UPDATE tb_pre_cal_fgpo SET ppn='" & decimalSQL(Decimal.Parse(TEPPN.EditValue.ToString)) & "',pph='" & decimalSQL(Decimal.Parse(TEPPH.EditValue.ToString)) & "' WHERE id_pre_cal_fgpo='" & id & "'"
+        execute_non_query(q, True, "", "", "", "")
+        load_head()
+    End Sub
+
+    Private Sub BPrintDuty_Click(sender As Object, e As EventArgs) Handles BPrintDuty.Click
+        Dim qc As String = "SELECT FORMAT(SUM(bm.tot_fob),2,'ID_id') AS tot_fob,FORMAT(bm.total_freight_po,2,'ID_id') AS tot_freight,FORMAT(bm.tot_qty_royalty,'ID_id') AS tot_qty_royalty
+,FORMAT(SUM(bm.tot_royalty),2,'ID_id') AS tot_freight_cost_royalty,FORMAT(SUM(bm.qty),'ID_id') AS tot_qty
+,FORMAT(SUM(bm.tot_fob_rp),2,'ID_id') AS tot_fob_rp,FORMAT(SUM(bm.tot_cif),2,'ID_id') AS tot_cif,FORMAT(SUM(bm.tot_duty),2,'ID_id') AS tot_bm,FORMAT(SUM(bm.tot_cif)+SUM(bm.tot_duty),2,'ID_id') AS tot_cif_bm
+,FORMAT(h.ppn,2,'ID_id') AS ppn,FORMAT(ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.ppn/100),2),2,'ID_id') AS tot_ppn
+,FORMAT(h.pph,2,'ID_id') AS pph,FORMAT(ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.pph/100),2),2,'ID_id') AS tot_pph
+,FORMAT((SUM(bm.tot_duty)) + ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.ppn/100),2) + ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.pph/100),2),2,'ID_id') AS tot_bm_ppn_pph
+,ROUND(h.sales_percent) AS sales_percent,ROUND(h.sales_commission) AS sales_commission,ROUND(h.sales_royalty) AS sales_royalty,ROUND(h.sales_ppn) AS sales_ppn
+,FORMAT(h.rate_management,2,'ID_id') AS rate_management
+FROM `tb_pre_cal_fgpo` h 
+INNER JOIN
+(
+	SELECT l.duty
+	,SUM((l.`price`*cal.`rate_management`)*l.`qty`) AS tot_fob_rp
+	,SUM(l.qty) AS qty
+	,SUM(l.`price`*l.`qty`) AS tot_fob
+	,tot_freight.tot_freight AS total_freight_po
+	,tot_fgpo.tot_qty_sales AS tot_qty_royalty
+	,SUM(ROUND((tot_freight.tot_freight/tot_fgpo.tot_qty_sales)*l.`qty`*(cal.`sales_percent`/100),2)) AS tot_freight
+	,SUM(ROUND((tot_freight.tot_freight/tot_fgpo.tot_qty_sales)*l.`qty`*(cal.`sales_percent`/100),2))+SUM((l.`price`*cal.`rate_management`)*l.`qty`) AS tot_cif
+	,ROUND((SUM(ROUND((tot_freight.tot_freight/tot_fgpo.tot_qty_sales)*l.`qty`*(cal.`sales_percent`/100),2))+SUM((l.`price`*cal.`rate_management`)*l.`qty`))*(l.duty/100),2) AS tot_duty
+	,SUM(ROUND((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100) * ROUND(l.`qty`*(cal.`sales_percent`/100)),2)) AS tot_royalty
+	FROM `tb_pre_cal_fgpo_list` l
+	INNER JOIN tb_pre_cal_fgpo cal ON cal.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo`
+	INNER JOIN tb_prod_order po ON po.`id_prod_order`=l.`id_prod_order`
+	INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+	INNER JOIN tb_m_design d ON d.`id_design`=pdd.`id_design`
+	INNER JOIN 
+	(
+		SELECT det.`total_in_rp` AS tot_freight
+		FROM tb_pre_cal_fgpo_det det
+		INNER JOIN tb_pre_cal_fgpo f ON f.`id_pre_cal_fgpo`=det.`id_pre_cal_fgpo` AND f.`choosen_id_comp`=det.`id_comp`
+		WHERE det.`id_pre_cal_fgpo`='7' AND det.id_type=1
+	)tot_freight 
+	INNER JOIN 
+	(
+		SELECT SUM(l.`qty`) AS tot_qty,SUM(ROUND(l.`qty`*(f.`sales_percent`/100))) AS tot_qty_sales
+		FROM tb_pre_cal_fgpo_list l
+		INNER JOIN tb_pre_cal_fgpo f ON f.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo` 
+		WHERE f.`id_pre_cal_fgpo`='" & id & "'
+	)tot_fgpo
+	WHERE l.`id_pre_cal_fgpo`='" & id & "'
+	GROUP BY l.duty
+)bm 
+WHERE h.`id_pre_cal_fgpo`='" & id & "'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            'print
+            Cursor = Cursors.WaitCursor
+
+            Dim Report As New ReportPreCalReport()
+            Report.id_report = id
+            Report.DataSource = dtc
+
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+
+            Cursor = Cursors.Default
+        Else
+            warningCustom("Please choose vendor first")
+        End If
     End Sub
 End Class
