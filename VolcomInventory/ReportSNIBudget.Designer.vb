@@ -98,13 +98,13 @@ Partial Public Class ReportSNIBudget
         '
         Me.XrTableCell8.Name = "XrTableCell8"
         Me.XrTableCell8.Text = "tes"
-        Me.XrTableCell8.Weight = 1.4791667296222018R
+        Me.XrTableCell8.Weight = 1.3000001466688398R
         '
         'XrTableCell10
         '
         Me.XrTableCell10.Name = "XrTableCell10"
         Me.XrTableCell10.Text = "tes"
-        Me.XrTableCell10.Weight = 0.51041693740773242R
+        Me.XrTableCell10.Weight = 0.68958352036109449R
         '
         'XrTableCell9
         '
@@ -200,7 +200,7 @@ Partial Public Class ReportSNIBudget
         Me.XrTableCell1.Name = "XrTableCell1"
         Me.XrTableCell1.StylePriority.UseFont = False
         Me.XrTableCell1.Text = "Biaya"
-        Me.XrTableCell1.Weight = 1.4791667296222018R
+        Me.XrTableCell1.Weight = 1.30000000887859R
         '
         'XrTableCell5
         '
@@ -210,7 +210,7 @@ Partial Public Class ReportSNIBudget
         Me.XrTableCell5.StylePriority.UseTextAlignment = False
         Me.XrTableCell5.Text = "Qty"
         Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell5.Weight = 0.51041693740773253R
+        Me.XrTableCell5.Weight = 0.68958365815134437R
         '
         'XrTableCell4
         '
