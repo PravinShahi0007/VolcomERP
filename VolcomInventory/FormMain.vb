@@ -8797,6 +8797,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormStoreStatus.GCData, "Store Status List")
         ElseIf formName = "FormPriceMKDVios" Then
             print(FormPriceMKDVios.GCData, "Turun Harga - Online Store")
+        ElseIf formName = "FormMaterialRequisition" Then
+            print(FormMaterialRequisition.GCMRS, "List Material Requisition")
         Else
             RPSubMenu.Visible = False
         End If
