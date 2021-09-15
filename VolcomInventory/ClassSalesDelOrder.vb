@@ -19,7 +19,7 @@
         query += "a.pl_sales_order_del_note, a.pl_sales_order_del_date, DATE_FORMAT(a.pl_sales_order_del_date,'%Y-%m-%d') AS pl_sales_order_del_datex, a.pl_sales_order_del_number, b.sales_order_number, b.sales_order_ol_shop_number, IFNULL(b.customer_name,'') AS `customer_name`, "
         query += "DATE_FORMAT(a.pl_sales_order_del_date,'%d %M %Y') AS pl_sales_order_del_date, a.id_comp_contact_from,(wh.id_comp) AS `id_wh`, (wh.comp_number) AS `wh_number`,(wh.comp_name) AS `wh_name`, CONCAT(wh.comp_number, ' - ', wh.comp_name) AS `wh`, a.id_wh_drawer, drw.wh_drawer_code, drw.wh_drawer, cat.id_so_status, cat.so_status, "
         query += "a.last_update, le.employee_name AS `last_user`, ('No') AS `is_select`, IFNULL(det.`total`,0) AS `total`, rmg.`total_remaining`, eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name, a.is_combine, IFNULL(a.id_combine,0) AS `id_combine`, IFNULL(comb.combine_number,'-') AS `combine_number`, b.sales_order_ol_shop_number, IFNULL(pb.prepared_by,'-') AS `prepared_by`, pb.report_mark_datetime AS `prepared_date`, a.is_use_unique_code, "
-        query += "IFNULL(dm.id_del_manifest,0) AS `id_del_manifest`, dm.`manifest_number`, dm.awbill_no, IFNULL(b.id_sales_order_ol_shop,0) AS `id_web_order` "
+        query += "IFNULL(dm.id_del_manifest,0) AS `id_del_manifest`, dm.`manifest_number`, dm.awbill_no, IFNULL(b.id_sales_order_ol_shop,0) AS `id_web_order`, dm.approve_outbound_date, dm.approve_outbound_by_name "
         query += "FROM tb_pl_sales_order_del a "
         query += "INNER JOIN tb_sales_order b ON a.id_sales_order = b.id_sales_order "
         query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to "
@@ -65,11 +65,14 @@
         LEFT JOIN tb_m_user lu ON lu.id_user = a.last_update_by
         LEFT JOIN tb_m_employee le ON le.id_employee = lu.id_employee 
         LEFT JOIN (
-            SELECT o.id_del_manifest,ad.id_pl_sales_order_del, o.number AS `manifest_number`, a.awbill_no
+            SELECT o.id_del_manifest,ad.id_pl_sales_order_del, o.number AS `manifest_number`, a.awbill_no, 
+            a.approve_outbound_date, a.approve_outbound_by, e.employee_name AS `approve_outbound_by_name`
             FROM tb_del_manifest_det od
             INNER JOIN tb_del_manifest o ON o.id_del_manifest = od.id_del_manifest
             INNER JOIN tb_wh_awbill_det ad ON ad.id_wh_awb_det = od.id_wh_awb_det
             INNER JOIN tb_wh_awbill a ON a.id_awbill = ad.id_awbill
+            LEFT JOIN tb_m_user u ON u.id_user = a.approve_outbound_by
+            LEFT JOIN tb_m_employee e ON e.id_employee = u.id_employee
             WHERE o.id_report_status!=5 AND !ISNULL(ad.id_pl_sales_order_del)
             GROUP BY ad.id_pl_sales_order_del
         ) dm ON dm.id_pl_sales_order_del = a.id_pl_sales_order_del "
