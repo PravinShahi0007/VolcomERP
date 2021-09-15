@@ -1532,10 +1532,6 @@ GROUP BY rec.`id_prod_order`"
             FormSNIppsDet.id_pps = id_report
             FormSNIppsDet.is_view = "1"
             FormSNIppsDet.ShowDialog()
-        ElseIf report_mark_type = "379" Then
-            FormSNIppsDet.id_pps = id_report
-            FormSNIppsDet.is_view = "1"
-            FormSNIppsDet.ShowDialog()
         ElseIf report_mark_type = "321" Then
             'sni rec
             FormSNISerahTerimaDet.id = id_report
