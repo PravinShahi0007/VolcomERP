@@ -33,6 +33,8 @@ GROUP BY l.duty"
             insert_row_bm(RowBM, dt_orign, i)
         Next
         '
+        Dim row_baru As DevExpress.XtraReports.UI.XRTableRow = RowBreakDown
+        '
         Dim q_duty As String = "SELECT po.`prod_order_number`,d.`design_code`,d.`design_display_name`,l.`qty`,l.`price`,cal.`rate_management`
 ,(l.`price`*cal.`rate_management`) AS fob_rp,(l.`price`*cal.`rate_management`)*l.`qty` AS tot_fob_rp
 ,ROUND(pdd.`prod_demand_design_propose_price`) AS price,ROUND(((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) AS price_commision
@@ -71,16 +73,14 @@ WHERE l.`id_pre_cal_fgpo`='" & id_report & "'"
         Dim dt_duty As DataTable = execute_query(q_duty, -1, True, "", "", "", "")
 
         For i = 0 To dt_duty.Rows.Count - 1
-            insert_row_duty(RowBreakDown, dt_orign, i)
+            insert_row_duty(row_baru, dt_duty, i)
         Next
     End Sub
 
     Sub insert_row_duty(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)
-        Dim font_row_style As New Font(XTBM.Font.FontFamily, XTBM.Font.Size, FontStyle.Regular)
+        Dim font_row_style As New Font(XTBreakdown.Font.FontFamily, XTBreakdown.Font.Size - 2, FontStyle.Regular)
 
-        If Not row_i = 0 Then
-            row = XTBreakdown.InsertRowBelow(row)
-        End If
+        row = XTBreakdown.InsertRowBelow(row)
 
         row.HeightF = 15
         row.Font = font_row_style
