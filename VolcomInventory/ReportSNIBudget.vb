@@ -27,6 +27,8 @@ WHERE ppsb.`id_sni_pps`='" & id_pps & "'"
                 insert_footer(row_baru, tot_nilai, "Total Budget")
                 insert_footer(row_baru, tot_qty, "Total Qty Artikel KIDS")
                 insert_footer(row_baru, Math.Round(tot_nilai / tot_qty, 2), "Cost per Pcs")
+                insert_footer(row_baru, Math.Round(tot_nilai * 0.1, 2), "VAT 10%")
+                insert_footer(row_baru, Math.Round(tot_nilai * 1.1, 2), "Grand Total Budget")
             End If
         Next
         '

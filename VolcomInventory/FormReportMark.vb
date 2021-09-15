@@ -10073,9 +10073,9 @@ WHERE ai.`id_awb_inv_sum`='" & id_report & "'"
             If id_status_reportx = "6" Then
                 'line list update qty
                 If get_opt_prod_field("is_enable_sni") = "1" Then
-                    Dim qus As String = ""
-                    qus = "CALL update_pdp_sni('" & id_report & "')"
-                    execute_non_query(qus, True, "", "", "", "")
+                    'Dim qus As String = ""
+                    'qus = "CALL update_pdp_sni('" & id_report & "')"
+                    'execute_non_query(qus, True, "", "", "", "")
 
                     'get id_design and cost per pcs
                     Dim qd As String = "SELECT spl.*,qty.qty,tot.total,ROUND(tot.total/qty.qty,2) AS cost

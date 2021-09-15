@@ -45,6 +45,7 @@ Partial Class FormSNIppsDet
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.SLESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -90,6 +91,10 @@ Partial Class FormSNIppsDet
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEGrandTot = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEVat = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.TETotalBudget = New DevExpress.XtraEditors.TextEdit()
@@ -109,7 +114,6 @@ Partial Class FormSNIppsDet
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -147,6 +151,8 @@ Partial Class FormSNIppsDet
         Me.PanelControl6.SuspendLayout()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
+        CType(Me.TEGrandTot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEVat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotalBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TESNICop.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotalQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -411,6 +417,19 @@ Partial Class FormSNIppsDet
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 6
         Me.GridColumn6.Width = 181
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn32.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn32.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn32.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn32.Caption = "Qty Line List"
+        Me.GridColumn32.FieldName = "qty_line_list"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 5
+        Me.GridColumn32.Width = 117
         '
         'PanelControl4
         '
@@ -763,9 +782,9 @@ Partial Class FormSNIppsDet
         '
         Me.GroupControl2.Controls.Add(Me.GCBudget)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 227)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 192)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(935, 139)
+        Me.GroupControl2.Size = New System.Drawing.Size(935, 128)
         Me.GroupControl2.TabIndex = 4
         Me.GroupControl2.Text = "Budget Item"
         '
@@ -776,7 +795,7 @@ Partial Class FormSNIppsDet
         Me.GCBudget.MainView = Me.GVBudget
         Me.GCBudget.Name = "GCBudget"
         Me.GCBudget.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEBudgetDet, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2})
-        Me.GCBudget.Size = New System.Drawing.Size(931, 117)
+        Me.GCBudget.Size = New System.Drawing.Size(931, 106)
         Me.GCBudget.TabIndex = 2
         Me.GCBudget.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBudget})
         '
@@ -895,14 +914,18 @@ Partial Class FormSNIppsDet
         '
         Me.PanelControl6.Controls.Add(Me.PanelControl7)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl6.Location = New System.Drawing.Point(0, 366)
+        Me.PanelControl6.Location = New System.Drawing.Point(0, 320)
         Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(935, 100)
+        Me.PanelControl6.Size = New System.Drawing.Size(935, 146)
         Me.PanelControl6.TabIndex = 5
         '
         'PanelControl7
         '
         Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl7.Controls.Add(Me.LabelControl9)
+        Me.PanelControl7.Controls.Add(Me.TEGrandTot)
+        Me.PanelControl7.Controls.Add(Me.LabelControl8)
+        Me.PanelControl7.Controls.Add(Me.TEVat)
         Me.PanelControl7.Controls.Add(Me.LabelControl5)
         Me.PanelControl7.Controls.Add(Me.LabelControl7)
         Me.PanelControl7.Controls.Add(Me.TETotalBudget)
@@ -912,12 +935,54 @@ Partial Class FormSNIppsDet
         Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl7.Location = New System.Drawing.Point(602, 2)
         Me.PanelControl7.Name = "PanelControl7"
-        Me.PanelControl7.Size = New System.Drawing.Size(331, 96)
+        Me.PanelControl7.Size = New System.Drawing.Size(331, 142)
         Me.PanelControl7.TabIndex = 6
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(13, 119)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(56, 13)
+        Me.LabelControl9.TabIndex = 9
+        Me.LabelControl9.Text = "Grand Total"
+        '
+        'TEGrandTot
+        '
+        Me.TEGrandTot.Location = New System.Drawing.Point(111, 116)
+        Me.TEGrandTot.Name = "TEGrandTot"
+        Me.TEGrandTot.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEGrandTot.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEGrandTot.Properties.Mask.EditMask = "N2"
+        Me.TEGrandTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEGrandTot.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEGrandTot.Properties.ReadOnly = True
+        Me.TEGrandTot.Size = New System.Drawing.Size(209, 20)
+        Me.TEGrandTot.TabIndex = 8
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(13, 93)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl8.TabIndex = 7
+        Me.LabelControl8.Text = "VAT 10%"
+        '
+        'TEVat
+        '
+        Me.TEVat.Location = New System.Drawing.Point(111, 90)
+        Me.TEVat.Name = "TEVat"
+        Me.TEVat.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEVat.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEVat.Properties.Mask.EditMask = "N2"
+        Me.TEVat.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEVat.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEVat.Properties.ReadOnly = True
+        Me.TEVat.Size = New System.Drawing.Size(209, 20)
+        Me.TEVat.TabIndex = 6
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(15, 15)
+        Me.LabelControl5.Location = New System.Drawing.Point(13, 15)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(61, 13)
         Me.LabelControl5.TabIndex = 1
@@ -984,7 +1049,7 @@ Partial Class FormSNIppsDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 47)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(935, 180)
+        Me.GroupControl1.Size = New System.Drawing.Size(935, 145)
         Me.GroupControl1.TabIndex = 3
         Me.GroupControl1.Text = "Artikel Dipilih"
         '
@@ -995,7 +1060,7 @@ Partial Class FormSNIppsDet
         Me.GCBudgetCop.MainView = Me.GVBudgetCop
         Me.GCBudgetCop.Name = "GCBudgetCop"
         Me.GCBudgetCop.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEBudget})
-        Me.GCBudgetCop.Size = New System.Drawing.Size(931, 158)
+        Me.GCBudgetCop.Size = New System.Drawing.Size(931, 123)
         Me.GCBudgetCop.TabIndex = 3
         Me.GCBudgetCop.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBudgetCop})
         '
@@ -1119,19 +1184,6 @@ Partial Class FormSNIppsDet
         Me.BAdd.TabIndex = 3
         Me.BAdd.Text = "Add Budget Item"
         '
-        'GridColumn32
-        '
-        Me.GridColumn32.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn32.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn32.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn32.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn32.Caption = "Qty Line List"
-        Me.GridColumn32.FieldName = "qty_line_list"
-        Me.GridColumn32.Name = "GridColumn32"
-        Me.GridColumn32.Visible = True
-        Me.GridColumn32.VisibleIndex = 5
-        Me.GridColumn32.Width = 117
-        '
         'FormSNIppsDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1184,6 +1236,8 @@ Partial Class FormSNIppsDet
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl7.ResumeLayout(False)
         Me.PanelControl7.PerformLayout()
+        CType(Me.TEGrandTot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEVat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotalBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TESNICop.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotalQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1288,4 +1342,8 @@ Partial Class FormSNIppsDet
     Friend WithEvents Battach As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEGrandTot As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEVat As DevExpress.XtraEditors.TextEdit
 End Class

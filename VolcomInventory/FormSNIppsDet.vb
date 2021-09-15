@@ -405,6 +405,9 @@ HAVING NOT ISNULL(err)"
         GVBudgetCop.RefreshData()
 
         TETotalBudget.EditValue = GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue
+        TEVat.EditValue = Math.Round(TETotalBudget.EditValue * 0.1, 2)
+        TEGrandTot.EditValue = Math.Round(TETotalBudget.EditValue * 1.1, 2)
+
         TETotalQty.EditValue = GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue
         TESNICop.EditValue = Math.Round((GVBudgetCop.Columns("sub_amount").SummaryItem.SummaryValue + GVBudget.Columns("sub_amount").SummaryItem.SummaryValue) / GVProposed.Columns("qty_line_list").SummaryItem.SummaryValue, 2)
     End Sub
