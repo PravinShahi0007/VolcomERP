@@ -822,7 +822,12 @@ AND NOT ISNULL(choosen_id_comp)"
 ,FORMAT(SUM(bm.total_ppn_royalty),2,'ID_id') AS tot_ppn_royalty
 ,FORMAT(SUM(bm.total_pph_royalty),2,'ID_id') AS tot_pph_royalty
 ,FORMAT(SUM(bm.total_pph_royalty)+SUM(bm.total_ppn_royalty),2,'ID_id') AS tot_ppn_pph_royalty
+,c.`comp_name` AS vendor_name,cbest.`comp_name` AS forwarder
+,h.`number`
+,h.`ctn`,h.`cbm`
 FROM `tb_pre_cal_fgpo` h 
+INNER JOIN tb_m_comp c ON c.id_comp=h.`id_comp`
+INNER JOIN tb_m_comp cbest ON cbest.`id_comp`=h.`choosen_id_comp`
 INNER JOIN
 (
 	SELECT l.duty
@@ -854,7 +859,7 @@ INNER JOIN
 	(
 		SELECT SUM(l.`qty`) AS tot_qty,SUM(ROUND(l.`qty`*(f.`sales_percent`/100))) AS tot_qty_sales
 		FROM tb_pre_cal_fgpo_list l
-		INNER JOIN tb_pre_cal_fgpo f ON f.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo` 
+		INNER JOIN tb_pre_cal_fgpo f ON f.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo`  
 		WHERE f.`id_pre_cal_fgpo`='" & id & "'
 	)tot_fgpo
 	WHERE l.`id_pre_cal_fgpo`='" & id & "'
