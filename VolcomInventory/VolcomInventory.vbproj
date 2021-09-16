@@ -632,6 +632,12 @@
     <Compile Include="FormBudgetProdDemandNew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCapsule.Designer.vb">
+      <DependentUpon>FormCapsule.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCapsule.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormCatalogSpec.Designer.vb">
       <DependentUpon>FormCatalogSpec.vb</DependentUpon>
     </Compile>
@@ -10321,6 +10327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetProdDemandNew.resx">
       <DependentUpon>FormBudgetProdDemandNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCapsule.resx">
+      <DependentUpon>FormCapsule.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCatalogSpec.resx">
       <DependentUpon>FormCatalogSpec.vb</DependentUpon>

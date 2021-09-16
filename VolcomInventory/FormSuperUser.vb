@@ -112,6 +112,7 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+        FormCapsule.ShowDialog()
         'siluet list
         'FormMasterSilhouette.is_show_master_sht = True
         'FormMasterSilhouette.ShowDialog()
