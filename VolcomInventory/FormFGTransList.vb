@@ -1234,4 +1234,32 @@
             FormMenuAuth.ShowDialog()
         End If
     End Sub
+
+    Private Sub SBExcelAdjIn_Click(sender As Object, e As EventArgs) Handles SBExcelAdjIn.Click
+        If GVAdjIn.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "tl_adj_in.xlsx"
+            exportToXLS(path, "adj_in", GCAdjIn)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub SBExcelAdjOut_Click(sender As Object, e As EventArgs) Handles SBExcelAdjOut.Click
+        If GVAdjOut1.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "tl_adj_out.xlsx"
+            exportToXLS(path, "adj_out", GCAdjOut1)
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
