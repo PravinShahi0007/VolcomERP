@@ -228,22 +228,35 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
                 End If
             ElseIf id_pop_up = "5" Then 'QC SNI Out
                 If GVListPurchase.RowCount > 0 Then
-                    Dim newRow As DataRow = (TryCast(FormSNIOut.GCDetail.DataSource, DataTable)).NewRow()
-                    newRow("id_prod_order") = GVProdRec.GetFocusedRowCellValue("id_prod_order").ToString
-                    newRow("id_prod_order_det") = GVListPurchase.GetFocusedRowCellValue("id_prod_order_det").ToString
-                    newRow("id_prod_order_rec") = GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString
-                    newRow("id_prod_order_rec_det") = GVListPurchase.GetFocusedRowCellValue("id_prod_order_rec_det").ToString
-                    newRow("prod_order_number") = GVProdRec.GetFocusedRowCellValue("prod_order_number").ToString
-                    newRow("prod_order_rec_number") = GVProdRec.GetFocusedRowCellValue("prod_order_rec_number").ToString
-                    newRow("id_product") = GVListPurchase.GetFocusedRowCellValue("id_product").ToString
-                    newRow("product_full_code") = GVListPurchase.GetFocusedRowCellValue("code").ToString
-                    newRow("name") = GVListPurchase.GetFocusedRowCellValue("name").ToString
-                    newRow("size") = GVListPurchase.GetFocusedRowCellValue("size").ToString
-                    newRow("qty") = 0
-                    TryCast(FormSNIOut.GCDetail.DataSource, DataTable).Rows.Add(newRow)
-                    FormSNIOut.GcDetail.RefreshDataSource()
-                    FormSNIOut.GVDetail.RefreshData()
-                    FormSNIOut.can_scan()
+                    'check
+                    Dim is_ok As Boolean = True
+
+                    For i = 0 To FormSNIOut.GVDetail.RowCount - 1
+                        If FormSNIOut.GVDetail.GetRowCellValue(i, "id_product").ToString = GVProdRec.GetFocusedRowCellValue("id_product").ToString Then
+                            is_ok = False
+                            warningCustom("Product telah dipilih pada list")
+                            Exit For
+                        End If
+                    Next
+
+                    If is_ok Then
+                        Dim newRow As DataRow = (TryCast(FormSNIOut.GCDetail.DataSource, DataTable)).NewRow()
+                        newRow("id_prod_order") = GVProdRec.GetFocusedRowCellValue("id_prod_order").ToString
+                        newRow("id_prod_order_det") = GVListPurchase.GetFocusedRowCellValue("id_prod_order_det").ToString
+                        newRow("id_prod_order_rec") = GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString
+                        newRow("id_prod_order_rec_det") = GVListPurchase.GetFocusedRowCellValue("id_prod_order_rec_det").ToString
+                        newRow("prod_order_number") = GVProdRec.GetFocusedRowCellValue("prod_order_number").ToString
+                        newRow("prod_order_rec_number") = GVProdRec.GetFocusedRowCellValue("prod_order_rec_number").ToString
+                        newRow("id_product") = GVListPurchase.GetFocusedRowCellValue("id_product").ToString
+                        newRow("product_full_code") = GVListPurchase.GetFocusedRowCellValue("code").ToString
+                        newRow("name") = GVListPurchase.GetFocusedRowCellValue("name").ToString
+                        newRow("size") = GVListPurchase.GetFocusedRowCellValue("size").ToString
+                        newRow("qty") = 0
+                        TryCast(FormSNIOut.GCDetail.DataSource, DataTable).Rows.Add(newRow)
+                        FormSNIOut.GCDetail.RefreshDataSource()
+                        FormSNIOut.GVDetail.RefreshData()
+                        FormSNIOut.can_scan()
+                    End If
                     'FormSNIOut.gv.id_prod_order = GVProdRec.GetFocusedRowCellValue("id_prod_order").ToString
                     'FormProductionFinalClearDet.id_prod_order_rec = GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString
                     'FormProductionFinalClearDet.id_design = GVProdRec.GetFocusedRowCellValue("id_design").ToString
@@ -259,7 +272,7 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
                     'FormProductionFinalClearDet.BtnInfoSrs.Enabled = True
                     'pre_viewImages("2", FormProductionFinalClearDet.PEView, FormProductionFinalClearDet.id_design, False)
 
-                    Close()
+                    'Close()
                 Else
                     warningCustom("No data selected.")
                 End If

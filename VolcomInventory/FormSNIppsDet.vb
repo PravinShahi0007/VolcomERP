@@ -193,8 +193,11 @@ WHERE ppsl.id_sni_pps='" & id_pps & "'"
             If Not is_ok Then
                 warningCustom("Pastikan data ecop pd purchasing, qty, dan size S sudah terinput")
             Else
-                Dim q As String = "INSERT INTO tb_sni_pps(created_by,created_date) VALUES('" & id_user & "',NOW()); SELECT LAST_INSERT_ID(); "
+                Dim q As String = "INSERT INTO tb_sni_pps(id_season,created_by,created_date) VALUES('" & SLESeason.EditValue.ToString & "','" & id_user & "',NOW()); SELECT LAST_INSERT_ID(); "
                 id_pps = execute_query(q, 0, True, "", "", "", "")
+
+                execute_non_query("CALL gen_number('" & id_pps & "','319')", True, "", "", "", "")
+
                 q = "INSERT INTO tb_sni_pps_list(id_sni_pps,id_design,qty,id_prod_demand_product) VALUES"
                 For i As Integer = 0 To GVList.RowCount - 1
                     If Not i = 0 Then
@@ -497,6 +500,23 @@ HAVING NOT ISNULL(err)"
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
 
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BLoadTemplate_Click(sender As Object, e As EventArgs) Handles BLoadTemplate.Click
+        Cursor = Cursors.WaitCursor
+        Dim q As String = "SELECT * FROM tb_sni_pps_template WHERE is_active=1"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        For i = 0 To dt.Rows.Count - 1
+            GVBudget.AddNewRow()
+            GVBudget.FocusedRowHandle = GVBudget.RowCount - 1
+            '
+            GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "is_check", "no")
+            '
+            GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "budget_desc", dt.Rows(i)("desc").ToString)
+            GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "budget_qty", dt.Rows(i)("qty"))
+            GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "budget_value", dt.Rows(i)("value"))
+        Next
         Cursor = Cursors.Default
     End Sub
 End Class

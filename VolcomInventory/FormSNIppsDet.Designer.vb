@@ -112,6 +112,7 @@ Partial Class FormSNIppsDet
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
+        Me.BLoadTemplate = New DevExpress.XtraEditors.SimpleButton()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1157,6 +1158,7 @@ Partial Class FormSNIppsDet
         '
         'PCAddDel
         '
+        Me.PCAddDel.Controls.Add(Me.BLoadTemplate)
         Me.PCAddDel.Controls.Add(Me.BDel)
         Me.PCAddDel.Controls.Add(Me.BAdd)
         Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
@@ -1164,6 +1166,16 @@ Partial Class FormSNIppsDet
         Me.PCAddDel.Name = "PCAddDel"
         Me.PCAddDel.Size = New System.Drawing.Size(935, 47)
         Me.PCAddDel.TabIndex = 1
+        '
+        'BLoadTemplate
+        '
+        Me.BLoadTemplate.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BLoadTemplate.Image = CType(resources.GetObject("BLoadTemplate.Image"), System.Drawing.Image)
+        Me.BLoadTemplate.Location = New System.Drawing.Point(2, 2)
+        Me.BLoadTemplate.Name = "BLoadTemplate"
+        Me.BLoadTemplate.Size = New System.Drawing.Size(142, 43)
+        Me.BLoadTemplate.TabIndex = 4
+        Me.BLoadTemplate.Text = "Load Template"
         '
         'BDel
         '
@@ -1347,4 +1359,5 @@ Partial Class FormSNIppsDet
     Friend WithEvents TEGrandTot As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEVat As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BLoadTemplate As DevExpress.XtraEditors.SimpleButton
 End Class
