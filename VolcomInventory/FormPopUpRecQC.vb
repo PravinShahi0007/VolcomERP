@@ -232,7 +232,7 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
                     Dim is_ok As Boolean = True
 
                     For i = 0 To FormSNIOut.GVDetail.RowCount - 1
-                        If FormSNIOut.GVDetail.GetRowCellValue(i, "id_product").ToString = GVProdRec.GetFocusedRowCellValue("id_product").ToString Then
+                        If FormSNIOut.GVDetail.GetRowCellValue(i, "id_product").ToString = GVListPurchase.GetFocusedRowCellValue("id_product").ToString Then
                             is_ok = False
                             warningCustom("Product telah dipilih pada list")
                             Exit For

@@ -10229,7 +10229,7 @@ INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void
             End If
 
             If id_status_reportx = "6" Then
-                'sni cop
+                'update sni cop
 
                 '                query = String.Format("INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
                 '                INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
