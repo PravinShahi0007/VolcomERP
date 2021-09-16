@@ -184,7 +184,7 @@ WHERE ppsl.id_sni_pps='" & id_pps & "'"
             'check ada qty dan ecop dan size S di line sheet
             Dim is_ok As Boolean = True
             For i = 0 To GVList.RowCount - 1
-                If GVList.GetRowCellValue(i, "ecop") <= 0 Or GVList.GetRowCellValue(i, "qty") <= 0 Or GVList.GetRowCellValue(i, "id_prod_demand_product").ToString = "0" Then
+                If GVList.GetRowCellValue(i, "ecop") <= 0 Or GVList.GetRowCellValue(i, "qty_line_list") <= 0 Or GVList.GetRowCellValue(i, "id_prod_demand_product").ToString = "0" Then
                     is_ok = False
                     Exit For
                 End If
