@@ -238,11 +238,19 @@
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
         Cursor = Cursors.WaitCursor
-        FormReportMark.report_mark_type = "300"
-        FormReportMark.id_report = id
-        FormReportMark.is_view = is_view
-        FormReportMark.form_origin = Name
-        FormReportMark.ShowDialog()
+        'check attachment
+        Dim qc As String = "SELECT * FROM tb_doc WHERE report_mark_type='148' AND id_report='" & id & "'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            FormReportMark.report_mark_type = "300"
+            FormReportMark.id_report = id
+            FormReportMark.is_view = is_view
+            FormReportMark.form_origin = Name
+            FormReportMark.ShowDialog()
+        Else
+            warningCustom("No attachment found")
+        End If
+
         Cursor = Cursors.Default
     End Sub
 
