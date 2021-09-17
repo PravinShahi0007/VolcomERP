@@ -109,6 +109,7 @@
             query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref`"
         End If
         query += ", so.customer_name "
+        query += ", a.id_st_store_bap "
         query += "FROM tb_sales_pos a "
         query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
         query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
@@ -183,6 +184,10 @@
             End If
         ElseIf id_memo_type = "3" Then 'missing invoice
             report_mark_type = "54"
+
+            If Not data.Rows(0)("id_st_store_bap").ToString = "" Then
+                report_mark_type = "344"
+            End If
         ElseIf id_memo_type = "4" Then 'missing cn
             report_mark_type = "67"
         ElseIf id_memo_type = "5" Then 'missing promo

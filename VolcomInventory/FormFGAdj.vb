@@ -128,4 +128,76 @@
     Private Sub SBOutView_Click(sender As Object, e As EventArgs) Handles SBOutView.Click
         viewAdjOut()
     End Sub
+
+    Sub view_in_bap()
+        Dim query As String = "
+            SELECT b.id_st_store_bap, b.number, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, DATE_FORMAT(b.created_at, '%d %M %Y %H:%i:%s') AS created_at, e.employee_name AS created_by, b.id_report_status, r.report_status
+            FROM tb_st_store_bap AS b
+            LEFT JOIN tb_m_comp AS c ON b.id_comp = c.id_comp
+            LEFT JOIN tb_m_user AS u ON b.created_by = u.id_user
+            LEFT JOIN tb_m_employee AS e ON u.id_employee = e.id_employee
+            LEFT JOIN tb_lookup_report_status AS r ON b.id_report_status = r.id_report_status
+            LEFT JOIN (
+                SELECT d.id_st_store_bap, COUNT(*) AS total
+                FROM tb_st_store_bap_ver AS v
+                LEFT JOIN tb_st_store_bap_det AS d ON v.id_st_store_bap_det = d.id_st_store_bap_det
+                WHERE v.report_mark_type = 0 AND v.qty < 0
+                GROUP BY d.id_st_store_bap
+            ) AS t ON b.id_st_store_bap = t.id_st_store_bap
+            WHERE b.id_report_status = 6 AND b.id_st_store_bap NOT IN (SELECT IFNULL(id_st_store_bap, 0) FROM tb_adj_in_fg WHERE id_report_status <> 5) AND IFNULL(t.total, 0) > 0
+            ORDER BY b.id_st_store_bap ASC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCInBAP.DataSource = data
+
+        GVInBAP.BestFitColumns()
+    End Sub
+
+    Private Sub XTCAdjIn_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCAdjIn.SelectedPageChanged
+        view_in_bap()
+    End Sub
+
+    Private Sub SBCreateAdjIn_Click(sender As Object, e As EventArgs) Handles SBCreateAdjIn.Click
+        FormFGAdjInDet.action = "ins"
+        FormFGAdjInDet.id_st_store_bap = GVInBAP.GetFocusedRowCellValue("id_st_store_bap").ToString
+        FormFGAdjInDet.ShowDialog()
+    End Sub
+
+    Sub view_out_bap()
+        Dim query As String = "
+            SELECT b.id_st_store_bap, b.number, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, DATE_FORMAT(b.created_at, '%d %M %Y %H:%i:%s') AS created_at, e.employee_name AS created_by, b.id_report_status, r.report_status
+            FROM tb_st_store_bap AS b
+            LEFT JOIN tb_m_comp AS c ON b.id_comp = c.id_comp
+            LEFT JOIN tb_m_user AS u ON b.created_by = u.id_user
+            LEFT JOIN tb_m_employee AS e ON u.id_employee = e.id_employee
+            LEFT JOIN tb_lookup_report_status AS r ON b.id_report_status = r.id_report_status
+            LEFT JOIN (
+                SELECT d.id_st_store_bap, COUNT(*) AS total
+                FROM tb_st_store_bap_ver AS v
+                LEFT JOIN tb_st_store_bap_det AS d ON v.id_st_store_bap_det = d.id_st_store_bap_det
+                WHERE v.report_mark_type = 0 AND v.qty > 0
+                GROUP BY d.id_st_store_bap
+            ) AS t ON b.id_st_store_bap = t.id_st_store_bap
+            WHERE b.id_report_status = 6 AND b.id_st_store_bap NOT IN (SELECT IFNULL(id_st_store_bap, 0) FROM tb_adj_out_fg WHERE id_report_status <> 5) AND IFNULL(t.total, 0) > 0
+            ORDER BY b.id_st_store_bap ASC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCOutBAP.DataSource = data
+
+        GVOutBAP.BestFitColumns()
+    End Sub
+
+    Private Sub XTCAdjOut_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCAdjOut.SelectedPageChanged
+        view_out_bap()
+    End Sub
+
+    Private Sub SBCreateAdjOut_Click(sender As Object, e As EventArgs) Handles SBCreateAdjOut.Click
+        FormFGAdjOutDet.action = "ins"
+        FormFGAdjOutDet.id_st_store_bap = GVOutBAP.GetFocusedRowCellValue("id_st_store_bap").ToString
+        FormFGAdjOutDet.ShowDialog()
+    End Sub
 End Class

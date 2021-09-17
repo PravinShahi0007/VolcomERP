@@ -22,6 +22,8 @@ Partial Class FormFGAdj
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGAdj))
         Me.XTCAdj = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPAdjIn = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCAdjIn = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPInList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCAdjIn = New DevExpress.XtraGrid.GridControl()
         Me.GVAdjIn = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdAdjInSample = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -33,7 +35,24 @@ Partial Class FormFGAdj
         Me.GridColumnretail_price_total = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntotal_qty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnaccount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPInBAP = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCInBAP = New DevExpress.XtraGrid.GridControl()
+        Me.GVInBAP = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBCreateAdjIn = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBInView = New DevExpress.XtraEditors.SimpleButton()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.DEInTo = New DevExpress.XtraEditors.DateEdit()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.DEInFrom = New DevExpress.XtraEditors.DateEdit()
         Me.BtnSummaryIn = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPAdjOut = New DevExpress.XtraTab.XtraTabPage()
         Me.GCAdjOut = New DevExpress.XtraGrid.GridControl()
@@ -48,37 +67,62 @@ Partial Class FormFGAdj
         Me.GridColumntotal_qty_out = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnaccount_out = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnSummaryOut = New DevExpress.XtraEditors.SimpleButton()
-        Me.DEInFrom = New DevExpress.XtraEditors.DateEdit()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.DEInTo = New DevExpress.XtraEditors.DateEdit()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.SBInView = New DevExpress.XtraEditors.SimpleButton()
         Me.SBOutView = New DevExpress.XtraEditors.SimpleButton()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.DEOutTo = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.DEOutFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.BtnSummaryOut = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTCAdjOut = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPOutList = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPOutBAP = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCOutBAP = New DevExpress.XtraGrid.GridControl()
+        Me.GVOutBAP = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBCreateAdjOut = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCAdj, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAdj.SuspendLayout()
         Me.XTPAdjIn.SuspendLayout()
+        CType(Me.XTCAdjIn, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCAdjIn.SuspendLayout()
+        Me.XTPInList.SuspendLayout()
         CType(Me.GCAdjIn, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAdjIn, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPInBAP.SuspendLayout()
+        CType(Me.GCInBAP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVInBAP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.DEInTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEInTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEInFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEInFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPAdjOut.SuspendLayout()
         CType(Me.GCAdjOut, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAdjOut, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.DEInFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEInFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEInTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEInTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEOutTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEOutTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEOutFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEOutFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCAdjOut, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCAdjOut.SuspendLayout()
+        Me.XTPOutList.SuspendLayout()
+        Me.XTPOutBAP.SuspendLayout()
+        CType(Me.GCOutBAP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVOutBAP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCAdj
@@ -95,19 +139,36 @@ Partial Class FormFGAdj
         '
         'XTPAdjIn
         '
-        Me.XTPAdjIn.Controls.Add(Me.GCAdjIn)
+        Me.XTPAdjIn.Controls.Add(Me.XTCAdjIn)
         Me.XTPAdjIn.Controls.Add(Me.PanelControl1)
         Me.XTPAdjIn.Name = "XTPAdjIn"
         Me.XTPAdjIn.Size = New System.Drawing.Size(658, 445)
         Me.XTPAdjIn.Text = "Adjustment In"
         '
+        'XTCAdjIn
+        '
+        Me.XTCAdjIn.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCAdjIn.Location = New System.Drawing.Point(0, 42)
+        Me.XTCAdjIn.Name = "XTCAdjIn"
+        Me.XTCAdjIn.SelectedTabPage = Me.XTPInList
+        Me.XTCAdjIn.Size = New System.Drawing.Size(658, 403)
+        Me.XTCAdjIn.TabIndex = 2
+        Me.XTCAdjIn.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPInList, Me.XTPInBAP})
+        '
+        'XTPInList
+        '
+        Me.XTPInList.Controls.Add(Me.GCAdjIn)
+        Me.XTPInList.Name = "XTPInList"
+        Me.XTPInList.Size = New System.Drawing.Size(652, 375)
+        Me.XTPInList.Text = "List"
+        '
         'GCAdjIn
         '
         Me.GCAdjIn.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCAdjIn.Location = New System.Drawing.Point(0, 42)
+        Me.GCAdjIn.Location = New System.Drawing.Point(0, 0)
         Me.GCAdjIn.MainView = Me.GVAdjIn
         Me.GCAdjIn.Name = "GCAdjIn"
-        Me.GCAdjIn.Size = New System.Drawing.Size(658, 403)
+        Me.GCAdjIn.Size = New System.Drawing.Size(652, 375)
         Me.GCAdjIn.TabIndex = 0
         Me.GCAdjIn.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAdjIn})
         '
@@ -196,6 +257,101 @@ Partial Class FormFGAdj
         Me.GridColumnaccount.Visible = True
         Me.GridColumnaccount.VisibleIndex = 2
         '
+        'XTPInBAP
+        '
+        Me.XTPInBAP.Controls.Add(Me.GCInBAP)
+        Me.XTPInBAP.Controls.Add(Me.PanelControl3)
+        Me.XTPInBAP.Name = "XTPInBAP"
+        Me.XTPInBAP.Size = New System.Drawing.Size(652, 375)
+        Me.XTPInBAP.Text = "BAP"
+        '
+        'GCInBAP
+        '
+        Me.GCInBAP.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCInBAP.Location = New System.Drawing.Point(0, 50)
+        Me.GCInBAP.MainView = Me.GVInBAP
+        Me.GCInBAP.Name = "GCInBAP"
+        Me.GCInBAP.Size = New System.Drawing.Size(652, 325)
+        Me.GCInBAP.TabIndex = 2
+        Me.GCInBAP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVInBAP})
+        '
+        'GVInBAP
+        '
+        Me.GVInBAP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn13})
+        Me.GVInBAP.GridControl = Me.GCInBAP
+        Me.GVInBAP.Name = "GVInBAP"
+        Me.GVInBAP.OptionsBehavior.Editable = False
+        Me.GVInBAP.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.FieldName = "id_st_store_bap"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Number"
+        Me.GridColumn6.FieldName = "number"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 0
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Account"
+        Me.GridColumn2.FieldName = "comp_name"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Created At"
+        Me.GridColumn3.FieldName = "created_at"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Created By"
+        Me.GridColumn4.FieldName = "created_by"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Report Status"
+        Me.GridColumn5.FieldName = "report_status"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.FieldName = "id_report_status"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.SBCreateAdjIn)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(652, 50)
+        Me.PanelControl3.TabIndex = 3
+        '
+        'SBCreateAdjIn
+        '
+        Me.SBCreateAdjIn.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBCreateAdjIn.Image = CType(resources.GetObject("SBCreateAdjIn.Image"), System.Drawing.Image)
+        Me.SBCreateAdjIn.Location = New System.Drawing.Point(485, 2)
+        Me.SBCreateAdjIn.Name = "SBCreateAdjIn"
+        Me.SBCreateAdjIn.Size = New System.Drawing.Size(165, 46)
+        Me.SBCreateAdjIn.TabIndex = 0
+        Me.SBCreateAdjIn.Text = "Create Adjustment In"
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.SBInView)
@@ -210,6 +366,56 @@ Partial Class FormFGAdj
         Me.PanelControl1.Size = New System.Drawing.Size(658, 42)
         Me.PanelControl1.TabIndex = 1
         '
+        'SBInView
+        '
+        Me.SBInView.Location = New System.Drawing.Point(399, 9)
+        Me.SBInView.Name = "SBInView"
+        Me.SBInView.Size = New System.Drawing.Size(75, 23)
+        Me.SBInView.TabIndex = 4
+        Me.SBInView.Text = "View"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(238, 14)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(11, 13)
+        Me.Label2.TabIndex = 3
+        Me.Label2.Text = "-"
+        '
+        'DEInTo
+        '
+        Me.DEInTo.EditValue = Nothing
+        Me.DEInTo.Location = New System.Drawing.Point(255, 11)
+        Me.DEInTo.Name = "DEInTo"
+        Me.DEInTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEInTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEInTo.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEInTo.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEInTo.Size = New System.Drawing.Size(138, 20)
+        Me.DEInTo.TabIndex = 2
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(11, 14)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(72, 13)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "Created Date"
+        '
+        'DEInFrom
+        '
+        Me.DEInFrom.EditValue = Nothing
+        Me.DEInFrom.Location = New System.Drawing.Point(94, 11)
+        Me.DEInFrom.Name = "DEInFrom"
+        Me.DEInFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEInFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEInFrom.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DEInFrom.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEInFrom.Size = New System.Drawing.Size(138, 20)
+        Me.DEInFrom.TabIndex = 1
+        '
         'BtnSummaryIn
         '
         Me.BtnSummaryIn.Dock = System.Windows.Forms.DockStyle.Right
@@ -222,7 +428,7 @@ Partial Class FormFGAdj
         '
         'XTPAdjOut
         '
-        Me.XTPAdjOut.Controls.Add(Me.GCAdjOut)
+        Me.XTPAdjOut.Controls.Add(Me.XTCAdjOut)
         Me.XTPAdjOut.Controls.Add(Me.PanelControl2)
         Me.XTPAdjOut.Name = "XTPAdjOut"
         Me.XTPAdjOut.Size = New System.Drawing.Size(658, 445)
@@ -231,10 +437,10 @@ Partial Class FormFGAdj
         'GCAdjOut
         '
         Me.GCAdjOut.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCAdjOut.Location = New System.Drawing.Point(0, 42)
+        Me.GCAdjOut.Location = New System.Drawing.Point(0, 0)
         Me.GCAdjOut.MainView = Me.GVAdjOut
         Me.GCAdjOut.Name = "GCAdjOut"
-        Me.GCAdjOut.Size = New System.Drawing.Size(658, 403)
+        Me.GCAdjOut.Size = New System.Drawing.Size(652, 375)
         Me.GCAdjOut.TabIndex = 2
         Me.GCAdjOut.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAdjOut})
         '
@@ -337,66 +543,6 @@ Partial Class FormFGAdj
         Me.PanelControl2.Size = New System.Drawing.Size(658, 42)
         Me.PanelControl2.TabIndex = 3
         '
-        'BtnSummaryOut
-        '
-        Me.BtnSummaryOut.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSummaryOut.Image = CType(resources.GetObject("BtnSummaryOut.Image"), System.Drawing.Image)
-        Me.BtnSummaryOut.Location = New System.Drawing.Point(562, 2)
-        Me.BtnSummaryOut.Name = "BtnSummaryOut"
-        Me.BtnSummaryOut.Size = New System.Drawing.Size(94, 38)
-        Me.BtnSummaryOut.TabIndex = 0
-        Me.BtnSummaryOut.Text = "Summary"
-        '
-        'DEInFrom
-        '
-        Me.DEInFrom.EditValue = Nothing
-        Me.DEInFrom.Location = New System.Drawing.Point(94, 11)
-        Me.DEInFrom.Name = "DEInFrom"
-        Me.DEInFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEInFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEInFrom.Properties.Mask.EditMask = "dd MMMM yyyy"
-        Me.DEInFrom.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.DEInFrom.Size = New System.Drawing.Size(138, 20)
-        Me.DEInFrom.TabIndex = 1
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(11, 14)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(72, 13)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Created Date"
-        '
-        'DEInTo
-        '
-        Me.DEInTo.EditValue = Nothing
-        Me.DEInTo.Location = New System.Drawing.Point(255, 11)
-        Me.DEInTo.Name = "DEInTo"
-        Me.DEInTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEInTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEInTo.Properties.Mask.EditMask = "dd MMMM yyyy"
-        Me.DEInTo.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.DEInTo.Size = New System.Drawing.Size(138, 20)
-        Me.DEInTo.TabIndex = 2
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(238, 14)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(11, 13)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "-"
-        '
-        'SBInView
-        '
-        Me.SBInView.Location = New System.Drawing.Point(399, 9)
-        Me.SBInView.Name = "SBInView"
-        Me.SBInView.Size = New System.Drawing.Size(75, 23)
-        Me.SBInView.TabIndex = 4
-        Me.SBInView.Text = "View"
-        '
         'SBOutView
         '
         Me.SBOutView.Location = New System.Drawing.Point(399, 9)
@@ -447,6 +593,128 @@ Partial Class FormFGAdj
         Me.DEOutFrom.Size = New System.Drawing.Size(138, 20)
         Me.DEOutFrom.TabIndex = 5
         '
+        'BtnSummaryOut
+        '
+        Me.BtnSummaryOut.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSummaryOut.Image = CType(resources.GetObject("BtnSummaryOut.Image"), System.Drawing.Image)
+        Me.BtnSummaryOut.Location = New System.Drawing.Point(562, 2)
+        Me.BtnSummaryOut.Name = "BtnSummaryOut"
+        Me.BtnSummaryOut.Size = New System.Drawing.Size(94, 38)
+        Me.BtnSummaryOut.TabIndex = 0
+        Me.BtnSummaryOut.Text = "Summary"
+        '
+        'XTCAdjOut
+        '
+        Me.XTCAdjOut.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCAdjOut.Location = New System.Drawing.Point(0, 42)
+        Me.XTCAdjOut.Name = "XTCAdjOut"
+        Me.XTCAdjOut.SelectedTabPage = Me.XTPOutList
+        Me.XTCAdjOut.Size = New System.Drawing.Size(658, 403)
+        Me.XTCAdjOut.TabIndex = 4
+        Me.XTCAdjOut.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOutList, Me.XTPOutBAP})
+        '
+        'XTPOutList
+        '
+        Me.XTPOutList.Controls.Add(Me.GCAdjOut)
+        Me.XTPOutList.Name = "XTPOutList"
+        Me.XTPOutList.Size = New System.Drawing.Size(652, 375)
+        Me.XTPOutList.Text = "List"
+        '
+        'XTPOutBAP
+        '
+        Me.XTPOutBAP.Controls.Add(Me.GCOutBAP)
+        Me.XTPOutBAP.Controls.Add(Me.PanelControl4)
+        Me.XTPOutBAP.Name = "XTPOutBAP"
+        Me.XTPOutBAP.Size = New System.Drawing.Size(652, 375)
+        Me.XTPOutBAP.Text = "BAP"
+        '
+        'GCOutBAP
+        '
+        Me.GCOutBAP.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCOutBAP.Location = New System.Drawing.Point(0, 50)
+        Me.GCOutBAP.MainView = Me.GVOutBAP
+        Me.GCOutBAP.Name = "GCOutBAP"
+        Me.GCOutBAP.Size = New System.Drawing.Size(652, 325)
+        Me.GCOutBAP.TabIndex = 4
+        Me.GCOutBAP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOutBAP})
+        '
+        'GVOutBAP
+        '
+        Me.GVOutBAP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
+        Me.GVOutBAP.GridControl = Me.GCOutBAP
+        Me.GVOutBAP.Name = "GVOutBAP"
+        Me.GVOutBAP.OptionsBehavior.Editable = False
+        Me.GVOutBAP.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.FieldName = "id_st_store_bap"
+        Me.GridColumn14.Name = "GridColumn14"
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Number"
+        Me.GridColumn15.FieldName = "number"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 0
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Account"
+        Me.GridColumn16.FieldName = "comp_name"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 1
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Created At"
+        Me.GridColumn17.FieldName = "created_at"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 2
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Created By"
+        Me.GridColumn18.FieldName = "created_by"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 3
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Report Status"
+        Me.GridColumn19.FieldName = "report_status"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 4
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.FieldName = "id_report_status"
+        Me.GridColumn20.Name = "GridColumn20"
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.SBCreateAdjOut)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(652, 50)
+        Me.PanelControl4.TabIndex = 5
+        '
+        'SBCreateAdjOut
+        '
+        Me.SBCreateAdjOut.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBCreateAdjOut.Image = CType(resources.GetObject("SBCreateAdjOut.Image"), System.Drawing.Image)
+        Me.SBCreateAdjOut.Location = New System.Drawing.Point(485, 2)
+        Me.SBCreateAdjOut.Name = "SBCreateAdjOut"
+        Me.SBCreateAdjOut.Size = New System.Drawing.Size(165, 46)
+        Me.SBCreateAdjOut.TabIndex = 0
+        Me.SBCreateAdjOut.Text = "Create Adjustment Out"
+        '
         'FormFGAdj
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -463,25 +731,41 @@ Partial Class FormFGAdj
         CType(Me.XTCAdj, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCAdj.ResumeLayout(False)
         Me.XTPAdjIn.ResumeLayout(False)
+        CType(Me.XTCAdjIn, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCAdjIn.ResumeLayout(False)
+        Me.XTPInList.ResumeLayout(False)
         CType(Me.GCAdjIn, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVAdjIn, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPInBAP.ResumeLayout(False)
+        CType(Me.GCInBAP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVInBAP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.DEInTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEInTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEInFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEInFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPAdjOut.ResumeLayout(False)
         CType(Me.GCAdjOut, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVAdjOut, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.DEInFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEInFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEInTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEInTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEOutTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEOutTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEOutFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEOutFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCAdjOut, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCAdjOut.ResumeLayout(False)
+        Me.XTPOutList.ResumeLayout(False)
+        Me.XTPOutBAP.ResumeLayout(False)
+        CType(Me.GCOutBAP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVOutBAP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -524,4 +808,32 @@ Partial Class FormFGAdj
     Friend WithEvents DEOutTo As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label4 As Label
     Friend WithEvents DEOutFrom As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents XTCAdjIn As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPInList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPInBAP As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCInBAP As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVInBAP As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBCreateAdjIn As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTCAdjOut As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPOutList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPOutBAP As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCOutBAP As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVOutBAP As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBCreateAdjOut As DevExpress.XtraEditors.SimpleButton
 End Class

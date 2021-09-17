@@ -118,7 +118,7 @@ LEFT JOIN
     FROM tb_m_design dsg
     INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=dsg.`id_prod_demand_design_line`
     INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_design`=pdd.`id_prod_demand_design`
-    INNER JOIN tb_m_product p ON p.id_product=pdp.id_product AND p.product_code='921' -- hanya S
+    INNER JOIN tb_m_product p ON p.id_product=pdp.id_product AND p.product_code='931' -- hanya S
     GROUP BY dsg.`id_design`
 )pdp ON pdp.id_design=dsg.id_design
 WHERE dsg.`id_design` NOT IN (
@@ -144,7 +144,7 @@ AND ISNULL(pps.id_design) AND dsg.`is_approved`=1 AND dsg.`is_old_design`=2 AND 
 ,del.`delivery`,ssn.`season`
 ,'VOLCOM' AS brand,co.country,ppsl.qty AS qty_line_list,so.season_orign
 FROM tb_sni_pps_list `ppsl`
-LEFT JOIN tb_m_product p ON p.id_design=ppsl.id_design AND p.product_code='921' -- hanya S
+LEFT JOIN tb_m_product p ON p.id_design=ppsl.id_design AND p.product_code='931' -- hanya S
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=ppsl.`id_design`
 LEFT JOIN tb_m_design_information di ON di.id_design=dsg.id_design AND di.id_design_column=25
 INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=dsg.`id_design`
@@ -193,8 +193,11 @@ WHERE ppsl.id_sni_pps='" & id_pps & "'"
             If Not is_ok Then
                 warningCustom("Pastikan data ecop pd purchasing, qty, dan size S sudah terinput")
             Else
-                Dim q As String = "INSERT INTO tb_sni_pps(created_by,created_date) VALUES('" & id_user & "',NOW()); SELECT LAST_INSERT_ID(); "
+                Dim q As String = "INSERT INTO tb_sni_pps(id_season,created_by,created_date) VALUES('" & SLESeason.EditValue.ToString & "','" & id_user & "',NOW()); SELECT LAST_INSERT_ID(); "
                 id_pps = execute_query(q, 0, True, "", "", "", "")
+
+                execute_non_query("CALL gen_number('" & id_pps & "','319')", True, "", "", "", "")
+
                 q = "INSERT INTO tb_sni_pps_list(id_sni_pps,id_design,qty,id_prod_demand_product) VALUES"
                 For i As Integer = 0 To GVList.RowCount - 1
                     If Not i = 0 Then
@@ -497,6 +500,23 @@ HAVING NOT ISNULL(err)"
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
 
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BLoadTemplate_Click(sender As Object, e As EventArgs) Handles BLoadTemplate.Click
+        Cursor = Cursors.WaitCursor
+        Dim q As String = "SELECT * FROM tb_sni_pps_template WHERE is_active=1"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        For i = 0 To dt.Rows.Count - 1
+            GVBudget.AddNewRow()
+            GVBudget.FocusedRowHandle = GVBudget.RowCount - 1
+            '
+            GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "is_check", "no")
+            '
+            GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "budget_desc", dt.Rows(i)("desc").ToString)
+            GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "budget_qty", dt.Rows(i)("qty"))
+            GVBudget.SetRowCellValue(GVBudget.RowCount - 1, "budget_value", dt.Rows(i)("value"))
+        Next
         Cursor = Cursors.Default
     End Sub
 End Class

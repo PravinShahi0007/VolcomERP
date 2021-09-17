@@ -219,10 +219,10 @@
         ElseIf report_mark_type = "40" Then
             'Entry Journal Adjustment
             query = String.Format("SELECT id_report_status FROM tb_a_acc_trans_adj WHERE id_acc_trans_adj = '{0}'", id_report)
-        ElseIf report_mark_type = "41" Then
+        ElseIf report_mark_type = "41" Or report_mark_type = "342" Then
             'FG Adj In
             query = String.Format("SELECT id_report_status,adj_in_fg_number as report_number FROM tb_adj_in_fg WHERE id_adj_in_fg = '{0}'", id_report)
-        ElseIf report_mark_type = "42" Then
+        ElseIf report_mark_type = "42" Or report_mark_type = "341" Then
             'FG Adj Out
             query = String.Format("SELECT id_report_status,adj_out_fg_number as report_number FROM tb_adj_out_fg WHERE id_adj_out_fg = '{0}'", id_report)
         ElseIf report_mark_type = "43" Then
@@ -258,7 +258,7 @@
         ElseIf report_mark_type = "53" Then
             'FG SO STORE
             query = String.Format("SELECT id_report_status,fg_so_store_number as report_number FROM tb_fg_so_store WHERE id_fg_so_store = '{0}'", id_report)
-        ElseIf report_mark_type = "54" Then
+        ElseIf report_mark_type = "54" Or report_mark_type = "344" Then
             'FG MISSING
             query = String.Format("SELECT id_report_status,sales_pos_number as report_number FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
         ElseIf report_mark_type = "55" Then
@@ -690,6 +690,9 @@
         ElseIf report_mark_type = "318" Then
             'verification invoice 3pl office
             query = String.Format("SELECT id_report_status, inv_number as report_number FROM tb_awb_inv_sum WHERE id_awb_inv_sum = '{0}'", id_report)
+        ElseIf report_mark_type = "319" Then
+            'SNI pps
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_sni_pps WHERE id_sni_pps = '{0}'", id_report)
         ElseIf report_mark_type = "323" Then
             'stocktake partial
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_st_store_partial WHERE id_st_store_partial = '{0}'", id_report)
@@ -2155,6 +2158,35 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
                 '
                 query = String.Format("UPDATE tb_prod_order_rec SET complete_date=NOW() WHERE id_prod_order_rec='{0}'", id_report)
                 execute_non_query(query, True, "", "", "", "")
+
+                'check for mrs notification
+                Dim qc As String = "SELECT pod.`id_prod_order_det`,pod.`id_prod_demand_product`,tot.qty,pod.`prod_order_qty`,(tot.qty-pod.`prod_order_qty`) AS more_qty
+,d.`design_display_name`,cd.`code_detail_name`
+FROM tb_prod_order_rec_det rd 
+INNER JOIN tb_prod_order_rec r ON r.id_prod_order_rec 
+INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=rd.`id_prod_order_det` AND rd.`id_prod_order_rec`='" & id_report & "' 
+INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_product`=pod.`id_prod_demand_product`
+INNER JOIN tb_m_product p ON p.`id_product`=pdp.`id_product`
+INNER JOIN tb_m_design d ON d.`id_design`=p.`id_design`
+INNER JOIN tb_m_product_code c ON c.`id_product`=p.`id_product` 
+INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=c.`id_code_detail` AND cd.`id_code`=33
+LEFT JOIN
+(
+	SELECT rd.`id_prod_order_det`,SUM(prod_order_rec_det_qty) AS qty
+	FROM tb_prod_order_rec_det rd 
+	INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND r.`id_report_status`=6
+	WHERE rd.`prod_order_rec_det_qty`
+	GROUP BY rd.`id_prod_order_det`
+)tot ON tot.id_prod_order_det=pod.`id_prod_order_det`
+HAVING tot.qty>pod.`prod_order_qty`"
+                Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                If dtc.Rows.Count > 0 Then
+                    Dim mail As New ClassSendEmail()
+                    mail.report_mark_type = "345"
+                    mail.id_report = id_report
+                    mail.comment = ""
+                    mail.send_email()
+                End If
             End If
 
             query = String.Format("UPDATE tb_prod_order_rec SET id_report_status='{0}' WHERE id_prod_order_rec='{1}'", id_status_reportx, id_report)
@@ -2651,7 +2683,7 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
                 FormAccountingJournalAdj.GVAccTrans.FocusedRowHandle = find_row(FormAccountingJournalAdj.GVAccTrans, "id_trans_adj", id_report)
             Catch ex As Exception
             End Try
-        ElseIf report_mark_type = "41" Then
+        ElseIf report_mark_type = "41" Or report_mark_type = "342" Then
             'FG Adj In
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
@@ -2676,7 +2708,7 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
                 'Next
 
                 Dim q As String = "INSERT tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, storage_product_qty, storage_product_datetime, storage_product_notes,report_mark_type,id_report,id_stock_status)
-SELECT b.`id_wh_drawer`,'1',b.`id_product`,b.`adj_in_fg_det_price`,b.`adj_in_fg_det_qty`,NOW(),CONCAT('Completed, Adjustment In : ',a.`adj_in_fg_number`) AS note,'41',a.`id_adj_in_fg`,'1'
+SELECT b.`id_wh_drawer`,'1',b.`id_product`,b.`adj_in_fg_det_price`,b.`adj_in_fg_det_qty`,NOW(),CONCAT('Completed, Adjustment In : ',a.`adj_in_fg_number`) AS note,'" + report_mark_type + "',a.`id_adj_in_fg`,'1'
 FROM tb_adj_in_fg a 
 INNER JOIN tb_adj_in_fg_det b ON a.id_adj_in_fg = b.id_adj_in_fg 
 WHERE a.id_adj_in_fg = '" & id_report & "'"
@@ -2704,7 +2736,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 End If
             Catch ex As Exception
             End Try
-        ElseIf report_mark_type = "42" Then
+        ElseIf report_mark_type = "42" Or report_mark_type = "341" Then
             'FG Adj Out
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
@@ -2726,11 +2758,13 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 '    query_upd_storage += "VALUES('" + id_wh_drawer + "', '1', '" + id_product + "', '" + decimalSQL(adj_out_fg_det_qty.ToString) + "', NOW(), 'Finished Goods Out cancelled, Adjustment Out : " + adj_out_fg_number + "','" & decimalSQL(adj_out_fg_det_price.ToString) & "','2','42','" & id_report & "')"
                 '    execute_non_query(query_upd_storage, True, "", "", "", "")
                 'Next
-                Dim qry As String = "INSERT tb_storage_fg(id_wh_drawer, id_storage_category, id_product, storage_product_qty, storage_product_datetime, storage_product_notes, bom_unit_price,id_stock_status,report_mark_type,id_report) 
-                SELECT d.id_wh_drawer, '1', d.id_product, d.adj_out_fg_det_qty, NOW(), '',d.adj_out_fg_det_price,'2','42', d.id_adj_out_fg 
-                FROM tb_adj_out_fg_det d
-                WHERE d.id_adj_out_fg=" + id_report + " "
-                execute_non_query(qry, True, "", "", "", "")
+                If report_mark_type = "42" Then
+                    Dim qry As String = "INSERT tb_storage_fg(id_wh_drawer, id_storage_category, id_product, storage_product_qty, storage_product_datetime, storage_product_notes, bom_unit_price,id_stock_status,report_mark_type,id_report) 
+                    SELECT d.id_wh_drawer, '1', d.id_product, d.adj_out_fg_det_qty, NOW(), '',d.adj_out_fg_det_price,'2','42', d.id_adj_out_fg 
+                    FROM tb_adj_out_fg_det d
+                    WHERE d.id_adj_out_fg=" + id_report + " "
+                    execute_non_query(qry, True, "", "", "", "")
+                End If
             ElseIf id_status_reportx = 6 Then 'completed
                 'stock
                 'Dim query_cancel As String = "SELECT * FROM tb_adj_out_fg a "
@@ -2751,15 +2785,31 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 '    query_upd_storage += "VALUES('" + id_wh_drawer + "', '2', '" + id_product + "', '" + decimalSQL(adj_out_fg_det_qty.ToString) + "', NOW(), 'Completed, Adjustment Out : " + adj_out_fg_number + "','" & decimalSQL(adj_out_fg_det_price.ToString) & "','1','42','" & id_report & "')"
                 '    execute_non_query(query_upd_storage, True, "", "", "", "")
                 'Next
-                Dim qry As String = "INSERT tb_storage_fg(id_wh_drawer, id_storage_category, id_product, storage_product_qty, storage_product_datetime, storage_product_notes, bom_unit_price,id_stock_status,report_mark_type,id_report) 
-                SELECT d.id_wh_drawer, '1', d.id_product, d.adj_out_fg_det_qty, NOW(), '',d.adj_out_fg_det_price,'2','42', d.id_adj_out_fg 
-                FROM tb_adj_out_fg_det d
-                WHERE d.id_adj_out_fg=" + id_report + " 
-                UNION ALL
-                SELECT d.id_wh_drawer, '2', d.id_product, d.adj_out_fg_det_qty, NOW(), '',d.adj_out_fg_det_price,'1','42', d.id_adj_out_fg 
-                FROM tb_adj_out_fg_det d
-                WHERE d.id_adj_out_fg=" + id_report + " "
-                execute_non_query(qry, True, "", "", "", "")
+                If report_mark_type = "42" Then
+                    Dim qry As String = "INSERT tb_storage_fg(id_wh_drawer, id_storage_category, id_product, storage_product_qty, storage_product_datetime, storage_product_notes, bom_unit_price,id_stock_status,report_mark_type,id_report) 
+                    SELECT d.id_wh_drawer, '1', d.id_product, d.adj_out_fg_det_qty, NOW(), '',d.adj_out_fg_det_price,'2','42', d.id_adj_out_fg 
+                    FROM tb_adj_out_fg_det d
+                    WHERE d.id_adj_out_fg=" + id_report + " 
+                    UNION ALL
+                    SELECT d.id_wh_drawer, '2', d.id_product, d.adj_out_fg_det_qty, NOW(), '',d.adj_out_fg_det_price,'1','42', d.id_adj_out_fg 
+                    FROM tb_adj_out_fg_det d
+                    WHERE d.id_adj_out_fg=" + id_report + " "
+                    execute_non_query(qry, True, "", "", "", "")
+                ElseIf report_mark_type = "341" Then
+                    Dim qry As String = "
+                        INSERT tb_storage_fg(id_wh_drawer, id_storage_category, id_product, storage_product_qty, storage_product_datetime, storage_product_notes, bom_unit_price,id_stock_status,report_mark_type,id_report)
+                        SELECT d.id_wh_drawer, '1', d.id_product, d.adj_out_fg_det_qty, NOW(), '',d.adj_out_fg_det_price,'2','340', a.id_st_store_bap 
+                        FROM tb_adj_out_fg_det d
+                        LEFT JOIN tb_adj_out_fg AS a ON d.id_adj_out_fg = a.id_adj_out_fg
+                        WHERE d.id_adj_out_fg=" + id_report + "   
+                        UNION ALL  
+                        SELECT d.id_wh_drawer, '2', d.id_product, d.adj_out_fg_det_qty, NOW(), '',d.adj_out_fg_det_price,'1','341', a.id_adj_out_fg 
+                        FROM tb_adj_out_fg_det d
+                        LEFT JOIN tb_adj_out_fg AS a ON d.id_adj_out_fg = a.id_adj_out_fg
+                        WHERE d.id_adj_out_fg=" + id_report + "  
+                    "
+                    execute_non_query(qry, True, "", "", "", "")
+                End If
             End If
 
             query = String.Format("UPDATE tb_adj_out_fg SET id_report_status='{0}' WHERE id_adj_out_fg='{1}'", id_status_reportx, id_report)
@@ -3052,6 +3102,44 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
                 'infoCustom("Status changed.")
+
+                If form_origin = "FormSalesPOSDet" Then
+                    FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                    FormSalesPOSDet.check_but()
+                    FormSalesPOSDet.actionLoad()
+                    FormSalesPOS.viewSalesPOS()
+                    FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_report)
+                Else
+                    'code here
+                End If
+            Catch ex As Exception
+                errorConnection()
+                Close()
+            End Try
+        ElseIf report_mark_type = "344" Then
+            'FG MISSING BAP
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            Try
+                If id_status_reportx = "5" Then
+                    Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
+
+                    If FormSalesPOSDet.is_use_unique_code = "1" Then
+                        'cancelled unique
+                        cancel_rsv_stock.cancellUnique(id_report, report_mark_type)
+                    End If
+                ElseIf id_status_reportx = "6" Then
+                    'completed
+                    Dim complete_rsv_stock As ClassSalesInv = New ClassSalesInv()
+
+                    complete_rsv_stock.completedStock(id_report, "344")
+                End If
+
+                query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
+
+                execute_non_query(query, True, "", "", "", "")
 
                 If form_origin = "FormSalesPOSDet" Then
                     FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -10098,7 +10186,7 @@ WHERE spl.id_sni_pps='" & id_report & "'"
                     For i = 0 To dt.Rows.Count - 1
                         Dim qu As String = ""
                         qu = String.Format("UPDATE tb_m_design SET prod_order_cop_pd=prod_order_cop_pd+{1},prod_order_cop_pd_addcost='{1}' WHERE id_design='{0}'", dt.Rows(i)("id_design").ToString, decimalSQL(dt.Rows(i)("cost").ToString))
-                        execute_non_query(query, True, "", "", "", "")
+                        execute_non_query(qu, True, "", "", "", "")
                         '
                         qu = "UPDATE 
 tb_m_design dsg
@@ -10141,6 +10229,17 @@ WHERE pd.is_pd=2 AND dsg.id_design='" & dt.Rows(i)("id_design").ToString & "'"
             'stocktake verification
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "5" Then
+                'revert reserved stock
+                Dim query_revert As String = "
+                    INSERT tb_storage_fg (id_wh_drawer, id_storage_category, id_product, storage_product_qty, storage_product_datetime, storage_product_notes, bom_unit_price, id_stock_status, report_mark_type, id_report) 
+                    SELECT id_wh_drawer, '1', id_product, storage_product_qty, NOW(), '', bom_unit_price, '2', report_mark_type, id_report 
+                    FROM tb_storage_fg
+                    WHERE id_report = " + id_report + " AND report_mark_type IN (340, 343)
+                "
+                execute_non_query(query_revert, True, "", "", "", "")
             End If
 
             'update status
@@ -10229,15 +10328,45 @@ INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void
             End If
 
             If id_status_reportx = "6" Then
-                'sni cop
+                'get cop
+                Dim cop As Decimal = 0.00
+                Dim amo As Decimal = 0.00
+                Dim qty As Decimal = 0.00
+                Dim qs As String = "SELECT SUM(tot.sub_amount) AS amo
+FROM (
+SELECT ppsb.desc,ppsb.qty,ppsb.value,ppsb.qty*ppsb.`value` AS  sub_amount
+FROM 
+`tb_sni_realisasi_budget` ppsb
+WHERE ppsb.`id_sni_realisasi`='3'
+UNION ALL
+SELECT CONCAT('Biaya sample ',d.design_display_name) AS `desc`,(ppsb.rec_qty-ppsb.ret_qty) AS qty,ppsb.bom_price AS `value`,(ppsb.rec_qty-ppsb.ret_qty)*ppsb.`bom_price` AS  sub_amount
+FROM 
+`tb_sni_realisasi_return` ppsb
+INNER JOIN tb_m_product p ON p.id_product=ppsb.id_product
+INNER JOIN tb_m_design d ON d.id_design=p.id_design
+WHERE ppsb.`id_sni_realisasi`='3' AND ppsb.rec_qty-ppsb.ret_qty>0
+)tot"
+                Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
+                amo = dts.Rows(0)("amo")
 
-                '                query = String.Format("INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
-                '                INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
-                'SELECT recd.id_prod_order_rec,recd.id_prod_order_det,ret.id_product,ret.ret_qty,NOW() AS date_reff,'{0}' AS created_by,ret.id_sni_realisasi,327 AS rmt,'Return SNI' AS note
-                'FROM `tb_sni_realisasi_return` ret
-                'INNER JOIN tb_prod_order_rec_det recd ON recd.id_prod_order_rec_det=ret.id_prod_order_rec_det
-                'WHERE ret.id_sni_realisasi ='{1}' AND ret.ret_qty>0 ", id_user, id_report)
-                '                execute_non_query(query, True, "", "", "", "")
+                qs = "SELECT SUM(l.qty) AS qty
+ FROM `tb_sni_pps_list` l
+ INNER JOIN tb_sni_realisasi r ON r.id_sni_realisasi='3' AND r.id_sni_pps=l.id_sni_pps"
+                dts = execute_query(qs, -1, True, "", "", "", "")
+                qty = dts.Rows(0)("qty")
+
+                cop = Math.Round(amo / qty, 2)
+
+                'update sni cop
+                Dim q As String = "SELECT id_design
+FROM tb_sni_pps_list l
+INNER JOIN tb_sni_realisasi r ON r.`id_sni_pps`=l.`id_sni_pps`
+WHERE r.`id_sni_realisasi`='" & id_report & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                For i As Integer = 0 To dt.Rows.Count - 1
+                    Dim qu As String = "UPDATE tb_m_design SET prod_order_cop_mng_addcost='" & decimalSQL(Decimal.Parse(cop.ToString).ToString) & "' WHERE id_design='" & dt.Rows(i)("id_design").ToString & "'"
+                    execute_non_query(qu, True, "", "", "", "")
+                Next
             End If
 
             'update
