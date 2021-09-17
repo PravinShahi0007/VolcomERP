@@ -112,6 +112,35 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+        '        Dim id_report As String = "5991"
+        '        Dim qc As String = "SELECT pod.`id_prod_order_det`,pod.`id_prod_demand_product`,tot.qty,pod.`prod_order_qty`,(tot.qty-pod.`prod_order_qty`) AS more_qty
+        ',d.`design_display_name`,cd.`code_detail_name`
+        'FROM tb_prod_order_rec_det rd 
+        'INNER JOIN tb_prod_order_rec r ON r.id_prod_order_rec 
+        'INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=rd.`id_prod_order_det` AND rd.`id_prod_order_rec`='" & id_report & "' 
+        'INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_product`=pod.`id_prod_demand_product`
+        'INNER JOIN tb_m_product p ON p.`id_product`=pdp.`id_product`
+        'INNER JOIN tb_m_design d ON d.`id_design`=p.`id_design`
+        'INNER JOIN tb_m_product_code c ON c.`id_product`=p.`id_product` 
+        'INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=c.`id_code_detail` AND cd.`id_code`=33
+        'LEFT JOIN
+        '(
+        '	SELECT rd.`id_prod_order_det`,SUM(prod_order_rec_det_qty) AS qty
+        '	FROM tb_prod_order_rec_det rd 
+        '	INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND r.`id_report_status`=6
+        '	WHERE rd.`prod_order_rec_det_qty`
+        '	GROUP BY rd.`id_prod_order_det`
+        ')tot ON tot.id_prod_order_det=pod.`id_prod_order_det`
+        'HAVING tot.qty>pod.`prod_order_qty`"
+        '        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        '        If dtc.Rows.Count > 0 Then
+        '            Dim mail As New ClassSendEmail()
+        '            mail.report_mark_type = "345"
+        '            mail.id_report = id_report
+        '            mail.comment = ""
+        '            mail.send_email()
+        '        End If
+
         'siluet list
         'FormMasterSilhouette.is_show_master_sht = True
         'FormMasterSilhouette.ShowDialog()
