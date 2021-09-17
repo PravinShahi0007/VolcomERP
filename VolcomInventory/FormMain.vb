@@ -16602,4 +16602,18 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         Cursor = Cursors.Default
 
     End Sub
+
+    Private Sub NBCapsule_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCapsule.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormCapsule.MdiParent = Me
+            FormCapsule.Show()
+            FormCapsule.WindowState = FormWindowState.Maximized
+            FormCapsule.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+
+    End Sub
 End Class
