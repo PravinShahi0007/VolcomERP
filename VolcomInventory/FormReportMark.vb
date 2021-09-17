@@ -10186,7 +10186,7 @@ WHERE spl.id_sni_pps='" & id_report & "'"
                     For i = 0 To dt.Rows.Count - 1
                         Dim qu As String = ""
                         qu = String.Format("UPDATE tb_m_design SET prod_order_cop_pd=prod_order_cop_pd+{1},prod_order_cop_pd_addcost='{1}' WHERE id_design='{0}'", dt.Rows(i)("id_design").ToString, decimalSQL(dt.Rows(i)("cost").ToString))
-                        execute_non_query(query, True, "", "", "", "")
+                        execute_non_query(qu, True, "", "", "", "")
                         '
                         qu = "UPDATE 
 tb_m_design dsg

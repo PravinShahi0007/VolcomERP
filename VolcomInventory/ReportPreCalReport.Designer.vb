@@ -507,11 +507,11 @@ Partial Public Class ReportPreCalReport
         '
         Me.XTBreakdown.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XTBreakdown.Font = New System.Drawing.Font("Times New Roman", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(6, Byte))
-        Me.XTBreakdown.LocationFloat = New DevExpress.Utils.PointFloat(0!, 22.99999!)
+        Me.XTBreakdown.LocationFloat = New DevExpress.Utils.PointFloat(23.67426!, 22.99999!)
         Me.XTBreakdown.Name = "XTBreakdown"
         Me.XTBreakdown.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
         Me.XTBreakdown.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow2, Me.RowBreakDown})
-        Me.XTBreakdown.SizeF = New System.Drawing.SizeF(1231.0!, 60.0!)
+        Me.XTBreakdown.SizeF = New System.Drawing.SizeF(1207.326!, 60.00001!)
         Me.XTBreakdown.StylePriority.UseBorders = False
         Me.XTBreakdown.StylePriority.UseFont = False
         Me.XTBreakdown.StylePriority.UsePadding = False
@@ -1111,11 +1111,11 @@ Partial Public Class ReportPreCalReport
         'XTBM
         '
         Me.XTBM.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XTBM.LocationFloat = New DevExpress.Utils.PointFloat(739.7222!, 0!)
+        Me.XTBM.LocationFloat = New DevExpress.Utils.PointFloat(857.1409!, 0!)
         Me.XTBM.Name = "XTBM"
         Me.XTBM.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
         Me.XTBM.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.RowBM})
-        Me.XTBM.SizeF = New System.Drawing.SizeF(491.2778!, 20.0!)
+        Me.XTBM.SizeF = New System.Drawing.SizeF(373.8591!, 20.0!)
         Me.XTBM.StylePriority.UseFont = False
         Me.XTBM.StylePriority.UsePadding = False
         Me.XTBM.StylePriority.UseTextAlignment = False
@@ -1133,7 +1133,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell69.StylePriority.UseTextAlignment = False
         Me.XrTableCell69.Text = "Total CIF"
         Me.XrTableCell69.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell69.Weight = 2.7213241250699731R
+        Me.XrTableCell69.Weight = 2.919236093884793R
         '
         'XrTableCell70
         '
@@ -1141,7 +1141,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell70.StylePriority.UseTextAlignment = False
         Me.XrTableCell70.Text = "Duty Percent"
         Me.XrTableCell70.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell70.Weight = 1.2249054474686791R
+        Me.XrTableCell70.Weight = 1.0962521490430373R
         '
         'XrTableCell72
         '
@@ -1149,7 +1149,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell72.StylePriority.UseTextAlignment = False
         Me.XrTableCell72.Text = "="
         Me.XrTableCell72.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell72.Weight = 0.93412708283539347R
+        Me.XrTableCell72.Weight = 0.47592739012229779R
         '
         'XrTableCell71
         '
@@ -1157,16 +1157,16 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell71.StylePriority.UseTextAlignment = False
         Me.XrTableCell71.Text = "Total Duty"
         Me.XrTableCell71.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell71.Weight = 2.7537392532387508R
+        Me.XrTableCell71.Weight = 3.1426802755626686R
         '
         'XrTable5
         '
         Me.XrTable5.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrTable5.LocationFloat = New DevExpress.Utils.PointFloat(467.5911!, 0!)
+        Me.XrTable5.LocationFloat = New DevExpress.Utils.PointFloat(577.5222!, 0!)
         Me.XrTable5.Name = "XrTable5"
         Me.XrTable5.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
         Me.XrTable5.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow14})
-        Me.XrTable5.SizeF = New System.Drawing.SizeF(272.1312!, 20.0!)
+        Me.XrTable5.SizeF = New System.Drawing.SizeF(279.6185!, 20.0!)
         Me.XrTable5.StylePriority.UseFont = False
         Me.XrTable5.StylePriority.UsePadding = False
         Me.XrTable5.StylePriority.UseTextAlignment = False
@@ -1182,7 +1182,7 @@ Partial Public Class ReportPreCalReport
         '
         Me.XrTableCell67.Name = "XrTableCell67"
         Me.XrTableCell67.Text = "Bea Masuk"
-        Me.XrTableCell67.Weight = 1.1454832605325973R
+        Me.XrTableCell67.Weight = 1.0240686822387168R
         '
         'XrTableCell68
         '
@@ -1190,7 +1190,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell68.StylePriority.UseTextAlignment = False
         Me.XrTableCell68.Text = "[tot_cif]"
         Me.XrTableCell68.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell68.Weight = 1.5758289648011181R
+        Me.XrTableCell68.Weight = 1.77211690270242R
         '
         'SubBand6
         '
@@ -1202,11 +1202,11 @@ Partial Public Class ReportPreCalReport
         'XrTable8
         '
         Me.XrTable8.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrTable8.LocationFloat = New DevExpress.Utils.PointFloat(467.5911!, 60.00001!)
+        Me.XrTable8.LocationFloat = New DevExpress.Utils.PointFloat(577.5223!, 60.00001!)
         Me.XrTable8.Name = "XrTable8"
         Me.XrTable8.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
         Me.XrTable8.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow19, Me.XrTableRow20, Me.XrTableRow21, Me.XrTableRow22})
-        Me.XrTable8.SizeF = New System.Drawing.SizeF(763.4088!, 70.0!)
+        Me.XrTable8.SizeF = New System.Drawing.SizeF(653.4777!, 70.0!)
         Me.XrTable8.StylePriority.UseFont = False
         Me.XrTable8.StylePriority.UsePadding = False
         Me.XrTable8.StylePriority.UseTextAlignment = False
@@ -1224,7 +1224,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell88.StylePriority.UseTextAlignment = False
         Me.XrTableCell88.Text = "PPH"
         Me.XrTableCell88.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell88.Weight = 1.1454852343496424R
+        Me.XrTableCell88.Weight = 1.0240654859749721R
         '
         'XrTableCell89
         '
@@ -1232,28 +1232,28 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell89.StylePriority.UseTextAlignment = False
         Me.XrTableCell89.Text = "[tot_cif]"
         Me.XrTableCell89.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell89.Weight = 1.5758265501286042R
+        Me.XrTableCell89.Weight = 1.7721188841283218R
         '
         'XrTableCell90
         '
         Me.XrTableCell90.Name = "XrTableCell90"
         Me.XrTableCell90.StylePriority.UseTextAlignment = False
         Me.XrTableCell90.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell90.Weight = 2.539521226550832R
+        Me.XrTableCell90.Weight = 1.9664775825790819R
         '
         'XrTableCell91
         '
         Me.XrTableCell91.Name = "XrTableCell91"
         Me.XrTableCell91.StylePriority.UseTextAlignment = False
         Me.XrTableCell91.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell91.Weight = 0.60113827433318723R
+        Me.XrTableCell91.Weight = 0.2330737162760107R
         '
         'XrTableCell92
         '
         Me.XrTableCell92.Name = "XrTableCell92"
         Me.XrTableCell92.StylePriority.UseTextAlignment = False
         Me.XrTableCell92.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell92.Weight = 1.7721164939384495R
+        Me.XrTableCell92.Weight = 1.5390403329161406R
         '
         'XrTableRow20
         '
@@ -1264,7 +1264,7 @@ Partial Public Class ReportPreCalReport
         'XrTableCell93
         '
         Me.XrTableCell93.Name = "XrTableCell93"
-        Me.XrTableCell93.Weight = 1.1454861498770168R
+        Me.XrTableCell93.Weight = 1.0240660963265795R
         '
         'XrTableCell94
         '
@@ -1272,28 +1272,28 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell94.StylePriority.UseTextAlignment = False
         Me.XrTableCell94.Text = "[tot_bm]"
         Me.XrTableCell94.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell94.Weight = 1.5758271604801861R
+        Me.XrTableCell94.Weight = 1.7721197996556704R
         '
         'XrTableCell95
         '
         Me.XrTableCell95.Name = "XrTableCell95"
         Me.XrTableCell95.StylePriority.UseTextAlignment = False
         Me.XrTableCell95.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell95.Weight = 2.5395197006718746R
+        Me.XrTableCell95.Weight = 1.9664760567001249R
         '
         'XrTableCell96
         '
         Me.XrTableCell96.Name = "XrTableCell96"
         Me.XrTableCell96.StylePriority.UseTextAlignment = False
         Me.XrTableCell96.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell96.Weight = 0.60113827433318723R
+        Me.XrTableCell96.Weight = 0.23307371627601081R
         '
         'XrTableCell97
         '
         Me.XrTableCell97.Name = "XrTableCell97"
         Me.XrTableCell97.StylePriority.UseTextAlignment = False
         Me.XrTableCell97.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell97.Weight = 1.7721164939384495R
+        Me.XrTableCell97.Weight = 1.5390403329161406R
         '
         'XrTableRow21
         '
@@ -1304,7 +1304,7 @@ Partial Public Class ReportPreCalReport
         'XrTableCell98
         '
         Me.XrTableCell98.Name = "XrTableCell98"
-        Me.XrTableCell98.Weight = 1.1454852343496424R
+        Me.XrTableCell98.Weight = 1.0240654859749721R
         '
         'XrTableCell99
         '
@@ -1314,7 +1314,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell99.StylePriority.UseTextAlignment = False
         Me.XrTableCell99.Text = "[tot_cif_bm]"
         Me.XrTableCell99.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell99.Weight = 1.5758259397770216R
+        Me.XrTableCell99.Weight = 1.7721188841282729R
         '
         'XrTableCell100
         '
@@ -1324,7 +1324,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell100.StylePriority.UseTextAlignment = False
         Me.XrTableCell100.Text = "[pph] %"
         Me.XrTableCell100.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell100.Weight = 2.5395218369024146R
+        Me.XrTableCell100.Weight = 1.9664775825791305R
         '
         'XrTableCell101
         '
@@ -1334,7 +1334,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell101.StylePriority.UseTextAlignment = False
         Me.XrTableCell101.Text = "="
         Me.XrTableCell101.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell101.Weight = 0.60113827433318723R
+        Me.XrTableCell101.Weight = 0.2330737162760107R
         '
         'XrTableCell102
         '
@@ -1344,7 +1344,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell102.StylePriority.UseTextAlignment = False
         Me.XrTableCell102.Text = "[tot_pph]"
         Me.XrTableCell102.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell102.Weight = 1.7721164939384495R
+        Me.XrTableCell102.Weight = 1.5390403329161406R
         '
         'XrTableRow22
         '
@@ -1355,7 +1355,7 @@ Partial Public Class ReportPreCalReport
         'XrTableCell103
         '
         Me.XrTableCell103.Name = "XrTableCell103"
-        Me.XrTableCell103.Weight = 1.1454852343496424R
+        Me.XrTableCell103.Weight = 1.0240654859749721R
         '
         'XrTableCell105
         '
@@ -1364,7 +1364,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell105.StylePriority.UseBorders = False
         Me.XrTableCell105.StylePriority.UseTextAlignment = False
         Me.XrTableCell105.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell105.Weight = 4.1153477766794353R
+        Me.XrTableCell105.Weight = 3.7385964667074023R
         '
         'XrTableCell106
         '
@@ -1373,7 +1373,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell106.StylePriority.UseBorders = False
         Me.XrTableCell106.StylePriority.UseTextAlignment = False
         Me.XrTableCell106.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell106.Weight = 0.60113827433318723R
+        Me.XrTableCell106.Weight = 0.23307371627601081R
         '
         'XrTableCell107
         '
@@ -1387,16 +1387,16 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell107.StylePriority.UseTextAlignment = False
         Me.XrTableCell107.Text = "[tot_bm_ppn_pph]"
         Me.XrTableCell107.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell107.Weight = 1.7721164939384495R
+        Me.XrTableCell107.Weight = 1.5390403329161406R
         '
         'XrTable7
         '
         Me.XrTable7.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XrTable7.LocationFloat = New DevExpress.Utils.PointFloat(467.5911!, 0!)
+        Me.XrTable7.LocationFloat = New DevExpress.Utils.PointFloat(577.5223!, 0!)
         Me.XrTable7.Name = "XrTable7"
         Me.XrTable7.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
         Me.XrTable7.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow23, Me.XrTableRow16, Me.XrTableRow18, Me.XrTableRow17})
-        Me.XrTable7.SizeF = New System.Drawing.SizeF(763.4089!, 60.0!)
+        Me.XrTable7.SizeF = New System.Drawing.SizeF(653.4777!, 60.0!)
         Me.XrTable7.StylePriority.UseFont = False
         Me.XrTable7.StylePriority.UsePadding = False
         Me.XrTable7.StylePriority.UseTextAlignment = False
@@ -1411,28 +1411,28 @@ Partial Public Class ReportPreCalReport
         'XrTableCell108
         '
         Me.XrTableCell108.Name = "XrTableCell108"
-        Me.XrTableCell108.Weight = 1.1454848395803534R
+        Me.XrTableCell108.Weight = 1.0240674429310916R
         '
         'XrTableCell109
         '
         Me.XrTableCell109.Name = "XrTableCell109"
         Me.XrTableCell109.StylePriority.UseTextAlignment = False
         Me.XrTableCell109.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell109.Weight = 1.5758264045534152R
+        Me.XrTableCell109.Weight = 1.7721173125086644R
         '
         'XrTableCell110
         '
         Me.XrTableCell110.Name = "XrTableCell110"
         Me.XrTableCell110.StylePriority.UseTextAlignment = False
         Me.XrTableCell110.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell110.Weight = 2.539522578736833R
+        Me.XrTableCell110.Weight = 1.9664828333275681R
         '
         'XrTableCell111
         '
         Me.XrTableCell111.Name = "XrTableCell111"
         Me.XrTableCell111.StylePriority.UseTextAlignment = False
         Me.XrTableCell111.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell111.Weight = 0.60113896531073463R
+        Me.XrTableCell111.Weight = 0.23307009065171325R
         '
         'XrTableCell112
         '
@@ -1442,7 +1442,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell112.StylePriority.UseTextAlignment = False
         Me.XrTableCell112.Text = "[tot_bm]"
         Me.XrTableCell112.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell112.Weight = 1.7721165169983355R
+        Me.XrTableCell112.Weight = 1.5390397176724746R
         '
         'XrTableRow16
         '
@@ -1456,7 +1456,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell73.StylePriority.UseTextAlignment = False
         Me.XrTableCell73.Text = "PPN"
         Me.XrTableCell73.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell73.Weight = 1.1454848395803539R
+        Me.XrTableCell73.Weight = 1.0240674429310921R
         '
         'XrTableCell74
         '
@@ -1464,28 +1464,28 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell74.StylePriority.UseTextAlignment = False
         Me.XrTableCell74.Text = "[tot_cif]"
         Me.XrTableCell74.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell74.Weight = 1.5758264045534152R
+        Me.XrTableCell74.Weight = 1.7721173125086644R
         '
         'XrTableCell79
         '
         Me.XrTableCell79.Name = "XrTableCell79"
         Me.XrTableCell79.StylePriority.UseTextAlignment = False
         Me.XrTableCell79.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell79.Weight = 2.5395201373305016R
+        Me.XrTableCell79.Weight = 1.9664785608664146R
         '
         'XrTableCell82
         '
         Me.XrTableCell82.Name = "XrTableCell82"
         Me.XrTableCell82.StylePriority.UseTextAlignment = False
         Me.XrTableCell82.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell82.Weight = 0.60114140671706584R
+        Me.XrTableCell82.Weight = 0.23307497346447359R
         '
         'XrTableCell85
         '
         Me.XrTableCell85.Name = "XrTableCell85"
         Me.XrTableCell85.StylePriority.UseTextAlignment = False
         Me.XrTableCell85.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell85.Weight = 1.7721165169983355R
+        Me.XrTableCell85.Weight = 1.5390391073208674R
         '
         'XrTableRow18
         '
@@ -1496,7 +1496,7 @@ Partial Public Class ReportPreCalReport
         'XrTableCell77
         '
         Me.XrTableCell77.Name = "XrTableCell77"
-        Me.XrTableCell77.Weight = 1.1454830085256056R
+        Me.XrTableCell77.Weight = 1.024065611876344R
         '
         'XrTableCell78
         '
@@ -1504,28 +1504,28 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell78.StylePriority.UseTextAlignment = False
         Me.XrTableCell78.Text = "[tot_bm]"
         Me.XrTableCell78.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell78.Weight = 1.5758285407839432R
+        Me.XrTableCell78.Weight = 1.7721191435633887R
         '
         'XrTableCell80
         '
         Me.XrTableCell80.Name = "XrTableCell80"
         Me.XrTableCell80.StylePriority.UseTextAlignment = False
         Me.XrTableCell80.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell80.Weight = 2.5395198321547223R
+        Me.XrTableCell80.Weight = 1.966478560866439R
         '
         'XrTableCell83
         '
         Me.XrTableCell83.Name = "XrTableCell83"
         Me.XrTableCell83.StylePriority.UseTextAlignment = False
         Me.XrTableCell83.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell83.Weight = 0.60114140671706584R
+        Me.XrTableCell83.Weight = 0.23307497346447359R
         '
         'XrTableCell86
         '
         Me.XrTableCell86.Name = "XrTableCell86"
         Me.XrTableCell86.StylePriority.UseTextAlignment = False
         Me.XrTableCell86.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell86.Weight = 1.7721165169983355R
+        Me.XrTableCell86.Weight = 1.5390391073208674R
         '
         'XrTableRow17
         '
@@ -1536,7 +1536,7 @@ Partial Public Class ReportPreCalReport
         'XrTableCell75
         '
         Me.XrTableCell75.Name = "XrTableCell75"
-        Me.XrTableCell75.Weight = 1.145483008525606R
+        Me.XrTableCell75.Weight = 1.0240656118763445R
         '
         'XrTableCell76
         '
@@ -1546,7 +1546,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell76.StylePriority.UseTextAlignment = False
         Me.XrTableCell76.Text = "[tot_cif_bm]"
         Me.XrTableCell76.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell76.Weight = 1.5758285407839676R
+        Me.XrTableCell76.Weight = 1.7721191435634127R
         '
         'XrTableCell81
         '
@@ -1556,7 +1556,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell81.StylePriority.UseTextAlignment = False
         Me.XrTableCell81.Text = "[ppn] %"
         Me.XrTableCell81.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell81.Weight = 2.5395198321546979R
+        Me.XrTableCell81.Weight = 1.9664785608664146R
         '
         'XrTableCell84
         '
@@ -1566,7 +1566,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell84.StylePriority.UseTextAlignment = False
         Me.XrTableCell84.Text = "="
         Me.XrTableCell84.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell84.Weight = 0.601141406717066R
+        Me.XrTableCell84.Weight = 0.23307497346447359R
         '
         'XrTableCell87
         '
@@ -1576,7 +1576,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell87.StylePriority.UseTextAlignment = False
         Me.XrTableCell87.Text = "[tot_ppn]"
         Me.XrTableCell87.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell87.Weight = 1.7721165169983355R
+        Me.XrTableCell87.Weight = 1.5390391073208674R
         '
         'SubBand7
         '
@@ -1887,7 +1887,7 @@ Partial Public Class ReportPreCalReport
         Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(23.67366!, 0!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel7.SizeF = New System.Drawing.SizeF(1076.326!, 23.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(1207.326!, 23.0!)
         Me.XrLabel7.StylePriority.UseTextAlignment = False
         Me.XrLabel7.Text = "Detail of Voluntary Payment"
         Me.XrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
