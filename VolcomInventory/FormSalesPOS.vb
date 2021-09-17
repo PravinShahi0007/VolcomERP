@@ -67,18 +67,22 @@
             XTPCNOnlineStore.PageVisible = True
             XTPProblemList.PageVisible = False
             XTPOLReturnRefuse.PageVisible = False
+            XTPBAP.PageVisible = False
             viewPendingCNOLStore()
         ElseIf id_menu = "1" Or id_menu = "4" Then
             XTPCNOnlineStore.PageVisible = False
             XTPProblemList.PageVisible = True
             XTPOLReturnRefuse.PageVisible = False
+            XTPBAP.PageVisible = True
         ElseIf id_menu = "6" Then
             XTPCNOnlineStore.PageVisible = False
             XTPProblemList.PageVisible = False
             XTPOLReturnRefuse.PageVisible = True
+            XTPBAP.PageVisible = False
         Else
             XTPCNOnlineStore.PageVisible = False
             XTPProblemList.PageVisible = False
+            XTPBAP.PageVisible = False
         End If
 
         'now time
@@ -837,7 +841,7 @@
     End Sub
 
     Private Sub XTCInvoice_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCInvoice.SelectedPageChanged
-
+        view_bap()
     End Sub
 
     Private Sub XTCProblemList_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCProblemList.SelectedPageChanged
@@ -1352,5 +1356,31 @@
             rrf.show()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Sub view_bap()
+        Dim query As String = "
+            SELECT b.id_st_store_bap, b.number, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, DATE_FORMAT(b.created_at, '%d %M %Y %H:%i:%s') AS created_at, e.employee_name AS created_by, b.id_report_status, r.report_status
+            FROM tb_st_store_bap AS b
+            LEFT JOIN tb_m_comp AS c ON b.id_comp = c.id_comp
+            LEFT JOIN tb_m_user AS u ON b.created_by = u.id_user
+            LEFT JOIN tb_m_employee AS e ON u.id_employee = e.id_employee
+            LEFT JOIN tb_lookup_report_status AS r ON b.id_report_status = r.id_report_status
+            WHERE b.id_report_status = 6 AND b.id_st_store_bap NOT IN (SELECT IFNULL(id_st_store_bap, 0) FROM tb_sales_pos WHERE id_report_status <> 5)
+            ORDER BY b.id_st_store_bap ASC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCInvBAP.DataSource = data
+
+        GVInvBAP.BestFitColumns()
+    End Sub
+
+    Private Sub SBCreateInv_Click(sender As Object, e As EventArgs) Handles SBCreateInv.Click
+        FormSalesPOSDet.action = "ins"
+        FormSalesPOSDet.id_menu = id_menu
+        FormSalesPOSDet.id_st_store_bap = GVInvBAP.GetFocusedRowCellValue("id_st_store_bap").ToString
+        FormSalesPOSDet.ShowDialog()
     End Sub
 End Class

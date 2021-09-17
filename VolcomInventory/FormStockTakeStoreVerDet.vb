@@ -37,11 +37,13 @@
 
         'detail
         Dim query_detail As String = "
-            SELECT CONCAT(c.comp_number, ' - ', c.comp_name) AS account, d.id_product, p.full_code, p.name, p.size, d.price, (d.soh_qty - d.scan_qty) AS qty_awal, d.wh_qty AS qty_wh, 0 AS qty_ver, d.note AS note, '' AS id_report, '' AS report_number, '' AS report_mark_type, '' AS report_mark_type_name, d.id_price, d.soh_qty AS qty_volcom, d.scan_qty AS qty_store, d.is_edited_price, d.is_added_product
+            SELECT CONCAT(c.comp_number, ' - ', c.comp_name) AS account, p.id_design, d.id_product, p.full_code, p.name, p.size, d.price, (d.soh_qty - d.scan_qty) AS qty_awal, d.wh_qty AS qty_wh, 0 AS qty_ver, d.note AS note, '' AS id_report, '' AS report_number, '' AS report_mark_type, '' AS report_mark_type_name, d.id_price, d.soh_qty AS qty_volcom, d.scan_qty AS qty_store, d.is_edited_price, d.is_added_product, p.unit_cost, t.design_price_type AS price_type
             FROM tb_st_store_bap_det AS d
             LEFT JOIN tb_st_store_bap AS b ON d.id_st_store_bap = b.id_st_store_bap
             LEFT JOIN tb_m_comp AS c ON b.id_comp = c.id_comp
             LEFT JOIN tb_m_product_store AS p ON d.id_product = p.id_product
+            LEFT JOIN tb_m_design_price AS r ON d.id_price = r.id_design_price
+            LEFT JOIN tb_lookup_design_price_type AS t ON r.id_design_price_type = t.id_design_price_type
             WHERE d.id_st_store_bap = " + id_st_store_bap + "
             ORDER BY p.name ASC
         "
@@ -271,21 +273,116 @@
     End Sub
 
     Private Sub SBSubmit_Click(sender As Object, e As EventArgs) Handles SBSubmit.Click
-        Dim is_volcom_store As String = execute_query("SELECT is_volcom_store FROM tb_m_store WHERE id_store = (SELECT id_store FROM tb_m_comp WHERE id_comp = " + SLUEAccount.EditValue.ToString + ")", 0, True, "", "", "", "")
+        BGVData.FindFilterText = ""
+        BGVData.ActiveFilterString = ""
+        BGVData.ClearColumnsFilter()
 
-        Dim report_mark_type As String = "324"
+        'stock check
+        Dim id_prod As String = ""
 
-        If is_volcom_store = "1" Then
-            report_mark_type = "335"
+        Dim qs As String = "DELETE FROM tb_temp_val_stock WHERE id_user='" + id_user + "'; INSERT INTO tb_temp_val_stock(id_user, code, name, size, id_product, qty) VALUES "
+
+        'missing
+        For i = 0 To BGVData.RowCount - 1
+            If BGVData.IsValidRowHandle(i) Then
+                If BGVData.GetRowCellValue(i, "qty_akhir") > 0 Then
+                    qs += "('" + id_user + "', '" + BGVData.GetRowCellValue(i, "full_code").ToString + "', '" + addSlashes(BGVData.GetRowCellValue(i, "name").ToString) + "', '" + BGVData.GetRowCellValue(i, "size").ToString + "', '" + BGVData.GetRowCellValue(i, "id_product").ToString + "', '" + decimalSQL(BGVData.GetRowCellValue(i, "qty_akhir").ToString) + "'), "
+
+                    id_prod += BGVData.GetRowCellValue(i, "id_product").ToString + ", "
+                End If
+            End If
+        Next
+
+        'adj out
+        Dim data_adj As DataTable = execute_query("
+            SELECT p.full_code AS code, p.name, p.size, d.id_product, v.qty, p.unit_cost
+            FROM tb_st_store_bap_ver AS v
+            LEFT JOIN tb_st_store_bap_det AS d ON v.id_st_store_bap_det = d.id_st_store_bap_det
+            LEFT JOIN tb_m_product_store AS p ON d.id_product = p.id_product
+            WHERE d.id_st_store_bap = " + id_st_store_bap + " AND v.qty > 0 AND v.report_mark_type = 0
+        ", -1, True, "", "", "", "")
+
+        If data_adj.Rows.Count > 0 Then
+            For i = 0 To data_adj.Rows.Count - 1
+                qs += "('" + id_user + "', '" + data_adj.Rows(i)("code").ToString + "', '" + addSlashes(data_adj.Rows(i)("name").ToString) + "', '" + data_adj.Rows(i)("size").ToString + "', '" + data_adj.Rows(i)("id_product").ToString + "', '" + decimalSQL(data_adj.Rows(i)("qty").ToString) + "'), "
+
+                id_prod += data_adj.Rows(i)("id_product").ToString + ", "
+            Next
         End If
 
-        Dim query As String = "UPDATE tb_st_store_bap SET id_report_status = 1, report_mark_type = " + report_mark_type + " WHERE id_st_store_bap = " + id_st_store_bap
+        qs = qs.Substring(0, qs.Length - 2)
+        id_prod = id_prod.Substring(0, id_prod.Length - 2)
 
-        execute_non_query(query, True, "", "", "", "")
+        qs += "; CALL view_validate_stock(" + id_user + ", " + SLUEAccount.EditValue + ", '" + id_prod + "', 1); "
 
-        submit_who_prepared(report_mark_type, id_st_store_bap, id_user)
+        Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
 
-        Close()
+        If dts.Rows.Count > 0 Then
+            stopCustom("No stock available for some items.")
+
+            FormValidateStock.dt = dts
+            FormValidateStock.ShowDialog()
+
+            Exit Sub
+        End If
+
+        'confirm
+        Dim confirm As DialogResult
+
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to submit ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            'reserved stock
+            Dim id_wh_drawer As String = execute_query("
+                SELECT id_drawer_def FROM tb_m_comp WHERE id_comp = " + SLUEAccount.EditValue.ToString + "
+            ", 0, True, "", "", "", "")
+
+            Dim query_reserved As String = "INSERT INTO tb_storage_fg (id_wh_drawer, id_storage_category, id_product, bom_unit_price, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status, report_mark_type, id_report) VALUES "
+
+            'missing
+            For i = 0 To BGVData.RowCount - 1
+                If BGVData.IsValidRowHandle(i) Then
+                    If BGVData.GetRowCellValue(i, "qty_akhir") > 0 Then
+                        Dim id_product As String = BGVData.GetRowCellValue(i, "id_product").ToString
+                        Dim adj_out_fg_det_price As String = BGVData.GetRowCellValue(i, "unit_cost").ToString
+                        Dim adj_out_fg_det_qty As String = BGVData.GetRowCellValue(i, "qty_akhir").ToString
+
+                        query_reserved += "('" + id_wh_drawer + "', '2', '" + id_product + "', '" + decimalSQL(adj_out_fg_det_price) + "', '" + decimalSQL(adj_out_fg_det_qty) + "', NOW(), 'BAP Missing : " + TENumber.EditValue.ToString + "', '2', '343', '" + id_st_store_bap + "'), "
+                    End If
+                End If
+            Next
+
+            'adj out
+            If data_adj.Rows.Count > 0 Then
+                For i = 0 To data_adj.Rows.Count - 1
+                    Dim id_product As String = data_adj.Rows(i)("id_product").ToString
+                    Dim adj_out_fg_det_price As String = data_adj.Rows(i)("unit_cost").ToString
+                    Dim adj_out_fg_det_qty As String = data_adj.Rows(i)("qty").ToString
+
+                    query_reserved += "('" + id_wh_drawer + "', '2', '" + id_product + "', '" + decimalSQL(adj_out_fg_det_price) + "', '" + decimalSQL(adj_out_fg_det_qty) + "', NOW(), 'BAP Adjustment Out : " + TENumber.EditValue.ToString + "', '2', '340', '" + id_st_store_bap + "'), "
+                Next
+            End If
+
+            query_reserved = query_reserved.Substring(0, query_reserved.Length - 2)
+
+            execute_non_query(query_reserved, True, "", "", "", "")
+
+            Dim is_volcom_store As String = execute_query("SELECT is_volcom_store FROM tb_m_store WHERE id_store = (SELECT id_store FROM tb_m_comp WHERE id_comp = " + SLUEAccount.EditValue.ToString + ")", 0, True, "", "", "", "")
+
+            Dim report_mark_type As String = "324"
+
+            If is_volcom_store = "1" Then
+                report_mark_type = "335"
+            End If
+
+            Dim query As String = "UPDATE tb_st_store_bap SET id_report_status = 1, report_mark_type = " + report_mark_type + " WHERE id_st_store_bap = " + id_st_store_bap
+
+            execute_non_query(query, True, "", "", "", "")
+
+            submit_who_prepared(report_mark_type, id_st_store_bap, id_user)
+
+            Close()
+        End If
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click

@@ -20,6 +20,8 @@ Partial Class FormViewFGAdjIn
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.MEAccount = New DevExpress.XtraEditors.MemoEdit()
         Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtAdjDate = New DevExpress.XtraEditors.TextEdit()
@@ -64,10 +66,9 @@ Partial Class FormViewFGAdjIn
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.MEAccount = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.MEAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAdjDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAdjNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,7 +87,6 @@ Partial Class FormViewFGAdjIn
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
-        CType(Me.MEAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -105,6 +105,22 @@ Partial Class FormViewFGAdjIn
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(829, 92)
         Me.GroupGeneralHeader.TabIndex = 33
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(32, 40)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(39, 13)
+        Me.LabelControl1.TabIndex = 150
+        Me.LabelControl1.Text = "Account"
+        '
+        'MEAccount
+        '
+        Me.MEAccount.Location = New System.Drawing.Point(163, 38)
+        Me.MEAccount.Name = "MEAccount"
+        Me.MEAccount.Properties.ReadOnly = True
+        Me.MEAccount.Size = New System.Drawing.Size(250, 39)
+        Me.MEAccount.TabIndex = 149
         '
         'LECurrency
         '
@@ -552,22 +568,6 @@ Partial Class FormViewFGAdjIn
         Me.BMark.TabIndex = 4
         Me.BMark.Text = "Mark"
         '
-        'MEAccount
-        '
-        Me.MEAccount.Location = New System.Drawing.Point(163, 38)
-        Me.MEAccount.Name = "MEAccount"
-        Me.MEAccount.Properties.ReadOnly = True
-        Me.MEAccount.Size = New System.Drawing.Size(250, 39)
-        Me.MEAccount.TabIndex = 149
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(32, 40)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(39, 13)
-        Me.LabelControl1.TabIndex = 150
-        Me.LabelControl1.Text = "Account"
-        '
         'FormViewFGAdjIn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -583,10 +583,11 @@ Partial Class FormViewFGAdjIn
         Me.Name = "FormViewFGAdjIn"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Adjustment Out Finished Goods"
+        Me.Text = "Adjustment In"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.MEAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAdjDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAdjNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -606,7 +607,6 @@ Partial Class FormViewFGAdjIn
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
-        CType(Me.MEAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

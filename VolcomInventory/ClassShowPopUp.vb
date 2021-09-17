@@ -108,10 +108,10 @@
         ElseIf report_mark_type = "36" Then
             'entry journal
             FormViewJournal.Close()
-        ElseIf report_mark_type = "41" Then
+        ElseIf report_mark_type = "41" Or report_mark_type = "342" Then
             'Adj In Fg
             FormViewFGAdjIn.Close()
-        ElseIf report_mark_type = "42" Then
+        ElseIf report_mark_type = "42" Or report_mark_type = "341" Then
             'Adj Out Fg
             FormViewFGAdjOut.Close()
         ElseIf report_mark_type = "44" Then
@@ -120,7 +120,7 @@
         ElseIf report_mark_type = "47" Then
             'return in mat
             FormViewMatRetInProd.Close()
-        ElseIf report_mark_type = "48" Or report_mark_type = "66" Or report_mark_type = "118" Or report_mark_type = "54" Or report_mark_type = "67" Or report_mark_type = "116" Or report_mark_type = "117" Or report_mark_type = "183" Or report_mark_type = "292" Or report_mark_type = "315" Or report_mark_type = "316" Then
+        ElseIf report_mark_type = "48" Or report_mark_type = "66" Or report_mark_type = "118" Or report_mark_type = "54" Or report_mark_type = "344" Or report_mark_type = "67" Or report_mark_type = "116" Or report_mark_type = "117" Or report_mark_type = "183" Or report_mark_type = "292" Or report_mark_type = "315" Or report_mark_type = "316" Then
             'invoice/missing/credit note
             FormViewSalesPOS.Close()
         ElseIf report_mark_type = "50" Then
@@ -212,7 +212,7 @@
             FormBudgetRevenueRevisionDet.Close()
         ElseIf report_mark_type = "148" Then
             'purchase receive non asset
-            'FormPurcReceiveDet.Close()
+            FormPurcReceiveDet.Close()
         ElseIf report_mark_type = "150" Or report_mark_type = "155" Or report_mark_type = "172" Or report_mark_type = "173" Then
             'Prpose Cost
             FormMasterDesignCOPPropose.Close()
@@ -228,6 +228,8 @@
         ElseIf report_mark_type = "154" Or report_mark_type = "163" Then
             'item req
             FormItemReqDet.Close()
+        ElseIf report_mark_type = "156" Or report_mark_type = "166" Then
+            FormItemDelDetail.Close()
         ElseIf report_mark_type = "157" Then
             'item expense
             FormItemExpenseDet.Close()
@@ -671,13 +673,15 @@ GROUP BY rec.`id_prod_order`"
             FormAccountingJournalAdjDet.is_view = "1"
             FormAccountingJournalAdjDet.id_trans_adj = id_report
             FormAccountingJournalAdjDet.ShowDialog()
-        ElseIf report_mark_type = "41" Then
+        ElseIf report_mark_type = "41" Or report_mark_type = "342" Then
             'FG IN
             FormViewFGAdjIn.id_adj_in_fg = id_report
+            FormViewFGAdjIn.report_mark_type = report_mark_type
             FormViewFGAdjIn.ShowDialog()
-        ElseIf report_mark_type = "42" Then
+        ElseIf report_mark_type = "42" Or report_mark_type = "341" Then
             'FG OUT
             FormViewFGAdjOut.id_adj_out_fg = id_report
+            FormViewFGAdjOut.report_mark_type = report_mark_type
             FormViewFGAdjOut.ShowDialog()
         ElseIf report_mark_type = "43" Then
             'SALES ORDER DEL
@@ -719,7 +723,7 @@ GROUP BY rec.`id_prod_order`"
             'FG SO STORE
             FormViewFGStockOpname.id_fg_so_store = id_report
             FormViewFGStockOpname.ShowDialog()
-        ElseIf report_mark_type = "54" Then
+        ElseIf report_mark_type = "54" Or report_mark_type = "344" Then
             'FG MISSING
             FormViewSalesPOS.id_sales_pos = id_report
             FormViewSalesPOS.ShowDialog()
@@ -1838,13 +1842,13 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_acc_trans_adj"
             field_number = "acc_trans_adj_number"
             field_date = "date_created"
-        ElseIf report_mark_type = "41" Then
+        ElseIf report_mark_type = "41" Or report_mark_type = "342" Then
             'Adj In FG
             table_name = "tb_adj_in_fg"
             field_id = "id_adj_in_fg"
             field_number = "adj_in_fg_number"
             field_date = "adj_in_fg_date"
-        ElseIf report_mark_type = "42" Then
+        ElseIf report_mark_type = "42" Or report_mark_type = "341" Then
             'Adj Out FG
             table_name = "tb_adj_out_fg"
             field_id = "id_adj_out_fg"
@@ -1916,7 +1920,7 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_fg_so_store"
             field_number = "fg_so_store_number"
             field_date = "fg_so_store_date"
-        ElseIf report_mark_type = "54" Then
+        ElseIf report_mark_type = "54" Or report_mark_type = "344" Then
             'FG MISSING
             table_name = "tb_sales_pos"
             field_id = "id_sales_pos"
