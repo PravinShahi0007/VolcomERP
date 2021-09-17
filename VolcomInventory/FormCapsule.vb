@@ -58,10 +58,96 @@
             CCBEClass.Properties.Items.Add(c)
         Next
     End Sub
+
+    Sub view_category_store()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 0 AS `id_cat`, 'All' AS `cat`
+        UNION ALL 
+        SELECT 1 AS `id_cat`, 'Wholesale' AS `cat` 
+        UNION ALL
+        SELECT 2 AS `id_cat`, 'Consignment' AS `cat`
+        UNION ALL
+        SELECT 3 AS `id_cat`, 'Online' AS `cat`
+        UNION ALL
+        SELECT 4 AS `id_cat`, 'B&B Wholesale' AS `cat` "
+        viewLookupQuery(LECat, query, 0, "cat", "id_cat")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewArea()
+        Dim query As String = "
+(SELECT a.id_area, a.`area` FROM tb_m_area a )
+ORDER BY area ASC"
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("area").ToString
+            c.Value = data.Rows(i)("id_area").ToString
+
+            CCBEArea.Properties.Items.Add(c)
+        Next
+    End Sub
+
+    Sub viewProvince()
+        Dim where As String = ""
+
+        'If Not SLUEIsland.EditValue = "ALL" Then
+        '    where = " AND s.id_state IN (SELECT id_state FROM tb_m_city WHERE island = '" + SLUEIsland.EditValue.ToString + "')"
+        'End If
+
+        Dim query As String = "
+            (SELECT s.id_state AS id_province, s.state AS province
+            FROM tb_m_state AS s
+            LEFT JOIN tb_m_region AS r ON s.id_region = r.id_region
+            WHERE r.id_country = 5" + where + ")
+            ORDER BY province ASC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("province").ToString
+            c.Value = data.Rows(i)("id_province").ToString
+
+            CCBEProvince.Properties.Items.Add(c)
+        Next
+    End Sub
+
+    Sub view_group_store()
+        Dim where As String = ""
+
+        Dim query As String = "
+            (SELECT id_comp_group, CONCAT(comp_group, ' - ', description) AS comp_group
+            FROM tb_m_comp_group
+            WHERE 1 " + where + ")
+            ORDER BY comp_group ASC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i = 0 To data.Rows.Count - 1
+            Dim c As DevExpress.XtraEditors.Controls.CheckedListBoxItem = New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+
+            c.Description = data.Rows(i)("comp_group").ToString
+            c.Value = data.Rows(i)("id_comp_group").ToString
+
+            CCBEGroupStore.Properties.Items.Add(c)
+        Next
+    End Sub
+
     Private Sub FormCapsule_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_season()
         view_division()
         view_class()
+        view_category_store()
+        viewArea()
+        viewProvince()
+        view_group_store()
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEUntilAcc.EditValue = data_dt.Rows(0)("dt")
     End Sub
@@ -91,7 +177,7 @@
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         If CESelectedProduct.EditValue = True Then
-            GVProd.ActiveFilterString = "[is_select]='No'"
+            GVProd.ActiveFilterString = "[is_select]='Yes'"
             Dim jum_row As Integer = GVProd.RowCount
             GVProd.ActiveFilterString = ""
             If jum_row = 0 Then
@@ -99,6 +185,7 @@
                 Exit Sub
             End If
         End If
+
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
@@ -117,12 +204,14 @@
         End If
         If CESelectedProduct.EditValue = True Then
             Dim id_design_sel As String = ""
+            GVProd.ActiveFilterString = "[is_select]='Yes'"
             For i As Integer = 0 To GVProd.RowCount - 1
                 If i > 0 Then
                     id_design_sel += ","
                 End If
                 id_design_sel += GVProd.GetRowCellValue(i, "id_design").ToString
             Next
+            GVProd.ActiveFilterString = ""
             where_prod += " AND d.id_design IN (" + id_design_sel + ")"
         End If
 
@@ -147,10 +236,13 @@
     Private Sub CESelectedProduct_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectedProduct.EditValueChanged
         If CESelectedProduct.EditValue = True Then
             GCProd.Visible = True
+            GroupControl2.Height = 440
+            viewProduct()
         Else
             GCProd.Visible = False
+            GroupControl2.Height = 150
         End If
-
+        resetView()
     End Sub
 
     Sub viewProduct()
@@ -186,12 +278,12 @@
 	        AND cd.id_code IN (32,30,14, 43)
 	        GROUP BY dc.id_design
         ) i ON i.id_design = d.id_design
-        WHERE d.id_lookup_status_order!=2 "
+        WHERE d.design_code!='' AND d.id_lookup_status_order!=2 "
         query += where_prod
         query += "ORDER BY name ASC, code ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCData.DataSource = data
-        GVData.BestFitColumns()
+        GCProd.DataSource = data
+        GVProd.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
