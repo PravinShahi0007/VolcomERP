@@ -690,6 +690,9 @@
         ElseIf report_mark_type = "318" Then
             'verification invoice 3pl office
             query = String.Format("SELECT id_report_status, inv_number as report_number FROM tb_awb_inv_sum WHERE id_awb_inv_sum = '{0}'", id_report)
+        ElseIf report_mark_type = "319" Then
+            'SNI pps
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_sni_pps WHERE id_sni_pps = '{0}'", id_report)
         ElseIf report_mark_type = "323" Then
             'stocktake partial
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_st_store_partial WHERE id_st_store_partial = '{0}'", id_report)
@@ -2155,6 +2158,9 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
                 '
                 query = String.Format("UPDATE tb_prod_order_rec SET complete_date=NOW() WHERE id_prod_order_rec='{0}'", id_report)
                 execute_non_query(query, True, "", "", "", "")
+
+                'check for mrs notification
+
             End If
 
             query = String.Format("UPDATE tb_prod_order_rec SET id_report_status='{0}' WHERE id_prod_order_rec='{1}'", id_status_reportx, id_report)
@@ -10229,15 +10235,45 @@ INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order AND po.is_void
             End If
 
             If id_status_reportx = "6" Then
-                'update sni cop
+                'get cop
+                Dim cop As Decimal = 0.00
+                Dim amo As Decimal = 0.00
+                Dim qty As Decimal = 0.00
+                Dim qs As String = "SELECT SUM(tot.sub_amount) AS amo
+FROM (
+SELECT ppsb.desc,ppsb.qty,ppsb.value,ppsb.qty*ppsb.`value` AS  sub_amount
+FROM 
+`tb_sni_realisasi_budget` ppsb
+WHERE ppsb.`id_sni_realisasi`='3'
+UNION ALL
+SELECT CONCAT('Biaya sample ',d.design_display_name) AS `desc`,(ppsb.rec_qty-ppsb.ret_qty) AS qty,ppsb.bom_price AS `value`,(ppsb.rec_qty-ppsb.ret_qty)*ppsb.`bom_price` AS  sub_amount
+FROM 
+`tb_sni_realisasi_return` ppsb
+INNER JOIN tb_m_product p ON p.id_product=ppsb.id_product
+INNER JOIN tb_m_design d ON d.id_design=p.id_design
+WHERE ppsb.`id_sni_realisasi`='3' AND ppsb.rec_qty-ppsb.ret_qty>0
+)tot"
+                Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
+                amo = dts.Rows(0)("amo")
 
-                '                query = String.Format("INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
-                '                INSERT INTO `tb_sni_in_out`(`id_prod_order_rec`,`id_prod_order_det`,`id_product`,`qty`,`date_reff`,`created_by`,`id_report`,`report_mark_type`,`note`)
-                'SELECT recd.id_prod_order_rec,recd.id_prod_order_det,ret.id_product,ret.ret_qty,NOW() AS date_reff,'{0}' AS created_by,ret.id_sni_realisasi,327 AS rmt,'Return SNI' AS note
-                'FROM `tb_sni_realisasi_return` ret
-                'INNER JOIN tb_prod_order_rec_det recd ON recd.id_prod_order_rec_det=ret.id_prod_order_rec_det
-                'WHERE ret.id_sni_realisasi ='{1}' AND ret.ret_qty>0 ", id_user, id_report)
-                '                execute_non_query(query, True, "", "", "", "")
+                qs = "SELECT SUM(l.qty) AS qty
+ FROM `tb_sni_pps_list` l
+ INNER JOIN tb_sni_realisasi r ON r.id_sni_realisasi='3' AND r.id_sni_pps=l.id_sni_pps"
+                dts = execute_query(qs, -1, True, "", "", "", "")
+                qty = dts.Rows(0)("qty")
+
+                cop = Math.Round(amo / qty, 2)
+
+                'update sni cop
+                Dim q As String = "SELECT id_design
+FROM tb_sni_pps_list l
+INNER JOIN tb_sni_realisasi r ON r.`id_sni_pps`=l.`id_sni_pps`
+WHERE r.`id_sni_realisasi`='" & id_report & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                For i As Integer = 0 To dt.Rows.Count - 1
+                    Dim qu As String = "UPDATE tb_m_design SET prod_order_cop_mng_addcost='" & decimalSQL(Decimal.Parse(cop.ToString).ToString) & "' WHERE id_design='" & dt.Rows(i)("id_design").ToString & "'"
+                    execute_non_query(qu, True, "", "", "", "")
+                Next
             End If
 
             'update
