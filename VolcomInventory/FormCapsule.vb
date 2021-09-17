@@ -90,12 +90,45 @@
     End Sub
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BtnView.Click
+        If CESelectedProduct.EditValue = True Then
+            GVProd.ActiveFilterString = "[is_select]='No'"
+            Dim jum_row As Integer = GVProd.RowCount
+            GVProd.ActiveFilterString = ""
+            If jum_row = 0 Then
+                warningCustom("Please select product first")
+                Exit Sub
+            End If
+        End If
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
+
+        'filter product
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Set product filter")
+        Dim where_prod As String = ""
+        If Not CCBESeason.EditValue.ToString = "" Then
+            where_prod += " AND d.id_season IN (" + CCBESeason.EditValue.ToString + ")"
+        End If
+        If Not CCBEDivision.EditValue.ToString = "" Then
+            where_prod += " AND cd.id_division IN (" + CCBEDivision.EditValue.ToString + ")"
+        End If
+        If Not CCBEClass.EditValue.ToString = "" Then
+            where_prod += " AND cd.id_class IN (" + CCBEClass.EditValue.ToString + ")"
+        End If
+        If CESelectedProduct.EditValue = True Then
+            Dim id_design_sel As String = ""
+            For i As Integer = 0 To GVProd.RowCount - 1
+                If i > 0 Then
+                    id_design_sel += ","
+                End If
+                id_design_sel += GVProd.GetRowCellValue(i, "id_design").ToString
+            Next
+            where_prod += " AND d.id_design IN (" + id_design_sel + ")"
+        End If
+
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading data")
         Dim soh_date As String = DateTime.Parse(DEUntilAcc.EditValue.ToString).ToString("yyyy-MM-dd")
-        Dim query As String = "CALL view_capsule('" + soh_date + "')"
+        Dim query As String = "CALL view_capsule('" + soh_date + "', '" + where_prod + "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         'FormMain.SplashScreenManager1.SetWaitFormDescription("Best fit columns")
