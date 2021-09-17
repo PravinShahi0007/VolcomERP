@@ -212,7 +212,7 @@
             FormBudgetRevenueRevisionDet.Close()
         ElseIf report_mark_type = "148" Then
             'purchase receive non asset
-            'FormPurcReceiveDet.Close()
+            FormPurcReceiveDet.Close()
         ElseIf report_mark_type = "150" Or report_mark_type = "155" Or report_mark_type = "172" Or report_mark_type = "173" Then
             'Prpose Cost
             FormMasterDesignCOPPropose.Close()
@@ -228,6 +228,8 @@
         ElseIf report_mark_type = "154" Or report_mark_type = "163" Then
             'item req
             FormItemReqDet.Close()
+        ElseIf report_mark_type = "156" Or report_mark_type = "166" Then
+            FormItemDelDetail.Close()
         ElseIf report_mark_type = "157" Then
             'item expense
             FormItemExpenseDet.Close()
