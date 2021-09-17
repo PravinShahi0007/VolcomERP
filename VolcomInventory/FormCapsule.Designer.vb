@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormCapsule
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormCapsule
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormCapsule))
         Me.GCData = New DevExpress.XtraGrid.GridControl()
@@ -48,6 +48,12 @@ Partial Class FormCapsule
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.CCBEClass = New DevExpress.XtraEditors.CheckedComboBoxEdit()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.CCBESeason = New DevExpress.XtraEditors.CheckedComboBoxEdit()
+        Me.CCBEDivision = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.DEUntilAcc = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl29 = New DevExpress.XtraEditors.LabelControl()
@@ -55,6 +61,16 @@ Partial Class FormCapsule
         Me.BtnExportXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelectedProduct = New DevExpress.XtraEditors.CheckEdit()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.GCProd = New DevExpress.XtraGrid.GridControl()
+        Me.GVProd = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnis_select = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumndesign_code = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnprod_name = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -63,21 +79,35 @@ Partial Class FormCapsule
         Me.XtraScrollableControl1.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl2.SuspendLayout()
+        CType(Me.CCBEClass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCBEDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.DEUntilAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.CESelectedProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.GCProd, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVProd, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(272, 0)
+        Me.GCData.Location = New System.Drawing.Point(331, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(452, 438)
+        Me.GCData.Size = New System.Drawing.Size(393, 438)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -92,6 +122,7 @@ Partial Class FormCapsule
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty", Me.GridColumnttl_qty, "{0:N0}")})
         Me.GVData.Name = "GVData"
+        Me.GVData.OptionsBehavior.ReadOnly = True
         Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowFooter = True
@@ -282,9 +313,11 @@ Partial Class FormCapsule
         Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
         Me.XtraTabControl1.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraTabControl1.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.XtraTabControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
-        Me.XtraTabControl1.Size = New System.Drawing.Size(272, 438)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(331, 438)
         Me.XtraTabControl1.TabIndex = 2
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
         '
@@ -296,7 +329,7 @@ Partial Class FormCapsule
         Me.XtraTabPage1.Controls.Add(Me.PanelControl1)
         Me.XtraTabPage1.Image = CType(resources.GetObject("XtraTabPage1.Image"), System.Drawing.Image)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(236, 432)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(298, 436)
         '
         'XtraScrollableControl1
         '
@@ -306,42 +339,110 @@ Partial Class FormCapsule
         Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
         Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
-        Me.XtraScrollableControl1.Size = New System.Drawing.Size(236, 397)
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(298, 370)
         Me.XtraScrollableControl1.TabIndex = 0
         '
         'GroupControl3
         '
+        Me.GroupControl3.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupControl3.AppearanceCaption.Options.UseFont = True
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 185)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 503)
+        Me.GroupControl3.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.GroupControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(219, 9999)
+        Me.GroupControl3.Size = New System.Drawing.Size(281, 9999)
         Me.GroupControl3.TabIndex = 8910
         Me.GroupControl3.Text = "Filter by Store"
         '
         'GroupControl2
         '
+        Me.GroupControl2.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupControl2.AppearanceCaption.Options.UseFont = True
+        Me.GroupControl2.Controls.Add(Me.PanelControl3)
+        Me.GroupControl2.Controls.Add(Me.PanelControl2)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 89)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 65)
+        Me.GroupControl2.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.GroupControl2.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(219, 96)
+        Me.GroupControl2.Size = New System.Drawing.Size(281, 438)
         Me.GroupControl2.TabIndex = 8909
         Me.GroupControl2.Text = "Filter by Product"
         '
+        'CCBEClass
+        '
+        Me.CCBEClass.EditValue = ""
+        Me.CCBEClass.Location = New System.Drawing.Point(66, 64)
+        Me.CCBEClass.Name = "CCBEClass"
+        Me.CCBEClass.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBEClass.Size = New System.Drawing.Size(197, 20)
+        Me.CCBEClass.TabIndex = 66
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(7, 15)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(42, 13)
+        Me.Label5.TabIndex = 55
+        Me.Label5.Text = "Season"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(7, 41)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(43, 13)
+        Me.Label3.TabIndex = 56
+        Me.Label3.Text = "Division"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(7, 67)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(32, 13)
+        Me.Label4.TabIndex = 58
+        Me.Label4.Text = "Class"
+        '
+        'CCBESeason
+        '
+        Me.CCBESeason.EditValue = ""
+        Me.CCBESeason.Location = New System.Drawing.Point(66, 12)
+        Me.CCBESeason.Name = "CCBESeason"
+        Me.CCBESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBESeason.Size = New System.Drawing.Size(197, 20)
+        Me.CCBESeason.TabIndex = 63
+        '
+        'CCBEDivision
+        '
+        Me.CCBEDivision.EditValue = ""
+        Me.CCBEDivision.Location = New System.Drawing.Point(66, 38)
+        Me.CCBEDivision.Name = "CCBEDivision"
+        Me.CCBEDivision.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBEDivision.Size = New System.Drawing.Size(197, 20)
+        Me.CCBEDivision.TabIndex = 64
+        '
         'GroupControl1
         '
+        Me.GroupControl1.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupControl1.AppearanceCaption.Options.UseFont = True
         Me.GroupControl1.Controls.Add(Me.DEUntilAcc)
         Me.GroupControl1.Controls.Add(Me.LabelControl29)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl1.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.GroupControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(219, 89)
+        Me.GroupControl1.Size = New System.Drawing.Size(281, 65)
         Me.GroupControl1.TabIndex = 8908
         Me.GroupControl1.Text = "Filter by Period"
         '
         'DEUntilAcc
         '
         Me.DEUntilAcc.EditValue = Nothing
-        Me.DEUntilAcc.Location = New System.Drawing.Point(14, 46)
+        Me.DEUntilAcc.Location = New System.Drawing.Point(68, 28)
         Me.DEUntilAcc.Name = "DEUntilAcc"
         Me.DEUntilAcc.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEUntilAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -349,12 +450,12 @@ Partial Class FormCapsule
         Me.DEUntilAcc.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEUntilAcc.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEUntilAcc.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEUntilAcc.Size = New System.Drawing.Size(190, 20)
+        Me.DEUntilAcc.Size = New System.Drawing.Size(197, 20)
         Me.DEUntilAcc.TabIndex = 8907
         '
         'LabelControl29
         '
-        Me.LabelControl29.Location = New System.Drawing.Point(14, 27)
+        Me.LabelControl29.Location = New System.Drawing.Point(12, 31)
         Me.LabelControl29.Name = "LabelControl29"
         Me.LabelControl29.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl29.TabIndex = 8906
@@ -365,28 +466,42 @@ Partial Class FormCapsule
         Me.PanelControl1.Controls.Add(Me.BtnExportXLS)
         Me.PanelControl1.Controls.Add(Me.BtnView)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 397)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 370)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(236, 35)
+        Me.PanelControl1.Size = New System.Drawing.Size(298, 66)
         Me.PanelControl1.TabIndex = 1
         '
         'BtnExportXLS
         '
-        Me.BtnExportXLS.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnExportXLS.Image = CType(resources.GetObject("BtnExportXLS.Image"), System.Drawing.Image)
-        Me.BtnExportXLS.Location = New System.Drawing.Point(86, 2)
+        Me.BtnExportXLS.Appearance.BackColor = System.Drawing.Color.DarkTurquoise
+        Me.BtnExportXLS.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnExportXLS.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnExportXLS.Appearance.Options.UseBackColor = True
+        Me.BtnExportXLS.Appearance.Options.UseFont = True
+        Me.BtnExportXLS.Appearance.Options.UseForeColor = True
+        Me.BtnExportXLS.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.BtnExportXLS.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BtnExportXLS.Location = New System.Drawing.Point(2, 33)
+        Me.BtnExportXLS.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnExportXLS.Name = "BtnExportXLS"
-        Me.BtnExportXLS.Size = New System.Drawing.Size(84, 31)
+        Me.BtnExportXLS.Size = New System.Drawing.Size(294, 31)
         Me.BtnExportXLS.TabIndex = 1
         Me.BtnExportXLS.Text = "Export XLS"
         '
         'BtnView
         '
-        Me.BtnView.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
-        Me.BtnView.Location = New System.Drawing.Point(170, 2)
+        Me.BtnView.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BtnView.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnView.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnView.Appearance.Options.UseBackColor = True
+        Me.BtnView.Appearance.Options.UseFont = True
+        Me.BtnView.Appearance.Options.UseForeColor = True
+        Me.BtnView.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.BtnView.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BtnView.Location = New System.Drawing.Point(2, 2)
+        Me.BtnView.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(64, 31)
+        Me.BtnView.Size = New System.Drawing.Size(294, 31)
         Me.BtnView.TabIndex = 0
         Me.BtnView.Text = "View"
         '
@@ -394,7 +509,102 @@ Partial Class FormCapsule
         '
         Me.XtraTabPage2.Image = CType(resources.GetObject("XtraTabPage2.Image"), System.Drawing.Image)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(236, 432)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(298, 436)
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.CCBESeason)
+        Me.PanelControl2.Controls.Add(Me.CCBEClass)
+        Me.PanelControl2.Controls.Add(Me.CCBEDivision)
+        Me.PanelControl2.Controls.Add(Me.Label5)
+        Me.PanelControl2.Controls.Add(Me.Label4)
+        Me.PanelControl2.Controls.Add(Me.Label3)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(2, 21)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(277, 95)
+        Me.PanelControl2.TabIndex = 67
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.GCProd)
+        Me.PanelControl3.Controls.Add(Me.PanelControl4)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl3.Location = New System.Drawing.Point(2, 116)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(277, 320)
+        Me.PanelControl3.TabIndex = 68
+        '
+        'CESelectedProduct
+        '
+        Me.CESelectedProduct.Location = New System.Drawing.Point(168, 7)
+        Me.CESelectedProduct.Name = "CESelectedProduct"
+        Me.CESelectedProduct.Properties.Caption = "Selected Product"
+        Me.CESelectedProduct.Size = New System.Drawing.Size(105, 19)
+        Me.CESelectedProduct.TabIndex = 0
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.CESelectedProduct)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(277, 33)
+        Me.PanelControl4.TabIndex = 1
+        '
+        'GCProd
+        '
+        Me.GCProd.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCProd.Location = New System.Drawing.Point(0, 33)
+        Me.GCProd.MainView = Me.GVProd
+        Me.GCProd.Name = "GCProd"
+        Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCProd.Size = New System.Drawing.Size(277, 287)
+        Me.GCProd.TabIndex = 2
+        Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
+        '
+        'GVProd
+        '
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnis_select, Me.GridColumndesign_code, Me.GridColumnprod_name})
+        Me.GVProd.GridControl = Me.GCProd
+        Me.GVProd.Name = "GVProd"
+        Me.GVProd.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnis_select
+        '
+        Me.GridColumnis_select.Caption = "Select"
+        Me.GridColumnis_select.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumnis_select.FieldName = "is_select"
+        Me.GridColumnis_select.Name = "GridColumnis_select"
+        Me.GridColumnis_select.Visible = True
+        Me.GridColumnis_select.VisibleIndex = 0
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
+        '
+        'GridColumndesign_code
+        '
+        Me.GridColumndesign_code.Caption = "Code"
+        Me.GridColumndesign_code.FieldName = "code"
+        Me.GridColumndesign_code.Name = "GridColumndesign_code"
+        Me.GridColumndesign_code.OptionsColumn.ReadOnly = True
+        Me.GridColumndesign_code.Visible = True
+        Me.GridColumndesign_code.VisibleIndex = 1
+        '
+        'GridColumnprod_name
+        '
+        Me.GridColumnprod_name.Caption = "Description"
+        Me.GridColumnprod_name.FieldName = "name"
+        Me.GridColumnprod_name.Name = "GridColumnprod_name"
+        Me.GridColumnprod_name.OptionsColumn.ReadOnly = True
+        Me.GridColumnprod_name.Visible = True
+        Me.GridColumnprod_name.VisibleIndex = 2
         '
         'FormCapsule
         '
@@ -414,6 +624,10 @@ Partial Class FormCapsule
         Me.XtraScrollableControl1.ResumeLayout(False)
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl2.ResumeLayout(False)
+        CType(Me.CCBEClass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCBESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCBEDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
@@ -421,6 +635,17 @@ Partial Class FormCapsule
         CType(Me.DEUntilAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.CESelectedProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        CType(Me.GCProd, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVProd, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -459,4 +684,20 @@ Partial Class FormCapsule
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents DEUntilAcc As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl29 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents CCBEClass As DevExpress.XtraEditors.CheckedComboBoxEdit
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents CCBESeason As DevExpress.XtraEditors.CheckedComboBoxEdit
+    Friend WithEvents CCBEDivision As DevExpress.XtraEditors.CheckedComboBoxEdit
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GCProd As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVProd As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CESelectedProduct As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GridColumnis_select As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumndesign_code As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnprod_name As DevExpress.XtraGrid.Columns.GridColumn
 End Class

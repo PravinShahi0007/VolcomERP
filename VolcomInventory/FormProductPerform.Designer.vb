@@ -56,6 +56,9 @@ Partial Class FormProductPerform
         Me.GridColumnid_wh_ol = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_commerce_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.CCBEGroupStore = New DevExpress.XtraEditors.CheckedComboBoxEdit()
+        Me.CCBEProvince = New DevExpress.XtraEditors.CheckedComboBoxEdit()
+        Me.CCBEArea = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LECat = New DevExpress.XtraEditors.LookUpEdit()
         Me.CESelectAllStore = New DevExpress.XtraEditors.CheckEdit()
@@ -74,9 +77,6 @@ Partial Class FormProductPerform
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         Me.SBExportExcel = New DevExpress.XtraEditors.SimpleButton()
-        Me.CCBEArea = New DevExpress.XtraEditors.CheckedComboBoxEdit()
-        Me.CCBEProvince = New DevExpress.XtraEditors.CheckedComboBoxEdit()
-        Me.CCBEGroupStore = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -96,6 +96,9 @@ Partial Class FormProductPerform
         CType(Me.GVStore, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.CCBEGroupStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCBEProvince.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCBEArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CESelectAllStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MESelectedStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,9 +114,6 @@ Partial Class FormProductPerform
         CType(Me.XTCOption, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCOption.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
-        CType(Me.CCBEArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CCBEProvince.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CCBEGroupStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemCheckEdit1
@@ -446,6 +446,33 @@ Partial Class FormProductPerform
         Me.PanelControl2.Size = New System.Drawing.Size(330, 218)
         Me.PanelControl2.TabIndex = 39
         '
+        'CCBEGroupStore
+        '
+        Me.CCBEGroupStore.EditValue = ""
+        Me.CCBEGroupStore.Location = New System.Drawing.Point(82, 91)
+        Me.CCBEGroupStore.Name = "CCBEGroupStore"
+        Me.CCBEGroupStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBEGroupStore.Size = New System.Drawing.Size(233, 20)
+        Me.CCBEGroupStore.TabIndex = 57
+        '
+        'CCBEProvince
+        '
+        Me.CCBEProvince.EditValue = ""
+        Me.CCBEProvince.Location = New System.Drawing.Point(82, 65)
+        Me.CCBEProvince.Name = "CCBEProvince"
+        Me.CCBEProvince.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBEProvince.Size = New System.Drawing.Size(233, 20)
+        Me.CCBEProvince.TabIndex = 56
+        '
+        'CCBEArea
+        '
+        Me.CCBEArea.EditValue = ""
+        Me.CCBEArea.Location = New System.Drawing.Point(82, 39)
+        Me.CCBEArea.Name = "CCBEArea"
+        Me.CCBEArea.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CCBEArea.Size = New System.Drawing.Size(233, 20)
+        Me.CCBEArea.TabIndex = 55
+        '
         'LabelControl4
         '
         Me.LabelControl4.Location = New System.Drawing.Point(11, 16)
@@ -644,33 +671,6 @@ Partial Class FormProductPerform
         Me.SBExportExcel.TabIndex = 2
         Me.SBExportExcel.Text = "Export to XLS"
         '
-        'CCBEArea
-        '
-        Me.CCBEArea.EditValue = ""
-        Me.CCBEArea.Location = New System.Drawing.Point(82, 39)
-        Me.CCBEArea.Name = "CCBEArea"
-        Me.CCBEArea.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCBEArea.Size = New System.Drawing.Size(233, 20)
-        Me.CCBEArea.TabIndex = 55
-        '
-        'CCBEProvince
-        '
-        Me.CCBEProvince.EditValue = ""
-        Me.CCBEProvince.Location = New System.Drawing.Point(82, 65)
-        Me.CCBEProvince.Name = "CCBEProvince"
-        Me.CCBEProvince.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCBEProvince.Size = New System.Drawing.Size(233, 20)
-        Me.CCBEProvince.TabIndex = 56
-        '
-        'CCBEGroupStore
-        '
-        Me.CCBEGroupStore.EditValue = ""
-        Me.CCBEGroupStore.Location = New System.Drawing.Point(82, 91)
-        Me.CCBEGroupStore.Name = "CCBEGroupStore"
-        Me.CCBEGroupStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCBEGroupStore.Size = New System.Drawing.Size(233, 20)
-        Me.CCBEGroupStore.TabIndex = 57
-        '
         'FormProductPerform
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -701,6 +701,9 @@ Partial Class FormProductPerform
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.CCBEGroupStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCBEProvince.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCBEArea.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CESelectAllStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MESelectedStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -718,9 +721,6 @@ Partial Class FormProductPerform
         CType(Me.XTCOption, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCOption.ResumeLayout(False)
         Me.XtraTabPage1.ResumeLayout(False)
-        CType(Me.CCBEArea.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CCBEProvince.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CCBEGroupStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
