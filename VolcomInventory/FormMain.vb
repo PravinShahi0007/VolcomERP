@@ -8799,6 +8799,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormPriceMKDVios.GCData, "Turun Harga - Online Store")
         ElseIf formName = "FormMaterialRequisition" Then
             print(FormMaterialRequisition.GCMRS, "List Material Requisition")
+        ElseIf formname = "FormCapsule" Then
+            print(FormCapsule.GCData, "Capsule Data")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9826,6 +9828,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPriceMKDVios" Then
             FormPriceMKDVios.Close()
             FormPriceMKDVios.Dispose()
+        ElseIf formname = "FormCapsule" Then
+            FormCapsule.Close()
+            FormCapsule.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
