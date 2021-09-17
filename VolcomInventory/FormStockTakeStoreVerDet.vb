@@ -242,13 +242,15 @@
         If SLUEReportStatus.EditValue.ToString = "0" Then
             SBImportExcel.Enabled = True
             SBMark.Enabled = False
-            SBPrint.Enabled = False
             SBSubmit.Enabled = True
+
+            SBPrint.Text = "Draft"
         Else
             SBImportExcel.Enabled = False
             SBMark.Enabled = True
-            SBPrint.Enabled = True
             SBSubmit.Enabled = False
+
+            SBPrint.Text = "Print"
         End If
 
         BGVData.BestFitColumns()
@@ -421,6 +423,8 @@
             SELECT DATE_FORMAT(report_mark_datetime, '%d %M %Y') AS created_at
             FROM tb_report_mark
             WHERE id_report_status = 1 AND id_report = " + id_st_store_bap + " AND report_mark_type = (SELECT report_mark_type FROM tb_st_store_bap WHERE id_st_store_bap = " + id_st_store_bap + ")
+            UNION ALL
+            SELECT DATE_FORMAT(NOW(), '%d %M %Y') AS created_at
         ", 0, True, "", "", "", "")
 
         Dim report_mark_type As String = execute_query("
