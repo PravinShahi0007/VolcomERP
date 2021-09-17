@@ -10192,6 +10192,7 @@ WHERE spl.id_sni_pps='" & id_report & "'"
 tb_m_design dsg
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=dsg.`id_prod_demand_design_line`
 INNER JOIN tb_prod_demand pd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
+INNER JOIN tb_opt opt 
 SET 
 pdd.prod_demand_design_estimate_price = dsg.prod_order_cop_pd,
 pdd.prod_demand_design_total_cost = dsg.prod_order_cop_pd,  
