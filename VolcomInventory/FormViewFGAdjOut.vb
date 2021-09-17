@@ -3,6 +3,7 @@
     Public action As String
     Public id_report_status As String
     Public total_amount As Double
+    Public report_mark_type As String
 
     Private Sub FormViewFGAdjOut_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -128,7 +129,7 @@
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         FormReportMark.id_report = id_adj_out_fg
-        FormReportMark.report_mark_type = "42"
+        FormReportMark.report_mark_type = report_mark_type
         FormReportMark.form_origin = Name
         FormReportMark.is_view = "1"
         FormReportMark.ShowDialog()

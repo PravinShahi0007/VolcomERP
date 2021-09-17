@@ -20,6 +20,8 @@ Partial Class FormFGAdjInSingle
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupControlInput = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtUnitPrice = New DevExpress.XtraEditors.TextEdit()
         Me.TxtRealCost = New DevExpress.XtraEditors.TextEdit()
         Me.TxtAmount = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -76,6 +78,7 @@ Partial Class FormFGAdjInSingle
         Me.GridColumnWHDrawerSample = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdWHDrawerSample = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
@@ -84,11 +87,9 @@ Partial Class FormFGAdjInSingle
         Me.PanelControlImg = New DevExpress.XtraEditors.PanelControl()
         Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
         Me.BtnViewImg = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TxtUnitPrice = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControlInput, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlInput.SuspendLayout()
+        CType(Me.TxtUnitPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtRealCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,7 +117,6 @@ Partial Class FormFGAdjInSingle
         CType(Me.PanelControlImg, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlImg.SuspendLayout()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtUnitPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlInput
@@ -146,6 +146,27 @@ Partial Class FormFGAdjInSingle
         Me.GroupControlInput.Size = New System.Drawing.Size(916, 235)
         Me.GroupControlInput.TabIndex = 6
         Me.GroupControlInput.Text = "Set Quantity"
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl12.Location = New System.Drawing.Point(452, 84)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl12.TabIndex = 140
+        Me.LabelControl12.Text = "Unit Price"
+        '
+        'TxtUnitPrice
+        '
+        Me.TxtUnitPrice.Location = New System.Drawing.Point(513, 81)
+        Me.TxtUnitPrice.Name = "TxtUnitPrice"
+        Me.TxtUnitPrice.Properties.Mask.EditMask = "n2"
+        Me.TxtUnitPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtUnitPrice.Properties.Mask.SaveLiteral = False
+        Me.TxtUnitPrice.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TxtUnitPrice.Properties.ReadOnly = True
+        Me.TxtUnitPrice.Size = New System.Drawing.Size(391, 20)
+        Me.TxtUnitPrice.TabIndex = 139
         '
         'TxtRealCost
         '
@@ -664,6 +685,16 @@ Partial Class FormFGAdjInSingle
         Me.GridColumnIdDesign.FieldName = "id_design"
         Me.GridColumnIdDesign.Name = "GridColumnIdDesign"
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Unit Price"
+        Me.GridColumn2.DisplayFormat.FormatString = "N0"
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn2.FieldName = "design_price"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 5
+        '
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
@@ -741,37 +772,6 @@ Partial Class FormFGAdjInSingle
         Me.BtnViewImg.TabIndex = 0
         Me.BtnViewImg.Text = "View Image"
         '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Unit Price"
-        Me.GridColumn2.DisplayFormat.FormatString = "N0"
-        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn2.FieldName = "design_price"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 5
-        '
-        'TxtUnitPrice
-        '
-        Me.TxtUnitPrice.Location = New System.Drawing.Point(513, 81)
-        Me.TxtUnitPrice.Name = "TxtUnitPrice"
-        Me.TxtUnitPrice.Properties.Mask.EditMask = "n2"
-        Me.TxtUnitPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtUnitPrice.Properties.Mask.SaveLiteral = False
-        Me.TxtUnitPrice.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TxtUnitPrice.Properties.ReadOnly = True
-        Me.TxtUnitPrice.Size = New System.Drawing.Size(391, 20)
-        Me.TxtUnitPrice.TabIndex = 139
-        '
-        'LabelControl12
-        '
-        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl12.Location = New System.Drawing.Point(452, 84)
-        Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(45, 13)
-        Me.LabelControl12.TabIndex = 140
-        Me.LabelControl12.Text = "Unit Price"
-        '
         'FormFGAdjInSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -789,6 +789,7 @@ Partial Class FormFGAdjInSingle
         CType(Me.GroupControlInput, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlInput.ResumeLayout(False)
         Me.GroupControlInput.PerformLayout()
+        CType(Me.TxtUnitPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtRealCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -818,7 +819,6 @@ Partial Class FormFGAdjInSingle
         CType(Me.PanelControlImg, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlImg.ResumeLayout(False)
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtUnitPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

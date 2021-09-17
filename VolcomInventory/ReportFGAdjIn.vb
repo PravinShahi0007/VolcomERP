@@ -2,6 +2,7 @@
     Public Shared id_adj_in_fg As String
     Dim currency As String
     Public is_pre As String = "2"
+    Public report_mark_type As String = ""
     Private Sub ReportFGAdjIn_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles MyBase.BeforePrint
         'Fetch from db main
         Dim query As String = "SELECT *, DATE_FORMAT(a.adj_in_fg_date, '%Y-%m-%d') AS adj_in_fg_datex FROM tb_adj_in_fg a "
@@ -20,7 +21,7 @@
         viewDetailReturn()
 
         'Mark
-        pre_load_mark_horz_check("41", id_adj_in_fg, "2", "2", XrTable1)
+        pre_load_mark_horz_check(report_mark_type, id_adj_in_fg, "2", "2", XrTable1)
 
 
     End Sub

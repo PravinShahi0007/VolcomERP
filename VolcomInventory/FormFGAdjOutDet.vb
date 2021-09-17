@@ -11,8 +11,27 @@
     Public locator_name As String = ""
     Public id_comp As String = ""
     Public comp_name As String = ""
+    Public id_st_store_bap As String = ""
+    Public report_mark_type As String = "42"
 
     Private Sub FormFGAdjOutDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        If Not id_st_store_bap = "" Then
+            report_mark_type = "341"
+        End If
+
+        If Not id_adj_out_fg = "" Then
+            Dim data_header As DataTable = execute_query("
+                SELECT id_st_store_bap, report_mark_type
+                FROM tb_adj_out_fg
+                WHERE id_adj_out_fg = " + id_adj_out_fg + "
+            ", -1, True, "", "", "", "")
+
+            If data_header.Rows.Count > 0 Then
+                id_st_store_bap = data_header.Rows(0)("id_st_store_bap").ToString
+                report_mark_type = data_header.Rows(0)("report_mark_type").ToString
+            End If
+        End If
+
         viewReportStatus()
         viewCurrency()
         actionLoad()
@@ -26,6 +45,36 @@
             BtnPrint.Enabled = False
             viewDetailReturn()
             PCEdit.Visible = True
+
+            If Not id_st_store_bap = "" Then
+                Dim query As String = "
+                    SELECT 0 AS id_adj_out_fg_det, d.id_product, p.name, p.size, u.uom, p.full_code AS code, ABS(v.qty) AS adj_out_fg_det_qty, p.unit_cost AS adj_out_fg_det_price, (ABS(v.qty) * p.unit_cost) AS adj_out_fg_det_amount, d.price AS retail_price, (ABS(v.qty) * d.price) AS retail_price_amount, '' AS adj_out_fg_det_note, c.id_drawer_def AS id_wh_drawer, w.id_wh_rack, r.id_wh_locator, b.id_comp, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp, w.wh_drawer, r.wh_rack, l.wh_locator, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name
+                    FROM tb_st_store_bap_ver AS v
+                    LEFT JOIN tb_st_store_bap_det AS d ON v.id_st_store_bap_det = d.id_st_store_bap_det
+                    LEFT JOIN tb_st_store_bap AS b ON d.id_st_store_bap = b.id_st_store_bap
+                    LEFT JOIN tb_m_product_store AS p ON d.id_product = p.id_product
+                    LEFT JOIN tb_m_design AS s ON p.id_design = s.id_design
+                    LEFT JOIN tb_m_uom AS u ON s.id_uom = u.id_uom
+                    LEFT JOIN tb_m_comp AS c ON b.id_comp = c.id_comp
+                    LEFT JOIN tb_m_wh_drawer AS w ON c.id_drawer_def = w.id_wh_drawer
+                    LEFT JOIN tb_m_wh_rack AS r ON w.id_wh_rack = r.id_wh_rack
+                    LEFT JOIN tb_m_wh_locator AS l ON r.id_wh_locator = l.id_wh_locator
+                    WHERE d.id_st_store_bap = " + id_st_store_bap + " AND v.qty > 0 AND v.report_mark_type = 0
+                "
+
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+                GCDetail.DataSource = data
+
+                GVDetail.BestFitColumns()
+
+                BtnAdd.Enabled = False
+                BtnDel.Enabled = False
+                BtnEdit.Enabled = False
+                BtnImportExcel.Enabled = False
+
+                MENote.EditValue = FormFGAdj.GVOutBAP.GetFocusedRowCellValue("number").ToString
+            End If
         ElseIf action = "upd" Then
             PCEdit.Visible = False
             BtnCancel.Text = "Close"
@@ -48,7 +97,7 @@
 
             'based on sttatus
             id_report_status = data.Rows(0)("id_report_status").ToString
-            If check_edit_report_status(id_report_status, "42", id_adj_out_fg) Then
+            If check_edit_report_status(id_report_status, report_mark_type, id_adj_out_fg) Then
                 BMark.Enabled = True
                 BtnSave.Enabled = True
                 MENote.Properties.ReadOnly = False
@@ -261,15 +310,15 @@
             Dim id_currency As String = LECurrency.EditValue.ToString
             If action = "ins" Then
                 'Main table
-                query = "INSERT INTO tb_adj_out_fg(adj_out_fg_number, adj_out_fg_date, adj_out_fg_note, id_report_status, adj_out_fg_total, id_currency,retail_price_total ) "
-                query += "VALUES('" + adj_out_fg_number + "', NOW(), '" + adj_out_fg_note + "', '" + id_report_status + "', '" + adj_out_fg_total + "', '" + id_currency + "', '" + retail_price_total + "'); SELECT LAST_INSERT_ID();"
+                query = "INSERT INTO tb_adj_out_fg(adj_out_fg_number, adj_out_fg_date, adj_out_fg_note, id_report_status, adj_out_fg_total, id_currency, retail_price_total, id_st_store_bap, report_mark_type) "
+                query += "VALUES('" + adj_out_fg_number + "', NOW(), '" + adj_out_fg_note + "', '" + id_report_status + "', '" + adj_out_fg_total + "', '" + id_currency + "', '" + retail_price_total + "', " + If(id_st_store_bap = "", "NULL", id_st_store_bap) + ", " + report_mark_type + "); SELECT LAST_INSERT_ID();"
                 id_adj_out_fg = execute_query(query, 0, True, "", "", "", "")
                 'MsgBox(id_product_return)
 
                 increase_inc_sales("13")
 
                 'preapred default
-                submit_who_prepared("42", id_adj_out_fg, id_user)
+                submit_who_prepared(report_mark_type, id_adj_out_fg, id_user)
 
                 'detail table
                 'INSERT TB DETAIL
@@ -290,11 +339,13 @@
                         query_upd_storage += ","
                     End If
                     query += "('" + id_adj_out_fg + "','" + adj_out_fg_det_note + "', '" + adj_out_fg_det_qty + "', '" + id_wh_drawer + "', '" + id_product + "', '" + adj_out_fg_det_price + "', '" + retail_price + "') "
-                    query_upd_storage += "('" + id_wh_drawer + "', '2', '" + id_product + "', '" + decimalSQL(adj_out_fg_det_price.ToString) + "', '" + decimalSQL(adj_out_fg_det_qty) + "', NOW(), 'Adjustment Out : " + adj_out_fg_number + "','2','42','" + id_adj_out_fg + "') "
+                    query_upd_storage += "('" + id_wh_drawer + "', '2', '" + id_product + "', '" + decimalSQL(adj_out_fg_det_price.ToString) + "', '" + decimalSQL(adj_out_fg_det_qty) + "', NOW(), 'Adjustment Out : " + adj_out_fg_number + "','2','" + report_mark_type + "','" + id_adj_out_fg + "') "
                 Next
                 If GVDetail.RowCount > 0 Then
                     execute_non_query(query, True, "", "", "", "")
-                    execute_non_query(query_upd_storage, True, "", "", "", "")
+                    If id_st_store_bap = "" Then
+                        execute_non_query(query_upd_storage, True, "", "", "", "")
+                    End If
                 End If
 
                 FormFGAdj.XTCAdj.SelectedTabPageIndex = 1
@@ -313,6 +364,7 @@
                 End Try
             End If
         End If
+        FormFGAdj.view_out_bap()
         Cursor = Cursors.Default
     End Sub
 
@@ -331,7 +383,7 @@
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         FormReportMark.id_report = id_adj_out_fg
-        FormReportMark.report_mark_type = "42"
+        FormReportMark.report_mark_type = report_mark_type
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
     End Sub
@@ -342,6 +394,7 @@
         ReportFGAdjOut.id_adj_out_fg = id_adj_out_fg
         Dim Report As New ReportFGAdjOut()
         '
+        Report.report_mark_type = report_mark_type
         If id_report_status! = "6" Then
             Report.is_pre = "1"
         End If
