@@ -112,6 +112,35 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+        '        Dim qd As String = "SELECT spl.*,qty.qty,tot.total,ROUND(tot.total/qty.qty,2) AS cost
+        'FROM `tb_sni_pps_list` spl
+        'INNER JOIN 
+        '(
+        '	SELECT id_sni_pps,SUM(qty) AS qty
+        '	FROM tb_sni_pps_list
+        '	WHERE id_sni_pps='5'
+        ')qty ON qty.id_sni_pps=spl.id_sni_pps
+        'INNER JOIN
+        '(
+        '	SELECT id_sni_pps,SUM(budget_value*budget_qty) AS total
+        '	FROM `tb_sni_pps_budget`
+        '	WHERE id_sni_pps='5'
+        ')tot ON tot.id_sni_pps=spl.id_sni_pps
+        'WHERE spl.id_sni_pps='5'"
+        '        Dim dt As DataTable = execute_query(qd, -1, True, "", "", "", "")
+        '        'update ke additional cop
+        '        For i = 0 To dt.Rows.Count - 1
+        '            'send mail to md
+        '            Try
+        '                Dim nm As New ClassSendEmail
+        '                nm.par1 = dt.Rows(i)("id_design").ToString
+        '                nm.report_mark_type = "267"
+        '                nm.send_email()
+        '            Catch ex As Exception
+        '                execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send ECOP PD SNI pps id_design = " & dt.Rows(i)("id_design").ToString & "')", -1, True, "", "", "", "")
+        '            End Try
+        '        Next
+
         '        Dim id_report As String = "5991"
         '        Dim qc As String = "SELECT pod.`id_prod_order_det`,pod.`id_prod_demand_product`,tot.qty,pod.`prod_order_qty`,(tot.qty-pod.`prod_order_qty`) AS more_qty
         ',d.`design_display_name`,cd.`code_detail_name`
