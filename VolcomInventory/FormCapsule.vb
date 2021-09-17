@@ -238,7 +238,11 @@ ORDER BY area ASC"
         If Not save.FileName = "" Then
             Dim op As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx
 
-            op.ExportType = DevExpress.Export.ExportType.DataAware
+            If CheckImg.EditValue = True Then
+                op.ExportType = DevExpress.Export.ExportType.WYSIWYG
+            Else
+                op.ExportType = DevExpress.Export.ExportType.DataAware
+            End If
 
             GVData.ExportToXlsx(save.FileName, op)
 
@@ -367,6 +371,11 @@ ORDER BY area ASC"
         Dim query As String = "CALL view_capsule('" + soh_date + "', '" + where_all + "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
+        If CheckImg.EditValue = True Then
+            GVData.RowHeight = 100
+        Else
+            GVData.RowHeight = 35
+        End If
         'FormMain.SplashScreenManager1.SetWaitFormDescription("Best fit columns")
         'GVData.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
@@ -500,6 +509,58 @@ ORDER BY area ASC"
             XtraTabControl1.Width = 355
         Else
             XtraTabControl1.Width = 24
+        End If
+    End Sub
+
+    Private imageDir As String = product_image_path
+    Private cloud_image_url As String = get_setup_field("cloud_image_url").ToString
+    Private Sub GVData_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles GVData.CustomUnboundColumnData
+        For i = 1 To 2
+            If e.Column.FieldName = "th" + i.ToString AndAlso e.IsGetData And CheckImg.EditValue.ToString = "True" Then
+                Dim images As Hashtable = New Hashtable()
+
+                Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+                Dim id As String = CStr(view.GetListSourceRowCellValue(e.ListSourceRowIndex, "code"))
+
+                Dim img As Image = Nothing
+                Dim resizeImg As Image = Nothing
+
+                Dim fileName As String = "/TH_" + id + "_" + i.ToString + ".jpg"
+
+                img = Image.FromFile(imageDir + "\default.jpg")
+
+                resizeImg = img.GetThumbnailImage(100, 100, Nothing, Nothing)
+
+                Try
+                    Dim filePath As String = cloud_image_url + fileName
+
+                    Dim t As Net.WebClient = New Net.WebClient
+
+                    img = Image.FromStream(New IO.MemoryStream(t.DownloadData(filePath)))
+
+                    resizeImg = img.GetThumbnailImage(100, 100, Nothing, Nothing)
+                Catch ex As Exception
+                End Try
+
+                images.Add(fileName, resizeImg)
+
+                e.Value = images(fileName)
+            End If
+        Next
+    End Sub
+
+    Private Sub CheckImg_CheckedChanged(sender As Object, e As EventArgs) Handles CheckImg.CheckedChanged
+        resetView()
+        If CheckImg.EditValue Then
+            GridColumnth2.Visible = True
+            GridColumnth2.VisibleIndex = 0
+            GridColumnth1.Visible = True
+            GridColumnth1.VisibleIndex = 0
+        Else
+            GridColumnth1.Visible = False
+            GridColumnth1.VisibleIndex = -1
+            GridColumnth2.Visible = False
+            GridColumnth2.VisibleIndex = -1
         End If
     End Sub
 End Class

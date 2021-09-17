@@ -43,6 +43,9 @@ Partial Class FormCapsule
         Me.GridColumnarea = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnstore_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnth1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemPictureEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
+        Me.GridColumnth2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
@@ -75,6 +78,7 @@ Partial Class FormCapsule
         Me.GridColumndesign_code = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnprod_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckImg = New DevExpress.XtraEditors.CheckEdit()
         Me.CESelectedProduct = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.CCBESeason = New DevExpress.XtraEditors.CheckedComboBoxEdit()
@@ -92,6 +96,7 @@ Partial Class FormCapsule
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
@@ -117,6 +122,7 @@ Partial Class FormCapsule
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CESelectedProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -137,6 +143,7 @@ Partial Class FormCapsule
         Me.GCData.Location = New System.Drawing.Point(355, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemPictureEdit1})
         Me.GCData.Size = New System.Drawing.Size(784, 628)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
@@ -148,11 +155,12 @@ Partial Class FormCapsule
         Me.GVData.Appearance.Row.Options.UseTextOptions = True
         Me.GVData.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVData.ColumnPanelRowHeight = 50
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumncode, Me.GridColumnname, Me.GridColumnclass, Me.GridColumncolor, Me.GridColumncolor_desc, Me.GridColumnparent_color, Me.GridColumnseason, Me.GridColumnstt, Me.GridColumndivision, Me.GridColumnsht, Me.GridColumndesign_first_rec_wh, Me.GridColumnttl_qty, Me.GridColumnprice_type, Me.GridColumnunit_price, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumngroup_store, Me.GridColumnstate, Me.GridColumnarea, Me.GridColumnstore_type, Me.GridColumncomp_status})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumncode, Me.GridColumnname, Me.GridColumnclass, Me.GridColumncolor, Me.GridColumncolor_desc, Me.GridColumnparent_color, Me.GridColumnseason, Me.GridColumnstt, Me.GridColumndivision, Me.GridColumnsht, Me.GridColumndesign_first_rec_wh, Me.GridColumnttl_qty, Me.GridColumnprice_type, Me.GridColumnunit_price, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumngroup_store, Me.GridColumnstate, Me.GridColumnarea, Me.GridColumnstore_type, Me.GridColumncomp_status, Me.GridColumnth1, Me.GridColumnth2})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ttl_qty", Me.GridColumnttl_qty, "{0:N0}")})
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
+        Me.GVData.OptionsCustomization.AllowRowSizing = True
         Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowFooter = True
@@ -228,7 +236,7 @@ Partial Class FormCapsule
         '
         'GridColumndivision
         '
-        Me.GridColumndivision.Caption = "Section"
+        Me.GridColumndivision.Caption = "Division"
         Me.GridColumndivision.FieldName = "division"
         Me.GridColumndivision.Name = "GridColumndivision"
         Me.GridColumndivision.Visible = True
@@ -337,12 +345,36 @@ Partial Class FormCapsule
         Me.GridColumncomp_status.Visible = True
         Me.GridColumncomp_status.VisibleIndex = 20
         '
+        'GridColumnth1
+        '
+        Me.GridColumnth1.Caption = "Image 1"
+        Me.GridColumnth1.ColumnEdit = Me.RepositoryItemPictureEdit1
+        Me.GridColumnth1.FieldName = "th1"
+        Me.GridColumnth1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnth1.Name = "GridColumnth1"
+        Me.GridColumnth1.UnboundType = DevExpress.Data.UnboundColumnType.[Object]
+        '
+        'RepositoryItemPictureEdit1
+        '
+        Me.RepositoryItemPictureEdit1.Name = "RepositoryItemPictureEdit1"
+        Me.RepositoryItemPictureEdit1.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
+        Me.RepositoryItemPictureEdit1.ZoomPercent = 50.0R
+        '
+        'GridColumnth2
+        '
+        Me.GridColumnth2.Caption = "Image 2"
+        Me.GridColumnth2.ColumnEdit = Me.RepositoryItemPictureEdit1
+        Me.GridColumnth2.FieldName = "th2"
+        Me.GridColumnth2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnth2.Name = "GridColumnth2"
+        Me.GridColumnth2.UnboundType = DevExpress.Data.UnboundColumnType.[Object]
+        '
         'XtraTabControl1
         '
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Left
         Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.XtraTabControl1.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.XtraTabControl1.LookAndFeel.SkinName = "Metropolis"
         Me.XtraTabControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
@@ -352,7 +384,7 @@ Partial Class FormCapsule
         '
         'XtraTabPage1
         '
-        Me.XtraTabPage1.Appearance.Header.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XtraTabPage1.Appearance.Header.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XtraTabPage1.Appearance.Header.Options.UseFont = True
         Me.XtraTabPage1.Controls.Add(Me.XtraScrollableControl1)
         Me.XtraTabPage1.Controls.Add(Me.PanelControl1)
@@ -644,6 +676,7 @@ Partial Class FormCapsule
         '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.CheckImg)
         Me.PanelControl4.Controls.Add(Me.CESelectedProduct)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
@@ -652,6 +685,15 @@ Partial Class FormCapsule
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(306, 33)
         Me.PanelControl4.TabIndex = 1
+        '
+        'CheckImg
+        '
+        Me.CheckImg.Location = New System.Drawing.Point(121, 7)
+        Me.CheckImg.Name = "CheckImg"
+        Me.CheckImg.Properties.Caption = "Show Images"
+        Me.CheckImg.Size = New System.Drawing.Size(87, 19)
+        Me.CheckImg.TabIndex = 3
+        Me.CheckImg.Visible = False
         '
         'CESelectedProduct
         '
@@ -832,6 +874,7 @@ Partial Class FormCapsule
         Me.Text = "Capsule Data"
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XtraTabPage1.ResumeLayout(False)
@@ -858,6 +901,7 @@ Partial Class FormCapsule
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
+        CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CESelectedProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -945,4 +989,8 @@ Partial Class FormCapsule
     Friend WithEvents GridColumnid_comp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_wh_ol As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_commerce_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnth1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemPictureEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit
+    Friend WithEvents GridColumnth2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CheckImg As DevExpress.XtraEditors.CheckEdit
 End Class
