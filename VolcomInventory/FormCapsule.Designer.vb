@@ -47,6 +47,15 @@ Partial Class FormCapsule
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCStore = New DevExpress.XtraGrid.GridControl()
+        Me.GVStore = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnid_comp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_wh_ol = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_commerce_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.CESelectedStore = New DevExpress.XtraEditors.CheckEdit()
         Me.CCBEGroupStore = New DevExpress.XtraEditors.CheckedComboBoxEdit()
@@ -63,7 +72,6 @@ Partial Class FormCapsule
         Me.GCProd = New DevExpress.XtraGrid.GridControl()
         Me.GVProd = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnis_select = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumndesign_code = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnprod_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
@@ -82,14 +90,6 @@ Partial Class FormCapsule
         Me.BtnExportXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCStore = New DevExpress.XtraGrid.GridControl()
-        Me.GVStore = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_comp = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_wh_ol = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_commerce_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,6 +98,9 @@ Partial Class FormCapsule
         Me.XtraScrollableControl1.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        CType(Me.GCStore, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVStore, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
         CType(Me.CESelectedStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,7 +115,6 @@ Partial Class FormCapsule
         Me.PanelControl3.SuspendLayout()
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.CESelectedProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,8 +129,6 @@ Partial Class FormCapsule
         CType(Me.DEUntilAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.GCStore, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVStore, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCData
@@ -396,6 +396,82 @@ Partial Class FormCapsule
         Me.GroupControl3.TabIndex = 8910
         Me.GroupControl3.Text = "Filter by Store"
         '
+        'GCStore
+        '
+        Me.GCStore.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCStore.Enabled = False
+        Me.GCStore.Location = New System.Drawing.Point(2, 177)
+        Me.GCStore.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.GCStore.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.GCStore.MainView = Me.GVStore
+        Me.GCStore.Name = "GCStore"
+        Me.GCStore.Size = New System.Drawing.Size(301, 9820)
+        Me.GCStore.TabIndex = 76
+        Me.GCStore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStore})
+        '
+        'GVStore
+        '
+        Me.GVStore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumnid_comp, Me.GridColumnid_wh_ol, Me.GridColumnid_commerce_type})
+        Me.GVStore.GridControl = Me.GCStore
+        Me.GVStore.Name = "GVStore"
+        Me.GVStore.OptionsFind.AlwaysVisible = True
+        Me.GVStore.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Account"
+        Me.GridColumn1.FieldName = "comp_number"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 1
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Acc. Description"
+        Me.GridColumn2.FieldName = "comp_name"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 2
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Select"
+        Me.GridColumn3.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumn3.FieldName = "is_select"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
+        '
+        'GridColumnid_comp
+        '
+        Me.GridColumnid_comp.Caption = "id_comp"
+        Me.GridColumnid_comp.FieldName = "id_comp"
+        Me.GridColumnid_comp.Name = "GridColumnid_comp"
+        Me.GridColumnid_comp.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnid_wh_ol
+        '
+        Me.GridColumnid_wh_ol.Caption = "id_wh_ol"
+        Me.GridColumnid_wh_ol.FieldName = "id_wh_ol"
+        Me.GridColumnid_wh_ol.Name = "GridColumnid_wh_ol"
+        Me.GridColumnid_wh_ol.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnid_commerce_type
+        '
+        Me.GridColumnid_commerce_type.Caption = "id_commerce_type"
+        Me.GridColumnid_commerce_type.FieldName = "id_commerce_type"
+        Me.GridColumnid_commerce_type.Name = "GridColumnid_commerce_type"
+        Me.GridColumnid_commerce_type.OptionsColumn.AllowEdit = False
+        '
         'PanelControl6
         '
         Me.PanelControl6.Controls.Add(Me.CESelectedStore)
@@ -547,13 +623,6 @@ Partial Class FormCapsule
         Me.GridColumnis_select.Name = "GridColumnis_select"
         Me.GridColumnis_select.Visible = True
         Me.GridColumnis_select.VisibleIndex = 0
-        '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
-        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
         'GridColumndesign_code
         '
@@ -748,76 +817,7 @@ Partial Class FormCapsule
         '
         Me.XtraTabPage2.Image = CType(resources.GetObject("XtraTabPage2.Image"), System.Drawing.Image)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(839, 626)
-        '
-        'GCStore
-        '
-        Me.GCStore.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCStore.Enabled = False
-        Me.GCStore.Location = New System.Drawing.Point(2, 177)
-        Me.GCStore.LookAndFeel.SkinName = "Office 2013 Dark Gray"
-        Me.GCStore.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.GCStore.MainView = Me.GVStore
-        Me.GCStore.Name = "GCStore"
-        Me.GCStore.Size = New System.Drawing.Size(301, 9820)
-        Me.GCStore.TabIndex = 76
-        Me.GCStore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStore})
-        '
-        'GVStore
-        '
-        Me.GVStore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumnid_comp, Me.GridColumnid_wh_ol, Me.GridColumnid_commerce_type})
-        Me.GVStore.GridControl = Me.GCStore
-        Me.GVStore.Name = "GVStore"
-        Me.GVStore.OptionsFind.AlwaysVisible = True
-        Me.GVStore.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Account"
-        Me.GridColumn1.FieldName = "comp_number"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.AllowEdit = False
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 1
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Acc. Description"
-        Me.GridColumn2.FieldName = "comp_name"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.OptionsColumn.AllowEdit = False
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Select"
-        Me.GridColumn3.ColumnEdit = Me.RepositoryItemCheckEdit1
-        Me.GridColumn3.FieldName = "is_select"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 0
-        '
-        'GridColumnid_comp
-        '
-        Me.GridColumnid_comp.Caption = "id_comp"
-        Me.GridColumnid_comp.FieldName = "id_comp"
-        Me.GridColumnid_comp.Name = "GridColumnid_comp"
-        Me.GridColumnid_comp.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnid_wh_ol
-        '
-        Me.GridColumnid_wh_ol.Caption = "id_wh_ol"
-        Me.GridColumnid_wh_ol.FieldName = "id_wh_ol"
-        Me.GridColumnid_wh_ol.Name = "GridColumnid_wh_ol"
-        Me.GridColumnid_wh_ol.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnid_commerce_type
-        '
-        Me.GridColumnid_commerce_type.Caption = "id_commerce_type"
-        Me.GridColumnid_commerce_type.FieldName = "id_commerce_type"
-        Me.GridColumnid_commerce_type.Name = "GridColumnid_commerce_type"
-        Me.GridColumnid_commerce_type.OptionsColumn.AllowEdit = False
+        Me.XtraTabPage2.Size = New System.Drawing.Size(322, 626)
         '
         'FormCapsule
         '
@@ -838,6 +838,9 @@ Partial Class FormCapsule
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
+        CType(Me.GCStore, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVStore, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         CType(Me.CESelectedStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -852,7 +855,6 @@ Partial Class FormCapsule
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         CType(Me.CESelectedProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -869,8 +871,6 @@ Partial Class FormCapsule
         CType(Me.DEUntilAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.GCStore, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVStore, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

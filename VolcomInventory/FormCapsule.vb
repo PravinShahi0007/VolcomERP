@@ -140,6 +140,78 @@ ORDER BY area ASC"
         Next
     End Sub
 
+    Sub viewStore()
+        Cursor = Cursors.WaitCursor
+        resetView()
+
+        'filter
+        Dim where As String = ""
+        Dim id_cat As String = ""
+        Try
+            id_cat = LECat.EditValue.ToString
+        Catch ex As Exception
+
+        End Try
+        If id_cat = "1" Then
+            'wholesale
+            where += "AND c.id_comp_group='59' AND c.id_commerce_type='1 ' "
+        ElseIf id_cat = "2" Then
+            'consingment
+            where += "AND c.id_comp_group<>'59' AND c.id_comp_group<>'7' AND c.id_commerce_type='1' "
+        ElseIf id_cat = "3" Then
+            'online
+            where += "AND c.id_comp_group<>'59' AND c.id_comp_group<>'7' AND c.id_commerce_type='2' "
+        ElseIf id_cat = "4" Then
+            'b&b wholesale
+            where += "AND c.id_comp_group<>'59' AND c.id_comp_group='7' AND c.id_commerce_type='1' "
+        Else
+            where += ""
+        End If
+        Dim id_area As String = ""
+        Try
+            id_area = CCBEArea.EditValue.ToString
+        Catch ex As Exception
+
+        End Try
+        If id_area <> "" Then
+            where += "AND c.id_area IN(" + id_area + ") "
+        End If
+        Dim id_province As String = ""
+        Try
+            id_province = CCBEProvince.EditValue.ToString
+        Catch ex As Exception
+
+        End Try
+        If id_province <> "" Then
+            where += "AND cty.id_state IN(" + id_province + ") "
+        End If
+        Dim id_group_store As String = ""
+        Try
+            id_group_store = CCBEGroupStore.EditValue.ToString
+        Catch ex As Exception
+
+        End Try
+        If id_group_store <> "" Then
+            where += "AND c.id_comp_group IN(" + id_group_store + ") "
+        End If
+
+        'view
+        Dim query As String = "SELECT c.id_comp, c.comp_name, c.comp_number, c.id_commerce_type, IFNULL(olc.id_wh_ol,0) AS `id_wh_ol`, 'No' AS `is_select` 
+        FROM tb_m_comp c 
+        LEFT JOIN (
+            SELECT olc.id_store,GROUP_CONCAT(DISTINCT olc.id_wh) AS `id_wh_ol` 
+            FROM tb_ol_store_comp olc
+            GROUP BY olc.id_store
+        ) olc ON olc.id_store = c.id_comp
+        INNER JOIN tb_m_city cty ON cty.id_city = c.id_city
+        WHERE c.id_comp_cat=6 " + where + " ORDER BY c.comp_number ASC "
+        Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
+        GCStore.DataSource = data
+        GVStore.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+
     Private Sub FormCapsule_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_season()
         view_division()
@@ -185,6 +257,15 @@ ORDER BY area ASC"
                 Exit Sub
             End If
         End If
+        If CESelectedStore.EditValue = True Then
+            GVProd.ActiveFilterString = "[is_select]='Yes'"
+            Dim jum_row As Integer = GVStore.RowCount
+            GVStore.ActiveFilterString = ""
+            If jum_row = 0 Then
+                warningCustom("Please select store first")
+                Exit Sub
+            End If
+        End If
 
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
             FormMain.SplashScreenManager1.ShowWaitForm()
@@ -215,9 +296,63 @@ ORDER BY area ASC"
             where_prod += " AND d.id_design IN (" + id_design_sel + ")"
         End If
 
+        'filter store
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Set store filter")
+        Dim where As String = ""
+        Dim id_cat As String = ""
+        Try
+            id_cat = LECat.EditValue.ToString
+        Catch ex As Exception
+
+        End Try
+        If id_cat = "1" Then
+            'wholesale
+            where += "AND c.id_comp_group=59 AND c.id_commerce_type=1 "
+        ElseIf id_cat = "2" Then
+            'consingment
+            where += "AND c.id_comp_group<>59 AND c.id_comp_group<>7 AND c.id_commerce_type=1 "
+        ElseIf id_cat = "3" Then
+            'online
+            where += "AND c.id_comp_group<>59 AND c.id_comp_group<>7 AND c.id_commerce_type=2 "
+        ElseIf id_cat = "4" Then
+            'b&b wholesale
+            where += "AND c.id_comp_group<>59 AND c.id_comp_group=7 AND c.id_commerce_type=1 "
+        Else
+            where += ""
+        End If
+        Dim id_area As String = ""
+        Try
+            id_area = CCBEArea.EditValue.ToString
+        Catch ex As Exception
+
+        End Try
+        If id_area <> "" Then
+            where += "AND c.id_area IN(" + id_area + ") "
+        End If
+        Dim id_province As String = ""
+        Try
+            id_province = CCBEProvince.EditValue.ToString
+        Catch ex As Exception
+
+        End Try
+        If id_province <> "" Then
+            where += "AND cty.id_state IN(" + id_province + ") "
+        End If
+        Dim id_group_store As String = ""
+        Try
+            id_group_store = CCBEGroupStore.EditValue.ToString
+        Catch ex As Exception
+
+        End Try
+        If id_group_store <> "" Then
+            where += "AND c.id_comp_group IN(" + id_group_store + ") "
+        End If
+
+
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading data")
+        Dim where_all As String = where + where_prod
         Dim soh_date As String = DateTime.Parse(DEUntilAcc.EditValue.ToString).ToString("yyyy-MM-dd")
-        Dim query As String = "CALL view_capsule('" + soh_date + "', '" + where_prod + "')"
+        Dim query As String = "CALL view_capsule('" + soh_date + "', '" + where_all + "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         'FormMain.SplashScreenManager1.SetWaitFormDescription("Best fit columns")
@@ -306,5 +441,44 @@ ORDER BY area ASC"
     Private Sub CCBEClass_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEClass.EditValueChanged
         resetView()
         productList()
+    End Sub
+
+    Sub storeList()
+        If CESelectedStore.EditValue = True Then
+            viewStore()
+        End If
+    End Sub
+
+    Private Sub LECat_EditValueChanged(sender As Object, e As EventArgs) Handles LECat.EditValueChanged
+        resetView()
+        view_group_store()
+        storeList()
+    End Sub
+
+    Private Sub CCBEArea_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEArea.EditValueChanged
+        resetView()
+        view_group_store()
+        storeList()
+    End Sub
+
+    Private Sub CCBEProvince_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEProvince.EditValueChanged
+        resetView()
+        view_group_store()
+        storeList()
+    End Sub
+
+    Private Sub CCBEGroupStore_EditValueChanged(sender As Object, e As EventArgs) Handles CCBEGroupStore.EditValueChanged
+        resetView()
+        storeList()
+    End Sub
+
+    Private Sub CESelectedStore_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectedStore.EditValueChanged
+        If CESelectedStore.EditValue = True Then
+            GCStore.Enabled = True
+            viewStore()
+        Else
+            GCStore.Enabled = False
+        End If
+        resetView()
     End Sub
 End Class
