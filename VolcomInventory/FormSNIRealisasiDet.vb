@@ -127,7 +127,7 @@ WHERE pps.`number`='" & addSlashes(TEBudgetNumber.Text) & "'"
         Dim q As String = "SELECT 'no' AS is_check,clr.color,IFNULL(p.id_product,0) AS id_product,dsg.`id_design`,dsg.`design_code`,dsg.design_fabrication,dsg.`design_display_name`,(dsg.`prod_order_cop_pd`-dsg.`prod_order_cop_pd_addcost`) AS ecop,del.`delivery`,ssn.`season`
 ,'VOLCOM' AS brand,co.country,ppsl.qty AS qty_line_list,so.season_orign
 FROM tb_sni_pps_list `ppsl`
-LEFT JOIN tb_m_product p ON p.id_design=ppsl.id_design AND p.product_code='921' -- hanya S
+LEFT JOIN tb_m_product p ON p.id_design=ppsl.id_design AND p.product_code='931' -- hanya S
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=ppsl.`id_design`
 INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=dsg.`id_design`
 INNER JOIN tb_season_delivery del ON del.id_delivery=dsg.`id_delivery`

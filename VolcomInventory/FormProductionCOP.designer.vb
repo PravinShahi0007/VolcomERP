@@ -1121,6 +1121,7 @@ Partial Class FormProductionCOP
         Me.TEAddCost.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEAddCost.Properties.Mask.SaveLiteral = False
         Me.TEAddCost.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEAddCost.Properties.ReadOnly = True
         Me.TEAddCost.Size = New System.Drawing.Size(168, 20)
         Me.TEAddCost.TabIndex = 161
         '
