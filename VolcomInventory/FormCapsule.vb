@@ -238,7 +238,7 @@ ORDER BY area ASC"
         If Not save.FileName = "" Then
             Dim op As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx
 
-            op.ExportType = DevExpress.Export.ExportType.WYSIWYG
+            op.ExportType = DevExpress.Export.ExportType.DataAware
 
             GVData.ExportToXlsx(save.FileName, op)
 
@@ -258,7 +258,7 @@ ORDER BY area ASC"
             End If
         End If
         If CESelectedStore.EditValue = True Then
-            GVProd.ActiveFilterString = "[is_select]='Yes'"
+            GVStore.ActiveFilterString = "[is_select]='Yes'"
             Dim jum_row As Integer = GVStore.RowCount
             GVStore.ActiveFilterString = ""
             If jum_row = 0 Then
@@ -346,6 +346,18 @@ ORDER BY area ASC"
         End Try
         If id_group_store <> "" Then
             where += "AND c.id_comp_group IN(" + id_group_store + ") "
+        End If
+        If CESelectedStore.EditValue = True Then
+            Dim id_store_sel As String = ""
+            GVStore.ActiveFilterString = "[is_select]='Yes'"
+            For i As Integer = 0 To GVStore.RowCount - 1
+                If i > 0 Then
+                    id_store_sel += ","
+                End If
+                id_store_sel += GVStore.GetRowCellValue(i, "id_comp").ToString
+            Next
+            GVStore.ActiveFilterString = ""
+            where_prod += " AND c.id_comp IN (" + id_store_sel + ")"
         End If
 
 
@@ -478,7 +490,16 @@ ORDER BY area ASC"
             viewStore()
         Else
             GCStore.Enabled = False
+            GCStore.DataSource = Nothing
         End If
         resetView()
+    End Sub
+
+    Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
+        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+            XtraTabControl1.Width = 355
+        Else
+            XtraTabControl1.Width = 24
+        End If
     End Sub
 End Class

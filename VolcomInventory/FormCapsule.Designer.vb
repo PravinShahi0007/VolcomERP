@@ -341,7 +341,6 @@ Partial Class FormCapsule
         '
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Left
         Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
-        Me.XtraTabControl1.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
         Me.XtraTabControl1.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.XtraTabControl1.LookAndFeel.UseDefaultLookAndFeel = False
@@ -359,7 +358,8 @@ Partial Class FormCapsule
         Me.XtraTabPage1.Controls.Add(Me.PanelControl1)
         Me.XtraTabPage1.Image = CType(resources.GetObject("XtraTabPage1.Image"), System.Drawing.Image)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(322, 626)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(327, 626)
+        Me.XtraTabPage1.Text = "Show Filter"
         '
         'XtraScrollableControl1
         '
@@ -369,7 +369,7 @@ Partial Class FormCapsule
         Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
         Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
-        Me.XtraScrollableControl1.Size = New System.Drawing.Size(322, 560)
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(327, 560)
         Me.XtraScrollableControl1.TabIndex = 0
         '
         'GroupControl3
@@ -392,7 +392,7 @@ Partial Class FormCapsule
         Me.GroupControl3.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.GroupControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(305, 9999)
+        Me.GroupControl3.Size = New System.Drawing.Size(310, 9999)
         Me.GroupControl3.TabIndex = 8910
         Me.GroupControl3.Text = "Filter by Store"
         '
@@ -405,7 +405,7 @@ Partial Class FormCapsule
         Me.GCStore.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GCStore.MainView = Me.GVStore
         Me.GCStore.Name = "GCStore"
-        Me.GCStore.Size = New System.Drawing.Size(301, 9820)
+        Me.GCStore.Size = New System.Drawing.Size(306, 9820)
         Me.GCStore.TabIndex = 76
         Me.GCStore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStore})
         '
@@ -480,7 +480,7 @@ Partial Class FormCapsule
         Me.PanelControl6.LookAndFeel.SkinName = "Office 2013 Light Gray"
         Me.PanelControl6.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(301, 33)
+        Me.PanelControl6.Size = New System.Drawing.Size(306, 33)
         Me.PanelControl6.TabIndex = 75
         '
         'CESelectedStore
@@ -568,7 +568,7 @@ Partial Class FormCapsule
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl5.Location = New System.Drawing.Point(2, 21)
         Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(301, 123)
+        Me.PanelControl5.Size = New System.Drawing.Size(306, 123)
         Me.PanelControl5.TabIndex = 74
         '
         'GroupControl2
@@ -582,7 +582,7 @@ Partial Class FormCapsule
         Me.GroupControl2.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.GroupControl2.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(305, 150)
+        Me.GroupControl2.Size = New System.Drawing.Size(310, 150)
         Me.GroupControl2.TabIndex = 8909
         Me.GroupControl2.Text = "Filter by Product"
         '
@@ -594,7 +594,7 @@ Partial Class FormCapsule
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl3.Location = New System.Drawing.Point(2, 116)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(301, 32)
+        Me.PanelControl3.Size = New System.Drawing.Size(306, 32)
         Me.PanelControl3.TabIndex = 68
         '
         'GCProd
@@ -604,7 +604,7 @@ Partial Class FormCapsule
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
         Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCProd.Size = New System.Drawing.Size(301, 0)
+        Me.GCProd.Size = New System.Drawing.Size(306, 0)
         Me.GCProd.TabIndex = 2
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
         '
@@ -650,7 +650,7 @@ Partial Class FormCapsule
         Me.PanelControl4.LookAndFeel.SkinName = "Office 2013 Light Gray"
         Me.PanelControl4.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(301, 33)
+        Me.PanelControl4.Size = New System.Drawing.Size(306, 33)
         Me.PanelControl4.TabIndex = 1
         '
         'CESelectedProduct
@@ -675,7 +675,7 @@ Partial Class FormCapsule
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(2, 21)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(301, 95)
+        Me.PanelControl2.Size = New System.Drawing.Size(306, 95)
         Me.PanelControl2.TabIndex = 67
         '
         'CCBESeason
@@ -743,7 +743,7 @@ Partial Class FormCapsule
         Me.GroupControl1.LookAndFeel.SkinName = "Office 2013 Dark Gray"
         Me.GroupControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(305, 59)
+        Me.GroupControl1.Size = New System.Drawing.Size(310, 59)
         Me.GroupControl1.TabIndex = 8908
         Me.GroupControl1.Text = "Filter by Period"
         '
@@ -776,7 +776,7 @@ Partial Class FormCapsule
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 560)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(322, 66)
+        Me.PanelControl1.Size = New System.Drawing.Size(327, 66)
         Me.PanelControl1.TabIndex = 1
         '
         'BtnExportXLS
@@ -792,7 +792,7 @@ Partial Class FormCapsule
         Me.BtnExportXLS.Location = New System.Drawing.Point(2, 33)
         Me.BtnExportXLS.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnExportXLS.Name = "BtnExportXLS"
-        Me.BtnExportXLS.Size = New System.Drawing.Size(318, 31)
+        Me.BtnExportXLS.Size = New System.Drawing.Size(323, 31)
         Me.BtnExportXLS.TabIndex = 1
         Me.BtnExportXLS.Text = "Export XLS"
         '
@@ -809,7 +809,7 @@ Partial Class FormCapsule
         Me.BtnView.Location = New System.Drawing.Point(2, 2)
         Me.BtnView.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(318, 31)
+        Me.BtnView.Size = New System.Drawing.Size(323, 31)
         Me.BtnView.TabIndex = 0
         Me.BtnView.Text = "View"
         '
@@ -817,7 +817,8 @@ Partial Class FormCapsule
         '
         Me.XtraTabPage2.Image = CType(resources.GetObject("XtraTabPage2.Image"), System.Drawing.Image)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(322, 626)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(327, 626)
+        Me.XtraTabPage2.Text = "Hide Filter"
         '
         'FormCapsule
         '
