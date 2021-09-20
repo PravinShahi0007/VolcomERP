@@ -17,7 +17,7 @@
         query += "a.sales_return_qc_note, a.sales_return_qc_number,IF(a.status_check_fisik=1,'Not Checked',IF(a.status_check_fisik=2,'Not Balance','Done')) AS sts_cek_fisik, "
         query += "CONCAT(c.comp_number,' - ',c.comp_name) AS store_name_from, (c.comp_number) AS store_number_from, "
         query += "CONCAT(e.comp_number,' - ',e.comp_name) AS comp_name_to, (e.comp_number) AS comp_number_to, get_custom_rmk(e.id_wh_type,49) AS `rmk`, "
-        query += "f.sales_return_number, g.report_status, h.pl_category, det.`total`, "
+        query += "f.sales_return_number, g.report_status, h.pl_category, det.`total`,cek_fisik.employee_name AS cek_fisik_by, "
         query += "a.last_update, getUserEmp(a.last_update_by, 1) AS last_user, ('No') AS is_select, IFNULL(pb.prepared_by,'-') AS `prepared_by`, pb.report_mark_datetime AS `prepared_date`  "
         query += "FROM tb_sales_return_qc a  "
         query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
@@ -32,6 +32,16 @@
         FROM tb_sales_return_qc_det d
         GROUP BY d.id_sales_return_qc
         ) det ON det.id_sales_return_qc = a.id_sales_return_qc 
+        LEFT JOIN
+        (
+            SELECT ck.created_by,ck.id_report,emp.employee_name
+            FROM `tb_wh_cek_fisik` ck
+            INNER JOIN tb_m_user usr on usr.id_user=ck.created_by
+            INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+            WHERE ck.report_mark_type='return_transfer'
+            AND ck.id_report_status!=5
+            GROUP BY id_report
+        )cek_fisik ON cek_fisik.id_report=a.id_sales_return_qc
         LEFT JOIN (
             SELECT rm.id_report, e.employee_name AS `prepared_by`,rm.report_mark_datetime
             FROM tb_report_mark rm

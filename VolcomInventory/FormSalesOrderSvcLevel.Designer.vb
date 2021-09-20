@@ -221,6 +221,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.LinkManifest = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumnawbill_no = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnprepare_datedel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnapprove_outbound_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnapprove_outbound_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateDO = New DevExpress.XtraEditors.SimpleButton()
@@ -376,8 +378,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPClosingSuratJalan = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumnapprove_outbound_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnapprove_outbound_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn70 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.LETypeRestockTOO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2370,6 +2371,25 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnprepare_datedel.VisibleIndex = 11
         Me.GridColumnprepare_datedel.Width = 137
         '
+        'GridColumnapprove_outbound_date
+        '
+        Me.GridColumnapprove_outbound_date.Caption = "Approved Date"
+        Me.GridColumnapprove_outbound_date.DisplayFormat.FormatString = "dd MMMM yyyy'/'hh:mm tt"
+        Me.GridColumnapprove_outbound_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnapprove_outbound_date.FieldName = "approve_outbound_date"
+        Me.GridColumnapprove_outbound_date.Name = "GridColumnapprove_outbound_date"
+        Me.GridColumnapprove_outbound_date.Visible = True
+        Me.GridColumnapprove_outbound_date.VisibleIndex = 13
+        Me.GridColumnapprove_outbound_date.Width = 91
+        '
+        'GridColumnapprove_outbound_by_name
+        '
+        Me.GridColumnapprove_outbound_by_name.Caption = "Approved by"
+        Me.GridColumnapprove_outbound_by_name.FieldName = "approve_outbound_by_name"
+        Me.GridColumnapprove_outbound_by_name.Name = "GridColumnapprove_outbound_by_name"
+        Me.GridColumnapprove_outbound_by_name.Visible = True
+        Me.GridColumnapprove_outbound_by_name.VisibleIndex = 12
+        '
         'GridView6
         '
         Me.GridView6.GridControl = Me.GCSalesDelOrder
@@ -2934,7 +2954,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'GVSalesReturnQC
         '
-        Me.GVSalesReturnQC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesReturnQCNumber, Me.GridColumn33, Me.GridColumnStoreNameFrom, Me.GridColumn34, Me.GridColumnQCCategory, Me.GridColumn35, Me.GridColumnCompTo, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumnTotalRetTrf, Me.GridColumnPreparedRtrf, Me.GridColumnprepared_date})
+        Me.GVSalesReturnQC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesReturnQCNumber, Me.GridColumn33, Me.GridColumnStoreNameFrom, Me.GridColumn34, Me.GridColumnQCCategory, Me.GridColumn35, Me.GridColumnCompTo, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumnTotalRetTrf, Me.GridColumnPreparedRtrf, Me.GridColumnprepared_date, Me.GridColumn70})
         Me.GVSalesReturnQC.GridControl = Me.GCSalesReturnQC
         Me.GVSalesReturnQC.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Min, "total", Me.GridColumnTotalRetTrf, "{0:n0}")})
         Me.GVSalesReturnQC.Name = "GVSalesReturnQC"
@@ -3000,7 +3020,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn35.Name = "GridColumn35"
         Me.GridColumn35.OptionsColumn.AllowEdit = False
         Me.GridColumn35.Visible = True
-        Me.GridColumn35.VisibleIndex = 11
+        Me.GridColumn35.VisibleIndex = 12
         Me.GridColumn35.Width = 102
         '
         'GridColumnCompTo
@@ -3022,7 +3042,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn36.Name = "GridColumn36"
         Me.GridColumn36.OptionsColumn.AllowEdit = False
         Me.GridColumn36.Visible = True
-        Me.GridColumn36.VisibleIndex = 10
+        Me.GridColumn36.VisibleIndex = 11
         Me.GridColumn36.Width = 102
         '
         'GridColumn37
@@ -3032,7 +3052,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn37.Name = "GridColumn37"
         Me.GridColumn37.OptionsColumn.AllowEdit = False
         Me.GridColumn37.Visible = True
-        Me.GridColumn37.VisibleIndex = 9
+        Me.GridColumn37.VisibleIndex = 10
         Me.GridColumn37.Width = 102
         '
         'GridColumn38
@@ -3046,7 +3066,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn38.FieldName = "is_select"
         Me.GridColumn38.Name = "GridColumn38"
         Me.GridColumn38.Visible = True
-        Me.GridColumn38.VisibleIndex = 12
+        Me.GridColumn38.VisibleIndex = 13
         Me.GridColumn38.Width = 111
         '
         'RepositoryItemCheckEdit4
@@ -3850,24 +3870,13 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTPClosingSuratJalan.Size = New System.Drawing.Size(934, 311)
         Me.XTPClosingSuratJalan.Text = "Closing Surat Jalan"
         '
-        'GridColumnapprove_outbound_date
+        'GridColumn70
         '
-        Me.GridColumnapprove_outbound_date.Caption = "Approved Date"
-        Me.GridColumnapprove_outbound_date.DisplayFormat.FormatString = "dd MMMM yyyy'/'hh:mm tt"
-        Me.GridColumnapprove_outbound_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnapprove_outbound_date.FieldName = "approve_outbound_date"
-        Me.GridColumnapprove_outbound_date.Name = "GridColumnapprove_outbound_date"
-        Me.GridColumnapprove_outbound_date.Visible = True
-        Me.GridColumnapprove_outbound_date.VisibleIndex = 13
-        Me.GridColumnapprove_outbound_date.Width = 91
-        '
-        'GridColumnapprove_outbound_by_name
-        '
-        Me.GridColumnapprove_outbound_by_name.Caption = "Approved by"
-        Me.GridColumnapprove_outbound_by_name.FieldName = "approve_outbound_by_name"
-        Me.GridColumnapprove_outbound_by_name.Name = "GridColumnapprove_outbound_by_name"
-        Me.GridColumnapprove_outbound_by_name.Visible = True
-        Me.GridColumnapprove_outbound_by_name.VisibleIndex = 12
+        Me.GridColumn70.Caption = "Cek Fisik By"
+        Me.GridColumn70.FieldName = "cek_fisik_by"
+        Me.GridColumn70.Name = "GridColumn70"
+        Me.GridColumn70.Visible = True
+        Me.GridColumn70.VisibleIndex = 9
         '
         'FormSalesOrderSvcLevel
         '
@@ -4382,4 +4391,5 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents GridColumnprepared_datetrf As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnapprove_outbound_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnapprove_outbound_by_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn70 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
