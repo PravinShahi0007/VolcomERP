@@ -116,7 +116,10 @@
 
     'view season orign
     Sub viewSeasonOrign(ByVal lookup As DevExpress.XtraEditors.SearchLookUpEdit)
-        Dim query As String = "SELECT * FROM tb_season_orign a ORDER BY a.id_season_orign DESC "
+        Dim query As String = "SELECT a.id_season_orign, a.season_orign, a.season_orign_display, c.country_display_name 
+        FROM tb_season_orign a 
+        INNER JOIN tb_m_country c ON c.id_country = a.id_country
+        ORDER BY a.id_season_orign DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         lookup.Properties.DataSource = Nothing
