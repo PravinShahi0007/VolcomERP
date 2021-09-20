@@ -245,7 +245,7 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "CALL view_pl_prod_rec('" + id_pl_prod_order_rec + "', '0')"
+        Dim query As String = "CALL view_pl_prod_rec('" + id_pl_prod_order_rec + "', '1')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRetDetail.DataSource = data
         check_but()
