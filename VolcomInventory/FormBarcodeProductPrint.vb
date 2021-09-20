@@ -99,7 +99,10 @@ Public Class FormBarcodeProductPrint
 
                 TESize.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("Size").ToString
                 TEColor.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("Color_display").ToString
+                TEColorDesc.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("Color").ToString
                 TERetCode.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("ret_code").ToString
+                TESHT.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("Product Silhouette_display").ToString
+                TEClass.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("Product Class_display").ToString
 
                 TEQtyOrder.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("qty_order").ToString
                 TEQtyRec.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("qty_rec").ToString
