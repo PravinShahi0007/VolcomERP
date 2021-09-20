@@ -6129,10 +6129,27 @@ WHERE is_to='2' AND emp.`email_external`!='' AND report_mark_type='" & rmt & "'"
         End If
 
         If rmt = "9" Or rmt = "80" Or rmt = "81" Or rmt = "206" Then
-            Dim query As String = "SELECT pd.prod_demand_number,pdd.`id_prod_demand_design`,dsg.`design_code`,dsg.`design_display_name`,ROUND(SUM(pdp.`prod_demand_product_qty`)) AS qty FROM `tb_prod_demand_product` pdp
+            Dim query As String = "SELECT pd.prod_demand_number,pdd.`id_prod_demand_design`,dsg.`design_code`,dsg.`design_display_name`,ROUND(SUM(pdp.`prod_demand_product_qty`)) AS qty, cd.class, cd.color 
+FROM `tb_prod_demand_product` pdp
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=pdp.`id_prod_demand_design` AND pdd.`is_void`='2'
 INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
 WHERE pdd.id_prod_demand='" & id_report & "'
 GROUP BY pdp.`id_prod_demand_design`"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -6147,7 +6164,13 @@ GROUP BY pdp.`id_prod_demand_design`"
 														Code
 													</td>
 													<td>
+														Class
+													</td>
+                                                    <td>
 														Design
+													</td>
+                                                    <td>
+														Color
 													</td>
 													<td style='text-align: center;'>
 														Total Qty
@@ -6159,7 +6182,13 @@ GROUP BY pdp.`id_prod_demand_design`"
 											" & data.Rows(i)("design_code").ToString & "
 										</td>
 										<td>
+											" & data.Rows(i)("class").ToString & "
+										</td>
+                                        <td>
 											" & data.Rows(i)("design_display_name").ToString & "
+										</td>
+                                        <td>
+											" & data.Rows(i)("color").ToString & "
 										</td>
 										<td style='text-align: center;'>
 											" & data.Rows(i)("qty").ToString & "
@@ -6195,8 +6224,14 @@ GROUP BY pdp.`id_prod_demand_design`"
 													<td>
 														Code
 													</td>
+                                                    <td>
+														Class
+													</td>
 													<td>
 														Design
+													</td>
+                                                    <td>
+														Color
 													</td>
 													<td style='text-align: center;'>
 														Total Qty
@@ -6210,8 +6245,14 @@ GROUP BY pdp.`id_prod_demand_design`"
 										<td>
 											" & data.Rows(i)("CODE").ToString & "
 										</td>
+                                        <td>
+											" & data.Rows(i)("CLASS").ToString & "
+										</td>
 										<td>
 											" & data.Rows(i)("DESCRIPTION").ToString & "
+										</td>
+                                        <td>
+											" & data.Rows(i)("COLOR").ToString & "
 										</td>
 										<td style='text-align: center;'>
 											" & data.Rows(i)("TOTAL QTY").ToString & "
