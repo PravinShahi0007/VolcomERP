@@ -296,6 +296,8 @@ Partial Class FormMasterDesignSingle
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
         Me.EPChanges = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.GridColumnseason_orign_display = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncountry_display_name = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RILEValNon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1400,7 +1402,7 @@ Partial Class FormMasterDesignSingle
         '
         'GridView10
         '
-        Me.GridView10.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn26, Me.GridColumn27})
+        Me.GridView10.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn26, Me.GridColumn27, Me.GridColumnseason_orign_display, Me.GridColumncountry_display_name})
         Me.GridView10.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView10.Name = "GridView10"
         Me.GridView10.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -3157,6 +3159,22 @@ Partial Class FormMasterDesignSingle
         Me.EPChanges.ContainerControl = Me
         Me.EPChanges.Icon = CType(resources.GetObject("EPChanges.Icon"), System.Drawing.Icon)
         '
+        'GridColumnseason_orign_display
+        '
+        Me.GridColumnseason_orign_display.Caption = "Season Display"
+        Me.GridColumnseason_orign_display.FieldName = "season_orign_display"
+        Me.GridColumnseason_orign_display.Name = "GridColumnseason_orign_display"
+        Me.GridColumnseason_orign_display.Visible = True
+        Me.GridColumnseason_orign_display.VisibleIndex = 1
+        '
+        'GridColumncountry_display_name
+        '
+        Me.GridColumncountry_display_name.Caption = "Country"
+        Me.GridColumncountry_display_name.FieldName = "country_display_name"
+        Me.GridColumncountry_display_name.Name = "GridColumncountry_display_name"
+        Me.GridColumncountry_display_name.Visible = True
+        Me.GridColumncountry_display_name.VisibleIndex = 2
+        '
         'FormMasterDesignSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3592,4 +3610,6 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents XTPImages As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents BtnNonActive As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnproduct_active_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnseason_orign_display As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncountry_display_name As DevExpress.XtraGrid.Columns.GridColumn
 End Class
