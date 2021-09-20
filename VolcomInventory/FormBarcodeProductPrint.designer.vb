@@ -61,12 +61,18 @@ Partial Class FormBarcodeProductPrint
         Me.TEProdBarcode = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BLogUnique = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrintSNI = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BLogUnique = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintFront = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintBack = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.BPrintSNI = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEColorDesc = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TESHT = New DevExpress.XtraEditors.TextEdit()
+        Me.TEClass = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TEQtyRec.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,11 +100,20 @@ Partial Class FormBarcodeProductPrint
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEColorDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TESHT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEClass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl4)
+        Me.GroupGeneralHeader.Controls.Add(Me.TEClass)
+        Me.GroupGeneralHeader.Controls.Add(Me.TESHT)
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl3)
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl2)
+        Me.GroupGeneralHeader.Controls.Add(Me.TEColorDesc)
         Me.GroupGeneralHeader.Controls.Add(Me.TEQtyRec)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl15)
         Me.GroupGeneralHeader.Controls.Add(Me.TEQtyOrder)
@@ -218,17 +233,17 @@ Partial Class FormBarcodeProductPrint
         'TEColor
         '
         Me.TEColor.EditValue = ""
-        Me.TEColor.Location = New System.Drawing.Point(384, 82)
+        Me.TEColor.Location = New System.Drawing.Point(275, 82)
         Me.TEColor.Name = "TEColor"
         Me.TEColor.Properties.EditValueChangedDelay = 1
         Me.TEColor.Properties.ReadOnly = True
-        Me.TEColor.Size = New System.Drawing.Size(158, 20)
+        Me.TEColor.Size = New System.Drawing.Size(74, 20)
         Me.TEColor.TabIndex = 167
         Me.TEColor.TabStop = False
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(383, 63)
+        Me.LabelControl10.Location = New System.Drawing.Point(275, 63)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(25, 13)
         Me.LabelControl10.TabIndex = 166
@@ -241,7 +256,7 @@ Partial Class FormBarcodeProductPrint
         Me.TESize.Name = "TESize"
         Me.TESize.Properties.EditValueChangedDelay = 1
         Me.TESize.Properties.ReadOnly = True
-        Me.TESize.Size = New System.Drawing.Size(168, 20)
+        Me.TESize.Size = New System.Drawing.Size(61, 20)
         Me.TESize.TabIndex = 163
         Me.TESize.TabStop = False
         '
@@ -552,16 +567,16 @@ Partial Class FormBarcodeProductPrint
         Me.PanelControl1.Size = New System.Drawing.Size(752, 43)
         Me.PanelControl1.TabIndex = 36
         '
-        'BLogUnique
+        'BPrintSNI
         '
-        Me.BLogUnique.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BLogUnique.ImageIndex = 11
-        Me.BLogUnique.ImageList = Me.LargeImageCollection
-        Me.BLogUnique.Location = New System.Drawing.Point(2, 2)
-        Me.BLogUnique.Name = "BLogUnique"
-        Me.BLogUnique.Size = New System.Drawing.Size(101, 39)
-        Me.BLogUnique.TabIndex = 15
-        Me.BLogUnique.Text = "Log Unique"
+        Me.BPrintSNI.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrintSNI.ImageIndex = 6
+        Me.BPrintSNI.ImageList = Me.LargeImageCollection
+        Me.BPrintSNI.Location = New System.Drawing.Point(331, 2)
+        Me.BPrintSNI.Name = "BPrintSNI"
+        Me.BPrintSNI.Size = New System.Drawing.Size(114, 39)
+        Me.BPrintSNI.TabIndex = 16
+        Me.BPrintSNI.Text = "Print SNI"
         '
         'LargeImageCollection
         '
@@ -579,6 +594,17 @@ Partial Class FormBarcodeProductPrint
         Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
         Me.LargeImageCollection.Images.SetKeyName(10, "attachment-icon.png")
         Me.LargeImageCollection.Images.SetKeyName(11, "30-Text_32x32.png")
+        '
+        'BLogUnique
+        '
+        Me.BLogUnique.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BLogUnique.ImageIndex = 11
+        Me.BLogUnique.ImageList = Me.LargeImageCollection
+        Me.BLogUnique.Location = New System.Drawing.Point(2, 2)
+        Me.BLogUnique.Name = "BLogUnique"
+        Me.BLogUnique.Size = New System.Drawing.Size(101, 39)
+        Me.BLogUnique.TabIndex = 15
+        Me.BLogUnique.Text = "Log Unique"
         '
         'BtnPrintFront
         '
@@ -613,16 +639,62 @@ Partial Class FormBarcodeProductPrint
         Me.BPrint.TabIndex = 12
         Me.BPrint.Text = "Print"
         '
-        'BPrintSNI
+        'TEColorDesc
         '
-        Me.BPrintSNI.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrintSNI.ImageIndex = 6
-        Me.BPrintSNI.ImageList = Me.LargeImageCollection
-        Me.BPrintSNI.Location = New System.Drawing.Point(331, 2)
-        Me.BPrintSNI.Name = "BPrintSNI"
-        Me.BPrintSNI.Size = New System.Drawing.Size(114, 39)
-        Me.BPrintSNI.TabIndex = 16
-        Me.BPrintSNI.Text = "Print SNI"
+        Me.TEColorDesc.EditValue = ""
+        Me.TEColorDesc.Location = New System.Drawing.Point(353, 82)
+        Me.TEColorDesc.Name = "TEColorDesc"
+        Me.TEColorDesc.Properties.EditValueChangedDelay = 1
+        Me.TEColorDesc.Properties.ReadOnly = True
+        Me.TEColorDesc.Size = New System.Drawing.Size(189, 20)
+        Me.TEColorDesc.TabIndex = 177
+        Me.TEColorDesc.TabStop = False
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(353, 63)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(81, 13)
+        Me.LabelControl2.TabIndex = 178
+        Me.LabelControl2.Text = "Color Description"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(321, 160)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(48, 13)
+        Me.LabelControl3.TabIndex = 179
+        Me.LabelControl3.Text = "Silhouette"
+        '
+        'TESHT
+        '
+        Me.TESHT.EditValue = ""
+        Me.TESHT.Location = New System.Drawing.Point(321, 179)
+        Me.TESHT.Name = "TESHT"
+        Me.TESHT.Properties.EditValueChangedDelay = 1
+        Me.TESHT.Properties.ReadOnly = True
+        Me.TESHT.Size = New System.Drawing.Size(221, 20)
+        Me.TESHT.TabIndex = 180
+        Me.TESHT.TabStop = False
+        '
+        'TEClass
+        '
+        Me.TEClass.EditValue = ""
+        Me.TEClass.Location = New System.Drawing.Point(210, 179)
+        Me.TEClass.Name = "TEClass"
+        Me.TEClass.Properties.EditValueChangedDelay = 1
+        Me.TEClass.Properties.ReadOnly = True
+        Me.TEClass.Size = New System.Drawing.Size(105, 20)
+        Me.TEClass.TabIndex = 181
+        Me.TEClass.TabStop = False
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(210, 160)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(25, 13)
+        Me.LabelControl4.TabIndex = 182
+        Me.LabelControl4.Text = "Class"
         '
         'FormBarcodeProductPrint
         '
@@ -668,6 +740,9 @@ Partial Class FormBarcodeProductPrint
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEColorDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TESHT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEClass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -717,4 +792,10 @@ Partial Class FormBarcodeProductPrint
     Friend WithEvents TEQtyOrder As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BPrintSNI As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TESHT As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEColorDesc As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEClass As DevExpress.XtraEditors.TextEdit
 End Class
