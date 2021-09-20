@@ -8772,7 +8772,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormOGTransfer" Then
             print(FormOGTransfer.GCOGTransfer, "Transfer List")
         ElseIf formName = "FormAWBOther" Then
-            print(FormAWBOther.GCAWB, "AWB List " & FormAWBOther.SLECargo.Text & " (" & Date.Parse(FormAWBOther.DEStart.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(FormAWBOther.DEUntil.EditValue.ToString).ToString("dd MMMM yyyy") & ") ")
+            print(FormAWBOther.GCList, "AWB List " & FormAWBOther.SLECargo.Text & " (" & Date.Parse(FormAWBOther.DEStart.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(FormAWBOther.DEUntil.EditValue.ToString).ToString("dd MMMM yyyy") & ") ")
         ElseIf formName = "FormSNIppsBudget" Then
             print(FormSNIppsBudget.GCList, "SNI Porposal List ")
         ElseIf formName = "FormSNISerahTerima" Then
