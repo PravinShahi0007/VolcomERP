@@ -8,6 +8,47 @@
         load_head()
     End Sub
 
+    Sub load_duty()
+        Dim q As String = "SELECT po.`prod_order_number`,d.`design_code`,d.`design_display_name`,(l.`qty`*l.`price`) AS tot_fob,l.`qty`,l.`price`,cal.`rate_management`
+,(l.`price`*cal.`rate_management`) AS fob_rp,(l.`price`*cal.`rate_management`)*l.`qty` AS tot_fob_rp
+,ROUND(pdd.`prod_demand_design_propose_price`) AS pd_price,ROUND(((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) AS price_commision
+,ROUND((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)) AS price_ppn
+,ROUND(l.`qty`*(cal.`sales_percent`/100)) AS qty_sales
+,ROUND(tot_freight.tot_freight/tot_fgpo.tot_qty_sales,2) AS freight_cost
+,ROUND((tot_freight.tot_freight/tot_fgpo.tot_qty_sales)*l.`qty`*(cal.`sales_percent`/100),2) AS tot_freight
+,ROUND((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100),2) AS royalty
+,ROUND((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100) * ROUND(l.`qty`*(cal.`sales_percent`/100)),2) AS tot_royalty
+,ROUND((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100) * (l.duty/100),2) AS bm
+,ROUND((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100) * (l.duty/100) * ROUND(l.`qty`*(cal.`sales_percent`/100)),2) AS tot_bm
+,ROUND((((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100))+((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100) * (l.duty/100)))*(cal.ppn/100),2) AS ppn_royalty
+,ROUND((((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100))+((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100) * (l.duty/100)))*(cal.pph/100),2) AS pph_royalty
+,ROUND((((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100))+((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100) * (l.duty/100)))*(cal.ppn/100)*ROUND(l.`qty`*(cal.`sales_percent`/100)),2) AS total_ppn_royalty
+,ROUND((((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100))+((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100) * (l.duty/100)))*(cal.pph/100)*ROUND(l.`qty`*(cal.`sales_percent`/100)),2) AS total_pph_royalty
+FROM `tb_pre_cal_fgpo_list` l
+INNER JOIN tb_pre_cal_fgpo cal ON cal.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo`
+INNER JOIN tb_prod_order po ON po.`id_prod_order`=l.`id_prod_order`
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+INNER JOIN tb_m_design d ON d.`id_design`=pdd.`id_design`
+INNER JOIN 
+(
+	SELECT det.`total_in_rp` AS tot_freight
+	FROM tb_pre_cal_fgpo_det det
+	INNER JOIN tb_pre_cal_fgpo f ON f.`id_pre_cal_fgpo`=det.`id_pre_cal_fgpo` AND f.`choosen_id_comp`=det.`id_comp`
+	WHERE det.`id_pre_cal_fgpo`='" & id & "' AND det.id_type=1
+)tot_freight 
+INNER JOIN 
+(
+	SELECT SUM(l.`qty`) AS tot_qty,SUM(ROUND(l.`qty`*(f.`sales_percent`/100))) AS tot_qty_sales
+	FROM tb_pre_cal_fgpo_list l
+	INNER JOIN tb_pre_cal_fgpo f ON f.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo` 
+	WHERE f.`id_pre_cal_fgpo`='" & id & "'
+)tot_fgpo
+WHERE l.`id_pre_cal_fgpo`='" & id & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCDuty.DataSource = dt
+        GVDuty.BestFitColumns()
+    End Sub
+
     Sub load_kurs()
         'check kurs first
         Dim query_kurs As String = "SELECT * FROM tb_kurs_trans WHERE DATE(DATE_ADD(created_date, INTERVAL 6 DAY)) >= DATE(NOW()) ORDER BY id_kurs_trans DESC LIMIT 1"
@@ -72,7 +113,13 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
 
                 load_list_forwarder()
 
-                If steps > 3 Then
+                If steps = 7 Then
+                    load_list_orign()
+                    load_list_dest()
+                    load_list_adm()
+                    load_list_chosen()
+                    load_duty()
+                ElseIf steps > 3 Then
                     load_list_orign()
                     load_list_dest()
                     load_list_adm()
