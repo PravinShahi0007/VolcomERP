@@ -33,6 +33,19 @@ Partial Public Class ReportBalancePPNSummary
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
+        Me.BGVSummary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
@@ -48,24 +61,11 @@ Partial Public Class ReportBalancePPNSummary
         Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.LPageFooter = New DevExpress.XtraReports.UI.XRLabel()
-        Me.BGVSummary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GCSum, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSum, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -136,9 +136,11 @@ Partial Public Class ReportBalancePPNSummary
         '
         Me.GridColumn9.Caption = "KETERANGAN"
         Me.GridColumn9.FieldName = "keterangan"
+        Me.GridColumn9.MinWidth = 200
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 0
+        Me.GridColumn9.Width = 200
         '
         'GridColumn10
         '
@@ -227,6 +229,177 @@ Partial Public Class ReportBalancePPNSummary
         Me.GCSummary.Size = New System.Drawing.Size(726, 100)
         Me.GCSummary.TabIndex = 4
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVSummary})
+        '
+        'BGVSummary
+        '
+        Me.BGVSummary.AppearancePrint.BandPanel.BackColor = System.Drawing.Color.White
+        Me.BGVSummary.AppearancePrint.BandPanel.BorderColor = System.Drawing.Color.Black
+        Me.BGVSummary.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BGVSummary.AppearancePrint.BandPanel.Options.UseBackColor = True
+        Me.BGVSummary.AppearancePrint.BandPanel.Options.UseBorderColor = True
+        Me.BGVSummary.AppearancePrint.BandPanel.Options.UseFont = True
+        Me.BGVSummary.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.BGVSummary.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
+        Me.BGVSummary.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.BGVSummary.AppearancePrint.FooterPanel.Options.UseBorderColor = True
+        Me.BGVSummary.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
+        Me.BGVSummary.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
+        Me.BGVSummary.AppearancePrint.GroupFooter.Options.UseBackColor = True
+        Me.BGVSummary.AppearancePrint.GroupFooter.Options.UseBorderColor = True
+        Me.BGVSummary.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
+        Me.BGVSummary.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
+        Me.BGVSummary.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BGVSummary.AppearancePrint.GroupRow.Options.UseBackColor = True
+        Me.BGVSummary.AppearancePrint.GroupRow.Options.UseBorderColor = True
+        Me.BGVSummary.AppearancePrint.GroupRow.Options.UseFont = True
+        Me.BGVSummary.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
+        Me.BGVSummary.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
+        Me.BGVSummary.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BGVSummary.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.BGVSummary.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
+        Me.BGVSummary.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.BGVSummary.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
+        Me.BGVSummary.AppearancePrint.Lines.Options.UseBackColor = True
+        Me.BGVSummary.AppearancePrint.Row.BackColor = System.Drawing.Color.White
+        Me.BGVSummary.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
+        Me.BGVSummary.AppearancePrint.Row.Options.UseBackColor = True
+        Me.BGVSummary.AppearancePrint.Row.Options.UseBorderColor = True
+        Me.BGVSummary.BandPanelRowHeight = 32
+        Me.BGVSummary.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand4})
+        Me.BGVSummary.ColumnPanelRowHeight = 32
+        Me.BGVSummary.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn6, Me.GridColumn3, Me.GridColumn7, Me.GridColumn4, Me.GridColumn8, Me.GridColumn5})
+        Me.BGVSummary.GridControl = Me.GCSummary
+        Me.BGVSummary.GroupCount = 1
+        Me.BGVSummary.GroupFormat = "[#image]{1} {2}"
+        Me.BGVSummary.LevelIndent = 0
+        Me.BGVSummary.Name = "BGVSummary"
+        Me.BGVSummary.OptionsBehavior.AutoExpandAllGroups = True
+        Me.BGVSummary.OptionsBehavior.ReadOnly = True
+        Me.BGVSummary.OptionsPrint.AllowMultilineHeaders = True
+        Me.BGVSummary.OptionsPrint.PrintHeader = False
+        Me.BGVSummary.OptionsView.ColumnAutoWidth = False
+        Me.BGVSummary.OptionsView.ShowColumnHeaders = False
+        Me.BGVSummary.OptionsView.ShowGroupPanel = False
+        Me.BGVSummary.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "PT VOLCOM INDONESIA"
+        Me.GridBand1.Columns.Add(Me.GridColumn1)
+        Me.GridBand1.Columns.Add(Me.GridColumn2)
+        Me.GridBand1.Columns.Add(Me.GridColumn6)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 190
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "KETERANGAN"
+        Me.GridColumn1.FieldName = "keterangan"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn2.Caption = "PT VOLCOM INDONESIA (OFFICE)"
+        Me.GridColumn2.FieldName = "vi"
+        Me.GridColumn2.MinWidth = 100
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.Width = 100
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = " "
+        Me.GridColumn6.DisplayFormat.FormatString = "N2"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn6.FieldName = "vi_total"
+        Me.GridColumn6.MinWidth = 90
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.Width = 90
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "TOKO VOLCOM BEMO CORNER"
+        Me.gridBand2.Columns.Add(Me.GridColumn3)
+        Me.gridBand2.Columns.Add(Me.GridColumn7)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 190
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn3.Caption = "TOKO VOLCOM BEMO CORNER"
+        Me.GridColumn3.FieldName = "bc"
+        Me.GridColumn3.MinWidth = 100
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.Width = 100
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = " "
+        Me.GridColumn7.DisplayFormat.FormatString = "N2"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn7.FieldName = "bc_total"
+        Me.GridColumn7.MinWidth = 90
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.Width = 90
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "TOKO VOLCOM SEMINYAK"
+        Me.gridBand3.Columns.Add(Me.GridColumn4)
+        Me.gridBand3.Columns.Add(Me.GridColumn8)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 190
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn4.Caption = "TOKO VOLCOM SEMINYAK"
+        Me.GridColumn4.FieldName = "sm"
+        Me.GridColumn4.MinWidth = 100
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.Width = 100
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = " "
+        Me.GridColumn8.DisplayFormat.FormatString = "N2"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn8.FieldName = "sm_total"
+        Me.GridColumn8.MinWidth = 90
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.Width = 90
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "TOTAL"
+        Me.gridBand4.Columns.Add(Me.GridColumn5)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 3
+        Me.gridBand4.Width = 100
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "TOTAL"
+        Me.GridColumn5.DisplayFormat.FormatString = "N2"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn5.FieldName = "total"
+        Me.GridColumn5.MinWidth = 100
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.Width = 100
         '
         'TopMargin
         '
@@ -366,177 +539,6 @@ Partial Public Class ReportBalancePPNSummary
         Me.LPageFooter.Text = "Printed by : [employee_print] (Volcom ERP)"
         Me.LPageFooter.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
-        'BGVSummary
-        '
-        Me.BGVSummary.AppearancePrint.BandPanel.BackColor = System.Drawing.Color.White
-        Me.BGVSummary.AppearancePrint.BandPanel.BorderColor = System.Drawing.Color.Black
-        Me.BGVSummary.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BGVSummary.AppearancePrint.BandPanel.Options.UseBackColor = True
-        Me.BGVSummary.AppearancePrint.BandPanel.Options.UseBorderColor = True
-        Me.BGVSummary.AppearancePrint.BandPanel.Options.UseFont = True
-        Me.BGVSummary.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
-        Me.BGVSummary.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
-        Me.BGVSummary.AppearancePrint.FooterPanel.Options.UseBackColor = True
-        Me.BGVSummary.AppearancePrint.FooterPanel.Options.UseBorderColor = True
-        Me.BGVSummary.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
-        Me.BGVSummary.AppearancePrint.GroupFooter.BorderColor = System.Drawing.Color.Black
-        Me.BGVSummary.AppearancePrint.GroupFooter.Options.UseBackColor = True
-        Me.BGVSummary.AppearancePrint.GroupFooter.Options.UseBorderColor = True
-        Me.BGVSummary.AppearancePrint.GroupRow.BackColor = System.Drawing.Color.White
-        Me.BGVSummary.AppearancePrint.GroupRow.BorderColor = System.Drawing.Color.Black
-        Me.BGVSummary.AppearancePrint.GroupRow.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BGVSummary.AppearancePrint.GroupRow.Options.UseBackColor = True
-        Me.BGVSummary.AppearancePrint.GroupRow.Options.UseBorderColor = True
-        Me.BGVSummary.AppearancePrint.GroupRow.Options.UseFont = True
-        Me.BGVSummary.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
-        Me.BGVSummary.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
-        Me.BGVSummary.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BGVSummary.AppearancePrint.HeaderPanel.Options.UseBackColor = True
-        Me.BGVSummary.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
-        Me.BGVSummary.AppearancePrint.HeaderPanel.Options.UseFont = True
-        Me.BGVSummary.AppearancePrint.Lines.BackColor = System.Drawing.Color.Black
-        Me.BGVSummary.AppearancePrint.Lines.Options.UseBackColor = True
-        Me.BGVSummary.AppearancePrint.Row.BackColor = System.Drawing.Color.White
-        Me.BGVSummary.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
-        Me.BGVSummary.AppearancePrint.Row.Options.UseBackColor = True
-        Me.BGVSummary.AppearancePrint.Row.Options.UseBorderColor = True
-        Me.BGVSummary.BandPanelRowHeight = 32
-        Me.BGVSummary.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand4})
-        Me.BGVSummary.ColumnPanelRowHeight = 32
-        Me.BGVSummary.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn6, Me.GridColumn3, Me.GridColumn7, Me.GridColumn4, Me.GridColumn8, Me.GridColumn5})
-        Me.BGVSummary.GridControl = Me.GCSummary
-        Me.BGVSummary.GroupCount = 1
-        Me.BGVSummary.GroupFormat = "[#image]{1} {2}"
-        Me.BGVSummary.LevelIndent = 0
-        Me.BGVSummary.Name = "BGVSummary"
-        Me.BGVSummary.OptionsBehavior.AutoExpandAllGroups = True
-        Me.BGVSummary.OptionsBehavior.ReadOnly = True
-        Me.BGVSummary.OptionsPrint.AllowMultilineHeaders = True
-        Me.BGVSummary.OptionsPrint.PrintHeader = False
-        Me.BGVSummary.OptionsView.ColumnAutoWidth = False
-        Me.BGVSummary.OptionsView.ShowColumnHeaders = False
-        Me.BGVSummary.OptionsView.ShowGroupPanel = False
-        Me.BGVSummary.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)})
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "KETERANGAN"
-        Me.GridColumn1.FieldName = "keterangan"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridColumn2.Caption = "PT VOLCOM INDONESIA (OFFICE)"
-        Me.GridColumn2.FieldName = "vi"
-        Me.GridColumn2.MinWidth = 100
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.Width = 100
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = " "
-        Me.GridColumn6.DisplayFormat.FormatString = "N2"
-        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn6.FieldName = "vi_total"
-        Me.GridColumn6.MinWidth = 90
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.Width = 90
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn3.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridColumn3.Caption = "TOKO VOLCOM BEMO CORNER"
-        Me.GridColumn3.FieldName = "bc"
-        Me.GridColumn3.MinWidth = 100
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.Width = 100
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = " "
-        Me.GridColumn7.DisplayFormat.FormatString = "N2"
-        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn7.FieldName = "bc_total"
-        Me.GridColumn7.MinWidth = 90
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.Width = 90
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn4.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridColumn4.Caption = "TOKO VOLCOM SEMINYAK"
-        Me.GridColumn4.FieldName = "sm"
-        Me.GridColumn4.MinWidth = 100
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.Width = 100
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = " "
-        Me.GridColumn8.DisplayFormat.FormatString = "N2"
-        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn8.FieldName = "sm_total"
-        Me.GridColumn8.MinWidth = 90
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.Width = 90
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "TOTAL"
-        Me.GridColumn5.DisplayFormat.FormatString = "N2"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn5.FieldName = "total"
-        Me.GridColumn5.MinWidth = 100
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.Width = 100
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "PT VOLCOM INDONESIA"
-        Me.GridBand1.Columns.Add(Me.GridColumn1)
-        Me.GridBand1.Columns.Add(Me.GridColumn2)
-        Me.GridBand1.Columns.Add(Me.GridColumn6)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 190
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "TOKO VOLCOM BEMO CORNER"
-        Me.gridBand2.Columns.Add(Me.GridColumn3)
-        Me.gridBand2.Columns.Add(Me.GridColumn7)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 190
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "TOKO VOLCOM SEMINYAK"
-        Me.gridBand3.Columns.Add(Me.GridColumn4)
-        Me.gridBand3.Columns.Add(Me.GridColumn8)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 190
-        '
-        'gridBand4
-        '
-        Me.gridBand4.Caption = "TOTAL"
-        Me.gridBand4.Columns.Add(Me.GridColumn5)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 3
-        Me.gridBand4.Width = 100
-        '
         'ReportBalancePPNSummary
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter, Me.PageFooter})
@@ -546,8 +548,8 @@ Partial Public Class ReportBalancePPNSummary
         CType(Me.GCSum, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSum, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BGVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
