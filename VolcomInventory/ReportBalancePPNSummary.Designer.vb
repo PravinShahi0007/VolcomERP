@@ -136,11 +136,11 @@ Partial Public Class ReportBalancePPNSummary
         '
         Me.GridColumn9.Caption = "KETERANGAN"
         Me.GridColumn9.FieldName = "keterangan"
-        Me.GridColumn9.MinWidth = 200
+        Me.GridColumn9.MinWidth = 110
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 0
-        Me.GridColumn9.Width = 200
+        Me.GridColumn9.Width = 110
         '
         'GridColumn10
         '
