@@ -165,7 +165,6 @@ Partial Class FormPreCalFGPODet
         Me.XTPDutyReport = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDuty = New DevExpress.XtraGrid.GridControl()
         Me.GVDuty = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
         Me.BUpdate = New DevExpress.XtraEditors.SimpleButton()
         Me.TEPPH = New DevExpress.XtraEditors.TextEdit()
@@ -184,6 +183,29 @@ Partial Class FormPreCalFGPODet
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TECTN = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn55 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn56 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn57 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn58 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn59 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn65 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn66 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn67 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn69 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1931,20 +1953,12 @@ Partial Class FormPreCalFGPODet
         '
         'GVDuty
         '
-        Me.GVDuty.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn37})
+        Me.GVDuty.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn38, Me.GridColumn43, Me.GridColumn37, Me.GridColumn50, Me.GridColumn51, Me.GridColumn52, Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn67, Me.GridColumn68, Me.GridColumn69})
         Me.GVDuty.GridControl = Me.GCDuty
         Me.GVDuty.Name = "GVDuty"
         Me.GVDuty.OptionsView.ColumnAutoWidth = False
         Me.GVDuty.OptionsView.ShowFooter = True
         Me.GVDuty.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn37
-        '
-        Me.GridColumn37.Caption = "ID"
-        Me.GridColumn37.Name = "GridColumn37"
-        Me.GridColumn37.OptionsColumn.AllowEdit = False
-        Me.GridColumn37.OptionsColumn.AllowFocus = False
-        Me.GridColumn37.OptionsColumn.ReadOnly = True
         '
         'PanelControl9
         '
@@ -2188,6 +2202,310 @@ Partial Class FormPreCalFGPODet
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Size = New System.Drawing.Size(1022, 42)
         Me.PanelControl6.TabIndex = 157
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "FGPO Number"
+        Me.GridColumn38.FieldName = "prod_order_number"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 0
+        '
+        'GridColumn43
+        '
+        Me.GridColumn43.Caption = "Code"
+        Me.GridColumn43.FieldName = "design_code"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 1
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Design"
+        Me.GridColumn37.FieldName = "design_display_name"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 2
+        '
+        'GridColumn50
+        '
+        Me.GridColumn50.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn50.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn50.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn50.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn50.Caption = "FOB Total"
+        Me.GridColumn50.DisplayFormat.FormatString = "N2"
+        Me.GridColumn50.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn50.FieldName = "tot_fob"
+        Me.GridColumn50.Name = "GridColumn50"
+        Me.GridColumn50.Visible = True
+        Me.GridColumn50.VisibleIndex = 3
+        '
+        'GridColumn51
+        '
+        Me.GridColumn51.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn51.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn51.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn51.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn51.Caption = "FOB Qty"
+        Me.GridColumn51.DisplayFormat.FormatString = "N2"
+        Me.GridColumn51.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn51.FieldName = "qty"
+        Me.GridColumn51.Name = "GridColumn51"
+        Me.GridColumn51.Visible = True
+        Me.GridColumn51.VisibleIndex = 4
+        '
+        'GridColumn52
+        '
+        Me.GridColumn52.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn52.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn52.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn52.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn52.Caption = "FOB Price"
+        Me.GridColumn52.DisplayFormat.FormatString = "N2"
+        Me.GridColumn52.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn52.FieldName = "price"
+        Me.GridColumn52.Name = "GridColumn52"
+        Me.GridColumn52.Visible = True
+        Me.GridColumn52.VisibleIndex = 5
+        '
+        'GridColumn53
+        '
+        Me.GridColumn53.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn53.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn53.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn53.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn53.Caption = "Rate Management"
+        Me.GridColumn53.DisplayFormat.FormatString = "N2"
+        Me.GridColumn53.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn53.FieldName = "rate_management"
+        Me.GridColumn53.Name = "GridColumn53"
+        Me.GridColumn53.Visible = True
+        Me.GridColumn53.VisibleIndex = 6
+        '
+        'GridColumn54
+        '
+        Me.GridColumn54.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn54.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn54.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn54.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn54.Caption = "FOB Price in Rp"
+        Me.GridColumn54.DisplayFormat.FormatString = "N2"
+        Me.GridColumn54.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn54.FieldName = "fob_rp"
+        Me.GridColumn54.Name = "GridColumn54"
+        Me.GridColumn54.Visible = True
+        Me.GridColumn54.VisibleIndex = 7
+        '
+        'GridColumn55
+        '
+        Me.GridColumn55.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn55.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn55.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn55.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn55.Caption = "Total FOB Price in Rp"
+        Me.GridColumn55.DisplayFormat.FormatString = "N2"
+        Me.GridColumn55.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn55.FieldName = "tot_fob_rp"
+        Me.GridColumn55.Name = "GridColumn55"
+        Me.GridColumn55.Visible = True
+        Me.GridColumn55.VisibleIndex = 8
+        '
+        'GridColumn56
+        '
+        Me.GridColumn56.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn56.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn56.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn56.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn56.Caption = "PD Est. Price"
+        Me.GridColumn56.DisplayFormat.FormatString = "N2"
+        Me.GridColumn56.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn56.FieldName = "pd_price"
+        Me.GridColumn56.Name = "GridColumn56"
+        Me.GridColumn56.Visible = True
+        Me.GridColumn56.VisibleIndex = 9
+        '
+        'GridColumn57
+        '
+        Me.GridColumn57.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn57.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn57.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn57.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn57.Caption = "Price after Commission"
+        Me.GridColumn57.DisplayFormat.FormatString = "N2"
+        Me.GridColumn57.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn57.FieldName = "price_commission"
+        Me.GridColumn57.Name = "GridColumn57"
+        Me.GridColumn57.Visible = True
+        Me.GridColumn57.VisibleIndex = 10
+        '
+        'GridColumn58
+        '
+        Me.GridColumn58.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn58.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn58.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn58.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn58.Caption = "Price After PPN"
+        Me.GridColumn58.DisplayFormat.FormatString = "N2"
+        Me.GridColumn58.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn58.FieldName = "price_ppn"
+        Me.GridColumn58.Name = "GridColumn58"
+        Me.GridColumn58.Visible = True
+        Me.GridColumn58.VisibleIndex = 11
+        '
+        'GridColumn59
+        '
+        Me.GridColumn59.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn59.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn59.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn59.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn59.Caption = "Qty Sales"
+        Me.GridColumn59.DisplayFormat.FormatString = "N2"
+        Me.GridColumn59.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn59.FieldName = "qty_sales"
+        Me.GridColumn59.Name = "GridColumn59"
+        Me.GridColumn59.Visible = True
+        Me.GridColumn59.VisibleIndex = 12
+        '
+        'GridColumn60
+        '
+        Me.GridColumn60.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn60.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn60.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn60.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn60.Caption = "Freight Per Pcs"
+        Me.GridColumn60.DisplayFormat.FormatString = "N2"
+        Me.GridColumn60.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn60.FieldName = "freight_cost"
+        Me.GridColumn60.Name = "GridColumn60"
+        Me.GridColumn60.Visible = True
+        Me.GridColumn60.VisibleIndex = 13
+        '
+        'GridColumn61
+        '
+        Me.GridColumn61.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn61.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn61.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn61.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn61.Caption = "Total Freight"
+        Me.GridColumn61.DisplayFormat.FormatString = "N2"
+        Me.GridColumn61.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn61.FieldName = "tot_freight"
+        Me.GridColumn61.Name = "GridColumn61"
+        Me.GridColumn61.Visible = True
+        Me.GridColumn61.VisibleIndex = 14
+        '
+        'GridColumn62
+        '
+        Me.GridColumn62.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn62.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn62.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn62.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn62.Caption = "Royalty"
+        Me.GridColumn62.DisplayFormat.FormatString = "N2"
+        Me.GridColumn62.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn62.FieldName = "royalty"
+        Me.GridColumn62.Name = "GridColumn62"
+        Me.GridColumn62.Visible = True
+        Me.GridColumn62.VisibleIndex = 15
+        '
+        'GridColumn63
+        '
+        Me.GridColumn63.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn63.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn63.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn63.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn63.Caption = "Total Royalty"
+        Me.GridColumn63.DisplayFormat.FormatString = "N2"
+        Me.GridColumn63.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn63.FieldName = "tot_royalty"
+        Me.GridColumn63.Name = "GridColumn63"
+        Me.GridColumn63.Visible = True
+        Me.GridColumn63.VisibleIndex = 16
+        '
+        'GridColumn64
+        '
+        Me.GridColumn64.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn64.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn64.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn64.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn64.Caption = "Bea Masuk"
+        Me.GridColumn64.DisplayFormat.FormatString = "N2"
+        Me.GridColumn64.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn64.FieldName = "bm"
+        Me.GridColumn64.Name = "GridColumn64"
+        Me.GridColumn64.Visible = True
+        Me.GridColumn64.VisibleIndex = 17
+        '
+        'GridColumn65
+        '
+        Me.GridColumn65.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn65.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn65.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn65.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn65.Caption = "Total Bea Masuk"
+        Me.GridColumn65.DisplayFormat.FormatString = "N2"
+        Me.GridColumn65.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn65.FieldName = "tot_bm"
+        Me.GridColumn65.Name = "GridColumn65"
+        Me.GridColumn65.Visible = True
+        Me.GridColumn65.VisibleIndex = 18
+        '
+        'GridColumn66
+        '
+        Me.GridColumn66.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn66.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn66.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn66.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn66.Caption = "PPN Royalty Duty"
+        Me.GridColumn66.DisplayFormat.FormatString = "N2"
+        Me.GridColumn66.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn66.FieldName = "ppn_royalty"
+        Me.GridColumn66.Name = "GridColumn66"
+        Me.GridColumn66.Visible = True
+        Me.GridColumn66.VisibleIndex = 19
+        '
+        'GridColumn67
+        '
+        Me.GridColumn67.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn67.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn67.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn67.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn67.Caption = "PPH Royalty Duty"
+        Me.GridColumn67.DisplayFormat.FormatString = "N2"
+        Me.GridColumn67.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn67.FieldName = "pph_royalty"
+        Me.GridColumn67.Name = "GridColumn67"
+        Me.GridColumn67.Visible = True
+        Me.GridColumn67.VisibleIndex = 20
+        '
+        'GridColumn68
+        '
+        Me.GridColumn68.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn68.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn68.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn68.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn68.Caption = "Total PPN Royalty Duty"
+        Me.GridColumn68.DisplayFormat.FormatString = "N2"
+        Me.GridColumn68.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn68.FieldName = "total_ppn_royalty"
+        Me.GridColumn68.Name = "GridColumn68"
+        Me.GridColumn68.Visible = True
+        Me.GridColumn68.VisibleIndex = 21
+        '
+        'GridColumn69
+        '
+        Me.GridColumn69.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn69.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn69.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn69.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn69.Caption = "Total PPH Royalty Duty"
+        Me.GridColumn69.DisplayFormat.FormatString = "N2"
+        Me.GridColumn69.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn69.FieldName = "total_pph_royalty"
+        Me.GridColumn69.Name = "GridColumn69"
+        Me.GridColumn69.Visible = True
+        Me.GridColumn69.VisibleIndex = 22
         '
         'FormPreCalFGPODet
         '
@@ -2468,5 +2786,27 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCDuty As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVDuty As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn50 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn51 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn54 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn55 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn56 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn57 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn58 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn59 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn60 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn61 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn62 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn63 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn64 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn65 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn66 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn67 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn68 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn69 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
