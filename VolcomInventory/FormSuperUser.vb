@@ -112,7 +112,7 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        '        Dim qd As String = "SELECT spl.*,qty.qty,tot.total,ROUND(tot.total/qty.qty,2) AS cost
+        'Dim qd As String = "SELECT spl.*,qty.qty,tot.total,ROUND(tot.total/qty.qty,2) AS cost
         'FROM `tb_sni_pps_list` spl
         'INNER JOIN 
         '(
