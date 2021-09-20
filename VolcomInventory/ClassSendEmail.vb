@@ -233,22 +233,44 @@ Public Class ClassSendEmail
                 End If
             Next
 
-            Dim design_name, cop, design_code As String
-            Dim query As String = "SELECT design_display_name,design_code,design_cop FROM tb_m_design WHERE id_design='" & par1 & "'"
+            Dim design_name, cop, design_code, design_class, design_color As String
+            Dim query As String = "SELECT dsg.design_display_name,IFNULL(cd.color,'-') AS color,IFNULL(cd.class,'-') AS class,dsg.design_code,dsg.design_cop 
+FROM tb_m_design dsg 
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
+WHERE dsg.id_design='" & par1 & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
                 design_name = data.Rows(0)("design_display_name").ToString
                 design_code = data.Rows(0)("design_code").ToString
+                design_class = data.Rows(0)("design_class").ToString
+                design_color = data.Rows(0)("design_color").ToString
                 cop = Decimal.Parse(data.Rows(0)("design_cop").ToString).ToString("N2")
             Else
                 design_name = ""
                 design_code = ""
+                design_class = ""
+                design_color = ""
                 cop = ""
             End If
 
             mail.Subject = "Final COP Approved (" & design_code & " - " & design_name & ")"
             mail.IsBodyHtml = True
-            mail.Body = email_body_final_cop(cop, design_name, design_code)
+            mail.Body = email_body_final_cop(cop, design_name, design_class, design_color, design_code)
             client.Send(mail)
         ElseIf report_mark_type = "186" Then
             'par1 = id_design
@@ -282,22 +304,44 @@ Public Class ClassSendEmail
                 End If
             Next
 
-            Dim design_name, cop, design_code As String
-            Dim query As String = "SELECT design_display_name,design_code,prod_order_cop_mng FROM tb_m_design WHERE id_design='" & par1 & "'"
+            Dim design_name, cop, design_code, design_class, design_color As String
+            Dim query As String = "SELECT dsg.design_display_name,IFNULL(cd.color,'-') AS color,IFNULL(cd.class,'-') AS class,dsg.design_code,dsg.prod_order_cop_mng 
+FROM tb_m_design dsg 
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
+WHERE dsg.id_design='" & par1 & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
                 design_name = data.Rows(0)("design_display_name").ToString
                 design_code = data.Rows(0)("design_code").ToString
+                design_class = data.Rows(0)("design_class").ToString
+                design_color = data.Rows(0)("design_color").ToString
                 cop = Decimal.Parse(data.Rows(0)("prod_order_cop_mng").ToString).ToString("N2")
             Else
                 design_name = ""
                 design_code = ""
+                design_class = ""
+                design_color = ""
                 cop = ""
             End If
 
             mail.Subject = "Pre Final COP Approved (" & design_code & " - " & design_name & ")"
             mail.IsBodyHtml = True
-            mail.Body = email_body_final_cop(cop, design_name, design_code)
+            mail.Body = email_body_final_cop(cop, design_name, design_class, design_color, design_code)
             client.Send(mail)
         ElseIf report_mark_type = "267" Then 'ECOP PD
             'par1 = id_design
@@ -331,12 +375,32 @@ Public Class ClassSendEmail
                 End If
             Next
 
-            Dim design_name, cop, design_code, cop_pd_note, additional_cop, non_additional As String
-            Dim query As String = "SELECT design_display_name,design_code,prod_order_cop_pd,prod_order_cop_pd_addcost,cop_pd_note FROM tb_m_design WHERE id_design='" & par1 & "'"
+            Dim design_name, cop, design_code, design_class, design_color, cop_pd_note, additional_cop, non_additional As String
+            Dim query As String = "SELECT dsg.design_display_name,IFNULL(cd.color,'-') AS color,IFNULL(cd.class,'-') AS class,dsg.design_code,dsg.prod_order_cop_pd,dsg.prod_order_cop_pd_addcost,dsg.cop_pd_note 
+FROM tb_m_design dsg
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
+WHERE dsg.id_design='" & par1 & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
                 design_name = data.Rows(0)("design_display_name").ToString
                 design_code = data.Rows(0)("design_code").ToString
+                design_class = data.Rows(0)("design_class").ToString
+                design_color = data.Rows(0)("design_color").ToString
                 cop = Decimal.Parse(data.Rows(0)("prod_order_cop_pd").ToString).ToString("N2")
                 additional_cop = Decimal.Parse(data.Rows(0)("prod_order_cop_pd_addcost").ToString).ToString("N2")
                 non_additional = Decimal.Parse(data.Rows(0)("prod_order_cop_pd") - data.Rows(0)("prod_order_cop_pd_addcost").ToString).ToString("N2")
@@ -344,6 +408,8 @@ Public Class ClassSendEmail
             Else
                 design_name = ""
                 design_code = ""
+                design_class = ""
+                design_color = ""
                 cop = ""
                 additional_cop = ""
                 non_additional = ""
@@ -352,7 +418,7 @@ Public Class ClassSendEmail
 
             mail.Subject = "Entry ECOP PD (" & design_code & " - " & design_name & ")"
             mail.IsBodyHtml = True
-            mail.Body = email_body_ecop(cop, additional_cop, non_additional, design_name, design_code, cop_pd_note, "")
+            mail.Body = email_body_ecop(cop, additional_cop, non_additional, design_name, design_class, design_color, design_code, cop_pd_note, "")
             client.Send(mail)
         ElseIf report_mark_type = "291" Then 'Reset ECOP PD
             'par1 = id_design
@@ -386,12 +452,32 @@ Public Class ClassSendEmail
                 End If
             Next
 
-            Dim design_name, cop, design_code, cop_pd_note, additional_cop, non_additional As String
-            Dim query As String = "SELECT design_display_name,design_code,prod_order_cop_pd,prod_order_cop_pd_addcost,cop_pd_note FROM tb_m_design WHERE id_design='" & par1 & "'"
+            Dim design_name, design_class, design_color, cop, design_code, cop_pd_note, additional_cop, non_additional As String
+            Dim query As String = "SELECT dsg.design_display_name,IFNULL(cd.color,'-') AS color,IFNULL(cd.class,'-') AS class,dsg.design_code,dsg.prod_order_cop_pd,dsg.prod_order_cop_pd_addcost,dsg.cop_pd_note 
+FROM tb_m_design dsg
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
+WHERE dsg.id_design='" & par1 & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
                 design_name = data.Rows(0)("design_display_name").ToString
                 design_code = data.Rows(0)("design_code").ToString
+                design_class = data.Rows(0)("design_class").ToString
+                design_color = data.Rows(0)("design_color").ToString
                 cop = Decimal.Parse(data.Rows(0)("prod_order_cop_pd").ToString).ToString("N2")
                 additional_cop = Decimal.Parse(data.Rows(0)("prod_order_cop_pd_addcost").ToString).ToString("N2")
                 non_additional = Decimal.Parse(data.Rows(0)("prod_order_cop_pd") - data.Rows(0)("prod_order_cop_pd_addcost").ToString).ToString("N2")
@@ -399,6 +485,8 @@ Public Class ClassSendEmail
             Else
                 design_name = ""
                 design_code = ""
+                design_class = ""
+                design_color = ""
                 cop = ""
                 additional_cop = ""
                 non_additional = ""
@@ -407,7 +495,7 @@ Public Class ClassSendEmail
 
             mail.Subject = "Reset ECOP PD (" & design_code & " - " & design_name & ")"
             mail.IsBodyHtml = True
-            mail.Body = email_body_ecop(cop, additional_cop, non_additional, design_name, design_code, cop_pd_note, "reset")
+            mail.Body = email_body_ecop(cop, additional_cop, non_additional, design_name, design_class, design_color, design_code, cop_pd_note, "reset")
             client.Send(mail)
         ElseIf report_mark_type = "design_comment" Then
             ' Create a new report. 
@@ -4933,7 +5021,7 @@ WHERE rm.id_report='" & id_report & "' AND rm.report_mark_type='" & report_mark_
         Return body_temp
     End Function
 
-    Function email_body_ecop(ByVal cop As String, ByVal cop_additional As String, ByVal cop_non_additional As String, ByVal design_name As String, ByVal design_code As String, ByVal note As String, ByVal opt As String)
+    Function email_body_ecop(ByVal cop As String, ByVal cop_additional As String, ByVal cop_non_additional As String, ByVal design_name As String, ByVal design_class As String, ByVal design_color As String, ByVal design_code As String, ByVal note As String, ByVal opt As String)
         Dim body_temp As String = ""
         body_temp = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
  <tbody><tr>
@@ -5022,6 +5110,54 @@ WHERE rm.id_report='" & id_report & "' AND rm.report_mark_type='" & report_mark_
       <div>
       <p class='MsoNormal' style='line-height:14.25pt'>
         <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & design_name & "
+        </span>
+      </p>
+      </div>
+      </td>
+     </tr>
+     <tr>
+      <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Class
+        </span>
+      </td>
+      <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+          
+        </span>
+      </p>
+
+      </div>
+      </td>
+      <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & design_class & "
+        </span>
+      </p>
+      </div>
+      </td>
+     </tr>
+     <tr>
+      <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Color
+        </span>
+      </td>
+      <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+          
+        </span>
+      </p>
+
+      </div>
+      </td>
+      <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & design_color & "
         </span>
       </p>
       </div>
@@ -5167,7 +5303,7 @@ WHERE rm.id_report='" & id_report & "' AND rm.report_mark_type='" & report_mark_
         Return body_temp
     End Function
 
-    Function email_body_final_cop(ByVal cop As String, ByVal design_name As String, ByVal design_code As String)
+    Function email_body_final_cop(ByVal cop As String, ByVal design_name As String, ByVal design_class As String, ByVal design_color As String, ByVal design_code As String)
         Dim body_temp As String = ""
         body_temp = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
  <tbody><tr>
@@ -5256,6 +5392,54 @@ WHERE rm.id_report='" & id_report & "' AND rm.report_mark_type='" & report_mark_
       <div>
       <p class='MsoNormal' style='line-height:14.25pt'>
         <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & design_name & "
+        </span>
+      </p>
+      </div>
+      </td>
+     </tr>
+     <tr>
+      <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Class
+        </span>
+      </td>
+      <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+          
+        </span>
+      </p>
+
+      </div>
+      </td>
+      <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & design_class & "
+        </span>
+      </p>
+      </div>
+      </td>
+     </tr>
+     <tr>
+      <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Color
+        </span>
+      </td>
+      <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+          
+        </span>
+      </p>
+
+      </div>
+      </td>
+      <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+      <div>
+      <p class='MsoNormal' style='line-height:14.25pt'>
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & design_color & "
         </span>
       </p>
       </div>
