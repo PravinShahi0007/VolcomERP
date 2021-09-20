@@ -81,6 +81,14 @@ ORDER BY id_stock_valas DESC LIMIT 1"
             'new
             load_list_fgpo()
             load_kurs()
+            '
+            XTPFGPO.PageVisible = True
+            XTPVendor.PageVisible = False
+            XTPOrignCharges.PageVisible = False
+            XTPDestCharges.PageVisible = False
+            XTPAdmCharges.PageVisible = False
+            XTPChoosen.PageVisible = False
+            XTPDutyReport.PageVisible = False
         Else
             'edit
             Dim q As String = "SELECT cal.reason,cal.ppn,cal.pph,cal.rate_current,cal.rate_management,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
