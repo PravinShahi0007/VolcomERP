@@ -257,8 +257,8 @@ WHERE dsg.id_design='" & par1 & "'"
             If data.Rows.Count > 0 Then
                 design_name = data.Rows(0)("design_display_name").ToString
                 design_code = data.Rows(0)("design_code").ToString
-                design_class = data.Rows(0)("design_class").ToString
-                design_color = data.Rows(0)("design_color").ToString
+                design_class = data.Rows(0)("class").ToString
+                design_color = data.Rows(0)("color").ToString
                 cop = Decimal.Parse(data.Rows(0)("design_cop").ToString).ToString("N2")
             Else
                 design_name = ""
@@ -328,8 +328,8 @@ WHERE dsg.id_design='" & par1 & "'"
             If data.Rows.Count > 0 Then
                 design_name = data.Rows(0)("design_display_name").ToString
                 design_code = data.Rows(0)("design_code").ToString
-                design_class = data.Rows(0)("design_class").ToString
-                design_color = data.Rows(0)("design_color").ToString
+                design_class = data.Rows(0)("class").ToString
+                design_color = data.Rows(0)("color").ToString
                 cop = Decimal.Parse(data.Rows(0)("prod_order_cop_mng").ToString).ToString("N2")
             Else
                 design_name = ""
@@ -399,8 +399,8 @@ WHERE dsg.id_design='" & par1 & "'"
             If data.Rows.Count > 0 Then
                 design_name = data.Rows(0)("design_display_name").ToString
                 design_code = data.Rows(0)("design_code").ToString
-                design_class = data.Rows(0)("design_class").ToString
-                design_color = data.Rows(0)("design_color").ToString
+                design_class = data.Rows(0)("class").ToString
+                design_color = data.Rows(0)("color").ToString
                 cop = Decimal.Parse(data.Rows(0)("prod_order_cop_pd").ToString).ToString("N2")
                 additional_cop = Decimal.Parse(data.Rows(0)("prod_order_cop_pd_addcost").ToString).ToString("N2")
                 non_additional = Decimal.Parse(data.Rows(0)("prod_order_cop_pd") - data.Rows(0)("prod_order_cop_pd_addcost").ToString).ToString("N2")
@@ -476,8 +476,8 @@ WHERE dsg.id_design='" & par1 & "'"
             If data.Rows.Count > 0 Then
                 design_name = data.Rows(0)("design_display_name").ToString
                 design_code = data.Rows(0)("design_code").ToString
-                design_class = data.Rows(0)("design_class").ToString
-                design_color = data.Rows(0)("design_color").ToString
+                design_class = data.Rows(0)("class").ToString
+                design_color = data.Rows(0)("color").ToString
                 cop = Decimal.Parse(data.Rows(0)("prod_order_cop_pd").ToString).ToString("N2")
                 additional_cop = Decimal.Parse(data.Rows(0)("prod_order_cop_pd_addcost").ToString).ToString("N2")
                 non_additional = Decimal.Parse(data.Rows(0)("prod_order_cop_pd") - data.Rows(0)("prod_order_cop_pd_addcost").ToString).ToString("N2")
