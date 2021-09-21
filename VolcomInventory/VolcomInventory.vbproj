@@ -644,6 +644,12 @@
     <Compile Include="FormCatalogSpec.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormClassGroup.designer.vb">
+      <DependentUpon>FormClassGroup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormClassGroup.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormCollie.Designer.vb">
       <DependentUpon>FormCollie.vb</DependentUpon>
     </Compile>
@@ -10333,6 +10339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCatalogSpec.resx">
       <DependentUpon>FormCatalogSpec.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormClassGroup.resx">
+      <DependentUpon>FormClassGroup.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCollie.resx">
       <DependentUpon>FormCollie.vb</DependentUpon>
