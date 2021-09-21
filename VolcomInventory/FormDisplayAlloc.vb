@@ -1,6 +1,6 @@
 ﻿Public Class FormDisplayAlloc
     Private Sub FormDisplayAlloc_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        viewData()
     End Sub
 
     Private Sub FormDisplayAlloc_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -62,6 +62,8 @@
                 GVData.GroupSummary.Add(summary)
             End If
         Next
+        GVData.Columns("DIVISION").GroupIndex = 0
+        GVData.Columns("CATEGORY").GroupIndex = 1
         GVData.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
