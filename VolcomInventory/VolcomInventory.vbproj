@@ -650,6 +650,10 @@
     <Compile Include="FormClassGroup.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormClassGroupDet.designer.vb">
+      <DependentUpon>FormClassGroupDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormClassGroupDet.vb" />
     <Compile Include="FormCollie.Designer.vb">
       <DependentUpon>FormCollie.vb</DependentUpon>
     </Compile>
@@ -10342,6 +10346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormClassGroup.resx">
       <DependentUpon>FormClassGroup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormClassGroupDet.resx">
+      <DependentUpon>FormClassGroupDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCollie.resx">
       <DependentUpon>FormCollie.vb</DependentUpon>
