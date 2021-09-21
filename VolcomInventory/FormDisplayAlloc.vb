@@ -101,4 +101,10 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+
+        End If
+    End Sub
 End Class
