@@ -28,24 +28,29 @@ Partial Class FormClassGroupDet
         Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnclass_desc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.TxtGroupName = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEDivision = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.SLECat = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEDivision = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtGroupName = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.TxtGroupName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtGroupName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BtnConfirm
@@ -121,6 +126,8 @@ Partial Class FormClassGroupDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SLEType)
+        Me.PanelControl1.Controls.Add(Me.LabelControl4)
         Me.PanelControl1.Controls.Add(Me.SLECat)
         Me.PanelControl1.Controls.Add(Me.LabelControl3)
         Me.PanelControl1.Controls.Add(Me.SLEDivision)
@@ -132,6 +139,62 @@ Partial Class FormClassGroupDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(603, 93)
         Me.PanelControl1.TabIndex = 2
+        '
+        'SLECat
+        '
+        Me.SLECat.Location = New System.Drawing.Point(84, 47)
+        Me.SLECat.Name = "SLECat"
+        Me.SLECat.Properties.Appearance.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLECat.Properties.Appearance.Options.UseFont = True
+        Me.SLECat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECat.Properties.ShowClearButton = False
+        Me.SLECat.Properties.View = Me.GridView1
+        Me.SLECat.Size = New System.Drawing.Size(212, 22)
+        Me.SLECat.TabIndex = 7
+        '
+        'GridView1
+        '
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(16, 50)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(55, 16)
+        Me.LabelControl3.TabIndex = 6
+        Me.LabelControl3.Text = "Category"
+        '
+        'SLEDivision
+        '
+        Me.SLEDivision.Location = New System.Drawing.Point(84, 19)
+        Me.SLEDivision.Name = "SLEDivision"
+        Me.SLEDivision.Properties.Appearance.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEDivision.Properties.Appearance.Options.UseFont = True
+        Me.SLEDivision.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEDivision.Properties.ShowClearButton = False
+        Me.SLEDivision.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEDivision.Size = New System.Drawing.Size(212, 22)
+        Me.SLEDivision.TabIndex = 5
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(16, 22)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(48, 16)
+        Me.LabelControl2.TabIndex = 4
+        Me.LabelControl2.Text = "Division"
         '
         'TxtGroupName
         '
@@ -153,61 +216,33 @@ Partial Class FormClassGroupDet
         Me.LabelControl1.TabIndex = 3
         Me.LabelControl1.Text = "Group Name"
         '
-        'LabelControl2
+        'LabelControl4
         '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(16, 22)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(48, 16)
-        Me.LabelControl2.TabIndex = 4
-        Me.LabelControl2.Text = "Division"
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(302, 22)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(32, 16)
+        Me.LabelControl4.TabIndex = 8
+        Me.LabelControl4.Text = "Type"
         '
-        'SLEDivision
+        'SLEType
         '
-        Me.SLEDivision.Location = New System.Drawing.Point(84, 19)
-        Me.SLEDivision.Name = "SLEDivision"
-        Me.SLEDivision.Properties.Appearance.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SLEDivision.Properties.Appearance.Options.UseFont = True
-        Me.SLEDivision.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEDivision.Properties.ShowClearButton = False
-        Me.SLEDivision.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEDivision.Size = New System.Drawing.Size(212, 22)
-        Me.SLEDivision.TabIndex = 5
+        Me.SLEType.Location = New System.Drawing.Point(340, 19)
+        Me.SLEType.Name = "SLEType"
+        Me.SLEType.Properties.Appearance.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEType.Properties.Appearance.Options.UseFont = True
+        Me.SLEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEType.Properties.ShowClearButton = False
+        Me.SLEType.Properties.View = Me.GridView2
+        Me.SLEType.Size = New System.Drawing.Size(212, 22)
+        Me.SLEType.TabIndex = 9
         '
-        'SearchLookUpEdit1View
+        'GridView2
         '
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(16, 50)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(55, 16)
-        Me.LabelControl3.TabIndex = 6
-        Me.LabelControl3.Text = "Category"
-        '
-        'SLECat
-        '
-        Me.SLECat.Location = New System.Drawing.Point(84, 47)
-        Me.SLECat.Name = "SLECat"
-        Me.SLECat.Properties.Appearance.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SLECat.Properties.Appearance.Options.UseFont = True
-        Me.SLECat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLECat.Properties.ShowClearButton = False
-        Me.SLECat.Properties.View = Me.GridView1
-        Me.SLECat.Size = New System.Drawing.Size(212, 22)
-        Me.SLECat.TabIndex = 7
-        '
-        'GridView1
-        '
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
         '
         'FormClassGroupDet
         '
@@ -217,6 +252,8 @@ Partial Class FormClassGroupDet
         Me.Controls.Add(Me.GCData)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.BtnConfirm)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormClassGroupDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -227,11 +264,13 @@ Partial Class FormClassGroupDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.TxtGroupName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtGroupName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -253,4 +292,7 @@ Partial Class FormClassGroupDet
     Friend WithEvents SLEDivision As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
 End Class

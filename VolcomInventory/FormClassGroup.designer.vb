@@ -28,6 +28,9 @@ Partial Class FormClassGroup
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_class_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnclass_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndivision = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass_cat = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,7 +90,7 @@ Partial Class FormClassGroup
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_class_group, Me.GridColumnclass_group})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_class_group, Me.GridColumnclass_group, Me.GridColumndivision, Me.GridColumnclass_type, Me.GridColumnclass_cat})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
@@ -106,7 +109,31 @@ Partial Class FormClassGroup
         Me.GridColumnclass_group.FieldName = "class_group"
         Me.GridColumnclass_group.Name = "GridColumnclass_group"
         Me.GridColumnclass_group.Visible = True
-        Me.GridColumnclass_group.VisibleIndex = 0
+        Me.GridColumnclass_group.VisibleIndex = 3
+        '
+        'GridColumndivision
+        '
+        Me.GridColumndivision.Caption = "Division"
+        Me.GridColumndivision.FieldName = "division"
+        Me.GridColumndivision.Name = "GridColumndivision"
+        Me.GridColumndivision.Visible = True
+        Me.GridColumndivision.VisibleIndex = 0
+        '
+        'GridColumnclass_type
+        '
+        Me.GridColumnclass_type.Caption = "Class Type"
+        Me.GridColumnclass_type.FieldName = "class_type"
+        Me.GridColumnclass_type.Name = "GridColumnclass_type"
+        Me.GridColumnclass_type.Visible = True
+        Me.GridColumnclass_type.VisibleIndex = 1
+        '
+        'GridColumnclass_cat
+        '
+        Me.GridColumnclass_cat.Caption = "Class Category"
+        Me.GridColumnclass_cat.FieldName = "class_cat"
+        Me.GridColumnclass_cat.Name = "GridColumnclass_cat"
+        Me.GridColumnclass_cat.Visible = True
+        Me.GridColumnclass_cat.VisibleIndex = 2
         '
         'FormClassGroup
         '
@@ -134,4 +161,7 @@ Partial Class FormClassGroup
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnid_class_group As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnclass_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndivision As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass_cat As DevExpress.XtraGrid.Columns.GridColumn
 End Class

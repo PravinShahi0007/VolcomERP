@@ -3,13 +3,15 @@
 
     Private Sub FormClassGroupDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewDivision()
+        viewType()
         viewCat()
         viewClass()
         If id_class_group <> "-1" Then
-            Dim query As String = "SELECT class_group, id_division, id_class_cat FROM tb_class_group cg WHERE cg.id_class_group=" + id_class_group + ""
-            Dim data As DataTable = execute_query(query, 0, True, "", "", "", "")
+            Dim query As String = "SELECT class_group, id_division, id_class_type, id_class_cat FROM tb_class_group cg WHERE cg.id_class_group=" + id_class_group + ""
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             TxtGroupName.Text = data.Rows(0)("class_group").ToString
             SLEDivision.EditValue = data.Rows(0)("id_division").ToString
+            SLEType.EditValue = data.Rows(0)("id_class_type").ToString
             SLECat.EditValue = data.Rows(0)("id_class_cat").ToString
             GVData.ActiveFilterString = "[is_select]='Yes'"
             For i As Integer = 0 To GVData.RowCount - 1
@@ -27,6 +29,13 @@
 
     Private Sub FormClassGroupDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Sub viewType()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT * FROM tb_class_type ct"
+        viewSearchLookupQuery(SLEType, query, "id_class_type", "class_type", "id_class_type")
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewClass()
@@ -68,11 +77,12 @@ FROM tb_m_code_detail cd WHERE cd.id_code IN (SELECT o.id_code_fg_division FROM 
         Else
             Cursor = Cursors.WaitCursor
             Dim id_division As String = SLEDivision.EditValue.ToString
+            Dim id_class_type As String = SLEType.EditValue.ToString
             Dim id_class_cat As String = SLECat.EditValue.ToString
 
             If id_class_group = "-1" Then 'new
                 'head
-                Dim query As String = "INSERT INTO tb_class_group(class_group, id_division, id_class_cat) VALUES('" + addSlashes(TxtGroupName.Text) + "', '" + id_division + "', '" + id_class_cat + "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_class_group(class_group, id_division, id_class_type, id_class_cat) VALUES('" + addSlashes(TxtGroupName.Text) + "', '" + id_division + "', '" + id_class_type + "', '" + id_class_cat + "'); SELECT LAST_INSERT_ID(); "
                 Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
 
                 'det
@@ -89,7 +99,7 @@ FROM tb_m_code_detail cd WHERE cd.id_code IN (SELECT o.id_code_fg_division FROM 
                 End If
             Else 'update
                 'head 
-                Dim query As String = "UPDATE tb_class_group SET class_group='" + addSlashes(TxtGroupName.Text) + "',id_division='" + id_division + "', id_class_cat='" + id_class_cat + "' WHERE id_class_group='" + id_class_group + "' "
+                Dim query As String = "UPDATE tb_class_group SET class_group='" + addSlashes(TxtGroupName.Text) + "',id_division='" + id_division + "', id_class_type='" + id_class_type + "', id_class_cat='" + id_class_cat + "' WHERE id_class_group='" + id_class_group + "' "
                 execute_non_query(query, True, "", "", "", "")
 
                 'detail

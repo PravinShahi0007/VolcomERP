@@ -37,10 +37,16 @@
 
     Sub viewData()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT cg.id_class_group, cg.class_group 
-        FROM tb_class_group cg 
-        
-        ORDER BY cg.class_group ASC "
+        Dim query As String = "SELECT cg.id_class_group, dv.display_name AS `division`, typ.class_type, UPPER(cat.class_cat) AS `class_cat`,
+GROUP_CONCAT(DISTINCT cls.display_name ORDER BY cls.display_name ASC) AS `class_group`
+FROM tb_class_group cg 
+INNER JOIN tb_class_group_det cgd ON cgd.id_class_group = cg.id_class_group
+INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = cgd.id_class
+INNER JOIN tb_m_code_detail dv ON dv.id_code_detail = cg.id_division
+INNER JOIN tb_class_type typ ON typ.id_class_type = cg.id_class_type
+INNER JOIN tb_class_cat cat ON cat.id_class_cat = cg.id_class_cat
+GROUP BY cg.id_class_group
+ORDER BY division ASC, cg.id_class_group ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()
