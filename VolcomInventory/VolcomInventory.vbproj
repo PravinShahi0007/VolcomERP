@@ -1398,6 +1398,12 @@
     <Compile Include="FormDisplayAlloc.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDisplayAllocDet.Designer.vb">
+      <DependentUpon>FormDisplayAllocDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDisplayAllocDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDocTracking.Designer.vb">
       <DependentUpon>FormDocTracking.vb</DependentUpon>
     </Compile>
@@ -10763,6 +10769,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDisplayAlloc.resx">
       <DependentUpon>FormDisplayAlloc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDisplayAllocDet.resx">
+      <DependentUpon>FormDisplayAllocDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDocTracking.resx">
       <DependentUpon>FormDocTracking.vb</DependentUpon>

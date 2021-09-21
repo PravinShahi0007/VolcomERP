@@ -21,12 +21,12 @@ Partial Class FormDisplayAlloc
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDisplayAlloc))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnClassGroup = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnClassGroup = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -42,16 +42,56 @@ Partial Class FormDisplayAlloc
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(717, 51)
+        Me.PanelControl1.Size = New System.Drawing.Size(717, 45)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BtnClassGroup
+        '
+        Me.BtnClassGroup.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnClassGroup.Image = CType(resources.GetObject("BtnClassGroup.Image"), System.Drawing.Image)
+        Me.BtnClassGroup.Location = New System.Drawing.Point(2, 2)
+        Me.BtnClassGroup.Name = "BtnClassGroup"
+        Me.BtnClassGroup.Size = New System.Drawing.Size(114, 41)
+        Me.BtnClassGroup.TabIndex = 3
+        Me.BtnClassGroup.Text = "Class Group"
+        '
+        'BtnExportToXLS
+        '
+        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(412, 2)
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(119, 41)
+        Me.BtnExportToXLS.TabIndex = 1
+        Me.BtnExportToXLS.Text = "Export to XLS"
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(531, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(87, 41)
+        Me.BtnPrint.TabIndex = 0
+        Me.BtnPrint.Text = "Print"
+        '
+        'BtnRefresh
+        '
+        Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
+        Me.BtnRefresh.Location = New System.Drawing.Point(618, 2)
+        Me.BtnRefresh.Name = "BtnRefresh"
+        Me.BtnRefresh.Size = New System.Drawing.Size(97, 41)
+        Me.BtnRefresh.TabIndex = 2
+        Me.BtnRefresh.Text = "Refresh"
         '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 51)
+        Me.GCData.Location = New System.Drawing.Point(0, 45)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(717, 401)
+        Me.GCData.Size = New System.Drawing.Size(717, 407)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -60,49 +100,10 @@ Partial Class FormDisplayAlloc
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVData.OptionsBehavior.Editable = False
         Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowGroupPanel = False
-        '
-        'BtnPrint
-        '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(531, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(87, 47)
-        Me.BtnPrint.TabIndex = 0
-        Me.BtnPrint.Text = "Print"
-        '
-        'BtnExportToXLS
-        '
-        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
-        Me.BtnExportToXLS.Location = New System.Drawing.Point(412, 2)
-        Me.BtnExportToXLS.Name = "BtnExportToXLS"
-        Me.BtnExportToXLS.Size = New System.Drawing.Size(119, 47)
-        Me.BtnExportToXLS.TabIndex = 1
-        Me.BtnExportToXLS.Text = "Export to XLS"
-        '
-        'BtnRefresh
-        '
-        Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
-        Me.BtnRefresh.Location = New System.Drawing.Point(618, 2)
-        Me.BtnRefresh.Name = "BtnRefresh"
-        Me.BtnRefresh.Size = New System.Drawing.Size(97, 47)
-        Me.BtnRefresh.TabIndex = 2
-        Me.BtnRefresh.Text = "Refresh"
-        '
-        'BtnClassGroup
-        '
-        Me.BtnClassGroup.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnClassGroup.Image = CType(resources.GetObject("BtnClassGroup.Image"), System.Drawing.Image)
-        Me.BtnClassGroup.Location = New System.Drawing.Point(2, 2)
-        Me.BtnClassGroup.Name = "BtnClassGroup"
-        Me.BtnClassGroup.Size = New System.Drawing.Size(114, 47)
-        Me.BtnClassGroup.TabIndex = 3
-        Me.BtnClassGroup.Text = "Class Group"
         '
         'FormDisplayAlloc
         '
