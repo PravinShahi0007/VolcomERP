@@ -24,8 +24,8 @@
             col_type2 += "IFNULL(a.`" + dt.Rows(i)("display_type").ToString + "`,0) AS `" + dt.Rows(i)("display_type").ToString + "` "
         Next
 
-        Dim query As String = "SELECT cg.id_class_group, cg.id_division, dv.display_name AS `division`, 
-        cg.id_class_type, ct.class_type, cg.id_class_cat, UPPER(cat.class_cat) AS `class_cat`, cg.class_group,
+        Dim query As String = "SELECT cg.id_class_group,dv.display_name AS `DIVISION`, 
+        ct.class_type AS `TYP`, UPPER(cat.class_cat) AS `CATEGORY`, cg.class_group AS `CLASS`,
         " + col_type2 + ",
         IFNULL(a.`TOTAL DISPLAY`,0) AS `TOTAL DISPLAY`, 
         IFNULL(a.`ESTIMASI SKU`,0) AS `ESTIMASI SKU`
@@ -43,6 +43,25 @@
         ) a ON a.id_class_group = cg.id_class_group "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
+        GVData.Columns("id_class_group").Visible = False
+        For c As Integer = 0 To GVData.Columns.Count - 1
+            Dim dtf As DataRow() = dt.Select("display_type='" + GVData.Columns(c).FieldName + "'")
+            If dtf.Length > 0 Or GVData.Columns(c).FieldName = "TOTAL DISPLAY" Or GVData.Columns(c).FieldName = "ESTIMASI SKU" Then
+                'display
+                GVData.Columns(c).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns(c).DisplayFormat.FormatString = "{0:n2}"
+                'summary
+                GVData.Columns(c).SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                GVData.Columns(c).SummaryItem.DisplayFormat = "{0:n2}"
+                'grup summary
+                Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
+                summary.DisplayFormat = "{0:n0}"
+                summary.FieldName = GVData.Columns(c).FieldName
+                summary.ShowInGroupColumnFooter = GVData.Columns(c)
+                summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                GVData.GroupSummary.Add(summary)
+            End If
+        Next
         GVData.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
