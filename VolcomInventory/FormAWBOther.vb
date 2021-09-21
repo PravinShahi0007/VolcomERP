@@ -80,11 +80,11 @@ SELECT id_comp,comp_name FROM tb_m_comp WHERE id_comp_cat='7' AND is_active='1'"
     End Sub
 
     Private Sub DEStartAWBList_EditValueChanged(sender As Object, e As EventArgs) Handles DEStartAWBList.EditValueChanged
-        DEUntilAWBList.Properties.MinValue = DEStart.EditValue
+        DEUntilAWBList.Properties.MinValue = DEStartAWBList.EditValue
     End Sub
 
     Private Sub DEUntilAWBList_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntilAWBList.EditValueChanged
-        DEStartAWBList.Properties.MaxValue = DEUntil.EditValue
+        DEStartAWBList.Properties.MaxValue = DEUntilAWBList.EditValue
     End Sub
 
     Private Sub BViewAWBList_Click(sender As Object, e As EventArgs) Handles BViewAWBList.Click
