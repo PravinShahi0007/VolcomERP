@@ -13,7 +13,7 @@ INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_
 INNER JOIN tb_m_design d ON d.`id_design`=pdd.`id_design`
 INNER JOIN 
 (
-	SELECT det.`total_in_rp` AS tot_freight
+	SELECT SUM(det.`total_in_rp`) AS tot_freight
 	FROM tb_pre_cal_fgpo_det det
 	INNER JOIN tb_pre_cal_fgpo f ON f.`id_pre_cal_fgpo`=det.`id_pre_cal_fgpo` AND f.`choosen_id_comp`=det.`id_comp`
 	WHERE det.`id_pre_cal_fgpo`='7' AND det.id_type=1
@@ -57,7 +57,7 @@ INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_
 INNER JOIN tb_m_design d ON d.`id_design`=pdd.`id_design`
 INNER JOIN 
 (
-	SELECT det.`total_in_rp` AS tot_freight
+	SELECT SUM(det.`total_in_rp`) AS tot_freight
 	FROM tb_pre_cal_fgpo_det det
 	INNER JOIN tb_pre_cal_fgpo f ON f.`id_pre_cal_fgpo`=det.`id_pre_cal_fgpo` AND f.`choosen_id_comp`=det.`id_comp`
 	WHERE det.`id_pre_cal_fgpo`='" & id_report & "' AND det.id_type=1

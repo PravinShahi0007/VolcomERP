@@ -953,9 +953,6 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn18.FieldName = "qty"
         Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.OptionsColumn.AllowEdit = False
-        Me.GridColumn18.OptionsColumn.AllowFocus = False
-        Me.GridColumn18.OptionsColumn.ReadOnly = True
         Me.GridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 2
@@ -1893,6 +1890,7 @@ Partial Class FormPreCalFGPODet
         Me.BPrintBudget.Size = New System.Drawing.Size(127, 38)
         Me.BPrintBudget.TabIndex = 21
         Me.BPrintBudget.Text = "Print Budget"
+        Me.BPrintBudget.Visible = False
         '
         'BNextPickVendor
         '
@@ -2432,9 +2430,9 @@ Partial Class FormPreCalFGPODet
         Me.TECBM.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TECBM.Properties.AppearanceReadOnly.Options.UseTextOptions = True
         Me.TECBM.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TECBM.Properties.DisplayFormat.FormatString = "N2"
+        Me.TECBM.Properties.DisplayFormat.FormatString = "N4"
         Me.TECBM.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TECBM.Properties.Mask.EditMask = "N2"
+        Me.TECBM.Properties.Mask.EditMask = "N4"
         Me.TECBM.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TECBM.Size = New System.Drawing.Size(94, 20)
         Me.TECBM.TabIndex = 152
@@ -2520,7 +2518,7 @@ Partial Class FormPreCalFGPODet
         Me.MinimizeBox = False
         Me.Name = "FormPreCalFGPODet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Pre Calculation (Budget)"
+        Me.Text = "Budget International Shipping"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)

@@ -108,6 +108,7 @@ Partial Class FormProductionKO
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.PCDel = New DevExpress.XtraEditors.PanelControl()
         Me.Bdel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -499,6 +500,7 @@ Partial Class FormProductionKO
         '
         'PCControl
         '
+        Me.PCControl.Controls.Add(Me.BMark)
         Me.PCControl.Controls.Add(Me.BAttachment)
         Me.PCControl.Controls.Add(Me.BPrintKO)
         Me.PCControl.Controls.Add(Me.BUpdate)
@@ -1054,6 +1056,17 @@ Partial Class FormProductionKO
         Me.Bdel.TabIndex = 17
         Me.Bdel.Text = "Delete"
         '
+        'BMark
+        '
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.ImageIndex = 4
+        Me.BMark.ImageList = Me.ImageCollection
+        Me.BMark.Location = New System.Drawing.Point(2, 2)
+        Me.BMark.Name = "BMark"
+        Me.BMark.Size = New System.Drawing.Size(82, 37)
+        Me.BMark.TabIndex = 8913
+        Me.BMark.Text = "Mark"
+        '
         'FormProductionKO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1202,4 +1215,5 @@ Partial Class FormProductionKO
     Friend WithEvents PCDel As DevExpress.XtraEditors.PanelControl
     Friend WithEvents Bdel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
 End Class
