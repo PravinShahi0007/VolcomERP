@@ -33,6 +33,11 @@ Partial Class FormViewProductionPLToWHRec
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopMain = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtVendorCode = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtVendor = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtPONumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.MEAdrressCompTo = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -75,6 +80,8 @@ Partial Class FormViewProductionPLToWHRec
         Me.LabelControlLocator = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtSeason = New DevExpress.XtraEditors.TextEdit()
         Me.TxtPLCategory = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtRetOutNumber = New DevExpress.XtraEditors.TextEdit()
@@ -112,13 +119,9 @@ Partial Class FormViewProductionPLToWHRec
         Me.GridColumnIsFix = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.TxtPONumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtVendorCode = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtVendor = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtSeason = New DevExpress.XtraEditors.TextEdit()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -131,6 +134,9 @@ Partial Class FormViewProductionPLToWHRec
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopMain.SuspendLayout()
+        CType(Me.TxtVendorCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEAdrressCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtUnitCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,6 +155,7 @@ Partial Class FormViewProductionPLToWHRec
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPLCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtRetOutNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -166,10 +173,6 @@ Partial Class FormViewProductionPLToWHRec
         CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtVendorCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl3
@@ -325,6 +328,63 @@ Partial Class FormViewProductionPLToWHRec
         Me.PanelControlTopMain.Name = "PanelControlTopMain"
         Me.PanelControlTopMain.Size = New System.Drawing.Size(395, 144)
         Me.PanelControlTopMain.TabIndex = 10009
+        '
+        'TxtVendorCode
+        '
+        Me.TxtVendorCode.EditValue = ""
+        Me.TxtVendorCode.Location = New System.Drawing.Point(80, 82)
+        Me.TxtVendorCode.Name = "TxtVendorCode"
+        Me.TxtVendorCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtVendorCode.Properties.Appearance.Options.UseFont = True
+        Me.TxtVendorCode.Properties.EditValueChangedDelay = 1
+        Me.TxtVendorCode.Properties.ReadOnly = True
+        Me.TxtVendorCode.Size = New System.Drawing.Size(82, 20)
+        Me.TxtVendorCode.TabIndex = 10018
+        Me.TxtVendorCode.TabStop = False
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl12.Location = New System.Drawing.Point(8, 85)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl12.TabIndex = 10017
+        Me.LabelControl12.Text = "Vendor"
+        '
+        'TxtVendor
+        '
+        Me.TxtVendor.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtVendor.EditValue = ""
+        Me.TxtVendor.Location = New System.Drawing.Point(165, 82)
+        Me.TxtVendor.Name = "TxtVendor"
+        Me.TxtVendor.Properties.EditValueChangedDelay = 1
+        Me.TxtVendor.Properties.ReadOnly = True
+        Me.TxtVendor.Size = New System.Drawing.Size(214, 20)
+        Me.TxtVendor.TabIndex = 10016
+        Me.TxtVendor.TabStop = False
+        '
+        'TxtPONumber
+        '
+        Me.TxtPONumber.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtPONumber.EditValue = ""
+        Me.TxtPONumber.Location = New System.Drawing.Point(80, 57)
+        Me.TxtPONumber.Name = "TxtPONumber"
+        Me.TxtPONumber.Properties.EditValueChangedDelay = 1
+        Me.TxtPONumber.Properties.ReadOnly = True
+        Me.TxtPONumber.Size = New System.Drawing.Size(299, 20)
+        Me.TxtPONumber.TabIndex = 10014
+        Me.TxtPONumber.TabStop = False
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(8, 60)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl11.TabIndex = 10013
+        Me.LabelControl11.Text = "PO Number"
         '
         'MEAdrressCompTo
         '
@@ -735,6 +795,26 @@ Partial Class FormViewProductionPLToWHRec
         Me.PanelControlTopRight.Size = New System.Drawing.Size(191, 144)
         Me.PanelControlTopRight.TabIndex = 10010
         '
+        'LabelControl13
+        '
+        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl13.Location = New System.Drawing.Point(6, 64)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(35, 13)
+        Me.LabelControl13.TabIndex = 10010
+        Me.LabelControl13.Text = "Season"
+        '
+        'TxtSeason
+        '
+        Me.TxtSeason.EditValue = ""
+        Me.TxtSeason.Location = New System.Drawing.Point(75, 61)
+        Me.TxtSeason.Name = "TxtSeason"
+        Me.TxtSeason.Properties.EditValueChangedDelay = 1
+        Me.TxtSeason.Properties.ReadOnly = True
+        Me.TxtSeason.Size = New System.Drawing.Size(109, 20)
+        Me.TxtSeason.TabIndex = 10009
+        Me.TxtSeason.TabStop = False
+        '
         'TxtPLCategory
         '
         Me.TxtPLCategory.EditValue = ""
@@ -847,7 +927,7 @@ Partial Class FormViewProductionPLToWHRec
         '
         'GVRetDetail
         '
-        Me.GVRetDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRet, Me.GridColumnIdSamplePurcDet, Me.GridColumnNo, Me.GridColumnEanCode, Me.GridColumnQtyStored, Me.GridColumnUniqueRange, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnQtyRec, Me.GridColumnRemark, Me.GridColumnNox})
+        Me.GVRetDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRet, Me.GridColumnIdSamplePurcDet, Me.GridColumnNo, Me.GridColumnEanCode, Me.GridColumnQtyStored, Me.GridColumnUniqueRange, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnQtyRec, Me.GridColumnRemark, Me.GridColumnNox, Me.GridColumnclass, Me.GridColumncolor, Me.GridColumnsht})
         Me.GVRetDetail.GridControl = Me.GCRetDetail
         Me.GVRetDetail.Name = "GVRetDetail"
         Me.GVRetDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -925,7 +1005,7 @@ Partial Class FormViewProductionPLToWHRec
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 2
+        Me.GridColumnName.VisibleIndex = 3
         Me.GridColumnName.Width = 184
         '
         'GridColumnSize
@@ -939,7 +1019,7 @@ Partial Class FormViewProductionPLToWHRec
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 3
+        Me.GridColumnSize.VisibleIndex = 6
         Me.GridColumnSize.Width = 55
         '
         'GridColumnUOM
@@ -953,7 +1033,7 @@ Partial Class FormViewProductionPLToWHRec
         Me.GridColumnUOM.Name = "GridColumnUOM"
         Me.GridColumnUOM.OptionsColumn.ReadOnly = True
         Me.GridColumnUOM.Visible = True
-        Me.GridColumnUOM.VisibleIndex = 4
+        Me.GridColumnUOM.VisibleIndex = 7
         Me.GridColumnUOM.Width = 92
         '
         'GridColumnQty
@@ -982,7 +1062,7 @@ Partial Class FormViewProductionPLToWHRec
         '
         'GridColumnQtyRec
         '
-        Me.GridColumnQtyRec.Caption = "Qty Receiving"
+        Me.GridColumnQtyRec.Caption = "Qty"
         Me.GridColumnQtyRec.DisplayFormat.FormatString = "{0:f2}"
         Me.GridColumnQtyRec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQtyRec.FieldName = "pl_prod_order_rec_det_qty"
@@ -990,7 +1070,7 @@ Partial Class FormViewProductionPLToWHRec
         Me.GridColumnQtyRec.OptionsColumn.ReadOnly = True
         Me.GridColumnQtyRec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_prod_order_rec_det_qty", "{0:f2}")})
         Me.GridColumnQtyRec.Visible = True
-        Me.GridColumnQtyRec.VisibleIndex = 5
+        Me.GridColumnQtyRec.VisibleIndex = 8
         Me.GridColumnQtyRec.Width = 92
         '
         'GridColumnRemark
@@ -999,7 +1079,7 @@ Partial Class FormViewProductionPLToWHRec
         Me.GridColumnRemark.FieldName = "pl_prod_order_rec_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 6
+        Me.GridColumnRemark.VisibleIndex = 9
         Me.GridColumnRemark.Width = 174
         '
         'GridColumnNox
@@ -1115,82 +1195,29 @@ Partial Class FormViewProductionPLToWHRec
         Me.RepositoryItemSpinEdit2.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
         Me.RepositoryItemSpinEdit2.Name = "RepositoryItemSpinEdit2"
         '
-        'TxtPONumber
+        'GridColumnclass
         '
-        Me.TxtPONumber.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtPONumber.EditValue = ""
-        Me.TxtPONumber.Location = New System.Drawing.Point(80, 57)
-        Me.TxtPONumber.Name = "TxtPONumber"
-        Me.TxtPONumber.Properties.EditValueChangedDelay = 1
-        Me.TxtPONumber.Properties.ReadOnly = True
-        Me.TxtPONumber.Size = New System.Drawing.Size(299, 20)
-        Me.TxtPONumber.TabIndex = 10014
-        Me.TxtPONumber.TabStop = False
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
         '
-        'LabelControl11
+        'GridColumncolor
         '
-        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(8, 60)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(54, 13)
-        Me.LabelControl11.TabIndex = 10013
-        Me.LabelControl11.Text = "PO Number"
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 5
         '
-        'TxtVendorCode
+        'GridColumnsht
         '
-        Me.TxtVendorCode.EditValue = ""
-        Me.TxtVendorCode.Location = New System.Drawing.Point(80, 82)
-        Me.TxtVendorCode.Name = "TxtVendorCode"
-        Me.TxtVendorCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtVendorCode.Properties.Appearance.Options.UseFont = True
-        Me.TxtVendorCode.Properties.EditValueChangedDelay = 1
-        Me.TxtVendorCode.Properties.ReadOnly = True
-        Me.TxtVendorCode.Size = New System.Drawing.Size(82, 20)
-        Me.TxtVendorCode.TabIndex = 10018
-        Me.TxtVendorCode.TabStop = False
-        '
-        'LabelControl12
-        '
-        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl12.Location = New System.Drawing.Point(8, 85)
-        Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(34, 13)
-        Me.LabelControl12.TabIndex = 10017
-        Me.LabelControl12.Text = "Vendor"
-        '
-        'TxtVendor
-        '
-        Me.TxtVendor.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtVendor.EditValue = ""
-        Me.TxtVendor.Location = New System.Drawing.Point(165, 82)
-        Me.TxtVendor.Name = "TxtVendor"
-        Me.TxtVendor.Properties.EditValueChangedDelay = 1
-        Me.TxtVendor.Properties.ReadOnly = True
-        Me.TxtVendor.Size = New System.Drawing.Size(214, 20)
-        Me.TxtVendor.TabIndex = 10016
-        Me.TxtVendor.TabStop = False
-        '
-        'LabelControl13
-        '
-        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl13.Location = New System.Drawing.Point(6, 64)
-        Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(35, 13)
-        Me.LabelControl13.TabIndex = 10010
-        Me.LabelControl13.Text = "Season"
-        '
-        'TxtSeason
-        '
-        Me.TxtSeason.EditValue = ""
-        Me.TxtSeason.Location = New System.Drawing.Point(75, 61)
-        Me.TxtSeason.Name = "TxtSeason"
-        Me.TxtSeason.Properties.EditValueChangedDelay = 1
-        Me.TxtSeason.Properties.ReadOnly = True
-        Me.TxtSeason.Size = New System.Drawing.Size(109, 20)
-        Me.TxtSeason.TabIndex = 10009
-        Me.TxtSeason.TabStop = False
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.Visible = True
+        Me.GridColumnsht.VisibleIndex = 4
         '
         'FormViewProductionPLToWHRec
         '
@@ -1222,6 +1249,9 @@ Partial Class FormViewProductionPLToWHRec
         CType(Me.PanelControlTopMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopMain.ResumeLayout(False)
         Me.PanelControlTopMain.PerformLayout()
+        CType(Me.TxtVendorCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEAdrressCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtUnitCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1242,6 +1272,7 @@ Partial Class FormViewProductionPLToWHRec
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPLCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtRetOutNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1259,10 +1290,6 @@ Partial Class FormViewProductionPLToWHRec
         CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtVendorCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1366,4 +1393,7 @@ Partial Class FormViewProductionPLToWHRec
     Friend WithEvents TxtVendor As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtSeason As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
 End Class

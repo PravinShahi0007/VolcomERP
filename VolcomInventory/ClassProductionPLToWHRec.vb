@@ -15,7 +15,7 @@
         Dim query As String = "SELECT CONCAT(vend_c.comp_number, ' - ', vend_c.comp_name) AS vendor, i.prod_order_number,dsg.id_design, (dsg.design_display_name) AS `design_name`, dsg.design_code AS `code`, k.pl_category, i.prod_order_number, a0.id_pl_prod_order_rec , a0.id_comp_contact_from , a0.id_comp_contact_to, a0.pl_prod_order_rec_note, a0.pl_prod_order_rec_number, a.pl_prod_order_number, "
         query += "CONCAT(d.comp_number,' - ',d.comp_name) AS comp_name_from, CONCAT(f.comp_number,' - ',f.comp_name) AS comp_name_to, h.report_status, a0.id_report_status, "
         query += "a0.pl_prod_order_rec_date, ss.id_season, ss.season, IFNULL(det.total_qty,0) AS `total_qty`, "
-        query += "a0.last_update, getUserEmp(a0.last_update_by, '1') AS last_user, ('No') AS is_select,IFNULL(pb.prepared_by,'-') AS `prepared_by`, pb.report_mark_datetime AS `prepared_date` "
+        query += "a0.last_update, getUserEmp(a0.last_update_by, '1') AS last_user, ('No') AS is_select,IFNULL(pb.prepared_by,'-') AS `prepared_by`, pb.report_mark_datetime AS `prepared_date`, cd.class, cd.color, cd.sht "
         query += "FROM tb_pl_prod_order_rec a0 "
         query += "INNER JOIN tb_pl_prod_order a ON a.id_pl_prod_order = a0.id_pl_prod_order "
         query += "INNER JOIN tb_m_comp_contact c ON a0.id_comp_contact_from = c.id_comp_contact "
@@ -33,7 +33,23 @@
         query += "INNER JOIN tb_season_delivery del On del.id_delivery = i.id_delivery "
         query += "INNER JOIN tb_season ss On ss.id_season = del.id_season "
         query += "INNER JOIN tb_prod_demand_design pd_dsg On pd_dsg.id_prod_demand_design = i.id_prod_demand_design "
-        query += "INNER JOIN tb_m_design dsg On dsg.id_design = pd_dsg.id_design "
+        query += "INNER JOIN tb_m_design dsg On dsg.id_design = pd_dsg.id_design 
+        LEFT JOIN (
+            SELECT dc.id_design, 
+            MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+            MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+            MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+            MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+            MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+            MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+            MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+            MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+            FROM tb_m_design_code dc
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+            AND cd.id_code IN (32,30,14, 43)
+            GROUP BY dc.id_design
+        ) cd ON cd.id_design = dsg.id_design "
         query += "LEFT JOIN ( "
         query += "Select det.id_pl_prod_order_rec, SUM(det.pl_prod_order_rec_det_qty) As `total_qty` "
         query += "FROM tb_pl_prod_order_rec_det det "

@@ -152,6 +152,9 @@ Partial Class FormProductionPLToWHRecDet
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
         Me.EPRet = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1197,7 +1200,7 @@ Partial Class FormProductionPLToWHRecDet
         '
         'GVRetDetail
         '
-        Me.GVRetDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRet, Me.GridColumnIdSamplePurcDet, Me.GridColumnNo, Me.GridColumnEanCode, Me.GridColumnQtyStored, Me.GridColumnUniqueRange, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnQtyRec, Me.GridColumnRemark, Me.GridColumnNox, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo})
+        Me.GVRetDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRet, Me.GridColumnIdSamplePurcDet, Me.GridColumnNo, Me.GridColumnEanCode, Me.GridColumnQtyStored, Me.GridColumnUniqueRange, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnQtyRec, Me.GridColumnRemark, Me.GridColumnNox, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnclass, Me.GridColumncolor, Me.GridColumnsht})
         Me.GVRetDetail.GridControl = Me.GCRetDetail
         Me.GVRetDetail.Name = "GVRetDetail"
         Me.GVRetDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -1276,7 +1279,7 @@ Partial Class FormProductionPLToWHRecDet
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 2
+        Me.GridColumnName.VisibleIndex = 3
         Me.GridColumnName.Width = 184
         '
         'GridColumnSize
@@ -1290,7 +1293,7 @@ Partial Class FormProductionPLToWHRecDet
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 3
+        Me.GridColumnSize.VisibleIndex = 6
         Me.GridColumnSize.Width = 55
         '
         'GridColumnUOM
@@ -1336,7 +1339,7 @@ Partial Class FormProductionPLToWHRecDet
         Me.GridColumnQtyRec.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnQtyRec.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnQtyRec.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnQtyRec.Caption = "Qty Receiving"
+        Me.GridColumnQtyRec.Caption = "Qty"
         Me.GridColumnQtyRec.DisplayFormat.FormatString = "{0:n0}"
         Me.GridColumnQtyRec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQtyRec.FieldName = "pl_prod_order_rec_det_qty"
@@ -1344,7 +1347,7 @@ Partial Class FormProductionPLToWHRecDet
         Me.GridColumnQtyRec.OptionsColumn.ReadOnly = True
         Me.GridColumnQtyRec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_prod_order_rec_det_qty", "{0:n0}")})
         Me.GridColumnQtyRec.Visible = True
-        Me.GridColumnQtyRec.VisibleIndex = 4
+        Me.GridColumnQtyRec.VisibleIndex = 7
         Me.GridColumnQtyRec.Width = 92
         '
         'GridColumnRemark
@@ -1353,7 +1356,7 @@ Partial Class FormProductionPLToWHRecDet
         Me.GridColumnRemark.FieldName = "pl_prod_order_rec_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 5
+        Me.GridColumnRemark.VisibleIndex = 8
         Me.GridColumnRemark.Width = 174
         '
         'GridColumnNox
@@ -1571,6 +1574,33 @@ Partial Class FormProductionPLToWHRecDet
         'EPRet
         '
         Me.EPRet.ContainerControl = Me
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.OptionsColumn.AllowEdit = False
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.OptionsColumn.AllowEdit = False
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 5
+        '
+        'GridColumnsht
+        '
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.OptionsColumn.AllowEdit = False
+        Me.GridColumnsht.Visible = True
+        Me.GridColumnsht.VisibleIndex = 4
         '
         'FormProductionPLToWHRecDet
         '
@@ -1790,4 +1820,7 @@ Partial Class FormProductionPLToWHRecDet
     Friend WithEvents GridColumnFrom As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCompNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
 End Class

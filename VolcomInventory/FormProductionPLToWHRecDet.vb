@@ -388,7 +388,7 @@ Public Class FormProductionPLToWHRecDet
 
     Sub viewDetail()
         If action = "ins" Then
-            Dim query As String = "CALL view_pl_prod('" + id_pl_prod_order + "', '0', '" + id_pd_alloc + "') "
+            Dim query As String = "CALL view_pl_prod('" + id_pl_prod_order + "', '1', '" + id_pd_alloc + "') "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             For i As Integer = 0 To (data.Rows.Count - 1)
                 Dim id_pl_prod_order_det As String = data.Rows(i)("id_pl_prod_order_det").ToString
@@ -409,7 +409,7 @@ Public Class FormProductionPLToWHRecDet
             GCRetDetail.DataSource = data
         ElseIf action = "upd" Then
             dt.Clear()
-            Dim query As String = "CALL view_pl_prod_rec('" + id_pl_prod_order_rec + "', '0')"
+            Dim query As String = "CALL view_pl_prod_rec('" + id_pl_prod_order_rec + "', '1')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             For i As Integer = 0 To (data.Rows.Count - 1)
                 id_pl_prod_order_det_list.Add(data.Rows(i)("id_pl_prod_order_det").ToString)
