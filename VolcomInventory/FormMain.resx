@@ -6145,6 +6145,23 @@
         vFRqAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="NBStockTakePropose.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAodEVYdFRpdGxlAExldHRlcjtlLW1haWw7ZW1haWw7bWFpbDtUZW1wbGF0ZTub4SUMAAACcklE
+        QVQ4T3XTaU8TURQG4CvWhc3lk//NxAjRmKhR1MgmxEIjxBAXLBQkMWEHKatoN4SpFcqiUKTF8AHUEIXU
+        0tIWmOl0fT33tiHElEmenJs5574zudMyunLISaLJ4lQWfPYEAMYxffv0p7a+Bbwmrb3zaO2ZQwsxdJOu
+        WTSTpk4n9FyHEw1tkoMCNIcB9QY71n/5kEgkoUTikJVomppeK0oMihoV/ZXvm9C9mqJd7MxhwJMmCYPm
+        ZZilVcTjSURjSURosxKhjYSv4/EEXO6fcMyuQXJu8IB8kqNrmWesVi/hx+8QLPY1vGizQo3G0DG6Cp1h
+        Ia15HrUZNYY51DQR/RweN87YeQjTvpzE+mYIM0t/0P/Ohalpjxg69kqlS3Wjk7+JhlU9+4jZ5S0YTW6E
+        D2Lw+kKiyeeGbasYsnrgCxxgyOIW60GLB6lUChXPp3nAaVbxdAJv3n7BbiiCnd0IgmEZldRMJFMw0rDR
+        7IZ3Zx8D9IAB8wrVFcTpQEsbHOIw2cM6Cz1BhjegwOuX4Q8eoIyaMTrQbd9eRhhbf8PYJryq0QTu1Uk8
+        4Cy7XTViL6k1oaTGhLtkzObBg3pJDPW//4a+cUK1d3wZPeMuUWX63Hd0kzwgl1AKY4XkXMYl3uRDfEMP
+        Haww5kI36Rpbwr4cwy2tjQfkix/DUfzmTe0E9uQoukaXhM4jtXNkEaE9FTeqrXy4IFtAAW8G91Ux3MEN
+        L6Jd1K9op3UgHMG1RxY+XJg14HqlmYZU+OnLBDL8QfpKRxSXm48NyL1yf9BRXG5CcVlakfABRaVpV8nl
+        EuNnms3LFsD/3nnkPLmQcfE//B7NsJx/FrSc7AY6WXcAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="NBStockTakeStorePeriod.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -9513,6 +9530,6 @@
     <value>1150, 17</value>
   </metadata>
   <metadata name="AdornerUIManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
+    <value>1260, 17</value>
   </metadata>
 </root>

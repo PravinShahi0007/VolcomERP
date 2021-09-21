@@ -825,6 +825,7 @@ INNER JOIN `tb_pre_cal_fgpo` cal ON st.`is_active`='1'  AND  cal.`id_pre_cal_fgp
 
     Private Sub BNextPickVendor_Click(sender As Object, e As EventArgs) Handles BNextPickVendor.Click
         If GVAdm.RowCount > 0 Then
+            submit_who_prepared("334", id, id_user)
             execute_non_query("UPDATE tb_pre_cal_fgpo SET step='7' WHERE id_pre_cal_fgpo='" & id & "'", True, "", "", "", "")
             load_head()
         End If
@@ -905,7 +906,7 @@ INNER JOIN
 	INNER JOIN tb_m_design d ON d.`id_design`=pdd.`id_design`
 	INNER JOIN 
 	(
-		SELECT det.`total_in_rp` AS tot_freight
+		SELECT SUM(det.`total_in_rp`) AS tot_freight
 		FROM tb_pre_cal_fgpo_det det
 		INNER JOIN tb_pre_cal_fgpo f ON f.`id_pre_cal_fgpo`=det.`id_pre_cal_fgpo` AND f.`choosen_id_comp`=det.`id_comp`
 		WHERE det.`id_pre_cal_fgpo`='7' AND det.id_type=1

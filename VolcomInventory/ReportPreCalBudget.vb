@@ -431,5 +431,7 @@ SELECT 'DESTINATION CHARGES' AS `desc`,'' AS curr,0 AS unit_price,0 AS qty,0 AS 
         insert_row(row_baru, dtqty, 0)
 
         insert_row_manual(row_baru, execute_query("SELECT 'TOTAL SHIP COST' AS `desc`,'' AS curr,'' AS unit_price,'' AS qty,'' AS unit_price_in_rp,'" & Decimal.Parse((total_orign + total_dest + total_adm) / qty.ToString).ToString("N2") & "' AS total_in_rp, 'TOTAL SHIP COST' AS descc,'' AS currc,'' AS unit_pricec,'' AS qtyc,'' AS unit_price_in_rpc,'" & Decimal.Parse((total_orignc + total_destc + total_admc) / qty.ToString).ToString("N2") & "' AS total_in_rpc", -1, True, "", "", "", ""), 0)
+
+        pre_load_mark_horz("334", id_report, "2", "2", XrTable2)
     End Sub
 End Class
