@@ -1954,6 +1954,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPreCalFGPO" Then
             FormPreCalFGPODet.id = "-1"
             FormPreCalFGPODet.ShowDialog()
+        ElseIf formName = "FormStockTakePropose" Then
+            FormStockTakeProposeDet.id_st_store_propose = "-1"
+            FormStockTakeProposeDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3302,6 +3305,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormPreCalFGPODet.id = FormPreCalFGPO.GVPreCal.GetFocusedRowCellValue("id_pre_cal_fgpo").ToString
                     FormPreCalFGPODet.ShowDialog()
                 End If
+            ElseIf formName = "FormStockTakePropose" Then
+                FormStockTakeProposeDet.id_st_store_propose = FormStockTakePropose.GVData.GetFocusedRowCellValue("id_st_store_propose").ToString
+                FormStockTakeProposeDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -9831,6 +9837,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formname = "FormCapsule" Then
             FormCapsule.Close()
             FormCapsule.Dispose()
+        ElseIf formName = "FormStockTakePropose" Then
+            FormStockTakePropose.Close()
+            FormStockTakePropose.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10869,6 +10878,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSNIWH.load_list()
         ElseIf formName = "FormPreCalFGPO" Then
             FormPreCalFGPO.load_list()
+        ElseIf formName = "FormStockTakePropose" Then
+            FormStockTakePropose.load_form()
         End If
     End Sub
     'Switch
@@ -16620,5 +16631,18 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
 
+    End Sub
+
+    Private Sub NBStockTakePropose_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBStockTakePropose.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormStockTakePropose.MdiParent = Me
+            FormStockTakePropose.Show()
+            FormStockTakePropose.WindowState = FormWindowState.Maximized
+            FormStockTakePropose.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
