@@ -104,6 +104,7 @@
 
     Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            FormDisplayAllocDet.TxtClassGroup.Text = GVData.GetFocusedRowCellValue("CLASS").ToString
             FormDisplayAllocDet.foc = GVData.FocusedColumn.FieldName.ToString
             FormDisplayAllocDet.id_class_group = GVData.GetFocusedRowCellValue("id_class_group").ToString
             FormDisplayAllocDet.ShowDialog()
