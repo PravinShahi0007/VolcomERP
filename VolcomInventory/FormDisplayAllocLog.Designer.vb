@@ -25,23 +25,32 @@ Partial Class FormDisplayAllocLog
         Me.SLEClass = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLEDisplay = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnclass_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndisplay_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnemployee_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnlog_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnlog = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEClass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEDisplay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
         Me.PanelControl1.Controls.Add(Me.BtnView)
-        Me.PanelControl1.Controls.Add(Me.SearchLookUpEdit1)
+        Me.PanelControl1.Controls.Add(Me.SLEDisplay)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.SLEClass)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
@@ -84,15 +93,15 @@ Partial Class FormDisplayAllocLog
         Me.LabelControl2.TabIndex = 2
         Me.LabelControl2.Text = "Display Type"
         '
-        'SearchLookUpEdit1
+        'SLEDisplay
         '
-        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(217, 30)
-        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
-        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit1.Properties.ShowClearButton = False
-        Me.SearchLookUpEdit1.Properties.View = Me.GridView1
-        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(195, 20)
-        Me.SearchLookUpEdit1.TabIndex = 3
+        Me.SLEDisplay.Location = New System.Drawing.Point(217, 30)
+        Me.SLEDisplay.Name = "SLEDisplay"
+        Me.SLEDisplay.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEDisplay.Properties.ShowClearButton = False
+        Me.SLEDisplay.Properties.View = Me.GridView1
+        Me.SLEDisplay.Size = New System.Drawing.Size(195, 20)
+        Me.SLEDisplay.TabIndex = 3
         '
         'GridView1
         '
@@ -119,11 +128,74 @@ Partial Class FormDisplayAllocLog
         Me.BtnPrint.TabIndex = 4
         Me.BtnPrint.Text = "Print"
         '
+        'GCData
+        '
+        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCData.Location = New System.Drawing.Point(0, 66)
+        Me.GCData.MainView = Me.GVData
+        Me.GCData.Name = "GCData"
+        Me.GCData.Size = New System.Drawing.Size(784, 295)
+        Me.GCData.TabIndex = 1
+        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
+        '
+        'GVData
+        '
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnclass_group, Me.GridColumndisplay_type, Me.GridColumnemployee_name, Me.GridColumnlog_date, Me.GridColumnlog})
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsBehavior.ReadOnly = True
+        Me.GVData.OptionsFind.AlwaysVisible = True
+        Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnclass_group
+        '
+        Me.GridColumnclass_group.Caption = "Class"
+        Me.GridColumnclass_group.FieldName = "class_group"
+        Me.GridColumnclass_group.Name = "GridColumnclass_group"
+        Me.GridColumnclass_group.Visible = True
+        Me.GridColumnclass_group.VisibleIndex = 0
+        '
+        'GridColumndisplay_type
+        '
+        Me.GridColumndisplay_type.Caption = "Type"
+        Me.GridColumndisplay_type.FieldName = "display_type"
+        Me.GridColumndisplay_type.Name = "GridColumndisplay_type"
+        Me.GridColumndisplay_type.Visible = True
+        Me.GridColumndisplay_type.VisibleIndex = 1
+        '
+        'GridColumnemployee_name
+        '
+        Me.GridColumnemployee_name.Caption = "Updated By"
+        Me.GridColumnemployee_name.FieldName = "employee_name"
+        Me.GridColumnemployee_name.Name = "GridColumnemployee_name"
+        Me.GridColumnemployee_name.Visible = True
+        Me.GridColumnemployee_name.VisibleIndex = 4
+        '
+        'GridColumnlog_date
+        '
+        Me.GridColumnlog_date.Caption = "Updated at"
+        Me.GridColumnlog_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumnlog_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnlog_date.FieldName = "log_date"
+        Me.GridColumnlog_date.Name = "GridColumnlog_date"
+        Me.GridColumnlog_date.Visible = True
+        Me.GridColumnlog_date.VisibleIndex = 3
+        '
+        'GridColumnlog
+        '
+        Me.GridColumnlog.Caption = "Log"
+        Me.GridColumnlog.FieldName = "log"
+        Me.GridColumnlog.Name = "GridColumnlog"
+        Me.GridColumnlog.Visible = True
+        Me.GridColumnlog.VisibleIndex = 2
+        '
         'FormDisplayAllocLog
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 361)
+        Me.Controls.Add(Me.GCData)
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormDisplayAllocLog"
@@ -134,8 +206,10 @@ Partial Class FormDisplayAllocLog
         Me.PanelControl1.PerformLayout()
         CType(Me.SLEClass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEDisplay.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -143,10 +217,17 @@ Partial Class FormDisplayAllocLog
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLEDisplay As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SLEClass As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnclass_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndisplay_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnemployee_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnlog_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnlog As DevExpress.XtraGrid.Columns.GridColumn
 End Class

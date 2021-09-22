@@ -129,6 +129,7 @@
 
     Private Sub BtnLog_Click(sender As Object, e As EventArgs) Handles BtnLog.Click
         Cursor = Cursors.WaitCursor
+        FormDisplayAllocLog.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class
