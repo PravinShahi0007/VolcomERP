@@ -52,7 +52,7 @@
             If confirm = Windows.Forms.DialogResult.Yes Then
                 submit_who_prepared(report_mark_type, id_report, id_user)
                 '
-                If report_mark_type = "153" Then
+                If report_mark_type = "153" Or report_mark_type = "347" Then
                     FormMasterCompanySingle.update_status("4")
                     FormMasterCompanySingle.action_load()
                 End If
@@ -468,7 +468,7 @@
         ElseIf report_mark_type = "152" Then
             ''Purchase Return
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_purc_return WHERE id_purc_return = '{0}'", id_report)
-        ElseIf report_mark_type = "153" Then
+        ElseIf report_mark_type = "153" Or report_mark_type = "347" Then
             'Propose company
             query = String.Format("SELECT id_report_status,comp_name as report_number FROM tb_m_comp WHERE id_comp = '{0}'", id_report)
         ElseIf report_mark_type = "154" Or report_mark_type = "163" Then
@@ -6240,7 +6240,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
             'refresh view
             FormPurcReturn.viewReturn()
             FormPurcReturn.GVReturn.FocusedRowHandle = find_row(FormPurcReturn.GVReturn, "id_purc_return", id_report)
-        ElseIf report_mark_type = "153" Then
+        ElseIf report_mark_type = "153" Or report_mark_type = "347" Then
             'claim return
             'auto completed
             If id_status_reportx = "3" Then
