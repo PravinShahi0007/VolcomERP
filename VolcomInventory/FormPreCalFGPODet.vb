@@ -671,8 +671,14 @@ FROM
 	WHERE l.id_pre_cal_fgpo='" & id & "'
 ) duty
 UNION ALL
-SELECT '13' AS id_pre_cal_temp,'KSO' AS `desc`,2 AS `id_currency`,'$' AS currency,315 AS `unit_price`,h.rate_management AS `kurs`,(h.rate_management*315) AS `unit_price_in_rp`,1 AS `qty`
+SELECT '13' AS id_pre_cal_temp,'KSO' AS `desc`,2 AS `id_currency`,'$' AS currency,get_kso_rate(tq.tot_fob) AS `unit_price`,h.rate_management AS `kurs`,(h.rate_management*get_kso_rate(tq.tot_fob)) AS `unit_price_in_rp`,1 AS `qty`
 FROM tb_pre_cal_fgpo h
+INNER JOIN
+(
+	SELECT id_pre_cal_fgpo,SUM(qty) AS tot_qty,SUM(price*qty) AS tot_fob
+	FROM `tb_pre_cal_fgpo_list` l
+	WHERE l.id_pre_cal_fgpo='" & id & "'
+)tq ON tq.id_pre_cal_fgpo=h.`id_pre_cal_fgpo`
 WHERE h.id_pre_cal_fgpo='" & id & "'
 UNION ALL
 SELECT '14' AS id_pre_cal_temp,'Adm Insurance' AS `desc`,2 AS `id_currency`,'$' AS currency,4 AS `unit_price`,h.rate_management AS `kurs`,(h.rate_management*4) AS `unit_price_in_rp`,1 AS `qty`
