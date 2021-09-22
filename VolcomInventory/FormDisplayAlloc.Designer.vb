@@ -27,6 +27,7 @@ Partial Class FormDisplayAlloc
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BtnLog = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -38,6 +39,7 @@ Partial Class FormDisplayAlloc
         Me.PanelControl1.Controls.Add(Me.BtnClassGroup)
         Me.PanelControl1.Controls.Add(Me.BtnExportToXLS)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
+        Me.PanelControl1.Controls.Add(Me.BtnLog)
         Me.PanelControl1.Controls.Add(Me.BtnRefresh)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -59,7 +61,7 @@ Partial Class FormDisplayAlloc
         '
         Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
-        Me.BtnExportToXLS.Location = New System.Drawing.Point(412, 2)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(298, 2)
         Me.BtnExportToXLS.Name = "BtnExportToXLS"
         Me.BtnExportToXLS.Size = New System.Drawing.Size(119, 41)
         Me.BtnExportToXLS.TabIndex = 1
@@ -69,7 +71,7 @@ Partial Class FormDisplayAlloc
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(531, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(417, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 41)
         Me.BtnPrint.TabIndex = 0
@@ -105,6 +107,16 @@ Partial Class FormDisplayAlloc
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
+        'BtnLog
+        '
+        Me.BtnLog.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnLog.Image = CType(resources.GetObject("BtnLog.Image"), System.Drawing.Image)
+        Me.BtnLog.Location = New System.Drawing.Point(504, 2)
+        Me.BtnLog.Name = "BtnLog"
+        Me.BtnLog.Size = New System.Drawing.Size(114, 41)
+        Me.BtnLog.TabIndex = 4
+        Me.BtnLog.Text = "Log Update"
+        '
         'FormDisplayAlloc
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -115,7 +127,7 @@ Partial Class FormDisplayAlloc
         Me.MinimizeBox = False
         Me.Name = "FormDisplayAlloc"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Display Allocation"
+        Me.Text = "Display Capacity"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
@@ -131,4 +143,5 @@ Partial Class FormDisplayAlloc
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnRefresh As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnClassGroup As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnLog As DevExpress.XtraEditors.SimpleButton
 End Class

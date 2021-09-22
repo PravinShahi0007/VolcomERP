@@ -28,7 +28,7 @@
         ct.class_type AS `TYP`, UPPER(cat.class_cat) AS `CATEGORY`, cg.class_group AS `CLASS`,
         " + col_type2 + ",
         IFNULL(a.`TOTAL DISPLAY`,0) AS `TOTAL DISPLAY`, 
-        IFNULL(a.`ESTIMASI SKU`,0) AS `ESTIMASI SKU`
+        IFNULL(a.`ESTIMASI SKU`,0) AS `ESTIMASI SKU`, l.log_date AS `LAST UPDATED`,l.last_updated_by AS `LAST UPDATED BY`
         FROM tb_class_group cg
         INNER JOIN tb_m_code_detail dv ON dv.id_code_detail = cg.id_division
         INNER JOIN tb_class_type ct ON ct.id_class_type = cg.id_class_type
@@ -40,7 +40,19 @@
 	        SUM(a.capacity / a.qty_size) AS `ESTIMASI SKU`
 	        FROM tb_display_alloc a
 	        GROUP BY a.id_class_group
-        ) a ON a.id_class_group = cg.id_class_group "
+        ) a ON a.id_class_group = cg.id_class_group 
+        LEFT JOIN (
+            SELECT l.id_class_group, e.employee_name AS `last_updated_by`, lm.log_date
+            FROM tb_display_alloc_log l
+            INNER JOIN (
+	            SELECT l.id_class_group, MAX(l.log_date) AS `log_date` 
+	            FROM tb_display_alloc_log l
+	            GROUP BY l.id_class_group
+            ) lm ON lm.id_class_group = l.id_class_group AND lm.log_date = l.log_date
+            INNER JOIN tb_m_user us ON us.id_user = l.id_user
+            INNER JOIN tb_m_employee e ON e.id_employee = us.id_employee
+            GROUP BY l.id_class_group
+        ) l ON l.id_class_group = cg.id_class_group "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.Columns("id_class_group").Visible = False
@@ -60,6 +72,10 @@
                 summary.ShowInGroupColumnFooter = GVData.Columns(c)
                 summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
                 GVData.GroupSummary.Add(summary)
+            ElseIf GVData.Columns(c).FieldName = "LAST UPDATED" Then
+                'display
+                GVData.Columns(c).DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                GVData.Columns(c).DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
             End If
         Next
         GVData.Columns("DIVISION").GroupIndex = 0
@@ -109,5 +125,10 @@
             FormDisplayAllocDet.id_class_group = GVData.GetFocusedRowCellValue("id_class_group").ToString
             FormDisplayAllocDet.ShowDialog()
         End If
+    End Sub
+
+    Private Sub BtnLog_Click(sender As Object, e As EventArgs) Handles BtnLog.Click
+        Cursor = Cursors.WaitCursor
+        Cursor = Cursors.Default
     End Sub
 End Class

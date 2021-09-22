@@ -148,7 +148,7 @@ Partial Class FormDisplayAllocDet
         Me.MinimizeBox = False
         Me.Name = "FormDisplayAllocDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Allocation Detail"
+        Me.Text = "Display Capacity Detail"
         CType(Me.TxtClassGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEDisplayType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
