@@ -2183,11 +2183,6 @@ LEFT JOIN
 HAVING this_rec_more>0"
                 Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
                 If dtc.Rows.Count > 0 Then
-                    'Dim mail As New ClassSendEmail()
-                    'mail.report_mark_type = "345"
-                    'mail.id_report = id_report
-                    'mail.comment = ""
-                    'mail.send_email()
 
                     'header MRS
                     query = String.Format("INSERT INTO tb_prod_order_mrs(id_prod_order,id_comp_contact_req_to,id_comp_contact_req_from,prod_order_mrs_date,prod_order_mrs_note, created_by, id_pl_mat_type, id_prod_order_rec, id_report_status) VALUES('{0}','{1}','{2}',NOW(),'{3}','{4}','{5}','{6}','{7}',6);SELECT LAST_INSERT_ID()", dtc.Rows(0)("id_prod_order").ToString, "85", "74", "Auto RMRS from Receiving QC", id_user, "1", id_report)
@@ -2227,6 +2222,12 @@ INNER JOIN
 	HAVING this_rec_more>0
 )rec ON rec.id_product=bom.`id_product`"
                     execute_non_query(query, True, "", "", "", "")
+
+                    Dim mail As New ClassSendEmail()
+                    mail.report_mark_type = "345"
+                    mail.id_report = id_report
+                    mail.comment = ""
+                    mail.send_email()
                 End If
             End If
 

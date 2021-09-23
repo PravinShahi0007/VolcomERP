@@ -4066,7 +4066,7 @@ FROM tb_opt o "
             client.Send(mail)
         ElseIf report_mark_type = "345" Then
             'send stok toko
-            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Need MRS - Volcom ERP")
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Auto MRS - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
 
@@ -4169,7 +4169,7 @@ HAVING this_rec_more>0"
                  <tr>
                   <td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
                   <div>
-                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Sebagai notifikasi untuk pengajuan MRS, Receiving " + dtbody.Rows(0)("prod_order_rec_number").ToString + " FGPO dengan nomor " + dtbody.Rows(0)("prod_order_number").ToString + ", total receiving yang terjadi melebihi qty FGPO. Detail sebagai berikut: </span><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Notifikasi Auto MRS, Receiving " + dtbody.Rows(0)("prod_order_rec_number").ToString + " FGPO dengan nomor " + dtbody.Rows(0)("prod_order_number").ToString + ", total receiving melebihi qty FGPO. Detail sebagai berikut: </span><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
                   </div>
                   </td>
                  </tr>
