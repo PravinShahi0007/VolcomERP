@@ -60,7 +60,7 @@
             q_cat = "'" & SLECat.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT id_item,uom_stock.uom AS uom_stock,catd.item_cat_detail,CONCAT('1:',item.stock_convertion) AS stock_convertion,item.id_item,item.item_desc,type.expense_type,cat.`item_cat`,uom.uom,empc.`employee_name` AS emp_created,item_type.`item_type`,empu.`employee_name` AS emp_updated,date_created,date_updated,IF(item.`is_active`=1,'yes','no') AS is_active 
+        Dim query As String = "SELECT id_item,uom_stock.uom AS uom_stock,catd.item_cat_detail,CONCAT('1:',item.stock_convertion) AS stock_convertion,item.id_item,item.item_desc,type.expense_type,cat.`item_cat`,uom.uom,empc.`employee_name` AS emp_created,item_type.`item_type`,empu.`employee_name` AS emp_updated,date_created,date_updated,IF(item.`is_active`=1,'yes','no') AS is_active , dt.display_type
                                 FROM tb_item item
                                 INNER JOIN `tb_item_cat_detail` catd ON catd.`id_item_cat_detail`=item.`id_item_cat_detail`
                                 INNER JOIN tb_item_cat cat ON cat.`id_item_cat`=item.`id_item_cat`
@@ -69,6 +69,7 @@
                                 INNER JOIN tb_m_employee empc ON empc.`id_employee`=usrc.`id_employee`
                                 INNER JOIN tb_lookup_expense_type `type` ON type.id_expense_type=cat.id_expense_type
                                 INNER JOIN tb_lookup_purc_item_type item_type ON item_type.`id_item_type`=item.`id_item_type`
+                                INNER JOIN tb_display_type dt ON dt.id_display_type = item.id_display_type
                                 LEFT JOIN tb_m_user usru ON usru.`id_user`=item.`id_user_updated`
                                 LEFT JOIN tb_m_employee empu ON empu.`id_employee`=usru.`id_employee`
                                 LEFT JOIN tb_m_uom uom_stock ON uom_stock.`id_uom`=item.`id_uom_stock`

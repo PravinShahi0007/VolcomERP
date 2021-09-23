@@ -15,6 +15,8 @@
         load_item_type()
         load_purc_cat()
         load_cat()
+        load_vm_items()
+
         '
         If Not id_item = "-1" Then 'edit
             TEStatus.Visible = True
@@ -41,6 +43,7 @@ WHERE it.id_item='" & id_item & "'"
             SLEUOM.EditValue = data.Rows(0)("id_uom").ToString
             SLEUOMStock.EditValue = data.Rows(0)("id_uom_stock").ToString
             SLEItemType.EditValue = data.Rows(0)("id_item_type").ToString
+            SLEVMItems.EditValue = data.Rows(0)("id_display_type").ToString
             '
             SLEPurchaseCategory.EditValue = data.Rows(0)("id_item_cat_detail").ToString
             SLECat.EditValue = data.Rows(0)("id_item_cat").ToString
@@ -85,6 +88,11 @@ WHERE pr.id_report_status!=5"
 
     Private Sub FormPurcItemDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_form()
+    End Sub
+
+    Sub load_vm_items()
+        Dim query As String = "SELECT d.id_display_type, d.display_type FROM tb_display_type d"
+        viewSearchLookupQuery(SLEVMItems, query, "id_display_type", "display_type", "id_display_type")
     End Sub
 
     Sub load_vendor_type()
@@ -162,7 +170,7 @@ WHERE id_status='2'"
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         If Not SLEPurchaseCategory.EditValue = Nothing Then
             If id_item = "-1" Then 'new
-                Dim query As String = "INSERT INTO tb_item(item_desc,id_item_cat_detail,id_item_cat,id_item_type,id_uom,id_uom_stock,stock_convertion,date_created,id_user_created,is_active,def_desc) VALUES('" & TEDesc.Text & "','" & SLEPurchaseCategory.EditValue.ToString & "','" & SLECat.EditValue.ToString & "','" & SLEItemType.EditValue.ToString & "','" & SLEUOM.EditValue.ToString & "','" & SLEUOMStock.EditValue.ToString & "','" & decimalSQL(TEConvertion.EditValue.ToString) & "',NOW(),'" & id_user & "','1','" & addSlashes(MEDefDesc.Text) & "'); SELECT LAST_INSERT_ID();"
+                Dim query As String = "INSERT INTO tb_item(item_desc,id_item_cat_detail,id_item_cat,id_item_type,id_uom,id_uom_stock,stock_convertion,date_created,id_user_created,is_active,def_desc, id_display_type) VALUES('" & TEDesc.Text & "','" & SLEPurchaseCategory.EditValue.ToString & "','" & SLECat.EditValue.ToString & "','" & SLEItemType.EditValue.ToString & "','" & SLEUOM.EditValue.ToString & "','" & SLEUOMStock.EditValue.ToString & "','" & decimalSQL(TEConvertion.EditValue.ToString) & "',NOW(),'" & id_user & "','1','" & addSlashes(MEDefDesc.Text) & "', '" & SLEVMItems.EditValue.ToString & "'); SELECT LAST_INSERT_ID();"
                 id_item = execute_query(query, 0, True, "", "", "", "")
                 'insert price
                 query = "INSERT INTO tb_item_price(id_item,create_by,create_date,price) VALUES('" & id_item & "','" & id_user & "',NOW(),0.00)"
