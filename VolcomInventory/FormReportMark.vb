@@ -52,7 +52,7 @@
             If confirm = Windows.Forms.DialogResult.Yes Then
                 submit_who_prepared(report_mark_type, id_report, id_user)
                 '
-                If report_mark_type = "153" Then
+                If report_mark_type = "153" Or report_mark_type = "347" Then
                     FormMasterCompanySingle.update_status("4")
                     FormMasterCompanySingle.action_load()
                 End If
@@ -468,7 +468,7 @@
         ElseIf report_mark_type = "152" Then
             ''Purchase Return
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_purc_return WHERE id_purc_return = '{0}'", id_report)
-        ElseIf report_mark_type = "153" Then
+        ElseIf report_mark_type = "153" Or report_mark_type = "347" Then
             'Propose company
             query = String.Format("SELECT id_report_status,comp_name as report_number FROM tb_m_comp WHERE id_comp = '{0}'", id_report)
         ElseIf report_mark_type = "154" Or report_mark_type = "163" Then
@@ -2159,12 +2159,14 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
                 query = String.Format("UPDATE tb_prod_order_rec SET complete_date=NOW() WHERE id_prod_order_rec='{0}'", id_report)
                 execute_non_query(query, True, "", "", "", "")
 
-                'check for mrs notification
-                Dim qc As String = "SELECT pod.`id_prod_order_det`,pod.`id_prod_demand_product`,tot.qty,pod.`prod_order_qty`,(tot.qty-pod.`prod_order_qty`) AS more_qty
-,d.`design_display_name`,cd.`code_detail_name`
+                'check for mrs
+                Dim qc As String = "SELECT pod.id_prod_order,pod.`id_prod_order_det`,pod.`id_prod_demand_product`,rd.`prod_order_rec_det_qty` AS rec_qty,tot.qty,pod.`prod_order_qty`,(tot.qty-pod.`prod_order_qty`) AS more_qty
+,CONCAT(p.product_full_code,' - ',d.`design_display_name`) AS prod,cd.`code_detail_name` AS size,r.`prod_order_rec_number`,po.`prod_order_number`
+,IF((tot.qty-pod.`prod_order_qty`)-rd.`prod_order_rec_det_qty`>=0,rd.`prod_order_rec_det_qty`,(tot.qty-pod.`prod_order_qty`)) AS this_rec_more
 FROM tb_prod_order_rec_det rd 
-INNER JOIN tb_prod_order_rec r ON r.id_prod_order_rec 
+INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec`
 INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=rd.`id_prod_order_det` AND rd.`id_prod_order_rec`='" & id_report & "' 
+INNER JOIN tb_prod_order po ON po.`id_prod_order`=pod.`id_prod_order`
 INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_product`=pod.`id_prod_demand_product`
 INNER JOIN tb_m_product p ON p.`id_product`=pdp.`id_product`
 INNER JOIN tb_m_design d ON d.`id_design`=p.`id_design`
@@ -2174,18 +2176,57 @@ LEFT JOIN
 (
 	SELECT rd.`id_prod_order_det`,SUM(prod_order_rec_det_qty) AS qty
 	FROM tb_prod_order_rec_det rd 
-	INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND r.`id_report_status`=6
+	INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND (r.`id_report_status`=6 OR rd.`id_prod_order_rec`='" & id_report & "')
 	WHERE rd.`prod_order_rec_det_qty`
 	GROUP BY rd.`id_prod_order_det`
 )tot ON tot.id_prod_order_det=pod.`id_prod_order_det`
-HAVING tot.qty>pod.`prod_order_qty`"
+HAVING this_rec_more>0"
                 Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
                 If dtc.Rows.Count > 0 Then
-                    Dim mail As New ClassSendEmail()
-                    mail.report_mark_type = "345"
-                    mail.id_report = id_report
-                    mail.comment = ""
-                    mail.send_email()
+                    'Dim mail As New ClassSendEmail()
+                    'mail.report_mark_type = "345"
+                    'mail.id_report = id_report
+                    'mail.comment = ""
+                    'mail.send_email()
+
+                    'header MRS
+                    query = String.Format("INSERT INTO tb_prod_order_mrs(id_prod_order,id_comp_contact_req_to,id_comp_contact_req_from,prod_order_mrs_date,prod_order_mrs_note, created_by, id_pl_mat_type, id_prod_order_rec, id_report_status) VALUES('{0}','{1}','{2}',NOW(),'{3}','{4}','{5}','{6}','{7}',6);SELECT LAST_INSERT_ID()", dtc.Rows(0)("id_prod_order").ToString, "85", "74", "Auto RMRS from Receiving QC", id_user, "1", id_report)
+                    Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
+
+                    execute_non_query("CALL gen_number('" & last_id & "','29')", True, "", "", "", "")
+
+                    'detail MRS
+                    query = "INSERT INTO `tb_prod_order_mrs_det`(`id_prod_order_mrs`,`id_mat_det`,`id_mat_det_price`,`prod_order_mrs_det_qty`,`prod_order_mrs_det_note`)
+SELECT '" & last_id & "' AS id_prod_order_mrs,f.id_mat_det,d.id_mat_det_price,rec.this_rec_more*e.component_qty AS qty,'Auto RMRS from Receiving QC' AS note
+FROM tb_bom_det e
+INNER JOIN tb_bom bom ON bom.id_bom=e.id_bom
+INNER JOIN tb_m_mat_det_price d ON d.id_mat_det_price=e.id_mat_det_price
+INNER JOIN tb_m_mat_det f ON d.id_mat_det = f.id_mat_det
+INNER JOIN
+(
+	SELECT pod.`id_prod_order_det`,pdp.`id_product`,pod.`id_prod_demand_product`,rd.`prod_order_rec_det_qty` AS rec_qty,tot.qty,pod.`prod_order_qty`,(tot.qty-pod.`prod_order_qty`) AS more_qty
+	,CONCAT(p.product_full_code,' - ',d.`design_display_name`) AS prod,cd.`code_detail_name` AS size,r.`prod_order_rec_number`,po.`prod_order_number`
+	,SUM(IF((tot.qty-pod.`prod_order_qty`)-rd.`prod_order_rec_det_qty`>=0,rd.`prod_order_rec_det_qty`,(tot.qty-pod.`prod_order_qty`))) AS this_rec_more
+	FROM tb_prod_order_rec_det rd 
+	INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec`
+	INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=rd.`id_prod_order_det` AND rd.`id_prod_order_rec`='" & id_report & "' 
+	INNER JOIN tb_prod_order po ON po.`id_prod_order`=pod.`id_prod_order`
+	INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_product`=pod.`id_prod_demand_product`
+	INNER JOIN tb_m_product p ON p.`id_product`=pdp.`id_product`
+	INNER JOIN tb_m_design d ON d.`id_design`=p.`id_design`
+	INNER JOIN tb_m_product_code c ON c.`id_product`=p.`id_product` 
+	INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=c.`id_code_detail` AND cd.`id_code`=33
+	LEFT JOIN
+	(
+		SELECT rd.`id_prod_order_det`,SUM(prod_order_rec_det_qty) AS qty
+		FROM tb_prod_order_rec_det rd 
+		INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND (r.`id_report_status`=6 OR rd.`id_prod_order_rec`='" & id_report & "')
+		WHERE rd.`prod_order_rec_det_qty`
+		GROUP BY rd.`id_prod_order_det`
+	)tot ON tot.id_prod_order_det=pod.`id_prod_order_det`
+	HAVING this_rec_more>0
+)rec ON rec.id_product=bom.`id_product`"
+                    execute_non_query(query, True, "", "", "", "")
                 End If
             End If
 
@@ -6240,7 +6281,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
             'refresh view
             FormPurcReturn.viewReturn()
             FormPurcReturn.GVReturn.FocusedRowHandle = find_row(FormPurcReturn.GVReturn, "id_purc_return", id_report)
-        ElseIf report_mark_type = "153" Then
+        ElseIf report_mark_type = "153" Or report_mark_type = "347" Then
             'claim return
             'auto completed
             If id_status_reportx = "3" Then

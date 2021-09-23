@@ -151,6 +151,12 @@
             End If
             '
             XTPCOA.PageVisible = False
+
+            'store list
+            If FormMasterCompany.is_store = "1" Then
+                LECompanyCategory.ItemIndex = LECompanyCategory.Properties.GetDataSourceRowIndex("id_comp_cat", "6")
+                LECompanyCategory.Enabled = False
+            End If
         Else
             'edit
             XTPLegal.PageVisible = True
@@ -1280,7 +1286,11 @@ WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
                                 End If
                             Else
                                 FormReportMark.id_report = id_company
-                                FormReportMark.report_mark_type = "153"
+                                If id_cat <> "6" Then
+                                    FormReportMark.report_mark_type = "153"
+                                Else
+                                    FormReportMark.report_mark_type = "347"
+                                End If
                                 FormReportMark.is_view = is_view
                                 FormReportMark.ShowDialog()
                             End If
@@ -1289,7 +1299,11 @@ WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
                 End If
             Else
                 FormReportMark.id_report = id_company
-                FormReportMark.report_mark_type = "153"
+                If LECompanyCategory.EditValue.ToString <> "6" Then
+                    FormReportMark.report_mark_type = "153"
+                Else
+                    FormReportMark.report_mark_type = "347"
+                End If
                 FormReportMark.is_view = is_view
                 FormReportMark.ShowDialog()
             End If

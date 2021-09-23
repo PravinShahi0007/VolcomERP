@@ -263,16 +263,27 @@
         End If
 
         'qquery
-        Dim query As String = "SELECT d.id_design, d.design_code AS `code`, d.design_display_name AS `name`, sc.size_chart, cls.class,ss.season, sd.delivery,
+        Dim query As String = "SELECT d.id_design, d.design_code AS `code`, d.design_display_name AS `name`, sc.size_chart, cd.class, cd.color, cd.color_desc, cd.sht,
+        ss.season, sd.delivery,
         prc.design_price,pt.design_price_type, dstt.design_cat, LEFT(dstt.design_cat,1) AS `design_cat_view`, prc.design_price_start_date
         FROM tb_m_design_price prc
         INNER JOIN tb_m_design d ON d.id_design = prc.id_design
         LEFT JOIN (
-	        SELECT dc.id_design, cd.id_code_detail AS `id_class`, cd.display_name AS `class` 
-	        FROM tb_m_design_code dc
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code IN (SELECT o.id_code_fg_class FROM tb_opt o)
-	        GROUP BY dc.id_design
-        ) cls ON cls.id_design = d.id_design
+            SELECT dc.id_design, 
+            MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+            MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+            MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+            MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+            MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+            MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+            MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+            MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+            FROM tb_m_design_code dc
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+            AND cd.id_code IN (32,30,14, 43)
+            GROUP BY dc.id_design
+        ) cd ON cd.id_design = d.id_design
         INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
         INNER JOIN tb_lookup_design_cat dstt ON dstt.id_design_cat = pt.id_design_cat
         LEFT JOIN (
@@ -289,7 +300,7 @@
         " + cond_season + "
         " + cond_del + "
         " + cond_class + "
-        ORDER BY cls.class ASC, d.id_design ASC,prc.design_price_start_date ASC "
+        ORDER BY cd.class ASC, d.id_design ASC,prc.design_price_start_date ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCHistDet.DataSource = data
     End Sub
@@ -393,7 +404,9 @@
             cond_class = "AND cls.id_class='" + id_class + "' "
         End If
 
-        Dim query As String = "SELECT d.id_design,d.design_code AS `code`, d.design_display_name AS `name`, sc.size_chart, cls.id_class,cls.class, src.id_source, src.`source`, LEFT(last_prc.design_cat,1) AS `design_cat_view`,ss.season, sd.delivery,
+        Dim query As String = "SELECT d.id_design,d.design_code AS `code`, d.design_display_name AS `name`, sc.size_chart, 
+        cd.id_class,cd.class, cd.id_source, cd.`source`, cd.color, cd.color_desc, cd.sht,
+        LEFT(last_prc.design_cat,1) AS `design_cat_view`,ss.season, sd.delivery,
         d.design_cop AS `cost`, IFNULL(np.design_price,0) AS `normal_price`, IFNULL(mp.design_price,0) AS `mkd_price`, 
         IFNULL(ep.design_price,0) AS `eos_price`, IFNULL(sp.design_price,0) AS `sale_price`, last_prc.design_price_date AS `last_updated`
         FROM tb_m_design d
@@ -406,17 +419,23 @@
 	        GROUP BY d.id_design
         ) sc ON sc.id_design = d.id_design
         LEFT JOIN (
-	        SELECT dc.id_design, cd.id_code_detail AS `id_class`, cd.display_name AS `class` 
-	        FROM tb_m_design_code dc
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code IN (SELECT o.id_code_fg_class FROM tb_opt o)
-	        GROUP BY dc.id_design
-        ) cls ON cls.id_design = d.id_design
-        LEFT JOIN (
-	        SELECT dc.id_design, cd.id_code_detail AS `id_source`,cd.display_name AS `source` 
-	        FROM tb_m_design_code dc
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code IN (SELECT o.id_code_fg_source FROM tb_opt o)
-	        GROUP BY dc.id_design
-        ) src ON src.id_design = d.id_design
+            SELECT dc.id_design,
+            MAX(CASE WHEN cd.id_code=5 THEN cd.id_code_detail END) AS `id_source`,
+            MAX(CASE WHEN cd.id_code=5 THEN cd.code_detail_name END) AS `source`, 
+            MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+            MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+            MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+            MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+            MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+            MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+            MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+            MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+            FROM tb_m_design_code dc
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+            AND cd.id_code IN (5,32,30,14, 43)
+            GROUP BY dc.id_design
+        ) cd ON cd.id_design = d.id_design
         INNER JOIN tb_season ss ON ss.id_season = d.id_season
         INNER JOIN tb_season_delivery sd ON sd.id_delivery = d.id_delivery
         LEFT JOIN (
@@ -472,7 +491,7 @@
         " + cond_season + "
         " + cond_del + "
         " + cond_class + "
-        ORDER BY cls.class ASC, d.id_design ASC "
+        ORDER BY cd.class ASC, d.id_design ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCHistSummary.DataSource = data
     End Sub

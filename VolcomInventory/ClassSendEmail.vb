@@ -4102,6 +4102,7 @@ FROM tb_opt o "
             '
             Dim qbody As String = "SELECT pod.`id_prod_order_det`,pod.`id_prod_demand_product`,rd.`prod_order_rec_det_qty` AS rec_qty,tot.qty,pod.`prod_order_qty`,(tot.qty-pod.`prod_order_qty`) AS more_qty
 ,CONCAT(p.product_full_code,' - ',d.`design_display_name`) AS prod,cd.`code_detail_name` AS size,r.`prod_order_rec_number`,po.`prod_order_number`
+,IF((tot.qty-pod.`prod_order_qty`)-rd.`prod_order_rec_det_qty`>=0,rd.`prod_order_rec_det_qty`,(tot.qty-pod.`prod_order_qty`)) AS this_rec_more
 FROM tb_prod_order_rec_det rd 
 INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec`
 INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=rd.`id_prod_order_det` AND rd.`id_prod_order_rec`='" & id_report & "' 
@@ -4115,11 +4116,11 @@ LEFT JOIN
 (
 	SELECT rd.`id_prod_order_det`,SUM(prod_order_rec_det_qty) AS qty
 	FROM tb_prod_order_rec_det rd 
-	INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND r.`id_report_status`=6
+	INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND (r.`id_report_status`=6 OR rd.`id_prod_order_rec`='" & id_report & "')
 	WHERE rd.`prod_order_rec_det_qty`
 	GROUP BY rd.`id_prod_order_det`
 )tot ON tot.id_prod_order_det=pod.`id_prod_order_det`
-HAVING tot.qty>pod.`prod_order_qty`"
+HAVING this_rec_more>0"
             Dim dtbody As DataTable = execute_query(qbody, -1, True, "", "", "", "")
 
             Dim body_temp As String = " <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
@@ -4192,7 +4193,7 @@ HAVING tot.qty>pod.`prod_order_qty`"
       <td>" + Decimal.Parse(dtbody.Rows(d)("prod_order_qty").ToString()).ToString("N0") + "</td>
       <td>" + Decimal.Parse(dtbody.Rows(d)("rec_qty").ToString()).ToString("N0") + "</td>
       <td>" + Decimal.Parse(dtbody.Rows(d)("qty").ToString()).ToString("N0") + "</td>
-      <td>" + Decimal.Parse(dtbody.Rows(d)("more_qty").ToString()).ToString("N0") + "</td>
+      <td>" + Decimal.Parse(dtbody.Rows(d)("this_rec_more").ToString()).ToString("N0") + "</td>
       </tr>"
             Next
             body_temp += "</table>
