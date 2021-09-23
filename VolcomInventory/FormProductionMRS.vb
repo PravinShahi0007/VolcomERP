@@ -228,9 +228,12 @@ FROM `tb_pl_mat_type`"
                     End If
 
                     If proceed = True Then
-                        TEPONumber.Text = header_number_prod("6")
-                        query = String.Format("INSERT INTO tb_prod_order_mrs(id_prod_order,prod_order_mrs_number,id_comp_contact_req_to,id_comp_contact_req_from,prod_order_mrs_date,prod_order_mrs_note, created_by, id_pl_mat_type, memo_number) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}','{5}','{6}','{7}');SELECT LAST_INSERT_ID()", id_prod_order, TEMRSNumber.Text, id_comp_req_to, id_comp_req_from, addSlashes(MENote.Text), id_user, SLEType.EditValue.ToString, addSlashes(TEMemo.Text))
+                        'TEPONumber.Text = header_number_prod("6")
+
+                        query = String.Format("INSERT INTO tb_prod_order_mrs(id_prod_order,id_comp_contact_req_to,id_comp_contact_req_from,prod_order_mrs_date,prod_order_mrs_note, created_by, id_pl_mat_type, memo_number) VALUES('{0}','{1}','{2}',NOW(),'{3}','{4}','{5}','{6}');SELECT LAST_INSERT_ID()", id_prod_order, id_comp_req_to, id_comp_req_from, addSlashes(MENote.Text), id_user, SLEType.EditValue.ToString, addSlashes(TEMemo.Text))
                         Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
+
+                        execute_non_query("CALL gen_number('" & last_id & "','29')", True, "", "", "", "")
 
                         If GVMat.RowCount > 0 Then
                             For i As Integer = 0 To GVMat.RowCount - 1
@@ -245,7 +248,7 @@ FROM `tb_pl_mat_type`"
                         'insert who prepared
                         submit_who_prepared("29", last_id, id_user)
                         'end insert who prepared
-                        increase_inc_prod("6")
+                        'increase_inc_prod("6")
 
                         Try
                             FormMaterialRequisition.view_mrs()
