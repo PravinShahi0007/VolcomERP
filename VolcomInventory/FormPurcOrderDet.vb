@@ -178,6 +178,7 @@ WHERE po.id_purc_order='" & id_po & "'"
                 BtnPrint.Visible = True
                 BSubmit.Visible = False
                 BMark.Visible = True
+                BtnPrint.Visible = True
                 '
                 TEVendorCode.ReadOnly = True
                 BPickVendor.Visible = False
@@ -212,6 +213,7 @@ WHERE po.id_purc_order='" & id_po & "'"
                 GridColumnBudgetStatus.Visible = False
                 PCPrice.Visible = False
             Else 'not yet submitted
+                BtnPrint.Visible = False
                 BMark.Visible = False
                 BSubmit.Visible = True
                 GridColumnBudgetStatus.Visible = True
