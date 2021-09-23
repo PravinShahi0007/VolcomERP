@@ -1,7 +1,7 @@
 ﻿Public Class FormMasterCompany
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
-    Dim bdel_active As String = "1"
+    Dim bdel_active As String = "0"
     Dim bcontact_active As String = "1"
 
     Public is_accounting As Boolean = False
@@ -69,31 +69,33 @@ ORDER BY c.comp_name"
             bnew_active = "0"
             bedit_active = "1"
             bdel_active = "0"
-            checkFormAccess(Name)
+
             button_main(bnew_active, bedit_active, bdel_active)
             '
             bcontact_active = "0"
+            checkFormAccess(Name)
         Else
             If data.Rows.Count > 0 Then
                 'show all
                 bnew_active = "1"
                 bedit_active = "1"
-                bdel_active = "1"
-                checkFormAccess(Name)
+                bdel_active = "0"
                 button_main(bnew_active, bedit_active, bdel_active)
                 '
                 bcontact_active = "1"
                 button_main_ext("1", bcontact_active)
+                checkFormAccess(Name)
             Else
                 'hide all except new
                 bnew_active = "1"
                 bedit_active = "0"
                 bdel_active = "0"
-                checkFormAccess(Name)
+
                 button_main(bnew_active, bedit_active, bdel_active)
                 '
                 bcontact_active = "0"
                 button_main_ext("1", bcontact_active)
+                checkFormAccess(Name)
             End If
         End If
     End Sub
@@ -104,9 +106,9 @@ ORDER BY c.comp_name"
 
     Private Sub FormMasterCompany_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
-        checkFormAccess(Name)
         button_main(bnew_active, bedit_active, bdel_active)
         button_main_ext("1", bcontact_active)
+        checkFormAccess(Name)
     End Sub
 
     Private Sub FormMasterCompany_Deactivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Deactivate
