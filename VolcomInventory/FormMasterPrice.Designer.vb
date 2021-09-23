@@ -47,6 +47,7 @@ Partial Class FormMasterPrice
         Me.GridColumnDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnColorDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.SLEClass = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -84,6 +85,9 @@ Partial Class FormMasterPrice
         Me.GridColumndesign_cat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign_cat_view = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign_price_start_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshthist = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolorhist = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor_desc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEClassHistDet = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -153,6 +157,10 @@ Partial Class FormMasterPrice
         Me.DEFromList = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnclasshistsum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshthistsum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolorhistsum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor_deschistsum = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPrice, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -324,7 +332,7 @@ Partial Class FormMasterPrice
         '
         'GVBrowsePrice
         '
-        Me.GVBrowsePrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFullCode, Me.GridColumnCode, Me.GridColumnSize, Me.GridColumnClass, Me.GridColumnDesc, Me.GridColumnColor, Me.GridColumnPrice, Me.GridColumnGender, Me.GridColumnRemark, Me.GridColumnSeasonx, Me.GridColumnNo, Me.GridColumnDel, Me.GridColumnPriceType, Me.GridColumnColorDesc})
+        Me.GVBrowsePrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFullCode, Me.GridColumnCode, Me.GridColumnSize, Me.GridColumnClass, Me.GridColumnDesc, Me.GridColumnColor, Me.GridColumnPrice, Me.GridColumnGender, Me.GridColumnRemark, Me.GridColumnSeasonx, Me.GridColumnNo, Me.GridColumnDel, Me.GridColumnPriceType, Me.GridColumnColorDesc, Me.GridColumnsht})
         Me.GVBrowsePrice.GridControl = Me.GCBrowsePrice
         Me.GVBrowsePrice.Name = "GVBrowsePrice"
         Me.GVBrowsePrice.OptionsBehavior.AutoExpandAllGroups = True
@@ -378,7 +386,7 @@ Partial Class FormMasterPrice
         Me.GridColumnColor.FieldName = "color"
         Me.GridColumnColor.Name = "GridColumnColor"
         Me.GridColumnColor.Visible = True
-        Me.GridColumnColor.VisibleIndex = 6
+        Me.GridColumnColor.VisibleIndex = 7
         '
         'GridColumnPrice
         '
@@ -388,7 +396,7 @@ Partial Class FormMasterPrice
         Me.GridColumnPrice.FieldName = "design_price"
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 8
+        Me.GridColumnPrice.VisibleIndex = 9
         '
         'GridColumnGender
         '
@@ -396,7 +404,7 @@ Partial Class FormMasterPrice
         Me.GridColumnGender.FieldName = "division"
         Me.GridColumnGender.Name = "GridColumnGender"
         Me.GridColumnGender.Visible = True
-        Me.GridColumnGender.VisibleIndex = 10
+        Me.GridColumnGender.VisibleIndex = 11
         '
         'GridColumnRemark
         '
@@ -404,7 +412,7 @@ Partial Class FormMasterPrice
         Me.GridColumnRemark.FieldName = "remark"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 11
+        Me.GridColumnRemark.VisibleIndex = 12
         '
         'GridColumnSeasonx
         '
@@ -412,7 +420,7 @@ Partial Class FormMasterPrice
         Me.GridColumnSeasonx.FieldName = "season"
         Me.GridColumnSeasonx.Name = "GridColumnSeasonx"
         Me.GridColumnSeasonx.Visible = True
-        Me.GridColumnSeasonx.VisibleIndex = 12
+        Me.GridColumnSeasonx.VisibleIndex = 13
         '
         'GridColumnNo
         '
@@ -429,7 +437,7 @@ Partial Class FormMasterPrice
         Me.GridColumnDel.FieldName = "delivery"
         Me.GridColumnDel.Name = "GridColumnDel"
         Me.GridColumnDel.Visible = True
-        Me.GridColumnDel.VisibleIndex = 13
+        Me.GridColumnDel.VisibleIndex = 14
         '
         'GridColumnPriceType
         '
@@ -437,7 +445,7 @@ Partial Class FormMasterPrice
         Me.GridColumnPriceType.FieldName = "design_price_type"
         Me.GridColumnPriceType.Name = "GridColumnPriceType"
         Me.GridColumnPriceType.Visible = True
-        Me.GridColumnPriceType.VisibleIndex = 9
+        Me.GridColumnPriceType.VisibleIndex = 10
         '
         'GridColumnColorDesc
         '
@@ -445,7 +453,15 @@ Partial Class FormMasterPrice
         Me.GridColumnColorDesc.FieldName = "color_desc"
         Me.GridColumnColorDesc.Name = "GridColumnColorDesc"
         Me.GridColumnColorDesc.Visible = True
-        Me.GridColumnColorDesc.VisibleIndex = 7
+        Me.GridColumnColorDesc.VisibleIndex = 8
+        '
+        'GridColumnsht
+        '
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.Visible = True
+        Me.GridColumnsht.VisibleIndex = 6
         '
         'PanelControlNav
         '
@@ -661,7 +677,7 @@ Partial Class FormMasterPrice
         '
         'GVHistDet
         '
-        Me.GVHistDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_design, Me.GridColumncode_hist_det, Me.GridColumnname_hist_det, Me.GridColumnsize_chart, Me.GridColumnclass_hist_det, Me.GridColumnseason_hist_det, Me.GridColumndelivery_hist_det, Me.GridColumndesign_price, Me.GridColumndesign_price_type, Me.GridColumndesign_cat, Me.GridColumndesign_cat_view, Me.GridColumndesign_price_start_date})
+        Me.GVHistDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_design, Me.GridColumncode_hist_det, Me.GridColumnname_hist_det, Me.GridColumnsize_chart, Me.GridColumnclass_hist_det, Me.GridColumnseason_hist_det, Me.GridColumndelivery_hist_det, Me.GridColumndesign_price, Me.GridColumndesign_price_type, Me.GridColumndesign_cat, Me.GridColumndesign_cat_view, Me.GridColumndesign_price_start_date, Me.GridColumnshthist, Me.GridColumncolorhist, Me.GridColumncolor_desc})
         Me.GVHistDet.GridControl = Me.GCHistDet
         Me.GVHistDet.GroupCount = 1
         Me.GVHistDet.Name = "GVHistDet"
@@ -694,7 +710,7 @@ Partial Class FormMasterPrice
         Me.GridColumnname_hist_det.FieldName = "name"
         Me.GridColumnname_hist_det.Name = "GridColumnname_hist_det"
         Me.GridColumnname_hist_det.Visible = True
-        Me.GridColumnname_hist_det.VisibleIndex = 1
+        Me.GridColumnname_hist_det.VisibleIndex = 2
         Me.GridColumnname_hist_det.Width = 151
         '
         'GridColumnsize_chart
@@ -703,7 +719,7 @@ Partial Class FormMasterPrice
         Me.GridColumnsize_chart.FieldName = "size_chart"
         Me.GridColumnsize_chart.Name = "GridColumnsize_chart"
         Me.GridColumnsize_chart.Visible = True
-        Me.GridColumnsize_chart.VisibleIndex = 3
+        Me.GridColumnsize_chart.VisibleIndex = 6
         '
         'GridColumnclass_hist_det
         '
@@ -711,7 +727,7 @@ Partial Class FormMasterPrice
         Me.GridColumnclass_hist_det.FieldName = "class"
         Me.GridColumnclass_hist_det.Name = "GridColumnclass_hist_det"
         Me.GridColumnclass_hist_det.Visible = True
-        Me.GridColumnclass_hist_det.VisibleIndex = 2
+        Me.GridColumnclass_hist_det.VisibleIndex = 1
         Me.GridColumnclass_hist_det.Width = 59
         '
         'GridColumnseason_hist_det
@@ -720,7 +736,7 @@ Partial Class FormMasterPrice
         Me.GridColumnseason_hist_det.FieldName = "season"
         Me.GridColumnseason_hist_det.Name = "GridColumnseason_hist_det"
         Me.GridColumnseason_hist_det.Visible = True
-        Me.GridColumnseason_hist_det.VisibleIndex = 5
+        Me.GridColumnseason_hist_det.VisibleIndex = 8
         Me.GridColumnseason_hist_det.Width = 118
         '
         'GridColumndelivery_hist_det
@@ -729,7 +745,7 @@ Partial Class FormMasterPrice
         Me.GridColumndelivery_hist_det.FieldName = "delivery"
         Me.GridColumndelivery_hist_det.Name = "GridColumndelivery_hist_det"
         Me.GridColumndelivery_hist_det.Visible = True
-        Me.GridColumndelivery_hist_det.VisibleIndex = 6
+        Me.GridColumndelivery_hist_det.VisibleIndex = 9
         Me.GridColumndelivery_hist_det.Width = 42
         '
         'GridColumndesign_price
@@ -740,7 +756,7 @@ Partial Class FormMasterPrice
         Me.GridColumndesign_price.FieldName = "design_price"
         Me.GridColumndesign_price.Name = "GridColumndesign_price"
         Me.GridColumndesign_price.Visible = True
-        Me.GridColumndesign_price.VisibleIndex = 7
+        Me.GridColumndesign_price.VisibleIndex = 10
         Me.GridColumndesign_price.Width = 101
         '
         'GridColumndesign_price_type
@@ -749,7 +765,7 @@ Partial Class FormMasterPrice
         Me.GridColumndesign_price_type.FieldName = "design_price_type"
         Me.GridColumndesign_price_type.Name = "GridColumndesign_price_type"
         Me.GridColumndesign_price_type.Visible = True
-        Me.GridColumndesign_price_type.VisibleIndex = 8
+        Me.GridColumndesign_price_type.VisibleIndex = 11
         Me.GridColumndesign_price_type.Width = 78
         '
         'GridColumndesign_cat
@@ -764,7 +780,7 @@ Partial Class FormMasterPrice
         Me.GridColumndesign_cat_view.FieldName = "design_cat_view"
         Me.GridColumndesign_cat_view.Name = "GridColumndesign_cat_view"
         Me.GridColumndesign_cat_view.Visible = True
-        Me.GridColumndesign_cat_view.VisibleIndex = 4
+        Me.GridColumndesign_cat_view.VisibleIndex = 7
         Me.GridColumndesign_cat_view.Width = 51
         '
         'GridColumndesign_price_start_date
@@ -775,8 +791,32 @@ Partial Class FormMasterPrice
         Me.GridColumndesign_price_start_date.FieldName = "design_price_start_date"
         Me.GridColumndesign_price_start_date.Name = "GridColumndesign_price_start_date"
         Me.GridColumndesign_price_start_date.Visible = True
-        Me.GridColumndesign_price_start_date.VisibleIndex = 9
+        Me.GridColumndesign_price_start_date.VisibleIndex = 12
         Me.GridColumndesign_price_start_date.Width = 104
+        '
+        'GridColumnshthist
+        '
+        Me.GridColumnshthist.Caption = "Silhouette"
+        Me.GridColumnshthist.FieldName = "sht"
+        Me.GridColumnshthist.Name = "GridColumnshthist"
+        Me.GridColumnshthist.Visible = True
+        Me.GridColumnshthist.VisibleIndex = 3
+        '
+        'GridColumncolorhist
+        '
+        Me.GridColumncolorhist.Caption = "Color"
+        Me.GridColumncolorhist.FieldName = "color"
+        Me.GridColumncolorhist.Name = "GridColumncolorhist"
+        Me.GridColumncolorhist.Visible = True
+        Me.GridColumncolorhist.VisibleIndex = 4
+        '
+        'GridColumncolor_desc
+        '
+        Me.GridColumncolor_desc.Caption = "Color Desc."
+        Me.GridColumncolor_desc.FieldName = "color_desc"
+        Me.GridColumncolor_desc.Name = "GridColumncolor_desc"
+        Me.GridColumncolor_desc.Visible = True
+        Me.GridColumncolor_desc.VisibleIndex = 5
         '
         'PanelControl1
         '
@@ -969,7 +1009,7 @@ Partial Class FormMasterPrice
         '
         'GVHistSummary
         '
-        Me.GVHistSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_designsum, Me.GridColumncodesum, Me.GridColumnnamesum, Me.GridColumnsize_chartsum, Me.GridColumnclasssum, Me.GridColumndesign_cat_viewsum, Me.GridColumnseasonsum, Me.GridColumndeliverysum, Me.GridColumncostsum, Me.GridColumnormal_pricesum, Me.GridColumnmkd_pricesum, Me.GridColumneos_pricesum, Me.GridColumnsale_pricesum, Me.GridColumnsum, Me.GridColumnsourcesum})
+        Me.GVHistSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_designsum, Me.GridColumncodesum, Me.GridColumnnamesum, Me.GridColumnsize_chartsum, Me.GridColumnclasssum, Me.GridColumndesign_cat_viewsum, Me.GridColumnseasonsum, Me.GridColumndeliverysum, Me.GridColumncostsum, Me.GridColumnormal_pricesum, Me.GridColumnmkd_pricesum, Me.GridColumneos_pricesum, Me.GridColumnsale_pricesum, Me.GridColumnsum, Me.GridColumnsourcesum, Me.GridColumnclasshistsum, Me.GridColumnshthistsum, Me.GridColumncolorhistsum, Me.GridColumncolor_deschistsum})
         Me.GVHistSummary.GridControl = Me.GCHistSummary
         Me.GVHistSummary.GroupCount = 1
         Me.GVHistSummary.Name = "GVHistSummary"
@@ -1002,7 +1042,7 @@ Partial Class FormMasterPrice
         Me.GridColumnnamesum.FieldName = "name"
         Me.GridColumnnamesum.Name = "GridColumnnamesum"
         Me.GridColumnnamesum.Visible = True
-        Me.GridColumnnamesum.VisibleIndex = 1
+        Me.GridColumnnamesum.VisibleIndex = 2
         Me.GridColumnnamesum.Width = 184
         '
         'GridColumnsize_chartsum
@@ -1011,7 +1051,7 @@ Partial Class FormMasterPrice
         Me.GridColumnsize_chartsum.FieldName = "size_chart"
         Me.GridColumnsize_chartsum.Name = "GridColumnsize_chartsum"
         Me.GridColumnsize_chartsum.Visible = True
-        Me.GridColumnsize_chartsum.VisibleIndex = 2
+        Me.GridColumnsize_chartsum.VisibleIndex = 6
         '
         'GridColumnclasssum
         '
@@ -1019,7 +1059,7 @@ Partial Class FormMasterPrice
         Me.GridColumnclasssum.FieldName = "class"
         Me.GridColumnclasssum.Name = "GridColumnclasssum"
         Me.GridColumnclasssum.Visible = True
-        Me.GridColumnclasssum.VisibleIndex = 3
+        Me.GridColumnclasssum.VisibleIndex = 7
         Me.GridColumnclasssum.Width = 55
         '
         'GridColumndesign_cat_viewsum
@@ -1028,7 +1068,7 @@ Partial Class FormMasterPrice
         Me.GridColumndesign_cat_viewsum.FieldName = "design_cat_view"
         Me.GridColumndesign_cat_viewsum.Name = "GridColumndesign_cat_viewsum"
         Me.GridColumndesign_cat_viewsum.Visible = True
-        Me.GridColumndesign_cat_viewsum.VisibleIndex = 5
+        Me.GridColumndesign_cat_viewsum.VisibleIndex = 9
         Me.GridColumndesign_cat_viewsum.Width = 45
         '
         'GridColumnseasonsum
@@ -1037,7 +1077,7 @@ Partial Class FormMasterPrice
         Me.GridColumnseasonsum.FieldName = "season"
         Me.GridColumnseasonsum.Name = "GridColumnseasonsum"
         Me.GridColumnseasonsum.Visible = True
-        Me.GridColumnseasonsum.VisibleIndex = 6
+        Me.GridColumnseasonsum.VisibleIndex = 10
         '
         'GridColumndeliverysum
         '
@@ -1045,7 +1085,7 @@ Partial Class FormMasterPrice
         Me.GridColumndeliverysum.FieldName = "delivery"
         Me.GridColumndeliverysum.Name = "GridColumndeliverysum"
         Me.GridColumndeliverysum.Visible = True
-        Me.GridColumndeliverysum.VisibleIndex = 7
+        Me.GridColumndeliverysum.VisibleIndex = 11
         Me.GridColumndeliverysum.Width = 43
         '
         'GridColumncostsum
@@ -1065,7 +1105,7 @@ Partial Class FormMasterPrice
         Me.GridColumnormal_pricesum.FieldName = "normal_price"
         Me.GridColumnormal_pricesum.Name = "GridColumnormal_pricesum"
         Me.GridColumnormal_pricesum.Visible = True
-        Me.GridColumnormal_pricesum.VisibleIndex = 8
+        Me.GridColumnormal_pricesum.VisibleIndex = 12
         '
         'GridColumnmkd_pricesum
         '
@@ -1075,7 +1115,7 @@ Partial Class FormMasterPrice
         Me.GridColumnmkd_pricesum.FieldName = "mkd_price"
         Me.GridColumnmkd_pricesum.Name = "GridColumnmkd_pricesum"
         Me.GridColumnmkd_pricesum.Visible = True
-        Me.GridColumnmkd_pricesum.VisibleIndex = 9
+        Me.GridColumnmkd_pricesum.VisibleIndex = 13
         '
         'GridColumneos_pricesum
         '
@@ -1085,7 +1125,7 @@ Partial Class FormMasterPrice
         Me.GridColumneos_pricesum.FieldName = "eos_price"
         Me.GridColumneos_pricesum.Name = "GridColumneos_pricesum"
         Me.GridColumneos_pricesum.Visible = True
-        Me.GridColumneos_pricesum.VisibleIndex = 10
+        Me.GridColumneos_pricesum.VisibleIndex = 14
         '
         'GridColumnsale_pricesum
         '
@@ -1095,7 +1135,7 @@ Partial Class FormMasterPrice
         Me.GridColumnsale_pricesum.FieldName = "sale_price"
         Me.GridColumnsale_pricesum.Name = "GridColumnsale_pricesum"
         Me.GridColumnsale_pricesum.Visible = True
-        Me.GridColumnsale_pricesum.VisibleIndex = 11
+        Me.GridColumnsale_pricesum.VisibleIndex = 15
         '
         'GridColumnsum
         '
@@ -1106,7 +1146,7 @@ Partial Class FormMasterPrice
         Me.GridColumnsum.FieldName = "last_updated"
         Me.GridColumnsum.Name = "GridColumnsum"
         Me.GridColumnsum.Visible = True
-        Me.GridColumnsum.VisibleIndex = 12
+        Me.GridColumnsum.VisibleIndex = 16
         '
         'RepositoryItemTextEdit1
         '
@@ -1122,7 +1162,7 @@ Partial Class FormMasterPrice
         Me.GridColumnsourcesum.FieldName = "source"
         Me.GridColumnsourcesum.Name = "GridColumnsourcesum"
         Me.GridColumnsourcesum.Visible = True
-        Me.GridColumnsourcesum.VisibleIndex = 4
+        Me.GridColumnsourcesum.VisibleIndex = 8
         Me.GridColumnsourcesum.Width = 53
         '
         'PanelControl2
@@ -1401,6 +1441,38 @@ Partial Class FormMasterPrice
         Me.LabelControl5.TabIndex = 8892
         Me.LabelControl5.Text = "From"
         '
+        'GridColumnclasshistsum
+        '
+        Me.GridColumnclasshistsum.Caption = "Class"
+        Me.GridColumnclasshistsum.FieldName = "class"
+        Me.GridColumnclasshistsum.Name = "GridColumnclasshistsum"
+        Me.GridColumnclasshistsum.Visible = True
+        Me.GridColumnclasshistsum.VisibleIndex = 1
+        '
+        'GridColumnshthistsum
+        '
+        Me.GridColumnshthistsum.Caption = "Silhouette"
+        Me.GridColumnshthistsum.FieldName = "sht"
+        Me.GridColumnshthistsum.Name = "GridColumnshthistsum"
+        Me.GridColumnshthistsum.Visible = True
+        Me.GridColumnshthistsum.VisibleIndex = 3
+        '
+        'GridColumncolorhistsum
+        '
+        Me.GridColumncolorhistsum.Caption = "Color"
+        Me.GridColumncolorhistsum.FieldName = "color"
+        Me.GridColumncolorhistsum.Name = "GridColumncolorhistsum"
+        Me.GridColumncolorhistsum.Visible = True
+        Me.GridColumncolorhistsum.VisibleIndex = 4
+        '
+        'GridColumncolor_deschistsum
+        '
+        Me.GridColumncolor_deschistsum.Caption = "Color Desc."
+        Me.GridColumncolor_deschistsum.FieldName = "color_desc"
+        Me.GridColumncolor_deschistsum.Name = "GridColumncolor_deschistsum"
+        Me.GridColumncolor_deschistsum.Visible = True
+        Me.GridColumncolor_deschistsum.VisibleIndex = 5
+        '
         'FormMasterPrice
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1604,4 +1676,12 @@ Partial Class FormMasterPrice
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnsourcesum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnshthist As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolorhist As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor_desc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclasshistsum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnshthistsum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolorhistsum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor_deschistsum As DevExpress.XtraGrid.Columns.GridColumn
 End Class
