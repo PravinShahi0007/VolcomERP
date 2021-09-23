@@ -243,7 +243,7 @@ Partial Public Class ReportProductionMRS
         Me.LTitle.SizeF = New System.Drawing.SizeF(386.9587!, 25.08333!)
         Me.LTitle.StylePriority.UseFont = False
         Me.LTitle.StylePriority.UseTextAlignment = False
-        Me.LTitle.Text = "MATERIAL REQUISITION SLIP"
+        Me.LTitle.Text = "RAW MATERIAL REQUISITION SLIP"
         Me.LTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'zxc
