@@ -19,6 +19,7 @@ Public Class ReportProductionWO
         Dim query = "CALL view_prod_order_wo_det('" & id_prod_wo & "','1')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCListPurchase.DataSource = data
+        GVListPurchase.BestFitColumns()
 
         calculate()
     End Sub

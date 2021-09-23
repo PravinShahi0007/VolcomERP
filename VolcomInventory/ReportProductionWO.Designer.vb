@@ -28,7 +28,9 @@ Partial Public Class ReportProductionWO
         Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVendorCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSubtotal = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -174,7 +176,7 @@ Partial Public Class ReportProductionWO
         Me.GVListPurchase.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 8.0!)
         Me.GVListPurchase.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVListPurchase.AppearancePrint.Row.Options.UseFont = True
-        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPurcDet, Me.ColIdMat, Me.ColNo, Me.ColCode, Me.GridColumnVendorCode, Me.ColName, Me.ColPrice, Me.ColQty, Me.ColSubtotal, Me.ColNote, Me.ColColor, Me.ColSize})
+        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPurcDet, Me.ColIdMat, Me.ColNo, Me.ColCode, Me.GridColumnVendorCode, Me.GridColumn1, Me.ColName, Me.GridColumn2, Me.ColPrice, Me.ColQty, Me.ColSubtotal, Me.ColNote, Me.ColColor, Me.ColSize})
         Me.GVListPurchase.GridControl = Me.GCListPurchase
         Me.GVListPurchase.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never
         Me.GVListPurchase.Name = "GVListPurchase"
@@ -206,7 +208,7 @@ Partial Public Class ReportProductionWO
         Me.ColNo.OptionsColumn.AllowEdit = False
         Me.ColNo.Visible = True
         Me.ColNo.VisibleIndex = 0
-        Me.ColNo.Width = 53
+        Me.ColNo.Width = 48
         '
         'ColCode
         '
@@ -216,7 +218,7 @@ Partial Public Class ReportProductionWO
         Me.ColCode.OptionsColumn.AllowEdit = False
         Me.ColCode.Visible = True
         Me.ColCode.VisibleIndex = 1
-        Me.ColCode.Width = 193
+        Me.ColCode.Width = 175
         '
         'GridColumnVendorCode
         '
@@ -224,8 +226,21 @@ Partial Public Class ReportProductionWO
         Me.GridColumnVendorCode.FieldName = "ean_code"
         Me.GridColumnVendorCode.Name = "GridColumnVendorCode"
         Me.GridColumnVendorCode.Visible = True
-        Me.GridColumnVendorCode.VisibleIndex = 3
-        Me.GridColumnVendorCode.Width = 177
+        Me.GridColumnVendorCode.VisibleIndex = 5
+        Me.GridColumnVendorCode.Width = 190
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.Caption = "Class"
+        Me.GridColumn1.FieldName = "class"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 2
+        Me.GridColumn1.Width = 68
         '
         'ColName
         '
@@ -234,8 +249,21 @@ Partial Public Class ReportProductionWO
         Me.ColName.Name = "ColName"
         Me.ColName.OptionsColumn.AllowEdit = False
         Me.ColName.Visible = True
-        Me.ColName.VisibleIndex = 2
-        Me.ColName.Width = 392
+        Me.ColName.VisibleIndex = 3
+        Me.ColName.Width = 342
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.Caption = "Color"
+        Me.GridColumn2.FieldName = "color"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 4
+        Me.GridColumn2.Width = 67
         '
         'ColPrice
         '
@@ -250,8 +278,8 @@ Partial Public Class ReportProductionWO
         Me.ColPrice.Name = "ColPrice"
         Me.ColPrice.OptionsColumn.AllowEdit = False
         Me.ColPrice.Visible = True
-        Me.ColPrice.VisibleIndex = 6
-        Me.ColPrice.Width = 262
+        Me.ColPrice.VisibleIndex = 8
+        Me.ColPrice.Width = 243
         '
         'ColQty
         '
@@ -267,8 +295,8 @@ Partial Public Class ReportProductionWO
         Me.ColQty.OptionsColumn.AllowEdit = False
         Me.ColQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.ColQty.Visible = True
-        Me.ColQty.VisibleIndex = 5
-        Me.ColQty.Width = 122
+        Me.ColQty.VisibleIndex = 7
+        Me.ColQty.Width = 123
         '
         'ColSubtotal
         '
@@ -283,8 +311,8 @@ Partial Public Class ReportProductionWO
         Me.ColSubtotal.Name = "ColSubtotal"
         Me.ColSubtotal.OptionsColumn.AllowEdit = False
         Me.ColSubtotal.Visible = True
-        Me.ColSubtotal.VisibleIndex = 7
-        Me.ColSubtotal.Width = 346
+        Me.ColSubtotal.VisibleIndex = 9
+        Me.ColSubtotal.Width = 288
         '
         'ColNote
         '
@@ -316,8 +344,8 @@ Partial Public Class ReportProductionWO
         Me.ColSize.Name = "ColSize"
         Me.ColSize.OptionsColumn.AllowEdit = False
         Me.ColSize.Visible = True
-        Me.ColSize.VisibleIndex = 4
-        Me.ColSize.Width = 87
+        Me.ColSize.VisibleIndex = 6
+        Me.ColSize.Width = 72
         '
         'TopMargin
         '
@@ -1740,4 +1768,6 @@ Partial Public Class ReportProductionWO
     Friend WithEvents LUSCodeTitle As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
     Friend WithEvents XrLabel38 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
