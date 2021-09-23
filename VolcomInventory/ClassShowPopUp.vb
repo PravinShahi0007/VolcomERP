@@ -222,9 +222,9 @@
         ElseIf report_mark_type = "152" Then
             'purchase return
             FormPurchaseReturnDet.Close()
-        ElseIf report_mark_type = "153" Then
+        ElseIf report_mark_type = "153" Or report_mark_type = "347" Then
             'Propose Company
-            FormMasterCompany.Close()
+            FormMasterCompanySingle.Close()
         ElseIf report_mark_type = "154" Or report_mark_type = "163" Then
             'item req
             FormItemReqDet.Close()
@@ -1105,7 +1105,7 @@ GROUP BY rec.`id_prod_order`"
             FormPurchaseReturnDet.id = id_report
             FormPurchaseReturnDet.is_view = "1"
             FormPurchaseReturnDet.ShowDialog()
-        ElseIf report_mark_type = "153" Then
+        ElseIf report_mark_type = "153" Or report_mark_type = "347" Then
             'propose company
             FormMasterCompanySingle.id_company = id_report
             FormMasterCompanySingle.is_view = "1"
@@ -2348,7 +2348,7 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_purc_return"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "153" Then
+        ElseIf report_mark_type = "153" Or report_mark_type = "347" Then
             'propose company
             table_name = "tb_m_comp"
             field_id = "id_comp"

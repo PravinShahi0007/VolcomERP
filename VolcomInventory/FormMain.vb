@@ -1954,6 +1954,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPreCalFGPO" Then
             FormPreCalFGPODet.id = "-1"
             FormPreCalFGPODet.ShowDialog()
+        ElseIf formName = "FormStockTakePropose" Then
+            FormStockTakeProposeDet.id_st_store_propose = "-1"
+            FormStockTakeProposeDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3302,6 +3305,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                     FormPreCalFGPODet.id = FormPreCalFGPO.GVPreCal.GetFocusedRowCellValue("id_pre_cal_fgpo").ToString
                     FormPreCalFGPODet.ShowDialog()
                 End If
+            ElseIf formName = "FormStockTakePropose" Then
+                FormStockTakeProposeDet.id_st_store_propose = FormStockTakePropose.GVData.GetFocusedRowCellValue("id_st_store_propose").ToString
+                FormStockTakeProposeDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -3397,34 +3403,34 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 End If
             End If
         ElseIf formName = "FormMasterCompany" Then
-            confirm = XtraMessageBox.Show("Are you sure want to delete this company ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            Dim id_company As String = FormMasterCompany.GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
+            'confirm = XtraMessageBox.Show("Are you sure want to delete this company ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            'Dim id_company As String = FormMasterCompany.GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
 
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                Cursor = Cursors.WaitCursor
-                'check first if only created
-                Dim query_check As String = "SELECT c.is_active,c.`id_drawer_def`,rc.`id_wh_rack`,lc.`id_wh_locator` FROM tb_m_comp c
-                                            INNER JOIN tb_m_wh_drawer dr ON dr.`id_wh_drawer`=c.`id_drawer_def`
-                                            INNER JOIN tb_m_wh_rack rc ON rc.`id_wh_rack`=dr.`id_wh_rack`
-                                            INNER JOIN tb_m_wh_locator lc ON lc.`id_wh_locator`=rc.`id_wh_locator`
-                                            WHERE c.id_comp='" & id_company & "'"
-                Dim dt_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
-                If dt_check.Rows(0)("is_active").ToString = "3" Then
-                    Try
-                        query = String.Format("DELETE FROM tb_m_wh_drawer WHERE id_wh_drawer='{1}';
-                                                DELETE FROM tb_m_wh_rack WHERE id_wh_rack='{2}';
-                                                DELETE FROM tb_m_wh_locator WHERE id_wh_locator='{3}';
-                                                DELETE FROM tb_m_comp WHERE id_comp = '{0}'", id_company, dt_check.Rows(0)("id_drawer_def").ToString, dt_check.Rows(0)("id_wh_rack").ToString, dt_check.Rows(0)("id_wh_locator").ToString)
-                        execute_non_query(query, True, "", "", "", "")
-                        FormMasterCompany.view_company()
-                    Catch ex As Exception
-                        errorDelete()
-                    End Try
-                Else
-                    warningCustom("This company already submitted")
-                End If
-                Cursor = Cursors.Default
-            End If
+            'If confirm = Windows.Forms.DialogResult.Yes Then
+            '    Cursor = Cursors.WaitCursor
+            '    'check first if only created
+            '    Dim query_check As String = "SELECT c.is_active,c.`id_drawer_def`,rc.`id_wh_rack`,lc.`id_wh_locator` FROM tb_m_comp c
+            '                                INNER JOIN tb_m_wh_drawer dr ON dr.`id_wh_drawer`=c.`id_drawer_def`
+            '                                INNER JOIN tb_m_wh_rack rc ON rc.`id_wh_rack`=dr.`id_wh_rack`
+            '                                INNER JOIN tb_m_wh_locator lc ON lc.`id_wh_locator`=rc.`id_wh_locator`
+            '                                WHERE c.id_comp='" & id_company & "'"
+            '    Dim dt_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+            '    If dt_check.Rows(0)("is_active").ToString = "3" Then
+            '        Try
+            '            query = String.Format("DELETE FROM tb_m_wh_drawer WHERE id_wh_drawer='{1}';
+            '                                    DELETE FROM tb_m_wh_rack WHERE id_wh_rack='{2}';
+            '                                    DELETE FROM tb_m_wh_locator WHERE id_wh_locator='{3}';
+            '                                    DELETE FROM tb_m_comp WHERE id_comp = '{0}'", id_company, dt_check.Rows(0)("id_drawer_def").ToString, dt_check.Rows(0)("id_wh_rack").ToString, dt_check.Rows(0)("id_wh_locator").ToString)
+            '            execute_non_query(query, True, "", "", "", "")
+            '            FormMasterCompany.view_company()
+            '        Catch ex As Exception
+            '            errorDelete()
+            '        End Try
+            '    Else
+            '        warningCustom("This company already submitted")
+            '    End If
+            '    Cursor = Cursors.Default
+            'End If
         ElseIf formName = "FormMasterCompanyCategory" Then
             '
             confirm = XtraMessageBox.Show("Are you sure want to delete this company cateogry?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -9831,6 +9837,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formname = "FormCapsule" Then
             FormCapsule.Close()
             FormCapsule.Dispose()
+        ElseIf formName = "FormStockTakePropose" Then
+            FormStockTakePropose.Close()
+            FormStockTakePropose.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10869,6 +10878,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSNIWH.load_list()
         ElseIf formName = "FormPreCalFGPO" Then
             FormPreCalFGPO.load_list()
+        ElseIf formName = "FormStockTakePropose" Then
+            FormStockTakePropose.load_form()
         End If
     End Sub
     'Switch
@@ -16438,7 +16449,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         Try
             FormMasterCompany.MdiParent = Me
             FormMasterCompany.is_store = True
-            FormMasterCompany.is_view = True
+            'FormMasterCompany.is_view = True
             FormMasterCompany.Show()
             FormMasterCompany.WindowState = FormWindowState.Maximized
             FormMasterCompany.Focus()
@@ -16620,5 +16631,18 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
 
+    End Sub
+
+    Private Sub NBStockTakePropose_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBStockTakePropose.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormStockTakePropose.MdiParent = Me
+            FormStockTakePropose.Show()
+            FormStockTakePropose.WindowState = FormWindowState.Maximized
+            FormStockTakePropose.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class

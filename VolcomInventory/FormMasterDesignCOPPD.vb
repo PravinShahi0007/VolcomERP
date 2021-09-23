@@ -581,7 +581,7 @@ INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=d
                             nm.report_mark_type = "267"
                             nm.send_email()
                         Catch ex As Exception
-                            execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send ECOP PD id_design = " & id_design & "')", -1, True, "", "", "", "")
+                            execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send ECOP PD id_design = " & id_design & " | error : " & ex.ToString & "')", -1, True, "", "", "", "")
                         End Try
 
                         warningCustom("ECOP PD Lock complete")
