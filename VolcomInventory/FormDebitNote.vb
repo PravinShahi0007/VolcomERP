@@ -309,20 +309,21 @@ INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.`id_prod_order` AND wo.`is
 INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price 
 LEFT JOIN
 (
-	SELECT fc.`id_prod_order`,SUM(IF(fc.`id_pl_category`=2,fcd.prod_fc_det_qty,0)) AS qty_minor, SUM(IF(fc.`id_pl_category`=3,fcd.prod_fc_det_qty,0)) AS qty_major,rec.qty AS qty_rec
-	,ROUND((SUM(IF(fc.`id_pl_category`=2,fcd.prod_fc_det_qty,0))/rec.qty)*100,2) AS perc_minor,ROUND((SUM(IF(fc.`id_pl_category`=3,fcd.prod_fc_det_qty,0))/rec.qty)*100,2) AS perc_major
-	FROM `tb_prod_fc_sum_det` sd
-	INNER JOIN tb_prod_fc_sum fcs ON fcs.`id_prod_fc_sum`=sd.`id_prod_fc_sum` AND fcs.`id_report_status`=6
-	INNER JOIN tb_prod_fc fc ON fc.`id_prod_fc`=sd.`id_prod_fc`
-	INNER JOIN tb_prod_fc_det fcd ON fcd.`id_prod_fc`=fc.`id_prod_fc`
-	INNER JOIN
-	(
-		SELECT rec.`id_prod_order`,SUM(recd.`prod_order_rec_det_qty`) AS qty 
-		FROM tb_prod_order_rec_det recd 
-		INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
-		GROUP BY rec.`id_prod_order`
-	)rec ON rec.id_prod_order=fc.`id_prod_order`
-	GROUP BY fc.`id_prod_order`
+	SELECT fc.`id_prod_order`,SUM(IF(s.`id_claim_group`=2,fcd.prod_fc_det_qty,0)) AS qty_minor, SUM(IF(s.`id_claim_group`=3,fcd.prod_fc_det_qty,0)) AS qty_major,rec.qty AS qty_rec
+    ,ROUND((SUM(IF(s.`id_claim_group`=2,fcd.prod_fc_det_qty,0))/rec.qty)*100,2) AS perc_minor,ROUND((SUM(IF(s.`id_claim_group`=3,fcd.prod_fc_det_qty,0))/rec.qty)*100,2) AS perc_major
+    FROM `tb_prod_fc_sum_det` sd
+    INNER JOIN tb_prod_fc_sum fcs ON fcs.`id_prod_fc_sum`=sd.`id_prod_fc_sum` AND fcs.`id_report_status`=6
+    INNER JOIN tb_prod_fc fc ON fc.`id_prod_fc`=sd.`id_prod_fc`
+    INNER JOIN tb_lookup_pl_category_sub s ON s.`id_claim_group`=fc.`id_pl_category_sub`
+    INNER JOIN tb_prod_fc_det fcd ON fcd.`id_prod_fc`=fc.`id_prod_fc`
+    INNER JOIN
+    (
+	    SELECT rec.`id_prod_order`,SUM(recd.`prod_order_rec_det_qty`) AS qty 
+	    FROM tb_prod_order_rec_det recd 
+	    INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` AND rec.`id_report_status`=6
+	    GROUP BY rec.`id_prod_order`
+    )rec ON rec.id_prod_order=fc.`id_prod_order`
+    GROUP BY fc.`id_prod_order`
 )tot_rej ON tot_rej.id_prod_order=po.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
