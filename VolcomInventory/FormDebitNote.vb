@@ -314,7 +314,7 @@ LEFT JOIN
     FROM `tb_prod_fc_sum_det` sd
     INNER JOIN tb_prod_fc_sum fcs ON fcs.`id_prod_fc_sum`=sd.`id_prod_fc_sum` AND fcs.`id_report_status`=6
     INNER JOIN tb_prod_fc fc ON fc.`id_prod_fc`=sd.`id_prod_fc`
-    INNER JOIN tb_lookup_pl_category_sub s ON s.`id_claim_group`=fc.`id_pl_category_sub`
+    INNER JOIN tb_lookup_pl_category_sub s ON s.`id_pl_category_sub`=fc.`id_pl_category_sub`
     INNER JOIN tb_prod_fc_det fcd ON fcd.`id_prod_fc`=fc.`id_prod_fc`
     INNER JOIN
     (
