@@ -283,7 +283,7 @@ Public Class FormBarcodeProductPrint
             ElseIf LEPrinter.EditValue.ToString = "2" Then 'zebra
                 For j As Integer = 1 To SEQtyPrint.EditValue
                     For i As Integer = SEPrintFrom.EditValue To SEPrintTo.EditValue
-                        If FormSNIBarcode.GVProdList.GetFocusedRowCellValue("is_new_desc").ToString = "1" Then
+                        If FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("is_new_desc").ToString = "1" Then
                             'front
                             print_command += "CT~~CD,~CC^~CT~" & vbNewLine
                             print_command += "^XA~TA000~JSN^LT0^MNW^MTD^PON^PMN^LH0,0^JMA^PR4,4~SD27^JUS^LRN^CI0^XZ" & vbNewLine
@@ -468,7 +468,7 @@ Public Class FormBarcodeProductPrint
                 Next
             ElseIf LEPrinter.EditValue.ToString = "2" Then 'zebra
                 For i As Integer = SEPrintFrom.EditValue To SEPrintTo.EditValue
-                    If FormSNIBarcode.GVProdList.GetFocusedRowCellValue("is_new_desc").ToString = "1" Then
+                    If FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("is_new_desc").ToString = "1" Then
                         print_command += "CT~~CD,~CC^~CT~" & vbNewLine
                         print_command += "^XA~TA000~JSN^LT0^MNW^MTD^PON^PMN^LH0,0^JMA^PR4,4~SD27^JUS^LRN^CI0^XZ" & vbNewLine
                         print_command += "^XA" & vbNewLine
@@ -578,7 +578,7 @@ Public Class FormBarcodeProductPrint
 
                 print_command = print_command.ToString().Replace("<ESC>", (ChrW(27)).ToString())
             ElseIf LEPrinter.EditValue.ToString = "2" Then
-                If FormSNIBarcode.GVProdList.GetFocusedRowCellValue("is_new_desc").ToString = "1" Then
+                If FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("is_new_desc").ToString = "1" Then
                     print_command += "CT~~CD,~CC^~CT~" & vbNewLine
                     print_command += "^XA~TA000~JSN^LT0^MNW^MTD^PON^PMN^LH0,0^JMA^PR4,4~SD27^JUS^LRN^CI0^XZ" & vbNewLine
                     print_command += "^XA" & vbNewLine

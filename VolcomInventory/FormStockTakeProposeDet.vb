@@ -62,7 +62,7 @@
             SBSubmit.Enabled = False
 
             Dim data_store As DataTable = execute_query("
-                SELECT id_store
+                SELECT id_store, DATE_FORMAT(period_start, '%d %M %Y %H:%i:%s') AS period_start, DATE_FORMAT(period_end, '%d %M %Y %H:%i:%s') AS period_end
                 FROM tb_st_store_propose_det
                 WHERE id_st_store_propose = " + id_st_store_propose + "
             ", -1, True, "", "", "", "")
@@ -71,6 +71,8 @@
                 For j = 0 To data_store.Rows.Count - 1
                     If GVStore.GetRowCellValue(i, "id_store").ToString = data_store.Rows(j)("id_store").ToString Then
                         GVStore.SetRowCellValue(i, "is_select", "yes")
+                        GVStore.SetRowCellValue(i, "period_start", data_store.Rows(j)("period_start"))
+                        GVStore.SetRowCellValue(i, "period_end", data_store.Rows(j)("period_end"))
                     End If
                 Next
             Next
@@ -109,8 +111,11 @@
         Catch ex As Exception
         End Try
 
+        Dim period_start As DateTime = Date.Parse(DEPeriodFrom.EditValue.ToString).ToString("yyyy-MM-dd") + " " + DateTime.Parse(TETimeFrom.EditValue.ToString).ToString("HH:mm:ss")
+        Dim period_end As DateTime = Date.Parse(DEPeriodTo.EditValue.ToString).ToString("yyyy-MM-dd") + " " + DateTime.Parse(TETimeTo.EditValue.ToString).ToString("HH:mm:ss")
+
         Dim query As String = "
-            SELECT s.id_store, 'no' AS is_select, s.store_name
+            SELECT s.id_store, 'no' AS is_select, s.store_name, '" + period_start.ToString("yyyy-MM-dd HH:mm:ss") + "' AS period_start, '" + period_end.ToString("yyyy-MM-dd HH:mm:ss") + "' AS period_end
             FROM tb_m_comp AS c
             LEFT JOIN tb_m_store AS s ON c.id_store = s.id_store
             WHERE c.id_comp_group = " + id_comp_group + " AND c.id_store IS NOT NULL
@@ -454,10 +459,13 @@
 
         GVStore.ActiveFilterString = "[is_select] = 'yes'"
 
-        Dim query_detail As String = "INSERT INTO tb_st_store_propose_det (id_st_store_propose, id_store) VALUES "
+        Dim query_detail As String = "INSERT INTO tb_st_store_propose_det (id_st_store_propose, id_store, period_start, period_end) VALUES "
 
         For i = 0 To GVStore.RowCount - 1
-            query_detail += "(" + id_st_store_propose + ", " + GVStore.GetRowCellValue(i, "id_store").ToString + "), "
+            Dim period_start As String = DateTime.Parse(GVStore.GetRowCellValue(i, "period_start").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+            Dim period_end As String = DateTime.Parse(GVStore.GetRowCellValue(i, "period_end").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+
+            query_detail += "(" + id_st_store_propose + ", " + GVStore.GetRowCellValue(i, "id_store").ToString + ", '" + period_start + "', '" + period_end + "'), "
         Next
 
         query_detail = query_detail.Substring(0, query_detail.Length - 2)
