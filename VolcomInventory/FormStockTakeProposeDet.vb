@@ -474,4 +474,202 @@
 
         Close()
     End Sub
+
+    Private Sub SBAttachmentSuratIjin_Click(sender As Object, e As EventArgs) Handles SBAttachmentSuratIjin.Click
+        'path
+        Dim path As String = Application.StartupPath & "\download\"
+        Dim filename As String = path + "\Surat Ijin.pdf"
+
+        If Not IO.Directory.Exists(path) Then
+            System.IO.Directory.CreateDirectory(path)
+        End If
+
+        'report
+        Dim report As ReportStockTakeProposeSuratIjin = New ReportStockTakeProposeSuratIjin
+
+        report.XrRichText.Html = WBSuratIjin.DocumentText
+
+        report.ExportToPdf(filename)
+
+        'openfile
+        Dim processinfo As ProcessStartInfo = New ProcessStartInfo()
+
+        processinfo.FileName = filename
+        processinfo.WorkingDirectory = path
+
+        Process.Start(processinfo)
+    End Sub
+
+    Private Sub SBAttachmentStoreList_Click(sender As Object, e As EventArgs) Handles SBAttachmentStoreList.Click
+        'generate list
+        Dim data As DataTable = New DataTable
+
+        data.Columns.Add("no", GetType(Integer))
+        data.Columns.Add("store_name", GetType(String))
+        data.Columns.Add("period_start", GetType(DateTime))
+        data.Columns.Add("period_end", GetType(DateTime))
+
+        GVStore.ClearColumnsFilter()
+        GVStore.FindFilterText = ""
+        GVStore.ActiveFilterString = ""
+
+        Dim no As Integer = 1
+
+        For i = 0 To GVStore.RowCount - 1
+            If GVStore.IsValidRowHandle(i) Then
+                If GVStore.GetRowCellValue(i, "is_select").ToString = "yes" Then
+                    data.Rows.Add(
+                        no,
+                        GVStore.GetRowCellValue(i, "store_name").ToString,
+                        GVStore.GetRowCellValue(i, "period_start"),
+                        GVStore.GetRowCellValue(i, "period_end")
+                    )
+
+                    no = no + 1
+                End If
+            End If
+        Next
+
+        'path
+        Dim path As String = Application.StartupPath & "\download\"
+        Dim filename As String = path + "\List Toko.pdf"
+
+        If Not IO.Directory.Exists(path) Then
+            System.IO.Directory.CreateDirectory(path)
+        End If
+
+        'report
+        Dim report As ReportStockTakeProposeListToko = New ReportStockTakeProposeListToko
+
+        report.GCStore.DataSource = data
+
+        report.ExportToPdf(filename)
+
+        'openfile
+        Dim processinfo As ProcessStartInfo = New ProcessStartInfo()
+
+        processinfo.FileName = filename
+        processinfo.WorkingDirectory = path
+
+        Process.Start(processinfo)
+    End Sub
+
+    Sub send_mail()
+        Dim is_ssl = get_setup_field("system_email_is_ssl").ToString
+
+        Dim client As Net.Mail.SmtpClient = New Net.Mail.SmtpClient()
+
+        If is_ssl = "1" Then
+            client.Port = get_setup_field("system_email_ssl_port").ToString
+            client.DeliveryMethod = Net.Mail.SmtpDeliveryMethod.Network
+            client.UseDefaultCredentials = False
+            client.Host = get_setup_field("system_email_ssl_server").ToString
+            client.EnableSsl = True
+            client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email_ssl").ToString, get_setup_field("system_email_ssl_pass").ToString)
+        Else
+            client.Port = get_setup_field("system_email_port").ToString
+            client.DeliveryMethod = Net.Mail.SmtpDeliveryMethod.Network
+            client.UseDefaultCredentials = False
+            client.Host = get_setup_field("system_email_server").ToString
+            client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email").ToString, get_setup_field("system_email_pass").ToString)
+        End If
+
+        'mail
+        Dim mail As Net.Mail.MailMessage = New Net.Mail.MailMessage()
+
+        'from
+        Dim from_mail As Net.Mail.MailAddress = New Net.Mail.MailAddress("system@volcom.co.id", "Stock Take - Volcom ERP")
+
+        mail.From = from_mail
+
+        'to
+        For j = 0 To to_mail.Rows.Count - 1
+            If Not to_mail.Rows(j)("email").ToString = "" Then
+                Dim data_to As Net.Mail.MailAddress = New Net.Mail.MailAddress(to_mail.Rows(j)("email").ToString, to_mail.Rows(j)("name").ToString)
+
+                mail.To.Add(data_to)
+            End If
+        Next
+
+        'cc
+        For j = 0 To cc_mail.Rows.Count - 1
+            If Not cc_mail.Rows(j)("email").ToString = "" Then
+                Dim data_cc As Net.Mail.MailAddress = New Net.Mail.MailAddress(cc_mail.Rows(j)("email").ToString, cc_mail.Rows(j)("name").ToString)
+
+                mail.CC.Add(data_cc)
+            End If
+        Next
+
+        'subject & body
+        mail.Subject = "Ijin Remote Stock Take"
+
+        mail.IsBodyHtml = True
+
+        mail.Body = WBEmail.DocumentText
+
+        'attachment surat
+        Dim report_surat As ReportStockTakeProposeSuratIjin = New ReportStockTakeProposeSuratIjin
+
+        report_surat.XrRichText.Html = WBSuratIjin.DocumentText
+
+        Dim mem_surat As IO.MemoryStream = New IO.MemoryStream()
+
+        report_surat.ExportToPdf(mem_surat)
+
+        mem_surat.Seek(0, System.IO.SeekOrigin.Begin)
+
+        Dim att_surat = New Net.Mail.Attachment(mem_surat, "Surat Ijin.pdf", "application/pdf")
+
+        mail.Attachments.Add(att_surat)
+
+        'attachment list toko
+        Dim data_toko As DataTable = New DataTable
+
+        data_toko.Columns.Add("no", GetType(Integer))
+        data_toko.Columns.Add("store_name", GetType(String))
+        data_toko.Columns.Add("period_start", GetType(DateTime))
+        data_toko.Columns.Add("period_end", GetType(DateTime))
+
+        GVStore.ClearColumnsFilter()
+        GVStore.FindFilterText = ""
+        GVStore.ActiveFilterString = ""
+
+        Dim no_toko As Integer = 1
+
+        For i = 0 To GVStore.RowCount - 1
+            If GVStore.IsValidRowHandle(i) Then
+                If GVStore.GetRowCellValue(i, "is_select").ToString = "yes" Then
+                    data_toko.Rows.Add(
+                        no_toko,
+                        GVStore.GetRowCellValue(i, "store_name").ToString,
+                        GVStore.GetRowCellValue(i, "period_start"),
+                        GVStore.GetRowCellValue(i, "period_end")
+                    )
+
+                    no_toko = no_toko + 1
+                End If
+            End If
+        Next
+
+        Dim report_toko As ReportStockTakeProposeListToko = New ReportStockTakeProposeListToko
+
+        report_toko.GCStore.DataSource = data_toko
+
+        Dim mem_toko As IO.MemoryStream = New IO.MemoryStream()
+
+        report_toko.ExportToPdf(mem_toko)
+
+        mem_toko.Seek(0, System.IO.SeekOrigin.Begin)
+
+        Dim att_toko = New Net.Mail.Attachment(mem_toko, "List Toko.pdf", "application/pdf")
+
+        mail.Attachments.Add(att_toko)
+
+        Try
+            client.Send(mail)
+
+            mail.Dispose()
+        Catch ex As Exception
+        End Try
+    End Sub
 End Class

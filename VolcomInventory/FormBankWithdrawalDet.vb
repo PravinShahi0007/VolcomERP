@@ -54,6 +54,7 @@ SELECT 1 AS id,'Yes' AS auto_debet"
             BtnPrint.Visible = False
             BMark.Visible = False
             BtnSave.Visible = True
+            BAttachment.Visible = False
             '
             If is_book_transfer = True Then
                 FormBankWithdrawalBookTransfer.id_coa_tag = id_coa_tag
@@ -1305,6 +1306,7 @@ GROUP BY dn.`id_debit_note`"
             SLEACCTrfFee.ReadOnly = True
             TETrfFee.Enabled = False
             '
+            BAttachment.Visible = True
             BtnPrint.Visible = True
             BMark.Visible = True
             BtnSave.Visible = False
@@ -2126,6 +2128,17 @@ ORDER BY id_stock_valas DESC LIMIT 1"
         Else
             warningCustom("Auto journal not found.")
         End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BAttachment_Click(sender As Object, e As EventArgs) Handles BAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = "159"
+        FormDocumentUpload.id_report = id_payment
+        If is_view = "1" Or BtnViewJournal.Visible = True Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

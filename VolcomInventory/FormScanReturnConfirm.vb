@@ -14,7 +14,17 @@
     End Sub
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
-        FormScanReturnDet.is_ok = True
-        Close()
+        If Not TEQtyDiff.EditValue = 0 Then
+            Dim confirm As DialogResult
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Qty Return note vs Qty Scan not match, you only can do one scan per return label. Continue save ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                FormScanReturnDet.is_ok = True
+                Close()
+            Else
+                FormScanReturnDet.is_ok = False
+                Close()
+            End If
+        End If
     End Sub
 End Class
