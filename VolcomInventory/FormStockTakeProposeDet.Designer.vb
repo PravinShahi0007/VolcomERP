@@ -52,6 +52,9 @@ Partial Class FormStockTakeProposeDet
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemDateEdit = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPSurat = New DevExpress.XtraTab.XtraTabPage()
         Me.WBSuratIjin = New System.Windows.Forms.WebBrowser()
         Me.XTPEmail = New DevExpress.XtraTab.XtraTabPage()
@@ -90,6 +93,8 @@ Partial Class FormStockTakeProposeDet
         CType(Me.GCStore, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVStore, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSurat.SuspendLayout()
         Me.XTPEmail.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -374,14 +379,14 @@ Partial Class FormStockTakeProposeDet
         Me.GCStore.Location = New System.Drawing.Point(0, 0)
         Me.GCStore.MainView = Me.GVStore
         Me.GCStore.Name = "GCStore"
-        Me.GCStore.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit})
+        Me.GCStore.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit, Me.RepositoryItemDateEdit})
         Me.GCStore.Size = New System.Drawing.Size(778, 336)
         Me.GCStore.TabIndex = 0
         Me.GCStore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStore})
         '
         'GVStore
         '
-        Me.GVStore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GVStore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
         Me.GVStore.GridControl = Me.GCStore
         Me.GVStore.Name = "GVStore"
         Me.GVStore.OptionsView.ShowGroupPanel = False
@@ -414,6 +419,37 @@ Partial Class FormStockTakeProposeDet
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Period Start"
+        Me.GridColumn4.ColumnEdit = Me.RepositoryItemDateEdit
+        Me.GridColumn4.FieldName = "period_start"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        '
+        'RepositoryItemDateEdit
+        '
+        Me.RepositoryItemDateEdit.AutoHeight = False
+        Me.RepositoryItemDateEdit.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.RepositoryItemDateEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit.EditFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.RepositoryItemDateEdit.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit.Mask.EditMask = "dd MMMM yyyy HH:mm:ss"
+        Me.RepositoryItemDateEdit.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemDateEdit.Name = "RepositoryItemDateEdit"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Period End"
+        Me.GridColumn5.ColumnEdit = Me.RepositoryItemDateEdit
+        Me.GridColumn5.FieldName = "period_end"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
         '
         'XTPSurat
         '
@@ -587,6 +623,8 @@ Partial Class FormStockTakeProposeDet
         CType(Me.GCStore, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVStore, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSurat.ResumeLayout(False)
         Me.XTPEmail.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -648,4 +686,7 @@ Partial Class FormStockTakeProposeDet
     Friend WithEvents Label10 As Label
     Friend WithEvents SLUEContact As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemDateEdit As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

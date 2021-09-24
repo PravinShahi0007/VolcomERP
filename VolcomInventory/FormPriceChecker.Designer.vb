@@ -38,6 +38,10 @@ Partial Class FormPriceChecker
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelRecInWH = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelSeason = New DevExpress.XtraEditors.LabelControl()
         Me.LabelColor = New DevExpress.XtraEditors.LabelControl()
@@ -46,10 +50,9 @@ Partial Class FormPriceChecker
         Me.LabelClass = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelRecInWH = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelSilhouette = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtScannedCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -172,7 +175,7 @@ Partial Class FormPriceChecker
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(16, 33)
+        Me.LabelControl7.Location = New System.Drawing.Point(16, 34)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(95, 19)
         Me.LabelControl7.TabIndex = 12
@@ -181,7 +184,7 @@ Partial Class FormPriceChecker
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(137, 33)
+        Me.LabelControl8.Location = New System.Drawing.Point(137, 34)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(6, 19)
         Me.LabelControl8.TabIndex = 13
@@ -190,7 +193,7 @@ Partial Class FormPriceChecker
         'LabelCode
         '
         Me.LabelCode.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelCode.Location = New System.Drawing.Point(158, 33)
+        Me.LabelCode.Location = New System.Drawing.Point(158, 34)
         Me.LabelCode.Name = "LabelCode"
         Me.LabelCode.Size = New System.Drawing.Size(6, 19)
         Me.LabelCode.TabIndex = 14
@@ -240,6 +243,9 @@ Partial Class FormPriceChecker
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Top
+        Me.GroupControl2.Controls.Add(Me.LabelSilhouette)
+        Me.GroupControl2.Controls.Add(Me.LabelControl11)
+        Me.GroupControl2.Controls.Add(Me.LabelControl4)
         Me.GroupControl2.Controls.Add(Me.LabelControl3)
         Me.GroupControl2.Controls.Add(Me.LabelRecInWH)
         Me.GroupControl2.Controls.Add(Me.LabelControl2)
@@ -258,14 +264,50 @@ Partial Class FormPriceChecker
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 366)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(902, 207)
+        Me.GroupControl2.Size = New System.Drawing.Size(902, 286)
         Me.GroupControl2.TabIndex = 26
         Me.GroupControl2.Text = "Product Information"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(18, 181)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(78, 19)
+        Me.LabelControl3.TabIndex = 26
+        Me.LabelControl3.Text = "Rec. in WH"
+        '
+        'LabelRecInWH
+        '
+        Me.LabelRecInWH.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelRecInWH.Location = New System.Drawing.Point(158, 181)
+        Me.LabelRecInWH.Name = "LabelRecInWH"
+        Me.LabelRecInWH.Size = New System.Drawing.Size(6, 19)
+        Me.LabelRecInWH.TabIndex = 25
+        Me.LabelRecInWH.Text = "-"
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(137, 181)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(6, 19)
+        Me.LabelControl2.TabIndex = 24
+        Me.LabelControl2.Text = ":"
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(18, 151)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(50, 19)
+        Me.LabelControl6.TabIndex = 23
+        Me.LabelControl6.Text = "Season"
         '
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(137, 121)
+        Me.LabelControl5.Location = New System.Drawing.Point(137, 151)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(6, 19)
         Me.LabelControl5.TabIndex = 22
@@ -274,7 +316,7 @@ Partial Class FormPriceChecker
         'LabelSeason
         '
         Me.LabelSeason.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSeason.Location = New System.Drawing.Point(158, 121)
+        Me.LabelSeason.Location = New System.Drawing.Point(158, 151)
         Me.LabelSeason.Name = "LabelSeason"
         Me.LabelSeason.Size = New System.Drawing.Size(6, 19)
         Me.LabelSeason.TabIndex = 21
@@ -283,7 +325,7 @@ Partial Class FormPriceChecker
         'LabelColor
         '
         Me.LabelColor.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelColor.Location = New System.Drawing.Point(158, 90)
+        Me.LabelColor.Location = New System.Drawing.Point(158, 91)
         Me.LabelColor.Name = "LabelColor"
         Me.LabelColor.Size = New System.Drawing.Size(6, 19)
         Me.LabelColor.TabIndex = 20
@@ -292,7 +334,7 @@ Partial Class FormPriceChecker
         'LabelControl17
         '
         Me.LabelControl17.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl17.Location = New System.Drawing.Point(138, 90)
+        Me.LabelControl17.Location = New System.Drawing.Point(138, 91)
         Me.LabelControl17.Name = "LabelControl17"
         Me.LabelControl17.Size = New System.Drawing.Size(6, 19)
         Me.LabelControl17.TabIndex = 19
@@ -301,7 +343,7 @@ Partial Class FormPriceChecker
         'LabelControl18
         '
         Me.LabelControl18.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl18.Location = New System.Drawing.Point(17, 90)
+        Me.LabelControl18.Location = New System.Drawing.Point(17, 91)
         Me.LabelControl18.Name = "LabelControl18"
         Me.LabelControl18.Size = New System.Drawing.Size(97, 19)
         Me.LabelControl18.TabIndex = 18
@@ -310,7 +352,7 @@ Partial Class FormPriceChecker
         'LabelClass
         '
         Me.LabelClass.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelClass.Location = New System.Drawing.Point(158, 61)
+        Me.LabelClass.Location = New System.Drawing.Point(158, 62)
         Me.LabelClass.Name = "LabelClass"
         Me.LabelClass.Size = New System.Drawing.Size(6, 19)
         Me.LabelClass.TabIndex = 17
@@ -319,7 +361,7 @@ Partial Class FormPriceChecker
         'LabelControl14
         '
         Me.LabelControl14.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl14.Location = New System.Drawing.Point(138, 61)
+        Me.LabelControl14.Location = New System.Drawing.Point(138, 62)
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(6, 19)
         Me.LabelControl14.TabIndex = 16
@@ -328,53 +370,44 @@ Partial Class FormPriceChecker
         'LabelControl13
         '
         Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl13.Location = New System.Drawing.Point(17, 61)
+        Me.LabelControl13.Location = New System.Drawing.Point(17, 62)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(95, 19)
         Me.LabelControl13.TabIndex = 15
         Me.LabelControl13.Text = "Product Class"
         '
-        'LabelControl2
+        'LabelControl4
         '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(137, 148)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(6, 19)
-        Me.LabelControl2.TabIndex = 24
-        Me.LabelControl2.Text = ":"
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(17, 121)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(70, 19)
+        Me.LabelControl4.TabIndex = 27
+        Me.LabelControl4.Text = "Silhouette"
         '
-        'LabelRecInWH
+        'LabelSilhouette
         '
-        Me.LabelRecInWH.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelRecInWH.Location = New System.Drawing.Point(158, 148)
-        Me.LabelRecInWH.Name = "LabelRecInWH"
-        Me.LabelRecInWH.Size = New System.Drawing.Size(6, 19)
-        Me.LabelRecInWH.TabIndex = 25
-        Me.LabelRecInWH.Text = "-"
+        Me.LabelSilhouette.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelSilhouette.Location = New System.Drawing.Point(158, 121)
+        Me.LabelSilhouette.Name = "LabelSilhouette"
+        Me.LabelSilhouette.Size = New System.Drawing.Size(6, 19)
+        Me.LabelSilhouette.TabIndex = 29
+        Me.LabelSilhouette.Text = "-"
         '
-        'LabelControl6
+        'LabelControl11
         '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(18, 121)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(50, 19)
-        Me.LabelControl6.TabIndex = 23
-        Me.LabelControl6.Text = "Season"
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(18, 148)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(78, 19)
-        Me.LabelControl3.TabIndex = 26
-        Me.LabelControl3.Text = "Rec. in WH"
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(138, 121)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(6, 19)
+        Me.LabelControl11.TabIndex = 28
+        Me.LabelControl11.Text = ":"
         '
         'FormPriceChecker
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(902, 573)
+        Me.ClientSize = New System.Drawing.Size(902, 652)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.PanelControl2)
@@ -433,4 +466,7 @@ Partial Class FormPriceChecker
     Friend WithEvents LabelRecInWH As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelSilhouette As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
 End Class

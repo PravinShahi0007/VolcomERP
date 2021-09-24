@@ -29,6 +29,7 @@
         LabelCode.Text = ""
         LabelClass.Text = ""
         LabelColor.Text = ""
+        LabelSilhouette.Text = ""
         LabelSeason.Text = ""
         LabelRecInWH.Text = ""
         PictureEdit1.EditValue = Nothing
@@ -52,7 +53,7 @@
         End If
         Dim query As String = "SELECT d.id_design, d.design_code, d.design_display_name, cls.class_display, cls.class, 
         col.color_display, col.color, ss.season, IFNULL(prc.design_price,0) AS `design_price`, 
-        prc.design_price_type, prc.`price_effective_date`, DATE_FORMAT(d.design_first_rec_wh, '%d %M %Y') AS `rec_in_wh_date`
+        prc.design_price_type, prc.`price_effective_date`, DATE_FORMAT(d.design_first_rec_wh, '%d %M %Y') AS `rec_in_wh_date`, IFNULL(sht.sht_name,'-') AS `sht_name`
         FROM tb_m_design d
         LEFT JOIN (
 	        SELECT d.id_design, cd.display_name AS `class_display`, cd.code_detail_name AS `class`
@@ -69,6 +70,13 @@
 	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code=14
 	        WHERE d.design_code='" + code + "' AND d.id_lookup_status_order!=2
         ) col ON col.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT d.id_design, cd.display_name AS `sht_name`
+	        FROM tb_m_design d
+	        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code=43
+	        WHERE d.design_code='" + code + "' AND d.id_lookup_status_order!=2
+        ) sht ON sht.id_design = d.id_design
         LEFT JOIN (
 	        SELECT d.id_design, prc.design_price, pt.design_price_type, 
 	        DATE_FORMAT(prc.design_price_start_date, '%d %M %Y') AS `price_effective_date`
@@ -91,6 +99,7 @@
             LabelCode.Text = data.Rows(0)("design_code").ToString
             LabelClass.Text = data.Rows(0)("class").ToString + " (" + data.Rows(0)("class_display").ToString + ")"
             LabelColor.Text = data.Rows(0)("color").ToString + " (" + data.Rows(0)("color_display").ToString + ")"
+            LabelSilhouette.Text = data.Rows(0)("sht_name").ToString
             LabelSeason.Text = data.Rows(0)("season").ToString
             LabelRecInWH.Text = data.Rows(0)("rec_in_wh_date").ToString
             TxtScannedCode.Focus()
