@@ -20,6 +20,8 @@ Partial Class FormViewFGTrf
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.LinkTOO = New DevExpress.XtraEditors.HyperLinkEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelHeaderLeft = New DevExpress.XtraEditors.PanelControl()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -100,10 +102,11 @@ Partial Class FormViewFGTrf
         Me.GridColumnIdProductScan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.LinkTOO = New DevExpress.XtraEditors.HyperLinkEdit()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.LinkTOO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelHeaderLeft.SuspendLayout()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,7 +146,6 @@ Partial Class FormViewFGTrf
         CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LinkTOO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -163,6 +165,23 @@ Partial Class FormViewFGTrf
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(951, 92)
         Me.GroupGeneralHeader.TabIndex = 186
+        '
+        'LinkTOO
+        '
+        Me.LinkTOO.Location = New System.Drawing.Point(90, 59)
+        Me.LinkTOO.Name = "LinkTOO"
+        Me.LinkTOO.Properties.ReadOnly = True
+        Me.LinkTOO.Size = New System.Drawing.Size(309, 20)
+        Me.LinkTOO.TabIndex = 8901
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(30, 62)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(22, 13)
+        Me.LabelControl3.TabIndex = 8900
+        Me.LabelControl3.Text = "TOO"
         '
         'PanelHeaderLeft
         '
@@ -452,7 +471,7 @@ Partial Class FormViewFGTrf
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnEanCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnColor, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnQtyWH, Me.GridColumnQtyStored, Me.GridColumnQtyReceive, Me.GridColumnRemark, Me.GridColumnIdProduct, Me.GridColumnIdDesign, Me.GridColumnIdSample, Me.GridColumnIdPlSalesOrderDel, Me.GridColumnPriceType, Me.GridColumnPrice, Me.GridColumnamount})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnEanCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnColor, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnQtyWH, Me.GridColumnQtyStored, Me.GridColumnQtyReceive, Me.GridColumnRemark, Me.GridColumnIdProduct, Me.GridColumnIdDesign, Me.GridColumnIdSample, Me.GridColumnIdPlSalesOrderDel, Me.GridColumnPriceType, Me.GridColumnPrice, Me.GridColumnamount, Me.GridColumnclass, Me.GridColumnsht})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "fg_trf_det_qty", Me.GridColumnQty, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnamount, "{0:n2}")})
         Me.GVItemList.Name = "GVItemList"
@@ -496,7 +515,7 @@ Partial Class FormViewFGTrf
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.AllowEdit = False
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 2
+        Me.GridColumnName.VisibleIndex = 3
         Me.GridColumnName.Width = 142
         '
         'GridColumnSize
@@ -510,7 +529,7 @@ Partial Class FormViewFGTrf
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.AllowEdit = False
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 3
+        Me.GridColumnSize.VisibleIndex = 6
         Me.GridColumnSize.Width = 57
         '
         'GridColumnColor
@@ -518,6 +537,8 @@ Partial Class FormViewFGTrf
         Me.GridColumnColor.Caption = "Color"
         Me.GridColumnColor.FieldName = "color"
         Me.GridColumnColor.Name = "GridColumnColor"
+        Me.GridColumnColor.Visible = True
+        Me.GridColumnColor.VisibleIndex = 5
         Me.GridColumnColor.Width = 56
         '
         'GridColumnUOM
@@ -547,7 +568,7 @@ Partial Class FormViewFGTrf
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "fg_trf_det_qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 4
+        Me.GridColumnQty.VisibleIndex = 7
         Me.GridColumnQty.Width = 96
         '
         'GridColumnQtyWH
@@ -591,7 +612,7 @@ Partial Class FormViewFGTrf
         Me.GridColumnQtyReceive.Name = "GridColumnQtyReceive"
         Me.GridColumnQtyReceive.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "fg_trf_det_qty_rec", "{0:f2}")})
         Me.GridColumnQtyReceive.Visible = True
-        Me.GridColumnQtyReceive.VisibleIndex = 5
+        Me.GridColumnQtyReceive.VisibleIndex = 8
         Me.GridColumnQtyReceive.Width = 123
         '
         'GridColumnRemark
@@ -634,7 +655,7 @@ Partial Class FormViewFGTrf
         Me.GridColumnPriceType.FieldName = "design_price_type"
         Me.GridColumnPriceType.Name = "GridColumnPriceType"
         Me.GridColumnPriceType.Visible = True
-        Me.GridColumnPriceType.VisibleIndex = 6
+        Me.GridColumnPriceType.VisibleIndex = 9
         '
         'GridColumnPrice
         '
@@ -644,7 +665,7 @@ Partial Class FormViewFGTrf
         Me.GridColumnPrice.FieldName = "design_price"
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 7
+        Me.GridColumnPrice.VisibleIndex = 10
         '
         'GridColumnamount
         '
@@ -657,7 +678,7 @@ Partial Class FormViewFGTrf
         Me.GridColumnamount.UnboundExpression = "[fg_trf_det_qty] * [design_price]"
         Me.GridColumnamount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnamount.Visible = True
-        Me.GridColumnamount.VisibleIndex = 8
+        Me.GridColumnamount.VisibleIndex = 11
         '
         'RepositoryItemSpinEdit1
         '
@@ -837,7 +858,7 @@ Partial Class FormViewFGTrf
         '
         Me.XTPOutboundScanNew.Controls.Add(Me.GroupControlScannedItem)
         Me.XTPOutboundScanNew.Name = "XTPOutboundScanNew"
-        Me.XTPOutboundScanNew.Size = New System.Drawing.Size(945, 148)
+        Me.XTPOutboundScanNew.Size = New System.Drawing.Size(945, 123)
         Me.XTPOutboundScanNew.Text = "Scanned Item"
         '
         'GroupControlScannedItem
@@ -848,7 +869,7 @@ Partial Class FormViewFGTrf
         Me.GroupControlScannedItem.Enabled = False
         Me.GroupControlScannedItem.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlScannedItem.Name = "GroupControlScannedItem"
-        Me.GroupControlScannedItem.Size = New System.Drawing.Size(945, 148)
+        Me.GroupControlScannedItem.Size = New System.Drawing.Size(945, 123)
         Me.GroupControlScannedItem.TabIndex = 1
         Me.GroupControlScannedItem.Text = "Scanned Code"
         '
@@ -859,7 +880,7 @@ Partial Class FormViewFGTrf
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
         Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
-        Me.GCBarcode.Size = New System.Drawing.Size(923, 144)
+        Me.GCBarcode.Size = New System.Drawing.Size(923, 119)
         Me.GCBarcode.TabIndex = 5
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
         '
@@ -953,22 +974,21 @@ Partial Class FormViewFGTrf
         Me.RepositoryItemSpinEdit2.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
         Me.RepositoryItemSpinEdit2.Name = "RepositoryItemSpinEdit2"
         '
-        'LabelControl3
+        'GridColumnclass
         '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(30, 62)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(22, 13)
-        Me.LabelControl3.TabIndex = 8900
-        Me.LabelControl3.Text = "TOO"
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
         '
-        'LinkTOO
+        'GridColumnsht
         '
-        Me.LinkTOO.Location = New System.Drawing.Point(90, 59)
-        Me.LinkTOO.Name = "LinkTOO"
-        Me.LinkTOO.Properties.ReadOnly = True
-        Me.LinkTOO.Size = New System.Drawing.Size(309, 20)
-        Me.LinkTOO.TabIndex = 8901
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.Visible = True
+        Me.GridColumnsht.VisibleIndex = 4
         '
         'FormViewFGTrf
         '
@@ -987,6 +1007,7 @@ Partial Class FormViewFGTrf
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.LinkTOO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelHeaderLeft.ResumeLayout(False)
         Me.PanelHeaderLeft.PerformLayout()
@@ -1029,7 +1050,6 @@ Partial Class FormViewFGTrf
         CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LinkTOO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1116,4 +1136,6 @@ Partial Class FormViewFGTrf
     Friend WithEvents GridColumnamount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LinkTOO As DevExpress.XtraEditors.HyperLinkEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -1326,6 +1326,7 @@ Public Class FormFGTrfNewDet
 
         ' '... 
         ' ' creating and saving the view's layout to a new memory stream 
+        GVItemList.BestFitColumns()
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
         GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
