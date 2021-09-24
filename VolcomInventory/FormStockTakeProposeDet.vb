@@ -474,4 +474,83 @@
 
         Close()
     End Sub
+
+    Private Sub SBAttachmentSuratIjin_Click(sender As Object, e As EventArgs) Handles SBAttachmentSuratIjin.Click
+        'path
+        Dim path As String = Application.StartupPath & "\download\"
+        Dim filename As String = path + "\Surat Ijin.pdf"
+
+        If Not IO.Directory.Exists(path) Then
+            System.IO.Directory.CreateDirectory(path)
+        End If
+
+        'report
+        Dim report As ReportStockTakeProposeSuratIjin = New ReportStockTakeProposeSuratIjin
+
+        report.XrRichText.Html = WBSuratIjin.DocumentText
+
+        report.ExportToPdf(filename)
+
+        'openfile
+        Dim processinfo As ProcessStartInfo = New ProcessStartInfo()
+
+        processinfo.FileName = filename
+        processinfo.WorkingDirectory = path
+
+        Process.Start(processinfo)
+    End Sub
+
+    Private Sub SBAttachmentStoreList_Click(sender As Object, e As EventArgs) Handles SBAttachmentStoreList.Click
+        'generate list
+        Dim data As DataTable = New DataTable
+
+        data.Columns.Add("no", GetType(Integer))
+        data.Columns.Add("store_name", GetType(String))
+        data.Columns.Add("period_start", GetType(DateTime))
+        data.Columns.Add("period_end", GetType(DateTime))
+
+        GVStore.ClearColumnsFilter()
+        GVStore.FindFilterText = ""
+        GVStore.ActiveFilterString = ""
+
+        Dim no As Integer = 1
+
+        For i = 0 To GVStore.RowCount - 1
+            If GVStore.IsValidRowHandle(i) Then
+                If GVStore.GetRowCellValue(i, "is_select").ToString = "yes" Then
+                    data.Rows.Add(
+                        no,
+                        GVStore.GetRowCellValue(i, "store_name").ToString,
+                        GVStore.GetRowCellValue(i, "period_start"),
+                        GVStore.GetRowCellValue(i, "period_end")
+                    )
+
+                    no = no + 1
+                End If
+            End If
+        Next
+
+        'path
+        Dim path As String = Application.StartupPath & "\download\"
+        Dim filename As String = path + "\List Toko.pdf"
+
+        If Not IO.Directory.Exists(path) Then
+            System.IO.Directory.CreateDirectory(path)
+        End If
+
+        'report
+        Dim report As ReportStockTakeProposeListToko = New ReportStockTakeProposeListToko
+
+        report.GCStore.DataSource = data
+
+        report.ExportToPdf(filename)
+
+        'openfile
+        Dim processinfo As ProcessStartInfo = New ProcessStartInfo()
+
+        processinfo.FileName = filename
+        processinfo.WorkingDirectory = path
+
+        Process.Start(processinfo)
+    End Sub
 End Class
