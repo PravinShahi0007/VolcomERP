@@ -10086,6 +10086,18 @@
     <Compile Include="ReportStockQCSummary.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportStockTakeProposeListToko.Designer.vb">
+      <DependentUpon>ReportStockTakeProposeListToko.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportStockTakeProposeListToko.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportStockTakeProposeSuratIjin.Designer.vb">
+      <DependentUpon>ReportStockTakeProposeSuratIjin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportStockTakeProposeSuratIjin.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportStockTakeStoreBAPHasil.Designer.vb">
       <DependentUpon>ReportStockTakeStoreBAPHasil.vb</DependentUpon>
     </Compile>
@@ -15596,6 +15608,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportStockQCSummary.resx">
       <DependentUpon>ReportStockQCSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportStockTakeProposeListToko.resx">
+      <DependentUpon>ReportStockTakeProposeListToko.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportStockTakeProposeSuratIjin.resx">
+      <DependentUpon>ReportStockTakeProposeSuratIjin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportStockTakeStoreBAPHasil.resx">
       <DependentUpon>ReportStockTakeStoreBAPHasil.vb</DependentUpon>

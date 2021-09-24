@@ -60,6 +60,8 @@ Partial Class FormStockTakeProposeDet
         Me.XTPEmail = New DevExpress.XtraTab.XtraTabPage()
         Me.WBEmail = New System.Windows.Forms.WebBrowser()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBAttachmentStoreList = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBAttachmentSuratIjin = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TEMailSubject = New DevExpress.XtraEditors.TextEdit()
         Me.MEEmailCC = New DevExpress.XtraEditors.MemoEdit()
@@ -486,6 +488,8 @@ Partial Class FormStockTakeProposeDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.SBAttachmentStoreList)
+        Me.PanelControl3.Controls.Add(Me.SBAttachmentSuratIjin)
         Me.PanelControl3.Controls.Add(Me.LabelControl3)
         Me.PanelControl3.Controls.Add(Me.TEMailSubject)
         Me.PanelControl3.Controls.Add(Me.MEEmailCC)
@@ -497,6 +501,24 @@ Partial Class FormStockTakeProposeDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(304, 336)
         Me.PanelControl3.TabIndex = 0
+        '
+        'SBAttachmentStoreList
+        '
+        Me.SBAttachmentStoreList.Image = CType(resources.GetObject("SBAttachmentStoreList.Image"), System.Drawing.Image)
+        Me.SBAttachmentStoreList.Location = New System.Drawing.Point(106, 272)
+        Me.SBAttachmentStoreList.Name = "SBAttachmentStoreList"
+        Me.SBAttachmentStoreList.Size = New System.Drawing.Size(84, 23)
+        Me.SBAttachmentStoreList.TabIndex = 8
+        Me.SBAttachmentStoreList.Text = "List Toko"
+        '
+        'SBAttachmentSuratIjin
+        '
+        Me.SBAttachmentSuratIjin.Image = CType(resources.GetObject("SBAttachmentSuratIjin.Image"), System.Drawing.Image)
+        Me.SBAttachmentSuratIjin.Location = New System.Drawing.Point(16, 272)
+        Me.SBAttachmentSuratIjin.Name = "SBAttachmentSuratIjin"
+        Me.SBAttachmentSuratIjin.Size = New System.Drawing.Size(84, 23)
+        Me.SBAttachmentSuratIjin.TabIndex = 7
+        Me.SBAttachmentSuratIjin.Text = "Surat Ijin"
         '
         'LabelControl3
         '
@@ -689,4 +711,6 @@ Partial Class FormStockTakeProposeDet
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemDateEdit As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBAttachmentStoreList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBAttachmentSuratIjin As DevExpress.XtraEditors.SimpleButton
 End Class
