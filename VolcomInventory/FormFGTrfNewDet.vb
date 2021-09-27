@@ -388,7 +388,7 @@ Public Class FormFGTrfNewDet
             query += "INNER JOIN tb_fg_trf_det b ON a.id_fg_trf_det = b.id_fg_trf_det "
             query += "JOIN tb_opt o "
             query += "INNER JOIN tb_m_product c ON c.id_product = b.id_product 
-            INNER JOIN tb_m_design d ON d.id_design = c.id_product 
+            INNER JOIN tb_m_design d ON d.id_design = c.id_design 
             LEFT JOIN (
 		        SELECT dc.id_design, 
 		        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
