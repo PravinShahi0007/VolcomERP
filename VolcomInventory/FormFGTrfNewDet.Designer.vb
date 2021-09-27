@@ -92,6 +92,8 @@ Partial Class FormFGTrfNewDet
         Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnStorage = New DevExpress.XtraEditors.SimpleButton()
@@ -112,6 +114,9 @@ Partial Class FormFGTrfNewDet
         Me.GridColumnIdProductScan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclassbc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolorbc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshtbc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
@@ -120,8 +125,6 @@ Partial Class FormFGTrfNewDet
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -740,7 +743,7 @@ Partial Class FormFGTrfNewDet
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 6
+        Me.GridColumnSize.VisibleIndex = 5
         Me.GridColumnSize.Width = 50
         '
         'GridColumnColor
@@ -750,7 +753,7 @@ Partial Class FormFGTrfNewDet
         Me.GridColumnColor.Name = "GridColumnColor"
         Me.GridColumnColor.OptionsColumn.ReadOnly = True
         Me.GridColumnColor.Visible = True
-        Me.GridColumnColor.VisibleIndex = 5
+        Me.GridColumnColor.VisibleIndex = 4
         Me.GridColumnColor.Width = 56
         '
         'GridColumnQty
@@ -769,7 +772,7 @@ Partial Class FormFGTrfNewDet
         Me.GridColumnQty.OptionsColumn.AllowShowHide = False
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "fg_trf_det_qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 8
+        Me.GridColumnQty.VisibleIndex = 7
         Me.GridColumnQty.Width = 74
         '
         'GridColumnQtyWH
@@ -812,7 +815,7 @@ Partial Class FormFGTrfNewDet
         Me.GridColumnQtyLimit.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQtyLimit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty_limit", "{0:n0}")})
         Me.GridColumnQtyLimit.Visible = True
-        Me.GridColumnQtyLimit.VisibleIndex = 7
+        Me.GridColumnQtyLimit.VisibleIndex = 6
         Me.GridColumnQtyLimit.Width = 69
         '
         'GridColumnRemark
@@ -821,7 +824,7 @@ Partial Class FormFGTrfNewDet
         Me.GridColumnRemark.FieldName = "fg_trf_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 13
+        Me.GridColumnRemark.VisibleIndex = 12
         Me.GridColumnRemark.Width = 173
         '
         'GridColumnStatus
@@ -832,7 +835,7 @@ Partial Class FormFGTrfNewDet
         Me.GridColumnStatus.OptionsColumn.AllowEdit = False
         Me.GridColumnStatus.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 9
+        Me.GridColumnStatus.VisibleIndex = 8
         Me.GridColumnStatus.Width = 69
         '
         'GridColumnEanCode
@@ -910,7 +913,7 @@ Partial Class FormFGTrfNewDet
         Me.GridColumnPrice.FieldName = "design_price"
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 11
+        Me.GridColumnPrice.VisibleIndex = 10
         Me.GridColumnPrice.Width = 96
         '
         'GridColumnPriceType
@@ -919,7 +922,7 @@ Partial Class FormFGTrfNewDet
         Me.GridColumnPriceType.FieldName = "design_price_type"
         Me.GridColumnPriceType.Name = "GridColumnPriceType"
         Me.GridColumnPriceType.Visible = True
-        Me.GridColumnPriceType.VisibleIndex = 10
+        Me.GridColumnPriceType.VisibleIndex = 9
         Me.GridColumnPriceType.Width = 84
         '
         'GridColumnAmount
@@ -933,8 +936,22 @@ Partial Class FormFGTrfNewDet
         Me.GridColumnAmount.UnboundExpression = "[fg_trf_det_qty] * [design_price]"
         Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 12
+        Me.GridColumnAmount.VisibleIndex = 11
         Me.GridColumnAmount.Width = 126
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
+        '
+        'GridColumnsht
+        '
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
         '
         'RepositoryItemSpinEdit1
         '
@@ -1047,7 +1064,7 @@ Partial Class FormFGTrfNewDet
         '
         'GVBarcode
         '
-        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumnBarcode, Me.GridColumnCountingCode, Me.GridColumnIdPLCounting, Me.GridColumnIsFix, Me.GridColumnIdUniqueReceiving, Me.GridColumnIdProductScan, Me.GridColumn1, Me.GridColumn2})
+        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumnBarcode, Me.GridColumnCountingCode, Me.GridColumnIdPLCounting, Me.GridColumnIsFix, Me.GridColumnIdUniqueReceiving, Me.GridColumnIdProductScan, Me.GridColumn1, Me.GridColumn2, Me.GridColumnclassbc, Me.GridColumncolorbc, Me.GridColumnshtbc})
         Me.GVBarcode.GridControl = Me.GCBarcode
         Me.GVBarcode.Name = "GVBarcode"
         Me.GVBarcode.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -1129,7 +1146,7 @@ Partial Class FormFGTrfNewDet
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 2
+        Me.GridColumn1.VisibleIndex = 3
         Me.GridColumn1.Width = 688
         '
         'GridColumn2
@@ -1139,8 +1156,33 @@ Partial Class FormFGTrfNewDet
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 3
+        Me.GridColumn2.VisibleIndex = 5
         Me.GridColumn2.Width = 76
+        '
+        'GridColumnclassbc
+        '
+        Me.GridColumnclassbc.Caption = "Class"
+        Me.GridColumnclassbc.FieldName = "class"
+        Me.GridColumnclassbc.Name = "GridColumnclassbc"
+        Me.GridColumnclassbc.OptionsColumn.AllowEdit = False
+        Me.GridColumnclassbc.Visible = True
+        Me.GridColumnclassbc.VisibleIndex = 2
+        '
+        'GridColumncolorbc
+        '
+        Me.GridColumncolorbc.Caption = "Color"
+        Me.GridColumncolorbc.FieldName = "color"
+        Me.GridColumncolorbc.Name = "GridColumncolorbc"
+        Me.GridColumncolorbc.OptionsColumn.AllowEdit = False
+        Me.GridColumncolorbc.Visible = True
+        Me.GridColumncolorbc.VisibleIndex = 4
+        '
+        'GridColumnshtbc
+        '
+        Me.GridColumnshtbc.Caption = "Silhouette"
+        Me.GridColumnshtbc.FieldName = "sht"
+        Me.GridColumnshtbc.Name = "GridColumnshtbc"
+        Me.GridColumnshtbc.OptionsColumn.AllowEdit = False
         '
         'RepositoryItemCheckEdit2
         '
@@ -1224,22 +1266,6 @@ Partial Class FormFGTrfNewDet
         Me.BScan.Size = New System.Drawing.Size(91, 33)
         Me.BScan.TabIndex = 7
         Me.BScan.Text = "Start Scan"
-        '
-        'GridColumnclass
-        '
-        Me.GridColumnclass.Caption = "Class"
-        Me.GridColumnclass.FieldName = "class"
-        Me.GridColumnclass.Name = "GridColumnclass"
-        Me.GridColumnclass.Visible = True
-        Me.GridColumnclass.VisibleIndex = 2
-        '
-        'GridColumnsht
-        '
-        Me.GridColumnsht.Caption = "Silhouette"
-        Me.GridColumnsht.FieldName = "sht"
-        Me.GridColumnsht.Name = "GridColumnsht"
-        Me.GridColumnsht.Visible = True
-        Me.GridColumnsht.VisibleIndex = 4
         '
         'FormFGTrfNewDet
         '
@@ -1415,4 +1441,7 @@ Partial Class FormFGTrfNewDet
     Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclassbc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolorbc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnshtbc As DevExpress.XtraGrid.Columns.GridColumn
 End Class
