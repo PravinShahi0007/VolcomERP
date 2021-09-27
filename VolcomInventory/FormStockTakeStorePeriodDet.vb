@@ -1,6 +1,9 @@
 ﻿Public Class FormStockTakeStorePeriodDet
     Public id_design As List(Of String) = New List(Of String)
     Public id_store As List(Of String) = New List(Of String)
+    Public id_st_store_propose As String = "-1"
+    Public period_start As DateTime = Now
+    Public period_end As DateTime = Now
 
     Private Sub FormStockTakeStorePeriodDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim nowDate As String = execute_query("SELECT DATE_SUB(CURDATE(), INTERVAL 0 DAY);", 0, True, "", "", "", "")
@@ -120,7 +123,7 @@
                 data_sales_date = "'" + data_sales_date + "'"
             End If
 
-            Dim query As String = "INSERT INTO tb_st_store_period (soh_date, id_store, is_active, schedule_start, schedule_end, sales_date, is_all_design) VALUES ('" + DateTime.Parse(DESOHDate.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', " + id_store(x) + ", 1, '" + DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', " + data_sales_date + ", " + is_all_design + "); SELECT LAST_INSERT_ID();"
+            Dim query As String = "INSERT INTO tb_st_store_period (soh_date, id_store, is_active, schedule_start, schedule_end, sales_date, is_all_design, id_st_store_propose) VALUES ('" + DateTime.Parse(DESOHDate.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', " + id_store(x) + ", 1, '" + DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss") + "', " + data_sales_date + ", " + is_all_design + ", " + If(id_st_store_propose = "-1", "NULL", id_st_store_propose) + "); SELECT LAST_INSERT_ID();"
 
             Dim id_st_store_period As String = execute_query(query, 0, True, "", "", "", "")
 
