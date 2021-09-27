@@ -2165,7 +2165,7 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
                 'check for mrs
                 Dim qc As String = "SELECT pod.id_prod_order,pod.`id_prod_order_det`,pod.`id_prod_demand_product`,rd.`prod_order_rec_det_qty` AS rec_qty,tot.qty,pod.`prod_order_qty`,(tot.qty-pod.`prod_order_qty`) AS more_qty
 ,CONCAT(p.product_full_code,' - ',d.`design_display_name`) AS prod,cd.`code_detail_name` AS size,r.`prod_order_rec_number`,po.`prod_order_number`
-,IF((tot.qty-pod.`prod_order_qty`)-rd.`prod_order_rec_det_qty`>=0,rd.`prod_order_rec_det_qty`,(tot.qty-pod.`prod_order_qty`)) AS this_rec_more
+,SUM(IF((tot.qty-pod.`prod_order_qty`)-rd.`prod_order_rec_det_qty`>=0,rd.`prod_order_rec_det_qty`,(tot.qty-pod.`prod_order_qty`))) AS this_rec_more
 FROM tb_prod_order_rec_det rd 
 INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec`
 INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=rd.`id_prod_order_det` AND rd.`id_prod_order_rec`='" & id_report & "' 
@@ -2188,7 +2188,7 @@ HAVING this_rec_more>0"
                 If dtc.Rows.Count > 0 Then
 
                     'header MRS
-                    query = String.Format("INSERT INTO tb_prod_order_mrs(id_prod_order,id_comp_contact_req_to,id_comp_contact_req_from,prod_order_mrs_date,prod_order_mrs_note, created_by, id_pl_mat_type, id_prod_order_rec, id_report_status) VALUES('{0}','{1}','{2}',NOW(),'{3}','{4}','{5}','{6}','{7}',6);SELECT LAST_INSERT_ID()", dtc.Rows(0)("id_prod_order").ToString, "85", "74", "Auto RMRS from Receiving QC", id_user, "1", id_report)
+                    query = String.Format("INSERT INTO tb_prod_order_mrs(id_prod_order,id_comp_contact_req_to,id_comp_contact_req_from,prod_order_mrs_date,prod_order_mrs_note, created_by, id_pl_mat_type, id_prod_order_rec, id_report_status) VALUES('{0}','{1}','{2}',NOW(),'{3}','{4}','{5}','{6}',6);SELECT LAST_INSERT_ID()", dtc.Rows(0)("id_prod_order").ToString, "85", "74", "Auto RMRS from Receiving QC", id_user, "1", id_report)
                     Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
 
                     execute_non_query("CALL gen_number('" & last_id & "','29')", True, "", "", "", "")
