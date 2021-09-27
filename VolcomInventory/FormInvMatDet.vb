@@ -285,103 +285,107 @@ WHERE invd.`id_inv_mat`='" & id_inv & "'"
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        If SLEPayType.EditValue.ToString = "1" Then 'PL
-            If id_inv = "-1" Then
-                'new
-                'header
-                Dim query As String = "INSERT INTO `tb_inv_mat`(`id_inv_mat_type`,`id_comp`,`created_by`,`created_date`,`note`,`id_report_status`,`due_date`,`ref_date`,`vat_percent`,is_deposit,is_not_kas)
+        If Not SLEVendor.EditValue.ToString = "" Then
+            If SLEPayType.EditValue.ToString = "1" Then 'PL
+                If id_inv = "-1" Then
+                    'new
+                    'header
+                    Dim query As String = "INSERT INTO `tb_inv_mat`(`id_inv_mat_type`,`id_comp`,`created_by`,`created_date`,`note`,`id_report_status`,`due_date`,`ref_date`,`vat_percent`,is_deposit,is_not_kas)
 VALUES ('" & SLEPayType.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DERefDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(TEVatPercent.EditValue.ToString) & "','" & If(is_deposit = "1", "1", "2") & "','" & If(CEKas.Checked = True, "2", "1") & "'); SELECT LAST_INSERT_ID(); "
-                id_inv = execute_query(query, 0, True, "", "", "", "")
-                'id_inv
-                query = ""
-                For i = 0 To GVList.RowCount - 1
-                    If is_deposit = "1" Then
-                        query += "INSERT INTO `tb_inv_mat_det`(`id_inv_mat`,id_prod_order,`id_report`,`report_mark_type`,report_number,info_design,`qty`,`price`,`value`,`note`)
+                    id_inv = execute_query(query, 0, True, "", "", "", "")
+                    'id_inv
+                    query = ""
+                    For i = 0 To GVList.RowCount - 1
+                        If is_deposit = "1" Then
+                            query += "INSERT INTO `tb_inv_mat_det`(`id_inv_mat`,id_prod_order,`id_report`,`report_mark_type`,report_number,info_design,`qty`,`price`,`value`,`note`)
 VALUES('" & id_inv & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "report_number").ToString & "','" & GVList.GetRowCellValue(i, "info_design").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "qty").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "price").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
-                    Else
-                        query += "INSERT INTO `tb_inv_mat_det`(`id_inv_mat`,id_prod_order,`id_report`,`report_mark_type`,report_number,info_design,`value`,`note`)
+                        Else
+                            query += "INSERT INTO `tb_inv_mat_det`(`id_inv_mat`,id_prod_order,`id_report`,`report_mark_type`,report_number,info_design,`value`,`note`)
 VALUES('" & id_inv & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "report_number").ToString & "','" & GVList.GetRowCellValue(i, "info_design").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
-                    End If
-                Next
-                execute_non_query(query, True, "", "", "", "")
-                '
-                query = "CALL gen_number('" & id_inv & "','231')"
-                execute_non_query(query, True, "", "", "", "")
-                submit_who_prepared("231", id_inv, id_user)
-                '
-                infoCustom("BPB Created")
-                FormInvMat.load_view()
-                FormInvMat.XTCMatInv.SelectedTabPageIndex = 0
-                FormInvMat.load_view()
-                FormInvMat.GVInvoice.FocusedRowHandle = find_row(FormInvMat.GVInvoice, "id_inv_mat", id_inv)
-                Close()
-            Else
-                'edit
-                Dim query As String = ""
-            End If
-        ElseIf SLEPayType.EditValue.ToString = "2" Then 'retur
-            If id_inv = "-1" Then
-                'new
-                'header
-                Dim query As String = "INSERT INTO `tb_inv_mat`(`id_inv_mat_type`,`id_comp`,`created_by`,`created_date`,`note`,`id_report_status`,`due_date`,`ref_date`,`vat_percent`,is_deposit)
+                        End If
+                    Next
+                    execute_non_query(query, True, "", "", "", "")
+                    '
+                    query = "CALL gen_number('" & id_inv & "','231')"
+                    execute_non_query(query, True, "", "", "", "")
+                    submit_who_prepared("231", id_inv, id_user)
+                    '
+                    infoCustom("BPB Created")
+                    FormInvMat.load_view()
+                    FormInvMat.XTCMatInv.SelectedTabPageIndex = 0
+                    FormInvMat.load_view()
+                    FormInvMat.GVInvoice.FocusedRowHandle = find_row(FormInvMat.GVInvoice, "id_inv_mat", id_inv)
+                    Close()
+                Else
+                    'edit
+                    Dim query As String = ""
+                End If
+            ElseIf SLEPayType.EditValue.ToString = "2" Then 'retur
+                If id_inv = "-1" Then
+                    'new
+                    'header
+                    Dim query As String = "INSERT INTO `tb_inv_mat`(`id_inv_mat_type`,`id_comp`,`created_by`,`created_date`,`note`,`id_report_status`,`due_date`,`ref_date`,`vat_percent`,is_deposit)
 VALUES ('" & SLEPayType.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DERefDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(TEVatPercent.EditValue.ToString) & "','2'); SELECT LAST_INSERT_ID(); "
-                id_inv = execute_query(query, 0, True, "", "", "", "")
-                'id_inv
-                query = ""
-                For i = 0 To GVList.RowCount - 1
-                    query += "INSERT INTO `tb_inv_mat_det`(`id_inv_mat`,id_prod_order,`id_report`,`report_mark_type`,report_number,info_design,`value`,`note`)
-VALUES('" & id_inv & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "report_number").ToString & "','" & GVList.GetRowCellValue(i, "info_design").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
-                Next
-                execute_non_query(query, True, "", "", "", "")
-                '
-                query = "CALL gen_number('" & id_inv & "','231')"
-                execute_non_query(query, True, "", "", "", "")
-                submit_who_prepared("231", id_inv, id_user)
-                '
-                infoCustom("BRP Created")
-                FormInvMat.load_view()
-                FormInvMat.XTCMatInv.SelectedTabPageIndex = 0
-                FormInvMat.load_view()
-                FormInvMat.GVInvoice.FocusedRowHandle = find_row(FormInvMat.GVInvoice, "id_inv_mat", id_inv)
-                Close()
-            Else
-                'edit
-                Dim query As String = ""
-            End If
-        ElseIf SLEPayType.EditValue.ToString = "3" Then 'langsung biaya
-            If id_inv = "-1" Then
-                'new
-                'header
-                Dim query As String = "INSERT INTO `tb_inv_mat`(`id_inv_mat_type`,`id_comp`,`created_by`,`created_date`,`note`,`id_report_status`,`due_date`,`ref_date`,`vat_percent`,is_deposit)
-VALUES ('" & SLEPayType.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DERefDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(TEVatPercent.EditValue.ToString) & "','" & If(is_deposit = "1", "1", "2") & "'); SELECT LAST_INSERT_ID(); "
-                id_inv = execute_query(query, 0, True, "", "", "", "")
-                'id_inv
-                query = ""
-                For i = 0 To GVList.RowCount - 1
-                    If is_deposit = "1" Then
-                        query += "INSERT INTO `tb_inv_mat_det`(`id_inv_mat`,id_prod_order,`id_report`,`report_mark_type`,report_number,info_design,`qty`,`price`,`value`,`note`)
-VALUES('" & id_inv & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "report_number").ToString & "','" & GVList.GetRowCellValue(i, "info_design").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "qty").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "price").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
-                    Else
+                    id_inv = execute_query(query, 0, True, "", "", "", "")
+                    'id_inv
+                    query = ""
+                    For i = 0 To GVList.RowCount - 1
                         query += "INSERT INTO `tb_inv_mat_det`(`id_inv_mat`,id_prod_order,`id_report`,`report_mark_type`,report_number,info_design,`value`,`note`)
 VALUES('" & id_inv & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "report_number").ToString & "','" & GVList.GetRowCellValue(i, "info_design").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
-                    End If
-                Next
-                execute_non_query(query, True, "", "", "", "")
-                '
-                query = "CALL gen_number('" & id_inv & "','231')"
-                execute_non_query(query, True, "", "", "", "")
-                submit_who_prepared("231", id_inv, id_user)
-                '
-                infoCustom("BPB Created")
-                FormInvMat.load_view()
-                FormInvMat.XTCMatInv.SelectedTabPageIndex = 0
-                FormInvMat.load_view()
-                FormInvMat.GVInvoice.FocusedRowHandle = find_row(FormInvMat.GVInvoice, "id_inv_mat", id_inv)
-                Close()
-            Else
-                'edit
-                Dim query As String = ""
+                    Next
+                    execute_non_query(query, True, "", "", "", "")
+                    '
+                    query = "CALL gen_number('" & id_inv & "','231')"
+                    execute_non_query(query, True, "", "", "", "")
+                    submit_who_prepared("231", id_inv, id_user)
+                    '
+                    infoCustom("BRP Created")
+                    FormInvMat.load_view()
+                    FormInvMat.XTCMatInv.SelectedTabPageIndex = 0
+                    FormInvMat.load_view()
+                    FormInvMat.GVInvoice.FocusedRowHandle = find_row(FormInvMat.GVInvoice, "id_inv_mat", id_inv)
+                    Close()
+                Else
+                    'edit
+                    Dim query As String = ""
+                End If
+            ElseIf SLEPayType.EditValue.ToString = "3" Then 'langsung biaya
+                If id_inv = "-1" Then
+                    'new
+                    'header
+                    Dim query As String = "INSERT INTO `tb_inv_mat`(`id_inv_mat_type`,`id_comp`,`created_by`,`created_date`,`note`,`id_report_status`,`due_date`,`ref_date`,`vat_percent`,is_deposit)
+VALUES ('" & SLEPayType.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DERefDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(TEVatPercent.EditValue.ToString) & "','" & If(is_deposit = "1", "1", "2") & "'); SELECT LAST_INSERT_ID(); "
+                    id_inv = execute_query(query, 0, True, "", "", "", "")
+                    'id_inv
+                    query = ""
+                    For i = 0 To GVList.RowCount - 1
+                        If is_deposit = "1" Then
+                            query += "INSERT INTO `tb_inv_mat_det`(`id_inv_mat`,id_prod_order,`id_report`,`report_mark_type`,report_number,info_design,`qty`,`price`,`value`,`note`)
+VALUES('" & id_inv & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "report_number").ToString & "','" & GVList.GetRowCellValue(i, "info_design").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "qty").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "price").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
+                        Else
+                            query += "INSERT INTO `tb_inv_mat_det`(`id_inv_mat`,id_prod_order,`id_report`,`report_mark_type`,report_number,info_design,`value`,`note`)
+VALUES('" & id_inv & "','" & GVList.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "report_number").ToString & "','" & GVList.GetRowCellValue(i, "info_design").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
+                        End If
+                    Next
+                    execute_non_query(query, True, "", "", "", "")
+                    '
+                    query = "CALL gen_number('" & id_inv & "','231')"
+                    execute_non_query(query, True, "", "", "", "")
+                    submit_who_prepared("231", id_inv, id_user)
+                    '
+                    infoCustom("BPB Created")
+                    FormInvMat.load_view()
+                    FormInvMat.XTCMatInv.SelectedTabPageIndex = 0
+                    FormInvMat.load_view()
+                    FormInvMat.GVInvoice.FocusedRowHandle = find_row(FormInvMat.GVInvoice, "id_inv_mat", id_inv)
+                    Close()
+                Else
+                    'edit
+                    Dim query As String = ""
+                End If
             End If
+        Else
+            warningCustom("Please make sure vendor already choosen")
         End If
     End Sub
 

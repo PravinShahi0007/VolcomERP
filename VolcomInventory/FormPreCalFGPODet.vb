@@ -295,6 +295,11 @@ SELECT 3 AS id_type,'Courier' AS type"
             BUpdateReason.Visible = False
 
             XTC.SelectedTabPageIndex = 0
+
+            If Not id = "-1" Then
+                PCUFGPO.Visible = False
+                SLEVendorFGPO.Enabled = False
+            End If
         ElseIf steps = "2" Then
             XTPFGPO.PageVisible = True
             XTPVendor.PageVisible = True
@@ -475,7 +480,17 @@ VALUES(NOW(),'" & id_user & "','1','2','" & SLEVendorFGPO.EditValue.ToString & "
             load_head()
         Else
             'edit
+            Dim q As String = "UPDATE tb_pre_cal_fgpo SET step=2,`id_type`='" & SLETypeImport.EditValue.ToString & "',`weight`='" & decimalSQL(Decimal.Parse(TEWeight.EditValue.ToString).ToString) & "',`cbm`='" & decimalSQL(Decimal.Parse(TECBM.EditValue.ToString).ToString) & "',`pol`='" & addSlashes(TEPOL.Text) & "',`ctn`='" & decimalSQL(Decimal.Parse(TECTN.EditValue.ToString).ToString) & "' WHERE id_pre_cal_fgpo='" & id & "'"
+            execute_non_query(q, True, "", "", "", "")
 
+            'cbm recal
+            'orign
+
+            'dest
+
+            'adm
+
+            load_head()
         End If
     End Sub
 

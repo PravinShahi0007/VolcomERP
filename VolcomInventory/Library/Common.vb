@@ -3478,7 +3478,25 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
         Try
             If opt = "1" Then
-                query = "SELECT design_display_name FROM tb_m_design WHERE id_design='" & id_design & "'"
+                query = "SELECT CONCAT(cd.class,' ',dsg.design_name,' ',cd.color) AS  design_display_name
+FROM tb_m_design dsg 
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
+WHERE dsg.id_design='" & id_design & "'"
                 result = execute_query(query, 0, True, "", "", "", "")
             ElseIf opt = "2" Then
                 query = "SELECT design_code FROM tb_m_design WHERE id_design='" & id_design & "'"
