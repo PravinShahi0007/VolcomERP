@@ -486,6 +486,7 @@ VALUES(NOW(),'" & id_user & "','1','2','" & SLEVendorFGPO.EditValue.ToString & "
             'cbm recal
             'orign
 
+
             'dest
 
             'adm
