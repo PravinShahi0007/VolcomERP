@@ -2227,6 +2227,7 @@ INNER JOIN
                     execute_non_query(query, True, "", "", "", "")
 
                     Dim mail As New ClassSendEmail()
+                    mail.par1 = last_id
                     mail.report_mark_type = "345"
                     mail.id_report = id_report
                     mail.comment = ""

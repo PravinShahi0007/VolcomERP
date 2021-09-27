@@ -4096,7 +4096,7 @@ FROM tb_opt o "
                 mail.CC.Add(to_mail)
             Next
             '
-            mail.Subject = "Volcom Indonesia - Notifikasi Kebutuhan MRS kelebihan Receiving "
+            mail.Subject = "Volcom Indonesia - Notifikasi RMRS Otomatis "
             mail.IsBodyHtml = True
             mail.Body = ""
             '
@@ -4169,7 +4169,7 @@ HAVING this_rec_more>0"
                  <tr>
                   <td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
                   <div>
-                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Notifikasi Auto MRS, Receiving " + dtbody.Rows(0)("prod_order_rec_number").ToString + " FGPO dengan nomor " + dtbody.Rows(0)("prod_order_number").ToString + ", total receiving melebihi qty FGPO. Detail sebagai berikut: </span><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Notifikasi pembuatan RMRS otomatis nomor " + par1 + ", Receiving " + dtbody.Rows(0)("prod_order_rec_number").ToString + " FGPO dengan nomor " + dtbody.Rows(0)("prod_order_number").ToString + ", total receiving melebihi qty FGPO. Detail sebagai berikut: </span><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
                   </div>
                   </td>
                  </tr>
