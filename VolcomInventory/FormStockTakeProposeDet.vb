@@ -119,6 +119,7 @@
             FROM tb_m_comp AS c
             LEFT JOIN tb_m_store AS s ON c.id_store = s.id_store
             WHERE c.id_comp_group = " + id_comp_group + " AND c.id_store IS NOT NULL
+            GROUP BY c.id_store
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
