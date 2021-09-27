@@ -491,6 +491,9 @@
         ElseIf report_mark_type = "334" Then
             'pre cal fgpo
             FormPreCalFGPO.Close()
+        ElseIf report_mark_type = "348" Then
+            'surat ijin
+            FormStockTakeProposeDet.Close()
         End If
     End Sub
     Sub show()
@@ -1592,6 +1595,10 @@ GROUP BY rec.`id_prod_order`"
             FormPreCalFGPODet.id = id_report
             FormPreCalFGPODet.is_view = "1"
             FormPreCalFGPODet.ShowDialog()
+        ElseIf report_mark_type = "348" Then
+            'surat ijin
+            FormStockTakeProposeDet.id_st_store_propose = id_report
+            FormStockTakeProposeDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2843,6 +2850,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_pre_cal_fgpo"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "348" Then
+            'surat ijin
+            table_name = "tb_st_store_propose"
+            field_id = "id_st_store_propose"
+            field_number = "number"
+            field_date = "created_at"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

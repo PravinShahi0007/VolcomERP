@@ -472,6 +472,8 @@
 
         execute_non_query(query_detail, True, "", "", "", "")
 
+        submit_who_prepared("348", id_st_store_propose, id_user)
+
         Close()
     End Sub
 
@@ -671,5 +673,16 @@
             mail.Dispose()
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub SBMark_Click(sender As Object, e As EventArgs) Handles SBMark.Click
+        Cursor = Cursors.WaitCursor
+
+        FormReportMark.report_mark_type = "348"
+        FormReportMark.id_report = id_st_store_propose
+
+        FormReportMark.ShowDialog()
+
+        Cursor = Cursors.Default
     End Sub
 End Class

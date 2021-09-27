@@ -723,6 +723,9 @@
         ElseIf report_mark_type = "333" Then
             'qc sni in
             query = String.Format("SELECT id_report_status_del AS id_report_status, del_wh_number as report_number FROM tb_qc_sni_out WHERE id_qc_sni_out = '{0}'", id_report)
+        ElseIf report_mark_type = "348" Then
+            'surat ijin
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_st_store_propose WHERE id_st_store_propose = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -10531,6 +10534,19 @@ WHERE qci.id_qc_sni_in='" & id_report & "'"
                 FormSNIWH.load_list()
             Catch ex As Exception
             End Try
+        ElseIf report_mark_type = "348" Then
+            'surat ijin
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                FormStockTakeProposeDet.send_mail()
+            End If
+
+            query = String.Format("UPDATE tb_st_store_propose SET id_report_status = '{0}' WHERE id_st_store_propose = '{1}'", id_status_reportx, id_report)
+
+            execute_non_query(query, True, "", "", "", "")
         End If
 
         'adding lead time
