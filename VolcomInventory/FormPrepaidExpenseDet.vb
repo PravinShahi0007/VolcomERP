@@ -205,7 +205,7 @@
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
         Dim q_year As String = ""
-        Dim query As String = "SELECT 'no' AS is_lock,ed.amount,ed.id_prepaid_expense_det,ed.cc,c.comp_number AS cc_desc, ed.id_prepaid_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
+        Dim query As String = "SELECT 'no' AS is_lock,ed.,ed.amount,ed.id_prepaid_expense_det,ed.cc,c.comp_number AS cc_desc, ed.id_prepaid_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
         ed.id_acc,pphacc.acc_description AS coa_desc_pph,a.id_acc_cat, a.acc_description AS `coa_desc`, ed.description,a.acc_name,ed.id_acc_pph,ed.pph_percent,ed.pph, "
 
         If id = "-1" Then
