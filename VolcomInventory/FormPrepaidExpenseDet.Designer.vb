@@ -694,11 +694,11 @@ Partial Class FormPrepaidExpenseDet
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 38)
+        Me.GCData.Location = New System.Drawing.Point(0, 42)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSearchLookUpEdit1, Me.RepositoryItemTextEdit1, Me.RepositoryItemSpinEdit1, Me.RISLEType, Me.RISLECatExpense, Me.RISLECC, Me.RISLECOAPPH, Me.RepositoryItemTextEdit2, Me.RepositoryItemTextEdit3, Me.RISLECurrency, Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoEdit2, Me.RepositoryItemMemoEdit3})
-        Me.GCData.Size = New System.Drawing.Size(949, 191)
+        Me.GCData.Size = New System.Drawing.Size(949, 187)
         Me.GCData.TabIndex = 18
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -1256,16 +1256,16 @@ Partial Class FormPrepaidExpenseDet
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(949, 38)
+        Me.PanelControlNav.Size = New System.Drawing.Size(949, 42)
         Me.PanelControlNav.TabIndex = 17
         '
         'BtnDelete
         '
         Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(793, 2)
+        Me.BtnDelete.Location = New System.Drawing.Point(755, 2)
         Me.BtnDelete.Name = "BtnDelete"
-        Me.BtnDelete.Size = New System.Drawing.Size(79, 34)
+        Me.BtnDelete.Size = New System.Drawing.Size(94, 38)
         Me.BtnDelete.TabIndex = 23
         Me.BtnDelete.Text = "Delete"
         '
@@ -1273,9 +1273,9 @@ Partial Class FormPrepaidExpenseDet
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(872, 2)
+        Me.BtnAdd.Location = New System.Drawing.Point(849, 2)
         Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(75, 34)
+        Me.BtnAdd.Size = New System.Drawing.Size(98, 38)
         Me.BtnAdd.TabIndex = 22
         Me.BtnAdd.Text = "Add"
         '
