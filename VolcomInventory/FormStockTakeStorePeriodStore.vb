@@ -7,6 +7,7 @@
             FROM tb_st_store_propose_det AS d
             LEFT JOIN tb_st_store_propose AS h ON d.id_st_store_propose = h.id_st_store_propose
             LEFT JOIN tb_m_comp_group AS g ON h.id_comp_group = g.id_comp_group
+            WHERE h.id_report_status = 6
             GROUP BY h.id_st_store_propose, d.period_start, d.period_end
         "
 
