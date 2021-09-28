@@ -324,7 +324,6 @@ Partial Class FormPrepaidExpenseDet
         '
         'BtnBrowse
         '
-        Me.BtnBrowse.Enabled = False
         Me.BtnBrowse.Image = CType(resources.GetObject("BtnBrowse.Image"), System.Drawing.Image)
         Me.BtnBrowse.Location = New System.Drawing.Point(501, 39)
         Me.BtnBrowse.Name = "BtnBrowse"
@@ -1397,11 +1396,11 @@ Partial Class FormPrepaidExpenseDet
         Me.Controls.Add(Me.PanelControlBottom)
         Me.Controls.Add(Me.PanelControlPay)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPrepaidExpenseDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Prepaid Expense Detail"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlPay.ResumeLayout(False)
         Me.PanelControlPay.PerformLayout()
