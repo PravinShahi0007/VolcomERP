@@ -165,7 +165,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrTableCell7.StylePriority.UseTextAlignment = False
         Me.XrTableCell7.Text = "DESCRIPTION"
         Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell7.Weight = 14.539586947561416R
+        Me.XrTableCell7.Weight = 14.127700615084947R
         '
         'XrTableCell9
         '
@@ -812,7 +812,7 @@ Partial Public Class ReportSalesDelOrderOwnStore
         Me.XrTableCell2.StylePriority.UseTextAlignment = False
         Me.XrTableCell2.Text = "CLASS"
         Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell2.Weight = 2.0594316818151719R
+        Me.XrTableCell2.Weight = 2.4713180142916404R
         '
         'XrTableCell3
         '
