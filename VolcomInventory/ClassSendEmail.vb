@@ -4103,6 +4103,7 @@ FROM tb_opt o "
             Dim qbody As String = "SELECT pod.`id_prod_order_det`,pod.`id_prod_demand_product`,SUM(rd.`prod_order_rec_det_qty`) AS rec_qty,SUM(tot.qty) AS qty,SUM(pod.`prod_order_qty`) AS prod_order_qty,(tot.qty-pod.`prod_order_qty`) AS more_qty
 ,CONCAT(d.design_code,' - ',cd.class,' ',d.`design_name`,' ',cd.color) AS prod,cd.`code_detail_name` AS size,r.`prod_order_rec_number`,po.`prod_order_number`
 ,SUM(IF((tot.qty-pod.`prod_order_qty`)-rd.`prod_order_rec_det_qty`>=0,rd.`prod_order_rec_det_qty`,(tot.qty-pod.`prod_order_qty`))) AS this_rec_more
+,SUM((tot.qty-pod.`prod_order_qty`)) AS grand_tot_rec_more
 FROM tb_prod_order_rec_det rd 
 INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec`
 INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=rd.`id_prod_order_det` AND rd.`id_prod_order_rec`='" & id_report & "' 
@@ -4198,6 +4199,7 @@ HAVING this_rec_more>0"
                     <th>Receiving Qty</th>
                     <th>Total Receiving</th>
                     <th>Kelebihan Qty</th>
+                    <th>Akumulasi Kelebihan Qty</th>
                   </tr> 
 
                 <!-- row data --> "
@@ -4208,6 +4210,7 @@ HAVING this_rec_more>0"
       <td>" + Decimal.Parse(dtbody.Rows(d)("rec_qty").ToString()).ToString("N0") + "</td>
       <td>" + Decimal.Parse(dtbody.Rows(d)("qty").ToString()).ToString("N0") + "</td>
       <td>" + Decimal.Parse(dtbody.Rows(d)("this_rec_more").ToString()).ToString("N0") + "</td>
+      <td>" + Decimal.Parse(dtbody.Rows(d)("grand_tot_rec_more").ToString()).ToString("N0") + "</td>
       </tr>"
             Next
             body_temp += "</table>
