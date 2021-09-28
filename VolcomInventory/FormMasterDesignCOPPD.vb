@@ -71,6 +71,9 @@ WHERE d.id_design='" & id_design & "'"
             MEECOPNote.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("cop_pd_note").ToString
             SLECOO.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("coo").ToString
             '
+            TEClass.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("product_class_display").ToString
+            TEColor.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("color_display").ToString
+            '
             TEEcop.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd") - FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
             TEAdditionalCost.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
             SLECoolStorage.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("is_cold_storage").ToString

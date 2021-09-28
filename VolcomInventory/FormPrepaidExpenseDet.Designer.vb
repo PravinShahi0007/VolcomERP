@@ -226,7 +226,7 @@ Partial Class FormPrepaidExpenseDet
         Me.SLEUnit.Name = "SLEUnit"
         Me.SLEUnit.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEUnit.Properties.View = Me.GridView6
-        Me.SLEUnit.Size = New System.Drawing.Size(312, 20)
+        Me.SLEUnit.Size = New System.Drawing.Size(419, 20)
         Me.SLEUnit.TabIndex = 25
         '
         'GridView6

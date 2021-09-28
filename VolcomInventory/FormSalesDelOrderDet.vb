@@ -307,7 +307,7 @@ Public Class FormSalesDelOrderDet
 
     Sub view_barcode_list()
         If action = "ins" Then
-            Dim query As String = "SELECT ('0') AS no, ('') AS code, ('') AS `name`, ('') AS `size`,('0') AS id_pl_sales_order_del_det, ('0') AS id_pl_prod_order_rec_det_unique, ('0') AS id_product,('1') AS is_fix, ('') AS counting_code, ('0') AS id_pl_sales_order_del_det_counting, '' AS `ol_store_id`, '' AS `item_id` "
+            Dim query As String = "SELECT ('0') AS no, ('') AS code, ('') AS `name`, ('') AS `size`,('') AS class, ('') AS color, ('') AS sht,('0') AS id_pl_sales_order_del_det, ('0') AS id_pl_prod_order_rec_det_unique, ('0') AS id_product,('1') AS is_fix, ('') AS counting_code, ('0') AS id_pl_sales_order_del_det_counting, '' AS `ol_store_id`, '' AS `item_id` "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCBarcode.DataSource = data
             deleteRowsBc()
@@ -316,13 +316,30 @@ Public Class FormSalesDelOrderDet
             id_pl_sales_order_del_det_counting_list.Clear()
             Dim query As String = ""
             query += "SELECT ('') AS no, CONCAT(c.product_full_code, a.pl_sales_order_del_det_counting) AS code, "
-            query += "c.product_display_name AS `name`, cod.display_name AS `size`,(a.pl_sales_order_del_det_counting) AS counting_code, "
+            query += "c.product_display_name AS `name`, cod.display_name AS `size`,cd.class, cd.color, cd.sht, (a.pl_sales_order_del_det_counting) AS counting_code, "
             query += "a.id_pl_sales_order_del_det_counting, ('2') AS is_fix, "
             query += "a.id_pl_prod_order_rec_det_unique, b.id_product "
             query += "FROM tb_pl_sales_order_del_det_counting a "
             query += "INNER JOIN tb_pl_sales_order_del_det b ON a.id_pl_sales_order_del_det = b.id_pl_sales_order_del_det "
             query += "JOIN tb_opt o "
-            query += "INNER JOIN tb_m_product c ON c.id_product = b.id_product "
+            query += "INNER JOIN tb_m_product c ON c.id_product = b.id_product 
+            INNER JOIN tb_m_design d ON d.id_design = c.id_design 
+            LEFT JOIN (
+		        SELECT dc.id_design, 
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		        FROM tb_m_design_code dc
+		        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		        AND cd.id_code IN (32,30,14, 43)
+		        GROUP BY dc.id_design
+	        ) cd ON cd.id_design = d.id_design "
             query += "INNER JOIN tb_m_product_code cc ON cc.id_product = c.id_product "
             query += "INNER JOIN tb_m_code_detail cod ON cod.id_code_detail = cc.id_code_detail AND cod.id_code = o.id_code_product_size "
             query += "WHERE b.id_pl_sales_order_del = '" + id_pl_sales_order_del + "' "
@@ -992,6 +1009,7 @@ Public Class FormSalesDelOrderDet
         verifyTrans()
         disableControl()
         newRowsBc()
+        focusColumnCodeBc()
         'allowDelete()
     End Sub
 
@@ -1133,6 +1151,9 @@ Public Class FormSalesDelOrderDet
         Dim product_name As String = ""
         Dim id_design_cat As String = ""
         Dim size As String = ""
+        Dim prod_class As String = ""
+        Dim prod_color As String = ""
+        Dim prod_sht As String = ""
         Dim jum_scan As Integer = 0
         Dim jum_limit As Integer = 0
         Dim ol_store_id As String = ""
@@ -1149,6 +1170,9 @@ Public Class FormSalesDelOrderDet
             product_name = dt_filter(0)("name").ToString
             id_design_cat = dt_filter(0)("id_design_cat").ToString
             size = dt_filter(0)("size").ToString
+            prod_class = dt_filter(0)("class").ToString
+            prod_color = dt_filter(0)("color").ToString
+            prod_sht = dt_filter(0)("sht").ToString
             is_old = dt_filter(0)("is_old_design").ToString
             prc = dt_filter(0)("design_price")
             code_found = True
@@ -1217,6 +1241,9 @@ Public Class FormSalesDelOrderDet
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "class", prod_class)
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "color", prod_color)
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "sht", prod_sht)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "ol_store_id", ol_store_id)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "item_id", item_id)
                     countQty(id_product, ol_store_id, item_id)
@@ -1257,6 +1284,9 @@ Public Class FormSalesDelOrderDet
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "class", prod_class)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "color", prod_color)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "sht", prod_sht)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "ol_store_id", ol_store_id)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "item_id", item_id)
                         countQty(id_product, ol_store_id, item_id)
