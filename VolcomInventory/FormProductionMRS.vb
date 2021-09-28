@@ -398,6 +398,8 @@ FROM `tb_pl_mat_type`"
             ReportProductionMRS.is_auto = True
             ReportProductionMRS.is_pre = "-1"
         Else
+            ReportProductionMRS.is_auto = False
+
             If check_print_report_status(id_report_status_g) Then
                 ReportProductionMRS.is_pre = "-1"
             Else
