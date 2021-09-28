@@ -30,6 +30,13 @@
 
     End Sub
 
+    Private Sub BtnBrowse_Click(sender As Object, e As EventArgs) Handles BtnBrowse.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpContact.id_pop_up = "95"
+        FormPopUpContact.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
     Sub actionLoad()
         TxtSubTotal.EditValue = 0.00
         TxtVAT.EditValue = 0.00
@@ -107,8 +114,9 @@
         BtnMark.Visible = True
         BtnAttachment.Visible = True
         BtnPrint.Visible = True 'pindah permintaan bu mariati
+        BtnBrowse.Enabled = True
         '
-        If check_edit_report_status(id_report_status, "157", id) And Not is_view = "1" Then
+        If check_edit_report_status(id_report_status, "349", id) And Not is_view = "1" Then
             'msh bisa edit
             GridColumnAccountDescription.Visible = False
             GridColumnaccount.VisibleIndex = 1
