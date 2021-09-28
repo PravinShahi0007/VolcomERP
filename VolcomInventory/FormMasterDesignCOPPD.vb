@@ -85,6 +85,7 @@ WHERE d.id_design='" & id_design & "'"
             warningCustom("Design not found")
             Close()
         End If
+
         '
         'id_season = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_season")
 
