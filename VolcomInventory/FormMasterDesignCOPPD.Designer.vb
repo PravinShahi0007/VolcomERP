@@ -102,6 +102,8 @@ Partial Class FormMasterDesignCOPPD
         Me.TETodayKurs = New DevExpress.XtraEditors.TextEdit()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEClass = New DevExpress.XtraEditors.TextEdit()
+        Me.TEColor = New DevExpress.XtraEditors.TextEdit()
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -144,6 +146,8 @@ Partial Class FormMasterDesignCOPPD
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TETodayKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEClass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEColor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -289,13 +293,13 @@ Partial Class FormMasterDesignCOPPD
         Me.TEDesc.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEDesc.EditValue = ""
-        Me.TEDesc.Location = New System.Drawing.Point(270, 18)
+        Me.TEDesc.Location = New System.Drawing.Point(395, 18)
         Me.TEDesc.Name = "TEDesc"
         Me.TEDesc.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEDesc.Properties.Appearance.Options.UseFont = True
         Me.TEDesc.Properties.EditValueChangedDelay = 1
         Me.TEDesc.Properties.ReadOnly = True
-        Me.TEDesc.Size = New System.Drawing.Size(545, 20)
+        Me.TEDesc.Size = New System.Drawing.Size(309, 20)
         Me.TEDesc.TabIndex = 8897
         Me.TEDesc.TabStop = False
         '
@@ -443,6 +447,8 @@ Partial Class FormMasterDesignCOPPD
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.TEColor)
+        Me.PanelControl1.Controls.Add(Me.TEClass)
         Me.PanelControl1.Controls.Add(Me.LabelControl10)
         Me.PanelControl1.Controls.Add(Me.SLECOO)
         Me.PanelControl1.Controls.Add(Me.TEDesc)
@@ -1089,6 +1095,36 @@ Partial Class FormMasterDesignCOPPD
         Me.BAdd.TabIndex = 0
         Me.BAdd.Text = "Add"
         '
+        'TEClass
+        '
+        Me.TEClass.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEClass.EditValue = ""
+        Me.TEClass.Location = New System.Drawing.Point(272, 18)
+        Me.TEClass.Name = "TEClass"
+        Me.TEClass.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEClass.Properties.Appearance.Options.UseFont = True
+        Me.TEClass.Properties.EditValueChangedDelay = 1
+        Me.TEClass.Properties.ReadOnly = True
+        Me.TEClass.Size = New System.Drawing.Size(117, 20)
+        Me.TEClass.TabIndex = 8912
+        Me.TEClass.TabStop = False
+        '
+        'TEColor
+        '
+        Me.TEColor.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEColor.EditValue = ""
+        Me.TEColor.Location = New System.Drawing.Point(710, 18)
+        Me.TEColor.Name = "TEColor"
+        Me.TEColor.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEColor.Properties.Appearance.Options.UseFont = True
+        Me.TEColor.Properties.EditValueChangedDelay = 1
+        Me.TEColor.Properties.ReadOnly = True
+        Me.TEColor.Size = New System.Drawing.Size(105, 20)
+        Me.TEColor.TabIndex = 8913
+        Me.TEColor.TabStop = False
+        '
         'FormMasterDesignCOPPD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1150,6 +1186,8 @@ Partial Class FormMasterDesignCOPPD
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
         CType(Me.TETodayKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEClass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEColor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1235,4 +1273,6 @@ Partial Class FormMasterDesignCOPPD
     Friend WithEvents TEDraftECOPAdditional As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEDraftECOP As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEColor As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEClass As DevExpress.XtraEditors.TextEdit
 End Class
