@@ -21,9 +21,11 @@ Partial Public Class ReportStockTakeProposeSuratIjin
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportStockTakeProposeSuratIjin))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XrRichText = New DevExpress.XtraReports.UI.XRRichText()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-        Me.XrRichText = New DevExpress.XtraReports.UI.XRRichText()
+        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         CType(Me.XrRichText, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -34,6 +36,14 @@ Partial Public Class ReportStockTakeProposeSuratIjin
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrRichText
+        '
+        Me.XrRichText.Font = New System.Drawing.Font("Times New Roman", 9.75!)
+        Me.XrRichText.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrRichText.Name = "XrRichText"
+        Me.XrRichText.SerializableRtfString = resources.GetString("XrRichText.SerializableRtfString")
+        Me.XrRichText.SizeF = New System.Drawing.SizeF(750.0!, 23.0!)
         '
         'TopMargin
         '
@@ -49,17 +59,24 @@ Partial Public Class ReportStockTakeProposeSuratIjin
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'XrRichText
+        'ReportHeader
         '
-        Me.XrRichText.Font = New System.Drawing.Font("Times New Roman", 9.75!)
-        Me.XrRichText.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrRichText.Name = "XrRichText"
-        Me.XrRichText.SerializableRtfString = resources.GetString("XrRichText.SerializableRtfString")
-        Me.XrRichText.SizeF = New System.Drawing.SizeF(750.0!, 23.0!)
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox1})
+        Me.ReportHeader.HeightF = 41.15!
+        Me.ReportHeader.Name = "ReportHeader"
+        '
+        'XrPictureBox1
+        '
+        Me.XrPictureBox1.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left
+        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(530.0!, 0!)
+        Me.XrPictureBox1.Name = "XrPictureBox1"
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(220.0!, 41.15!)
+        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
         '
         'ReportStockTakeProposeSuratIjin
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin})
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader})
         Me.Margins = New System.Drawing.Printing.Margins(26, 51, 50, 50)
         Me.PageHeight = 1169
         Me.PageWidth = 827
@@ -74,4 +91,6 @@ Partial Public Class ReportStockTakeProposeSuratIjin
     Friend WithEvents TopMargin As DevExpress.XtraReports.UI.TopMarginBand
     Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
     Friend WithEvents XrRichText As DevExpress.XtraReports.UI.XRRichText
+    Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
+    Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
 End Class

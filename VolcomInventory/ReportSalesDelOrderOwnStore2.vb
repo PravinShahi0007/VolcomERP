@@ -224,26 +224,38 @@
             barcode.BorderWidth = 0
             barcode.Font = New Font(barcode.Font.FontFamily, barcode.Font.Size, FontStyle.Regular)
 
+            'class
+            Dim prod_class As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+            prod_class.Text = data.Rows(i)("class").ToString
+            prod_class.BorderWidth = 0
+            prod_class.Font = New Font(barcode.Font.FontFamily, barcode.Font.Size, FontStyle.Regular)
+
             'description
-            Dim description As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+            Dim description As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
             description.Text = data.Rows(i)("name").ToString
             description.BorderWidth = 0
             description.Font = New Font(description.Font.FontFamily, description.Font.Size, FontStyle.Regular)
 
+            'color
+            Dim prod_color As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+            prod_color.Text = data.Rows(i)("color").ToString
+            prod_color.BorderWidth = 0
+            prod_color.Font = New Font(barcode.Font.FontFamily, barcode.Font.Size, FontStyle.Regular)
+
             'size
-            Dim size As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+            Dim size As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
             size.Text = data.Rows(i)("size").ToString
             size.BorderWidth = 0
             size.Font = New Font(size.Font.FontFamily, size.Font.Size, FontStyle.Regular)
 
             'qty
-            Dim qty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+            Dim qty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
             qty.Text = Decimal.Round(data.Rows(i)("qty"))
             qty.BorderWidth = 0
             qty.Font = New Font(qty.Font.FontFamily, qty.Font.Size, FontStyle.Regular)
 
             'type
-            Dim type As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
+            Dim type As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
             type.Text = data.Rows(i)("design_price_type").ToString.Substring(0, 1)
             type.BorderWidth = 0
             type.Font = New Font(type.Font.FontFamily, type.Font.Size, FontStyle.Regular)

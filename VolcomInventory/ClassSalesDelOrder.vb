@@ -828,13 +828,29 @@ WHERE pl.id_pl_sales_order_del='" + id_report_par + "'"
         p.product_display_name AS `name`, cd.code_detail_name AS `size`,
         SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 
         dd.design_price, pt.design_price_type, 2 AS `is_combine`,
-        2 AS `is_unique_report`
+        2 AS `is_unique_report`, dcd.class, dcd.color, dcd.sht
         FROM tb_pl_sales_order_del d
         INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
         INNER JOIN tb_m_product p ON p.id_product = dd.id_product
         INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
         INNER JOIN tb_m_design dsg ON dsg.id_design = p.id_design
+        LEFT JOIN (
+		    SELECT dc.id_design, 
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		    FROM tb_m_design_code dc
+		    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		    AND cd.id_code IN (32,30,14, 43)
+		    GROUP BY dc.id_design
+	    ) dcd ON dcd.id_design = dsg.id_design
         INNER JOIN tb_m_design_price prc ON prc.id_design_price = dd.id_design_price
         INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
@@ -844,7 +860,7 @@ WHERE pl.id_pl_sales_order_del='" + id_report_par + "'"
         WHERE 1=1 "
         query += condition
         query += "GROUP BY p.id_product
-        ORDER BY pt.design_price_type ASC, dsg.design_display_name ASC, p.product_full_code ASC "
+        ORDER BY pt.design_price_type ASC, dcd.class, dsg.design_display_name ASC, p.product_full_code ASC "
         Return query
     End Function
 

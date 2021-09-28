@@ -71,6 +71,8 @@ Partial Class FormStockTakeProposeDet
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -572,6 +574,8 @@ Partial Class FormStockTakeProposeDet
         '
         Me.PanelControl2.Controls.Add(Me.SBMark)
         Me.PanelControl2.Controls.Add(Me.SBClose)
+        Me.PanelControl2.Controls.Add(Me.SBAttachment)
+        Me.PanelControl2.Controls.Add(Me.SBPrint)
         Me.PanelControl2.Controls.Add(Me.SBSubmit)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 516)
@@ -593,11 +597,31 @@ Partial Class FormStockTakeProposeDet
         '
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(584, 2)
+        Me.SBClose.Location = New System.Drawing.Point(368, 2)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(99, 41)
         Me.SBClose.TabIndex = 1
         Me.SBClose.Text = "Close"
+        '
+        'SBAttachment
+        '
+        Me.SBAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBAttachment.Image = CType(resources.GetObject("SBAttachment.Image"), System.Drawing.Image)
+        Me.SBAttachment.Location = New System.Drawing.Point(467, 2)
+        Me.SBAttachment.Name = "SBAttachment"
+        Me.SBAttachment.Size = New System.Drawing.Size(117, 41)
+        Me.SBAttachment.TabIndex = 4
+        Me.SBAttachment.Text = "Attachment"
+        '
+        'SBPrint
+        '
+        Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
+        Me.SBPrint.Location = New System.Drawing.Point(584, 2)
+        Me.SBPrint.Name = "SBPrint"
+        Me.SBPrint.Size = New System.Drawing.Size(99, 41)
+        Me.SBPrint.TabIndex = 3
+        Me.SBPrint.Text = "Print"
         '
         'SBSubmit
         '
@@ -713,4 +737,6 @@ Partial Class FormStockTakeProposeDet
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SBAttachmentStoreList As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBAttachmentSuratIjin As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBAttachment As DevExpress.XtraEditors.SimpleButton
 End Class

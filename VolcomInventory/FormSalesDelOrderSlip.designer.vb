@@ -107,6 +107,9 @@ Partial Class FormSalesDelOrderSlip
         Me.DDBPrint = New DevExpress.XtraEditors.DropDownButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -696,7 +699,7 @@ Partial Class FormSalesDelOrderSlip
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnEanCode, Me.GridColumnIdProduct, Me.GridColumnIdDesignPrice, Me.GridColumnIdDesign, Me.GridColumnIdPlSalesOrderDel, Me.GridColumnRemark, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnEanCode, Me.GridColumnIdProduct, Me.GridColumnIdDesignPrice, Me.GridColumnIdDesign, Me.GridColumnIdPlSalesOrderDel, Me.GridColumnRemark, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnclass, Me.GridColumncolor, Me.GridColumnsht})
         Me.GVItemList.CustomizationFormBounds = New System.Drawing.Rectangle(958, 136, 216, 180)
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", Me.GridColumnQty, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_amount", Me.GridColumnAmount, "{0:n0}")})
@@ -727,7 +730,7 @@ Partial Class FormSalesDelOrderSlip
         Me.GridColumnCode.OptionsColumn.ReadOnly = True
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 0
-        Me.GridColumnCode.Width = 93
+        Me.GridColumnCode.Width = 279
         '
         'GridColumnName
         '
@@ -737,8 +740,8 @@ Partial Class FormSalesDelOrderSlip
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 1
-        Me.GridColumnName.Width = 171
+        Me.GridColumnName.VisibleIndex = 2
+        Me.GridColumnName.Width = 586
         '
         'GridColumnSize
         '
@@ -751,8 +754,8 @@ Partial Class FormSalesDelOrderSlip
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 2
-        Me.GridColumnSize.Width = 53
+        Me.GridColumnSize.VisibleIndex = 4
+        Me.GridColumnSize.Width = 258
         '
         'GridColumnQty
         '
@@ -770,8 +773,8 @@ Partial Class FormSalesDelOrderSlip
         Me.GridColumnQty.OptionsColumn.ReadOnly = True
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 3
-        Me.GridColumnQty.Width = 71
+        Me.GridColumnQty.VisibleIndex = 5
+        Me.GridColumnQty.Width = 347
         '
         'GridColumnPrice
         '
@@ -1040,6 +1043,33 @@ Partial Class FormSalesDelOrderSlip
         Me.BtnSave.TabIndex = 18
         Me.BtnSave.Text = "Combine"
         '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.OptionsColumn.ReadOnly = True
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 1
+        Me.GridColumnclass.Width = 67
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.OptionsColumn.ReadOnly = True
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 3
+        Me.GridColumncolor.Width = 81
+        '
+        'GridColumnsht
+        '
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.OptionsColumn.ReadOnly = True
+        '
         'FormSalesDelOrderSlip
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1200,4 +1230,7 @@ Partial Class FormSalesDelOrderSlip
     Friend WithEvents GridColumnTo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnBrowseStore As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnBrowseWH As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
 End Class
