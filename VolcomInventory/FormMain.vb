@@ -16645,4 +16645,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBPrepaidExpense_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPrepaidExpense.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPrepaidExpense.MdiParent = Me
+            FormPrepaidExpense.Show()
+            FormPrepaidExpense.WindowState = FormWindowState.Maximized
+            FormPrepaidExpense.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class

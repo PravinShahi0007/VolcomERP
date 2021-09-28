@@ -146,7 +146,7 @@
         query += "(a.pl_prod_order_date) As pl_prod_order_date, a.id_report_status,c.report_status, "
         query += "d.id_design,b.id_delivery, e.delivery, f.season, e.id_season, "
         query += "a.id_comp_contact_from, a.id_comp_contact_to, (i.comp_name) As comp_name_to, (i.comp_number) As comp_number_to, (k.comp_name) As comp_name_from, (k.comp_number) As comp_number_from, "
-        query += "alloc.id_pd_alloc, alloc.pd_alloc, e.est_wh_date, IF(ISNULL(d.in_store_date_actual), e.delivery_date, d.in_store_date_actual) AS `est_in_store_date` "
+        query += "alloc.id_pd_alloc, alloc.pd_alloc, e.est_wh_date, IF(ISNULL(d.in_store_date_actual), e.delivery_date, d.in_store_date_actual) AS `est_in_store_date`,cd.class, cd.color, cd.sht "
         query += "FROM tb_pl_prod_order a 
         LEFT JOIN (
 	        SELECT pl.id_pl_prod_order, SUM(pld.pl_prod_order_det_qty) AS `total_qty`
@@ -162,7 +162,23 @@
         query += "INNER JOIN tb_prod_order a1 On a.id_prod_order = a1.id_prod_order "
         query += "INNER JOIN tb_prod_demand_design b On a1.id_prod_demand_design = b.id_prod_demand_design "
         query += "INNER JOIN tb_lookup_report_status c On a.id_report_status = c.id_report_status "
-        query += "INNER JOIN tb_m_design d On b.id_design = d.id_design "
+        query += "INNER JOIN tb_m_design d On b.id_design = d.id_design 
+        LEFT JOIN (
+		    SELECT dc.id_design, 
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		    FROM tb_m_design_code dc
+		    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		    AND cd.id_code IN (32,30,14, 43)
+		    GROUP BY dc.id_design
+	    ) cd ON cd.id_design = d.id_design "
         query += "INNER JOIN tb_season_delivery e On b.id_delivery=e.id_delivery "
         query += "INNER JOIN tb_season f On f.id_season=e.id_season "
         query += "INNER JOIN tb_lookup_pl_category g On g.id_pl_category = a.id_pl_category "
