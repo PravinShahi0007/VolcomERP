@@ -22,19 +22,21 @@ Partial Class FormPrepaidExpense
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.SLEUnit = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DEBBKTo = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.DEBBKFrom = New DevExpress.XtraEditors.DateEdit()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCreatedByName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReortStt = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -44,8 +46,6 @@ Partial Class FormPrepaidExpense
         Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBeneficiary = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,6 +89,34 @@ Partial Class FormPrepaidExpense
         Me.GridView6.Name = "GridView6"
         Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView6.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "id_coa_tag"
+        Me.GridColumn25.FieldName = "id_comp"
+        Me.GridColumn25.Name = "GridColumn25"
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn26.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn26.Caption = "Number"
+        Me.GridColumn26.FieldName = "tag_code"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 0
+        Me.GridColumn26.Width = 281
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Unit"
+        Me.GridColumn27.FieldName = "tag_description"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 1
+        Me.GridColumn27.Width = 1351
         '
         'DEBBKTo
         '
@@ -138,34 +166,6 @@ Partial Class FormPrepaidExpense
         Me.BViewPayment.TabIndex = 8926
         Me.BViewPayment.Text = "view"
         '
-        'GridColumn25
-        '
-        Me.GridColumn25.Caption = "id_coa_tag"
-        Me.GridColumn25.FieldName = "id_comp"
-        Me.GridColumn25.Name = "GridColumn25"
-        '
-        'GridColumn26
-        '
-        Me.GridColumn26.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn26.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn26.Caption = "Number"
-        Me.GridColumn26.FieldName = "tag_code"
-        Me.GridColumn26.Name = "GridColumn26"
-        Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 0
-        Me.GridColumn26.Width = 281
-        '
-        'GridColumn27
-        '
-        Me.GridColumn27.Caption = "Unit"
-        Me.GridColumn27.FieldName = "tag_description"
-        Me.GridColumn27.Name = "GridColumn27"
-        Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 1
-        Me.GridColumn27.Width = 1351
-        '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
@@ -211,6 +211,24 @@ Partial Class FormPrepaidExpense
         Me.GridColumnNumber.VisibleIndex = 1
         Me.GridColumnNumber.Width = 83
         '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Start Date"
+        Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 3
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "End Date"
+        Me.GridColumn2.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 5
+        '
         'GridColumnCreatedDate
         '
         Me.GridColumnCreatedDate.Caption = "Created Date"
@@ -219,7 +237,7 @@ Partial Class FormPrepaidExpense
         Me.GridColumnCreatedDate.FieldName = "created_date"
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
         Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 3
+        Me.GridColumnCreatedDate.VisibleIndex = 4
         Me.GridColumnCreatedDate.Width = 83
         '
         'GridColumnCreatedByName
@@ -228,7 +246,7 @@ Partial Class FormPrepaidExpense
         Me.GridColumnCreatedByName.FieldName = "created_by_name"
         Me.GridColumnCreatedByName.Name = "GridColumnCreatedByName"
         Me.GridColumnCreatedByName.Visible = True
-        Me.GridColumnCreatedByName.VisibleIndex = 4
+        Me.GridColumnCreatedByName.VisibleIndex = 6
         Me.GridColumnCreatedByName.Width = 83
         '
         'GridColumnReortStt
@@ -237,7 +255,7 @@ Partial Class FormPrepaidExpense
         Me.GridColumnReortStt.FieldName = "report_status"
         Me.GridColumnReortStt.Name = "GridColumnReortStt"
         Me.GridColumnReortStt.Visible = True
-        Me.GridColumnReortStt.VisibleIndex = 5
+        Me.GridColumnReortStt.VisibleIndex = 7
         Me.GridColumnReortStt.Width = 83
         '
         'GridColumnPaidStt
@@ -246,7 +264,7 @@ Partial Class FormPrepaidExpense
         Me.GridColumnPaidStt.FieldName = "paid_status"
         Me.GridColumnPaidStt.Name = "GridColumnPaidStt"
         Me.GridColumnPaidStt.Visible = True
-        Me.GridColumnPaidStt.VisibleIndex = 6
+        Me.GridColumnPaidStt.VisibleIndex = 8
         Me.GridColumnPaidStt.Width = 83
         '
         'GridColumnBal
@@ -258,7 +276,7 @@ Partial Class FormPrepaidExpense
         Me.GridColumnBal.Name = "GridColumnBal"
         Me.GridColumnBal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N2}")})
         Me.GridColumnBal.Visible = True
-        Me.GridColumnBal.VisibleIndex = 8
+        Me.GridColumnBal.VisibleIndex = 10
         Me.GridColumnBal.Width = 83
         '
         'GridColumntotal
@@ -270,7 +288,7 @@ Partial Class FormPrepaidExpense
         Me.GridColumntotal.Name = "GridColumntotal"
         Me.GridColumntotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.GridColumntotal.Visible = True
-        Me.GridColumntotal.VisibleIndex = 7
+        Me.GridColumntotal.VisibleIndex = 9
         Me.GridColumntotal.Width = 88
         '
         'GridColumnIdComp
@@ -294,24 +312,6 @@ Partial Class FormPrepaidExpense
         Me.RepositoryItemTextEdit1.AutoHeight = False
         Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         Me.RepositoryItemTextEdit1.NullText = "-"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "End Date"
-        Me.GridColumn2.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 4
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Start Date"
-        Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 3
         '
         'FormPrepaidExpense
         '

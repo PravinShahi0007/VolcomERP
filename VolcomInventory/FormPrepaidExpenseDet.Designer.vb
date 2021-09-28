@@ -747,7 +747,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnaccount.Name = "GridColumnaccount"
         Me.GridColumnaccount.Visible = True
         Me.GridColumnaccount.VisibleIndex = 1
-        Me.GridColumnaccount.Width = 50
+        Me.GridColumnaccount.Width = 52
         '
         'RepositoryItemSearchLookUpEdit1
         '
@@ -799,7 +799,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnDescription.Name = "GridColumnDescription"
         Me.GridColumnDescription.Visible = True
         Me.GridColumnDescription.VisibleIndex = 5
-        Me.GridColumnDescription.Width = 108
+        Me.GridColumnDescription.Width = 112
         '
         'RepositoryItemMemoEdit1
         '
@@ -868,7 +868,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnBudgetType.Name = "GridColumnBudgetType"
         Me.GridColumnBudgetType.Visible = True
         Me.GridColumnBudgetType.VisibleIndex = 3
-        Me.GridColumnBudgetType.Width = 50
+        Me.GridColumnBudgetType.Width = 52
         '
         'RISLEType
         '
@@ -907,7 +907,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnBudget.Name = "GridColumnBudget"
         Me.GridColumnBudget.Visible = True
         Me.GridColumnBudget.VisibleIndex = 4
-        Me.GridColumnBudget.Width = 50
+        Me.GridColumnBudget.Width = 52
         '
         'RISLECatExpense
         '
@@ -959,7 +959,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 7
-        Me.GridColumn6.Width = 69
+        Me.GridColumn6.Width = 71
         '
         'GridColumn5
         '
@@ -969,7 +969,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 8
-        Me.GridColumn5.Width = 69
+        Me.GridColumn5.Width = 71
         '
         'GridColumnTaxPercent
         '
@@ -1040,7 +1040,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnPPHCOA.Name = "GridColumnPPHCOA"
         Me.GridColumnPPHCOA.Visible = True
         Me.GridColumnPPHCOA.VisibleIndex = 11
-        Me.GridColumnPPHCOA.Width = 194
+        Me.GridColumnPPHCOA.Width = 180
         '
         'RISLECOAPPH
         '
