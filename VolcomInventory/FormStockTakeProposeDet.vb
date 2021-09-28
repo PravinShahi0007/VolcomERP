@@ -458,6 +458,10 @@
     End Sub
 
     Private Sub SBSubmit_Click(sender As Object, e As EventArgs) Handles SBSubmit.Click
+        GVStore.FindFilterText = ""
+        GVStore.ActiveFilterString = ""
+        GVStore.ClearColumnsFilter()
+
         Dim id_comp_group As String = SLUEGroup.EditValue.ToString
         Dim id_comp_contact As String = SLUEContact.EditValue.ToString
         Dim start_period As String = Date.Parse(DEPeriodFrom.EditValue.ToString).ToString("yyyy-MM-dd")
