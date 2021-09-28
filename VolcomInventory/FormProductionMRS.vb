@@ -393,15 +393,22 @@ FROM `tb_pl_mat_type`"
 
     Private Sub BPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BPrint.Click
         ReportProductionMRS.id_mrs = id_mrs
-        If check_print_report_status(id_report_status_g) Then
+
+        If MENote.Text = "Auto RMRS from Receiving QC" Then
+            ReportProductionMRS.is_auto = True
             ReportProductionMRS.is_pre = "-1"
         Else
-            FormProdDemandPrintOpt.rmt = "29"
-            FormProdDemandPrintOpt.id = id_mrs
-            FormProdDemandPrintOpt.ShowDialog()
+            If check_print_report_status(id_report_status_g) Then
+                ReportProductionMRS.is_pre = "-1"
+            Else
+                FormProdDemandPrintOpt.rmt = "29"
+                FormProdDemandPrintOpt.id = id_mrs
+                FormProdDemandPrintOpt.ShowDialog()
 
-            ReportProductionMRS.is_pre = "1"
+                ReportProductionMRS.is_pre = "1"
+            End If
         End If
+
         Dim Report As New ReportProductionMRS()
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
