@@ -25,6 +25,9 @@
                 FormScanReturnDet.is_ok = False
                 Close()
             End If
+        Else
+            FormScanReturnDet.is_ok = True
+            Close()
         End If
     End Sub
 End Class
