@@ -195,6 +195,7 @@
             codeAvailableIns(data.Rows(i)("id_product").ToString, id_store, data.Rows(i)("id_design_price").ToString)
         Next
         GCItemList.DataSource = data
+        GVItemList.BestFitColumns()
     End Sub
 
 
