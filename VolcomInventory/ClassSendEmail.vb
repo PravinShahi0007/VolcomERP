@@ -4099,11 +4099,15 @@ FROM tb_opt o "
             mail.Subject = "Volcom Indonesia - Notifikasi RMRS Otomatis "
             mail.IsBodyHtml = True
             mail.Body = ""
-            '
-            Dim qbody As String = "SELECT pod.`id_prod_order_det`,pod.`id_prod_demand_product`,SUM(rd.`prod_order_rec_det_qty`) AS rec_qty,SUM(tot.qty) AS qty,SUM(pod.`prod_order_qty`) AS prod_order_qty,(tot.qty-pod.`prod_order_qty`) AS more_qty
+            '-- ,IF((tot.qty-pod.`prod_order_qty`)-rd.`prod_order_rec_det_qty`>=0,rd.`prod_order_rec_det_qty`,(tot.qty-pod.`prod_order_qty`)) AS this_rec_more
+            '-- ,(tot.qty-pod.`prod_order_qty`) AS grand_tot_rec_more
+
+            Dim qbody As String = "SELECT pod.`id_prod_order_det`,pod.`id_prod_demand_product`,SUM(tot.qty) AS qty
 ,CONCAT(d.design_code,' - ',cd.class,' ',d.`design_name`,' ',cd.color) AS prod,cd.`code_detail_name` AS size,r.`prod_order_rec_number`,po.`prod_order_number`
-,SUM(IF((tot.qty-pod.`prod_order_qty`)-rd.`prod_order_rec_det_qty`>=0,rd.`prod_order_rec_det_qty`,(tot.qty-pod.`prod_order_qty`))) AS this_rec_more
-,SUM((tot.qty-pod.`prod_order_qty`)) AS grand_tot_rec_more
+,SUM(pod.`prod_order_qty`) AS prod_order_qty
+,SUM(rd.`prod_order_rec_det_qty`) AS rec_qty
+,SUM(tot.qty-pod.`prod_order_qty`) AS grand_tot_rec_more
+,IF(SUM(tot.qty-pod.`prod_order_qty`)<SUM(rd.`prod_order_rec_det_qty`),SUM(tot.qty-pod.`prod_order_qty`),SUM(rd.`prod_order_rec_det_qty`)) AS this_rec_more
 FROM tb_prod_order_rec_det rd 
 INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec`
 INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=rd.`id_prod_order_det` AND rd.`id_prod_order_rec`='" & id_report & "' 
