@@ -1305,6 +1305,43 @@
                     Close()
                 End If
             End If
+        ElseIf id_pop_up = "95" Then
+            'prepaid expense
+
+            'cek coa vendor
+            Dim err_coa As String = ""
+            Dim cond_coa_vendor As Boolean = True
+            Dim qcoa_vendor As String = ""
+            Dim dcoa_vendor As DataTable
+            If FormPrepaidExpenseDet.id_coa_tag = "1" Then
+                qcoa_vendor = "SELECT c.id_comp, ap.id_acc 
+            FROM tb_m_comp c
+            LEFT JOIN tb_a_acc ap ON ap.id_acc = c.id_acc_ap
+            WHERE c.id_comp=" + GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString + "
+            AND !ISNULL(ap.id_acc) "
+                dcoa_vendor = execute_query(qcoa_vendor, -1, True, "", "", "", "")
+            Else
+                qcoa_vendor = "SELECT c.id_comp, ap.id_acc 
+            FROM tb_m_comp c
+            LEFT JOIN tb_a_acc ap ON ap.id_acc = c.id_acc_cabang_ap
+            WHERE c.id_comp=" + GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString + "
+            AND !ISNULL(ap.id_acc) "
+                dcoa_vendor = execute_query(qcoa_vendor, -1, True, "", "", "", "")
+            End If
+
+            If dcoa_vendor.Rows.Count <= 0 Then
+                err_coa += "- COA : Account Payable Vendor " + System.Environment.NewLine
+                cond_coa_vendor = False
+            End If
+
+            If Not cond_coa_vendor Then
+                warningCustom("Please contact Accounting Department to setup these COA : " + System.Environment.NewLine + err_coa)
+            Else
+                FormPrepaidExpenseDet.id_comp = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
+                FormPrepaidExpenseDet.TxtCompNumber.Text = GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString
+                FormPrepaidExpenseDet.TxtCompName.Text = GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString
+                Close()
+            End If
         End If
         Cursor = Cursors.Default
     End Sub
