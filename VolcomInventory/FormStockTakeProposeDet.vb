@@ -26,6 +26,8 @@
         load_contact()
 
         SBMark.Enabled = False
+        SBPrint.Enabled = False
+        SBAttachment.Enabled = False
 
         If Not id_st_store_propose = "-1" Then
             Dim data_head As DataTable = execute_query("
@@ -59,6 +61,8 @@
             TECreatedAt.ReadOnly = True
             TECreatedBy.ReadOnly = True
             SBMark.Enabled = True
+            SBPrint.Enabled = True
+            SBAttachment.Enabled = True
             SBSubmit.Enabled = False
 
             Dim data_store As DataTable = execute_query("
@@ -178,61 +182,82 @@
         Dim surat_time As String = TETimeFrom.Text + " - " + TETimeTo.Text
 
         Dim html As String = "
-            <p style='margin: 0px; line-height: 1.5;'><u>No. " + surat_number + "</u></p>
-            <p style='margin: 0px; line-height: 1.5;'>Kuta, " + surat_date + "</p>
-            <p style='line-height: 1.5;'>Kepada Yth,</p>
-            <p style='margin: 0px; line-height: 1.5;'><b>" + surat_contact_person + "</b></p>
-            <p style='margin: 0px; line-height: 1.5;'><b>" + surat_comp_name + " - " + surat_position + "</b></p>
-            <p style='margin: 0px; line-height: 1.5;'>" + surat_npwp_address + "</p>
-            <p style='margin: 0px; line-height: 1.5;'>Di Tempat</p>
-            <p style='line-height: 1.5;'><b><u>Perihal: Pemberitahuan Kegiatan Stocktake PT. Volcom Indonesia</u></b></p>
-            <p style='line-height: 1.5;'><b>Dengan Hormat,</b></p>
-            <p style='line-height: 1.5;'>Pertama-tama kami ucapkan banyak terimaksi atas kerjasama yang telah terjalin dengan baik selama ini.</p>
-            <p style='line-height: 1.5;'>Dalam rangka kegiatan audit terhadap data inventory dan laporan keuangan PT. Volcom Indonesia, maka disampaikan bahwa kami akan melakukan kegiatan Stocktake (STK) Brand Volcom di toko " + surat_store + ".</p>
+            <p style='margin: 0px; line-height: 1;'><u>No. " + surat_number + "</u></p>
+            <p style='margin: 0px; line-height: 1;'>Kuta, " + surat_date + "</p>
+            <p style='line-height: 1;'>Kepada Yth,</p>
+            <p style='margin: 0px; line-height: 1;'><b>" + surat_contact_person + "</b></p>
+            <p style='margin: 0px; line-height: 1;'><b>" + surat_comp_name + " - " + surat_position + "</b></p>
+            <p style='margin: 0px; line-height: 1;'>" + surat_npwp_address + "</p>
+            <p style='margin: 0px; line-height: 1;'>Di Tempat</p>
+            <p style='line-height: 1;'><b><u>Perihal: Pemberitahuan Kegiatan Stocktake PT. Volcom Indonesia</u></b></p>
+            <p style='line-height: 1;'><b>Dengan Hormat,</b></p>
+            <p style='line-height: 1;'>Pertama-tama kami ucapkan banyak terimaksi atas kerjasama yang telah terjalin dengan baik selama ini.</p>
+            <p style='line-height: 1;'>Dalam rangka kegiatan audit terhadap data inventory dan laporan keuangan PT. Volcom Indonesia, maka disampaikan bahwa kami akan melakukan kegiatan Stocktake (STK) Brand Volcom di toko " + surat_store + ".</p>
             <table>
               <tr>
-                <td style='width: 75px'><p style='margin: 0; line-height: 1.5;'>Periode</p></td>
-                <td style='width: 10px'><p style='margin: 0; line-height: 1.5;'>:</p></td>
-                <td><p style='margin: 0; line-height: 1.5;'>" + surat_period + "</p></td>
+                <td style='width: 75px'><p style='margin: 0; line-height: 1;'>Periode</p></td>
+                <td style='width: 10px'><p style='margin: 0; line-height: 1;'>:</p></td>
+                <td><p style='margin: 0; line-height: 1;'>" + surat_period + "</p></td>
               </tr>
               <tr>
-                <td><p style='margin: 0; line-height: 1.5;'>Waktu</p></td>
-                <td><p style='margin: 0; line-height: 1.5;'>:</p></td>
-                <td><p style='margin: 0; line-height: 1.5;'>" + surat_time + "</p></td>
+                <td><p style='margin: 0; line-height: 1;'>Waktu</p></td>
+                <td><p style='margin: 0; line-height: 1;'>:</p></td>
+                <td><p style='margin: 0; line-height: 1;'>" + surat_time + "</p></td>
               </tr>
             </table>
-            <p style='line-height: 1.5;'>Berikut kami sampaikan team yang bertugas :</p>
+            <p style='line-height: 1;'>Berikut kami sampaikan team yang bertugas :</p>
             <table>
               <tr>
-                <td style='width: 10px'><p style='margin: 0; line-height: 1.5;'>1.</p></td>
-                <td style='width: 250px'><p style='margin: 0; line-height: 1.5;'>AA Gede Putra Wirawan</p></td>
+                <td style='width: 10px'><p style='margin: 0; line-height: 1;'>1.</p></td>
+                <td style='width: 250px'><p style='margin: 0; line-height: 1;'>Anak Agung Gede Putra Wirawan</p></td>
               </tr>
               <tr>
-                <td><p style='margin: 0; line-height: 1.5;'>2.</p></td>
-                <td><p style='margin: 0; line-height: 1.5;'>Kadek Budi Ariawan</p></td>
+                <td><p style='margin: 0; line-height: 1;'>2.</p></td>
+                <td><p style='margin: 0; line-height: 1;'>Kadek Budi Ariawan</p></td>
               </tr>
               <tr>
-                <td><p style='margin: 0; line-height: 1.5;'>3.</p></td>
-                <td><p style='margin: 0; line-height: 1.5;'>I Wayan Swastika</p></td>
+                <td><p style='margin: 0; line-height: 1;'>3.</p></td>
+                <td><p style='margin: 0; line-height: 1;'>I Wayan Swastika</p></td>
               </tr>
               <tr>
-                <td><p style='margin: 0; line-height: 1.5;'>4.</p></td>
-                <td><p style='margin: 0; line-height: 1.5;'>I Putu Adi Suarjana</p></td>
+                <td><p style='margin: 0; line-height: 1;'>4.</p></td>
+                <td><p style='margin: 0; line-height: 1;'>I Putu Adi Suarjana</p></td>
               </tr>
             </table>
-            <p style='line-height: 1.5;'>Terlampir</p>
+            <p style='line-height: 1;'>Terlampir</p>
             <ul>
-              <li><p style='margin: 0; line-height: 1.5;'>Prosedur Stocktake dari PT. Volcom Indonesia</p></li>
-              <li><p style='margin: 0; line-height: 1.5;'>Daftar Toko</p></li>
+              <li><p style='margin: 0; line-height: 1;'>Prosedur Stocktake dari PT. Volcom Indonesia</p></li>
+              <li><p style='margin: 0; line-height: 1;'>Daftar Toko</p></li>
             </ul>
-            <p style='margin: 0; line-height: 1.5;'>Agar kegiatan tersebut dapat berjalan dengan baik dan lancar, kami mohon dukungan dari Bapak dan Ibu pimpinan seluruh toko, yang nantinya hasil Stocktake (STK) tersebut dapat juga digunakan untuk melakukan penilaian terhadap kinerja toko yang Bapak maupun Ibu kelola.</p>
-            <p style='line-height: 1.5;'>Demikian pemberitahuan ini kami sampaikan, atas perhatian dan kerjasamanya kami ucapkan terimakasih</p>
-            <p style='margin-top: 30px; margin-bottom: 30px; line-height: 1.5;'><i>This is a computer generate no signature is required</i></p>
-            <p style='margin: 0; line-height: 1.5;'>Tembusan:</p>
+            <p style='line-height: 1;'>Agar kegiatan tersebut dapat berjalan dengan baik dan lancar, kami mohon dukungan dari Bapak dan Ibu pimpinan seluruh toko, yang nantinya hasil Stocktake (STK) tersebut dapat juga digunakan untuk melakukan penilaian terhadap kinerja toko yang Bapak maupun Ibu kelola.</p>
+            <p style='line-height: 1;'>Demikian pemberitahuan ini kami sampaikan, atas perhatian dan kerjasamanya kami ucapkan terimakasih</p>
+            <table>
+              <tr>
+                <td><p style='margin: 0; line-height: 1; text-align: center;'>Hormat Kami,</p></td>
+                <td style='width: 150px;'></td>
+                <td><p style='margin: 0; line-height: 1; text-align: center;'>Hormat Kami,</p></td>
+              </tr>
+              <tr>
+                <td style='height: 50px;'></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><p style='margin: 0; line-height: 1; text-align: center;'>Anak Agung Gede Putra Wirawan</p></td>
+                <td></td>
+                <td><p style='margin: 0; line-height: 1; text-align: center;'>Marissa Bridgitt Kasih / Karl James Kasih</p></td>
+              </tr>
+              <tr>
+                <td><p style='margin: 0; line-height: 1; text-align: center;'>Asst. Internal Audit Manager</p></td>
+                <td></td>
+                <td><p style='margin: 0; line-height: 1; text-align: center;'>Director</p></td>
+              </tr>
+            </table>
+            <p style='line-height: 1;'>Tembusan:</p>
             <ul>
-              <li><p style='margin: 0; line-height: 1.5;'><i>Sales & Operation PT. Volcom Indonesia</i></p></li>
-              <li><p style='margin: 0; line-height: 1.5;'><i>Warehouse & Distribution PT. Volcom Indonesia</i></p></li>
-              <li><p style='margin: 0; line-height: 1.5;'><i>Finance & Accounting PT. Volcom Indonesia</i></p></li>
+              <li><p style='margin: 0; line-height: 1;'><i>Sales & Operation PT. Volcom Indonesia</i></p></li>
+              <li><p style='margin: 0; line-height: 1;'><i>Warehouse & Distribution PT. Volcom Indonesia</i></p></li>
+              <li><p style='margin: 0; line-height: 1;'><i>Finance & Accounting PT. Volcom Indonesia</i></p></li>
             </ul>
         "
 
@@ -683,6 +708,28 @@
         FormReportMark.id_report = id_st_store_propose
 
         FormReportMark.ShowDialog()
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        'report
+        Dim report As ReportStockTakeProposeSuratIjin = New ReportStockTakeProposeSuratIjin
+
+        report.XrRichText.Html = WBSuratIjin.DocumentText
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        Tool.ShowPreviewDialog()
+    End Sub
+
+    Private Sub SBAttachment_Click(sender As Object, e As EventArgs) Handles SBAttachment.Click
+        Cursor = Cursors.WaitCursor
+
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.id_report = id_st_store_propose
+        FormDocumentUpload.report_mark_type = "348"
+        FormDocumentUpload.ShowDialog()
 
         Cursor = Cursors.Default
     End Sub
