@@ -9,7 +9,7 @@
         'sorting
         Dim dt2 As System.Data.DataView = dt.DefaultView
 
-        dt2.Sort = "design_price_type ASC, name ASC, code ASC"
+        dt2.Sort = "design_price_type ASC, class ASC, name ASC, code ASC"
 
         dt = dt2.ToTable()
 
@@ -38,38 +38,50 @@
             code.BorderWidth = 0
             code.Font = New Font(code.Font.FontFamily, code.Font.Size, FontStyle.Regular)
 
+            'class
+            Dim prod_class As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+            prod_class.Text = dt.Rows(i)("class").ToString
+            prod_class.BorderWidth = 0
+            code.Font = New Font(code.Font.FontFamily, code.Font.Size, FontStyle.Regular)
+
             'name
-            Dim name As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+            Dim name As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
             name.Text = dt.Rows(i)("name").ToString
             name.BorderWidth = 0
             name.Font = New Font(name.Font.FontFamily, name.Font.Size, FontStyle.Regular)
 
+            'color
+            Dim prod_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+            prod_col.Text = dt.Rows(i)("color").ToString
+            prod_col.BorderWidth = 0
+            prod_col.Font = New Font(code.Font.FontFamily, code.Font.Size, FontStyle.Regular)
+
             'size
-            Dim size As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+            Dim size As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
             size.Text = dt.Rows(i)("size").ToString
             size.BorderWidth = 0
             size.Font = New Font(size.Font.FontFamily, size.Font.Size, FontStyle.Regular)
 
             'sales_return_det_qty
-            Dim sales_return_det_qty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+            Dim sales_return_det_qty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
             sales_return_det_qty.Text = Format(dt.Rows(i)("sales_return_det_qty"), "##")
             sales_return_det_qty.BorderWidth = 0
             sales_return_det_qty.Font = New Font(sales_return_det_qty.Font.FontFamily, sales_return_det_qty.Font.Size, FontStyle.Regular)
 
             'design_price_type
-            Dim design_price_type As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
+            Dim design_price_type As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
             design_price_type.Text = dt.Rows(i)("design_price_type").ToString.Substring(0, 1)
             design_price_type.BorderWidth = 0
             design_price_type.Font = New Font(design_price_type.Font.FontFamily, design_price_type.Font.Size, FontStyle.Regular)
 
             'design_price
-            Dim design_price As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
+            Dim design_price As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
             design_price.Text = Format(dt.Rows(i)("design_price"), "##,##0")
             design_price.BorderWidth = 0
             design_price.Font = New Font(design_price.Font.FontFamily, design_price.Font.Size, FontStyle.Regular)
 
             'sales_return_det_amount
-            Dim sales_return_det_amount As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
+            Dim sales_return_det_amount As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(9)
             sales_return_det_amount.Text = Format(dt.Rows(i)("sales_return_det_amount"), "##,##0")
             sales_return_det_amount.BorderWidth = 0
             sales_return_det_amount.Font = New Font(sales_return_det_amount.Font.FontFamily, sales_return_det_amount.Font.Size, FontStyle.Regular)

@@ -449,7 +449,7 @@ Public Class FormSalesReturnDet
             query += "INNER JOIN tb_sales_return_det b ON a.id_sales_return_det = b.id_sales_return_det "
             query += "JOIN tb_opt o "
             query += "INNER JOIN tb_m_product c ON c.id_product = b.id_product 
-            INNER JOIN tb_m_design d ON d.id_design = c.id_design
+            INNER JOIN tb_m_design dsg ON dsg.id_design = c.id_design
             LEFT JOIN (
 		        SELECT dc.id_design, 
 		        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
@@ -465,7 +465,7 @@ Public Class FormSalesReturnDet
 		        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
 		        AND cd.id_code IN (32,30,14, 43)
 		        GROUP BY dc.id_design
-	        ) cd ON cd.id_design = d.id_design "
+	        ) cd ON cd.id_design = dsg.id_design "
             query += "INNER JOIN tb_m_product_code cc ON cc.id_product = c.id_product "
             query += "INNER JOIN tb_m_code_detail cod ON cod.id_code_detail = cc.id_code_detail AND cod.id_code = o.id_code_product_size "
             query += "LEFT JOIN tb_pl_prod_order_rec_det_counting d ON d.id_pl_prod_order_rec_det_unique = a.id_pl_prod_order_rec_det_unique "
