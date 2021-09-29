@@ -35,7 +35,7 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
             cond += "  AND e.id_coa_tag='" & SLEUnit.EditValue.ToString & "' "
         End If
 
-        Dim query As String = ""
+        Dim query As String = "SELECT * FROM tb_prepaid_expense"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()
@@ -69,6 +69,8 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
             bnew_active = "1"
             bedit_active = "1"
             bdel_active = "0"
+            checkFormAccess(Name)
+            button_main(bnew_active, bedit_active, bdel_active)
         End If
     End Sub
 End Class
