@@ -29,23 +29,29 @@ Partial Class FormSalesReturnDetProblem
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtBarcode = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtRemark = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelSearch = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtSearch = New DevExpress.XtraEditors.TextEdit()
         Me.BtnFind = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtSearch = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtClass = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtColor = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtRemark = New DevExpress.XtraEditors.TextEdit()
         CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtBarcode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtRemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelSearch, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelSearch.SuspendLayout()
         CType(Me.TxtSearch.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtClass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtColor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtRemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -66,7 +72,7 @@ Partial Class FormSalesReturnDetProblem
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(12, 91)
+        Me.LabelControl2.Location = New System.Drawing.Point(12, 139)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(53, 13)
         Me.LabelControl2.TabIndex = 2
@@ -76,7 +82,7 @@ Partial Class FormSalesReturnDetProblem
         '
         Me.TxtDesign.EditValue = ""
         Me.TxtDesign.Enabled = False
-        Me.TxtDesign.Location = New System.Drawing.Point(12, 110)
+        Me.TxtDesign.Location = New System.Drawing.Point(12, 158)
         Me.TxtDesign.Name = "TxtDesign"
         Me.TxtDesign.Size = New System.Drawing.Size(330, 20)
         Me.TxtDesign.TabIndex = 3
@@ -116,25 +122,17 @@ Partial Class FormSalesReturnDetProblem
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(12, 136)
+        Me.LabelControl5.Location = New System.Drawing.Point(12, 188)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(36, 13)
         Me.LabelControl5.TabIndex = 8
         Me.LabelControl5.Text = "Remark"
         '
-        'TxtRemark
-        '
-        Me.TxtRemark.EditValue = ""
-        Me.TxtRemark.Location = New System.Drawing.Point(12, 155)
-        Me.TxtRemark.Name = "TxtRemark"
-        Me.TxtRemark.Size = New System.Drawing.Size(330, 20)
-        Me.TxtRemark.TabIndex = 9
-        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 193)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 245)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(360, 37)
         Me.PanelControl1.TabIndex = 10
@@ -160,21 +158,6 @@ Partial Class FormSalesReturnDetProblem
         Me.PanelSearch.Size = New System.Drawing.Size(360, 34)
         Me.PanelSearch.TabIndex = 11
         '
-        'LabelControl6
-        '
-        Me.LabelControl6.Location = New System.Drawing.Point(12, 10)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(33, 13)
-        Me.LabelControl6.TabIndex = 12
-        Me.LabelControl6.Text = "Search"
-        '
-        'TxtSearch
-        '
-        Me.TxtSearch.Location = New System.Drawing.Point(51, 7)
-        Me.TxtSearch.Name = "TxtSearch"
-        Me.TxtSearch.Size = New System.Drawing.Size(119, 20)
-        Me.TxtSearch.TabIndex = 12
-        '
         'BtnFind
         '
         Me.BtnFind.Location = New System.Drawing.Point(175, 7)
@@ -183,11 +166,70 @@ Partial Class FormSalesReturnDetProblem
         Me.BtnFind.TabIndex = 13
         Me.BtnFind.Text = "Find"
         '
+        'TxtSearch
+        '
+        Me.TxtSearch.Location = New System.Drawing.Point(51, 7)
+        Me.TxtSearch.Name = "TxtSearch"
+        Me.TxtSearch.Size = New System.Drawing.Size(119, 20)
+        Me.TxtSearch.TabIndex = 12
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(12, 10)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(33, 13)
+        Me.LabelControl6.TabIndex = 12
+        Me.LabelControl6.Text = "Search"
+        '
+        'TxtClass
+        '
+        Me.TxtClass.Enabled = False
+        Me.TxtClass.Location = New System.Drawing.Point(12, 110)
+        Me.TxtClass.Name = "TxtClass"
+        Me.TxtClass.Size = New System.Drawing.Size(166, 20)
+        Me.TxtClass.TabIndex = 12
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(12, 91)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(25, 13)
+        Me.LabelControl7.TabIndex = 13
+        Me.LabelControl7.Text = "Class"
+        '
+        'TxtColor
+        '
+        Me.TxtColor.Enabled = False
+        Me.TxtColor.Location = New System.Drawing.Point(180, 110)
+        Me.TxtColor.Name = "TxtColor"
+        Me.TxtColor.Size = New System.Drawing.Size(162, 20)
+        Me.TxtColor.TabIndex = 14
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(180, 91)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(25, 13)
+        Me.LabelControl8.TabIndex = 15
+        Me.LabelControl8.Text = "Color"
+        '
+        'TxtRemark
+        '
+        Me.TxtRemark.EditValue = ""
+        Me.TxtRemark.Location = New System.Drawing.Point(12, 207)
+        Me.TxtRemark.Name = "TxtRemark"
+        Me.TxtRemark.Size = New System.Drawing.Size(330, 20)
+        Me.TxtRemark.TabIndex = 9
+        '
         'FormSalesReturnDetProblem
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(360, 230)
+        Me.ClientSize = New System.Drawing.Size(360, 282)
+        Me.Controls.Add(Me.LabelControl8)
+        Me.Controls.Add(Me.TxtColor)
+        Me.Controls.Add(Me.LabelControl7)
+        Me.Controls.Add(Me.TxtClass)
         Me.Controls.Add(Me.PanelSearch)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.TxtRemark)
@@ -210,13 +252,15 @@ Partial Class FormSalesReturnDetProblem
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtBarcode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtRemark.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.PanelSearch, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelSearch.ResumeLayout(False)
         Me.PanelSearch.PerformLayout()
         CType(Me.TxtSearch.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtClass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtColor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtRemark.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -231,11 +275,15 @@ Partial Class FormSalesReturnDetProblem
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtBarcode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TxtRemark As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelSearch As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnFind As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TxtSearch As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtClass As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtColor As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtRemark As DevExpress.XtraEditors.TextEdit
 End Class

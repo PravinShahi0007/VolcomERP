@@ -26,6 +26,8 @@ Partial Class FormSalesReturnSearch
         Me.GridColumnBarcode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumcolor = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -42,7 +44,7 @@ Partial Class FormSalesReturnSearch
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProduct, Me.GridColumnDesignCode, Me.GridColumnBarcode, Me.GridColumnName, Me.GridColumnSize})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProduct, Me.GridColumnDesignCode, Me.GridColumnBarcode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnclass, Me.GridColumcolor})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupCount = 1
         Me.GVData.Name = "GVData"
@@ -65,6 +67,7 @@ Partial Class FormSalesReturnSearch
         Me.GridColumnDesignCode.Name = "GridColumnDesignCode"
         Me.GridColumnDesignCode.Visible = True
         Me.GridColumnDesignCode.VisibleIndex = 0
+        Me.GridColumnDesignCode.Width = 272
         '
         'GridColumnBarcode
         '
@@ -73,6 +76,7 @@ Partial Class FormSalesReturnSearch
         Me.GridColumnBarcode.Name = "GridColumnBarcode"
         Me.GridColumnBarcode.Visible = True
         Me.GridColumnBarcode.VisibleIndex = 1
+        Me.GridColumnBarcode.Width = 272
         '
         'GridColumnName
         '
@@ -80,7 +84,8 @@ Partial Class FormSalesReturnSearch
         Me.GridColumnName.FieldName = "name"
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 2
+        Me.GridColumnName.VisibleIndex = 3
+        Me.GridColumnName.Width = 684
         '
         'GridColumnSize
         '
@@ -88,7 +93,26 @@ Partial Class FormSalesReturnSearch
         Me.GridColumnSize.FieldName = "size"
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 3
+        Me.GridColumnSize.VisibleIndex = 5
+        Me.GridColumnSize.Width = 198
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
+        Me.GridColumnclass.Width = 112
+        '
+        'GridColumcolor
+        '
+        Me.GridColumcolor.Caption = "Color"
+        Me.GridColumcolor.FieldName = "color"
+        Me.GridColumcolor.Name = "GridColumcolor"
+        Me.GridColumcolor.Visible = True
+        Me.GridColumcolor.VisibleIndex = 4
+        Me.GridColumcolor.Width = 94
         '
         'FormSalesReturnSearch
         '
@@ -115,4 +139,6 @@ Partial Class FormSalesReturnSearch
     Friend WithEvents GridColumnBarcode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumcolor As DevExpress.XtraGrid.Columns.GridColumn
 End Class

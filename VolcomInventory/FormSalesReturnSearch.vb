@@ -16,6 +16,8 @@
                 FormSalesReturnDetProblem.TxtCode.Text = GVData.GetFocusedRowCellValue("design_code").ToString
                 FormSalesReturnDetProblem.TxtBarcode.Text = GVData.GetFocusedRowCellValue("product_code").ToString
                 FormSalesReturnDetProblem.TxtSize.Text = GVData.GetFocusedRowCellValue("size").ToString
+                FormSalesReturnDetProblem.TxtClass.Text = GVData.GetFocusedRowCellValue("class").ToString
+                FormSalesReturnDetProblem.TxtColor.Text = GVData.GetFocusedRowCellValue("color").ToString
                 FormSalesReturnDetProblem.TxtDesign.Text = GVData.GetFocusedRowCellValue("name").ToString
                 FormSalesReturnDetProblem.id_product = GVData.GetFocusedRowCellValue("id_product").ToString
                 FormSalesReturnDetProblem.is_old_design = GVData.GetFocusedRowCellValue("is_old_design").ToString
