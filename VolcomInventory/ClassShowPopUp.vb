@@ -494,6 +494,9 @@
         ElseIf report_mark_type = "348" Then
             'surat ijin
             FormStockTakeProposeDet.Close()
+        ElseIf report_mark_type = "349" Then
+            'prepaid expense
+            FormPrepaidExpense.Close()
         End If
     End Sub
     Sub show()
@@ -1599,6 +1602,11 @@ GROUP BY rec.`id_prod_order`"
             'surat ijin
             FormStockTakeProposeDet.id_st_store_propose = id_report
             FormStockTakeProposeDet.ShowDialog()
+        ElseIf report_mark_type = "349" Then
+            'prepaid Expense
+            FormPrepaidExpenseDet.id = id_report
+            FormPrepaidExpenseDet.is_view = "1"
+            FormPrepaidExpenseDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2856,6 +2864,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_st_store_propose"
             field_number = "number"
             field_date = "created_at"
+        ElseIf report_mark_type = "349" Then
+            'prepaid expense
+            table_name = "tb_prepaid_expense"
+            field_id = "id_prepaid_expense"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

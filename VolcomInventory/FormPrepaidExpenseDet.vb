@@ -219,7 +219,7 @@ WHERE p.id_prepaid_expense='" & id & "'"
         Cursor = Cursors.WaitCursor
         Dim q_year As String = ""
         Dim query As String = "SELECT 'no' AS is_lock,ed.id_acc_biaya,ed.start_date,ed.qty_month,ed.amount,ed.id_prepaid_expense_det,ed.cc,c.comp_number AS cc_desc, ed.id_prepaid_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
-        ed.id_acc,pphacc.acc_description AS coa_desc_pph,a.id_acc_cat, a.acc_description AS `coa_desc`, ed.description,a.acc_name,ed.id_acc_pph,ed.pph_percent,ed.pph, "
+        ed.id_acc,pphacc.acc_description AS coa_desc_pph,a.id_acc_cat, a.acc_description AS `coa_desc`,ab.acc_description AS `coa_biaya_desc`, ed.description,a.acc_name,ed.id_acc_pph,ed.pph_percent,ed.pph, "
 
         If id = "-1" Then
             query += "0.00 AS tax_percent,0.00 AS `amount` "
@@ -235,6 +235,7 @@ WHERE p.id_prepaid_expense='" & id & "'"
         INNER JOIN tb_prepaid_expense e ON e.id_prepaid_expense=ed.id_prepaid_expense
         LEFT JOIN tb_a_acc pphacc ON pphacc.id_acc = ed.id_acc_pph
         INNER JOIN tb_a_acc a ON a.id_acc = ed.id_acc
+        INNER JOIN tb_a_acc ab ON ab.id_acc = ed.id_acc_biaya
         INNER JOIN tb_lookup_expense_type typ ON typ.id_expense_type=ed.id_expense_type
         LEFT JOIN tb_m_comp c ON ed.cc=c.id_comp
         INNER JOIN 
@@ -979,12 +980,15 @@ WHERE c.id_comp='" + id_comp + "' "
             ReportPrepaidExpense.is_pre = True
         End If
 
-        ReportItemExpense.id = id
-        ReportItemExpense.dt = GCData.DataSource
-        Dim Report As New ReportItemExpense()
+        ReportPrepaidExpense.id = id
+        ReportPrepaidExpense.dt = GCData.DataSource
+        Dim Report As New ReportPrepaidExpense()
         '
         GridColumnaccount.Visible = False
         GridColumnAccountDescription.VisibleIndex = -1
+        'GridColumnAccountDescription
+        GridColumnCoaBiayaCol.Visible = False
+        GridColumnCOABiaya.Visible = -1
         '
         GridColumnBudgetType.Visible = False
         GridColumnBudgetTypeDesc.VisibleIndex = -1
@@ -1051,6 +1055,9 @@ WHERE c.id_comp='" + id_comp + "' "
         GridColumnBudgetTypeDesc.VisibleIndex = 3
         GridColumnBudgetDesc.VisibleIndex = 4
         GridColumnDescription.VisibleIndex = 5
+        GridColumnQtyMonth.VisibleIndex = 6
+        'GridColumnEndPeriod.VisibleIndex = 7
+        'GridColumnCoaBiayaCol.VisibleIndex = 8
         GridColumnAmount.VisibleIndex = 9
         GridColumnTaxPercent.VisibleIndex = 10
         GridColumnTaxValue.VisibleIndex = 11
@@ -1077,10 +1084,6 @@ WHERE c.id_comp='" + id_comp + "' "
         Report.LabelBeneficiary.Text = TxtCompName.Text
         Report.LabelDUelDate.Text = DEDueDate.Text
         '
-        Report.LPayFrom.Visible = False
-        Report.LpayFromTitle.Visible = False
-        Report.LpayFromMark.Visible = False
-
         Report.LInvNo.Text = TEInvNo.Text
         Report.LabelTotalPayment.Text = TxtTotal.Text
         Report.LSay.Text = ConvertCurrencyToIndonesian(Decimal.Parse(TxtTotal.EditValue.ToString))
