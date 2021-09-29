@@ -91,6 +91,7 @@ Partial Class FormViewSalesReturnQC
         Me.GridColumnBomUnitPricex = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignPriceBc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesignPriceBc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnReject = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.XTPStorage = New DevExpress.XtraTab.XtraTabPage()
@@ -125,7 +126,9 @@ Partial Class FormViewSalesReturnQC
         Me.GridColumnIdWHDrawerDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdx = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdx2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnReject = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -601,7 +604,7 @@ Partial Class FormViewSalesReturnQC
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnPriceType, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnQtyWH, Me.GridColumnEanCode, Me.GridColumnIdSalesOrderDet, Me.GridColumn2, Me.GridColumnIdDesignPrice, Me.GridColumnIdDesign, Me.GridColumnIdSample, Me.GridColumnIdPlSalesOrderDel})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnPriceType, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnQtyWH, Me.GridColumnEanCode, Me.GridColumnIdSalesOrderDet, Me.GridColumn2, Me.GridColumnIdDesignPrice, Me.GridColumnIdDesign, Me.GridColumnIdSample, Me.GridColumnIdPlSalesOrderDel, Me.GridColumn4, Me.GridColumncolor, Me.GridColumnsht})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty", Me.GridColumnQty, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_amount", Me.GridColumnAmount, "{0:n2}")})
         Me.GVItemList.Name = "GVItemList"
@@ -640,7 +643,7 @@ Partial Class FormViewSalesReturnQC
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 2
+        Me.GridColumnName.VisibleIndex = 3
         Me.GridColumnName.Width = 142
         '
         'GridColumnSize
@@ -654,7 +657,7 @@ Partial Class FormViewSalesReturnQC
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 3
+        Me.GridColumnSize.VisibleIndex = 5
         Me.GridColumnSize.Width = 54
         '
         'GridColumnPriceType
@@ -664,7 +667,7 @@ Partial Class FormViewSalesReturnQC
         Me.GridColumnPriceType.Name = "GridColumnPriceType"
         Me.GridColumnPriceType.OptionsColumn.ReadOnly = True
         Me.GridColumnPriceType.Visible = True
-        Me.GridColumnPriceType.VisibleIndex = 4
+        Me.GridColumnPriceType.VisibleIndex = 6
         Me.GridColumnPriceType.Width = 80
         '
         'GridColumnQty
@@ -682,7 +685,7 @@ Partial Class FormViewSalesReturnQC
         Me.GridColumnQty.OptionsColumn.ReadOnly = True
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty", "{0:n2}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 6
+        Me.GridColumnQty.VisibleIndex = 8
         Me.GridColumnQty.Width = 89
         '
         'GridColumnPrice
@@ -698,7 +701,7 @@ Partial Class FormViewSalesReturnQC
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.OptionsColumn.ReadOnly = True
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 5
+        Me.GridColumnPrice.VisibleIndex = 7
         Me.GridColumnPrice.Width = 108
         '
         'GridColumnAmount
@@ -715,7 +718,7 @@ Partial Class FormViewSalesReturnQC
         Me.GridColumnAmount.OptionsColumn.ReadOnly = True
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_amount", "{0:n2}")})
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 7
+        Me.GridColumnAmount.VisibleIndex = 9
         Me.GridColumnAmount.Width = 124
         '
         'GridColumnRemark
@@ -724,7 +727,7 @@ Partial Class FormViewSalesReturnQC
         Me.GridColumnRemark.FieldName = "sales_return_qc_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 8
+        Me.GridColumnRemark.VisibleIndex = 10
         Me.GridColumnRemark.Width = 231
         '
         'GridColumnUOM
@@ -949,6 +952,15 @@ Partial Class FormViewSalesReturnQC
         Me.GridColumnDesignPriceBc.Caption = "Design Price"
         Me.GridColumnDesignPriceBc.FieldName = "design_price"
         Me.GridColumnDesignPriceBc.Name = "GridColumnDesignPriceBc"
+        '
+        'GridColumnReject
+        '
+        Me.GridColumnReject.Caption = "Reject"
+        Me.GridColumnReject.FieldName = "reject_type"
+        Me.GridColumnReject.Name = "GridColumnReject"
+        Me.GridColumnReject.OptionsColumn.AllowEdit = False
+        Me.GridColumnReject.Visible = True
+        Me.GridColumnReject.VisibleIndex = 2
         '
         'RepositoryItemCheckEdit2
         '
@@ -1226,14 +1238,30 @@ Partial Class FormViewSalesReturnQC
         Me.GridColumnIdx2.Visible = True
         Me.GridColumnIdx2.VisibleIndex = 4
         '
-        'GridColumnReject
+        'GridColumn4
         '
-        Me.GridColumnReject.Caption = "Reject"
-        Me.GridColumnReject.FieldName = "reject_type"
-        Me.GridColumnReject.Name = "GridColumnReject"
-        Me.GridColumnReject.OptionsColumn.AllowEdit = False
-        Me.GridColumnReject.Visible = True
-        Me.GridColumnReject.VisibleIndex = 2
+        Me.GridColumn4.Caption = "Class"
+        Me.GridColumn4.FieldName = "class"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.OptionsColumn.ReadOnly = True
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 4
+        '
+        'GridColumnsht
+        '
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.OptionsColumn.ReadOnly = True
         '
         'FormViewSalesReturnQC
         '
@@ -1420,4 +1448,7 @@ Partial Class FormViewSalesReturnQC
     Friend WithEvents GridColumnIdx As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdx2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnReject As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
 End Class
