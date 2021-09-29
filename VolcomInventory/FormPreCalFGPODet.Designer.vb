@@ -61,6 +61,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCUFGPO = New DevExpress.XtraEditors.PanelControl()
         Me.PCFGPOList = New DevExpress.XtraEditors.PanelControl()
+        Me.BUpdateDuty = New DevExpress.XtraEditors.SimpleButton()
         Me.BPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPVendor = New DevExpress.XtraTab.XtraTabPage()
         Me.GCVendor = New DevExpress.XtraGrid.GridControl()
@@ -714,12 +715,32 @@ Partial Class FormPreCalFGPODet
         '
         'PCFGPOList
         '
+        Me.PCFGPOList.Controls.Add(Me.BUpdateDuty)
         Me.PCFGPOList.Controls.Add(Me.BPropose)
         Me.PCFGPOList.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PCFGPOList.Location = New System.Drawing.Point(0, 346)
         Me.PCFGPOList.Name = "PCFGPOList"
         Me.PCFGPOList.Size = New System.Drawing.Size(1016, 42)
         Me.PCFGPOList.TabIndex = 4
+        '
+        'BUpdateDuty
+        '
+        Me.BUpdateDuty.Appearance.BackColor = System.Drawing.Color.SlateBlue
+        Me.BUpdateDuty.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BUpdateDuty.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BUpdateDuty.Appearance.Options.UseBackColor = True
+        Me.BUpdateDuty.Appearance.Options.UseFont = True
+        Me.BUpdateDuty.Appearance.Options.UseForeColor = True
+        Me.BUpdateDuty.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BUpdateDuty.Location = New System.Drawing.Point(2, 2)
+        Me.BUpdateDuty.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BUpdateDuty.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BUpdateDuty.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BUpdateDuty.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BUpdateDuty.Name = "BUpdateDuty"
+        Me.BUpdateDuty.Size = New System.Drawing.Size(133, 38)
+        Me.BUpdateDuty.TabIndex = 22
+        Me.BUpdateDuty.Text = "Update Duty"
         '
         'BPropose
         '
@@ -2807,4 +2828,5 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents GridColumn67 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn68 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn69 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BUpdateDuty As DevExpress.XtraEditors.SimpleButton
 End Class

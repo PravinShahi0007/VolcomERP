@@ -723,6 +723,9 @@
         ElseIf report_mark_type = "333" Then
             'qc sni in
             query = String.Format("SELECT id_report_status_del AS id_report_status, del_wh_number as report_number FROM tb_qc_sni_out WHERE id_qc_sni_out = '{0}'", id_report)
+        ElseIf report_mark_type = "334" Then
+            'qc sni in
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_pre_cal_fgpo WHERE id_pre_cal_fgpo = '{0}'", id_report)
         ElseIf report_mark_type = "348" Then
             'surat ijin
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_st_store_propose WHERE id_st_store_propose = '{0}'", id_report)
@@ -10570,6 +10573,19 @@ WHERE qci.id_qc_sni_in='" & id_report & "'"
             Try
                 FormSNIOut.load_head()
                 FormSNIWH.load_list()
+            Catch ex As Exception
+            End Try
+        ElseIf report_mark_type = "334" Then
+            'pre cal fgpo
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            query = "UPDATE tb_pre_cal_fgpo SET id_report_status='" & id_status_reportx & "' WHERE id_pre_cal_fgpo='" & id_report & "' "
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            Try
             Catch ex As Exception
             End Try
         ElseIf report_mark_type = "348" Then

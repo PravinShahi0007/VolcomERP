@@ -135,6 +135,18 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                 ElseIf steps > 2 Then
                     load_list_orign()
                 End If
+                '
+                If steps = 1 And Not id = "-1" Then
+                    BUpdateDuty.Visible = True
+                Else
+                    BUpdateDuty.Visible = False
+                End If
+
+                If is_view = "1" Then
+                    BPrintBudget2.Visible = False
+                    BPrintDuty.Visible = False
+                    BUpdateDuty.Visible = False
+                End If
             End If
         End If
     End Sub
@@ -669,7 +681,7 @@ HAVING tot=0"
 FROM
 (
 	SELECT l.id_pre_cal_fgpo,(l.price*l.qty) AS tot_fob,(l.duty/100) AS duty,fr.tot_freight,h.`rate_management`,l.`qty`,tq.tot_qty,(fr.tot_freight/tq.tot_qty)*l.`qty` AS freight_per_po
-	,ROUND((((fr.tot_freight/tq.tot_qty)*l.`qty`)+(l.price*l.qty*h.rate_management))*(l.duty/100)) AS duty_amo
+	,ROUND((((fr.tot_freight/tq.tot_qty)*l.`qty`)+(l.price*l.qty*h.rate_management))*(l.duty/100),2) AS duty_amo
 	FROM `tb_pre_cal_fgpo_list` l
 	INNER JOIN tb_pre_cal_fgpo h ON h.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo`
 	INNER JOIN
@@ -960,5 +972,20 @@ WHERE h.`id_pre_cal_fgpo`='" & id & "'"
         Else
             warningCustom("Please choose vendor first")
         End If
+    End Sub
+
+    Private Sub BUpdateDuty_Click(sender As Object, e As EventArgs) Handles BUpdateDuty.Click
+        For i = 0 To GVListFGPO.RowCount - 1
+            Dim q As String = "UPDATE tb_pre_cal_fgpo_list SET duty='" & decimalSQL(Decimal.Parse(GVListFGPO.GetRowCellValue(i, "duty").ToString).ToString) & "' WHERE id_pre_cal_fgpo='" & id & "' AND id_prod_order='" & GVListFGPO.GetRowCellValue(i, "id_prod_order").ToString & "'"
+            execute_non_query(q, True, "", "", "", "")
+        Next
+        infoCustom("Duty Updated")
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "334"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id
+        FormReportMark.ShowDialog()
     End Sub
 End Class

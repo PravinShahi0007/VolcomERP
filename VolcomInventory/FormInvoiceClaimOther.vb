@@ -29,6 +29,8 @@
             DEDueDateInvoice.Properties.ReadOnly = False
             DERefDate.Properties.ReadOnly = False
             '
+
+            DERefDate.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='1'", 0, True, "", "", "", "")
         Else
             SLEVatAcc.Properties.ReadOnly = True
             BAttachment.Visible = True
