@@ -23,6 +23,7 @@
     Sub load_form()
         load_report_status()
         load_group()
+        load_store_company()
         load_contact()
 
         SBMark.Enabled = False
@@ -31,7 +32,7 @@
 
         If Not id_st_store_propose = "-1" Then
             Dim data_head As DataTable = execute_query("
-                SELECT p.number, p.start_period, p.end_period, p.start_time, p.end_time, p.id_comp_group, p.id_comp_contact, DATE_FORMAT(p.created_at, '%d %M %Y %H:%i:%s') AS created_at, e.employee_name AS created_by, p.id_report_status
+                SELECT p.number, p.start_period, p.end_period, p.start_time, p.end_time, p.id_comp_group, p.id_store_company, p.id_comp_contact, DATE_FORMAT(p.created_at, '%d %M %Y %H:%i:%s') AS created_at, e.employee_name AS created_by, p.id_report_status
                 FROM tb_st_store_propose AS p
                 LEFT JOIN tb_m_comp_group AS g ON p.id_comp_group = g.id_comp_group
                 LEFT JOIN tb_m_user AS u ON p.created_by = u.id_user
@@ -45,6 +46,7 @@
             TETimeFrom.EditValue = data_head.Rows(0)("start_time")
             TETimeTo.EditValue = data_head.Rows(0)("end_time")
             SLUEGroup.EditValue = data_head.Rows(0)("id_comp_group")
+            SLUEStoreCompany.EditValue = data_head.Rows(0)("id_store_company")
             SLUEContact.EditValue = data_head.Rows(0)("id_comp_contact")
             SLUEReportStatus.EditValue = data_head.Rows(0)("id_report_status")
             TECreatedAt.EditValue = data_head.Rows(0)("created_by").ToString
@@ -56,6 +58,7 @@
             TETimeFrom.ReadOnly = True
             TETimeTo.ReadOnly = True
             SLUEGroup.ReadOnly = True
+            SLUEStoreCompany.ReadOnly = True
             SLUEContact.ReadOnly = True
             SLUEReportStatus.ReadOnly = True
             TECreatedAt.ReadOnly = True
@@ -64,6 +67,7 @@
             SBPrint.Enabled = True
             SBAttachment.Enabled = True
             SBSubmit.Enabled = False
+            SBAddContact.Enabled = False
 
             Dim data_store As DataTable = execute_query("
                 SELECT id_store, DATE_FORMAT(period_start, '%d %M %Y %H:%i:%s') AS period_start, DATE_FORMAT(period_end, '%d %M %Y %H:%i:%s') AS period_end
@@ -101,10 +105,26 @@
         Dim query As String = "
             SELECT id_comp_contact, contact_person, `position`
             FROM tb_m_comp_contact
-            WHERE id_comp IN (SELECT id_comp FROM tb_m_comp_group WHERE id_comp_group = " + SLUEGroup.EditValue.ToString + ")
+            WHERE id_comp = '" + SLUEStoreCompany.EditValue.ToString + "'
         "
 
         viewSearchLookupQuery(SLUEContact, query, "id_comp_contact", "contact_person", "id_comp_contact")
+    End Sub
+
+    Sub load_store_company()
+        Dim query As String = "
+            SELECT g.id_comp, c.comp_name
+            FROM tb_m_comp_group AS g
+            LEFT JOIN tb_m_comp AS c ON g.id_comp = c.id_comp
+            WHERE g.id_comp_group = '" + SLUEGroup.EditValue.ToString + "'
+            UNION ALL
+            SELECT g.id_comp, c.comp_name
+            FROM tb_m_comp_group_other AS g
+            LEFT JOIN tb_m_comp AS c ON g.id_comp = c.id_comp
+            WHERE g.id_comp_group = '" + SLUEGroup.EditValue.ToString + "'
+        "
+
+        viewSearchLookupQuery(SLUEStoreCompany, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Sub load_store()
@@ -115,6 +135,13 @@
         Catch ex As Exception
         End Try
 
+        Dim id_store_company As String = ""
+
+        Try
+            id_store_company = SLUEStoreCompany.EditValue.ToString
+        Catch ex As Exception
+        End Try
+
         Dim period_start As DateTime = Date.Parse(DEPeriodFrom.EditValue.ToString).ToString("yyyy-MM-dd") + " " + DateTime.Parse(TETimeFrom.EditValue.ToString).ToString("HH:mm:ss")
         Dim period_end As DateTime = Date.Parse(DEPeriodTo.EditValue.ToString).ToString("yyyy-MM-dd") + " " + DateTime.Parse(TETimeTo.EditValue.ToString).ToString("HH:mm:ss")
 
@@ -122,7 +149,7 @@
             SELECT s.id_store, 'no' AS is_select, s.store_name, '" + period_start.ToString("yyyy-MM-dd HH:mm:ss") + "' AS period_start, '" + period_end.ToString("yyyy-MM-dd HH:mm:ss") + "' AS period_end
             FROM tb_m_comp AS c
             LEFT JOIN tb_m_store AS s ON c.id_store = s.id_store
-            WHERE c.id_comp_group = " + id_comp_group + " AND c.id_store IS NOT NULL
+            WHERE c.id_comp_group = '" + id_comp_group + "' AND c.id_store_company = '" + id_store_company + "' AND c.id_store IS NOT NULL AND c.id_comp_cat = 6
             GROUP BY c.id_store
         "
 
@@ -143,40 +170,29 @@
         Catch ex As Exception
         End Try
 
-        Dim data_comp As DataTable = New DataTable
-
-        Try
-            data_comp = execute_query("
-                SELECT c.comp_name, c.npwp_address
-                FROM tb_m_comp_group AS g
-                LEFT JOIN tb_m_comp AS c ON g.id_comp = c.id_comp
-                WHERE g.id_comp_group = " + SLUEGroup.EditValue.ToString + "
-            ", -1, True, "", "", "", "")
-        Catch ex As Exception
-        End Try
-
         Dim surat_number As String = TENumber.EditValue.ToString
+
         Dim surat_date As String = ""
         Try
             surat_date = Date.Parse(TECreatedAt.EditValue.ToString).ToString("dd MMMM yyyy")
         Catch ex As Exception
         End Try
+
         Dim surat_contact_person As String = SLUEContact.Text
-        Dim surat_comp_name As String = ""
-        Try
-            surat_comp_name = data_comp.Rows(0)("comp_name").ToString
-        Catch ex As Exception
-        End Try
+        Dim surat_comp_name As String = SLUEStoreCompany.Text
+
         Dim surat_position As String = ""
         Try
             surat_position = execute_query("SELECT position FROM tb_m_comp_contact WHERE id_comp_contact = " + SLUEContact.EditValue.ToString, 0, True, "", "", "", "")
         Catch ex As Exception
         End Try
-        Dim surat_npwp_address As String = ""
+
+        Dim surat_address As String = ""
         Try
-            surat_npwp_address = data_comp.Rows(0)("npwp_address").ToString
+            surat_address = execute_query("SELECT address_primary FROM tb_m_comp WHERE id_comp = " + SLUEStoreCompany.EditValue.ToString, 0, True, "", "", "", "")
         Catch ex As Exception
         End Try
+
         Dim surat_store As String = SLUEGroup.Text
         Dim surat_period As String = period_from + " - " + period_to
         Dim surat_time As String = TETimeFrom.Text + " - " + TETimeTo.Text
@@ -187,7 +203,7 @@
             <p style='line-height: 1;'>Kepada Yth,</p>
             <p style='margin: 0px; line-height: 1;'><b>" + surat_contact_person + "</b></p>
             <p style='margin: 0px; line-height: 1;'><b>" + surat_comp_name + " - " + surat_position + "</b></p>
-            <p style='margin: 0px; line-height: 1;'>" + surat_npwp_address + "</p>
+            <p style='margin: 0px; line-height: 1;'>" + surat_address + "</p>
             <p style='margin: 0px; line-height: 1;'>Di Tempat</p>
             <p style='line-height: 1;'><b><u>Perihal: Pemberitahuan Kegiatan Stocktake PT. Volcom Indonesia</u></b></p>
             <p style='line-height: 1;'><b>Dengan Hormat,</b></p>
@@ -379,7 +395,7 @@
                 <td>
                   <p style='margin: 0px; line-height: 1.5;'>Person in-charge ( Team Volcom yang akan bertugas ):</p>
                   <ul style='margin: 0px;'>
-                    <li><p style='margin: 0px; line-height: 1.5;'>AA Gede Putra Wirawan</p></li>
+                    <li><p style='margin: 0px; line-height: 1.5;'>Anak Agung Gede Putra Wirawan</p></li>
                     <li><p style='margin: 0px; line-height: 1.5;'>Kadek Budi Ariawan</p></li>
                     <li><p style='margin: 0px; line-height: 1.5;'>I Wayan Swastika</p></li>
                     <li><p style='margin: 0px; line-height: 1.5;'>I Putu Adi Suarjana</p></li>
@@ -422,6 +438,7 @@
     End Sub
 
     Private Sub SLUEGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEGroup.EditValueChanged
+        load_store_company()
         load_contact()
         load_store()
         load_surat_ijin()
@@ -463,6 +480,7 @@
         GVStore.ClearColumnsFilter()
 
         Dim id_comp_group As String = SLUEGroup.EditValue.ToString
+        Dim id_store_company As String = SLUEStoreCompany.EditValue.ToString
         Dim id_comp_contact As String = SLUEContact.EditValue.ToString
         Dim start_period As String = Date.Parse(DEPeriodFrom.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim end_period As String = Date.Parse(DEPeriodTo.EditValue.ToString).ToString("yyyy-MM-dd")
@@ -482,7 +500,7 @@
         ", 0, True, "", "", "", "")
 
         Dim query_head As String = "
-            INSERT INTO tb_st_store_propose (id_comp_group, id_comp_contact, number, start_period, end_period, id_report_status, start_time, end_time, created_at, created_by) VALUES (" + id_comp_group + ", " + id_comp_contact + ", '" + number + "', '" + start_period + "', '" + end_period + "', 1, '" + start_time + "', '" + end_time + "', NOW(), " + id_user + "); SELECT LAST_INSERT_ID();
+            INSERT INTO tb_st_store_propose (id_comp_group, id_store_company, id_comp_contact, number, start_period, end_period, id_report_status, start_time, end_time, created_at, created_by) VALUES (" + id_comp_group + ", " + id_store_company + ", " + id_comp_contact + ", '" + number + "', '" + start_period + "', '" + end_period + "', 1, '" + start_time + "', '" + end_time + "', NOW(), " + id_user + "); SELECT LAST_INSERT_ID();
         "
 
         id_st_store_propose = execute_query(query_head, 0, True, "", "", "", "")
@@ -753,5 +771,19 @@
         FormDocumentUpload.ShowDialog()
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLUEStoreCompany_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEStoreCompany.EditValueChanged
+        load_contact()
+        load_store()
+        load_surat_ijin()
+        load_email()
+    End Sub
+
+    Private Sub SBAddContact_Click(sender As Object, e As EventArgs) Handles SBAddContact.Click
+        FormMasterCompanyContact.id_company = SLUEStoreCompany.EditValue.ToString
+        FormMasterCompanyContact.ShowDialog()
+
+        load_contact()
     End Sub
 End Class
