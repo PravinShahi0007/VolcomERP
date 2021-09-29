@@ -160,6 +160,7 @@ Partial Class FormPreCalFGPODet
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.BUpdateReason = New DevExpress.XtraEditors.SimpleButton()
         Me.PCPickVendor = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrintDutyBefore = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrintBudgetBefore = New DevExpress.XtraEditors.SimpleButton()
         Me.BNextPickVendor = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrevPickVendor = New DevExpress.XtraEditors.SimpleButton()
@@ -207,7 +208,6 @@ Partial Class FormPreCalFGPODet
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TECTN = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.BPrintDutyBefore = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1895,6 +1895,25 @@ Partial Class FormPreCalFGPODet
         Me.PCPickVendor.Size = New System.Drawing.Size(1016, 42)
         Me.PCPickVendor.TabIndex = 7
         '
+        'BPrintDutyBefore
+        '
+        Me.BPrintDutyBefore.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BPrintDutyBefore.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BPrintDutyBefore.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BPrintDutyBefore.Appearance.Options.UseBackColor = True
+        Me.BPrintDutyBefore.Appearance.Options.UseFont = True
+        Me.BPrintDutyBefore.Appearance.Options.UseForeColor = True
+        Me.BPrintDutyBefore.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrintDutyBefore.Location = New System.Drawing.Point(633, 2)
+        Me.BPrintDutyBefore.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BPrintDutyBefore.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BPrintDutyBefore.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BPrintDutyBefore.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BPrintDutyBefore.Name = "BPrintDutyBefore"
+        Me.BPrintDutyBefore.Size = New System.Drawing.Size(127, 38)
+        Me.BPrintDutyBefore.TabIndex = 24
+        Me.BPrintDutyBefore.Text = "Print Duty"
+        '
         'BPrintBudgetBefore
         '
         Me.BPrintBudgetBefore.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
@@ -2527,25 +2546,6 @@ Partial Class FormPreCalFGPODet
         Me.PanelControl6.Size = New System.Drawing.Size(1022, 42)
         Me.PanelControl6.TabIndex = 157
         '
-        'BPrintDutyBefore
-        '
-        Me.BPrintDutyBefore.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BPrintDutyBefore.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BPrintDutyBefore.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BPrintDutyBefore.Appearance.Options.UseBackColor = True
-        Me.BPrintDutyBefore.Appearance.Options.UseFont = True
-        Me.BPrintDutyBefore.Appearance.Options.UseForeColor = True
-        Me.BPrintDutyBefore.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrintDutyBefore.Location = New System.Drawing.Point(633, 2)
-        Me.BPrintDutyBefore.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BPrintDutyBefore.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BPrintDutyBefore.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BPrintDutyBefore.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BPrintDutyBefore.Name = "BPrintDutyBefore"
-        Me.BPrintDutyBefore.Size = New System.Drawing.Size(127, 38)
-        Me.BPrintDutyBefore.TabIndex = 24
-        Me.BPrintDutyBefore.Text = "Print Duty"
-        '
         'FormPreCalFGPODet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2559,7 +2559,7 @@ Partial Class FormPreCalFGPODet
         Me.MinimizeBox = False
         Me.Name = "FormPreCalFGPODet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Budget International Shipping"
+        Me.Text = "International Shipment Budget"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
