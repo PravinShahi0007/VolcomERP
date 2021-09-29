@@ -149,7 +149,7 @@
             '                }
             'GCItemList.DataSource = query_new.ToList
         Else
-            Dim query As String = "CALL view_sales_return_order('" + id_sales_return_order + "')"
+            Dim query As String = "CALL view_sales_return_order_less('" + id_sales_return_order + "')"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             GCItemList.DataSource = data
         End If
