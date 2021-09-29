@@ -3311,7 +3311,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormStockTakePropose" Then
                 FormStockTakeProposeDet.id_st_store_propose = FormStockTakePropose.GVData.GetFocusedRowCellValue("id_st_store_propose").ToString
                 FormStockTakeProposeDet.ShowDialog()
-            ElseIf formName = "FormPrepaidExpenseDet" Then
+            ElseIf formName = "FormPrepaidExpense" Then
                 FormPrepaidExpenseDet.id = FormPrepaidExpense.GVData.GetFocusedRowCellValue("id_prepaid_expense").ToString
                 FormPrepaidExpenseDet.ShowDialog()
             Else
