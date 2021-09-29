@@ -117,13 +117,13 @@ Partial Public Class ReportItemExpense
         Me.LabelTotalPayment = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.LUnit = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LInvNo = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
-        Me.LUnit = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -762,7 +762,7 @@ Partial Public Class ReportItemExpense
         '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 22.53202!
+        Me.BottomMargin.HeightF = 23.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -1129,6 +1129,41 @@ Partial Public Class ReportItemExpense
         Me.PageHeader.HeightF = 137.5618!
         Me.PageHeader.Name = "PageHeader"
         '
+        'LUnit
+        '
+        Me.LUnit.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LUnit.LocationFloat = New DevExpress.Utils.PointFloat(543.4772!, 80.18694!)
+        Me.LUnit.Name = "LUnit"
+        Me.LUnit.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LUnit.SizeF = New System.Drawing.SizeF(229.1449!, 16.18692!)
+        Me.LUnit.StylePriority.UseFont = False
+        Me.LUnit.StylePriority.UseTextAlignment = False
+        Me.LUnit.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        '
+        'XrLabel9
+        '
+        Me.XrLabel9.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(525.653!, 80.18693!)
+        Me.XrLabel9.Name = "XrLabel9"
+        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel9.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
+        Me.XrLabel9.StylePriority.UseFont = False
+        Me.XrLabel9.StylePriority.UseTextAlignment = False
+        Me.XrLabel9.Text = ":"
+        Me.XrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel11
+        '
+        Me.XrLabel11.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(402.042!, 80.18694!)
+        Me.XrLabel11.Name = "XrLabel11"
+        Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel11.SizeF = New System.Drawing.SizeF(123.6111!, 16.18693!)
+        Me.XrLabel11.StylePriority.UseFont = False
+        Me.XrLabel11.StylePriority.UseTextAlignment = False
+        Me.XrLabel11.Text = "UNIT"
+        Me.XrLabel11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
         'LInvNo
         '
         Me.LInvNo.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1170,46 +1205,12 @@ Partial Public Class ReportItemExpense
         Me.PageFooter.HeightF = 18.71793!
         Me.PageFooter.Name = "PageFooter"
         '
-        'LUnit
-        '
-        Me.LUnit.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LUnit.LocationFloat = New DevExpress.Utils.PointFloat(543.4772!, 80.18694!)
-        Me.LUnit.Name = "LUnit"
-        Me.LUnit.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LUnit.SizeF = New System.Drawing.SizeF(229.1449!, 16.18692!)
-        Me.LUnit.StylePriority.UseFont = False
-        Me.LUnit.StylePriority.UseTextAlignment = False
-        Me.LUnit.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        '
-        'XrLabel9
-        '
-        Me.XrLabel9.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(525.653!, 80.18693!)
-        Me.XrLabel9.Name = "XrLabel9"
-        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel9.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
-        Me.XrLabel9.StylePriority.UseFont = False
-        Me.XrLabel9.StylePriority.UseTextAlignment = False
-        Me.XrLabel9.Text = ":"
-        Me.XrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XrLabel11
-        '
-        Me.XrLabel11.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(402.042!, 80.18694!)
-        Me.XrLabel11.Name = "XrLabel11"
-        Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel11.SizeF = New System.Drawing.SizeF(123.6111!, 16.18693!)
-        Me.XrLabel11.StylePriority.UseFont = False
-        Me.XrLabel11.StylePriority.UseTextAlignment = False
-        Me.XrLabel11.Text = "UNIT"
-        Me.XrLabel11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
         'ReportItemExpense
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.PageHeader, Me.PageFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(30, 47, 8, 23)
+        Me.Margins = New System.Drawing.Printing.Margins(29, 46, 8, 23)
         Me.PageHeight = 550
+        Me.PageWidth = 849
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"

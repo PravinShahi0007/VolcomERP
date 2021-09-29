@@ -146,6 +146,9 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                     BPrintBudget2.Visible = False
                     BPrintDuty.Visible = False
                     BUpdateDuty.Visible = False
+                    '
+                    BPrintBudgetBefore.Visible = False
+                    BPrintDutyBefore.Visible = False
                 End If
             End If
         End If
@@ -792,7 +795,7 @@ WHERE h.id_pre_cal_fgpo='" & id & "'"
         load_head()
     End Sub
 
-    Private Sub BPrintBudget_Click(sender As Object, e As EventArgs) Handles BPrintBudget.Click
+    Private Sub BPrintBudget_Click(sender As Object, e As EventArgs) Handles BPrintBudgetBefore.Click
         Dim qc As String = "SELECT number,FORMAT(SUM(l.`qty`),0,'id_ID') AS qtyf,SUM(l.`qty`) AS qty,FORMAT(SUM(l.`price`*l.`qty`),2,'id_ID') AS fob_tot,c.`comp_name` AS best,cs.`comp_name` AS second_best,FORMAT(f.`cbm`,2,'id_ID') AS cbm,FORMAT(f.`ctn`,0,'id_ID') AS ctn,FORMAT(f.`weight`,0,'id_ID') AS weight,f.`pol`,cv.`comp_name` AS vendor_comp,FORMAT(f.`rate_management`,2,'id_ID') AS rate_management
 FROM `tb_pre_cal_fgpo` f
 INNER JOIN tb_m_comp cv ON cv.`id_comp`=f.`id_comp`
@@ -899,7 +902,7 @@ AND NOT ISNULL(choosen_id_comp)"
         load_head()
     End Sub
 
-    Private Sub BPrintDuty_Click(sender As Object, e As EventArgs) Handles BPrintDuty.Click
+    Sub print_duty()
         Dim qc As String = "SELECT FORMAT(SUM(bm.tot_fob),2,'ID_id') AS tot_fob,FORMAT(bm.total_freight_po,2,'ID_id') AS tot_freight,FORMAT(bm.tot_qty_royalty,'ID_id') AS tot_qty_royalty
 ,FORMAT(SUM(bm.tot_royalty),2,'ID_id') AS tot_freight_cost_royalty,FORMAT(SUM(bm.qty),'ID_id') AS tot_qty
 ,FORMAT(SUM(bm.tot_fob_rp),2,'ID_id') AS tot_fob_rp,FORMAT(SUM(bm.tot_cif),2,'ID_id') AS tot_cif,FORMAT(SUM(bm.tot_duty),2,'ID_id') AS tot_bm,FORMAT(SUM(bm.tot_cif)+SUM(bm.tot_duty),2,'ID_id') AS tot_cif_bm
@@ -972,6 +975,10 @@ WHERE h.`id_pre_cal_fgpo`='" & id & "'"
         Else
             warningCustom("Please choose vendor first")
         End If
+    End Sub
+
+    Private Sub BPrintDuty_Click(sender As Object, e As EventArgs) Handles BPrintDuty.Click
+        print_duty()
     End Sub
 
     Private Sub BUpdateDuty_Click(sender As Object, e As EventArgs) Handles BUpdateDuty.Click
