@@ -160,7 +160,7 @@ Partial Class FormPreCalFGPODet
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.BUpdateReason = New DevExpress.XtraEditors.SimpleButton()
         Me.PCPickVendor = New DevExpress.XtraEditors.PanelControl()
-        Me.BPrintBudget = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrintBudgetBefore = New DevExpress.XtraEditors.SimpleButton()
         Me.BNextPickVendor = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrevPickVendor = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPDutyReport = New DevExpress.XtraTab.XtraTabPage()
@@ -207,6 +207,7 @@ Partial Class FormPreCalFGPODet
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TECTN = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrintDutyBefore = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1884,7 +1885,8 @@ Partial Class FormPreCalFGPODet
         '
         'PCPickVendor
         '
-        Me.PCPickVendor.Controls.Add(Me.BPrintBudget)
+        Me.PCPickVendor.Controls.Add(Me.BPrintDutyBefore)
+        Me.PCPickVendor.Controls.Add(Me.BPrintBudgetBefore)
         Me.PCPickVendor.Controls.Add(Me.BNextPickVendor)
         Me.PCPickVendor.Controls.Add(Me.BPrevPickVendor)
         Me.PCPickVendor.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -1893,25 +1895,24 @@ Partial Class FormPreCalFGPODet
         Me.PCPickVendor.Size = New System.Drawing.Size(1016, 42)
         Me.PCPickVendor.TabIndex = 7
         '
-        'BPrintBudget
+        'BPrintBudgetBefore
         '
-        Me.BPrintBudget.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BPrintBudget.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BPrintBudget.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BPrintBudget.Appearance.Options.UseBackColor = True
-        Me.BPrintBudget.Appearance.Options.UseFont = True
-        Me.BPrintBudget.Appearance.Options.UseForeColor = True
-        Me.BPrintBudget.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrintBudget.Location = New System.Drawing.Point(760, 2)
-        Me.BPrintBudget.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BPrintBudget.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BPrintBudget.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BPrintBudget.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BPrintBudget.Name = "BPrintBudget"
-        Me.BPrintBudget.Size = New System.Drawing.Size(127, 38)
-        Me.BPrintBudget.TabIndex = 21
-        Me.BPrintBudget.Text = "Print Budget"
-        Me.BPrintBudget.Visible = False
+        Me.BPrintBudgetBefore.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BPrintBudgetBefore.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BPrintBudgetBefore.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BPrintBudgetBefore.Appearance.Options.UseBackColor = True
+        Me.BPrintBudgetBefore.Appearance.Options.UseFont = True
+        Me.BPrintBudgetBefore.Appearance.Options.UseForeColor = True
+        Me.BPrintBudgetBefore.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrintBudgetBefore.Location = New System.Drawing.Point(760, 2)
+        Me.BPrintBudgetBefore.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BPrintBudgetBefore.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BPrintBudgetBefore.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BPrintBudgetBefore.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BPrintBudgetBefore.Name = "BPrintBudgetBefore"
+        Me.BPrintBudgetBefore.Size = New System.Drawing.Size(127, 38)
+        Me.BPrintBudgetBefore.TabIndex = 21
+        Me.BPrintBudgetBefore.Text = "Print Budget"
         '
         'BNextPickVendor
         '
@@ -2526,6 +2527,25 @@ Partial Class FormPreCalFGPODet
         Me.PanelControl6.Size = New System.Drawing.Size(1022, 42)
         Me.PanelControl6.TabIndex = 157
         '
+        'BPrintDutyBefore
+        '
+        Me.BPrintDutyBefore.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BPrintDutyBefore.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BPrintDutyBefore.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BPrintDutyBefore.Appearance.Options.UseBackColor = True
+        Me.BPrintDutyBefore.Appearance.Options.UseFont = True
+        Me.BPrintDutyBefore.Appearance.Options.UseForeColor = True
+        Me.BPrintDutyBefore.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrintDutyBefore.Location = New System.Drawing.Point(633, 2)
+        Me.BPrintDutyBefore.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BPrintDutyBefore.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BPrintDutyBefore.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BPrintDutyBefore.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BPrintDutyBefore.Name = "BPrintDutyBefore"
+        Me.BPrintDutyBefore.Size = New System.Drawing.Size(127, 38)
+        Me.BPrintDutyBefore.TabIndex = 24
+        Me.BPrintDutyBefore.Text = "Print Duty"
+        '
         'FormPreCalFGPODet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2766,7 +2786,7 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PCPickVendor As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BPrintBudget As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrintBudgetBefore As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPrevPickVendor As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
@@ -2829,4 +2849,5 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents GridColumn68 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn69 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BUpdateDuty As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrintDutyBefore As DevExpress.XtraEditors.SimpleButton
 End Class

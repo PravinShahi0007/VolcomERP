@@ -915,4 +915,185 @@ WHERE c.id_comp='" + id_comp + "' "
             End If
         End If
     End Sub
+
+    Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            WHERE ad.report_mark_type=349 AND ad.id_report=" + id + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
+
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = "349"
+        FormDocumentUpload.id_report = id
+        FormDocumentUpload.is_only_pdf = True
+        If is_view = "1" Or Not check_edit_report_status(id_report_status, "349", id) Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancell this process ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "UPDATE tb_prepaid_expense SET id_report_status=5 WHERE id_item_expense='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+            'nonaktif mark
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", "349", id, "5")
+            execute_non_query(queryrm, True, "", "", "", "")
+
+            FormPrepaidExpense.viewData()
+            actionLoad()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        'If id_report_status = "6" Then
+
+        If id_report_status = "6" Then
+            ReportItemExpense.is_pre = False
+        Else
+            ReportItemExpense.is_pre = True
+        End If
+
+        ReportItemExpense.id = id
+        ReportItemExpense.dt = GCData.DataSource
+        Dim Report As New ReportItemExpense()
+        '
+        GridColumnaccount.Visible = False
+        GridColumnAccountDescription.VisibleIndex = -1
+        '
+        GridColumnBudgetType.Visible = False
+        GridColumnBudgetTypeDesc.VisibleIndex = -1
+        '
+        GCCC.Visible = False
+        GCCCDesc.VisibleIndex = -1
+        '
+        GridColumnBudget.Visible = False
+        GridColumnBudgetDesc.VisibleIndex = 2
+        '
+        GridColumnPPHCOA.Visible = False
+        GridColumnPPHDesc.VisibleIndex = 12
+        GridColumnPPHPercent.VisibleIndex = 13
+        GridColumnPPH.VisibleIndex = 14
+        '
+        GVData.BestFitColumns()
+        '
+        GridColumnBudgetDesc.MinWidth = 100
+        GridColumnNo.MaxWidth = 30
+        GridColumnCurrView.MaxWidth = 30
+        GridColumnAmount.MaxWidth = 80
+        GridColumnTaxPercent.MaxWidth = 30
+        GridColumnTaxValue.MaxWidth = 70
+        GridColumnPPHPercent.MaxWidth = 30
+        GridColumnPPH.MaxWidth = 70
+
+        'creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        'Grid Detail
+        ReportStyleGridview(Report.GVData)
+        Report.GVData.OptionsPrint.AllowMultilineHeaders = True
+        ''============== END OF first table
+        'GridColumnCurrView.VisibleIndex = -1
+        'GridColumnBudgetDesc.VisibleIndex = -1
+        'GridColumnBefKurs.VisibleIndex = -1
+        'GridColumnKurs.VisibleIndex = -1
+        'GridColumnAmount.VisibleIndex = -1
+        'GridColumnTaxPercent.VisibleIndex = -1
+        'GridColumnTaxValue.VisibleIndex = -1
+        'GridColumnPPHDesc.VisibleIndex = 2
+        'GridColumnPPHPercent.VisibleIndex = 3
+        'GridColumnPPH.VisibleIndex = 4
+
+        'GVData.BestFitColumns()
+
+        ''creating and saving the view's layout to a new memory stream 
+        'Dim str2 As System.IO.Stream
+        'str2 = New System.IO.MemoryStream()
+        'GVData.SaveLayoutToStream(str2, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str2.Seek(0, System.IO.SeekOrigin.Begin)
+        'Report.GVPPH.RestoreLayoutFromStream(str2, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str2.Seek(0, System.IO.SeekOrigin.Begin)
+        ''Grid Detail
+        'ReportStyleGridview(Report.GVPPH)
+
+        ''============== END OF second table
+
+        GridColumnAccountDescription.VisibleIndex = 1
+        GCCCDesc.VisibleIndex = 2
+        GridColumnBudgetTypeDesc.VisibleIndex = 3
+        GridColumnBudgetDesc.VisibleIndex = 4
+        GridColumnDescription.VisibleIndex = 5
+        GridColumnAmount.VisibleIndex = 9
+        GridColumnTaxPercent.VisibleIndex = 10
+        GridColumnTaxValue.VisibleIndex = 11
+        GridColumnPPHDesc.VisibleIndex = 12
+        GridColumnPPHPercent.VisibleIndex = 13
+        GridColumnPPH.VisibleIndex = 14
+
+        GridColumnNo.MaxWidth = 0
+        GridColumnCurrView.MaxWidth = 0
+        GridColumnAmount.MaxWidth = 0
+        GridColumnTaxPercent.MaxWidth = 0
+        GridColumnTaxValue.MaxWidth = 0
+        GridColumnPPHPercent.MaxWidth = 0
+        GridColumnPPH.MaxWidth = 0
+
+        GVData.BestFitColumns()
+
+        'Parse val
+        Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+        Report.LabelDate.Text = DECreated.Text.ToString
+        Report.LNote.Text = MENote.Text.ToString
+        Report.LUnit.Text = SLEUnit.Text
+
+        Report.LabelBeneficiary.Text = TxtCompName.Text
+        Report.LabelDUelDate.Text = DEDueDate.Text
+        '
+        Report.LPayFrom.Visible = False
+        Report.LpayFromTitle.Visible = False
+        Report.LpayFromMark.Visible = False
+
+        Report.LInvNo.Text = TEInvNo.Text
+        Report.LabelTotalPayment.Text = TxtTotal.Text
+        Report.LSay.Text = ConvertCurrencyToIndonesian(Decimal.Parse(TxtTotal.EditValue.ToString))
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+        'Else
+        '    print_raw_no_export(GCData)
+        'End If
+        '
+        allow_status()
+        Cursor = Cursors.Default
+    End Sub
 End Class
