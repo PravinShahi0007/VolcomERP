@@ -675,7 +675,7 @@ HAVING tot=0"
 FROM
 (
 	SELECT l.id_pre_cal_fgpo,(l.price*l.qty) AS tot_fob,(l.duty/100) AS duty,fr.tot_freight,h.`rate_management`,l.`qty`,tq.tot_qty,(fr.tot_freight/tq.tot_qty)*l.`qty` AS freight_per_po
-	,ROUND((((fr.tot_freight/tq.tot_qty)*l.`qty`)+(l.price*l.qty*h.rate_management))*(l.duty/100)) AS duty_amo
+	,ROUND((((fr.tot_freight/tq.tot_qty)*l.`qty`)+(l.price*l.qty*h.rate_management))*(l.duty/100),2) AS duty_amo
 	FROM `tb_pre_cal_fgpo_list` l
 	INNER JOIN tb_pre_cal_fgpo h ON h.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo`
 	INNER JOIN
