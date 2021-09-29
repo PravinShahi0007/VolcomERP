@@ -46,7 +46,7 @@
 
     Sub viewInvoiceDetail()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT e.id_comp_group, cg.description AS `group_store`, c.comp_number AS `store_acc`, c.comp_name AS `store`,
+        Dim query As String = "SELECT e.id_ar_eval_pps,e.id_comp_group, cg.description AS `group_store`, c.comp_number AS `store_acc`, c.comp_name AS `store`,
         e.id_sales_pos AS `id_inv`, e.report_number AS `inv_number`, e.report_mark_type AS `inv_rmt`,
         sp.`sales_pos_date` AS `inv_date`, sp.`sales_pos_due_date` AS `inv_due_date`, sp.`sales_pos_start_period` AS `start_period`, sp.`sales_pos_end_period` AS `end_period`,
         DATEDIFF(DATE(e.eval_date),sp.sales_pos_due_date) AS due_days,
@@ -657,6 +657,7 @@
     Private Sub RepositoryItemHyperLinkEdit1_Click(sender As Object, e As EventArgs) Handles RepositoryItemHyperLinkEdit1.Click
         If GVInvoiceDetail.RowCount > 0 And GVInvoiceDetail.GetFocusedRowCellValue("id_ar_eval_release").ToString <> "0" Then
             Cursor = Cursors.WaitCursor
+            FormAREvaluationRelease.id_ar_eval_pps = GVInvoiceDetail.GetFocusedRowCellValue("id_ar_eval_pps").ToString
             FormAREvaluationRelease.id = GVInvoiceDetail.GetFocusedRowCellValue("id_ar_eval_release").ToString
             FormAREvaluationRelease.action = "upd"
             FormAREvaluationRelease.ShowDialog()

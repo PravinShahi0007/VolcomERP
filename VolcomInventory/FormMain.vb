@@ -1957,6 +1957,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormStockTakePropose" Then
             FormStockTakeProposeDet.id_st_store_propose = "-1"
             FormStockTakeProposeDet.ShowDialog()
+        ElseIf formName = "FormPrepaidExpense" Then
+            FormPrepaidExpenseDet.id = "-1"
+            FormPrepaidExpenseDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3308,6 +3311,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormStockTakePropose" Then
                 FormStockTakeProposeDet.id_st_store_propose = FormStockTakePropose.GVData.GetFocusedRowCellValue("id_st_store_propose").ToString
                 FormStockTakeProposeDet.ShowDialog()
+            ElseIf formName = "FormPrepaidExpenseDet" Then
+                FormPrepaidExpenseDet.id = FormPrepaidExpense.GVData.GetFocusedRowCellValue("id_prepaid_expense").ToString
+                FormPrepaidExpenseDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8807,6 +8813,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormMaterialRequisition.GCMRS, "List Material Requisition")
         ElseIf formname = "FormCapsule" Then
             print(FormCapsule.GCData, "Capsule Data")
+        ElseIf formname = "FormPrepaidExpense" Then
+            print(FormPrepaidExpense.GCData, "List Prepaid Expense")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9840,6 +9848,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormStockTakePropose" Then
             FormStockTakePropose.Close()
             FormStockTakePropose.Dispose()
+        ElseIf formName = "FormPrepaidExpense" Then
+            FormPrepaidExpense.Close()
+            FormPrepaidExpense.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10880,6 +10891,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPreCalFGPO.load_list()
         ElseIf formName = "FormStockTakePropose" Then
             FormStockTakePropose.load_form()
+        ElseIf formName = "FormPrepaidExpense" Then
+            FormPrepaidExpense.viewData()
         End If
     End Sub
     'Switch

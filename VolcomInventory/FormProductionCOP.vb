@@ -21,11 +21,33 @@
     Sub load_form()
         'show prod order detail
         If Not id_design = "-1" Then
-            Dim query As String = String.Format("SELECT prod_order_cop_pd_addcost,`pp_cop_rate_cat`,`pp_cop_kurs`,`pp_cop_value`,`pp_cop_mng_kurs`,`pp_cop_mng_value`,`pp_is_approve`,`final_cop_rate_cat`,`final_cop_kurs`,`final_cop_value`,`final_cop_mng_kurs`,`final_cop_mng_value`,`final_is_approve`,
-rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_addcost,design_name,design_display_name,design_code,id_cop_status,cop_pre_percent_bea_masuk,cop_pre_remark,design_cop,design_cop_addcost FROM tb_m_design WHERE id_design = '{0}'", id_design)
+            Dim query As String = String.Format("SELECT dsg.prod_order_cop_pd_addcost,dsg.`pp_cop_rate_cat`,dsg.`pp_cop_kurs`,dsg.`pp_cop_value`,dsg.`pp_cop_mng_kurs`,dsg.`pp_cop_mng_value`,dsg.`pp_is_approve`
+,dsg.`final_cop_rate_cat`,dsg.`final_cop_kurs`,dsg.`final_cop_value`,dsg.`final_cop_mng_kurs`,dsg.`final_cop_mng_value`,dsg.`final_is_approve`
+,dsg.rate_management,dsg.prod_order_cop_kurs_mng,dsg.prod_order_cop_mng,dsg.prod_order_cop_mng_addcost,dsg.design_name
+,dsg.design_display_name,dsg.design_code,dsg.id_cop_status,dsg.cop_pre_percent_bea_masuk,dsg.cop_pre_remark,dsg.design_cop,dsg.design_cop_addcost,cd.class,cd.color
+FROM tb_m_design dsg 
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
+WHERE dsg.id_design = '{0}'", id_design)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
-            TEDesign.Text = data.Rows(0)("design_display_name").ToString
+            TEClass.Text = data.Rows(0)("class").ToString
+            TEDesign.Text = data.Rows(0)("design_name").ToString
+            TEColor.Text = data.Rows(0)("color").ToString
             TEDesignCode.Text = data.Rows(0)("design_code").ToString
             'LEStatus.EditValue = data.Rows(0)("id_cop_status").ToString
             TEKursMan.EditValue = data.Rows(0)("prod_order_cop_kurs_mng")

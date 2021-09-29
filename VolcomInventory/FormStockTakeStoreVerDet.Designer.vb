@@ -19,7 +19,6 @@ Partial Class FormStockTakeStoreVerDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStockTakeStoreVerDet))
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
@@ -43,7 +42,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip()
         Me.PromoPriceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BGVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -87,6 +86,7 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn31 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn32 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn33 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -255,6 +255,7 @@ Partial Class FormStockTakeStoreVerDet
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.SBClose)
+        Me.PanelControl2.Controls.Add(Me.SBAttachment)
         Me.PanelControl2.Controls.Add(Me.SBMark)
         Me.PanelControl2.Controls.Add(Me.SBPrint)
         Me.PanelControl2.Controls.Add(Me.SBSubmit)
@@ -268,7 +269,7 @@ Partial Class FormStockTakeStoreVerDet
         '
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(472, 2)
+        Me.SBClose.Location = New System.Drawing.Point(355, 2)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(100, 41)
         Me.SBClose.TabIndex = 3
@@ -715,6 +716,16 @@ Partial Class FormStockTakeStoreVerDet
         Me.BandedGridColumn33.Name = "BandedGridColumn33"
         Me.BandedGridColumn33.OptionsColumn.AllowEdit = False
         '
+        'SBAttachment
+        '
+        Me.SBAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBAttachment.Image = CType(resources.GetObject("SBAttachment.Image"), System.Drawing.Image)
+        Me.SBAttachment.Location = New System.Drawing.Point(455, 2)
+        Me.SBAttachment.Name = "SBAttachment"
+        Me.SBAttachment.Size = New System.Drawing.Size(117, 41)
+        Me.SBAttachment.TabIndex = 5
+        Me.SBAttachment.Text = "Attachment"
+        '
         'FormStockTakeStoreVerDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -812,4 +823,5 @@ Partial Class FormStockTakeStoreVerDet
     Friend WithEvents BandedGridColumn31 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn32 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn33 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents SBAttachment As DevExpress.XtraEditors.SimpleButton
 End Class

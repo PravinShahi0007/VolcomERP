@@ -174,6 +174,8 @@ Partial Class FormProductionCOP
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMEditCost = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewLogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TEClass = New DevExpress.XtraEditors.TextEdit()
+        Me.TEColor = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -252,6 +254,8 @@ Partial Class FormProductionCOP
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
         Me.ViewMenu.SuspendLayout()
+        CType(Me.TEClass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEColor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -268,6 +272,8 @@ Partial Class FormProductionCOP
         'PanelControl8
         '
         Me.PanelControl8.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl8.Controls.Add(Me.TEColor)
+        Me.PanelControl8.Controls.Add(Me.TEClass)
         Me.PanelControl8.Controls.Add(Me.LabelControl1)
         Me.PanelControl8.Controls.Add(Me.TEDesign)
         Me.PanelControl8.Controls.Add(Me.LEStatus)
@@ -275,7 +281,7 @@ Partial Class FormProductionCOP
         Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl8.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl8.Name = "PanelControl8"
-        Me.PanelControl8.Size = New System.Drawing.Size(373, 65)
+        Me.PanelControl8.Size = New System.Drawing.Size(570, 65)
         Me.PanelControl8.TabIndex = 159
         '
         'LabelControl1
@@ -288,7 +294,7 @@ Partial Class FormProductionCOP
         '
         'TEDesign
         '
-        Me.TEDesign.Location = New System.Drawing.Point(69, 11)
+        Me.TEDesign.Location = New System.Drawing.Point(163, 11)
         Me.TEDesign.Name = "TEDesign"
         Me.TEDesign.Size = New System.Drawing.Size(291, 20)
         Me.TEDesign.TabIndex = 3
@@ -2046,6 +2052,20 @@ Partial Class FormProductionCOP
         Me.ViewLogToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.ViewLogToolStripMenuItem.Text = "View Log"
         '
+        'TEClass
+        '
+        Me.TEClass.Location = New System.Drawing.Point(69, 11)
+        Me.TEClass.Name = "TEClass"
+        Me.TEClass.Size = New System.Drawing.Size(88, 20)
+        Me.TEClass.TabIndex = 158
+        '
+        'TEColor
+        '
+        Me.TEColor.Location = New System.Drawing.Point(460, 10)
+        Me.TEColor.Name = "TEColor"
+        Me.TEColor.Size = New System.Drawing.Size(88, 20)
+        Me.TEColor.TabIndex = 159
+        '
         'FormProductionCOP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2150,6 +2170,8 @@ Partial Class FormProductionCOP
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl4.ResumeLayout(False)
         Me.ViewMenu.ResumeLayout(False)
+        CType(Me.TEClass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEColor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2306,4 +2328,6 @@ Partial Class FormProductionCOP
     Friend WithEvents PanelControl11 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BApprove As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEColor As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEClass As DevExpress.XtraEditors.TextEdit
 End Class

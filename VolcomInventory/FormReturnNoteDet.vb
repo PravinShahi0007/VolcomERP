@@ -223,25 +223,30 @@ WHERE rn.id_return_note='" & id_return_note & "'"
                 execute_non_query(q, True, "", "", "", "")
                 'print
                 print()
-                infoCustom("Return label saved.")
+                infoCustom("Return label created.")
             Else
-                'update
-                q = "UPDATE tb_return_note SET `id_type`='" & SLEType.EditValue.ToString & "',`id_emp_driver`='" & If(SLEType.EditValue.ToString = "1", SLEEmp.EditValue.ToString, "0") & "',`id_inbound_awb`='" & id_inbound_awb & "',`number_return_note`='" & addSlashes(TEReturnNoteNumber.Text) & "',`qty`='" & TEQtyReturnNote.EditValue.ToString & "',`date_return_note`='" & Date.Parse(DEReturnNote.EditValue.ToString).ToString("yyyy-MM-dd") & "',update_by='" & id_user & "',update_date=NOW() WHERE id_return_note='" & id_return_note & "'"
-                execute_non_query(q, True, "", "", "", "")
-                'store
-                q = "DELETE FROM tb_return_note_store WHERE id_return_note='" & id_return_note & "'"
-                execute_non_query(q, True, "", "", "", "")
-                q = "INSERT INTO tb_return_note_store(id_return_note,id_comp) VALUES"
-                For i As Integer = 0 To GVStore.RowCount - 1
-                    If Not i = 0 Then
-                        q += ","
-                    End If
-                    q += "('" & id_return_note & "','" & GVStore.GetRowCellValue(i, "id_comp").ToString & "')"
-                Next
-                execute_non_query(q, True, "", "", "", "")
-                'print
-                print()
-                infoCustom("Return label updated.")
+                Dim confirm As DialogResult
+                confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to UPDATE this return label ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    'update
+                    q = "UPDATE tb_return_note SET `id_type`='" & SLEType.EditValue.ToString & "',`id_emp_driver`='" & If(SLEType.EditValue.ToString = "1", SLEEmp.EditValue.ToString, "0") & "',`id_inbound_awb`='" & id_inbound_awb & "',`number_return_note`='" & addSlashes(TEReturnNoteNumber.Text) & "',`qty`='" & TEQtyReturnNote.EditValue.ToString & "',`date_return_note`='" & Date.Parse(DEReturnNote.EditValue.ToString).ToString("yyyy-MM-dd") & "',update_by='" & id_user & "',update_date=NOW() WHERE id_return_note='" & id_return_note & "'"
+                    execute_non_query(q, True, "", "", "", "")
+                    'store
+                    q = "DELETE FROM tb_return_note_store WHERE id_return_note='" & id_return_note & "'"
+                    execute_non_query(q, True, "", "", "", "")
+                    q = "INSERT INTO tb_return_note_store(id_return_note,id_comp) VALUES"
+                    For i As Integer = 0 To GVStore.RowCount - 1
+                        If Not i = 0 Then
+                            q += ","
+                        End If
+                        q += "('" & id_return_note & "','" & GVStore.GetRowCellValue(i, "id_comp").ToString & "')"
+                    Next
+                    execute_non_query(q, True, "", "", "", "")
+                    'print
+                    print()
+                    infoCustom("Return label updated.")
+                End If
             End If
         End If
         check_but()

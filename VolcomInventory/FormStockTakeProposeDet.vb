@@ -458,6 +458,10 @@
     End Sub
 
     Private Sub SBSubmit_Click(sender As Object, e As EventArgs) Handles SBSubmit.Click
+        GVStore.FindFilterText = ""
+        GVStore.ActiveFilterString = ""
+        GVStore.ClearColumnsFilter()
+
         Dim id_comp_group As String = SLUEGroup.EditValue.ToString
         Dim id_comp_contact As String = SLUEContact.EditValue.ToString
         Dim start_period As String = Date.Parse(DEPeriodFrom.EditValue.ToString).ToString("yyyy-MM-dd")
@@ -636,19 +640,35 @@
         mail.Body = WBEmail.DocumentText
 
         'attachment surat
-        Dim report_surat As ReportStockTakeProposeSuratIjin = New ReportStockTakeProposeSuratIjin
+        Dim query_att As String = "
+            SELECT doc.id_doc, doc.doc_desc, doc.datetime, 'yes' as is_download, CONCAT(doc.id_doc, '_348_" + id_st_store_propose + "', doc.ext) AS filename, emp.employee_name, doc.is_encrypted
+            FROM tb_doc doc
+            LEFT JOIN tb_m_user usr ON usr.id_user=doc.id_user_upload
+            LEFT JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+            WHERE report_mark_type = '348' AND id_report = '" + id_st_store_propose + "' 
+        "
 
-        report_surat.XrRichText.Html = WBSuratIjin.DocumentText
+        Dim data_att As DataTable = execute_query(query_att, -1, True, "", "", "", "")
 
-        Dim mem_surat As IO.MemoryStream = New IO.MemoryStream()
+        Dim path As String = Application.StartupPath & "\download\"
 
-        report_surat.ExportToPdf(mem_surat)
+        If Not IO.Directory.Exists(path) Then
+            System.IO.Directory.CreateDirectory(path)
+        End If
 
-        mem_surat.Seek(0, System.IO.SeekOrigin.Begin)
+        For i = 0 To data_att.Rows.Count - 1
+            If data_att.Rows(i)("is_encrypted").ToString = "1" Then
+                CryptFile.DecryptFile(get_setup_field("en_phrase"), get_setup_field("upload_dir") + "348\" & data_att.Rows(i)("filename").ToString, path & data_att.Rows(i)("doc_desc").ToString & "_" & data_att.Rows(i)("filename").ToString)
+            Else
+                My.Computer.Network.DownloadFile(get_setup_field("upload_dir") & "348\" & data_att.Rows(i)("filename").ToString, path & data_att.Rows(i)("doc_desc").ToString & "_" & data_att.Rows(i)("filename").ToString, "", "", True, 100, True)
+            End If
 
-        Dim att_surat = New Net.Mail.Attachment(mem_surat, "Surat Ijin.pdf", "application/pdf")
+            Dim filename As String = path + data_att.Rows(i)("doc_desc").ToString + "_" & data_att.Rows(i)("filename").ToString
 
-        mail.Attachments.Add(att_surat)
+            Dim att_surat = New Net.Mail.Attachment(filename)
+
+            mail.Attachments.Add(att_surat)
+        Next
 
         'attachment list toko
         Dim data_toko As DataTable = New DataTable
@@ -698,6 +718,7 @@
 
             mail.Dispose()
         Catch ex As Exception
+            execute_non_query("INSERT INTO tb_error_mail (date, description) VALUES(NOW(), 'SURAT IJIN STOCK TAKE;" + id_st_store_propose + ";" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
         End Try
     End Sub
 
