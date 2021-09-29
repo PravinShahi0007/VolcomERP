@@ -141,6 +141,12 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                 Else
                     BUpdateDuty.Visible = False
                 End If
+
+                If is_view = "1" Then
+                    BPrintBudget2.Visible = False
+                    BPrintDuty.Visible = False
+                    BUpdateDuty.Visible = False
+                End If
             End If
         End If
     End Sub
@@ -974,5 +980,12 @@ WHERE h.`id_pre_cal_fgpo`='" & id & "'"
             execute_non_query(q, True, "", "", "", "")
         Next
         infoCustom("Duty Updated")
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "334"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id
+        FormReportMark.ShowDialog()
     End Sub
 End Class

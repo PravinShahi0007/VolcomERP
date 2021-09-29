@@ -433,7 +433,7 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
 
             'header
             jum_row += 1
-            Dim qh As String = "SELECT acc.acc_name,acc.acc_description
+                Dim qh As String = "SELECT acc.acc_name,acc.acc_description
 FROM tb_m_comp c 
 INNER JOIN tb_a_acc acc ON acc.id_acc=" & If(id_coa_tag = "1", "c.id_acc_ap", "c.id_acc_cabang_ap") & "
 WHERE c.id_comp='" + id_comp + "' "
