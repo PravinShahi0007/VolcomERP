@@ -75,6 +75,8 @@ WHERE l.`id_pre_cal_fgpo`='" & id_report & "'"
         For i = 0 To dt_duty.Rows.Count - 1
             insert_row_duty(row_baru, dt_duty, i)
         Next
+
+        pre_load_mark_horz("334", id_report, "2", "2", XrTable6)
     End Sub
 
     Sub insert_row_duty(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)

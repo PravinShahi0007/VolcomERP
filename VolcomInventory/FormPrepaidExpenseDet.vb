@@ -974,9 +974,9 @@ WHERE c.id_comp='" + id_comp + "' "
         'If id_report_status = "6" Then
 
         If id_report_status = "6" Then
-            ReportItemExpense.is_pre = False
+            ReportPrepaidExpense.is_pre = False
         Else
-            ReportItemExpense.is_pre = True
+            ReportPrepaidExpense.is_pre = True
         End If
 
         ReportItemExpense.id = id
@@ -1004,7 +1004,6 @@ WHERE c.id_comp='" + id_comp + "' "
         '
         GridColumnBudgetDesc.MinWidth = 100
         GridColumnNo.MaxWidth = 30
-        GridColumnCurrView.MaxWidth = 30
         GridColumnAmount.MaxWidth = 80
         GridColumnTaxPercent.MaxWidth = 30
         GridColumnTaxValue.MaxWidth = 70
