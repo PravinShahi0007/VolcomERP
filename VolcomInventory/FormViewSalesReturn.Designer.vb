@@ -82,6 +82,9 @@ Partial Class FormViewSalesReturn
         Me.GridColumnIdDesign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdPlSalesOrderDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.XTPProblemItem = New DevExpress.XtraTab.XtraTabPage()
         Me.GCProbSum = New DevExpress.XtraGrid.GridControl()
@@ -141,9 +144,9 @@ Partial Class FormViewSalesReturn
         Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GroupControlStatus = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclassns = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolorns = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshtns = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -898,6 +901,31 @@ Partial Class FormViewSalesReturn
         Me.GridColumnIdPlSalesOrderDel.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnIdPlSalesOrderDel.Width = 127
         '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.OptionsColumn.ReadOnly = True
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.OptionsColumn.ReadOnly = True
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 4
+        '
+        'GridColumnsht
+        '
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.OptionsColumn.ReadOnly = True
+        '
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
@@ -910,7 +938,7 @@ Partial Class FormViewSalesReturn
         '
         Me.XTPProblemItem.Controls.Add(Me.GCProbSum)
         Me.XTPProblemItem.Name = "XTPProblemItem"
-        Me.XTPProblemItem.Size = New System.Drawing.Size(883, 161)
+        Me.XTPProblemItem.Size = New System.Drawing.Size(882, 161)
         Me.XTPProblemItem.Text = "Non Stock Item"
         '
         'GCProbSum
@@ -920,13 +948,13 @@ Partial Class FormViewSalesReturn
         Me.GCProbSum.MainView = Me.GVProbSum
         Me.GCProbSum.Name = "GCProbSum"
         Me.GCProbSum.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3, Me.RepositoryItemSpinEdit4})
-        Me.GCProbSum.Size = New System.Drawing.Size(883, 161)
+        Me.GCProbSum.Size = New System.Drawing.Size(882, 161)
         Me.GCProbSum.TabIndex = 8
         Me.GCProbSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProbSum})
         '
         'GVProbSum
         '
-        Me.GVProbSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumnQtyProbSum})
+        Me.GVProbSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumnQtyProbSum, Me.GridColumnclassns, Me.GridColumncolorns, Me.GridColumnshtns})
         Me.GVProbSum.GridControl = Me.GCProbSum
         Me.GVProbSum.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyProbSum, "{0:N0}")})
         Me.GVProbSum.Name = "GVProbSum"
@@ -951,7 +979,7 @@ Partial Class FormViewSalesReturn
         Me.GridColumn15.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 0
-        Me.GridColumn15.Width = 57
+        Me.GridColumn15.Width = 68
         '
         'GridColumn16
         '
@@ -960,7 +988,7 @@ Partial Class FormViewSalesReturn
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 1
-        Me.GridColumn16.Width = 320
+        Me.GridColumn16.Width = 383
         '
         'GridColumn17
         '
@@ -1029,8 +1057,8 @@ Partial Class FormViewSalesReturn
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.OptionsColumn.AllowEdit = False
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 2
-        Me.GridColumn25.Width = 626
+        Me.GridColumn25.VisibleIndex = 3
+        Me.GridColumn25.Width = 719
         '
         'GridColumn26
         '
@@ -1039,8 +1067,8 @@ Partial Class FormViewSalesReturn
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.OptionsColumn.AllowEdit = False
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 3
-        Me.GridColumn26.Width = 59
+        Me.GridColumn26.VisibleIndex = 6
+        Me.GridColumn26.Width = 76
         '
         'GridColumnQtyProbSum
         '
@@ -1051,7 +1079,8 @@ Partial Class FormViewSalesReturn
         Me.GridColumnQtyProbSum.Name = "GridColumnQtyProbSum"
         Me.GridColumnQtyProbSum.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnQtyProbSum.Visible = True
-        Me.GridColumnQtyProbSum.VisibleIndex = 4
+        Me.GridColumnQtyProbSum.VisibleIndex = 7
+        Me.GridColumnQtyProbSum.Width = 103
         '
         'RepositoryItemCheckEdit3
         '
@@ -1421,30 +1450,35 @@ Partial Class FormViewSalesReturn
         Me.BtnUpdateStatus.TabIndex = 5
         Me.BtnUpdateStatus.Text = "Update Order Status"
         '
-        'GridColumnclass
+        'GridColumnclassns
         '
-        Me.GridColumnclass.Caption = "Class"
-        Me.GridColumnclass.FieldName = "class"
-        Me.GridColumnclass.Name = "GridColumnclass"
-        Me.GridColumnclass.OptionsColumn.ReadOnly = True
-        Me.GridColumnclass.Visible = True
-        Me.GridColumnclass.VisibleIndex = 2
+        Me.GridColumnclassns.Caption = "Class"
+        Me.GridColumnclassns.FieldName = "class"
+        Me.GridColumnclassns.Name = "GridColumnclassns"
+        Me.GridColumnclassns.OptionsColumn.AllowEdit = False
+        Me.GridColumnclassns.Visible = True
+        Me.GridColumnclassns.VisibleIndex = 2
+        Me.GridColumnclassns.Width = 89
         '
-        'GridColumncolor
+        'GridColumncolorns
         '
-        Me.GridColumncolor.Caption = "Color"
-        Me.GridColumncolor.FieldName = "color"
-        Me.GridColumncolor.Name = "GridColumncolor"
-        Me.GridColumncolor.OptionsColumn.ReadOnly = True
-        Me.GridColumncolor.Visible = True
-        Me.GridColumncolor.VisibleIndex = 4
+        Me.GridColumncolorns.Caption = "Color"
+        Me.GridColumncolorns.FieldName = "color"
+        Me.GridColumncolorns.Name = "GridColumncolorns"
+        Me.GridColumncolorns.OptionsColumn.AllowEdit = False
+        Me.GridColumncolorns.Visible = True
+        Me.GridColumncolorns.VisibleIndex = 5
+        Me.GridColumncolorns.Width = 97
         '
-        'GridColumnsht
+        'GridColumnshtns
         '
-        Me.GridColumnsht.Caption = "Silhouette"
-        Me.GridColumnsht.FieldName = "sht"
-        Me.GridColumnsht.Name = "GridColumnsht"
-        Me.GridColumnsht.OptionsColumn.ReadOnly = True
+        Me.GridColumnshtns.Caption = "Silhouette"
+        Me.GridColumnshtns.FieldName = "sht"
+        Me.GridColumnshtns.Name = "GridColumnshtns"
+        Me.GridColumnshtns.OptionsColumn.AllowEdit = False
+        Me.GridColumnshtns.Visible = True
+        Me.GridColumnshtns.VisibleIndex = 4
+        Me.GridColumnshtns.Width = 97
         '
         'FormViewSalesReturn
         '
@@ -1657,4 +1691,7 @@ Partial Class FormViewSalesReturn
     Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclassns As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolorns As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnshtns As DevExpress.XtraGrid.Columns.GridColumn
 End Class

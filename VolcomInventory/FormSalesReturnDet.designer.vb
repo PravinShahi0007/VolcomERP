@@ -142,6 +142,9 @@ Partial Class FormSalesReturnDet
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnol_store_id_bar = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnitem_id_bar = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclassbc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolorbc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshtbc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
@@ -213,6 +216,8 @@ Partial Class FormSalesReturnDet
         Me.CENoStock = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GCIdScanType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCScanType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclassns = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolorns = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelNavBarcodeProb = New DevExpress.XtraEditors.PanelControl()
@@ -256,9 +261,7 @@ Partial Class FormSalesReturnDet
         Me.TxtCombineFrom = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnCombineReturn = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnclassbc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncolorbc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnshtbc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshtns = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1620,6 +1623,31 @@ Partial Class FormSalesReturnDet
         Me.GridColumnitem_id_bar.Name = "GridColumnitem_id_bar"
         Me.GridColumnitem_id_bar.OptionsColumn.AllowEdit = False
         '
+        'GridColumnclassbc
+        '
+        Me.GridColumnclassbc.Caption = "Class"
+        Me.GridColumnclassbc.FieldName = "class"
+        Me.GridColumnclassbc.Name = "GridColumnclassbc"
+        Me.GridColumnclassbc.OptionsColumn.AllowEdit = False
+        Me.GridColumnclassbc.Visible = True
+        Me.GridColumnclassbc.VisibleIndex = 2
+        '
+        'GridColumncolorbc
+        '
+        Me.GridColumncolorbc.Caption = "Color"
+        Me.GridColumncolorbc.FieldName = "color"
+        Me.GridColumncolorbc.Name = "GridColumncolorbc"
+        Me.GridColumncolorbc.OptionsColumn.AllowEdit = False
+        Me.GridColumncolorbc.Visible = True
+        Me.GridColumncolorbc.VisibleIndex = 4
+        '
+        'GridColumnshtbc
+        '
+        Me.GridColumnshtbc.Caption = "Silhouette"
+        Me.GridColumnshtbc.FieldName = "sht"
+        Me.GridColumnshtbc.Name = "GridColumnshtbc"
+        Me.GridColumnshtbc.OptionsColumn.AllowEdit = False
+        '
         'RepositoryItemCheckEdit2
         '
         Me.RepositoryItemCheckEdit2.AutoHeight = False
@@ -2024,7 +2052,7 @@ Partial Class FormSalesReturnDet
         '
         'GVBarcodeProb
         '
-        Me.GVBarcodeProb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumnRemarkProb, Me.GridColumnDesignCode, Me.GridColumnQtyNonStock, Me.GridColumnis_unique_not_found, Me.GridColumnis_no_stock, Me.GridColumnunique_not_found, Me.GridColumnno_stock, Me.GCIdScanType, Me.GCScanType})
+        Me.GVBarcodeProb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumnRemarkProb, Me.GridColumnDesignCode, Me.GridColumnQtyNonStock, Me.GridColumnis_unique_not_found, Me.GridColumnis_no_stock, Me.GridColumnunique_not_found, Me.GridColumnno_stock, Me.GCIdScanType, Me.GCScanType, Me.GridColumnclassns, Me.GridColumncolorns, Me.GridColumnshtns})
         Me.GVBarcodeProb.GridControl = Me.GCBarcodeProb
         Me.GVBarcodeProb.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyNonStock, "{0:n0}")})
         Me.GVBarcodeProb.Name = "GVBarcodeProb"
@@ -2049,7 +2077,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumn1.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 47
+        Me.GridColumn1.Width = 59
         '
         'GridColumn3
         '
@@ -2058,7 +2086,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 269
+        Me.GridColumn3.Width = 342
         '
         'GridColumn4
         '
@@ -2127,8 +2155,8 @@ Partial Class FormSalesReturnDet
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsColumn.AllowEdit = False
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 2
-        Me.GridColumn13.Width = 309
+        Me.GridColumn13.VisibleIndex = 3
+        Me.GridColumn13.Width = 402
         '
         'GridColumn14
         '
@@ -2137,8 +2165,8 @@ Partial Class FormSalesReturnDet
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.OptionsColumn.AllowEdit = False
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 3
-        Me.GridColumn14.Width = 71
+        Me.GridColumn14.VisibleIndex = 5
+        Me.GridColumn14.Width = 96
         '
         'GridColumnRemarkProb
         '
@@ -2147,8 +2175,8 @@ Partial Class FormSalesReturnDet
         Me.GridColumnRemarkProb.Name = "GridColumnRemarkProb"
         Me.GridColumnRemarkProb.OptionsColumn.AllowEdit = False
         Me.GridColumnRemarkProb.Visible = True
-        Me.GridColumnRemarkProb.VisibleIndex = 6
-        Me.GridColumnRemarkProb.Width = 219
+        Me.GridColumnRemarkProb.VisibleIndex = 8
+        Me.GridColumnRemarkProb.Width = 297
         '
         'GridColumnDesignCode
         '
@@ -2168,8 +2196,8 @@ Partial Class FormSalesReturnDet
         Me.GridColumnQtyNonStock.UnboundExpression = "1"
         Me.GridColumnQtyNonStock.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumnQtyNonStock.Visible = True
-        Me.GridColumnQtyNonStock.VisibleIndex = 4
-        Me.GridColumnQtyNonStock.Width = 66
+        Me.GridColumnQtyNonStock.VisibleIndex = 6
+        Me.GridColumnQtyNonStock.Width = 89
         '
         'GridColumnis_unique_not_found
         '
@@ -2194,8 +2222,8 @@ Partial Class FormSalesReturnDet
         Me.GridColumnunique_not_found.UnboundExpression = "Iif([is_unique_not_found] = 1, 'Yes', 'No')"
         Me.GridColumnunique_not_found.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.GridColumnunique_not_found.Visible = True
-        Me.GridColumnunique_not_found.VisibleIndex = 7
-        Me.GridColumnunique_not_found.Width = 77
+        Me.GridColumnunique_not_found.VisibleIndex = 9
+        Me.GridColumnunique_not_found.Width = 116
         '
         'CENotFound
         '
@@ -2231,8 +2259,28 @@ Partial Class FormSalesReturnDet
         Me.GCScanType.FieldName = "scan_type"
         Me.GCScanType.Name = "GCScanType"
         Me.GCScanType.Visible = True
-        Me.GCScanType.VisibleIndex = 5
-        Me.GCScanType.Width = 72
+        Me.GCScanType.VisibleIndex = 7
+        Me.GCScanType.Width = 97
+        '
+        'GridColumnclassns
+        '
+        Me.GridColumnclassns.Caption = "Class"
+        Me.GridColumnclassns.FieldName = "class"
+        Me.GridColumnclassns.Name = "GridColumnclassns"
+        Me.GridColumnclassns.OptionsColumn.AllowEdit = False
+        Me.GridColumnclassns.Visible = True
+        Me.GridColumnclassns.VisibleIndex = 2
+        Me.GridColumnclassns.Width = 67
+        '
+        'GridColumncolorns
+        '
+        Me.GridColumncolorns.Caption = "Color"
+        Me.GridColumncolorns.FieldName = "color"
+        Me.GridColumncolorns.Name = "GridColumncolorns"
+        Me.GridColumncolorns.OptionsColumn.AllowEdit = False
+        Me.GridColumncolorns.Visible = True
+        Me.GridColumncolorns.VisibleIndex = 4
+        Me.GridColumncolorns.Width = 67
         '
         'RepositoryItemCheckEdit1
         '
@@ -2691,30 +2739,12 @@ Partial Class FormSalesReturnDet
         Me.BtnCombineReturn.TabIndex = 0
         Me.BtnCombineReturn.Text = "Combine Return"
         '
-        'GridColumnclassbc
+        'GridColumnshtns
         '
-        Me.GridColumnclassbc.Caption = "Class"
-        Me.GridColumnclassbc.FieldName = "class"
-        Me.GridColumnclassbc.Name = "GridColumnclassbc"
-        Me.GridColumnclassbc.OptionsColumn.AllowEdit = False
-        Me.GridColumnclassbc.Visible = True
-        Me.GridColumnclassbc.VisibleIndex = 2
-        '
-        'GridColumncolorbc
-        '
-        Me.GridColumncolorbc.Caption = "Color"
-        Me.GridColumncolorbc.FieldName = "color"
-        Me.GridColumncolorbc.Name = "GridColumncolorbc"
-        Me.GridColumncolorbc.OptionsColumn.AllowEdit = False
-        Me.GridColumncolorbc.Visible = True
-        Me.GridColumncolorbc.VisibleIndex = 4
-        '
-        'GridColumnshtbc
-        '
-        Me.GridColumnshtbc.Caption = "Silhouette"
-        Me.GridColumnshtbc.FieldName = "sht"
-        Me.GridColumnshtbc.Name = "GridColumnshtbc"
-        Me.GridColumnshtbc.OptionsColumn.AllowEdit = False
+        Me.GridColumnshtns.Caption = "Silhouette"
+        Me.GridColumnshtns.FieldName = "sht"
+        Me.GridColumnshtns.Name = "GridColumnshtns"
+        Me.GridColumnshtns.OptionsColumn.AllowEdit = False
         '
         'FormSalesReturnDet
         '
@@ -3080,4 +3110,7 @@ Partial Class FormSalesReturnDet
     Friend WithEvents GridColumnclassbc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncolorbc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnshtbc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclassns As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolorns As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnshtns As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -480,12 +480,29 @@ Public Class FormSalesReturnDet
 
     Sub view_barcode_list_prob()
         Dim query As String = "SELECT '0' AS `no`,rp.id_sales_return_problem, rp.id_product, d.design_code, rp.scanned_code AS `code`,
-            d.design_display_name AS `name`, cd.code_detail_name AS `size`, rp.remark, rp.is_unique_not_found, rp.is_no_stock, rp.id_scan_type, ty.scan_type
+            d.design_display_name AS `name`, cd.code_detail_name AS `size`, dcd.class, dcd.color, dcd.sht,
+            rp.remark, rp.is_unique_not_found, rp.is_no_stock, rp.id_scan_type, ty.scan_type
             FROM tb_sales_return_problem rp
             INNER JOIN tb_m_product p ON p.id_product = rp.id_product
             INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
             INNER JOIN tb_m_design d ON d.id_design = p.id_design
+            LEFT JOIN (
+		        SELECT dc.id_design, 
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		        FROM tb_m_design_code dc
+		        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		        AND cd.id_code IN (32,30,14, 43)
+		        GROUP BY dc.id_design
+	        ) dcd ON dcd.id_design = d.id_design
             INNER JOIN tb_lookup_scan_type ty ON rp.id_scan_type = ty.id_scan_type
             WHERE rp.id_sales_return=" + id_sales_return + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -2827,6 +2844,9 @@ Public Class FormSalesReturnDet
                     newRow("code") = data.Rows(0)("code").ToString
                     newRow("name") = data.Rows(0)("name").ToString
                     newRow("size") = data.Rows(0)("size").ToString
+                    newRow("class") = data.Rows(0)("class").ToString
+                    newRow("color") = data.Rows(0)("color").ToString
+                    newRow("sht") = data.Rows(0)("sht").ToString
                     newRow("is_unique_not_found") = is_unique_not_found
                     newRow("is_no_stock") = is_no_stock
                     newRow("id_scan_type") = LUETypeScan.EditValue
@@ -2835,6 +2855,8 @@ Public Class FormSalesReturnDet
                     FormSalesReturnDetProblem.TxtCode.Text = data.Rows(0)("design_code").ToString
                     FormSalesReturnDetProblem.TxtBarcode.Text = data.Rows(0)("code").ToString
                     FormSalesReturnDetProblem.TxtSize.Text = data.Rows(0)("size").ToString
+                    FormSalesReturnDetProblem.TxtClass.Text = data.Rows(0)("class").ToString
+                    FormSalesReturnDetProblem.Txtcolor.Text = data.Rows(0)("color").ToString
                     FormSalesReturnDetProblem.TxtDesign.Text = data.Rows(0)("name").ToString
                     FormSalesReturnDetProblem.id_product = data.Rows(0)("id_product").ToString
                     FormSalesReturnDetProblem.id_type = "1"
