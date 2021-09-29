@@ -363,6 +363,198 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
         Cursor = Cursors.Default
     End Sub
 
+    Private Sub XTPDraftJournal_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTPDraftJournal.SelectedPageChanged
+        If XTPDraftJournal.SelectedTabPageIndex = 1 Then
+            GVData.RefreshData()
+            load_blank_draft()
+            viewDraftJournal()
+        End If
+    End Sub
+
+    Sub load_blank_draft()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 0 AS `no`,'' AS id_acc, '' AS acc_name, '' AS acc_description, '' AS `cc`, '' AS report_number, '' AS note, 0.00 AS `debit`, 0.00 AS `credit` "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDraft.DataSource = data
+        GVDraft.DeleteSelectedRows()
+        GVDraft.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewDraftJournal()
+        Cursor = Cursors.WaitCursor
+        If GVData.RowCount > 0 Then
+            makeSafeGV(GVData)
+            Dim jum_row As Integer = 0
+
+            'header
+            jum_row += 1
+            Dim qh As String = "SELECT acc.acc_name,acc.acc_description
+FROM tb_m_comp c 
+INNER JOIN tb_a_acc acc ON acc.id_acc=" & If(id_coa_tag = "1", "c.id_acc_ap", "c.id_acc_cabang_ap") & "
+WHERE c.id_comp='" + id_comp + "' "
+            Dim dh As DataTable = execute_query(qh, -1, True, "", "", "", "")
+            If dh.Rows.Count > 0 Then
+                'total
+                If TxtSubTotal.EditValue > 0 Then
+                    Dim newRowh As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                    newRowh("no") = jum_row
+                    newRowh("acc_name") = dh.Rows(0)("acc_name").ToString
+                    newRowh("acc_description") = dh.Rows(0)("acc_name").ToString & " - " & dh.Rows(0)("acc_description").ToString
+                    newRowh("cc") = "000"
+                    newRowh("report_number") = ""
+                    newRowh("note") = MENote.Text
+                    newRowh("debit") = 0
+                    newRowh("credit") = TxtSubTotal.EditValue + TxtVAT.EditValue - TEPPH.EditValue
+                    TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowh)
+                    GCDraft.RefreshDataSource()
+                    GVDraft.RefreshData()
+                End If
+
+                'detil
+                For i As Integer = 0 To GVData.RowCount - 1
+                    'Dim found As Boolean = False
+                    'Dim row_found As Integer = 0
+                    'For j As Integer = 0 To GVDraft.RowCount - 1
+                    '    row_found = j
+                    'Next
+
+                    'If found Then
+                    '    GVDraft.SetRowCellValue(row_found, "debit", GVDraft.GetRowCellValue(row_found, "debit") + Math.Abs(GVData.GetRowCellValue(i, "valuex")))
+                    'Else
+                    '    jum_row += 1
+                    '    Dim newRow As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                    '    newRow("no") = jum_row
+                    '    newRow("id_acc") = GVData.GetRowCellValue(i, "id_acc").ToString
+                    '    newRow("acc_description") = GVData.GetRowCellDisplayText(i, "id_acc").ToString
+                    '    newRow("cc") = "000"
+                    '    newRow("report_number") = GVData.GetRowCellValue(i, "report_number").ToString
+                    '    newRow("note") = GVData.GetRowCellValue(i, "info_design").ToString
+                    '    If GVData.GetRowCellValue(i, "valuex") < 0 Then
+                    '        newRow("debit") = 0
+                    '        newRow("credit") = Math.Abs(GVData.GetRowCellValue(i, "valuex"))
+                    '    Else
+                    '        newRow("debit") = Math.Abs(GVData.GetRowCellValue(i, "valuex"))
+                    '        newRow("credit") = 0
+                    '    End If
+                    '    TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRow)
+                    '    GCDraft.RefreshDataSource()
+                    '    GVDraft.RefreshData()
+                    'End If
+                    jum_row += 1
+                    Dim newRow As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                    newRow("no") = jum_row
+                    newRow("id_acc") = GVData.GetRowCellValue(i, "id_acc").ToString
+
+                    If id = "-1" Then
+                        Try
+                            newRow("acc_name") = get_acc(GVData.GetRowCellValue(i, "id_acc").ToString, "1")
+                            newRow("acc_description") = get_acc(GVData.GetRowCellValue(i, "id_acc").ToString, "2")
+                            newRow("cc") = GVData.GetRowCellValue(i, "cc_desc").ToString
+                        Catch ex As Exception
+                        End Try
+                    Else
+                        newRow("acc_name") = GVData.GetRowCellValue(i, "acc_name").ToString
+                        newRow("acc_description") = GVData.GetRowCellValue(i, "coa_desc").ToString
+                        newRow("cc") = GVData.GetRowCellDisplayText(i, "cc").ToString
+                    End If
+
+                    newRow("report_number") = ""
+                    newRow("note") = GVData.GetRowCellValue(i, "description").ToString
+                    If GVData.GetRowCellValue(i, "amount") < 0 Then
+                        newRow("debit") = 0
+                        newRow("credit") = Math.Abs(GVData.GetRowCellValue(i, "amount"))
+                    Else
+                        newRow("debit") = Math.Abs(GVData.GetRowCellValue(i, "amount"))
+                        newRow("credit") = 0
+                    End If
+                    TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRow)
+                    GCDraft.RefreshDataSource()
+                    GVDraft.RefreshData()
+                    'pph
+                    If GVData.GetRowCellValue(i, "id_acc_pph").ToString = get_opt_acc_field("id_acc_skbp") And GVData.GetRowCellValue(i, "pph_percent") > 0 Then
+                        'SKBP
+                        'debit
+                        jum_row += 1
+                        Dim newRowvat As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                        newRowvat("no") = jum_row
+                        Try
+                            newRowvat("acc_name") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "1")
+                            newRowvat("acc_description") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "2")
+                            newRowvat("note") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "2") & " (PPH " & GVData.GetRowCellValue(i, "pph_percent").ToString & " %)"
+                        Catch ex As Exception
+                        End Try
+                        newRowvat("cc") = "000"
+                        newRowvat("report_number") = ""
+                        newRowvat("debit") = (GVData.GetRowCellValue(i, "pph_percent") / 100) * GVData.GetRowCellValue(i, "amount")
+                        newRowvat("credit") = 0
+                        TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowvat)
+
+                        'credit
+                        jum_row += 1
+                        newRowvat = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                        newRowvat("no") = jum_row
+                        Try
+                            newRowvat("acc_name") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "1")
+                            newRowvat("acc_description") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "2")
+                            newRowvat("note") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "2") & " (PPH " & GVData.GetRowCellValue(i, "pph_percent").ToString & " %)"
+                        Catch ex As Exception
+                        End Try
+                        newRowvat("cc") = "000"
+                        newRowvat("report_number") = ""
+                        newRowvat("debit") = 0
+                        newRowvat("credit") = (GVData.GetRowCellValue(i, "pph_percent") / 100) * GVData.GetRowCellValue(i, "amount")
+                        TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowvat)
+                    ElseIf GVData.GetRowCellValue(i, "pph_percent") > 0 Then
+                        jum_row += 1
+                        Dim newRowvat As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                        newRowvat("no") = jum_row
+                        Try
+                            newRowvat("acc_name") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "1")
+                            newRowvat("acc_description") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "2")
+                            newRowvat("note") = get_acc(GVData.GetRowCellValue(i, "id_acc_pph").ToString, "2") & " (PPH " & GVData.GetRowCellValue(i, "pph_percent").ToString & " %)"
+                        Catch ex As Exception
+                        End Try
+                        newRowvat("cc") = "000"
+                        newRowvat("report_number") = ""
+                        newRowvat("debit") = 0
+                        newRowvat("credit") = GVData.GetRowCellValue(i, "pph_value")
+                        TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowvat)
+                    End If
+                Next
+                'vat
+                If TxtVAT.EditValue > 0 Then
+                    jum_row += 1
+                    Dim newRowvat As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
+                    newRowvat("no") = jum_row
+                    If id_coa_tag = "1" Then
+                        newRowvat("acc_name") = get_acc(get_opt_purchasing_field("acc_coa_vat_in"), "1")
+                        newRowvat("acc_description") = get_acc(get_opt_purchasing_field("acc_coa_vat_in"), "2")
+                    Else
+                        newRowvat("acc_name") = get_acc(get_opt_purchasing_field("acc_coa_vat_in_cabang"), "1")
+                        newRowvat("acc_description") = get_acc(get_opt_purchasing_field("acc_coa_vat_in_cabang"), "2")
+                    End If
+                    newRowvat("cc") = "000"
+                    newRowvat("report_number") = ""
+                    newRowvat("note") = MENote.Text
+                    newRowvat("debit") = TxtVAT.EditValue
+                    newRowvat("credit") = 0
+                    TryCast(GCDraft.DataSource, DataTable).Rows.Add(newRowvat)
+                    jum_row += 1
+                End If
+                '
+                GCDraft.RefreshDataSource()
+                GVDraft.RefreshData()
+
+                GVDraft.BestFitColumns()
+            Else
+                MsgBox("DP/AP account is not set")
+                XTPDraftJournal.SelectedTabPageIndex = 0
+            End If
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
         del()
     End Sub
@@ -494,8 +686,8 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
 
                         'refresh
                         actionLoad()
-                        FormItemExpense.viewData()
-                        FormItemExpense.GVData.FocusedRowHandle = find_row(FormItemExpense.GVData, "id_item_expense", id)
+                        FormPrepaidExpense.viewData()
+                        FormPrepaidExpense.GVData.FocusedRowHandle = find_row(FormPrepaidExpense.GVData, "id_prepaid_expense", id)
                         infoCustom("Prepaid Expense : " + TxtNumber.Text.ToString + " was created successfully. Waiting for approval")
                     ElseIf Not id = "-1" Then
                         'no more edit for u
