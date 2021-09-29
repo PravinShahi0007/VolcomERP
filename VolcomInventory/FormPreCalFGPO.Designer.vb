@@ -97,7 +97,7 @@ Partial Class FormPreCalFGPO
         Me.MinimizeBox = False
         Me.Name = "FormPreCalFGPO"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Pre Cal"
+        Me.Text = "International Shipment Budget"
         CType(Me.GCPreCal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPreCal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
