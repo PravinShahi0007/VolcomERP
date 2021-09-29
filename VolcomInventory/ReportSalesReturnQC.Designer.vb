@@ -25,7 +25,9 @@ Partial Public Class ReportSalesReturnQC
         Me.XTRow = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -79,8 +81,6 @@ Partial Public Class ReportSalesReturnQC
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
-        Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -134,7 +134,7 @@ Partial Public Class ReportSalesReturnQC
         Me.XrTableCell5.StylePriority.UseTextAlignment = False
         Me.XrTableCell5.Text = "NO"
         Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell5.Weight = 1.0011226039247709R
+        Me.XrTableCell5.Weight = 1.2221011727830833R
         '
         'XrTableCell8
         '
@@ -152,7 +152,25 @@ Partial Public Class ReportSalesReturnQC
         Me.XrTableCell8.StylePriority.UseTextAlignment = False
         Me.XrTableCell8.Text = "BARCODE"
         Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell8.Weight = 3.0033677728128523R
+        Me.XrTableCell8.Weight = 3.6663034793877896R
+        '
+        'XrTableCell2
+        '
+        Me.XrTableCell2.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.[Double]
+        Me.XrTableCell2.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell2.BorderWidth = 3.0!
+        Me.XrTableCell2.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell2.Name = "XrTableCell2"
+        Me.XrTableCell2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrTableCell2.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell2.StylePriority.UseBorders = False
+        Me.XrTableCell2.StylePriority.UseBorderWidth = False
+        Me.XrTableCell2.StylePriority.UseFont = False
+        Me.XrTableCell2.StylePriority.UsePadding = False
+        Me.XrTableCell2.StylePriority.UseTextAlignment = False
+        Me.XrTableCell2.Text = "CLASS"
+        Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell2.Weight = 1.7458587354336579R
         '
         'XrTableCell7
         '
@@ -170,7 +188,25 @@ Partial Public Class ReportSalesReturnQC
         Me.XrTableCell7.StylePriority.UseTextAlignment = False
         Me.XrTableCell7.Text = "DESCRIPTION"
         Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell7.Weight = 3.5754376041964462R
+        Me.XrTableCell7.Weight = 6.1105057760834685R
+        '
+        'XrTableCell3
+        '
+        Me.XrTableCell3.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.[Double]
+        Me.XrTableCell3.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell3.BorderWidth = 3.0!
+        Me.XrTableCell3.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell3.Name = "XrTableCell3"
+        Me.XrTableCell3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrTableCell3.StylePriority.UseBorderDashStyle = False
+        Me.XrTableCell3.StylePriority.UseBorders = False
+        Me.XrTableCell3.StylePriority.UseBorderWidth = False
+        Me.XrTableCell3.StylePriority.UseFont = False
+        Me.XrTableCell3.StylePriority.UsePadding = False
+        Me.XrTableCell3.StylePriority.UseTextAlignment = False
+        Me.XrTableCell3.Text = "COLOR"
+        Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell3.Weight = 1.7458587820950524R
         '
         'XrTableCell9
         '
@@ -188,7 +224,7 @@ Partial Public Class ReportSalesReturnQC
         Me.XrTableCell9.StylePriority.UseTextAlignment = False
         Me.XrTableCell9.Text = "SIZE"
         Me.XrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell9.Weight = 1.8771049311040975R
+        Me.XrTableCell9.Weight = 1.7458587652411359R
         '
         'XrTableCell10
         '
@@ -207,7 +243,7 @@ Partial Public Class ReportSalesReturnQC
         Me.XrTableCell10.StylePriority.UseTextAlignment = False
         Me.XrTableCell10.Text = "QTY"
         Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell10.Weight = 4.5586838011472981R
+        Me.XrTableCell10.Weight = 1.7458588877179433R
         '
         'XrTableCell15
         '
@@ -226,7 +262,7 @@ Partial Public Class ReportSalesReturnQC
         Me.XrTableCell15.StylePriority.UseTextAlignment = False
         Me.XrTableCell15.Text = "TYPE"
         Me.XrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell15.Weight = 2.1452627854436175R
+        Me.XrTableCell15.Weight = 1.7458588247430895R
         '
         'XrTableCell11
         '
@@ -244,7 +280,7 @@ Partial Public Class ReportSalesReturnQC
         Me.XrTableCell11.StylePriority.UseTextAlignment = False
         Me.XrTableCell11.Text = "PRICE"
         Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell11.Weight = 1.2299487913371305R
+        Me.XrTableCell11.Weight = 3.6313862786085553R
         '
         'XrTableCell12
         '
@@ -263,7 +299,7 @@ Partial Public Class ReportSalesReturnQC
         Me.XrTableCell12.StylePriority.UseTextAlignment = False
         Me.XrTableCell12.Text = "AMOUNT"
         Me.XrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell12.Weight = 3.0212433438488535R
+        Me.XrTableCell12.Weight = 3.6313863087305895R
         '
         'XrRowTotal
         '
@@ -288,7 +324,7 @@ Partial Public Class ReportSalesReturnQC
         Me.XCReturnQty.StylePriority.UsePadding = False
         Me.XCReturnQty.StylePriority.UseTextAlignment = False
         Me.XCReturnQty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XCReturnQty.Weight = 24.707291844595019R
+        Me.XCReturnQty.Weight = 24.211779868631815R
         '
         'XrTableCell4
         '
@@ -305,7 +341,7 @@ Partial Public Class ReportSalesReturnQC
         Me.XrTableCell4.StylePriority.UsePadding = False
         Me.XrTableCell4.StylePriority.UseTextAlignment = False
         Me.XrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell4.Weight = 3.7817268047712629R
+        Me.XrTableCell4.Weight = 2.35065781630526R
         '
         'XrTableCell14
         '
@@ -322,7 +358,7 @@ Partial Public Class ReportSalesReturnQC
         Me.XrTableCell14.StylePriority.UsePadding = False
         Me.XrTableCell14.StylePriority.UseTextAlignment = False
         Me.XrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell14.Weight = 5.2439997139822419R
+        Me.XrTableCell14.Weight = 4.8893690510738406R
         '
         'XCReturnAmount
         '
@@ -339,7 +375,7 @@ Partial Public Class ReportSalesReturnQC
         Me.XCReturnAmount.StylePriority.UsePadding = False
         Me.XCReturnAmount.StylePriority.UseTextAlignment = False
         Me.XCReturnAmount.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XCReturnAmount.Weight = 2.6081573587003706R
+        Me.XCReturnAmount.Weight = 4.8893689860379794R
         '
         'TopMargin
         '
@@ -821,42 +857,6 @@ Partial Public Class ReportSalesReturnQC
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel9, Me.XrLabel14, Me.LabelNote, Me.XrTable1})
         Me.ReportFooter.HeightF = 85.41667!
         Me.ReportFooter.Name = "ReportFooter"
-        '
-        'XrTableCell2
-        '
-        Me.XrTableCell2.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.[Double]
-        Me.XrTableCell2.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell2.BorderWidth = 3.0!
-        Me.XrTableCell2.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTableCell2.Name = "XrTableCell2"
-        Me.XrTableCell2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrTableCell2.StylePriority.UseBorderDashStyle = False
-        Me.XrTableCell2.StylePriority.UseBorders = False
-        Me.XrTableCell2.StylePriority.UseBorderWidth = False
-        Me.XrTableCell2.StylePriority.UseFont = False
-        Me.XrTableCell2.StylePriority.UsePadding = False
-        Me.XrTableCell2.StylePriority.UseTextAlignment = False
-        Me.XrTableCell2.Text = "CLASS"
-        Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell2.Weight = 3.0033677728128523R
-        '
-        'XrTableCell3
-        '
-        Me.XrTableCell3.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.[Double]
-        Me.XrTableCell3.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell3.BorderWidth = 3.0!
-        Me.XrTableCell3.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTableCell3.Name = "XrTableCell3"
-        Me.XrTableCell3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrTableCell3.StylePriority.UseBorderDashStyle = False
-        Me.XrTableCell3.StylePriority.UseBorders = False
-        Me.XrTableCell3.StylePriority.UseBorderWidth = False
-        Me.XrTableCell3.StylePriority.UseFont = False
-        Me.XrTableCell3.StylePriority.UsePadding = False
-        Me.XrTableCell3.StylePriority.UseTextAlignment = False
-        Me.XrTableCell3.Text = "COLOR"
-        Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell3.Weight = 3.5754376041964462R
         '
         'ReportSalesReturnQC
         '
