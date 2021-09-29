@@ -47,6 +47,9 @@ Public Class FormEmpUniExpenseDet
             BtnDraftJournal.Visible = False
             viewDetail()
             ActiveControl = SLECat
+
+            DEStart.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='1'", 0, True, "", "", "", "")
+            DEEnd.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='1'", 0, True, "", "", "", "")
         ElseIf action = "upd" Then
             BtnPrint.Visible = True
             BtnAttachment.Visible = True
@@ -647,5 +650,9 @@ Public Class FormEmpUniExpenseDet
             FormEmpUniExpenseSetQty.id_del_det = GVData.GetFocusedRowCellValue("id_pl_sales_order_del_det").ToString
             FormEmpUniExpenseSetQty.ShowDialog()
         End If
+    End Sub
+
+    Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
+        DEEnd.Properties.MinValue = DEStart.EditValue
     End Sub
 End Class
