@@ -95,8 +95,8 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyMonth = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEndPeriod = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTaxPercent = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnTaxValue = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -111,7 +111,7 @@ Partial Class FormPrepaidExpenseDet
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnPPH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCoaBiayaCol = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPPHDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumnAccountDescription = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -141,6 +141,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCOABiaya = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlPay.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -707,7 +708,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GVData.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVData.ColumnPanelRowHeight = 40
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAcc, Me.GridColumnNo, Me.GridColumnaccount, Me.GridColumnDescription, Me.GCCC, Me.GridColumnBudgetType, Me.GridColumnBudget, Me.GridColumn16, Me.GridColumn6, Me.GridColumn5, Me.GridColumnTaxPercent, Me.GridColumnTaxValue, Me.GridColumnAmount, Me.GridColumnPPHCOA, Me.GridColumnPPHPercent, Me.GridColumnPPH, Me.GridColumn1, Me.GridColumnPPHDesc, Me.GridColumnAccountDescription, Me.GridColumnBudgetTypeDesc, Me.GridColumnBudgetDesc, Me.GCCCDesc, Me.GridColumnCurrView, Me.GridColumn7, Me.GridColumnLock})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAcc, Me.GridColumnNo, Me.GridColumnaccount, Me.GridColumnDescription, Me.GCCC, Me.GridColumnBudgetType, Me.GridColumnBudget, Me.GridColumn16, Me.GridColumnQtyMonth, Me.GridColumnEndPeriod, Me.GridColumnTaxPercent, Me.GridColumnTaxValue, Me.GridColumnAmount, Me.GridColumnPPHCOA, Me.GridColumnPPHPercent, Me.GridColumnPPH, Me.GridColumnCoaBiayaCol, Me.GridColumnPPHDesc, Me.GridColumnAccountDescription, Me.GridColumnCOABiaya, Me.GridColumnBudgetTypeDesc, Me.GridColumnBudgetDesc, Me.GCCCDesc, Me.GridColumnCurrView, Me.GridColumn7, Me.GridColumnLock})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsPrint.AllowMultilineHeaders = True
@@ -952,31 +953,31 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumn16.FieldName = "start_date"
         Me.GridColumn16.Name = "GridColumn16"
         '
-        'GridColumn6
+        'GridColumnQtyMonth
         '
-        Me.GridColumn6.Caption = "Total Month Installment"
-        Me.GridColumn6.DisplayFormat.FormatString = "N0"
-        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn6.FieldName = "qty_month"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 7
-        Me.GridColumn6.Width = 136
+        Me.GridColumnQtyMonth.Caption = "Total Month Installment"
+        Me.GridColumnQtyMonth.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQtyMonth.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyMonth.FieldName = "qty_month"
+        Me.GridColumnQtyMonth.Name = "GridColumnQtyMonth"
+        Me.GridColumnQtyMonth.Visible = True
+        Me.GridColumnQtyMonth.VisibleIndex = 7
+        Me.GridColumnQtyMonth.Width = 136
         '
-        'GridColumn5
+        'GridColumnEndPeriod
         '
-        Me.GridColumn5.Caption = "End Period"
-        Me.GridColumn5.DisplayFormat.FormatString = "MMMM yyyy"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn5.FieldName = "end_date"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.OptionsColumn.AllowEdit = False
-        Me.GridColumn5.OptionsColumn.ReadOnly = True
-        Me.GridColumn5.UnboundExpression = "AddMonths([start_date], [qty_month] - 1)"
-        Me.GridColumn5.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 8
-        Me.GridColumn5.Width = 136
+        Me.GridColumnEndPeriod.Caption = "End Period"
+        Me.GridColumnEndPeriod.DisplayFormat.FormatString = "MMMM yyyy"
+        Me.GridColumnEndPeriod.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnEndPeriod.FieldName = "end_date"
+        Me.GridColumnEndPeriod.Name = "GridColumnEndPeriod"
+        Me.GridColumnEndPeriod.OptionsColumn.AllowEdit = False
+        Me.GridColumnEndPeriod.OptionsColumn.ReadOnly = True
+        Me.GridColumnEndPeriod.UnboundExpression = "AddMonths([start_date], [qty_month] - 1)"
+        Me.GridColumnEndPeriod.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
+        Me.GridColumnEndPeriod.Visible = True
+        Me.GridColumnEndPeriod.VisibleIndex = 8
+        Me.GridColumnEndPeriod.Width = 136
         '
         'GridColumnTaxPercent
         '
@@ -1136,15 +1137,15 @@ Partial Class FormPrepaidExpenseDet
         Me.RepositoryItemTextEdit3.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit3.Name = "RepositoryItemTextEdit3"
         '
-        'GridColumn1
+        'GridColumnCoaBiayaCol
         '
-        Me.GridColumn1.Caption = "COA Biaya Bulanan"
-        Me.GridColumn1.ColumnEdit = Me.RepositoryItemSearchLookUpEdit1
-        Me.GridColumn1.FieldName = "id_acc_biaya"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 9
-        Me.GridColumn1.Width = 144
+        Me.GridColumnCoaBiayaCol.Caption = "COA Biaya Bulanan"
+        Me.GridColumnCoaBiayaCol.ColumnEdit = Me.RepositoryItemSearchLookUpEdit1
+        Me.GridColumnCoaBiayaCol.FieldName = "id_acc_biaya"
+        Me.GridColumnCoaBiayaCol.Name = "GridColumnCoaBiayaCol"
+        Me.GridColumnCoaBiayaCol.Visible = True
+        Me.GridColumnCoaBiayaCol.VisibleIndex = 9
+        Me.GridColumnCoaBiayaCol.Width = 144
         '
         'GridColumnPPHDesc
         '
@@ -1402,6 +1403,12 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
         '
+        'GridColumnCOABiaya
+        '
+        Me.GridColumnCOABiaya.Caption = "COA Biaya"
+        Me.GridColumnCOABiaya.FieldName = "coa_biaya_desc"
+        Me.GridColumnCOABiaya.Name = "GridColumnCOABiaya"
+        '
         'FormPrepaidExpenseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1600,7 +1607,8 @@ Partial Class FormPrepaidExpenseDet
     Friend WithEvents GridColumncredit_draft As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtyMonth As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnEndPeriod As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCoaBiayaCol As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCOABiaya As DevExpress.XtraGrid.Columns.GridColumn
 End Class

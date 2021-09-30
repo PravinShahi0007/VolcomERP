@@ -513,7 +513,7 @@ WHERE po.id_purc_order=" & id_purc_order & " AND po.`is_close_rec`=1 AND pod.gro
 GROUP BY po.id_purc_order,dep.id_main_comp
 UNION ALL
 -- hutang non grossup
-SELECT " + id_acc_trans + " AS id_acc_trans, comp.id_acc_ap AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
+SELECT " + id_acc_trans + " AS id_acc_trans, IF(po.id_coa_tag=1,comp.id_acc_ap,comp.id_acc_cabang_ap) AS `id_acc`, dep.id_main_comp, SUM(rd.qty) AS `qty`,
 SUM(pod.pph) AS `debit`,
 0 AS `credit`,
 CONCAT(i.item_desc,' - ',acc_pph.acc_description) AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
