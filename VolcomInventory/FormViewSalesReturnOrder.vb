@@ -67,10 +67,13 @@
             GridColumnQty.Visible = True
             GridColumnNo.VisibleIndex = 0
             GridColumnCode.VisibleIndex = 1
-            GridColumnName.VisibleIndex = 2
-            GridColumnSize.VisibleIndex = 3
-            GridColumnQty.VisibleIndex = 4
-            GridColumnQtyReturn.VisibleIndex = 5
+            GridColumnclass.VisibleIndex = 2
+            GridColumnName.VisibleIndex = 3
+            GridColumnsht.VisibleIndex = 4
+            GridColumncolor.VisibleIndex = 5
+            GridColumnSize.VisibleIndex = 6
+            GridColumnQty.VisibleIndex = 7
+            GridColumnQtyReturn.VisibleIndex = 8
         End If
 
         'detail2
