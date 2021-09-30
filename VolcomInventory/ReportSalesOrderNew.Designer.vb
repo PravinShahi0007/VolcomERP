@@ -86,6 +86,8 @@ Partial Public Class ReportSalesOrderNew
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,7 +122,7 @@ Partial Public Class ReportSalesOrderNew
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnPriceType, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnIdSalesTarget, Me.GridColumnEanCode, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdDesignPrice, Me.GridColumnItemId, Me.GridColumnOLStoreId})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnPriceType, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnIdSalesTarget, Me.GridColumnEanCode, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdDesignPrice, Me.GridColumnItemId, Me.GridColumnOLStoreId, Me.GridColumnclass, Me.GridColumn1})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -137,7 +139,7 @@ Partial Public Class ReportSalesOrderNew
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 42
+        Me.GridColumnNo.Width = 55
         '
         'GridColumnCode
         '
@@ -147,7 +149,7 @@ Partial Public Class ReportSalesOrderNew
         Me.GridColumnCode.OptionsColumn.ReadOnly = True
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 69
+        Me.GridColumnCode.Width = 171
         '
         'GridColumnName
         '
@@ -157,8 +159,8 @@ Partial Public Class ReportSalesOrderNew
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 2
-        Me.GridColumnName.Width = 142
+        Me.GridColumnName.VisibleIndex = 3
+        Me.GridColumnName.Width = 437
         '
         'GridColumnSize
         '
@@ -171,19 +173,19 @@ Partial Public Class ReportSalesOrderNew
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 3
-        Me.GridColumnSize.Width = 53
+        Me.GridColumnSize.VisibleIndex = 5
+        Me.GridColumnSize.Width = 80
         '
         'GridColumnPriceType
         '
-        Me.GridColumnPriceType.Caption = "Price Type"
+        Me.GridColumnPriceType.Caption = "Prc Type"
         Me.GridColumnPriceType.FieldName = "design_price_type"
         Me.GridColumnPriceType.Name = "GridColumnPriceType"
         Me.GridColumnPriceType.OptionsColumn.AllowEdit = False
         Me.GridColumnPriceType.OptionsColumn.ReadOnly = True
         Me.GridColumnPriceType.Visible = True
-        Me.GridColumnPriceType.VisibleIndex = 4
-        Me.GridColumnPriceType.Width = 98
+        Me.GridColumnPriceType.VisibleIndex = 6
+        Me.GridColumnPriceType.Width = 91
         '
         'GridColumnQty
         '
@@ -193,7 +195,7 @@ Partial Public Class ReportSalesOrderNew
         Me.GridColumnQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnQty.Caption = "Qty"
         Me.GridColumnQty.ColumnEdit = Me.RepositoryItemSpinEdit1
-        Me.GridColumnQty.DisplayFormat.FormatString = "F2"
+        Me.GridColumnQty.DisplayFormat.FormatString = "N0"
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQty.FieldName = "sales_order_det_qty"
         Me.GridColumnQty.Name = "GridColumnQty"
@@ -202,8 +204,8 @@ Partial Public Class ReportSalesOrderNew
         Me.GridColumnQty.OptionsColumn.ReadOnly = True
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", "{0:f2}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
-        Me.GridColumnQty.Width = 88
+        Me.GridColumnQty.VisibleIndex = 7
+        Me.GridColumnQty.Width = 91
         '
         'RepositoryItemSpinEdit1
         '
@@ -226,8 +228,8 @@ Partial Public Class ReportSalesOrderNew
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.OptionsColumn.ReadOnly = True
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 6
-        Me.GridColumnPrice.Width = 106
+        Me.GridColumnPrice.VisibleIndex = 8
+        Me.GridColumnPrice.Width = 195
         '
         'GridColumnAmount
         '
@@ -243,8 +245,8 @@ Partial Public Class ReportSalesOrderNew
         Me.GridColumnAmount.OptionsColumn.ReadOnly = True
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n2}")})
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 7
-        Me.GridColumnAmount.Width = 121
+        Me.GridColumnAmount.VisibleIndex = 9
+        Me.GridColumnAmount.Width = 348
         '
         'GridColumnRemark
         '
@@ -829,6 +831,24 @@ Partial Public Class ReportSalesOrderNew
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
         '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
+        Me.GridColumnclass.Width = 79
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Color"
+        Me.GridColumn1.FieldName = "color"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 4
+        Me.GridColumn1.Width = 85
+        '
         'ReportSalesOrderNew
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
@@ -911,4 +931,6 @@ Partial Public Class ReportSalesOrderNew
     Friend WithEvents GridColumnItemId As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOLStoreId As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XRBarcode As DevExpress.XtraReports.UI.XRBarCode
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -21,8 +21,8 @@ Partial Class FormSalesOrderPromoList
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesOrderPromoList))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCProduct = New DevExpress.XtraGrid.GridControl()
         Me.GVProduct = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNoProduct = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -44,6 +44,9 @@ Partial Class FormSalesOrderPromoList
         Me.GridColumnorder_qty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnid_design_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,16 +64,6 @@ Partial Class FormSalesOrderPromoList
         Me.PanelControl1.Size = New System.Drawing.Size(543, 46)
         Me.PanelControl1.TabIndex = 0
         '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(423, 2)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(118, 42)
-        Me.BtnAdd.TabIndex = 0
-        Me.BtnAdd.Text = "Add Product"
-        '
         'BtnDiscard
         '
         Me.BtnDiscard.Dock = System.Windows.Forms.DockStyle.Right
@@ -80,6 +73,16 @@ Partial Class FormSalesOrderPromoList
         Me.BtnDiscard.Size = New System.Drawing.Size(92, 42)
         Me.BtnDiscard.TabIndex = 1
         Me.BtnDiscard.Text = "Discard"
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
+        Me.BtnAdd.Location = New System.Drawing.Point(423, 2)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(118, 42)
+        Me.BtnAdd.TabIndex = 0
+        Me.BtnAdd.Text = "Add Product"
         '
         'GCProduct
         '
@@ -94,7 +97,7 @@ Partial Class FormSalesOrderPromoList
         '
         'GVProduct
         '
-        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoProduct, Me.GridColumnid_ol_promo_collection_det_prod, Me.GridColumnid_ol_promo_collection_prod, Me.GridColumnid_design_prod, Me.GridColumnid_product, Me.GridColumncodeprod, Me.GridColumnname_prod, Me.GridColumnsize, Me.GridColumndesign_code, Me.GridColumnid_prod_shopify, Me.GridColumncurrenttag, Me.GridColumndesign_price_prod, Me.GridColumnprice_type_prod, Me.GridColumnqty_prod, Me.GridColumnamount_prod, Me.GridColumnis_block_view_sku, Me.GridColumnorder_qty, Me.GridColumnid_design_price})
+        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoProduct, Me.GridColumnid_ol_promo_collection_det_prod, Me.GridColumnid_ol_promo_collection_prod, Me.GridColumnid_design_prod, Me.GridColumnid_product, Me.GridColumncodeprod, Me.GridColumnname_prod, Me.GridColumnsize, Me.GridColumndesign_code, Me.GridColumnid_prod_shopify, Me.GridColumncurrenttag, Me.GridColumndesign_price_prod, Me.GridColumnprice_type_prod, Me.GridColumnqty_prod, Me.GridColumnamount_prod, Me.GridColumnis_block_view_sku, Me.GridColumnorder_qty, Me.GridColumnid_design_price, Me.GridColumnclass, Me.GridColumncolor, Me.GridColumnsht})
         Me.GVProduct.GridControl = Me.GCProduct
         Me.GVProduct.Name = "GVProduct"
         Me.GVProduct.OptionsCustomization.AllowSort = False
@@ -156,7 +159,7 @@ Partial Class FormSalesOrderPromoList
         Me.GridColumnname_prod.Name = "GridColumnname_prod"
         Me.GridColumnname_prod.OptionsColumn.ReadOnly = True
         Me.GridColumnname_prod.Visible = True
-        Me.GridColumnname_prod.VisibleIndex = 1
+        Me.GridColumnname_prod.VisibleIndex = 2
         Me.GridColumnname_prod.Width = 263
         '
         'GridColumnsize
@@ -166,7 +169,7 @@ Partial Class FormSalesOrderPromoList
         Me.GridColumnsize.Name = "GridColumnsize"
         Me.GridColumnsize.OptionsColumn.ReadOnly = True
         Me.GridColumnsize.Visible = True
-        Me.GridColumnsize.VisibleIndex = 2
+        Me.GridColumnsize.VisibleIndex = 4
         '
         'GridColumndesign_code
         '
@@ -250,7 +253,7 @@ Partial Class FormSalesOrderPromoList
         Me.GridColumnorder_qty.Name = "GridColumnorder_qty"
         Me.GridColumnorder_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", "{0:N0}")})
         Me.GridColumnorder_qty.Visible = True
-        Me.GridColumnorder_qty.VisibleIndex = 3
+        Me.GridColumnorder_qty.VisibleIndex = 5
         '
         'RepositoryItemTextEdit1
         '
@@ -267,6 +270,31 @@ Partial Class FormSalesOrderPromoList
         Me.GridColumnid_design_price.FieldName = "id_design_price"
         Me.GridColumnid_design_price.Name = "GridColumnid_design_price"
         Me.GridColumnid_design_price.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.OptionsColumn.ReadOnly = True
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 1
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.OptionsColumn.ReadOnly = True
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 3
+        '
+        'GridColumnsht
+        '
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.OptionsColumn.ReadOnly = True
         '
         'FormSalesOrderPromoList
         '
@@ -314,4 +342,7 @@ Partial Class FormSalesOrderPromoList
     Friend WithEvents GridColumnorder_qty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumnid_design_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -62,13 +62,13 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "CALL view_sales_order_gen(" + id_sales_order_gen + ")"
+        Dim query As String = "CALL view_sales_order_gen_lite(" + id_sales_order_gen + ")"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemList.DataSource = data
 
         If is_submit = "2" Then
             'sum
-            Dim query_sum As String = "CALL view_sales_order_gen_sum(" + id_sales_order_gen + ")"
+            Dim query_sum As String = "CALL view_sales_order_gen_sum_lite(" + id_sales_order_gen + ")"
             Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
 
             Dim query_stock As String = "CALL view_sales_order_prod_list(0, 0, 0)"
