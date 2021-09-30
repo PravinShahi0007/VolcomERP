@@ -69,6 +69,9 @@ Partial Class FormViewSalesOrderGen
         Me.XTPOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.GCNewPrepare = New DevExpress.XtraGrid.GridControl()
         Me.GVNewPrepare = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -316,7 +319,7 @@ Partial Class FormViewSalesOrderGen
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnIdCompTo, Me.GridColumnIdCompFrom, Me.GridColumnIdProduct, Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnStyle, Me.GridColumnSize, Me.GridColumnCompTo, Me.GridColumnCompFrom, Me.GridColumnQty})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnIdCompTo, Me.GridColumnIdCompFrom, Me.GridColumnIdProduct, Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnStyle, Me.GridColumnSize, Me.GridColumnCompTo, Me.GridColumnCompFrom, Me.GridColumnQty, Me.GridColumnclass, Me.GridColumncolor, Me.GridColumnsht})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_gen_det_qty", Me.GridColumnQty, "{0:n0}")})
         Me.GVItemList.Name = "GVItemList"
@@ -359,7 +362,7 @@ Partial Class FormViewSalesOrderGen
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 35
+        Me.GridColumnNo.Width = 59
         '
         'GridColumnCode
         '
@@ -369,7 +372,7 @@ Partial Class FormViewSalesOrderGen
         Me.GridColumnCode.OptionsColumn.AllowEdit = False
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 135
+        Me.GridColumnCode.Width = 228
         '
         'GridColumnStyle
         '
@@ -378,8 +381,8 @@ Partial Class FormViewSalesOrderGen
         Me.GridColumnStyle.Name = "GridColumnStyle"
         Me.GridColumnStyle.OptionsColumn.AllowEdit = False
         Me.GridColumnStyle.Visible = True
-        Me.GridColumnStyle.VisibleIndex = 2
-        Me.GridColumnStyle.Width = 154
+        Me.GridColumnStyle.VisibleIndex = 3
+        Me.GridColumnStyle.Width = 267
         '
         'GridColumnSize
         '
@@ -388,8 +391,8 @@ Partial Class FormViewSalesOrderGen
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.AllowEdit = False
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 3
-        Me.GridColumnSize.Width = 55
+        Me.GridColumnSize.VisibleIndex = 5
+        Me.GridColumnSize.Width = 100
         '
         'GridColumnCompTo
         '
@@ -399,8 +402,8 @@ Partial Class FormViewSalesOrderGen
         Me.GridColumnCompTo.Name = "GridColumnCompTo"
         Me.GridColumnCompTo.OptionsColumn.AllowEdit = False
         Me.GridColumnCompTo.Visible = True
-        Me.GridColumnCompTo.VisibleIndex = 5
-        Me.GridColumnCompTo.Width = 177
+        Me.GridColumnCompTo.VisibleIndex = 7
+        Me.GridColumnCompTo.Width = 325
         '
         'GridColumnCompFrom
         '
@@ -409,8 +412,8 @@ Partial Class FormViewSalesOrderGen
         Me.GridColumnCompFrom.FieldNameSortGroup = "id_comp_from"
         Me.GridColumnCompFrom.Name = "GridColumnCompFrom"
         Me.GridColumnCompFrom.Visible = True
-        Me.GridColumnCompFrom.VisibleIndex = 4
-        Me.GridColumnCompFrom.Width = 154
+        Me.GridColumnCompFrom.VisibleIndex = 6
+        Me.GridColumnCompFrom.Width = 283
         '
         'GridColumnQty
         '
@@ -426,8 +429,8 @@ Partial Class FormViewSalesOrderGen
         Me.GridColumnQty.OptionsColumn.AllowEdit = False
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_gen_det_qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 6
-        Me.GridColumnQty.Width = 103
+        Me.GridColumnQty.VisibleIndex = 8
+        Me.GridColumnQty.Width = 191
         '
         'RepositoryItemTextEdit1
         '
@@ -598,6 +601,33 @@ Partial Class FormViewSalesOrderGen
         Me.GVNewPrepare.OptionsView.ShowFooter = True
         Me.GVNewPrepare.OptionsView.ShowGroupPanel = False
         '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.OptionsColumn.AllowEdit = False
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
+        Me.GridColumnclass.Width = 91
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.OptionsColumn.AllowEdit = False
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 4
+        Me.GridColumncolor.Width = 88
+        '
+        'GridColumnsht
+        '
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.OptionsColumn.AllowEdit = False
+        '
         'FormViewSalesOrderGen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -700,4 +730,7 @@ Partial Class FormViewSalesOrderGen
     Friend WithEvents XTPOrder As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCNewPrepare As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVNewPrepare As DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
 End Class

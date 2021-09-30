@@ -1450,14 +1450,16 @@ Public Class FormImportExcel
             GVData.Columns("id_product").Visible = False
             GVData.Columns("id_comp_contact_from").Visible = False
             GVData.Columns("id_comp_contact_to").Visible = False
-            GVData.Columns("Class").Visible = False
             GVData.Columns("Code").VisibleIndex = 0
-            GVData.Columns("Style").VisibleIndex = 1
-            GVData.Columns("Size").VisibleIndex = 2
-            GVData.Columns("From").VisibleIndex = 3
-            GVData.Columns("To").VisibleIndex = 4
-            GVData.Columns("Qty").VisibleIndex = 5
-            GVData.Columns("Status").VisibleIndex = 6
+            GVData.Columns("Class").VisibleIndex = 1
+            GVData.Columns("Style").VisibleIndex = 2
+            GVData.Columns("Silhouette").VisibleIndex = 3
+            GVData.Columns("Color").VisibleIndex = 4
+            GVData.Columns("Size").VisibleIndex = 5
+            GVData.Columns("From").VisibleIndex = 6
+            GVData.Columns("To").VisibleIndex = 7
+            GVData.Columns("Qty").VisibleIndex = 8
+            GVData.Columns("Status").VisibleIndex = 9
         ElseIf id_pop_up = "24" Then
             'INVENTORY ALLOCATION
             Dim id_fg_wh_alloc As String = FormFGWHAllocDet.id_fg_wh_alloc
