@@ -51,6 +51,11 @@ Partial Class FormSalesReturnOrderDet
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLUEClasification = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlBottomRight = New DevExpress.XtraEditors.PanelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
@@ -105,11 +110,9 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumncargo_rate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncargo_lead_time = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncargo_min_weight = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SLUEClasification = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,6 +136,8 @@ Partial Class FormSalesReturnOrderDet
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        CType(Me.SLUEClasification.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottomRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottomRight.SuspendLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -152,8 +157,6 @@ Partial Class FormSalesReturnOrderDet
         Me.XTPRate.SuspendLayout()
         CType(Me.GCRate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRate, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUEClasification.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -517,6 +520,45 @@ Partial Class FormSalesReturnOrderDet
         Me.GroupControl3.Size = New System.Drawing.Size(902, 88)
         Me.GroupControl3.TabIndex = 186
         '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(27, 17)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(93, 13)
+        Me.LabelControl8.TabIndex = 147
+        Me.LabelControl8.Text = "Return Clasification"
+        '
+        'SLUEClasification
+        '
+        Me.SLUEClasification.Location = New System.Drawing.Point(126, 14)
+        Me.SLUEClasification.Name = "SLUEClasification"
+        Me.SLUEClasification.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEClasification.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLUEClasification.Size = New System.Drawing.Size(293, 20)
+        Me.SLUEClasification.TabIndex = 146
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "GridColumn1"
+        Me.GridColumn1.FieldName = "id_return_clasification"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Return Clasification"
+        Me.GridColumn2.FieldName = "return_clasification"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
         'PanelControlBottomRight
         '
         Me.PanelControlBottomRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -592,7 +634,7 @@ Partial Class FormSalesReturnOrderDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnIdSalesTarget, Me.GridColumnUOM, Me.GridColumnReturnCategory, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnProductName, Me.GridColumnIdReturnCat, Me.GridColumnIdDesignPrice, Me.GridColumnPriceType, Me.GridColumnQtyAvail, Me.GridColumnFound, Me.GridColumnid_detail_on_hold})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnIdSalesTarget, Me.GridColumnUOM, Me.GridColumnReturnCategory, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnProductName, Me.GridColumnIdReturnCat, Me.GridColumnIdDesignPrice, Me.GridColumnPriceType, Me.GridColumnQtyAvail, Me.GridColumnFound, Me.GridColumnid_detail_on_hold, Me.GridColumnclass, Me.GridColumncolor, Me.GridColumnsht})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_order_det_qty", Me.GridColumnQty, "{0:f2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:n2}")})
         Me.GVItemList.Name = "GVItemList"
@@ -610,7 +652,6 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 41
         '
         'GridColumnCode
         '
@@ -619,7 +660,7 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 55
+        Me.GridColumnCode.Width = 101
         '
         'GridColumnName
         '
@@ -628,8 +669,8 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumnName.FieldNameSortGroup = "id_design"
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 2
-        Me.GridColumnName.Width = 103
+        Me.GridColumnName.VisibleIndex = 3
+        Me.GridColumnName.Width = 198
         '
         'GridColumnSize
         '
@@ -642,8 +683,8 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.AllowEdit = False
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 3
-        Me.GridColumnSize.Width = 43
+        Me.GridColumnSize.VisibleIndex = 6
+        Me.GridColumnSize.Width = 89
         '
         'GridColumnQty
         '
@@ -660,8 +701,8 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_order_det_qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 4
-        Me.GridColumnQty.Width = 74
+        Me.GridColumnQty.VisibleIndex = 7
+        Me.GridColumnQty.Width = 153
         '
         'RepositoryItemSpinEdit1
         '
@@ -680,8 +721,8 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.OptionsColumn.AllowEdit = False
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 5
-        Me.GridColumnPrice.Width = 89
+        Me.GridColumnPrice.VisibleIndex = 8
+        Me.GridColumnPrice.Width = 184
         '
         'GridColumnAmount
         '
@@ -693,8 +734,8 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumnAmount.OptionsColumn.AllowEdit = False
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n2}")})
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 6
-        Me.GridColumnAmount.Width = 103
+        Me.GridColumnAmount.VisibleIndex = 9
+        Me.GridColumnAmount.Width = 214
         '
         'GridColumnRemark
         '
@@ -702,8 +743,8 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumnRemark.FieldName = "sales_return_order_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 7
-        Me.GridColumnRemark.Width = 155
+        Me.GridColumnRemark.VisibleIndex = 10
+        Me.GridColumnRemark.Width = 322
         '
         'GridColumnIdSalesTarget
         '
@@ -963,7 +1004,7 @@ Partial Class FormSalesReturnOrderDet
         '
         Me.XTPRate.Controls.Add(Me.GCRate)
         Me.XTPRate.Name = "XTPRate"
-        Me.XTPRate.Size = New System.Drawing.Size(896, 245)
+        Me.XTPRate.Size = New System.Drawing.Size(896, 232)
         Me.XTPRate.Text = "Cargo Rate"
         '
         'GCRate
@@ -972,7 +1013,7 @@ Partial Class FormSalesReturnOrderDet
         Me.GCRate.Location = New System.Drawing.Point(0, 0)
         Me.GCRate.MainView = Me.GVRate
         Me.GCRate.Name = "GCRate"
-        Me.GCRate.Size = New System.Drawing.Size(896, 245)
+        Me.GCRate.Size = New System.Drawing.Size(896, 232)
         Me.GCRate.TabIndex = 0
         Me.GCRate.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRate})
         '
@@ -1029,44 +1070,32 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumncargo_min_weight.Visible = True
         Me.GridColumncargo_min_weight.VisibleIndex = 3
         '
-        'SLUEClasification
+        'GridColumnclass
         '
-        Me.SLUEClasification.Location = New System.Drawing.Point(126, 14)
-        Me.SLUEClasification.Name = "SLUEClasification"
-        Me.SLUEClasification.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUEClasification.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLUEClasification.Size = New System.Drawing.Size(293, 20)
-        Me.SLUEClasification.TabIndex = 146
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
+        Me.GridColumnclass.Width = 70
         '
-        'SearchLookUpEdit1View
+        'GridColumncolor
         '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 5
+        Me.GridColumncolor.Width = 58
         '
-        'LabelControl8
+        'GridColumnsht
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(27, 17)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(93, 13)
-        Me.LabelControl8.TabIndex = 147
-        Me.LabelControl8.Text = "Return Clasification"
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "GridColumn1"
-        Me.GridColumn1.FieldName = "id_return_clasification"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Return Clasification"
-        Me.GridColumn2.FieldName = "return_clasification"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.Visible = True
+        Me.GridColumnsht.VisibleIndex = 4
+        Me.GridColumnsht.Width = 168
         '
         'FormSalesReturnOrderDet
         '
@@ -1112,6 +1141,8 @@ Partial Class FormSalesReturnOrderDet
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
+        CType(Me.SLUEClasification.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottomRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottomRight.ResumeLayout(False)
         Me.PanelControlBottomRight.PerformLayout()
@@ -1132,8 +1163,6 @@ Partial Class FormSalesReturnOrderDet
         Me.XTPRate.ResumeLayout(False)
         CType(Me.GCRate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUEClasification.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1226,4 +1255,7 @@ Partial Class FormSalesReturnOrderDet
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
 End Class

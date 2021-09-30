@@ -44,6 +44,9 @@
                     newRow("ol_store_id") = GVList.GetRowCellValue(ls, "ol_store_id").ToString
                     newRow("name") = GVList.GetRowCellValue(ls, "name").ToString
                     newRow("size") = GVList.GetRowCellValue(ls, "size").ToString
+                    newRow("class") = GVList.GetRowCellValue(ls, "class").ToString
+                    newRow("color") = GVList.GetRowCellValue(ls, "color").ToString
+                    newRow("sht") = GVList.GetRowCellValue(ls, "sht").ToString
                     newRow("sales_return_order_det_qty") = GVList.GetRowCellValue(ls, "order")
                     newRow("amount") = GVList.GetRowCellValue(ls, "order") * GVList.GetRowCellValue(ls, "design_price")
                     newRow("design_price_type") = GVList.GetRowCellValue(ls, "design_price_type")

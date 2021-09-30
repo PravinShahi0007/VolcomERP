@@ -79,6 +79,9 @@
             SBPick.Enabled = True
             RepositoryItemTextEdit.ReadOnly = False
             MENote.ReadOnly = False
+
+            DEStart.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='1'", 0, True, "", "", "", "")
+            DEEnd.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='1'", 0, True, "", "", "", "")
         Else
             BtnMark.Enabled = True
             BtnViewJournal.Enabled = True
@@ -150,8 +153,8 @@
         TxtDel.Text = data.Rows(0)("pl_sales_order_del_number").ToString
         TxtAccNo.Text = data.Rows(0)("comp_number").ToString
         TxtAcc.Text = data.Rows(0)("comp_name").ToString
-        DEStart.EditValue = data.Rows(0)("period_from")
-        DEEnd.EditValue = data.Rows(0)("period_until")
+        DEStart.EditValue = Now
+        DEEnd.EditValue = Now
         TxtDepartement.Text = data.Rows(0)("departement").ToString
         SLECat.EditValue = data.Rows(0)("id_item_cat").ToString
 

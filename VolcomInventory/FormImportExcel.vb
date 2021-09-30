@@ -524,12 +524,15 @@ Public Class FormImportExcel
             GVData.Columns("id_product").Visible = False
             GVData.Columns("SOH").Visible = False
             GVData.Columns("Code").VisibleIndex = 0
-            GVData.Columns("Style").VisibleIndex = 1
-            GVData.Columns("Size").VisibleIndex = 2
-            GVData.Columns("Qty").VisibleIndex = 3
-            GVData.Columns("Amount").VisibleIndex = 4
-            GVData.Columns("Price").VisibleIndex = 5
-            GVData.Columns("Status").VisibleIndex = 6
+            GVData.Columns("Class").VisibleIndex = 1
+            GVData.Columns("Style").VisibleIndex = 2
+            GVData.Columns("Silhouette").VisibleIndex = 3
+            GVData.Columns("Color").VisibleIndex = 4
+            GVData.Columns("Size").VisibleIndex = 5
+            GVData.Columns("Qty").VisibleIndex = 6
+            GVData.Columns("Amount").VisibleIndex = 7
+            GVData.Columns("Price").VisibleIndex = 8
+            GVData.Columns("Status").VisibleIndex = 9
             GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("Qty").DisplayFormat.FormatString = "{0:n0}"
             GVData.Columns("SOH").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -1668,7 +1671,7 @@ Public Class FormImportExcel
             'Console.WriteLine(qry)
 
             Dim data As New DataTable
-            Dim adapter As New MySqlDataAdapter("CALL view_return_order_single_temp(" + FormSalesReturnOrderDet.id_comp + ", '" + id_user + "')", connection)
+            Dim adapter As New MySqlDataAdapter("CALL view_return_order_single_temp_less(" + FormSalesReturnOrderDet.id_comp + ", '" + id_user + "')", connection)
             adapter.SelectCommand.CommandTimeout = 300
             adapter.Fill(data)
             adapter.Dispose()
@@ -1698,10 +1701,13 @@ Public Class FormImportExcel
             GVData.Columns("Price").Visible = False
             GVData.Columns("SOH").Visible = False
             GVData.Columns("Code").VisibleIndex = 0
-            GVData.Columns("Style").VisibleIndex = 1
-            GVData.Columns("Size").VisibleIndex = 2
-            GVData.Columns("Qty").VisibleIndex = 3
-            GVData.Columns("Status").VisibleIndex = 4
+            GVData.Columns("Class").VisibleIndex = 1
+            GVData.Columns("Style").VisibleIndex = 2
+            GVData.Columns("Silhouette").VisibleIndex = 3
+            GVData.Columns("Color").VisibleIndex = 4
+            GVData.Columns("Size").VisibleIndex = 5
+            GVData.Columns("Qty").VisibleIndex = 6
+            GVData.Columns("Status").VisibleIndex = 7
             GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("Qty").DisplayFormat.FormatString = "{0:n0}"
             GVData.Columns("SOH").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -5853,6 +5859,9 @@ GROUP BY ol.checkout_id
                             newRow("name") = GVData.GetRowCellValue(i, "Style").ToString
                             newRow("code") = GVData.GetRowCellValue(i, "Code").ToString
                             newRow("size") = GVData.GetRowCellValue(i, "Size").ToString
+                            newRow("class") = GVData.GetRowCellValue(i, "Class").ToString
+                            newRow("color") = GVData.GetRowCellValue(i, "Color").ToString
+                            newRow("sht") = GVData.GetRowCellValue(i, "Silhouette").ToString
                             newRow("sales_return_order_det_qty") = GVData.GetRowCellValue(i, "Qty")
                             newRow("qty_avail") = GVData.GetRowCellValue(i, "SOH")
                             newRow("design_price_type") = ""
