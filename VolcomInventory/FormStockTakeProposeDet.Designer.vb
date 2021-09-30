@@ -78,6 +78,7 @@ Partial Class FormStockTakeProposeDet
         Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBPNP = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLUEStoreCompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -542,6 +543,7 @@ Partial Class FormStockTakeProposeDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.SBPNP)
         Me.PanelControl3.Controls.Add(Me.SBAttachmentStoreList)
         Me.PanelControl3.Controls.Add(Me.SBAttachmentSuratIjin)
         Me.PanelControl3.Controls.Add(Me.LabelControl3)
@@ -685,6 +687,15 @@ Partial Class FormStockTakeProposeDet
         Me.SBSubmit.TabIndex = 0
         Me.SBSubmit.Text = "Submit"
         '
+        'SBPNP
+        '
+        Me.SBPNP.Image = CType(resources.GetObject("SBPNP.Image"), System.Drawing.Image)
+        Me.SBPNP.Location = New System.Drawing.Point(196, 272)
+        Me.SBPNP.Name = "SBPNP"
+        Me.SBPNP.Size = New System.Drawing.Size(71, 23)
+        Me.SBPNP.TabIndex = 9
+        Me.SBPNP.Text = "P&&P"
+        '
         'FormStockTakeProposeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -797,4 +808,5 @@ Partial Class FormStockTakeProposeDet
     Friend WithEvents SLUEStoreCompany As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents SBAddContact As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBPNP As DevExpress.XtraEditors.SimpleButton
 End Class
