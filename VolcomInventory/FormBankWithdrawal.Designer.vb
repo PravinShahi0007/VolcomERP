@@ -482,6 +482,50 @@ Partial Class FormBankWithdrawal
         Me.GridColumncoa_tag = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnCreateBBKVS = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPPrepaidExpense = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPrepaidExp = New DevExpress.XtraGrid.GridControl()
+        Me.GVPrepaidExp = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn240 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn241 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn242 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn243 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn244 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn245 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn246 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn247 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSearchLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView25 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn249 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn250 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn253 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn254 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn255 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn256 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit13 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn257 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn258 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn259 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn260 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn261 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn262 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn263 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn264 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
+        Me.BCreatePaymentPrepaidEx = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEUnitPrepaidEx = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView19 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn212 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn213 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn214 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
+        Me.BPrepaidExpense = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEVendorPrepaidEx = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView22 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn219 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn220 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPWaitingList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCwaitingList = New DevExpress.XtraGrid.GridControl()
         Me.GVWaitingList = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -654,6 +698,21 @@ Partial Class FormBankWithdrawal
         Me.PanelControl11.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView15, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPPrepaidExpense.SuspendLayout()
+        CType(Me.GCPrepaidExp, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPrepaidExp, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView25, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl10.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.SLEUnitPrepaidEx.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView19, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEVendorPrepaidEx.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView22, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPWaitingList.SuspendLayout()
         CType(Me.GCwaitingList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVWaitingList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -671,7 +730,7 @@ Partial Class FormBankWithdrawal
         Me.XTCPO.SelectedTabPage = Me.XTPPayment
         Me.XTCPO.Size = New System.Drawing.Size(1358, 541)
         Me.XTCPO.TabIndex = 2
-        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPayment, Me.XTPPO, Me.XTPExpense, Me.XTPFGPO, Me.XTPBPJSKesehatan, Me.XTPJamsostek, Me.XTPTHR, Me.XTPRefund, Me.XTPCashAdvance, Me.XTPDPKhusus, Me.XTPVS, Me.XTPWaitingList})
+        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPayment, Me.XTPPO, Me.XTPExpense, Me.XTPFGPO, Me.XTPBPJSKesehatan, Me.XTPJamsostek, Me.XTPTHR, Me.XTPRefund, Me.XTPCashAdvance, Me.XTPDPKhusus, Me.XTPVS, Me.XTPPrepaidExpense, Me.XTPWaitingList})
         '
         'XTPPayment
         '
@@ -5288,6 +5347,409 @@ Partial Class FormBankWithdrawal
         Me.BtnCreateBBKVS.TabIndex = 23
         Me.BtnCreateBBKVS.Text = "Create Payment"
         '
+        'XTPPrepaidExpense
+        '
+        Me.XTPPrepaidExpense.Controls.Add(Me.GCPrepaidExp)
+        Me.XTPPrepaidExpense.Controls.Add(Me.PanelControl10)
+        Me.XTPPrepaidExpense.Controls.Add(Me.PanelControl2)
+        Me.XTPPrepaidExpense.Name = "XTPPrepaidExpense"
+        Me.XTPPrepaidExpense.Size = New System.Drawing.Size(1352, 513)
+        Me.XTPPrepaidExpense.Text = "Prepaid Expense"
+        '
+        'GCPrepaidExp
+        '
+        Me.GCPrepaidExp.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPrepaidExp.Location = New System.Drawing.Point(0, 42)
+        Me.GCPrepaidExp.MainView = Me.GVPrepaidExp
+        Me.GCPrepaidExp.Name = "GCPrepaidExp"
+        Me.GCPrepaidExp.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit5, Me.RepositoryItemCheckEdit13, Me.RepositoryItemSearchLookUpEdit1})
+        Me.GCPrepaidExp.Size = New System.Drawing.Size(1352, 428)
+        Me.GCPrepaidExp.TabIndex = 23
+        Me.GCPrepaidExp.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPrepaidExp})
+        '
+        'GVPrepaidExp
+        '
+        Me.GVPrepaidExp.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn240, Me.GridColumn241, Me.GridColumn242, Me.GridColumn243, Me.GridColumn244, Me.GridColumn245, Me.GridColumn246, Me.GridColumn247, Me.GridColumn253, Me.GridColumn254, Me.GridColumn255, Me.GridColumn256, Me.GridColumn257, Me.GridColumn258, Me.GridColumn259, Me.GridColumn260, Me.GridColumn261, Me.GridColumn262, Me.GridColumn263, Me.GridColumn264})
+        Me.GVPrepaidExp.GridControl = Me.GCPrepaidExp
+        Me.GVPrepaidExp.Name = "GVPrepaidExp"
+        Me.GVPrepaidExp.OptionsFind.AlwaysVisible = True
+        Me.GVPrepaidExp.OptionsSelection.EnableAppearanceFocusedRow = False
+        Me.GVPrepaidExp.OptionsView.ColumnAutoWidth = False
+        Me.GVPrepaidExp.OptionsView.ShowFooter = True
+        Me.GVPrepaidExp.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn240
+        '
+        Me.GridColumn240.Caption = "Id"
+        Me.GridColumn240.FieldName = "id_item_expense"
+        Me.GridColumn240.Name = "GridColumn240"
+        Me.GridColumn240.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn241
+        '
+        Me.GridColumn241.Caption = "Number"
+        Me.GridColumn241.FieldName = "number"
+        Me.GridColumn241.Name = "GridColumn241"
+        Me.GridColumn241.OptionsColumn.AllowEdit = False
+        Me.GridColumn241.Visible = True
+        Me.GridColumn241.VisibleIndex = 2
+        '
+        'GridColumn242
+        '
+        Me.GridColumn242.Caption = "Inv Number"
+        Me.GridColumn242.FieldName = "inv_number"
+        Me.GridColumn242.Name = "GridColumn242"
+        Me.GridColumn242.Visible = True
+        Me.GridColumn242.VisibleIndex = 3
+        '
+        'GridColumn243
+        '
+        Me.GridColumn243.Caption = "Created Date"
+        Me.GridColumn243.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn243.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn243.FieldName = "created_date"
+        Me.GridColumn243.Name = "GridColumn243"
+        Me.GridColumn243.OptionsColumn.AllowEdit = False
+        Me.GridColumn243.Visible = True
+        Me.GridColumn243.VisibleIndex = 5
+        '
+        'GridColumn244
+        '
+        Me.GridColumn244.Caption = "Created by"
+        Me.GridColumn244.FieldName = "created_by_name"
+        Me.GridColumn244.Name = "GridColumn244"
+        Me.GridColumn244.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn245
+        '
+        Me.GridColumn245.Caption = "Approval Status"
+        Me.GridColumn245.FieldName = "report_status"
+        Me.GridColumn245.Name = "GridColumn245"
+        Me.GridColumn245.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn246
+        '
+        Me.GridColumn246.Caption = "Payment Status"
+        Me.GridColumn246.FieldName = "paid_status"
+        Me.GridColumn246.Name = "GridColumn246"
+        Me.GridColumn246.OptionsColumn.AllowEdit = False
+        Me.GridColumn246.Visible = True
+        Me.GridColumn246.VisibleIndex = 7
+        '
+        'GridColumn247
+        '
+        Me.GridColumn247.Caption = "Balance Due"
+        Me.GridColumn247.DisplayFormat.FormatString = "N2"
+        Me.GridColumn247.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn247.FieldName = "balance"
+        Me.GridColumn247.Name = "GridColumn247"
+        Me.GridColumn247.OptionsColumn.AllowEdit = False
+        Me.GridColumn247.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N2}")})
+        Me.GridColumn247.Visible = True
+        Me.GridColumn247.VisibleIndex = 9
+        '
+        'RepositoryItemSearchLookUpEdit1
+        '
+        Me.RepositoryItemSearchLookUpEdit1.AutoHeight = False
+        Me.RepositoryItemSearchLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSearchLookUpEdit1.Name = "RepositoryItemSearchLookUpEdit1"
+        Me.RepositoryItemSearchLookUpEdit1.View = Me.GridView25
+        '
+        'GridView25
+        '
+        Me.GridView25.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn249, Me.GridColumn250})
+        Me.GridView25.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView25.Name = "GridView25"
+        Me.GridView25.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView25.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn249
+        '
+        Me.GridColumn249.Caption = "ID"
+        Me.GridColumn249.FieldName = "id_currency"
+        Me.GridColumn249.Name = "GridColumn249"
+        '
+        'GridColumn250
+        '
+        Me.GridColumn250.Caption = "Currency"
+        Me.GridColumn250.FieldName = "currency"
+        Me.GridColumn250.Name = "GridColumn250"
+        Me.GridColumn250.Visible = True
+        Me.GridColumn250.VisibleIndex = 0
+        '
+        'GridColumn253
+        '
+        Me.GridColumn253.Caption = "Total Expense"
+        Me.GridColumn253.DisplayFormat.FormatString = "N2"
+        Me.GridColumn253.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn253.FieldName = "total"
+        Me.GridColumn253.Name = "GridColumn253"
+        Me.GridColumn253.OptionsColumn.AllowEdit = False
+        Me.GridColumn253.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
+        Me.GridColumn253.Visible = True
+        Me.GridColumn253.VisibleIndex = 8
+        '
+        'GridColumn254
+        '
+        Me.GridColumn254.Caption = "Id Comp"
+        Me.GridColumn254.FieldName = "id_comp"
+        Me.GridColumn254.Name = "GridColumn254"
+        Me.GridColumn254.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn255
+        '
+        Me.GridColumn255.Caption = "Vendor"
+        Me.GridColumn255.ColumnEdit = Me.RepositoryItemTextEdit5
+        Me.GridColumn255.FieldName = "comp"
+        Me.GridColumn255.Name = "GridColumn255"
+        Me.GridColumn255.OptionsColumn.AllowEdit = False
+        Me.GridColumn255.Visible = True
+        Me.GridColumn255.VisibleIndex = 1
+        '
+        'RepositoryItemTextEdit5
+        '
+        Me.RepositoryItemTextEdit5.AutoHeight = False
+        Me.RepositoryItemTextEdit5.Name = "RepositoryItemTextEdit5"
+        Me.RepositoryItemTextEdit5.NullText = "-"
+        '
+        'GridColumn256
+        '
+        Me.GridColumn256.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn256.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn256.Caption = "*"
+        Me.GridColumn256.ColumnEdit = Me.RepositoryItemCheckEdit13
+        Me.GridColumn256.FieldName = "is_select"
+        Me.GridColumn256.Name = "GridColumn256"
+        Me.GridColumn256.Visible = True
+        Me.GridColumn256.VisibleIndex = 0
+        '
+        'RepositoryItemCheckEdit13
+        '
+        Me.RepositoryItemCheckEdit13.AutoHeight = False
+        Me.RepositoryItemCheckEdit13.Name = "RepositoryItemCheckEdit13"
+        Me.RepositoryItemCheckEdit13.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit13.ValueUnchecked = "No"
+        '
+        'GridColumn257
+        '
+        Me.GridColumn257.Caption = "Total PPH"
+        Me.GridColumn257.FieldName = "total_pph"
+        Me.GridColumn257.Name = "GridColumn257"
+        '
+        'GridColumn258
+        '
+        Me.GridColumn258.Caption = "Total DP"
+        Me.GridColumn258.DisplayFormat.FormatString = "N2"
+        Me.GridColumn258.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn258.FieldName = "total_dp"
+        Me.GridColumn258.Name = "GridColumn258"
+        Me.GridColumn258.OptionsColumn.AllowEdit = False
+        Me.GridColumn258.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_dp", "{0:N2}")})
+        Me.GridColumn258.Visible = True
+        Me.GridColumn258.VisibleIndex = 10
+        '
+        'GridColumn259
+        '
+        Me.GridColumn259.Caption = "Total Paid"
+        Me.GridColumn259.DisplayFormat.FormatString = "N2"
+        Me.GridColumn259.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn259.FieldName = "total_paid"
+        Me.GridColumn259.Name = "GridColumn259"
+        Me.GridColumn259.OptionsColumn.AllowEdit = False
+        Me.GridColumn259.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_paid", "{0:N2}")})
+        Me.GridColumn259.Visible = True
+        Me.GridColumn259.VisibleIndex = 11
+        '
+        'GridColumn260
+        '
+        Me.GridColumn260.Caption = "Payment Pending"
+        Me.GridColumn260.DisplayFormat.FormatString = "N0"
+        Me.GridColumn260.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn260.FieldName = "total_pending"
+        Me.GridColumn260.Name = "GridColumn260"
+        Me.GridColumn260.OptionsColumn.AllowEdit = False
+        Me.GridColumn260.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_pending", "{0:N0}")})
+        Me.GridColumn260.Visible = True
+        Me.GridColumn260.VisibleIndex = 4
+        Me.GridColumn260.Width = 101
+        '
+        'GridColumn261
+        '
+        Me.GridColumn261.Caption = "Due Date"
+        Me.GridColumn261.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn261.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn261.FieldName = "due_date"
+        Me.GridColumn261.Name = "GridColumn261"
+        Me.GridColumn261.Visible = True
+        Me.GridColumn261.VisibleIndex = 6
+        '
+        'GridColumn262
+        '
+        Me.GridColumn262.Caption = "Diff"
+        Me.GridColumn262.DisplayFormat.FormatString = "N2"
+        Me.GridColumn262.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn262.FieldName = "diff"
+        Me.GridColumn262.Name = "GridColumn262"
+        Me.GridColumn262.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff", "{0:N2}")})
+        Me.GridColumn262.UnboundExpression = "[total] - [total_paid]"
+        Me.GridColumn262.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn262.Visible = True
+        Me.GridColumn262.VisibleIndex = 12
+        '
+        'GridColumn263
+        '
+        Me.GridColumn263.Caption = "Diif Due Date"
+        Me.GridColumn263.FieldName = "due_days"
+        Me.GridColumn263.Name = "GridColumn263"
+        '
+        'GridColumn264
+        '
+        Me.GridColumn264.Caption = "Is Open"
+        Me.GridColumn264.FieldName = "is_open"
+        Me.GridColumn264.Name = "GridColumn264"
+        '
+        'PanelControl10
+        '
+        Me.PanelControl10.Controls.Add(Me.BCreatePaymentPrepaidEx)
+        Me.PanelControl10.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl10.Location = New System.Drawing.Point(0, 470)
+        Me.PanelControl10.Name = "PanelControl10"
+        Me.PanelControl10.Size = New System.Drawing.Size(1352, 43)
+        Me.PanelControl10.TabIndex = 22
+        '
+        'BCreatePaymentPrepaidEx
+        '
+        Me.BCreatePaymentPrepaidEx.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreatePaymentPrepaidEx.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreatePaymentPrepaidEx.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreatePaymentPrepaidEx.Appearance.Options.UseBackColor = True
+        Me.BCreatePaymentPrepaidEx.Appearance.Options.UseFont = True
+        Me.BCreatePaymentPrepaidEx.Appearance.Options.UseForeColor = True
+        Me.BCreatePaymentPrepaidEx.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCreatePaymentPrepaidEx.Location = New System.Drawing.Point(1212, 2)
+        Me.BCreatePaymentPrepaidEx.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreatePaymentPrepaidEx.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreatePaymentPrepaidEx.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreatePaymentPrepaidEx.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreatePaymentPrepaidEx.Name = "BCreatePaymentPrepaidEx"
+        Me.BCreatePaymentPrepaidEx.Size = New System.Drawing.Size(138, 39)
+        Me.BCreatePaymentPrepaidEx.TabIndex = 19
+        Me.BCreatePaymentPrepaidEx.Text = "Create Payment"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.LabelControl20)
+        Me.PanelControl2.Controls.Add(Me.SLEUnitPrepaidEx)
+        Me.PanelControl2.Controls.Add(Me.LabelControl24)
+        Me.PanelControl2.Controls.Add(Me.BPrepaidExpense)
+        Me.PanelControl2.Controls.Add(Me.SLEVendorPrepaidEx)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1352, 42)
+        Me.PanelControl2.TabIndex = 4
+        '
+        'LabelControl20
+        '
+        Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl20.Location = New System.Drawing.Point(11, 14)
+        Me.LabelControl20.Name = "LabelControl20"
+        Me.LabelControl20.Size = New System.Drawing.Size(19, 13)
+        Me.LabelControl20.TabIndex = 8933
+        Me.LabelControl20.Text = "Unit"
+        '
+        'SLEUnitPrepaidEx
+        '
+        Me.SLEUnitPrepaidEx.Location = New System.Drawing.Point(36, 11)
+        Me.SLEUnitPrepaidEx.Name = "SLEUnitPrepaidEx"
+        Me.SLEUnitPrepaidEx.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEUnitPrepaidEx.Properties.View = Me.GridView19
+        Me.SLEUnitPrepaidEx.Size = New System.Drawing.Size(154, 20)
+        Me.SLEUnitPrepaidEx.TabIndex = 8932
+        '
+        'GridView19
+        '
+        Me.GridView19.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn212, Me.GridColumn213, Me.GridColumn214})
+        Me.GridView19.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView19.Name = "GridView19"
+        Me.GridView19.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView19.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn212
+        '
+        Me.GridColumn212.Caption = "id_coa_tag"
+        Me.GridColumn212.FieldName = "id_comp"
+        Me.GridColumn212.Name = "GridColumn212"
+        '
+        'GridColumn213
+        '
+        Me.GridColumn213.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn213.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn213.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn213.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn213.Caption = "Number"
+        Me.GridColumn213.FieldName = "tag_code"
+        Me.GridColumn213.Name = "GridColumn213"
+        Me.GridColumn213.Visible = True
+        Me.GridColumn213.VisibleIndex = 0
+        Me.GridColumn213.Width = 281
+        '
+        'GridColumn214
+        '
+        Me.GridColumn214.Caption = "Unit"
+        Me.GridColumn214.FieldName = "tag_description"
+        Me.GridColumn214.Name = "GridColumn214"
+        Me.GridColumn214.Visible = True
+        Me.GridColumn214.VisibleIndex = 1
+        Me.GridColumn214.Width = 1351
+        '
+        'LabelControl24
+        '
+        Me.LabelControl24.Location = New System.Drawing.Point(196, 14)
+        Me.LabelControl24.Name = "LabelControl24"
+        Me.LabelControl24.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl24.TabIndex = 8911
+        Me.LabelControl24.Text = "Vendor"
+        '
+        'BPrepaidExpense
+        '
+        Me.BPrepaidExpense.Location = New System.Drawing.Point(419, 9)
+        Me.BPrepaidExpense.Name = "BPrepaidExpense"
+        Me.BPrepaidExpense.Size = New System.Drawing.Size(60, 23)
+        Me.BPrepaidExpense.TabIndex = 8913
+        Me.BPrepaidExpense.Text = "view"
+        '
+        'SLEVendorPrepaidEx
+        '
+        Me.SLEVendorPrepaidEx.Location = New System.Drawing.Point(236, 11)
+        Me.SLEVendorPrepaidEx.Name = "SLEVendorPrepaidEx"
+        Me.SLEVendorPrepaidEx.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendorPrepaidEx.Properties.View = Me.GridView22
+        Me.SLEVendorPrepaidEx.Size = New System.Drawing.Size(177, 20)
+        Me.SLEVendorPrepaidEx.TabIndex = 8912
+        '
+        'GridView22
+        '
+        Me.GridView22.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn219, Me.GridColumn220})
+        Me.GridView22.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView22.Name = "GridView22"
+        Me.GridView22.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView22.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn219
+        '
+        Me.GridColumn219.Caption = "ID Comp Contact"
+        Me.GridColumn219.FieldName = "id_comp_contact"
+        Me.GridColumn219.Name = "GridColumn219"
+        '
+        'GridColumn220
+        '
+        Me.GridColumn220.Caption = "Vendor"
+        Me.GridColumn220.FieldName = "comp_name"
+        Me.GridColumn220.Name = "GridColumn220"
+        Me.GridColumn220.Visible = True
+        Me.GridColumn220.VisibleIndex = 0
+        '
         'XTPWaitingList
         '
         Me.XTPWaitingList.Controls.Add(Me.GCwaitingList)
@@ -5620,6 +6082,22 @@ Partial Class FormBankWithdrawal
         Me.PanelControl11.PerformLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView15, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPPrepaidExpense.ResumeLayout(False)
+        CType(Me.GCPrepaidExp, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPrepaidExp, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView25, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl10.ResumeLayout(False)
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.SLEUnitPrepaidEx.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView19, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEVendorPrepaidEx.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView22, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPWaitingList.ResumeLayout(False)
         CType(Me.GCwaitingList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVWaitingList, System.ComponentModel.ISupportInitialize).EndInit()
@@ -6110,4 +6588,48 @@ Partial Class FormBankWithdrawal
     Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
     Friend WithEvents BMutasiValas As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BMutasiValasBPL As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPPrepaidExpense As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCPrepaidExp As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPrepaidExp As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn240 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn241 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn242 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn243 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn244 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn245 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn246 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn247 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemSearchLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents GridView25 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn249 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn250 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn253 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn254 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn255 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit5 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumn256 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit13 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn257 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn258 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn259 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn260 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn261 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn262 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn263 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn264 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl10 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BCreatePaymentPrepaidEx As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEUnitPrepaidEx As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView19 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn212 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn213 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn214 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BPrepaidExpense As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEVendorPrepaidEx As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView22 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn219 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn220 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
