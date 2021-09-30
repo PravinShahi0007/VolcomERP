@@ -6888,7 +6888,13 @@ WHERE id_sales_branch ='" & dtv.Rows(0)("id_sales_branch").ToString & "' "
                     ElseIf data_payment.Rows(0)("report_mark_type").ToString = "167" Then
                         'close cash advance
                         execute_non_query("UPDATE tb_cash_advance SET is_bbk = 1 WHERE id_cash_advance IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
+                    ElseIf data_payment.Rows(0)("report_mark_type").ToString = "349" Then
+                        Dim qc As String = "UPDATE tb_prepaid_expense e
+                                                INNER JOIN tb_pn_det pyd ON pyd.`id_report`=e.`id_prepaid_expense` AND pyd.balance_due=pyd.`value` AND pyd.`id_pn`=" & id_report & "
+                                                SET e.is_open='2'"
+                        execute_non_query(qc, True, "", "", "", "")
                     End If
+
                     'check compen rmt 117 183 then close
                     Dim qce As String = "SELECT id_report FROM tb_pn_det WHERE id_pn='" & id_report & "' AND (report_mark_type='117' OR  report_mark_type='183')"
                     Dim dtce As DataTable = execute_query(qce, -1, True, "", "", "", "")

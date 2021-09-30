@@ -72,9 +72,32 @@ INNER JOIN
 WHERE l.`id_pre_cal_fgpo`='" & id_report & "'"
         Dim dt_duty As DataTable = execute_query(q_duty, -1, True, "", "", "", "")
 
+        Dim tot_qty_po, tot_fob, tot_fob_rp, tot_qty_sales, tot_freight, tot_royalty, tot_bm, tot_royalty_ppn, tot_royalty_pph As Decimal
+
+        tot_qty_po = 0
+        tot_fob = 0
+        tot_fob_rp = 0
+        tot_qty_sales = 0
+        tot_freight = 0
+        tot_royalty = 0
+        tot_bm = 0
+        tot_royalty_ppn = 0
+        tot_royalty_pph = 0
+
         For i = 0 To dt_duty.Rows.Count - 1
             insert_row_duty(row_baru, dt_duty, i)
+            tot_qty_po += dt_duty.Rows(i)("qty")
+            tot_fob += dt_duty.Rows(i)("tot_fob")
+            tot_fob_rp += dt_duty.Rows(i)("tot_fob_rp")
+            tot_qty_sales += dt_duty.Rows(i)("qty_sales")
+            tot_freight += dt_duty.Rows(i)("tot_freight")
+            tot_royalty += dt_duty.Rows(i)("tot_royalty")
+            tot_bm += dt_duty.Rows(i)("tot_bm")
+            tot_royalty_ppn += dt_duty.Rows(i)("total_ppn_royalty")
+            tot_royalty_pph += dt_duty.Rows(i)("total_pph_royalty")
         Next
+
+        insert_row_duty_total(row_baru, tot_qty_po, tot_fob, tot_fob_rp, tot_qty_sales, tot_freight, tot_royalty, tot_bm, tot_royalty_ppn, tot_royalty_pph)
 
         pre_load_mark_horz("334", id_report, "2", "2", XrTable6)
     End Sub
@@ -242,6 +265,141 @@ WHERE l.`id_pre_cal_fgpo`='" & id_report & "'"
         'tot_duty_col.Text = tot_duty
         'tot_duty_col.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         'tot_duty_col.Font = font_row_style
+    End Sub
+
+    Sub insert_row_duty_total(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal tot_qtyh As Decimal, ByVal tot_fobh As Decimal, ByVal tot_fob_rph As Decimal, ByVal qty_salesh As Decimal, ByVal tot_freighth As Decimal, ByVal tot_royaltyh As Decimal, ByVal tot_bmh As Decimal, ByVal total_ppn_royaltyh As Decimal, ByVal total_pph_royaltyh As Decimal)
+        Dim font_row_style As New Font(XTBreakdown.Font.FontFamily, XTBreakdown.Font.Size - 1, FontStyle.Bold)
+
+        row = XTBreakdown.InsertRowBelow(row)
+
+        row.HeightF = 15
+        row.Font = font_row_style
+
+        'po#
+        Dim pono As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
+        pono.Text = "TOTAL"
+        pono.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        pono.Font = font_row_style
+
+        'code
+        Dim code As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
+        code.Text = ""
+        code.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        code.Font = font_row_style
+
+        'design_name
+        Dim dsg As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+        dsg.Text = ""
+        dsg.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        dsg.Font = font_row_style
+
+        'qty po
+        Dim qty_po As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+        qty_po.Text = Decimal.Parse(tot_qtyh.ToString).ToString("N0")
+        qty_po.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        qty_po.Font = font_row_style
+
+        'fob $
+        Dim fob As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+        fob.Text = ""
+        fob.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        fob.Font = font_row_style
+
+        'tot fob $
+        Dim tot_fob As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
+        tot_fob.Text = Decimal.Parse(tot_fobh.ToString).ToString("N2")
+        tot_fob.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        tot_fob.Font = font_row_style
+
+        'rate management
+        Dim rate As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
+        rate.Text = ""
+        rate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        rate.Font = font_row_style
+
+        'fob in rp
+        Dim fobrp As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
+        fobrp.Text = ""
+        fobrp.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        fobrp.Font = font_row_style
+
+        'total fob in rp
+        Dim tot_fobrp As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
+        tot_fobrp.Text = Decimal.Parse(tot_fob_rph.ToString).ToString("N2")
+        tot_fobrp.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        tot_fobrp.Font = font_row_style
+
+        'est harga jual
+        Dim pd_price As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(9)
+        pd_price.Text = ""
+        pd_price.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        pd_price.Font = font_row_style
+
+        'harga jual margin
+        Dim price_commision As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(10)
+        price_commision.Text = ""
+        price_commision.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        price_commision.Font = font_row_style
+
+        'harga after ppn
+        Dim price_after_tax As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(11)
+        price_after_tax.Text = ""
+        price_after_tax.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        price_after_tax.Font = font_row_style
+
+        'qty sales
+        Dim qty_sales As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(12)
+        qty_sales.Text = Decimal.Parse(qty_salesh.ToString).ToString("N2")
+        qty_sales.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        qty_sales.Font = font_row_style
+
+        'freight per pc
+        Dim freight_cost As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(13)
+        freight_cost.Text = ""
+        freight_cost.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        freight_cost.Font = font_row_style
+
+        'total freight
+        Dim tot_freight As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(14)
+        tot_freight.Text = Decimal.Parse(tot_freighth.ToString).ToString("N2")
+        tot_freight.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        tot_freight.Font = font_row_style
+
+        'royalty
+        Dim royalty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(15)
+        royalty.Text = ""
+        royalty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        royalty.Font = font_row_style
+
+        'total royalty
+        Dim tot_royalty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(16)
+        tot_royalty.Text = Decimal.Parse(tot_royaltyh.ToString).ToString("N2")
+        tot_royalty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        tot_royalty.Font = font_row_style
+
+        'bm
+        Dim bm As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(17)
+        bm.Text = ""
+        bm.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        bm.Font = font_row_style
+
+        'total bm
+        Dim tot_bm As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(18)
+        tot_bm.Text = Decimal.Parse(tot_bmh.ToString).ToString("N2")
+        tot_bm.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        tot_bm.Font = font_row_style
+
+        'total ppn
+        Dim tot_ppn_royalty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(19)
+        tot_ppn_royalty.Text = Decimal.Parse(total_ppn_royaltyh.ToString).ToString("N2")
+        tot_ppn_royalty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        tot_ppn_royalty.Font = font_row_style
+
+        'total pph
+        Dim tot_pph_royalty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(20)
+        tot_pph_royalty.Text = Decimal.Parse(total_pph_royaltyh.ToString).ToString("N2")
+        tot_pph_royalty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        tot_pph_royalty.Font = font_row_style
     End Sub
 
     Sub insert_row_bm(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)
