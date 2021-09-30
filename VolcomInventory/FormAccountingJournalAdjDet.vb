@@ -27,6 +27,8 @@
             PCButton.Visible = True
             '
             BSave.Visible = True
+
+            DERefDate.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='1'", 0, True, "", "", "", "")
         Else 'edit
             Dim query As String = "SELECT a.acc_trans_adj_number,a.id_acc_trans,a.date_reffrence,DATE_FORMAT(a.date_created,'%Y-%m-%d') as date_created,a.id_user,a.acc_trans_adj_note,id_report_status FROM tb_a_acc_trans_adj a WHERE a.id_acc_trans_adj='" & id_trans_adj & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
