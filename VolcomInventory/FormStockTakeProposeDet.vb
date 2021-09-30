@@ -181,77 +181,68 @@
         Dim surat_contact_person As String = SLUEContact.Text
         Dim surat_comp_name As String = SLUEStoreCompany.Text
 
-        Dim surat_position As String = ""
-        Try
-            surat_position = execute_query("SELECT position FROM tb_m_comp_contact WHERE id_comp_contact = " + SLUEContact.EditValue.ToString, 0, True, "", "", "", "")
-        Catch ex As Exception
-        End Try
-
-        Dim surat_address As String = ""
-        Try
-            surat_address = execute_query("SELECT address_primary FROM tb_m_comp WHERE id_comp = " + SLUEStoreCompany.EditValue.ToString, 0, True, "", "", "", "")
-        Catch ex As Exception
-        End Try
-
         Dim surat_store As String = SLUEGroup.Text
         Dim surat_period As String = period_from + " - " + period_to
         Dim surat_time As String = TETimeFrom.Text + " - " + TETimeTo.Text
 
         Dim html As String = "
-            <p style='margin: 0px; line-height: 1;'><u>No. " + surat_number + "</u></p>
-            <p style='margin: 0px; line-height: 1;'>Kuta, " + surat_date + "</p>
-            <p style='line-height: 1;'>Kepada Yth,</p>
-            <p style='margin: 0px; line-height: 1;'><b>" + surat_contact_person + "</b></p>
-            <p style='margin: 0px; line-height: 1;'><b>" + surat_comp_name + " - " + surat_position + "</b></p>
-            <p style='margin: 0px; line-height: 1;'>" + surat_address + "</p>
-            <p style='margin: 0px; line-height: 1;'>Di Tempat</p>
-            <p style='line-height: 1;'><b><u>Perihal: Pemberitahuan Kegiatan Stocktake PT. Volcom Indonesia</u></b></p>
-            <p style='line-height: 1;'><b>Dengan Hormat,</b></p>
-            <p style='line-height: 1;'>Pertama-tama kami ucapkan banyak terimaksi atas kerjasama yang telah terjalin dengan baik selama ini.</p>
-            <p style='line-height: 1;'>Dalam rangka kegiatan audit terhadap data inventory dan laporan keuangan PT. Volcom Indonesia, maka disampaikan bahwa kami akan melakukan kegiatan Stocktake (STK) Brand Volcom di toko " + surat_store + ".</p>
+            <p style='margin: 0px; line-height: 1; font-size: 14px;'><u>No. " + surat_number + "</u></p>
+            <p style='margin: 0px; line-height: 1; font-size: 14px;'>Kuta, " + surat_date + "</p>
+            <p style='line-height: 1; font-size: 14px;'>Kepada Yth,</p>
+            <p style='margin: 0px; line-height: 1; font-size: 14px;'><b>Bpk/Ibu " + surat_contact_person + "</b></p>
+            <p style='margin: 0px; line-height: 1; font-size: 14px;'><b>" + surat_comp_name + "</b></p>
+            <p style='margin: 0px; line-height: 1; font-size: 14px;'>Di Tempat</p>
+            <p style='line-height: 1; font-size: 14px;'><b><u>Perihal: Pemberitahuan Kegiatan Stocktake PT. Volcom Indonesia</u></b></p>
+            <p style='line-height: 1; font-size: 14px;'><b>Dengan hormat,</b></p>
+            <p style='line-height: 1; font-size: 14px;'>Pertama-tama kami ucapkan banyak terimakasih atas kerjasama yang telah terjalin dengan baik selama ini.</p>
+            <p style='line-height: 1; font-size: 14px;'>Dalam rangka kegiatan audit terhadap data inventory dan laporan keuangan PT. Volcom Indonesia, maka disampaikan bahwa kami akan melakukan kegiatan remote stocktake brand Volcom di toko " + surat_store + ".</p>
             <table>
               <tr>
-                <td style='width: 75px'><p style='margin: 0; line-height: 1;'>Periode</p></td>
-                <td style='width: 10px'><p style='margin: 0; line-height: 1;'>:</p></td>
-                <td><p style='margin: 0; line-height: 1;'>" + surat_period + "</p></td>
+                <td style='width: 75px'><p style='margin: 0; line-height: 1; font-size: 14px;'>Periode</p></td>
+                <td style='width: 10px'><p style='margin: 0; line-height: 1; font-size: 14px;'>:</p></td>
+                <td><p style='margin: 0; line-height: 1; font-size: 14px;'>" + surat_period + "</p></td>
               </tr>
               <tr>
-                <td><p style='margin: 0; line-height: 1;'>Waktu</p></td>
-                <td><p style='margin: 0; line-height: 1;'>:</p></td>
-                <td><p style='margin: 0; line-height: 1;'>" + surat_time + "</p></td>
+                <td><p style='margin: 0; line-height: 1; font-size: 14px;'>Waktu</p></td>
+                <td><p style='margin: 0; line-height: 1; font-size: 14px;'>:</p></td>
+                <td><p style='margin: 0; line-height: 1; font-size: 14px;'>" + surat_time + " Wita</p></td>
               </tr>
             </table>
-            <p style='line-height: 1;'>Berikut kami sampaikan team yang bertugas :</p>
+            <p style='line-height: 1; font-size: 14px;'>Petugas IA PT. Volcom Indonesia:</p>
             <table>
               <tr>
-                <td style='width: 10px'><p style='margin: 0; line-height: 1;'>1.</p></td>
-                <td style='width: 250px'><p style='margin: 0; line-height: 1;'>Anak Agung Gede Putra Wirawan</p></td>
+                <td style='width: 10px'><p style='margin: 0; line-height: 1; font-size: 14px;'>1.</p></td>
+                <td style='width: 250px'><p style='margin: 0; line-height: 1; font-size: 14px;'>Anak Agung Gede Putra Wirawan</p></td>
               </tr>
               <tr>
-                <td><p style='margin: 0; line-height: 1;'>2.</p></td>
-                <td><p style='margin: 0; line-height: 1;'>Kadek Budi Ariawan</p></td>
+                <td style='width: 10px'><p style='margin: 0; line-height: 1; font-size: 14px;'>2.</p></td>
+                <td style='width: 250px'><p style='margin: 0; line-height: 1; font-size: 14px;'>Ni Ketut Sri Udayani</p></td>
               </tr>
               <tr>
-                <td><p style='margin: 0; line-height: 1;'>3.</p></td>
-                <td><p style='margin: 0; line-height: 1;'>I Wayan Swastika</p></td>
+                <td><p style='margin: 0; line-height: 1; font-size: 14px;'>3.</p></td>
+                <td><p style='margin: 0; line-height: 1; font-size: 14px;'>I Wayan Swastika</p></td>
               </tr>
               <tr>
-                <td><p style='margin: 0; line-height: 1;'>4.</p></td>
-                <td><p style='margin: 0; line-height: 1;'>I Putu Adi Suarjana</p></td>
+                <td><p style='margin: 0; line-height: 1; font-size: 14px;'>4.</p></td>
+                <td><p style='margin: 0; line-height: 1; font-size: 14px;'>Kadek Budi Ariawan</p></td>
+              </tr>
+              <tr>
+                <td><p style='margin: 0; line-height: 1; font-size: 14px;'>5.</p></td>
+                <td><p style='margin: 0; line-height: 1; font-size: 14px;'>I Putu Adi Suarjana</p></td>
               </tr>
             </table>
-            <p style='line-height: 1;'>Terlampir</p>
+            <p style='line-height: 1; font-size: 14px;'>Terlampir</p>
             <ul>
-              <li><p style='margin: 0; line-height: 1;'>Prosedur Stocktake dari PT. Volcom Indonesia</p></li>
-              <li><p style='margin: 0; line-height: 1;'>Daftar Toko</p></li>
+              <li><p style='margin: 0; line-height: 1; font-size: 14px;'>Prosedur Stocktake dari PT. Volcom Indonesia</p></li>
+              <li><p style='margin: 0; line-height: 1; font-size: 14px;'>Daftar Toko</p></li>
             </ul>
-            <p style='line-height: 1;'>Agar kegiatan tersebut dapat berjalan dengan baik dan lancar, kami mohon dukungan dari Bapak dan Ibu pimpinan seluruh toko, yang nantinya hasil Stocktake (STK) tersebut dapat juga digunakan untuk melakukan penilaian terhadap kinerja toko yang Bapak maupun Ibu kelola.</p>
-            <p style='line-height: 1;'>Demikian pemberitahuan ini kami sampaikan, atas perhatian dan kerjasamanya kami ucapkan terimakasih</p>
+            <p style='line-height: 1; font-size: 14px;'>Agar kegiatan tersebut dapat berjalan dengan baik dan lancar, kami mohon dukungan dari Bapak/Ibu pimpinan seluruh toko agar menyiapkan akses internet, komputer, scanner barcode dan Team Pelaksana Remote Stocktake Toko, yang nantinya hasil remote stocktake tersebut dapat juga digunakan untuk melakukan penilaian terhadap kinerja toko yang Bapak/Ibu kelola.</p>
+            <p style='line-height: 1; font-size: 14px;'>Demikian pemberitahuan ini kami sampaikan, atas perhatian dan kerjasamanya kami ucapkan terimakasih.</p>
             <table>
               <tr>
-                <td><p style='margin: 0; line-height: 1; text-align: center;'>Hormat Kami,</p></td>
+                <td><p style='margin: 0; line-height: 1; font-size: 14px;'>Hormat Kami,</p></td>
                 <td style='width: 150px;'></td>
-                <td><p style='margin: 0; line-height: 1; text-align: center;'>Hormat Kami,</p></td>
+                <td><p style='margin: 0; line-height: 1; font-size: 14px;'>Mengetahui,</p></td>
               </tr>
               <tr>
                 <td style='height: 50px;'></td>
@@ -259,21 +250,21 @@
                 <td></td>
               </tr>
               <tr>
-                <td><p style='margin: 0; line-height: 1; text-align: center;'>Anak Agung Gede Putra Wirawan</p></td>
+                <td><p style='margin: 0; line-height: 1; font-size: 14px;'><b><u>Anak Agung Gede Putra Wirawan</u></b></p></td>
                 <td></td>
-                <td><p style='margin: 0; line-height: 1; text-align: center;'>Marissa Bridgitt Kasih / Karl James Kasih</p></td>
+                <td><p style='margin: 0; line-height: 1; font-size: 14px;'><b><u>Marissa Bridgitt Kasih / Karl James Kasih</u></b></p></td>
               </tr>
               <tr>
-                <td><p style='margin: 0; line-height: 1; text-align: center;'>Asst. Internal Audit Manager</p></td>
+                <td><p style='margin: 0; line-height: 1; font-size: 14px;'>Asst. Internal Audit Manager</p></td>
                 <td></td>
-                <td><p style='margin: 0; line-height: 1; text-align: center;'>Director</p></td>
+                <td><p style='margin: 0; line-height: 1; font-size: 14px;'>Director</p></td>
               </tr>
             </table>
-            <p style='line-height: 1;'>Tembusan:</p>
+            <p style='line-height: 1; font-size: 14px;'><i>Tembusan:</i></p>
             <ul>
-              <li><p style='margin: 0; line-height: 1;'><i>Sales & Operation PT. Volcom Indonesia</i></p></li>
-              <li><p style='margin: 0; line-height: 1;'><i>Warehouse & Distribution PT. Volcom Indonesia</i></p></li>
-              <li><p style='margin: 0; line-height: 1;'><i>Finance & Accounting PT. Volcom Indonesia</i></p></li>
+              <li><p style='margin: 0; line-height: 1; font-size: 14px;'><i>Sales & Operation PT. Volcom Indonesia</i></p></li>
+              <li><p style='margin: 0; line-height: 1; font-size: 14px;'><i>Warehouse & Distribution PT. Volcom Indonesia</i></p></li>
+              <li><p style='margin: 0; line-height: 1; font-size: 14px;'><i>Finance & Accounting PT. Volcom Indonesia</i></p></li>
             </ul>
         "
 
@@ -349,76 +340,65 @@
         Dim email_time As String = TETimeFrom.Text + " - " + TETimeTo.Text
 
         Dim html As String = "
-            <p style='line-height: 1.5;'>Dear " + email_to_mail + "</p>
-            <p style='margin: 0px; line-height: 1.5;'>Pertama - tama kami ucapkan Terima kasih atas kerja samanya yang telah berjalan dengan baik selama ini.</p>
-            <p style='margin: 0px; line-height: 1.5;'>Bersama ini kami sampaikan tentang rencana kegiatan / pelaksanaan Stocktake PT.Volcom Indonesia, periode " + email_period + ".</p>
-            <p style='margin: 0px; line-height: 1.5;'>Agar kegiatan ini bisa berjalan dengan baik,</p>
-            <p style='margin: 0px; line-height: 1.5;'>Mohon support, koordinasi dan bantuan dari management " + email_group + " terkait hal2 sbb: </p>
+            <p style='line-height: 1.5;'>Dear Bapak / Ibu " + email_to_mail + "</p>
+            <p style='margin: 0px; line-height: 1.5;'>Pertama - tama kami ucapkan terima kasih atas kerjasama yang telah berjalan dengan baik selama ini.</p>
+            <p style='margin: 0px; line-height: 1.5;'>Bersama ini kami sampaikan tentang rencana kegiatan / pelaksanaan remote stocktake PT.Volcom Indonesia, periode " + email_period + ".</p>
+            <p style='margin: 0px; line-height: 1.5;'>Agar kegiatan ini bisa berjalan dengan baik, mohon support, koordinasi dan bantuan dari management " + email_group + " terkait hal-hal sbb: </p>
             <table>
               <tr>
                 <td><p style='margin: 0px; line-height: 1.5;'>1.</p></td>
                 <td><p style='margin: 0px; line-height: 1.5;'>Ijin pelaksanaan Stocktake</p></td>
               </tr>
               <tr>
-                <td style='vertical-align: top;'><p style='margin: 0px; line-height: 1.5;'>2.</p></td>
-                <td>
-                  <p style='margin: 0px; line-height: 1.5;'>Sehubungan padatnya schedule stocktake, maka operasional dilaksanakan:</p>
-                  <ul style='margin: 0px;'>
-                    <li><p style='margin: 0px; line-height: 1.5;'>" + email_period + "</p></li>
-                    <li><p style='margin: 0px; line-height: 1.5;'>Team Volcom akan ber-koordinasi bersama team / penanggung jawab toko H-1</p></li>
-                  </ul>
-                </td>
+                <td><p style='margin: 0px; line-height: 1.5;'>2.</p></td>
+                <td><p style='margin: 0px; line-height: 1.5;'>Periode Remote Stocktake:</p></td>
               </tr>
               <tr>
-                <td style='vertical-align: top;'><p style='margin: 0px; line-height: 1.5;'>3.</p></td>
-                <td>
-                  <p style='margin: 0px; line-height: 1.5;'>Estimasi waktu:</p>
-                  <ul style='margin: 0px;'>
-                    <li><p style='margin: 0px; line-height: 1.5;'>" + email_time + "</p></li>
-                  </ul>
-                </td>
+                <td><p style='margin: 0px; line-height: 1.5;'></p></td>
+                <td><p style='margin: 0px; line-height: 1.5;'>" + email_period + "</p></td>
+              </tr>
+              <tr>
+                <td><p style='margin: 0px; line-height: 1.5;'>3.</p></td>
+                <td><p style='margin: 0px; line-height: 1.5;'>Estimasi waktu:</p></td>
+              </tr>
+              <tr>
+                <td><p style='margin: 0px; line-height: 1.5;'></p></td>
+                <td><p style='margin: 0px; line-height: 1.5;'>" + email_time + "</p></td>
               </tr>
               <tr>
                 <td style='vertical-align: top;'><p style='margin: 0px; line-height: 1.5;'>4.</p></td>
                 <td>
-                  <p style='margin: 0px; line-height: 1.5;'>Koordinasi / persiapan ( Internal ) dari management " + email_group + " untuk toko2 yang akan dilaksanakan Stocktake:</p>
+                  <p style='margin: 0px; line-height: 1.5;'>Koordinasi / persiapan (Internal) dari management " + email_group + " untuk toko-toko yang akan dilaksanakan stocktake:</p>
                   <ul style='margin: 0px;'>
-                    <li><p style='margin: 0px; line-height: 1.5;'>Staff pendamping dan penanggung jawab toko</p></li>
-                    <li><p style='margin: 0px; line-height: 1.5;'>Persiapan seluruh stock barang Volcom</p></li>
-                    <li><p style='margin: 0px; line-height: 1.5;'>Penyelesaian admininstrasi yang masih pending</p></li>
-                    <li><p style='margin: 0px; line-height: 1.5;'>Barang masalah ( No.Tag, Reject dll ) dikumpulkan tersendiri</p></li>
+                    <li><p style='margin: 0px; line-height: 1.5;'>- Perangkat computer & scanner barcode</p></li>
+                    <li><p style='margin: 0px; line-height: 1.5;'>- Jaringan internet untuk meng-akses program remote stocktake</p></li>
+                    <li><p style='margin: 0px; line-height: 1.5;'>- Team Pelaksana Remote Stocktake Toko</p></li>
+                    <li><p style='margin: 0px; line-height: 1.5;'>- Persiapan stock produk Volcom yang diminta remote stocktake</p></li>
+                    <li><p style='margin: 0px; line-height: 1.5;'>- Penyelesaian administrasi yang masih pending</p></li>
                   </ul>
                 </td>
               </tr>
               <tr>
                 <td style='vertical-align: top;'><p style='margin: 0px; line-height: 1.5;'>5.</p></td>
                 <td>
-                  <p style='margin: 0px; line-height: 1.5;'>Person in-charge ( Team Volcom yang akan bertugas ):</p>
+                  <p style='margin: 0px; line-height: 1.5;'>Petugas IA PT. Volcom Indonesia:</p>
                   <ul style='margin: 0px;'>
                     <li><p style='margin: 0px; line-height: 1.5;'>Anak Agung Gede Putra Wirawan</p></li>
+                    <li><p style='margin: 0px; line-height: 1.5;'>Ni Ketut Sri Udayani</p></li>
                     <li><p style='margin: 0px; line-height: 1.5;'>Kadek Budi Ariawan</p></li>
                     <li><p style='margin: 0px; line-height: 1.5;'>I Wayan Swastika</p></li>
                     <li><p style='margin: 0px; line-height: 1.5;'>I Putu Adi Suarjana</p></li>
                   </ul>
                 </td>
               </tr>
-              <tr>
-                <td><p style='margin: 0px; line-height: 1.5;'>6.</p></td>
-                <td><p style='margin: 0px; line-height: 1.5;'>Mohon dikirimkan Contact Person Coordinator Area untuk memudahkan proses koordinasi dilapangan.</p></td>
-              </tr>
             </table>
-            <ul>
+            <ul style='margin-bottom: 0px;'>
               <li><p style='margin: 0px; line-height: 1.5;'>Terlampir:</p></li>
             </ul>
-            <ul>
-              <li><p style='margin: 0px; line-height: 1.5;'>Prosedur stocktake</p></li>
-              <li><p style='margin: 0px; line-height: 1.5;'>Surat pemberitahuan Resmi kepada Pimpinan / Direktur</p></li>
-              <li><p style='margin: 0px; line-height: 1.5;'>Time Table Stocktake</p></li>
-            </ul>
-            <ul>
-              <li><p style='margin: 0px; line-height: 1.5;'>Mohon konfirmasinya</p></li>
-            </ul>
-            <p style='margin: 0px; line-height: 1.5;'>Apabila ada hal yang kurang jelas berkaitan dengan planning tersebut mohon agar dapat dikoordinasikan kembali.</p>
+            <p style='margin-top: 0px; margin-bottom: 0px; margin-left: 35px; line-height: 1.5;'>- Prosedur Remote Stocktake</p></li>
+            <p style='margin-top: 0px; margin-bottom: 0px; margin-left: 35px; line-height: 1.5;'>- Surat Pemberitahuan Resmi kepada Pimpinan / Direktur</p>
+            <br />
+            <p style='margin: 0px; line-height: 1.5;'>Mohon konfirmasinya, apabila ada hal yang kurang jelas berkaitan dengan ijin pelaksanaan remote stocktake tersebut agar dapat dikoordinasikan kembali.</p>
             <p style='margin: 0px; line-height: 1.5;'>Terima kasih atas perhatiannya.</p>
         "
 
@@ -731,6 +711,13 @@
 
         mail.Attachments.Add(att_toko)
 
+        'attachment p&p
+        My.Computer.Network.DownloadFile(New Uri("\\192.168.1.2\dataapp$\template\PP Remote Stocktake Toko.pdf"), path + "\PP Remote Stocktake Toko.pdf", "", "", True, 100, True)
+
+        Dim att_pp = New Net.Mail.Attachment(path + "\PP Remote Stocktake Toko.pdf", "application/pdf")
+
+        mail.Attachments.Add(att_pp)
+
         Try
             client.Send(mail)
 
@@ -785,5 +772,26 @@
         FormMasterCompanyContact.ShowDialog()
 
         load_contact()
+    End Sub
+
+    Private Sub SBPNP_Click(sender As Object, e As EventArgs) Handles SBPNP.Click
+        'path
+        Dim path As String = Application.StartupPath & "\download\"
+        Dim filename As String = path + "\PP Remote Stocktake Toko.pdf"
+
+        If Not IO.Directory.Exists(path) Then
+            System.IO.Directory.CreateDirectory(path)
+        End If
+
+        'download
+        My.Computer.Network.DownloadFile(New Uri("\\192.168.1.2\dataapp$\template\PP Remote Stocktake Toko.pdf"), filename, "", "", True, 100, True)
+
+        'openfile
+        Dim processinfo As ProcessStartInfo = New ProcessStartInfo()
+
+        processinfo.FileName = filename
+        processinfo.WorkingDirectory = path
+
+        Process.Start(processinfo)
     End Sub
 End Class
