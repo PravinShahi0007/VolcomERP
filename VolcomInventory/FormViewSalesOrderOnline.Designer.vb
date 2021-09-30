@@ -41,6 +41,8 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnItemId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOLStoreId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,7 +58,7 @@ Partial Class FormViewSalesOrderOnline
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnPriceType, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnIdSalesTarget, Me.GridColumnEanCode, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdDesignPrice, Me.GridColumnItemId, Me.GridColumnOLStoreId})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnPriceType, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnIdSalesTarget, Me.GridColumnEanCode, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdDesignPrice, Me.GridColumnItemId, Me.GridColumnOLStoreId, Me.GridColumnclass, Me.GridColumncolor})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -73,7 +75,7 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 42
+        Me.GridColumnNo.Width = 55
         '
         'GridColumnCode
         '
@@ -83,7 +85,7 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnCode.OptionsColumn.ReadOnly = True
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 3
-        Me.GridColumnCode.Width = 69
+        Me.GridColumnCode.Width = 90
         '
         'GridColumnName
         '
@@ -92,8 +94,8 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 4
-        Me.GridColumnName.Width = 142
+        Me.GridColumnName.VisibleIndex = 5
+        Me.GridColumnName.Width = 190
         '
         'GridColumnSize
         '
@@ -106,8 +108,8 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 5
-        Me.GridColumnSize.Width = 53
+        Me.GridColumnSize.VisibleIndex = 7
+        Me.GridColumnSize.Width = 70
         '
         'GridColumnPriceType
         '
@@ -117,8 +119,8 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnPriceType.OptionsColumn.AllowEdit = False
         Me.GridColumnPriceType.OptionsColumn.ReadOnly = True
         Me.GridColumnPriceType.Visible = True
-        Me.GridColumnPriceType.VisibleIndex = 6
-        Me.GridColumnPriceType.Width = 98
+        Me.GridColumnPriceType.VisibleIndex = 8
+        Me.GridColumnPriceType.Width = 131
         '
         'GridColumnQty
         '
@@ -137,8 +139,8 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnQty.OptionsColumn.ReadOnly = True
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", "{0:f2}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 7
-        Me.GridColumnQty.Width = 88
+        Me.GridColumnQty.VisibleIndex = 9
+        Me.GridColumnQty.Width = 117
         '
         'GridColumnPrice
         '
@@ -153,8 +155,8 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.OptionsColumn.ReadOnly = True
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 8
-        Me.GridColumnPrice.Width = 106
+        Me.GridColumnPrice.VisibleIndex = 10
+        Me.GridColumnPrice.Width = 142
         '
         'GridColumnAmount
         '
@@ -170,8 +172,8 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnAmount.OptionsColumn.ReadOnly = True
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n2}")})
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 9
-        Me.GridColumnAmount.Width = 121
+        Me.GridColumnAmount.VisibleIndex = 11
+        Me.GridColumnAmount.Width = 162
         '
         'GridColumnRemark
         '
@@ -179,8 +181,8 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnRemark.FieldName = "sales_order_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 10
-        Me.GridColumnRemark.Width = 225
+        Me.GridColumnRemark.VisibleIndex = 12
+        Me.GridColumnRemark.Width = 302
         '
         'GridColumnUOM
         '
@@ -258,6 +260,7 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnItemId.Name = "GridColumnItemId"
         Me.GridColumnItemId.Visible = True
         Me.GridColumnItemId.VisibleIndex = 1
+        Me.GridColumnItemId.Width = 98
         '
         'GridColumnOLStoreId
         '
@@ -266,6 +269,7 @@ Partial Class FormViewSalesOrderOnline
         Me.GridColumnOLStoreId.Name = "GridColumnOLStoreId"
         Me.GridColumnOLStoreId.Visible = True
         Me.GridColumnOLStoreId.VisibleIndex = 2
+        Me.GridColumnOLStoreId.Width = 98
         '
         'GCItemList
         '
@@ -278,6 +282,26 @@ Partial Class FormViewSalesOrderOnline
         Me.GCItemList.Size = New System.Drawing.Size(663, 261)
         Me.GCItemList.TabIndex = 3
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.OptionsColumn.ReadOnly = True
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 4
+        Me.GridColumnclass.Width = 67
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.OptionsColumn.ReadOnly = True
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 6
+        Me.GridColumncolor.Width = 110
         '
         'FormViewSalesOrderOnline
         '
@@ -317,4 +341,6 @@ Partial Class FormViewSalesOrderOnline
     Friend WithEvents GridColumnItemId As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOLStoreId As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCItemList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
 End Class

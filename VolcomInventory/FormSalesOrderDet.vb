@@ -904,6 +904,7 @@ Public Class FormSalesOrderDet
 
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
+        GVItemList.BestFitColumns()
         ReportSalesOrder.dt = GCItemList.DataSource
         ReportSalesOrder.id_sales_order = id_sales_order
         Dim Report As New ReportSalesOrder()
