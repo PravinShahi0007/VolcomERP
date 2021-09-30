@@ -90,6 +90,12 @@ Partial Class FormSalesOrderGen
         Me.XTPOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.GCNewPrepare = New DevExpress.XtraGrid.GridControl()
         Me.GVNewPrepare = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclasssum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolorsum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshtsum = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -484,7 +490,7 @@ Partial Class FormSalesOrderGen
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnIdCompTo, Me.GridColumnIdCompFrom, Me.GridColumnIdProduct, Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnStyle, Me.GridColumnSize, Me.GridColumnCompTo, Me.GridColumnCompFrom, Me.GridColumnQty})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnIdCompTo, Me.GridColumnIdCompFrom, Me.GridColumnIdProduct, Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnStyle, Me.GridColumnSize, Me.GridColumnCompTo, Me.GridColumnCompFrom, Me.GridColumnQty, Me.GridColumnclass, Me.GridColumncolor, Me.GridColumnsht})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_gen_det_qty", Me.GridColumnQty, "{0:n0}")})
         Me.GVItemList.Name = "GVItemList"
@@ -527,7 +533,7 @@ Partial Class FormSalesOrderGen
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 35
+        Me.GridColumnNo.Width = 59
         '
         'GridColumnCode
         '
@@ -537,7 +543,7 @@ Partial Class FormSalesOrderGen
         Me.GridColumnCode.OptionsColumn.AllowEdit = False
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 135
+        Me.GridColumnCode.Width = 228
         '
         'GridColumnStyle
         '
@@ -546,8 +552,8 @@ Partial Class FormSalesOrderGen
         Me.GridColumnStyle.Name = "GridColumnStyle"
         Me.GridColumnStyle.OptionsColumn.AllowEdit = False
         Me.GridColumnStyle.Visible = True
-        Me.GridColumnStyle.VisibleIndex = 2
-        Me.GridColumnStyle.Width = 154
+        Me.GridColumnStyle.VisibleIndex = 3
+        Me.GridColumnStyle.Width = 269
         '
         'GridColumnSize
         '
@@ -556,8 +562,8 @@ Partial Class FormSalesOrderGen
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.AllowEdit = False
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 3
-        Me.GridColumnSize.Width = 55
+        Me.GridColumnSize.VisibleIndex = 5
+        Me.GridColumnSize.Width = 101
         '
         'GridColumnCompTo
         '
@@ -567,8 +573,8 @@ Partial Class FormSalesOrderGen
         Me.GridColumnCompTo.Name = "GridColumnCompTo"
         Me.GridColumnCompTo.OptionsColumn.AllowEdit = False
         Me.GridColumnCompTo.Visible = True
-        Me.GridColumnCompTo.VisibleIndex = 5
-        Me.GridColumnCompTo.Width = 177
+        Me.GridColumnCompTo.VisibleIndex = 7
+        Me.GridColumnCompTo.Width = 329
         '
         'GridColumnCompFrom
         '
@@ -577,8 +583,8 @@ Partial Class FormSalesOrderGen
         Me.GridColumnCompFrom.FieldNameSortGroup = "id_comp_from"
         Me.GridColumnCompFrom.Name = "GridColumnCompFrom"
         Me.GridColumnCompFrom.Visible = True
-        Me.GridColumnCompFrom.VisibleIndex = 4
-        Me.GridColumnCompFrom.Width = 154
+        Me.GridColumnCompFrom.VisibleIndex = 6
+        Me.GridColumnCompFrom.Width = 285
         '
         'GridColumnQty
         '
@@ -594,8 +600,8 @@ Partial Class FormSalesOrderGen
         Me.GridColumnQty.OptionsColumn.AllowEdit = False
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_gen_det_qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 6
-        Me.GridColumnQty.Width = 103
+        Me.GridColumnQty.VisibleIndex = 8
+        Me.GridColumnQty.Width = 193
         '
         'RepositoryItemTextEdit1
         '
@@ -660,7 +666,7 @@ Partial Class FormSalesOrderGen
         '
         'GVSummary
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSum, Me.GridColumnCodeSum, Me.GridColumnStyleSum, Me.GridColumnQtySum, Me.GridColumnNoteSum, Me.GridColumnIdProductSum, Me.GridColumnFromSum, Me.GridColumnQtyAllow, Me.GridColumnPrice, Me.GridColumnSizeSum})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSum, Me.GridColumnCodeSum, Me.GridColumnStyleSum, Me.GridColumnQtySum, Me.GridColumnNoteSum, Me.GridColumnIdProductSum, Me.GridColumnFromSum, Me.GridColumnQtyAllow, Me.GridColumnPrice, Me.GridColumnSizeSum, Me.GridColumnclasssum, Me.GridColumncolorsum, Me.GridColumnshtsum})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_gen_det_qty", Nothing, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_allow", Me.GridColumnQtyAllow, "{0:n0}")})
         Me.GVSummary.Name = "GVSummary"
@@ -675,7 +681,7 @@ Partial Class FormSalesOrderGen
         Me.GridColumnNoSum.OptionsColumn.AllowEdit = False
         Me.GridColumnNoSum.Visible = True
         Me.GridColumnNoSum.VisibleIndex = 0
-        Me.GridColumnNoSum.Width = 29
+        Me.GridColumnNoSum.Width = 49
         '
         'GridColumnCodeSum
         '
@@ -685,7 +691,7 @@ Partial Class FormSalesOrderGen
         Me.GridColumnCodeSum.OptionsColumn.ReadOnly = True
         Me.GridColumnCodeSum.Visible = True
         Me.GridColumnCodeSum.VisibleIndex = 1
-        Me.GridColumnCodeSum.Width = 96
+        Me.GridColumnCodeSum.Width = 162
         '
         'GridColumnStyleSum
         '
@@ -694,8 +700,8 @@ Partial Class FormSalesOrderGen
         Me.GridColumnStyleSum.Name = "GridColumnStyleSum"
         Me.GridColumnStyleSum.OptionsColumn.AllowEdit = False
         Me.GridColumnStyleSum.Visible = True
-        Me.GridColumnStyleSum.VisibleIndex = 2
-        Me.GridColumnStyleSum.Width = 141
+        Me.GridColumnStyleSum.VisibleIndex = 3
+        Me.GridColumnStyleSum.Width = 246
         '
         'GridColumnQtySum
         '
@@ -711,8 +717,8 @@ Partial Class FormSalesOrderGen
         Me.GridColumnQtySum.OptionsColumn.AllowEdit = False
         Me.GridColumnQtySum.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_gen_det_qty", "{0:n0}")})
         Me.GridColumnQtySum.Visible = True
-        Me.GridColumnQtySum.VisibleIndex = 6
-        Me.GridColumnQtySum.Width = 38
+        Me.GridColumnQtySum.VisibleIndex = 8
+        Me.GridColumnQtySum.Width = 69
         '
         'GridColumnNoteSum
         '
@@ -721,8 +727,8 @@ Partial Class FormSalesOrderGen
         Me.GridColumnNoteSum.Name = "GridColumnNoteSum"
         Me.GridColumnNoteSum.OptionsColumn.AllowEdit = False
         Me.GridColumnNoteSum.Visible = True
-        Me.GridColumnNoteSum.VisibleIndex = 8
-        Me.GridColumnNoteSum.Width = 128
+        Me.GridColumnNoteSum.VisibleIndex = 10
+        Me.GridColumnNoteSum.Width = 237
         '
         'GridColumnIdProductSum
         '
@@ -739,8 +745,8 @@ Partial Class FormSalesOrderGen
         Me.GridColumnFromSum.Name = "GridColumnFromSum"
         Me.GridColumnFromSum.OptionsColumn.AllowEdit = False
         Me.GridColumnFromSum.Visible = True
-        Me.GridColumnFromSum.VisibleIndex = 5
-        Me.GridColumnFromSum.Width = 90
+        Me.GridColumnFromSum.VisibleIndex = 7
+        Me.GridColumnFromSum.Width = 164
         '
         'GridColumnQtyAllow
         '
@@ -756,8 +762,8 @@ Partial Class FormSalesOrderGen
         Me.GridColumnQtyAllow.OptionsColumn.AllowEdit = False
         Me.GridColumnQtyAllow.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_allow", "{0:n0}")})
         Me.GridColumnQtyAllow.Visible = True
-        Me.GridColumnQtyAllow.VisibleIndex = 7
-        Me.GridColumnQtyAllow.Width = 106
+        Me.GridColumnQtyAllow.VisibleIndex = 9
+        Me.GridColumnQtyAllow.Width = 194
         '
         'GridColumnPrice
         '
@@ -769,8 +775,8 @@ Partial Class FormSalesOrderGen
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.OptionsColumn.AllowEdit = False
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 4
-        Me.GridColumnPrice.Width = 112
+        Me.GridColumnPrice.VisibleIndex = 6
+        Me.GridColumnPrice.Width = 204
         '
         'GridColumnSizeSum
         '
@@ -779,7 +785,8 @@ Partial Class FormSalesOrderGen
         Me.GridColumnSizeSum.Name = "GridColumnSizeSum"
         Me.GridColumnSizeSum.OptionsColumn.AllowEdit = False
         Me.GridColumnSizeSum.Visible = True
-        Me.GridColumnSizeSum.VisibleIndex = 3
+        Me.GridColumnSizeSum.VisibleIndex = 5
+        Me.GridColumnSizeSum.Width = 136
         '
         'PBC
         '
@@ -814,6 +821,60 @@ Partial Class FormSalesOrderGen
         Me.GVNewPrepare.OptionsView.ColumnAutoWidth = True
         Me.GVNewPrepare.OptionsView.ShowFooter = True
         Me.GVNewPrepare.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.OptionsColumn.AllowEdit = False
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
+        Me.GridColumnclass.Width = 81
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.OptionsColumn.AllowEdit = False
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 4
+        Me.GridColumncolor.Width = 87
+        '
+        'GridColumnsht
+        '
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnclasssum
+        '
+        Me.GridColumnclasssum.Caption = "Class"
+        Me.GridColumnclasssum.FieldName = "class"
+        Me.GridColumnclasssum.Name = "GridColumnclasssum"
+        Me.GridColumnclasssum.OptionsColumn.AllowEdit = False
+        Me.GridColumnclasssum.Visible = True
+        Me.GridColumnclasssum.VisibleIndex = 2
+        Me.GridColumnclasssum.Width = 81
+        '
+        'GridColumncolorsum
+        '
+        Me.GridColumncolorsum.Caption = "Color"
+        Me.GridColumncolorsum.FieldName = "color"
+        Me.GridColumncolorsum.Name = "GridColumncolorsum"
+        Me.GridColumncolorsum.OptionsColumn.AllowEdit = False
+        Me.GridColumncolorsum.Visible = True
+        Me.GridColumncolorsum.VisibleIndex = 4
+        Me.GridColumncolorsum.Width = 90
+        '
+        'GridColumnshtsum
+        '
+        Me.GridColumnshtsum.Caption = "Silhouette"
+        Me.GridColumnshtsum.FieldName = "sht"
+        Me.GridColumnshtsum.Name = "GridColumnshtsum"
+        Me.GridColumnshtsum.OptionsColumn.AllowEdit = False
         '
         'FormSalesOrderGen
         '
@@ -947,4 +1008,10 @@ Partial Class FormSalesOrderGen
     Friend WithEvents GVNewPrepare As DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView
     Friend WithEvents BtnImportNew As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnSizeSum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclasssum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolorsum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnshtsum As DevExpress.XtraGrid.Columns.GridColumn
 End Class

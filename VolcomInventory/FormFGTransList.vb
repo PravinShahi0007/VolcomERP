@@ -977,7 +977,7 @@
         rs.id_report_status, rs.report_status,
         wh.comp_number AS `wh_account`, wh.comp_name AS `wh`, 
         store.comp_number AS `store_account`, store.comp_name AS `store`, cg.comp_group, cg.description AS `comp_group_name`,
-        so_det.id_product,prod.product_full_code, prod.design_code, (prod.`class`) AS `class_display`, prod.design_display_name, (prod.size) AS `size`,
+        so_det.id_product,prod.product_full_code, prod.design_code, (prod.`class`) AS `class_display`, prod.design_display_name, (prod.size) AS `size`, prod.color, prod.sht,
         so_det.sales_order_det_qty, so_det.design_price, (so_det.sales_order_det_qty * so_det.design_price) AS `amount`, 
         so.id_prepare_status, stt.prepare_status,so.final_comment
         FROM tb_sales_order_det so_det 
@@ -993,11 +993,27 @@
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = store.id_comp_group
         LEFT JOIN (
             SELECT  a.id_product,f.product_full_code, f.product_ean_code,f.product_name, f.product_display_name,e.id_season,e.season,d.id_design, d.design_code, d.id_sample,d.design_name, e.id_range, d.design_display_name,
-            (del.delivery_date) AS `design_del_date`, (del.est_wh_date) AS `design_wh_date`, b.code_detail_name AS `size`, d2.display_name AS `class`
+            (del.delivery_date) AS `design_del_date`, (del.est_wh_date) AS `design_wh_date`, b.code_detail_name AS `size`, d2.display_name AS `class`, cd.color, cd.sht
             FROM tb_m_product f  
             INNER JOIN tb_m_product_code a ON a.id_product = f.id_product 
             INNER JOIN tb_m_code_detail b ON a.id_code_detail = b.id_code_detail 
             INNER JOIN tb_m_design d ON f.id_design = d.id_design 
+            LEFT JOIN (
+		        SELECT dc.id_design, 
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		        FROM tb_m_design_code dc
+		        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		        AND cd.id_code IN (32,30,14, 43)
+		        GROUP BY dc.id_design
+	        ) cd ON cd.id_design = d.id_design
             INNER JOIN tb_m_design_code d1 ON d.id_design = d1.id_design 
             INNER JOIN tb_m_code_detail d2 ON d1.id_code_detail = d2.id_code_detail AND d2.id_code=30
             INNER JOIN tb_season e ON d.id_season=e.id_season
@@ -1033,7 +1049,7 @@
         rs.id_report_status, rs.report_status,
         wh.comp_number AS `wh_account`, wh.comp_name AS `wh`, 
         store.comp_number AS `store_account`, store.comp_name AS `store`, cg.comp_group, cg.description AS `comp_group_name`,
-        so_det.id_product,prod.product_full_code, prod.design_code, (prod.`class`) AS `class_display`, prod.design_display_name, (prod.size) AS `size`, 
+        so_det.id_product,prod.product_full_code, prod.design_code, (prod.`class`) AS `class_display`, prod.design_display_name, (prod.size) AS `size`, prod.color, prod.sht,
         SUBSTRING(prod.product_full_code, 10, 1) AS `sizetype`,
         IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='1' THEN so_det.sales_order_det_qty END),0) AS `qty1`,
         IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='2' THEN so_det.sales_order_det_qty END),0) AS `qty2`,
@@ -1062,11 +1078,27 @@
         LEFT JOIN (
             SELECT  a.id_product,f.product_full_code, f.product_ean_code,f.product_name, f.product_display_name,e.id_season,e.season,d.id_design, d.design_code, d.id_sample,d.design_name, e.id_range, d.design_display_name,
             (del.delivery_date) AS `design_del_date`, (del.est_wh_date) AS `design_wh_date`, b.code_detail_name AS `size`, b.code AS `code_size`,
-            d2.display_name AS `class`
+            d2.display_name AS `class`, cd.color , cd.sht
             FROM tb_m_product f  
             INNER JOIN tb_m_product_code a ON a.id_product = f.id_product 
             INNER JOIN tb_m_code_detail b ON a.id_code_detail = b.id_code_detail 
             INNER JOIN tb_m_design d ON f.id_design = d.id_design 
+            LEFT JOIN (
+		        SELECT dc.id_design, 
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		        FROM tb_m_design_code dc
+		        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		        AND cd.id_code IN (32,30,14, 43)
+		        GROUP BY dc.id_design
+	        ) cd ON cd.id_design = d.id_design
             INNER JOIN tb_m_design_code d1 ON d.id_design = d1.id_design 
             INNER JOIN tb_m_code_detail d2 ON d1.id_code_detail = d2.id_code_detail AND d2.id_code=30
             INNER JOIN tb_season e ON d.id_season=e.id_season

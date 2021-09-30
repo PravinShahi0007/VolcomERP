@@ -988,7 +988,8 @@ WHERE c.id_comp='" + id_comp + "' "
         GridColumnAccountDescription.VisibleIndex = -1
         'GridColumnAccountDescription
         GridColumnCoaBiayaCol.Visible = False
-        GridColumnCOABiaya.Visible = -1
+        GridColumnCOABiaya.Visible = False
+        GridColumnEndPeriod.Visible = False
         '
         GridColumnBudgetType.Visible = False
         GridColumnBudgetTypeDesc.VisibleIndex = -1
