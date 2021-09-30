@@ -331,6 +331,12 @@ Partial Class FormStockTakeProposeDet
         Me.TETimeTo.Location = New System.Drawing.Point(274, 66)
         Me.TETimeTo.Name = "TETimeTo"
         Me.TETimeTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TETimeTo.Properties.DisplayFormat.FormatString = "HH:mm:ss"
+        Me.TETimeTo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TETimeTo.Properties.EditFormat.FormatString = "HH:mm:ss"
+        Me.TETimeTo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TETimeTo.Properties.Mask.EditMask = "HH:mm:ss"
+        Me.TETimeTo.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TETimeTo.Size = New System.Drawing.Size(150, 20)
         Me.TETimeTo.TabIndex = 6
         '
@@ -340,6 +346,10 @@ Partial Class FormStockTakeProposeDet
         Me.TETimeFrom.Location = New System.Drawing.Point(101, 66)
         Me.TETimeFrom.Name = "TETimeFrom"
         Me.TETimeFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TETimeFrom.Properties.DisplayFormat.FormatString = "HH:mm:ss"
+        Me.TETimeFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TETimeFrom.Properties.Mask.EditMask = "HH:mm:ss"
+        Me.TETimeFrom.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TETimeFrom.Size = New System.Drawing.Size(150, 20)
         Me.TETimeFrom.TabIndex = 5
         '
