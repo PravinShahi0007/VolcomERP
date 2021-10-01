@@ -256,7 +256,9 @@ GROUP BY ppsd.`id_comp`"
             XTPDetail.PageVisible = False
             '
             BSaveDraft.Visible = False
+            gridBandNewValue.Visible = False
         Else
+            gridBandNewValue.Visible = True
             load_form()
         End If
     End Sub
@@ -811,6 +813,211 @@ WHERE pd.`id_polis_pps`='" & id_pps & "' "
                 If Not hasil_dt(i)("id_polis_pps_det").ToString = "" Then
                     'update
                     Dim qu As String = "UPDATE tb_polis_pps_det SET nilai_fit_out='" & decimalSQL(Decimal.Parse(hasil_dt(i)("nilai_fit_out").ToString).ToString) & "',nilai_building='" & decimalSQL(Decimal.Parse(hasil_dt(i)("nilai_building").ToString).ToString) & "',nilai_peralatan='" & decimalSQL(Decimal.Parse(hasil_dt(i)("nilai_peralatan").ToString).ToString) & "',nilai_public_liability='" & decimalSQL(Decimal.Parse(hasil_dt(i)("nilai_public_liability").ToString).ToString) & "' WHERE id_polis_pps_det='" & hasil_dt(i)("id_polis_pps_det").ToString & "'"
+                    execute_non_query(qu, True, "", "", "", "")
+                End If
+            Next
+
+            load_form()
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+
+        data_temp.Dispose()
+        oledbconn.Close()
+        oledbconn.Dispose()
+    End Sub
+
+    Private Sub BGetExcel_Click(sender As Object, e As EventArgs) Handles BGetExcel.Click
+        Dim save As SaveFileDialog = New SaveFileDialog
+
+        save.Filter = "Excel File | *.xlsx"
+        save.FileName = "Harga Penawaran Vendor " & SLEPenawaranDel.Text & " " & TENumber.Text
+        save.ShowDialog()
+
+        If Not save.FileName = "" Then
+            Dim opt As DevExpress.XtraPrinting.XlsxExportOptions = New DevExpress.XtraPrinting.XlsxExportOptions
+            opt.SheetName = "penawaran"
+            load_nilai_penawaran_vendor(SLEPenawaranDel.EditValue.ToString)
+            GVPenawaran.ExportToXlsx(save.FileName, opt)
+            load_nilai_penawaran()
+
+            Process.Start(save.FileName)
+        End If
+    End Sub
+
+    Sub load_nilai_penawaran_vendor(ByVal id_vendor As String)
+        Dim q As String = "SELECT c.id_comp,c.comp_number,c.comp_name 
+FROM tb_polis_pps_vendor ppsv
+INNER JOIN tb_m_comp c ON c.id_comp=ppsv.id_vendor
+WHERE ppsv.id_polis_pps='" & id_pps & "' AND ppsv.id_vendor='" & id_vendor & "'
+GROUP BY ppsv.id_vendor"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+        Dim qs As String = ""
+        Dim qh As String = ""
+        Dim qj As String = ""
+        For i = 0 To dt.Rows.Count - 1
+            'generate query
+            qh += ",IFNULL(tb_" & dt.Rows(i)("id_comp").ToString & ".price,0) AS vendor_" & dt.Rows(i)("id_comp").ToString & ""
+            qj += "
+LEFT JOIN 
+(
+	SELECT id_comp,price
+	FROM `tb_polis_pps_vendor` 
+	WHERE id_polis_pps='" & id_pps & "' AND id_vendor=" & dt.Rows(i)("id_comp").ToString & "
+)tb_" & dt.Rows(i)("id_comp").ToString & " ON tb_" & dt.Rows(i)("id_comp").ToString & ".id_comp=ppsd.id_comp
+"
+        Next
+
+        qs = "SELECT ppsd.`id_comp`,ppsd.old_end_date,c.`comp_name`,c.`comp_number`,c.`address_primary`
+,ppsd.`nilai_stock`,ppsd.`nilai_fit_out`,ppsd.`nilai_building`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`
+,ppsd.old_nilai_total,ppsd.nilai_total,ppsd.old_premi,ppsd.old_polis_vendor,v_old.comp_name AS old_vendor
+,ppsd.old_premi
+,ppsd.polis_vendor,ppsd.premi,v.comp_name AS vendor
+,ppsd.v_start_date,ppsd.v_end_date
+" & qh & "
+FROM tb_polis_pps_det ppsd 
+INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
+LEFT JOIN tb_polis pol ON pol.id_polis=ppsd.old_id_polis
+LEFT JOIN tb_m_comp v_old ON v_old.id_comp=ppsd.old_polis_vendor
+LEFT JOIN tb_m_comp v ON v.id_comp=ppsd.polis_vendor
+" & qj & "
+WHERE ppsd.id_polis_pps='" & id_pps & "'
+GROUP BY ppsd.`id_comp`"
+
+        dt = execute_query(qs, -1, True, "", "", "", "")
+
+        'remove column
+        For i = GVPenawaran.Columns.Count To 15 Step -1
+            If i > 14 Then
+                GVPenawaran.Columns.RemoveAt(i - 1)
+            End If
+        Next
+
+        'add column
+        For i = 0 To dt.Columns.Count - 1
+            If dt.Columns(i).ColumnName.ToString.Contains("vendor_") Then
+                'Dim col As DevExpress.XtraGrid.Columns.GridColumn = New DevExpress.XtraGrid.Columns.GridColumn
+                'col.FieldName = dt.Columns(i).ColumnName.ToString
+                'col.Caption = get_company_x(dt.Columns(i).ColumnName.ToString.Split("_")(1), "1")
+                GVPenawaran.Columns.AddVisible(dt.Columns(i).ColumnName.ToString, "Penawaran")
+                GVPenawaran.Columns(dt.Columns(i).ColumnName.ToString).AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                GVPenawaran.Columns(dt.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVPenawaran.Columns(dt.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "N2"
+            End If
+        Next
+        '
+        GVPenawaran.RefreshData()
+
+        GCPenawaran.DataSource = dt
+        GVPenawaran.BestFitColumns()
+    End Sub
+
+    Private Sub BUploadExcel_Click(sender As Object, e As EventArgs) Handles BUploadExcel.Click
+        Dim file_rekon_name As String = ""
+
+        Cursor = Cursors.WaitCursor
+        Dim fdlg As OpenFileDialog = New OpenFileDialog()
+        fdlg.Title = "Select excel file To import"
+        fdlg.InitialDirectory = "C:\"
+        fdlg.Filter = "Excel File|*.xls; *.xlsx"
+        fdlg.FilterIndex = 0
+        fdlg.RestoreDirectory = True
+        Cursor = Cursors.Default
+        If fdlg.ShowDialog() = DialogResult.OK Then
+            'use save as
+            Dim open_file As String = ""
+
+            'If is_save_as Then
+            '    Cursor = Cursors.WaitCursor
+            '    Dim path As String = Application.StartupPath & "\download\"
+            '    'create directory if not exist
+            '    If Not IO.Directory.Exists(path) Then
+            '        System.IO.Directory.CreateDirectory(path)
+            '    End If
+            '    path = path + "file_temp.xls"
+            '    Dim app As Microsoft.Office.Interop.Excel.Application = New Microsoft.Office.Interop.Excel.Application
+            '    Dim temp As Microsoft.Office.Interop.Excel.Workbook = app.Workbooks.Open(fdlg.FileName)
+            '    'delete file
+            '    Try
+            '        My.Computer.FileSystem.DeleteFile(path)
+            '    Catch ex As Exception
+            '    End Try
+            '    temp.SaveAs(path, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook)
+            '    temp.Close()
+            '    app.Quit()
+            '    open_file = path
+            '    Cursor = Cursors.Default
+            'Else
+            '    open_file = fdlg.FileName
+            'End If
+
+            open_file = fdlg.FileName
+            file_rekon_name = open_file
+
+            'TBFileAddress.Text = ""
+            'TBFileAddress.Text = open_file
+        Else
+            Exit Sub
+        End If
+        fdlg.Dispose()
+
+        'get data
+        Dim oledbconn As New OleDbConnection
+        Dim strConn As String = ""
+        Dim data_temp As New DataTable
+
+        copy_file_path = My.Application.Info.DirectoryPath.ToString & "\temp_import_xls." & IO.Path.GetExtension(file_rekon_name)
+        IO.File.Copy(file_rekon_name, copy_file_path, True)
+
+        strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" & copy_file_path.ToLower & "';Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=YES;TypeGuessRows=0;ImportMixedTypes=Text;"""
+        oledbconn.ConnectionString = strConn
+        Dim MyCommand As OleDbDataAdapter
+
+        MyCommand = New OleDbDataAdapter("select * from [penawaran$] WHERE not ([Kode Toko]='')", oledbconn)
+
+        Try
+            MyCommand.Fill(data_temp)
+            MyCommand.Dispose()
+        Catch ex As Exception
+            stopCustom("Input must be in accordance with the format specified !" + System.Environment.NewLine + ex.ToString)
+            Exit Sub
+        End Try
+
+        Try
+
+            Dim queryx As String = "SELECT pd.`id_polis_pps_det`,pd.`id_polis_pps`,pd.`id_comp`,c.comp_number
+FROM `tb_polis_pps_det` pd
+INNER JOIN tb_m_comp c ON c.id_comp=pd.id_comp
+WHERE pd.`id_polis_pps`='" & id_pps & "' "
+
+            Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb2 = dt.AsEnumerable()
+
+            Dim hasil = From table1 In tb1
+                        Group Join table_tmp In tb2
+                        On table1("Kode Toko").ToString.ToLower Equals table_tmp("comp_number").ToString.ToLower Into awb = Group
+                        From result_awb In awb.DefaultIfEmpty()
+                        Select New With
+                            {
+                            .id_comp = If(result_awb Is Nothing, "", result_awb("id_comp")),
+                            .price = If(table1("Penawaran").ToString = "", 0, table1("Penawaran"))
+                            }
+
+            'Dim dtcek As DataTable = query.ToList().CopyTodatatable
+            Dim hasil_dt = ToDataTable(hasil.ToList())
+            For i = 0 To hasil_dt.Rows.Count - 1
+                'Console.WriteLine(hasil_dt(i)("berat_final").ToString)
+                If Not hasil_dt(i)("id_comp").ToString = "" Then
+                    Dim qu As String = ""
+                    'delete first
+                    qu = "DELETE FROM tb_polis_pps_vendor WHERE id_comp='" & hasil_dt(i)("id_comp").ToString & "' AND id_vendor='" & SLEPenawaranDel.EditValue.ToString & "' AND id_polis_pps='" & id_pps & "'"
+                    execute_non_query(qu, True, "", "", "", "")
+
+                    'insert
+                    qu = "INSERT INTO tb_polis_pps_vendor(id_polis_pps,id_comp,id_vendor,price) VALUES('" & id_pps & "','" & hasil_dt(i)("id_comp").ToString & "','" & SLEPenawaranDel.EditValue.ToString & "','" & decimalSQL(Decimal.Parse(hasil_dt(i)("price").ToString).ToString) & "')"
                     execute_non_query(qu, True, "", "", "", "")
                 End If
             Next
