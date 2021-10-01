@@ -17,8 +17,9 @@
         query += "r.id_wh_drawer_from, comp_frm.id_comp As `id_comp_from`, comp_frm.comp_number As `comp_number_from`, comp_frm.comp_name As `comp_name_from`, CONCAT(comp_frm.comp_number,' - ', comp_frm.comp_name) AS `comp_from`, "
         query += "r.id_wh_drawer_to, comp_to.id_comp As `id_comp_to`, comp_to.comp_number As `comp_number_to`, comp_to.comp_name As `comp_name_to`, CONCAT(comp_to.comp_number,' - ', comp_to.comp_name) AS `comp_to`, "
         query += "r.fg_repair_number, r.fg_repair_date, DATE_FORMAT(r.fg_repair_date, '%Y-%m-%d') AS fg_repair_datex, "
-        query += "r.fg_repair_note, r.id_report_status, stt.report_status, r.is_to_vendor,r.is_use_unique_code "
-        query += "From tb_fg_repair r "
+        query += "r.fg_repair_note, r.id_report_status, stt.report_status, r.is_to_vendor,r.is_use_unique_code, COUNT(id_fg_repair_det) AS `total_qty` "
+        query += "From tb_fg_repair r 
+        INNER JOIN tb_fg_repair_det rd ON rd.id_fg_repair = r.id_fg_repair "
         query += "INNER Join tb_m_wh_drawer drw_frm On drw_frm.id_wh_drawer = r.id_wh_drawer_from  "
         query += "INNER Join tb_m_comp comp_frm On comp_frm.id_drawer_def = drw_frm.id_wh_drawer  "
         query += "INNER Join tb_m_wh_drawer drw_to On drw_to.id_wh_drawer = r.id_wh_drawer_to "
@@ -26,7 +27,7 @@
         query += "INNER Join tb_lookup_report_status stt On stt.id_report_status = r.id_report_status "
         query += "WHERE r.id_fg_repair>0 "
         query += condition + " "
-        query += "ORDER BY r.id_fg_repair " + order_type
+        query += "GROUP BY r.id_fg_repair ORDER BY r.id_fg_repair " + order_type
         Return query
     End Function
 
