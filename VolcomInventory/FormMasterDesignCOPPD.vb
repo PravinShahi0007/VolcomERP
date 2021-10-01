@@ -592,6 +592,7 @@ INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=d
                     End If
                     '
                     load_form()
+                    Close()
                 End If
             ElseIf BLock.Text = "Reset" Then
                 'reset
@@ -639,6 +640,7 @@ WHERE pd.is_pd=2 AND dsg.id_design='" & id_design & "'"
                         warningCustom("ECOP PD Reset complete")
                         '
                         load_form()
+                        Close()
                     End If
                 End If
             End If
