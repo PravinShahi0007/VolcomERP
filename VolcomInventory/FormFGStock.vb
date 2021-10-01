@@ -1099,6 +1099,7 @@
         LabelColor.Text = "-"
         LabelBranding.Text = "-"
         LabelSource.Text = "-"
+        LabelSHT.Text = "-"
         LabelCurrentPrice.Text = "-"
         LabelPriceType.Text = "-"
         pre_viewImages("2", PictureEdit1, id_design_selected, False)
@@ -1110,12 +1111,12 @@
         If e.KeyCode = Keys.Enter Then
             Cursor = Cursors.WaitCursor
             Dim query As String = "SELECT d.id_design, d.design_code, d.design_display_name, col.`color`, cls.product_class, cls.product_class_display,
-            GROUP_CONCAT(DISTINCT sz.display_name ORDER BY sz.id_code_detail ASC) AS `size_chart`, 
+            GROUP_CONCAT(DISTINCT sz.display_name ORDER BY sz.id_code_detail ASC) AS `size_chart`, cd.sht,
             IFNULL(prc.design_price,0) AS `design_price`, prc.design_price_type
             FROM tb_m_design d
             JOIN tb_opt o
             LEFT JOIN (
-	            SELECT d.id_design, cd.code_detail_name AS `color` 
+	            SELECT d.id_design, CONCAT(cd.display_name,' (',cd.code_detail_name,')') AS `color` 
 	            FROM tb_m_design d
 	            JOIN tb_opt o
 	            INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
@@ -1130,6 +1131,15 @@
 	            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code = o.id_code_fg_class
 	            WHERE d.id_lookup_status_order!=2
             ) cls ON cls.id_design = d.id_design
+            LEFT JOIN (
+		        SELECT dc.id_design,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		        FROM tb_m_design_code dc
+		        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		        AND cd.id_code IN (32,30,14, 43)
+		        GROUP BY dc.id_design
+	        ) cd ON cd.id_design = d.id_design
             INNER JOIN tb_m_product p ON p.id_design = d.id_design
             INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
             INNER JOIN tb_m_code_detail sz ON sz.id_code_detail = pc.id_code_detail
@@ -1157,6 +1167,7 @@
                 LabelColor.Text = data.Rows(0)("color").ToString.ToUpper
                 LabelBranding.Text = data.Rows(0)("product_class").ToString.ToUpper + " (" + data.Rows(0)("product_class_display").ToString.ToUpper + ")"
                 LabelSource.Text = data.Rows(0)("size_chart").ToString.ToUpper
+                LabelSHT.Text = data.Rows(0)("sht").ToString.ToUpper
                 LabelCurrentPrice.Text = data.Rows(0)("design_price").ToString.ToUpper
                 LabelPriceType.Text = data.Rows(0)("design_price_type").ToString.ToUpper
                 pre_viewImages("2", PictureEdit1, id_design_selected, False)
