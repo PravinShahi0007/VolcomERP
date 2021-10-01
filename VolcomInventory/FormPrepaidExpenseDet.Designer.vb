@@ -115,6 +115,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnPPHDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumnAccountDescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCOABiaya = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudgetTypeDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudgetDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
@@ -141,7 +142,9 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCOABiaya = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnKurs = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBeforeKurs = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCurr = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlPay.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -708,7 +711,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GVData.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVData.ColumnPanelRowHeight = 40
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAcc, Me.GridColumnNo, Me.GridColumnaccount, Me.GridColumnDescription, Me.GCCC, Me.GridColumnBudgetType, Me.GridColumnBudget, Me.GridColumn16, Me.GridColumnQtyMonth, Me.GridColumnEndPeriod, Me.GridColumnTaxPercent, Me.GridColumnTaxValue, Me.GridColumnAmount, Me.GridColumnPPHCOA, Me.GridColumnPPHPercent, Me.GridColumnPPH, Me.GridColumnCoaBiayaCol, Me.GridColumnPPHDesc, Me.GridColumnAccountDescription, Me.GridColumnCOABiaya, Me.GridColumnBudgetTypeDesc, Me.GridColumnBudgetDesc, Me.GCCCDesc, Me.GridColumnCurrView, Me.GridColumn7, Me.GridColumnLock})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAcc, Me.GridColumnNo, Me.GridColumnaccount, Me.GridColumnDescription, Me.GCCC, Me.GridColumnBudgetType, Me.GridColumnBudget, Me.GridColumn16, Me.GridColumnQtyMonth, Me.GridColumnEndPeriod, Me.GridColumnTaxPercent, Me.GridColumnTaxValue, Me.GridColumnCurr, Me.GridColumnBeforeKurs, Me.GridColumnKurs, Me.GridColumnAmount, Me.GridColumnPPHCOA, Me.GridColumnPPHPercent, Me.GridColumnPPH, Me.GridColumnCoaBiayaCol, Me.GridColumnPPHDesc, Me.GridColumnAccountDescription, Me.GridColumnCOABiaya, Me.GridColumnBudgetTypeDesc, Me.GridColumnBudgetDesc, Me.GCCCDesc, Me.GridColumnCurrView, Me.GridColumn7, Me.GridColumnLock})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsPrint.AllowMultilineHeaders = True
@@ -748,7 +751,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnaccount.Name = "GridColumnaccount"
         Me.GridColumnaccount.Visible = True
         Me.GridColumnaccount.VisibleIndex = 1
-        Me.GridColumnaccount.Width = 99
+        Me.GridColumnaccount.Width = 97
         '
         'RepositoryItemSearchLookUpEdit1
         '
@@ -800,7 +803,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnDescription.Name = "GridColumnDescription"
         Me.GridColumnDescription.Visible = True
         Me.GridColumnDescription.VisibleIndex = 5
-        Me.GridColumnDescription.Width = 215
+        Me.GridColumnDescription.Width = 212
         '
         'RepositoryItemMemoEdit1
         '
@@ -816,7 +819,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GCCC.Name = "GCCC"
         Me.GCCC.Visible = True
         Me.GCCC.VisibleIndex = 2
-        Me.GCCC.Width = 48
+        Me.GCCC.Width = 47
         '
         'RISLECC
         '
@@ -869,7 +872,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnBudgetType.Name = "GridColumnBudgetType"
         Me.GridColumnBudgetType.Visible = True
         Me.GridColumnBudgetType.VisibleIndex = 3
-        Me.GridColumnBudgetType.Width = 99
+        Me.GridColumnBudgetType.Width = 97
         '
         'RISLEType
         '
@@ -908,7 +911,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnBudget.Name = "GridColumnBudget"
         Me.GridColumnBudget.Visible = True
         Me.GridColumnBudget.VisibleIndex = 4
-        Me.GridColumnBudget.Width = 99
+        Me.GridColumnBudget.Width = 97
         '
         'RISLECatExpense
         '
@@ -961,8 +964,8 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnQtyMonth.FieldName = "qty_month"
         Me.GridColumnQtyMonth.Name = "GridColumnQtyMonth"
         Me.GridColumnQtyMonth.Visible = True
-        Me.GridColumnQtyMonth.VisibleIndex = 7
-        Me.GridColumnQtyMonth.Width = 136
+        Me.GridColumnQtyMonth.VisibleIndex = 10
+        Me.GridColumnQtyMonth.Width = 74
         '
         'GridColumnEndPeriod
         '
@@ -976,8 +979,8 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnEndPeriod.UnboundExpression = "AddMonths([start_date], [qty_month] - 1)"
         Me.GridColumnEndPeriod.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
         Me.GridColumnEndPeriod.Visible = True
-        Me.GridColumnEndPeriod.VisibleIndex = 8
-        Me.GridColumnEndPeriod.Width = 136
+        Me.GridColumnEndPeriod.VisibleIndex = 11
+        Me.GridColumnEndPeriod.Width = 109
         '
         'GridColumnTaxPercent
         '
@@ -994,7 +997,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnTaxPercent.MinWidth = 30
         Me.GridColumnTaxPercent.Name = "GridColumnTaxPercent"
         Me.GridColumnTaxPercent.Visible = True
-        Me.GridColumnTaxPercent.VisibleIndex = 10
+        Me.GridColumnTaxPercent.VisibleIndex = 13
         Me.GridColumnTaxPercent.Width = 30
         '
         'RepositoryItemTextEdit1
@@ -1020,7 +1023,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnTaxValue.UnboundExpression = "[tax_percent] / 100 * [amount]"
         Me.GridColumnTaxValue.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnTaxValue.Visible = True
-        Me.GridColumnTaxValue.VisibleIndex = 11
+        Me.GridColumnTaxValue.VisibleIndex = 14
         Me.GridColumnTaxValue.Width = 60
         '
         'GridColumnAmount
@@ -1033,9 +1036,11 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnAmount.MaxWidth = 80
         Me.GridColumnAmount.MinWidth = 80
         Me.GridColumnAmount.Name = "GridColumnAmount"
+        Me.GridColumnAmount.OptionsColumn.AllowFocus = False
+        Me.GridColumnAmount.OptionsColumn.ReadOnly = True
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 6
+        Me.GridColumnAmount.VisibleIndex = 9
         Me.GridColumnAmount.Width = 80
         '
         'GridColumnPPHCOA
@@ -1045,8 +1050,8 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnPPHCOA.FieldName = "id_acc_pph"
         Me.GridColumnPPHCOA.Name = "GridColumnPPHCOA"
         Me.GridColumnPPHCOA.Visible = True
-        Me.GridColumnPPHCOA.VisibleIndex = 12
-        Me.GridColumnPPHCOA.Width = 147
+        Me.GridColumnPPHCOA.VisibleIndex = 15
+        Me.GridColumnPPHCOA.Width = 225
         '
         'RISLECOAPPH
         '
@@ -1100,7 +1105,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnPPHPercent.MinWidth = 30
         Me.GridColumnPPHPercent.Name = "GridColumnPPHPercent"
         Me.GridColumnPPHPercent.Visible = True
-        Me.GridColumnPPHPercent.VisibleIndex = 13
+        Me.GridColumnPPHPercent.VisibleIndex = 16
         Me.GridColumnPPHPercent.Width = 30
         '
         'RepositoryItemTextEdit2
@@ -1126,7 +1131,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnPPH.UnboundExpression = "Iif([id_acc_pph] = 948, 0, Floor([pph_percent] / 100 * [amount]))"
         Me.GridColumnPPH.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnPPH.Visible = True
-        Me.GridColumnPPH.VisibleIndex = 14
+        Me.GridColumnPPH.VisibleIndex = 17
         Me.GridColumnPPH.Width = 60
         '
         'RepositoryItemTextEdit3
@@ -1144,8 +1149,8 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnCoaBiayaCol.FieldName = "id_acc_biaya"
         Me.GridColumnCoaBiayaCol.Name = "GridColumnCoaBiayaCol"
         Me.GridColumnCoaBiayaCol.Visible = True
-        Me.GridColumnCoaBiayaCol.VisibleIndex = 9
-        Me.GridColumnCoaBiayaCol.Width = 144
+        Me.GridColumnCoaBiayaCol.VisibleIndex = 12
+        Me.GridColumnCoaBiayaCol.Width = 166
         '
         'GridColumnPPHDesc
         '
@@ -1169,6 +1174,12 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnAccountDescription.Caption = "Account"
         Me.GridColumnAccountDescription.FieldName = "coa_desc"
         Me.GridColumnAccountDescription.Name = "GridColumnAccountDescription"
+        '
+        'GridColumnCOABiaya
+        '
+        Me.GridColumnCOABiaya.Caption = "COA Biaya"
+        Me.GridColumnCOABiaya.FieldName = "coa_biaya_desc"
+        Me.GridColumnCOABiaya.Name = "GridColumnCOABiaya"
         '
         'GridColumnBudgetTypeDesc
         '
@@ -1403,11 +1414,46 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
         '
-        'GridColumnCOABiaya
+        'GridColumnKurs
         '
-        Me.GridColumnCOABiaya.Caption = "COA Biaya"
-        Me.GridColumnCOABiaya.FieldName = "coa_biaya_desc"
-        Me.GridColumnCOABiaya.Name = "GridColumnCOABiaya"
+        Me.GridColumnKurs.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnKurs.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKurs.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnKurs.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKurs.Caption = "Kurs"
+        Me.GridColumnKurs.ColumnEdit = Me.RepositoryItemTextEdit3
+        Me.GridColumnKurs.FieldName = "kurs"
+        Me.GridColumnKurs.Name = "GridColumnKurs"
+        Me.GridColumnKurs.Visible = True
+        Me.GridColumnKurs.VisibleIndex = 8
+        Me.GridColumnKurs.Width = 72
+        '
+        'GridColumnBeforeKurs
+        '
+        Me.GridColumnBeforeKurs.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnBeforeKurs.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnBeforeKurs.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnBeforeKurs.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnBeforeKurs.Caption = "Amount Before Kurs"
+        Me.GridColumnBeforeKurs.ColumnEdit = Me.RepositoryItemTextEdit3
+        Me.GridColumnBeforeKurs.FieldName = "amount_before"
+        Me.GridColumnBeforeKurs.Name = "GridColumnBeforeKurs"
+        Me.GridColumnBeforeKurs.Visible = True
+        Me.GridColumnBeforeKurs.VisibleIndex = 7
+        Me.GridColumnBeforeKurs.Width = 72
+        '
+        'GridColumnCurr
+        '
+        Me.GridColumnCurr.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCurr.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCurr.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCurr.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCurr.Caption = "Cur"
+        Me.GridColumnCurr.ColumnEdit = Me.RISLECurrency
+        Me.GridColumnCurr.Name = "GridColumnCurr"
+        Me.GridColumnCurr.Visible = True
+        Me.GridColumnCurr.VisibleIndex = 6
+        Me.GridColumnCurr.Width = 58
         '
         'FormPrepaidExpenseDet
         '
@@ -1611,4 +1657,7 @@ Partial Class FormPrepaidExpenseDet
     Friend WithEvents GridColumnEndPeriod As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCoaBiayaCol As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCOABiaya As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCurr As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnBeforeKurs As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnKurs As DevExpress.XtraGrid.Columns.GridColumn
 End Class
