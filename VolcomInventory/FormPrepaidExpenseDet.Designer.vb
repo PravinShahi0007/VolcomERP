@@ -100,6 +100,14 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnTaxPercent = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnTaxValue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCurr = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RISLECurrency = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBeforeKurs = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumnKurs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPPHCOA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RISLECOAPPH = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
@@ -110,7 +118,6 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnPPHPercent = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnPPH = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnCoaBiayaCol = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPPHDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
@@ -124,10 +131,6 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLock = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.RISLECurrency = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
-        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
@@ -142,9 +145,6 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnKurs = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnBeforeKurs = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCurr = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlPay.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -188,15 +188,15 @@ Partial Class FormPrepaidExpenseDet
         CType(Me.RISLECatExpense, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLECurrency, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLECOAPPH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RISLECurrency, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         Me.XTPDraft.SuspendLayout()
@@ -1026,6 +1026,85 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnTaxValue.VisibleIndex = 14
         Me.GridColumnTaxValue.Width = 60
         '
+        'GridColumnCurr
+        '
+        Me.GridColumnCurr.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCurr.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCurr.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCurr.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCurr.Caption = "Cur"
+        Me.GridColumnCurr.ColumnEdit = Me.RISLECurrency
+        Me.GridColumnCurr.FieldName = "id_currency"
+        Me.GridColumnCurr.Name = "GridColumnCurr"
+        Me.GridColumnCurr.Visible = True
+        Me.GridColumnCurr.VisibleIndex = 6
+        Me.GridColumnCurr.Width = 58
+        '
+        'RISLECurrency
+        '
+        Me.RISLECurrency.AutoHeight = False
+        Me.RISLECurrency.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLECurrency.Name = "RISLECurrency"
+        Me.RISLECurrency.View = Me.GridView5
+        '
+        'GridView5
+        '
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn24})
+        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView5.Name = "GridView5"
+        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView5.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "ID"
+        Me.GridColumn23.FieldName = "id_currency"
+        Me.GridColumn23.Name = "GridColumn23"
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Currency"
+        Me.GridColumn24.FieldName = "currency"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 0
+        '
+        'GridColumnBeforeKurs
+        '
+        Me.GridColumnBeforeKurs.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnBeforeKurs.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnBeforeKurs.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnBeforeKurs.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnBeforeKurs.Caption = "Amount Before Kurs"
+        Me.GridColumnBeforeKurs.ColumnEdit = Me.RepositoryItemTextEdit3
+        Me.GridColumnBeforeKurs.FieldName = "amount_before"
+        Me.GridColumnBeforeKurs.Name = "GridColumnBeforeKurs"
+        Me.GridColumnBeforeKurs.Visible = True
+        Me.GridColumnBeforeKurs.VisibleIndex = 7
+        Me.GridColumnBeforeKurs.Width = 72
+        '
+        'RepositoryItemTextEdit3
+        '
+        Me.RepositoryItemTextEdit3.AutoHeight = False
+        Me.RepositoryItemTextEdit3.Mask.EditMask = "N2"
+        Me.RepositoryItemTextEdit3.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit3.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit3.Name = "RepositoryItemTextEdit3"
+        '
+        'GridColumnKurs
+        '
+        Me.GridColumnKurs.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnKurs.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKurs.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnKurs.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKurs.Caption = "Kurs"
+        Me.GridColumnKurs.ColumnEdit = Me.RepositoryItemTextEdit3
+        Me.GridColumnKurs.FieldName = "kurs"
+        Me.GridColumnKurs.Name = "GridColumnKurs"
+        Me.GridColumnKurs.Visible = True
+        Me.GridColumnKurs.VisibleIndex = 8
+        Me.GridColumnKurs.Width = 72
+        '
         'GridColumnAmount
         '
         Me.GridColumnAmount.Caption = "Amount in Rp"
@@ -1134,14 +1213,6 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnPPH.VisibleIndex = 17
         Me.GridColumnPPH.Width = 60
         '
-        'RepositoryItemTextEdit3
-        '
-        Me.RepositoryItemTextEdit3.AutoHeight = False
-        Me.RepositoryItemTextEdit3.Mask.EditMask = "N2"
-        Me.RepositoryItemTextEdit3.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RepositoryItemTextEdit3.Mask.UseMaskAsDisplayFormat = True
-        Me.RepositoryItemTextEdit3.Name = "RepositoryItemTextEdit3"
-        '
         'GridColumnCoaBiayaCol
         '
         Me.GridColumnCoaBiayaCol.Caption = "COA Biaya Bulanan"
@@ -1246,35 +1317,6 @@ Partial Class FormPrepaidExpenseDet
         Me.RepositoryItemSpinEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "N2"
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
-        'RISLECurrency
-        '
-        Me.RISLECurrency.AutoHeight = False
-        Me.RISLECurrency.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RISLECurrency.Name = "RISLECurrency"
-        Me.RISLECurrency.View = Me.GridView5
-        '
-        'GridView5
-        '
-        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn24})
-        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView5.Name = "GridView5"
-        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView5.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.Caption = "ID"
-        Me.GridColumn23.FieldName = "id_currency"
-        Me.GridColumn23.Name = "GridColumn23"
-        '
-        'GridColumn24
-        '
-        Me.GridColumn24.Caption = "Currency"
-        Me.GridColumn24.FieldName = "currency"
-        Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 0
         '
         'PanelControlNav
         '
@@ -1414,47 +1456,6 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
         '
-        'GridColumnKurs
-        '
-        Me.GridColumnKurs.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnKurs.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnKurs.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnKurs.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnKurs.Caption = "Kurs"
-        Me.GridColumnKurs.ColumnEdit = Me.RepositoryItemTextEdit3
-        Me.GridColumnKurs.FieldName = "kurs"
-        Me.GridColumnKurs.Name = "GridColumnKurs"
-        Me.GridColumnKurs.Visible = True
-        Me.GridColumnKurs.VisibleIndex = 8
-        Me.GridColumnKurs.Width = 72
-        '
-        'GridColumnBeforeKurs
-        '
-        Me.GridColumnBeforeKurs.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnBeforeKurs.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnBeforeKurs.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnBeforeKurs.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnBeforeKurs.Caption = "Amount Before Kurs"
-        Me.GridColumnBeforeKurs.ColumnEdit = Me.RepositoryItemTextEdit3
-        Me.GridColumnBeforeKurs.FieldName = "amount_before"
-        Me.GridColumnBeforeKurs.Name = "GridColumnBeforeKurs"
-        Me.GridColumnBeforeKurs.Visible = True
-        Me.GridColumnBeforeKurs.VisibleIndex = 7
-        Me.GridColumnBeforeKurs.Width = 72
-        '
-        'GridColumnCurr
-        '
-        Me.GridColumnCurr.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnCurr.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnCurr.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnCurr.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnCurr.Caption = "Cur"
-        Me.GridColumnCurr.ColumnEdit = Me.RISLECurrency
-        Me.GridColumnCurr.Name = "GridColumnCurr"
-        Me.GridColumnCurr.Visible = True
-        Me.GridColumnCurr.VisibleIndex = 6
-        Me.GridColumnCurr.Width = 58
-        '
         'FormPrepaidExpenseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1517,15 +1518,15 @@ Partial Class FormPrepaidExpenseDet
         CType(Me.RISLECatExpense, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLECurrency, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLECOAPPH, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RISLECurrency, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         Me.XTPDraft.ResumeLayout(False)

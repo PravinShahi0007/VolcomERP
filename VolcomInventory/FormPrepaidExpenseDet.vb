@@ -242,7 +242,7 @@ WHERE p.id_prepaid_expense='" & id & "'"
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
         Dim q_year As String = ""
-        Dim query As String = "SELECT 'no' AS is_lock,ed.id_currency,cur.currency,ed.before_kurs,ed.kurs,ed.id_acc_biaya,ed.start_date,ed.qty_month,ed.amount,ed.id_prepaid_expense_det,ed.cc,c.comp_number AS cc_desc, ed.id_prepaid_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
+        Dim query As String = "SELECT 'no' AS is_lock,ed.id_currency,cur.currency,ed.amount_before,ed.kurs,ed.id_acc_biaya,ed.start_date,ed.qty_month,ed.amount,ed.id_prepaid_expense_det,ed.cc,c.comp_number AS cc_desc, ed.id_prepaid_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
         ed.id_acc,pphacc.acc_description AS coa_desc_pph,a.id_acc_cat, a.acc_description AS `coa_desc`,ab.acc_description AS `coa_biaya_desc`, ed.description,a.acc_name,ed.id_acc_pph,ed.pph_percent,ed.pph, "
 
         If id = "-1" Then
@@ -1096,7 +1096,11 @@ WHERE c.id_comp='" + id_comp + "' "
         GridColumnAccountDescription.VisibleIndex = -1
         '
         GridColumnCurr.Visible = False
-        GridColumnCurrView.VisibleIndex = 6
+        GridColumnCurrView.VisibleIndex = 5
+        '
+        GridColumnEndPeriod.Visible = False
+        GridColumnCOABiaya.Visible = False
+        GridColumnCoaBiayaCol.Visible = False
         '
         GridColumnBudgetType.Visible = False
         GridColumnBudgetTypeDesc.VisibleIndex = -1
@@ -1108,7 +1112,7 @@ WHERE c.id_comp='" + id_comp + "' "
         GridColumnBudgetDesc.VisibleIndex = 2
         '
         GridColumnPPHCOA.Visible = False
-        GridColumnPPHDesc.VisibleIndex = 12
+        'GridColumnPPHDesc.VisibleIndex = 12
         GridColumnPPHPercent.VisibleIndex = 13
         GridColumnPPH.VisibleIndex = 14
         '
@@ -1172,7 +1176,7 @@ WHERE c.id_comp='" + id_comp + "' "
         GridColumnAmount.VisibleIndex = 9
         GridColumnTaxPercent.VisibleIndex = 10
         GridColumnTaxValue.VisibleIndex = 11
-        GridColumnPPHDesc.VisibleIndex = 12
+        'GridColumnPPHDesc.VisibleIndex = 12
         GridColumnPPHPercent.VisibleIndex = 13
         GridColumnPPH.VisibleIndex = 14
 

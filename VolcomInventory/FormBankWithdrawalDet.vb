@@ -1315,10 +1315,10 @@ GROUP BY dn.`id_debit_note`"
                     newRow("comp_number") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "comp_number_default").ToString
                     newRow("number") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "number").ToString
                     newRow("total_pay") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "total_dp")
-                    newRow("kurs") = 1
-                    newRow("id_currency") = 1
-                    newRow("currency") = "Rp"
-                    newRow("val_bef_kurs") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "balance")
+                    newRow("kurs") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "kurs")
+                    newRow("id_currency") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "id_currency").ToString
+                    newRow("currency") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "currency").ToString
+                    newRow("val_bef_kurs") = If(FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "id_currency").ToString = "1", FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "balance"), FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "balance") / FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "kurs"))
                     newRow("value") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "balance")
                     newRow("value_view") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "balance")
                     newRow("balance_due") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "balance")
