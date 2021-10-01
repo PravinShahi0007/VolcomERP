@@ -129,6 +129,12 @@ Partial Class FormPolisDet
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BImportNilaiStock = New DevExpress.XtraEditors.SimpleButton()
+        Me.BGetExelNilaiStock = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BGetExelNilaiLain = New DevExpress.XtraEditors.SimpleButton()
+        Me.BUploadExelNilaiLain = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -164,6 +170,10 @@ Partial Class FormPolisDet
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEPenawaranAdd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -739,6 +749,7 @@ Partial Class FormPolisDet
         'XTPNilaiStock
         '
         Me.XTPNilaiStock.Controls.Add(Me.GCNilaiStock)
+        Me.XTPNilaiStock.Controls.Add(Me.PanelControl3)
         Me.XTPNilaiStock.Name = "XTPNilaiStock"
         Me.XTPNilaiStock.Size = New System.Drawing.Size(909, 363)
         Me.XTPNilaiStock.Text = "Nilai Stock"
@@ -746,11 +757,11 @@ Partial Class FormPolisDet
         'GCNilaiStock
         '
         Me.GCNilaiStock.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCNilaiStock.Location = New System.Drawing.Point(0, 0)
+        Me.GCNilaiStock.Location = New System.Drawing.Point(0, 40)
         Me.GCNilaiStock.MainView = Me.GVNilaiStock
         Me.GCNilaiStock.Name = "GCNilaiStock"
         Me.GCNilaiStock.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RITENilaiStock})
-        Me.GCNilaiStock.Size = New System.Drawing.Size(909, 363)
+        Me.GCNilaiStock.Size = New System.Drawing.Size(909, 323)
         Me.GCNilaiStock.TabIndex = 10
         Me.GCNilaiStock.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVNilaiStock})
         '
@@ -851,6 +862,7 @@ Partial Class FormPolisDet
         'XTPDetail
         '
         Me.XTPDetail.Controls.Add(Me.GCNilaiLainnya)
+        Me.XTPDetail.Controls.Add(Me.PanelControl4)
         Me.XTPDetail.Name = "XTPDetail"
         Me.XTPDetail.Size = New System.Drawing.Size(909, 363)
         Me.XTPDetail.Text = "Nilai Lainnya"
@@ -858,11 +870,11 @@ Partial Class FormPolisDet
         'GCNilaiLainnya
         '
         Me.GCNilaiLainnya.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCNilaiLainnya.Location = New System.Drawing.Point(0, 0)
+        Me.GCNilaiLainnya.Location = New System.Drawing.Point(0, 40)
         Me.GCNilaiLainnya.MainView = Me.GVNilaiLainnya
         Me.GCNilaiLainnya.Name = "GCNilaiLainnya"
         Me.GCNilaiLainnya.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
-        Me.GCNilaiLainnya.Size = New System.Drawing.Size(909, 363)
+        Me.GCNilaiLainnya.Size = New System.Drawing.Size(909, 323)
         Me.GCNilaiLainnya.TabIndex = 11
         Me.GCNilaiLainnya.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVNilaiLainnya})
         '
@@ -1414,6 +1426,74 @@ Partial Class FormPolisDet
         Me.GridColumn39.Visible = True
         Me.GridColumn39.VisibleIndex = 1
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.BGetExelNilaiStock)
+        Me.PanelControl3.Controls.Add(Me.BImportNilaiStock)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(909, 40)
+        Me.PanelControl3.TabIndex = 11
+        '
+        'BImportNilaiStock
+        '
+        Me.BImportNilaiStock.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BImportNilaiStock.Image = CType(resources.GetObject("BImportNilaiStock.Image"), System.Drawing.Image)
+        Me.BImportNilaiStock.ImageList = Me.LargeImageCollection
+        Me.BImportNilaiStock.Location = New System.Drawing.Point(759, 2)
+        Me.BImportNilaiStock.Name = "BImportNilaiStock"
+        Me.BImportNilaiStock.Size = New System.Drawing.Size(148, 36)
+        Me.BImportNilaiStock.TabIndex = 18
+        Me.BImportNilaiStock.TabStop = False
+        Me.BImportNilaiStock.Text = "Upload Excel List"
+        '
+        'BGetExelNilaiStock
+        '
+        Me.BGetExelNilaiStock.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BGetExelNilaiStock.Image = CType(resources.GetObject("BGetExelNilaiStock.Image"), System.Drawing.Image)
+        Me.BGetExelNilaiStock.ImageList = Me.LargeImageCollection
+        Me.BGetExelNilaiStock.Location = New System.Drawing.Point(637, 2)
+        Me.BGetExelNilaiStock.Name = "BGetExelNilaiStock"
+        Me.BGetExelNilaiStock.Size = New System.Drawing.Size(122, 36)
+        Me.BGetExelNilaiStock.TabIndex = 19
+        Me.BGetExelNilaiStock.TabStop = False
+        Me.BGetExelNilaiStock.Text = "Get Excel List"
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.BGetExelNilaiLain)
+        Me.PanelControl4.Controls.Add(Me.BUploadExelNilaiLain)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(909, 40)
+        Me.PanelControl4.TabIndex = 12
+        '
+        'BGetExelNilaiLain
+        '
+        Me.BGetExelNilaiLain.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BGetExelNilaiLain.Image = CType(resources.GetObject("BGetExelNilaiLain.Image"), System.Drawing.Image)
+        Me.BGetExelNilaiLain.ImageList = Me.LargeImageCollection
+        Me.BGetExelNilaiLain.Location = New System.Drawing.Point(637, 2)
+        Me.BGetExelNilaiLain.Name = "BGetExelNilaiLain"
+        Me.BGetExelNilaiLain.Size = New System.Drawing.Size(122, 36)
+        Me.BGetExelNilaiLain.TabIndex = 19
+        Me.BGetExelNilaiLain.TabStop = False
+        Me.BGetExelNilaiLain.Text = "Get Excel List"
+        '
+        'BUploadExelNilaiLain
+        '
+        Me.BUploadExelNilaiLain.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BUploadExelNilaiLain.Image = CType(resources.GetObject("BUploadExelNilaiLain.Image"), System.Drawing.Image)
+        Me.BUploadExelNilaiLain.ImageList = Me.LargeImageCollection
+        Me.BUploadExelNilaiLain.Location = New System.Drawing.Point(759, 2)
+        Me.BUploadExelNilaiLain.Name = "BUploadExelNilaiLain"
+        Me.BUploadExelNilaiLain.Size = New System.Drawing.Size(148, 36)
+        Me.BUploadExelNilaiLain.TabIndex = 18
+        Me.BUploadExelNilaiLain.TabStop = False
+        Me.BUploadExelNilaiLain.Text = "Upload Excel List"
+        '
         'FormPolisDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1462,6 +1542,10 @@ Partial Class FormPolisDet
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEPenawaranAdd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1574,4 +1658,10 @@ Partial Class FormPolisDet
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BGetExelNilaiStock As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BImportNilaiStock As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BGetExelNilaiLain As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BUploadExelNilaiLain As DevExpress.XtraEditors.SimpleButton
 End Class
