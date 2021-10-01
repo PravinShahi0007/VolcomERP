@@ -71,10 +71,12 @@
             MAX(CASE WHEN d.id_code=14 THEN d.id_code_detail END) AS `id_color`,
 	        MAX(CASE WHEN d.id_code=14 THEN d.code_detail_name END) AS `color`,
             MAX(CASE WHEN d.id_code=5 THEN d.id_code_detail END) AS `id_source`,
-	        MAX(CASE WHEN d.id_code=5 THEN d.display_name END) AS `source`
+	        MAX(CASE WHEN d.id_code=5 THEN d.display_name END) AS `source`,
+            MAX(CASE WHEN d.id_code=43 THEN d.id_code_detail END) AS `id_sht`,
+		    MAX(CASE WHEN d.id_code=43 THEN d.code_detail_name END) AS `sht`
 	        FROM tb_m_design_code AS c
 	        LEFT JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
-	        WHERE d.id_code IN (32,4,30,14,5)
+	        WHERE d.id_code IN (32,4,30,14,5, 43)
 	        GROUP BY c.id_design
         ) i ON i.id_design = d.id_design
         INNER JOIN tb_season AS season ON d.id_season = season.id_season
@@ -298,7 +300,7 @@
         'where
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading data")
         Dim query As String = "SELECT d.design_code AS `Product Info|Code`, d.design_display_name AS `Product Info|Description`, i.division AS `Product Info|Division`, 
-        i.category AS `Product Info|Category`, i.class AS `Product Info|Class`, i.color AS `Product Info|Color`, i.source AS `Product Info|Source`,
+        i.category AS `Product Info|Category`, i.class AS `Product Info|Class`, i.color AS `Product Info|Color`, i.sht AS `Product Info|Silhouette`, i.source AS `Product Info|Source`,
         season.season AS `Product Info|Season`, delivery.delivery AS `Product Info|Delivery`, range.year_range AS `Product Info|Year`,
         DATE_FORMAT(d.design_first_rec_wh, '%d %M %Y') AS `Product Age|WH Date`,
         DATE_FORMAT(first_del.first_del, '%d %M %Y') AS `Product Age|Del Date`,
