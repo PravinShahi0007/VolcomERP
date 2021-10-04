@@ -174,7 +174,7 @@ LEFT JOIN
 "
         Next
 
-        qs = "SELECT ppsd.`id_comp`,ppsd.old_end_date,c.`comp_name`,c.`comp_number`,c.`address_primary`
+        qs = "SELECT 'no' AS is_check,ppsd.`id_comp`,ppsd.old_end_date,c.`comp_name`,c.`comp_number`,c.`address_primary`
 ,ppsd.`nilai_stock`,ppsd.`nilai_fit_out`,ppsd.`nilai_building`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`
 ,ppsd.old_nilai_total,ppsd.nilai_total,ppsd.old_premi,ppsd.old_polis_vendor,v_old.comp_name AS old_vendor
 ,ppsd.old_premi
@@ -869,7 +869,7 @@ LEFT JOIN
 "
         Next
 
-        qs = "SELECT ppsd.`id_comp`,ppsd.old_end_date,c.`comp_name`,c.`comp_number`,c.`address_primary`
+        qs = "SELECT 'no' AS is_check,ppsd.`id_comp`,ppsd.old_end_date,c.`comp_name`,c.`comp_number`,c.`address_primary`
 ,ppsd.`nilai_stock`,ppsd.`nilai_fit_out`,ppsd.`nilai_building`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`
 ,ppsd.old_nilai_total,ppsd.nilai_total,ppsd.old_premi,ppsd.old_polis_vendor,v_old.comp_name AS old_vendor
 ,ppsd.old_premi
