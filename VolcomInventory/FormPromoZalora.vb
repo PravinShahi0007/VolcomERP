@@ -1,4 +1,5 @@
 ﻿Public Class FormPromoZalora
+    Public is_load_new As Boolean = False
 
     Private Sub FormPromoZalora_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim dt_now As DataTable = execute_query("SELECT DATE(NOW()) as tgl", -1, True, "", "", "", "")
@@ -6,10 +7,18 @@
         DEUntilList.EditValue = dt_now.Rows(0)("tgl")
     End Sub
 
+    Sub loadNewDetail()
+        If is_load_new Then
+            is_load_new = False
+            viewDetail()
+        End If
+    End Sub
+
     Sub newPropose()
         Cursor = Cursors.WaitCursor
         FormPromoZaloraDet.action = "ins"
         FormPromoZaloraDet.ShowDialog()
+        loadNewDetail()
         Cursor = Cursors.Default
     End Sub
 
