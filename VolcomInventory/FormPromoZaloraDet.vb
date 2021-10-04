@@ -110,6 +110,10 @@
             Dim query As String = "INSERT INTO tb_promo_zalora(`promo_name`,`discount_code` ,`discount_value`,`volcom_pros`,`start_period`,`end_period` ,`propose_created_date`,`propose_created_by`,`id_report_status`,`rmt_propose`,`propose_note`)
             VALUES ('" + promo_name + "','" + discount_code + "' ,'" + discount_value + "','" + volcom_pros + "','" + start_period + "','" + end_period + "' ,NOW(),'" + id_user + "','" + id_report_status + "','" + rmt_propose + "','" + propose_note + "'); SELECT LAST_INSERT_ID(); "
             id = execute_query(query, 0, True, "", "", "", "")
+
+            'gen number
+            execute_non_query("CALL gen_number(" + id + ", " + rmt_propose + ")", True, "", "", "", "")
+
             refreshMainview()
             FormPromoZalora.is_load_new = True
             Close()

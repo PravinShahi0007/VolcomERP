@@ -111,7 +111,7 @@ Partial Class FormPromoZaloraDet
         '
         'XTCPromoZalora
         '
-        Me.XTCPromoZalora.AppearancePage.Header.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XTCPromoZalora.AppearancePage.Header.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XTCPromoZalora.AppearancePage.Header.ForeColor = System.Drawing.Color.DimGray
         Me.XTCPromoZalora.AppearancePage.Header.Options.UseFont = True
         Me.XTCPromoZalora.AppearancePage.Header.Options.UseForeColor = True
