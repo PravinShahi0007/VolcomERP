@@ -228,7 +228,7 @@ Partial Class FormPromoZalora
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormPromoZalora"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Propose Promo Zalora"
+        Me.Text = "Propose Zalora Promo"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
