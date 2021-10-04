@@ -38,6 +38,10 @@ Partial Class FormPromoZalora
         Me.GridColumnid_report_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnrmt_propose = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpromo_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpropose_note = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstart_period = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnend_period = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntilList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,7 +131,7 @@ Partial Class FormPromoZalora
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_promo_zalora, Me.GridColumnnumber, Me.GridColumndiscount_code, Me.GridColumndiscount_value, Me.GridColumnvolcom_pros, Me.GridColumnpropose_created_date, Me.GridColumnpropose_created_by_name, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumnrmt_propose})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_promo_zalora, Me.GridColumnnumber, Me.GridColumndiscount_code, Me.GridColumndiscount_value, Me.GridColumnvolcom_pros, Me.GridColumnpropose_created_date, Me.GridColumnpropose_created_by_name, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumnrmt_propose, Me.GridColumnpromo_name, Me.GridColumnpropose_note, Me.GridColumnstart_period, Me.GridColumnend_period})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -159,7 +163,7 @@ Partial Class FormPromoZalora
         Me.GridColumndiscount_code.FieldName = "discount_code"
         Me.GridColumndiscount_code.Name = "GridColumndiscount_code"
         Me.GridColumndiscount_code.Visible = True
-        Me.GridColumndiscount_code.VisibleIndex = 1
+        Me.GridColumndiscount_code.VisibleIndex = 2
         '
         'GridColumndiscount_value
         '
@@ -169,7 +173,7 @@ Partial Class FormPromoZalora
         Me.GridColumndiscount_value.FieldName = "discount_value"
         Me.GridColumndiscount_value.Name = "GridColumndiscount_value"
         Me.GridColumndiscount_value.Visible = True
-        Me.GridColumndiscount_value.VisibleIndex = 2
+        Me.GridColumndiscount_value.VisibleIndex = 3
         '
         'GridColumnvolcom_pros
         '
@@ -179,7 +183,7 @@ Partial Class FormPromoZalora
         Me.GridColumnvolcom_pros.FieldName = "volcom_pros"
         Me.GridColumnvolcom_pros.Name = "GridColumnvolcom_pros"
         Me.GridColumnvolcom_pros.Visible = True
-        Me.GridColumnvolcom_pros.VisibleIndex = 3
+        Me.GridColumnvolcom_pros.VisibleIndex = 4
         '
         'GridColumnpropose_created_date
         '
@@ -189,7 +193,7 @@ Partial Class FormPromoZalora
         Me.GridColumnpropose_created_date.FieldName = "propose_created_date"
         Me.GridColumnpropose_created_date.Name = "GridColumnpropose_created_date"
         Me.GridColumnpropose_created_date.Visible = True
-        Me.GridColumnpropose_created_date.VisibleIndex = 4
+        Me.GridColumnpropose_created_date.VisibleIndex = 7
         '
         'GridColumnpropose_created_by_name
         '
@@ -197,7 +201,7 @@ Partial Class FormPromoZalora
         Me.GridColumnpropose_created_by_name.FieldName = "propose_created_by_name"
         Me.GridColumnpropose_created_by_name.Name = "GridColumnpropose_created_by_name"
         Me.GridColumnpropose_created_by_name.Visible = True
-        Me.GridColumnpropose_created_by_name.VisibleIndex = 5
+        Me.GridColumnpropose_created_by_name.VisibleIndex = 8
         '
         'GridColumnid_report_status
         '
@@ -211,13 +215,49 @@ Partial Class FormPromoZalora
         Me.GridColumnreport_status.FieldName = "report_status"
         Me.GridColumnreport_status.Name = "GridColumnreport_status"
         Me.GridColumnreport_status.Visible = True
-        Me.GridColumnreport_status.VisibleIndex = 6
+        Me.GridColumnreport_status.VisibleIndex = 9
         '
         'GridColumnrmt_propose
         '
         Me.GridColumnrmt_propose.Caption = "rmt_propose"
         Me.GridColumnrmt_propose.FieldName = "rmt_propose"
         Me.GridColumnrmt_propose.Name = "GridColumnrmt_propose"
+        '
+        'GridColumnpromo_name
+        '
+        Me.GridColumnpromo_name.Caption = "Promo Name"
+        Me.GridColumnpromo_name.FieldName = "promo_name"
+        Me.GridColumnpromo_name.Name = "GridColumnpromo_name"
+        Me.GridColumnpromo_name.Visible = True
+        Me.GridColumnpromo_name.VisibleIndex = 1
+        '
+        'GridColumnpropose_note
+        '
+        Me.GridColumnpropose_note.Caption = "Note"
+        Me.GridColumnpropose_note.FieldName = "propose_note"
+        Me.GridColumnpropose_note.Name = "GridColumnpropose_note"
+        Me.GridColumnpropose_note.Visible = True
+        Me.GridColumnpropose_note.VisibleIndex = 10
+        '
+        'GridColumnstart_period
+        '
+        Me.GridColumnstart_period.Caption = "Start Period"
+        Me.GridColumnstart_period.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumnstart_period.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnstart_period.FieldName = "start_period"
+        Me.GridColumnstart_period.Name = "GridColumnstart_period"
+        Me.GridColumnstart_period.Visible = True
+        Me.GridColumnstart_period.VisibleIndex = 5
+        '
+        'GridColumnend_period
+        '
+        Me.GridColumnend_period.Caption = "End Period"
+        Me.GridColumnend_period.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumnend_period.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnend_period.FieldName = "end_period"
+        Me.GridColumnend_period.Name = "GridColumnend_period"
+        Me.GridColumnend_period.Visible = True
+        Me.GridColumnend_period.VisibleIndex = 6
         '
         'FormPromoZalora
         '
@@ -260,4 +300,8 @@ Partial Class FormPromoZalora
     Friend WithEvents GridColumnid_report_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnrmt_propose As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpromo_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpropose_note As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstart_period As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnend_period As DevExpress.XtraGrid.Columns.GridColumn
 End Class

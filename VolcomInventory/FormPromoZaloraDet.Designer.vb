@@ -32,20 +32,15 @@ Partial Class FormPromoZaloraDet
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
-        Me.TxtDiscountTitle = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtUseDiscountCode = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtDiscountCode = New DevExpress.XtraEditors.TextEdit()
         Me.TxtPromoName = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtTag = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEPromoType = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -56,6 +51,18 @@ Partial Class FormPromoZaloraDet
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtDiscountValue = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.XTCProduct = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPItemList = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCItemPropose = New DevExpress.XtraGrid.GridControl()
+        Me.GVtemPropose = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCreateNew = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPromoZalora, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPromoZalora.SuspendLayout()
         Me.XTPProposal.SuspendLayout()
@@ -63,16 +70,12 @@ Partial Class FormPromoZaloraDet
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
-        CType(Me.TxtDiscountTitle.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtUseDiscountCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDiscountCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPromoName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtTag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEPromoType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -81,6 +84,15 @@ Partial Class FormPromoZaloraDet
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDiscountValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCProduct, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCProduct.SuspendLayout()
+        Me.XTPItemList.SuspendLayout()
+        CType(Me.GCItemPropose, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVtemPropose, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlNav.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCPromoZalora
@@ -101,22 +113,25 @@ Partial Class FormPromoZaloraDet
         Me.XTCPromoZalora.Location = New System.Drawing.Point(0, 0)
         Me.XTCPromoZalora.Name = "XTCPromoZalora"
         Me.XTCPromoZalora.SelectedTabPage = Me.XTPProposal
-        Me.XTCPromoZalora.Size = New System.Drawing.Size(968, 555)
+        Me.XTCPromoZalora.Size = New System.Drawing.Size(784, 611)
         Me.XTCPromoZalora.TabIndex = 0
         Me.XTCPromoZalora.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPProposal, Me.XTPReconcile})
         '
         'XTPProposal
         '
+        Me.XTPProposal.Controls.Add(Me.XTCProduct)
         Me.XTPProposal.Controls.Add(Me.GroupControlHead)
         Me.XTPProposal.Controls.Add(Me.PanelControlBottom)
+        Me.XTPProposal.Image = CType(resources.GetObject("XTPProposal.Image"), System.Drawing.Image)
         Me.XTPProposal.Name = "XTPProposal"
-        Me.XTPProposal.Size = New System.Drawing.Size(962, 521)
+        Me.XTPProposal.Size = New System.Drawing.Size(778, 577)
         Me.XTPProposal.Text = "Proposal"
         '
         'XTPReconcile
         '
+        Me.XTPReconcile.Image = CType(resources.GetObject("XTPReconcile.Image"), System.Drawing.Image)
         Me.XTPReconcile.Name = "XTPReconcile"
-        Me.XTPReconcile.Size = New System.Drawing.Size(807, 488)
+        Me.XTPReconcile.Size = New System.Drawing.Size(778, 577)
         Me.XTPReconcile.Text = "Promo Item Reconciliation"
         '
         'PanelControlBottom
@@ -129,16 +144,16 @@ Partial Class FormPromoZaloraDet
         Me.PanelControlBottom.Controls.Add(Me.BtnSaveChanges)
         Me.PanelControlBottom.Controls.Add(Me.BtnConfirm)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 477)
+        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 533)
         Me.PanelControlBottom.Name = "PanelControlBottom"
-        Me.PanelControlBottom.Size = New System.Drawing.Size(962, 44)
+        Me.PanelControlBottom.Size = New System.Drawing.Size(778, 44)
         Me.PanelControlBottom.TabIndex = 16
         '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(302, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(118, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
         Me.BtnPrint.TabIndex = 3
@@ -148,7 +163,7 @@ Partial Class FormPromoZaloraDet
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(389, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(205, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 40)
         Me.BtnAttachment.TabIndex = 4
@@ -170,7 +185,7 @@ Partial Class FormPromoZaloraDet
         '
         Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(495, 2)
+        Me.BtnCancell.Location = New System.Drawing.Point(311, 2)
         Me.BtnCancell.Name = "BtnCancell"
         Me.BtnCancell.Size = New System.Drawing.Size(126, 40)
         Me.BtnCancell.TabIndex = 7
@@ -181,7 +196,7 @@ Partial Class FormPromoZaloraDet
         '
         Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
-        Me.BtnResetPropose.Location = New System.Drawing.Point(621, 2)
+        Me.BtnResetPropose.Location = New System.Drawing.Point(437, 2)
         Me.BtnResetPropose.Name = "BtnResetPropose"
         Me.BtnResetPropose.Size = New System.Drawing.Size(123, 40)
         Me.BtnResetPropose.TabIndex = 9
@@ -191,7 +206,7 @@ Partial Class FormPromoZaloraDet
         '
         Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
-        Me.BtnSaveChanges.Location = New System.Drawing.Point(744, 2)
+        Me.BtnSaveChanges.Location = New System.Drawing.Point(560, 2)
         Me.BtnSaveChanges.Name = "BtnSaveChanges"
         Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
         Me.BtnSaveChanges.TabIndex = 8
@@ -202,7 +217,7 @@ Partial Class FormPromoZaloraDet
         '
         Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
-        Me.BtnConfirm.Location = New System.Drawing.Point(864, 2)
+        Me.BtnConfirm.Location = New System.Drawing.Point(680, 2)
         Me.BtnConfirm.Name = "BtnConfirm"
         Me.BtnConfirm.Size = New System.Drawing.Size(96, 40)
         Me.BtnConfirm.TabIndex = 6
@@ -212,74 +227,50 @@ Partial Class FormPromoZaloraDet
         'GroupControlHead
         '
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControlHead.Controls.Add(Me.TxtDiscountTitle)
-        Me.GroupControlHead.Controls.Add(Me.LabelControl9)
-        Me.GroupControlHead.Controls.Add(Me.TxtUseDiscountCode)
-        Me.GroupControlHead.Controls.Add(Me.TxtPromoName)
-        Me.GroupControlHead.Controls.Add(Me.TxtTag)
+        Me.GroupControlHead.Controls.Add(Me.BtnCreateNew)
+        Me.GroupControlHead.Controls.Add(Me.TextEdit1)
+        Me.GroupControlHead.Controls.Add(Me.LabelControl10)
+        Me.GroupControlHead.Controls.Add(Me.TxtDiscountValue)
         Me.GroupControlHead.Controls.Add(Me.LabelControl8)
+        Me.GroupControlHead.Controls.Add(Me.LabelControl9)
+        Me.GroupControlHead.Controls.Add(Me.TxtDiscountCode)
+        Me.GroupControlHead.Controls.Add(Me.TxtPromoName)
         Me.GroupControlHead.Controls.Add(Me.LabelControl6)
         Me.GroupControlHead.Controls.Add(Me.LabelControl7)
         Me.GroupControlHead.Controls.Add(Me.DEEnd)
         Me.GroupControlHead.Controls.Add(Me.DEStart)
         Me.GroupControlHead.Controls.Add(Me.LabelControl5)
         Me.GroupControlHead.Controls.Add(Me.LabelControl3)
-        Me.GroupControlHead.Controls.Add(Me.SLEPromoType)
         Me.GroupControlHead.Controls.Add(Me.MENote)
         Me.GroupControlHead.Controls.Add(Me.PanelControl1)
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(962, 204)
+        Me.GroupControlHead.Size = New System.Drawing.Size(778, 224)
         Me.GroupControlHead.TabIndex = 17
-        '
-        'TxtDiscountTitle
-        '
-        Me.TxtDiscountTitle.Enabled = False
-        Me.TxtDiscountTitle.Location = New System.Drawing.Point(175, 14)
-        Me.TxtDiscountTitle.Name = "TxtDiscountTitle"
-        Me.TxtDiscountTitle.Size = New System.Drawing.Size(216, 20)
-        Me.TxtDiscountTitle.TabIndex = 163
         '
         'LabelControl9
         '
         Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(32, 17)
+        Me.LabelControl9.Location = New System.Drawing.Point(32, 43)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(69, 13)
         Me.LabelControl9.TabIndex = 162
         Me.LabelControl9.Text = "Discount Code"
         '
-        'TxtUseDiscountCode
+        'TxtDiscountCode
         '
-        Me.TxtUseDiscountCode.Enabled = False
-        Me.TxtUseDiscountCode.Location = New System.Drawing.Point(115, 14)
-        Me.TxtUseDiscountCode.Name = "TxtUseDiscountCode"
-        Me.TxtUseDiscountCode.Size = New System.Drawing.Size(54, 20)
-        Me.TxtUseDiscountCode.TabIndex = 161
+        Me.TxtDiscountCode.Location = New System.Drawing.Point(118, 40)
+        Me.TxtDiscountCode.Name = "TxtDiscountCode"
+        Me.TxtDiscountCode.Size = New System.Drawing.Size(151, 20)
+        Me.TxtDiscountCode.TabIndex = 161
         '
         'TxtPromoName
         '
-        Me.TxtPromoName.Location = New System.Drawing.Point(115, 40)
+        Me.TxtPromoName.Location = New System.Drawing.Point(118, 14)
         Me.TxtPromoName.Name = "TxtPromoName"
-        Me.TxtPromoName.Size = New System.Drawing.Size(276, 20)
+        Me.TxtPromoName.Size = New System.Drawing.Size(272, 20)
         Me.TxtPromoName.TabIndex = 160
-        '
-        'TxtTag
-        '
-        Me.TxtTag.Location = New System.Drawing.Point(115, 66)
-        Me.TxtTag.Name = "TxtTag"
-        Me.TxtTag.Size = New System.Drawing.Size(276, 20)
-        Me.TxtTag.TabIndex = 159
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(32, 69)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(18, 13)
-        Me.LabelControl8.TabIndex = 158
-        Me.LabelControl8.Text = "Tag"
         '
         'LabelControl6
         '
@@ -302,7 +293,7 @@ Partial Class FormPromoZaloraDet
         'DEEnd
         '
         Me.DEEnd.EditValue = Nothing
-        Me.DEEnd.Location = New System.Drawing.Point(115, 118)
+        Me.DEEnd.Location = New System.Drawing.Point(118, 118)
         Me.DEEnd.Name = "DEEnd"
         Me.DEEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -312,13 +303,13 @@ Partial Class FormPromoZaloraDet
         Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
         Me.DEEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEEnd.Properties.Mask.EditMask = "dd-MM-yyyy/HH:mm"
-        Me.DEEnd.Size = New System.Drawing.Size(276, 20)
+        Me.DEEnd.Size = New System.Drawing.Size(272, 20)
         Me.DEEnd.TabIndex = 156
         '
         'DEStart
         '
         Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(115, 92)
+        Me.DEStart.Location = New System.Drawing.Point(118, 92)
         Me.DEStart.Name = "DEStart"
         Me.DEStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -328,7 +319,7 @@ Partial Class FormPromoZaloraDet
         Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
         Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEStart.Properties.Mask.EditMask = "dd-MM-yyyy/HH:mm"
-        Me.DEStart.Size = New System.Drawing.Size(276, 20)
+        Me.DEStart.Size = New System.Drawing.Size(272, 20)
         Me.DEStart.TabIndex = 155
         '
         'LabelControl5
@@ -343,35 +334,17 @@ Partial Class FormPromoZaloraDet
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(32, 43)
+        Me.LabelControl3.Location = New System.Drawing.Point(32, 17)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(30, 13)
+        Me.LabelControl3.Size = New System.Drawing.Size(60, 13)
         Me.LabelControl3.TabIndex = 153
-        Me.LabelControl3.Text = "Promo"
-        '
-        'SLEPromoType
-        '
-        Me.SLEPromoType.Enabled = False
-        Me.SLEPromoType.Location = New System.Drawing.Point(33, 250)
-        Me.SLEPromoType.Name = "SLEPromoType"
-        Me.SLEPromoType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEPromoType.Properties.ShowClearButton = False
-        Me.SLEPromoType.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEPromoType.Size = New System.Drawing.Size(61, 20)
-        Me.SLEPromoType.TabIndex = 152
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        Me.LabelControl3.Text = "Promo Name"
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(115, 144)
+        Me.MENote.Location = New System.Drawing.Point(118, 144)
         Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(276, 41)
+        Me.MENote.Size = New System.Drawing.Size(272, 41)
         Me.MENote.TabIndex = 151
         Me.MENote.TabStop = False
         '
@@ -387,9 +360,9 @@ Partial Class FormPromoZaloraDet
         Me.PanelControl1.Controls.Add(Me.TxtNumber)
         Me.PanelControl1.Controls.Add(Me.DECreated)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(709, 2)
+        Me.PanelControl1.Location = New System.Drawing.Point(525, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(251, 200)
+        Me.PanelControl1.Size = New System.Drawing.Size(251, 220)
         Me.PanelControl1.TabIndex = 4
         '
         'LabelControl1
@@ -479,11 +452,131 @@ Partial Class FormPromoZaloraDet
         Me.DECreated.Size = New System.Drawing.Size(154, 20)
         Me.DECreated.TabIndex = 6
         '
+        'LabelControl8
+        '
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl8.Location = New System.Drawing.Point(275, 43)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl8.TabIndex = 163
+        Me.LabelControl8.Text = "Value"
+        '
+        'TxtDiscountValue
+        '
+        Me.TxtDiscountValue.Location = New System.Drawing.Point(307, 40)
+        Me.TxtDiscountValue.Name = "TxtDiscountValue"
+        Me.TxtDiscountValue.Properties.DisplayFormat.FormatString = "{0:N2} %"
+        Me.TxtDiscountValue.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtDiscountValue.Properties.Mask.EditMask = "n2"
+        Me.TxtDiscountValue.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtDiscountValue.Size = New System.Drawing.Size(83, 20)
+        Me.TxtDiscountValue.TabIndex = 164
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(32, 69)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(64, 13)
+        Me.LabelControl10.TabIndex = 165
+        Me.LabelControl10.Text = "Seller Charge"
+        '
+        'TextEdit1
+        '
+        Me.TextEdit1.Location = New System.Drawing.Point(118, 66)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Properties.DisplayFormat.FormatString = "{0:N2} %"
+        Me.TextEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TextEdit1.Properties.Mask.EditMask = "n2"
+        Me.TextEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TextEdit1.Size = New System.Drawing.Size(272, 20)
+        Me.TextEdit1.TabIndex = 166
+        '
+        'XTCProduct
+        '
+        Me.XTCProduct.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCProduct.Location = New System.Drawing.Point(0, 224)
+        Me.XTCProduct.Name = "XTCProduct"
+        Me.XTCProduct.SelectedTabPage = Me.XTPItemList
+        Me.XTCProduct.Size = New System.Drawing.Size(778, 309)
+        Me.XTCProduct.TabIndex = 18
+        Me.XTCProduct.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPItemList})
+        '
+        'XTPItemList
+        '
+        Me.XTPItemList.Controls.Add(Me.GCItemPropose)
+        Me.XTPItemList.Controls.Add(Me.PanelControlNav)
+        Me.XTPItemList.Name = "XTPItemList"
+        Me.XTPItemList.Size = New System.Drawing.Size(772, 281)
+        Me.XTPItemList.Text = "Item List"
+        '
+        'GCItemPropose
+        '
+        Me.GCItemPropose.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCItemPropose.Location = New System.Drawing.Point(0, 39)
+        Me.GCItemPropose.MainView = Me.GVtemPropose
+        Me.GCItemPropose.Name = "GCItemPropose"
+        Me.GCItemPropose.Size = New System.Drawing.Size(772, 242)
+        Me.GCItemPropose.TabIndex = 0
+        Me.GCItemPropose.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVtemPropose})
+        '
+        'GVtemPropose
+        '
+        Me.GVtemPropose.GridControl = Me.GCItemPropose
+        Me.GVtemPropose.Name = "GVtemPropose"
+        Me.GVtemPropose.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVtemPropose.OptionsBehavior.Editable = False
+        Me.GVtemPropose.OptionsView.ShowGroupPanel = False
+        '
+        'PanelControlNav
+        '
+        Me.PanelControlNav.Controls.Add(Me.BtnImportExcel)
+        Me.PanelControlNav.Controls.Add(Me.BtnExportToXLS)
+        Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlNav.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlNav.Name = "PanelControlNav"
+        Me.PanelControlNav.Size = New System.Drawing.Size(772, 39)
+        Me.PanelControlNav.TabIndex = 18
+        '
+        'BtnExportToXLS
+        '
+        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(658, 2)
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(112, 35)
+        Me.BtnExportToXLS.TabIndex = 9
+        Me.BtnExportToXLS.Text = "Export to XLS"
+        Me.BtnExportToXLS.Visible = False
+        '
+        'BtnImportExcel
+        '
+        Me.BtnImportExcel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnImportExcel.Image = CType(resources.GetObject("BtnImportExcel.Image"), System.Drawing.Image)
+        Me.BtnImportExcel.Location = New System.Drawing.Point(535, 2)
+        Me.BtnImportExcel.Name = "BtnImportExcel"
+        Me.BtnImportExcel.Size = New System.Drawing.Size(123, 35)
+        Me.BtnImportExcel.TabIndex = 10
+        Me.BtnImportExcel.Text = "Import from XLS"
+        '
+        'BtnCreateNew
+        '
+        Me.BtnCreateNew.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnCreateNew.Image = CType(resources.GetObject("BtnCreateNew.Image"), System.Drawing.Image)
+        Me.BtnCreateNew.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BtnCreateNew.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
+        Me.BtnCreateNew.Location = New System.Drawing.Point(20, 197)
+        Me.BtnCreateNew.Name = "BtnCreateNew"
+        Me.BtnCreateNew.Size = New System.Drawing.Size(505, 25)
+        Me.BtnCreateNew.TabIndex = 8926
+        Me.BtnCreateNew.Text = "Create New"
+        Me.BtnCreateNew.Visible = False
+        '
         'FormPromoZaloraDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(968, 555)
+        Me.ClientSize = New System.Drawing.Size(784, 611)
         Me.Controls.Add(Me.XTCPromoZalora)
         Me.MinimizeBox = False
         Me.Name = "FormPromoZaloraDet"
@@ -498,16 +591,12 @@ Partial Class FormPromoZaloraDet
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
-        CType(Me.TxtDiscountTitle.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtUseDiscountCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDiscountCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPromoName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtTag.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEPromoType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
@@ -517,6 +606,15 @@ Partial Class FormPromoZaloraDet
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDiscountValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCProduct, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCProduct.ResumeLayout(False)
+        Me.XTPItemList.ResumeLayout(False)
+        CType(Me.GCItemPropose, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVtemPropose, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlNav.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -533,20 +631,15 @@ Partial Class FormPromoZaloraDet
     Friend WithEvents BtnSaveChanges As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnConfirm As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GroupControlHead As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents TxtDiscountTitle As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TxtUseDiscountCode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtDiscountCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtPromoName As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TxtTag As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEEnd As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SLEPromoType As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
@@ -557,4 +650,16 @@ Partial Class FormPromoZaloraDet
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtDiscountValue As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents XTCProduct As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPItemList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCItemPropose As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVtemPropose As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnImportExcel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnCreateNew As DevExpress.XtraEditors.SimpleButton
 End Class
