@@ -26,6 +26,19 @@ Partial Class FormPromoZaloraDet
         Me.XTPItemList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCItemPropose = New DevExpress.XtraGrid.GridControl()
         Me.GVtemPropose = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_promo_zalora_det = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_promo_zalora = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_design_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnamount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
@@ -157,12 +170,122 @@ Partial Class FormPromoZaloraDet
         '
         'GVtemPropose
         '
+        Me.GVtemPropose.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_promo_zalora_det, Me.GridColumnid_promo_zalora, Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnclass, Me.GridColumnname, Me.GridColumnsht, Me.GridColumncolor, Me.GridColumnsize, Me.GridColumntotal_qty, Me.GridColumnid_design_price, Me.GridColumndesign_price, Me.GridColumnamount})
         Me.GVtemPropose.GridControl = Me.GCItemPropose
         Me.GVtemPropose.Name = "GVtemPropose"
         Me.GVtemPropose.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVtemPropose.OptionsBehavior.Editable = False
         Me.GVtemPropose.OptionsView.ColumnAutoWidth = False
+        Me.GVtemPropose.OptionsView.ShowFooter = True
         Me.GVtemPropose.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_promo_zalora_det
+        '
+        Me.GridColumnid_promo_zalora_det.Caption = "id_promo_zalora_det"
+        Me.GridColumnid_promo_zalora_det.FieldName = "id_promo_zalora_det"
+        Me.GridColumnid_promo_zalora_det.Name = "GridColumnid_promo_zalora_det"
+        '
+        'GridColumnid_promo_zalora
+        '
+        Me.GridColumnid_promo_zalora.Caption = "id_promo_zalora"
+        Me.GridColumnid_promo_zalora.FieldName = "id_promo_zalora"
+        Me.GridColumnid_promo_zalora.Name = "GridColumnid_promo_zalora"
+        '
+        'GridColumnid_product
+        '
+        Me.GridColumnid_product.Caption = "id_product"
+        Me.GridColumnid_product.FieldName = "id_product"
+        Me.GridColumnid_product.Name = "GridColumnid_product"
+        '
+        'GridColumncode
+        '
+        Me.GridColumncode.Caption = "Code"
+        Me.GridColumncode.FieldName = "code"
+        Me.GridColumncode.Name = "GridColumncode"
+        Me.GridColumncode.Visible = True
+        Me.GridColumncode.VisibleIndex = 0
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 1
+        '
+        'GridColumnname
+        '
+        Me.GridColumnname.Caption = "Description"
+        Me.GridColumnname.FieldName = "name"
+        Me.GridColumnname.Name = "GridColumnname"
+        Me.GridColumnname.Visible = True
+        Me.GridColumnname.VisibleIndex = 2
+        Me.GridColumnname.Width = 170
+        '
+        'GridColumnsht
+        '
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.Visible = True
+        Me.GridColumnsht.VisibleIndex = 3
+        Me.GridColumnsht.Width = 121
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 4
+        '
+        'GridColumnsize
+        '
+        Me.GridColumnsize.Caption = "Size"
+        Me.GridColumnsize.FieldName = "size"
+        Me.GridColumnsize.Name = "GridColumnsize"
+        Me.GridColumnsize.Visible = True
+        Me.GridColumnsize.VisibleIndex = 5
+        '
+        'GridColumntotal_qty
+        '
+        Me.GridColumntotal_qty.Caption = "Total Qty"
+        Me.GridColumntotal_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_qty.FieldName = "total_qty"
+        Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
+        Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
+        Me.GridColumntotal_qty.Visible = True
+        Me.GridColumntotal_qty.VisibleIndex = 6
+        '
+        'GridColumnid_design_price
+        '
+        Me.GridColumnid_design_price.Caption = "id_design_price"
+        Me.GridColumnid_design_price.FieldName = "id_design_price"
+        Me.GridColumnid_design_price.Name = "GridColumnid_design_price"
+        '
+        'GridColumndesign_price
+        '
+        Me.GridColumndesign_price.Caption = "Unit Price"
+        Me.GridColumndesign_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumndesign_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndesign_price.FieldName = "design_price"
+        Me.GridColumndesign_price.Name = "GridColumndesign_price"
+        Me.GridColumndesign_price.Visible = True
+        Me.GridColumndesign_price.VisibleIndex = 7
+        '
+        'GridColumnamount
+        '
+        Me.GridColumnamount.Caption = "Amount"
+        Me.GridColumnamount.DisplayFormat.FormatString = "N0"
+        Me.GridColumnamount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnamount.FieldName = "amount"
+        Me.GridColumnamount.Name = "GridColumnamount"
+        Me.GridColumnamount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N0}")})
+        Me.GridColumnamount.UnboundExpression = "[total_qty] * [design_price]"
+        Me.GridColumnamount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnamount.Visible = True
+        Me.GridColumnamount.VisibleIndex = 8
         '
         'PanelControlNav
         '
@@ -663,4 +786,17 @@ Partial Class FormPromoZaloraDet
     Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnImportExcel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCreateNew As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnid_promo_zalora_det As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_promo_zalora As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_product As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnname As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotal_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_design_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndesign_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnamount As DevExpress.XtraGrid.Columns.GridColumn
 End Class

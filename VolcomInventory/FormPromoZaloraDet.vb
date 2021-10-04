@@ -5,6 +5,8 @@
     Dim id_report_status As String = "-1"
     Dim is_confirm As String = "-1"
     Dim rmt_propose As String = "351"
+    Dim rmt_recon As String = "352"
+    Dim id_menu As String = "1" '1=>propose; 2=>rekon
 
     Private Sub FormPromoZaloraDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -95,6 +97,7 @@
 
 
     Sub saveHead()
+        Cursor = Cursors.WaitCursor
         Dim promo_name As String = addSlashes(TxtPromoName.Text)
         Dim discount_code As String = addSlashes(TxtDiscountCode.Text)
         Dim discount_value As String = decimalSQL(TxtDiscountValue.EditValue.ToString)
@@ -104,17 +107,21 @@
         Dim propose_note As String = addSlashes(MENote.Text)
 
         If action = "ins" Then
-            Cursor = Cursors.WaitCursor
             Dim query As String = "INSERT INTO tb_promo_zalora(`promo_name`,`discount_code` ,`discount_value`,`volcom_pros`,`start_period`,`end_period` ,`propose_created_date`,`propose_created_by`,`id_report_status`,`rmt_propose`,`propose_note`)
             VALUES ('" + promo_name + "','" + discount_code + "' ,'" + discount_value + "','" + volcom_pros + "','" + start_period + "','" + end_period + "' ,NOW(),'" + id_user + "','" + id_report_status + "','" + rmt_propose + "','" + propose_note + "'); SELECT LAST_INSERT_ID(); "
             id = execute_query(query, 0, True, "", "", "", "")
             refreshMainview()
             FormPromoZalora.is_load_new = True
             Close()
-            Cursor = Cursors.Default
         ElseIf action = "upd" Then
-
+            Dim query As String = "UPDATE tb_promo_zalora p SET promo_name='" + promo_name + "', 
+            discount_code='" + discount_code + "', discount_value='" + discount_value + "', volcom_pros='" + volcom_pros + "',
+            start_period='" + start_period + "',  end_period='" + end_period + "', propose_note='" + propose_note + "'
+            WHERE p.id_promo_zalora='" + id + "' "
+            execute_non_query(query, True, "", "", "", "")
+            refreshMainview()
         End If
+        Cursor = Cursors.Default
     End Sub
 
     Sub refreshMainview()
@@ -151,6 +158,293 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemPropose.DataSource = data
         GVtemPropose.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub allow_status()
+        BtnAttachment.Visible = True
+        BtnCancell.Visible = True
+        BtnExportToXLS.Visible = True
+        If is_confirm = "2" And is_view = "-1" Then
+            BtnConfirm.Visible = True
+            BtnMark.Visible = False
+            MENote.Enabled = True
+            BtnPrint.Visible = False
+            BtnSaveChanges.Visible = True
+            MENote.Enabled = True
+            DEStart.Enabled = True
+            DEEnd.Enabled = True
+            TxtPromoName.Enabled = True
+            TxtDiscountCode.Enabled = True
+            TxtDiscountValue.Enabled = True
+            TxtVolcomPros.Enabled = True
+            BtnImportExcel.Visible = True
+        Else
+            BtnConfirm.Visible = False
+            BtnMark.Visible = True
+            MENote.Enabled = False
+            BtnPrint.Visible = True
+            BtnSaveChanges.Visible = False
+            MENote.Enabled = False
+            DEStart.Enabled = False
+            DEEnd.Enabled = False
+            TxtPromoName.Enabled = False
+            TxtDiscountCode.Enabled = False
+            TxtDiscountValue.Enabled = False
+            TxtVolcomPros.Enabled = False
+            BtnImportExcel.Visible = False
+        End If
+
+        'reset propose
+        If is_view = "-1" And is_confirm = "1" Then
+            BtnResetPropose.Visible = True
+        Else
+            BtnResetPropose.Visible = False
+        End If
+
+        If id_report_status = "6" Then
+            BtnCancell.Visible = False
+            BtnResetPropose.Visible = False
+            XTPReconcile.PageVisible = True
+        ElseIf id_report_status = "5" Then
+            BtnCancell.Visible = False
+            BtnResetPropose.Visible = False
+            BtnConfirm.Visible = False
+            MENote.Enabled = False
+            BtnPrint.Visible = False
+            BtnSaveChanges.Visible = False
+            MENote.Enabled = False
+            DEStart.Enabled = False
+            DEEnd.Enabled = False
+            TxtPromoName.Enabled = False
+            TxtDiscountCode.Enabled = False
+            TxtDiscountValue.Enabled = False
+            TxtVolcomPros.Enabled = False
+            BtnImportExcel.Visible = False
+        End If
+    End Sub
+
+    Private Sub BtnExportToXLS_Click(sender As Object, e As EventArgs) Handles BtnExportToXLS.Click
+        If GVtemPropose.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "promo_zalora_" + id + ".xlsx"
+            exportToXLS(path, "promo_zalora_" + id, GCItemPropose)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Sub exportToXLS(ByVal path_par As String, ByVal sheet_name_par As String, ByVal gc_par As DevExpress.XtraGrid.GridControl)
+        Cursor = Cursors.WaitCursor
+        Dim path As String = path_par
+
+        ' Customize export options 
+        CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.PrintHeader = True
+        Dim advOptions As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx()
+        advOptions.AllowSortingAndFiltering = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowGridLines = DevExpress.Utils.DefaultBoolean.False
+        advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False
+        advOptions.SheetName = sheet_name_par
+        advOptions.ExportType = DevExpress.Export.ExportType.DataAware
+
+        Try
+            gc_par.ExportToXlsx(path, advOptions)
+            Process.Start(path)
+            ' Open the created XLSX file with the default application. 
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        makeSafeGV(GVtemPropose)
+
+        If GVtemPropose.RowCount <= 0 Then
+            stopCustom("No propose were made. If you want to cancel this propose, please click 'Cancel Propose'")
+        ElseIf Not checkHead() Then
+            stopCustom("Please complete all data")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this Propose  ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                'update 
+                saveHead()
+
+                'update confirm
+                Dim query As String = "UPDATE tb_promo_zalora SET is_confirm=1 WHERE id_promo_zalora='" + id + "'"
+                execute_non_query(query, True, "", "", "", "")
+
+                'submit approval 
+                submit_who_prepared(rmt_propose, id, id_user)
+                BtnConfirm.Visible = False
+                actionLoad()
+                infoCustom("Propose submitted. Waiting for approval.")
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
+        If checkHead() Then
+            saveHead()
+        Else
+            stopCustom("Please complete all data")
+        End If
+    End Sub
+
+    Private Sub BtnResetPropose_Click(sender As Object, e As EventArgs) Handles BtnResetPropose.Click
+        'reset propose
+        Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=" + rmt_propose + " AND rm.id_report_status=2 
+        AND rm.is_requisite=2 AND rm.id_mark=2 AND rm.id_report=" + id + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count = 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset approval and you can update this propose. Are you sure you want to reset this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query_upd As String = "-- delete report mark
+                DELETE FROM tb_report_mark WHERE report_mark_type=" + rmt_propose + " AND id_report=" + id + "; 
+                -- reset confirm
+                UPDATE tb_promo_zalora SET is_confirm=2,id_report_status=1 WHERE id_promo_zalora=" + id + "; "
+                execute_non_query(query_upd, True, "", "", "", "")
+
+                'refresh
+                refreshMainview()
+            End If
+        Else
+            stopCustom("This propose already process")
+        End If
+    End Sub
+
+    Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancelled this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "UPDATE tb_promo_zalora SET id_report_status=5 WHERE id_promo_zalora='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+            'nonaktif mark
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", rmt_propose, id)
+            execute_non_query(queryrm, True, "", "", "", "")
+
+            'refresh
+            refreshMainview()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = rmt_propose
+        FormDocumentUpload.id_report = id
+        If is_view = "1" Or id_report_status = "6" Or id_report_status = "5" Or is_confirm = "1" Then
+            FormDocumentUpload.is_no_delete = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        'If Not check_allow_print(id_report_status, rmt, id) Then
+        '    warningCustom("Can't print, please complete all approval on system first")
+        'Else
+        '    Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+        '    If XTCData.SelectedTabPageIndex = 0 Then
+        '        gv = GVData
+        '        ReportPromoCollection.dt = GCData.DataSource
+        '    ElseIf XTCData.SelectedTabPageIndex = 1 Then
+        '        gv = GVProduct
+        '        ReportPromoCollection.dt = GCProduct.DataSource
+        '    ElseIf XTCData.SelectedTabPageIndex = 2 Then
+        '        gv = GVBySizeType
+        '        ReportPromoCollection.dt = GCBySizeType.DataSource
+        '    ElseIf XTCData.SelectedTabPageIndex = 3 Then
+        '        gv = GVDiscountCode
+        '        ReportPromoCollection.dt = GCDiscountCode.DataSource
+        '    End If
+        '    ReportPromoCollection.id = id
+        '    If id_report_status <> "6" Then
+        '        ReportPromoCollection.is_pre = "1"
+        '    Else
+        '        ReportPromoCollection.is_pre = "-1"
+        '    End If
+        '    ReportPromoCollection.id_report_status = LEReportStatus.EditValue.ToString
+        '    ReportPromoCollection.rmt = rmt
+        '    ReportPromoCollection.is_all_collection = is_all_collection
+
+        '    Dim Report As New ReportPromoCollection()
+        '    '... 
+        '    ' creating And saving the view's layout to a new memory stream 
+        '    Dim str As System.IO.Stream
+        '    str = New System.IO.MemoryStream()
+        '    gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        '    str.Seek(0, System.IO.SeekOrigin.Begin)
+        '    Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        '    str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        '    'style
+        '    Report.GVData.OptionsPrint.UsePrintStyles = True
+        '    Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+        '    Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
+        '    Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 8, FontStyle.Regular)
+
+        '    Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+        '    Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
+        '    Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+        '    Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
+        '    Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
+        '    Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+
+        '    Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+        '    Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+        '    Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+        '    Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+        '    Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
+        '    Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 8.3, FontStyle.Bold)
+
+        '    Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 8.3, FontStyle.Regular)
+
+        '    Report.GVData.OptionsPrint.ExpandAllDetails = True
+        '    Report.GVData.OptionsPrint.UsePrintStyles = True
+        '    Report.GVData.OptionsPrint.PrintDetails = True
+        '    Report.GVData.OptionsPrint.PrintFooter = True
+
+        '    Report.LabelPromoTyoe.Text = TxtPromoName.Text
+        '    Report.LabelTag.Text = TxtTag.Text.ToUpper
+        '    Report.LabelStartPeriod.Text = DEStart.Text.ToUpper
+        '    Report.LabelEndPeriod.Text = DEEnd.Text.ToUpper
+        '    Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+        '    Report.LabelStore.Text = TxtStore.Text.ToUpper
+        '    Report.LabelDate.Text = DECreated.Text.ToUpper
+        '    Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+        '    Report.LNote.Text = MENote.Text.ToUpper
+        '    Report.LabelDiscountCode.Text = TxtUseDiscountCode.Text.ToUpper + If(is_use_discount_code = "1", " - ", "") + TxtDiscountTitle.Text.ToUpper
+        '    If is_all_collection = "1" Then
+        '        Report.LabelNoteCollection2.Text = LabelControlAllPromo.Text
+        '    Else
+        '        Report.LabelNoteCollection2.Text = ""
+        '    End If
+
+        '    ' Show the report's preview. 
+        '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        '    Tool.ShowPreviewDialog()
+        'End If
+    End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = rmt_propose
+        FormReportMark.id_report = id
+        FormReportMark.is_view = is_view
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class
