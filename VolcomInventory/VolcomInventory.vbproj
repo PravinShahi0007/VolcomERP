@@ -9615,6 +9615,12 @@
     <Compile Include="ReportPromoCollection.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPromoZalora.Designer.vb">
+      <DependentUpon>ReportPromoZalora.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPromoZalora.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProposeEmpSalary.Designer.vb">
       <DependentUpon>ReportProposeEmpSalary.vb</DependentUpon>
     </Compile>
@@ -15377,6 +15383,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPromoCollection.resx">
       <DependentUpon>ReportPromoCollection.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPromoZalora.resx">
+      <DependentUpon>ReportPromoZalora.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProposeEmpSalary.resx">
       <DependentUpon>ReportProposeEmpSalary.vb</DependentUpon>

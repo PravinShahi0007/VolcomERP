@@ -76,6 +76,7 @@ Partial Class FormPromoZaloraDet
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPReconcile = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPromoZalora, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPromoZalora.SuspendLayout()
         Me.XTPProposal.SuspendLayout()
@@ -170,7 +171,7 @@ Partial Class FormPromoZaloraDet
         '
         'GVtemPropose
         '
-        Me.GVtemPropose.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_promo_zalora_det, Me.GridColumnid_promo_zalora, Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnclass, Me.GridColumnname, Me.GridColumnsht, Me.GridColumncolor, Me.GridColumnsize, Me.GridColumntotal_qty, Me.GridColumnid_design_price, Me.GridColumndesign_price, Me.GridColumnamount})
+        Me.GVtemPropose.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_promo_zalora_det, Me.GridColumnid_promo_zalora, Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnclass, Me.GridColumnname, Me.GridColumnsht, Me.GridColumncolor, Me.GridColumnsize, Me.GridColumntotal_qty, Me.GridColumnid_design_price, Me.GridColumndesign_price, Me.GridColumnamount, Me.GridColumnno})
         Me.GVtemPropose.GridControl = Me.GCItemPropose
         Me.GVtemPropose.Name = "GVtemPropose"
         Me.GVtemPropose.OptionsBehavior.AutoExpandAllGroups = True
@@ -203,7 +204,7 @@ Partial Class FormPromoZaloraDet
         Me.GridColumncode.FieldName = "code"
         Me.GridColumncode.Name = "GridColumncode"
         Me.GridColumncode.Visible = True
-        Me.GridColumncode.VisibleIndex = 0
+        Me.GridColumncode.VisibleIndex = 1
         '
         'GridColumnclass
         '
@@ -211,7 +212,7 @@ Partial Class FormPromoZaloraDet
         Me.GridColumnclass.FieldName = "class"
         Me.GridColumnclass.Name = "GridColumnclass"
         Me.GridColumnclass.Visible = True
-        Me.GridColumnclass.VisibleIndex = 1
+        Me.GridColumnclass.VisibleIndex = 2
         '
         'GridColumnname
         '
@@ -219,7 +220,7 @@ Partial Class FormPromoZaloraDet
         Me.GridColumnname.FieldName = "name"
         Me.GridColumnname.Name = "GridColumnname"
         Me.GridColumnname.Visible = True
-        Me.GridColumnname.VisibleIndex = 2
+        Me.GridColumnname.VisibleIndex = 3
         Me.GridColumnname.Width = 170
         '
         'GridColumnsht
@@ -228,7 +229,7 @@ Partial Class FormPromoZaloraDet
         Me.GridColumnsht.FieldName = "sht"
         Me.GridColumnsht.Name = "GridColumnsht"
         Me.GridColumnsht.Visible = True
-        Me.GridColumnsht.VisibleIndex = 3
+        Me.GridColumnsht.VisibleIndex = 4
         Me.GridColumnsht.Width = 121
         '
         'GridColumncolor
@@ -237,7 +238,7 @@ Partial Class FormPromoZaloraDet
         Me.GridColumncolor.FieldName = "color"
         Me.GridColumncolor.Name = "GridColumncolor"
         Me.GridColumncolor.Visible = True
-        Me.GridColumncolor.VisibleIndex = 4
+        Me.GridColumncolor.VisibleIndex = 5
         '
         'GridColumnsize
         '
@@ -245,7 +246,7 @@ Partial Class FormPromoZaloraDet
         Me.GridColumnsize.FieldName = "size"
         Me.GridColumnsize.Name = "GridColumnsize"
         Me.GridColumnsize.Visible = True
-        Me.GridColumnsize.VisibleIndex = 5
+        Me.GridColumnsize.VisibleIndex = 6
         '
         'GridColumntotal_qty
         '
@@ -256,7 +257,7 @@ Partial Class FormPromoZaloraDet
         Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
         Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
         Me.GridColumntotal_qty.Visible = True
-        Me.GridColumntotal_qty.VisibleIndex = 6
+        Me.GridColumntotal_qty.VisibleIndex = 7
         '
         'GridColumnid_design_price
         '
@@ -272,7 +273,7 @@ Partial Class FormPromoZaloraDet
         Me.GridColumndesign_price.FieldName = "design_price"
         Me.GridColumndesign_price.Name = "GridColumndesign_price"
         Me.GridColumndesign_price.Visible = True
-        Me.GridColumndesign_price.VisibleIndex = 7
+        Me.GridColumndesign_price.VisibleIndex = 8
         '
         'GridColumnamount
         '
@@ -285,7 +286,7 @@ Partial Class FormPromoZaloraDet
         Me.GridColumnamount.UnboundExpression = "[total_qty] * [design_price]"
         Me.GridColumnamount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnamount.Visible = True
-        Me.GridColumnamount.VisibleIndex = 8
+        Me.GridColumnamount.VisibleIndex = 9
         '
         'PanelControlNav
         '
@@ -372,9 +373,9 @@ Partial Class FormPromoZaloraDet
         Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl10.Location = New System.Drawing.Point(32, 69)
         Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(64, 13)
+        Me.LabelControl10.Size = New System.Drawing.Size(71, 13)
         Me.LabelControl10.TabIndex = 165
-        Me.LabelControl10.Text = "Seller Charge"
+        Me.LabelControl10.Text = "Volcom Charge"
         '
         'TxtDiscountValue
         '
@@ -696,6 +697,15 @@ Partial Class FormPromoZaloraDet
         Me.XTPReconcile.Size = New System.Drawing.Size(893, 572)
         Me.XTPReconcile.Text = "Promo Item Reconciliation"
         '
+        'GridColumnno
+        '
+        Me.GridColumnno.Caption = "No"
+        Me.GridColumnno.FieldName = "no"
+        Me.GridColumnno.Name = "GridColumnno"
+        Me.GridColumnno.Visible = True
+        Me.GridColumnno.VisibleIndex = 0
+        Me.GridColumnno.Width = 55
+        '
         'FormPromoZaloraDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -799,4 +809,5 @@ Partial Class FormPromoZaloraDet
     Friend WithEvents GridColumnid_design_price As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndesign_price As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnamount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnno As DevExpress.XtraGrid.Columns.GridColumn
 End Class
