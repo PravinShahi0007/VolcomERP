@@ -995,4 +995,8 @@ WHERE h.`id_pre_cal_fgpo`='" & id & "'"
         FormReportMark.id_report = id
         FormReportMark.ShowDialog()
     End Sub
+
+    Private Sub BPrintDutyBefore_Click(sender As Object, e As EventArgs) Handles BPrintDutyBefore.Click
+        print_duty()
+    End Sub
 End Class

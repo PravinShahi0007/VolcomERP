@@ -45,8 +45,9 @@
                 LabelSize.Text = data.Rows(i)("size").ToString
                 LabelColor.Text = data.Rows(i)("color").ToString
                 LabelDivision.Text = data.Rows(i)("product_division").ToString
-                LabelBranding.Text = data.Rows(i)("product_branding").ToString
+                LabelClass.Text = data.Rows(i)("class").ToString
                 LabelSource.Text = data.Rows(i)("product_source").ToString
+                LabelSht.Text = data.Rows(i)("sht").ToString
                 LabelPrice.Text = Decimal.Parse(data.Rows(i)("design_price").ToString).ToString("N2")
                 LabelPriceType.Text = data.Rows(i)("design_price_type").ToString
                 LabelProductStatus.Text = data.Rows(i)("design_cat").ToString

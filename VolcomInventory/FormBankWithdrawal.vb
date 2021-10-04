@@ -1622,7 +1622,7 @@ WHERE c.id_comp='" & SLEVendorPrepaidEx.EditValue & "'"
 , e.created_date,e.date_reff, e.due_date, e.created_by, emp.employee_name AS `created_by_name`, e.id_report_status, stt.report_status
 , IF(e.id_report_status!=6, '-', IF(e.is_open=2, 'Paid', IF(DATE(NOW())>e.due_date,'Overdue', 'Open'))) AS `paid_status`, e.note, e.is_open,
 e.sub_total, e.vat_total,e.total, IFNULL(er.total,0) AS `total_paid`, (e.total-IFNULL(er.total,0)) AS `balance`, 'No' AS `is_select`, DATEDIFF(e.`due_date`,NOW()) AS due_days
-,cf.id_comp AS `id_comp_default`, cf.comp_number AS `comp_number_default`,SUM(ed.amount) AS amount
+,cf.id_comp AS `id_comp_default`, cf.comp_number AS `comp_number_default`,SUM(ed.amount) AS amount,SUM(ed.amount_before) AS amount_before,ed.kurs,ed.id_currency,cur.currency
 , IFNULL(edp.total,0) AS `total_dp`
 , IFNULL(payment_pending.jml,0) AS `total_pending`
 , acc.id_acc,acc.acc_name,acc.acc_description 
@@ -1633,6 +1633,7 @@ INNER JOIN tb_m_user u ON u.id_user = e.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee = u.id_employee
 INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = e.id_report_status
 INNER JOIN tb_prepaid_expense_det ed ON ed.id_prepaid_expense=e.id_prepaid_expense
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=ed.id_currency
 LEFT JOIN (
 	SELECT pd.id_report, SUM(pd.`value`) AS total 
 	FROM tb_pn p

@@ -12,6 +12,11 @@
         Dispose()
     End Sub
 
+    Sub load_currency()
+        Dim q As String = "SELECT id_currency,currency FROM tb_lookup_currency"
+        viewSearchLookupRepositoryQuery(RISLECurrency, q, 0, "currency", "id_currency")
+    End Sub
+
     Private Sub FormPrepaidExpenseDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEDateReff.EditValue = Now()
         load_unit()
@@ -20,6 +25,7 @@
         viewCCRepo()
         viewCOAPPH()
         viewCOARepo()
+        load_currency()
         '
         view_repo_cat()
         view_repo_type()
@@ -207,6 +213,24 @@ WHERE p.id_prepaid_expense='" & id & "'"
         Cursor = Cursors.WaitCursor
         Dim rh As Integer = e.RowHandle
 
+        If e.Column.FieldName = "id_currency" Or e.Column.FieldName = "kurs" Or e.Column.FieldName = "amount_before" Then
+            'calculate amount in RP
+            'For i = 0 To GVData.RowCount - 1
+            '    Try
+            '        GVData.SetRowCellValue(i, "amount", If(GVData.GetRowCellValue(i, "id_currency").ToString = "1", GVData.GetRowCellValue(i, "amount_before"), GVData.GetRowCellValue(i, "amount_before") * GVData.GetRowCellValue(i, "kurs")))
+            '    Catch ex As Exception
+            '        Console.WriteLine(ex.ToString)
+            '    End Try
+            'Next
+
+            Try
+                GVData.SetRowCellValue(e.RowHandle, "amount", If(GVData.GetRowCellValue(e.RowHandle, "id_currency").ToString = "1", GVData.GetRowCellValue(e.RowHandle, "amount_before"), GVData.GetRowCellValue(e.RowHandle, "amount_before") * GVData.GetRowCellValue(e.RowHandle, "kurs")))
+            Catch ex As Exception
+                'Console.WriteLine(ex.ToString)
+            End Try
+
+        End If
+
         If e.Column.FieldName = "amount" Or e.Column.FieldName = "tax_percent" Or e.Column.FieldName = "pph_percent" Then
             GCData.RefreshDataSource()
             GVData.RefreshData()
@@ -218,7 +242,7 @@ WHERE p.id_prepaid_expense='" & id & "'"
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
         Dim q_year As String = ""
-        Dim query As String = "SELECT 'no' AS is_lock,ed.id_acc_biaya,ed.start_date,ed.qty_month,ed.amount,ed.id_prepaid_expense_det,ed.cc,c.comp_number AS cc_desc, ed.id_prepaid_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
+        Dim query As String = "SELECT 'no' AS is_lock,ed.id_currency,cur.currency,ed.amount_before,ed.kurs,ed.id_acc_biaya,ed.start_date,ed.qty_month,ed.amount,ed.id_prepaid_expense_det,ed.cc,c.comp_number AS cc_desc, ed.id_prepaid_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
         ed.id_acc,pphacc.acc_description AS coa_desc_pph,a.id_acc_cat, a.acc_description AS `coa_desc`,ab.acc_description AS `coa_biaya_desc`, ed.description,a.acc_name,ed.id_acc_pph,ed.pph_percent,ed.pph, "
 
         If id = "-1" Then
@@ -237,6 +261,7 @@ WHERE p.id_prepaid_expense='" & id & "'"
         INNER JOIN tb_a_acc a ON a.id_acc = ed.id_acc
         INNER JOIN tb_a_acc ab ON ab.id_acc = ed.id_acc_biaya
         INNER JOIN tb_lookup_expense_type typ ON typ.id_expense_type=ed.id_expense_type
+        INNER JOIN tb_lookup_currency cur ON cur.id_currency=ed.id_currency
         LEFT JOIN tb_m_comp c ON ed.cc=c.id_comp
         INNER JOIN 
         (
@@ -355,7 +380,10 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
         GVData.SetRowCellValue(GVData.RowCount - 1, "start_date", DECreated.EditValue)
         GVData.SetRowCellValue(GVData.RowCount - 1, "qty_month", "2")
         '
-        GVData.SetRowCellValue(GVData.RowCount - 1, "amount", 0)
+        GVData.SetRowCellValue(GVData.RowCount - 1, "amount_before", 0)
+        GVData.SetRowCellValue(GVData.RowCount - 1, "kurs", 1)
+        GVData.SetRowCellValue(GVData.RowCount - 1, "id_currency", 1)
+
         GVData.SetRowCellValue(GVData.RowCount - 1, "tax_percent", 0)
         '
         GVData.SetRowCellValue(GVData.RowCount - 1, "pph_percent", 0)
@@ -802,6 +830,16 @@ WHERE c.id_comp='" + id_comp + "' "
         makeSafeGV(GVData)
         calculate()
 
+        Dim multiple_curr As Boolean = False
+
+        'cek multiple currency
+        For i As Integer = 0 To GVData.RowCount - 1
+            If Not GVData.GetRowCellValue(i, "id_currency").ToString = GVData.GetRowCellValue(0, "id_currency").ToString Or Not Decimal.Parse(GVData.GetRowCellValue(i, "kurs").ToString) = Decimal.Parse(GVData.GetRowCellValue(0, "kurs").ToString) Then
+                multiple_curr = True
+                Exit For
+            End If
+        Next
+
         'cek empty
         Dim cond_empty As Boolean = False
         GVData.ActiveFilterString = "[amount] Is Null OR [amount]=0 OR IsNullOrEmpty([id_acc]) OR IsNullOrEmpty([id_acc_biaya]) OR ([pph_percent]>0 AND IsNullOrEmpty([id_acc_pph]))"
@@ -830,6 +868,8 @@ WHERE c.id_comp='" + id_comp + "' "
             warningCustom("Please put some note")
         ElseIf DEDateReff.Text = "" Then
             warningCustom("Please put refference date")
+        ElseIf multiple_curr Then
+            warningCustom("Please use only same currency with same kurs")
         Else
             GVData.ActiveFilterString = ""
             'check invoice duplicate
@@ -857,14 +897,13 @@ WHERE c.id_comp='" + id_comp + "' "
                         date_reff = "" + Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") + ""
                         is_open = "1"
 
-
                         Dim qm As String = "INSERT INTO tb_prepaid_expense(id_comp,inv_number, created_date, due_date, created_by, id_report_status, note, sub_total, vat_total, total, is_open, date_reff, id_coa_tag) VALUES 
                 (" + id_comp + ",'" + inv_no + "', NOW()," + due_date + ", '" + id_user + "', 1, '" + note + "','" + sub_total + "', '" + vat_total + "', '" + total + "', '" + is_open + "', '" + date_reff + "','" & SLEUnit.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
                         id = execute_query(qm, 0, True, "", "", "", "")
                         execute_non_query("CALL gen_number(" + id + ",349); ", True, "", "", "", "")
 
                         'query det
-                        Dim qd As String = "INSERT INTO tb_prepaid_expense_det(id_prepaid_expense, id_acc, id_acc_biaya,cc, description, tax_percent, tax_value, amount, id_expense_type, id_b_expense, id_acc_pph, pph_percent, pph, start_date,qty_month,end_date) VALUES "
+                        Dim qd As String = "INSERT INTO tb_prepaid_expense_det(id_prepaid_expense, id_acc, id_acc_biaya,cc, description, tax_percent, tax_value,id_currency,amount_before,kurs, amount, id_expense_type, id_b_expense, id_acc_pph, pph_percent, pph, start_date,qty_month,end_date) VALUES "
                         For d As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
                             Dim id_acc As String = GVData.GetRowCellValue(d, "id_acc").ToString
                             Dim id_acc_biaya As String = GVData.GetRowCellValue(d, "id_acc_biaya").ToString
@@ -880,6 +919,10 @@ WHERE c.id_comp='" + id_comp + "' "
                             Dim qty_month As String = decimalSQL(GVData.GetRowCellValue(d, "qty_month").ToString)
                             Dim end_period As String = Date.Parse(GVData.GetRowCellValue(d, "end_date").ToString).ToString("yyyy-MM-dd")
                             '
+                            Dim id_currency As String = GVData.GetRowCellValue(d, "id_currency").ToString
+                            Dim kurs As String = decimalSQL(GVData.GetRowCellValue(d, "kurs").ToString)
+                            Dim amount_before As String = decimalSQL(GVData.GetRowCellValue(d, "amount_before").ToString)
+                            '
                             Dim id_acc_pph As String = "NULL"
                             Dim pph_percent As String = "0"
                             Dim pph As String = "0"
@@ -893,7 +936,7 @@ WHERE c.id_comp='" + id_comp + "' "
                             If d > 0 Then
                                 qd += ", "
                             End If
-                            qd += "('" + id + "','" + id_acc + "','" + id_acc_biaya + "','" + cc + "', '" + description + "', '" + tax_percent + "', '" + tax_value + "', '" + amount + "', '" + id_expense_type + "', '" + id_b_expense + "'," + id_acc_pph + ",'" + pph_percent + "','" + pph + "','" & start_period & "','" & qty_month & "','" & end_period & "') "
+                            qd += "('" + id + "','" + id_acc + "','" + id_acc_biaya + "','" + cc + "', '" + description + "', '" + tax_percent + "', '" + tax_value + "', '" + id_currency + "', '" + amount_before + "', '" + kurs + "', '" + amount + "', '" + id_expense_type + "', '" + id_b_expense + "'," + id_acc_pph + ",'" + pph_percent + "','" + pph + "','" & start_period & "','" & qty_month & "','" & end_period & "') "
                         Next
                         '
                         If GVData.RowCount > 0 Then
@@ -909,7 +952,72 @@ WHERE c.id_comp='" + id_comp + "' "
                         FormPrepaidExpense.GVData.FocusedRowHandle = find_row(FormPrepaidExpense.GVData, "id_prepaid_expense", id)
                         infoCustom("Prepaid Expense : " + TxtNumber.Text.ToString + " was created successfully. Waiting for approval")
                     ElseIf Not id = "-1" Then
-                        'no more edit for u
+                        Dim note As String = addSlashes(MENote.Text)
+                        Dim due_date As String = ""
+                        Dim date_reff As String = ""
+                        Dim sub_total As String = decimalSQL(TxtSubTotal.EditValue.ToString)
+                        Dim vat_total As String = decimalSQL(TxtVAT.EditValue.ToString)
+                        Dim total As String = decimalSQL(TxtTotal.EditValue.ToString)
+                        Dim is_open As String = ""
+
+                        due_date = "'" + Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") + "'"
+                        date_reff = "" + Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") + ""
+                        is_open = "1"
+
+                        Dim qm As String = "UPDATE tb_prepaid_expense SET id_comp=" + id_comp + ",inv_number='" + inv_no + "', created_date=NOW(), due_date=" + due_date + ", created_by='" + id_user + "', note='" + note + "', sub_total='" + sub_total + "', vat_total='" + vat_total + "', total='" + total + "', is_open='" + is_open + "', date_reff='" + date_reff + "',id_coa_tag='" & SLEUnit.EditValue.ToString & "' WHERE id_prepaid_expense='" & id & "' ; "
+                        execute_non_query(qm, True, "", "", "", "")
+
+                        'query det
+                        Dim qd As String = ""
+                        'delete first
+                        qd = "DELETE FROM tb_prepaid_expense_det WHERE id_prepaid_expense='" & id & "'"
+                        execute_non_query(qd, True, "", "", "", "")
+                        'input details
+                        qd = "INSERT INTO tb_prepaid_expense_det(id_prepaid_expense, id_acc, id_acc_biaya,cc, description, tax_percent, tax_value,id_currency,amount_before,kurs, amount, id_expense_type, id_b_expense, id_acc_pph, pph_percent, pph, start_date,qty_month,end_date) VALUES "
+                        For d As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim id_acc As String = GVData.GetRowCellValue(d, "id_acc").ToString
+                            Dim id_acc_biaya As String = GVData.GetRowCellValue(d, "id_acc_biaya").ToString
+                            Dim cc As String = GVData.GetRowCellValue(d, "cc").ToString
+                            Dim description As String = addSlashes(GVData.GetRowCellValue(d, "description").ToString)
+                            Dim tax_percent As String = decimalSQL(GVData.GetRowCellValue(d, "tax_percent").ToString)
+                            Dim tax_value As String = decimalSQL(GVData.GetRowCellValue(d, "tax_value").ToString)
+                            Dim amount As String = decimalSQL(GVData.GetRowCellValue(d, "amount").ToString)
+                            Dim id_expense_type As String = GVData.GetRowCellValue(d, "id_expense_type").ToString
+                            Dim id_b_expense As String = GVData.GetRowCellValue(d, "id_b_expense").ToString
+                            '
+                            Dim start_period As String = Date.Parse(GVData.GetRowCellValue(d, "start_date").ToString).ToString("yyyy-MM-dd")
+                            Dim qty_month As String = decimalSQL(GVData.GetRowCellValue(d, "qty_month").ToString)
+                            Dim end_period As String = Date.Parse(GVData.GetRowCellValue(d, "end_date").ToString).ToString("yyyy-MM-dd")
+                            '
+                            Dim id_currency As String = GVData.GetRowCellValue(d, "id_currency").ToString
+                            Dim kurs As String = decimalSQL(GVData.GetRowCellValue(d, "kurs").ToString)
+                            Dim amount_before As String = decimalSQL(GVData.GetRowCellValue(d, "amount_before").ToString)
+                            '
+                            Dim id_acc_pph As String = "NULL"
+                            Dim pph_percent As String = "0"
+                            Dim pph As String = "0"
+                            '
+                            If GVData.GetRowCellValue(d, "pph_percent") > 0 Then
+                                id_acc_pph = "'" & GVData.GetRowCellValue(d, "id_acc_pph").ToString & "'"
+                                pph_percent = decimalSQL(GVData.GetRowCellValue(d, "pph_percent").ToString)
+                                pph = decimalSQL(GVData.GetRowCellValue(d, "pph_value").ToString)
+                            End If
+                            '
+                            If d > 0 Then
+                                qd += ", "
+                            End If
+                            qd += "('" + id + "','" + id_acc + "','" + id_acc_biaya + "','" + cc + "', '" + description + "', '" + tax_percent + "', '" + tax_value + "', '" + id_currency + "', '" + amount_before + "', '" + kurs + "', '" + amount + "', '" + id_expense_type + "', '" + id_b_expense + "'," + id_acc_pph + ",'" + pph_percent + "','" + pph + "','" & start_period & "','" & qty_month & "','" & end_period & "') "
+                        Next
+                        '
+                        If GVData.RowCount > 0 Then
+                            execute_non_query(qd, True, "", "", "", "")
+                        End If
+
+                        'refresh
+                        actionLoad()
+                        FormPrepaidExpense.viewData()
+                        FormPrepaidExpense.GVData.FocusedRowHandle = find_row(FormPrepaidExpense.GVData, "id_prepaid_expense", id)
+                        infoCustom("Prepaid Expense : " + TxtNumber.Text.ToString + " was updated successfully. Waiting for approval")
                     End If
                     Cursor = Cursors.Default
                 End If
@@ -986,10 +1094,13 @@ WHERE c.id_comp='" + id_comp + "' "
         '
         GridColumnaccount.Visible = False
         GridColumnAccountDescription.VisibleIndex = -1
-        'GridColumnAccountDescription
-        GridColumnCoaBiayaCol.Visible = False
-        GridColumnCOABiaya.Visible = False
+        '
+        GridColumnCurr.Visible = False
+        GridColumnCurrView.VisibleIndex = 5
+        '
         GridColumnEndPeriod.Visible = False
+        GridColumnCOABiaya.Visible = False
+        GridColumnCoaBiayaCol.Visible = False
         '
         GridColumnBudgetType.Visible = False
         GridColumnBudgetTypeDesc.VisibleIndex = -1
@@ -1001,7 +1112,7 @@ WHERE c.id_comp='" + id_comp + "' "
         GridColumnBudgetDesc.VisibleIndex = 2
         '
         GridColumnPPHCOA.Visible = False
-        GridColumnPPHDesc.VisibleIndex = 12
+        'GridColumnPPHDesc.VisibleIndex = 12
         GridColumnPPHPercent.VisibleIndex = 13
         GridColumnPPH.VisibleIndex = 14
         '
@@ -1009,6 +1120,9 @@ WHERE c.id_comp='" + id_comp + "' "
         '
         GridColumnBudgetDesc.MinWidth = 100
         GridColumnNo.MaxWidth = 30
+        GridColumnCurrView.MaxWidth = 30
+        GridColumnBeforeKurs.MaxWidth = 70
+        GridColumnKurs.MaxWidth = 50
         GridColumnAmount.MaxWidth = 80
         GridColumnTaxPercent.MaxWidth = 30
         GridColumnTaxValue.MaxWidth = 70
@@ -1056,18 +1170,20 @@ WHERE c.id_comp='" + id_comp + "' "
         GridColumnBudgetTypeDesc.VisibleIndex = 3
         GridColumnBudgetDesc.VisibleIndex = 4
         GridColumnDescription.VisibleIndex = 5
-        GridColumnQtyMonth.VisibleIndex = 6
-        'GridColumnEndPeriod.VisibleIndex = 7
-        'GridColumnCoaBiayaCol.VisibleIndex = 8
+        GridColumnCurrView.VisibleIndex = 6
+        GridColumnBeforeKurs.VisibleIndex = 7
+        GridColumnKurs.VisibleIndex = 8
         GridColumnAmount.VisibleIndex = 9
         GridColumnTaxPercent.VisibleIndex = 10
         GridColumnTaxValue.VisibleIndex = 11
-        GridColumnPPHDesc.VisibleIndex = 12
+        'GridColumnPPHDesc.VisibleIndex = 12
         GridColumnPPHPercent.VisibleIndex = 13
         GridColumnPPH.VisibleIndex = 14
 
         GridColumnNo.MaxWidth = 0
         GridColumnCurrView.MaxWidth = 0
+        GridColumnBeforeKurs.MaxWidth = 0
+        GridColumnKurs.MaxWidth = 0
         GridColumnAmount.MaxWidth = 0
         GridColumnTaxPercent.MaxWidth = 0
         GridColumnTaxValue.MaxWidth = 0
@@ -1084,7 +1200,7 @@ WHERE c.id_comp='" + id_comp + "' "
 
         Report.LabelBeneficiary.Text = TxtCompName.Text
         Report.LabelDUelDate.Text = DEDueDate.Text
-        '
+
         Report.LInvNo.Text = TEInvNo.Text
         Report.LabelTotalPayment.Text = TxtTotal.Text
         Report.LSay.Text = ConvertCurrencyToIndonesian(Decimal.Parse(TxtTotal.EditValue.ToString))
