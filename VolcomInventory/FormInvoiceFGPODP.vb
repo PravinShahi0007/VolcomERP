@@ -216,27 +216,32 @@ WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & id_po & "' AND pnd.rep
 AND (pnd.`value_bef_kurs`+IFNULL(used.val_bef_kurs,0)) > 0"
                     Dim dtdp As DataTable = execute_query(qdp, -1, True, "", "", "", "")
 
-                    'check
-                    If GVList.Columns("value_bef_kurs").SummaryItem.SummaryValue >= dtdp.Rows(0)("value_bef_kurs_rem") Then
-                        'insert
-                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
-                        newRow("id_prod_order") = id_po
-                        newRow("id_acc") = dtdp.Rows(0)("id_acc").ToString
-                        newRow("id_report") = dtdp.Rows(0)("id_pn_fgpo").ToString
-                        newRow("report_mark_type") = "199"
-                        newRow("report_number") = dtdp.Rows(0)("number").ToString
-                        newRow("info_design") = dtdp.Rows(0)("design_display_name").ToString
-                        newRow("qty") = dtdp.Rows(0)("qty")
-                        '
-                        newRow("id_currency") = dtdp.Rows(0)("id_currency").ToString
-                        newRow("kurs") = dtdp.Rows(0)("kurs")
-                        newRow("value_bef_kurs") = dtdp.Rows(0)("value_bef_kurs") * -1
-                        '
-                        newRow("pph_percent") = 0
-                        newRow("vat") = dtdp.Rows(0)("vat") * -1
-                        newRow("inv_number") = dtdp.Rows(0)("inv_number").ToString
-                        newRow("note") = dtdp.Rows(0)("note").ToString
-                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                    If dtdp.Rows.Count > 1 Then
+                        FormInvoiceFGPODPPop.id_po = id_po
+                        FormInvoiceFGPODPPop.ShowDialog()
+                    ElseIf dtdp.Rows.Count = 1 Then
+                        'check
+                        If GVList.Columns("value_bef_kurs").SummaryItem.SummaryValue >= dtdp.Rows(0)("value_bef_kurs_rem") Then
+                            'insert
+                            Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                            newRow("id_prod_order") = id_po
+                            newRow("id_acc") = dtdp.Rows(0)("id_acc").ToString
+                            newRow("id_report") = dtdp.Rows(0)("id_pn_fgpo").ToString
+                            newRow("report_mark_type") = "199"
+                            newRow("report_number") = dtdp.Rows(0)("number").ToString
+                            newRow("info_design") = dtdp.Rows(0)("design_display_name").ToString
+                            newRow("qty") = dtdp.Rows(0)("qty")
+                            '
+                            newRow("id_currency") = dtdp.Rows(0)("id_currency").ToString
+                            newRow("kurs") = dtdp.Rows(0)("kurs")
+                            newRow("value_bef_kurs") = dtdp.Rows(0)("value_bef_kurs") * -1
+                            '
+                            newRow("pph_percent") = 0
+                            newRow("vat") = dtdp.Rows(0)("vat") * -1
+                            newRow("inv_number") = dtdp.Rows(0)("inv_number").ToString
+                            newRow("note") = dtdp.Rows(0)("note").ToString
+                            TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                        End If
                     End If
 
                     calculate()
