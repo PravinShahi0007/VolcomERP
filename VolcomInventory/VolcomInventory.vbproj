@@ -4199,6 +4199,18 @@
     <Compile Include="FormPromoRulesDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPromoZalora.Designer.vb">
+      <DependentUpon>FormPromoZalora.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPromoZalora.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPromoZaloraDet.Designer.vb">
+      <DependentUpon>FormPromoZaloraDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPromoZaloraDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProposeEmpSalary.Designer.vb">
       <DependentUpon>FormProposeEmpSalary.vb</DependentUpon>
     </Compile>
@@ -12189,6 +12201,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPromoRulesDet.resx">
       <DependentUpon>FormPromoRulesDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoZalora.resx">
+      <DependentUpon>FormPromoZalora.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoZaloraDet.resx">
+      <DependentUpon>FormPromoZaloraDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProposeEmpSalary.resx">
       <DependentUpon>FormProposeEmpSalary.vb</DependentUpon>

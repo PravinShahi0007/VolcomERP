@@ -1960,6 +1960,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPrepaidExpense" Then
             FormPrepaidExpenseDet.id = "-1"
             FormPrepaidExpenseDet.ShowDialog()
+        ElseIf formName = "FormPromoZalora" Then
+            FormPromoZalora.newPropose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3314,6 +3316,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormPrepaidExpense" Then
                 FormPrepaidExpenseDet.id = FormPrepaidExpense.GVData.GetFocusedRowCellValue("id_prepaid_expense").ToString
                 FormPrepaidExpenseDet.ShowDialog()
+            ElseIf formName = "FormPromoZalora" Then
+                FormPromoZalora.viewDetail()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8815,6 +8819,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             print(FormCapsule.GCData, "Capsule Data")
         ElseIf formname = "FormPrepaidExpense" Then
             print(FormPrepaidExpense.GCData, "List Prepaid Expense")
+        ElseIf formname = "FormPromoZalora" Then
+            FormPromoZalora.printList()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9851,6 +9857,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPrepaidExpense" Then
             FormPrepaidExpense.Close()
             FormPrepaidExpense.Dispose()
+        ElseIf formname = "FormPromoZalora" Then
+            FormPromoZalora.Close()
+            FormPromoZalora.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10893,6 +10902,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormStockTakePropose.load_form()
         ElseIf formName = "FormPrepaidExpense" Then
             FormPrepaidExpense.viewData()
+        ElseIf formName = "FormPromoZalora" Then
+            FormPromoZalora.viewData()
         End If
     End Sub
     'Switch
@@ -16666,6 +16677,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPrepaidExpense.Show()
             FormPrepaidExpense.WindowState = FormWindowState.Maximized
             FormPrepaidExpense.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPromoZalora_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPromoZalora.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPromoZalora.MdiParent = Me
+            FormPromoZalora.Show()
+            FormPromoZalora.WindowState = FormWindowState.Maximized
+            FormPromoZalora.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
