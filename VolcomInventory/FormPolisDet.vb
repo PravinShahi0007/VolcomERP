@@ -85,6 +85,9 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                     XTCPolis.SelectedTabPageIndex = 1
                     '
                     load_nilai_stock()
+
+                    PCNilaiLain.Visible = False
+                    PCNilaiStock.Visible = True
                 ElseIf steps = "2" Then
                     XTPNilaiStock.PageVisible = True
                     XTPDetail.PageVisible = True
@@ -95,6 +98,9 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                     XTCPolis.SelectedTabPageIndex = 2
                     load_nilai_stock()
                     load_nilai_lainnya()
+
+                    PCNilaiLain.Visible = True
+                    PCNilaiStock.Visible = False
                 ElseIf steps = "3" Then
                     XTPNilaiStock.PageVisible = True
                     XTPDetail.PageVisible = True
@@ -109,9 +115,8 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                         load_nilai_stock()
                         load_nilai_lainnya()
                         '
-                        'view_vendor_penawaran()
-                        'load_nilai_penawaran()
-                        'load_nilai_penawaran()
+                        view_vendor_penawaran_kolektif()
+                        load_nilai_penawaran_kolektif()
                     Else
                         'mandiri
                         XTPPenawaran.PageVisible = True
@@ -125,6 +130,9 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                         load_nilai_penawaran()
                         load_nilai_penawaran()
                     End If
+
+                    PCNilaiLain.Visible = False
+                    PCNilaiStock.Visible = False
                 ElseIf steps = "4" Then
                     XTPNilaiStock.PageVisible = True
                     XTPDetail.PageVisible = True
@@ -140,10 +148,9 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                         load_nilai_stock()
                         load_nilai_lainnya()
 
-                        'view_vendor_penawaran()
-                        'load_nilai_penawaran()
-                        'load_nilai_penawaran()
-                        'PCPenawaran.Visible = False
+                        view_vendor_penawaran_kolektif()
+                        load_nilai_penawaran_kolektif()
+                        PCPenawaranKolektif.Visible = False
                     Else
                         'mandiri
                         XTPPenawaran.PageVisible = True
@@ -162,6 +169,9 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                     BtnPrint.Visible = True
                     BSaveDraft.Visible = False
                     BtnSave.Visible = False
+
+                    PCNilaiLain.Visible = False
+                    PCNilaiStock.Visible = False
                 End If
             End If
         End If
@@ -182,9 +192,27 @@ GROUP BY ppsv.id_vendor"
         If SLEPenawaranDel.Text = "" Then
             SLEPenawaranDel.Visible = False
             BDelPenawaran.Visible = False
+            BSetVendorDipilih.Visible = False
+            BGetExcel.Visible = False
+            BImportNilaiStock.Visible = False
         Else
             SLEPenawaranDel.Visible = True
             BDelPenawaran.Visible = True
+            BSetVendorDipilih.Visible = True
+            BGetExcel.Visible = True
+            BImportNilaiStock.Visible = True
+        End If
+    End Sub
+
+    Sub view_vendor_penawaran_kolektif()
+        Dim q As String = "SELECT id_comp,comp_name,comp_number FROM tb_m_comp WHERE id_comp_cat='2' AND is_active=1
+AND id_comp NOT IN (SELECT id_vendor FROM tb_polis_pps_vendor WHERE id_polis_pps='" & id_pps & "')"
+        viewSearchLookupQuery(SLEPenawaranAddKolektif, q, "id_comp", "comp_name", "id_comp")
+
+        If GVPenawaranKolektif.RowCount > 0 Then
+            BDelPenawaranKolektif.Visible = True
+        Else
+            BDelPenawaranKolektif.Visible = False
         End If
     End Sub
 
@@ -263,6 +291,18 @@ GROUP BY ppsd.`id_comp`"
 
         GCPenawaran.DataSource = dt
         GVPenawaran.BestFitColumns()
+    End Sub
+
+    Sub load_nilai_penawaran_kolektif()
+        Dim q As String = "SELECT ppsv.id_vendor,c.comp_number,c.comp_name,ppsv.price
+FROM tb_polis_pps_kolektif ppsv
+INNER JOIN tb_m_comp c ON c.id_comp=ppsv.id_vendor
+WHERE ppsv.id_polis_pps='" & id_pps & "'
+GROUP BY ppsv.id_vendor"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+
+        GCPenawaranKolektif.DataSource = dt
+        GVPenawaranKolektif.BestFitColumns()
     End Sub
 
     Sub load_nilai_lainnya()
@@ -442,23 +482,46 @@ WHERE id_polis_pps='" & id_pps & "' AND id_comp='" & GVNilaiLainnya.GetRowCellVa
                         warningCustom("Pastikan nilai total tidak ada yang 0")
                     End If
                 ElseIf steps = "3" Then
-                    save_draft_penawaran()
-                    Dim is_ok As Boolean = True
-                    Dim qc As String = "SELECT * FROM tb_polis_pps_det WHERE id_polis_pps='" & id_pps & "' AND (ISNULL(polis_vendor) or premi<=0)"
-                    Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
-                    If dtc.Rows.Count > 0 Then
-                        is_ok = False
-                    End If
-                    If is_ok Then
-                        'next step
-                        Dim q As String = "UPDATE tb_polis_pps SET step=4 WHERE id_polis_pps='" & id_pps & "'"
-                        execute_non_query(q, True, "", "", "", "")
-                        'mark
-                        submit_who_prepared("307", id_pps, id_user)
-                        infoCustom("Penawaran disubmit, menunggu persetujuan.")
-                        Close()
+                    If SLEPPSType.EditValue.ToString = "1" Then
+                        'kolektif
+                        save_draft_penawaran_kolektif()
+                        Dim is_ok As Boolean = True
+                        Dim qc As String = "SELECT * FROM tb_polis_pps_kolektif WHERE id_polis_pps='" & id_pps & "' AND  price<=0"
+                        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                        If dtc.Rows.Count > 0 Then
+                            is_ok = False
+                        End If
+                        If is_ok Then
+                            'next step
+                            Dim q As String = "UPDATE tb_polis_pps SET step=4 WHERE id_polis_pps='" & id_pps & "'"
+                            execute_non_query(q, True, "", "", "", "")
+                            'mark
+                            submit_who_prepared("307", id_pps, id_user)
+                            infoCustom("Penawaran disubmit, menunggu persetujuan.")
+                            Close()
+                        Else
+                            warningCustom("Pastikan semua memiliki vendor yang dipilih dan memiliki penawaran harga")
+                        End If
                     Else
-                        warningCustom("Pastikan semua memiliki vendor yang dipilih dan memiliki penawaran harga")
+                        'mandiri
+                        save_draft_penawaran()
+                        Dim is_ok As Boolean = True
+                        Dim qc As String = "SELECT * FROM tb_polis_pps_det WHERE id_polis_pps='" & id_pps & "' AND (ISNULL(polis_vendor) or premi<=0)"
+                        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                        If dtc.Rows.Count > 0 Then
+                            is_ok = False
+                        End If
+                        If is_ok Then
+                            'next step
+                            Dim q As String = "UPDATE tb_polis_pps SET step=4 WHERE id_polis_pps='" & id_pps & "'"
+                            execute_non_query(q, True, "", "", "", "")
+                            'mark
+                            submit_who_prepared("307", id_pps, id_user)
+                            infoCustom("Penawaran disubmit, menunggu persetujuan.")
+                            Close()
+                        Else
+                            warningCustom("Pastikan semua memiliki vendor yang dipilih dan memiliki penawaran harga")
+                        End If
                     End If
                 End If
             End If
@@ -489,11 +552,27 @@ WHERE id_polis_pps='" & id_pps & "' AND id_comp='" & GVNilaiLainnya.GetRowCellVa
                 infoCustom("Draft saved.")
             End If
         ElseIf steps = "3" Then 'nilai penawaran
-            If GVPenawaran.RowCount > 0 And GVPenawaran.Columns.Count > 15 Then
-                save_draft_penawaran()
+            If SLEPPSType.EditValue.ToString = "1" Then
+                save_draft_penawaran_kolektif()
 
                 infoCustom("Draft saved.")
+            Else
+                'mandiri
+                If GVPenawaran.RowCount > 0 And GVPenawaran.Columns.Count > 15 Then
+                    save_draft_penawaran()
+
+                    infoCustom("Draft saved.")
+                End If
             End If
+        End If
+    End Sub
+
+    Sub save_draft_penawaran_kolektif()
+        If GVPenawaranKolektif.RowCount > 0 Then
+            For i As Integer = 0 To GVPenawaranKolektif.RowCount - 1
+                Dim q As String = "UPDATE tb_polis_pps_kolektif SET price='" & decimalSQL(Decimal.Parse(GVPenawaranKolektif.GetRowCellValue(i, "id_vendor").ToString).ToString) & "' WHERE id_polis_pps='" & id_pps & "' AND id_vendor='" & GVPenawaranKolektif.GetRowCellValue(i, "id_vendor").ToString & "'"
+                execute_non_query(q, True, "", "", "", "")
+            Next
         End If
     End Sub
 
@@ -1128,6 +1207,35 @@ WHERE pd.`id_polis_pps`='" & id_pps & "' "
             LDateUntil.Visible = False
             DEUntil.Visible = False
             DEStart.Visible = False
+        End If
+    End Sub
+
+    Private Sub BAddPenawaranKolektif_Click(sender As Object, e As EventArgs) Handles BAddPenawaranKolektif.Click
+        Dim confirm As DialogResult
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to add " & SLEPenawaranAddKolektif.Text & " ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            'add to database first row as 0
+            Dim q As String = "INSERT INTO tb_polis_pps_kolektif(id_polis_pps,id_vendor,price) VALUES('" & id_pps & "',0,'" & SLEPenawaranAddKolektif.EditValue.ToString & "','0.00')"
+            execute_non_query(q, True, "", "", "", "")
+            'refresh
+            view_vendor_penawaran_kolektif()
+            load_nilai_penawaran_kolektif()
+        End If
+    End Sub
+
+    Private Sub BDelPenawaranKolektif_Click(sender As Object, e As EventArgs) Handles BDelPenawaranKolektif.Click
+        'confirm first
+        Dim confirm As DialogResult
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to drop " & GVPenawaranKolektif.GetFocusedRowCellValue("comp_name").Text & " ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            'delete
+            Dim q As String = "DELETE FROM tb_polis_pps_kolektif WHERE id_polis_pps='" & id_pps & "' AND id_vendor='" & GVPenawaranKolektif.GetFocusedRowCellValue("id_vendor").Text & "'"
+            execute_non_query(q, True, "", "", "", "")
+            'refresh
+            view_vendor_penawaran_kolektif()
+            load_nilai_penawaran_kolektif()
         End If
     End Sub
 End Class
