@@ -37,7 +37,7 @@ AND  cal.`id_pre_cal_fgpo`='" & id_report & "'"
         desc.Font = font_row_style
 
         'qty
-        Dim qty As String = Decimal.Parse(dt.Rows(row_i)("qty").ToString).ToString("N2") & 
+        Dim qty As String = Decimal.Parse(dt.Rows(row_i)("qty").ToString).ToString("N2")
 
         Dim qty_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
         qty_col.Text = qty
@@ -45,7 +45,7 @@ AND  cal.`id_pre_cal_fgpo`='" & id_report & "'"
         qty_col.Font = font_row_style
 
         'price
-        Dim price As String = Decimal.Parse(dt.Rows(row_i)("price").ToString).ToString("N2") & 
+        Dim price As String = Decimal.Parse(dt.Rows(row_i)("price").ToString).ToString("N2")
 
         Dim price_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
         price_col.Text = price
