@@ -39,6 +39,7 @@ Partial Class FormPromoZaloraDet
         Me.GridColumnid_design_price = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign_price = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnamount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
@@ -76,7 +77,6 @@ Partial Class FormPromoZaloraDet
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPReconcile = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPromoZalora, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPromoZalora.SuspendLayout()
         Me.XTPProposal.SuspendLayout()
@@ -287,6 +287,15 @@ Partial Class FormPromoZaloraDet
         Me.GridColumnamount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnamount.Visible = True
         Me.GridColumnamount.VisibleIndex = 9
+        '
+        'GridColumnno
+        '
+        Me.GridColumnno.Caption = "No"
+        Me.GridColumnno.FieldName = "no"
+        Me.GridColumnno.Name = "GridColumnno"
+        Me.GridColumnno.Visible = True
+        Me.GridColumnno.VisibleIndex = 0
+        Me.GridColumnno.Width = 55
         '
         'PanelControlNav
         '
@@ -696,15 +705,6 @@ Partial Class FormPromoZaloraDet
         Me.XTPReconcile.Name = "XTPReconcile"
         Me.XTPReconcile.Size = New System.Drawing.Size(893, 572)
         Me.XTPReconcile.Text = "Promo Item Reconciliation"
-        '
-        'GridColumnno
-        '
-        Me.GridColumnno.Caption = "No"
-        Me.GridColumnno.FieldName = "no"
-        Me.GridColumnno.Name = "GridColumnno"
-        Me.GridColumnno.Visible = True
-        Me.GridColumnno.VisibleIndex = 0
-        Me.GridColumnno.Width = 55
         '
         'FormPromoZaloraDet
         '
