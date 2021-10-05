@@ -29,6 +29,7 @@ Partial Class FormStockTakeStorePeriod
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabControl = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPeriod = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPCompare = New DevExpress.XtraTab.XtraTabPage()
@@ -76,7 +77,6 @@ Partial Class FormStockTakeStorePeriod
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnScanList = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSync = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,6 +156,14 @@ Partial Class FormStockTakeStorePeriod
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Verification By"
+        Me.GridColumn7.FieldName = "verification_by"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 5
         '
         'XtraTabControl
         '
@@ -491,7 +499,7 @@ Partial Class FormStockTakeStorePeriod
         Me.DDBBAPPelaksanaan.Dock = System.Windows.Forms.DockStyle.Right
         Me.DDBBAPPelaksanaan.DropDownControl = Me.PopupMenu
         Me.DDBBAPPelaksanaan.Image = CType(resources.GetObject("DDBBAPPelaksanaan.Image"), System.Drawing.Image)
-        Me.DDBBAPPelaksanaan.Location = New System.Drawing.Point(636, 2)
+        Me.DDBBAPPelaksanaan.Location = New System.Drawing.Point(746, 2)
         Me.DDBBAPPelaksanaan.Name = "DDBBAPPelaksanaan"
         Me.DDBBAPPelaksanaan.Size = New System.Drawing.Size(160, 41)
         Me.DDBBAPPelaksanaan.TabIndex = 5
@@ -549,9 +557,9 @@ Partial Class FormStockTakeStorePeriod
         '
         'SBStopScan
         '
-        Me.SBStopScan.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBStopScan.Dock = System.Windows.Forms.DockStyle.Left
         Me.SBStopScan.Image = CType(resources.GetObject("SBStopScan.Image"), System.Drawing.Image)
-        Me.SBStopScan.Location = New System.Drawing.Point(796, 2)
+        Me.SBStopScan.Location = New System.Drawing.Point(264, 2)
         Me.SBStopScan.Name = "SBStopScan"
         Me.SBStopScan.Size = New System.Drawing.Size(110, 41)
         Me.SBStopScan.TabIndex = 4
@@ -586,14 +594,6 @@ Partial Class FormStockTakeStorePeriod
         Me.SBSync.Size = New System.Drawing.Size(94, 41)
         Me.SBSync.TabIndex = 0
         Me.SBSync.Text = "Sync"
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Verification By"
-        Me.GridColumn7.FieldName = "verification_by"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 5
         '
         'FormStockTakeStorePeriod
         '
