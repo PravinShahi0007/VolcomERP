@@ -78,6 +78,7 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                     'isi nilai stok
                     XTPNilaiStock.PageVisible = True
                     XTPPenawaran.PageVisible = False
+                    XTPVendor.PageVisible = False
                     XTPDetail.PageVisible = False
                     BSaveDraft.Visible = True
                     '
@@ -88,6 +89,7 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                     XTPNilaiStock.PageVisible = True
                     XTPDetail.PageVisible = True
                     XTPPenawaran.PageVisible = False
+                    XTPVendor.PageVisible = False
                     BSaveDraft.Visible = True
 
                     XTCPolis.SelectedTabPageIndex = 2
@@ -96,11 +98,13 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                 ElseIf steps = "3" Then
                     XTPNilaiStock.PageVisible = True
                     XTPDetail.PageVisible = True
-                    XTPPenawaran.PageVisible = True
                     BSaveDraft.Visible = True
                     '
                     If SLEPPSType.EditValue.ToString = "1" Then
                         'kolektif
+                        XTPPenawaran.PageVisible = False
+                        XTPVendor.PageVisible = True
+                        '
                         XTCPolis.SelectedTabPageIndex = 3
                         load_nilai_stock()
                         load_nilai_lainnya()
@@ -110,6 +114,9 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                         'load_nilai_penawaran()
                     Else
                         'mandiri
+                        XTPPenawaran.PageVisible = True
+                        XTPVendor.PageVisible = False
+                        '
                         XTCPolis.SelectedTabPageIndex = 4
                         load_nilai_stock()
                         load_nilai_lainnya()
@@ -126,6 +133,9 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                     '
                     If SLEPPSType.EditValue.ToString = "1" Then
                         'kolektif
+                        XTPPenawaran.PageVisible = False
+                        XTPVendor.PageVisible = True
+                        '
                         XTCPolis.SelectedTabPageIndex = 3
                         load_nilai_stock()
                         load_nilai_lainnya()
@@ -136,6 +146,9 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                         'PCPenawaran.Visible = False
                     Else
                         'mandiri
+                        XTPPenawaran.PageVisible = True
+                        XTPVendor.PageVisible = False
+                        '
                         XTCPolis.SelectedTabPageIndex = 4
                         load_nilai_stock()
                         load_nilai_lainnya()
