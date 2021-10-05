@@ -139,6 +139,7 @@ Partial Class FormPolisDet
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BSetVendorDipilih = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -213,7 +214,7 @@ Partial Class FormPolisDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 487)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(915, 41)
+        Me.PanelControl1.Size = New System.Drawing.Size(1017, 41)
         Me.PanelControl1.TabIndex = 7
         '
         'BAttachment
@@ -221,7 +222,7 @@ Partial Class FormPolisDet
         Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAttachment.ImageIndex = 13
         Me.BAttachment.ImageList = Me.LargeImageCollection
-        Me.BAttachment.Location = New System.Drawing.Point(460, 2)
+        Me.BAttachment.Location = New System.Drawing.Point(562, 2)
         Me.BAttachment.Name = "BAttachment"
         Me.BAttachment.Size = New System.Drawing.Size(106, 37)
         Me.BAttachment.TabIndex = 17
@@ -234,7 +235,7 @@ Partial Class FormPolisDet
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(566, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(668, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 37)
         Me.BtnPrint.TabIndex = 13
@@ -259,7 +260,7 @@ Partial Class FormPolisDet
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(641, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(743, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 37)
         Me.BtnCancel.TabIndex = 14
@@ -271,7 +272,7 @@ Partial Class FormPolisDet
         Me.BSaveDraft.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSaveDraft.ImageIndex = 7
         Me.BSaveDraft.ImageList = Me.LargeImageCollection
-        Me.BSaveDraft.Location = New System.Drawing.Point(716, 2)
+        Me.BSaveDraft.Location = New System.Drawing.Point(818, 2)
         Me.BSaveDraft.Name = "BSaveDraft"
         Me.BSaveDraft.Size = New System.Drawing.Size(97, 37)
         Me.BSaveDraft.TabIndex = 18
@@ -283,7 +284,7 @@ Partial Class FormPolisDet
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 4
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(813, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(915, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(100, 37)
         Me.BtnSave.TabIndex = 12
@@ -301,7 +302,7 @@ Partial Class FormPolisDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(915, 96)
+        Me.PanelControl2.Size = New System.Drawing.Size(1017, 96)
         Me.PanelControl2.TabIndex = 8
         '
         'TECreatedBy
@@ -708,7 +709,7 @@ Partial Class FormPolisDet
         Me.XTCPolis.Location = New System.Drawing.Point(0, 96)
         Me.XTCPolis.Name = "XTCPolis"
         Me.XTCPolis.SelectedTabPage = Me.XTPSummary
-        Me.XTCPolis.Size = New System.Drawing.Size(915, 391)
+        Me.XTCPolis.Size = New System.Drawing.Size(1017, 391)
         Me.XTCPolis.TabIndex = 143
         Me.XTCPolis.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPNilaiStock, Me.XTPDetail, Me.XTPPenawaran})
         '
@@ -1107,7 +1108,7 @@ Partial Class FormPolisDet
         Me.XTPPenawaran.Controls.Add(Me.BRefreshPenawaran)
         Me.XTPPenawaran.Controls.Add(Me.PCPenawaran)
         Me.XTPPenawaran.Name = "XTPPenawaran"
-        Me.XTPPenawaran.Size = New System.Drawing.Size(909, 363)
+        Me.XTPPenawaran.Size = New System.Drawing.Size(1011, 363)
         Me.XTPPenawaran.Text = "Penawaran Vendor"
         '
         'GCPenawaran
@@ -1118,7 +1119,7 @@ Partial Class FormPolisDet
         Me.GCPenawaran.MainView = Me.GVPenawaran
         Me.GCPenawaran.Name = "GCPenawaran"
         Me.GCPenawaran.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2, Me.RICE})
-        Me.GCPenawaran.Size = New System.Drawing.Size(909, 280)
+        Me.GCPenawaran.Size = New System.Drawing.Size(1011, 280)
         Me.GCPenawaran.TabIndex = 12
         Me.GCPenawaran.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPenawaran})
         '
@@ -1411,12 +1412,13 @@ Partial Class FormPolisDet
         Me.BRefreshPenawaran.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BRefreshPenawaran.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BRefreshPenawaran.Name = "BRefreshPenawaran"
-        Me.BRefreshPenawaran.Size = New System.Drawing.Size(909, 32)
+        Me.BRefreshPenawaran.Size = New System.Drawing.Size(1011, 32)
         Me.BRefreshPenawaran.TabIndex = 143
         Me.BRefreshPenawaran.Text = "Refresh"
         '
         'PCPenawaran
         '
+        Me.PCPenawaran.Controls.Add(Me.BSetVendorDipilih)
         Me.PCPenawaran.Controls.Add(Me.BUploadExcel)
         Me.PCPenawaran.Controls.Add(Me.BGetExcel)
         Me.PCPenawaran.Controls.Add(Me.BDelPenawaran)
@@ -1426,7 +1428,7 @@ Partial Class FormPolisDet
         Me.PCPenawaran.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCPenawaran.Location = New System.Drawing.Point(0, 0)
         Me.PCPenawaran.Name = "PCPenawaran"
-        Me.PCPenawaran.Size = New System.Drawing.Size(909, 51)
+        Me.PCPenawaran.Size = New System.Drawing.Size(1011, 51)
         Me.PCPenawaran.TabIndex = 13
         '
         'BUploadExcel
@@ -1439,14 +1441,14 @@ Partial Class FormPolisDet
         Me.BUploadExcel.Appearance.Options.UseForeColor = True
         Me.BUploadExcel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.BUploadExcel.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.BUploadExcel.Location = New System.Drawing.Point(646, 15)
+        Me.BUploadExcel.Location = New System.Drawing.Point(795, 15)
         Me.BUploadExcel.LookAndFeel.SkinName = "Metropolis"
         Me.BUploadExcel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BUploadExcel.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BUploadExcel.Name = "BUploadExcel"
-        Me.BUploadExcel.Size = New System.Drawing.Size(85, 23)
+        Me.BUploadExcel.Size = New System.Drawing.Size(146, 23)
         Me.BUploadExcel.TabIndex = 145
-        Me.BUploadExcel.Text = "Upload Excel"
+        Me.BUploadExcel.Text = "Upload Excel Penawaran"
         '
         'BGetExcel
         '
@@ -1458,14 +1460,14 @@ Partial Class FormPolisDet
         Me.BGetExcel.Appearance.Options.UseForeColor = True
         Me.BGetExcel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.BGetExcel.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.BGetExcel.Location = New System.Drawing.Point(571, 15)
+        Me.BGetExcel.Location = New System.Drawing.Point(662, 15)
         Me.BGetExcel.LookAndFeel.SkinName = "Metropolis"
         Me.BGetExcel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BGetExcel.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BGetExcel.Name = "BGetExcel"
-        Me.BGetExcel.Size = New System.Drawing.Size(69, 23)
+        Me.BGetExcel.Size = New System.Drawing.Size(127, 23)
         Me.BGetExcel.TabIndex = 144
-        Me.BGetExcel.Text = "Get Excel"
+        Me.BGetExcel.Text = "Get Excel Penawaran"
         '
         'BDelPenawaran
         '
@@ -1568,11 +1570,30 @@ Partial Class FormPolisDet
         Me.GridColumn39.Visible = True
         Me.GridColumn39.VisibleIndex = 1
         '
+        'BSetVendorDipilih
+        '
+        Me.BSetVendorDipilih.Appearance.BackColor = System.Drawing.Color.LawnGreen
+        Me.BSetVendorDipilih.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BSetVendorDipilih.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.BSetVendorDipilih.Appearance.Options.UseBackColor = True
+        Me.BSetVendorDipilih.Appearance.Options.UseFont = True
+        Me.BSetVendorDipilih.Appearance.Options.UseForeColor = True
+        Me.BSetVendorDipilih.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.BSetVendorDipilih.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BSetVendorDipilih.Location = New System.Drawing.Point(571, 15)
+        Me.BSetVendorDipilih.LookAndFeel.SkinName = "Metropolis"
+        Me.BSetVendorDipilih.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BSetVendorDipilih.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BSetVendorDipilih.Name = "BSetVendorDipilih"
+        Me.BSetVendorDipilih.Size = New System.Drawing.Size(85, 23)
+        Me.BSetVendorDipilih.TabIndex = 146
+        Me.BSetVendorDipilih.Text = "Pilih Vendor"
+        '
         'FormPolisDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(915, 528)
+        Me.ClientSize = New System.Drawing.Size(1017, 528)
         Me.Controls.Add(Me.XTCPolis)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
@@ -1743,4 +1764,5 @@ Partial Class FormPolisDet
     Friend WithEvents BGetExcel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BSetVendorDipilih As DevExpress.XtraEditors.SimpleButton
 End Class

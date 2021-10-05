@@ -429,7 +429,7 @@ WHERE id_polis_pps='" & id_pps & "' AND id_comp='" & GVNilaiLainnya.GetRowCellVa
     Sub save_draft_penawaran()
         Dim q As String = ""
         'loop per vendor
-        For j = 14 To GVPenawaran.Columns.Count - 2 'ada vendor dipilih terakhir
+        For j = 14 To GVPenawaran.Columns.Count - 2 'ada kolom vendor dipilih terakhir, oleh karena itu -2 
             Dim id_vendor As String = GVPenawaran.Columns(j).FieldName.ToString.Split("_")(1)
             execute_non_query("DELETE FROM tb_polis_pps_vendor WHERE id_polis_pps='" & id_pps & "' AND id_vendor='" & id_vendor & "'", True, "", "", "", "")
             '
@@ -1030,5 +1030,17 @@ WHERE pd.`id_polis_pps`='" & id_pps & "' "
         data_temp.Dispose()
         oledbconn.Close()
         oledbconn.Dispose()
+    End Sub
+
+    Private Sub BSetVendorDipilih_Click(sender As Object, e As EventArgs) Handles BSetVendorDipilih.Click
+        GVPenawaran.ActiveFilterString = "[is_check]='yes'"
+        If GVPenawaran.RowCount > 0 Then
+            For i = 0 To GVPenawaran.RowCount - 1
+                Dim qu As String = "UPDATE tb_polis_pps_det SET polis_vendor='" & SLEPenawaranDel.EditValue.ToString & "',premi=(SELECT price FROM `tb_polis_pps_vendor` WHERE id_comp='" & GVPenawaran.GetRowCellValue(i, "id_comp").ToString & "' AND id_polis_pps='" & id_pps & "' AND id_vendor='" & SLEPenawaranDel.EditValue.ToString & "') WHERE id_polis_pps='" & id_pps & "' AND id_comp='" & GVPenawaran.GetRowCellValue(i, "id_comp").ToString & "'"
+                execute_non_query(qu, True, "", "", "", "")
+            Next
+        End If
+        GVPenawaran.ActiveFilterString = ""
+        load_nilai_penawaran()
     End Sub
 End Class
