@@ -68,6 +68,7 @@
             DEStart.EditValue = data.Rows(0)("start_period")
             DEEnd.EditValue = data.Rows(0)("end_period")
             MENote.Text = data.Rows(0)("propose_note").ToString
+            is_confirm = data.Rows(0)("is_confirm").ToString
 
             'detail
             viewDetail()
@@ -108,7 +109,7 @@
 
         If action = "ins" Then
             Dim query As String = "INSERT INTO tb_promo_zalora(`promo_name`,`discount_code` ,`discount_value`,`volcom_pros`,`start_period`,`end_period` ,`propose_created_date`,`propose_created_by`,`id_report_status`,`rmt_propose`,`propose_note`)
-            VALUES ('" + promo_name + "','" + discount_code + "' ,'" + discount_value + "','" + volcom_pros + "','" + start_period + "','" + end_period + "' ,NOW(),'" + id_user + "','" + id_report_status + "','" + rmt_propose + "','" + propose_note + "'); SELECT LAST_INSERT_ID(); "
+            VALUES ('" + promo_name + "','" + discount_code + "' ,'" + discount_value + "','" + volcom_pros + "','" + start_period + "','" + end_period + "' ,NOW(),'" + id_user + "','1','" + rmt_propose + "','" + propose_note + "'); SELECT LAST_INSERT_ID(); "
             id = execute_query(query, 0, True, "", "", "", "")
 
             'gen number
@@ -124,6 +125,7 @@
             WHERE p.id_promo_zalora='" + id + "' "
             execute_non_query(query, True, "", "", "", "")
             refreshMainview()
+            actionLoad()
         End If
         Cursor = Cursors.Default
     End Sub
@@ -318,6 +320,7 @@
 
                 'refresh
                 refreshMainview()
+                actionLoad()
             End If
         Else
             stopCustom("This propose already process")
@@ -337,6 +340,7 @@
 
             'refresh
             refreshMainview()
+            actionLoad()
             Cursor = Cursors.Default
         End If
     End Sub

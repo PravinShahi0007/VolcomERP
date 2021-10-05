@@ -36,7 +36,7 @@
             date_until_selected = DateTime.Parse(DEUntilList.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
-        Dim cond As String = "  AND (p.propose_created_by>='" + date_from_selected + "' AND p.propose_created_by<='" + date_until_selected + "') "
+        Dim cond As String = "  AND (DATE(p.propose_created_date)>='" + date_from_selected + "' AND DATE(p.propose_created_date)<='" + date_until_selected + "') "
 
         Dim pz As New ClassPromoZalora()
         Dim query As String = pz.queryMain(cond, "2")
@@ -50,7 +50,7 @@
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
             FormPromoZaloraDet.action = "upd"
-            FormPromoZaloraDet.id = GVData.GetFocusedRowCellValue("id_promo_zalora").tos
+            FormPromoZaloraDet.id = GVData.GetFocusedRowCellValue("id_promo_zalora").ToString
             FormPromoZaloraDet.ShowDialog()
             Cursor = Cursors.Default
         End If
@@ -73,5 +73,9 @@
 
     Private Sub BtnViewList_Click(sender As Object, e As EventArgs) Handles BtnViewList.Click
         viewData()
+    End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        viewDetail()
     End Sub
 End Class
