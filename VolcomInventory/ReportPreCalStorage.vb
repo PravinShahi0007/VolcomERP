@@ -33,7 +33,7 @@ AND  cal.`id_pre_cal_fgpo`='" & id_report & "'"
 
         Dim desc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
         desc.Text = dt.Rows(row_i)("desc").ToString
-        desc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        desc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         desc.Font = font_row_style
 
         'qty
@@ -41,7 +41,7 @@ AND  cal.`id_pre_cal_fgpo`='" & id_report & "'"
 
         Dim qty_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
         qty_col.Text = qty
-        qty_col.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        qty_col.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         qty_col.Font = font_row_style
 
         'price
