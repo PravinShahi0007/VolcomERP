@@ -21,13 +21,13 @@
         Next
 
         'add column dipilih
-        XTPolisPPS.InsertColumnToRight(Nothing, True)
+        'XTPolisPPS.InsertColumnToRight(Nothing, True)
 
-        Dim cell_pilih As DevExpress.XtraReports.UI.XRTableCell = XRRowHead.Cells(j)
-        cell_pilih.Font = font_rowhead_style
-        cell_pilih.Text = "Vendor yang dipilih"
-        cell_pilih.Padding = XTPolisPPS.Padding
-        cell_pilih.TextAlignment = XTPolisPPS.TextAlignment
+        'Dim cell_pilih As DevExpress.XtraReports.UI.XRTableCell = XRRowHead.Cells(j)
+        'cell_pilih.Font = font_rowhead_style
+        'cell_pilih.Text = "Vendor yang dipilih"
+        'cell_pilih.Padding = XTPolisPPS.Padding
+        'cell_pilih.TextAlignment = XTPolisPPS.TextAlignment
 
         'detail
         Dim row_baru As DevExpress.XtraReports.UI.XRTableRow = XRRowHead
@@ -144,9 +144,9 @@
         Next
 
         'vendor dipilih
-        Dim vendor As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(j)
-        vendor.Text = dt.Rows(row_i)("vendor").ToString
-        vendor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        vendor.Font = font_row_style
+        'Dim vendor As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(j)
+        'vendor.Text = dt.Rows(row_i)("vendor").ToString
+        'vendor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        'vendor.Font = font_row_style
     End Sub
 End Class

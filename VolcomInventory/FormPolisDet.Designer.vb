@@ -1347,13 +1347,11 @@ Partial Class FormPolisDet
         Me.GridColumn69.Caption = "Penawaran"
         Me.GridColumn69.DisplayFormat.FormatString = "N2"
         Me.GridColumn69.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn69.FieldName = "penawaran"
+        Me.GridColumn69.FieldName = "price"
         Me.GridColumn69.Name = "GridColumn69"
-        Me.GridColumn69.OptionsColumn.AllowEdit = False
-        Me.GridColumn69.OptionsColumn.ReadOnly = True
         Me.GridColumn69.Visible = True
         Me.GridColumn69.VisibleIndex = 1
-        Me.GridColumn69.Width = 323
+        Me.GridColumn69.Width = 530
         '
         'RepositoryItemTextEdit3
         '
