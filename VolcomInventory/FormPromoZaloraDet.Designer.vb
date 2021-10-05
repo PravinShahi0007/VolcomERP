@@ -45,9 +45,7 @@ Partial Class FormPromoZaloraDet
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
         Me.BtnCreateNew = New DevExpress.XtraEditors.SimpleButton()
-        Me.TxtVolcomPros = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtDiscountValue = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtDiscountCode = New DevExpress.XtraEditors.TextEdit()
@@ -77,6 +75,8 @@ Partial Class FormPromoZaloraDet
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPReconcile = New DevExpress.XtraTab.XtraTabPage()
+        Me.TxtDiscountValue = New DevExpress.XtraEditors.SpinEdit()
+        Me.TxtVolcomPros = New DevExpress.XtraEditors.SpinEdit()
         CType(Me.XTCPromoZalora, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPromoZalora.SuspendLayout()
         Me.XTPProposal.SuspendLayout()
@@ -89,8 +89,6 @@ Partial Class FormPromoZaloraDet
         Me.PanelControlNav.SuspendLayout()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
-        CType(Me.TxtVolcomPros.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtDiscountValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDiscountCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPromoName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,6 +105,8 @@ Partial Class FormPromoZaloraDet
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
+        CType(Me.TxtDiscountValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtVolcomPros.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPromoZalora
@@ -331,10 +331,10 @@ Partial Class FormPromoZaloraDet
         'GroupControlHead
         '
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControlHead.Controls.Add(Me.BtnCreateNew)
         Me.GroupControlHead.Controls.Add(Me.TxtVolcomPros)
-        Me.GroupControlHead.Controls.Add(Me.LabelControl10)
         Me.GroupControlHead.Controls.Add(Me.TxtDiscountValue)
+        Me.GroupControlHead.Controls.Add(Me.BtnCreateNew)
+        Me.GroupControlHead.Controls.Add(Me.LabelControl10)
         Me.GroupControlHead.Controls.Add(Me.LabelControl8)
         Me.GroupControlHead.Controls.Add(Me.LabelControl9)
         Me.GroupControlHead.Controls.Add(Me.TxtDiscountCode)
@@ -366,17 +366,6 @@ Partial Class FormPromoZaloraDet
         Me.BtnCreateNew.Text = "Create New"
         Me.BtnCreateNew.Visible = False
         '
-        'TxtVolcomPros
-        '
-        Me.TxtVolcomPros.Location = New System.Drawing.Point(118, 66)
-        Me.TxtVolcomPros.Name = "TxtVolcomPros"
-        Me.TxtVolcomPros.Properties.DisplayFormat.FormatString = "{0:N2} %"
-        Me.TxtVolcomPros.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtVolcomPros.Properties.Mask.EditMask = "n2"
-        Me.TxtVolcomPros.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtVolcomPros.Size = New System.Drawing.Size(272, 20)
-        Me.TxtVolcomPros.TabIndex = 166
-        '
         'LabelControl10
         '
         Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -385,17 +374,6 @@ Partial Class FormPromoZaloraDet
         Me.LabelControl10.Size = New System.Drawing.Size(71, 13)
         Me.LabelControl10.TabIndex = 165
         Me.LabelControl10.Text = "Volcom Charge"
-        '
-        'TxtDiscountValue
-        '
-        Me.TxtDiscountValue.Location = New System.Drawing.Point(307, 40)
-        Me.TxtDiscountValue.Name = "TxtDiscountValue"
-        Me.TxtDiscountValue.Properties.DisplayFormat.FormatString = "{0:N2} %"
-        Me.TxtDiscountValue.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtDiscountValue.Properties.Mask.EditMask = "n2"
-        Me.TxtDiscountValue.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtDiscountValue.Size = New System.Drawing.Size(83, 20)
-        Me.TxtDiscountValue.TabIndex = 164
         '
         'LabelControl8
         '
@@ -706,6 +684,32 @@ Partial Class FormPromoZaloraDet
         Me.XTPReconcile.Size = New System.Drawing.Size(893, 572)
         Me.XTPReconcile.Text = "Promo Item Reconciliation"
         '
+        'TxtDiscountValue
+        '
+        Me.TxtDiscountValue.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.TxtDiscountValue.Location = New System.Drawing.Point(307, 40)
+        Me.TxtDiscountValue.Name = "TxtDiscountValue"
+        Me.TxtDiscountValue.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtDiscountValue.Properties.DisplayFormat.FormatString = "{0:n2} %"
+        Me.TxtDiscountValue.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtDiscountValue.Properties.Mask.EditMask = "N2"
+        Me.TxtDiscountValue.Properties.MaxValue = New Decimal(New Integer() {100, 0, 0, 0})
+        Me.TxtDiscountValue.Size = New System.Drawing.Size(83, 20)
+        Me.TxtDiscountValue.TabIndex = 8927
+        '
+        'TxtVolcomPros
+        '
+        Me.TxtVolcomPros.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.TxtVolcomPros.Location = New System.Drawing.Point(118, 66)
+        Me.TxtVolcomPros.Name = "TxtVolcomPros"
+        Me.TxtVolcomPros.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtVolcomPros.Properties.DisplayFormat.FormatString = "{0:n2} %"
+        Me.TxtVolcomPros.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtVolcomPros.Properties.Mask.EditMask = "N2"
+        Me.TxtVolcomPros.Properties.MaxValue = New Decimal(New Integer() {100, 0, 0, 0})
+        Me.TxtVolcomPros.Size = New System.Drawing.Size(272, 20)
+        Me.TxtVolcomPros.TabIndex = 8928
+        '
         'FormPromoZaloraDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -730,8 +734,6 @@ Partial Class FormPromoZaloraDet
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
-        CType(Me.TxtVolcomPros.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtDiscountValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDiscountCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPromoName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -749,6 +751,8 @@ Partial Class FormPromoZaloraDet
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
+        CType(Me.TxtDiscountValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtVolcomPros.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -785,9 +789,7 @@ Partial Class FormPromoZaloraDet
     Friend WithEvents TxtNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TxtVolcomPros As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TxtDiscountValue As DevExpress.XtraEditors.TextEdit
     Friend WithEvents XTCProduct As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPItemList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCItemPropose As DevExpress.XtraGrid.GridControl
@@ -810,4 +812,6 @@ Partial Class FormPromoZaloraDet
     Friend WithEvents GridColumndesign_price As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnamount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnno As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TxtVolcomPros As DevExpress.XtraEditors.SpinEdit
+    Friend WithEvents TxtDiscountValue As DevExpress.XtraEditors.SpinEdit
 End Class

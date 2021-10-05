@@ -451,4 +451,8 @@
         FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub FormPromoZaloraDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
 End Class
