@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormPolis
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormPolis
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPolis))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -54,13 +54,13 @@ Partial Class FormPolis
         Me.GCRegisterPolis = New DevExpress.XtraGrid.GridControl()
         Me.GVRegisterPolis = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreateNewReg = New DevExpress.XtraEditors.SimpleButton()
         Me.BRefreshRegisterPolis = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPFixedAsset = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCPolisToko, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -402,6 +402,12 @@ Partial Class FormPolis
         Me.GridColumn16.FieldName = "id_polis_reg"
         Me.GridColumn16.Name = "GridColumn16"
         '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "ID PPS"
+        Me.GridColumn21.FieldName = "id_polis_pps"
+        Me.GridColumn21.Name = "GridColumn21"
+        '
         'GridColumn17
         '
         Me.GridColumn17.Caption = "Number"
@@ -459,12 +465,6 @@ Partial Class FormPolis
         Me.XTPFixedAsset.Name = "XTPFixedAsset"
         Me.XTPFixedAsset.Size = New System.Drawing.Size(1003, 463)
         Me.XTPFixedAsset.Text = "Fixed Asset"
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.Caption = "ID PPS"
-        Me.GridColumn21.FieldName = "id_polis_pps"
-        Me.GridColumn21.Name = "GridColumn21"
         '
         'FormPolis
         '

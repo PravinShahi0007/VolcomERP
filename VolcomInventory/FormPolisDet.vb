@@ -5,6 +5,8 @@ Public Class FormPolisDet
     Dim steps As Integer = "0"
     Public is_view As String = "-1"
 
+    Public is_perpanjangan As String = "-1"
+
     Dim copy_file_path As String = ""
 
     Private Sub BLoadPolis_Click(sender As Object, e As EventArgs) Handles BLoadPolis.Click
@@ -97,30 +99,53 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                     XTPPenawaran.PageVisible = True
                     BSaveDraft.Visible = True
                     '
-
-                    XTCPolis.SelectedTabPageIndex = 3
-                    load_nilai_stock()
-                    load_nilai_lainnya()
-
-                    view_vendor_penawaran()
-                    load_nilai_penawaran()
-                    load_nilai_penawaran()
+                    If SLEPPSType.EditValue.ToString = "1" Then
+                        'kolektif
+                        XTCPolis.SelectedTabPageIndex = 3
+                        load_nilai_stock()
+                        load_nilai_lainnya()
+                        '
+                        'view_vendor_penawaran()
+                        'load_nilai_penawaran()
+                        'load_nilai_penawaran()
+                    Else
+                        'mandiri
+                        XTCPolis.SelectedTabPageIndex = 4
+                        load_nilai_stock()
+                        load_nilai_lainnya()
+                        '
+                        view_vendor_penawaran()
+                        load_nilai_penawaran()
+                        load_nilai_penawaran()
+                    End If
                 ElseIf steps = "4" Then
                     XTPNilaiStock.PageVisible = True
                     XTPDetail.PageVisible = True
                     XTPPenawaran.PageVisible = True
                     BSaveDraft.Visible = True
                     '
+                    If SLEPPSType.EditValue.ToString = "1" Then
+                        'kolektif
+                        XTCPolis.SelectedTabPageIndex = 3
+                        load_nilai_stock()
+                        load_nilai_lainnya()
 
-                    XTCPolis.SelectedTabPageIndex = 3
-                    load_nilai_stock()
-                    load_nilai_lainnya()
+                        'view_vendor_penawaran()
+                        'load_nilai_penawaran()
+                        'load_nilai_penawaran()
+                        'PCPenawaran.Visible = False
+                    Else
+                        'mandiri
+                        XTCPolis.SelectedTabPageIndex = 4
+                        load_nilai_stock()
+                        load_nilai_lainnya()
 
-                    view_vendor_penawaran()
-                    load_nilai_penawaran()
-                    load_nilai_penawaran()
+                        view_vendor_penawaran()
+                        load_nilai_penawaran()
+                        load_nilai_penawaran()
+                        PCPenawaran.Visible = False
+                    End If
                     '
-                    PCPenawaran.Visible = False
                     BtnPrint.Visible = True
                     BSaveDraft.Visible = False
                     BtnSave.Visible = False
@@ -250,6 +275,12 @@ GROUP BY ppsd.`id_comp`"
     End Sub
 
     Private Sub FormPolisDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_pps_type()
+        load_polis_type()
+
+        DEStart.EditValue = Now
+        DEUntil.EditValue = Now
+
         If id_pps = "-1" Then
             XTPNilaiStock.PageVisible = False
             XTPPenawaran.PageVisible = False
@@ -257,10 +288,37 @@ GROUP BY ppsd.`id_comp`"
             '
             BSaveDraft.Visible = False
             gridBandNewValue.Visible = False
+            '
+            Dim qh As String = "SELECT ppsd.old_end_date,ppsd.old_id_polis,pol_by.comp_name AS comp_name_polis,c.comp_number,c.`comp_name`,c.`address_primary`,c.`id_comp`
+,ppsd.old_nilai_stock,ppsd.old_nilai_fit_out,ppsd.old_nilai_peralatan,ppsd.old_nilai_building,ppsd.old_nilai_public_liability,ppsd.old_nilai_total
+,ppsd.nilai_stock,ppsd.nilai_fit_out,ppsd.nilai_peralatan,ppsd.nilai_building,ppsd.nilai_public_liability,ppsd.nilai_total
+,pol_by.`id_comp` AS old_id_vendor,pol_by.`comp_name` AS old_vendor,ppsd.old_premi
+,v.comp_name AS polis_vendor,ppsd.premi
+FROM tb_polis_pps_det ppsd
+LEFT JOIN tb_m_comp v ON v.id_comp=ppsd.polis_vendor
+LEFT JOIN tb_polis p ON p.`id_polis`=ppsd.`old_id_polis`
+LEFT JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp` 
+LEFT JOIN tb_m_comp pol_by ON pol_by.id_comp=p.id_polis_by
+WHERE ppsd.id_polis_pps='-1'"
+            Dim dth As DataTable = execute_query(qh, -1, True, "", "", "", "")
+            GCSummary.DataSource = dth
+            '
         Else
             gridBandNewValue.Visible = True
             load_form()
         End If
+    End Sub
+
+    Sub load_pps_type()
+        Dim q As String = "SELECT 1 AS id_pps_type,'Kolektif' AS pps_type
+UNION ALL
+SELECT 2 AS id_pps_type,'Mandiri' AS pps_type"
+        viewSearchLookupQuery(SLEPPSType, q, "id_pps_type", "pps_type", "id_pps_type")
+    End Sub
+
+    Sub load_polis_type()
+        Dim q As String = "SELECT id_desc_premi,description FROM tb_lookup_desc_premi WHERE is_active=1"
+        viewSearchLookupQuery(SLEPolisType, q, "id_desc_premi", "description", "id_desc_premi")
     End Sub
 
     'Private Sub BGVSummary_CellMerge(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs) Handles BGVSummary.CellMerge
@@ -281,7 +339,7 @@ GROUP BY ppsd.`id_comp`"
         Else
             If id_pps = "-1" Then
                 Dim q As String = ""
-                q = "INSERT INTO tb_polis_pps(`created_by`,`created_date`,`last_update_by`,`last_update_date`,`id_report_status`,`step`) VALUES('" & id_user & "',NOW(),'" & id_user & "',NOW(),'1','1'); SELECT LAST_INSERT_ID();"
+                q = "INSERT INTO tb_polis_pps(`created_by`,`created_date`,`last_update_by`,`last_update_date`,`id_report_status`,id_desc_premi,id_pps_type,start_polis,end_polis,`step`) VALUES('" & id_user & "',NOW(),'" & id_user & "',NOW(),'1','" & SLEPolisType.EditValue.ToString & "','" & SLEPPSType.EditValue.ToString & "','" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "','1'); SELECT LAST_INSERT_ID();"
                 id_pps = execute_query(q, 0, True, "", "", "", "")
                 q = "INSERT INTO tb_polis_pps_det(`id_polis_pps`,`id_comp`,`old_id_polis`,`old_end_date`,`old_nilai_stock`,`old_nilai_fit_out`,`old_nilai_building`,`old_nilai_peralatan`,`old_nilai_public_liability`,`old_nilai_total`,`old_polis_vendor`,`old_premi`) VALUES"
                 For i = 0 To BGVSummary.RowCount - 1
@@ -1042,5 +1100,21 @@ WHERE pd.`id_polis_pps`='" & id_pps & "' "
         End If
         GVPenawaran.ActiveFilterString = ""
         load_nilai_penawaran()
+    End Sub
+
+    Private Sub SLEPPSType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEPPSType.EditValueChanged
+        If SLEPPSType.EditValue.ToString = "1" Then
+            '1 untuk semua
+            LDateFrom.Visible = True
+            LDateUntil.Visible = True
+            DEUntil.Visible = True
+            DEStart.Visible = True
+        Else
+            'mandiri
+            LDateFrom.Visible = False
+            LDateUntil.Visible = False
+            DEUntil.Visible = False
+            DEStart.Visible = False
+        End If
     End Sub
 End Class

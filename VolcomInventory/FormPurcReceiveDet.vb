@@ -130,10 +130,10 @@ WHERE pod.`id_purc_order`='1' AND ISNULL(coa.id_item_coa)"
                 End If
             End If
 
-            'cek coa biaya
+            'cek DP udah complete belum
             Dim q_pn As String = "SELECT pnd.number FROM tb_pn_det pnd
 INNER JOIN tb_pn pn ON pn.id_pn=pnd.`id_pn`
-WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND pnd.`report_mark_type`='148' AND pnd.`id_report`='" & id_purc_order & "'"
+WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND (pnd.`report_mark_type`='148' OR pnd.`report_mark_type`='139') AND pnd.`id_report`='" & id_purc_order & "'"
             Dim dt_pn As DataTable = execute_query(q_pn, -1, True, "", "", "", "")
             If dt_pn.Rows.Count > 0 Then
                 stopCustom("Please contact accounting, please complete DP for PO number : " & dt_pn.Rows(0)("number").ToString)
