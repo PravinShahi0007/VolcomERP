@@ -148,7 +148,7 @@ Public Class FormImportExcel
             Dim installment_term As String = dtb.Rows(0)("installment_term").ToString
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] WHERE ([Acquiring Bank]='" + bank + "') AND [Installment Term]='" + installment_term + "' AND [Payment Type]='Credit Card' AND [Transaction status]='settlement' ", oledbconn)
         ElseIf id_pop_up = "62" Then
-            MyCommand = New OleDbDataAdapter("select `Seller SKU` from [" & CBWorksheetName.SelectedItem.ToString & "] GROUP BY `Seller SKU` ", oledbconn)
+            MyCommand = New OleDbDataAdapter("select `Seller SKU` from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Seller SKU]='') GROUP BY `Seller SKU` ", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -4604,8 +4604,8 @@ GROUP BY ol.checkout_id
             INNER JOIN tb_ol_store_comp olc ON olc.id_store = c.id_comp
             WHERE c.id_comp_group=64 ", 0, True, "", "", "", "")
 
-            Dim query_stc As String = "SELECT p.product_full_code AS `code`, cd.class,p.product_name AS `description`, 
-            cd.color, cd.sht, sz.display_name AS `size`, a.qty_ttl AS `qty`, prc.id_design_price, prc.design_price
+            Dim query_stc As String = "SELECT a.id_product,p.product_full_code AS `code`, cd.class,p.product_name AS `description`, 
+            cd.color, cd.sht, sz.display_name AS `size`, a.qty_ttl AS `qty`, prc.id_design_price, prc.design_price, IFNULL(a.qty_ttl,0) AS `qty_ttl`
             FROM (
                 SELECT a.id_product,
                 SUM(qty_ttl) AS `qty_ttl`
@@ -4667,7 +4667,7 @@ GROUP BY ol.checkout_id
                             {
                                 .id_product = If(s1 Is Nothing, "0", s1("id_product").ToString),
                                 .code = table1("Seller SKU").ToString,
-                                .class = table1("class").ToString,
+                                .class = If(s1 Is Nothing, "", s1("class").ToString),
                                 .description = If(s1 Is Nothing, "", s1("description").ToString),
                                 .silhouette = If(s1 Is Nothing, "", s1("sht").ToString),
                                 .color = If(s1 Is Nothing, "", s1("color").ToString),

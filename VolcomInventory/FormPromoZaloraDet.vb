@@ -160,7 +160,8 @@
 	        AND cd.id_code IN (32,30,14, 43)
 	        GROUP BY dc.id_design
         ) cd ON cd.id_design = p.id_design
-        WHERE pd.id_promo_zalora=" + id + " "
+        WHERE pd.id_promo_zalora=" + id + " 
+        ORDER BY `class` ASC, `name` ASC, `code` ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemPropose.DataSource = data
         GVtemPropose.BestFitColumns()
