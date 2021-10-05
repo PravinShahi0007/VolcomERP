@@ -3,7 +3,9 @@
     Public action As String = ""
     Public is_view As String = "-1"
     Dim id_report_status As String = "-1"
+    Dim id_report_status_recon As String = "-1"
     Dim is_confirm As String = "-1"
+    Dim is_confirm_recon As String = "-1"
     Dim rmt_propose As String = "351"
     Dim rmt_recon As String = "352"
     Dim id_menu As String = "1" '1=>propose; 2=>rekon
@@ -16,6 +18,11 @@
     Sub viewReportStatus()
         Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
         viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")
+    End Sub
+
+    Sub viewReportStatusRecon()
+        Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
+        viewLookupQuery(LEReportStatusRecon, query, 0, "report_status", "id_report_status")
     End Sub
 
     Sub actionLoad()
@@ -73,6 +80,25 @@
             'detail
             viewDetail()
             allow_status()
+
+            'recon
+            If id_report_status = "6" Then
+                XTPReconcile.PageVisible = True
+                viewReportStatusRecon()
+
+                DECreatedRecon.EditValue = data.Rows(0)("recon_created_date")
+                TxtCreatedByRecon.Text = data.Rows(0)("recon_created_by_name").ToString
+                LEReportStatusRecon.ItemIndex = LEReportStatusRecon.Properties.GetDataSourceRowIndex("id_report_status_recon", data.Rows(0)("id_report_status_recon").ToString)
+                id_report_status_recon = data.Rows(0)("id_report_status_recon").ToString
+                is_confirm_recon = data.Rows(0)("is_confirm_recon").ToString
+
+                viewDetailRecon()
+                allow_status_recon()
+            End If
+            'recon approval
+            If id_menu = "2" Then
+                XTCPromoZalora.SelectedTabPageIndex = 1
+            End If
         End If
         Cursor = Cursors.Default
     End Sub
@@ -168,6 +194,39 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewDetailRecon()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT IF(pd.is_app_zalora=1,'Yes', 'No') AS `is_app_zalora_view`,pd.is_app_zalora,pd.id_promo_zalora_det, pd.id_promo_zalora, 
+        pd.id_product, p.product_full_code AS `code`, cd.`class`, p.product_display_name AS `name`, cd.sht,cd.color, sz.display_name AS `size`, 
+        pd.total_qty, pd.id_design_price, pd.design_price 
+        FROM tb_promo_zalora_det pd
+        INNER JOIN tb_m_product p ON p.id_product = pd.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail sz ON sz.id_code_detail = pc.id_code_detail
+        LEFT JOIN (
+	        SELECT dc.id_design, 
+	        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	        FROM tb_m_design_code dc
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        AND cd.id_code IN (32,30,14, 43)
+	        GROUP BY dc.id_design
+        ) cd ON cd.id_design = p.id_design
+        WHERE pd.id_promo_zalora=" + id + " 
+        ORDER BY `class` ASC, `name` ASC, `code` ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCItemPropose.DataSource = data
+        GVtemPropose.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
     Sub allow_status()
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
@@ -212,7 +271,6 @@
         If id_report_status = "6" Then
             BtnCancell.Visible = False
             BtnResetPropose.Visible = False
-            XTPReconcile.PageVisible = True
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
             BtnResetPropose.Visible = False
@@ -228,6 +286,36 @@
             TxtDiscountValue.Enabled = False
             TxtVolcomPros.Enabled = False
             BtnImportExcel.Visible = False
+        End If
+    End Sub
+
+    Sub allow_status_recon()
+        BtnAttachmentRecon.Visible = True
+        If is_confirm_recon = "2" And is_view = "-1" Then
+            BtnConfirmRecon.Visible = True
+            BtnMarkRecon.Visible = False
+            BtnPrintRecon.Visible = False
+            MENoteRecon.Enabled = True
+        Else
+            BtnConfirmRecon.Visible = False
+            BtnMarkRecon.Visible = True
+            BtnPrintRecon.Visible = True
+            MENoteRecon.Enabled = False
+        End If
+
+        'reset propose
+        If is_view = "-1" And is_confirm_recon = "1" Then
+            BtnResetProposeRecon.Visible = True
+        Else
+            BtnResetProposeRecon.Visible = False
+        End If
+
+        If id_report_status_recon = "6" Then
+            BtnResetProposeRecon.Visible = False
+        ElseIf id_report_status_recon = "5" Then
+            BtnResetProposeRecon.Visible = False
+            BtnConfirmRecon.Visible = False
+            MENoteRecon.Enabled = False
         End If
     End Sub
 
@@ -455,5 +543,24 @@
 
     Private Sub FormPromoZaloraDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub BtnConfirmRecon_Click(sender As Object, e As EventArgs) Handles BtnConfirmRecon.Click
+        makeSafeGV(GVRecon)
+
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this Propose  ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            'update confirm
+            Dim query As String = "UPDATE tb_promo_zalora SET is_confirm_recon=1,recon_created_date=NOW(), recon_created_by='" + id_user + "', id_report_status_recon='1', rmt_recon='" + rmt_recon + "', recon_note='" + addSlashes(MENoteRecon.text) + "'  WHERE id_promo_zalora='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+            'submit approval 
+            submit_who_prepared(rmt_recon, id, id_user)
+            BtnConfirmRecon.Visible = False
+            actionLoad()
+            infoCustom("Propose submitted. Waiting for approval.")
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

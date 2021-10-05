@@ -497,6 +497,9 @@
         ElseIf report_mark_type = "349" Then
             'prepaid expense
             FormPrepaidExpense.Close()
+        ElseIf report_mark_type = "351" Then
+            'promo zalora
+            FormPromoZaloraDet.Close()
         End If
     End Sub
     Sub show()
@@ -1607,6 +1610,12 @@ GROUP BY rec.`id_prod_order`"
             FormPrepaidExpenseDet.id = id_report
             FormPrepaidExpenseDet.is_view = "1"
             FormPrepaidExpenseDet.ShowDialog()
+        ElseIf report_mark_type = "351" Then
+            'promo zalora
+            FormPromoZaloraDet.action="upd"
+            FormPromoZaloraDet.id = id_report
+            FormPromoZaloraDet.is_view = "1"
+            FormPromoZaloraDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2870,6 +2879,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_prepaid_expense"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "351" Then
+            'promo zalora
+            table_name = "tb_promo_zalora"
+            field_id = "id_promo_zalora"
+            field_number = "number"
+            field_date = "propose_created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
