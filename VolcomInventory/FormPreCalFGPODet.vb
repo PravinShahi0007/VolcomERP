@@ -999,4 +999,35 @@ WHERE h.`id_pre_cal_fgpo`='" & id & "'"
     Private Sub BPrintDutyBefore_Click(sender As Object, e As EventArgs) Handles BPrintDutyBefore.Click
         print_duty()
     End Sub
+
+    Private Sub BStorageCalculation_Click(sender As Object, e As EventArgs) Handles BStorageCalculation.Click
+        print_storage()
+    End Sub
+
+    Sub print_storage()
+        Dim qc As String = "SELECT 
+h.`number`
+FROM `tb_pre_cal_fgpo` h 
+WHERE h.`id_pre_cal_fgpo`='" & id & "'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            'print
+            Cursor = Cursors.WaitCursor
+
+            Dim Report As New ReportPreCalStorage()
+            Report.id_report = id
+            Report.DataSource = dtc
+
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+
+            Cursor = Cursors.Default
+        Else
+            warningCustom("Please choose vendor first")
+        End If
+    End Sub
+
+    Private Sub BPrintStorage2_Click(sender As Object, e As EventArgs) Handles BPrintStorage2.Click
+        print_storage()
+    End Sub
 End Class
