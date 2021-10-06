@@ -98,6 +98,8 @@ Partial Class FormPromoZaloraDet
         Me.BtnResetProposeRecon = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirmRecon = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
+        Me.LEType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtVolcomPros = New DevExpress.XtraEditors.SpinEdit()
         Me.TxtDiscountValue = New DevExpress.XtraEditors.SpinEdit()
         Me.BtnCreateNew = New DevExpress.XtraEditors.SimpleButton()
@@ -151,6 +153,7 @@ Partial Class FormPromoZaloraDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
+        CType(Me.LEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtVolcomPros.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDiscountValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDiscountCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -955,6 +958,8 @@ Partial Class FormPromoZaloraDet
         'GroupControlHead
         '
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlHead.Controls.Add(Me.LEType)
+        Me.GroupControlHead.Controls.Add(Me.LabelControl15)
         Me.GroupControlHead.Controls.Add(Me.TxtVolcomPros)
         Me.GroupControlHead.Controls.Add(Me.TxtDiscountValue)
         Me.GroupControlHead.Controls.Add(Me.BtnCreateNew)
@@ -977,10 +982,27 @@ Partial Class FormPromoZaloraDet
         Me.GroupControlHead.Size = New System.Drawing.Size(899, 224)
         Me.GroupControlHead.TabIndex = 17
         '
+        'LEType
+        '
+        Me.LEType.Location = New System.Drawing.Point(102, 14)
+        Me.LEType.Name = "LEType"
+        Me.LEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEType.Size = New System.Drawing.Size(157, 20)
+        Me.LEType.TabIndex = 8930
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl15.Location = New System.Drawing.Point(29, 17)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl15.TabIndex = 8929
+        Me.LabelControl15.Text = "Type"
+        '
         'TxtVolcomPros
         '
         Me.TxtVolcomPros.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.TxtVolcomPros.Location = New System.Drawing.Point(124, 66)
+        Me.TxtVolcomPros.Location = New System.Drawing.Point(503, 42)
         Me.TxtVolcomPros.Name = "TxtVolcomPros"
         Me.TxtVolcomPros.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtVolcomPros.Properties.Appearance.Options.UseFont = True
@@ -989,13 +1011,13 @@ Partial Class FormPromoZaloraDet
         Me.TxtVolcomPros.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TxtVolcomPros.Properties.Mask.EditMask = "N2"
         Me.TxtVolcomPros.Properties.MaxValue = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.TxtVolcomPros.Size = New System.Drawing.Size(383, 20)
+        Me.TxtVolcomPros.Size = New System.Drawing.Size(80, 20)
         Me.TxtVolcomPros.TabIndex = 8928
         '
         'TxtDiscountValue
         '
         Me.TxtDiscountValue.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.TxtDiscountValue.Location = New System.Drawing.Point(313, 40)
+        Me.TxtDiscountValue.Location = New System.Drawing.Point(372, 42)
         Me.TxtDiscountValue.Name = "TxtDiscountValue"
         Me.TxtDiscountValue.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtDiscountValue.Properties.Appearance.Options.UseFont = True
@@ -1023,52 +1045,52 @@ Partial Class FormPromoZaloraDet
         'LabelControl10
         '
         Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Location = New System.Drawing.Point(32, 69)
+        Me.LabelControl10.Location = New System.Drawing.Point(462, 45)
         Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(71, 13)
+        Me.LabelControl10.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl10.TabIndex = 165
-        Me.LabelControl10.Text = "Volcom Charge"
+        Me.LabelControl10.Text = "Charge"
         '
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(279, 43)
+        Me.LabelControl8.Location = New System.Drawing.Point(338, 45)
         Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl8.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl8.TabIndex = 163
-        Me.LabelControl8.Text = "Value"
+        Me.LabelControl8.Text = "Disc."
         '
         'LabelControl9
         '
         Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(32, 43)
+        Me.LabelControl9.Location = New System.Drawing.Point(29, 45)
         Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(69, 13)
+        Me.LabelControl9.Size = New System.Drawing.Size(51, 13)
         Me.LabelControl9.TabIndex = 162
-        Me.LabelControl9.Text = "Discount Code"
+        Me.LabelControl9.Text = "Disc. Code"
         '
         'TxtDiscountCode
         '
-        Me.TxtDiscountCode.Location = New System.Drawing.Point(124, 40)
+        Me.TxtDiscountCode.Location = New System.Drawing.Point(102, 42)
         Me.TxtDiscountCode.Name = "TxtDiscountCode"
         Me.TxtDiscountCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtDiscountCode.Properties.Appearance.Options.UseFont = True
-        Me.TxtDiscountCode.Size = New System.Drawing.Size(151, 20)
+        Me.TxtDiscountCode.Size = New System.Drawing.Size(231, 20)
         Me.TxtDiscountCode.TabIndex = 161
         '
         'TxtPromoName
         '
-        Me.TxtPromoName.Location = New System.Drawing.Point(210, 14)
+        Me.TxtPromoName.Location = New System.Drawing.Point(331, 14)
         Me.TxtPromoName.Name = "TxtPromoName"
         Me.TxtPromoName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtPromoName.Properties.Appearance.Options.UseFont = True
-        Me.TxtPromoName.Size = New System.Drawing.Size(297, 20)
+        Me.TxtPromoName.Size = New System.Drawing.Size(252, 20)
         Me.TxtPromoName.TabIndex = 160
         '
         'LabelControl6
         '
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(32, 121)
+        Me.LabelControl6.Location = New System.Drawing.Point(29, 101)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(51, 13)
         Me.LabelControl6.TabIndex = 157
@@ -1077,7 +1099,7 @@ Partial Class FormPromoZaloraDet
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(32, 146)
+        Me.LabelControl7.Location = New System.Drawing.Point(29, 128)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl7.TabIndex = 150
@@ -1086,7 +1108,7 @@ Partial Class FormPromoZaloraDet
         'DEEnd
         '
         Me.DEEnd.EditValue = Nothing
-        Me.DEEnd.Location = New System.Drawing.Point(124, 118)
+        Me.DEEnd.Location = New System.Drawing.Point(102, 98)
         Me.DEEnd.Name = "DEEnd"
         Me.DEEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEEnd.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1098,13 +1120,13 @@ Partial Class FormPromoZaloraDet
         Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
         Me.DEEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEEnd.Properties.Mask.EditMask = "dd-MM-yyyy/HH:mm"
-        Me.DEEnd.Size = New System.Drawing.Size(383, 20)
+        Me.DEEnd.Size = New System.Drawing.Size(481, 20)
         Me.DEEnd.TabIndex = 156
         '
         'DEStart
         '
         Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(124, 92)
+        Me.DEStart.Location = New System.Drawing.Point(102, 70)
         Me.DEStart.Name = "DEStart"
         Me.DEStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEStart.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1116,13 +1138,13 @@ Partial Class FormPromoZaloraDet
         Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
         Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEStart.Properties.Mask.EditMask = "dd-MM-yyyy/HH:mm"
-        Me.DEStart.Size = New System.Drawing.Size(383, 20)
+        Me.DEStart.Size = New System.Drawing.Size(481, 20)
         Me.DEStart.TabIndex = 155
         '
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(32, 95)
+        Me.LabelControl5.Location = New System.Drawing.Point(29, 73)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl5.TabIndex = 154
@@ -1131,7 +1153,7 @@ Partial Class FormPromoZaloraDet
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(144, 17)
+        Me.LabelControl3.Location = New System.Drawing.Point(265, 17)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(60, 13)
         Me.LabelControl3.TabIndex = 153
@@ -1139,11 +1161,11 @@ Partial Class FormPromoZaloraDet
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(124, 144)
+        Me.MENote.Location = New System.Drawing.Point(102, 126)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MENote.Properties.Appearance.Options.UseFont = True
-        Me.MENote.Size = New System.Drawing.Size(383, 41)
+        Me.MENote.Size = New System.Drawing.Size(481, 41)
         Me.MENote.TabIndex = 151
         Me.MENote.TabStop = False
         '
@@ -1231,6 +1253,7 @@ Partial Class FormPromoZaloraDet
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
+        CType(Me.LEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtVolcomPros.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDiscountValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDiscountCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1342,4 +1365,6 @@ Partial Class FormPromoZaloraDet
     Friend WithEvents MENoteRecon As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LEType As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
 End Class

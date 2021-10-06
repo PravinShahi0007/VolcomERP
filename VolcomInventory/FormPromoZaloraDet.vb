@@ -17,6 +17,7 @@
         XTCPromoZalora.SelectedTabPage = XTCPromoZalora.TabPages(0)
 
         viewReportStatus()
+        viewType()
         actionLoad()
     End Sub
 
@@ -28,6 +29,11 @@
     Sub viewReportStatusRecon()
         Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
         viewLookupQuery(LEReportStatusRecon, query, 0, "report_status", "id_report_status")
+    End Sub
+
+    Sub viewType()
+        Dim query As String = "SELECT t.id_promo_zalora_type, t.promo_zalora_type FROM tb_promo_zalora_type t "
+        viewLookupQuery(LEType, query, 0, "promo_zalora_type", "id_promo_zalora_type")
     End Sub
 
     Sub actionLoad()
@@ -69,6 +75,7 @@
             Dim query As String = pz.queryMain("AND p.id_promo_zalora='" + id + "' ", "2")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             TxtNumber.Text = data.Rows(0)("number").ToString
+            LEType.ItemIndex = LEType.Properties.GetDataSourceRowIndex("id_promo_zalora_type", data.Rows(0)("id_promo_zalora_type").ToString)
             DECreated.EditValue = data.Rows(0)("propose_created_date")
             TxtCreatedBy.Text = data.Rows(0)("propose_created_by_name").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
@@ -509,6 +516,7 @@
         Report.GVtemPropose.OptionsPrint.PrintFooter = True
 
         Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+        Report.LabelPromoType.Text = LEType.Text.ToUpper
         Report.LabelPromoName.Text = TxtPromoName.Text.ToUpper
         Report.LabelDiscountCode.Text = TxtDiscountCode.Text
         Report.LabelDiscountValue.Text = TxtDiscountValue.Text
@@ -704,6 +712,19 @@
     Private Sub GVRecon_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVRecon.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub LEType_EditValueChanged(sender As Object, e As EventArgs) Handles LEType.EditValueChanged
+        Dim typ As String = "-1"
+        Try
+            typ = LEType.EditValue.ToString
+        Catch ex As Exception
+        End Try
+        If typ = "2" Then
+            TxtVolcomPros.EditValue = 100
+        Else
+            TxtVolcomPros.EditValue = 0
         End If
     End Sub
 End Class
