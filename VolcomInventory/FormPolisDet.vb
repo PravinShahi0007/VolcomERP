@@ -477,13 +477,16 @@ SELECT 2 AS id_pps_type,'Mandiri' AS pps_type"
                         If GVNilaiLainnya.RowCount > 0 Then
                             Dim q As String = ""
                             For i As Integer = 0 To GVNilaiLainnya.RowCount - 1
-                                q += "UPDATE tb_polis_pps_det SET nilai_fit_out='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_fit_out").ToString) & "'
-,nilai_building='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_building").ToString) & "'
-,nilai_peralatan='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_peralatan").ToString) & "'
-,nilai_public_liability='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_public_liability").ToString) & "'
-,nilai_total='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_total").ToString) & "'
-,v_start_date=IF(`id_pps_type`=2,DATE_ADD(old_end_date,INTERVAL 1 DAY),'" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "'),v_end_date=IF(`id_pps_type`=2,DATE_ADD(old_end_date,INTERVAL 1 YEAR),'" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
-WHERE id_polis_pps='" & id_pps & "' AND id_comp='" & GVNilaiLainnya.GetRowCellValue(i, "id_comp").ToString & "';"
+                                q += "UPDATE tb_polis_pps_det ppsd
+INNER JOIN
+tb_polis_pps pps ON pps.id_polis_pps=ppsd.id_polis_pps
+SET ppsd.nilai_fit_out='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_fit_out").ToString) & "'
+,ppsd.nilai_building='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_building").ToString) & "'
+,ppsd.nilai_peralatan='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_peralatan").ToString) & "'
+,ppsd.nilai_public_liability='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_public_liability").ToString) & "'
+,ppsd.nilai_total='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_total").ToString) & "'
+,ppsd.v_start_date=IF(pps.`id_pps_type`=2,DATE_ADD(ppsd.old_end_date,INTERVAL 1 DAY),'" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "'),ppsd.v_end_date=IF(pps.`id_pps_type`=2,DATE_ADD(ppsd.old_end_date,INTERVAL 1 YEAR),'" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+WHERE ppsd.id_polis_pps='" & id_pps & "' AND ppsd.id_comp='" & GVNilaiLainnya.GetRowCellValue(i, "id_comp").ToString & "';"
                             Next
                             execute_non_query(q, True, "", "", "", "")
                             q = "UPDATE tb_polis_pps SET step=3 WHERE id_polis_pps='" & id_pps & "'"

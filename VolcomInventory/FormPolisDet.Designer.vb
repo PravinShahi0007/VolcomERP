@@ -467,13 +467,13 @@ Partial Class FormPolisDet
         'GridColumn50
         '
         Me.GridColumn50.Caption = "ID"
-        Me.GridColumn50.FieldName = "id_polis_type"
+        Me.GridColumn50.FieldName = "id_desc_premi"
         Me.GridColumn50.Name = "GridColumn50"
         '
         'GridColumn52
         '
         Me.GridColumn52.Caption = "Type"
-        Me.GridColumn52.FieldName = "polis_type"
+        Me.GridColumn52.FieldName = "description"
         Me.GridColumn52.Name = "GridColumn52"
         Me.GridColumn52.Visible = True
         Me.GridColumn52.VisibleIndex = 0
