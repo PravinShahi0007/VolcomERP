@@ -115,4 +115,11 @@ GROUP BY ed.id_prepaid_expense ORDER BY e.id_prepaid_expense DESC "
     Private Sub BViewPayment_Click(sender As Object, e As EventArgs) Handles BViewPayment.Click
         viewData()
     End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        If GVData.RowCount > 0 Then
+            FormPrepaidExpenseDet.id = GVData.GetFocusedRowCellValue("id_prepaid_expense").ToString
+            FormPrepaidExpenseDet.ShowDialog()
+        End If
+    End Sub
 End Class

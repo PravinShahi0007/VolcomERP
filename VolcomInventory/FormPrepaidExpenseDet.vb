@@ -1215,4 +1215,15 @@ WHERE c.id_comp='" + id_comp + "' "
         allow_status()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = "349"
+        FormReportMark.id_report = id
+        FormReportMark.is_view = is_view
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        actionLoad()
+        Cursor = Cursors.Default
+    End Sub
 End Class
