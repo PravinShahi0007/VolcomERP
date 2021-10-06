@@ -54,7 +54,20 @@ WHERE pps.id_report_status=6 AND ISNULL(reg.id_polis_reg) AND pps.id_pps_type='1
                 Close()
             End If
         Else
-
+            If GVPolisPPS.RowCount > 0 Then
+                FormPolisReg.id_polis_pps = GVPolisPPS.GetFocusedRowCellValue("id_polis_pps").ToString
+                '
+                Dim id_reg As String = ""
+                Dim q As String = "INSERT INTO tb_polis_reg(id_polis_pps,created_date,created_by,id_report_status) VALUES(" & GVPolisPPS.GetFocusedRowCellValue("id_polis_pps").ToString & ",NOW(),'" & id_user & "',1); SELECT LAST_INSERT_ID(); "
+                id_reg = execute_query(q, 0, True, "", "", "", "")
+                '
+                q = "CALL gen_number('" & id_reg & "','309')"
+                execute_non_query(q, True, "", "", "", "")
+                '
+                FormPolisReg.id_reg = id_reg
+                '
+                Close()
+            End If
         End If
     End Sub
 

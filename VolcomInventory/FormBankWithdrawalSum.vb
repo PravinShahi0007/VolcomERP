@@ -145,13 +145,16 @@ INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_su
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count = 0 Then
             Dim qw As String = ""
+            Dim qs As String = ""
             If SLEType.EditValue.ToString = "1" Then
                 qw = " ISNULL(py.id_valas_bank) AND "
+                qs = " SUM(pyd.`value`) "
             Else
                 qw = " NOT ISNULL(py.id_valas_bank) AND "
+                qs = " SUM(pyd.`val_bef_kurs`)"
             End If
 
-            Dim q As String = "SELECT 'no' AS is_check,py.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS value ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment,1 AS id_pn_summary_type
+            Dim q As String = "SELECT 'no' AS is_check,py.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`," & qs & " AS value ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment,1 AS id_pn_summary_type
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
