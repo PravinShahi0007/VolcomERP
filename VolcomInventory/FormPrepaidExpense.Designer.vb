@@ -226,7 +226,7 @@ Partial Class FormPrepaidExpense
         Me.GridColumnCreatedByName.FieldName = "created_by_name"
         Me.GridColumnCreatedByName.Name = "GridColumnCreatedByName"
         Me.GridColumnCreatedByName.Visible = True
-        Me.GridColumnCreatedByName.VisibleIndex = 7
+        Me.GridColumnCreatedByName.VisibleIndex = 4
         Me.GridColumnCreatedByName.Width = 83
         '
         'GridColumnReortStt
@@ -235,7 +235,7 @@ Partial Class FormPrepaidExpense
         Me.GridColumnReortStt.FieldName = "report_status"
         Me.GridColumnReortStt.Name = "GridColumnReortStt"
         Me.GridColumnReortStt.Visible = True
-        Me.GridColumnReortStt.VisibleIndex = 8
+        Me.GridColumnReortStt.VisibleIndex = 5
         Me.GridColumnReortStt.Width = 83
         '
         'GridColumnPaidStt
@@ -244,7 +244,7 @@ Partial Class FormPrepaidExpense
         Me.GridColumnPaidStt.FieldName = "paid_status"
         Me.GridColumnPaidStt.Name = "GridColumnPaidStt"
         Me.GridColumnPaidStt.Visible = True
-        Me.GridColumnPaidStt.VisibleIndex = 9
+        Me.GridColumnPaidStt.VisibleIndex = 6
         Me.GridColumnPaidStt.Width = 83
         '
         'GridColumnBal
@@ -256,7 +256,7 @@ Partial Class FormPrepaidExpense
         Me.GridColumnBal.Name = "GridColumnBal"
         Me.GridColumnBal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N2}")})
         Me.GridColumnBal.Visible = True
-        Me.GridColumnBal.VisibleIndex = 11
+        Me.GridColumnBal.VisibleIndex = 8
         Me.GridColumnBal.Width = 83
         '
         'GridColumntotal
@@ -268,7 +268,7 @@ Partial Class FormPrepaidExpense
         Me.GridColumntotal.Name = "GridColumntotal"
         Me.GridColumntotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.GridColumntotal.Visible = True
-        Me.GridColumntotal.VisibleIndex = 10
+        Me.GridColumntotal.VisibleIndex = 7
         Me.GridColumntotal.Width = 88
         '
         'GridColumnIdComp
