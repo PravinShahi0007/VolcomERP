@@ -486,7 +486,7 @@ Partial Class FormPolisReg
         'BandedGridColumn14
         '
         Me.BandedGridColumn14.Caption = "Vendor Rekomendasi"
-        Me.BandedGridColumn14.FieldName = "vendor_rekomendasi"
+        Me.BandedGridColumn14.FieldName = "rekomendasi_vendor"
         Me.BandedGridColumn14.Name = "BandedGridColumn14"
         Me.BandedGridColumn14.Visible = True
         Me.BandedGridColumn14.Width = 117
@@ -494,7 +494,7 @@ Partial Class FormPolisReg
         'BandedGridColumn11
         '
         Me.BandedGridColumn11.Caption = "Vendor Yang dipilih"
-        Me.BandedGridColumn11.FieldName = "vendor"
+        Me.BandedGridColumn11.FieldName = "vendor_dipilih"
         Me.BandedGridColumn11.Name = "BandedGridColumn11"
         Me.BandedGridColumn11.Visible = True
         Me.BandedGridColumn11.Width = 107
