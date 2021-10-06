@@ -70,7 +70,6 @@ Partial Class FormPolisRegPop
         Me.TEPremi.Properties.Mask.EditMask = "N2"
         Me.TEPremi.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEPremi.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEPremi.Properties.ReadOnly = True
         Me.TEPremi.Size = New System.Drawing.Size(231, 20)
         Me.TEPremi.TabIndex = 3
         '

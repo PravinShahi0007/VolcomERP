@@ -10,12 +10,12 @@
             'kolektif
             load_kolektif()
             SLEPenawaran.Properties.ReadOnly = True
-            TEPremi.Enabled = True
+            TEPremi.Properties.ReadOnly = False
         Else
             'mandiri
             load_mandiri()
             SLEPenawaran.Properties.ReadOnly = False
-            TEPremi.Enabled = False
+            TEPremi.Properties.ReadOnly = True
         End If
     End Sub
 
