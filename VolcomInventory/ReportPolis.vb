@@ -1,6 +1,7 @@
 ﻿Public Class ReportPolis
-    Public Shared dt As DataTable
-    Public Shared id_pps As String = "-1"
+    Public dt As DataTable
+    Public dt_kolektif As DataTable
+    Public id_pps As String = "-1"
     Private Sub ReportPolis_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         'add column
         Dim font_rowhead_style As New Font(XTPolisPPS.Font.FontFamily, XTPolisPPS.Font.Size, FontStyle.Bold)
@@ -21,13 +22,13 @@
         Next
 
         'add column dipilih
-        XTPolisPPS.InsertColumnToRight(Nothing, True)
+        'XTPolisPPS.InsertColumnToRight(Nothing, True)
 
-        Dim cell_pilih As DevExpress.XtraReports.UI.XRTableCell = XRRowHead.Cells(j)
-        cell_pilih.Font = font_rowhead_style
-        cell_pilih.Text = "Vendor yang dipilih"
-        cell_pilih.Padding = XTPolisPPS.Padding
-        cell_pilih.TextAlignment = XTPolisPPS.TextAlignment
+        'Dim cell_pilih As DevExpress.XtraReports.UI.XRTableCell = XRRowHead.Cells(j)
+        'cell_pilih.Font = font_rowhead_style
+        'cell_pilih.Text = "Vendor yang dipilih"
+        'cell_pilih.Padding = XTPolisPPS.Padding
+        'cell_pilih.TextAlignment = XTPolisPPS.TextAlignment
 
         'detail
         Dim row_baru As DevExpress.XtraReports.UI.XRTableRow = XRRowHead
@@ -35,7 +36,43 @@
             insert_row(row_baru, dt, i)
         Next
 
+        If SubBandKolektif.Visible = True Then
+            'kolektif
+            Dim row_baru_kolektif As DevExpress.XtraReports.UI.XRTableRow = RowKolektif
+            For i = 0 To dt_kolektif.Rows.Count - 1
+                insert_row_kolektif(row_baru_kolektif, dt_kolektif, i)
+            Next
+        End If
+        '
         pre_load_mark_horz("307", id_pps, "2", "2", XRTableMark)
+    End Sub
+    '
+    Sub insert_row_kolektif(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)
+        Dim font_row_style As New Font(XTPolisPPS.Font.FontFamily, XTPolisPPS.Font.Size - 1, FontStyle.Regular)
+
+        row = XTKolektif.InsertRowBelow(row)
+        row.Borders = DevExpress.XtraPrinting.BorderSide.Bottom Or DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Top
+        row.BorderWidth = 1
+        row.HeightF = 15
+        row.Font = font_row_style
+
+        'No
+        Dim no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
+        no.Text = row_i + 1
+        no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        no.Font = font_row_style
+
+        'nama vendor
+        Dim nama_vendor As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
+        nama_vendor.Text = dt.Rows(row_i)("comp_name").ToString
+        nama_vendor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        nama_vendor.Font = font_row_style
+
+        'penawaran
+        Dim penawaran As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+        penawaran.Text = Decimal.Parse(dt.Rows(row_i)("price").ToString).ToString("N2")
+        penawaran.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        penawaran.Font = font_row_style
     End Sub
     '
     Sub insert_row(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)
@@ -144,9 +181,9 @@
         Next
 
         'vendor dipilih
-        Dim vendor As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(j)
-        vendor.Text = dt.Rows(row_i)("vendor").ToString
-        vendor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        vendor.Font = font_row_style
+        'Dim vendor As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(j)
+        'vendor.Text = dt.Rows(row_i)("vendor").ToString
+        'vendor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        'vendor.Font = font_row_style
     End Sub
 End Class
