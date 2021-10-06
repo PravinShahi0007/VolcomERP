@@ -495,6 +495,8 @@
         dt.Columns.Add("design_price", GetType(Decimal))
         dt.Columns.Add("tracking_code", GetType(String))
         dt.Columns.Add("shipment_provider", GetType(String))
+        dt.Columns.Add("vch_code", GetType(String))
+        dt.Columns.Add("vch_amo", GetType(String))
         dt.Columns.Add("status", GetType(String))
         dt.Columns.Add("updated_at", GetType(String))
 
@@ -535,22 +537,47 @@
             Dim json_det As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServerDet)
             If json_det("SuccessResponse")("Body")("OrderItems")("OrderItem").Count > 0 Then
                 Dim sku As String = ""
+                Dim vch_code As String = ""
+                Dim vch_amo As String = ""
 
                 If responseFromServerDet.Contains("""OrderItem"":[") Then
                     'array
                     For Each row_det In json_det("SuccessResponse")("Body")("OrderItems")("OrderItem").ToList
                         sku = ""
                         sku = getSKU(row_det("Sku").ToString.Substring(0, 9), row_det("Variation").ToString)
+
+                        vch_code = ""
+                        vch_amo = ""
+                        If row_det("Vouchers") <> "" Then
+                            vch_code = row_det("Vouchers")("Voucher")("code")
+                            Dim vch_amo_arr As String() = Split(row_det("Vouchers")("Voucher")("amount"), ".")
+                            vch_amo = decimalSQL(vch_amo_arr(0))
+                        Else
+                            vch_code = ""
+                            vch_amo = ""
+                        End If
+
                         If row_det("Status").ToString = "pending" Then
-                            dt.Rows.Add(row_det("ShopId").ToString, row_det("OrderItemId").ToString, sku, row_det("ShopSku").ToString, row_det("ItemPrice"), row_det("TrackingCode").ToString, row_det("ShipmentProvider").ToString, row_det("Status").ToString, row_det("UpdatedAt").ToString)
+                            dt.Rows.Add(row_det("ShopId").ToString, row_det("OrderItemId").ToString, sku, row_det("ShopSku").ToString, row_det("ItemPrice"), row_det("TrackingCode").ToString, row_det("ShipmentProvider").ToString, vch_code, vch_amo, row_det("Status").ToString, row_det("UpdatedAt").ToString)
                         End If
                     Next
                 Else
                     'non array
                     sku = ""
                     sku = getSKU(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Sku").ToString.Substring(0, 9), json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Variation").ToString)
+
+                    vch_code = ""
+                    vch_amo = ""
+                    If json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Vouchers") <> "" Then
+                        vch_code = json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Vouchers")("Voucher")("code")
+                        Dim vch_amo_arr As String() = Split(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Vouchers")("Voucher")("amount"), ".")
+                        vch_amo = decimalSQL(vch_amo_arr(0))
+                    Else
+                        vch_code = ""
+                        vch_amo = ""
+                    End If
                     If json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Status").ToString = "pending" Then
-                        dt.Rows.Add(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopId").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("OrderItemId").ToString, sku, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopSku").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ItemPrice"), json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("TrackingCode").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShipmentProvider").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Status").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("UpdatedAt").ToString)
+                        dt.Rows.Add(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopId").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("OrderItemId").ToString, sku, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopSku").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ItemPrice"), json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("TrackingCode").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShipmentProvider").ToString, vch_code, vch_amo, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Status").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("UpdatedAt").ToString)
                     End If
                 End If
             End If
