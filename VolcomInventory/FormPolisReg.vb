@@ -3,6 +3,9 @@
     Public id_reg As String = "-1"
 
     Private Sub FormPolisReg_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_pps_type()
+        load_polis_type()
+
         load_pps_view()
     End Sub
 
@@ -25,15 +28,19 @@ INNER JOIN tb_m_comp v ON v.`id_comp`=ppsd.`polis_vendor`"
             End If
         Else
             'head
-            Dim qh As String = "SELECT reg.*,emp.`employee_name` FROM `tb_polis_reg` reg
+            Dim qh As String = "SELECT reg.*,emp.`employee_name`,pps.id_pps_type,pps.id_desc_premi FROM `tb_polis_reg` reg
 INNER JOIN tb_m_user usr ON usr.`id_user`=reg.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_polis_pps pps ON pps.id_polis_pps=reg.id_polis_pps
 WHERE reg.id_polis_reg='" & id_reg & "'"
             Dim dth As DataTable = execute_query(qh, -1, True, "", "", "", "")
             If dth.Rows.Count > 0 Then
                 TENumber.Text = dth.Rows(0)("number").ToString
                 DECreatedDate.EditValue = dth.Rows(0)("created_date")
                 TECreatedBy.Text = dth.Rows(0)("employee_name").ToString
+                '
+                SLEPolisType.EditValue = dth.Rows(0)("id_desc_premi").ToString
+                SLEPPSType.EditValue = dth.Rows(0)("id_pps_type").ToString
                 '
                 If dth.Rows(0)("id_report_status").ToString = "6" Then
                     BtnSave.Visible = False
@@ -53,6 +60,18 @@ LEFT JOIN `tb_polis_reg_det` regd ON ppsd.`id_polis_pps_det`=regd.id_polis_pps_d
             GCSummary.DataSource = dt
             BGVSummary.BestFitColumns()
         End If
+    End Sub
+
+    Sub load_pps_type()
+        Dim q As String = "SELECT 1 AS id_pps_type,'Kolektif' AS pps_type
+UNION ALL
+SELECT 2 AS id_pps_type,'Mandiri' AS pps_type"
+        viewSearchLookupQuery(SLEPPSType, q, "id_pps_type", "pps_type", "id_pps_type")
+    End Sub
+
+    Sub load_polis_type()
+        Dim q As String = "SELECT id_desc_premi,description FROM tb_lookup_desc_premi WHERE is_active=1"
+        viewSearchLookupQuery(SLEPolisType, q, "id_desc_premi", "description", "id_desc_premi")
     End Sub
 
     Private Sub RegisterToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RegisterToolStripMenuItem.Click
