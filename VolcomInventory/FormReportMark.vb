@@ -732,6 +732,9 @@
         ElseIf report_mark_type = "351" Then
             'proposal promo zalora
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_promo_zalora WHERE id_promo_zalora = '{0}'", id_report)
+        ElseIf report_mark_type = "352" Then
+            'proposal promo zalora - rekon
+            query = String.Format("SELECT id_report_status_recon AS `id_report_status`, number as report_number FROM tb_promo_zalora WHERE id_promo_zalora = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -10732,6 +10735,14 @@ WHERE id_acc_trans='" & old_id_acc_trans & "'"
                 id_status_reportx = "6"
             End If
             query = String.Format("UPDATE tb_promo_zalora SET id_report_status = '{0}' WHERE id_promo_zalora = '{1}'", id_status_reportx, id_report)
+
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "352" Then
+            'proposal promo zalora - rekon
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+            query = String.Format("UPDATE tb_promo_zalora SET id_report_status_recon = '{0}' WHERE id_promo_zalora = '{1}'", id_status_reportx, id_report)
 
             execute_non_query(query, True, "", "", "", "")
         End If

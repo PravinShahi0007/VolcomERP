@@ -20,8 +20,8 @@ Partial Class FormPromoZaloraDet
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPromoZaloraDet))
-        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue2 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
+        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue1 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Me.XTCPromoZalora = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPProposal = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCProduct = New DevExpress.XtraTab.XtraTabControl()
@@ -576,21 +576,23 @@ Partial Class FormPromoZaloraDet
         'GVRecon
         '
         Me.GVRecon.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumnis_app_zalora_view, Me.GridColumnis_app_zalora_view_raw, Me.GridColumnis_app_zalora})
-        GridFormatRule2.ApplyToRow = True
-        GridFormatRule2.Name = "Format0"
-        FormatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.DimGray
-        FormatConditionRuleValue2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        FormatConditionRuleValue2.Appearance.ForeColor = System.Drawing.Color.White
-        FormatConditionRuleValue2.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue2.Appearance.Options.UseFont = True
-        FormatConditionRuleValue2.Appearance.Options.UseForeColor = True
-        FormatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue2.Expression = "Iif([is_app_zalora] = 2, True, False)"
-        GridFormatRule2.Rule = FormatConditionRuleValue2
-        Me.GVRecon.FormatRules.Add(GridFormatRule2)
+        GridFormatRule1.ApplyToRow = True
+        GridFormatRule1.Name = "Format0"
+        FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.DimGray
+        FormatConditionRuleValue1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        FormatConditionRuleValue1.Appearance.ForeColor = System.Drawing.Color.White
+        FormatConditionRuleValue1.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue1.Appearance.Options.UseFont = True
+        FormatConditionRuleValue1.Appearance.Options.UseForeColor = True
+        FormatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Expression
+        FormatConditionRuleValue1.Expression = "Iif([is_app_zalora_view] = 'No', True, False)"
+        GridFormatRule1.Rule = FormatConditionRuleValue1
+        Me.GVRecon.FormatRules.Add(GridFormatRule1)
         Me.GVRecon.GridControl = Me.GCRecon
         Me.GVRecon.Name = "GVRecon"
         Me.GVRecon.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVRecon.OptionsFind.AlwaysVisible = True
+        Me.GVRecon.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVRecon.OptionsView.ColumnAutoWidth = False
         Me.GVRecon.OptionsView.ShowFooter = True
         Me.GVRecon.OptionsView.ShowGroupPanel = False
@@ -753,6 +755,7 @@ Partial Class FormPromoZaloraDet
         Me.GridColumnis_app_zalora_view_raw.Caption = "Approved by Zalora"
         Me.GridColumnis_app_zalora_view_raw.FieldName = "is_app_zalora_view"
         Me.GridColumnis_app_zalora_view_raw.Name = "GridColumnis_app_zalora_view_raw"
+        Me.GridColumnis_app_zalora_view_raw.OptionsColumn.AllowEdit = False
         '
         'GridColumnis_app_zalora
         '
@@ -840,7 +843,8 @@ Partial Class FormPromoZaloraDet
         '
         'TxtCreatedByRecon
         '
-        Me.TxtCreatedByRecon.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtCreatedByRecon.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtCreatedByRecon.Enabled = False
         Me.TxtCreatedByRecon.Location = New System.Drawing.Point(336, 14)
         Me.TxtCreatedByRecon.Name = "TxtCreatedByRecon"
@@ -985,7 +989,7 @@ Partial Class FormPromoZaloraDet
         Me.TxtVolcomPros.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TxtVolcomPros.Properties.Mask.EditMask = "N2"
         Me.TxtVolcomPros.Properties.MaxValue = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.TxtVolcomPros.Size = New System.Drawing.Size(272, 20)
+        Me.TxtVolcomPros.Size = New System.Drawing.Size(383, 20)
         Me.TxtVolcomPros.TabIndex = 8928
         '
         'TxtDiscountValue
@@ -1054,11 +1058,11 @@ Partial Class FormPromoZaloraDet
         '
         'TxtPromoName
         '
-        Me.TxtPromoName.Location = New System.Drawing.Point(124, 14)
+        Me.TxtPromoName.Location = New System.Drawing.Point(210, 14)
         Me.TxtPromoName.Name = "TxtPromoName"
         Me.TxtPromoName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtPromoName.Properties.Appearance.Options.UseFont = True
-        Me.TxtPromoName.Size = New System.Drawing.Size(272, 20)
+        Me.TxtPromoName.Size = New System.Drawing.Size(297, 20)
         Me.TxtPromoName.TabIndex = 160
         '
         'LabelControl6
@@ -1094,7 +1098,7 @@ Partial Class FormPromoZaloraDet
         Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
         Me.DEEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEEnd.Properties.Mask.EditMask = "dd-MM-yyyy/HH:mm"
-        Me.DEEnd.Size = New System.Drawing.Size(272, 20)
+        Me.DEEnd.Size = New System.Drawing.Size(383, 20)
         Me.DEEnd.TabIndex = 156
         '
         'DEStart
@@ -1112,7 +1116,7 @@ Partial Class FormPromoZaloraDet
         Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
         Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEStart.Properties.Mask.EditMask = "dd-MM-yyyy/HH:mm"
-        Me.DEStart.Size = New System.Drawing.Size(272, 20)
+        Me.DEStart.Size = New System.Drawing.Size(383, 20)
         Me.DEStart.TabIndex = 155
         '
         'LabelControl5
@@ -1127,7 +1131,7 @@ Partial Class FormPromoZaloraDet
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(32, 17)
+        Me.LabelControl3.Location = New System.Drawing.Point(144, 17)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(60, 13)
         Me.LabelControl3.TabIndex = 153
@@ -1139,7 +1143,7 @@ Partial Class FormPromoZaloraDet
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MENote.Properties.Appearance.Options.UseFont = True
-        Me.MENote.Size = New System.Drawing.Size(272, 41)
+        Me.MENote.Size = New System.Drawing.Size(383, 41)
         Me.MENote.TabIndex = 151
         Me.MENote.TabStop = False
         '
@@ -1165,7 +1169,7 @@ Partial Class FormPromoZaloraDet
         '
         'TxtNumber
         '
-        Me.TxtNumber.EditValue = "PZ00001"
+        Me.TxtNumber.EditValue = ""
         Me.TxtNumber.Location = New System.Drawing.Point(83, 10)
         Me.TxtNumber.Name = "TxtNumber"
         Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))

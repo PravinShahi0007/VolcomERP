@@ -8,11 +8,16 @@
     Dim is_confirm_recon As String = "-1"
     Dim rmt_propose As String = "351"
     Dim rmt_recon As String = "352"
-    Dim id_menu As String = "1" '1=>propose; 2=>rekon
+    Public id_menu As String = "1" '1=>propose; 2=>rekon
 
     Private Sub FormPromoZaloraDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        For Each t As DevExpress.XtraTab.XtraTabPage In XTCPromoZalora.TabPages
+            XTCPromoZalora.SelectedTabPage = t
+        Next t
+        XTCPromoZalora.SelectedTabPage = XTCPromoZalora.TabPages(0)
+
         viewReportStatus()
-        actionLoad
+        actionLoad()
     End Sub
 
     Sub viewReportStatus()
@@ -88,7 +93,7 @@
 
                 DECreatedRecon.EditValue = data.Rows(0)("recon_created_date")
                 TxtCreatedByRecon.Text = data.Rows(0)("recon_created_by_name").ToString
-                LEReportStatusRecon.ItemIndex = LEReportStatusRecon.Properties.GetDataSourceRowIndex("id_report_status_recon", data.Rows(0)("id_report_status_recon").ToString)
+                LEReportStatusRecon.ItemIndex = LEReportStatusRecon.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status_recon").ToString)
                 id_report_status_recon = data.Rows(0)("id_report_status_recon").ToString
                 is_confirm_recon = data.Rows(0)("is_confirm_recon").ToString
 
@@ -107,7 +112,7 @@
         If Not checkHead() Then
             warningCustom("Please input all data")
         Else
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to create new propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to create New propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 saveHead()
             End If
@@ -129,7 +134,7 @@
         Dim discount_code As String = addSlashes(TxtDiscountCode.Text)
         Dim discount_value As String = decimalSQL(TxtDiscountValue.EditValue.ToString)
         Dim volcom_pros As String = decimalSQL(TxtVolcomPros.EditValue.ToString)
-        Dim start_period As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
+        Dim start_period As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd HH: mm:ss")
         Dim end_period As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
         Dim propose_note As String = addSlashes(MENote.Text)
 
@@ -222,8 +227,8 @@
         WHERE pd.id_promo_zalora=" + id + " 
         ORDER BY `class` ASC, `name` ASC, `code` ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCItemPropose.DataSource = data
-        GVtemPropose.BestFitColumns()
+        GCRecon.DataSource = data
+        GVRecon.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
@@ -296,11 +301,15 @@
             BtnMarkRecon.Visible = False
             BtnPrintRecon.Visible = False
             MENoteRecon.Enabled = True
+            GridColumnis_app_zalora_view.VisibleIndex = 0
+            GridColumnis_app_zalora_view_raw.Visible = False
         Else
             BtnConfirmRecon.Visible = False
             BtnMarkRecon.Visible = True
             BtnPrintRecon.Visible = True
             MENoteRecon.Enabled = False
+            GridColumnis_app_zalora_view.Visible = False
+            GridColumnis_app_zalora_view_raw.VisibleIndex = 20
         End If
 
         'reset propose
@@ -316,6 +325,8 @@
             BtnResetProposeRecon.Visible = False
             BtnConfirmRecon.Visible = False
             MENoteRecon.Enabled = False
+            GridColumnis_app_zalora_view.Visible = False
+            GridColumnis_app_zalora_view_raw.VisibleIndex = 20
         End If
     End Sub
 
@@ -395,8 +406,8 @@
 
     Private Sub BtnResetPropose_Click(sender As Object, e As EventArgs) Handles BtnResetPropose.Click
         'reset propose
-        Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=" + rmt_propose + " AND rm.id_report_status=2 
-        AND rm.is_requisite=2 AND rm.id_mark=2 AND rm.id_report=" + id + " "
+        Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=" + rmt_propose + " AND rm.id_report_status=3 
+        AND rm.id_mark=2 AND rm.id_report=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count = 0 Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset approval and you can update this propose. Are you sure you want to reset this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -446,76 +457,72 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        If Not check_allow_print(id_report_status, rmt_propose, id) Then
-            warningCustom("Can't print, please complete all approval on system first")
+        Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = GVtemPropose
+        ReportPromoZalora.dt = GCItemPropose.DataSource
+        ReportPromoZalora.id = id
+        If id_report_status <> "6" Then
+            ReportPromoZalora.is_pre = "1"
         Else
-            Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = GVtemPropose
-            ReportPromoZalora.dt = GCItemPropose.DataSource
-            ReportPromoZalora.id = id
-            If id_report_status <> "6" Then
-                ReportPromoZalora.is_pre = "1"
-            Else
-                ReportPromoZalora.is_pre = "-1"
-            End If
-            ReportPromoZalora.id_report_status = LEReportStatus.EditValue.ToString
-            ReportPromoZalora.rmt = rmt_propose
-
-            Dim Report As New ReportPromoZalora()
-            '... 
-            ' creating And saving the view's layout to a new memory stream 
-            Dim str As System.IO.Stream
-            str = New System.IO.MemoryStream()
-            gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
-            Report.GVtemPropose.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
-
-            'style
-            Report.GVtemPropose.OptionsPrint.UsePrintStyles = True
-            Report.GVtemPropose.AppearancePrint.FilterPanel.BackColor = Color.Transparent
-            Report.GVtemPropose.AppearancePrint.FilterPanel.ForeColor = Color.Black
-            Report.GVtemPropose.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 8, FontStyle.Regular)
-
-            Report.GVtemPropose.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
-            Report.GVtemPropose.AppearancePrint.GroupFooter.ForeColor = Color.Black
-            Report.GVtemPropose.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 8, FontStyle.Bold)
-
-            Report.GVtemPropose.AppearancePrint.GroupRow.BackColor = Color.Transparent
-            Report.GVtemPropose.AppearancePrint.GroupRow.ForeColor = Color.Black
-            Report.GVtemPropose.AppearancePrint.GroupRow.Font = New Font("Tahoma", 8, FontStyle.Bold)
-
-
-            Report.GVtemPropose.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
-            Report.GVtemPropose.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-            Report.GVtemPropose.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 8, FontStyle.Bold)
-
-            Report.GVtemPropose.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
-            Report.GVtemPropose.AppearancePrint.FooterPanel.ForeColor = Color.Black
-            Report.GVtemPropose.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 8.3, FontStyle.Bold)
-
-            Report.GVtemPropose.AppearancePrint.Row.Font = New Font("Tahoma", 8.3, FontStyle.Regular)
-
-            Report.GVtemPropose.OptionsPrint.ExpandAllDetails = True
-            Report.GVtemPropose.OptionsPrint.UsePrintStyles = True
-            Report.GVtemPropose.OptionsPrint.PrintDetails = True
-            Report.GVtemPropose.OptionsPrint.PrintFooter = True
-
-            Report.LabelNumber.Text = TxtNumber.Text.ToUpper
-            Report.LabelPromoName.Text = TxtPromoName.Text.ToUpper
-            Report.LabelDiscountCode.Text = TxtDiscountCode.Text
-            Report.LabelDiscountValue.Text = TxtDiscountValue.Text
-            Report.LabelVolcomCharge.Text = TxtVolcomPros.Text
-            Report.LabelStartPeriod.Text = DEStart.Text.ToUpper
-            Report.LabelEndPeriod.Text = DEEnd.Text.ToUpper
-            Report.LabelDate.Text = DECreated.Text.ToUpper
-            Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
-            Report.LNote.Text = MENote.Text.ToUpper
-
-
-            ' Show the report's preview. 
-            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            Tool.ShowPreviewDialog()
+            ReportPromoZalora.is_pre = "-1"
         End If
+        ReportPromoZalora.id_report_status = LEReportStatus.EditValue.ToString
+        ReportPromoZalora.rmt = rmt_propose
+
+        Dim Report As New ReportPromoZalora()
+        '... 
+        ' creating And saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVtemPropose.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'style
+        Report.GVtemPropose.OptionsPrint.UsePrintStyles = True
+        Report.GVtemPropose.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+        Report.GVtemPropose.AppearancePrint.FilterPanel.ForeColor = Color.Black
+        Report.GVtemPropose.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 8, FontStyle.Regular)
+
+        Report.GVtemPropose.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+        Report.GVtemPropose.AppearancePrint.GroupFooter.ForeColor = Color.Black
+        Report.GVtemPropose.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+        Report.GVtemPropose.AppearancePrint.GroupRow.BackColor = Color.Transparent
+        Report.GVtemPropose.AppearancePrint.GroupRow.ForeColor = Color.Black
+        Report.GVtemPropose.AppearancePrint.GroupRow.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+
+        Report.GVtemPropose.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+        Report.GVtemPropose.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+        Report.GVtemPropose.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+        Report.GVtemPropose.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+        Report.GVtemPropose.AppearancePrint.FooterPanel.ForeColor = Color.Black
+        Report.GVtemPropose.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 8.3, FontStyle.Bold)
+
+        Report.GVtemPropose.AppearancePrint.Row.Font = New Font("Tahoma", 8.3, FontStyle.Regular)
+
+        Report.GVtemPropose.OptionsPrint.ExpandAllDetails = True
+        Report.GVtemPropose.OptionsPrint.UsePrintStyles = True
+        Report.GVtemPropose.OptionsPrint.PrintDetails = True
+        Report.GVtemPropose.OptionsPrint.PrintFooter = True
+
+        Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+        Report.LabelPromoName.Text = TxtPromoName.Text.ToUpper
+        Report.LabelDiscountCode.Text = TxtDiscountCode.Text
+        Report.LabelDiscountValue.Text = TxtDiscountValue.Text
+        Report.LabelVolcomCharge.Text = TxtVolcomPros.Text
+        Report.LabelStartPeriod.Text = DEStart.Text.ToUpper
+        Report.LabelEndPeriod.Text = DEEnd.Text.ToUpper
+        Report.LabelDate.Text = DECreated.Text.ToUpper
+        Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+        Report.LNote.Text = MENote.Text.ToUpper
+
+
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
     End Sub
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
@@ -551,6 +558,19 @@
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this Propose  ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
+            'update product
+            GVRecon.ActiveFilterString = ""
+            For i As Integer = 0 To GVRecon.RowCount - 1
+                Dim id_promo_zalora_det As String = GVRecon.GetRowCellValue(i, "id_promo_zalora_det").ToString
+                Dim is_app_zalora As String = ""
+                If GVRecon.GetRowCellValue(i, "is_app_zalora_view").ToString = "Yes" Then
+                    is_app_zalora = "1"
+                Else
+                    is_app_zalora = "2"
+                End If
+                execute_non_query("UPDATE tb_promo_zalora_det SET is_app_zalora='" + is_app_zalora + "' WHERE id_promo_zalora_det='" + id_promo_zalora_det + "' ", True, "", "", "", "")
+            Next
+
             'update confirm
             Dim query As String = "UPDATE tb_promo_zalora SET is_confirm_recon=1,recon_created_date=NOW(), recon_created_by='" + id_user + "', id_report_status_recon='1', rmt_recon='" + rmt_recon + "', recon_note='" + addSlashes(MENoteRecon.text) + "'  WHERE id_promo_zalora='" + id + "'"
             execute_non_query(query, True, "", "", "", "")
@@ -559,8 +579,131 @@
             submit_who_prepared(rmt_recon, id, id_user)
             BtnConfirmRecon.Visible = False
             actionLoad()
+            XTCPromoZalora.SelectedTabPageIndex = 1
             infoCustom("Propose submitted. Waiting for approval.")
             Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnResetProposeRecon_Click(sender As Object, e As EventArgs) Handles BtnResetProposeRecon.Click
+        'reset propose
+        Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=" + rmt_recon + " AND rm.id_report_status=3 
+        AND rm.id_mark=2 AND rm.id_report=" + id + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count = 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset approval and you can update this propose. Are you sure you want to reset this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query_upd As String = "-- delete report mark
+                DELETE FROM tb_report_mark WHERE report_mark_type=" + rmt_recon + " AND id_report=" + id + "; 
+                -- reset confirm
+                UPDATE tb_promo_zalora SET is_confirm_recon=2,id_report_status_recon=1,recon_created_date=NULL, recon_created_by=NULL, rmt_recon=NULL WHERE id_promo_zalora=" + id + "; 
+                UPDATE tb_promo_zalora_det SET is_app_zalora=1 WHERE id_promo_zalora='" + id + "'; "
+                execute_non_query(query_upd, True, "", "", "", "")
+
+                'refresh
+                refreshMainview()
+                actionLoad()
+                XTCPromoZalora.SelectedTabPageIndex = 1
+            End If
+        Else
+            stopCustom("This propose already process")
+        End If
+    End Sub
+
+    Private Sub BtnAttachmentRecon_Click(sender As Object, e As EventArgs) Handles BtnAttachmentRecon.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = rmt_recon
+        FormDocumentUpload.id_report = id
+        If is_view = "1" Or id_report_status = "6" Or id_report_status = "5" Or is_confirm = "1" Then
+            FormDocumentUpload.is_no_delete = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrintRecon_Click(sender As Object, e As EventArgs) Handles BtnPrintRecon.Click
+        Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = GVRecon
+        ReportPromoZalora.dt = GCRecon.DataSource
+        ReportPromoZalora.id = id
+        If id_report_status_recon <> "6" Then
+            ReportPromoZalora.is_pre = "1"
+        Else
+            ReportPromoZalora.is_pre = "-1"
+        End If
+        ReportPromoZalora.id_report_status = LEReportStatus.EditValue.ToString
+        ReportPromoZalora.rmt = rmt_recon
+
+        Dim Report As New ReportPromoZalora()
+        '... 
+        ' creating And saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVtemPropose.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'style
+        Report.GVtemPropose.OptionsPrint.UsePrintStyles = True
+        Report.GVtemPropose.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+        Report.GVtemPropose.AppearancePrint.FilterPanel.ForeColor = Color.Black
+        Report.GVtemPropose.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 8, FontStyle.Regular)
+
+        Report.GVtemPropose.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
+        Report.GVtemPropose.AppearancePrint.GroupFooter.ForeColor = Color.Black
+        Report.GVtemPropose.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+        Report.GVtemPropose.AppearancePrint.GroupRow.BackColor = Color.Transparent
+        Report.GVtemPropose.AppearancePrint.GroupRow.ForeColor = Color.Black
+        Report.GVtemPropose.AppearancePrint.GroupRow.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+
+        Report.GVtemPropose.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+        Report.GVtemPropose.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+        Report.GVtemPropose.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 8, FontStyle.Bold)
+
+        Report.GVtemPropose.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
+        Report.GVtemPropose.AppearancePrint.FooterPanel.ForeColor = Color.Black
+        Report.GVtemPropose.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 8.3, FontStyle.Bold)
+
+        Report.GVtemPropose.AppearancePrint.Row.Font = New Font("Tahoma", 8.3, FontStyle.Regular)
+
+        Report.GVtemPropose.OptionsPrint.ExpandAllDetails = True
+        Report.GVtemPropose.OptionsPrint.UsePrintStyles = True
+        Report.GVtemPropose.OptionsPrint.PrintDetails = True
+        Report.GVtemPropose.OptionsPrint.PrintFooter = True
+
+        Report.LabelTitle.Text = "REKONSILIASI ITEM PROMO ZALORA"
+        Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+        Report.LabelPromoName.Text = TxtPromoName.Text.ToUpper
+        Report.LabelDiscountCode.Text = TxtDiscountCode.Text
+        Report.LabelDiscountValue.Text = TxtDiscountValue.Text
+        Report.LabelVolcomCharge.Text = TxtVolcomPros.Text
+        Report.LabelStartPeriod.Text = DEStart.Text.ToUpper
+        Report.LabelEndPeriod.Text = DEEnd.Text.ToUpper
+        Report.LabelDate.Text = DECreatedRecon.Text.ToUpper
+        Report.LabelStatus.Text = LEReportStatusRecon.Text.ToUpper
+        Report.LNote.Text = MENoteRecon.Text.ToUpper
+
+
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+    End Sub
+
+    Private Sub BtnMarkRecon_Click(sender As Object, e As EventArgs) Handles BtnMarkRecon.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = rmt_recon
+        FormReportMark.id_report = id
+        FormReportMark.is_view = is_view
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVRecon_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVRecon.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
 End Class
