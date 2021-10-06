@@ -3,7 +3,8 @@
         If XtraTabControl1.SelectedTabPageIndex = 0 Then
             load_pps()
         Else
-
+            load_pps_kolektif()
+            load_kolektif()
         End If
     End Sub
 
@@ -39,6 +40,7 @@ WHERE pps.id_report_status=6 AND ISNULL(reg.id_polis_reg) AND pps.id_pps_type='1
 
     Private Sub BPick_Click(sender As Object, e As EventArgs) Handles BPick.Click
         If XtraTabControl1.SelectedTabPageIndex = 0 Then
+            'mandiri
             If GVPolisPPS.RowCount > 0 Then
                 FormPolisReg.id_polis_pps = GVPolisPPS.GetFocusedRowCellValue("id_polis_pps").ToString
                 '
@@ -48,12 +50,21 @@ WHERE pps.id_report_status=6 AND ISNULL(reg.id_polis_reg) AND pps.id_pps_type='1
                 '
                 q = "CALL gen_number('" & id_reg & "','309')"
                 execute_non_query(q, True, "", "", "", "")
+
+                'mandiri perlu vendor dan nomor polis
+                'add details
+                q = "INSERT INTO `tb_polis_reg_det`(`id_polis_reg`,`id_polis_pps_det`,`rekomendasi_vendor`,`rekomendasi_premi`,`vendor_dipilih`,`premi`,`polis_number`,`id_desc_premi`)
+SELECT '" & id_reg & "' AS id_polis_reg,ppsd.id_polis_pps_det,ppsd.`polis_vendor` AS rekomendasi_vendor,ppsd.`premi` AS rekomendasi_premi,ppsd.`polis_vendor` AS vendor_dipilih,ppsd.`premi` AS premi,'' AS polis_number,pps.`id_desc_premi`
+FROM `tb_polis_pps_det` ppsd
+INNER JOIN tb_polis_pps pps ON pps.`id_polis_pps`=ppsd.`id_polis_pps`
+WHERE ppsd.id_polis_pps='" & GVPolisPPS.GetFocusedRowCellValue("id_polis_pps").ToString & "'"
                 '
                 FormPolisReg.id_reg = id_reg
                 '
                 Close()
             End If
         Else
+            'kolektif
             If GVPolisPPS.RowCount > 0 Then
                 FormPolisReg.id_polis_pps = GVPolisPPS.GetFocusedRowCellValue("id_polis_pps").ToString
                 '
@@ -64,6 +75,15 @@ WHERE pps.id_report_status=6 AND ISNULL(reg.id_polis_reg) AND pps.id_pps_type='1
                 q = "CALL gen_number('" & id_reg & "','309')"
                 execute_non_query(q, True, "", "", "", "")
                 '
+                'kolektif perlu premi
+                'add details
+                q = "INSERT INTO `tb_polis_reg_det`(`id_polis_reg`,`id_polis_pps_det`,`rekomendasi_vendor`,`rekomendasi_premi`,`vendor_dipilih`,`premi`,`polis_number`,`id_desc_premi`)
+SELECT '" & id_reg & "' AS id_polis_reg,ppsd.id_polis_pps_det,(SELECT id_vendor FROM  `tb_polis_pps_kolektif` WHERE is_recommended=1 AND id_polis_pps='" & GVPolisPPS.GetFocusedRowCellValue("id_polis_pps").ToString & "' LIMIT 1) AS rekomendasi_vendor,0 AS rekomendasi_premi,'" & SLEPenawaran.EditValue.ToString & "' AS vendor_dipilih,0 AS premi,'" & addSlashes(TENomorPolis.Text) & "' AS polis_number,pps.`id_desc_premi`
+FROM `tb_polis_pps_det` ppsd
+INNER JOIN tb_polis_pps pps ON pps.`id_polis_pps`=ppsd.`id_polis_pps`
+WHERE ppsd.id_polis_pps='" & GVPolisPPS.GetFocusedRowCellValue("id_polis_pps").ToString & "'"
+                '
+
                 FormPolisReg.id_reg = id_reg
                 '
                 Close()
