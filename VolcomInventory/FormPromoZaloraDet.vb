@@ -45,8 +45,8 @@
         If action = "ins" Then
             'option
             BtnCreateNew.Visible = True
-            Width = 441
-            Height = 294
+            Width = 617
+            Height = 263
             WindowState = FormWindowState.Normal
             MaximizeBox = False
             FormBorderStyle = FormBorderStyle.FixedDialog
@@ -118,6 +118,8 @@
     Private Sub BtnCreateNew_Click(sender As Object, e As EventArgs) Handles BtnCreateNew.Click
         If Not checkHead() Then
             warningCustom("Please input all data")
+        ElseIf Not checkDiscCode Then
+            warningCustom("Discount code : " + TxtDiscountCode.Text + " already exist")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to create New propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -134,20 +136,31 @@
         End If
     End Function
 
+    Function checkDiscCode()
+        Dim query As String = "SELECT * FROM tb_promo_zalora p WHERE p.id_report_status!=5 AND p.id_promo_zalora!='" + id + "' AND p.discount_code='" + addSlashes(TxtDiscountCode.Text) + "' "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
+
 
     Sub saveHead()
         Cursor = Cursors.WaitCursor
+        Dim id_promo_zalora_type As String = LEType.EditValue.ToString
         Dim promo_name As String = addSlashes(TxtPromoName.Text)
         Dim discount_code As String = addSlashes(TxtDiscountCode.Text)
         Dim discount_value As String = decimalSQL(TxtDiscountValue.EditValue.ToString)
         Dim volcom_pros As String = decimalSQL(TxtVolcomPros.EditValue.ToString)
-        Dim start_period As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd HH: mm:ss")
+        Dim start_period As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
         Dim end_period As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd HH:mm:ss")
         Dim propose_note As String = addSlashes(MENote.Text)
 
         If action = "ins" Then
-            Dim query As String = "INSERT INTO tb_promo_zalora(`promo_name`,`discount_code` ,`discount_value`,`volcom_pros`,`start_period`,`end_period` ,`propose_created_date`,`propose_created_by`,`id_report_status`,`rmt_propose`,`propose_note`)
-            VALUES ('" + promo_name + "','" + discount_code + "' ,'" + discount_value + "','" + volcom_pros + "','" + start_period + "','" + end_period + "' ,NOW(),'" + id_user + "','1','" + rmt_propose + "','" + propose_note + "'); SELECT LAST_INSERT_ID(); "
+            Dim query As String = "INSERT INTO tb_promo_zalora(`id_promo_zalora_type`,`promo_name`,`discount_code` ,`discount_value`,`volcom_pros`,`start_period`,`end_period` ,`propose_created_date`,`propose_created_by`,`id_report_status`,`rmt_propose`,`propose_note`)
+            VALUES ('" + id_promo_zalora_type + "','" + promo_name + "','" + discount_code + "' ,'" + discount_value + "','" + volcom_pros + "','" + start_period + "','" + end_period + "' ,NOW(),'" + id_user + "','1','" + rmt_propose + "','" + propose_note + "'); SELECT LAST_INSERT_ID(); "
             id = execute_query(query, 0, True, "", "", "", "")
 
             'gen number
@@ -157,13 +170,14 @@
             FormPromoZalora.is_load_new = True
             Close()
         ElseIf action = "upd" Then
-            Dim query As String = "UPDATE tb_promo_zalora p SET promo_name='" + promo_name + "', 
+            Dim query As String = "UPDATE tb_promo_zalora p SET id_promo_zalora_type='" + id_promo_zalora_type + "',promo_name='" + promo_name + "', 
             discount_code='" + discount_code + "', discount_value='" + discount_value + "', volcom_pros='" + volcom_pros + "',
             start_period='" + start_period + "',  end_period='" + end_period + "', propose_note='" + propose_note + "'
             WHERE p.id_promo_zalora='" + id + "' "
             execute_non_query(query, True, "", "", "", "")
             refreshMainview()
             actionLoad()
+            infoCustom("Save success")
         End If
         Cursor = Cursors.Default
     End Sub
@@ -255,8 +269,13 @@
             TxtPromoName.Enabled = True
             TxtDiscountCode.Enabled = True
             TxtDiscountValue.Enabled = True
-            TxtVolcomPros.Enabled = True
+            If LEType.EditValue.ToString = "1" Then
+                TxtVolcomPros.Enabled = True
+            Else
+                TxtVolcomPros.Enabled = False
+            End If
             BtnImportExcel.Visible = True
+            LEType.Enabled = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -271,6 +290,7 @@
             TxtDiscountValue.Enabled = False
             TxtVolcomPros.Enabled = False
             BtnImportExcel.Visible = False
+            LEType.Enabled = False
         End If
 
         'reset propose
@@ -298,6 +318,7 @@
             TxtDiscountValue.Enabled = False
             TxtVolcomPros.Enabled = False
             BtnImportExcel.Visible = False
+            LEType.Enabled = False
         End If
     End Sub
 
@@ -382,6 +403,8 @@
             stopCustom("No propose were made. If you want to cancel this propose, please click 'Cancel Propose'")
         ElseIf Not checkHead() Then
             stopCustom("Please complete all data")
+        ElseIf Not checkDiscCode Then
+            stopCustom("Discount code : " + TxtDiscountCode.Text + " already exist")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this Propose  ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -404,10 +427,12 @@
     End Sub
 
     Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
-        If checkHead() Then
+        If checkHead() And checkDiscCode() Then
             saveHead()
-        Else
+        ElseIf Not checkHead() Then
             stopCustom("Please complete all data")
+        ElseIf Not checkDiscCode() Then
+            stopCustom("Discount code : " + TxtDiscountCode.Text + " already exist")
         End If
     End Sub
 
@@ -716,15 +741,19 @@
     End Sub
 
     Private Sub LEType_EditValueChanged(sender As Object, e As EventArgs) Handles LEType.EditValueChanged
-        Dim typ As String = "-1"
-        Try
-            typ = LEType.EditValue.ToString
-        Catch ex As Exception
-        End Try
-        If typ = "2" Then
-            TxtVolcomPros.EditValue = 100
-        Else
-            TxtVolcomPros.EditValue = 0
+        If is_confirm <> "1" Then
+            Dim typ As String = "-1"
+            Try
+                typ = LEType.EditValue.ToString
+            Catch ex As Exception
+            End Try
+            If typ = "2" Then
+                TxtVolcomPros.EditValue = 100
+                TxtVolcomPros.Enabled = False
+            Else
+                TxtVolcomPros.EditValue = 0
+                TxtVolcomPros.Enabled = True
+            End If
         End If
     End Sub
 End Class

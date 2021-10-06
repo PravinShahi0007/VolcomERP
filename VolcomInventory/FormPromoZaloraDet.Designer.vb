@@ -1037,7 +1037,7 @@ Partial Class FormPromoZaloraDet
         Me.BtnCreateNew.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
         Me.BtnCreateNew.Location = New System.Drawing.Point(20, 197)
         Me.BtnCreateNew.Name = "BtnCreateNew"
-        Me.BtnCreateNew.Size = New System.Drawing.Size(628, 25)
+        Me.BtnCreateNew.Size = New System.Drawing.Size(626, 25)
         Me.BtnCreateNew.TabIndex = 8926
         Me.BtnCreateNew.Text = "Create New"
         Me.BtnCreateNew.Visible = False
@@ -1175,9 +1175,9 @@ Partial Class FormPromoZaloraDet
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.TxtNumber)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(648, 2)
+        Me.PanelControl1.Location = New System.Drawing.Point(646, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(249, 220)
+        Me.PanelControl1.Size = New System.Drawing.Size(251, 220)
         Me.PanelControl1.TabIndex = 4
         '
         'LabelControl2
