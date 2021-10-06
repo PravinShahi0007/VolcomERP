@@ -712,9 +712,11 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'
 GROUP BY ppsd.`id_comp`"
             Dim dth As DataTable = execute_query(qh, -1, True, "", "", "", "")
 
-            ReportPolis.dt = dth
-            ReportPolis.id_pps = id_pps
             Dim Report As New ReportPolis()
+            Report.dt_kolektif = GCPenawaranKolektif.DataSource
+            Report.dt = dth
+            Report.id_pps = id_pps
+            Report.SubBandKolektif.Visible = True
             '
             Dim q As String = "SELECT premi.description,DATE_FORMAT(pps.created_date,'%d %M %Y') AS created_date,emp.employee_name AS created_by,YEAR(pps.created_date) AS this_year,number FROM tb_polis_pps pps
 INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
@@ -728,9 +730,9 @@ WHERE pps.id_polis_pps='" & id_pps & "'"
             Tool.ShowPreviewDialog()
         Else
             'mandiri
-            ReportPolis.dt = GCPenawaran.DataSource
-            ReportPolis.id_pps = id_pps
             Dim Report As New ReportPolis()
+            Report.dt = GCPenawaran.DataSource
+            Report.id_pps = id_pps
             '
             Dim q As String = "SELECT premi.description,DATE_FORMAT(pps.created_date,'%d %M %Y') AS created_date,emp.employee_name AS created_by,YEAR(pps.created_date) AS this_year,number FROM tb_polis_pps pps
 INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
@@ -739,6 +741,7 @@ INNER JOIN tb_lookup_desc_premi premi ON premi.id_desc_premi=pps.id_desc_premi
 WHERE pps.id_polis_pps='" & id_pps & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             Report.DataSource = dt
+            Report.SubBandKolektif.Visible = False
             '
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreviewDialog()
