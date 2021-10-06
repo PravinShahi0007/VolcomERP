@@ -50,7 +50,6 @@
                                 newRow("inv_number") = GVList.GetRowCellValue(i, "inv_number").ToString
                                 newRow("note") = GVList.GetRowCellValue(i, "note").ToString
                                 TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
-
                             Else
                                 Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
                                 newRow("id_prod_order") = "0"

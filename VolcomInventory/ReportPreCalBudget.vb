@@ -344,7 +344,7 @@ ORDER BY `id_pre_cal_temp` ASC"
 
         For i = 0 To dt_orign.Rows.Count - 1
             If i = 0 Then
-                insert_header(row_baru, "ORIGN CHARGES :", "sub")
+                insert_header(row_baru, "ORIGIN CHARGES :", "sub")
             End If
             insert_row(row_baru, dt_orign, i)
             total_orign += dt_orign.Rows(i)("total_in_rp")

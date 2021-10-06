@@ -9423,6 +9423,12 @@
     <Compile Include="ReportPreCalReport.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPreCalStorage.Designer.vb">
+      <DependentUpon>ReportPreCalStorage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPreCalStorage.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPrepaidExpense.Designer.vb">
       <DependentUpon>ReportPrepaidExpense.vb</DependentUpon>
     </Compile>
@@ -15273,6 +15279,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPreCalReport.resx">
       <DependentUpon>ReportPreCalReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPreCalStorage.resx">
+      <DependentUpon>ReportPreCalStorage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPrepaidExpense.resx">
       <DependentUpon>ReportPrepaidExpense.vb</DependentUpon>

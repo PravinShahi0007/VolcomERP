@@ -351,7 +351,7 @@ Partial Public Class ReportPreCalReport
         'XrTableCell10
         '
         Me.XrTableCell10.Name = "XrTableCell10"
-        Me.XrTableCell10.Text = "Fob"
+        Me.XrTableCell10.Text = "FOB"
         Me.XrTableCell10.Weight = 0.64384148714559142R
         '
         'XrTableCell11
@@ -1344,7 +1344,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell115.Borders = DevExpress.XtraPrinting.BorderSide.Left
         Me.XrTableCell115.Name = "XrTableCell115"
         Me.XrTableCell115.StylePriority.UseBorders = False
-        Me.XrTableCell115.Text = "BBM"
+        Me.XrTableCell115.Text = "Bea Masuk"
         Me.XrTableCell115.Weight = 1.0R
         '
         'XrTableCell131

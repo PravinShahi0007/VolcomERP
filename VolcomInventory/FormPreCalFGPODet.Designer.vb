@@ -160,6 +160,7 @@ Partial Class FormPreCalFGPODet
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.BUpdateReason = New DevExpress.XtraEditors.SimpleButton()
         Me.PCPickVendor = New DevExpress.XtraEditors.PanelControl()
+        Me.BStorageCalculation = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrintDutyBefore = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrintBudgetBefore = New DevExpress.XtraEditors.SimpleButton()
         Me.BNextPickVendor = New DevExpress.XtraEditors.SimpleButton()
@@ -208,6 +209,7 @@ Partial Class FormPreCalFGPODet
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TECTN = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrintStorage2 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1885,6 +1887,7 @@ Partial Class FormPreCalFGPODet
         '
         'PCPickVendor
         '
+        Me.PCPickVendor.Controls.Add(Me.BStorageCalculation)
         Me.PCPickVendor.Controls.Add(Me.BPrintDutyBefore)
         Me.PCPickVendor.Controls.Add(Me.BPrintBudgetBefore)
         Me.PCPickVendor.Controls.Add(Me.BNextPickVendor)
@@ -1894,6 +1897,25 @@ Partial Class FormPreCalFGPODet
         Me.PCPickVendor.Name = "PCPickVendor"
         Me.PCPickVendor.Size = New System.Drawing.Size(1016, 42)
         Me.PCPickVendor.TabIndex = 7
+        '
+        'BStorageCalculation
+        '
+        Me.BStorageCalculation.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BStorageCalculation.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BStorageCalculation.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BStorageCalculation.Appearance.Options.UseBackColor = True
+        Me.BStorageCalculation.Appearance.Options.UseFont = True
+        Me.BStorageCalculation.Appearance.Options.UseForeColor = True
+        Me.BStorageCalculation.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BStorageCalculation.Location = New System.Drawing.Point(506, 2)
+        Me.BStorageCalculation.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BStorageCalculation.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BStorageCalculation.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BStorageCalculation.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BStorageCalculation.Name = "BStorageCalculation"
+        Me.BStorageCalculation.Size = New System.Drawing.Size(127, 38)
+        Me.BStorageCalculation.TabIndex = 25
+        Me.BStorageCalculation.Text = "Print Storage"
         '
         'BPrintDutyBefore
         '
@@ -2386,6 +2408,7 @@ Partial Class FormPreCalFGPODet
         '
         'PanelControl8
         '
+        Me.PanelControl8.Controls.Add(Me.BPrintStorage2)
         Me.PanelControl8.Controls.Add(Me.BMark)
         Me.PanelControl8.Controls.Add(Me.BPrintDuty)
         Me.PanelControl8.Controls.Add(Me.BPrintBudget2)
@@ -2545,6 +2568,25 @@ Partial Class FormPreCalFGPODet
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Size = New System.Drawing.Size(1022, 42)
         Me.PanelControl6.TabIndex = 157
+        '
+        'BPrintStorage2
+        '
+        Me.BPrintStorage2.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BPrintStorage2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BPrintStorage2.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BPrintStorage2.Appearance.Options.UseBackColor = True
+        Me.BPrintStorage2.Appearance.Options.UseFont = True
+        Me.BPrintStorage2.Appearance.Options.UseForeColor = True
+        Me.BPrintStorage2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrintStorage2.Location = New System.Drawing.Point(633, 2)
+        Me.BPrintStorage2.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BPrintStorage2.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BPrintStorage2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BPrintStorage2.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BPrintStorage2.Name = "BPrintStorage2"
+        Me.BPrintStorage2.Size = New System.Drawing.Size(127, 38)
+        Me.BPrintStorage2.TabIndex = 26
+        Me.BPrintStorage2.Text = "Print Storage"
         '
         'FormPreCalFGPODet
         '
@@ -2850,4 +2892,6 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents GridColumn69 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BUpdateDuty As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPrintDutyBefore As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BStorageCalculation As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrintStorage2 As DevExpress.XtraEditors.SimpleButton
 End Class

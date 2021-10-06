@@ -140,7 +140,7 @@
         Dim view_bap As String = execute_query("
             SELECT COUNT(*) 
             FROM tb_st_store_period
-            WHERE (schedule_end < DATE(NOW()) OR (is_stop_scan = 1 AND stop_scan_date <= NOW())) AND id_st_store_period = " + id_period + "
+            WHERE (schedule_end < NOW() OR (is_stop_scan = 1 AND stop_scan_date <= NOW())) AND id_st_store_period = " + id_period + "
         ", 0, True, "", "", "", "")
 
         If view_bap = "0" Then
