@@ -729,6 +729,9 @@
         ElseIf report_mark_type = "348" Then
             'surat ijin
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_st_store_propose WHERE id_st_store_propose = '{0}'", id_report)
+        ElseIf report_mark_type = "349" Then
+            'prepaid expense
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_prepaid_expense WHERE id_prepaid_expense = '{0}'", id_report)
         ElseIf report_mark_type = "351" Then
             'proposal promo zalora
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_promo_zalora WHERE id_promo_zalora = '{0}'", id_report)
@@ -10619,7 +10622,7 @@ WHERE qci.id_qc_sni_in='" & id_report & "'"
                 id_status_reportx = "6"
             End If
 
-            Dim id_report_now As String = execute_query("SELECT id_report_status FROM tb_item_expense WHERE id_prepaid_expense='" & id_report & "'", 0, True, "", "", "", "")
+            Dim id_report_now As String = execute_query("SELECT id_report_status FROM tb_prepaid_expense WHERE id_prepaid_expense='" & id_report & "'", 0, True, "", "", "", "")
 
             'update
             query = String.Format("UPDATE tb_prepaid_expense SET id_report_status='{0}' WHERE id_prepaid_expense ='{1}'", id_status_reportx, id_report)
@@ -10635,7 +10638,7 @@ WHERE qci.id_qc_sni_in='" & id_report & "'"
                 Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
                 Dim report_number As String = du.Rows(0)("report_number").ToString
 
-                Dim qe As String = "SELECT created_date,date_reff FROM tb_item_expense WHERE id_item_expense='" & id_report & "'"
+                Dim qe As String = "SELECT created_date,date_reff FROM tb_prepaid_expense WHERE id_prepaid_expense='" & id_report & "'"
                 Dim de As DataTable = execute_query(qe, -1, True, "", "", "", "")
                 Dim date_reff As String = Date.Parse(de.Rows(0)("date_reff").ToString).ToString("yyyy-MM-dd")
 
@@ -10659,7 +10662,7 @@ WHERE id_acc_trans='" & old_id_acc_trans & "'"
                 Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
                 Dim report_number As String = du.Rows(0)("report_number").ToString
 
-                Dim qe As String = "SELECT created_date,date_reff FROM tb_prepaid_expense WHERE id_item_expense='" & id_report & "'"
+                Dim qe As String = "SELECT created_date,date_reff FROM tb_prepaid_expense WHERE id_prepaid_expense='" & id_report & "'"
                 Dim de As DataTable = execute_query(qe, -1, True, "", "", "", "")
                 Dim date_reff As String = Date.Parse(de.Rows(0)("date_reff").ToString).ToString("yyyy-MM-dd")
 
@@ -10725,8 +10728,6 @@ WHERE id_acc_trans='" & old_id_acc_trans & "'"
             'refresh view
             'Try
             'FormItemExpenseDet.actionLoad()
-            'FormItemExpense.viewData()
-            'FormItemExpense.GVData.FocusedRowHandle = find_row(FormItemExpense.GVData, "id_item_expense", id_report)
             'Catch ex As Exception
             'End Try
         ElseIf report_mark_type = "351" Then
