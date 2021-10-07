@@ -58,8 +58,10 @@ SELECT '" & id_reg & "' AS id_polis_reg,ppsd.id_polis_pps_det,ppsd.`polis_vendor
 FROM `tb_polis_pps_det` ppsd
 INNER JOIN tb_polis_pps pps ON pps.`id_polis_pps`=ppsd.`id_polis_pps`
 WHERE ppsd.id_polis_pps='" & GVPolisPPS.GetFocusedRowCellValue("id_polis_pps").ToString & "'"
+                execute_non_query(q, True, "", "", "", "")
                 '
                 FormPolisReg.id_reg = id_reg
+                FormPolisReg.load_pps_view()
                 '
                 Close()
             End If
@@ -85,6 +87,7 @@ WHERE ppsd.id_polis_pps='" & GVPPSKolektif.GetFocusedRowCellValue("id_polis_pps"
                 execute_non_query(q, True, "", "", "", "")
                 '
                 FormPolisReg.id_reg = id_reg
+                FormPolisReg.load_pps_view()
                 '
                 Close()
             End If

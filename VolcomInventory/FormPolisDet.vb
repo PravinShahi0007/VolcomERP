@@ -485,7 +485,7 @@ SET ppsd.nilai_fit_out='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_
 ,ppsd.nilai_peralatan='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_peralatan").ToString) & "'
 ,ppsd.nilai_public_liability='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_public_liability").ToString) & "'
 ,ppsd.nilai_total='" & decimalSQL(GVNilaiLainnya.GetRowCellValue(i, "nilai_total").ToString) & "'
-,ppsd.v_start_date=IF(pps.`id_pps_type`=2,DATE_ADD(ppsd.old_end_date,INTERVAL 1 DAY),'" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "'),ppsd.v_end_date=IF(pps.`id_pps_type`=2,DATE_ADD(ppsd.old_end_date,INTERVAL 1 YEAR),'" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+,ppsd.v_start_date=IF(pps.`id_pps_type`=2,DATE_ADD(ppsd.old_end_date,INTERVAL 1 DAY),'" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "'),ppsd.v_end_date=IF(pps.`id_pps_type`=2,DATE_ADD(DATE_ADD(ppsd.old_end_date,INTERVAL 1 YEAR),INTERVAL 1 DAY),'" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
 WHERE ppsd.id_polis_pps='" & id_pps & "' AND ppsd.id_comp='" & GVNilaiLainnya.GetRowCellValue(i, "id_comp").ToString & "';"
                             Next
                             execute_non_query(q, True, "", "", "", "")

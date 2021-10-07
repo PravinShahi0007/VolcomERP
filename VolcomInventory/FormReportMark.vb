@@ -684,6 +684,9 @@
         ElseIf report_mark_type = "307" Then
             'polis
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_polis_pps WHERE id_polis_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "309" Then
+            'polis reg
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_polis_reg WHERE id_polis_reg = '{0}'", id_report)
         ElseIf report_mark_type = "310" Then
             'verification invoice 3pl WH
             query = String.Format("SELECT id_report_status, inv_number as report_number FROM tb_awb_inv_sum WHERE id_awb_inv_sum = '{0}'", id_report)
@@ -10184,6 +10187,37 @@ WHERE pps.id_product_weight_pps='" & id_report & "'"
 
             'update status
             query = String.Format("UPDATE tb_polis_pps SET id_report_status='{0}' WHERE id_polis_pps ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "309" Then
+            'polis
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                Dim ql As String = "SELECT regd.id_polis_reg_det,ppsd.`id_polis_pps_det`,ppsd.id_comp,regd.`id_desc_premi`,regd.`premi` AS premi_pps,regd.`polis_number`,regd.vendor_dipilih
+,ppsd.v_start_date,ppsd.v_end_date,ppsd.`nilai_stock`,ppsd.`nilai_fit_out`,ppsd.`nilai_building`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`,ppsd.`nilai_total`
+FROM tb_polis_reg_det regd
+INNER JOIN tb_polis_pps_det ppsd ON regd.`id_polis_pps_det`=ppsd.`id_polis_pps_det`
+WHERE regd.id_polis_reg='" & id_report & "'
+GROUP BY regd.`id_polis_pps_det`"
+                Dim dtl As DataTable = execute_query(ql, -1, True, "", "", "", "")
+
+                For i = 0 To dtl.Rows.Count - 1
+                    Dim qu As String = "UPDATE tb_polis SET is_active='2' WHERE id_reff='" & dtl.Rows(i)("id_comp").ToString & "' AND id_desc_premi='" & dtl.Rows(i)("id_desc_premi").ToString & "'"
+                    execute_non_query(qu, True, "", "", "", "")
+                    '
+                    qu = "INSERT INTO tb_polis(`id_polis_cat`,`id_polis_by`,`id_reff`,`start_date`,`end_date`,`nilai_stock`,`nilai_fit_out`,`nilai_building`,`nilai_peralatan`,`nilai_public_liability`,`nilai_total`,id_desc_premi,premi,number,`is_active`)
+SELECT 1 AS id_polis_cat,regd.vendor_dipilih,ppsd.id_comp,ppsd.v_start_date,ppsd.v_end_date,ppsd.`nilai_stock`,ppsd.`nilai_fit_out`,ppsd.`nilai_building`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`,ppsd.`nilai_total`,regd.id_desc_premi,regd.premi,regd.polis_number,1 AS is_active
+FROM tb_polis_reg_det regd
+INNER JOIN tb_polis_pps_det ppsd ON regd.`id_polis_pps_det`=ppsd.`id_polis_pps_det`
+WHERE regd.id_polis_reg_det='" & dtl.Rows(i)("id_polis_reg_det").ToString & "' "
+                    execute_non_query(qu, True, "", "", "", "")
+                Next
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_polis_reg SET id_report_status='{0}' WHERE id_polis_reg ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         ElseIf report_mark_type = "310" Then
             'invoice verification
