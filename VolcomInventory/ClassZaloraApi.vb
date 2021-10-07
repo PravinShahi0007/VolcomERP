@@ -548,18 +548,18 @@
 
                         vch_code = ""
                         vch_amo = ""
-                        If row_det("Vouchers") <> "" Then
-                            vch_code = row_det("Vouchers")("Voucher")("code")
-                            Dim vch_amo_arr As String() = Split(row_det("Vouchers")("Voucher")("amount"), ".")
-                            vch_amo = decimalSQL(vch_amo_arr(0))
+                        If row_det("Vouchers").ToString <> "" Then
+                            vch_code = row_det("Vouchers")("Voucher")("Code").ToString
+                            Dim vch_amo_arr As String() = Split(row_det("Vouchers")("Voucher")("Amount").ToString, ".")
+                            vch_amo = decimalSQL(vch_amo_arr(0)).Replace(",", "")
                         Else
                             vch_code = ""
-                            vch_amo = ""
+                            vch_amo = "0"
                         End If
 
-                        If row_det("Status").ToString = "pending" Then
-                            dt.Rows.Add(row_det("ShopId").ToString, row_det("OrderItemId").ToString, sku, row_det("ShopSku").ToString, row_det("ItemPrice"), row_det("TrackingCode").ToString, row_det("ShipmentProvider").ToString, vch_code, vch_amo, row_det("Status").ToString, row_det("UpdatedAt").ToString)
-                        End If
+                        'If row_det("Status").ToString = "pending" Then
+                        dt.Rows.Add(row_det("ShopId").ToString, row_det("OrderItemId").ToString, sku, row_det("ShopSku").ToString, row_det("ItemPrice"), row_det("TrackingCode").ToString, row_det("ShipmentProvider").ToString, vch_code, vch_amo, row_det("Status").ToString, row_det("UpdatedAt").ToString)
+                        'End If
                     Next
                 Else
                     'non array
@@ -568,17 +568,17 @@
 
                     vch_code = ""
                     vch_amo = ""
-                    If json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Vouchers") <> "" Then
-                        vch_code = json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Vouchers")("Voucher")("code")
-                        Dim vch_amo_arr As String() = Split(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Vouchers")("Voucher")("amount"), ".")
-                        vch_amo = decimalSQL(vch_amo_arr(0))
+                    If json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Vouchers").ToString <> "" Then
+                        vch_code = json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Vouchers")("Voucher")("Code").ToString
+                        Dim vch_amo_arr As String() = Split(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Vouchers")("Voucher")("Amount").ToString, ".")
+                        vch_amo = decimalSQL(vch_amo_arr(0)).Replace(",", "")
                     Else
                         vch_code = ""
-                        vch_amo = ""
+                        vch_amo = "0"
                     End If
-                    If json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Status").ToString = "pending" Then
-                        dt.Rows.Add(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopId").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("OrderItemId").ToString, sku, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopSku").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ItemPrice"), json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("TrackingCode").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShipmentProvider").ToString, vch_code, vch_amo, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Status").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("UpdatedAt").ToString)
-                    End If
+                    'If json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Status").ToString = "pending" Then
+                    dt.Rows.Add(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopId").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("OrderItemId").ToString, sku, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopSku").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ItemPrice"), json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("TrackingCode").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShipmentProvider").ToString, vch_code, vch_amo, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Status").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("UpdatedAt").ToString)
+                    'End If
                 End If
             End If
         End Using
