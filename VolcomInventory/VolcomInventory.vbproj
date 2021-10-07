@@ -3798,6 +3798,12 @@
     <Compile Include="FormPrepaidExpenseDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPrepaidExpensePolis.Designer.vb">
+      <DependentUpon>FormPrepaidExpensePolis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPrepaidExpensePolis.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPriceChecker.Designer.vb">
       <DependentUpon>FormPriceChecker.vb</DependentUpon>
     </Compile>
@@ -12019,6 +12025,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrepaidExpenseDet.resx">
       <DependentUpon>FormPrepaidExpenseDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrepaidExpensePolis.resx">
+      <DependentUpon>FormPrepaidExpensePolis.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPriceChecker.resx">
       <DependentUpon>FormPriceChecker.vb</DependentUpon>

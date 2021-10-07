@@ -8,6 +8,8 @@
 
     Dim created_date As String = ""
 
+    Public id_polis_reg As String = "-1"
+
     Private Sub FormPrepaidExpenseDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -33,7 +35,67 @@
         actionLoad()
         '
         GridColumnPPH.UnboundExpression = "Iif([id_acc_pph] = " & get_opt_acc_field("id_acc_skbp") & ", 0, floor([pph_percent] / 100 * [amount]))"
+        '
+        If Not id_polis_reg = "-1" Then
 
+            TEInvNo.Text = addSlashes(FormPrepaidExpensePolis.TEInvNumber.Text)
+            id_comp = FormPrepaidExpensePolis.id_comp
+            TxtCompNumber.Text = get_company_x(FormPrepaidExpensePolis.id_comp, "2")
+            TxtCompName.Text = get_company_x(FormPrepaidExpensePolis.id_comp, "1")
+
+            Dim qg As String = "SELECT c.id_comp,ppsd.v_start_date,TIMESTAMPDIFF(MONTH, ppsd.v_start_date, ppsd.v_end_date) AS month_dif,regd.id_polis_reg_det,reg.`number`,regd.polis_number,regd.premi AS val
+FROM `tb_polis_reg_det` regd
+INNER JOIN tb_polis_pps_det ppsd ON ppsd.id_polis_pps_det=regd.id_polis_pps_det
+INNER JOIN tb_polis_reg reg ON reg.`id_polis_reg`=regd.id_polis_reg
+INNER JOIN tb_m_comp c ON c.id_comp=regd.vendor_dipilih
+WHERE reg.id_polis_reg='" & id_polis_reg & "' AND regd.vendor_dipilih='" & FormPrepaidExpensePolis.id_comp & "' AND regd.polis_number='" & addSlashes(FormPrepaidExpensePolis.TEInvNumber.Text) & "' "
+            Dim dtg As DataTable = execute_query(qg, -1, True, "", "", "", "")
+
+            If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
+            End If
+
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Generating from polis register..")
+
+            For i = 0 To dtg.Rows.Count - 1
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Processing prepaid expense " & i + 1 & " of " & (dtg.Rows.Count) & "  ")
+
+                'insert 1 by 1
+                GVData.AddNewRow()
+                GVData.FocusedRowHandle = GVData.RowCount - 1
+
+                GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc", dtg.Rows(i)("id_acc").ToString)
+
+                'If dth.Rows(0)("id_type").ToString = "2" Then
+                '    '2246 acc WH id_acc
+                '    GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc", "2246")
+                'Else
+
+                'End If
+
+                GVData.SetRowCellValue(GVData.RowCount - 1, "id_expense_type", "1")
+                GVData.SetRowCellValue(GVData.RowCount - 1, "id_b_expense", "2638")
+                GVData.SetRowCellValue(GVData.RowCount - 1, "cc", dtg.Rows(i)("id_comp").ToString)
+                '
+                GVData.SetRowCellValue(GVData.RowCount - 1, "start_date", DECreated.EditValue)
+                GVData.SetRowCellValue(GVData.RowCount - 1, "qty_month", "2")
+                GVData.SetRowCellValue(GVData.RowCount - 1, "description", FormPrepaidExpensePolis.TEDesc.Text)
+                GVData.SetRowCellValue(GVData.RowCount - 1, "amount", dtg.Rows(i)("val"))
+                GVData.SetRowCellValue(GVData.RowCount - 1, "tax_percent", FormPrepaidExpensePolis.TEPPN3PLInv.EditValue)
+                '
+                GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc_pph", FormPrepaidExpensePolis.SLEPPH3PLInv.EditValue.ToString)
+                GVData.SetRowCellValue(GVData.RowCount - 1, "pph_percent", FormPrepaidExpensePolis.TEPPH3PLInv.EditValue)
+                '
+                GVData.SetRowCellValue(GVData.RowCount - 1, "amount_before", dtg.Rows(i)("val"))
+                GVData.SetRowCellValue(GVData.RowCount - 1, "kurs", 1)
+                GVData.SetRowCellValue(GVData.RowCount - 1, "id_currency", 1)
+
+                'GVData.SetRowCellValue(GVData.RowCount - 1, "is_lock", "yes")
+                '
+            Next
+            FormMain.SplashScreenManager1.CloseWaitForm()
+            GVData.BestFitColumns()
+        End If
     End Sub
 
     Private Sub BtnBrowse_Click(sender As Object, e As EventArgs) Handles BtnBrowse.Click
