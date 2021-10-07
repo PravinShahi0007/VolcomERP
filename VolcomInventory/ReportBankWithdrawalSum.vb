@@ -2,7 +2,7 @@
     Public Shared id_sum As String = "-1"
 
     Private Sub ReportBankWithdrawalSum_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
-        Dim query_head As String = "SELECT ct.coa_type,pns.`id_pn_summary`,kb.nama_bank,bnk.bank_no,bnk.bank_attn,pns.number,DATE_FORMAT(pns.`date_payment`,'%d %M %Y') as date_payment,DATE_FORMAT(pns.`created_date`,'%d %M %Y') AS created_date,emp.`employee_name`, cur.`id_currency`,cur.`currency`,SUM(pnd.`val_bef_kurs`) AS val_bef_kurs, pns.note
+        Dim query_head As String = "SELECT ct.coa_type,pns.`id_pn_summary`,kb.nama_bank,bnk.bank_no,bnk.bank_attn,pns.number,DATE_FORMAT(pns.`date_payment`,'%d %M %Y') as date_payment,DATE_FORMAT(pns.`created_date`,'%d %M %Y') AS created_date,emp.`employee_name`, cur.`id_currency`,cur.`currency`,SUM(IF(pns.id_currency=1,IFNULL(pnd.`value`,0),IFNULL(pnd.`val_bef_kurs`,0))) AS val_bef_kurs, pns.note
 FROM tb_pn_summary pns
 INNER JOIN tb_coa_type ct ON ct.id_coa_type=pns.id_coa_type
 INNER JOIN tb_pn_summary_det pnsd ON pnsd.id_pn_summary=pns.id_pn_summary AND pnsd.id_pn_summary_type=1
@@ -28,7 +28,16 @@ WHERE pns.`id_pn_summary`='" & id_sum & "' GROUP BY pns.`id_pn_summary` "
         'detail
         Dim font_row_style As New Font("Segoe UI", 8, FontStyle.Regular)
         '
-        Dim q As String = "SELECT 'no' AS is_check,py.number,sts.report_status,emp.employee_name AS created_by, py.date_created, py.`id_pn`,SUM(pyd.`val_bef_kurs`) AS `value` ,c.`comp_name`,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment,tot.val_total
+        Dim qh As String = ""
+        Dim qt As String = ""
+        If data_head.Rows(0)("id_currency").ToString = "1" Then
+            qh = "SUM(pyd.`value`)"
+            qt = "SUM(value)"
+        Else
+            qh = "SUM(pyd.`val_bef_kurs`)"
+            qt = "SUM(val_bef_kurs)"
+        End If
+        Dim q As String = "SELECT 'no' AS is_check,py.number,sts.report_status,emp.employee_name AS created_by, py.date_created, py.`id_pn`," & qh & " AS `value` ,c.`comp_name`,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment,tot.val_total
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -40,7 +49,7 @@ INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_stat
 INNER JOIN tb_pn_det pyd ON pyd.id_pn=py.id_pn AND pyd.`id_currency`='" & data_head.Rows(0)("id_currency").ToString & "' AND pyd.`is_include_total`=1
 INNER JOIN tb_a_acc acc ON acc.id_acc=pyd.id_acc AND acc.is_no_summary=2
 LEFT JOIN 
-( SELECT id_pn,SUM(val_bef_kurs) as val_total FROM tb_pn_det WHERE `id_currency`='" & data_head.Rows(0)("id_currency").ToString & "' AND `is_include_total`=1 GROUP BY id_pn)
+( SELECT id_pn," & qt & " as val_total FROM tb_pn_det WHERE `id_currency`='" & data_head.Rows(0)("id_currency").ToString & "' AND `is_include_total`=1 GROUP BY id_pn)
 tot ON tot.id_pn=py.id_pn
 INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_summary`='" & id_sum & "' AND pnsd.id_pn_summary_type='1'"
 
