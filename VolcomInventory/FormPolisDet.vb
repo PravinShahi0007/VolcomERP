@@ -589,9 +589,31 @@ WHERE ppsd.id_polis_pps='" & id_pps & "' AND ppsd.id_comp='" & GVNilaiLainnya.Ge
     Sub save_draft_penawaran_kolektif()
         If GVPenawaranKolektif.RowCount > 0 Then
             For i As Integer = 0 To GVPenawaranKolektif.RowCount - 1
-                Dim q As String = "UPDATE tb_polis_pps_kolektif SET price='" & decimalSQL(Decimal.Parse(GVPenawaranKolektif.GetRowCellValue(i, "price").ToString).ToString) & "' WHERE id_polis_pps='" & id_pps & "' AND id_vendor='" & GVPenawaranKolektif.GetRowCellValue(i, "id_vendor").ToString & "'"
-                execute_non_query(q, True, "", "", "", "")
+                Dim qa As String = "UPDATE tb_polis_pps_kolektif SET price='" & decimalSQL(Decimal.Parse(GVPenawaranKolektif.GetRowCellValue(i, "price").ToString).ToString) & "' WHERE id_polis_pps='" & id_pps & "' AND id_vendor='" & GVPenawaranKolektif.GetRowCellValue(i, "id_vendor").ToString & "'"
+                execute_non_query(qa, True, "", "", "", "")
+
+
             Next
+
+            Dim q As String = "UPDATE tb_polis_pps_kolektif SET is_recommended=2 WHERE id_polis_pps='" & id_pps & "'"
+            execute_non_query(q, True, "", "", "", "")
+            q = "UPDATE `tb_polis_pps_kolektif` ppsd
+INNER JOIN
+(
+	SELECT ppsv.id_polis_pps_kolektif,ppsv.price FROM
+	`tb_polis_pps_kolektif` ppsv
+	INNER JOIN
+	(
+		SELECT id_polis_pps,MIN(price) AS price 
+		FROM tb_polis_pps_kolektif ppsv
+		WHERE price > 0 AND ppsv.`id_polis_pps`='" & id_pps & "'
+		GROUP BY id_polis_pps
+	)minv ON minv.id_polis_pps=ppsv.id_polis_pps AND minv.price=ppsv.price
+	LIMIT 1
+)bestv ON bestv.id_polis_pps_kolektif=ppsd.id_polis_pps_kolektif
+SET ppsd.is_recommended=1
+WHERE ppsd.`id_polis_pps`='" & id_pps & "'"
+            execute_non_query(q, True, "", "", "", "")
         End If
     End Sub
 
@@ -611,10 +633,29 @@ WHERE ppsd.id_polis_pps='" & id_pps & "' AND ppsd.id_comp='" & GVNilaiLainnya.Ge
             Next
             execute_non_query(q, True, "", "", "", "")
             '
-            q = "UPDATE tb_polis_pps_det ppsd
-        INNER JOIN tb_polis_pps_vendor ppsv ON ppsd.polis_vendor=ppsv.id_vendor AND ppsd.id_polis_pps=ppsv.id_polis_pps AND ppsd.id_comp=ppsv.id_comp
-        SET ppsd.premi=ppsv.price
-        WHERE ppsd.id_polis_pps='" & id_pps & "'"
+
+            '    q = "UPDATE tb_polis_pps_det ppsd
+            'INNER JOIN tb_polis_pps_vendor ppsv ON ppsd.polis_vendor=ppsv.id_vendor AND ppsd.id_polis_pps=ppsv.id_polis_pps AND ppsd.id_comp=ppsv.id_comp
+            'SET ppsd.premi=ppsv.price
+            'WHERE ppsd.id_polis_pps='" & id_pps & "'"
+            '    execute_non_query(q, True, "", "", "", "")
+
+            'set rekomendasi
+            q = "UPDATE `tb_polis_pps_det` ppsd
+INNER JOIN
+(
+	SELECT ppsv.id_polis_pps,ppsv.id_comp,ppsv.id_vendor,ppsv.price FROM
+	tb_polis_pps_vendor ppsv
+	INNER JOIN
+	(
+		SELECT id_polis_pps,id_comp,MIN(price) AS price 
+		FROM tb_polis_pps_vendor ppsv
+		WHERE price > 0 AND ppsv.`id_polis_pps`='" & id_pps & "'
+		GROUP BY id_polis_pps,id_comp
+	)minv ON minv.id_polis_pps=ppsv.id_polis_pps AND minv.price=ppsv.price AND minv.id_comp=ppsv.id_comp
+)bestv ON bestv.id_polis_pps=ppsd.id_polis_pps AND ppsd.id_comp=bestv.id_comp 
+SET ppsd.polis_vendor=bestv.id_vendor,ppsd.premi=bestv.price
+WHERE ppsd.`id_polis_pps`='" & id_pps & "'"
             execute_non_query(q, True, "", "", "", "")
         Next
 

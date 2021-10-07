@@ -1,7 +1,7 @@
 ﻿Public Class FormPolisReg
     Public id_polis_pps As String = "-1"
     Public id_reg As String = "-1"
-
+    Public is_view As String = "-1"
     Private Sub FormPolisReg_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_pps_type()
         load_polis_type()
@@ -45,17 +45,29 @@ WHERE reg.id_polis_reg='" & id_reg & "'"
                 If dth.Rows(0)("id_report_status").ToString = "6" Then
                     BtnSave.Visible = False
                 End If
+
+                id_polis_pps = dth.Rows(0)("id_polis_pps")
             End If
             '
-            Dim q As String = "SELECT ppsd.old_end_date,pps.id_polis_pps,ppsd.`id_polis_pps_det`,ppsd.`nilai_stock`,ppsd.`nilai_building`,ppsd.`nilai_fit_out`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`,ppsd.`nilai_total`
-,ppsd.`id_comp`,c.`comp_name`,c.`comp_number`,c.address_primary,ppsd.`premi`,ppsd.`polis_vendor`,v.`comp_name` AS vendor
-,regd.premi AS premi_det,regd.polis_number,regd.description
-FROM `tb_polis_pps_det` ppsd
-LEFT JOIN tb_polis pol ON pol.`id_polis`=ppsd.`old_id_polis`
-INNER JOIN tb_polis_pps pps ON pps.`id_polis_pps`=ppsd.`id_polis_pps` AND ppsd.`id_polis_pps`='" & id_polis_pps & "' AND pps.id_report_status=6
+            '            Dim q As String = "SELECT ppsd.old_end_date,pps.id_polis_pps,ppsd.`id_polis_pps_det`,ppsd.`nilai_stock`,ppsd.`nilai_building`,ppsd.`nilai_fit_out`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`,ppsd.`nilai_total`
+            ',ppsd.`id_comp`,c.`comp_name`,c.`comp_number`,c.address_primary,ppsd.`premi`,ppsd.`polis_vendor`,v.`comp_name` AS vendor
+            ',regd.premi AS premi_det,regd.polis_number,regd.description
+            'FROM `tb_polis_pps_det` ppsd
+            'LEFT JOIN tb_polis pol ON pol.`id_polis`=ppsd.`old_id_polis`
+            'INNER JOIN tb_polis_pps pps ON pps.`id_polis_pps`=ppsd.`id_polis_pps` AND ppsd.`id_polis_pps`='" & id_polis_pps & "' AND pps.id_report_status=6
+            'INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
+            'INNER JOIN tb_m_comp v ON v.`id_comp`=ppsd.`polis_vendor`
+            'LEFT JOIN `tb_polis_reg_det` regd ON ppsd.`id_polis_pps_det`=regd.id_polis_pps_det AND regd.`id_polis_reg`='" & id_reg & "'"
+            Dim q As String = "SELECT regd.id_polis_reg_det,ppsd.old_end_date,pps.id_polis_pps,d.description,ppsd.`id_polis_pps_det`,ppsd.`nilai_stock`,ppsd.`nilai_building`,ppsd.`nilai_fit_out`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`,ppsd.`nilai_total`
+,c.id_comp,c.`comp_name`,c.`comp_number`,c.address_primary,recv.comp_name AS rekomendasi_vendor,regd.`rekomendasi_premi`,cv.comp_name AS vendor_dipilih,regd.`premi`,regd.`polis_number`
+FROM 
+`tb_polis_reg_det` regd
+INNER JOIN `tb_polis_pps_det` ppsd ON ppsd.`id_polis_pps_det`=regd.id_polis_pps_det AND regd.`id_polis_reg`='" & id_reg & "'
+INNER JOIN tb_polis_pps pps ON pps.`id_polis_pps`=ppsd.`id_polis_pps` 
 INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
-INNER JOIN tb_m_comp v ON v.`id_comp`=ppsd.`polis_vendor`
-LEFT JOIN `tb_polis_reg_det` regd ON ppsd.`id_polis_pps_det`=regd.id_polis_pps_det AND regd.`id_polis_reg`='" & id_reg & "'"
+INNER JOIN `tb_lookup_desc_premi` d ON d.id_desc_premi=regd.`id_desc_premi`
+INNER JOIN tb_m_comp recv ON recv.id_comp=regd.rekomendasi_vendor
+LEFT JOIN tb_m_comp cv ON cv.id_comp=regd.vendor_dipilih"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCSummary.DataSource = dt
             BGVSummary.BestFitColumns()
@@ -76,7 +88,8 @@ SELECT 2 AS id_pps_type,'Mandiri' AS pps_type"
 
     Private Sub RegisterToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RegisterToolStripMenuItem.Click
         If BGVSummary.RowCount > 0 Then
-            FormPolisRegSplit.ShowDialog()
+            'FormPolisRegSplit.ShowDialog()
+            FormPolisRegPop.ShowDialog()
         End If
     End Sub
 

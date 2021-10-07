@@ -3696,6 +3696,12 @@
     <Compile Include="FormPolisRegPick.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPolisRegPop.Designer.vb">
+      <DependentUpon>FormPolisRegPop.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPolisRegPop.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPolisRegSplit.Designer.vb">
       <DependentUpon>FormPolisRegSplit.vb</DependentUpon>
     </Compile>
@@ -11961,6 +11967,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPolisRegPick.resx">
       <DependentUpon>FormPolisRegPick.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPolisRegPop.resx">
+      <DependentUpon>FormPolisRegPop.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPolisRegSplit.resx">
       <DependentUpon>FormPolisRegSplit.vb</DependentUpon>

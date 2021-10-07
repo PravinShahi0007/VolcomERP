@@ -59,18 +59,21 @@ Partial Class FormPolisReg
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLEPPSType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,6 +90,10 @@ Partial Class FormPolisReg
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.BGVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -330,7 +337,7 @@ Partial Class FormPolisReg
         Me.GCSummary.Location = New System.Drawing.Point(0, 96)
         Me.GCSummary.MainView = Me.BGVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(1216, 392)
+        Me.GCSummary.Size = New System.Drawing.Size(1216, 348)
         Me.GCSummary.TabIndex = 11
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVSummary})
         '
@@ -356,6 +363,7 @@ Partial Class FormPolisReg
         Me.BGVSummary.OptionsBehavior.ReadOnly = True
         Me.BGVSummary.OptionsView.AllowCellMerge = True
         Me.BGVSummary.OptionsView.ColumnAutoWidth = False
+        Me.BGVSummary.OptionsView.ShowFooter = True
         Me.BGVSummary.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -475,10 +483,18 @@ Partial Class FormPolisReg
         Me.BandedGridColumn8.Name = "BandedGridColumn8"
         Me.BandedGridColumn8.Visible = True
         '
+        'BandedGridColumn14
+        '
+        Me.BandedGridColumn14.Caption = "Vendor Rekomendasi"
+        Me.BandedGridColumn14.FieldName = "rekomendasi_vendor"
+        Me.BandedGridColumn14.Name = "BandedGridColumn14"
+        Me.BandedGridColumn14.Visible = True
+        Me.BandedGridColumn14.Width = 117
+        '
         'BandedGridColumn11
         '
         Me.BandedGridColumn11.Caption = "Vendor Yang dipilih"
-        Me.BandedGridColumn11.FieldName = "vendor"
+        Me.BandedGridColumn11.FieldName = "vendor_dipilih"
         Me.BandedGridColumn11.Name = "BandedGridColumn11"
         Me.BandedGridColumn11.Visible = True
         Me.BandedGridColumn11.Width = 107
@@ -494,6 +510,8 @@ Partial Class FormPolisReg
         Me.BandedGridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn10.FieldName = "premi"
         Me.BandedGridColumn10.Name = "BandedGridColumn10"
+        Me.BandedGridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "premi", "{0:N2}")})
+        Me.BandedGridColumn10.Visible = True
         '
         'BandedGridColumn9
         '
@@ -502,6 +520,14 @@ Partial Class FormPolisReg
         Me.BandedGridColumn9.Name = "BandedGridColumn9"
         Me.BandedGridColumn9.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.BandedGridColumn9.Visible = True
+        '
+        'BandedGridColumn2
+        '
+        Me.BandedGridColumn2.Caption = "Nomor Polis"
+        Me.BandedGridColumn2.FieldName = "polis_number"
+        Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn2.Visible = True
         '
         'BandedGridColumn1
         '
@@ -515,15 +541,8 @@ Partial Class FormPolisReg
         Me.BandedGridColumn1.FieldName = "premi_det"
         Me.BandedGridColumn1.Name = "BandedGridColumn1"
         Me.BandedGridColumn1.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "premi_det", "{0:N2}")})
         Me.BandedGridColumn1.Visible = True
-        '
-        'BandedGridColumn2
-        '
-        Me.BandedGridColumn2.Caption = "Nomor Polis"
-        Me.BandedGridColumn2.FieldName = "polis_number"
-        Me.BandedGridColumn2.Name = "BandedGridColumn2"
-        Me.BandedGridColumn2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.BandedGridColumn2.Visible = True
         '
         'BandedGridColumn13
         '
@@ -543,14 +562,6 @@ Partial Class FormPolisReg
         Me.BandedGridColumn12.Name = "BandedGridColumn12"
         Me.BandedGridColumn12.Visible = True
         '
-        'BandedGridColumn14
-        '
-        Me.BandedGridColumn14.Caption = "Vendor Rekomendasi"
-        Me.BandedGridColumn14.FieldName = "vendor_rekomendasi"
-        Me.BandedGridColumn14.Name = "BandedGridColumn14"
-        Me.BandedGridColumn14.Visible = True
-        Me.BandedGridColumn14.Width = 117
-        '
         'GridBand1
         '
         Me.GridBand1.Caption = "Detail"
@@ -559,9 +570,10 @@ Partial Class FormPolisReg
         Me.GridBand1.Columns.Add(Me.GridColumn3)
         Me.GridBand1.Columns.Add(Me.GridColumnAlamat)
         Me.GridBand1.Columns.Add(Me.GridColumn5)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn9)
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 300
+        Me.GridBand1.Width = 375
         '
         'gridBand3
         '
@@ -578,23 +590,49 @@ Partial Class FormPolisReg
         '
         'gridBand2
         '
-        Me.gridBand2.Caption = "Vendor"
+        Me.gridBand2.Caption = "Vendor Rekomendasi"
         Me.gridBand2.Columns.Add(Me.BandedGridColumn14)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn11)
         Me.gridBand2.Columns.Add(Me.BandedGridColumn10)
         Me.gridBand2.Name = "gridBand2"
         Me.gridBand2.VisibleIndex = 2
-        Me.gridBand2.Width = 224
+        Me.gridBand2.Width = 192
         '
         'gridBand4
         '
         Me.gridBand4.Caption = "Polis"
-        Me.gridBand4.Columns.Add(Me.BandedGridColumn9)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn11)
         Me.gridBand4.Columns.Add(Me.BandedGridColumn2)
         Me.gridBand4.Columns.Add(Me.BandedGridColumn1)
         Me.gridBand4.Name = "gridBand4"
         Me.gridBand4.VisibleIndex = 3
-        Me.gridBand4.Width = 225
+        Me.gridBand4.Width = 257
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.PanelControl4)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 444)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1216, 44)
+        Me.PanelControl3.TabIndex = 12
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.LabelControl6)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl4.Location = New System.Drawing.Point(809, 2)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(405, 40)
+        Me.PanelControl4.TabIndex = 0
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(18, 14)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(53, 13)
+        Me.LabelControl6.TabIndex = 0
+        Me.LabelControl6.Text = "Total Premi"
         '
         'FormPolisReg
         '
@@ -602,6 +640,7 @@ Partial Class FormPolisReg
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1216, 529)
         Me.Controls.Add(Me.GCSummary)
+        Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -627,6 +666,11 @@ Partial Class FormPolisReg
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.BGVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -677,9 +721,12 @@ Partial Class FormPolisReg
     Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn50 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BandedGridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class
