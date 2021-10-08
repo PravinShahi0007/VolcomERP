@@ -225,7 +225,7 @@ Partial Class FormViewProdDemand
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(808, 33)
         Me.BtnPrint.TabIndex = 7
-        Me.BtnPrint.Text = "Print"
+        Me.BtnPrint.Text = "Print (Folio Paper)"
         Me.BtnPrint.Visible = False
         '
         'BMark
