@@ -23,10 +23,11 @@ LEFT JOIN tb_m_comp cv ON cv.id_comp=regd.vendor_dipilih"
                 insert_row_bm_total(RowBM, total)
             End If
         Next
+        pre_load_mark_horz("309", id_report, "2", "2", XrTable6)
     End Sub
     'store code, store, nilai pertanggungan, venodr rekomendasi, vendor dipilih, nomor polis, premi
     Sub insert_row_bm(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)
-        Dim font_row_style As New Font(XTBM.Font.FontFamily, XTBM.Font.Size, FontStyle.Regular)
+        Dim font_row_style As New Font(XTBM.Font.FontFamily, XTBM.Font.Size - 2, FontStyle.Regular)
 
         row = XTBM.InsertRowBelow(row)
 
@@ -53,13 +54,19 @@ LEFT JOIN tb_m_comp cv ON cv.id_comp=regd.vendor_dipilih"
         npc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         npc.Font = font_row_style
 
-        'vendor rekomendasi
+        'vendor dipilih
         Dim vr As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
-        vr.Text = dt.Rows(row_i)("rekomendasi_vendor").ToString
+        vr.Text = dt.Rows(row_i)("vendor_dipilih").ToString
         vr.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         vr.Font = font_row_style
 
-        ''vendor dipilih
+        If dt.Rows(row_i)("id_rekomendasi_vendor").ToString = dt.Rows(row_i)("id_vendor_dipilih").ToString Then
+            vr.BackColor = Color.LimeGreen
+        Else
+            vr.BackColor = Color.Transparent
+        End If
+
+        ''vendor rekomendasi
         'Dim vp As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
         'vp.Text = dt.Rows(row_i)("vendor_dipilih").ToString
         'vp.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -81,36 +88,37 @@ LEFT JOIN tb_m_comp cv ON cv.id_comp=regd.vendor_dipilih"
     End Sub
 
     Sub insert_row_bm_total(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal total As Decimal)
-        Dim font_row_style As New Font(XTBM.Font.FontFamily, XTBM.Font.Size, FontStyle.Regular)
+        Dim font_row_style As New Font(XTBM.Font.FontFamily, XTBM.Font.Size - 2, FontStyle.Regular)
 
-        row = XTBM.InsertRowBelow(row)
+        Dim rown As DevExpress.XtraReports.UI.XRTableRow = XTBM.InsertRowBelow(row)
 
-        row.HeightF = 20
-        row.Font = font_row_style
+        rown.HeightF = 20
+        rown.Font = font_row_style
 
         'store code
-        Dim st_c As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
+        Dim st_c As DevExpress.XtraReports.UI.XRTableCell = rown.Cells.Item(0)
         st_c.Text = ""
         st_c.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         st_c.Font = font_row_style
 
         'store
-        Dim st As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
+        Dim st As DevExpress.XtraReports.UI.XRTableCell = rown.Cells.Item(1)
         st.Text = "Total"
         st.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         st.Font = font_row_style
 
         'nilai pertanggungan
-        Dim npc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+        Dim npc As DevExpress.XtraReports.UI.XRTableCell = rown.Cells.Item(2)
         npc.Text = ""
         npc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         npc.Font = font_row_style
 
-        'vendor rekomendasi
-        Dim vr As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+        'vendor dipilih
+        Dim vr As DevExpress.XtraReports.UI.XRTableCell = rown.Cells.Item(3)
         vr.Text = ""
         vr.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         vr.Font = font_row_style
+        vr.BackColor = Color.Transparent
 
         ''vendor dipilih
         'Dim vp As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
@@ -119,7 +127,7 @@ LEFT JOIN tb_m_comp cv ON cv.id_comp=regd.vendor_dipilih"
         'vp.Font = font_row_style
 
         'nomor_polis
-        Dim nomorp As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+        Dim nomorp As DevExpress.XtraReports.UI.XRTableCell = rown.Cells.Item(4)
         nomorp.Text = ""
         nomorp.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         nomorp.Font = font_row_style
@@ -127,7 +135,7 @@ LEFT JOIN tb_m_comp cv ON cv.id_comp=regd.vendor_dipilih"
         'premi
         Dim premi As String = Decimal.Parse(total.ToString).ToString("N2")
 
-        Dim premic As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
+        Dim premic As DevExpress.XtraReports.UI.XRTableCell = rown.Cells.Item(5)
         premic.Text = premi
         premic.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         premic.Font = font_row_style

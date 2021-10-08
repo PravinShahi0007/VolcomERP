@@ -49,6 +49,8 @@ Partial Public Class ReportPolisReg
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XTBM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,8 +91,8 @@ Partial Public Class ReportPolisReg
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable6})
-        Me.ReportFooter.HeightF = 25.0!
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel14, Me.XrLabel13, Me.XrTable6})
+        Me.ReportFooter.HeightF = 61.45833!
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrLabel7
@@ -169,7 +171,7 @@ Partial Public Class ReportPolisReg
         Me.XrTableCell72.StylePriority.UseTextAlignment = False
         Me.XrTableCell72.Text = "Nilai Pertanggungan"
         Me.XrTableCell72.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell72.Weight = 1.7568042913611179R
+        Me.XrTableCell72.Weight = 1.4724079985531857R
         '
         'XrTableCell1
         '
@@ -177,12 +179,12 @@ Partial Public Class ReportPolisReg
         Me.XrTableCell1.StylePriority.UseTextAlignment = False
         Me.XrTableCell1.Text = "Vendor Dipilih"
         Me.XrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell1.Weight = 2.732117112816518R
+        Me.XrTableCell1.Weight = 2.73211615143794R
         '
         'XrTable6
         '
         Me.XrTable6.Font = New System.Drawing.Font("Consolas", 8.0!)
-        Me.XrTable6.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrTable6.LocationFloat = New DevExpress.Utils.PointFloat(0!, 36.45833!)
         Me.XrTable6.Name = "XrTable6"
         Me.XrTable6.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow28})
         Me.XrTable6.SizeF = New System.Drawing.SizeF(1069.0!, 25.0!)
@@ -209,7 +211,7 @@ Partial Public Class ReportPolisReg
         Me.XrTableCell2.StylePriority.UseTextAlignment = False
         Me.XrTableCell2.Text = "Store"
         Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell2.Weight = 2.2191816786451968R
+        Me.XrTableCell2.Weight = 2.9411125784241356R
         '
         'XrTableCell3
         '
@@ -217,7 +219,7 @@ Partial Public Class ReportPolisReg
         Me.XrTableCell3.StylePriority.UseTextAlignment = False
         Me.XrTableCell3.Text = "Nomor Polis"
         Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell3.Weight = 1.5835898446658607R
+        Me.XrTableCell3.Weight = 1.8789259847733759R
         '
         'XrTableCell4
         '
@@ -225,7 +227,7 @@ Partial Public Class ReportPolisReg
         Me.XrTableCell4.StylePriority.UseTextAlignment = False
         Me.XrTableCell4.Text = "Premi"
         Me.XrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell4.Weight = 2.0161609875628348R
+        Me.XrTableCell4.Weight = 1.283291201862891R
         '
         'XrLabel1
         '
@@ -347,6 +349,31 @@ Partial Public Class ReportPolisReg
         Me.XrLabel12.Text = "[description]"
         Me.XrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
+        'XrLabel13
+        '
+        Me.XrLabel13.BackColor = System.Drawing.Color.LimeGreen
+        Me.XrLabel13.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(0!, 6.166681!)
+        Me.XrLabel13.Name = "XrLabel13"
+        Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
+        Me.XrLabel13.SizeF = New System.Drawing.SizeF(36.45833!, 23.0!)
+        Me.XrLabel13.StylePriority.UseBackColor = False
+        Me.XrLabel13.StylePriority.UseBorders = False
+        '
+        'XrLabel14
+        '
+        Me.XrLabel14.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Italic)
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(36.45833!, 6.166681!)
+        Me.XrLabel14.Name = "XrLabel14"
+        Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel14.SizeF = New System.Drawing.SizeF(135.4167!, 23.0!)
+        Me.XrLabel14.StylePriority.UseFont = False
+        Me.XrLabel14.StylePriority.UseTextAlignment = False
+        Me.XrLabel14.Text = " reccomended by ERP"
+        Me.XrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
         'ReportPolisReg
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader, Me.PageFooter, Me.ReportFooter})
@@ -392,4 +419,6 @@ Partial Public Class ReportPolisReg
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
 End Class

@@ -61,6 +61,8 @@ Partial Public Class ReportPolis
         Me.XRTableMark = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XTPolisPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTKolektif, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XRTableMark, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -511,8 +513,8 @@ Partial Public Class ReportPolis
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XRTableMark})
-        Me.ReportFooter.HeightF = 25.0!
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel13, Me.XrLabel14, Me.XRTableMark})
+        Me.ReportFooter.HeightF = 57.29167!
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XRTableMark
@@ -521,7 +523,7 @@ Partial Public Class ReportPolis
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XRTableMark.Font = New System.Drawing.Font("Consolas", 8.0!)
-        Me.XRTableMark.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XRTableMark.LocationFloat = New DevExpress.Utils.PointFloat(0!, 32.29167!)
         Me.XRTableMark.Name = "XRTableMark"
         Me.XRTableMark.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
         Me.XRTableMark.SizeF = New System.Drawing.SizeF(1113.0!, 25.0!)
@@ -542,6 +544,31 @@ Partial Public Class ReportPolis
         Me.XrTableCell15.Text = "Here Table Mark Goes, Please Ignore This"
         Me.XrTableCell15.Visible = False
         Me.XrTableCell15.Weight = 2.99999986405489R
+        '
+        'XrLabel13
+        '
+        Me.XrLabel13.BackColor = System.Drawing.Color.LimeGreen
+        Me.XrLabel13.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(0.6416638!, 5.0!)
+        Me.XrLabel13.Name = "XrLabel13"
+        Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel13.SizeF = New System.Drawing.SizeF(36.45833!, 23.0!)
+        Me.XrLabel13.StylePriority.UseBackColor = False
+        Me.XrLabel13.StylePriority.UseBorders = False
+        '
+        'XrLabel14
+        '
+        Me.XrLabel14.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Italic)
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(37.1!, 5.0!)
+        Me.XrLabel14.Name = "XrLabel14"
+        Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel14.SizeF = New System.Drawing.SizeF(135.4167!, 23.0!)
+        Me.XrLabel14.StylePriority.UseFont = False
+        Me.XrLabel14.StylePriority.UseTextAlignment = False
+        Me.XrLabel14.Text = " reccomended by ERP"
+        Me.XrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'ReportPolis
         '
@@ -602,4 +629,6 @@ Partial Public Class ReportPolis
     Friend WithEvents XrTableCell13 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell16 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell17 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
 End Class

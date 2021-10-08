@@ -176,10 +176,18 @@
                 price.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
                 price.Font = font_row_style
 
+                Console.WriteLine(dt.Columns(i).ColumnName.ToString.Substring(7).ToString & " - " & dt.Rows(row_i)("polis_vendor").ToString)
+                If dt.Columns(i).ColumnName.ToString.Substring(7).ToString = dt.Rows(row_i)("polis_vendor").ToString Then
+                    price.BackColor = Color.LimeGreen
+                Else
+                    price.BackColor = Color.Transparent
+                End If
+
                 j += 1
             End If
         Next
 
+        'polis_vendor
         'vendor dipilih
         'Dim vendor As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(j)
         'vendor.Text = dt.Rows(row_i)("vendor").ToString
