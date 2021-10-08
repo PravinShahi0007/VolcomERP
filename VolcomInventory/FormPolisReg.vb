@@ -37,6 +37,7 @@ GROUP BY ppsv.id_vendor"
                 '                BGVSummary.BestFitColumns()
             End If
         Else
+
             'head
             Dim qh As String = "SELECT reg.*,emp.`employee_name`,pps.id_pps_type,pps.id_desc_premi FROM `tb_polis_reg` reg
 INNER JOIN tb_m_user usr ON usr.`id_user`=reg.`created_by`
@@ -52,12 +53,15 @@ WHERE reg.id_polis_reg='" & id_reg & "'"
                 SLEPolisType.EditValue = dth.Rows(0)("id_desc_premi").ToString
                 SLEPPSType.EditValue = dth.Rows(0)("id_pps_type").ToString
                 '
+                BAttachment.Visible = True
                 If dth.Rows(0)("is_submit").ToString = "1" Then
                     BtnSave.Visible = False
                     BtnMark.Visible = True
+                    BtnPrint.Visible = True
                 Else
                     BtnSave.Visible = True
-                    BtnMark.Visible = True
+                    BtnMark.Visible = False
+                    BtnPrint.Visible = False
                 End If
                 '
                 If dth.Rows(0)("id_report_status").ToString = "5" Or dth.Rows(0)("id_report_status").ToString = "6" Then
@@ -266,5 +270,34 @@ WHERE ppsd.id_polis_reg='" & id_reg & "' AND ppsd.premi<=0 AND (ISNULL(ppsd.vend
         FormReportMark.is_view = is_view
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        print_s()
+    End Sub
+
+    Sub print_s()
+        Dim qc As String = "SELECT reg.*,emp.`employee_name`,pps.id_pps_type,p.description,IF(pps.id_pps_type=1,'Kolektif','Mandiri') AS pps_type FROM `tb_polis_reg` reg
+INNER JOIN tb_m_user usr ON usr.`id_user`=reg.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_polis_pps pps ON pps.id_polis_pps=reg.id_polis_pps
+INNER JOIN tb_lookup_desc_premi p ON p.id_desc_premi=pps.id_desc_premi
+WHERE reg.id_polis_reg='" & id_reg & "'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            'print
+            Cursor = Cursors.WaitCursor
+
+            Dim Report As New ReportPolisReg()
+            Report.id_report = id_reg
+            Report.DataSource = dtc
+
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+
+            Cursor = Cursors.Default
+        Else
+            warningCustom("Please choose vendor first")
+        End If
     End Sub
 End Class

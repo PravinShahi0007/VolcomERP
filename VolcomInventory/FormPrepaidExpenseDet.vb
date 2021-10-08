@@ -10,6 +10,9 @@
 
     Public id_polis_reg As String = "-1"
 
+    Dim id_reff As String = "0"
+    Dim report_mark_type As String = "0"
+
     Private Sub FormPrepaidExpenseDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -43,7 +46,12 @@
             TxtCompNumber.Text = get_company_x(FormPrepaidExpensePolis.id_comp, "2")
             TxtCompName.Text = get_company_x(FormPrepaidExpensePolis.id_comp, "1")
 
-            Dim qg As String = "SELECT c.id_comp,ppsd.v_start_date,TIMESTAMPDIFF(MONTH, ppsd.v_start_date, ppsd.v_end_date) AS month_dif,regd.id_polis_reg_det,reg.`number`,regd.polis_number,regd.premi AS val
+            '
+            id_reff = id_polis_reg
+            report_mark_type = "309"
+            '
+
+            Dim qg As String = "SELECT c.id_acc_dp AS id_acc,c.id_comp,ppsd.v_start_date,TIMESTAMPDIFF(MONTH, ppsd.v_start_date, ppsd.v_end_date) AS month_dif,regd.id_polis_reg_det,reg.`number`,regd.polis_number,regd.premi AS val
 FROM `tb_polis_reg_det` regd
 INNER JOIN tb_polis_pps_det ppsd ON ppsd.id_polis_pps_det=regd.id_polis_pps_det
 INNER JOIN tb_polis_reg reg ON reg.`id_polis_reg`=regd.id_polis_reg
@@ -74,11 +82,12 @@ WHERE reg.id_polis_reg='" & id_polis_reg & "' AND regd.vendor_dipilih='" & FormP
                 'End If
 
                 GVData.SetRowCellValue(GVData.RowCount - 1, "id_expense_type", "1")
-                GVData.SetRowCellValue(GVData.RowCount - 1, "id_b_expense", "2638")
+                GVData.SetRowCellValue(GVData.RowCount - 1, "id_b_expense", "65")
                 GVData.SetRowCellValue(GVData.RowCount - 1, "cc", dtg.Rows(i)("id_comp").ToString)
-                '
+                '2638
+                GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc_biaya", "2638")
                 GVData.SetRowCellValue(GVData.RowCount - 1, "start_date", DECreated.EditValue)
-                GVData.SetRowCellValue(GVData.RowCount - 1, "qty_month", "2")
+                GVData.SetRowCellValue(GVData.RowCount - 1, "qty_month", dtg.Rows(i)("month_dif"))
                 GVData.SetRowCellValue(GVData.RowCount - 1, "description", FormPrepaidExpensePolis.TEDesc.Text)
                 GVData.SetRowCellValue(GVData.RowCount - 1, "amount", dtg.Rows(i)("val"))
                 GVData.SetRowCellValue(GVData.RowCount - 1, "tax_percent", FormPrepaidExpensePolis.TEPPN3PLInv.EditValue)
@@ -959,8 +968,8 @@ WHERE c.id_comp='" + id_comp + "' "
                         date_reff = "" + Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") + ""
                         is_open = "1"
 
-                        Dim qm As String = "INSERT INTO tb_prepaid_expense(id_comp,inv_number, created_date, due_date, created_by, id_report_status, note, sub_total, vat_total, total, is_open, date_reff, id_coa_tag) VALUES 
-                (" + id_comp + ",'" + inv_no + "', NOW()," + due_date + ", '" + id_user + "', 1, '" + note + "','" + sub_total + "', '" + vat_total + "', '" + total + "', '" + is_open + "', '" + date_reff + "','" & SLEUnit.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
+                        Dim qm As String = "INSERT INTO tb_prepaid_expense(id_comp,inv_number, created_date, due_date, created_by, id_report_status, note, sub_total, vat_total, total, is_open, date_reff, id_coa_tag, id_reff,report_mark_type) VALUES 
+                (" + id_comp + ",'" + inv_no + "', NOW()," + due_date + ", '" + id_user + "', 1, '" + note + "','" + sub_total + "', '" + vat_total + "', '" + total + "', '" + is_open + "', '" + date_reff + "','" & SLEUnit.EditValue.ToString & "','" & id_reff & "','" & report_mark_type & "'); SELECT LAST_INSERT_ID(); "
                         id = execute_query(qm, 0, True, "", "", "", "")
                         execute_non_query("CALL gen_number(" + id + ",349); ", True, "", "", "", "")
 

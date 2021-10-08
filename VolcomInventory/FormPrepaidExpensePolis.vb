@@ -7,6 +7,7 @@
     End Sub
 
     Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BImport.Click
+        FormPrepaidExpenseDet.id_polis_reg = id_polis_reg
         FormPrepaidExpenseDet.ShowDialog()
         Close()
     End Sub

@@ -9417,6 +9417,12 @@
     <Compile Include="ReportPolis.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPolisReg.Designer.vb">
+      <DependentUpon>ReportPolisReg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPolisReg.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPOSClosingNoStock.Designer.vb">
       <DependentUpon>ReportPOSClosingNoStock.vb</DependentUpon>
     </Compile>
@@ -15288,6 +15294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPolis.resx">
       <DependentUpon>ReportPolis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPolisReg.resx">
+      <DependentUpon>ReportPolisReg.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPOSClosingNoStock.resx">
       <DependentUpon>ReportPOSClosingNoStock.vb</DependentUpon>

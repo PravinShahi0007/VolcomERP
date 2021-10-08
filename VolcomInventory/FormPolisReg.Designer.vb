@@ -669,6 +669,7 @@ Partial Class FormPolisReg
         Me.TEPremi.Properties.Mask.EditMask = "N2"
         Me.TEPremi.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEPremi.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEPremi.Properties.ReadOnly = True
         Me.TEPremi.Size = New System.Drawing.Size(231, 20)
         Me.TEPremi.TabIndex = 7
         '
@@ -679,6 +680,7 @@ Partial Class FormPolisReg
         Me.SLEPenawaran.Name = "SLEPenawaran"
         Me.SLEPenawaran.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEPenawaran.Properties.NullText = ""
+        Me.SLEPenawaran.Properties.ReadOnly = True
         Me.SLEPenawaran.Properties.View = Me.GridView1
         Me.SLEPenawaran.Size = New System.Drawing.Size(234, 20)
         Me.SLEPenawaran.TabIndex = 6

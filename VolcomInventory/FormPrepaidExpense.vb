@@ -129,8 +129,17 @@ FROM `tb_polis_reg_det` regd
 INNER JOIN tb_polis_reg reg ON reg.`id_polis_reg`=regd.id_polis_reg
 INNER JOIN tb_m_comp c ON c.id_comp=regd.vendor_dipilih
 INNER JOIN tb_lookup_desc_premi p ON p.id_desc_premi=regd.id_desc_premi
-WHERE regd.is_paid=2
+LEFT JOIN
+(
+    SELECT id_prepaid_expense,inv_number,id_comp,id_reff
+    FROM `tb_prepaid_expense`
+    WHERE id_report_status!=5 AND report_mark_type=309
+) ppe ON ppe.id_reff=reg.id_polis_reg AND regd.polis_number=ppe.inv_number AND ppe.id_comp=regd.vendor_dipilih
+WHERE regd.is_paid=2 AND ISNULL(ppe.id_prepaid_expense)
 GROUP BY regd.id_polis_reg,regd.polis_number,c.id_comp,regd.`id_desc_premi`"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCRegisterPolis.DataSource = dt
+        GVRegisterPolis.BestFitColumns()
     End Sub
 
     Private Sub GCRegisterPolis_DoubleClick(sender As Object, e As EventArgs) Handles GCRegisterPolis.DoubleClick
