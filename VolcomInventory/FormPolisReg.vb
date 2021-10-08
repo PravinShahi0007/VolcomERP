@@ -277,7 +277,7 @@ WHERE ppsd.id_polis_reg='" & id_reg & "' AND ppsd.premi<=0 AND (ISNULL(ppsd.vend
     End Sub
 
     Sub print_s()
-        Dim qc As String = "SELECT reg.*,emp.`employee_name`,pps.id_pps_type,p.description,IF(pps.id_pps_type=1,'Kolektif','Mandiri') AS pps_type FROM `tb_polis_reg` reg
+        Dim qc As String = "SELECT reg.*,emp.`employee_name`,pps.id_pps_type,p.description,IF(pps.id_pps_type=1,'Kolektif','Mandiri') AS pps_type,DATE_FORMAT(reg.created_date,'%d %M %Y') as date_created FROM `tb_polis_reg` reg
 INNER JOIN tb_m_user usr ON usr.`id_user`=reg.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_polis_pps pps ON pps.id_polis_pps=reg.id_polis_pps
