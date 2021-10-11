@@ -107,12 +107,21 @@
         Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
         Dim report_number As String = du.Rows(0)("report_number").ToString
 
+        'select created date
+        Dim qry_inv As String = "SELECT DATE_FORMAT(p.emp_uni_ex_date,'%Y-%m-%d') AS `trans_date`,
+        DATE_FORMAT(p.period_until,'%Y-%m-%d') AS `period_date`
+        FROM tb_emp_uni_ex p 
+        WHERE p.id_emp_uni_ex='" + id_report_param + "' AND p.report_mark_type='" + report_mark_type_param + "' "
+        Dim dt_inv As DataTable = execute_query(qry_inv, -1, True, "", "", "", "")
+        Dim trans_date As String = dt_inv.Rows(0)("trans_date").ToString
+        Dim reff_date As String = dt_inv.Rows(0)("period_date").ToString
+
         Dim check_draft As String = execute_query("SELECT IFNULL((SELECT id_report FROM tb_a_acc_trans_draft WHERE report_mark_type = " + report_mark_type_param + " AND id_report = " + id_report_param + " LIMIT 1), 0) AS id_report", 0, True, "", "", "", "")
 
         If Not check_draft = "0" Then
             'main journal
-            Dim query As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status) 
-                VALUES ('','" + report_number + "'," + id_bill_type + ",'" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+            Dim query As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status) 
+                VALUES ('','" + report_number + "'," + id_bill_type + ",'" + id_user_prepared + "', '" + trans_date + "', '" + reff_date + "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
             Dim id As String = execute_query(query, 0, True, "", "", "", "")
             execute_non_query("CALL gen_number(" + id + ",36)", True, "", "", "", "")
 
