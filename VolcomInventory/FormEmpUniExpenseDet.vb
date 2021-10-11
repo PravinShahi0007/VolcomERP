@@ -239,6 +239,8 @@ Public Class FormEmpUniExpenseDet
             warningCustom("COA not found. Please setup first")
         ElseIf start_period_cek = "0000-01-01" Or end_period_cek = "9999-12-01" Then
             warningCustom("Please fill period")
+        ElseIf MENote.Text = "" Then
+            warningCustom("Please fill note")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
