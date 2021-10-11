@@ -452,6 +452,9 @@
         ElseIf report_mark_type = "307" Then
             'polis propose
             FormPolisDet.Close()
+        ElseIf report_mark_type = "309" Then
+            'polis register
+            FormPolisReg.Close()
         ElseIf report_mark_type = "310" Then
             'invoice verification
             FormAWBInv.Close()
@@ -1533,6 +1536,10 @@ GROUP BY rec.`id_prod_order`"
             FormPolisDet.id_pps = id_report
             FormPolisDet.is_view = "1"
             FormPolisDet.ShowDialog()
+        ElseIf report_mark_type = "309" Then
+            FormPolisReg.id_reg = id_report
+            FormPolisReg.is_view = "1"
+            FormPolisReg.ShowDialog()
         ElseIf report_mark_type = "310" Then
             FormAWBInv.id_verification = id_report
             FormAWBInv.is_view = "1"
@@ -2788,6 +2795,12 @@ GROUP BY rec.`id_prod_order`"
             'polis
             table_name = "tb_polis_pps"
             field_id = "id_polis_pps"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "309" Then
+            'polis reg
+            table_name = "tb_polis_reg"
+            field_id = "id_polis_reg"
             field_number = "number"
             field_date = "created_date"
         ElseIf report_mark_type = "310" Then

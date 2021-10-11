@@ -3696,6 +3696,12 @@
     <Compile Include="FormPolisRegPick.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPolisRegPop.Designer.vb">
+      <DependentUpon>FormPolisRegPop.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPolisRegPop.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPolisRegSplit.Designer.vb">
       <DependentUpon>FormPolisRegSplit.vb</DependentUpon>
     </Compile>
@@ -3790,6 +3796,12 @@
       <DependentUpon>FormPrepaidExpenseDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPrepaidExpenseDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPrepaidExpensePolis.Designer.vb">
+      <DependentUpon>FormPrepaidExpensePolis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPrepaidExpensePolis.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPriceChecker.Designer.vb">
@@ -9405,6 +9417,12 @@
     <Compile Include="ReportPolis.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPolisReg.Designer.vb">
+      <DependentUpon>ReportPolisReg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPolisReg.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPOSClosingNoStock.Designer.vb">
       <DependentUpon>ReportPOSClosingNoStock.vb</DependentUpon>
     </Compile>
@@ -11962,6 +11980,9 @@
     <EmbeddedResource Include="FormPolisRegPick.resx">
       <DependentUpon>FormPolisRegPick.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPolisRegPop.resx">
+      <DependentUpon>FormPolisRegPop.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPolisRegSplit.resx">
       <DependentUpon>FormPolisRegSplit.vb</DependentUpon>
     </EmbeddedResource>
@@ -12010,6 +12031,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrepaidExpenseDet.resx">
       <DependentUpon>FormPrepaidExpenseDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrepaidExpensePolis.resx">
+      <DependentUpon>FormPrepaidExpensePolis.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPriceChecker.resx">
       <DependentUpon>FormPriceChecker.vb</DependentUpon>
@@ -15270,6 +15294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPolis.resx">
       <DependentUpon>ReportPolis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPolisReg.resx">
+      <DependentUpon>ReportPolisReg.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPOSClosingNoStock.resx">
       <DependentUpon>ReportPOSClosingNoStock.vb</DependentUpon>

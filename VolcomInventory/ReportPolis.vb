@@ -73,6 +73,13 @@
         penawaran.Text = Decimal.Parse(dt.Rows(row_i)("price").ToString).ToString("N2")
         penawaran.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         penawaran.Font = font_row_style
+
+        If dt.Rows(row_i)("is_recommended").ToString = "1" Then
+            penawaran.BackColor = Color.LimeGreen
+        Else
+            penawaran.BackColor = Color.Transparent
+        End If
+
     End Sub
     '
     Sub insert_row(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)
@@ -176,10 +183,17 @@
                 price.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
                 price.Font = font_row_style
 
+                If dt.Columns(i).ColumnName.ToString.Substring(7).ToString = dt.Rows(row_i)("polis_vendor").ToString Then
+                    price.BackColor = Color.LimeGreen
+                Else
+                    price.BackColor = Color.Transparent
+                End If
+
                 j += 1
             End If
         Next
 
+        'polis_vendor
         'vendor dipilih
         'Dim vendor As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(j)
         'vendor.Text = dt.Rows(row_i)("vendor").ToString

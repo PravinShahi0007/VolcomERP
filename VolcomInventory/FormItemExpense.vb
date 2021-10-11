@@ -177,6 +177,10 @@ GROUP BY inv.id_awb_inv_sum"
         FormItemExpensePop.ShowDialog()
     End Sub
 
+    Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BImport.Click
+
+    End Sub
+
     'Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BImport.Click
     '    If GVInvoice.RowCount > 0 Then
     '        FormItemExpenseDet.action = "ins"

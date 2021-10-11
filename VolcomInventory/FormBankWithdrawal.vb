@@ -1397,7 +1397,7 @@ ORDER BY pod.id_purc_order DESC"
     End Sub
 
     Sub view_sum()
-        Dim q As String = "SELECT ct.id_coa_type,ct.coa_type,pns.`id_pn_summary`,sts.report_status,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`currency`,SUM(IFNULL(pnd.`val_bef_kurs`,0)) AS val_bef_kurs
+        Dim q As String = "SELECT ct.id_coa_type,ct.coa_type,pns.`id_pn_summary`,sts.report_status,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`currency`,SUM(IF(pns.id_currency=1,IFNULL(pnd.`value`,0),IFNULL(pnd.`val_bef_kurs`,0))) AS val_bef_kurs
 FROM tb_pn_summary pns
 LEFT JOIN tb_pn_summary_det pnsd ON pnsd.id_pn_summary=pns.id_pn_summary
 LEFT JOIN tb_pn_det pnd ON pnd.`id_pn`=pnsd.`id_pn` AND pnd.`id_currency`=pns.`id_currency`

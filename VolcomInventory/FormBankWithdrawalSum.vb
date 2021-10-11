@@ -35,7 +35,7 @@
             BGenerate.Visible = False
             BtnPrint.Visible = True
             BtnAttachment.Visible = True
-            Dim q As String = "SELECT typ.id_coa_type,typ.coa_type,pns.id_report_status,pns.`id_pn_summary`,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`id_currency`,cur.`currency`,IFNULL(SUM(pnd.`val_bef_kurs`),0) AS val_bef_kurs, pns.note
+            Dim q As String = "SELECT typ.id_coa_type,typ.coa_type,pns.id_report_status,pns.`id_pn_summary`,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`id_currency`,cur.`currency`, pns.note
 FROM tb_pn_summary pns
 LEFT JOIN tb_pn_summary_det pnsd ON pnsd.id_pn_summary=pns.id_pn_summary
 LEFT JOIN tb_pn_det pnd ON pnd.`id_pn`=pnsd.`id_pn` AND pnd.`id_currency`=pns.`id_currency`
@@ -92,7 +92,13 @@ GROUP BY pns.`id_pn_summary`"
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT 'no' AS is_check,py.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,IF(pnsd.id_pn_summary_type=1 OR pnsd.id_pn_summary_type=3,SUM(pyd.`val_bef_kurs`),0) AS `value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
+        Dim qh As String = ""
+        If SLEType.EditValue.ToString = "1" Then
+            qh = "SUM(pyd.`value`)"
+        Else
+            qh = "SUM(pyd.`val_bef_kurs`)"
+        End If
+        Dim q As String = "SELECT 'no' AS is_check,py.is_buy_valas,sts.report_status,py.number,emp.employee_name AS created_by, py.date_created, py.`id_pn`,IF(pnsd.id_pn_summary_type=1 OR pnsd.id_pn_summary_type=3," & qh & ",0) AS `value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note,py.date_payment
 ,pnsd.id_pn_summary_det,pnsd.id_pn_summary_type
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`

@@ -40,6 +40,7 @@ Partial Class FormPolisReg
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
@@ -48,29 +49,41 @@ Partial Class FormPolisReg
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.RegisterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BGVSummary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnAlamat = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCKolektif = New DevExpress.XtraEditors.PanelControl()
+        Me.TEPremi = New DevExpress.XtraEditors.TextEdit()
+        Me.SLEPenawaran = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEPremiTot = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLEPPSType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,6 +100,16 @@ Partial Class FormPolisReg
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.BGVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.PCKolektif, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCKolektif.SuspendLayout()
+        CType(Me.TEPremi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEPenawaran.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.TEPremiTot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -104,7 +127,7 @@ Partial Class FormPolisReg
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1216, 96)
+        Me.PanelControl2.Size = New System.Drawing.Size(1273, 96)
         Me.PanelControl2.TabIndex = 9
         '
         'LabelControl5
@@ -263,6 +286,7 @@ Partial Class FormPolisReg
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnMark)
         Me.PanelControl1.Controls.Add(Me.BAttachment)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
@@ -270,15 +294,28 @@ Partial Class FormPolisReg
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 488)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1216, 41)
+        Me.PanelControl1.Size = New System.Drawing.Size(1273, 41)
         Me.PanelControl1.TabIndex = 10
+        '
+        'BtnMark
+        '
+        Me.BtnMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnMark.ImageIndex = 4
+        Me.BtnMark.ImageList = Me.LargeImageCollection
+        Me.BtnMark.Location = New System.Drawing.Point(2, 2)
+        Me.BtnMark.Name = "BtnMark"
+        Me.BtnMark.Size = New System.Drawing.Size(100, 37)
+        Me.BtnMark.TabIndex = 18
+        Me.BtnMark.TabStop = False
+        Me.BtnMark.Text = "Mark"
+        Me.BtnMark.Visible = False
         '
         'BAttachment
         '
         Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAttachment.ImageIndex = 13
         Me.BAttachment.ImageList = Me.LargeImageCollection
-        Me.BAttachment.Location = New System.Drawing.Point(858, 2)
+        Me.BAttachment.Location = New System.Drawing.Point(915, 2)
         Me.BAttachment.Name = "BAttachment"
         Me.BAttachment.Size = New System.Drawing.Size(106, 37)
         Me.BAttachment.TabIndex = 17
@@ -291,7 +328,7 @@ Partial Class FormPolisReg
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(964, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(1021, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 37)
         Me.BtnPrint.TabIndex = 13
@@ -304,7 +341,7 @@ Partial Class FormPolisReg
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(1039, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(1096, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 37)
         Me.BtnCancel.TabIndex = 14
@@ -316,12 +353,12 @@ Partial Class FormPolisReg
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 4
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(1114, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(1171, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(100, 37)
         Me.BtnSave.TabIndex = 12
         Me.BtnSave.TabStop = False
-        Me.BtnSave.Text = "Complete"
+        Me.BtnSave.Text = "Submit"
         '
         'GCSummary
         '
@@ -330,7 +367,7 @@ Partial Class FormPolisReg
         Me.GCSummary.Location = New System.Drawing.Point(0, 96)
         Me.GCSummary.MainView = Me.BGVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(1216, 392)
+        Me.GCSummary.Size = New System.Drawing.Size(1273, 348)
         Me.GCSummary.TabIndex = 11
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVSummary})
         '
@@ -356,7 +393,21 @@ Partial Class FormPolisReg
         Me.BGVSummary.OptionsBehavior.ReadOnly = True
         Me.BGVSummary.OptionsView.AllowCellMerge = True
         Me.BGVSummary.OptionsView.ColumnAutoWidth = False
+        Me.BGVSummary.OptionsView.ShowFooter = True
         Me.BGVSummary.OptionsView.ShowGroupPanel = False
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Detail"
+        Me.GridBand1.Columns.Add(Me.GridColumn1)
+        Me.GridBand1.Columns.Add(Me.GridColumn2)
+        Me.GridBand1.Columns.Add(Me.GridColumn3)
+        Me.GridBand1.Columns.Add(Me.GridColumnAlamat)
+        Me.GridBand1.Columns.Add(Me.GridColumn5)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn9)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 375
         '
         'GridColumn1
         '
@@ -396,6 +447,27 @@ Partial Class FormPolisReg
         Me.GridColumn5.FieldName = "old_end_date"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
+        '
+        'BandedGridColumn9
+        '
+        Me.BandedGridColumn9.Caption = "Tipe"
+        Me.BandedGridColumn9.FieldName = "description"
+        Me.BandedGridColumn9.Name = "BandedGridColumn9"
+        Me.BandedGridColumn9.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn9.Visible = True
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Nilai"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn3)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn6)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn4)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn5)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn7)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn8)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 1
+        Me.gridBand3.Width = 450
         '
         'BandedGridColumn3
         '
@@ -475,13 +547,22 @@ Partial Class FormPolisReg
         Me.BandedGridColumn8.Name = "BandedGridColumn8"
         Me.BandedGridColumn8.Visible = True
         '
-        'BandedGridColumn11
+        'gridBand2
         '
-        Me.BandedGridColumn11.Caption = "Vendor Yang dipilih"
-        Me.BandedGridColumn11.FieldName = "vendor"
-        Me.BandedGridColumn11.Name = "BandedGridColumn11"
-        Me.BandedGridColumn11.Visible = True
-        Me.BandedGridColumn11.Width = 107
+        Me.gridBand2.Caption = "Vendor Rekomendasi"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn14)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn10)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 2
+        Me.gridBand2.Width = 192
+        '
+        'BandedGridColumn14
+        '
+        Me.BandedGridColumn14.Caption = "Vendor Rekomendasi"
+        Me.BandedGridColumn14.FieldName = "rekomendasi_vendor"
+        Me.BandedGridColumn14.Name = "BandedGridColumn14"
+        Me.BandedGridColumn14.Visible = True
+        Me.BandedGridColumn14.Width = 117
         '
         'BandedGridColumn10
         '
@@ -492,16 +573,36 @@ Partial Class FormPolisReg
         Me.BandedGridColumn10.Caption = "Premi"
         Me.BandedGridColumn10.DisplayFormat.FormatString = "N2"
         Me.BandedGridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn10.FieldName = "premi"
+        Me.BandedGridColumn10.FieldName = "rekomendasi_premi"
         Me.BandedGridColumn10.Name = "BandedGridColumn10"
+        Me.BandedGridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "premi", "{0:N2}")})
+        Me.BandedGridColumn10.Visible = True
         '
-        'BandedGridColumn9
+        'gridBand4
         '
-        Me.BandedGridColumn9.Caption = "Tipe"
-        Me.BandedGridColumn9.FieldName = "description"
-        Me.BandedGridColumn9.Name = "BandedGridColumn9"
-        Me.BandedGridColumn9.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.BandedGridColumn9.Visible = True
+        Me.gridBand4.Caption = "Polis"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn11)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn2)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn1)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 3
+        Me.gridBand4.Width = 257
+        '
+        'BandedGridColumn11
+        '
+        Me.BandedGridColumn11.Caption = "Vendor Yang dipilih"
+        Me.BandedGridColumn11.FieldName = "vendor_dipilih"
+        Me.BandedGridColumn11.Name = "BandedGridColumn11"
+        Me.BandedGridColumn11.Visible = True
+        Me.BandedGridColumn11.Width = 107
+        '
+        'BandedGridColumn2
+        '
+        Me.BandedGridColumn2.Caption = "Nomor Polis"
+        Me.BandedGridColumn2.FieldName = "polis_number"
+        Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn2.Visible = True
         '
         'BandedGridColumn1
         '
@@ -512,18 +613,11 @@ Partial Class FormPolisReg
         Me.BandedGridColumn1.Caption = "Premi"
         Me.BandedGridColumn1.DisplayFormat.FormatString = "N2"
         Me.BandedGridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn1.FieldName = "premi_det"
+        Me.BandedGridColumn1.FieldName = "premi"
         Me.BandedGridColumn1.Name = "BandedGridColumn1"
         Me.BandedGridColumn1.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "premi", "{0:N2}")})
         Me.BandedGridColumn1.Visible = True
-        '
-        'BandedGridColumn2
-        '
-        Me.BandedGridColumn2.Caption = "Nomor Polis"
-        Me.BandedGridColumn2.FieldName = "polis_number"
-        Me.BandedGridColumn2.Name = "BandedGridColumn2"
-        Me.BandedGridColumn2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.BandedGridColumn2.Visible = True
         '
         'BandedGridColumn13
         '
@@ -543,65 +637,131 @@ Partial Class FormPolisReg
         Me.BandedGridColumn12.Name = "BandedGridColumn12"
         Me.BandedGridColumn12.Visible = True
         '
-        'BandedGridColumn14
+        'PanelControl3
         '
-        Me.BandedGridColumn14.Caption = "Vendor Rekomendasi"
-        Me.BandedGridColumn14.FieldName = "vendor_rekomendasi"
-        Me.BandedGridColumn14.Name = "BandedGridColumn14"
-        Me.BandedGridColumn14.Visible = True
-        Me.BandedGridColumn14.Width = 117
+        Me.PanelControl3.Controls.Add(Me.PCKolektif)
+        Me.PanelControl3.Controls.Add(Me.PanelControl4)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 444)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1273, 44)
+        Me.PanelControl3.TabIndex = 12
         '
-        'GridBand1
+        'PCKolektif
         '
-        Me.GridBand1.Caption = "Detail"
-        Me.GridBand1.Columns.Add(Me.GridColumn1)
-        Me.GridBand1.Columns.Add(Me.GridColumn2)
-        Me.GridBand1.Columns.Add(Me.GridColumn3)
-        Me.GridBand1.Columns.Add(Me.GridColumnAlamat)
-        Me.GridBand1.Columns.Add(Me.GridColumn5)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 300
+        Me.PCKolektif.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCKolektif.Controls.Add(Me.TEPremi)
+        Me.PCKolektif.Controls.Add(Me.SLEPenawaran)
+        Me.PCKolektif.Controls.Add(Me.LabelControl7)
+        Me.PCKolektif.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCKolektif.Location = New System.Drawing.Point(2, 2)
+        Me.PCKolektif.Name = "PCKolektif"
+        Me.PCKolektif.Size = New System.Drawing.Size(590, 40)
+        Me.PCKolektif.TabIndex = 1
+        Me.PCKolektif.Visible = False
         '
-        'gridBand3
+        'TEPremi
         '
-        Me.gridBand3.Caption = "Nilai"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn3)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn6)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn4)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn5)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn7)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn8)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 1
-        Me.gridBand3.Width = 450
+        Me.TEPremi.Location = New System.Drawing.Point(347, 11)
+        Me.TEPremi.Name = "TEPremi"
+        Me.TEPremi.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEPremi.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEPremi.Properties.Mask.EditMask = "N2"
+        Me.TEPremi.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEPremi.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEPremi.Properties.ReadOnly = True
+        Me.TEPremi.Size = New System.Drawing.Size(231, 20)
+        Me.TEPremi.TabIndex = 7
         '
-        'gridBand2
+        'SLEPenawaran
         '
-        Me.gridBand2.Caption = "Vendor"
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn14)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn11)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn10)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 2
-        Me.gridBand2.Width = 224
+        Me.SLEPenawaran.EditValue = ""
+        Me.SLEPenawaran.Location = New System.Drawing.Point(107, 11)
+        Me.SLEPenawaran.Name = "SLEPenawaran"
+        Me.SLEPenawaran.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEPenawaran.Properties.NullText = ""
+        Me.SLEPenawaran.Properties.ReadOnly = True
+        Me.SLEPenawaran.Properties.View = Me.GridView1
+        Me.SLEPenawaran.Size = New System.Drawing.Size(234, 20)
+        Me.SLEPenawaran.TabIndex = 6
         '
-        'gridBand4
+        'GridView1
         '
-        Me.gridBand4.Caption = "Polis"
-        Me.gridBand4.Columns.Add(Me.BandedGridColumn9)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumn2)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumn1)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 3
-        Me.gridBand4.Width = 225
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn40, Me.GridColumn41, Me.GridColumn42})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.Caption = "ID"
+        Me.GridColumn40.FieldName = "id_comp"
+        Me.GridColumn40.Name = "GridColumn40"
+        '
+        'GridColumn41
+        '
+        Me.GridColumn41.Caption = "Kode"
+        Me.GridColumn41.FieldName = "comp_number"
+        Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.Visible = True
+        Me.GridColumn41.VisibleIndex = 0
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.Caption = "Vendor"
+        Me.GridColumn42.FieldName = "comp_name"
+        Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.Visible = True
+        Me.GridColumn42.VisibleIndex = 1
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(10, 14)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(92, 13)
+        Me.LabelControl7.TabIndex = 0
+        Me.LabelControl7.Text = "Total Premi Kolektif"
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.TEPremiTot)
+        Me.PanelControl4.Controls.Add(Me.LabelControl6)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl4.Location = New System.Drawing.Point(866, 2)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(405, 40)
+        Me.PanelControl4.TabIndex = 0
+        '
+        'TEPremiTot
+        '
+        Me.TEPremiTot.Location = New System.Drawing.Point(74, 11)
+        Me.TEPremiTot.Name = "TEPremiTot"
+        Me.TEPremiTot.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEPremiTot.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEPremiTot.Properties.Mask.EditMask = "N2"
+        Me.TEPremiTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEPremiTot.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEPremiTot.Properties.ReadOnly = True
+        Me.TEPremiTot.Size = New System.Drawing.Size(321, 20)
+        Me.TEPremiTot.TabIndex = 8
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(14, 14)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(53, 13)
+        Me.LabelControl6.TabIndex = 0
+        Me.LabelControl6.Text = "Total Premi"
         '
         'FormPolisReg
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1216, 529)
+        Me.ClientSize = New System.Drawing.Size(1273, 529)
         Me.Controls.Add(Me.GCSummary)
+        Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -627,6 +787,18 @@ Partial Class FormPolisReg
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.BGVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PCKolektif, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCKolektif.ResumeLayout(False)
+        Me.PCKolektif.PerformLayout()
+        CType(Me.TEPremi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEPenawaran.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
+        CType(Me.TEPremiTot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -677,9 +849,22 @@ Partial Class FormPolisReg
     Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn50 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BandedGridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PCKolektif As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEPenawaran As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TEPremi As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEPremiTot As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BtnMark As DevExpress.XtraEditors.SimpleButton
 End Class
