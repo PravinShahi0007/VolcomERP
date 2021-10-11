@@ -338,6 +338,7 @@ Public Class FormEmpUniExpenseDet
                     TxtEmployeeName.Text = de.Rows(0)("employee_name").ToString
                     TxtDepartement.Text = de.Rows(0)("departement").ToString
                     id_departement = de.Rows(0)("id_departement").ToString
+                    BtnBrowse.Enabled = True
                 End If
 
                 'find dept jka bukan uniform staff
