@@ -304,7 +304,7 @@ GROUP BY ppsd.`id_comp`"
     End Sub
 
     Sub load_nilai_penawaran_kolektif()
-        Dim q As String = "SELECT ppsv.id_vendor,c.comp_number,c.comp_name,ppsv.price
+        Dim q As String = "SELECT ppsv.id_vendor,c.comp_number,c.comp_name,ppsv.price,ppsv.is_recommended
 FROM tb_polis_pps_kolektif ppsv
 INNER JOIN tb_m_comp c ON c.id_comp=ppsv.id_vendor
 WHERE ppsv.id_polis_pps='" & id_pps & "'

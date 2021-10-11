@@ -73,6 +73,13 @@
         penawaran.Text = Decimal.Parse(dt.Rows(row_i)("price").ToString).ToString("N2")
         penawaran.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         penawaran.Font = font_row_style
+
+        If dt.Rows(row_i)("is_recommended").ToString Then
+            penawaran.BackColor = Color.LimeGreen
+        Else
+            penawaran.BackColor = Color.Transparent
+        End If
+
     End Sub
     '
     Sub insert_row(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)
