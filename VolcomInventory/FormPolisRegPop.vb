@@ -5,15 +5,17 @@
 
     Private Sub FormPolisRegPop_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TEStore.Text = FormPolisReg.BGVSummary.GetFocusedRowCellValue("comp_name").ToString
-
+        TENomorPolis.Text = FormPolisReg.BGVSummary.GetFocusedRowCellValue("polis_number").ToString
         If FormPolisReg.SLEPPSType.EditValue.ToString = "1" Then
             'kolektif
             load_kolektif()
+            TENomorPolis.Properties.ReadOnly = True
             SLEPenawaran.Properties.ReadOnly = True
             TEPremi.Properties.ReadOnly = False
         Else
             'mandiri
             load_mandiri()
+            TENomorPolis.Properties.ReadOnly = False
             SLEPenawaran.Properties.ReadOnly = False
             TEPremi.Properties.ReadOnly = True
         End If
@@ -27,7 +29,10 @@ INNER JOIN tb_m_comp c ON c.id_comp=ppsv.id_vendor
 WHERE ppsv.id_polis_pps='" & FormPolisReg.id_polis_pps & "'
 GROUP BY ppsv.id_vendor"
         viewSearchLookupQuery(SLEPenawaran, q, "id_comp", "comp_name", "id_comp")
-        SLEPenawaran.EditValue = FormPolisReg.BGVSummary.GetFocusedRowCellValue("vendor_dipilih").ToString
+
+        If Not FormPolisReg.BGVSummary.GetFocusedRowCellValue("id_vendor_dipilih").ToString = "" Then
+            SLEPenawaran.EditValue = FormPolisReg.BGVSummary.GetFocusedRowCellValue("id_vendor_dipilih").ToString
+        End If
     End Sub
 
     Sub load_mandiri()
@@ -38,10 +43,10 @@ INNER JOIN tb_m_comp c ON c.id_comp=ppsv.id_vendor
 WHERE ppsv.id_polis_pps='" & FormPolisReg.id_polis_pps & "'
 GROUP BY ppsv.id_vendor"
         viewSearchLookupQuery(SLEPenawaran, q, "id_comp", "comp_name", "id_comp")
-        If Not FormPolisReg.BGVSummary.GetFocusedRowCellValue("vendor_dipilih").ToString = "" Then
-            SLEPenawaran.EditValue = FormPolisReg.BGVSummary.GetFocusedRowCellValue("vendor_dipilih").ToString
+        If Not FormPolisReg.BGVSummary.GetFocusedRowCellValue("id_vendor_dipilih").ToString = "" Then
+            SLEPenawaran.EditValue = FormPolisReg.BGVSummary.GetFocusedRowCellValue("id_vendor_dipilih").ToString
         Else
-            SLEPenawaran.EditValue = FormPolisReg.BGVSummary.GetFocusedRowCellValue("vendor_rekomendasi").ToString
+            SLEPenawaran.EditValue = FormPolisReg.BGVSummary.GetFocusedRowCellValue("id_vendor_rekomendasi").ToString
         End If
     End Sub
 
@@ -49,8 +54,9 @@ GROUP BY ppsv.id_vendor"
         If TEPremi.EditValue <= 0 Or TEPremi.Text = "" Then
             warningCustom("Please put premi")
         Else
-            Dim q As String = "UPDATE tb_polis_reg_det SET vendor_dipilih='" & SLEPenawaran.EditValue.ToString & "',premi='" & decimalSQL(Decimal.Parse(TEPremi.EditValue.ToString).ToString) & "' WHERE id_polis_reg_det='" & FormPolisReg.BGVSummary.GetFocusedRowCellValue("id_polis_reg_det").ToString & "'"
+            Dim q As String = "UPDATE tb_polis_reg_det SET vendor_dipilih='" & SLEPenawaran.EditValue.ToString & "',polis_number='" & addSlashes(TENomorPolis.Text) & "',premi='" & decimalSQL(Decimal.Parse(TEPremi.EditValue.ToString).ToString) & "' WHERE id_polis_reg_det='" & FormPolisReg.BGVSummary.GetFocusedRowCellValue("id_polis_reg_det").ToString & "'"
             execute_non_query(q, True, "", "", "", "")
+            FormPolisReg.load_pps_view()
             Close()
         End If
     End Sub

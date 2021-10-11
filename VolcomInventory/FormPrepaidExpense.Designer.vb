@@ -19,6 +19,7 @@ Partial Class FormPrepaidExpense
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPrepaidExpense))
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.SLEUnit = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -44,6 +45,20 @@ Partial Class FormPrepaidExpense
         Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBeneficiary = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPPrepaidExpense = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPPolisRegister = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCRegisterPolis = New DevExpress.XtraGrid.GridControl()
+        Me.GVRegisterPolis = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,6 +70,14 @@ Partial Class FormPrepaidExpense
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl1.SuspendLayout()
+        Me.XTPPrepaidExpense.SuspendLayout()
+        Me.XTPPolisRegister.SuspendLayout()
+        CType(Me.GCRegisterPolis, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVRegisterPolis, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControlNav
@@ -68,7 +91,7 @@ Partial Class FormPrepaidExpense
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(1102, 46)
+        Me.PanelControlNav.Size = New System.Drawing.Size(1096, 46)
         Me.PanelControlNav.TabIndex = 2
         '
         'SLEUnit
@@ -171,7 +194,7 @@ Partial Class FormPrepaidExpense
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
-        Me.GCData.Size = New System.Drawing.Size(1102, 539)
+        Me.GCData.Size = New System.Drawing.Size(1096, 511)
         Me.GCData.TabIndex = 3
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -293,13 +316,133 @@ Partial Class FormPrepaidExpense
         Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         Me.RepositoryItemTextEdit1.NullText = "-"
         '
+        'XtraTabControl1
+        '
+        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraTabControl1.Name = "XtraTabControl1"
+        Me.XtraTabControl1.SelectedTabPage = Me.XTPPrepaidExpense
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1102, 585)
+        Me.XtraTabControl1.TabIndex = 4
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPrepaidExpense, Me.XTPPolisRegister})
+        '
+        'XTPPrepaidExpense
+        '
+        Me.XTPPrepaidExpense.Controls.Add(Me.GCData)
+        Me.XTPPrepaidExpense.Controls.Add(Me.PanelControlNav)
+        Me.XTPPrepaidExpense.Name = "XTPPrepaidExpense"
+        Me.XTPPrepaidExpense.Size = New System.Drawing.Size(1096, 557)
+        Me.XTPPrepaidExpense.Text = "Prepaid Expense"
+        '
+        'XTPPolisRegister
+        '
+        Me.XTPPolisRegister.Controls.Add(Me.GCRegisterPolis)
+        Me.XTPPolisRegister.Controls.Add(Me.PanelControl1)
+        Me.XTPPolisRegister.Name = "XTPPolisRegister"
+        Me.XTPPolisRegister.Size = New System.Drawing.Size(1096, 557)
+        Me.XTPPolisRegister.Text = "From Polis Register"
+        '
+        'GCRegisterPolis
+        '
+        Me.GCRegisterPolis.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCRegisterPolis.Location = New System.Drawing.Point(0, 48)
+        Me.GCRegisterPolis.MainView = Me.GVRegisterPolis
+        Me.GCRegisterPolis.Name = "GCRegisterPolis"
+        Me.GCRegisterPolis.Size = New System.Drawing.Size(1096, 509)
+        Me.GCRegisterPolis.TabIndex = 93
+        Me.GCRegisterPolis.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRegisterPolis})
+        '
+        'GVRegisterPolis
+        '
+        Me.GVRegisterPolis.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn3, Me.GridColumn2, Me.GridColumn17, Me.GridColumn4, Me.GridColumn20, Me.GridColumn19})
+        Me.GVRegisterPolis.GridControl = Me.GCRegisterPolis
+        Me.GVRegisterPolis.Name = "GVRegisterPolis"
+        Me.GVRegisterPolis.OptionsBehavior.Editable = False
+        Me.GVRegisterPolis.OptionsBehavior.ReadOnly = True
+        Me.GVRegisterPolis.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "ID"
+        Me.GridColumn16.FieldName = "id_polis_reg"
+        Me.GridColumn16.Name = "GridColumn16"
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Code"
+        Me.GridColumn3.FieldName = "comp_number"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Vendor"
+        Me.GridColumn2.FieldName = "comp_name"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 2
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Number"
+        Me.GridColumn17.FieldName = "number"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 0
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Polis Number"
+        Me.GridColumn20.FieldName = "polis_number"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 3
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Amount Premi"
+        Me.GridColumn19.DisplayFormat.FormatString = "N2"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn19.FieldName = "val"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 5
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BRefresh)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1096, 48)
+        Me.PanelControl1.TabIndex = 1
+        '
+        'BRefresh
+        '
+        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
+        Me.BRefresh.Location = New System.Drawing.Point(980, 2)
+        Me.BRefresh.Name = "BRefresh"
+        Me.BRefresh.Size = New System.Drawing.Size(114, 44)
+        Me.BRefresh.TabIndex = 2
+        Me.BRefresh.Text = "Refresh"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Type"
+        Me.GridColumn4.FieldName = "description"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 4
+        '
         'FormPrepaidExpense
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1102, 585)
-        Me.Controls.Add(Me.GCData)
-        Me.Controls.Add(Me.PanelControlNav)
+        Me.Controls.Add(Me.XtraTabControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -318,6 +461,14 @@ Partial Class FormPrepaidExpense
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl1.ResumeLayout(False)
+        Me.XTPPrepaidExpense.ResumeLayout(False)
+        Me.XTPPolisRegister.ResumeLayout(False)
+        CType(Me.GCRegisterPolis, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVRegisterPolis, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -347,4 +498,18 @@ Partial Class FormPrepaidExpense
     Friend WithEvents GridColumnIdComp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBeneficiary As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPPrepaidExpense As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPPolisRegister As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BRefresh As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCRegisterPolis As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVRegisterPolis As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
