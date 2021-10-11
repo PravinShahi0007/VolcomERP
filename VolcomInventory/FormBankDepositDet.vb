@@ -485,6 +485,34 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
                     newRow("value_view") = Math.Abs(FormBankDeposit.GVInvMat.GetRowCellValue(i, "balance"))
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                 Next
+            ElseIf type_rec = "6" Then 'inv mat
+                SLEAkunValas.Enabled = False
+                SLEUnit.EditValue = id_coa_tag
+                SLEUnit.Enabled = False
+                For i As Integer = 0 To FormBankDeposit.GVInvMat.RowCount - 1
+                    'id_report,number,total,balance due
+                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = FormBankDeposit.GVInvMat.GetRowCellValue(i, "id_report").ToString
+                    newRow("id_report_det") = 0
+                    newRow("report_mark_type") = FormBankDeposit.GVInvMat.GetRowCellValue(i, "report_mark_type").ToString
+                    newRow("report_mark_type_name") = "Invoice Material"
+                    newRow("number") = FormBankDeposit.GVInvMat.GetRowCellValue(i, "number").ToString
+                    newRow("id_comp") = "1"
+                    newRow("id_acc") = FormBankDeposit.GVInvMat.GetRowCellValue(i, "id_acc").ToString
+                    newRow("acc_name") = FormBankDeposit.GVInvMat.GetRowCellValue(i, "acc_name").ToString
+                    newRow("acc_description") = FormBankDeposit.GVInvMat.GetRowCellValue(i, "acc_description").ToString
+                    newRow("comp_number") = "000"
+                    newRow("vendor") = ""
+                    newRow("total_rec") = FormBankDeposit.GVInvMat.GetRowCellValue(i, "total_paid")
+                    newRow("value") = FormBankDeposit.GVInvMat.GetRowCellValue(i, "balance")
+                    newRow("value_bef_kurs") = 0
+                    newRow("balance_due") = FormBankDeposit.GVInvMat.GetRowCellValue(i, "balance")
+                    newRow("note") = "Material " & FormBankDeposit.GVInvMat.GetRowCellValue(i, "number").ToString
+                    newRow("id_dc") = If(FormBankDeposit.GVInvMat.GetRowCellValue(i, "balance") < 0, "1", "2")
+                    newRow("dc_code") = If(FormBankDeposit.GVInvMat.GetRowCellValue(i, "balance") < 0, "D", "K")
+                    newRow("value_view") = Math.Abs(FormBankDeposit.GVInvMat.GetRowCellValue(i, "balance"))
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                Next
             End If
             calculate_amount()
             DERecDate.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='" & SLEUnit.EditValue.ToString & "'", 0, True, "", "", "", "")
