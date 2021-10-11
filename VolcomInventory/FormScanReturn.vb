@@ -67,7 +67,7 @@
     Sub load_view()
         Dim date_start As String = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim date_until As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
-        Dim q As String = "SELECT sr.created_date,rn.date_return_note,sr.`id_scan_return`,rn.`id_return_note`,rn.`label_number`,rn.`number_return_note`,IFNULL(awb.`awb_number`,'Warheouse') AS awb_number,IFNULL(c.`comp_name`,'Warheouse') AS comp_name
+        Dim q As String = "SELECT sr.created_date,rn.date_return_note,sr.`id_scan_return`,rn.`id_return_note`,rn.`label_number`,rn.`number_return_note`,IFNULL(awb.`awb_number`,'Warehouse') AS awb_number,IFNULL(c.`comp_name`,'Warehouse') AS comp_name
 ,GROUP_CONCAT(DISTINCT(CONCAT(cst.`comp_number`,' - ',cst.comp_name)) ORDER BY cst.`comp_number` SEPARATOR '\n') AS list_store
 ,rn.`qty` AS qty_return_note
 ,COUNT(DISTINCT srd.`id_scan_return_det`) AS qty_scan

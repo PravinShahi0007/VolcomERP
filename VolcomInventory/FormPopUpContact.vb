@@ -131,6 +131,10 @@
             End If
         End If
 
+        If id_pop_up = "36" Then
+            query += " AND tb_m_comp.id_comp='829'"
+        End If
+
         If id_pop_up = "38" Then
             query += "AND tb_m_comp.id_comp<>'" + get_setup_field("wh_temp") + "' "
             If FormSalesOrderDet.is_transfer_data = "2" Then
