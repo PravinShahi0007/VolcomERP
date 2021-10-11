@@ -10651,7 +10651,7 @@ WHERE qci.id_qc_sni_in='" & id_report & "'"
 
             execute_non_query(query, True, "", "", "", "")
         ElseIf report_mark_type = "349" Then
-            'expense
+            'prepaid expense
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
             End If
