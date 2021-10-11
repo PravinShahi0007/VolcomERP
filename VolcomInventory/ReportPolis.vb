@@ -74,7 +74,7 @@
         penawaran.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         penawaran.Font = font_row_style
 
-        If dt.Rows(row_i)("is_recommended").ToString Then
+        If dt.Rows(row_i)("is_recommended").ToString = "1" Then
             penawaran.BackColor = Color.LimeGreen
         Else
             penawaran.BackColor = Color.Transparent
