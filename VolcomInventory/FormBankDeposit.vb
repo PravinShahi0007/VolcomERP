@@ -1121,6 +1121,14 @@ LEFT JOIN
 	FROM tb_prepaid_expense_history
 	GROUP BY id_prepaid_expense_det
 )al ON al.id_prepaid_expense_det=ed.id_prepaid_expense_det
+LEFT JOIN 
+(
+    SELECT rp.id_rec_payment,rpd.id_report_det,rpd.id_report 
+    FROM tb_rec_payment_det rpd
+    INNER JOIN tb_rec_payment rp ON rp.id_rec_payment=rpd.id_rec_payment
+    WHERE rp.id_report_status!=5 AND rpd.report_mark_type='349'
+)rp ON ed.id_prepaid_expense_det=rp.id_report_det AND rp.id_report=ed.id_prepaid_expense
+WHERE ISNULL(rp.id_rec_payment)
 HAVING remaining > 0"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCBreakPrepaid.DataSource = dt
