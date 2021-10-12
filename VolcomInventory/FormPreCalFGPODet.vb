@@ -826,8 +826,9 @@ AND NOT ISNULL(choosen_id_comp)"
     Private Sub BLoadOrign_Click(sender As Object, e As EventArgs) Handles BLoadOrign.Click
         Dim q As String = "SELECT t.`id_pre_cal_temp`,t.`desc`,0 AS unit_price_in_rp,IF(t.`is_use_cbm`=1,IF(t.`min_cbm`>cal.`cbm`,t.`min_cbm`,cal.`cbm`),1) AS qty
 FROM `tb_pre_cal_temp` t
-INNER JOIN `tb_pre_cal_fgpo` cal ON cal.`id_type`=t.`vendor_type` AND t.`id_type`='1' AND t.`is_active`='1' 
+INNER JOIN `tb_pre_cal_fgpo` cal ON  t.`id_type`='1' AND t.`is_active`='1' 
 WHERE cal.`id_pre_cal_fgpo`='" & id & "'"
+        'cal.`id_type`=t.`vendor_type` AND
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
         GCOrign.DataSource = dt
@@ -836,11 +837,12 @@ WHERE cal.`id_pre_cal_fgpo`='" & id & "'"
     Private Sub BLoadDest_Click(sender As Object, e As EventArgs) Handles BLoadDest.Click
         Dim q As String = "SELECT t.`id_pre_cal_temp`,t.`desc`,0 AS unit_price_in_rp,IF(t.`is_use_cbm`=1,IF(t.`min_cbm`>cal.`cbm`,t.`min_cbm`,cal.`cbm`),1) AS qty
 FROM `tb_pre_cal_temp` t
-INNER JOIN `tb_pre_cal_fgpo` cal ON cal.`id_type`=t.`vendor_type` AND t.`id_type`='2' AND t.`is_active`='1' AND cal.`id_pre_cal_fgpo`='" & id & "'
+INNER JOIN `tb_pre_cal_fgpo` cal ON t.`id_type`='2' AND t.`is_active`='1' AND cal.`id_pre_cal_fgpo`='" & id & "'
 UNION ALL
 SELECT 11 AS id_pre_cal_temp,'EST STORAGE FEE AND COST PEROUTLAY' AS `desc`, SUM(IF(st.`is_use_cbm`=1,IF(st.`min_cbm`>cal.`cbm`,st.`min_cbm`,CEIL(cal.`cbm`)),1)*st.price) AS unit_price_in_rp,1 AS qty
 FROM `tb_pre_cal_storage` st
 INNER JOIN `tb_pre_cal_fgpo` cal ON st.`is_active`='1'  AND  cal.`id_pre_cal_fgpo`='" & id & "'"
+        'cal.`id_type`=t.`vendor_type` AND
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
         GCDest.DataSource = dt
