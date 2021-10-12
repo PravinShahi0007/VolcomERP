@@ -7155,13 +7155,15 @@ WHERE recd.balance_due=recd.`value` AND report_mark_type='231' AND id_rec_paymen
                     Next
                 ElseIf FormBankDepositDet.type_rec = "6" Then
                     'break prepaid
-                    Dim q As String = "SELECT id_report,id_report_det
+                    Dim q As String = "SELECT id_report,id_report_det,recd.value as amo
 FROM `tb_rec_payment_det` recd
 WHERE recd.balance_due=recd.`value` AND report_mark_type='349' AND id_rec_payment='" + id_report + "'"
                     Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
                     For j = 0 To dt.Rows.Count - 1
-                        Dim qjd_ins = " "
+                        Dim qjd_ins = "INSERT INTO `tb_prepaid_expense_history`(id_prepaid_expense_det,date_input,value_prepaid,is_auto,id_reff)
+VALUES('" & dt.Rows(j)("id_report_det").ToString & "',NOW(),'" & decimalSQL(Decimal.Parse(dt.Rows(j)("amo").ToString).ToString) & "','2','" + id_report + "')"
                         execute_non_query(qjd_ins, True, "", "", "", "")
+                        execute_non_query("UPDATE tb_prepaid_expense_det SET is_manual_close=1 WHERE id_prepaid_expense_det='" & dt.Rows(j)("id_report_det").ToString & "'", True, "", "", "", "")
                     Next
                 End If
 
