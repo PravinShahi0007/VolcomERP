@@ -579,16 +579,16 @@ Partial Class FormBankDepositDet
         Me.PanelControlPreview.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlPreview.Controls.Add(Me.CEPrintPreview)
         Me.PanelControlPreview.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlPreview.Location = New System.Drawing.Point(452, 2)
+        Me.PanelControlPreview.Location = New System.Drawing.Point(443, 2)
         Me.PanelControlPreview.Name = "PanelControlPreview"
-        Me.PanelControlPreview.Size = New System.Drawing.Size(72, 36)
+        Me.PanelControlPreview.Size = New System.Drawing.Size(81, 36)
         Me.PanelControlPreview.TabIndex = 26
         Me.PanelControlPreview.Visible = False
         '
         'CEPrintPreview
         '
         Me.CEPrintPreview.EditValue = True
-        Me.CEPrintPreview.Location = New System.Drawing.Point(3, 8)
+        Me.CEPrintPreview.Location = New System.Drawing.Point(11, 8)
         Me.CEPrintPreview.Name = "CEPrintPreview"
         Me.CEPrintPreview.Properties.Caption = "Preview"
         Me.CEPrintPreview.Size = New System.Drawing.Size(60, 19)
