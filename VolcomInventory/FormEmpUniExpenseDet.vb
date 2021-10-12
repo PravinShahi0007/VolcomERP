@@ -239,6 +239,8 @@ Public Class FormEmpUniExpenseDet
             warningCustom("COA not found. Please setup first")
         ElseIf start_period_cek = "0000-01-01" Or end_period_cek = "9999-12-01" Then
             warningCustom("Please fill period")
+        ElseIf MENote.Text = "" Then
+            warningCustom("Please fill note")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -336,8 +338,10 @@ Public Class FormEmpUniExpenseDet
                     Dim de As DataTable = execute_query(qe, -1, True, "", "", "", "")
                     TxtNIP.Text = de.Rows(0)("employee_code").ToString
                     TxtEmployeeName.Text = de.Rows(0)("employee_name").ToString
-                    TxtDepartement.Text = de.Rows(0)("departement").ToString
-                    id_departement = de.Rows(0)("id_departement").ToString
+                    If de.Rows(0)("is_office_dept").ToString = "1" And de.Rows(0)("is_kk_unit").ToString = "2" And de.Rows(0)("is_store").ToString = "2" Then
+                        TxtDepartement.Text = de.Rows(0)("departement").ToString
+                        id_departement = de.Rows(0)("id_departement").ToString
+                    End If
                     BtnBrowse.Enabled = True
                 End If
 
@@ -655,5 +659,9 @@ Public Class FormEmpUniExpenseDet
 
     Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
         DEEnd.Properties.MinValue = DEStart.EditValue
+    End Sub
+
+    Private Sub GroupControlTop_Paint(sender As Object, e As PaintEventArgs) Handles GroupControlTop.Paint
+
     End Sub
 End Class

@@ -12,6 +12,8 @@
             query = "SELECT d.* FROM tb_m_departement d 
 INNER JOIN tb_coa_map_departement coa ON coa.id_departement=d.id_departement AND coa.type=8
 ORDER BY d.departement ASC "
+        ElseIf id_pop_up = "1" Then
+            query = "SELECT * FROM tb_m_departement d WHERE d.is_office_dept=1 AND d.is_kk_unit=2 AND d.is_store=2 ORDER BY d.departement ASC "
         Else
             query = "SELECT * FROM tb_m_departement d ORDER BY d.departement ASC "
         End If

@@ -1108,4 +1108,42 @@ WHERE dn.is_open=1 AND dn.is_deposit='2' AND dn.`id_inv_mat_type`=2 AND dn.id_re
             GVUrban.SetFocusedRowCellValue("rec_amo", total_due)
         End If
     End Sub
+
+    Private Sub BRefreshBreakPrepaid_Click(sender As Object, e As EventArgs) Handles BRefreshBreakPrepaid.Click
+        Dim q As String = "SELECT 'no' AS is_check,ed.id_prepaid_expense,'349' AS rmt,ed.`id_prepaid_expense_det`,acc.acc_name,acc.acc_description,acc.id_acc,ed.description,e.inv_number,c.comp_number AS store_code,c.comp_name AS store_name,c.id_comp AS id_store,(ed.`amount`-IFNULL(al.already,0.00)) AS remaining
+FROM `tb_prepaid_expense_det` ed
+INNER JOIN tb_prepaid_expense e ON e.`id_prepaid_expense`=ed.`id_prepaid_expense` AND e.id_report_status=6
+INNER JOIN tb_a_acc acc ON acc.id_acc=ed.id_acc
+INNER JOIN tb_m_comp c ON c.id_comp=ed.cc
+LEFT JOIN
+(
+	SELECT id_prepaid_expense_det,SUM(value_prepaid) AS already
+	FROM tb_prepaid_expense_history
+	GROUP BY id_prepaid_expense_det
+)al ON al.id_prepaid_expense_det=ed.id_prepaid_expense_det
+LEFT JOIN 
+(
+    SELECT rp.id_rec_payment,rpd.id_report_det,rpd.id_report 
+    FROM tb_rec_payment_det rpd
+    INNER JOIN tb_rec_payment rp ON rp.id_rec_payment=rpd.id_rec_payment
+    WHERE rp.id_report_status!=5 AND rpd.report_mark_type='349'
+)rp ON ed.id_prepaid_expense_det=rp.id_report_det AND rp.id_report=ed.id_prepaid_expense
+WHERE ISNULL(rp.id_rec_payment)
+HAVING remaining > 0"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCBreakPrepaid.DataSource = dt
+        GVBreakPrepaid.BestFitColumns()
+    End Sub
+
+    Private Sub BRecBreakPrepaid_Click(sender As Object, e As EventArgs) Handles BRecBreakPrepaid.Click
+        GVBreakPrepaid.ActiveFilterString = "[is_check]='yes'"
+        If GVJualAsset.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            FormBankDepositDet.id_coa_tag = "1"
+            FormBankDepositDet.type_rec = "6"
+            FormBankDepositDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+        GVBreakPrepaid.ActiveFilterString = ""
+    End Sub
 End Class
