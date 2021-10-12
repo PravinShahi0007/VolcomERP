@@ -7153,6 +7153,16 @@ WHERE recd.balance_due=recd.`value` AND report_mark_type='231' AND id_rec_paymen
                     WHERE d.id_inv_mat = '" + dt.Rows(j)("id_report").ToString + "'; "
                         execute_non_query(qjd_upd, True, "", "", "", "")
                     Next
+                ElseIf FormBankDepositDet.type_rec = "6" Then
+                    'break prepaid
+                    Dim q As String = "SELECT id_report,id_report_det
+FROM `tb_rec_payment_det` recd
+WHERE recd.balance_due=recd.`value` AND report_mark_type='349' AND id_rec_payment='" + id_report + "'"
+                    Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                    For j = 0 To dt.Rows.Count - 1
+                        Dim qjd_ins = " "
+                        execute_non_query(qjd_ins, True, "", "", "", "")
+                    Next
                 End If
 
                 'insert valas
