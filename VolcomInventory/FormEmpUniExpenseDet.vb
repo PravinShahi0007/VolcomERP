@@ -338,8 +338,10 @@ Public Class FormEmpUniExpenseDet
                     Dim de As DataTable = execute_query(qe, -1, True, "", "", "", "")
                     TxtNIP.Text = de.Rows(0)("employee_code").ToString
                     TxtEmployeeName.Text = de.Rows(0)("employee_name").ToString
-                    TxtDepartement.Text = de.Rows(0)("departement").ToString
-                    id_departement = de.Rows(0)("id_departement").ToString
+                    If de.Rows(0)("is_office_dept").ToString = "1" And de.Rows(0)("is_kk_unit").ToString = "2" And de.Rows(0)("is_store").ToString = "2" Then
+                        TxtDepartement.Text = de.Rows(0)("departement").ToString
+                        id_departement = de.Rows(0)("id_departement").ToString
+                    End If
                     BtnBrowse.Enabled = True
                 End If
 
@@ -657,5 +659,9 @@ Public Class FormEmpUniExpenseDet
 
     Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
         DEEnd.Properties.MinValue = DEStart.EditValue
+    End Sub
+
+    Private Sub GroupControlTop_Paint(sender As Object, e As PaintEventArgs) Handles GroupControlTop.Paint
+
     End Sub
 End Class

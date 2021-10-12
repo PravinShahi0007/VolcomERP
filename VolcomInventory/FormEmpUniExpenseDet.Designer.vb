@@ -580,12 +580,12 @@ Partial Class FormEmpUniExpenseDet
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetQtyToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(113, 26)
         '
         'SetQtyToolStripMenuItem
         '
         Me.SetQtyToolStripMenuItem.Name = "SetQtyToolStripMenuItem"
-        Me.SetQtyToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SetQtyToolStripMenuItem.Size = New System.Drawing.Size(112, 22)
         Me.SetQtyToolStripMenuItem.Text = "Set Qty"
         '
         'GVData
