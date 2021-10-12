@@ -290,7 +290,7 @@ Partial Class FormBankDepositDet
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.Label1.Location = New System.Drawing.Point(381, 14)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(146, 21)
+        Me.Label1.Size = New System.Drawing.Size(149, 21)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Receive Payment To"
         '
@@ -847,7 +847,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnNumber.Visible = True
         Me.GridColumnNumber.VisibleIndex = 3
-        Me.GridColumnNumber.Width = 293
+        Me.GridColumnNumber.Width = 160
         '
         'GridColumn1
         '
@@ -864,7 +864,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
         Me.GridColumnNote.VisibleIndex = 4
-        Me.GridColumnNote.Width = 297
+        Me.GridColumnNote.Width = 149
         '
         'GridColumnAlreadyReceived
         '
@@ -883,7 +883,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnAlreadyReceived.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", "{0:N2}")})
         Me.GridColumnAlreadyReceived.Visible = True
         Me.GridColumnAlreadyReceived.VisibleIndex = 7
-        Me.GridColumnAlreadyReceived.Width = 151
+        Me.GridColumnAlreadyReceived.Width = 78
         '
         'GridColumnReceive
         '
@@ -924,7 +924,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnReceiveView.Name = "GridColumnReceiveView"
         Me.GridColumnReceiveView.Visible = True
         Me.GridColumnReceiveView.VisibleIndex = 9
-        Me.GridColumnReceiveView.Width = 288
+        Me.GridColumnReceiveView.Width = 160
         '
         'GridColumnBBaldue
         '
@@ -941,7 +941,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnBBaldue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance_due", "{0:N2}")})
         Me.GridColumnBBaldue.Visible = True
         Me.GridColumnBBaldue.VisibleIndex = 8
-        Me.GridColumnBBaldue.Width = 160
+        Me.GridColumnBBaldue.Width = 83
         '
         'GridColumnno
         '
@@ -951,7 +951,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnno.OptionsColumn.AllowEdit = False
         Me.GridColumnno.Visible = True
         Me.GridColumnno.VisibleIndex = 0
-        Me.GridColumnno.Width = 90
+        Me.GridColumnno.Width = 49
         '
         'GridColumnCOA
         '
@@ -961,7 +961,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnCOA.OptionsColumn.AllowEdit = False
         Me.GridColumnCOA.Visible = True
         Me.GridColumnCOA.VisibleIndex = 1
-        Me.GridColumnCOA.Width = 85
+        Me.GridColumnCOA.Width = 46
         '
         'GridColumncomp_number
         '
@@ -971,7 +971,7 @@ Partial Class FormBankDepositDet
         Me.GridColumncomp_number.OptionsColumn.AllowEdit = False
         Me.GridColumncomp_number.Visible = True
         Me.GridColumncomp_number.VisibleIndex = 2
-        Me.GridColumncomp_number.Width = 189
+        Me.GridColumncomp_number.Width = 103
         '
         'GridColumnid_comp
         '
@@ -995,7 +995,7 @@ Partial Class FormBankDepositDet
         Me.GridColumndc_code.OptionsColumn.AllowEdit = False
         Me.GridColumndc_code.Visible = True
         Me.GridColumndc_code.VisibleIndex = 6
-        Me.GridColumndc_code.Width = 79
+        Me.GridColumndc_code.Width = 41
         '
         'GridColumnid_dc
         '
@@ -1019,6 +1019,7 @@ Partial Class FormBankDepositDet
         Me.GridColumnvendor.OptionsColumn.AllowEdit = False
         Me.GridColumnvendor.Visible = True
         Me.GridColumnvendor.VisibleIndex = 5
+        Me.GridColumnvendor.Width = 66
         '
         'GridColumnvalue_bef_kurs
         '
