@@ -126,6 +126,9 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnNameB = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSizeB = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRejectType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclassbc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolorbc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshtbc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
@@ -167,9 +170,8 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnIdx = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdx2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumnclassbc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncolorbc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnshtbc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Timer = New System.Windows.Forms.Timer(Me.components)
+        Me.RepositoryItemTextEdit = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -234,6 +236,7 @@ Partial Class FormSalesReturnQCDet
         CType(Me.GCDrawerDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDrawerDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -1190,7 +1193,7 @@ Partial Class FormSalesReturnQCDet
         Me.GCBarcode.Location = New System.Drawing.Point(21, 41)
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
-        Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
+        Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2, Me.RepositoryItemTextEdit})
         Me.GCBarcode.Size = New System.Drawing.Size(882, 111)
         Me.GCBarcode.TabIndex = 6
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
@@ -1223,6 +1226,7 @@ Partial Class FormSalesReturnQCDet
         'GridColumnBarcode
         '
         Me.GridColumnBarcode.Caption = "Scanned Code"
+        Me.GridColumnBarcode.ColumnEdit = Me.RepositoryItemTextEdit
         Me.GridColumnBarcode.FieldName = "code"
         Me.GridColumnBarcode.Name = "GridColumnBarcode"
         Me.GridColumnBarcode.Visible = True
@@ -1325,6 +1329,33 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnRejectType.Visible = True
         Me.GridColumnRejectType.VisibleIndex = 6
         Me.GridColumnRejectType.Width = 264
+        '
+        'GridColumnclassbc
+        '
+        Me.GridColumnclassbc.Caption = "Class"
+        Me.GridColumnclassbc.FieldName = "class"
+        Me.GridColumnclassbc.Name = "GridColumnclassbc"
+        Me.GridColumnclassbc.OptionsColumn.AllowEdit = False
+        Me.GridColumnclassbc.Visible = True
+        Me.GridColumnclassbc.VisibleIndex = 2
+        Me.GridColumnclassbc.Width = 73
+        '
+        'GridColumncolorbc
+        '
+        Me.GridColumncolorbc.Caption = "Color"
+        Me.GridColumncolorbc.FieldName = "color"
+        Me.GridColumncolorbc.Name = "GridColumncolorbc"
+        Me.GridColumncolorbc.OptionsColumn.AllowEdit = False
+        Me.GridColumncolorbc.Visible = True
+        Me.GridColumncolorbc.VisibleIndex = 4
+        Me.GridColumncolorbc.Width = 65
+        '
+        'GridColumnshtbc
+        '
+        Me.GridColumnshtbc.Caption = "Silhouette"
+        Me.GridColumnshtbc.FieldName = "sht"
+        Me.GridColumnshtbc.Name = "GridColumnshtbc"
+        Me.GridColumnshtbc.OptionsColumn.AllowEdit = False
         '
         'RepositoryItemCheckEdit2
         '
@@ -1674,32 +1705,10 @@ Partial Class FormSalesReturnQCDet
         '
         Me.EPForm.ContainerControl = Me
         '
-        'GridColumnclassbc
+        'RepositoryItemTextEdit
         '
-        Me.GridColumnclassbc.Caption = "Class"
-        Me.GridColumnclassbc.FieldName = "class"
-        Me.GridColumnclassbc.Name = "GridColumnclassbc"
-        Me.GridColumnclassbc.OptionsColumn.AllowEdit = False
-        Me.GridColumnclassbc.Visible = True
-        Me.GridColumnclassbc.VisibleIndex = 2
-        Me.GridColumnclassbc.Width = 73
-        '
-        'GridColumncolorbc
-        '
-        Me.GridColumncolorbc.Caption = "Color"
-        Me.GridColumncolorbc.FieldName = "color"
-        Me.GridColumncolorbc.Name = "GridColumncolorbc"
-        Me.GridColumncolorbc.OptionsColumn.AllowEdit = False
-        Me.GridColumncolorbc.Visible = True
-        Me.GridColumncolorbc.VisibleIndex = 4
-        Me.GridColumncolorbc.Width = 65
-        '
-        'GridColumnshtbc
-        '
-        Me.GridColumnshtbc.Caption = "Silhouette"
-        Me.GridColumnshtbc.FieldName = "sht"
-        Me.GridColumnshtbc.Name = "GridColumnshtbc"
-        Me.GridColumnshtbc.OptionsColumn.AllowEdit = False
+        Me.RepositoryItemTextEdit.AutoHeight = False
+        Me.RepositoryItemTextEdit.Name = "RepositoryItemTextEdit"
         '
         'FormSalesReturnQCDet
         '
@@ -1791,6 +1800,7 @@ Partial Class FormSalesReturnQCDet
         CType(Me.GCDrawerDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDrawerDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1944,4 +1954,6 @@ Partial Class FormSalesReturnQCDet
     Friend WithEvents GridColumnclassbc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncolorbc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnshtbc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Timer As Timer
+    Friend WithEvents RepositoryItemTextEdit As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class
