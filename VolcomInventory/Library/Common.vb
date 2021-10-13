@@ -7700,13 +7700,14 @@ INNER JOIN tb_sales_return_qc awb ON awb.`id_sales_return_qc`='" & id_report & "
 	            FROM tb_pp_change_det AS d
 	            LEFT JOIN tb_pp_change AS h ON d.id_pp_change = d.id_pp_change
 	            WHERE h.effective_date > DATE(NOW()) AND h.id_report_status = 6 AND d.propose_price_final IS NOT NULL
+                AND h.id_design_mkd=1
             )
         "
         Dim data_eos As DataTable = execute_query(query_eos, -1, True, "", "", "", "")
 
         For i = 0 To data_eos.Rows.Count - 1
             For j = 0 To data_in.Count - 1
-                If data_eos.Rows("id_product").ToString = data_in(j).ToString Then
+                If data_eos.Rows(i)("id_product").ToString = data_in(j).ToString Then
                     out = False
                 End If
             Next
