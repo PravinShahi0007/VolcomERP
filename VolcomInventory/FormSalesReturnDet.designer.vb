@@ -218,6 +218,7 @@ Partial Class FormSalesReturnDet
         Me.GCScanType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnclassns = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncolorns = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshtns = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelNavBarcodeProb = New DevExpress.XtraEditors.PanelControl()
@@ -261,7 +262,8 @@ Partial Class FormSalesReturnDet
         Me.TxtCombineFrom = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnCombineReturn = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnshtns = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Timer = New System.Windows.Forms.Timer(Me.components)
+        Me.RepositoryItemTextEdit = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -357,6 +359,7 @@ Partial Class FormSalesReturnDet
         CType(Me.PanelControlInfoCombine, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlInfoCombine.SuspendLayout()
         CType(Me.TxtCombineFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -1483,7 +1486,7 @@ Partial Class FormSalesReturnDet
         Me.GCBarcode.Location = New System.Drawing.Point(20, 35)
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
-        Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
+        Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2, Me.RepositoryItemTextEdit})
         Me.GCBarcode.Size = New System.Drawing.Size(1140, 132)
         Me.GCBarcode.TabIndex = 6
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
@@ -1517,6 +1520,7 @@ Partial Class FormSalesReturnDet
         'GridColumnBarcode
         '
         Me.GridColumnBarcode.Caption = "Scanned Code"
+        Me.GridColumnBarcode.ColumnEdit = Me.RepositoryItemTextEdit
         Me.GridColumnBarcode.FieldName = "code"
         Me.GridColumnBarcode.Name = "GridColumnBarcode"
         Me.GridColumnBarcode.Visible = True
@@ -2282,6 +2286,13 @@ Partial Class FormSalesReturnDet
         Me.GridColumncolorns.VisibleIndex = 4
         Me.GridColumncolorns.Width = 67
         '
+        'GridColumnshtns
+        '
+        Me.GridColumnshtns.Caption = "Silhouette"
+        Me.GridColumnshtns.FieldName = "sht"
+        Me.GridColumnshtns.Name = "GridColumnshtns"
+        Me.GridColumnshtns.OptionsColumn.AllowEdit = False
+        '
         'RepositoryItemCheckEdit1
         '
         Me.RepositoryItemCheckEdit1.AutoHeight = False
@@ -2739,12 +2750,10 @@ Partial Class FormSalesReturnDet
         Me.BtnCombineReturn.TabIndex = 0
         Me.BtnCombineReturn.Text = "Combine Return"
         '
-        'GridColumnshtns
+        'RepositoryItemTextEdit
         '
-        Me.GridColumnshtns.Caption = "Silhouette"
-        Me.GridColumnshtns.FieldName = "sht"
-        Me.GridColumnshtns.Name = "GridColumnshtns"
-        Me.GridColumnshtns.OptionsColumn.AllowEdit = False
+        Me.RepositoryItemTextEdit.AutoHeight = False
+        Me.RepositoryItemTextEdit.Name = "RepositoryItemTextEdit"
         '
         'FormSalesReturnDet
         '
@@ -2868,6 +2877,7 @@ Partial Class FormSalesReturnDet
         Me.PanelControlInfoCombine.ResumeLayout(False)
         Me.PanelControlInfoCombine.PerformLayout()
         CType(Me.TxtCombineFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -3113,4 +3123,6 @@ Partial Class FormSalesReturnDet
     Friend WithEvents GridColumnclassns As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncolorns As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnshtns As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Timer As Timer
+    Friend WithEvents RepositoryItemTextEdit As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class
