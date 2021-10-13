@@ -6196,9 +6196,14 @@ VALUES('" & dtsi.Rows(i)("id_departement").ToString & "','" & id_item_detail & "
             '    GROUP BY po.id_purc_order, dep.id_main_comp
 
             'refresh view
-            FormPurcReceiveDet.actionLoad()
-            FormPurcReceive.viewReceive()
-            FormPurcReceive.GVReceive.FocusedRowHandle = find_row(FormPurcReceive.GVReceive, "id_purc_rec", id_report)
+            Try
+                FormPurcReceiveDet.actionLoad()
+                FormPurcReceive.viewReceive()
+                FormPurcReceive.GVReceive.FocusedRowHandle = find_row(FormPurcReceive.GVReceive, "id_purc_rec", id_report)
+            Catch ex As Exception
+
+            End Try
+
 
             'jika ada PPH dan receiving klop
             'DP pindah BBK
