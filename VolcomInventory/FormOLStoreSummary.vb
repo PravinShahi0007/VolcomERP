@@ -1678,8 +1678,25 @@ WHERE !ISNULL(od.id_ol_store_oos) AND od.sales_order_det_qty!= od.ol_order_qty "
 
     Sub viewZalPrm()
         Cursor = Cursors.WaitCursor
+
+        'date
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromZalPrm.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEUntilZalPrm.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Dim cond As String = "AND p.id_report_status_recon=6 AND (DATE(p.propose_created_date)>='" + date_from_selected + "' AND DATE(p.propose_created_date)<='" + date_until_selected + "') "
+
         Dim pz As New ClassPromoZalora()
-        Dim query As String = pz.queryMain("()", "1")
+        Dim query As String = pz.queryMain(cond, "1")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSumZalPrm.DataSource = data
+        GVSumZalPrm.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 End Class
