@@ -26,6 +26,8 @@
         DEUpdatedUntil.EditValue = data_dt.Rows(0)("dt")
         DEExFrom.EditValue = data_dt.Rows(0)("dt")
         DEExUntil.EditValue = data_dt.Rows(0)("dt")
+        DEFromZalPrm.EditValue = data_dt.Rows(0)("dt")
+        DEUntilZalPrm.EditValue = data_dt.Rows(0)("dt")
         viewComp()
         viewCompGroup()
         viewCompGroupROR()
@@ -1668,5 +1670,16 @@ WHERE !ISNULL(od.id_ol_store_oos) AND od.sales_order_det_qty!= od.ol_order_qty "
 
     Private Sub BtnViewZaloraShipGreather30_Click(sender As Object, e As EventArgs) Handles BtnViewZaloraShipGreather30.Click
         viewZaloraShipReport(False)
+    End Sub
+
+    Private Sub BtnViewZalPrm_Click(sender As Object, e As EventArgs) Handles BtnViewZalPrm.Click
+        viewZalPrm
+    End Sub
+
+    Sub viewZalPrm()
+        Cursor = Cursors.WaitCursor
+        Dim pz As New ClassPromoZalora()
+        Dim query As String = pz.queryMain("()", "1")
+        Cursor = Cursors.Default
     End Sub
 End Class
