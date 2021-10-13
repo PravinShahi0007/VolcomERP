@@ -20,30 +20,30 @@ Partial Class FormOLStoreSummary
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOLStoreSummary))
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject11 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject12 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject13 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject14 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject15 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject16 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject17 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject18 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject19 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject20 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject21 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject30 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject36 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject22 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject27 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject25 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject35 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject28 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject33 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject31 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject32 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject26 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject23 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject24 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject29 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject34 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject37 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject38 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject39 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject40 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim GridFormatRule3 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue3 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim FormatConditionRuleValue1 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
-        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue2 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Me.GridColumnis_cancel_cn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4shipped_age = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -551,6 +551,27 @@ Partial Class FormOLStoreSummary
         Me.XTPZaloraPromo = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCZaloraPromo = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPZaloraPromoSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSumZalPrm = New DevExpress.XtraGrid.GridControl()
+        Me.GVSumZalPrm = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_promo_zalora = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndiscount_code = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndiscount_value = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnvolcom_pros = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpropose_created_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpropose_created_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_report_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrmt_propose = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpropose_note = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrecon_created_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrecon_created_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnreport_status_recon = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrecon_note = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpromo_zalora_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl12 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.DEUntilZalPrm = New DevExpress.XtraEditors.DateEdit()
@@ -607,27 +628,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumn93 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn94 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
-        Me.GCSumZalPrm = New DevExpress.XtraGrid.GridControl()
-        Me.GVSumZalPrm = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnid_promo_zalora = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumndiscount_code = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumndiscount_value = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnvolcom_pros = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnpropose_created_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnpropose_created_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_report_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnrmt_propose = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnpropose_note = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnrecon_created_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnrecon_created_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnreport_status_recon = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnrecon_note = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnpromo_zalora_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoPrmZalNUmber = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -760,6 +761,8 @@ Partial Class FormOLStoreSummary
         CType(Me.XTCZaloraPromo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCZaloraPromo.SuspendLayout()
         Me.XTPZaloraPromoSummary.SuspendLayout()
+        CType(Me.GCSumZalPrm, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSumZalPrm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl12, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl12.SuspendLayout()
         CType(Me.DEUntilZalPrm.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -775,8 +778,7 @@ Partial Class FormOLStoreSummary
         Me.PanelControl13.SuspendLayout()
         CType(Me.SearchLookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCSumZalPrm, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVSumZalPrm, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoPrmZalNUmber, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridColumnis_cancel_cn
@@ -1208,13 +1210,13 @@ Partial Class FormOLStoreSummary
         'BUttonDetailSO
         '
         Me.BUttonDetailSO.AutoHeight = False
-        SerializableAppearanceObject1.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject1.Options.UseBackColor = True
-        SerializableAppearanceObject1.Options.UseFont = True
-        SerializableAppearanceObject1.Options.UseForeColor = True
-        Me.BUttonDetailSO.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject21.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject21.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject21.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject21.Options.UseBackColor = True
+        SerializableAppearanceObject21.Options.UseFont = True
+        SerializableAppearanceObject21.Options.UseForeColor = True
+        Me.BUttonDetailSO.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject21, "", Nothing, Nothing, True)})
         Me.BUttonDetailSO.Name = "BUttonDetailSO"
         '
         'XTCOLStore
@@ -1729,13 +1731,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnDetailOrder
         '
         Me.RepoBtnDetailOrder.AutoHeight = False
-        SerializableAppearanceObject2.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject2.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject2.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject2.Options.UseBackColor = True
-        SerializableAppearanceObject2.Options.UseFont = True
-        SerializableAppearanceObject2.Options.UseForeColor = True
-        Me.RepoBtnDetailOrder.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject30.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject30.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject30.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject30.Options.UseBackColor = True
+        SerializableAppearanceObject30.Options.UseFont = True
+        SerializableAppearanceObject30.Options.UseForeColor = True
+        Me.RepoBtnDetailOrder.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject30, "", Nothing, Nothing, True)})
         Me.RepoBtnDetailOrder.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnDetailOrder.Name = "RepoBtnDetailOrder"
         Me.RepoBtnDetailOrder.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -1751,13 +1753,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnViewShippingLabel
         '
         Me.RepoBtnViewShippingLabel.AutoHeight = False
-        SerializableAppearanceObject3.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject3.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold)
-        SerializableAppearanceObject3.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject3.Options.UseBackColor = True
-        SerializableAppearanceObject3.Options.UseFont = True
-        SerializableAppearanceObject3.Options.UseForeColor = True
-        Me.RepoBtnViewShippingLabel.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Shipping Label", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject3, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject36.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject36.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold)
+        SerializableAppearanceObject36.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject36.Options.UseBackColor = True
+        SerializableAppearanceObject36.Options.UseFont = True
+        SerializableAppearanceObject36.Options.UseForeColor = True
+        Me.RepoBtnViewShippingLabel.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Shipping Label", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject36, "", Nothing, Nothing, True)})
         Me.RepoBtnViewShippingLabel.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnViewShippingLabel.Name = "RepoBtnViewShippingLabel"
         Me.RepoBtnViewShippingLabel.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -1841,13 +1843,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnDetailDel
         '
         Me.RepoBtnDetailDel.AutoHeight = False
-        SerializableAppearanceObject4.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject4.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject4.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject4.Options.UseBackColor = True
-        SerializableAppearanceObject4.Options.UseFont = True
-        SerializableAppearanceObject4.Options.UseForeColor = True
-        Me.RepoBtnDetailDel.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject4, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject22.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject22.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject22.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject22.Options.UseBackColor = True
+        SerializableAppearanceObject22.Options.UseFont = True
+        SerializableAppearanceObject22.Options.UseForeColor = True
+        Me.RepoBtnDetailDel.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject22, "", Nothing, Nothing, True)})
         Me.RepoBtnDetailDel.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnDetailDel.Name = "RepoBtnDetailDel"
         Me.RepoBtnDetailDel.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -1863,13 +1865,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnDetailPickup
         '
         Me.RepoBtnDetailPickup.AutoHeight = False
-        SerializableAppearanceObject5.BackColor = System.Drawing.Color.OrangeRed
-        SerializableAppearanceObject5.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject5.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject5.Options.UseBackColor = True
-        SerializableAppearanceObject5.Options.UseFont = True
-        SerializableAppearanceObject5.Options.UseForeColor = True
-        Me.RepoBtnDetailPickup.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Bukti Pickup", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject27.BackColor = System.Drawing.Color.OrangeRed
+        SerializableAppearanceObject27.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject27.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject27.Options.UseBackColor = True
+        SerializableAppearanceObject27.Options.UseFont = True
+        SerializableAppearanceObject27.Options.UseForeColor = True
+        Me.RepoBtnDetailPickup.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Bukti Pickup", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject27, "", Nothing, Nothing, True)})
         Me.RepoBtnDetailPickup.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnDetailPickup.Name = "RepoBtnDetailPickup"
         Me.RepoBtnDetailPickup.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -1925,13 +1927,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnDetailInv
         '
         Me.RepoBtnDetailInv.AutoHeight = False
-        SerializableAppearanceObject6.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject6.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject6.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject6.Options.UseBackColor = True
-        SerializableAppearanceObject6.Options.UseFont = True
-        SerializableAppearanceObject6.Options.UseForeColor = True
-        Me.RepoBtnDetailInv.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject6, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject25.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject25.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject25.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject25.Options.UseBackColor = True
+        SerializableAppearanceObject25.Options.UseFont = True
+        SerializableAppearanceObject25.Options.UseForeColor = True
+        Me.RepoBtnDetailInv.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject25, "", Nothing, Nothing, True)})
         Me.RepoBtnDetailInv.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnDetailInv.Name = "RepoBtnDetailInv"
         Me.RepoBtnDetailInv.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -1991,13 +1993,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnInvoiceShip
         '
         Me.RepoBtnInvoiceShip.AutoHeight = False
-        SerializableAppearanceObject7.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject7.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold)
-        SerializableAppearanceObject7.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject7.Options.UseBackColor = True
-        SerializableAppearanceObject7.Options.UseFont = True
-        SerializableAppearanceObject7.Options.UseForeColor = True
-        Me.RepoBtnInvoiceShip.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject7, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject35.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject35.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold)
+        SerializableAppearanceObject35.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject35.Options.UseBackColor = True
+        SerializableAppearanceObject35.Options.UseFont = True
+        SerializableAppearanceObject35.Options.UseForeColor = True
+        Me.RepoBtnInvoiceShip.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject35, "", Nothing, Nothing, True)})
         Me.RepoBtnInvoiceShip.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnInvoiceShip.Name = "RepoBtnInvoiceShip"
         Me.RepoBtnInvoiceShip.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -2052,13 +2054,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnDetailRecPayment
         '
         Me.RepoBtnDetailRecPayment.AutoHeight = False
-        SerializableAppearanceObject8.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject8.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject8.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject8.Options.UseBackColor = True
-        SerializableAppearanceObject8.Options.UseFont = True
-        SerializableAppearanceObject8.Options.UseForeColor = True
-        Me.RepoBtnDetailRecPayment.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject8, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject28.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject28.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject28.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject28.Options.UseBackColor = True
+        SerializableAppearanceObject28.Options.UseFont = True
+        SerializableAppearanceObject28.Options.UseForeColor = True
+        Me.RepoBtnDetailRecPayment.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject28, "", Nothing, Nothing, True)})
         Me.RepoBtnDetailRecPayment.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnDetailRecPayment.Name = "RepoBtnDetailRecPayment"
         Me.RepoBtnDetailRecPayment.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -2142,13 +2144,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnDetailRetRequest
         '
         Me.RepoBtnDetailRetRequest.AutoHeight = False
-        SerializableAppearanceObject9.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject9.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject9.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject9.Options.UseBackColor = True
-        SerializableAppearanceObject9.Options.UseFont = True
-        SerializableAppearanceObject9.Options.UseForeColor = True
-        Me.RepoBtnDetailRetRequest.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject33.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject33.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject33.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject33.Options.UseBackColor = True
+        SerializableAppearanceObject33.Options.UseFont = True
+        SerializableAppearanceObject33.Options.UseForeColor = True
+        Me.RepoBtnDetailRetRequest.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject33, "", Nothing, Nothing, True)})
         Me.RepoBtnDetailRetRequest.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnDetailRetRequest.Name = "RepoBtnDetailRetRequest"
         Me.RepoBtnDetailRetRequest.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -2201,13 +2203,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnDetailPreReturn
         '
         Me.RepoBtnDetailPreReturn.AutoHeight = False
-        SerializableAppearanceObject10.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject10.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject10.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject10.Options.UseBackColor = True
-        SerializableAppearanceObject10.Options.UseFont = True
-        SerializableAppearanceObject10.Options.UseForeColor = True
-        Me.RepoBtnDetailPreReturn.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject10, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject31.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject31.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject31.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject31.Options.UseBackColor = True
+        SerializableAppearanceObject31.Options.UseFont = True
+        SerializableAppearanceObject31.Options.UseForeColor = True
+        Me.RepoBtnDetailPreReturn.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject31, "", Nothing, Nothing, True)})
         Me.RepoBtnDetailPreReturn.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnDetailPreReturn.Name = "RepoBtnDetailPreReturn"
         Me.RepoBtnDetailPreReturn.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -2270,13 +2272,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnRetCust
         '
         Me.RepoBtnRetCust.AutoHeight = False
-        SerializableAppearanceObject11.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject11.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject11.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject11.Options.UseBackColor = True
-        SerializableAppearanceObject11.Options.UseFont = True
-        SerializableAppearanceObject11.Options.UseForeColor = True
-        Me.RepoBtnRetCust.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject11, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject32.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject32.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject32.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject32.Options.UseBackColor = True
+        SerializableAppearanceObject32.Options.UseFont = True
+        SerializableAppearanceObject32.Options.UseForeColor = True
+        Me.RepoBtnRetCust.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject32, "", Nothing, Nothing, True)})
         Me.RepoBtnRetCust.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnRetCust.Name = "RepoBtnRetCust"
         Me.RepoBtnRetCust.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -2332,13 +2334,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnDetailCN
         '
         Me.RepoBtnDetailCN.AutoHeight = False
-        SerializableAppearanceObject12.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject12.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject12.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject12.Options.UseBackColor = True
-        SerializableAppearanceObject12.Options.UseFont = True
-        SerializableAppearanceObject12.Options.UseForeColor = True
-        Me.RepoBtnDetailCN.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject12, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject26.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject26.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject26.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject26.Options.UseBackColor = True
+        SerializableAppearanceObject26.Options.UseFont = True
+        SerializableAppearanceObject26.Options.UseForeColor = True
+        Me.RepoBtnDetailCN.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject26, "", Nothing, Nothing, True)})
         Me.RepoBtnDetailCN.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnDetailCN.Name = "RepoBtnDetailCN"
         Me.RepoBtnDetailCN.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -2394,13 +2396,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnDetailRO
         '
         Me.RepoBtnDetailRO.AutoHeight = False
-        SerializableAppearanceObject13.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject13.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject13.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject13.Options.UseBackColor = True
-        SerializableAppearanceObject13.Options.UseFont = True
-        SerializableAppearanceObject13.Options.UseForeColor = True
-        Me.RepoBtnDetailRO.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject13, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject23.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject23.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject23.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject23.Options.UseBackColor = True
+        SerializableAppearanceObject23.Options.UseFont = True
+        SerializableAppearanceObject23.Options.UseForeColor = True
+        Me.RepoBtnDetailRO.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject23, "", Nothing, Nothing, True)})
         Me.RepoBtnDetailRO.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnDetailRO.Name = "RepoBtnDetailRO"
         Me.RepoBtnDetailRO.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -2487,13 +2489,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnDetailRet
         '
         Me.RepoBtnDetailRet.AutoHeight = False
-        SerializableAppearanceObject14.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject14.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject14.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject14.Options.UseBackColor = True
-        SerializableAppearanceObject14.Options.UseFont = True
-        SerializableAppearanceObject14.Options.UseForeColor = True
-        Me.RepoBtnDetailRet.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject14, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject24.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject24.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject24.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject24.Options.UseBackColor = True
+        SerializableAppearanceObject24.Options.UseFont = True
+        SerializableAppearanceObject24.Options.UseForeColor = True
+        Me.RepoBtnDetailRet.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject24, "", Nothing, Nothing, True)})
         Me.RepoBtnDetailRet.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnDetailRet.Name = "RepoBtnDetailRet"
         Me.RepoBtnDetailRet.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -2546,13 +2548,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnRetPayment
         '
         Me.RepoBtnRetPayment.AutoHeight = False
-        SerializableAppearanceObject15.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject15.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject15.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject15.Options.UseBackColor = True
-        SerializableAppearanceObject15.Options.UseFont = True
-        SerializableAppearanceObject15.Options.UseForeColor = True
-        Me.RepoBtnRetPayment.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject15, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject29.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject29.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject29.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject29.Options.UseBackColor = True
+        SerializableAppearanceObject29.Options.UseFont = True
+        SerializableAppearanceObject29.Options.UseForeColor = True
+        Me.RepoBtnRetPayment.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject29, "", Nothing, Nothing, True)})
         Me.RepoBtnRetPayment.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnRetPayment.Name = "RepoBtnRetPayment"
         Me.RepoBtnRetPayment.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -2629,13 +2631,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnRefund
         '
         Me.RepoBtnRefund.AutoHeight = False
-        SerializableAppearanceObject16.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject16.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject16.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject16.Options.UseBackColor = True
-        SerializableAppearanceObject16.Options.UseFont = True
-        SerializableAppearanceObject16.Options.UseForeColor = True
-        Me.RepoBtnRefund.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject16, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject34.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject34.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject34.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject34.Options.UseBackColor = True
+        SerializableAppearanceObject34.Options.UseFont = True
+        SerializableAppearanceObject34.Options.UseForeColor = True
+        Me.RepoBtnRefund.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject34, "", Nothing, Nothing, True)})
         Me.RepoBtnRefund.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnRefund.Name = "RepoBtnRefund"
         Me.RepoBtnRefund.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -2688,13 +2690,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnRRF
         '
         Me.RepoBtnRRF.AutoHeight = False
-        SerializableAppearanceObject17.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject17.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject17.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject17.Options.UseBackColor = True
-        SerializableAppearanceObject17.Options.UseFont = True
-        SerializableAppearanceObject17.Options.UseForeColor = True
-        Me.RepoBtnRRF.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject17, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject37.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject37.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject37.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject37.Options.UseBackColor = True
+        SerializableAppearanceObject37.Options.UseFont = True
+        SerializableAppearanceObject37.Options.UseForeColor = True
+        Me.RepoBtnRRF.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject37, "", Nothing, Nothing, True)})
         Me.RepoBtnRRF.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnRRF.Name = "RepoBtnRRF"
         Me.RepoBtnRRF.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -2747,13 +2749,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnCancelCN
         '
         Me.RepoBtnCancelCN.AutoHeight = False
-        SerializableAppearanceObject18.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject18.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject18.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject18.Options.UseBackColor = True
-        SerializableAppearanceObject18.Options.UseFont = True
-        SerializableAppearanceObject18.Options.UseForeColor = True
-        Me.RepoBtnCancelCN.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject18, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject38.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject38.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject38.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject38.Options.UseBackColor = True
+        SerializableAppearanceObject38.Options.UseFont = True
+        SerializableAppearanceObject38.Options.UseForeColor = True
+        Me.RepoBtnCancelCN.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject38, "", Nothing, Nothing, True)})
         Me.RepoBtnCancelCN.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnCancelCN.Name = "RepoBtnCancelCN"
         Me.RepoBtnCancelCN.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -2867,13 +2869,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnDetailSO
         '
         Me.RepoBtnDetailSO.AutoHeight = False
-        SerializableAppearanceObject19.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject19.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject19.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject19.Options.UseBackColor = True
-        SerializableAppearanceObject19.Options.UseFont = True
-        SerializableAppearanceObject19.Options.UseForeColor = True
-        Me.RepoBtnDetailSO.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject19, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject39.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject39.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject39.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject39.Options.UseBackColor = True
+        SerializableAppearanceObject39.Options.UseFont = True
+        SerializableAppearanceObject39.Options.UseForeColor = True
+        Me.RepoBtnDetailSO.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject39, "", Nothing, Nothing, True)})
         Me.RepoBtnDetailSO.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnDetailSO.Name = "RepoBtnDetailSO"
         Me.RepoBtnDetailSO.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -2881,13 +2883,13 @@ Partial Class FormOLStoreSummary
         'RepoBtnAttachSO
         '
         Me.RepoBtnAttachSO.AutoHeight = False
-        SerializableAppearanceObject20.BackColor = System.Drawing.Color.Teal
-        SerializableAppearanceObject20.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject20.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject20.Options.UseBackColor = True
-        SerializableAppearanceObject20.Options.UseFont = True
-        SerializableAppearanceObject20.Options.UseForeColor = True
-        Me.RepoBtnAttachSO.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject20, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject40.BackColor = System.Drawing.Color.Teal
+        SerializableAppearanceObject40.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject40.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject40.Options.UseBackColor = True
+        SerializableAppearanceObject40.Options.UseFont = True
+        SerializableAppearanceObject40.Options.UseForeColor = True
+        Me.RepoBtnAttachSO.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject40, "", Nothing, Nothing, True)})
         Me.RepoBtnAttachSO.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnAttachSO.Name = "RepoBtnAttachSO"
         Me.RepoBtnAttachSO.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -5164,18 +5166,18 @@ Partial Class FormOLStoreSummary
         'GVOOS
         '
         Me.GVOOS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_groupoos, Me.GridColumncomp_group_descoos, Me.GridColumnsales_order_ol_shop_numberoos, Me.GridColumnsales_order_ol_shop_dateoos, Me.GridColumncustomer_nameoos, Me.GridColumnid_productoos, Me.GridColumncode, Me.GridColumnnameoos, Me.GridColumnsizeoos, Me.GridColumnol_order_qtyoos, Me.GridColumnsales_order_det_qtyoos, Me.GridColumnno_stock_qtyoos, Me.GridColumnis_cancel_cn, Me.GridColumnol_store_idoos, Me.GridColumnitem_idoos})
-        GridFormatRule1.ApplyToRow = True
-        GridFormatRule1.Column = Me.GridColumnis_cancel_cn
-        GridFormatRule1.ColumnApplyTo = Me.GridColumncode
-        GridFormatRule1.Name = "Format0"
-        FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.Yellow
-        FormatConditionRuleValue1.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue1.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue1.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Equal
-        FormatConditionRuleValue1.Value1 = New Decimal(New Integer() {1, 0, 0, 0})
-        GridFormatRule1.Rule = FormatConditionRuleValue1
-        Me.GVOOS.FormatRules.Add(GridFormatRule1)
+        GridFormatRule3.ApplyToRow = True
+        GridFormatRule3.Column = Me.GridColumnis_cancel_cn
+        GridFormatRule3.ColumnApplyTo = Me.GridColumncode
+        GridFormatRule3.Name = "Format0"
+        FormatConditionRuleValue3.Appearance.BackColor = System.Drawing.Color.Yellow
+        FormatConditionRuleValue3.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        FormatConditionRuleValue3.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue3.Appearance.Options.UseBorderColor = True
+        FormatConditionRuleValue3.Condition = DevExpress.XtraEditors.FormatCondition.Equal
+        FormatConditionRuleValue3.Value1 = New Decimal(New Integer() {1, 0, 0, 0})
+        GridFormatRule3.Rule = FormatConditionRuleValue3
+        Me.GVOOS.FormatRules.Add(GridFormatRule3)
         Me.GVOOS.GridControl = Me.GCOOS
         Me.GVOOS.GroupCount = 1
         Me.GVOOS.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ol_order_qty", Me.GridColumnol_order_qtyoos, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", Me.GridColumnsales_order_det_qtyoos, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "no_stock_qty", Me.GridColumnno_stock_qtyoos, "{0:N0}")})
@@ -5428,18 +5430,18 @@ Partial Class FormOLStoreSummary
         'GVZaloraShip
         '
         Me.GVZaloraShip.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_order_det_shp, Me.GridColumnitem_idshp, Me.GridColumnol_store_idshp, Me.GridColumnorder_dateshp, Me.GridColumncustomer_nameshp, Me.GridColumnorder_numbershp, Me.GridColumnstatusshp, Me.GridColumnstatus_dateshp, Me.GridColumn4shipped_age})
-        GridFormatRule2.ApplyToRow = True
-        GridFormatRule2.Column = Me.GridColumn4shipped_age
-        GridFormatRule2.ColumnApplyTo = Me.GridColumn4shipped_age
-        GridFormatRule2.Name = "Format0"
-        FormatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.Yellow
-        FormatConditionRuleValue2.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue2.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue2.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Greater
-        FormatConditionRuleValue2.Value1 = 30
-        GridFormatRule2.Rule = FormatConditionRuleValue2
-        Me.GVZaloraShip.FormatRules.Add(GridFormatRule2)
+        GridFormatRule1.ApplyToRow = True
+        GridFormatRule1.Column = Me.GridColumn4shipped_age
+        GridFormatRule1.ColumnApplyTo = Me.GridColumn4shipped_age
+        GridFormatRule1.Name = "Format0"
+        FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.Yellow
+        FormatConditionRuleValue1.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        FormatConditionRuleValue1.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue1.Appearance.Options.UseBorderColor = True
+        FormatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Greater
+        FormatConditionRuleValue1.Value1 = 30
+        GridFormatRule1.Rule = FormatConditionRuleValue1
+        Me.GVZaloraShip.FormatRules.Add(GridFormatRule1)
         Me.GVZaloraShip.GridControl = Me.GCZaloraShip
         Me.GVZaloraShip.Name = "GVZaloraShip"
         Me.GVZaloraShip.OptionsBehavior.AutoExpandAllGroups = True
@@ -5589,6 +5591,225 @@ Partial Class FormOLStoreSummary
         Me.XTPZaloraPromoSummary.Name = "XTPZaloraPromoSummary"
         Me.XTPZaloraPromoSummary.Size = New System.Drawing.Size(1199, 467)
         Me.XTPZaloraPromoSummary.Text = "Summary"
+        '
+        'GCSumZalPrm
+        '
+        Me.GCSumZalPrm.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSumZalPrm.Location = New System.Drawing.Point(0, 46)
+        Me.GCSumZalPrm.MainView = Me.GVSumZalPrm
+        Me.GCSumZalPrm.Name = "GCSumZalPrm"
+        Me.GCSumZalPrm.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoPrmZalNUmber})
+        Me.GCSumZalPrm.Size = New System.Drawing.Size(1199, 421)
+        Me.GCSumZalPrm.TabIndex = 2
+        Me.GCSumZalPrm.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSumZalPrm})
+        '
+        'GVSumZalPrm
+        '
+        Me.GVSumZalPrm.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_promo_zalora, Me.GridColumn45, Me.GridColumndiscount_code, Me.GridColumndiscount_value, Me.GridColumnvolcom_pros, Me.GridColumnpropose_created_date, Me.GridColumnpropose_created_by_name, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumnrmt_propose, Me.GridColumn46, Me.GridColumnpropose_note, Me.GridColumn47, Me.GridColumn48, Me.GridColumnrecon_created_date, Me.GridColumnrecon_created_by_name, Me.GridColumnreport_status_recon, Me.GridColumnrecon_note, Me.GridColumnpromo_zalora_type})
+        Me.GVSumZalPrm.GridControl = Me.GCSumZalPrm
+        Me.GVSumZalPrm.Name = "GVSumZalPrm"
+        Me.GVSumZalPrm.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVSumZalPrm.OptionsBehavior.Editable = False
+        Me.GVSumZalPrm.OptionsFind.AlwaysVisible = True
+        Me.GVSumZalPrm.OptionsView.ColumnAutoWidth = False
+        Me.GVSumZalPrm.OptionsView.ShowFooter = True
+        Me.GVSumZalPrm.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_promo_zalora
+        '
+        Me.GridColumnid_promo_zalora.Caption = "id_promo_zalora"
+        Me.GridColumnid_promo_zalora.FieldName = "id_promo_zalora"
+        Me.GridColumnid_promo_zalora.Name = "GridColumnid_promo_zalora"
+        Me.GridColumnid_promo_zalora.OptionsColumn.AllowEdit = False
+        Me.GridColumnid_promo_zalora.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn45
+        '
+        Me.GridColumn45.Caption = "Number"
+        Me.GridColumn45.ColumnEdit = Me.RepoPrmZalNUmber
+        Me.GridColumn45.FieldName = "number"
+        Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.OptionsColumn.ReadOnly = True
+        Me.GridColumn45.Visible = True
+        Me.GridColumn45.VisibleIndex = 0
+        '
+        'GridColumndiscount_code
+        '
+        Me.GridColumndiscount_code.Caption = "Voucher Code"
+        Me.GridColumndiscount_code.DisplayFormat.FormatString = "N2"
+        Me.GridColumndiscount_code.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndiscount_code.FieldName = "discount_code"
+        Me.GridColumndiscount_code.Name = "GridColumndiscount_code"
+        Me.GridColumndiscount_code.OptionsColumn.AllowEdit = False
+        Me.GridColumndiscount_code.OptionsColumn.ReadOnly = True
+        Me.GridColumndiscount_code.Visible = True
+        Me.GridColumndiscount_code.VisibleIndex = 3
+        '
+        'GridColumndiscount_value
+        '
+        Me.GridColumndiscount_value.Caption = "Discount Value (%)"
+        Me.GridColumndiscount_value.DisplayFormat.FormatString = "N2"
+        Me.GridColumndiscount_value.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndiscount_value.FieldName = "discount_value"
+        Me.GridColumndiscount_value.Name = "GridColumndiscount_value"
+        Me.GridColumndiscount_value.OptionsColumn.AllowEdit = False
+        Me.GridColumndiscount_value.OptionsColumn.ReadOnly = True
+        Me.GridColumndiscount_value.Visible = True
+        Me.GridColumndiscount_value.VisibleIndex = 4
+        '
+        'GridColumnvolcom_pros
+        '
+        Me.GridColumnvolcom_pros.Caption = "Charge (%)"
+        Me.GridColumnvolcom_pros.DisplayFormat.FormatString = "N2"
+        Me.GridColumnvolcom_pros.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnvolcom_pros.FieldName = "volcom_pros"
+        Me.GridColumnvolcom_pros.Name = "GridColumnvolcom_pros"
+        Me.GridColumnvolcom_pros.OptionsColumn.AllowEdit = False
+        Me.GridColumnvolcom_pros.OptionsColumn.ReadOnly = True
+        Me.GridColumnvolcom_pros.Visible = True
+        Me.GridColumnvolcom_pros.VisibleIndex = 5
+        '
+        'GridColumnpropose_created_date
+        '
+        Me.GridColumnpropose_created_date.Caption = "Proposed Date"
+        Me.GridColumnpropose_created_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumnpropose_created_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnpropose_created_date.FieldName = "propose_created_date"
+        Me.GridColumnpropose_created_date.Name = "GridColumnpropose_created_date"
+        Me.GridColumnpropose_created_date.OptionsColumn.AllowEdit = False
+        Me.GridColumnpropose_created_date.OptionsColumn.ReadOnly = True
+        Me.GridColumnpropose_created_date.Visible = True
+        Me.GridColumnpropose_created_date.VisibleIndex = 8
+        '
+        'GridColumnpropose_created_by_name
+        '
+        Me.GridColumnpropose_created_by_name.Caption = "Proposed By"
+        Me.GridColumnpropose_created_by_name.FieldName = "propose_created_by_name"
+        Me.GridColumnpropose_created_by_name.Name = "GridColumnpropose_created_by_name"
+        Me.GridColumnpropose_created_by_name.OptionsColumn.AllowEdit = False
+        Me.GridColumnpropose_created_by_name.OptionsColumn.ReadOnly = True
+        Me.GridColumnpropose_created_by_name.Visible = True
+        Me.GridColumnpropose_created_by_name.VisibleIndex = 9
+        '
+        'GridColumnid_report_status
+        '
+        Me.GridColumnid_report_status.Caption = "id_report_status"
+        Me.GridColumnid_report_status.FieldName = "id_report_status"
+        Me.GridColumnid_report_status.Name = "GridColumnid_report_status"
+        Me.GridColumnid_report_status.OptionsColumn.AllowEdit = False
+        Me.GridColumnid_report_status.OptionsColumn.ReadOnly = True
+        '
+        'GridColumnreport_status
+        '
+        Me.GridColumnreport_status.Caption = "Propose Status"
+        Me.GridColumnreport_status.FieldName = "report_status"
+        Me.GridColumnreport_status.Name = "GridColumnreport_status"
+        Me.GridColumnreport_status.OptionsColumn.AllowEdit = False
+        Me.GridColumnreport_status.OptionsColumn.ReadOnly = True
+        Me.GridColumnreport_status.Width = 151
+        '
+        'GridColumnrmt_propose
+        '
+        Me.GridColumnrmt_propose.Caption = "rmt_propose"
+        Me.GridColumnrmt_propose.FieldName = "rmt_propose"
+        Me.GridColumnrmt_propose.Name = "GridColumnrmt_propose"
+        Me.GridColumnrmt_propose.OptionsColumn.AllowEdit = False
+        Me.GridColumnrmt_propose.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn46
+        '
+        Me.GridColumn46.Caption = "Promo Name"
+        Me.GridColumn46.FieldName = "promo_name"
+        Me.GridColumn46.Name = "GridColumn46"
+        Me.GridColumn46.OptionsColumn.AllowEdit = False
+        Me.GridColumn46.OptionsColumn.ReadOnly = True
+        Me.GridColumn46.Visible = True
+        Me.GridColumn46.VisibleIndex = 2
+        '
+        'GridColumnpropose_note
+        '
+        Me.GridColumnpropose_note.Caption = "Propose Note"
+        Me.GridColumnpropose_note.FieldName = "propose_note"
+        Me.GridColumnpropose_note.Name = "GridColumnpropose_note"
+        Me.GridColumnpropose_note.OptionsColumn.AllowEdit = False
+        Me.GridColumnpropose_note.OptionsColumn.ReadOnly = True
+        Me.GridColumnpropose_note.Visible = True
+        Me.GridColumnpropose_note.VisibleIndex = 10
+        '
+        'GridColumn47
+        '
+        Me.GridColumn47.Caption = "Start Period"
+        Me.GridColumn47.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumn47.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn47.FieldName = "start_period"
+        Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.OptionsColumn.AllowEdit = False
+        Me.GridColumn47.OptionsColumn.ReadOnly = True
+        Me.GridColumn47.Visible = True
+        Me.GridColumn47.VisibleIndex = 6
+        '
+        'GridColumn48
+        '
+        Me.GridColumn48.Caption = "End Period"
+        Me.GridColumn48.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumn48.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn48.FieldName = "end_period"
+        Me.GridColumn48.Name = "GridColumn48"
+        Me.GridColumn48.OptionsColumn.AllowEdit = False
+        Me.GridColumn48.OptionsColumn.ReadOnly = True
+        Me.GridColumn48.Visible = True
+        Me.GridColumn48.VisibleIndex = 7
+        '
+        'GridColumnrecon_created_date
+        '
+        Me.GridColumnrecon_created_date.Caption = "Recon. Date"
+        Me.GridColumnrecon_created_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumnrecon_created_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnrecon_created_date.FieldName = "recon_created_date"
+        Me.GridColumnrecon_created_date.Name = "GridColumnrecon_created_date"
+        Me.GridColumnrecon_created_date.OptionsColumn.AllowEdit = False
+        Me.GridColumnrecon_created_date.OptionsColumn.ReadOnly = True
+        Me.GridColumnrecon_created_date.Visible = True
+        Me.GridColumnrecon_created_date.VisibleIndex = 11
+        '
+        'GridColumnrecon_created_by_name
+        '
+        Me.GridColumnrecon_created_by_name.Caption = "Recon. By"
+        Me.GridColumnrecon_created_by_name.FieldName = "recon_created_by_name"
+        Me.GridColumnrecon_created_by_name.Name = "GridColumnrecon_created_by_name"
+        Me.GridColumnrecon_created_by_name.OptionsColumn.AllowEdit = False
+        Me.GridColumnrecon_created_by_name.OptionsColumn.ReadOnly = True
+        Me.GridColumnrecon_created_by_name.Visible = True
+        Me.GridColumnrecon_created_by_name.VisibleIndex = 12
+        '
+        'GridColumnreport_status_recon
+        '
+        Me.GridColumnreport_status_recon.Caption = "Recon. Status"
+        Me.GridColumnreport_status_recon.FieldName = "report_status_recon"
+        Me.GridColumnreport_status_recon.Name = "GridColumnreport_status_recon"
+        Me.GridColumnreport_status_recon.OptionsColumn.AllowEdit = False
+        Me.GridColumnreport_status_recon.OptionsColumn.ReadOnly = True
+        Me.GridColumnreport_status_recon.Width = 163
+        '
+        'GridColumnrecon_note
+        '
+        Me.GridColumnrecon_note.Caption = "Recon. Note"
+        Me.GridColumnrecon_note.FieldName = "recon_note"
+        Me.GridColumnrecon_note.Name = "GridColumnrecon_note"
+        Me.GridColumnrecon_note.OptionsColumn.AllowEdit = False
+        Me.GridColumnrecon_note.OptionsColumn.ReadOnly = True
+        Me.GridColumnrecon_note.Visible = True
+        Me.GridColumnrecon_note.VisibleIndex = 13
+        '
+        'GridColumnpromo_zalora_type
+        '
+        Me.GridColumnpromo_zalora_type.Caption = "Type"
+        Me.GridColumnpromo_zalora_type.FieldName = "promo_zalora_type"
+        Me.GridColumnpromo_zalora_type.Name = "GridColumnpromo_zalora_type"
+        Me.GridColumnpromo_zalora_type.OptionsColumn.AllowEdit = False
+        Me.GridColumnpromo_zalora_type.OptionsColumn.ReadOnly = True
+        Me.GridColumnpromo_zalora_type.Visible = True
+        Me.GridColumnpromo_zalora_type.VisibleIndex = 1
         '
         'PanelControl12
         '
@@ -6108,185 +6329,10 @@ Partial Class FormOLStoreSummary
         Me.LabelControl22.TabIndex = 0
         Me.LabelControl22.Text = "Promo"
         '
-        'GCSumZalPrm
+        'RepoPrmZalNUmber
         '
-        Me.GCSumZalPrm.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSumZalPrm.Location = New System.Drawing.Point(0, 46)
-        Me.GCSumZalPrm.MainView = Me.GVSumZalPrm
-        Me.GCSumZalPrm.Name = "GCSumZalPrm"
-        Me.GCSumZalPrm.Size = New System.Drawing.Size(1199, 421)
-        Me.GCSumZalPrm.TabIndex = 2
-        Me.GCSumZalPrm.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSumZalPrm})
-        '
-        'GVSumZalPrm
-        '
-        Me.GVSumZalPrm.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_promo_zalora, Me.GridColumn45, Me.GridColumndiscount_code, Me.GridColumndiscount_value, Me.GridColumnvolcom_pros, Me.GridColumnpropose_created_date, Me.GridColumnpropose_created_by_name, Me.GridColumnid_report_status, Me.GridColumnreport_status, Me.GridColumnrmt_propose, Me.GridColumn46, Me.GridColumnpropose_note, Me.GridColumn47, Me.GridColumn48, Me.GridColumnrecon_created_date, Me.GridColumnrecon_created_by_name, Me.GridColumnreport_status_recon, Me.GridColumnrecon_note, Me.GridColumnpromo_zalora_type})
-        Me.GVSumZalPrm.GridControl = Me.GCSumZalPrm
-        Me.GVSumZalPrm.Name = "GVSumZalPrm"
-        Me.GVSumZalPrm.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVSumZalPrm.OptionsBehavior.Editable = False
-        Me.GVSumZalPrm.OptionsFind.AlwaysVisible = True
-        Me.GVSumZalPrm.OptionsView.ColumnAutoWidth = False
-        Me.GVSumZalPrm.OptionsView.ShowFooter = True
-        Me.GVSumZalPrm.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumnid_promo_zalora
-        '
-        Me.GridColumnid_promo_zalora.Caption = "id_promo_zalora"
-        Me.GridColumnid_promo_zalora.FieldName = "id_promo_zalora"
-        Me.GridColumnid_promo_zalora.Name = "GridColumnid_promo_zalora"
-        '
-        'GridColumn45
-        '
-        Me.GridColumn45.Caption = "Number"
-        Me.GridColumn45.FieldName = "number"
-        Me.GridColumn45.Name = "GridColumn45"
-        Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 0
-        '
-        'GridColumndiscount_code
-        '
-        Me.GridColumndiscount_code.Caption = "Voucher Code"
-        Me.GridColumndiscount_code.DisplayFormat.FormatString = "N2"
-        Me.GridColumndiscount_code.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumndiscount_code.FieldName = "discount_code"
-        Me.GridColumndiscount_code.Name = "GridColumndiscount_code"
-        Me.GridColumndiscount_code.Visible = True
-        Me.GridColumndiscount_code.VisibleIndex = 3
-        '
-        'GridColumndiscount_value
-        '
-        Me.GridColumndiscount_value.Caption = "Discount Value (%)"
-        Me.GridColumndiscount_value.DisplayFormat.FormatString = "N2"
-        Me.GridColumndiscount_value.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumndiscount_value.FieldName = "discount_value"
-        Me.GridColumndiscount_value.Name = "GridColumndiscount_value"
-        Me.GridColumndiscount_value.Visible = True
-        Me.GridColumndiscount_value.VisibleIndex = 4
-        '
-        'GridColumnvolcom_pros
-        '
-        Me.GridColumnvolcom_pros.Caption = "Charge (%)"
-        Me.GridColumnvolcom_pros.DisplayFormat.FormatString = "N2"
-        Me.GridColumnvolcom_pros.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnvolcom_pros.FieldName = "volcom_pros"
-        Me.GridColumnvolcom_pros.Name = "GridColumnvolcom_pros"
-        Me.GridColumnvolcom_pros.Visible = True
-        Me.GridColumnvolcom_pros.VisibleIndex = 5
-        '
-        'GridColumnpropose_created_date
-        '
-        Me.GridColumnpropose_created_date.Caption = "Proposed Date"
-        Me.GridColumnpropose_created_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.GridColumnpropose_created_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnpropose_created_date.FieldName = "propose_created_date"
-        Me.GridColumnpropose_created_date.Name = "GridColumnpropose_created_date"
-        Me.GridColumnpropose_created_date.Visible = True
-        Me.GridColumnpropose_created_date.VisibleIndex = 8
-        '
-        'GridColumnpropose_created_by_name
-        '
-        Me.GridColumnpropose_created_by_name.Caption = "Proposed By"
-        Me.GridColumnpropose_created_by_name.FieldName = "propose_created_by_name"
-        Me.GridColumnpropose_created_by_name.Name = "GridColumnpropose_created_by_name"
-        Me.GridColumnpropose_created_by_name.Visible = True
-        Me.GridColumnpropose_created_by_name.VisibleIndex = 9
-        '
-        'GridColumnid_report_status
-        '
-        Me.GridColumnid_report_status.Caption = "id_report_status"
-        Me.GridColumnid_report_status.FieldName = "id_report_status"
-        Me.GridColumnid_report_status.Name = "GridColumnid_report_status"
-        '
-        'GridColumnreport_status
-        '
-        Me.GridColumnreport_status.Caption = "Propose Status"
-        Me.GridColumnreport_status.FieldName = "report_status"
-        Me.GridColumnreport_status.Name = "GridColumnreport_status"
-        Me.GridColumnreport_status.Width = 151
-        '
-        'GridColumnrmt_propose
-        '
-        Me.GridColumnrmt_propose.Caption = "rmt_propose"
-        Me.GridColumnrmt_propose.FieldName = "rmt_propose"
-        Me.GridColumnrmt_propose.Name = "GridColumnrmt_propose"
-        '
-        'GridColumn46
-        '
-        Me.GridColumn46.Caption = "Promo Name"
-        Me.GridColumn46.FieldName = "promo_name"
-        Me.GridColumn46.Name = "GridColumn46"
-        Me.GridColumn46.Visible = True
-        Me.GridColumn46.VisibleIndex = 2
-        '
-        'GridColumnpropose_note
-        '
-        Me.GridColumnpropose_note.Caption = "Propose Note"
-        Me.GridColumnpropose_note.FieldName = "propose_note"
-        Me.GridColumnpropose_note.Name = "GridColumnpropose_note"
-        Me.GridColumnpropose_note.Visible = True
-        Me.GridColumnpropose_note.VisibleIndex = 10
-        '
-        'GridColumn47
-        '
-        Me.GridColumn47.Caption = "Start Period"
-        Me.GridColumn47.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.GridColumn47.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn47.FieldName = "start_period"
-        Me.GridColumn47.Name = "GridColumn47"
-        Me.GridColumn47.Visible = True
-        Me.GridColumn47.VisibleIndex = 6
-        '
-        'GridColumn48
-        '
-        Me.GridColumn48.Caption = "End Period"
-        Me.GridColumn48.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.GridColumn48.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn48.FieldName = "end_period"
-        Me.GridColumn48.Name = "GridColumn48"
-        Me.GridColumn48.Visible = True
-        Me.GridColumn48.VisibleIndex = 7
-        '
-        'GridColumnrecon_created_date
-        '
-        Me.GridColumnrecon_created_date.Caption = "Recon. Date"
-        Me.GridColumnrecon_created_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
-        Me.GridColumnrecon_created_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnrecon_created_date.FieldName = "recon_created_date"
-        Me.GridColumnrecon_created_date.Name = "GridColumnrecon_created_date"
-        Me.GridColumnrecon_created_date.Visible = True
-        Me.GridColumnrecon_created_date.VisibleIndex = 11
-        '
-        'GridColumnrecon_created_by_name
-        '
-        Me.GridColumnrecon_created_by_name.Caption = "Recon. By"
-        Me.GridColumnrecon_created_by_name.FieldName = "recon_created_by_name"
-        Me.GridColumnrecon_created_by_name.Name = "GridColumnrecon_created_by_name"
-        Me.GridColumnrecon_created_by_name.Visible = True
-        Me.GridColumnrecon_created_by_name.VisibleIndex = 12
-        '
-        'GridColumnreport_status_recon
-        '
-        Me.GridColumnreport_status_recon.Caption = "Recon. Status"
-        Me.GridColumnreport_status_recon.FieldName = "report_status_recon"
-        Me.GridColumnreport_status_recon.Name = "GridColumnreport_status_recon"
-        Me.GridColumnreport_status_recon.Width = 163
-        '
-        'GridColumnrecon_note
-        '
-        Me.GridColumnrecon_note.Caption = "Recon. Note"
-        Me.GridColumnrecon_note.FieldName = "recon_note"
-        Me.GridColumnrecon_note.Name = "GridColumnrecon_note"
-        Me.GridColumnrecon_note.Visible = True
-        Me.GridColumnrecon_note.VisibleIndex = 13
-        '
-        'GridColumnpromo_zalora_type
-        '
-        Me.GridColumnpromo_zalora_type.Caption = "Type"
-        Me.GridColumnpromo_zalora_type.FieldName = "promo_zalora_type"
-        Me.GridColumnpromo_zalora_type.Name = "GridColumnpromo_zalora_type"
-        Me.GridColumnpromo_zalora_type.Visible = True
-        Me.GridColumnpromo_zalora_type.VisibleIndex = 1
+        Me.RepoPrmZalNUmber.AutoHeight = False
+        Me.RepoPrmZalNUmber.Name = "RepoPrmZalNUmber"
         '
         'FormOLStoreSummary
         '
@@ -6440,6 +6486,8 @@ Partial Class FormOLStoreSummary
         CType(Me.XTCZaloraPromo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCZaloraPromo.ResumeLayout(False)
         Me.XTPZaloraPromoSummary.ResumeLayout(False)
+        CType(Me.GCSumZalPrm, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSumZalPrm, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl12, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl12.ResumeLayout(False)
         Me.PanelControl12.PerformLayout()
@@ -6457,8 +6505,7 @@ Partial Class FormOLStoreSummary
         Me.PanelControl13.PerformLayout()
         CType(Me.SearchLookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCSumZalPrm, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVSumZalPrm, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoPrmZalNUmber, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -7047,4 +7094,5 @@ Partial Class FormOLStoreSummary
     Friend WithEvents GridColumnreport_status_recon As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnrecon_note As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnpromo_zalora_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepoPrmZalNUmber As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
 End Class
