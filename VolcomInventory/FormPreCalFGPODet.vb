@@ -114,6 +114,8 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                 MERemark.Text = dt.Rows(0)("reason").ToString
                 TEPPH.EditValue = dt.Rows(0)("pph")
                 TEPPN.EditValue = dt.Rows(0)("ppn")
+                TEPPH2.EditValue = dt.Rows(0)("pph")
+                TEPPN2.EditValue = dt.Rows(0)("ppn")
 
                 view_but()
 
@@ -306,6 +308,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = False
             PCPDest.Visible = False
             PCUAdm.Visible = False
+
+            PCPickVendor2.Visible = False
             PCPickVendor.Visible = False
             BUpdateReason.Visible = False
 
@@ -335,6 +339,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = False
             PCPDest.Visible = False
             PCUAdm.Visible = False
+
+            PCPickVendor2.Visible = False
             PCPickVendor.Visible = False
             BUpdateReason.Visible = False
 
@@ -359,6 +365,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = True
             PCPDest.Visible = False
             PCUAdm.Visible = False
+
+            PCPickVendor2.Visible = False
             PCPickVendor.Visible = False
             BUpdateReason.Visible = False
             '
@@ -383,6 +391,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = False
             PCPDest.Visible = True
             PCUAdm.Visible = False
+
+            PCPickVendor2.Visible = False
             PCPickVendor.Visible = False
             BUpdateReason.Visible = False
             '
@@ -407,6 +417,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = False
             PCPDest.Visible = False
             PCUAdm.Visible = True
+
+            PCPickVendor2.Visible = False
             PCPickVendor.Visible = False
             BUpdateReason.Visible = False
             '
@@ -425,6 +437,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCOrign.Visible = False
             PCDest.Visible = False
             PCAdm.Visible = False
+
+            PCPickVendor2.Visible = True
             PCPickVendor.Visible = True
             BUpdateReason.Visible = True
             '
@@ -449,6 +463,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCOrign.Visible = False
             PCDest.Visible = False
             PCAdm.Visible = False
+
+            PCPickVendor.Visible = False
             PCPickVendor.Visible = False
             BUpdateReason.Visible = False
             '
@@ -796,7 +812,7 @@ WHERE h.id_pre_cal_fgpo='" & id & "'"
     End Sub
 
     Private Sub BPrintBudget_Click(sender As Object, e As EventArgs) Handles BPrintBudgetBefore.Click
-        Dim qc As String = "SELECT number,FORMAT(SUM(l.`qty`),0,'id_ID') AS qtyf,SUM(l.`qty`) AS qty,FORMAT(SUM(l.`price`*l.`qty`),2,'id_ID') AS fob_tot,c.`comp_name` AS best,cs.`comp_name` AS second_best,FORMAT(f.`cbm`,2,'id_ID') AS cbm,FORMAT(f.`ctn`,0,'id_ID') AS ctn,FORMAT(f.`weight`,0,'id_ID') AS weight,f.`pol`,cv.`comp_name` AS vendor_comp,FORMAT(f.`rate_management`,2,'id_ID') AS rate_management
+        Dim qc As String = "SELECT number,f.reason,FORMAT(SUM(l.`qty`),0,'id_ID') AS qtyf,SUM(l.`qty`) AS qty,FORMAT(SUM(l.`price`*l.`qty`),2,'id_ID') AS fob_tot,c.`comp_name` AS best,cs.`comp_name` AS second_best,FORMAT(f.`cbm`,2,'id_ID') AS cbm,FORMAT(f.`ctn`,0,'id_ID') AS ctn,FORMAT(f.`weight`,0,'id_ID') AS weight,f.`pol`,cv.`comp_name` AS vendor_comp,FORMAT(f.`rate_management`,2,'id_ID') AS rate_management
 FROM `tb_pre_cal_fgpo` f
 INNER JOIN tb_m_comp cv ON cv.`id_comp`=f.`id_comp`
 INNER JOIN tb_pre_cal_fgpo_list l ON l.`id_pre_cal_fgpo`=f.`id_pre_cal_fgpo`
@@ -826,8 +842,9 @@ AND NOT ISNULL(choosen_id_comp)"
     Private Sub BLoadOrign_Click(sender As Object, e As EventArgs) Handles BLoadOrign.Click
         Dim q As String = "SELECT t.`id_pre_cal_temp`,t.`desc`,0 AS unit_price_in_rp,IF(t.`is_use_cbm`=1,IF(t.`min_cbm`>cal.`cbm`,t.`min_cbm`,cal.`cbm`),1) AS qty
 FROM `tb_pre_cal_temp` t
-INNER JOIN `tb_pre_cal_fgpo` cal ON cal.`id_type`=t.`vendor_type` AND t.`id_type`='1' AND t.`is_active`='1' 
+INNER JOIN `tb_pre_cal_fgpo` cal ON  t.`id_type`='1' AND t.`is_active`='1' 
 WHERE cal.`id_pre_cal_fgpo`='" & id & "'"
+        'cal.`id_type`=t.`vendor_type` AND
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
         GCOrign.DataSource = dt
@@ -836,11 +853,12 @@ WHERE cal.`id_pre_cal_fgpo`='" & id & "'"
     Private Sub BLoadDest_Click(sender As Object, e As EventArgs) Handles BLoadDest.Click
         Dim q As String = "SELECT t.`id_pre_cal_temp`,t.`desc`,0 AS unit_price_in_rp,IF(t.`is_use_cbm`=1,IF(t.`min_cbm`>cal.`cbm`,t.`min_cbm`,cal.`cbm`),1) AS qty
 FROM `tb_pre_cal_temp` t
-INNER JOIN `tb_pre_cal_fgpo` cal ON cal.`id_type`=t.`vendor_type` AND t.`id_type`='2' AND t.`is_active`='1' AND cal.`id_pre_cal_fgpo`='" & id & "'
+INNER JOIN `tb_pre_cal_fgpo` cal ON t.`id_type`='2' AND t.`is_active`='1' AND cal.`id_pre_cal_fgpo`='" & id & "'
 UNION ALL
 SELECT 11 AS id_pre_cal_temp,'EST STORAGE FEE AND COST PEROUTLAY' AS `desc`, SUM(IF(st.`is_use_cbm`=1,IF(st.`min_cbm`>cal.`cbm`,st.`min_cbm`,CEIL(cal.`cbm`)),1)*st.price) AS unit_price_in_rp,1 AS qty
 FROM `tb_pre_cal_storage` st
 INNER JOIN `tb_pre_cal_fgpo` cal ON st.`is_active`='1'  AND  cal.`id_pre_cal_fgpo`='" & id & "'"
+        'cal.`id_type`=t.`vendor_type` AND
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
         GCDest.DataSource = dt
@@ -1029,5 +1047,11 @@ WHERE h.`id_pre_cal_fgpo`='" & id & "'"
 
     Private Sub BPrintStorage2_Click(sender As Object, e As EventArgs) Handles BPrintStorage2.Click
         print_storage()
+    End Sub
+
+    Private Sub BUpdatePP_Click(sender As Object, e As EventArgs) Handles BUpdatePP.Click
+        Dim q As String = "UPDATE tb_pre_cal_fgpo SET ppn='" & decimalSQL(Decimal.Parse(TEPPN.EditValue.ToString)) & "',pph='" & decimalSQL(Decimal.Parse(TEPPH.EditValue.ToString)) & "' WHERE id_pre_cal_fgpo='" & id & "'"
+        execute_non_query(q, True, "", "", "", "")
+        load_head()
     End Sub
 End Class

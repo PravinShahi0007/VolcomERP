@@ -43,6 +43,12 @@ Public Class FormSalesReturnQCDet
     Dim id_drawer_origin As String = "-1"
     Dim id_wh_source As String = "-1"
 
+    'scan
+    Private cforKeyDown As Char = vbNullChar
+    Private _lastKeystroke As DateTime = DateTime.Now
+    Public speed_barcode_read As Integer = get_setup_field("speed_barcode_read")
+    Public speed_barcode_read_timer As Integer = get_setup_field("speed_barcode_read_timer")
+
     Private Sub FormSalesReturnQCDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
         viewPLCat()
@@ -1902,5 +1908,29 @@ Public Class FormSalesReturnQCDet
             FormMenuAuth.type = "8"
             FormMenuAuth.ShowDialog()
         End If
+    End Sub
+
+    Private Sub RepositoryItemTextEdit_KeyDown(sender As Object, e As KeyEventArgs) Handles RepositoryItemTextEdit.KeyDown
+        cforKeyDown = ChrW(e.KeyCode)
+    End Sub
+
+    Private Sub RepositoryItemTextEdit_KeyUp(sender As Object, e As KeyEventArgs) Handles RepositoryItemTextEdit.KeyUp
+        If Len(GVBarcode.EditingValue.ToString) > 1 Then
+            If cforKeyDown <> ChrW(e.KeyCode) OrElse cforKeyDown = vbNullChar Then
+                cforKeyDown = vbNullChar
+                GVBarcode.SetRowCellValue(GVBarcode.FocusedRowHandle, "code", "")
+                Return
+            End If
+
+            Dim elapsed As TimeSpan = DateTime.Now - _lastKeystroke
+
+            If elapsed.TotalMilliseconds > speed_barcode_read Then GVBarcode.SetRowCellValue(GVBarcode.FocusedRowHandle, "code", "")
+
+            'If e.KeyCode = Keys.[Return] AndAlso TextEdit1.Text.Count > 0 Then
+            'action enter
+            'End If
+        End If
+
+        _lastKeystroke = DateTime.Now
     End Sub
 End Class

@@ -312,6 +312,7 @@ Partial Class FormBankDeposit
         Me.GridColumn97 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit8 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn98 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn106 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn103 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn102 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn101 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -323,6 +324,11 @@ Partial Class FormBankDeposit
         Me.BRecBreakPrepaid = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefreshBreakPrepaid = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn107 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn108 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn109 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn110 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn111 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -3221,7 +3227,7 @@ Partial Class FormBankDeposit
         '
         'GVBreakPrepaid
         '
-        Me.GVBreakPrepaid.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn97, Me.GridColumn98, Me.GridColumn103, Me.GridColumn102, Me.GridColumn101, Me.GridColumn100, Me.GridColumn99, Me.GridColumn104, Me.GridColumn105})
+        Me.GVBreakPrepaid.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn97, Me.GridColumn98, Me.GridColumn106, Me.GridColumn103, Me.GridColumn102, Me.GridColumn101, Me.GridColumn100, Me.GridColumn99, Me.GridColumn104, Me.GridColumn109, Me.GridColumn108, Me.GridColumn107, Me.GridColumn110, Me.GridColumn111, Me.GridColumn105})
         Me.GVBreakPrepaid.GridControl = Me.GCBreakPrepaid
         Me.GVBreakPrepaid.Name = "GVBreakPrepaid"
         Me.GVBreakPrepaid.OptionsBehavior.AutoExpandAllGroups = True
@@ -3255,13 +3261,21 @@ Partial Class FormBankDeposit
         Me.GridColumn98.Name = "GridColumn98"
         Me.GridColumn98.OptionsColumn.AllowEdit = False
         '
+        'GridColumn106
+        '
+        Me.GridColumn106.Caption = "Vendor"
+        Me.GridColumn106.FieldName = "vendor"
+        Me.GridColumn106.Name = "GridColumn106"
+        Me.GridColumn106.Visible = True
+        Me.GridColumn106.VisibleIndex = 1
+        '
         'GridColumn103
         '
         Me.GridColumn103.Caption = "COA"
         Me.GridColumn103.FieldName = "acc_name"
         Me.GridColumn103.Name = "GridColumn103"
         Me.GridColumn103.Visible = True
-        Me.GridColumn103.VisibleIndex = 1
+        Me.GridColumn103.VisibleIndex = 2
         '
         'GridColumn102
         '
@@ -3269,7 +3283,7 @@ Partial Class FormBankDeposit
         Me.GridColumn102.FieldName = "acc_description"
         Me.GridColumn102.Name = "GridColumn102"
         Me.GridColumn102.Visible = True
-        Me.GridColumn102.VisibleIndex = 2
+        Me.GridColumn102.VisibleIndex = 3
         '
         'GridColumn101
         '
@@ -3277,7 +3291,7 @@ Partial Class FormBankDeposit
         Me.GridColumn101.FieldName = "description"
         Me.GridColumn101.Name = "GridColumn101"
         Me.GridColumn101.Visible = True
-        Me.GridColumn101.VisibleIndex = 3
+        Me.GridColumn101.VisibleIndex = 4
         '
         'GridColumn100
         '
@@ -3285,7 +3299,7 @@ Partial Class FormBankDeposit
         Me.GridColumn100.FieldName = "store_code"
         Me.GridColumn100.Name = "GridColumn100"
         Me.GridColumn100.Visible = True
-        Me.GridColumn100.VisibleIndex = 4
+        Me.GridColumn100.VisibleIndex = 5
         '
         'GridColumn99
         '
@@ -3293,7 +3307,7 @@ Partial Class FormBankDeposit
         Me.GridColumn99.FieldName = "store_name"
         Me.GridColumn99.Name = "GridColumn99"
         Me.GridColumn99.Visible = True
-        Me.GridColumn99.VisibleIndex = 5
+        Me.GridColumn99.VisibleIndex = 6
         '
         'GridColumn104
         '
@@ -3301,7 +3315,7 @@ Partial Class FormBankDeposit
         Me.GridColumn104.FieldName = "inv_number"
         Me.GridColumn104.Name = "GridColumn104"
         Me.GridColumn104.Visible = True
-        Me.GridColumn104.VisibleIndex = 6
+        Me.GridColumn104.VisibleIndex = 7
         '
         'GridColumn105
         '
@@ -3315,7 +3329,7 @@ Partial Class FormBankDeposit
         Me.GridColumn105.FieldName = "remaining"
         Me.GridColumn105.Name = "GridColumn105"
         Me.GridColumn105.Visible = True
-        Me.GridColumn105.VisibleIndex = 7
+        Me.GridColumn105.VisibleIndex = 13
         '
         'RepositoryItemCheckEdit9
         '
@@ -3363,6 +3377,75 @@ Partial Class FormBankDeposit
         Me.BRefreshBreakPrepaid.Size = New System.Drawing.Size(114, 40)
         Me.BRefreshBreakPrepaid.TabIndex = 8933
         Me.BRefreshBreakPrepaid.Text = "Refresh List"
+        '
+        'GridColumn107
+        '
+        Me.GridColumn107.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn107.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn107.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn107.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn107.Caption = "Kurs"
+        Me.GridColumn107.DisplayFormat.FormatString = "N2"
+        Me.GridColumn107.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn107.FieldName = "kurs"
+        Me.GridColumn107.Name = "GridColumn107"
+        Me.GridColumn107.Visible = True
+        Me.GridColumn107.VisibleIndex = 10
+        '
+        'GridColumn108
+        '
+        Me.GridColumn108.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn108.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn108.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn108.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn108.Caption = "Before Kurs"
+        Me.GridColumn108.DisplayFormat.FormatString = "N2"
+        Me.GridColumn108.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn108.FieldName = "amount_before"
+        Me.GridColumn108.Name = "GridColumn108"
+        Me.GridColumn108.Visible = True
+        Me.GridColumn108.VisibleIndex = 9
+        '
+        'GridColumn109
+        '
+        Me.GridColumn109.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn109.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn109.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn109.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn109.Caption = "Currency"
+        Me.GridColumn109.FieldName = "currency"
+        Me.GridColumn109.Name = "GridColumn109"
+        Me.GridColumn109.Visible = True
+        Me.GridColumn109.VisibleIndex = 8
+        '
+        'GridColumn110
+        '
+        Me.GridColumn110.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn110.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn110.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn110.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn110.Caption = "Amount"
+        Me.GridColumn110.DisplayFormat.FormatString = "N2"
+        Me.GridColumn110.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn110.FieldName = "amount"
+        Me.GridColumn110.Name = "GridColumn110"
+        Me.GridColumn110.Visible = True
+        Me.GridColumn110.VisibleIndex = 11
+        '
+        'GridColumn111
+        '
+        Me.GridColumn111.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn111.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn111.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn111.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn111.Caption = "Sudah Dibiayakan"
+        Me.GridColumn111.DisplayFormat.FormatString = "N2"
+        Me.GridColumn111.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn111.FieldName = "amount_used"
+        Me.GridColumn111.Name = "GridColumn111"
+        Me.GridColumn111.Visible = True
+        Me.GridColumn111.VisibleIndex = 12
+        Me.GridColumn111.Width = 97
         '
         'FormBankDeposit
         '
@@ -3795,4 +3878,10 @@ Partial Class FormBankDeposit
     Friend WithEvents GridColumn104 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn105 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BRecBreakPrepaid As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn106 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn109 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn108 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn107 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn110 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn111 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -1110,11 +1110,18 @@ WHERE dn.is_open=1 AND dn.is_deposit='2' AND dn.`id_inv_mat_type`=2 AND dn.id_re
     End Sub
 
     Private Sub BRefreshBreakPrepaid_Click(sender As Object, e As EventArgs) Handles BRefreshBreakPrepaid.Click
-        Dim q As String = "SELECT 'no' AS is_check,ed.id_prepaid_expense,'349' AS rmt,ed.`id_prepaid_expense_det`,acc.acc_name,acc.acc_description,acc.id_acc,ed.description,e.inv_number,c.comp_number AS store_code,c.comp_name AS store_name,c.id_comp AS id_store,(ed.`amount`-IFNULL(al.already,0.00)) AS remaining
+        Dim q As String = "SELECT 'no' AS is_check,ed.id_prepaid_expense,cur.currency,v.id_comp AS id_vendor,v.comp_name AS vendor,'349' AS rmt,ed.`id_prepaid_expense_det`,e.number,acc.acc_name,acc.acc_description,acc.id_acc,ed.description,e.inv_number,c.comp_number AS store_code,c.comp_name AS store_name,c.id_comp AS id_store
+,ed.amount_before
+,ed.kurs
+,ed.amount
+,IFNULL(al.already,0.00) AS amount_used
+,(ed.`amount`-IFNULL(al.already,0.00)) AS remaining
 FROM `tb_prepaid_expense_det` ed
 INNER JOIN tb_prepaid_expense e ON e.`id_prepaid_expense`=ed.`id_prepaid_expense` AND e.id_report_status=6
 INNER JOIN tb_a_acc acc ON acc.id_acc=ed.id_acc
 INNER JOIN tb_m_comp c ON c.id_comp=ed.cc
+INNER JOIN tb_m_comp v ON v.id_comp=e.id_comp
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=ed.id_currency
 LEFT JOIN
 (
 	SELECT id_prepaid_expense_det,SUM(value_prepaid) AS already
@@ -1137,7 +1144,7 @@ HAVING remaining > 0"
 
     Private Sub BRecBreakPrepaid_Click(sender As Object, e As EventArgs) Handles BRecBreakPrepaid.Click
         GVBreakPrepaid.ActiveFilterString = "[is_check]='yes'"
-        If GVJualAsset.RowCount > 0 Then
+        If GVBreakPrepaid.RowCount > 0 Then
             Cursor = Cursors.WaitCursor
             FormBankDepositDet.id_coa_tag = "1"
             FormBankDepositDet.type_rec = "6"
