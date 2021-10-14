@@ -869,6 +869,7 @@ WHERE report_mark_type='13' AND id_report='" & id_purc & "'"
     Private Sub SMView_Click(sender As Object, e As EventArgs) Handles SMView.Click
         If GVListMatPD.RowCount > 0 Then
             Dim rpt As New ReportMatPD
+            rpt.LPONumber.Text = TEPONumber.Text
             rpt.id_purc = id_purc
             'head
             Dim query As String = "SELECT '" & TECompName.Text & "' comp_name,'" & LESeason.Text & "' AS season,'" & LECurrency.Text & "' AS currency,FORMAT(pl.mat_det_price,4,'id_ID') AS mat_det_price,md.mat_det_name

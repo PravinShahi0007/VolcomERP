@@ -33,7 +33,19 @@ Partial Class FormListStore
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_name_display = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.is_active_company = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnho_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_group_desc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncountry = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnregion = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncity = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnarea = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstore_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncommerce_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnemployee_name = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,10 +65,11 @@ Partial Class FormListStore
         '
         'GVCompany
         '
-        Me.GVCompany.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_company, Me.CompanyCode, Me.company, Me.address_primary, Me.sub_district, Me.is_active, Me.Category, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GCStatus})
+        Me.GVCompany.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_company, Me.CompanyCode, Me.company, Me.address_primary, Me.sub_district, Me.is_active, Me.Category, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GCStatus, Me.GridColumncomp_name_display, Me.GridColumnho_name, Me.GridColumncomp_group, Me.GridColumncomp_group_desc, Me.GridColumncountry, Me.GridColumnregion, Me.GridColumnstate, Me.GridColumncity, Me.GridColumnarea, Me.GridColumnstore_type, Me.GridColumncommerce_type, Me.GridColumnemployee_name})
         Me.GVCompany.GridControl = Me.GCCompany
         Me.GVCompany.Name = "GVCompany"
         Me.GVCompany.OptionsBehavior.Editable = False
+        Me.GVCompany.OptionsView.ColumnAutoWidth = False
         Me.GVCompany.OptionsView.ShowGroupPanel = False
         '
         'id_company
@@ -71,16 +84,16 @@ Partial Class FormListStore
         Me.CompanyCode.FieldName = "comp_number"
         Me.CompanyCode.Name = "CompanyCode"
         Me.CompanyCode.Visible = True
-        Me.CompanyCode.VisibleIndex = 1
+        Me.CompanyCode.VisibleIndex = 0
         Me.CompanyCode.Width = 79
         '
         'company
         '
-        Me.company.Caption = "Company"
+        Me.company.Caption = "Store"
         Me.company.FieldName = "comp_name"
         Me.company.Name = "company"
         Me.company.Visible = True
-        Me.company.VisibleIndex = 0
+        Me.company.VisibleIndex = 2
         Me.company.Width = 105
         '
         'address_primary
@@ -89,7 +102,7 @@ Partial Class FormListStore
         Me.address_primary.FieldName = "address_primary"
         Me.address_primary.Name = "address_primary"
         Me.address_primary.Visible = True
-        Me.address_primary.VisibleIndex = 3
+        Me.address_primary.VisibleIndex = 5
         Me.address_primary.Width = 289
         '
         'sub_district
@@ -98,7 +111,7 @@ Partial Class FormListStore
         Me.sub_district.FieldName = "sub_district"
         Me.sub_district.Name = "sub_district"
         Me.sub_district.Visible = True
-        Me.sub_district.VisibleIndex = 4
+        Me.sub_district.VisibleIndex = 11
         '
         'is_active
         '
@@ -122,8 +135,6 @@ Partial Class FormListStore
         Me.Category.Caption = "Category"
         Me.Category.FieldName = "company_category"
         Me.Category.Name = "Category"
-        Me.Category.Visible = True
-        Me.Category.VisibleIndex = 2
         Me.Category.Width = 80
         '
         'GridColumn1
@@ -132,23 +143,24 @@ Partial Class FormListStore
         Me.GridColumn1.FieldName = "contact_person"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 5
+        Me.GridColumn1.VisibleIndex = 12
+        Me.GridColumn1.Width = 91
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "Number"
+        Me.GridColumn2.Caption = "Contact Number"
         Me.GridColumn2.FieldName = "contact_number"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 6
+        Me.GridColumn2.VisibleIndex = 13
         '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "Email"
+        Me.GridColumn3.Caption = "Contact Email"
         Me.GridColumn3.FieldName = "contact_email"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 7
+        Me.GridColumn3.VisibleIndex = 14
         '
         'GCStatus
         '
@@ -156,7 +168,15 @@ Partial Class FormListStore
         Me.GCStatus.FieldName = "comp_status"
         Me.GCStatus.Name = "GCStatus"
         Me.GCStatus.Visible = True
-        Me.GCStatus.VisibleIndex = 8
+        Me.GCStatus.VisibleIndex = 19
+        '
+        'GridColumncomp_name_display
+        '
+        Me.GridColumncomp_name_display.Caption = "Short Name"
+        Me.GridColumncomp_name_display.FieldName = "comp_display_name"
+        Me.GridColumncomp_name_display.Name = "GridColumncomp_name_display"
+        Me.GridColumncomp_name_display.Visible = True
+        Me.GridColumncomp_name_display.VisibleIndex = 1
         '
         'is_active_company
         '
@@ -164,6 +184,94 @@ Partial Class FormListStore
         Me.is_active_company.DisplayValueChecked = "1"
         Me.is_active_company.DisplayValueUnchecked = "0"
         Me.is_active_company.Name = "is_active_company"
+        '
+        'GridColumnho_name
+        '
+        Me.GridColumnho_name.Caption = "Head Office"
+        Me.GridColumnho_name.FieldName = "ho_name"
+        Me.GridColumnho_name.Name = "GridColumnho_name"
+        Me.GridColumnho_name.Visible = True
+        Me.GridColumnho_name.VisibleIndex = 15
+        '
+        'GridColumncomp_group
+        '
+        Me.GridColumncomp_group.Caption = "Group"
+        Me.GridColumncomp_group.FieldName = "comp_group"
+        Me.GridColumncomp_group.Name = "GridColumncomp_group"
+        Me.GridColumncomp_group.Visible = True
+        Me.GridColumncomp_group.VisibleIndex = 3
+        '
+        'GridColumncomp_group_desc
+        '
+        Me.GridColumncomp_group_desc.Caption = "Group Description"
+        Me.GridColumncomp_group_desc.FieldName = "comp_group_desc"
+        Me.GridColumncomp_group_desc.Name = "GridColumncomp_group_desc"
+        Me.GridColumncomp_group_desc.Visible = True
+        Me.GridColumncomp_group_desc.VisibleIndex = 4
+        '
+        'GridColumncountry
+        '
+        Me.GridColumncountry.Caption = "Country"
+        Me.GridColumncountry.FieldName = "country"
+        Me.GridColumncountry.Name = "GridColumncountry"
+        Me.GridColumncountry.Visible = True
+        Me.GridColumncountry.VisibleIndex = 6
+        '
+        'GridColumnregion
+        '
+        Me.GridColumnregion.Caption = "Region"
+        Me.GridColumnregion.FieldName = "region"
+        Me.GridColumnregion.Name = "GridColumnregion"
+        Me.GridColumnregion.Visible = True
+        Me.GridColumnregion.VisibleIndex = 7
+        '
+        'GridColumnstate
+        '
+        Me.GridColumnstate.Caption = "State"
+        Me.GridColumnstate.FieldName = "state"
+        Me.GridColumnstate.Name = "GridColumnstate"
+        Me.GridColumnstate.Visible = True
+        Me.GridColumnstate.VisibleIndex = 8
+        '
+        'GridColumncity
+        '
+        Me.GridColumncity.Caption = "City"
+        Me.GridColumncity.FieldName = "city"
+        Me.GridColumncity.Name = "GridColumncity"
+        Me.GridColumncity.Visible = True
+        Me.GridColumncity.VisibleIndex = 9
+        '
+        'GridColumnarea
+        '
+        Me.GridColumnarea.Caption = "Area"
+        Me.GridColumnarea.FieldName = "area"
+        Me.GridColumnarea.Name = "GridColumnarea"
+        Me.GridColumnarea.Visible = True
+        Me.GridColumnarea.VisibleIndex = 10
+        '
+        'GridColumnstore_type
+        '
+        Me.GridColumnstore_type.Caption = "Store Type"
+        Me.GridColumnstore_type.FieldName = "store_type"
+        Me.GridColumnstore_type.Name = "GridColumnstore_type"
+        Me.GridColumnstore_type.Visible = True
+        Me.GridColumnstore_type.VisibleIndex = 16
+        '
+        'GridColumncommerce_type
+        '
+        Me.GridColumncommerce_type.Caption = "Commerce Typ"
+        Me.GridColumncommerce_type.FieldName = "commerce_type"
+        Me.GridColumncommerce_type.Name = "GridColumncommerce_type"
+        Me.GridColumncommerce_type.Visible = True
+        Me.GridColumncommerce_type.VisibleIndex = 17
+        '
+        'GridColumnemployee_name
+        '
+        Me.GridColumnemployee_name.Caption = "Sales Rep."
+        Me.GridColumnemployee_name.FieldName = "employee_name"
+        Me.GridColumnemployee_name.Name = "GridColumnemployee_name"
+        Me.GridColumnemployee_name.Visible = True
+        Me.GridColumnemployee_name.VisibleIndex = 18
         '
         'FormListStore
         '
@@ -200,4 +308,16 @@ Partial Class FormListStore
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents is_active_company As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumncomp_name_display As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnho_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_group_desc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncountry As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnregion As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncity As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnarea As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstore_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncommerce_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnemployee_name As DevExpress.XtraGrid.Columns.GridColumn
 End Class

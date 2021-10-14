@@ -76,6 +76,17 @@ Partial Class FormItemExpense
         Me.BImport = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPSNI = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BrefreshSNI = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCListSNI = New DevExpress.XtraGrid.GridControl()
+        Me.GVListSNI = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -102,6 +113,11 @@ Partial Class FormItemExpense
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        Me.XTPSNI.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.GCListSNI, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVListSNI, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCData
@@ -360,7 +376,7 @@ Partial Class FormItemExpense
         Me.XtraTabControl1.SelectedTabPage = Me.XTPExpense
         Me.XtraTabControl1.Size = New System.Drawing.Size(1012, 556)
         Me.XtraTabControl1.TabIndex = 2
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPExpense, Me.XTP3PLInv})
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPExpense, Me.XTP3PLInv, Me.XTPSNI})
         '
         'XTPExpense
         '
@@ -638,6 +654,107 @@ Partial Class FormItemExpense
         Me.BRefresh.TabIndex = 2
         Me.BRefresh.Text = "Refresh"
         '
+        'XTPSNI
+        '
+        Me.XTPSNI.Controls.Add(Me.GCListSNI)
+        Me.XTPSNI.Controls.Add(Me.PanelControl3)
+        Me.XTPSNI.Name = "XTPSNI"
+        Me.XTPSNI.Size = New System.Drawing.Size(1006, 528)
+        Me.XTPSNI.Text = "SNI"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.BrefreshSNI)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1006, 48)
+        Me.PanelControl3.TabIndex = 1
+        '
+        'BrefreshSNI
+        '
+        Me.BrefreshSNI.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BrefreshSNI.Image = CType(resources.GetObject("BrefreshSNI.Image"), System.Drawing.Image)
+        Me.BrefreshSNI.Location = New System.Drawing.Point(890, 2)
+        Me.BrefreshSNI.Name = "BrefreshSNI"
+        Me.BrefreshSNI.Size = New System.Drawing.Size(114, 44)
+        Me.BrefreshSNI.TabIndex = 2
+        Me.BrefreshSNI.Text = "Refresh"
+        '
+        'GCListSNI
+        '
+        Me.GCListSNI.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCListSNI.Location = New System.Drawing.Point(0, 48)
+        Me.GCListSNI.MainView = Me.GVListSNI
+        Me.GCListSNI.Name = "GCListSNI"
+        Me.GCListSNI.Size = New System.Drawing.Size(1006, 480)
+        Me.GCListSNI.TabIndex = 93
+        Me.GCListSNI.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListSNI})
+        '
+        'GVListSNI
+        '
+        Me.GVListSNI.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn12, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10})
+        Me.GVListSNI.GridControl = Me.GCListSNI
+        Me.GVListSNI.Name = "GVListSNI"
+        Me.GVListSNI.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "ID"
+        Me.GridColumn6.FieldName = "id_awb_office"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Note"
+        Me.GridColumn7.FieldName = "note"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 4
+        Me.GridColumn7.Width = 216
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Number"
+        Me.GridColumn8.FieldName = "number"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        Me.GridColumn8.Width = 197
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Created By"
+        Me.GridColumn9.FieldName = "employee_name"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 2
+        Me.GridColumn9.Width = 210
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Created Date"
+        Me.GridColumn10.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn10.FieldName = "created_date"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 3
+        Me.GridColumn10.Width = 210
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.Caption = "Season"
+        Me.GridColumn12.FieldName = "season"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 1
+        Me.GridColumn12.Width = 155
+        '
         'FormItemExpense
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -675,6 +792,11 @@ Partial Class FormItemExpense
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        Me.XTPSNI.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.GCListSNI, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVListSNI, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -735,4 +857,15 @@ Partial Class FormItemExpense
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TEDesc3PLInv As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTPSNI As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BrefreshSNI As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCListSNI As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVListSNI As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

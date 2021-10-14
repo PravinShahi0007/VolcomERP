@@ -102,6 +102,7 @@ Partial Public Class ReportMatPD
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.LPONumber = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -1143,8 +1144,8 @@ Partial Public Class ReportMatPD
         '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel4, Me.XrLabel3, Me.XrLabel1})
-        Me.ReportHeader.HeightF = 91.66666!
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LPONumber, Me.XrLabel4, Me.XrLabel3, Me.XrLabel1})
+        Me.ReportHeader.HeightF = 110.7499!
         Me.ReportHeader.Name = "ReportHeader"
         '
         'XrLabel4
@@ -1213,6 +1214,17 @@ Partial Public Class ReportMatPD
         Me.XrTableCell1.Text = "Here Table Mark Goes, Please Ignore This"
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
+        '
+        'LPONumber
+        '
+        Me.LPONumber.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.LPONumber.LocationFloat = New DevExpress.Utils.PointFloat(0!, 68.99995!)
+        Me.LPONumber.Name = "LPONumber"
+        Me.LPONumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LPONumber.SizeF = New System.Drawing.SizeF(471.875!, 23.0!)
+        Me.LPONumber.StylePriority.UseFont = False
+        Me.LPONumber.StylePriority.UseTextAlignment = False
+        Me.LPONumber.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'ReportMatPD
         '
@@ -1311,4 +1323,5 @@ Partial Public Class ReportMatPD
     Friend WithEvents LColorMOQ As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LQtyMOQ As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LConsMOQ As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LPONumber As DevExpress.XtraReports.UI.XRLabel
 End Class

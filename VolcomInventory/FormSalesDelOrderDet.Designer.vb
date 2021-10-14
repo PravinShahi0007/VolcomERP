@@ -134,6 +134,9 @@ Partial Class FormSalesDelOrderDet
         Me.GridColumnBarcodeSize = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnol_store_id_bar = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnitem_id_bar = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclassbc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolorbc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshtbc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
@@ -156,9 +159,8 @@ Partial Class FormSalesDelOrderDet
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCTest = New DevExpress.XtraGrid.GridControl()
         Me.GVTest = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnclassbc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncolorbc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnshtbc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Timer = New System.Windows.Forms.Timer(Me.components)
+        Me.RepositoryItemTextEdit = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -226,6 +228,7 @@ Partial Class FormSalesDelOrderDet
         Me.XtraTabPage1.SuspendLayout()
         CType(Me.GCTest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVTest, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -1302,7 +1305,7 @@ Partial Class FormSalesDelOrderDet
         Me.GCBarcode.Location = New System.Drawing.Point(21, 35)
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
-        Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
+        Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2, Me.RepositoryItemTextEdit})
         Me.GCBarcode.Size = New System.Drawing.Size(919, 78)
         Me.GCBarcode.TabIndex = 5
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
@@ -1336,6 +1339,7 @@ Partial Class FormSalesDelOrderDet
         'GridColumnBarcode
         '
         Me.GridColumnBarcode.Caption = "Scanned Code"
+        Me.GridColumnBarcode.ColumnEdit = Me.RepositoryItemTextEdit
         Me.GridColumnBarcode.FieldName = "code"
         Me.GridColumnBarcode.Name = "GridColumnBarcode"
         Me.GridColumnBarcode.Visible = True
@@ -1416,6 +1420,33 @@ Partial Class FormSalesDelOrderDet
         Me.GridColumnitem_id_bar.FieldName = "item_id"
         Me.GridColumnitem_id_bar.Name = "GridColumnitem_id_bar"
         Me.GridColumnitem_id_bar.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnclassbc
+        '
+        Me.GridColumnclassbc.Caption = "Class"
+        Me.GridColumnclassbc.FieldName = "class"
+        Me.GridColumnclassbc.Name = "GridColumnclassbc"
+        Me.GridColumnclassbc.OptionsColumn.AllowEdit = False
+        Me.GridColumnclassbc.Visible = True
+        Me.GridColumnclassbc.VisibleIndex = 2
+        Me.GridColumnclassbc.Width = 70
+        '
+        'GridColumncolorbc
+        '
+        Me.GridColumncolorbc.Caption = "Color"
+        Me.GridColumncolorbc.FieldName = "color"
+        Me.GridColumncolorbc.Name = "GridColumncolorbc"
+        Me.GridColumncolorbc.OptionsColumn.AllowEdit = False
+        Me.GridColumncolorbc.Visible = True
+        Me.GridColumncolorbc.VisibleIndex = 4
+        Me.GridColumncolorbc.Width = 68
+        '
+        'GridColumnshtbc
+        '
+        Me.GridColumnshtbc.Caption = "Silhouette"
+        Me.GridColumnshtbc.FieldName = "sht"
+        Me.GridColumnshtbc.Name = "GridColumnshtbc"
+        Me.GridColumnshtbc.OptionsColumn.AllowEdit = False
         '
         'RepositoryItemCheckEdit2
         '
@@ -1637,32 +1668,10 @@ Partial Class FormSalesDelOrderDet
         Me.GVTest.GridControl = Me.GCTest
         Me.GVTest.Name = "GVTest"
         '
-        'GridColumnclassbc
+        'RepositoryItemTextEdit
         '
-        Me.GridColumnclassbc.Caption = "Class"
-        Me.GridColumnclassbc.FieldName = "class"
-        Me.GridColumnclassbc.Name = "GridColumnclassbc"
-        Me.GridColumnclassbc.OptionsColumn.AllowEdit = False
-        Me.GridColumnclassbc.Visible = True
-        Me.GridColumnclassbc.VisibleIndex = 2
-        Me.GridColumnclassbc.Width = 70
-        '
-        'GridColumncolorbc
-        '
-        Me.GridColumncolorbc.Caption = "Color"
-        Me.GridColumncolorbc.FieldName = "color"
-        Me.GridColumncolorbc.Name = "GridColumncolorbc"
-        Me.GridColumncolorbc.OptionsColumn.AllowEdit = False
-        Me.GridColumncolorbc.Visible = True
-        Me.GridColumncolorbc.VisibleIndex = 4
-        Me.GridColumncolorbc.Width = 68
-        '
-        'GridColumnshtbc
-        '
-        Me.GridColumnshtbc.Caption = "Silhouette"
-        Me.GridColumnshtbc.FieldName = "sht"
-        Me.GridColumnshtbc.Name = "GridColumnshtbc"
-        Me.GridColumnshtbc.OptionsColumn.AllowEdit = False
+        Me.RepositoryItemTextEdit.AutoHeight = False
+        Me.RepositoryItemTextEdit.Name = "RepositoryItemTextEdit"
         '
         'FormSalesDelOrderDet
         '
@@ -1758,6 +1767,7 @@ Partial Class FormSalesDelOrderDet
         Me.XtraTabPage1.ResumeLayout(False)
         CType(Me.GCTest, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVTest, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1900,4 +1910,6 @@ Partial Class FormSalesDelOrderDet
     Friend WithEvents GridColumnclassbc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncolorbc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnshtbc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Timer As Timer
+    Friend WithEvents RepositoryItemTextEdit As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class
