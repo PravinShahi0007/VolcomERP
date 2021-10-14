@@ -112,9 +112,6 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        Dim za As New ClassZaloraApi()
-        Dim dt As DataTable = za.get_order_detail("3698697")
-        MsgBox(dt.Rows.Count.ToString)
         'Dim qd As String = "SELECT spl.*,qty.qty,tot.total,ROUND(tot.total/qty.qty,2) AS cost
         'FROM `tb_sni_pps_list` spl
         'INNER JOIN 
