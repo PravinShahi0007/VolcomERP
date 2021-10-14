@@ -415,6 +415,7 @@
                     Dim financial_status As String = ""
                     Dim total_discounts As String = ""
                     Dim discount_code As String = ""
+                    Dim discount_fee As String = "0"
                     sales_order_ol_shop_number = dtx.Rows(0)("sales_order_ol_shop_number").ToString
                     sales_order_ol_shop_date = DateTime.Parse(dtx.Rows(0)("sales_order_ol_shop_date").ToString).ToString("yyyy-MM-dd HH:mm:ss")
                     payment_method = dtx.Rows(0)("payment_method").ToString
@@ -423,7 +424,8 @@
                     shipment_provider = addSlashes(dtd.Rows(d)("shipment_provider").ToString)
                     financial_status = ""
                     total_discounts = "0"
-                    discount_code = ""
+                    discount_code = dtd.Rows(d)("vch_code").ToString
+                    discount_fee = dtd.Rows(d)("vch_amount").ToString
 
                     'data customer
                     Dim customer_name As String = ""
@@ -477,9 +479,9 @@
 
                     'insert
                     Dim qins As String = "INSERT tb_ol_store_order(id, sales_order_ol_shop_number, sales_order_ol_shop_date, customer_name, shipping_name, shipping_address,shipping_address1,shipping_address2, shipping_phone, 
-                    shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, shipment_provider, ol_store_sku, ol_store_id, item_id, sku, design_price, ol_order_qty, sales_order_det_qty, grams, financial_status, total_disc_order, discount_allocations_amo,checkout_id, shipping_price, discount_code, id_comp_group,is_rts) VALUES "
+                    shipping_city, shipping_post_code, shipping_region, payment_method, tracking_code, shipment_provider, ol_store_sku, ol_store_id, item_id, sku, design_price, ol_order_qty, sales_order_det_qty, grams, financial_status, total_disc_order, discount_allocations_amo,checkout_id, shipping_price, discount_code, discount_fee, id_comp_group,is_rts) VALUES "
                     qins += "('" + id_order + "', '" + sales_order_ol_shop_number + "', '" + sales_order_ol_shop_date + "', '" + addSlashes(customer_name) + "', '" + addSlashes(shipping_name) + "', '" + addSlashes(shipping_address) + "','" + addSlashes(shipping_address1) + "','" + addSlashes(shipping_address2) + "', '" + addSlashes(shipping_phone) + "', 
-                    '" + addSlashes(shipping_city) + "', '" + addSlashes(shipping_post_code) + "', '" + addSlashes(shipping_region) + "', '" + payment_method + "', '" + tracking_code + "', '" + shipment_provider + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + item_id + "', '" + sku + "', '" + design_price + "','" + ol_order_qty + "', '" + sales_order_det_qty + "','" + grams + "', '" + addSlashes(financial_status) + "', '" + total_discounts + "', '" + discount_allocations_amo + "','" + addSlashes(checkout_id) + "', '" + shipping_price + "', '" + discount_code + "', '" + id_store_group + "','2') "
+                    '" + addSlashes(shipping_city) + "', '" + addSlashes(shipping_post_code) + "', '" + addSlashes(shipping_region) + "', '" + payment_method + "', '" + tracking_code + "', '" + shipment_provider + "', '" + ol_store_sku + "', '" + ol_store_id + "', '" + item_id + "', '" + sku + "', '" + design_price + "','" + ol_order_qty + "', '" + sales_order_det_qty + "','" + grams + "', '" + addSlashes(financial_status) + "', '" + total_discounts + "', '" + discount_allocations_amo + "','" + addSlashes(checkout_id) + "', '" + shipping_price + "', '" + discount_code + "', '"+decimalSQL(discount_fee)+"', '" + id_store_group + "','2') "
                     execute_non_query(qins, True, "", "", "", "")
                 Next
             End If
@@ -495,6 +497,8 @@
         dt.Columns.Add("design_price", GetType(Decimal))
         dt.Columns.Add("tracking_code", GetType(String))
         dt.Columns.Add("shipment_provider", GetType(String))
+        dt.Columns.Add("vch_code", GetType(String))
+        dt.Columns.Add("vch_amo", GetType(String))
         dt.Columns.Add("status", GetType(String))
         dt.Columns.Add("updated_at", GetType(String))
 
@@ -535,25 +539,52 @@
             Dim json_det As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServerDet)
             If json_det("SuccessResponse")("Body")("OrderItems")("OrderItem").Count > 0 Then
                 Dim sku As String = ""
+                Dim vch_code As String = ""
+                Dim vch_amo As String = ""
 
                 If responseFromServerDet.Contains("""OrderItem"":[") Then
                     'array
                     For Each row_det In json_det("SuccessResponse")("Body")("OrderItems")("OrderItem").ToList
                         sku = ""
                         sku = getSKU(row_det("Sku").ToString.Substring(0, 9), row_det("Variation").ToString)
-                        If row_det("Status").ToString = "pending" Then
-                            dt.Rows.Add(row_det("ShopId").ToString, row_det("OrderItemId").ToString, sku, row_det("ShopSku").ToString, row_det("ItemPrice"), row_det("TrackingCode").ToString, row_det("ShipmentProvider").ToString, row_det("Status").ToString, row_det("UpdatedAt").ToString)
+
+                        vch_code = ""
+                        vch_amo = ""
+                        If row_det("Vouchers").ToString <> "" Then
+                            vch_code = row_det("Vouchers")("Voucher")("Code").ToString
+                            Dim vch_amo_arr As String() = Split(row_det("Vouchers")("Voucher")("Amount").ToString, ".")
+                            vch_amo = decimalSQL(vch_amo_arr(0)).Replace(",", "")
+                        Else
+                            vch_code = ""
+                            vch_amo = "0"
+                        End If
+
+                        If row_det("Status").ToString = "pending" Then 'arus dinyalain
+                            dt.Rows.Add(row_det("ShopId").ToString, row_det("OrderItemId").ToString, sku, row_det("ShopSku").ToString, row_det("ItemPrice"), row_det("TrackingCode").ToString, row_det("ShipmentProvider").ToString, vch_code, vch_amo, row_det("Status").ToString, row_det("UpdatedAt").ToString)
                         End If
                     Next
                 Else
                     'non array
                     sku = ""
                     sku = getSKU(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Sku").ToString.Substring(0, 9), json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Variation").ToString)
+
+                    vch_code = ""
+                    vch_amo = ""
+                    If json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Vouchers").ToString <> "" Then
+                        vch_code = json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Vouchers")("Voucher")("Code").ToString
+                        Dim vch_amo_arr As String() = Split(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Vouchers")("Voucher")("Amount").ToString, ".")
+                        vch_amo = decimalSQL(vch_amo_arr(0)).Replace(",", "")
+                    Else
+                        vch_code = ""
+                        vch_amo = "0"
+                    End If
+
+                    'harus dnyalain
                     If json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Status").ToString = "pending" Then
-                        dt.Rows.Add(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopId").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("OrderItemId").ToString, sku, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopSku").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ItemPrice"), json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("TrackingCode").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShipmentProvider").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Status").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("UpdatedAt").ToString)
+                        dt.Rows.Add(json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopId").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("OrderItemId").ToString, sku, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShopSku").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ItemPrice"), json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("TrackingCode").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("ShipmentProvider").ToString, vch_code, vch_amo, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("Status").ToString, json_det("SuccessResponse")("Body")("OrderItems")("OrderItem")("UpdatedAt").ToString)
                     End If
                 End If
-            End If
+                End If
         End Using
         response_det.Close()
         Return dt

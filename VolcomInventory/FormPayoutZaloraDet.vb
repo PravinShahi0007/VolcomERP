@@ -394,6 +394,34 @@ FROM tb_payout_zalora_cat c"
             execute_non_query_long(query, True, "", "", "", "")
         ElseIf typ_par = "8" Then
             'Down Payment Credit aka adjusment refund : manual
+        ElseIf typ_par = "11" Then
+            'discount fee (fee)
+            Dim query As String = "UPDATE tb_payout_zalora_det main
+            INNER JOIN tb_payout_zalora_type t ON t.transaction_type = main.transaction_type
+            INNER JOIN (
+	            SELECT d.id_payout_zalora_det,d.id_sales_pos_det, sod.discount_code, sod.discount_fee
+	            FROM tb_payout_zalora_det d
+	            INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+	            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
+	            WHERE d.id_payout_zalora=" + id + " AND t.id_type=" + typ_par + " AND !ISNULL(d.id_sales_order_det) 
+            ) src ON src.id_payout_zalora_det = main.id_payout_zalora_det
+            SET main.erp_amount = (src.discount_fee * -1)
+            WHERE main.id_payout_zalora=" + id + " AND t.id_type=" + typ_par + " "
+            execute_non_query_long(query, True, "", "", "", "")
+        ElseIf typ_par = "12" Then
+            'Discount Fee Credit (refund fee)
+            Dim query As String = "UPDATE tb_payout_zalora_det main
+            INNER JOIN tb_payout_zalora_type t ON t.transaction_type = main.transaction_type
+            INNER JOIN (
+	            SELECT d.id_payout_zalora_det,d.id_sales_pos_det, sod.discount_code, sod.discount_fee
+	            FROM tb_payout_zalora_det d
+	            INNER JOIN tb_payout_zalora_type t ON t.transaction_type = d.transaction_type
+	            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
+	            WHERE d.id_payout_zalora=" + id + " AND t.id_type=" + typ_par + " AND !ISNULL(d.id_sales_order_det) 
+            ) src ON src.id_payout_zalora_det = main.id_payout_zalora_det
+            SET main.erp_amount = src.discount_fee
+            WHERE main.id_payout_zalora=" + id + " AND t.id_type=" + typ_par + " "
+            execute_non_query_long(query, True, "", "", "", "")
         End If
     End Sub
 
@@ -579,7 +607,7 @@ IFNULL(d.id_sales_pos_cn_det, 0) AS `id_sales_pos_cn_det`, cn.sales_pos_number A
 od.fail_reason AS `note_unfulfilled`, oos.number AS `oos_number`,
 d.zalora_sku, d.zalora_product_name, prod.product_full_code AS `code`, prod.product_name AS `product_name`, cd.display_name AS `size`, 
 d.is_manual_recon,IF(d.is_manual_recon=1,'Manual','Auto') AS `recon_type`, d.manual_recon_reason,
-IFNULL(d.id_acc,0) AS `id_acc`, CONCAT(coa.acc_name, IF(ISNULL(a.acc_name),'',CONCAT(',',a.acc_name))) AS `acc_name`, CONCAT(coa.acc_description, IF(ISNULL(a.acc_description),'',CONCAT(',',a.acc_description))) AS `acc_description`
+IFNULL(d.id_acc,0) AS `id_acc`, CONCAT(coa.acc_name, IF(ISNULL(a.acc_name),'',CONCAT(',',a.acc_name))) AS `acc_name`, CONCAT(coa.acc_description, IF(ISNULL(a.acc_description),'',CONCAT(',',a.acc_description))) AS `acc_description`, sod.discount_code, sod.discount_fee
 FROM tb_payout_zalora_det d
 INNER JOIN tb_payout_zalora_type typ ON typ.transaction_type = d.transaction_type
 INNER JOIN tb_payout_zalora_cat cat ON typ.id_payout_zalora_cat = cat.id_payout_zalora_cat
@@ -602,6 +630,7 @@ LEFT JOIN (
     WHERE pd.id_payout_zalora=" + id + "
     GROUP BY d.id_payout_zalora_det
 ) a ON a.id_payout_zalora_det = d.id_payout_zalora_det
+LEFT JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
 WHERE d.id_payout_zalora=" + id + " " + cond_cat
         query += "ORDER BY d.order_number ASC, d.item_id ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
