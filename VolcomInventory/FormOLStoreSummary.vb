@@ -1,4 +1,6 @@
 ﻿Public Class FormOLStoreSummary
+    Public is_pop_up As Boolean = False
+
     Private Sub FormOLStoreSummary_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
 
     End Sub
@@ -1673,7 +1675,7 @@ WHERE !ISNULL(od.id_ol_store_oos) AND od.sales_order_det_qty!= od.ol_order_qty "
     End Sub
 
     Private Sub BtnViewZalPrm_Click(sender As Object, e As EventArgs) Handles BtnViewZalPrm.Click
-        viewZalPrm
+        viewZalPrm()
     End Sub
 
     Sub viewZalPrm()
@@ -1690,10 +1692,37 @@ WHERE !ISNULL(od.id_ol_store_oos) AND od.sales_order_det_qty!= od.ol_order_qty "
             date_until_selected = DateTime.Parse(DEUntilZalPrm.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
-        Dim cond As String = "AND p.id_report_status_recon=6 AND (DATE(p.propose_created_date)>='" + date_from_selected + "' AND DATE(p.propose_created_date)<='" + date_until_selected + "') "
+        Dim cond As String = ""
 
-        Dim pz As New ClassPromoZalora()
-        Dim query As String = pz.queryMain(cond, "1")
+        Dim query As String = "SELECT p.id_promo_zalora, p.id_promo_zalora_type, pzt.promo_zalora_type, p.`number`, p.promo_name, p.discount_code, p.discount_value, p.volcom_pros, 
+        p.start_period, p.end_period,p.propose_created_date, p.propose_created_by, ep.employee_name AS `propose_created_by_name`, 
+        p.id_report_status, stt.report_status, p.rmt_propose, p.propose_note, p.is_confirm, 
+        p.recon_created_date, p.recon_created_by, er.employee_name AS `recon_created_by_name`, p.id_report_status_recon, sttrecon.report_status AS `report_status_recon`, p.rmt_recon, p.recon_note, p.is_confirm_recon, IFNULL(ou.order_used,0) AS `order_used`
+        FROM tb_promo_zalora p
+        INNER JOIN tb_promo_zalora_type pzt ON pzt.id_promo_zalora_type = p.id_promo_zalora_type
+        INNER JOIN tb_m_user up ON up.id_user = p.propose_created_by
+        INNER JOIN tb_m_employee ep ON ep.id_employee = up.id_employee
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = p.id_report_status
+        LEFT JOIN tb_m_user ur ON ur.id_user = p.recon_created_by
+        LEFT JOIN tb_m_employee er ON er.id_employee = ur.id_employee
+        LEFT JOIN tb_lookup_report_status sttrecon ON sttrecon.id_report_status = p.id_report_status_recon
+        LEFT JOIN (
+            SELECT pd.id_promo_zalora, COUNT(pd.id_promo_zalora) AS `order_used` 
+            FROM (
+	            SELECT pd.id_promo_zalora, so.id_sales_order_ol_shop 
+	            FROM tb_sales_order so
+	            INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = so.id_store_contact_to
+	            INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+	            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+	            INNER JOIN tb_promo_zalora_det pd ON pd.id_promo_zalora_det = sod.id_promo_zalora_det
+	            WHERE so.id_report_status=6 AND !ISNULL(so.id_sales_order_ol_shop) AND s.id_comp_group=64
+	            GROUP BY pd.id_promo_zalora, so.id_sales_order_ol_shop
+            ) pd
+            GROUP BY pd.id_promo_zalora
+        ) ou ON ou.id_promo_zalora = p.id_promo_zalora
+        WHERE p.id_promo_zalora>0 
+        AND p.id_report_status_recon=6 AND (DATE(p.propose_created_date)>='" + date_from_selected + "' AND DATE(p.propose_created_date)<='" + date_until_selected + "') 
+        ORDER BY p.id_promo_zalora ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSumZalPrm.DataSource = data
         GVSumZalPrm.BestFitColumns()
@@ -1701,16 +1730,110 @@ WHERE !ISNULL(od.id_ol_store_oos) AND od.sales_order_det_qty!= od.ol_order_qty "
     End Sub
 
     Private Sub BtnExportXLSZalPrm_Click(sender As Object, e As EventArgs) Handles BtnExportXLSZalPrm.Click
-        If GVOOS.RowCount > 0 Then
+        If GVSumZalPrm.RowCount > 0 Then
             Cursor = Cursors.WaitCursor
             Dim path As String = Application.StartupPath & "\download\"
             'create directory if not exist
             If Not IO.Directory.Exists(path) Then
                 System.IO.Directory.CreateDirectory(path)
             End If
-            path = path + "ol_store_oos_list.xlsx"
-            exportToXLS(path, "ol_store_oos_list", GCOOS)
+            path = path + "zalora_promo_list.xlsx"
+            exportToXLS(path, "alora_promo_list", GCSumZalPrm)
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub RepoPrmZalNUmber_Click(sender As Object, e As EventArgs) Handles RepoPrmZalNUmber.Click
+        If GVSumZalPrm.RowCount > 0 And GVSumZalPrm.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_promo As String = ""
+            Try
+                id_promo = GVSumZalPrm.GetFocusedRowCellValue("id_promo_zalora").ToString
+            Catch ex As Exception
+            End Try
+            Dim s As New ClassShowPopUp
+            s.id_report = id_promo
+            s.report_mark_type = "351"
+            s.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Sub viewDetailZalPrm()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT pd.id_promo_zalora,sod.discount_code,
+        so.id_sales_order, so.sales_order_ol_shop_number AS `order_no`, so.customer_name, 
+        sod.item_id, sod.ol_store_id, p.product_full_code AS `code`, cd.class, p.product_name AS `name`, cd.sht, cd.color, cd.code_detail_name AS `size`,
+        sod.design_price, sod.discount_fee, sod.sales_order_det_qty
+        FROM tb_sales_order so
+        INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = so.id_store_contact_to
+        INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+        INNER JOIN tb_promo_zalora_det pd ON pd.id_promo_zalora_det = sod.id_promo_zalora_det
+        INNER JOIN tb_m_product p ON p.id_product = sod.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        LEFT JOIN (
+	        SELECT dc.id_design, 
+	        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	        FROM tb_m_design_code dc
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        AND cd.id_code IN (32,30,14, 43)
+	        GROUP BY dc.id_design
+        ) cd ON cd.id_design = p.id_design
+        WHERE so.id_report_status=6 AND !ISNULL(so.id_sales_order_ol_shop) AND s.id_comp_group=64
+        AND pd.id_promo_zalora=" + TxtPromoZaloraID.Text + "
+        ORDER BY pd.id_promo_zalora ASC, so.id_sales_order ASC, cd.class ASC, `name` ASC, `code` ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDetailZalPrm.DataSource = data
+        GVDetailZalPrm.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnBrowseZaloraPromo_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles BtnBrowseZaloraPromo.ButtonClick
+        Cursor = Cursors.WaitCursor
+        FormPromoZalora.id_pop_up = "1"
+        FormPromoZalora.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepoLinkOrderUsed_Click(sender As Object, e As EventArgs) Handles RepoLinkOrderUsed.Click
+        If GVSumZalPrm.RowCount > 0 And GVSumZalPrm.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_promo As String = ""
+            Try
+                id_promo = GVSumZalPrm.GetFocusedRowCellValue("id_promo_zalora").ToString
+            Catch ex As Exception
+            End Try
+            TxtPromoZaloraID.Text = id_promo
+            BtnBrowseZaloraPromo.Text = GVSumZalPrm.GetFocusedRowCellValue("promo_name").ToString + " (" + GVSumZalPrm.GetFocusedRowCellValue("discount_code").ToString + ")"
+            viewDetailZalPrm()
+            XTCZaloraPromo.SelectedTabPageIndex = 1
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub SimpleButton3_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSOLStore.Click
+        If GVDetailZalPrm.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "zalora_promo_detail.xlsx"
+            exportToXLS(path, "zalora_promo_detail", GCDetailZalPrm)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+
 End Class

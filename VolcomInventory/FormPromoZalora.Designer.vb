@@ -47,6 +47,7 @@ Partial Class FormPromoZalora
         Me.GridColumnreport_status_recon = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnrecon_note = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnpromo_zalora_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoBtnChoose = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntilList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,6 +56,7 @@ Partial Class FormPromoZalora
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoBtnChoose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -130,6 +132,7 @@ Partial Class FormPromoZalora
         Me.GCData.Location = New System.Drawing.Point(0, 48)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoBtnChoose})
         Me.GCData.Size = New System.Drawing.Size(728, 399)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
@@ -306,6 +309,12 @@ Partial Class FormPromoZalora
         Me.GridColumnpromo_zalora_type.Visible = True
         Me.GridColumnpromo_zalora_type.VisibleIndex = 1
         '
+        'RepoBtnChoose
+        '
+        Me.RepoBtnChoose.AutoHeight = False
+        Me.RepoBtnChoose.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepoBtnChoose.Name = "RepoBtnChoose"
+        '
         'FormPromoZalora
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -325,6 +334,7 @@ Partial Class FormPromoZalora
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoBtnChoose, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -356,4 +366,5 @@ Partial Class FormPromoZalora
     Friend WithEvents GridColumnreport_status_recon As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnrecon_note As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnpromo_zalora_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepoBtnChoose As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class
