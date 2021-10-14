@@ -457,6 +457,7 @@ Public Class FormFGRepairReturnDet
                             GVScan.ActiveFilterString = ""
                             GCScan.RefreshDataSource()
                             GVScan.RefreshData()
+                            GVScan.FocusedRowHandle = GVScan.RowCount - 1
                         Else
                             GVScan.ActiveFilterString = ""
                         End If
