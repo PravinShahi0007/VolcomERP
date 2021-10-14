@@ -181,6 +181,22 @@ GROUP BY inv.id_awb_inv_sum"
 
     End Sub
 
+    Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVListSNI.DoubleClick
+
+    End Sub
+
+    Private Sub BrefreshSNI_Click(sender As Object, e As EventArgs) Handles BrefreshSNI.Click
+        Dim q As String = "SELECT pps.`id_sni_pps`,pps.`number`,pps.`created_date`,emp.`employee_name`
+FROM tb_sni_pps pps
+INNER JOIN tb_m_user usr ON usr.`id_user`=pps.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+LEFT JOIN tb_sni_realisasi sr ON sr.id_sni_pps=pps.id_sni_pps AND sr.id_report_status !=5
+WHERE pps.id_report_status=6 AND ISNULL(sr.id_sni_realisasi) "
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCListSNI.DataSource = dt
+        GVListSNI.BestFitColumns()
+    End Sub
+
     'Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BImport.Click
     '    If GVInvoice.RowCount > 0 Then
     '        FormItemExpenseDet.action = "ins"
