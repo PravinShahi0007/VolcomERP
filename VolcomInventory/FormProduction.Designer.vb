@@ -47,7 +47,9 @@ Partial Class FormProduction
         Me.GridColumnPOType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTerm = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesignCOP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn89 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn90 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrderQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRecQty = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -277,8 +279,6 @@ Partial Class FormProduction
         Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BSearchCopyProto2 = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn89 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn90 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -373,7 +373,7 @@ Partial Class FormProduction
         Me.XTCTabProduction.Location = New System.Drawing.Point(0, 0)
         Me.XTCTabProduction.Name = "XTCTabProduction"
         Me.XTCTabProduction.SelectedTabPage = Me.XTPListProduction
-        Me.XTCTabProduction.Size = New System.Drawing.Size(998, 355)
+        Me.XTCTabProduction.Size = New System.Drawing.Size(998, 471)
         Me.XTCTabProduction.TabIndex = 11
         Me.XTCTabProduction.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListProduction, Me.XTPListProductionDemand, Me.XTPListWO, Me.XTPListMRS, Me.XTPFGPOKO, Me.XTPFGPOKP, Me.XTPCopyProto2})
         '
@@ -615,6 +615,18 @@ Partial Class FormProduction
         Me.GridColumnDesignCOP.Visible = True
         Me.GridColumnDesignCOP.VisibleIndex = 26
         '
+        'GridColumn89
+        '
+        Me.GridColumn89.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn89.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn89.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn89.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn89.Caption = "Class"
+        Me.GridColumn89.FieldName = "class"
+        Me.GridColumn89.Name = "GridColumn89"
+        Me.GridColumn89.Visible = True
+        Me.GridColumn89.VisibleIndex = 3
+        '
         'GridColumnDesign
         '
         Me.GridColumnDesign.Caption = "Design"
@@ -624,6 +636,18 @@ Partial Class FormProduction
         Me.GridColumnDesign.Visible = True
         Me.GridColumnDesign.VisibleIndex = 4
         Me.GridColumnDesign.Width = 121
+        '
+        'GridColumn90
+        '
+        Me.GridColumn90.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn90.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn90.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn90.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn90.Caption = "Color"
+        Me.GridColumn90.FieldName = "color"
+        Me.GridColumn90.Name = "GridColumn90"
+        Me.GridColumn90.Visible = True
+        Me.GridColumn90.VisibleIndex = 5
         '
         'GridColumnCode
         '
@@ -1158,7 +1182,7 @@ Partial Class FormProduction
         Me.XTPListProductionDemand.Controls.Add(Me.SplitContainerControl1)
         Me.XTPListProductionDemand.Controls.Add(Me.PanelControl4)
         Me.XTPListProductionDemand.Name = "XTPListProductionDemand"
-        Me.XTPListProductionDemand.Size = New System.Drawing.Size(992, 327)
+        Me.XTPListProductionDemand.Size = New System.Drawing.Size(992, 443)
         Me.XTPListProductionDemand.Text = "List Production Demand"
         '
         'SplitContainerControl1
@@ -1171,7 +1195,7 @@ Partial Class FormProduction
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GCListProduct)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(992, 283)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(992, 399)
         Me.SplitContainerControl1.SplitterPosition = 212
         Me.SplitContainerControl1.TabIndex = 4
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1334,7 +1358,7 @@ Partial Class FormProduction
         Me.GCListProduct.MainView = Me.GVListProduct
         Me.GCListProduct.Margin = New System.Windows.Forms.Padding(0)
         Me.GCListProduct.Name = "GCListProduct"
-        Me.GCListProduct.Size = New System.Drawing.Size(992, 66)
+        Me.GCListProduct.Size = New System.Drawing.Size(992, 182)
         Me.GCListProduct.TabIndex = 1
         Me.GCListProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProduct})
         '
@@ -2786,35 +2810,11 @@ Partial Class FormProduction
         Me.LabelControl13.TabIndex = 8901
         Me.LabelControl13.Text = "Vendor"
         '
-        'GridColumn89
-        '
-        Me.GridColumn89.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn89.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn89.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn89.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn89.Caption = "Class"
-        Me.GridColumn89.FieldName = "class"
-        Me.GridColumn89.Name = "GridColumn89"
-        Me.GridColumn89.Visible = True
-        Me.GridColumn89.VisibleIndex = 3
-        '
-        'GridColumn90
-        '
-        Me.GridColumn90.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn90.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn90.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn90.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn90.Caption = "Color"
-        Me.GridColumn90.FieldName = "color"
-        Me.GridColumn90.Name = "GridColumn90"
-        Me.GridColumn90.Visible = True
-        Me.GridColumn90.VisibleIndex = 5
-        '
         'FormProduction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(998, 355)
+        Me.ClientSize = New System.Drawing.Size(998, 471)
         Me.Controls.Add(Me.XTCTabProduction)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False

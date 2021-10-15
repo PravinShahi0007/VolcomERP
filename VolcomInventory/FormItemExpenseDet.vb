@@ -209,6 +209,7 @@ GROUP BY id.`id_departement`"
                     GVData.SetRowCellValue(GVData.RowCount - 1, "id_report", "")
                     GVData.SetRowCellValue(GVData.RowCount - 1, "id_report_det", "")
                     GVData.SetRowCellValue(GVData.RowCount - 1, "report_mark_type", "")
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "qty", 0.00)
                     '
                 Next
                 FormMain.SplashScreenManager1.CloseWaitForm()
@@ -248,6 +249,7 @@ GROUP BY id.`id_departement`"
                 GVData.SetRowCellValue(GVData.RowCount - 1, "id_report", FormItemExpenseSNI.BGVBudget.GetRowCellValue(i, "id_sni_pps").ToString)
                 GVData.SetRowCellValue(GVData.RowCount - 1, "id_report_det", FormItemExpenseSNI.BGVBudget.GetRowCellValue(i, "id_sni_pps_budget").ToString)
                 GVData.SetRowCellValue(GVData.RowCount - 1, "report_mark_type", "319")
+                GVData.SetRowCellValue(GVData.RowCount - 1, "qty", FormItemExpenseSNI.BGVBudget.GetRowCellValue(i, "r_qty"))
                 '
             Next
             FormMain.SplashScreenManager1.CloseWaitForm()
@@ -464,7 +466,7 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
         Dim q_year As String = ""
-        Dim query As String = "SELECT 'no' AS is_lock,ed.id_report,ed.id_report_det,ed.report_mark_type,ed.id_currency,cur.currency,ed.amount_before,ed.kurs,ed.id_item_expense_det,ed.cc,c.comp_number AS cc_desc, ed.id_item_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
+        Dim query As String = "SELECT 'no' AS is_lock,ed.id_report,ed.id_report_det,ed.report_mark_type,ed.qty,ed.id_currency,cur.currency,ed.amount_before,ed.kurs,ed.id_item_expense_det,ed.cc,c.comp_number AS cc_desc, ed.id_item_expense,ed.id_expense_type,ed.id_b_expense,bex.item_cat_main,typ.expense_type,
         ed.id_acc,pphacc.acc_description AS coa_desc_pph,a.id_acc_cat, a.acc_description AS `coa_desc`, ed.description,a.acc_name,ed.id_acc_pph,ed.pph_percent,ed.pph, "
 
         If action = "ins" Then
@@ -889,7 +891,7 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
                         execute_non_query("CALL gen_number(" + id + ",157); ", True, "", "", "", "")
 
                         'query det
-                        Dim qd As String = "INSERT INTO tb_item_expense_det(id_item_expense, id_acc,cc, description, tax_percent, tax_value, id_currency,kurs,amount_before, amount, id_expense_type, id_b_expense, id_acc_pph, pph_percent, pph, id_report, id_report_det, report_mark_type) VALUES "
+                        Dim qd As String = "INSERT INTO tb_item_expense_det(id_item_expense, id_acc,cc, description, tax_percent, tax_value, id_currency,kurs,amount_before, amount, id_expense_type, id_b_expense, id_acc_pph, pph_percent, pph, id_report, id_report_det, report_mark_type,qty) VALUES "
                         For d As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
                             Dim id_acc As String = GVData.GetRowCellValue(d, "id_acc").ToString
                             Dim cc As String = GVData.GetRowCellValue(d, "cc").ToString
@@ -912,16 +914,19 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
                                 id_acc_pph = "'" & GVData.GetRowCellValue(d, "id_acc_pph").ToString & "'"
                                 pph_percent = decimalSQL(GVData.GetRowCellValue(d, "pph_percent").ToString)
                                 pph = decimalSQL(GVData.GetRowCellValue(d, "pph_value").ToString)
+
                             End If
                             '
                             Dim id_report_det As String = GVData.GetRowCellValue(d, "id_report_det").ToString
                             Dim id_report As String = GVData.GetRowCellValue(d, "id_report").ToString
                             Dim rmt As String = GVData.GetRowCellValue(d, "rmt").ToString
+                            Dim qty As String = "0"
+                            qty = decimalSQL(GVData.GetRowCellValue(d, "qty").ToString)
                             '
                             If d > 0 Then
                                 qd += ", "
                             End If
-                            qd += "('" + id + "','" + id_acc + "','" + cc + "', '" + description + "', '" + tax_percent + "', '" + tax_value + "', '" + id_currency + "', '" + kurs + "', '" + amount_before + "', '" + amount + "', '" + id_expense_type + "', '" + id_b_expense + "'," + id_acc_pph + ",'" + pph_percent + "','" + pph + "','" & id_report & "','" & id_report_det & "','" & rmt & "') "
+                            qd += "('" + id + "','" + id_acc + "','" + cc + "', '" + description + "', '" + tax_percent + "', '" + tax_value + "', '" + id_currency + "', '" + kurs + "', '" + amount_before + "', '" + amount + "', '" + id_expense_type + "', '" + id_b_expense + "'," + id_acc_pph + ",'" + pph_percent + "','" + pph + "','" & id_report & "','" & id_report_det & "','" & rmt & "','" & qty & "') "
                         Next
                         '
                         If GVData.RowCount > 0 Then
@@ -987,6 +992,7 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
                             Dim id_acc_pph As String = "NULL"
                             Dim pph_percent As String = "0"
                             Dim pph As String = "0"
+
                             '
                             If GVData.GetRowCellValue(d, "pph_percent") > 0 Then
                                 id_acc_pph = "'" & GVData.GetRowCellValue(d, "id_acc_pph").ToString & "'"
@@ -997,11 +1003,13 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
                             Dim id_report_det As String = GVData.GetRowCellValue(d, "id_report_det").ToString
                             Dim id_report As String = GVData.GetRowCellValue(d, "id_report").ToString
                             Dim rmt As String = GVData.GetRowCellValue(d, "rmt").ToString
+                            Dim qty As String = "0"
+                            qty = decimalSQL(GVData.GetRowCellValue(d, "qty").ToString)
                             '
                             If d > 0 Then
                                 qd += ", "
                             End If
-                            qd += "('" + id + "','" + id_acc + "','" + cc + "', '" + description + "', '" + tax_percent + "', '" + tax_value + "', '" + id_currency + "', '" + kurs + "', '" + amount_before + "', '" + amount + "', '" + id_expense_type + "', '" + id_b_expense + "'," + id_acc_pph + ",'" + pph_percent + "','" + pph + "','" & id_report & "','" & id_report_det & "','" & rmt & "') "
+                            qd += "('" + id + "','" + id_acc + "','" + cc + "', '" + description + "', '" + tax_percent + "', '" + tax_value + "', '" + id_currency + "', '" + kurs + "', '" + amount_before + "', '" + amount + "', '" + id_expense_type + "', '" + id_b_expense + "'," + id_acc_pph + ",'" + pph_percent + "','" + pph + "','" & id_report & "','" & id_report_det & "','" & rmt & "','" & qty & "') "
                         Next
                         '
                         If GVData.RowCount > 0 Then
@@ -1064,6 +1072,11 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
         GVData.SetRowCellValue(GVData.RowCount - 1, "amount_before", 0)
         GVData.SetRowCellValue(GVData.RowCount - 1, "kurs", 1)
         GVData.SetRowCellValue(GVData.RowCount - 1, "id_currency", 1)
+        '
+        GVData.SetRowCellValue(GVData.RowCount - 1, "id_report", "")
+        GVData.SetRowCellValue(GVData.RowCount - 1, "id_report_det", "")
+        GVData.SetRowCellValue(GVData.RowCount - 1, "rmt", "")
+        GVData.SetRowCellValue(GVData.RowCount - 1, "qty", 0.00)
         '
         GVData.BestFitColumns()
         Cursor = Cursors.Default
