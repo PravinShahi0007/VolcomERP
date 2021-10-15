@@ -617,7 +617,7 @@ Partial Class FormOLReturnRefuseDet
         Me.Controls.Add(Me.GroupControlHead)
         Me.Name = "FormOLReturnRefuseDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Refuse Return Online Order"
+        Me.Text = "Marketplace Return Refuse"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
