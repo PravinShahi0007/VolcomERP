@@ -32,7 +32,7 @@ UNION
 SELECT cg.id_comp_group,cg.comp_group,cg.description
 FROM tb_m_comp c
 INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=c.`id_comp_group`
-WHERE c.id_commerce_type='2' 
+WHERE c.id_commerce_type='2'  AND cg.is_marketplace=2
 GROUP BY cg.`id_comp_group`"
         viewSearchLookupQuery(SLECompGroup, q, "id_comp_group", "description", "id_comp_group")
     End Sub

@@ -586,7 +586,7 @@ Partial Public Class ReportOlStoreRetCust
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(344.7085!, 26.4167!)
         Me.XrLabel7.StylePriority.UseFont = False
         Me.XrLabel7.StylePriority.UseTextAlignment = False
-        Me.XrLabel7.Text = "Return Item"
+        Me.XrLabel7.Text = "VIOS RETURN REFUSE"
         Me.XrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
         'XrLine1

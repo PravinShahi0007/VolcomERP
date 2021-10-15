@@ -709,7 +709,7 @@ Partial Class FormOlStoreRetCustDet
         Me.MinimizeBox = False
         Me.Name = "FormOlStoreRetCustDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Return Item Detail"
+        Me.Text = "VIOS Return Refuse"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()

@@ -296,8 +296,16 @@ HAVING NOT ISNULL(qty_order)"
     End Function
 
     Sub load_budget_realisasi()
-        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,budget_desc AS `desc`,budget_value AS `value`,budget_qty AS qty
+        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,budget_desc AS `desc`,IFNULL(r.amo,0) AS `value`,IFNULL(tot_qty,0) AS qty
 FROM `tb_sni_pps_budget` b
+LEFT JOIN
+(
+    SELECT id.id_report_det,SUM(amount) AS amo,SUM(id.qty) AS tot_qty
+    FROM tb_item_expense_det id
+    INNER JOIN tb_item_expense i ON i.`id_item_expense`=id.`id_item_expense` AND i.`id_report_status`=5
+    WHERE id.report_mark_type='319'
+    GROUP BY id.`id_report_det`
+)r ON r.id_report_det=b.id_sni_pps_budget
 WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCRealisasi.DataSource = dt

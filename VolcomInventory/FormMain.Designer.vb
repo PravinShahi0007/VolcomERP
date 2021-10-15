@@ -3425,13 +3425,13 @@ Partial Class FormMain
         '
         'NBRetOlShop
         '
-        Me.NBRetOlShop.Caption = "Pre Return - Online Store"
+        Me.NBRetOlShop.Caption = "VIOS Pre Return"
         Me.NBRetOlShop.Name = "NBRetOlShop"
         Me.NBRetOlShop.SmallImage = CType(resources.GetObject("NBRetOlShop.SmallImage"), System.Drawing.Image)
         '
         'NBRetOlStoreCust
         '
-        Me.NBRetOlStoreCust.Caption = "Return to Cust./Marketplace"
+        Me.NBRetOlStoreCust.Caption = "VIOS Return Refuse"
         Me.NBRetOlStoreCust.Name = "NBRetOlStoreCust"
         Me.NBRetOlStoreCust.SmallImage = CType(resources.GetObject("NBRetOlStoreCust.SmallImage"), System.Drawing.Image)
         '
@@ -3527,7 +3527,7 @@ Partial Class FormMain
         '
         'NBOLReturnRefuse
         '
-        Me.NBOLReturnRefuse.Caption = "Refuse Return Online Order"
+        Me.NBOLReturnRefuse.Caption = "Marketplace Return Refuse"
         Me.NBOLReturnRefuse.Name = "NBOLReturnRefuse"
         Me.NBOLReturnRefuse.SmallImage = CType(resources.GetObject("NBOLReturnRefuse.SmallImage"), System.Drawing.Image)
         '

@@ -966,6 +966,10 @@ Partial Class FormItemExpenseDet
         '
         'GCCC
         '
+        Me.GCCC.AppearanceCell.Options.UseTextOptions = True
+        Me.GCCC.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCCC.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCCC.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GCCC.Caption = "CC"
         Me.GCCC.ColumnEdit = Me.RISLECC
         Me.GCCC.FieldName = "cc"
@@ -1443,7 +1447,7 @@ Partial Class FormItemExpenseDet
         '
         Me.XTPDraft.Controls.Add(Me.GCDraft)
         Me.XTPDraft.Name = "XTPDraft"
-        Me.XTPDraft.Size = New System.Drawing.Size(1046, 228)
+        Me.XTPDraft.Size = New System.Drawing.Size(1036, 206)
         Me.XTPDraft.Text = "Draft Journal"
         '
         'GCDraft
@@ -1452,7 +1456,7 @@ Partial Class FormItemExpenseDet
         Me.GCDraft.Location = New System.Drawing.Point(0, 0)
         Me.GCDraft.MainView = Me.GVDraft
         Me.GCDraft.Name = "GCDraft"
-        Me.GCDraft.Size = New System.Drawing.Size(1046, 228)
+        Me.GCDraft.Size = New System.Drawing.Size(1036, 206)
         Me.GCDraft.TabIndex = 2
         Me.GCDraft.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDraft})
         '
