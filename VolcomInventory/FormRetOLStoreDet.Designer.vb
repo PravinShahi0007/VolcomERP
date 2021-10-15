@@ -602,7 +602,7 @@ Partial Class FormRetOLStoreDet
         Me.MinimizeBox = False
         Me.Name = "FormRetOLStoreDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Pre Return"
+        Me.Text = "VIOS Pre Return"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)

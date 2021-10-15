@@ -623,7 +623,7 @@ Partial Class FormOLReturnRefuse
         Me.MinimizeBox = False
         Me.Name = "FormOLReturnRefuse"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Refuse Return Online Order"
+        Me.Text = "Marketplace Return Refuse"
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCData.ResumeLayout(False)
         Me.XTPCreated.ResumeLayout(False)

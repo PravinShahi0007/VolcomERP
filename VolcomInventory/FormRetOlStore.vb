@@ -23,6 +23,7 @@
         Dim query As String = "SELECT cg.id_comp_group, cg.comp_group, cg.description 
         FROM tb_m_comp_group cg
         INNER JOIN tb_m_comp c ON c.id_comp_group = cg.id_comp_group AND c.id_commerce_type=2
+        WHERE cg.is_marketplace=2
         GROUP BY cg.id_comp_group "
         viewSearchLookupQuery(SLECompGroup, query, "id_comp_group", "description", "id_comp_group")
         Cursor = Cursors.Default
@@ -142,5 +143,8 @@ GROUP BY so.sales_order_ol_shop_number "
 
     Private Sub XTCData_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCData.SelectedPageChanged
         check_menu()
+        If XTCData.SelectedTabPageIndex = 1 Then
+            viewOrderList()
+        End If
     End Sub
 End Class

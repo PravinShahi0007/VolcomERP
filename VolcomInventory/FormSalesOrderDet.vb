@@ -562,6 +562,8 @@ Public Class FormSalesOrderDet
 
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMain) Then
             errorInput()
+        ElseIf GVItemList.RowCount <= 0 Then
+            stopCustom("Please input product")
         ElseIf Not cond_data Then
             If id_commerce_type = "1" Then
                 stopCustom("Please see error log in item list !")
