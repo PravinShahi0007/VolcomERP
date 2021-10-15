@@ -425,7 +425,7 @@
                     financial_status = ""
                     total_discounts = "0"
                     discount_code = dtd.Rows(d)("vch_code").ToString
-                    discount_fee = dtd.Rows(d)("vch_amount").ToString
+                    discount_fee = dtd.Rows(d)("vch_amo").ToString
 
                     'data customer
                     Dim customer_name As String = ""
