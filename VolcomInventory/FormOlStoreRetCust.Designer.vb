@@ -24,6 +24,7 @@ Partial Class FormOlStoreRetCust
         Me.GCRetCust = New DevExpress.XtraGrid.GridControl()
         Me.GVRetCust = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -53,7 +54,6 @@ Partial Class FormOlStoreRetCust
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCRetCust, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCRetCust.SuspendLayout()
         Me.XTPRetList.SuspendLayout()
@@ -86,7 +86,7 @@ Partial Class FormOlStoreRetCust
         Me.XTPRetList.Controls.Add(Me.GCRetCust)
         Me.XTPRetList.Name = "XTPRetList"
         Me.XTPRetList.Size = New System.Drawing.Size(1020, 474)
-        Me.XTPRetList.Text = "Return Customer List"
+        Me.XTPRetList.Text = "Transaction List"
         '
         'GCRetCust
         '
@@ -110,6 +110,14 @@ Partial Class FormOlStoreRetCust
         Me.GridColumn7.Caption = "ID"
         Me.GridColumn7.FieldName = "id_ol_store_cust_ret"
         Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Order#"
+        Me.GridColumn19.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 1
         '
         'GridColumn8
         '
@@ -159,7 +167,7 @@ Partial Class FormOlStoreRetCust
         Me.XTPRetReq.Controls.Add(Me.BRetCust)
         Me.XTPRetReq.Name = "XTPRetReq"
         Me.XTPRetReq.Size = New System.Drawing.Size(1020, 474)
-        Me.XTPRetReq.Text = "Return Request"
+        Me.XTPRetReq.Text = "Return Request List"
         '
         'GCRetReq
         '
@@ -362,14 +370,6 @@ Partial Class FormOlStoreRetCust
         Me.BSearch.TabIndex = 0
         Me.BSearch.Text = "Search"
         '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Order#"
-        Me.GridColumn19.FieldName = "sales_order_ol_shop_number"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 1
-        '
         'FormOlStoreRetCust
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -382,7 +382,7 @@ Partial Class FormOlStoreRetCust
         Me.MinimizeBox = False
         Me.Name = "FormOlStoreRetCust"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Return Customer"
+        Me.Text = "VIOS Return Refuse"
         CType(Me.XTCRetCust, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCRetCust.ResumeLayout(False)
         Me.XTPRetList.ResumeLayout(False)
