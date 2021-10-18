@@ -919,7 +919,7 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
                             '
                             Dim id_report_det As String = GVData.GetRowCellValue(d, "id_report_det").ToString
                             Dim id_report As String = GVData.GetRowCellValue(d, "id_report").ToString
-                            Dim rmt As String = GVData.GetRowCellValue(d, "rmt").ToString
+                            Dim rmt As String = GVData.GetRowCellValue(d, "report_mark_type").ToString
                             Dim qty As String = "0"
                             qty = decimalSQL(GVData.GetRowCellValue(d, "qty").ToString)
                             '
@@ -1002,7 +1002,7 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
                             '
                             Dim id_report_det As String = GVData.GetRowCellValue(d, "id_report_det").ToString
                             Dim id_report As String = GVData.GetRowCellValue(d, "id_report").ToString
-                            Dim rmt As String = GVData.GetRowCellValue(d, "rmt").ToString
+                            Dim rmt As String = GVData.GetRowCellValue(d, "report_mark_type").ToString
                             Dim qty As String = "0"
                             qty = decimalSQL(GVData.GetRowCellValue(d, "qty").ToString)
                             '
@@ -1075,7 +1075,7 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
         '
         GVData.SetRowCellValue(GVData.RowCount - 1, "id_report", "")
         GVData.SetRowCellValue(GVData.RowCount - 1, "id_report_det", "")
-        GVData.SetRowCellValue(GVData.RowCount - 1, "rmt", "")
+        GVData.SetRowCellValue(GVData.RowCount - 1, "report_mark_type", "")
         GVData.SetRowCellValue(GVData.RowCount - 1, "qty", 0.00)
         '
         GVData.BestFitColumns()

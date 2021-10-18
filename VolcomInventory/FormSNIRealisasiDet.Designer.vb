@@ -19,6 +19,7 @@ Partial Class FormSNIRealisasiDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSNIRealisasiDet))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -82,6 +83,8 @@ Partial Class FormSNIRealisasiDet
         Me.XTPRealisasi = New DevExpress.XtraTab.XtraTabPage()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
         Me.GCRealisasi = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMReff = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVRealisasi = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -161,6 +164,7 @@ Partial Class FormSNIRealisasiDet
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
         CType(Me.GCRealisasi, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVRealisasi, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -844,6 +848,7 @@ Partial Class FormSNIRealisasiDet
         '
         'GCRealisasi
         '
+        Me.GCRealisasi.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCRealisasi.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCRealisasi.Location = New System.Drawing.Point(2, 20)
         Me.GCRealisasi.MainView = Me.GVRealisasi
@@ -852,6 +857,18 @@ Partial Class FormSNIRealisasiDet
         Me.GCRealisasi.Size = New System.Drawing.Size(884, 140)
         Me.GCRealisasi.TabIndex = 2
         Me.GCRealisasi.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRealisasi})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMReff})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(170, 26)
+        '
+        'SMReff
+        '
+        Me.SMReff.Name = "SMReff"
+        Me.SMReff.Size = New System.Drawing.Size(169, 22)
+        Me.SMReff.Text = "Lookup Reference"
         '
         'GVRealisasi
         '
@@ -1365,6 +1382,7 @@ Partial Class FormSNIRealisasiDet
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl4.ResumeLayout(False)
         CType(Me.GCRealisasi, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVRealisasi, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1491,4 +1509,6 @@ Partial Class FormSNIRealisasiDet
     Friend WithEvents BDel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents SMReff As ToolStripMenuItem
 End Class
