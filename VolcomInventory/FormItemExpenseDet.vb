@@ -974,7 +974,7 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
                         qd = "DELETE FROM tb_item_expense_det WHERE id_item_expense='" & id & "'"
                         execute_non_query(qd, True, "", "", "", "")
                         'input details
-                        qd = "INSERT INTO tb_item_expense_det(id_item_expense, id_acc,cc, description, tax_percent, tax_value, id_currency,kurs,amount_before, amount, id_expense_type, id_b_expense, id_acc_pph, pph_percent, pph, id_report, id_report_det, report_mark_type) VALUES "
+                        qd = "INSERT INTO tb_item_expense_det(id_item_expense, id_acc,cc, description, tax_percent, tax_value, id_currency,kurs,amount_before, amount, id_expense_type, id_b_expense, id_acc_pph, pph_percent, pph, id_report, id_report_det, report_mark_type ,qty) VALUES "
                         For d As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
                             Dim id_acc As String = GVData.GetRowCellValue(d, "id_acc").ToString
                             Dim cc As String = GVData.GetRowCellValue(d, "cc").ToString
