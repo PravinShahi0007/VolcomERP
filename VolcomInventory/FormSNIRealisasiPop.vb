@@ -7,8 +7,8 @@ INNER JOIN tb_item_req_det rd ON rd.`id_item_req_det`=dd.`id_item_req_det`
 INNER JOIN tb_item_req r ON r.id_item_req=rd.id_item_req
 WHERE rd.`id_item`='752'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
-
-
+        GCDetail.DataSource = dt
+        GVDetail.BestFitColumns()
     End Sub
 
     Private Sub BApprove_Click(sender As Object, e As EventArgs) Handles BApprove.Click
