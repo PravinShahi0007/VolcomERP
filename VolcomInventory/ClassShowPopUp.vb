@@ -2927,7 +2927,7 @@ GROUP BY rec.`id_prod_order`"
                 'info col
                 If report_mark_type = "22" Then
                     'po production
-                    query = "SELECT desg.design_code,desg.design_display_name,CONCAT(cd.class,' ',desg.design_name,' ',cd.color) AS design_display_name, pot.po_type 
+                    query = "SELECT desg.design_code,CONCAT(cd.class,' ',desg.design_name,' ',cd.color) AS design_display_name, pot.po_type 
                         FROM tb_prod_order po
                         INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
                         INNER JOIN tb_m_design desg ON desg.id_design=pdd.id_design
@@ -3274,11 +3274,27 @@ LIMIT 1 "
                     'mat return in production
                     query = "SELECT a.id_mat_prod_ret_in,a.mat_prod_ret_in_number, "
                     query += "b.prod_order_number, "
-                    query += "dsg.design_code,dsg.design_display_name, po_type.po_type "
+                    query += "dsg.design_code,CONCAT(cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name, po_type.po_type "
                     query += "FROM tb_mat_prod_ret_in a  "
                     query += "INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order "
                     query += "INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = b.id_prod_demand_design "
                     query += "INNER JOIN tb_m_design dsg ON dsg.id_design = pd_dsg.id_design "
+                    query += "LEFT JOIN (
+	                            SELECT dc.id_design, 
+	                            MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	                            MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	                            MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	                            MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	                            MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	                            MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	                            MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	                            MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	                            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	                            FROM tb_m_design_code dc
+	                            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	                            AND cd.id_code IN (32,30,14, 43)
+	                            GROUP BY dc.id_design
+                            ) cd ON cd.id_design = dsg.id_design  "
                     query += "INNER JOIN tb_lookup_po_type po_type ON po_type.id_po_type = b.id_po_type "
                     query += "WHERE a.id_mat_prod_ret_in=" + id_report + " "
                     Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
