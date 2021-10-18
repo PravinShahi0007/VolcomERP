@@ -90,11 +90,12 @@ Partial Class FormFGRepairDet
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign_first_rec_wh_year = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControlSummary = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnBackToScan = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrintPrev = New DevExpress.XtraEditors.SimpleButton()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
-        Me.PanelControlSummary = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnPrintPrev = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnBackToScan = New DevExpress.XtraEditors.SimpleButton()
+        Me.Timer = New System.Windows.Forms.Timer(Me.components)
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,9 +130,9 @@ Partial Class FormFGRepairDet
         Me.XTPSummary.SuspendLayout()
         CType(Me.GCScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlSummary.SuspendLayout()
+        CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -858,14 +859,6 @@ Partial Class FormFGRepairDet
         Me.GridColumndesign_first_rec_wh_year.Visible = True
         Me.GridColumndesign_first_rec_wh_year.VisibleIndex = 4
         '
-        'EPForm
-        '
-        Me.EPForm.ContainerControl = Me
-        '
-        'SplashScreenManager1
-        '
-        Me.SplashScreenManager1.ClosingDelay = 500
-        '
         'PanelControlSummary
         '
         Me.PanelControlSummary.Controls.Add(Me.BtnBackToScan)
@@ -875,6 +868,16 @@ Partial Class FormFGRepairDet
         Me.PanelControlSummary.Name = "PanelControlSummary"
         Me.PanelControlSummary.Size = New System.Drawing.Size(831, 40)
         Me.PanelControlSummary.TabIndex = 5
+        '
+        'BtnBackToScan
+        '
+        Me.BtnBackToScan.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnBackToScan.Image = CType(resources.GetObject("BtnBackToScan.Image"), System.Drawing.Image)
+        Me.BtnBackToScan.Location = New System.Drawing.Point(595, 2)
+        Me.BtnBackToScan.Name = "BtnBackToScan"
+        Me.BtnBackToScan.Size = New System.Drawing.Size(117, 36)
+        Me.BtnBackToScan.TabIndex = 1
+        Me.BtnBackToScan.Text = "Back to Scan"
         '
         'BtnPrintPrev
         '
@@ -886,15 +889,13 @@ Partial Class FormFGRepairDet
         Me.BtnPrintPrev.TabIndex = 0
         Me.BtnPrintPrev.Text = "Print Preview"
         '
-        'BtnBackToScan
+        'EPForm
         '
-        Me.BtnBackToScan.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnBackToScan.Image = CType(resources.GetObject("BtnBackToScan.Image"), System.Drawing.Image)
-        Me.BtnBackToScan.Location = New System.Drawing.Point(595, 2)
-        Me.BtnBackToScan.Name = "BtnBackToScan"
-        Me.BtnBackToScan.Size = New System.Drawing.Size(117, 36)
-        Me.BtnBackToScan.TabIndex = 1
-        Me.BtnBackToScan.Text = "Back to Scan"
+        Me.EPForm.ContainerControl = Me
+        '
+        'SplashScreenManager1
+        '
+        Me.SplashScreenManager1.ClosingDelay = 500
         '
         'FormFGRepairDet
         '
@@ -953,9 +954,9 @@ Partial Class FormFGRepairDet
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCScanSum, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVScanSum, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlSummary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlSummary.ResumeLayout(False)
+        CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1035,4 +1036,5 @@ Partial Class FormFGRepairDet
     Friend WithEvents PanelControlSummary As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnBackToScan As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrintPrev As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents Timer As Timer
 End Class
