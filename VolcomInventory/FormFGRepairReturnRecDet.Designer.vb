@@ -94,10 +94,11 @@ Partial Class FormFGRepairReturnRecDet
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_first_rec_wh_year = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlSummary = New DevExpress.XtraEditors.PanelControl()
         Me.BtnBackToScan = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintPrev = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumndesign_first_rec_wh_year = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Timer = New System.Windows.Forms.Timer(Me.components)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -909,6 +910,14 @@ Partial Class FormFGRepairReturnRecDet
         Me.GridColumnStatus.VisibleIndex = 9
         Me.GridColumnStatus.Width = 126
         '
+        'GridColumndesign_first_rec_wh_year
+        '
+        Me.GridColumndesign_first_rec_wh_year.Caption = "Rec. in WH"
+        Me.GridColumndesign_first_rec_wh_year.FieldName = "design_first_rec_wh_year"
+        Me.GridColumndesign_first_rec_wh_year.Name = "GridColumndesign_first_rec_wh_year"
+        Me.GridColumndesign_first_rec_wh_year.Visible = True
+        Me.GridColumndesign_first_rec_wh_year.VisibleIndex = 4
+        '
         'PanelControlSummary
         '
         Me.PanelControlSummary.Controls.Add(Me.BtnBackToScan)
@@ -938,14 +947,6 @@ Partial Class FormFGRepairReturnRecDet
         Me.BtnPrintPrev.Size = New System.Drawing.Size(117, 36)
         Me.BtnPrintPrev.TabIndex = 0
         Me.BtnPrintPrev.Text = "Print Preview"
-        '
-        'GridColumndesign_first_rec_wh_year
-        '
-        Me.GridColumndesign_first_rec_wh_year.Caption = "Rec. in WH"
-        Me.GridColumndesign_first_rec_wh_year.FieldName = "design_first_rec_wh_year"
-        Me.GridColumndesign_first_rec_wh_year.Name = "GridColumndesign_first_rec_wh_year"
-        Me.GridColumndesign_first_rec_wh_year.Visible = True
-        Me.GridColumndesign_first_rec_wh_year.VisibleIndex = 4
         '
         'FormFGRepairReturnRecDet
         '
@@ -1091,4 +1092,5 @@ Partial Class FormFGRepairReturnRecDet
     Friend WithEvents BtnBackToScan As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrintPrev As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumndesign_first_rec_wh_year As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Timer As Timer
 End Class
