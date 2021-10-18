@@ -1336,7 +1336,43 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
     End Sub
 
     Private Sub BReported_Click(sender As Object, e As EventArgs) Handles BReported.Click
-        FormReportBalanceSheetTax.ShowDialog()
+        'check
+        GVTaxReport.RefreshData()
+        GVTaxReport.ActiveFilterString = "[is_check] = 'yes'"
+        GridColumnTaxCat.GroupIndex = -1
+        '
+        If GVTaxReport.RowCount > 0 Then
+            Dim id As String = ""
+
+            For i As Integer = 0 To GVTaxReport.RowCount - 1
+                If Not i = 0 Then
+                    id += ","
+                End If
+                id += GVTaxReport.GetRowCellValue(i, "id_acc_trans").ToString
+            Next
+
+            Dim q As String = "SELECT l.`id_type`
+FROM tb_a_acc_trans t 
+INNER JOIN tb_a_acc_trans_det d ON t.`id_acc_trans` = d.`id_acc_trans`
+INNER JOIN tb_a_acc AS a ON d.`id_acc` = a.`id_acc`
+INNER JOIN tb_lookup_tax_report AS l ON a.`id_tax_report` = l.`id_tax_report`
+WHERE t.id_acc_trans IN (" + id + ")
+GROUP BY l.id_type"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 1 Then
+                FormReportBalanceSheetTax.is_contain_both = True
+                FormReportBalanceSheetTax.ShowDialog()
+            Else
+                FormReportBalanceSheetTax.is_contain_both = False
+                FormReportBalanceSheetTax.ShowDialog()
+            End If
+        Else
+            warningCustom("Tidak ada dokumen yang dipilih")
+        End If
+        '
+        GridColumnTaxCat.GroupIndex = 0
+        GVTaxReport.ActiveFilterString = ""
+        GVTaxReport.ExpandAllGroups()
     End Sub
 
     Private Sub CheckEditSelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditSelAll.CheckedChanged
