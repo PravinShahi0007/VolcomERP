@@ -1050,7 +1050,7 @@ WHERE h.`id_pre_cal_fgpo`='" & id & "'"
     End Sub
 
     Private Sub BUpdatePP_Click(sender As Object, e As EventArgs) Handles BUpdatePP.Click
-        Dim q As String = "UPDATE tb_pre_cal_fgpo SET ppn='" & decimalSQL(Decimal.Parse(TEPPN.EditValue.ToString)) & "',pph='" & decimalSQL(Decimal.Parse(TEPPH.EditValue.ToString)) & "' WHERE id_pre_cal_fgpo='" & id & "'"
+        Dim q As String = "UPDATE tb_pre_cal_fgpo SET ppn='" & decimalSQL(Decimal.Parse(TEPPN2.EditValue.ToString)) & "',pph='" & decimalSQL(Decimal.Parse(TEPPH2.EditValue.ToString)) & "' WHERE id_pre_cal_fgpo='" & id & "'"
         execute_non_query(q, True, "", "", "", "")
         load_head()
     End Sub

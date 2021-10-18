@@ -499,6 +499,8 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
     End Sub
 
     Private Sub SMReff_Click(sender As Object, e As EventArgs) Handles SMReff.Click
-
+        If GVRealisasi.RowCount > 0 Then
+            FormSNIRealisasiPop.ShowDialog()
+        End If
     End Sub
 End Class
