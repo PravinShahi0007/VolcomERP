@@ -93,6 +93,7 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
@@ -124,7 +125,9 @@ Partial Class FormSNIRealisasiDet
         Me.Battach = New DevExpress.XtraEditors.SimpleButton()
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -873,7 +876,7 @@ Partial Class FormSNIRealisasiDet
         '
         'GVRealisasi
         '
-        Me.GVRealisasi.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn9, Me.GridColumn10, Me.GridColumn13, Me.GridColumn26, Me.GridColumn36})
+        Me.GVRealisasi.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn9, Me.GridColumn10, Me.GridColumn13, Me.GridColumn26, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39})
         Me.GVRealisasi.GridControl = Me.GCRealisasi
         Me.GVRealisasi.Name = "GVRealisasi"
         Me.GVRealisasi.OptionsView.ShowFooter = True
@@ -962,6 +965,18 @@ Partial Class FormSNIRealisasiDet
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 4
         Me.GridColumn26.Width = 188
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Reff"
+        Me.GridColumn36.FieldName = "report_number"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.OptionsColumn.AllowEdit = False
+        Me.GridColumn36.OptionsColumn.AllowFocus = False
+        Me.GridColumn36.OptionsColumn.ReadOnly = True
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 0
+        Me.GridColumn36.Width = 124
         '
         'RepositoryItemCheckEdit3
         '
@@ -1326,17 +1341,23 @@ Partial Class FormSNIRealisasiDet
         Me.BSave.TabIndex = 4
         Me.BSave.Text = "Save"
         '
-        'GridColumn36
+        'GridColumn37
         '
-        Me.GridColumn36.Caption = "Reff"
-        Me.GridColumn36.FieldName = "report_number"
-        Me.GridColumn36.Name = "GridColumn36"
-        Me.GridColumn36.OptionsColumn.AllowEdit = False
-        Me.GridColumn36.OptionsColumn.AllowFocus = False
-        Me.GridColumn36.OptionsColumn.ReadOnly = True
-        Me.GridColumn36.Visible = True
-        Me.GridColumn36.VisibleIndex = 0
-        Me.GridColumn36.Width = 124
+        Me.GridColumn37.Caption = "GridColumn37"
+        Me.GridColumn37.FieldName = "id_report"
+        Me.GridColumn37.Name = "GridColumn37"
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "GridColumn38"
+        Me.GridColumn38.FieldName = "id_report_det"
+        Me.GridColumn38.Name = "GridColumn38"
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "GridColumn39"
+        Me.GridColumn39.FieldName = "report_mark_type"
+        Me.GridColumn39.Name = "GridColumn39"
         '
         'FormSNIRealisasiDet
         '
@@ -1525,4 +1546,7 @@ Partial Class FormSNIRealisasiDet
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents SMReff As ToolStripMenuItem
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
