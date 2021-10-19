@@ -4,6 +4,10 @@
     Dim dir As String = get_setup_field("cloud_image_url")
 
     Private Sub FormDesignInfo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        viewWH()
+        viewGroupType()
+        DEUntilAcc.EditValue = Now
+
         Dim query As String = "SELECT d.id_design, d.design_code, d.design_display_name, cls.class_display, cls.class, 
         col.color_display, col.color, ss.season, IFNULL(prc.design_price,0) AS `design_price`, 
         prc.design_price_type, prc.`price_effective_date`
@@ -70,5 +74,182 @@
 
     Private Sub FormDesignInfo_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub BtnViewAcc_Click(sender As Object, e As EventArgs) Handles BtnViewAcc.Click
+        If XTCStockOnHandNew.SelectedTabPageIndex = 0 Then
+            viewSOHSizeBarcode()
+        ElseIf XTCStockOnHandNew.SelectedTabPageIndex = 1 Then
+            viewSOHCode()
+        End If
+    End Sub
+
+    Sub viewSOHSizeBarcode()
+        Cursor = Cursors.WaitCursor
+        FormMain.SplashScreenManager1.ShowWaitForm()
+
+        'Prepare paramater date
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_until_selected = DateTime.Parse(DEUntilAcc.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        'other
+        Dim id_comp As String = SLEAccount.EditValue.ToString
+
+        'design
+        If id_design = "-1" Then
+            id_design = "0"
+        End If
+
+        'excecute
+        Dim query As String = ""
+        If LEGroupBy.EditValue.ToString = "1" Then
+            query = "CALL view_stock_fg_barcode_size('" + date_until_selected + "', '" + id_comp + "', '" + id_design + "') "
+        Else
+            query = "CALL view_stock_fg_barcode_size_by_product('" + date_until_selected + "', '" + id_comp + "', '" + id_design + "') "
+        End If
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSOH.DataSource = data
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewSOHCode()
+        Cursor = Cursors.WaitCursor
+        FormMain.SplashScreenManager1.ShowWaitForm()
+
+        'Prepare paramater date
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_until_selected = DateTime.Parse(DEUntilAcc.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        'other
+        Dim id_comp As String = SLEAccount.EditValue.ToString
+
+        'design
+        If id_design = "-1" Then
+            id_design = "0"
+        End If
+
+        'excecute
+        Dim query As String = ""
+        If LEGroupBy.EditValue.ToString = "1" Then
+            query = "CALL view_stock_fg_code('" + date_until_selected + "', '" + id_comp + "', '" + id_design + "') "
+        Else
+            query = "CALL view_stock_fg_code_by_product('" + date_until_selected + "', '" + id_comp + "', '" + id_design + "') "
+        End If
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSOHCode.DataSource = data
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewWH()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = ""
+        query += "SELECT ('0') AS id_comp, ('All') AS comp_number, ('All Store') AS comp_name, ('All Store') AS comp_name_label UNION ALL "
+        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label 
+        FROM tb_m_comp e "
+        viewSearchLookupQuery(SLEAccount, query, "id_comp", "comp_name_label", "id_comp")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewGroupType()
+        Dim query As String = "SELECT '1' AS `id_group_type`, 'Product & Account' AS `group_type`
+        UNION
+        SELECT '2' AS `id_group_type`, 'Product' AS `group_type` "
+        viewLookupQuery(LEGroupBy, query, 0, "group_type", "id_group_type")
+    End Sub
+
+    Private Sub SLEAccount_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAccount.EditValueChanged
+        resetViewSOH()
+    End Sub
+
+    Private Sub LEGroupBy_EditValueChanged(sender As Object, e As EventArgs) Handles LEGroupBy.EditValueChanged
+        resetViewSOH()
+    End Sub
+
+    Private Sub DEUntilAcc_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntilAcc.EditValueChanged
+        resetViewSOH()
+    End Sub
+
+    Sub resetViewSOH()
+        GCSOH.DataSource = Nothing
+        GCSOHCode.DataSource = Nothing
+    End Sub
+
+    Private Sub BtnExportToXLSAcc_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSAcc.Click
+        If XTCStockOnHandNew.SelectedTabPageIndex = 0 Then
+            If GVSOH.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "stock_soh_by_barcode.xlsx"
+                exportToXLS(path, "soh", GCSOH)
+                Cursor = Cursors.Default
+            End If
+        ElseIf XTCStockOnHandNew.SelectedTabPageIndex = 1 Then
+            If GVSOHCode.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+                'column option creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                GVSOHCode.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                For i As Integer = 0 To GVSOHCode.Columns.Count - 1
+                    Try
+                        If Not GVSOHCode.Columns(i).OwnerBand.Caption = "" Then
+                            GVSOHCode.Columns(i).Caption = GVSOHCode.Columns(i).OwnerBand.Caption + " / " + GVSOHCode.Columns(i).Caption
+                        End If
+                    Catch ex As Exception
+                    End Try
+                Next
+
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                path = path + "stock_soh_by_code.xlsx"
+                exportToXLS(path, "soh", GCSOHCode)
+
+                'restore column opt
+                GVSOHCode.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Sub exportToXLS(ByVal path_par As String, ByVal sheet_name_par As String, ByVal gc_par As DevExpress.XtraGrid.GridControl)
+        Cursor = Cursors.WaitCursor
+        Dim path As String = path_par
+
+        ' Customize export options 
+        CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.PrintHeader = True
+        Dim advOptions As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx()
+        advOptions.AllowSortingAndFiltering = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowGridLines = DevExpress.Utils.DefaultBoolean.False
+        advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False
+        advOptions.SheetName = sheet_name_par
+        advOptions.ExportType = DevExpress.Export.ExportType.DataAware
+
+        Try
+            gc_par.ExportToXlsx(path, advOptions)
+            Process.Start(path)
+            ' Open the created XLSX file with the default application. 
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
