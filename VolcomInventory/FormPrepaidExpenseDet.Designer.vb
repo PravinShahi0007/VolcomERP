@@ -19,6 +19,7 @@ Partial Class FormPrepaidExpenseDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPrepaidExpenseDet))
         Me.PanelControlPay = New DevExpress.XtraEditors.PanelControl()
         Me.SLEUnit = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -145,6 +146,8 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.GrossUpPPHToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlPay.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -202,6 +205,7 @@ Partial Class FormPrepaidExpenseDet
         Me.XTPDraft.SuspendLayout()
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControlPay
@@ -697,6 +701,7 @@ Partial Class FormPrepaidExpenseDet
         '
         'GCData
         '
+        Me.GCData.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCData.Location = New System.Drawing.Point(0, 42)
         Me.GCData.MainView = Me.GVData
@@ -1456,6 +1461,18 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumncc.Visible = True
         Me.GridColumncc.VisibleIndex = 3
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GrossUpPPHToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(147, 26)
+        '
+        'GrossUpPPHToolStripMenuItem
+        '
+        Me.GrossUpPPHToolStripMenuItem.Name = "GrossUpPPHToolStripMenuItem"
+        Me.GrossUpPPHToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.GrossUpPPHToolStripMenuItem.Text = "Gross up PPH"
+        '
         'FormPrepaidExpenseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1532,6 +1549,7 @@ Partial Class FormPrepaidExpenseDet
         Me.XTPDraft.ResumeLayout(False)
         CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1661,4 +1679,6 @@ Partial Class FormPrepaidExpenseDet
     Friend WithEvents GridColumnCurr As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBeforeKurs As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnKurs As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents GrossUpPPHToolStripMenuItem As ToolStripMenuItem
 End Class
