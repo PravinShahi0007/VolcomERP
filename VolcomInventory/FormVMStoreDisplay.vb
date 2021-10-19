@@ -46,4 +46,10 @@
         print(GCData, "VM Store Display")
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        Cursor = Cursors.WaitCursor
+        FormVMStoreDisplayDet.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
