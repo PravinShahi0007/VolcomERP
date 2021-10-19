@@ -233,12 +233,18 @@ Partial Class FormFGStock
         Me.GridColumnseason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnrange = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPByCodeSOH = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSOHCode = New DevExpress.XtraGrid.GridControl()
         Me.GVSOHCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumncode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnname = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnclass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn65 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn64 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnseason_code = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnstt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncomp_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -247,6 +253,7 @@ Partial Class FormFGStock
         Me.BandedGridColumndesign_first_rec_wh_code = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsize_type = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnavl_qty1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnavl_qty2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnavl_qty3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -258,6 +265,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnavl_qty9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnavl_qty0 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnavl_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnrsv_qty1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnrsv_qty2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnrsv_qty3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -269,6 +277,7 @@ Partial Class FormFGStock
         Me.BandedGridColumnrsv_qty9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnrsv_qty0 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnrsv_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandTotal = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnttl_qty1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnttl_qty2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnttl_qty3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -409,15 +418,9 @@ Partial Class FormFGStock
         Me.DEUntilAccVA = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl39 = New DevExpress.XtraEditors.LabelControl()
         Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BandedGridColumn64 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn65 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBandTotal = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PictureEdit2 = New DevExpress.XtraEditors.PictureEdit()
+        Me.BtnViewImgCloud = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCFGStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCFGStock.SuspendLayout()
         Me.XTPFGStockWHSum.SuspendLayout()
@@ -548,6 +551,9 @@ Partial Class FormFGStock
         CType(Me.TxtProductVA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilAccVA.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilAccVA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.PictureEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCFGStock
@@ -1160,6 +1166,7 @@ Partial Class FormFGStock
         'GroupControlInfo
         '
         Me.GroupControlInfo.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlInfo.Controls.Add(Me.PanelControl1)
         Me.GroupControlInfo.Controls.Add(Me.LabelSHT)
         Me.GroupControlInfo.Controls.Add(Me.LabelControl40)
         Me.GroupControlInfo.Controls.Add(Me.LabelControl34)
@@ -1191,7 +1198,7 @@ Partial Class FormFGStock
         'LabelSHT
         '
         Me.LabelSHT.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSHT.Location = New System.Drawing.Point(255, 112)
+        Me.LabelSHT.Location = New System.Drawing.Point(372, 116)
         Me.LabelSHT.Name = "LabelSHT"
         Me.LabelSHT.Size = New System.Drawing.Size(4, 14)
         Me.LabelSHT.TabIndex = 30
@@ -1200,7 +1207,7 @@ Partial Class FormFGStock
         'LabelControl40
         '
         Me.LabelControl40.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl40.Location = New System.Drawing.Point(235, 113)
+        Me.LabelControl40.Location = New System.Drawing.Point(352, 117)
         Me.LabelControl40.Name = "LabelControl40"
         Me.LabelControl40.Size = New System.Drawing.Size(4, 14)
         Me.LabelControl40.TabIndex = 29
@@ -1209,7 +1216,7 @@ Partial Class FormFGStock
         'LabelControl34
         '
         Me.LabelControl34.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl34.Location = New System.Drawing.Point(162, 113)
+        Me.LabelControl34.Location = New System.Drawing.Point(279, 117)
         Me.LabelControl34.Name = "LabelControl34"
         Me.LabelControl34.Size = New System.Drawing.Size(56, 14)
         Me.LabelControl34.TabIndex = 28
@@ -1218,7 +1225,7 @@ Partial Class FormFGStock
         'LabelPriceType
         '
         Me.LabelPriceType.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPriceType.Location = New System.Drawing.Point(629, 68)
+        Me.LabelPriceType.Location = New System.Drawing.Point(746, 72)
         Me.LabelPriceType.Name = "LabelPriceType"
         Me.LabelPriceType.Size = New System.Drawing.Size(4, 14)
         Me.LabelPriceType.TabIndex = 27
@@ -1227,7 +1234,7 @@ Partial Class FormFGStock
         'LabelControl31
         '
         Me.LabelControl31.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl31.Location = New System.Drawing.Point(493, 68)
+        Me.LabelControl31.Location = New System.Drawing.Point(610, 72)
         Me.LabelControl31.Name = "LabelControl31"
         Me.LabelControl31.Size = New System.Drawing.Size(58, 14)
         Me.LabelControl31.TabIndex = 26
@@ -1236,7 +1243,7 @@ Partial Class FormFGStock
         'LabelControl30
         '
         Me.LabelControl30.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl30.Location = New System.Drawing.Point(610, 68)
+        Me.LabelControl30.Location = New System.Drawing.Point(727, 72)
         Me.LabelControl30.Name = "LabelControl30"
         Me.LabelControl30.Size = New System.Drawing.Size(4, 14)
         Me.LabelControl30.TabIndex = 25
@@ -1245,7 +1252,7 @@ Partial Class FormFGStock
         'LabelCurrentPrice
         '
         Me.LabelCurrentPrice.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelCurrentPrice.Location = New System.Drawing.Point(629, 45)
+        Me.LabelCurrentPrice.Location = New System.Drawing.Point(746, 49)
         Me.LabelCurrentPrice.Name = "LabelCurrentPrice"
         Me.LabelCurrentPrice.Size = New System.Drawing.Size(4, 14)
         Me.LabelCurrentPrice.TabIndex = 23
@@ -1254,7 +1261,7 @@ Partial Class FormFGStock
         'LabelControl27
         '
         Me.LabelControl27.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl27.Location = New System.Drawing.Point(610, 45)
+        Me.LabelControl27.Location = New System.Drawing.Point(727, 49)
         Me.LabelControl27.Name = "LabelControl27"
         Me.LabelControl27.Size = New System.Drawing.Size(4, 14)
         Me.LabelControl27.TabIndex = 22
@@ -1263,7 +1270,7 @@ Partial Class FormFGStock
         'LabelControl26
         '
         Me.LabelControl26.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl26.Location = New System.Drawing.Point(493, 45)
+        Me.LabelControl26.Location = New System.Drawing.Point(610, 49)
         Me.LabelControl26.Name = "LabelControl26"
         Me.LabelControl26.Size = New System.Drawing.Size(71, 14)
         Me.LabelControl26.TabIndex = 21
@@ -1272,7 +1279,7 @@ Partial Class FormFGStock
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(162, 15)
+        Me.LabelControl5.Location = New System.Drawing.Point(279, 19)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(146, 19)
         Me.LabelControl5.TabIndex = 20
@@ -1281,7 +1288,7 @@ Partial Class FormFGStock
         'LabelColor
         '
         Me.LabelColor.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelColor.Location = New System.Drawing.Point(254, 45)
+        Me.LabelColor.Location = New System.Drawing.Point(371, 49)
         Me.LabelColor.Name = "LabelColor"
         Me.LabelColor.Size = New System.Drawing.Size(4, 14)
         Me.LabelColor.TabIndex = 19
@@ -1290,7 +1297,7 @@ Partial Class FormFGStock
         'LabelControl21
         '
         Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl21.Location = New System.Drawing.Point(234, 45)
+        Me.LabelControl21.Location = New System.Drawing.Point(351, 49)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(4, 14)
         Me.LabelControl21.TabIndex = 18
@@ -1299,7 +1306,7 @@ Partial Class FormFGStock
         'LabelControl19
         '
         Me.LabelControl19.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl19.Location = New System.Drawing.Point(162, 45)
+        Me.LabelControl19.Location = New System.Drawing.Point(279, 49)
         Me.LabelControl19.Name = "LabelControl19"
         Me.LabelControl19.Size = New System.Drawing.Size(27, 14)
         Me.LabelControl19.TabIndex = 17
@@ -1308,7 +1315,7 @@ Partial Class FormFGStock
         'LabelSource
         '
         Me.LabelSource.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSource.Location = New System.Drawing.Point(254, 88)
+        Me.LabelSource.Location = New System.Drawing.Point(371, 92)
         Me.LabelSource.Name = "LabelSource"
         Me.LabelSource.Size = New System.Drawing.Size(4, 14)
         Me.LabelSource.TabIndex = 16
@@ -1317,7 +1324,7 @@ Partial Class FormFGStock
         'LabelControl17
         '
         Me.LabelControl17.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl17.Location = New System.Drawing.Point(234, 89)
+        Me.LabelControl17.Location = New System.Drawing.Point(351, 93)
         Me.LabelControl17.Name = "LabelControl17"
         Me.LabelControl17.Size = New System.Drawing.Size(4, 14)
         Me.LabelControl17.TabIndex = 15
@@ -1326,7 +1333,7 @@ Partial Class FormFGStock
         'LabelControl16
         '
         Me.LabelControl16.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl16.Location = New System.Drawing.Point(162, 89)
+        Me.LabelControl16.Location = New System.Drawing.Point(279, 93)
         Me.LabelControl16.Name = "LabelControl16"
         Me.LabelControl16.Size = New System.Drawing.Size(54, 14)
         Me.LabelControl16.TabIndex = 14
@@ -1335,7 +1342,7 @@ Partial Class FormFGStock
         'LabelBranding
         '
         Me.LabelBranding.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelBranding.Location = New System.Drawing.Point(254, 68)
+        Me.LabelBranding.Location = New System.Drawing.Point(371, 72)
         Me.LabelBranding.Name = "LabelBranding"
         Me.LabelBranding.Size = New System.Drawing.Size(4, 14)
         Me.LabelBranding.TabIndex = 13
@@ -1344,7 +1351,7 @@ Partial Class FormFGStock
         'LabelControl15
         '
         Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl15.Location = New System.Drawing.Point(234, 66)
+        Me.LabelControl15.Location = New System.Drawing.Point(351, 70)
         Me.LabelControl15.Name = "LabelControl15"
         Me.LabelControl15.Size = New System.Drawing.Size(4, 14)
         Me.LabelControl15.TabIndex = 12
@@ -1353,7 +1360,7 @@ Partial Class FormFGStock
         'LabelControl13
         '
         Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl13.Location = New System.Drawing.Point(162, 66)
+        Me.LabelControl13.Location = New System.Drawing.Point(279, 70)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(25, 14)
         Me.LabelControl13.TabIndex = 11
@@ -2679,6 +2686,24 @@ Partial Class FormFGStock
         Me.GridColumn34.Visible = True
         Me.GridColumn34.VisibleIndex = 20
         '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Color"
+        Me.GridColumn37.FieldName = "color"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 5
+        Me.GridColumn37.Width = 51
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "Silhouette"
+        Me.GridColumn38.FieldName = "sht"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 4
+        Me.GridColumn38.Width = 106
+        '
         'XTPByCodeSOH
         '
         Me.XTPByCodeSOH.Controls.Add(Me.GCSOHCode)
@@ -2711,6 +2736,15 @@ Partial Class FormFGStock
         Me.GVSOHCode.OptionsView.ShowFooter = True
         Me.GVSOHCode.OptionsView.ShowGroupPanel = False
         '
+        'GridBand5
+        '
+        Me.GridBand5.Columns.Add(Me.BandedGridColumncode)
+        Me.GridBand5.Columns.Add(Me.BandedGridColumnname)
+        Me.GridBand5.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridBand5.Name = "GridBand5"
+        Me.GridBand5.VisibleIndex = 0
+        Me.GridBand5.Width = 241
+        '
         'BandedGridColumncode
         '
         Me.BandedGridColumncode.Caption = "Code"
@@ -2729,6 +2763,23 @@ Partial Class FormFGStock
         Me.BandedGridColumnname.Visible = True
         Me.BandedGridColumnname.Width = 164
         '
+        'gridBand6
+        '
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnclass)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn65)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn64)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnseason_code)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnstt)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumncomp_number)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumncomp_name)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumngroup_store)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumndesign_first_rec_wh_code)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnsize_type)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn5)
+        Me.gridBand6.Name = "gridBand6"
+        Me.gridBand6.VisibleIndex = 1
+        Me.gridBand6.Width = 867
+        '
         'BandedGridColumnclass
         '
         Me.BandedGridColumnclass.Caption = "Class"
@@ -2737,6 +2788,22 @@ Partial Class FormFGStock
         Me.BandedGridColumnclass.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnclass.Visible = True
         Me.BandedGridColumnclass.Width = 70
+        '
+        'BandedGridColumn65
+        '
+        Me.BandedGridColumn65.Caption = "Silhouette"
+        Me.BandedGridColumn65.FieldName = "sht"
+        Me.BandedGridColumn65.Name = "BandedGridColumn65"
+        Me.BandedGridColumn65.Visible = True
+        Me.BandedGridColumn65.Width = 109
+        '
+        'BandedGridColumn64
+        '
+        Me.BandedGridColumn64.Caption = "Color"
+        Me.BandedGridColumn64.FieldName = "color"
+        Me.BandedGridColumn64.Name = "BandedGridColumn64"
+        Me.BandedGridColumn64.Visible = True
+        Me.BandedGridColumn64.Width = 61
         '
         'BandedGridColumnseason_code
         '
@@ -2807,6 +2874,24 @@ Partial Class FormFGStock
         Me.BandedGridColumn5.Name = "BandedGridColumn5"
         Me.BandedGridColumn5.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumn5.Visible = True
+        '
+        'gridBand7
+        '
+        Me.gridBand7.Caption = "AVAILABLE"
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty1)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty2)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty3)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty4)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty5)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty6)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty7)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty8)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty9)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty0)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty)
+        Me.gridBand7.Name = "gridBand7"
+        Me.gridBand7.VisibleIndex = 2
+        Me.gridBand7.Width = 825
         '
         'BandedGridColumnavl_qty1
         '
@@ -2929,6 +3014,24 @@ Partial Class FormFGStock
         Me.BandedGridColumnavl_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "avl_qty", "{0:N0}")})
         Me.BandedGridColumnavl_qty.Visible = True
         '
+        'gridBand8
+        '
+        Me.gridBand8.Caption = "RESERVED"
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty1)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty2)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty3)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty4)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty5)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty6)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty7)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty8)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty9)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty0)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty)
+        Me.gridBand8.Name = "gridBand8"
+        Me.gridBand8.VisibleIndex = 3
+        Me.gridBand8.Width = 825
+        '
         'BandedGridColumnrsv_qty1
         '
         Me.BandedGridColumnrsv_qty1.Caption = "rsv_qty1"
@@ -3049,6 +3152,27 @@ Partial Class FormFGStock
         Me.BandedGridColumnrsv_qty.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList
         Me.BandedGridColumnrsv_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rsv_qty", "{0:N0}")})
         Me.BandedGridColumnrsv_qty.Visible = True
+        '
+        'gridBandTotal
+        '
+        Me.gridBandTotal.Caption = "TOTAL"
+        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty1)
+        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty2)
+        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty3)
+        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty4)
+        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty5)
+        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty6)
+        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty7)
+        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty8)
+        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty9)
+        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty0)
+        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty)
+        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnprice_type)
+        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnunit_price)
+        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnamount)
+        Me.gridBandTotal.Name = "gridBandTotal"
+        Me.gridBandTotal.VisibleIndex = 4
+        Me.gridBandTotal.Width = 1050
         '
         'BandedGridColumnttl_qty1
         '
@@ -4480,122 +4604,35 @@ Partial Class FormFGStock
         Me.GridColumn51.Visible = True
         Me.GridColumn51.VisibleIndex = 0
         '
-        'GridColumn37
+        'PanelControl1
         '
-        Me.GridColumn37.Caption = "Color"
-        Me.GridColumn37.FieldName = "color"
-        Me.GridColumn37.Name = "GridColumn37"
-        Me.GridColumn37.Visible = True
-        Me.GridColumn37.VisibleIndex = 5
-        Me.GridColumn37.Width = 51
+        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.PictureEdit2)
+        Me.PanelControl1.Controls.Add(Me.BtnViewImgCloud)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl1.Location = New System.Drawing.Point(141, 2)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(121, 145)
+        Me.PanelControl1.TabIndex = 31
         '
-        'GridColumn38
+        'PictureEdit2
         '
-        Me.GridColumn38.Caption = "Silhouette"
-        Me.GridColumn38.FieldName = "sht"
-        Me.GridColumn38.Name = "GridColumn38"
-        Me.GridColumn38.Visible = True
-        Me.GridColumn38.VisibleIndex = 4
-        Me.GridColumn38.Width = 106
+        Me.PictureEdit2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureEdit2.Location = New System.Drawing.Point(0, 0)
+        Me.PictureEdit2.Name = "PictureEdit2"
+        Me.PictureEdit2.Properties.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.Image
+        Me.PictureEdit2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
+        Me.PictureEdit2.Size = New System.Drawing.Size(121, 122)
+        Me.PictureEdit2.TabIndex = 100
         '
-        'BandedGridColumn64
+        'BtnViewImgCloud
         '
-        Me.BandedGridColumn64.Caption = "Color"
-        Me.BandedGridColumn64.FieldName = "color"
-        Me.BandedGridColumn64.Name = "BandedGridColumn64"
-        Me.BandedGridColumn64.Visible = True
-        Me.BandedGridColumn64.Width = 61
-        '
-        'BandedGridColumn65
-        '
-        Me.BandedGridColumn65.Caption = "Silhouette"
-        Me.BandedGridColumn65.FieldName = "sht"
-        Me.BandedGridColumn65.Name = "BandedGridColumn65"
-        Me.BandedGridColumn65.Visible = True
-        Me.BandedGridColumn65.Width = 109
-        '
-        'GridBand5
-        '
-        Me.GridBand5.Columns.Add(Me.BandedGridColumncode)
-        Me.GridBand5.Columns.Add(Me.BandedGridColumnname)
-        Me.GridBand5.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.GridBand5.Name = "GridBand5"
-        Me.GridBand5.VisibleIndex = 0
-        Me.GridBand5.Width = 241
-        '
-        'gridBand6
-        '
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnclass)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumn65)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumn64)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnseason_code)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnstt)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumncomp_number)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumncomp_name)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumngroup_store)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumndesign_first_rec_wh_code)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnsize_type)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumn5)
-        Me.gridBand6.Name = "gridBand6"
-        Me.gridBand6.VisibleIndex = 1
-        Me.gridBand6.Width = 867
-        '
-        'gridBand7
-        '
-        Me.gridBand7.Caption = "AVAILABLE"
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty1)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty2)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty3)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty4)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty5)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty6)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty7)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty8)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty9)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty0)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnavl_qty)
-        Me.gridBand7.Name = "gridBand7"
-        Me.gridBand7.VisibleIndex = 2
-        Me.gridBand7.Width = 825
-        '
-        'gridBand8
-        '
-        Me.gridBand8.Caption = "RESERVED"
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty1)
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty2)
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty3)
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty4)
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty5)
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty6)
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty7)
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty8)
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty9)
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty0)
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnrsv_qty)
-        Me.gridBand8.Name = "gridBand8"
-        Me.gridBand8.VisibleIndex = 3
-        Me.gridBand8.Width = 825
-        '
-        'gridBandTotal
-        '
-        Me.gridBandTotal.Caption = "TOTAL"
-        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty1)
-        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty2)
-        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty3)
-        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty4)
-        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty5)
-        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty6)
-        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty7)
-        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty8)
-        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty9)
-        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty0)
-        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnttl_qty)
-        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnprice_type)
-        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnunit_price)
-        Me.gridBandTotal.Columns.Add(Me.BandedGridColumnamount)
-        Me.gridBandTotal.Name = "gridBandTotal"
-        Me.gridBandTotal.VisibleIndex = 4
-        Me.gridBandTotal.Width = 1050
+        Me.BtnViewImgCloud.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnViewImgCloud.Location = New System.Drawing.Point(0, 122)
+        Me.BtnViewImgCloud.Name = "BtnViewImgCloud"
+        Me.BtnViewImgCloud.Size = New System.Drawing.Size(121, 23)
+        Me.BtnViewImgCloud.TabIndex = 1
+        Me.BtnViewImgCloud.Text = "View Image"
         '
         'FormFGStock
         '
@@ -4749,6 +4786,9 @@ Partial Class FormFGStock
         CType(Me.TxtProductVA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilAccVA.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilAccVA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PictureEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -5149,4 +5189,7 @@ Partial Class FormFGStock
     Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandTotal As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PictureEdit2 As DevExpress.XtraEditors.PictureEdit
+    Friend WithEvents BtnViewImgCloud As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -82,7 +82,7 @@ WHERE ret.id_sni_realisasi='" & id & "'"
         GVSampling.BestFitColumns()
 
         'budget
-        q = "SELECT `desc`,`value`,qty
+        q = "SELECT `desc`,`value`,qty,id_report,id_report_det,report_mark_type,report_number
 FROM `tb_sni_realisasi_budget` b
 WHERE b.id_sni_realisasi='" & id & "'"
         Dim dtb As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -296,7 +296,7 @@ HAVING NOT ISNULL(qty_order)"
     End Function
 
     Sub load_budget_realisasi()
-        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,budget_desc AS `desc`,IFNULL(r.amo,0) AS `value`,IFNULL(tot_qty,0) AS qty
+        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,budget_desc AS `desc`,IFNULL(r.amo,0) AS `value`,IFNULL(tot_qty,0) AS qty,'' AS id_report,'' AS id_report_det,'' AS report_mark_type,'' AS report_number
 FROM `tb_sni_pps_budget` b
 LEFT JOIN
 (
@@ -327,6 +327,11 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
         '
         GVRealisasi.SetRowCellValue(GVRealisasi.RowCount - 1, "budget_qty", 1)
         GVRealisasi.SetRowCellValue(GVRealisasi.RowCount - 1, "budget_value", 1)
+        '
+        GVRealisasi.SetRowCellValue(GVRealisasi.RowCount - 1, "report_number", "")
+        GVRealisasi.SetRowCellValue(GVRealisasi.RowCount - 1, "id_report", "")
+        GVRealisasi.SetRowCellValue(GVRealisasi.RowCount - 1, "id_report_det", "")
+        GVRealisasi.SetRowCellValue(GVRealisasi.RowCount - 1, "report_mark_type", "")
         '
         GVRealisasi.BestFitColumns()
         Cursor = Cursors.Default
@@ -400,12 +405,12 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
                 execute_non_query(q, True, "", "", "", "")
 
                 'detil budget
-                q = "INSERT INTO tb_sni_realisasi_budget(`id_sni_realisasi`,`desc`,`qty`,`value`) VALUES"
+                q = "INSERT INTO tb_sni_realisasi_budget(`id_sni_realisasi`,`desc`,`qty`,`value`,id_report,id_report_det,report_mark_type,report_number) VALUES"
                 For i As Integer = 0 To GVRealisasi.RowCount - 1
                     If Not i = 0 Then
                         q += ","
                     End If
-                    q += "('" & id & "','" & addSlashes(GVRealisasi.GetRowCellValue(i, "desc").ToString) & "','" & GVRealisasi.GetRowCellValue(i, "qty").ToString & "','" & decimalSQL(Decimal.Parse(GVRealisasi.GetRowCellValue(i, "value").ToString).ToString) & "')"
+                    q += "('" & id & "','" & addSlashes(GVRealisasi.GetRowCellValue(i, "desc").ToString) & "','" & GVRealisasi.GetRowCellValue(i, "qty").ToString & "','" & decimalSQL(Decimal.Parse(GVRealisasi.GetRowCellValue(i, "value").ToString).ToString) & "','" & GVRealisasi.GetRowCellValue(i, "id_report").ToString & "','" & GVRealisasi.GetRowCellValue(i, "id_report_det").ToString & "','" & GVRealisasi.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVRealisasi.GetRowCellValue(i, "report_number").ToString & "')"
                 Next
                 '
                 execute_non_query(q, True, "", "", "", "")
@@ -432,12 +437,12 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
                 q = "DELETE FROM tb_sni_realisasi_budget WHERE id_sni_realisasi='" & id & "'"
                 execute_non_query(q, True, "", "", "", "")
 
-                q = "INSERT INTO tb_sni_realisasi_budget(`id_sni_realisasi`,`desc`,`qty`,`value`) VALUES"
+                q = "INSERT INTO tb_sni_realisasi_budget(`id_sni_realisasi`,`desc`,`qty`,`value`,id_report,id_report_det,report_mark_type,report_number) VALUES"
                 For i As Integer = 0 To GVRealisasi.RowCount - 1
                     If Not i = 0 Then
                         q += ","
                     End If
-                    q += "('" & id & "','" & addSlashes(GVRealisasi.GetRowCellValue(i, "desc").ToString) & "','" & GVRealisasi.GetRowCellValue(i, "qty").ToString & "','" & decimalSQL(Decimal.Parse(GVRealisasi.GetRowCellValue(i, "value").ToString).ToString) & "')"
+                    q += "('" & id & "','" & addSlashes(GVRealisasi.GetRowCellValue(i, "desc").ToString) & "','" & GVRealisasi.GetRowCellValue(i, "qty").ToString & "','" & decimalSQL(Decimal.Parse(GVRealisasi.GetRowCellValue(i, "value").ToString).ToString) & "','" & GVRealisasi.GetRowCellValue(i, "id_report").ToString & "','" & GVRealisasi.GetRowCellValue(i, "id_report_det").ToString & "','" & GVRealisasi.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVRealisasi.GetRowCellValue(i, "report_number").ToString & "')"
                 Next
                 '
                 execute_non_query(q, True, "", "", "", "")

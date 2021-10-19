@@ -303,7 +303,7 @@ LEFT JOIN (
 	,SUM(IF(id_storage_category=1,storage_item_qty,-storage_item_qty)*`value`) AS amount_rec
 	FROM `tb_storage_item`
      " & q_unit & "
-	WHERE DATE(storage_item_datetime)>=@start_date AND DATE(storage_item_datetime)<=@end_date AND report_mark_type='148'  " & q_where_unit & "
+	WHERE DATE(storage_item_datetime)>=@start_date AND DATE(storage_item_datetime)<=@end_date AND (report_mark_type='148' OR report_mark_type='300')  " & q_where_unit & "
 	GROUP BY id_item
 	HAVING qty_rec!=0
 )rec ON rec.id_item=i.id_item
@@ -314,7 +314,7 @@ LEFT JOIN (
 	FROM `tb_storage_item`
      " & q_unit & "
 	WHERE DATE(storage_item_datetime)>=@start_date AND DATE(storage_item_datetime)<=@end_date
-	AND NOT report_mark_type='148' AND NOT report_mark_type='154' AND NOT report_mark_type='163' " & q_where_unit & "
+	AND NOT report_mark_type='148' AND NOT report_mark_type='300' AND NOT report_mark_type='154' AND NOT report_mark_type='163' " & q_where_unit & "
 	GROUP BY id_item
 	HAVING qty_used!=0
 )used ON used.id_item=i.id_item
