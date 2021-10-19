@@ -22,12 +22,13 @@ Partial Class FormSNIRealisasiPop
         Me.BApprove = New DevExpress.XtraEditors.SimpleButton()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnItem = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyDetail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -63,13 +64,31 @@ Partial Class FormSNIRealisasiPop
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumnItem, Me.GridColumnQtyDetail, Me.GridColumn6, Me.GridColumn8})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumnItem, Me.GridColumnQtyDetail, Me.GridColumn3, Me.GridColumn6, Me.GridColumn8})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyDetail, "{0:N2}")})
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVDetail.OptionsView.ShowFooter = True
         Me.GVDetail.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Item Request Number"
+        Me.GridColumn2.FieldName = "item_req_number"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.Width = 152
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Item Delivery Number"
+        Me.GridColumn1.FieldName = "item_del_number"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 1
+        Me.GridColumn1.Width = 146
         '
         'GridColumnItem
         '
@@ -79,10 +98,14 @@ Partial Class FormSNIRealisasiPop
         Me.GridColumnItem.OptionsColumn.AllowEdit = False
         Me.GridColumnItem.Visible = True
         Me.GridColumnItem.VisibleIndex = 2
-        Me.GridColumnItem.Width = 97
+        Me.GridColumnItem.Width = 104
         '
         'GridColumnQtyDetail
         '
+        Me.GridColumnQtyDetail.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnQtyDetail.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyDetail.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnQtyDetail.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnQtyDetail.Caption = "Qty"
         Me.GridColumnQtyDetail.DisplayFormat.FormatString = "N2"
         Me.GridColumnQtyDetail.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -91,7 +114,22 @@ Partial Class FormSNIRealisasiPop
         Me.GridColumnQtyDetail.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumnQtyDetail.Visible = True
         Me.GridColumnQtyDetail.VisibleIndex = 3
-        Me.GridColumnQtyDetail.Width = 128
+        Me.GridColumnQtyDetail.Width = 115
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn3.Caption = "Biaya per pcs"
+        Me.GridColumn3.DisplayFormat.FormatString = "N2"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn3.FieldName = "value"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 4
+        Me.GridColumn3.Width = 104
         '
         'GridColumn6
         '
@@ -106,24 +144,6 @@ Partial Class FormSNIRealisasiPop
         Me.GridColumn8.FieldName = "uom"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Width = 39
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Item Delivery Number"
-        Me.GridColumn1.FieldName = "item_del_number"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 1
-        Me.GridColumn1.Width = 136
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Item Request Number"
-        Me.GridColumn2.FieldName = "item_req_number"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 142
         '
         'FormSNIRealisasiPop
         '
@@ -152,4 +172,5 @@ Partial Class FormSNIRealisasiPop
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
