@@ -363,7 +363,7 @@ Public Class FormFGRepairRecDet
                 Dim id_product As String = data_temp.Rows(d)("id_product").ToString
                 Dim id_pl_prod_order_rec_det_unique As String = data_temp.Rows(d)("id_pl_prod_order_rec_det_unique").ToString
                 Dim code As String = data_temp.Rows(d)("product_code").ToString
-                Dim name As String = data_temp.Rows(d)("name").ToString
+                Dim name As String = addSlashes(data_temp.Rows(d)("name").ToString)
                 Dim size As String = data_temp.Rows(d)("size").ToString
                 If d > 0 Then
                     qry += "UNION ALL "
