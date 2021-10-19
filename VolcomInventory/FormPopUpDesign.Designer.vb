@@ -23,11 +23,11 @@ Partial Class FormPopUpDesign
         Me.PCNavLineList = New DevExpress.XtraEditors.PanelControl()
         Me.SLESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnIdSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRange = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.GCDesign = New DevExpress.XtraGrid.GridControl()
         Me.GVDesign = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -104,24 +104,6 @@ Partial Class FormPopUpDesign
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(14, 10)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(35, 13)
-        Me.LabelControl4.TabIndex = 90
-        Me.LabelControl4.Text = "Season"
-        '
-        'BtnView
-        '
-        Me.BtnView.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnView.ImageIndex = 15
-        Me.BtnView.Location = New System.Drawing.Point(612, 2)
-        Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(104, 35)
-        Me.BtnView.TabIndex = 1
-        Me.BtnView.Text = "View List"
-        '
         'GridColumnIdSeason
         '
         Me.GridColumnIdSeason.Caption = "Id Season"
@@ -143,6 +125,24 @@ Partial Class FormPopUpDesign
         Me.GridColumnSeason.Name = "GridColumnSeason"
         Me.GridColumnSeason.Visible = True
         Me.GridColumnSeason.VisibleIndex = 1
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(14, 10)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(35, 13)
+        Me.LabelControl4.TabIndex = 90
+        Me.LabelControl4.Text = "Season"
+        '
+        'BtnView
+        '
+        Me.BtnView.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnView.ImageIndex = 15
+        Me.BtnView.Location = New System.Drawing.Point(612, 2)
+        Me.BtnView.Name = "BtnView"
+        Me.BtnView.Size = New System.Drawing.Size(104, 35)
+        Me.BtnView.TabIndex = 1
+        Me.BtnView.Text = "View List"
         '
         'GCDesign
         '

@@ -1103,6 +1103,7 @@
         LabelCurrentPrice.Text = "-"
         LabelPriceType.Text = "-"
         pre_viewImages("2", PictureEdit1, id_design_selected, False)
+        PictureEdit2.Image = Nothing
         GroupControlInfo.Enabled = False
         GroupControlTraccking.Enabled = False
     End Sub
@@ -1173,6 +1174,13 @@
                 pre_viewImages("2", PictureEdit1, id_design_selected, False)
                 GroupControlInfo.Enabled = True
                 GroupControlTraccking.Enabled = True
+                PictureEdit2.Image = Nothing
+                Try
+                    Dim tClient As Net.WebClient = New Net.WebClient
+                    Dim tImage As Bitmap = Bitmap.FromStream(New IO.MemoryStream(tClient.DownloadData(get_setup_field("cloud_image_url").ToString + "/TH_" + TxtCodeDsgSC.Text + "_1.jpg")))
+                    PictureEdit2.Image = tImage
+                Catch ex As Exception
+                End Try
                 SLEWH.Focus()
                 SLEWH.ShowPopup()
             End If
@@ -2020,5 +2028,9 @@
         FormSearchDesign.id_pop_up = "6"
         FormSearchDesign.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewImgCloud_Click(sender As Object, e As EventArgs) Handles BtnViewImgCloud.Click
+        Process.Start(get_setup_field("cloud_image_url").ToString + "/TH_" + TxtCodeDsgSC.Text + "_1.jpg")
     End Sub
 End Class
