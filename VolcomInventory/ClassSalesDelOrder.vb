@@ -420,7 +420,7 @@
             execute_non_query_long(quniq, True, "", "", "", "")
         End If
         '
-        Dim qs As String = "SELECT c.id_comp,pl.`id_pl_sales_order_del`,so.`id_sales_order_ol_shop`,c.`id_commerce_type`,c.`is_use_unique_code` FROM tb_pl_sales_order_del pl
+        Dim qs As String = "SELECT c.id_comp,pl.`id_pl_sales_order_del`,so.`id_sales_order_ol_shop`,c.`id_commerce_type`,c.`is_use_unique_code`,c.`id_store_type`,pl.pl_sales_order_del_number FROM tb_pl_sales_order_del pl
 INNER JOIN tb_sales_order so ON so.`id_sales_order`=pl.`id_sales_order`
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=so.`id_store_contact_to`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -434,6 +434,10 @@ WHERE pl.id_pl_sales_order_del='" + id_report_par + "'"
             sendEmailConfirmationFinal(dts.Rows(0)("id_commerce_type").ToString, id_report_par, id_status_reportx_par)
             sendEmailConfirmationforConceptStore(dts.Rows(0)("is_use_unique_code").ToString, id_report_par, "43", id_status_reportx_par)
             updateStatusOnlineStore(dts.Rows(0)("id_commerce_type").ToString, dts.Rows(0)("id_comp").ToString, id_report_par, dts.Rows(0)("id_sales_order_ol_shop").ToString, id_status_reportx_par)
+
+            If id_status_reportx_par = "6" And dts.Rows(0)("id_store_type").ToString = "6" Then
+                sendNotificationPromo(dts.Rows(0)("pl_sales_order_del_number").ToString)
+            End If
         End If
 
         Dim query As String = String.Format("UPDATE tb_pl_sales_order_del SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_pl_sales_order_del ='{1}'", id_status_reportx_par, id_report_par)
@@ -828,13 +832,29 @@ WHERE pl.id_pl_sales_order_del='" + id_report_par + "'"
         p.product_display_name AS `name`, cd.code_detail_name AS `size`,
         SUM(dd.pl_sales_order_del_det_qty) AS `qty`, 
         dd.design_price, pt.design_price_type, 2 AS `is_combine`,
-        2 AS `is_unique_report`
+        2 AS `is_unique_report`, dcd.class, dcd.color, dcd.sht
         FROM tb_pl_sales_order_del d
         INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
         INNER JOIN tb_m_product p ON p.id_product = dd.id_product
         INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
         INNER JOIN tb_m_design dsg ON dsg.id_design = p.id_design
+        LEFT JOIN (
+		    SELECT dc.id_design, 
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		    FROM tb_m_design_code dc
+		    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		    AND cd.id_code IN (32,30,14, 43)
+		    GROUP BY dc.id_design
+	    ) dcd ON dcd.id_design = dsg.id_design
         INNER JOIN tb_m_design_price prc ON prc.id_design_price = dd.id_design_price
         INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
@@ -844,7 +864,7 @@ WHERE pl.id_pl_sales_order_del='" + id_report_par + "'"
         WHERE 1=1 "
         query += condition
         query += "GROUP BY p.id_product
-        ORDER BY pt.design_price_type ASC, dsg.design_display_name ASC, p.product_full_code ASC "
+        ORDER BY pt.design_price_type ASC, dcd.class, dsg.design_display_name ASC, p.product_full_code ASC "
         Return query
     End Function
 
@@ -912,4 +932,107 @@ WHERE pl.id_pl_sales_order_del='" + id_report_par + "'"
         End If
     End Function
 
+    Sub sendNotificationPromo(number As String)
+        Try
+            Dim data_send As DataTable = execute_query("
+                SELECT e.employee_name AS name, e.email_external AS email, m.send_type
+                FROM tb_mail_mapping_notif_promo AS m
+                LEFT JOIN tb_m_employee AS e ON m.id_employee = e.id_employee
+            ", -1, True, "", "", "", "")
+
+            Dim is_ssl = get_setup_field("system_email_is_ssl").ToString
+
+            Dim client As Net.Mail.SmtpClient = New Net.Mail.SmtpClient()
+
+            If is_ssl = "1" Then
+                client.Port = get_setup_field("system_email_ssl_port").ToString
+                client.DeliveryMethod = Net.Mail.SmtpDeliveryMethod.Network
+                client.UseDefaultCredentials = False
+                client.Host = get_setup_field("system_email_ssl_server").ToString
+                client.EnableSsl = True
+                client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email_ssl").ToString, get_setup_field("system_email_ssl_pass").ToString)
+            Else
+                client.Port = get_setup_field("system_email_port").ToString
+                client.DeliveryMethod = Net.Mail.SmtpDeliveryMethod.Network
+                client.UseDefaultCredentials = False
+                client.Host = get_setup_field("system_email_server").ToString
+                client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email").ToString, get_setup_field("system_email_pass").ToString)
+            End If
+
+            'mail
+            Dim mail As Net.Mail.MailMessage = New Net.Mail.MailMessage()
+
+            'from
+            Dim from_mail As Net.Mail.MailAddress = New Net.Mail.MailAddress("system@volcom.co.id", "Promo Delivery Slip - Volcom ERP")
+
+            mail.From = from_mail
+
+            'to
+            For j = 0 To data_send.Rows.Count - 1
+                If Not data_send.Rows(j)("email").ToString = "" And data_send.Rows(j)("send_type").ToString = "to" Then
+                    Dim data_to As Net.Mail.MailAddress = New Net.Mail.MailAddress(data_send.Rows(j)("email").ToString, data_send.Rows(j)("name").ToString)
+
+                    mail.To.Add(data_to)
+                End If
+            Next
+
+            'cc
+            For j = 0 To data_send.Rows.Count - 1
+                If Not data_send.Rows(j)("email").ToString = "" And data_send.Rows(j)("send_type").ToString = "cc" Then
+                    Dim data_cc As Net.Mail.MailAddress = New Net.Mail.MailAddress(data_send.Rows(j)("email").ToString, data_send.Rows(j)("name").ToString)
+
+                    mail.CC.Add(data_cc)
+                End If
+            Next
+
+            'subject & body
+            mail.Subject = "Promo Delivery Slip"
+
+            mail.IsBodyHtml = True
+
+            mail.Body = "
+                <table cellpadding='0' cellspacing='0' width='100%' style='background-color: #EEEEEE; border-collapse: collapse; padding: 30pt;'>
+                  <tr>
+                      <td align='center'>
+                          <table cellpadding='0' cellspacing='0' width='700' style='background-color: #FFFFFF; border-collapse: collapse;'>
+                              <tr>
+                                  <td style='text-align: center; padding: 30pt 0pt;'>
+                                      <a href='http://www.volcom.co.id' title='Volcom' target='_blank'>
+                                          <img src='https://d3k81ch9hvuctc.cloudfront.net/company/VFgA3P/images/de2b6f13-9275-426d-ae31-640f3dcfc744.jpeg' alt='Volcom' height='142' width='200'>
+                                      </a>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td style='background-color: #EEEEEE; padding: 5pt 0pt;'></td>
+                              </tr>
+                              <tr>
+                                  <td style='padding: 30pt;'>
+                                      <p style='font-size: 12pt; font-family: Arial, sans-serif; font-weight: bold; margin: 0pt 0pt 10pt 0pt;'>Dear All,</p>
+                                      <p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 0pt 0pt 5pt 0pt;'>Promo delivery slip dengan nomer " + number + " telah selesai diproses oleh tim Warehouse Dept. Mohon diproses lebih lanjut.</p>
+                                      <p style='font-size: 10pt; font-family: Arial, sans-serif; margin: 25pt 0pt 10pt 0pt;'>Thank you</p>
+                                      <p style='font-size: 12pt; font-family: Arial, sans-serif; font-weight: bold; margin: 0pt;'>Volcom ERP</p>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td style='background-color: #EEEEEE; padding: 5pt 0pt;'></td>
+                              </tr>
+                              <tr>
+                                  <td style='text-align: center; padding: 30pt 0pt;'>
+                                      <p style='font-size: 9pt; font-family: Arial, sans-serif; color: #A0A0A0;'>This email send directly from system. Do not reply.</p>
+                                  </td>
+                              </tr>
+                          </table>
+                      </td>
+                  </tr>
+                </table>
+            "
+
+            client.Send(mail)
+
+            mail.Dispose()
+        Catch ex As Exception
+            Dim qerr As String = "INSERT INTO tb_error_mail (date, description, note_penyelesaian) VALUES(NOW(), 'Failed send delivery promo notification; id del:" + number + "; error:" + addSlashes(ex.ToString) + "', ''); "
+            execute_non_query(qerr, True, "", "", "", "")
+        End Try
+    End Sub
 End Class

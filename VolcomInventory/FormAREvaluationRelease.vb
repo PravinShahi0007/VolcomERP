@@ -19,8 +19,11 @@
         Dim query As String = "SELECT e.id_comp_group, cg.description
         FROM tb_ar_eval e
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = e.id_comp_group
-        WHERE e.id_ar_eval_pps='" + id_ar_eval_pps + "' AND cg.is_ar_special_rule=1 AND e.is_active=1
-        GROUP BY e.id_comp_group "
+        WHERE e.id_ar_eval_pps='" + id_ar_eval_pps + "' AND cg.is_ar_special_rule=1 "
+        If action = "ins" Then
+            query += "AND e.is_active=1 "
+        End If
+        query += "GROUP BY e.id_comp_group "
         viewSearchLookupQuery(SLECompGroup, query, "id_comp_group", "description", "id_comp_group")
         Cursor = Cursors.Default
     End Sub

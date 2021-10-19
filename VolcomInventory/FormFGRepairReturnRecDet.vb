@@ -25,6 +25,12 @@ Public Class FormFGRepairReturnRecDet
 
     Dim is_use_unique_code_wh As String = get_setup_field("is_use_unique_code_all")
 
+    'scan
+    Private cforKeyDown As Char = vbNullChar
+    Private _lastKeystroke As DateTime = DateTime.Now
+    Public speed_barcode_read As Integer = get_setup_field("speed_barcode_read")
+    Public speed_barcode_read_timer As Integer = get_setup_field("speed_barcode_read_timer")
+
     Private Sub FormFGRepairRecDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
         actionLoad()
@@ -595,39 +601,7 @@ Public Class FormFGRepairReturnRecDet
     End Sub
 
     Private Sub TxtScannedCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtScannedCode.KeyDown
-        If e.KeyCode = Keys.Enter And TxtScannedCode.Text.Length > 0 Then
-            Cursor = Cursors.WaitCursor
-            If Not is_delete_scan Then 'scan
-                makeSafeGV(GVScan)
-                checkAvailable(TxtScannedCode.Text)
-                TxtScannedCode.Text = ""
-                TxtScannedCode.Focus()
-            Else 'delete scan
-                GVScan.ActiveFilterString = "[code]='" + TxtScannedCode.Text + "'"
-                If GVScan.RowCount <= 0 Then
-                    stopCustomDialog("Code not found.")
-                    GVScan.ActiveFilterString = ""
-                    TxtScannedCode.Text = ""
-                    TxtScannedCode.Focus()
-                Else
-                    If action = "ins" Then
-                        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                        If confirm = Windows.Forms.DialogResult.Yes Then
-                            Dim id_pl_prod_order_rec_det_unique As String = GVScan.GetFocusedRowCellValue("id_pl_prod_order_rec_det_unique").ToString
-                            GVScan.DeleteRow(GVScan.FocusedRowHandle)
-                            GVScan.ActiveFilterString = ""
-                            GCScan.RefreshDataSource()
-                            GVScan.RefreshData()
-                        Else
-                            GVScan.ActiveFilterString = ""
-                        End If
-                        TxtScannedCode.Text = ""
-                        TxtScannedCode.Focus()
-                    End If
-                End If
-            End If
-            Cursor = Cursors.Default
-        End If
+        cforKeyDown = ChrW(e.KeyCode)
     End Sub
 
     Private Sub checkAvailable(ByVal code_par As String)
@@ -847,5 +821,55 @@ Public Class FormFGRepairReturnRecDet
         If action = "ins" Then
             print(GCScanSum, "Preview Scan")
         End If
+    End Sub
+
+    Private Sub TxtScannedCode_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtScannedCode.KeyUp
+        If Len(TxtScannedCode.EditValue.ToString) > 1 Then
+            If cforKeyDown <> ChrW(e.KeyCode) OrElse cforKeyDown = vbNullChar Then
+                cforKeyDown = vbNullChar
+                TxtScannedCode.EditValue = ""
+                Return
+            End If
+
+            Dim elapsed As TimeSpan = DateTime.Now - _lastKeystroke
+
+            If elapsed.TotalMilliseconds > speed_barcode_read Then TxtScannedCode.EditValue = ""
+
+            If e.KeyCode = Keys.Enter And TxtScannedCode.Text.Length > 0 Then
+                Cursor = Cursors.WaitCursor
+                If Not is_delete_scan Then 'scan
+                    makeSafeGV(GVScan)
+                    checkAvailable(TxtScannedCode.Text)
+                    TxtScannedCode.Text = ""
+                    TxtScannedCode.Focus()
+                Else 'delete scan
+                    GVScan.ActiveFilterString = "[code]='" + TxtScannedCode.Text + "'"
+                    If GVScan.RowCount <= 0 Then
+                        stopCustomDialog("Code not found.")
+                        GVScan.ActiveFilterString = ""
+                        TxtScannedCode.Text = ""
+                        TxtScannedCode.Focus()
+                    Else
+                        If action = "ins" Then
+                            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                            If confirm = Windows.Forms.DialogResult.Yes Then
+                                Dim id_pl_prod_order_rec_det_unique As String = GVScan.GetFocusedRowCellValue("id_pl_prod_order_rec_det_unique").ToString
+                                GVScan.DeleteRow(GVScan.FocusedRowHandle)
+                                GVScan.ActiveFilterString = ""
+                                GCScan.RefreshDataSource()
+                                GVScan.RefreshData()
+                            Else
+                                GVScan.ActiveFilterString = ""
+                            End If
+                            TxtScannedCode.Text = ""
+                            TxtScannedCode.Focus()
+                        End If
+                    End If
+                End If
+                Cursor = Cursors.Default
+            End If
+        End If
+
+        _lastKeystroke = DateTime.Now
     End Sub
 End Class

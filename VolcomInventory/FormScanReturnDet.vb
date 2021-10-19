@@ -77,7 +77,7 @@ WHERE scd.id_scan_return='" & id_scan_return & "'"
 
     Private Sub TEReturnLabel_KeyDown(sender As Object, e As KeyEventArgs) Handles TEReturnLabel.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim q As String = "SELECT rn.*,st_list.store FROM `tb_return_note` rn
+            Dim q As String = "SELECT rn.*,st_list.store,IF(ISNULL(sr.id_scan_return),'no','yes') AS is_scanned FROM `tb_return_note` rn
 LEFT JOIN
 (
     SELECT st.`id_return_note`,GROUP_CONCAT(DISTINCT CONCAT(c.comp_number,' - ',c.comp_name) ORDER BY c.`comp_number` ASC SEPARATOR '\r\n') AS store
@@ -85,15 +85,25 @@ LEFT JOIN
     INNER JOIN tb_m_comp c ON c.id_comp=st.id_comp
     GROUP BY st.`id_return_note`
 )st_list ON st_list.id_return_note=rn.id_return_note
+LEFT JOIN
+(
+	SELECT id_return_note,id_scan_return FROM `tb_scan_return` WHERE is_void=2
+)sr ON rn.`id_return_note`=sr.id_return_note
 WHERE rn.label_number='" & addSlashes(TEReturnLabel.Text) & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
-                id_return_note = dt.Rows(0)("id_return_note").ToString
-                TEQty.EditValue = dt.Rows(0)("qty")
-                MEListStore.Text = dt.Rows(0)("store").ToString
-                TEReturnLabel.Enabled = False
-                TEReturnNote.Text = dt.Rows(0)("number_return_note").ToString
-                TEScan.Focus()
+                If dt.Rows(0)("is_scanned").ToString = "yes" Then
+                    warningCustom("Return label already scanned")
+                Else
+                    id_return_note = dt.Rows(0)("id_return_note").ToString
+                    TEQty.EditValue = dt.Rows(0)("qty")
+                    MEListStore.Text = dt.Rows(0)("store").ToString
+                    TEReturnLabel.Enabled = False
+                    TEReturnNote.Text = dt.Rows(0)("number_return_note").ToString
+                    TEScan.Focus()
+                End If
+            Else
+                warningCustom("Return label not found")
             End If
         End If
     End Sub

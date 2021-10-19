@@ -19,18 +19,17 @@ Partial Class FormProductionPLToWHRecDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionPLToWHRecDet))
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.DDBPrint = New DevExpress.XtraEditors.DropDownButton()
-        Me.PUDD = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.PUDD = New DevExpress.XtraBars.PopupMenu()
         Me.BtnPrePrinting = New DevExpress.XtraBars.BarButtonItem()
         Me.BtnPrint = New DevExpress.XtraBars.BarLargeButtonItem()
-        Me.BMDD = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.BMDD = New DevExpress.XtraBars.BarManager()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -134,6 +133,9 @@ Partial Class FormProductionPLToWHRecDet
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControlListBarcode = New DevExpress.XtraEditors.GroupControl()
         Me.GCBarcode = New DevExpress.XtraGrid.GridControl()
         Me.GVBarcode = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -151,10 +153,9 @@ Partial Class FormProductionPLToWHRecDet
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.EPRet = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.EPRet = New System.Windows.Forms.ErrorProvider()
+        Me.Timer = New System.Windows.Forms.Timer()
+        Me.RepositoryItemTextEdit = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -213,6 +214,7 @@ Partial Class FormProductionPLToWHRecDet
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl3
@@ -1391,6 +1393,33 @@ Partial Class FormProductionPLToWHRecDet
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.OptionsColumn.AllowEdit = False
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.OptionsColumn.AllowEdit = False
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 5
+        '
+        'GridColumnsht
+        '
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.OptionsColumn.AllowEdit = False
+        Me.GridColumnsht.Visible = True
+        Me.GridColumnsht.VisibleIndex = 4
+        '
         'GroupControlListBarcode
         '
         Me.GroupControlListBarcode.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -1410,7 +1439,7 @@ Partial Class FormProductionPLToWHRecDet
         Me.GCBarcode.Location = New System.Drawing.Point(21, 35)
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
-        Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
+        Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2, Me.RepositoryItemTextEdit})
         Me.GCBarcode.Size = New System.Drawing.Size(959, 165)
         Me.GCBarcode.TabIndex = 4
         Me.GCBarcode.TabStop = False
@@ -1440,6 +1469,7 @@ Partial Class FormProductionPLToWHRecDet
         'GridColumnBarcode
         '
         Me.GridColumnBarcode.Caption = "Scanned Code"
+        Me.GridColumnBarcode.ColumnEdit = Me.RepositoryItemTextEdit
         Me.GridColumnBarcode.FieldName = "code"
         Me.GridColumnBarcode.Name = "GridColumnBarcode"
         Me.GridColumnBarcode.Visible = True
@@ -1575,32 +1605,10 @@ Partial Class FormProductionPLToWHRecDet
         '
         Me.EPRet.ContainerControl = Me
         '
-        'GridColumnclass
+        'RepositoryItemTextEdit
         '
-        Me.GridColumnclass.Caption = "Class"
-        Me.GridColumnclass.FieldName = "class"
-        Me.GridColumnclass.Name = "GridColumnclass"
-        Me.GridColumnclass.OptionsColumn.AllowEdit = False
-        Me.GridColumnclass.Visible = True
-        Me.GridColumnclass.VisibleIndex = 2
-        '
-        'GridColumncolor
-        '
-        Me.GridColumncolor.Caption = "Color"
-        Me.GridColumncolor.FieldName = "color"
-        Me.GridColumncolor.Name = "GridColumncolor"
-        Me.GridColumncolor.OptionsColumn.AllowEdit = False
-        Me.GridColumncolor.Visible = True
-        Me.GridColumncolor.VisibleIndex = 5
-        '
-        'GridColumnsht
-        '
-        Me.GridColumnsht.Caption = "Silhouette"
-        Me.GridColumnsht.FieldName = "sht"
-        Me.GridColumnsht.Name = "GridColumnsht"
-        Me.GridColumnsht.OptionsColumn.AllowEdit = False
-        Me.GridColumnsht.Visible = True
-        Me.GridColumnsht.VisibleIndex = 4
+        Me.RepositoryItemTextEdit.AutoHeight = False
+        Me.RepositoryItemTextEdit.Name = "RepositoryItemTextEdit"
         '
         'FormProductionPLToWHRecDet
         '
@@ -1685,6 +1693,7 @@ Partial Class FormProductionPLToWHRecDet
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavBarcode.ResumeLayout(False)
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1823,4 +1832,6 @@ Partial Class FormProductionPLToWHRecDet
     Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Timer As Timer
+    Friend WithEvents RepositoryItemTextEdit As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

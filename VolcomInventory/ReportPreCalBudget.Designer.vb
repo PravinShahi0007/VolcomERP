@@ -36,6 +36,7 @@ Partial Public Class ReportPreCalBudget
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
@@ -64,13 +65,13 @@ Partial Public Class ReportPreCalBudget
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
-        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XTDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -209,14 +210,26 @@ Partial Public Class ReportPreCalBudget
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel1, Me.XrTable1, Me.XrTable3})
-        Me.PageHeader.HeightF = 123.7847!
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel7, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel1, Me.XrTable1, Me.XrTable3})
+        Me.PageHeader.HeightF = 138.743!
         Me.PageHeader.Name = "PageHeader"
+        '
+        'XrLabel7
+        '
+        Me.XrLabel7.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel7.Name = "XrLabel7"
+        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(1050.0!, 23.0!)
+        Me.XrLabel7.StylePriority.UseFont = False
+        Me.XrLabel7.StylePriority.UseTextAlignment = False
+        Me.XrLabel7.Text = "INTERNATIONAL SHIPMENT BUDGET"
+        Me.XrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XrLabel4
         '
         Me.XrLabel4.Font = New System.Drawing.Font("Times New Roman", 12.0!)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(850.3473!, 10.0!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(850.3473!, 33.95833!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(199.6527!, 23.0!)
@@ -228,7 +241,7 @@ Partial Public Class ReportPreCalBudget
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Times New Roman", 12.0!)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(151.0417!, 10.0!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(151.0417!, 33.95833!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(699.3055!, 23.0!)
@@ -240,7 +253,7 @@ Partial Public Class ReportPreCalBudget
         'XrLabel2
         '
         Me.XrLabel2.Font = New System.Drawing.Font("Times New Roman", 12.0!)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(133.3333!, 10.00001!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(133.3333!, 33.95834!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(17.70834!, 23.0!)
@@ -252,7 +265,7 @@ Partial Public Class ReportPreCalBudget
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 12.0!)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 10.00001!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 33.95834!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(133.3333!, 23.0!)
@@ -266,7 +279,7 @@ Partial Public Class ReportPreCalBudget
         Me.XrTable1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 37.25001!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 61.20834!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1, Me.XrTableRow4})
@@ -288,7 +301,7 @@ Partial Public Class ReportPreCalBudget
         '
         Me.XrTableCell15.Name = "XrTableCell15"
         Me.XrTableCell15.Text = "VENDOR"
-        Me.XrTableCell15.Weight = 2.0211000005040827R
+        Me.XrTableCell15.Weight = 3.1885675976076584R
         '
         'XrTableCell16
         '
@@ -296,7 +309,7 @@ Partial Public Class ReportPreCalBudget
         Me.XrTableCell16.StylePriority.UseTextAlignment = False
         Me.XrTableCell16.Text = "QTY ORDER"
         Me.XrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell16.Weight = 0.83933197151899375R
+        Me.XrTableCell16.Weight = 0.81500996248623481R
         '
         'XrTableCell17
         '
@@ -304,7 +317,7 @@ Partial Public Class ReportPreCalBudget
         Me.XrTableCell17.StylePriority.UseTextAlignment = False
         Me.XrTableCell17.Text = "CBM"
         Me.XrTableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell17.Weight = 0.97253953638027824R
+        Me.XrTableCell17.Weight = 0.648242994824948R
         '
         'XrTableCell21
         '
@@ -312,7 +325,7 @@ Partial Public Class ReportPreCalBudget
         Me.XrTableCell21.StylePriority.UseTextAlignment = False
         Me.XrTableCell21.Text = "WEIGHT"
         Me.XrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell21.Weight = 0.79862203767666717R
+        Me.XrTableCell21.Weight = 0.63647376689900215R
         '
         'XrTableCell25
         '
@@ -320,7 +333,7 @@ Partial Public Class ReportPreCalBudget
         Me.XrTableCell25.StylePriority.UseTextAlignment = False
         Me.XrTableCell25.Text = "CTN"
         Me.XrTableCell25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell25.Weight = 0.36840645391997817R
+        Me.XrTableCell25.Weight = 0.5224470320704816R
         '
         'XrTableCell23
         '
@@ -328,7 +341,7 @@ Partial Public Class ReportPreCalBudget
         Me.XrTableCell23.StylePriority.UseTextAlignment = False
         Me.XrTableCell23.Text = "TOTAL FOB"
         Me.XrTableCell23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell23.Weight = 1.8541662597656252R
+        Me.XrTableCell23.Weight = 1.2866478464681603R
         '
         'XrTableCell28
         '
@@ -336,7 +349,7 @@ Partial Public Class ReportPreCalBudget
         Me.XrTableCell28.StylePriority.UseTextAlignment = False
         Me.XrTableCell28.Text = "Rate"
         Me.XrTableCell28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell28.Weight = 1.318108582612977R
+        Me.XrTableCell28.Weight = 1.0748856420221169R
         '
         'XrTableRow4
         '
@@ -348,7 +361,7 @@ Partial Public Class ReportPreCalBudget
         '
         Me.XrTableCell18.Name = "XrTableCell18"
         Me.XrTableCell18.Text = "[vendor_comp]"
-        Me.XrTableCell18.Weight = 1.9558253383628019R
+        Me.XrTableCell18.Weight = 3.0855876387348906R
         '
         'XrTableCell19
         '
@@ -356,7 +369,7 @@ Partial Public Class ReportPreCalBudget
         Me.XrTableCell19.StylePriority.UseTextAlignment = False
         Me.XrTableCell19.Text = "[qtyf]"
         Me.XrTableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell19.Weight = 0.81222457734862841R
+        Me.XrTableCell19.Weight = 0.78868785796898533R
         '
         'XrTableCell20
         '
@@ -364,7 +377,7 @@ Partial Public Class ReportPreCalBudget
         Me.XrTableCell20.StylePriority.UseTextAlignment = False
         Me.XrTableCell20.Text = "[cbm]"
         Me.XrTableCell20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell20.Weight = 0.94112929208747387R
+        Me.XrTableCell20.Weight = 0.62730644364249222R
         '
         'XrTableCell22
         '
@@ -372,7 +385,7 @@ Partial Public Class ReportPreCalBudget
         Me.XrTableCell22.StylePriority.UseTextAlignment = False
         Me.XrTableCell22.Text = "[weight]"
         Me.XrTableCell22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell22.Weight = 0.77282918803322176R
+        Me.XrTableCell22.Weight = 0.61591776381073116R
         '
         'XrTableCell27
         '
@@ -380,7 +393,7 @@ Partial Public Class ReportPreCalBudget
         Me.XrTableCell27.StylePriority.UseTextAlignment = False
         Me.XrTableCell27.Text = "[ctn]"
         Me.XrTableCell27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell27.Weight = 0.35650813278807547R
+        Me.XrTableCell27.Weight = 0.50557429035171886R
         '
         'XrTableCell24
         '
@@ -389,7 +402,7 @@ Partial Public Class ReportPreCalBudget
         Me.XrTableCell24.Name = "XrTableCell24"
         Me.XrTableCell24.StylePriority.UseBorders = False
         Me.XrTableCell24.Text = "$"
-        Me.XrTableCell24.Weight = 0.28329132949061331R
+        Me.XrTableCell24.Weight = 0.25169213446956684R
         '
         'XrTableCell26
         '
@@ -400,7 +413,7 @@ Partial Public Class ReportPreCalBudget
         Me.XrTableCell26.StylePriority.UseTextAlignment = False
         Me.XrTableCell26.Text = "[fob_tot]"
         Me.XrTableCell26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell26.Weight = 1.5109915959223896R
+        Me.XrTableCell26.Weight = 0.9934009785528R
         '
         'XrTableCell29
         '
@@ -411,11 +424,11 @@ Partial Public Class ReportPreCalBudget
         Me.XrTableCell29.StylePriority.UseTextAlignment = False
         Me.XrTableCell29.Text = "[rate_management]"
         Me.XrTableCell29.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell29.Weight = 1.2755382575268441R
+        Me.XrTableCell29.Weight = 1.0401706040288636R
         '
         'XrTable3
         '
-        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 98.78471!)
+        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 113.743!)
         Me.XrTable3.Name = "XrTable3"
         Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow3})
         Me.XrTable3.SizeF = New System.Drawing.SizeF(1050.0!, 25.0!)
@@ -464,13 +477,34 @@ Partial Public Class ReportPreCalBudget
         'ReportFooter
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel6, Me.XrLabel5, Me.XrTable2})
-        Me.ReportFooter.HeightF = 47.99998!
+        Me.ReportFooter.HeightF = 62.58332!
         Me.ReportFooter.Name = "ReportFooter"
+        '
+        'XrLabel6
+        '
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel6.Name = "XrLabel6"
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(61.45833!, 37.58332!)
+        Me.XrLabel6.StylePriority.UseTextAlignment = False
+        Me.XrLabel6.Text = "Remark :"
+        Me.XrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel5
+        '
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(61.45833!, 0!)
+        Me.XrLabel5.Multiline = True
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(988.5417!, 37.58332!)
+        Me.XrLabel5.StylePriority.UseTextAlignment = False
+        Me.XrLabel5.Text = "[reason]"
+        Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrTable2
         '
         Me.XrTable2.Font = New System.Drawing.Font("Consolas", 8.0!)
-        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 22.99999!)
+        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 37.58332!)
         Me.XrTable2.Name = "XrTable2"
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow2})
         Me.XrTable2.SizeF = New System.Drawing.SizeF(1050.0!, 25.0!)
@@ -510,26 +544,6 @@ Partial Public Class ReportPreCalBudget
         Me.XrPageInfo1.StylePriority.UseBorders = False
         Me.XrPageInfo1.StylePriority.UseTextAlignment = False
         Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        '
-        'XrLabel5
-        '
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(61.45833!, 0!)
-        Me.XrLabel5.Name = "XrLabel5"
-        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.XrLabel5.SizeF = New System.Drawing.SizeF(988.5417!, 23.0!)
-        Me.XrLabel5.StylePriority.UseTextAlignment = False
-        Me.XrLabel5.Text = "[reason]"
-        Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XrLabel6
-        '
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrLabel6.Name = "XrLabel6"
-        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(61.45833!, 23.0!)
-        Me.XrLabel6.StylePriority.UseTextAlignment = False
-        Me.XrLabel6.Text = "Remark :"
-        Me.XrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'ReportPreCalBudget
         '
@@ -600,4 +614,5 @@ Partial Public Class ReportPreCalBudget
     Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
 End Class

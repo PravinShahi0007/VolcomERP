@@ -59,6 +59,8 @@
                 newRow("code") = TxtBarcode.Text
                 newRow("name") = TxtDesign.Text
                 newRow("size") = TxtSize.Text
+                newRow("color") = TxtColor.Text
+                newRow("class") = TxtClass.Text
                 newRow("remark") = TxtRemark.Text
                 newRow("is_unique_not_found") = is_unique_not_found
                 newRow("is_no_stock") = is_no_stock
@@ -90,11 +92,28 @@
         Cursor = Cursors.WaitCursor
         Dim keyword As String = addSlashes(TxtSearch.Text.ToString)
         Dim query As String = "SELECT p.id_product, d.design_code, p.product_full_code AS `product_code`,p.product_full_code AS `code`,
-        d.design_display_name AS `name`, cd.code_detail_name AS `size`, d.is_old_design
+        d.design_display_name AS `name`, cd.code_detail_name AS `size`, dcd.class, dcd.color, dcd.sht, d.is_old_design
         FROM tb_m_product p
         INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
         INNER JOIN tb_m_design d ON d.id_design = p.id_design AND d.id_active=1
+        LEFT JOIN (
+		    SELECT dc.id_design, 
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		    FROM tb_m_design_code dc
+		    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		    AND cd.id_code IN (32,30,14, 43)
+		    GROUP BY dc.id_design
+	    ) dcd ON dcd.id_design = d.id_design
+
         WHERE p.product_full_code LIKE '%" + keyword + "%' OR d.design_code LIKE '%" + keyword + "%' OR d.design_display_name LIKE '%" + keyword + "%' "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then

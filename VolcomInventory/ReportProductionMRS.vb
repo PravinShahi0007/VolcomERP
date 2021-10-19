@@ -7,6 +7,7 @@ Public Class ReportProductionMRS
     Public Shared id_comp_req_from As String = "-1"
     Public Shared id_comp_req_to As String = "-1"
     Public Shared is_pre As String = "-1"
+    Public Shared is_auto As Boolean = False
     Sub view_mrs()
         Try
             Dim query As String
@@ -78,10 +79,14 @@ WHERE id_prod_order_mrs = '{0}'", id_mrs)
     End Sub
 
     Private Sub ReportMatWO_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles MyBase.BeforePrint
-        If is_pre = "1" Then
-            pre_load_mark_horz("29", id_mrs, "2", "1", XrTable1)
+        If is_auto Then
+            pre_load_list_horz("29", 2, 1, XrTable1)
         Else
-            load_mark_horz("29", id_mrs, "2", "1", XrTable1)
+            If is_pre = "1" Then
+                pre_load_mark_horz("29", id_mrs, "2", "1", XrTable1)
+            Else
+                load_mark_horz("29", id_mrs, "2", "1", XrTable1)
+            End If
         End If
     End Sub
 End Class

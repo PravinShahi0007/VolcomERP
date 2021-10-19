@@ -11,8 +11,8 @@
         UNION
         SELECT cg.id_comp_group, cg.comp_group, cg.description 
         FROM tb_m_comp_group cg
-        INNER JOIN tb_m_comp c ON c.id_comp_group = cg.id_comp_group AND c.id_commerce_type=2
-        WHERE c.id_comp NOT IN (" + comp_not_in + ")
+        INNER JOIN tb_m_comp c ON c.id_comp_group = cg.id_comp_group AND c.id_commerce_type=2 
+        WHERE c.id_comp NOT IN (" + comp_not_in + ") AND cg.is_marketplace=1
         GROUP BY cg.id_comp_group "
         viewSearchLookupQuery(SLECompGroup, query, "id_comp_group", "description", "id_comp_group")
         Cursor = Cursors.Default
@@ -184,7 +184,7 @@
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
-        WHERE d.id_report_status=6 AND c.id_commerce_type=2 AND c.id_comp NOT IN(" + comp_not_in + ")
+        WHERE d.id_report_status=6 AND c.id_commerce_type=2 AND c.id_comp NOT IN(" + comp_not_in + ") AND cg.is_marketplace=1
         " + cond_group + "
         " + cond_orderno + "
         ORDER BY cg.id_comp_group ASC,so.id_sales_order ASC "

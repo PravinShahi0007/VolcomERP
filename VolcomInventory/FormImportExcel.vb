@@ -147,6 +147,8 @@ Public Class FormImportExcel
             Dim bank As String = dtb.Rows(0)("bank").ToString
             Dim installment_term As String = dtb.Rows(0)("installment_term").ToString
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] WHERE ([Acquiring Bank]='" + bank + "') AND [Installment Term]='" + installment_term + "' AND [Payment Type]='Credit Card' AND [Transaction status]='settlement' ", oledbconn)
+        ElseIf id_pop_up = "62" Then
+            MyCommand = New OleDbDataAdapter("select `Seller SKU` from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Seller SKU]='') GROUP BY `Seller SKU` ", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -524,12 +526,15 @@ Public Class FormImportExcel
             GVData.Columns("id_product").Visible = False
             GVData.Columns("SOH").Visible = False
             GVData.Columns("Code").VisibleIndex = 0
-            GVData.Columns("Style").VisibleIndex = 1
-            GVData.Columns("Size").VisibleIndex = 2
-            GVData.Columns("Qty").VisibleIndex = 3
-            GVData.Columns("Amount").VisibleIndex = 4
-            GVData.Columns("Price").VisibleIndex = 5
-            GVData.Columns("Status").VisibleIndex = 6
+            GVData.Columns("Class").VisibleIndex = 1
+            GVData.Columns("Style").VisibleIndex = 2
+            GVData.Columns("Silhouette").VisibleIndex = 3
+            GVData.Columns("Color").VisibleIndex = 4
+            GVData.Columns("Size").VisibleIndex = 5
+            GVData.Columns("Qty").VisibleIndex = 6
+            GVData.Columns("Amount").VisibleIndex = 7
+            GVData.Columns("Price").VisibleIndex = 8
+            GVData.Columns("Status").VisibleIndex = 9
             GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("Qty").DisplayFormat.FormatString = "{0:n0}"
             GVData.Columns("SOH").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -843,7 +848,10 @@ Public Class FormImportExcel
                             Select New With
                             {
                                 .Code = table1.Field(Of String)("code"),
+                                .Class = If(y1 Is Nothing, "", y1("class")),
                                 .Style = If(y1 Is Nothing, "", y1("design_display_name")),
+                                .Color = If(y1 Is Nothing, "", y1("color")),
+                                .Silhouette = If(y1 Is Nothing, "", y1("sht")),
                                 .Size = If(y1 Is Nothing, "", y1("Size")),
                                 .Price = If(y1 Is Nothing, 0.0, y1("design_price")),
                                 .Available = If(y1 Is Nothing, 0, y1("total_allow")),
@@ -870,13 +878,16 @@ Public Class FormImportExcel
                 GVData.Columns("id_design").Visible = False
                 GVData.Columns("id_design_type").Visible = False
                 GVData.Columns("Code").VisibleIndex = 0
-                GVData.Columns("Style").VisibleIndex = 1
-                GVData.Columns("Size").VisibleIndex = 2
-                GVData.Columns("Price").VisibleIndex = 3
-                GVData.Columns("Available").VisibleIndex = 4
-                GVData.Columns("Qty").VisibleIndex = 5
-                GVData.Columns("Status").VisibleIndex = 6
-                GVData.Columns("DesignType").VisibleIndex = 7
+                GVData.Columns("Class").VisibleIndex = 1
+                GVData.Columns("Style").VisibleIndex = 2
+                GVData.Columns("Silhouette").VisibleIndex = 3
+                GVData.Columns("Color").VisibleIndex = 4
+                GVData.Columns("Size").VisibleIndex = 5
+                GVData.Columns("Price").VisibleIndex = 6
+                GVData.Columns("Available").VisibleIndex = 7
+                GVData.Columns("Qty").VisibleIndex = 8
+                GVData.Columns("Status").VisibleIndex = 9
+                GVData.Columns("DesignType").VisibleIndex = 10
                 GVData.Columns("Available").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                 GVData.Columns("Available").DisplayFormat.FormatString = "{0:n0}"
                 GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -1441,14 +1452,16 @@ Public Class FormImportExcel
             GVData.Columns("id_product").Visible = False
             GVData.Columns("id_comp_contact_from").Visible = False
             GVData.Columns("id_comp_contact_to").Visible = False
-            GVData.Columns("Class").Visible = False
             GVData.Columns("Code").VisibleIndex = 0
-            GVData.Columns("Style").VisibleIndex = 1
-            GVData.Columns("Size").VisibleIndex = 2
-            GVData.Columns("From").VisibleIndex = 3
-            GVData.Columns("To").VisibleIndex = 4
-            GVData.Columns("Qty").VisibleIndex = 5
-            GVData.Columns("Status").VisibleIndex = 6
+            GVData.Columns("Class").VisibleIndex = 1
+            GVData.Columns("Style").VisibleIndex = 2
+            GVData.Columns("Silhouette").VisibleIndex = 3
+            GVData.Columns("Color").VisibleIndex = 4
+            GVData.Columns("Size").VisibleIndex = 5
+            GVData.Columns("From").VisibleIndex = 6
+            GVData.Columns("To").VisibleIndex = 7
+            GVData.Columns("Qty").VisibleIndex = 8
+            GVData.Columns("Status").VisibleIndex = 9
         ElseIf id_pop_up = "24" Then
             'INVENTORY ALLOCATION
             Dim id_fg_wh_alloc As String = FormFGWHAllocDet.id_fg_wh_alloc
@@ -1563,13 +1576,16 @@ Public Class FormImportExcel
             GVData.Columns("id_design_type").Visible = False
             'GVData.Columns("Class").Visible = False
             GVData.Columns("Code").VisibleIndex = 0
-            GVData.Columns("Style").VisibleIndex = 1
-            GVData.Columns("Size").VisibleIndex = 2
-            GVData.Columns("Price").VisibleIndex = 3
-            GVData.Columns("Available").VisibleIndex = 4
-            GVData.Columns("Qty").VisibleIndex = 5
-            GVData.Columns("Status").VisibleIndex = 6
-            GVData.Columns("Design Type").VisibleIndex = 7
+            GVData.Columns("Class").VisibleIndex = 1
+            GVData.Columns("Style").VisibleIndex = 2
+            GVData.Columns("Silhouette").VisibleIndex = 3
+            GVData.Columns("Color").VisibleIndex = 4
+            GVData.Columns("Size").VisibleIndex = 5
+            GVData.Columns("Price").VisibleIndex = 6
+            GVData.Columns("Available").VisibleIndex = 7
+            GVData.Columns("Qty").VisibleIndex = 8
+            GVData.Columns("Status").VisibleIndex = 9
+            GVData.Columns("Design Type").VisibleIndex = 10
             GVData.Columns("Available").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("Available").DisplayFormat.FormatString = "{0:n0}"
             GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -1668,7 +1684,7 @@ Public Class FormImportExcel
             'Console.WriteLine(qry)
 
             Dim data As New DataTable
-            Dim adapter As New MySqlDataAdapter("CALL view_return_order_single_temp(" + FormSalesReturnOrderDet.id_comp + ", '" + id_user + "')", connection)
+            Dim adapter As New MySqlDataAdapter("CALL view_return_order_single_temp_less(" + FormSalesReturnOrderDet.id_comp + ", '" + id_user + "')", connection)
             adapter.SelectCommand.CommandTimeout = 300
             adapter.Fill(data)
             adapter.Dispose()
@@ -1698,10 +1714,13 @@ Public Class FormImportExcel
             GVData.Columns("Price").Visible = False
             GVData.Columns("SOH").Visible = False
             GVData.Columns("Code").VisibleIndex = 0
-            GVData.Columns("Style").VisibleIndex = 1
-            GVData.Columns("Size").VisibleIndex = 2
-            GVData.Columns("Qty").VisibleIndex = 3
-            GVData.Columns("Status").VisibleIndex = 4
+            GVData.Columns("Class").VisibleIndex = 1
+            GVData.Columns("Style").VisibleIndex = 2
+            GVData.Columns("Silhouette").VisibleIndex = 3
+            GVData.Columns("Color").VisibleIndex = 4
+            GVData.Columns("Size").VisibleIndex = 5
+            GVData.Columns("Qty").VisibleIndex = 6
+            GVData.Columns("Status").VisibleIndex = 7
             GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("Qty").DisplayFormat.FormatString = "{0:n0}"
             GVData.Columns("SOH").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -3764,7 +3783,10 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                         Select New With
                         {
                             .Code = table1.Field(Of String)("code"),
+                            .Class = If(y1 Is Nothing, "", y1("class")),
                             .Style = If(y1 Is Nothing, "", y1("design_display_name")),
+                            .Color = If(y1 Is Nothing, "", y1("color")),
+                            .Silhouette = If(y1 Is Nothing, "", y1("sht")),
                             .Size = If(y1 Is Nothing, "", y1("Size")),
                             .Price = If(y1 Is Nothing, 0.0, y1("design_price")),
                             .Available = If(y1 Is Nothing, 0, y1("total_allow")),
@@ -3793,13 +3815,16 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GVData.Columns("id_design_type").Visible = False
             GVData.Columns("id_ol_promo_collection_sku_replace").Visible = False
             GVData.Columns("Code").VisibleIndex = 0
-            GVData.Columns("Style").VisibleIndex = 1
-            GVData.Columns("Size").VisibleIndex = 2
-            GVData.Columns("Price").VisibleIndex = 3
-            GVData.Columns("Available").VisibleIndex = 4
-            GVData.Columns("Qty").VisibleIndex = 5
-            GVData.Columns("Status").VisibleIndex = 6
-            GVData.Columns("DesignType").VisibleIndex = 7
+            GVData.Columns("Class").VisibleIndex = 1
+            GVData.Columns("Style").VisibleIndex = 2
+            GVData.Columns("Silhouette").VisibleIndex = 3
+            GVData.Columns("Color").VisibleIndex = 4
+            GVData.Columns("Size").VisibleIndex = 5
+            GVData.Columns("Price").VisibleIndex = 6
+            GVData.Columns("Available").VisibleIndex = 7
+            GVData.Columns("Qty").VisibleIndex = 8
+            GVData.Columns("Status").VisibleIndex = 9
+            GVData.Columns("DesignType").VisibleIndex = 10
             GVData.Columns("Available").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("Available").DisplayFormat.FormatString = "{0:n0}"
             GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -3883,13 +3908,16 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
             GVData.Columns("id_ol_promo_collection_sku_replace").Visible = False
             'GVData.Columns("Class").Visible = False
             GVData.Columns("Code").VisibleIndex = 0
-            GVData.Columns("Style").VisibleIndex = 1
-            GVData.Columns("Size").VisibleIndex = 2
-            GVData.Columns("Price").VisibleIndex = 3
-            GVData.Columns("Available").VisibleIndex = 4
-            GVData.Columns("Qty").VisibleIndex = 5
-            GVData.Columns("Status").VisibleIndex = 6
-            GVData.Columns("Design Type").VisibleIndex = 7
+            GVData.Columns("Class").VisibleIndex = 1
+            GVData.Columns("Style").VisibleIndex = 2
+            GVData.Columns("Silhouette").VisibleIndex = 3
+            GVData.Columns("Color").VisibleIndex = 4
+            GVData.Columns("Size").VisibleIndex = 5
+            GVData.Columns("Price").VisibleIndex = 6
+            GVData.Columns("Available").VisibleIndex = 7
+            GVData.Columns("Qty").VisibleIndex = 8
+            GVData.Columns("Status").VisibleIndex = 9
+            GVData.Columns("Design Type").VisibleIndex = 10
             GVData.Columns("Available").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("Available").DisplayFormat.FormatString = "{0:n0}"
             GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -4554,6 +4582,115 @@ GROUP BY ol.checkout_id
             Next
 
             GCData.DataSource = data_temp
+        ElseIf id_pop_up = "62" Then
+            Dim tb1 = data_temp.AsEnumerable() 'ini tabel excel table1
+
+            'data stock
+            Dim qgt As String = "SET @startd = DATE(NOW());
+            SET @cm_beg_startd = "";
+            SET @beg_date="";
+            SET @beg_year ="";
+            SET @beg_month ="";
+            SELECT STR_TO_DATE(CONCAT(YEAR(@startd),'-', MONTH(@startd),'-', '01'),'%Y-%m-%d') AS `cm_beg_startd`,
+            STR_TO_DATE(DATE_SUB(CONCAT(YEAR(@startd),'-', MONTH(@startd),'-', '01'),INTERVAL 1 DAY),'%Y-%m-%d') AS `beg_date`, 
+            YEAR((SELECT beg_date)) AS `beg_year`, MONTH((SELECT beg_date)) AS `beg_month`, @startd AS `end_date` "
+            Dim dgt As DataTable = execute_query(qgt, -1, True, "", "", "", "")
+            Dim beg_month As String = dgt.Rows(0)("beg_month").ToString
+            Dim beg_year As String = dgt.Rows(0)("beg_year").ToString
+            Dim start_time As String = DateTime.Parse(dgt.Rows(0)("cm_beg_startd").ToString).ToString("yyyy-MM-dd")
+            Dim end_time As String = DateTime.Parse(dgt.Rows(0)("end_date").ToString).ToString("yyyy-MM-dd")
+            Dim id_ol As String = execute_query("SELECT GROUP_CONCAT(DISTINCT olc.id_wh) AS `id_ol` 
+            FROM tb_m_comp c 
+            INNER JOIN tb_ol_store_comp olc ON olc.id_store = c.id_comp
+            WHERE c.id_comp_group=64 ", 0, True, "", "", "", "")
+
+            Dim query_stc As String = "SELECT a.id_product,p.product_full_code AS `code`, cd.class,p.product_name AS `description`, 
+            cd.color, cd.sht, sz.display_name AS `size`, a.qty_ttl AS `qty`, prc.id_design_price, prc.design_price, IFNULL(a.qty_ttl,0) AS `qty_ttl`
+            FROM (
+                SELECT a.id_product,
+                SUM(qty_ttl) AS `qty_ttl`
+                FROM (
+                    SELECT f.id_wh_drawer, f.id_product, f.`qty_ttl`
+                    FROM tb_storage_fg_" + beg_year + " f
+                    WHERE f.month='" + beg_month + "'
+                    UNION ALL
+                    SELECT f.id_wh_drawer, f.id_product, 
+                    SUM(IF(f.id_stock_status=1, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS `qty_ttl` 
+                    FROM tb_storage_fg f
+                    WHERE f.storage_product_datetime>='" + start_time + " 00:00:00'  AND f.storage_product_datetime<='" + end_time + " 23:59:59' 
+                    GROUP BY f.id_wh_drawer, f.id_product
+                ) a
+                INNER JOIN tb_m_wh_drawer drw ON  drw.id_wh_drawer= a.id_wh_drawer
+                INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack
+                INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator
+                WHERE loc.id_comp IN (" + id_ol + ")
+                GROUP BY a.id_product 
+                HAVING qty_ttl>=0
+            ) a
+            INNER JOIN tb_m_product p ON p.id_product = a.id_product 
+            INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+            INNER JOIN tb_m_code_detail sz ON sz.id_code_detail = pc.id_code_detail
+            LEFT JOIN (
+		        SELECT dc.id_design, 
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		        FROM tb_m_design_code dc
+		        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		        AND cd.id_code IN (32,30,14, 43)
+		        GROUP BY dc.id_design
+	        ) cd ON cd.id_design = p.id_design 
+            LEFT JOIN (
+			    SELECT p.* , LEFT(pt.design_price_type,1) AS `price_type`, LEFT(cat.design_cat,1) AS `design_cat`
+			    FROM tb_m_design_price p
+			    INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = p.id_design_price_type
+			    INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = pt.id_design_cat
+			    WHERE p.id_design_price IN (
+				    SELECT MAX(p.id_design_price) FROM tb_m_design_price p
+				    WHERE p.design_price_start_date<=NOW() AND is_active_wh=1 AND is_design_cost=0
+				    GROUP BY p.id_design
+			    )
+		    ) prc ON prc.id_design = p.id_design "
+            Dim data_stc As DataTable = execute_query(query_stc, -1, True, "", "", "", "")
+            Dim tb2 = data_stc.AsEnumerable
+            Dim query = From table1 In tb1
+                        Group Join table_stock In tb2 On table1("Seller SKU").ToString Equals table_stock("code").ToString
+                        Into stc = Group
+                        From s1 In stc.DefaultIfEmpty()
+                        Select New With
+                            {
+                                .id_product = If(s1 Is Nothing, "0", s1("id_product").ToString),
+                                .code = table1("Seller SKU").ToString,
+                                .class = If(s1 Is Nothing, "", s1("class").ToString),
+                                .description = If(s1 Is Nothing, "", s1("description").ToString),
+                                .silhouette = If(s1 Is Nothing, "", s1("sht").ToString),
+                                .color = If(s1 Is Nothing, "", s1("color").ToString),
+                                .size = If(s1 Is Nothing, "", s1("size").ToString),
+                                .id_design_price = If(s1 Is Nothing, "0", s1("id_design_price").ToString),
+                                .price = If(s1 Is Nothing, 0, s1("design_price")),
+                                .qty = If(s1 Is Nothing, 0, s1("qty_ttl")),
+                                .Status = If(s1 Is Nothing, If(s1 Is Nothing, "Not found in ERP stock;", ""), "OK")
+                            }
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("id_product").Visible = False
+            GVData.Columns("id_design_price").Visible = False
+
+            'display format
+            GVData.Columns("price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("price").DisplayFormat.FormatString = "N0"
+            GVData.Columns("qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("qty").DisplayFormat.FormatString = "N0"
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -4625,7 +4762,7 @@ GROUP BY ol.checkout_id
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Or id_pop_up = "56" Or id_pop_up = "57" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Or id_pop_up = "56" Or id_pop_up = "57" Or id_pop_up = "62" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -5300,6 +5437,9 @@ GROUP BY ol.checkout_id
                             newRow("name") = GVData.GetRowCellValue(i, "Style").ToString
                             newRow("code") = GVData.GetRowCellValue(i, "Code").ToString
                             newRow("size") = GVData.GetRowCellValue(i, "Size").ToString
+                            newRow("class") = GVData.GetRowCellValue(i, "Class").ToString
+                            newRow("color") = GVData.GetRowCellValue(i, "Color").ToString
+                            newRow("sht") = GVData.GetRowCellValue(i, "Silhouette").ToString
                             newRow("sales_order_det_qty") = GVData.GetRowCellValue(i, "Qty")
                             newRow("qty_avail") = GVData.GetRowCellValue(i, "Available")
                             If FormSalesOrderDet.LEStatusSO.EditValue.ToString = "8" And FormSalesOrderDet.id_store_type = "1" Then 'jika cat claim dan toko normal => harga normal
@@ -5853,6 +5993,9 @@ GROUP BY ol.checkout_id
                             newRow("name") = GVData.GetRowCellValue(i, "Style").ToString
                             newRow("code") = GVData.GetRowCellValue(i, "Code").ToString
                             newRow("size") = GVData.GetRowCellValue(i, "Size").ToString
+                            newRow("class") = GVData.GetRowCellValue(i, "Class").ToString
+                            newRow("color") = GVData.GetRowCellValue(i, "Color").ToString
+                            newRow("sht") = GVData.GetRowCellValue(i, "Silhouette").ToString
                             newRow("sales_return_order_det_qty") = GVData.GetRowCellValue(i, "Qty")
                             newRow("qty_avail") = GVData.GetRowCellValue(i, "SOH")
                             newRow("design_price_type") = ""
@@ -7291,6 +7434,9 @@ GROUP BY ol.checkout_id
                             newRow("name") = GVData.GetRowCellValue(i, "Style").ToString
                             newRow("code") = GVData.GetRowCellValue(i, "Code").ToString
                             newRow("size") = GVData.GetRowCellValue(i, "Size").ToString
+                            newRow("class") = GVData.GetRowCellValue(i, "Class").ToString
+                            newRow("color") = GVData.GetRowCellValue(i, "Color").ToString
+                            newRow("sht") = GVData.GetRowCellValue(i, "Silhouette").ToString
                             newRow("sales_order_det_qty") = GVData.GetRowCellValue(i, "Qty")
                             newRow("qty_avail") = GVData.GetRowCellValue(i, "Available")
                             newRow("id_design_price") = GVData.GetRowCellValue(i, "id_design_price").ToString
@@ -7551,6 +7697,53 @@ GROUP BY ol.checkout_id
                 infoCustom("Import success")
 
                 Close()
+            ElseIf id_pop_up = "62" Then
+                makeSafeGV(GVData)
+                GVData.ActiveFilterString = "[status] = 'OK' "
+                If GVData.RowCount > 0 Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Only status 'OK' will imported, continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+
+
+                        'detail data
+                        Dim id_prm As String = FormPromoZaloraDet.id
+                        Dim q As String = "DELETE FROM tb_promo_zalora_det WHERE id_promo_zalora='" + id_prm + "';INSERT INTO tb_promo_zalora_det(id_promo_zalora, id_product, total_qty, id_design_price, design_price) VALUES "
+                        For i As Integer = 0 To GVData.RowCount - 1
+                            Dim id_design_price As String = GVData.GetRowCellValue(i, "id_design_price").ToString
+                            If id_design_price = "0" Then
+                                id_design_price = "NULL"
+                            End If
+
+                            If Not i = 0 Then
+                                q += ","
+                            End If
+                            '
+                            q += "('" + id_prm + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', '" + decimalSQL(GVData.GetRowCellValue(i, "qty").ToString) + "', " + id_design_price + ", '" + decimalSQL(GVData.GetRowCellValue(i, "price").ToString) + "') "
+
+                            '
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        'detail 
+                        If GVData.RowCount > 0 Then
+                            execute_non_query(q, True, "", "", "", "")
+                        End If
+
+
+                        'refresh
+                        FormPromoZaloraDet.refreshMainview()
+                        FormPromoZaloraDet.viewDetail()
+                        infoCustom("Import Success")
+                        Close()
+                    End If
+                Else
+                    stopCustom("There is no data for import process, please make sure your input !")
+                    makeSafeGV(GVData)
+                End If
             End If
         End If
         Cursor = Cursors.Default

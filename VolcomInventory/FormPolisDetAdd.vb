@@ -1,13 +1,19 @@
 ﻿Public Class FormPolisDetAdd
     Private Sub FormPolisDetAdd_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DECreatedDate.EditValue = Now()
+        If FormPolisDet.SLEPPSType.EditValue.ToString = "1" Then
+            DECreatedDate.EditValue = FormPolisDet.DEStart.EditValue
+            DECreatedDate.Enabled = False
+        Else
+            DECreatedDate.EditValue = Now()
+            DECreatedDate.Enabled = True
+        End If
         view_store()
     End Sub
 
     Sub view_store()
         Dim q As String = "SELECT * FROM tb_m_comp
 WHERE id_comp_cat='6' AND is_active=1
-AND id_comp NOT IN (SELECT id_reff FROM tb_polis WHERE is_active=1)"
+AND id_comp NOT IN (SELECT id_reff FROM tb_polis WHERE is_active=1 AND id_desc_premi='" & FormPolisDet.SLEPolisType.EditValue.ToString & "')"
         viewSearchLookupQuery(SLEVendor, q, "id_comp", "comp_name", "id_comp")
         SLEVendor.EditValue = Nothing
     End Sub
@@ -48,7 +54,7 @@ AND id_comp NOT IN (SELECT id_reff FROM tb_polis WHERE is_active=1)"
                 FormPolisDet.BGVSummary.SetRowCellValue(FormPolisDet.BGVSummary.RowCount - 1, "old_premi", 0)
                 '
                 FormPolisDet.BGVSummary.BestFitColumns()
-                Close()
+                'Close()
                 Cursor = Cursors.Default
             Else
                 warningCustom("Store already registered")

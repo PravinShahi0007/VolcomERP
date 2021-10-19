@@ -53,6 +53,12 @@ Public Class FormSalesReturnDet
 
     Dim is_input_manual_ret_store As String = "2"
 
+    'scan
+    Private cforKeyDown As Char = vbNullChar
+    Private _lastKeystroke As DateTime = DateTime.Now
+    Public speed_barcode_read As Integer = get_setup_field("speed_barcode_read")
+    Public speed_barcode_read_timer As Integer = get_setup_field("speed_barcode_read_timer")
+
     Private Sub FormSalesReturnDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         view_type_scan()
 
@@ -432,7 +438,7 @@ Public Class FormSalesReturnDet
 
     Sub view_barcode_list()
         If action = "ins" Then
-            Dim query As String = "SELECT ('0') AS no, ('') AS code, ('') AS name, ('') AS size, ('0') AS id_sales_return_det, ('0') AS id_pl_prod_order_rec_det_unique, ('0') AS id_product,('1') AS is_fix, ('') AS counting_code, ('0') AS id_sales_return_det_counting, CAST('0' AS DECIMAL(13,2)) AS bom_unit_price, CAST('0' AS DECIMAL(13,2)) AS design_price, ('0') AS id_design_price, '0' AS ` is_unique_report`, '' AS `ol_store_id`, '' AS `item_id` "
+            Dim query As String = "SELECT ('0') AS no, ('') AS code, ('') AS name, ('') AS size,('') AS class, ('') AS color, ('') AS sht, ('0') AS id_sales_return_det, ('0') AS id_pl_prod_order_rec_det_unique, ('0') AS id_product,('1') AS is_fix, ('') AS counting_code, ('0') AS id_sales_return_det_counting, CAST('0' AS DECIMAL(13,2)) AS bom_unit_price, CAST('0' AS DECIMAL(13,2)) AS design_price, ('0') AS id_design_price, '0' AS ` is_unique_report`, '' AS `ol_store_id`, '' AS `item_id` "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCBarcode.DataSource = data
             deleteRowsBc()
@@ -440,14 +446,32 @@ Public Class FormSalesReturnDet
         ElseIf action = "upd" Then
             Dim query As String = ""
             query += "SELECT ('') AS no, CONCAT(c.product_full_code, a.sales_return_det_counting) AS code, (c.product_full_code) AS product_code, "
-            query += "c.product_display_name AS `name`, cod.display_name AS `size`, (a.sales_return_det_counting) AS counting_code, "
+            query += "c.product_display_name AS `name`, cod.display_name AS `size`, cd.class, cd.color, cd.sht,
+            (a.sales_return_det_counting) AS counting_code, "
             query += "a.id_sales_return_det_counting, ('2') AS is_fix, "
             query += "IFNULL(a.id_pl_prod_order_rec_det_unique,'0') AS `id_pl_prod_order_rec_det_unique`, b.id_product, "
             query += "d.bom_unit_price, b.id_design_price, b.design_price, a. is_unique_report "
             query += "FROM tb_sales_return_det_counting a "
             query += "INNER JOIN tb_sales_return_det b ON a.id_sales_return_det = b.id_sales_return_det "
             query += "JOIN tb_opt o "
-            query += "INNER JOIN tb_m_product c ON c.id_product = b.id_product "
+            query += "INNER JOIN tb_m_product c ON c.id_product = b.id_product 
+            INNER JOIN tb_m_design dsg ON dsg.id_design = c.id_design
+            LEFT JOIN (
+		        SELECT dc.id_design, 
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		        FROM tb_m_design_code dc
+		        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		        AND cd.id_code IN (32,30,14, 43)
+		        GROUP BY dc.id_design
+	        ) cd ON cd.id_design = dsg.id_design "
             query += "INNER JOIN tb_m_product_code cc ON cc.id_product = c.id_product "
             query += "INNER JOIN tb_m_code_detail cod ON cod.id_code_detail = cc.id_code_detail AND cod.id_code = o.id_code_product_size "
             query += "LEFT JOIN tb_pl_prod_order_rec_det_counting d ON d.id_pl_prod_order_rec_det_unique = a.id_pl_prod_order_rec_det_unique "
@@ -462,12 +486,29 @@ Public Class FormSalesReturnDet
 
     Sub view_barcode_list_prob()
         Dim query As String = "SELECT '0' AS `no`,rp.id_sales_return_problem, rp.id_product, d.design_code, rp.scanned_code AS `code`,
-            d.design_display_name AS `name`, cd.code_detail_name AS `size`, rp.remark, rp.is_unique_not_found, rp.is_no_stock, rp.id_scan_type, ty.scan_type
+            d.design_display_name AS `name`, cd.code_detail_name AS `size`, dcd.class, dcd.color, dcd.sht,
+            rp.remark, rp.is_unique_not_found, rp.is_no_stock, rp.id_scan_type, ty.scan_type
             FROM tb_sales_return_problem rp
             INNER JOIN tb_m_product p ON p.id_product = rp.id_product
             INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
             INNER JOIN tb_m_design d ON d.id_design = p.id_design
+            LEFT JOIN (
+		        SELECT dc.id_design, 
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		        FROM tb_m_design_code dc
+		        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		        AND cd.id_code IN (32,30,14, 43)
+		        GROUP BY dc.id_design
+	        ) dcd ON dcd.id_design = d.id_design
             INNER JOIN tb_lookup_scan_type ty ON rp.id_scan_type = ty.id_scan_type
             WHERE rp.id_sales_return=" + id_sales_return + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -1562,6 +1603,7 @@ Public Class FormSalesReturnDet
                 verifyTrans()
                 disableControl()
                 newRowsBc()
+                focusColumnCodeBc()
             Else
                 errorCustom("Select destination first")
             End If
@@ -1698,6 +1740,9 @@ Public Class FormSalesReturnDet
         Dim product_name As String = ""
         Dim id_design_cat As String = ""
         Dim size As String = ""
+        Dim prod_class As String = ""
+        Dim prod_color As String = ""
+        Dim prod_sht As String = ""
         Dim bom_unit_price As Decimal = 0.0
         Dim index_atas As Integer = -100
         Dim is_old As String = "0"
@@ -1754,11 +1799,27 @@ Public Class FormSalesReturnDet
                 'tambah ror jika ada SOH
                 Dim qcr As String = "SELECT p.id_product, d.id_design, d.is_old_design, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`, 
                 SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS qty_avl,
-                prc.id_design_price, prc.design_price, prc.design_price_type
+                prc.id_design_price, prc.design_price, prc.design_price_type, dcd.class, dcd.color, dcd.sht
                 FROM tb_storage_fg f 
                 INNER JOIN tb_m_comp c ON c.id_drawer_def = f.id_wh_drawer
                 INNER JOIN tb_m_product p ON p.id_product = f.id_product
                 INNER JOIN tb_m_design d ON d.id_design = p.id_design
+                LEFT JOIN (
+		            SELECT dc.id_design, 
+		            MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		            MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		            MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		            MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		            MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		            MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		            MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		            MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		            FROM tb_m_design_code dc
+		            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		            AND cd.id_code IN (32,30,14, 43)
+		            GROUP BY dc.id_design
+	            ) dcd ON dcd.id_design = d.id_design
                 INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
                 INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
                 LEFT JOIN( 
@@ -1809,6 +1870,9 @@ Public Class FormSalesReturnDet
                         newRow("code") = dcr.Rows(0)("code").ToString
                         newRow("name") = dcr.Rows(0)("name").ToString
                         newRow("size") = dcr.Rows(0)("size").ToString
+                        newRow("class") = dcr.Rows(0)("class").ToString
+                        newRow("color") = dcr.Rows(0)("color").ToString
+                        newRow("sht") = dcr.Rows(0)("sht").ToString
                         newRow("sales_return_det_qty") = 0
                         newRow("sales_return_det_qty_limit") = dcr.Rows(0)("qty_avl")
                         newRow("design_price_type") = dcr.Rows(0)("design_price_type").ToString
@@ -1851,6 +1915,9 @@ Public Class FormSalesReturnDet
                 id_product = dt_filter(0)("id_product").ToString
                 product_name = dt_filter(0)("name").ToString
                 size = dt_filter(0)("size").ToString
+                prod_class = dt_filter(0)("class").ToString
+                prod_color = dt_filter(0)("color").ToString
+                prod_sht = dt_filter(0)("sht").ToString
                 bom_unit_price = Decimal.Parse(dt_filter(0)("bom_unit_price").ToString)
                 is_old = dt_filter(0)("is_old_design").ToString
                 is_unique_report = dt_filter(0)("is_unique_report").ToString
@@ -1923,6 +1990,9 @@ Public Class FormSalesReturnDet
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "class", prod_class)
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "color", prod_color)
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "sht", prod_sht)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "bom_unit_price", bom_unit_price)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "is_unique_report", is_unique_report)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "ol_store_id", ol_store_id)
@@ -1966,6 +2036,9 @@ Public Class FormSalesReturnDet
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "class", prod_class)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "color", prod_color)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "sht", prod_sht)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "bom_unit_price", bom_unit_price)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "is_unique_report", is_unique_report)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "ol_store_id", ol_store_id)
@@ -2793,6 +2866,9 @@ Public Class FormSalesReturnDet
                     newRow("code") = data.Rows(0)("code").ToString
                     newRow("name") = data.Rows(0)("name").ToString
                     newRow("size") = data.Rows(0)("size").ToString
+                    newRow("class") = data.Rows(0)("class").ToString
+                    newRow("color") = data.Rows(0)("color").ToString
+                    newRow("sht") = data.Rows(0)("sht").ToString
                     newRow("is_unique_not_found") = is_unique_not_found
                     newRow("is_no_stock") = is_no_stock
                     newRow("id_scan_type") = LUETypeScan.EditValue
@@ -2801,6 +2877,8 @@ Public Class FormSalesReturnDet
                     FormSalesReturnDetProblem.TxtCode.Text = data.Rows(0)("design_code").ToString
                     FormSalesReturnDetProblem.TxtBarcode.Text = data.Rows(0)("code").ToString
                     FormSalesReturnDetProblem.TxtSize.Text = data.Rows(0)("size").ToString
+                    FormSalesReturnDetProblem.TxtClass.Text = data.Rows(0)("class").ToString
+                    FormSalesReturnDetProblem.Txtcolor.Text = data.Rows(0)("color").ToString
                     FormSalesReturnDetProblem.TxtDesign.Text = data.Rows(0)("name").ToString
                     FormSalesReturnDetProblem.id_product = data.Rows(0)("id_product").ToString
                     FormSalesReturnDetProblem.id_type = "1"
@@ -3089,5 +3167,29 @@ Public Class FormSalesReturnDet
             FormMenuAuth.type = "7"
             FormMenuAuth.ShowDialog()
         End If
+    End Sub
+
+    Private Sub RepositoryItemTextEdit_KeyDown(sender As Object, e As KeyEventArgs) Handles RepositoryItemTextEdit.KeyDown
+        cforKeyDown = ChrW(e.KeyCode)
+    End Sub
+
+    Private Sub RepositoryItemTextEdit_KeyUp(sender As Object, e As KeyEventArgs) Handles RepositoryItemTextEdit.KeyUp
+        If Len(GVBarcode.EditingValue.ToString) > 1 Then
+            If cforKeyDown <> ChrW(e.KeyCode) OrElse cforKeyDown = vbNullChar Then
+                cforKeyDown = vbNullChar
+                GVBarcode.SetRowCellValue(GVBarcode.FocusedRowHandle, "code", "")
+                Return
+            End If
+
+            Dim elapsed As TimeSpan = DateTime.Now - _lastKeystroke
+
+            If elapsed.TotalMilliseconds > speed_barcode_read Then GVBarcode.SetRowCellValue(GVBarcode.FocusedRowHandle, "code", "")
+
+            'If e.KeyCode = Keys.[Return] AndAlso TextEdit1.Text.Count > 0 Then
+            'action enter
+            'End If
+        End If
+
+        _lastKeystroke = DateTime.Now
     End Sub
 End Class

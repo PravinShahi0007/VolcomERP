@@ -1480,9 +1480,15 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
 
     Private Sub BResetMark_Click(sender As Object, e As EventArgs) Handles BResetMark.Click
         Cursor = Cursors.WaitCursor
+        Dim rmt_reset As String =""
+        If LECompanyCategory.EditValue.ToString <> "6" Then
+            rmt_reset = "153"
+        Else
+            rmt_reset = "347"
+        End If
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to reset this document?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
-            Dim query As String = "DELETE FROM tb_report_mark WHERE id_report='" & id_company & "' AND report_mark_type='153';UPDATE tb_m_comp SET is_active='3',id_report_status='1' WHERE id_comp='" & id_company & "'"
+            Dim query As String = "DELETE FROM tb_report_mark WHERE id_report='" & id_company & "' AND report_mark_type='" & rmt_reset & "';UPDATE tb_m_comp SET is_active='3',id_report_status='1' WHERE id_comp='" & id_company & "'"
             execute_non_query(query, True, "", "", "", "")
             action_load()
         End If

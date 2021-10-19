@@ -54,6 +54,7 @@ SELECT 1 AS id,'Yes' AS auto_debet"
             BtnPrint.Visible = False
             BMark.Visible = False
             BtnSave.Visible = True
+            BAttachment.Visible = False
             '
             If is_book_transfer = True Then
                 FormBankWithdrawalBookTransfer.id_coa_tag = id_coa_tag
@@ -1290,6 +1291,41 @@ GROUP BY dn.`id_debit_note`"
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                 Next
                 calculate_amount()
+            ElseIf report_mark_type = "349" Then 'prepaid expense
+                'load header
+                Dim id_comp As String = FormBankWithdrawal.SLEVendorPrepaidEx.EditValue
+                Dim id_comp_contact As String = get_company_x(id_comp, 6)
+                SLEVendor.EditValue = id_comp_contact
+                SLEReportType.EditValue = report_mark_type
+
+                GridColumnPayment.OptionsColumn.AllowEdit = False
+
+                'load detail
+                For i As Integer = 0 To FormBankWithdrawal.GVPrepaidExp.RowCount - 1
+                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "id_prepaid_expense").ToString
+                    newRow("report_mark_type") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "report_mark_type").ToString
+                    newRow("id_acc") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "id_acc").ToString
+                    newRow("acc_name") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "acc_name").ToString
+                    newRow("acc_description") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "acc_description").ToString
+                    newRow("vendor") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "comp_number").ToString
+                    newRow("id_dc") = "1"
+                    newRow("dc_code") = "D"
+                    newRow("id_comp") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "id_comp_default").ToString
+                    newRow("comp_number") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "comp_number_default").ToString
+                    newRow("number") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "number").ToString
+                    newRow("total_pay") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "total_dp")
+                    newRow("kurs") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "kurs")
+                    newRow("id_currency") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "id_currency").ToString
+                    newRow("currency") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "currency").ToString
+                    newRow("val_bef_kurs") = If(FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "id_currency").ToString = "1", FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "balance"), FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "balance") / FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "kurs"))
+                    newRow("value") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "balance")
+                    newRow("value_view") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "balance")
+                    newRow("balance_due") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "balance")
+                    newRow("note") = FormBankWithdrawal.GVPrepaidExp.GetRowCellValue(i, "inv_number").ToString
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                Next
+                calculate_amount()
             End If
 
             If is_buy_valas Then
@@ -1305,6 +1341,7 @@ GROUP BY dn.`id_debit_note`"
             SLEACCTrfFee.ReadOnly = True
             TETrfFee.Enabled = False
             '
+            BAttachment.Visible = True
             BtnPrint.Visible = True
             BMark.Visible = True
             BtnSave.Visible = False
@@ -2126,6 +2163,17 @@ ORDER BY id_stock_valas DESC LIMIT 1"
         Else
             warningCustom("Auto journal not found.")
         End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BAttachment_Click(sender As Object, e As EventArgs) Handles BAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = "159"
+        FormDocumentUpload.id_report = id_payment
+        If is_view = "1" Or BtnViewJournal.Visible = True Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

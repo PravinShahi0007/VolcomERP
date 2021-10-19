@@ -309,6 +309,7 @@
     <Compile Include="ClassProductionFinalClear.vb" />
     <Compile Include="ClassProductionPLToWHRec.vb" />
     <Compile Include="ClassPromoCollection.vb" />
+    <Compile Include="ClassPromoZalora.vb" />
     <Compile Include="ClassProposePriceMKD.vb" />
     <Compile Include="ClassPurcAsset.vb" />
     <Compile Include="ClassPurcItemStock.vb" />
@@ -2795,6 +2796,12 @@
     <Compile Include="FormItemExpensePop.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemExpenseSNI.Designer.vb">
+      <DependentUpon>FormItemExpenseSNI.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemExpenseSNI.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemReq.Designer.vb">
       <DependentUpon>FormItemReq.vb</DependentUpon>
     </Compile>
@@ -3725,6 +3732,12 @@
     <Compile Include="FormPolisRegPick.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPolisRegPop.Designer.vb">
+      <DependentUpon>FormPolisRegPop.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPolisRegPop.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPolisRegSplit.Designer.vb">
       <DependentUpon>FormPolisRegSplit.vb</DependentUpon>
     </Compile>
@@ -3807,6 +3820,24 @@
       <DependentUpon>FormPreCalFGPODet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPreCalFGPODet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPrepaidExpense.Designer.vb">
+      <DependentUpon>FormPrepaidExpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPrepaidExpense.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPrepaidExpenseDet.Designer.vb">
+      <DependentUpon>FormPrepaidExpenseDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPrepaidExpenseDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPrepaidExpensePolis.Designer.vb">
+      <DependentUpon>FormPrepaidExpensePolis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPrepaidExpensePolis.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPriceChecker.Designer.vb">
@@ -4215,6 +4246,18 @@
       <DependentUpon>FormPromoRulesDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPromoRulesDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPromoZalora.Designer.vb">
+      <DependentUpon>FormPromoZalora.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPromoZalora.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPromoZaloraDet.Designer.vb">
+      <DependentUpon>FormPromoZaloraDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPromoZaloraDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProposeEmpSalary.Designer.vb">
@@ -7301,6 +7344,12 @@
     <Compile Include="FormSNIRealisasiDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSNIRealisasiPop.Designer.vb">
+      <DependentUpon>FormSNIRealisasiPop.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSNIRealisasiPop.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSNISerahTerima.Designer.vb">
       <DependentUpon>FormSNISerahTerima.vb</DependentUpon>
     </Compile>
@@ -9422,6 +9471,12 @@
     <Compile Include="ReportPolis.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPolisReg.Designer.vb">
+      <DependentUpon>ReportPolisReg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPolisReg.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPOSClosingNoStock.Designer.vb">
       <DependentUpon>ReportPOSClosingNoStock.vb</DependentUpon>
     </Compile>
@@ -9438,6 +9493,18 @@
       <DependentUpon>ReportPreCalReport.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportPreCalReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportPreCalStorage.Designer.vb">
+      <DependentUpon>ReportPreCalStorage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPreCalStorage.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportPrepaidExpense.Designer.vb">
+      <DependentUpon>ReportPrepaidExpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPrepaidExpense.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportProdBOM.designer.vb">
@@ -9624,6 +9691,12 @@
       <DependentUpon>ReportPromoCollection.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportPromoCollection.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportPromoZalora.Designer.vb">
+      <DependentUpon>ReportPromoZalora.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPromoZalora.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportProposeEmpSalary.Designer.vb">
@@ -10126,6 +10199,18 @@
       <DependentUpon>ReportStockQCSummary.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportStockQCSummary.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportStockTakeProposeListToko.Designer.vb">
+      <DependentUpon>ReportStockTakeProposeListToko.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportStockTakeProposeListToko.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportStockTakeProposeSuratIjin.Designer.vb">
+      <DependentUpon>ReportStockTakeProposeSuratIjin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportStockTakeProposeSuratIjin.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportStockTakeStoreBAPHasil.Designer.vb">
@@ -11502,6 +11587,9 @@
     <EmbeddedResource Include="FormItemExpensePop.resx">
       <DependentUpon>FormItemExpensePop.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormItemExpenseSNI.resx">
+      <DependentUpon>FormItemExpenseSNI.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormItemReq.resx">
       <DependentUpon>FormItemReq.vb</DependentUpon>
     </EmbeddedResource>
@@ -11964,6 +12052,9 @@
     <EmbeddedResource Include="FormPolisRegPick.resx">
       <DependentUpon>FormPolisRegPick.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPolisRegPop.resx">
+      <DependentUpon>FormPolisRegPop.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPolisRegSplit.resx">
       <DependentUpon>FormPolisRegSplit.vb</DependentUpon>
     </EmbeddedResource>
@@ -12006,6 +12097,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPreCalFGPODet.resx">
       <DependentUpon>FormPreCalFGPODet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrepaidExpense.resx">
+      <DependentUpon>FormPrepaidExpense.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrepaidExpenseDet.resx">
+      <DependentUpon>FormPrepaidExpenseDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrepaidExpensePolis.resx">
+      <DependentUpon>FormPrepaidExpensePolis.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPriceChecker.resx">
       <DependentUpon>FormPriceChecker.vb</DependentUpon>
@@ -12210,6 +12310,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPromoRulesDet.resx">
       <DependentUpon>FormPromoRulesDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoZalora.resx">
+      <DependentUpon>FormPromoZalora.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPromoZaloraDet.resx">
+      <DependentUpon>FormPromoZaloraDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProposeEmpSalary.resx">
       <DependentUpon>FormProposeEmpSalary.vb</DependentUpon>
@@ -14087,6 +14193,9 @@
     <EmbeddedResource Include="FormSNIRealisasiDet.resx">
       <DependentUpon>FormSNIRealisasiDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSNIRealisasiPop.resx">
+      <DependentUpon>FormSNIRealisasiPop.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSNISerahTerima.resx">
       <DependentUpon>FormSNISerahTerima.vb</DependentUpon>
     </EmbeddedResource>
@@ -15267,6 +15376,9 @@
     <EmbeddedResource Include="ReportPolis.resx">
       <DependentUpon>ReportPolis.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportPolisReg.resx">
+      <DependentUpon>ReportPolisReg.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportPOSClosingNoStock.resx">
       <DependentUpon>ReportPOSClosingNoStock.vb</DependentUpon>
     </EmbeddedResource>
@@ -15275,6 +15387,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPreCalReport.resx">
       <DependentUpon>ReportPreCalReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPreCalStorage.resx">
+      <DependentUpon>ReportPreCalStorage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPrepaidExpense.resx">
+      <DependentUpon>ReportPrepaidExpense.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProdBOM.resx">
       <DependentUpon>ReportProdBOM.vb</DependentUpon>
@@ -15382,6 +15500,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPromoCollection.resx">
       <DependentUpon>ReportPromoCollection.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPromoZalora.resx">
+      <DependentUpon>ReportPromoZalora.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProposeEmpSalary.resx">
       <DependentUpon>ReportProposeEmpSalary.vb</DependentUpon>
@@ -15659,6 +15780,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportStockQCSummary.resx">
       <DependentUpon>ReportStockQCSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportStockTakeProposeListToko.resx">
+      <DependentUpon>ReportStockTakeProposeListToko.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportStockTakeProposeSuratIjin.resx">
+      <DependentUpon>ReportStockTakeProposeSuratIjin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportStockTakeStoreBAPHasil.resx">
       <DependentUpon>ReportStockTakeStoreBAPHasil.vb</DependentUpon>

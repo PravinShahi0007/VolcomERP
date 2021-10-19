@@ -1,4 +1,5 @@
 ﻿Public Class FormReportBalanceSheetTax
+    Public is_contain_both As Boolean = False
     Private Sub FormReportBalanceSheetTax_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -47,16 +48,30 @@
 
     Private Sub FormReportBalanceSheetTax_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim q As String = ""
-        If FormReportBalanceSheet.SLETaxCat.Properties.View.GetFocusedRowCellValue("id_type").ToString = "2" Then
-            'PPN
-            q = "SELECT DATE_ADD(MAX(period_to),INTERVAL 1 DAY) AS min_date
+        If is_contain_both Then
+            q = "
+SELECT MAX(a.min_date) AS min_date FROM
+(
+SELECT DATE_ADD(MAX(period_to),INTERVAL 1 DAY) AS min_date
+FROM tb_tax_ppn_summary
+WHERE id_report_status=6
+UNION ALL
+SELECT DATE_ADD(MAX(period_to),INTERVAL 1 DAY) AS min_date
+FROM tb_tax_pph_summary
+WHERE id_report_status=6
+) a"
+        Else
+            If FormReportBalanceSheet.SLETaxCat.Properties.View.GetFocusedRowCellValue("id_type").ToString = "2" Then
+                'PPN
+                q = "SELECT DATE_ADD(MAX(period_to),INTERVAL 1 DAY) AS min_date
 FROM tb_tax_ppn_summary
 WHERE id_report_status=6"
-        Else
-            'pph
-            q = "SELECT DATE_ADD(MAX(period_to),INTERVAL 1 DAY) AS min_date
+            Else
+                'pph
+                q = "SELECT DATE_ADD(MAX(period_to),INTERVAL 1 DAY) AS min_date
 FROM tb_tax_pph_summary
 WHERE id_report_status=6"
+            End If
         End If
 
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")

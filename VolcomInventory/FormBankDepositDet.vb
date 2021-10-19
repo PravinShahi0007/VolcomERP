@@ -461,6 +461,7 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
                 SLEAkunValas.Enabled = False
                 SLEUnit.EditValue = id_coa_tag
                 SLEUnit.Enabled = False
+
                 For i As Integer = 0 To FormBankDeposit.GVInvMat.RowCount - 1
                     'id_report,number,total,balance due
                     Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
@@ -483,6 +484,36 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
                     newRow("id_dc") = If(FormBankDeposit.GVInvMat.GetRowCellValue(i, "balance") < 0, "1", "2")
                     newRow("dc_code") = If(FormBankDeposit.GVInvMat.GetRowCellValue(i, "balance") < 0, "D", "K")
                     newRow("value_view") = Math.Abs(FormBankDeposit.GVInvMat.GetRowCellValue(i, "balance"))
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                Next
+            ElseIf type_rec = "6" Then 'break prepaid expense
+                SLEAkunValas.Enabled = False
+                SLEUnit.EditValue = id_coa_tag
+                SLEUnit.Enabled = False
+
+                GridColumnReceiveView.OptionsColumn.AllowEdit = False
+                For i As Integer = 0 To FormBankDeposit.GVBreakPrepaid.RowCount - 1
+                    'id_report,number,total,balance due
+                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = FormBankDeposit.GVBreakPrepaid.GetRowCellValue(i, "id_prepaid_expense").ToString
+                    newRow("id_report_det") = FormBankDeposit.GVBreakPrepaid.GetRowCellValue(i, "id_prepaid_expense_det").ToString
+                    newRow("report_mark_type") = FormBankDeposit.GVBreakPrepaid.GetRowCellValue(i, "rmt").ToString
+                    newRow("report_mark_type_name") = "Prepaid Expense"
+                    newRow("number") = FormBankDeposit.GVBreakPrepaid.GetRowCellValue(i, "number").ToString
+                    newRow("id_comp") = FormBankDeposit.GVBreakPrepaid.GetRowCellValue(i, "id_store").ToString
+                    newRow("id_acc") = FormBankDeposit.GVBreakPrepaid.GetRowCellValue(i, "id_acc").ToString
+                    newRow("acc_name") = FormBankDeposit.GVBreakPrepaid.GetRowCellValue(i, "acc_name").ToString
+                    newRow("acc_description") = FormBankDeposit.GVBreakPrepaid.GetRowCellValue(i, "acc_description").ToString
+                    newRow("comp_number") = FormBankDeposit.GVBreakPrepaid.GetRowCellValue(i, "store_code").ToString
+                    newRow("vendor") = FormBankDeposit.GVBreakPrepaid.GetRowCellValue(i, "vendor").ToString
+                    newRow("total_rec") = FormBankDeposit.GVBreakPrepaid.GetRowCellValue(i, "remaining")
+                    newRow("value") = FormBankDeposit.GVBreakPrepaid.GetRowCellValue(i, "remaining")
+                    newRow("value_bef_kurs") = 0
+                    newRow("balance_due") = FormBankDeposit.GVBreakPrepaid.GetRowCellValue(i, "remaining")
+                    newRow("note") = "Break " & FormBankDeposit.GVBreakPrepaid.GetRowCellValue(i, "description").ToString & " " & FormBankDeposit.GVBreakPrepaid.GetRowCellValue(i, "vendor")
+                    newRow("id_dc") = "2"
+                    newRow("dc_code") = "K"
+                    newRow("value_view") = Math.Abs(FormBankDeposit.GVBreakPrepaid.GetRowCellValue(i, "remaining"))
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                 Next
             End If

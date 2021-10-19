@@ -8,17 +8,30 @@
     End Sub
 
     Sub load_list()
-        Dim q As String = "SELECT c.comp_name,cal.id_pre_cal_fgpo,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
+        Dim q As String = "SELECT c.comp_name,cal.id_report_status,sts.report_status,cal.id_pre_cal_fgpo,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
 FROM
 `tb_pre_cal_fgpo` cal
 INNER JOIN tb_m_user usr ON usr.`id_user`=cal.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-INNER JOIN tb_m_comp c ON c.id_comp=cal.id_comp"
+INNER JOIN tb_m_comp c ON c.id_comp=cal.id_comp
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=cal.id_report_status
+ORDER BY cal.id_pre_cal_fgpo DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCPreCal.DataSource = dt
         GVPreCal.BestFitColumns()
 
         check_menu()
+    End Sub
+
+    Private Sub GVPreCal_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVPreCal.RowStyle
+        Try
+            If GVPreCal.GetRowCellValue(e.RowHandle, "id_report_status").ToString = "5" Then
+                e.Appearance.BackColor = Color.Salmon
+                e.Appearance.ForeColor = Color.Red
+                e.Appearance.FontStyleDelta = FontStyle.Bold
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
 
     Private Sub FormAWBOther_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated

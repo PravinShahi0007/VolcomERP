@@ -74,6 +74,13 @@
                 FormFGStock.GroupControlInfo.Enabled = True
                 FormFGStock.GroupControlTraccking.Enabled = True
                 FormFGStock.GCFGStockCard.DataSource = Nothing
+                FormFGStock.PictureEdit2.Image = Nothing
+                Try
+                    Dim tClient As Net.WebClient = New Net.WebClient
+                    Dim tImage As Bitmap = Bitmap.FromStream(New IO.MemoryStream(tClient.DownloadData(get_setup_field("cloud_image_url").ToString + "/TH_" + FormFGStock.TxtCodeDsgSC.Text + "_1.jpg")))
+                    FormFGStock.PictureEdit2.Image = tImage
+                Catch ex As Exception
+                End Try
                 Close()
                 FormFGStock.TxtCodeDsgSC.Focus()
             ElseIf id_pop_up = "2" Then

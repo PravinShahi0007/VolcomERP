@@ -562,6 +562,8 @@ Public Class FormSalesOrderDet
 
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMain) Then
             errorInput()
+        ElseIf GVItemList.RowCount <= 0 Then
+            stopCustom("Please input product")
         ElseIf Not cond_data Then
             If id_commerce_type = "1" Then
                 stopCustom("Please see error log in item list !")
@@ -904,6 +906,7 @@ Public Class FormSalesOrderDet
 
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
+        GVItemList.BestFitColumns()
         ReportSalesOrder.dt = GCItemList.DataSource
         ReportSalesOrder.id_sales_order = id_sales_order
         Dim Report As New ReportSalesOrder()
@@ -1172,6 +1175,9 @@ WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
             newRow("name") = ""
             newRow("code") = ""
             newRow("size") = ""
+            newRow("class") = ""
+            newRow("color") = ""
+            newRow("sht") = ""
             newRow("sales_order_det_qty") = 0
             newRow("id_design_price") = 0
             newRow("design_price") = 0
@@ -1329,6 +1335,9 @@ WHERE id_comp IN (" & id_store & ", " & id_comp_par & ")"
                             GVItemList.SetRowCellValue(rh, "id_sales_order_det", "0")
                             GVItemList.SetRowCellValue(rh, "name", data_filter(0)("design_display_name").ToString)
                             GVItemList.SetRowCellValue(rh, "size", data_filter(0)("Size").ToString)
+                            GVItemList.SetRowCellValue(rh, "class", data_filter(0)("class").ToString)
+                            GVItemList.SetRowCellValue(rh, "color", data_filter(0)("color").ToString)
+                            GVItemList.SetRowCellValue(rh, "sht", data_filter(0)("sht").ToString)
                             GVItemList.SetRowCellValue(rh, "sales_order_det_qty", 0)
 
                             'untuk claim toko normal

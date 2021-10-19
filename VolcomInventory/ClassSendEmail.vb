@@ -4065,7 +4065,7 @@ FROM tb_opt o "
         </table> "
             client.Send(mail)
         ElseIf report_mark_type = "345" Then
-            'send stok toko
+            'send auto rmrs
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Auto MRS - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
@@ -4096,13 +4096,18 @@ FROM tb_opt o "
                 mail.CC.Add(to_mail)
             Next
             '
-            mail.Subject = "Volcom Indonesia - Notifikasi Kebutuhan MRS kelebihan Receiving "
+            mail.Subject = "Volcom Indonesia - Notifikasi RMRS Otomatis "
             mail.IsBodyHtml = True
             mail.Body = ""
-            '
-            Dim qbody As String = "SELECT pod.`id_prod_order_det`,pod.`id_prod_demand_product`,rd.`prod_order_rec_det_qty` AS rec_qty,tot.qty,pod.`prod_order_qty`,(tot.qty-pod.`prod_order_qty`) AS more_qty
-,CONCAT(p.product_full_code,' - ',d.`design_display_name`) AS prod,cd.`code_detail_name` AS size,r.`prod_order_rec_number`,po.`prod_order_number`
-,IF((tot.qty-pod.`prod_order_qty`)-rd.`prod_order_rec_det_qty`>=0,rd.`prod_order_rec_det_qty`,(tot.qty-pod.`prod_order_qty`)) AS this_rec_more
+            '-- ,IF((tot.qty-pod.`prod_order_qty`)-rd.`prod_order_rec_det_qty`>=0,rd.`prod_order_rec_det_qty`,(tot.qty-pod.`prod_order_qty`)) AS this_rec_more
+            '-- ,(tot.qty-pod.`prod_order_qty`) AS grand_tot_rec_more
+
+            Dim qbody As String = "SELECT pod.`id_prod_order_det`,pod.`id_prod_demand_product`,SUM(tot.qty) AS qty
+,CONCAT(d.design_code,' - ',cd.class,' ',d.`design_name`,' ',cd.color) AS prod,cd.`code_detail_name` AS size,r.`prod_order_rec_number`,po.`prod_order_number`
+,SUM(pod.`prod_order_qty`) AS prod_order_qty
+,SUM(rd.`prod_order_rec_det_qty`) AS rec_qty
+,SUM(tot.qty-pod.`prod_order_qty`) AS grand_tot_rec_more
+,IF(SUM(tot.qty-pod.`prod_order_qty`)<SUM(rd.`prod_order_rec_det_qty`),SUM(tot.qty-pod.`prod_order_qty`),SUM(rd.`prod_order_rec_det_qty`)) AS this_rec_more
 FROM tb_prod_order_rec_det rd 
 INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec`
 INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=rd.`id_prod_order_det` AND rd.`id_prod_order_rec`='" & id_report & "' 
@@ -4112,6 +4117,22 @@ INNER JOIN tb_m_product p ON p.`id_product`=pdp.`id_product`
 INNER JOIN tb_m_design d ON d.`id_design`=p.`id_design`
 INNER JOIN tb_m_product_code c ON c.`id_product`=p.`id_product` 
 INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=c.`id_code_detail` AND cd.`id_code`=33
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = d.id_design
 LEFT JOIN
 (
 	SELECT rd.`id_prod_order_det`,SUM(prod_order_rec_det_qty) AS qty
@@ -4169,7 +4190,7 @@ HAVING this_rec_more>0"
                  <tr>
                   <td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
                   <div>
-                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Notifikasi Auto MRS, Receiving " + dtbody.Rows(0)("prod_order_rec_number").ToString + " FGPO dengan nomor " + dtbody.Rows(0)("prod_order_number").ToString + ", total receiving melebihi qty FGPO. Detail sebagai berikut: </span><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Notifikasi pembuatan RMRS otomatis nomor " + par1 + ", Receiving " + dtbody.Rows(0)("prod_order_rec_number").ToString + " FGPO dengan nomor " + dtbody.Rows(0)("prod_order_number").ToString + ", total receiving melebihi qty FGPO. Detail sebagai berikut: </span><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
                   </div>
                   </td>
                  </tr>
@@ -4178,22 +4199,22 @@ HAVING this_rec_more>0"
                   <table width='100%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='background:white; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#000000'>
                   <tr style='background-color:black; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#ffffff'>
                     <th>Product</th>
-                    <th>Size</th>
                     <th>FGPO Qty</th>
                     <th>Receiving Qty</th>
                     <th>Total Receiving</th>
                     <th>Kelebihan Qty</th>
+                    <th>Akumulasi Kelebihan Qty</th>
                   </tr> 
 
                 <!-- row data --> "
             For d As Integer = 0 To dtbody.Rows.Count - 1
                 body_temp += "
       <td>" + dtbody.Rows(d)("prod").ToString() + "</td>
-      <td>" + dtbody.Rows(d)("size").ToString() + "</td>
       <td>" + Decimal.Parse(dtbody.Rows(d)("prod_order_qty").ToString()).ToString("N0") + "</td>
       <td>" + Decimal.Parse(dtbody.Rows(d)("rec_qty").ToString()).ToString("N0") + "</td>
       <td>" + Decimal.Parse(dtbody.Rows(d)("qty").ToString()).ToString("N0") + "</td>
       <td>" + Decimal.Parse(dtbody.Rows(d)("this_rec_more").ToString()).ToString("N0") + "</td>
+      <td>" + Decimal.Parse(dtbody.Rows(d)("grand_tot_rec_more").ToString()).ToString("N0") + "</td>
       </tr>"
             Next
             body_temp += "</table>

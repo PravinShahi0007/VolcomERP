@@ -177,6 +177,31 @@ GROUP BY inv.id_awb_inv_sum"
         FormItemExpensePop.ShowDialog()
     End Sub
 
+    Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BImport.Click
+
+    End Sub
+
+    Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVListSNI.DoubleClick
+        If GVListSNI.RowCount > 0 Then
+            FormItemExpenseSNI.id_pps = GVListSNI.GetFocusedRowCellValue("id_sni_pps").ToString
+            FormItemExpenseSNI.TEBudgetNumber.Text = GVListSNI.GetFocusedRowCellValue("number").ToString
+            FormItemExpenseSNI.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BrefreshSNI_Click(sender As Object, e As EventArgs) Handles BrefreshSNI.Click
+        Dim q As String = "SELECT pps.`id_sni_pps`,pps.`number`,pps.`created_date`,emp.`employee_name`,s.season
+FROM tb_sni_pps pps
+INNER JOIN tb_m_user usr ON usr.`id_user`=pps.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_season s ON s.id_season=pps.id_season
+LEFT JOIN tb_sni_realisasi sr ON sr.id_sni_pps=pps.id_sni_pps AND sr.id_report_status !=5
+WHERE pps.id_report_status=6 AND ISNULL(sr.id_sni_realisasi) "
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCListSNI.DataSource = dt
+        GVListSNI.BestFitColumns()
+    End Sub
+
     'Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BImport.Click
     '    If GVInvoice.RowCount > 0 Then
     '        FormItemExpenseDet.action = "ins"

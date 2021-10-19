@@ -71,6 +71,9 @@ WHERE d.id_design='" & id_design & "'"
             MEECOPNote.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("cop_pd_note").ToString
             SLECOO.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("coo").ToString
             '
+            TEClass.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("product_class_display").ToString
+            TEColor.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("color_display").ToString
+            '
             TEEcop.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd") - FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
             TEAdditionalCost.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
             SLECoolStorage.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("is_cold_storage").ToString
@@ -82,6 +85,7 @@ WHERE d.id_design='" & id_design & "'"
             warningCustom("Design not found")
             Close()
         End If
+
         '
         'id_season = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_season")
 
@@ -588,6 +592,7 @@ INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=d
                     End If
                     '
                     load_form()
+                    Close()
                 End If
             ElseIf BLock.Text = "Reset" Then
                 'reset
@@ -635,6 +640,7 @@ WHERE pd.is_pd=2 AND dsg.id_design='" & id_design & "'"
                         warningCustom("ECOP PD Reset complete")
                         '
                         load_form()
+                        Close()
                     End If
                 End If
             End If

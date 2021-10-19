@@ -142,6 +142,7 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -684,6 +685,7 @@ Partial Class FormBankWithdrawalDet
         '
         'PanelControl7
         '
+        Me.PanelControl7.Controls.Add(Me.BAttachment)
         Me.PanelControl7.Controls.Add(Me.BViewJurnalBUM)
         Me.PanelControl7.Controls.Add(Me.BtnViewJournal)
         Me.PanelControl7.Controls.Add(Me.BtnPrint)
@@ -1446,6 +1448,18 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn17.FieldName = "value_view"
         Me.GridColumn17.Name = "GridColumn17"
         '
+        'BAttachment
+        '
+        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttachment.ImageIndex = 14
+        Me.BAttachment.ImageList = Me.LargeImageCollection
+        Me.BAttachment.Location = New System.Drawing.Point(549, 2)
+        Me.BAttachment.Name = "BAttachment"
+        Me.BAttachment.Size = New System.Drawing.Size(114, 36)
+        Me.BAttachment.TabIndex = 22
+        Me.BAttachment.TabStop = False
+        Me.BAttachment.Text = "Attachment"
+        '
         'FormBankWithdrawalDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1655,4 +1669,5 @@ Partial Class FormBankWithdrawalDet
     Friend WithEvents CEPembelianValas As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents BMutasiValas As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BViewJurnalBUM As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
 End Class

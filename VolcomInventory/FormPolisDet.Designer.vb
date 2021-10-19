@@ -30,6 +30,20 @@ Partial Class FormPolisDet
         Me.BSaveDraft = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEPPSType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn58 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn59 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
+        Me.LDateFrom = New DevExpress.XtraEditors.LabelControl()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.LDateUntil = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEPolisType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.DECreatedDate = New DevExpress.XtraEditors.DateEdit()
@@ -54,7 +68,7 @@ Partial Class FormPolisDet
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandNewValue = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -79,6 +93,9 @@ Partial Class FormPolisDet
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITENilaiStock = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.PCNilaiStock = New DevExpress.XtraEditors.PanelControl()
+        Me.BGetExelNilaiStock = New DevExpress.XtraEditors.SimpleButton()
+        Me.BImportNilaiStock = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.GCNilaiLainnya = New DevExpress.XtraGrid.GridControl()
         Me.GVNilaiLainnya = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -93,11 +110,32 @@ Partial Class FormPolisDet
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XTPPenawaran = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCPenawaran = New DevExpress.XtraGrid.GridControl()
+        Me.PCNilaiLain = New DevExpress.XtraEditors.PanelControl()
+        Me.BGetExelNilaiLain = New DevExpress.XtraEditors.SimpleButton()
+        Me.BUploadExelNilaiLain = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPVendor = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPenawaranKolektif = New DevExpress.XtraGrid.GridControl()
         Me.CMPilihVendor = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.PilihVendorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GVPenawaranKolektif = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn56 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn69 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PCPenawaranKolektif = New DevExpress.XtraEditors.PanelControl()
+        Me.BDelPenawaranKolektif = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAddPenawaranKolektif = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEPenawaranAddKolektif = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn55 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPPenawaran = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPenawaran = New DevExpress.XtraGrid.GridControl()
         Me.GVPenawaran = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -117,6 +155,9 @@ Partial Class FormPolisDet
         Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BRefreshPenawaran = New DevExpress.XtraEditors.SimpleButton()
         Me.PCPenawaran = New DevExpress.XtraEditors.PanelControl()
+        Me.BSetVendorDipilih = New DevExpress.XtraEditors.SimpleButton()
+        Me.BUploadExcel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BGetExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.BDelPenawaran = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddPenawaran = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEPenawaranDel = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -134,6 +175,14 @@ Partial Class FormPolisDet
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.SLEPPSType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEPolisType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,14 +198,28 @@ Partial Class FormPolisDet
         CType(Me.GCNilaiStock, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVNilaiStock, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITENilaiStock, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCNilaiStock, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCNilaiStock.SuspendLayout()
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCNilaiLainnya, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVNilaiLainnya, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCNilaiLain, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCNilaiLain.SuspendLayout()
+        Me.XTPVendor.SuspendLayout()
+        CType(Me.GCPenawaranKolektif, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMPilihVendor.SuspendLayout()
+        CType(Me.GVPenawaranKolektif, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCPenawaranKolektif, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCPenawaranKolektif.SuspendLayout()
+        CType(Me.SLEPenawaranAddKolektif.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPPenawaran.SuspendLayout()
         CType(Me.GCPenawaran, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.CMPilihVendor.SuspendLayout()
         CType(Me.GVPenawaran, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICE, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCPenawaran, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCPenawaran.SuspendLayout()
@@ -198,7 +261,7 @@ Partial Class FormPolisDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 487)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(915, 41)
+        Me.PanelControl1.Size = New System.Drawing.Size(1017, 41)
         Me.PanelControl1.TabIndex = 7
         '
         'BAttachment
@@ -206,7 +269,7 @@ Partial Class FormPolisDet
         Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAttachment.ImageIndex = 13
         Me.BAttachment.ImageList = Me.LargeImageCollection
-        Me.BAttachment.Location = New System.Drawing.Point(460, 2)
+        Me.BAttachment.Location = New System.Drawing.Point(562, 2)
         Me.BAttachment.Name = "BAttachment"
         Me.BAttachment.Size = New System.Drawing.Size(106, 37)
         Me.BAttachment.TabIndex = 17
@@ -219,7 +282,7 @@ Partial Class FormPolisDet
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(566, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(668, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 37)
         Me.BtnPrint.TabIndex = 13
@@ -244,7 +307,7 @@ Partial Class FormPolisDet
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(641, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(743, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 37)
         Me.BtnCancel.TabIndex = 14
@@ -256,7 +319,7 @@ Partial Class FormPolisDet
         Me.BSaveDraft.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSaveDraft.ImageIndex = 7
         Me.BSaveDraft.ImageList = Me.LargeImageCollection
-        Me.BSaveDraft.Location = New System.Drawing.Point(716, 2)
+        Me.BSaveDraft.Location = New System.Drawing.Point(818, 2)
         Me.BSaveDraft.Name = "BSaveDraft"
         Me.BSaveDraft.Size = New System.Drawing.Size(97, 37)
         Me.BSaveDraft.TabIndex = 18
@@ -268,7 +331,7 @@ Partial Class FormPolisDet
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 4
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(813, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(915, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(100, 37)
         Me.BtnSave.TabIndex = 12
@@ -277,6 +340,14 @@ Partial Class FormPolisDet
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.LabelControl5)
+        Me.PanelControl2.Controls.Add(Me.SLEPPSType)
+        Me.PanelControl2.Controls.Add(Me.DEStart)
+        Me.PanelControl2.Controls.Add(Me.LDateFrom)
+        Me.PanelControl2.Controls.Add(Me.DEUntil)
+        Me.PanelControl2.Controls.Add(Me.LDateUntil)
+        Me.PanelControl2.Controls.Add(Me.LabelControl4)
+        Me.PanelControl2.Controls.Add(Me.SLEPolisType)
         Me.PanelControl2.Controls.Add(Me.TECreatedBy)
         Me.PanelControl2.Controls.Add(Me.TENumber)
         Me.PanelControl2.Controls.Add(Me.DECreatedDate)
@@ -286,8 +357,126 @@ Partial Class FormPolisDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(915, 96)
+        Me.PanelControl2.Size = New System.Drawing.Size(1017, 96)
         Me.PanelControl2.TabIndex = 8
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(382, 12)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(66, 13)
+        Me.LabelControl5.TabIndex = 184
+        Me.LabelControl5.Text = "Propose Type"
+        '
+        'SLEPPSType
+        '
+        Me.SLEPPSType.Location = New System.Drawing.Point(454, 9)
+        Me.SLEPPSType.Name = "SLEPPSType"
+        Me.SLEPPSType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEPPSType.Properties.View = Me.GridView6
+        Me.SLEPPSType.Size = New System.Drawing.Size(345, 20)
+        Me.SLEPPSType.TabIndex = 183
+        '
+        'GridView6
+        '
+        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn58, Me.GridColumn59})
+        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn58
+        '
+        Me.GridColumn58.Caption = "ID"
+        Me.GridColumn58.FieldName = "id_pps_type"
+        Me.GridColumn58.Name = "GridColumn58"
+        '
+        'GridColumn59
+        '
+        Me.GridColumn59.Caption = "Type"
+        Me.GridColumn59.FieldName = "pps_type"
+        Me.GridColumn59.Name = "GridColumn59"
+        Me.GridColumn59.Visible = True
+        Me.GridColumn59.VisibleIndex = 0
+        '
+        'DEStart
+        '
+        Me.DEStart.EditValue = Nothing
+        Me.DEStart.Location = New System.Drawing.Point(454, 66)
+        Me.DEStart.Name = "DEStart"
+        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Size = New System.Drawing.Size(162, 20)
+        Me.DEStart.TabIndex = 179
+        '
+        'LDateFrom
+        '
+        Me.LDateFrom.Location = New System.Drawing.Point(382, 69)
+        Me.LDateFrom.Name = "LDateFrom"
+        Me.LDateFrom.Size = New System.Drawing.Size(48, 13)
+        Me.LDateFrom.TabIndex = 180
+        Me.LDateFrom.Text = "Polis From"
+        '
+        'DEUntil
+        '
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Location = New System.Drawing.Point(649, 66)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Size = New System.Drawing.Size(150, 20)
+        Me.DEUntil.TabIndex = 181
+        '
+        'LDateUntil
+        '
+        Me.LDateUntil.Location = New System.Drawing.Point(622, 69)
+        Me.LDateUntil.Name = "LDateUntil"
+        Me.LDateUntil.Size = New System.Drawing.Size(21, 13)
+        Me.LDateUntil.TabIndex = 182
+        Me.LDateUntil.Text = "Until"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(382, 40)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(48, 13)
+        Me.LabelControl4.TabIndex = 178
+        Me.LabelControl4.Text = "Polis Type"
+        '
+        'SLEPolisType
+        '
+        Me.SLEPolisType.Location = New System.Drawing.Point(454, 37)
+        Me.SLEPolisType.Name = "SLEPolisType"
+        Me.SLEPolisType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEPolisType.Properties.View = Me.GridView5
+        Me.SLEPolisType.Size = New System.Drawing.Size(345, 20)
+        Me.SLEPolisType.TabIndex = 177
+        '
+        'GridView5
+        '
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn50, Me.GridColumn52})
+        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView5.Name = "GridView5"
+        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView5.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn50
+        '
+        Me.GridColumn50.Caption = "ID"
+        Me.GridColumn50.FieldName = "id_desc_premi"
+        Me.GridColumn50.Name = "GridColumn50"
+        '
+        'GridColumn52
+        '
+        Me.GridColumn52.Caption = "Type"
+        Me.GridColumn52.FieldName = "description"
+        Me.GridColumn52.Name = "GridColumn52"
+        Me.GridColumn52.Visible = True
+        Me.GridColumn52.VisibleIndex = 0
         '
         'TECreatedBy
         '
@@ -302,7 +491,7 @@ Partial Class FormPolisDet
         Me.TENumber.Location = New System.Drawing.Point(83, 9)
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(211, 20)
+        Me.TENumber.Size = New System.Drawing.Size(293, 20)
         Me.TENumber.TabIndex = 174
         '
         'DECreatedDate
@@ -324,7 +513,7 @@ Partial Class FormPolisDet
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl3.TabIndex = 173
-        Me.LabelControl3.Text = "Porpose Date"
+        Me.LabelControl3.Text = "Propose Date"
         '
         'LabelControl2
         '
@@ -348,13 +537,13 @@ Partial Class FormPolisDet
         Me.GCSummary.Location = New System.Drawing.Point(0, 46)
         Me.GCSummary.MainView = Me.BGVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(909, 279)
+        Me.GCSummary.Size = New System.Drawing.Size(1011, 279)
         Me.GCSummary.TabIndex = 9
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVSummary})
         '
         'BGVSummary
         '
-        Me.BGVSummary.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
+        Me.BGVSummary.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBandNewValue})
         Me.BGVSummary.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumnAlamat, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.BandedGridColumn9, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn10, Me.BandedGridColumn11})
         Me.BGVSummary.GridControl = Me.GCSummary
         Me.BGVSummary.Name = "BGVSummary"
@@ -546,20 +735,20 @@ Partial Class FormPolisDet
         Me.BandedGridColumn2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.BandedGridColumn2.Visible = True
         '
-        'gridBand3
+        'gridBandNewValue
         '
-        Me.gridBand3.Caption = "New Value"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn3)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn4)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn5)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn6)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn7)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn8)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn11)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn10)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 632
+        Me.gridBandNewValue.Caption = "New Value"
+        Me.gridBandNewValue.Columns.Add(Me.BandedGridColumn3)
+        Me.gridBandNewValue.Columns.Add(Me.BandedGridColumn4)
+        Me.gridBandNewValue.Columns.Add(Me.BandedGridColumn5)
+        Me.gridBandNewValue.Columns.Add(Me.BandedGridColumn6)
+        Me.gridBandNewValue.Columns.Add(Me.BandedGridColumn7)
+        Me.gridBandNewValue.Columns.Add(Me.BandedGridColumn8)
+        Me.gridBandNewValue.Columns.Add(Me.BandedGridColumn11)
+        Me.gridBandNewValue.Columns.Add(Me.BandedGridColumn10)
+        Me.gridBandNewValue.Name = "gridBandNewValue"
+        Me.gridBandNewValue.VisibleIndex = 2
+        Me.gridBandNewValue.Width = 632
         '
         'BandedGridColumn3
         '
@@ -682,7 +871,7 @@ Partial Class FormPolisDet
         Me.BLoadPolis.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BLoadPolis.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BLoadPolis.Name = "BLoadPolis"
-        Me.BLoadPolis.Size = New System.Drawing.Size(909, 38)
+        Me.BLoadPolis.Size = New System.Drawing.Size(1011, 38)
         Me.BLoadPolis.TabIndex = 142
         Me.BLoadPolis.Text = "Tampilkan Asuransi akan jatuh tempo"
         '
@@ -693,9 +882,9 @@ Partial Class FormPolisDet
         Me.XTCPolis.Location = New System.Drawing.Point(0, 96)
         Me.XTCPolis.Name = "XTCPolis"
         Me.XTCPolis.SelectedTabPage = Me.XTPSummary
-        Me.XTCPolis.Size = New System.Drawing.Size(915, 391)
+        Me.XTCPolis.Size = New System.Drawing.Size(1017, 391)
         Me.XTCPolis.TabIndex = 143
-        Me.XTCPolis.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPNilaiStock, Me.XTPDetail, Me.XTPPenawaran})
+        Me.XTCPolis.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPNilaiStock, Me.XTPDetail, Me.XTPVendor, Me.XTPPenawaran})
         '
         'XTPSummary
         '
@@ -703,7 +892,7 @@ Partial Class FormPolisDet
         Me.XTPSummary.Controls.Add(Me.PCSummary)
         Me.XTPSummary.Controls.Add(Me.BLoadPolis)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(909, 363)
+        Me.XTPSummary.Size = New System.Drawing.Size(1011, 363)
         Me.XTPSummary.Text = "Summary"
         '
         'PCSummary
@@ -713,14 +902,14 @@ Partial Class FormPolisDet
         Me.PCSummary.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCSummary.Location = New System.Drawing.Point(0, 0)
         Me.PCSummary.Name = "PCSummary"
-        Me.PCSummary.Size = New System.Drawing.Size(909, 46)
+        Me.PCSummary.Size = New System.Drawing.Size(1011, 46)
         Me.PCSummary.TabIndex = 143
         '
         'BDel
         '
         Me.BDel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDel.Image = CType(resources.GetObject("BDel.Image"), System.Drawing.Image)
-        Me.BDel.Location = New System.Drawing.Point(737, 2)
+        Me.BDel.Location = New System.Drawing.Point(839, 2)
         Me.BDel.Name = "BDel"
         Me.BDel.Size = New System.Drawing.Size(87, 42)
         Me.BDel.TabIndex = 3
@@ -730,7 +919,7 @@ Partial Class FormPolisDet
         '
         Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAdd.Image = CType(resources.GetObject("BAdd.Image"), System.Drawing.Image)
-        Me.BAdd.Location = New System.Drawing.Point(824, 2)
+        Me.BAdd.Location = New System.Drawing.Point(926, 2)
         Me.BAdd.Name = "BAdd"
         Me.BAdd.Size = New System.Drawing.Size(83, 42)
         Me.BAdd.TabIndex = 2
@@ -739,18 +928,19 @@ Partial Class FormPolisDet
         'XTPNilaiStock
         '
         Me.XTPNilaiStock.Controls.Add(Me.GCNilaiStock)
+        Me.XTPNilaiStock.Controls.Add(Me.PCNilaiStock)
         Me.XTPNilaiStock.Name = "XTPNilaiStock"
-        Me.XTPNilaiStock.Size = New System.Drawing.Size(909, 363)
+        Me.XTPNilaiStock.Size = New System.Drawing.Size(1011, 363)
         Me.XTPNilaiStock.Text = "Nilai Stock"
         '
         'GCNilaiStock
         '
         Me.GCNilaiStock.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCNilaiStock.Location = New System.Drawing.Point(0, 0)
+        Me.GCNilaiStock.Location = New System.Drawing.Point(0, 40)
         Me.GCNilaiStock.MainView = Me.GVNilaiStock
         Me.GCNilaiStock.Name = "GCNilaiStock"
         Me.GCNilaiStock.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RITENilaiStock})
-        Me.GCNilaiStock.Size = New System.Drawing.Size(909, 363)
+        Me.GCNilaiStock.Size = New System.Drawing.Size(1011, 323)
         Me.GCNilaiStock.TabIndex = 10
         Me.GCNilaiStock.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVNilaiStock})
         '
@@ -848,21 +1038,56 @@ Partial Class FormPolisDet
         Me.RITENilaiStock.Mask.UseMaskAsDisplayFormat = True
         Me.RITENilaiStock.Name = "RITENilaiStock"
         '
+        'PCNilaiStock
+        '
+        Me.PCNilaiStock.Controls.Add(Me.BGetExelNilaiStock)
+        Me.PCNilaiStock.Controls.Add(Me.BImportNilaiStock)
+        Me.PCNilaiStock.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCNilaiStock.Location = New System.Drawing.Point(0, 0)
+        Me.PCNilaiStock.Name = "PCNilaiStock"
+        Me.PCNilaiStock.Size = New System.Drawing.Size(1011, 40)
+        Me.PCNilaiStock.TabIndex = 11
+        '
+        'BGetExelNilaiStock
+        '
+        Me.BGetExelNilaiStock.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BGetExelNilaiStock.Image = CType(resources.GetObject("BGetExelNilaiStock.Image"), System.Drawing.Image)
+        Me.BGetExelNilaiStock.ImageList = Me.LargeImageCollection
+        Me.BGetExelNilaiStock.Location = New System.Drawing.Point(739, 2)
+        Me.BGetExelNilaiStock.Name = "BGetExelNilaiStock"
+        Me.BGetExelNilaiStock.Size = New System.Drawing.Size(122, 36)
+        Me.BGetExelNilaiStock.TabIndex = 19
+        Me.BGetExelNilaiStock.TabStop = False
+        Me.BGetExelNilaiStock.Text = "Get Excel List"
+        '
+        'BImportNilaiStock
+        '
+        Me.BImportNilaiStock.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BImportNilaiStock.Image = CType(resources.GetObject("BImportNilaiStock.Image"), System.Drawing.Image)
+        Me.BImportNilaiStock.ImageList = Me.LargeImageCollection
+        Me.BImportNilaiStock.Location = New System.Drawing.Point(861, 2)
+        Me.BImportNilaiStock.Name = "BImportNilaiStock"
+        Me.BImportNilaiStock.Size = New System.Drawing.Size(148, 36)
+        Me.BImportNilaiStock.TabIndex = 18
+        Me.BImportNilaiStock.TabStop = False
+        Me.BImportNilaiStock.Text = "Upload Excel List"
+        '
         'XTPDetail
         '
         Me.XTPDetail.Controls.Add(Me.GCNilaiLainnya)
+        Me.XTPDetail.Controls.Add(Me.PCNilaiLain)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(909, 363)
+        Me.XTPDetail.Size = New System.Drawing.Size(1011, 363)
         Me.XTPDetail.Text = "Nilai Lainnya"
         '
         'GCNilaiLainnya
         '
         Me.GCNilaiLainnya.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCNilaiLainnya.Location = New System.Drawing.Point(0, 0)
+        Me.GCNilaiLainnya.Location = New System.Drawing.Point(0, 40)
         Me.GCNilaiLainnya.MainView = Me.GVNilaiLainnya
         Me.GCNilaiLainnya.Name = "GCNilaiLainnya"
         Me.GCNilaiLainnya.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
-        Me.GCNilaiLainnya.Size = New System.Drawing.Size(909, 363)
+        Me.GCNilaiLainnya.Size = New System.Drawing.Size(1011, 323)
         Me.GCNilaiLainnya.TabIndex = 11
         Me.GCNilaiLainnya.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVNilaiLainnya})
         '
@@ -1016,26 +1241,59 @@ Partial Class FormPolisDet
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 8
         '
-        'XTPPenawaran
+        'PCNilaiLain
         '
-        Me.XTPPenawaran.Controls.Add(Me.GCPenawaran)
-        Me.XTPPenawaran.Controls.Add(Me.BRefreshPenawaran)
-        Me.XTPPenawaran.Controls.Add(Me.PCPenawaran)
-        Me.XTPPenawaran.Name = "XTPPenawaran"
-        Me.XTPPenawaran.Size = New System.Drawing.Size(909, 363)
-        Me.XTPPenawaran.Text = "Penawaran Vendor"
+        Me.PCNilaiLain.Controls.Add(Me.BGetExelNilaiLain)
+        Me.PCNilaiLain.Controls.Add(Me.BUploadExelNilaiLain)
+        Me.PCNilaiLain.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCNilaiLain.Location = New System.Drawing.Point(0, 0)
+        Me.PCNilaiLain.Name = "PCNilaiLain"
+        Me.PCNilaiLain.Size = New System.Drawing.Size(1011, 40)
+        Me.PCNilaiLain.TabIndex = 12
         '
-        'GCPenawaran
+        'BGetExelNilaiLain
         '
-        Me.GCPenawaran.ContextMenuStrip = Me.CMPilihVendor
-        Me.GCPenawaran.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCPenawaran.Location = New System.Drawing.Point(0, 51)
-        Me.GCPenawaran.MainView = Me.GVPenawaran
-        Me.GCPenawaran.Name = "GCPenawaran"
-        Me.GCPenawaran.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2})
-        Me.GCPenawaran.Size = New System.Drawing.Size(909, 280)
-        Me.GCPenawaran.TabIndex = 12
-        Me.GCPenawaran.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPenawaran})
+        Me.BGetExelNilaiLain.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BGetExelNilaiLain.Image = CType(resources.GetObject("BGetExelNilaiLain.Image"), System.Drawing.Image)
+        Me.BGetExelNilaiLain.ImageList = Me.LargeImageCollection
+        Me.BGetExelNilaiLain.Location = New System.Drawing.Point(739, 2)
+        Me.BGetExelNilaiLain.Name = "BGetExelNilaiLain"
+        Me.BGetExelNilaiLain.Size = New System.Drawing.Size(122, 36)
+        Me.BGetExelNilaiLain.TabIndex = 19
+        Me.BGetExelNilaiLain.TabStop = False
+        Me.BGetExelNilaiLain.Text = "Get Excel List"
+        '
+        'BUploadExelNilaiLain
+        '
+        Me.BUploadExelNilaiLain.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BUploadExelNilaiLain.Image = CType(resources.GetObject("BUploadExelNilaiLain.Image"), System.Drawing.Image)
+        Me.BUploadExelNilaiLain.ImageList = Me.LargeImageCollection
+        Me.BUploadExelNilaiLain.Location = New System.Drawing.Point(861, 2)
+        Me.BUploadExelNilaiLain.Name = "BUploadExelNilaiLain"
+        Me.BUploadExelNilaiLain.Size = New System.Drawing.Size(148, 36)
+        Me.BUploadExelNilaiLain.TabIndex = 18
+        Me.BUploadExelNilaiLain.TabStop = False
+        Me.BUploadExelNilaiLain.Text = "Upload Excel List"
+        '
+        'XTPVendor
+        '
+        Me.XTPVendor.Controls.Add(Me.GCPenawaranKolektif)
+        Me.XTPVendor.Controls.Add(Me.PCPenawaranKolektif)
+        Me.XTPVendor.Name = "XTPVendor"
+        Me.XTPVendor.Size = New System.Drawing.Size(1011, 363)
+        Me.XTPVendor.Text = "Penawaran Vendor"
+        '
+        'GCPenawaranKolektif
+        '
+        Me.GCPenawaranKolektif.ContextMenuStrip = Me.CMPilihVendor
+        Me.GCPenawaranKolektif.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPenawaranKolektif.Location = New System.Drawing.Point(0, 51)
+        Me.GCPenawaranKolektif.MainView = Me.GVPenawaranKolektif
+        Me.GCPenawaranKolektif.Name = "GCPenawaranKolektif"
+        Me.GCPenawaranKolektif.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit3, Me.RepositoryItemCheckEdit1})
+        Me.GCPenawaranKolektif.Size = New System.Drawing.Size(1011, 312)
+        Me.GCPenawaranKolektif.TabIndex = 15
+        Me.GCPenawaranKolektif.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPenawaranKolektif})
         '
         'CMPilihVendor
         '
@@ -1049,15 +1307,190 @@ Partial Class FormPolisDet
         Me.PilihVendorToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
         Me.PilihVendorToolStripMenuItem.Text = "Pilih Vendor"
         '
+        'GVPenawaranKolektif
+        '
+        Me.GVPenawaranKolektif.Appearance.FocusedRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GVPenawaranKolektif.Appearance.FocusedRow.Options.UseBackColor = True
+        Me.GVPenawaranKolektif.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn51, Me.GridColumn56, Me.GridColumn69})
+        Me.GVPenawaranKolektif.GridControl = Me.GCPenawaranKolektif
+        Me.GVPenawaranKolektif.Name = "GVPenawaranKolektif"
+        Me.GVPenawaranKolektif.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn51
+        '
+        Me.GridColumn51.Caption = "ID Vendor"
+        Me.GridColumn51.FieldName = "id_vendor"
+        Me.GridColumn51.Name = "GridColumn51"
+        Me.GridColumn51.OptionsColumn.AllowEdit = False
+        Me.GridColumn51.OptionsColumn.AllowFocus = False
+        Me.GridColumn51.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn56
+        '
+        Me.GridColumn56.Caption = "Nama Vendor"
+        Me.GridColumn56.FieldName = "comp_name"
+        Me.GridColumn56.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumn56.Name = "GridColumn56"
+        Me.GridColumn56.OptionsColumn.AllowEdit = False
+        Me.GridColumn56.OptionsColumn.AllowFocus = False
+        Me.GridColumn56.OptionsColumn.ReadOnly = True
+        Me.GridColumn56.Visible = True
+        Me.GridColumn56.VisibleIndex = 0
+        Me.GridColumn56.Width = 668
+        '
+        'GridColumn69
+        '
+        Me.GridColumn69.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn69.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn69.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn69.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn69.Caption = "Penawaran"
+        Me.GridColumn69.DisplayFormat.FormatString = "N2"
+        Me.GridColumn69.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn69.FieldName = "price"
+        Me.GridColumn69.Name = "GridColumn69"
+        Me.GridColumn69.Visible = True
+        Me.GridColumn69.VisibleIndex = 1
+        Me.GridColumn69.Width = 530
+        '
+        'RepositoryItemTextEdit3
+        '
+        Me.RepositoryItemTextEdit3.AutoHeight = False
+        Me.RepositoryItemTextEdit3.Mask.EditMask = "N2"
+        Me.RepositoryItemTextEdit3.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit3.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit3.Name = "RepositoryItemTextEdit3"
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
+        'PCPenawaranKolektif
+        '
+        Me.PCPenawaranKolektif.Controls.Add(Me.BDelPenawaranKolektif)
+        Me.PCPenawaranKolektif.Controls.Add(Me.BAddPenawaranKolektif)
+        Me.PCPenawaranKolektif.Controls.Add(Me.SLEPenawaranAddKolektif)
+        Me.PCPenawaranKolektif.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCPenawaranKolektif.Location = New System.Drawing.Point(0, 0)
+        Me.PCPenawaranKolektif.Name = "PCPenawaranKolektif"
+        Me.PCPenawaranKolektif.Size = New System.Drawing.Size(1011, 51)
+        Me.PCPenawaranKolektif.TabIndex = 14
+        '
+        'BDelPenawaranKolektif
+        '
+        Me.BDelPenawaranKolektif.Appearance.BackColor = System.Drawing.Color.Red
+        Me.BDelPenawaranKolektif.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BDelPenawaranKolektif.Appearance.Options.UseBackColor = True
+        Me.BDelPenawaranKolektif.Appearance.Options.UseForeColor = True
+        Me.BDelPenawaranKolektif.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.BDelPenawaranKolektif.Location = New System.Drawing.Point(299, 15)
+        Me.BDelPenawaranKolektif.Name = "BDelPenawaranKolektif"
+        Me.BDelPenawaranKolektif.Size = New System.Drawing.Size(55, 23)
+        Me.BDelPenawaranKolektif.TabIndex = 5
+        Me.BDelPenawaranKolektif.Text = "Drop"
+        '
+        'BAddPenawaranKolektif
+        '
+        Me.BAddPenawaranKolektif.Location = New System.Drawing.Point(218, 15)
+        Me.BAddPenawaranKolektif.Name = "BAddPenawaranKolektif"
+        Me.BAddPenawaranKolektif.Size = New System.Drawing.Size(75, 23)
+        Me.BAddPenawaranKolektif.TabIndex = 2
+        Me.BAddPenawaranKolektif.Text = "Add"
+        '
+        'SLEPenawaranAddKolektif
+        '
+        Me.SLEPenawaranAddKolektif.Location = New System.Drawing.Point(11, 17)
+        Me.SLEPenawaranAddKolektif.Name = "SLEPenawaranAddKolektif"
+        Me.SLEPenawaranAddKolektif.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEPenawaranAddKolektif.Properties.View = Me.GridView3
+        Me.SLEPenawaranAddKolektif.Size = New System.Drawing.Size(201, 20)
+        Me.SLEPenawaranAddKolektif.TabIndex = 0
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn53, Me.GridColumn54, Me.GridColumn55})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn53
+        '
+        Me.GridColumn53.Caption = "ID"
+        Me.GridColumn53.FieldName = "id_comp"
+        Me.GridColumn53.Name = "GridColumn53"
+        '
+        'GridColumn54
+        '
+        Me.GridColumn54.Caption = "Kode"
+        Me.GridColumn54.FieldName = "comp_number"
+        Me.GridColumn54.Name = "GridColumn54"
+        Me.GridColumn54.Visible = True
+        Me.GridColumn54.VisibleIndex = 0
+        '
+        'GridColumn55
+        '
+        Me.GridColumn55.Caption = "Vendor"
+        Me.GridColumn55.FieldName = "comp_name"
+        Me.GridColumn55.Name = "GridColumn55"
+        Me.GridColumn55.Visible = True
+        Me.GridColumn55.VisibleIndex = 1
+        '
+        'XTPPenawaran
+        '
+        Me.XTPPenawaran.Controls.Add(Me.GCPenawaran)
+        Me.XTPPenawaran.Controls.Add(Me.BRefreshPenawaran)
+        Me.XTPPenawaran.Controls.Add(Me.PCPenawaran)
+        Me.XTPPenawaran.Name = "XTPPenawaran"
+        Me.XTPPenawaran.Size = New System.Drawing.Size(1011, 363)
+        Me.XTPPenawaran.Text = "Penawaran Vendor"
+        '
+        'GCPenawaran
+        '
+        Me.GCPenawaran.ContextMenuStrip = Me.CMPilihVendor
+        Me.GCPenawaran.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPenawaran.Location = New System.Drawing.Point(0, 51)
+        Me.GCPenawaran.MainView = Me.GVPenawaran
+        Me.GCPenawaran.Name = "GCPenawaran"
+        Me.GCPenawaran.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2, Me.RICE})
+        Me.GCPenawaran.Size = New System.Drawing.Size(1011, 280)
+        Me.GCPenawaran.TabIndex = 12
+        Me.GCPenawaran.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPenawaran})
+        '
         'GVPenawaran
         '
         Me.GVPenawaran.Appearance.FocusedRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.GVPenawaran.Appearance.FocusedRow.Options.UseBackColor = True
-        Me.GVPenawaran.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn48, Me.GridColumn47, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn44, Me.GridColumn43, Me.GridColumn45, Me.GridColumn46})
+        Me.GVPenawaran.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn49, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn48, Me.GridColumn47, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn44, Me.GridColumn43, Me.GridColumn45, Me.GridColumn46})
         Me.GVPenawaran.GridControl = Me.GCPenawaran
         Me.GVPenawaran.Name = "GVPenawaran"
         Me.GVPenawaran.OptionsView.ColumnAutoWidth = False
         Me.GVPenawaran.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn49
+        '
+        Me.GridColumn49.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn49.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn49.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn49.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn49.Caption = "*"
+        Me.GridColumn49.ColumnEdit = Me.RICE
+        Me.GridColumn49.FieldName = "is_check"
+        Me.GridColumn49.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumn49.Name = "GridColumn49"
+        Me.GridColumn49.Visible = True
+        Me.GridColumn49.VisibleIndex = 0
+        Me.GridColumn49.Width = 33
+        '
+        'RICE
+        '
+        Me.RICE.AutoHeight = False
+        Me.RICE.Name = "RICE"
+        Me.RICE.ValueChecked = "yes"
+        Me.RICE.ValueUnchecked = "no"
         '
         'GridColumn27
         '
@@ -1072,23 +1505,25 @@ Partial Class FormPolisDet
         '
         Me.GridColumn28.Caption = "Kode Toko"
         Me.GridColumn28.FieldName = "comp_number"
+        Me.GridColumn28.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.OptionsColumn.AllowEdit = False
         Me.GridColumn28.OptionsColumn.AllowFocus = False
         Me.GridColumn28.OptionsColumn.ReadOnly = True
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 0
+        Me.GridColumn28.VisibleIndex = 1
         '
         'GridColumn29
         '
         Me.GridColumn29.Caption = "Nama Toko"
         Me.GridColumn29.FieldName = "comp_name"
+        Me.GridColumn29.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.OptionsColumn.AllowEdit = False
         Me.GridColumn29.OptionsColumn.AllowFocus = False
         Me.GridColumn29.OptionsColumn.ReadOnly = True
         Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 1
+        Me.GridColumn29.VisibleIndex = 2
         '
         'GridColumn30
         '
@@ -1099,7 +1534,7 @@ Partial Class FormPolisDet
         Me.GridColumn30.OptionsColumn.AllowFocus = False
         Me.GridColumn30.OptionsColumn.ReadOnly = True
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 2
+        Me.GridColumn30.VisibleIndex = 3
         '
         'GridColumn48
         '
@@ -1109,7 +1544,7 @@ Partial Class FormPolisDet
         Me.GridColumn48.FieldName = "v_start_date"
         Me.GridColumn48.Name = "GridColumn48"
         Me.GridColumn48.Visible = True
-        Me.GridColumn48.VisibleIndex = 4
+        Me.GridColumn48.VisibleIndex = 5
         '
         'GridColumn47
         '
@@ -1119,7 +1554,7 @@ Partial Class FormPolisDet
         Me.GridColumn47.FieldName = "v_end_date"
         Me.GridColumn47.Name = "GridColumn47"
         Me.GridColumn47.Visible = True
-        Me.GridColumn47.VisibleIndex = 5
+        Me.GridColumn47.VisibleIndex = 6
         '
         'GridColumn31
         '
@@ -1136,7 +1571,7 @@ Partial Class FormPolisDet
         Me.GridColumn31.OptionsColumn.AllowFocus = False
         Me.GridColumn31.OptionsColumn.ReadOnly = True
         Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 3
+        Me.GridColumn31.VisibleIndex = 4
         '
         'GridColumn32
         '
@@ -1154,7 +1589,7 @@ Partial Class FormPolisDet
         Me.GridColumn32.OptionsColumn.AllowFocus = False
         Me.GridColumn32.OptionsColumn.ReadOnly = True
         Me.GridColumn32.Visible = True
-        Me.GridColumn32.VisibleIndex = 6
+        Me.GridColumn32.VisibleIndex = 7
         '
         'RepositoryItemTextEdit2
         '
@@ -1180,7 +1615,7 @@ Partial Class FormPolisDet
         Me.GridColumn33.OptionsColumn.AllowFocus = False
         Me.GridColumn33.OptionsColumn.ReadOnly = True
         Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 7
+        Me.GridColumn33.VisibleIndex = 8
         '
         'GridColumn34
         '
@@ -1198,7 +1633,7 @@ Partial Class FormPolisDet
         Me.GridColumn34.OptionsColumn.AllowFocus = False
         Me.GridColumn34.OptionsColumn.ReadOnly = True
         Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 8
+        Me.GridColumn34.VisibleIndex = 9
         '
         'GridColumn35
         '
@@ -1216,7 +1651,7 @@ Partial Class FormPolisDet
         Me.GridColumn35.OptionsColumn.AllowFocus = False
         Me.GridColumn35.OptionsColumn.ReadOnly = True
         Me.GridColumn35.Visible = True
-        Me.GridColumn35.VisibleIndex = 9
+        Me.GridColumn35.VisibleIndex = 10
         '
         'GridColumn36
         '
@@ -1237,7 +1672,7 @@ Partial Class FormPolisDet
     "ublic_liability]"
         Me.GridColumn36.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn36.Visible = True
-        Me.GridColumn36.VisibleIndex = 10
+        Me.GridColumn36.VisibleIndex = 11
         '
         'GridColumn44
         '
@@ -1249,7 +1684,7 @@ Partial Class FormPolisDet
         Me.GridColumn44.OptionsColumn.AllowEdit = False
         Me.GridColumn44.OptionsColumn.AllowFocus = False
         Me.GridColumn44.Visible = True
-        Me.GridColumn44.VisibleIndex = 11
+        Me.GridColumn44.VisibleIndex = 12
         '
         'GridColumn43
         '
@@ -1268,7 +1703,7 @@ Partial Class FormPolisDet
         Me.GridColumn45.OptionsColumn.AllowEdit = False
         Me.GridColumn45.OptionsColumn.ReadOnly = True
         Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 12
+        Me.GridColumn45.VisibleIndex = 13
         '
         'GridColumn46
         '
@@ -1284,7 +1719,7 @@ Partial Class FormPolisDet
         Me.GridColumn46.OptionsColumn.AllowEdit = False
         Me.GridColumn46.OptionsColumn.ReadOnly = True
         Me.GridColumn46.Visible = True
-        Me.GridColumn46.VisibleIndex = 13
+        Me.GridColumn46.VisibleIndex = 14
         '
         'BRefreshPenawaran
         '
@@ -1302,12 +1737,15 @@ Partial Class FormPolisDet
         Me.BRefreshPenawaran.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BRefreshPenawaran.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BRefreshPenawaran.Name = "BRefreshPenawaran"
-        Me.BRefreshPenawaran.Size = New System.Drawing.Size(909, 32)
+        Me.BRefreshPenawaran.Size = New System.Drawing.Size(1011, 32)
         Me.BRefreshPenawaran.TabIndex = 143
         Me.BRefreshPenawaran.Text = "Refresh"
         '
         'PCPenawaran
         '
+        Me.PCPenawaran.Controls.Add(Me.BSetVendorDipilih)
+        Me.PCPenawaran.Controls.Add(Me.BUploadExcel)
+        Me.PCPenawaran.Controls.Add(Me.BGetExcel)
         Me.PCPenawaran.Controls.Add(Me.BDelPenawaran)
         Me.PCPenawaran.Controls.Add(Me.BAddPenawaran)
         Me.PCPenawaran.Controls.Add(Me.SLEPenawaranDel)
@@ -1315,11 +1753,73 @@ Partial Class FormPolisDet
         Me.PCPenawaran.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCPenawaran.Location = New System.Drawing.Point(0, 0)
         Me.PCPenawaran.Name = "PCPenawaran"
-        Me.PCPenawaran.Size = New System.Drawing.Size(909, 51)
+        Me.PCPenawaran.Size = New System.Drawing.Size(1011, 51)
         Me.PCPenawaran.TabIndex = 13
+        '
+        'BSetVendorDipilih
+        '
+        Me.BSetVendorDipilih.Appearance.BackColor = System.Drawing.Color.LawnGreen
+        Me.BSetVendorDipilih.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BSetVendorDipilih.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.BSetVendorDipilih.Appearance.Options.UseBackColor = True
+        Me.BSetVendorDipilih.Appearance.Options.UseFont = True
+        Me.BSetVendorDipilih.Appearance.Options.UseForeColor = True
+        Me.BSetVendorDipilih.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.BSetVendorDipilih.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BSetVendorDipilih.Location = New System.Drawing.Point(571, 15)
+        Me.BSetVendorDipilih.LookAndFeel.SkinName = "Metropolis"
+        Me.BSetVendorDipilih.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BSetVendorDipilih.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BSetVendorDipilih.Name = "BSetVendorDipilih"
+        Me.BSetVendorDipilih.Size = New System.Drawing.Size(85, 23)
+        Me.BSetVendorDipilih.TabIndex = 146
+        Me.BSetVendorDipilih.Text = "Pilih Vendor"
+        '
+        'BUploadExcel
+        '
+        Me.BUploadExcel.Appearance.BackColor = System.Drawing.Color.Green
+        Me.BUploadExcel.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BUploadExcel.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BUploadExcel.Appearance.Options.UseBackColor = True
+        Me.BUploadExcel.Appearance.Options.UseFont = True
+        Me.BUploadExcel.Appearance.Options.UseForeColor = True
+        Me.BUploadExcel.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.BUploadExcel.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BUploadExcel.Location = New System.Drawing.Point(795, 15)
+        Me.BUploadExcel.LookAndFeel.SkinName = "Metropolis"
+        Me.BUploadExcel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BUploadExcel.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BUploadExcel.Name = "BUploadExcel"
+        Me.BUploadExcel.Size = New System.Drawing.Size(146, 23)
+        Me.BUploadExcel.TabIndex = 145
+        Me.BUploadExcel.Text = "Upload Excel Penawaran"
+        '
+        'BGetExcel
+        '
+        Me.BGetExcel.Appearance.BackColor = System.Drawing.Color.LightSeaGreen
+        Me.BGetExcel.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BGetExcel.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BGetExcel.Appearance.Options.UseBackColor = True
+        Me.BGetExcel.Appearance.Options.UseFont = True
+        Me.BGetExcel.Appearance.Options.UseForeColor = True
+        Me.BGetExcel.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.BGetExcel.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BGetExcel.Location = New System.Drawing.Point(662, 15)
+        Me.BGetExcel.LookAndFeel.SkinName = "Metropolis"
+        Me.BGetExcel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BGetExcel.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BGetExcel.Name = "BGetExcel"
+        Me.BGetExcel.Size = New System.Drawing.Size(127, 23)
+        Me.BGetExcel.TabIndex = 144
+        Me.BGetExcel.Text = "Get Excel Penawaran"
         '
         'BDelPenawaran
         '
+        Me.BDelPenawaran.Appearance.BackColor = System.Drawing.Color.Red
+        Me.BDelPenawaran.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BDelPenawaran.Appearance.Options.UseBackColor = True
+        Me.BDelPenawaran.Appearance.Options.UseForeColor = True
+        Me.BDelPenawaran.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.BDelPenawaran.Location = New System.Drawing.Point(510, 15)
         Me.BDelPenawaran.Name = "BDelPenawaran"
         Me.BDelPenawaran.Size = New System.Drawing.Size(55, 23)
@@ -1418,13 +1918,14 @@ Partial Class FormPolisDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(915, 528)
+        Me.ClientSize = New System.Drawing.Size(1017, 528)
         Me.Controls.Add(Me.XTCPolis)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormPolisDet"
-        Me.Text = "Polis Detail"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Polis Proposal Detail"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1432,6 +1933,14 @@ Partial Class FormPolisDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.SLEPPSType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEPolisType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1447,14 +1956,28 @@ Partial Class FormPolisDet
         CType(Me.GCNilaiStock, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVNilaiStock, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITENilaiStock, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCNilaiStock, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCNilaiStock.ResumeLayout(False)
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCNilaiLainnya, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVNilaiLainnya, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCNilaiLain, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCNilaiLain.ResumeLayout(False)
+        Me.XTPVendor.ResumeLayout(False)
+        CType(Me.GCPenawaranKolektif, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMPilihVendor.ResumeLayout(False)
+        CType(Me.GVPenawaranKolektif, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCPenawaranKolektif, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCPenawaranKolektif.ResumeLayout(False)
+        CType(Me.SLEPenawaranAddKolektif.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPPenawaran.ResumeLayout(False)
         CType(Me.GCPenawaran, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.CMPilihVendor.ResumeLayout(False)
         CType(Me.GVPenawaran, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICE, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCPenawaran, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCPenawaran.ResumeLayout(False)
@@ -1564,9 +2087,6 @@ Partial Class FormPolisDet
     Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents PCSummary As DevExpress.XtraEditors.PanelControl
@@ -1574,4 +2094,48 @@ Partial Class FormPolisDet
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PCNilaiStock As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BGetExelNilaiStock As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BImportNilaiStock As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PCNilaiLain As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BGetExelNilaiLain As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BUploadExelNilaiLain As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandNewValue As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BUploadExcel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BGetExcel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BSetVendorDipilih As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPVendor As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCPenawaranKolektif As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPenawaranKolektif As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn51 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn56 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn69 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents PCPenawaranKolektif As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BDelPenawaranKolektif As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAddPenawaranKolektif As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEPenawaranAddKolektif As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn54 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn55 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEPolisType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn50 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEPPSType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn58 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn59 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LDateFrom As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LDateUntil As DevExpress.XtraEditors.LabelControl
 End Class

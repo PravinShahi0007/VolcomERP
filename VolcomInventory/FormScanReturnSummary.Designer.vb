@@ -451,7 +451,7 @@ Partial Class FormScanReturnSummary
         'GridColumn14
         '
         Me.GridColumn14.Caption = "Nomor Nota Return"
-        Me.GridColumn14.FieldName = "awb_number"
+        Me.GridColumn14.FieldName = "number_return_note"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 3

@@ -7,7 +7,8 @@
         Dim query As String = ""
         query += "Select CAST(prod.id_product AS CHAR(15)) AS `id_product`, ('0') AS `id_pl_prod_order_rec_det_unique`, "
         query += "(prod.product_full_code) As `product_code`, ('') As `product_counting_code`, "
-        query += "(prod.product_full_code) AS `product_full_code`, (dsg.design_display_name) AS `name`,  cod.display_name AS `size`, ('1') AS `is_old_design`, ('2') AS `is_rec`, "
+        query += "(prod.product_full_code) AS `product_full_code`, (dsg.design_display_name) AS `name`,  cod.display_name AS `size`, cd.class, cd.color, cd.sht,
+        ('1') AS `is_old_design`, ('2') AS `is_rec`, "
         query += "(dsg.design_cop) AS `bom_unit_price`, CAST(prc.id_design_price AS CHAR(15)) AS `id_design_price`, prc.design_price, prc.id_design_price_type, prc.design_price_type, prc.id_design_cat, prc.design_cat, ('0') AS `id_sales_return_det_counting`, 2 AS `is_unique_report` "
         query += "From tb_m_product prod "
         query += "JOIN tb_opt o
@@ -23,7 +24,23 @@
         query += "WHERE price.is_active_wh ='1' AND price.design_price_start_date <= NOW() "
         query += "ORDER BY price.design_price_start_date DESC, price.id_design_price DESC ) a "
         query += "GROUP BY a.id_design "
-        query += ") prc ON prc.id_design = dsg.id_design "
+        query += ") prc ON prc.id_design = dsg.id_design 
+        LEFT JOIN (
+		    SELECT dc.id_design, 
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		    FROM tb_m_design_code dc
+		    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		    AND cd.id_code IN (32,30,14, 43)
+		    GROUP BY dc.id_design
+	    ) cd ON cd.id_design = dsg.id_design "
         query += "WHERE dsg.is_old_design = '1' AND ("
         For i As Integer = 0 To (product_arr.Count - 1)
             If i > 0 Then
@@ -39,7 +56,8 @@
         Dim query As String = ""
         query += "Select CAST(prod.id_product AS CHAR(15)) AS `id_product`, ('0') AS `id_pl_prod_order_rec_det_unique`, "
         query += "(prod.product_full_code) As `product_code`, ('') As `product_counting_code`, "
-        query += "(prod.product_full_code) AS `product_full_code`, (dsg.design_display_name) AS `name`,  cod.display_name AS `size`, ('1') AS `is_old_design`, ('2') AS `is_rec`, "
+        query += "(prod.product_full_code) AS `product_full_code`, (dsg.design_display_name) AS `name`,  cod.display_name AS `size`, cd.class, cd.color, cd.sht,
+        ('1') AS `is_old_design`, ('2') AS `is_rec`, "
         query += "(dsg.design_cop) AS `bom_unit_price`, CAST(prc.id_design_price AS CHAR(15)) AS `id_design_price`, prc.design_price, prc.id_design_price_type, prc.design_price_type, prc.id_design_cat, prc.design_cat, ('0') AS `id_sales_return_det_counting`, 2 AS `is_unique_report` "
         query += "From tb_m_product prod "
         query += "JOIN tb_opt o
@@ -55,7 +73,23 @@
         query += "WHERE price.is_active_wh ='1' AND price.design_price_start_date <= NOW() "
         query += "ORDER BY price.design_price_start_date DESC, price.id_design_price DESC ) a "
         query += "GROUP BY a.id_design "
-        query += ") prc ON prc.id_design = dsg.id_design "
+        query += ") prc ON prc.id_design = dsg.id_design 
+        LEFT JOIN (
+		    SELECT dc.id_design, 
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		    FROM tb_m_design_code dc
+		    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		    AND cd.id_code IN (32,30,14, 43)
+		    GROUP BY dc.id_design
+	    ) cd ON cd.id_design = dsg.id_design "
         query += "WHERE dsg.is_old_design = '1' AND prod.id_product IN (" + product_param + ") "
         Return query
     End Function

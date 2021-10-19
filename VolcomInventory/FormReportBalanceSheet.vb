@@ -361,7 +361,7 @@ FROM
 GROUP BY bpl.`id_acc_pph`,bpl.id_acc_trans,bpl.report_mark_type
 UNION ALL
 -- OG
-SELECT 'no' AS is_check,rpt.sorting,rpt.tax_report,148 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,rec.`id_purc_rec` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`purc_order_number` AS number,atx.`date_reference`,rd.item_detail AS description,ie.`pph_account`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ie.`vat_percent` AS pph_percent,SUM(recd.qty*(ied.`value`-(ied.discount_for_pph/ied.qty))) AS dpp,SUM((recd.qty*(ied.`value`-(ied.discount_for_pph/ied.qty)))*(ie.`vat_percent`/100)) AS pph 
+SELECT 'no' AS is_check,rpt.sorting,rpt.tax_report,148 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,rec.`id_purc_rec` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`purc_order_number` AS number,atx.`date_reference`,CONCAT(IF(atx.id_bill_type=0,'Cancellation ',''),rd.item_detail) AS description,ie.`pph_account`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ie.`vat_percent` AS pph_percent,SUM(recd.qty*(ied.`value`-(ied.discount_for_pph/ied.qty))) AS dpp,IF(atx.id_bill_type=0,-1,1) * SUM((recd.qty*(ied.`value`-(ied.discount_for_pph/ied.qty)))*(ie.`vat_percent`/100)) AS pph 
 FROM tb_purc_rec_det recd
 INNER JOIN tb_purc_rec rec ON rec.id_purc_rec=recd.id_purc_rec
 INNER JOIN tb_purc_order_det ied ON ied.id_purc_order_det=recd.id_purc_order_det
@@ -373,7 +373,7 @@ INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ie.id_comp_contact
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 LEFT JOIN
 ( 
-    SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans
+    SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans,tr.id_bill_type
     FROM tb_a_acc_trans_det atd 
     INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
     INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 
@@ -942,7 +942,7 @@ FROM
 GROUP BY bpl.`id_acc_pph`,bpl.id_acc_trans,bpl.report_mark_type
 UNION ALL
 -- OG
-SELECT 'no' AS is_check,rpt.sorting,rpt.tax_report,148 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,rec.`id_purc_rec` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`purc_order_number` AS number,atx.`date_reference`,rd.item_detail AS description,ie.`pph_account`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ie.`vat_percent` AS pph_percent,SUM(recd.qty*(ied.`value`-(ied.discount_for_pph/ied.qty))) AS dpp,SUM((recd.qty*(ied.`value`-(ied.discount_for_pph/ied.qty)))*(ie.`vat_percent`/100)) AS pph 
+SELECT 'no' AS is_check,rpt.sorting,rpt.tax_report,148 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,rec.`id_purc_rec` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`purc_order_number` AS number,atx.`date_reference`,CONCAT(IF(atx.id_bill_type=0,'Cancellation ',''),rd.item_detail) AS description,ie.`pph_account`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ie.`vat_percent` AS pph_percent,SUM(recd.qty*(ied.`value`-(ied.discount_for_pph/ied.qty))) AS dpp,IF(atx.id_bill_type=0,-1,1) * SUM((recd.qty*(ied.`value`-(ied.discount_for_pph/ied.qty)))*(ie.`vat_percent`/100)) AS pph 
 FROM tb_purc_rec_det recd
 INNER JOIN tb_purc_rec rec ON rec.id_purc_rec=recd.id_purc_rec
 INNER JOIN tb_purc_order_det ied ON ied.id_purc_order_det=recd.id_purc_order_det
@@ -954,7 +954,7 @@ INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ie.id_comp_contact
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 LEFT JOIN
 ( 
-    SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans
+    SELECT atd.id_report,tr.`acc_trans_number`,tr.date_reference,tr.date_tax_report,atd.id_coa_tag,tr.id_acc_trans,tr.id_bill_type
     FROM tb_a_acc_trans_det atd 
     INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atd.`id_acc_trans`
     INNER JOIN tb_a_acc a ON a.id_acc=atd.id_acc AND a.is_tax_report=1 
@@ -1336,7 +1336,43 @@ WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString)
     End Sub
 
     Private Sub BReported_Click(sender As Object, e As EventArgs) Handles BReported.Click
-        FormReportBalanceSheetTax.ShowDialog()
+        'check
+        GVTaxReport.RefreshData()
+        GVTaxReport.ActiveFilterString = "[is_check] = 'yes'"
+        GridColumnTaxCat.GroupIndex = -1
+        '
+        If GVTaxReport.RowCount > 0 Then
+            Dim id As String = ""
+
+            For i As Integer = 0 To GVTaxReport.RowCount - 1
+                If Not i = 0 Then
+                    id += ","
+                End If
+                id += GVTaxReport.GetRowCellValue(i, "id_acc_trans").ToString
+            Next
+
+            Dim q As String = "SELECT l.`id_type`
+FROM tb_a_acc_trans t 
+INNER JOIN tb_a_acc_trans_det d ON t.`id_acc_trans` = d.`id_acc_trans`
+INNER JOIN tb_a_acc AS a ON d.`id_acc` = a.`id_acc`
+INNER JOIN tb_lookup_tax_report AS l ON a.`id_tax_report` = l.`id_tax_report`
+WHERE t.id_acc_trans IN (" + id + ")
+GROUP BY l.id_type"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 1 Then
+                FormReportBalanceSheetTax.is_contain_both = True
+                FormReportBalanceSheetTax.ShowDialog()
+            Else
+                FormReportBalanceSheetTax.is_contain_both = False
+                FormReportBalanceSheetTax.ShowDialog()
+            End If
+        Else
+            warningCustom("Tidak ada dokumen yang dipilih")
+        End If
+        '
+        GridColumnTaxCat.GroupIndex = 0
+        GVTaxReport.ActiveFilterString = ""
+        GVTaxReport.ExpandAllGroups()
     End Sub
 
     Private Sub CheckEditSelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditSelAll.CheckedChanged

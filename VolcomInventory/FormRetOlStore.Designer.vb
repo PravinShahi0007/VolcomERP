@@ -40,6 +40,8 @@ Partial Class FormRetOlStore
         Me.GVOrderList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_comp_group_order = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_order_ol_shop_number_order = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRetReqNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRetReqDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnorder_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncustomer_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -49,8 +51,6 @@ Partial Class FormRetOlStore
         Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnRetReqNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnRetReqDate = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPPreReturnList.SuspendLayout()
@@ -237,6 +237,24 @@ Partial Class FormRetOlStore
         Me.GridColumnsales_order_ol_shop_number_order.Visible = True
         Me.GridColumnsales_order_ol_shop_number_order.VisibleIndex = 0
         '
+        'GridColumnRetReqNumber
+        '
+        Me.GridColumnRetReqNumber.Caption = "Return Request Number"
+        Me.GridColumnRetReqNumber.FieldName = "ret_req_number"
+        Me.GridColumnRetReqNumber.Name = "GridColumnRetReqNumber"
+        Me.GridColumnRetReqNumber.Visible = True
+        Me.GridColumnRetReqNumber.VisibleIndex = 2
+        '
+        'GridColumnRetReqDate
+        '
+        Me.GridColumnRetReqDate.Caption = "Return Request Date"
+        Me.GridColumnRetReqDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnRetReqDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnRetReqDate.FieldName = "ret_req_date"
+        Me.GridColumnRetReqDate.Name = "GridColumnRetReqDate"
+        Me.GridColumnRetReqDate.Visible = True
+        Me.GridColumnRetReqDate.VisibleIndex = 3
+        '
         'GridColumnorder_date
         '
         Me.GridColumnorder_date.Caption = "Order Date"
@@ -314,24 +332,6 @@ Partial Class FormRetOlStore
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Store Group"
         '
-        'GridColumnRetReqNumber
-        '
-        Me.GridColumnRetReqNumber.Caption = "Return Request Number"
-        Me.GridColumnRetReqNumber.FieldName = "ret_req_number"
-        Me.GridColumnRetReqNumber.Name = "GridColumnRetReqNumber"
-        Me.GridColumnRetReqNumber.Visible = True
-        Me.GridColumnRetReqNumber.VisibleIndex = 2
-        '
-        'GridColumnRetReqDate
-        '
-        Me.GridColumnRetReqDate.Caption = "Return Request Date"
-        Me.GridColumnRetReqDate.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnRetReqDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnRetReqDate.FieldName = "ret_req_date"
-        Me.GridColumnRetReqDate.Name = "GridColumnRetReqDate"
-        Me.GridColumnRetReqDate.Visible = True
-        Me.GridColumnRetReqDate.VisibleIndex = 3
-        '
         'FormRetOlStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -343,7 +343,7 @@ Partial Class FormRetOlStore
         Me.MinimizeBox = False
         Me.Name = "FormRetOlStore"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Pre Return Online Store"
+        Me.Text = "VIOS Pre Return"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCData.ResumeLayout(False)

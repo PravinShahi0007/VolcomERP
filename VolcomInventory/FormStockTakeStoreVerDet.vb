@@ -243,12 +243,14 @@
             SBImportExcel.Enabled = True
             SBMark.Enabled = False
             SBSubmit.Enabled = True
+            SBAttachment.Enabled = False
 
             SBPrint.Text = "Draft"
         Else
             SBImportExcel.Enabled = False
             SBMark.Enabled = True
             SBSubmit.Enabled = False
+            SBAttachment.Enabled = True
 
             SBPrint.Text = "Print"
         End If
@@ -703,5 +705,24 @@
         Else
             PromoPriceToolStripMenuItem.Visible = False
         End If
+    End Sub
+
+    Private Sub SBAttachment_Click(sender As Object, e As EventArgs) Handles SBAttachment.Click
+        Cursor = Cursors.WaitCursor
+
+        Dim query_ver As String = "
+            SELECT report_mark_type
+            FROM tb_st_store_bap
+            WHERE id_st_store_bap = " + id_st_store_bap + "
+        "
+
+        Dim data_ver As DataTable = execute_query(query_ver, -1, True, "", "", "", "")
+
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.id_report = id_st_store_bap
+        FormDocumentUpload.report_mark_type = data_ver.Rows(0)("report_mark_type").ToString
+        FormDocumentUpload.ShowDialog()
+
+        Cursor = Cursors.Default
     End Sub
 End Class

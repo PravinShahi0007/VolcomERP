@@ -25,6 +25,7 @@ Partial Class FormPreCalFGPO
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCPreCal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPreCal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -41,9 +42,10 @@ Partial Class FormPreCalFGPO
         '
         'GVPreCal
         '
-        Me.GVPreCal.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
+        Me.GVPreCal.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
         Me.GVPreCal.GridControl = Me.GCPreCal
         Me.GVPreCal.Name = "GVPreCal"
+        Me.GVPreCal.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVPreCal.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -76,6 +78,14 @@ Partial Class FormPreCalFGPO
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
         '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Report Status"
+        Me.GridColumn5.FieldName = "report_status"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        '
         'FormPreCalFGPO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -87,7 +97,7 @@ Partial Class FormPreCalFGPO
         Me.MinimizeBox = False
         Me.Name = "FormPreCalFGPO"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Pre Cal"
+        Me.Text = "International Shipment Budget"
         CType(Me.GCPreCal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPreCal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -100,4 +110,5 @@ Partial Class FormPreCalFGPO
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

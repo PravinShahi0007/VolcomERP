@@ -134,6 +134,7 @@ Partial Class FormAREvaluation
         Me.GridColumndiff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
+        Me.GridColumnid_ar_eval_pps = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNav.SuspendLayout()
         CType(Me.TxtAREvalNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -380,7 +381,7 @@ Partial Class FormAREvaluation
         Me.GVInvoiceDetail.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GVInvoiceDetail.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVInvoiceDetail.ColumnPanelRowHeight = 50
-        Me.GVInvoiceDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group, Me.GridColumngroup_store, Me.GridColumnid_inv, Me.GridColumninv_number, Me.GridColumninv_rmt, Me.GridColumninv_amount, Me.GridColumnpaid_status, Me.GridColumnrelease_date, Me.GridColumnote, Me.GridColumnactive_status, Me.GridColumnbtn_bbm, Me.GridColumnid_propose_delay_payment, Me.GridColumnmemo_number, Me.GridColumnstore_acc, Me.GridColumnstorereport, Me.GridColumninv_date, Me.GridColumninv_due_date, Me.GridColumndue_days_age_origin, Me.GridColumnage, Me.GridColumnstart_period, Me.GridColumnend_period, Me.GridColumntotal_rec, Me.GridColumntotal_due, Me.GridColumnjum_hold, Me.GridColumnmemo_number_manual_release})
+        Me.GVInvoiceDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_comp_group, Me.GridColumngroup_store, Me.GridColumnid_inv, Me.GridColumninv_number, Me.GridColumninv_rmt, Me.GridColumninv_amount, Me.GridColumnpaid_status, Me.GridColumnrelease_date, Me.GridColumnote, Me.GridColumnactive_status, Me.GridColumnbtn_bbm, Me.GridColumnid_propose_delay_payment, Me.GridColumnmemo_number, Me.GridColumnstore_acc, Me.GridColumnstorereport, Me.GridColumninv_date, Me.GridColumninv_due_date, Me.GridColumndue_days_age_origin, Me.GridColumnage, Me.GridColumnstart_period, Me.GridColumnend_period, Me.GridColumntotal_rec, Me.GridColumntotal_due, Me.GridColumnjum_hold, Me.GridColumnmemo_number_manual_release, Me.GridColumnid_ar_eval_pps})
         GridFormatRule1.ApplyToRow = True
         GridFormatRule1.Name = "Format0"
         FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
@@ -1244,6 +1245,13 @@ Partial Class FormAREvaluation
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
+        'GridColumnid_ar_eval_pps
+        '
+        Me.GridColumnid_ar_eval_pps.Caption = "id_ar_eval_pps"
+        Me.GridColumnid_ar_eval_pps.FieldName = "id_ar_eval_pps"
+        Me.GridColumnid_ar_eval_pps.Name = "GridColumnid_ar_eval_pps"
+        Me.GridColumnid_ar_eval_pps.OptionsColumn.ReadOnly = True
+        '
         'FormAREvaluation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1412,4 +1420,5 @@ Partial Class FormAREvaluation
     Friend WithEvents BtnRelease As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnmemo_number_manual_release As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemHyperLinkEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents GridColumnid_ar_eval_pps As DevExpress.XtraGrid.Columns.GridColumn
 End Class

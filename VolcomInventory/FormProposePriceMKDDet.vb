@@ -957,4 +957,13 @@
             warningCustom("Fitur ini tidak tersedia untuk pengajuan internal sale")
         End If
     End Sub
+
+    Private Sub FormProposePriceMKDDet_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If is_confirm = 2 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Make sure you are already save changes your proposal. Are you sure you want to exit this form ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.No Then
+                e.Cancel = True
+            End If
+        End If
+    End Sub
 End Class

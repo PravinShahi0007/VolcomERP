@@ -21,6 +21,10 @@ Partial Class FormStockTakeProposeDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStockTakeProposeDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBAddContact = New DevExpress.XtraEditors.SimpleButton()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.SLUEStoreCompany = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.SLUEContact = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -60,6 +64,8 @@ Partial Class FormStockTakeProposeDet
         Me.XTPEmail = New DevExpress.XtraTab.XtraTabPage()
         Me.WBEmail = New System.Windows.Forms.WebBrowser()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBAttachmentStoreList = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBAttachmentSuratIjin = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TEMailSubject = New DevExpress.XtraEditors.TextEdit()
         Me.MEEmailCC = New DevExpress.XtraEditors.MemoEdit()
@@ -69,9 +75,14 @@ Partial Class FormStockTakeProposeDet
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SBMark = New DevExpress.XtraEditors.SimpleButton()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBPNP = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLUEStoreCompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEContact.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,6 +119,9 @@ Partial Class FormStockTakeProposeDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SBAddContact)
+        Me.PanelControl1.Controls.Add(Me.Label11)
+        Me.PanelControl1.Controls.Add(Me.SLUEStoreCompany)
         Me.PanelControl1.Controls.Add(Me.Label10)
         Me.PanelControl1.Controls.Add(Me.SLUEContact)
         Me.PanelControl1.Controls.Add(Me.Label9)
@@ -131,13 +145,46 @@ Partial Class FormStockTakeProposeDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(784, 152)
+        Me.PanelControl1.Size = New System.Drawing.Size(784, 173)
         Me.PanelControl1.TabIndex = 0
+        '
+        'SBAddContact
+        '
+        Me.SBAddContact.Location = New System.Drawing.Point(349, 142)
+        Me.SBAddContact.Name = "SBAddContact"
+        Me.SBAddContact.Size = New System.Drawing.Size(75, 23)
+        Me.SBAddContact.TabIndex = 23
+        Me.SBAddContact.Text = "Add"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(14, 121)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(81, 13)
+        Me.Label11.TabIndex = 22
+        Me.Label11.Text = "Store Company"
+        '
+        'SLUEStoreCompany
+        '
+        Me.SLUEStoreCompany.Location = New System.Drawing.Point(101, 118)
+        Me.SLUEStoreCompany.Name = "SLUEStoreCompany"
+        Me.SLUEStoreCompany.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEStoreCompany.Properties.View = Me.GridView3
+        Me.SLUEStoreCompany.Size = New System.Drawing.Size(323, 20)
+        Me.SLUEStoreCompany.TabIndex = 21
+        '
+        'GridView3
+        '
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(14, 121)
+        Me.Label10.Location = New System.Drawing.Point(14, 147)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(45, 13)
         Me.Label10.TabIndex = 20
@@ -145,11 +192,11 @@ Partial Class FormStockTakeProposeDet
         '
         'SLUEContact
         '
-        Me.SLUEContact.Location = New System.Drawing.Point(67, 118)
+        Me.SLUEContact.Location = New System.Drawing.Point(101, 144)
         Me.SLUEContact.Name = "SLUEContact"
         Me.SLUEContact.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEContact.Properties.View = Me.GridView2
-        Me.SLUEContact.Size = New System.Drawing.Size(323, 20)
+        Me.SLUEContact.Size = New System.Drawing.Size(242, 20)
         Me.SLUEContact.TabIndex = 19
         '
         'GridView2
@@ -228,7 +275,7 @@ Partial Class FormStockTakeProposeDet
         '
         'SLUEGroup
         '
-        Me.SLUEGroup.Location = New System.Drawing.Point(67, 92)
+        Me.SLUEGroup.Location = New System.Drawing.Point(101, 92)
         Me.SLUEGroup.Name = "SLUEGroup"
         Me.SLUEGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEGroup.Properties.View = Me.SearchLookUpEdit1View
@@ -245,7 +292,7 @@ Partial Class FormStockTakeProposeDet
         'TENumber
         '
         Me.TENumber.EditValue = ""
-        Me.TENumber.Location = New System.Drawing.Point(67, 13)
+        Me.TENumber.Location = New System.Drawing.Point(101, 12)
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Properties.ReadOnly = True
         Me.TENumber.Size = New System.Drawing.Size(323, 20)
@@ -273,7 +320,7 @@ Partial Class FormStockTakeProposeDet
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(223, 69)
+        Me.Label4.Location = New System.Drawing.Point(257, 69)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(11, 13)
         Me.Label4.TabIndex = 7
@@ -282,25 +329,35 @@ Partial Class FormStockTakeProposeDet
         'TETimeTo
         '
         Me.TETimeTo.EditValue = Nothing
-        Me.TETimeTo.Location = New System.Drawing.Point(240, 66)
+        Me.TETimeTo.Location = New System.Drawing.Point(274, 66)
         Me.TETimeTo.Name = "TETimeTo"
         Me.TETimeTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TETimeTo.Properties.DisplayFormat.FormatString = "HH:mm:ss"
+        Me.TETimeTo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TETimeTo.Properties.EditFormat.FormatString = "HH:mm:ss"
+        Me.TETimeTo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TETimeTo.Properties.Mask.EditMask = "HH:mm:ss"
+        Me.TETimeTo.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TETimeTo.Size = New System.Drawing.Size(150, 20)
         Me.TETimeTo.TabIndex = 6
         '
         'TETimeFrom
         '
         Me.TETimeFrom.EditValue = Nothing
-        Me.TETimeFrom.Location = New System.Drawing.Point(67, 66)
+        Me.TETimeFrom.Location = New System.Drawing.Point(101, 66)
         Me.TETimeFrom.Name = "TETimeFrom"
         Me.TETimeFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TETimeFrom.Properties.DisplayFormat.FormatString = "HH:mm:ss"
+        Me.TETimeFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TETimeFrom.Properties.Mask.EditMask = "HH:mm:ss"
+        Me.TETimeFrom.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TETimeFrom.Size = New System.Drawing.Size(150, 20)
         Me.TETimeFrom.TabIndex = 5
         '
         'DEPeriodTo
         '
         Me.DEPeriodTo.EditValue = Nothing
-        Me.DEPeriodTo.Location = New System.Drawing.Point(240, 40)
+        Me.DEPeriodTo.Location = New System.Drawing.Point(274, 40)
         Me.DEPeriodTo.Name = "DEPeriodTo"
         Me.DEPeriodTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEPeriodTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -316,7 +373,7 @@ Partial Class FormStockTakeProposeDet
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(223, 42)
+        Me.Label3.Location = New System.Drawing.Point(257, 42)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(11, 13)
         Me.Label3.TabIndex = 3
@@ -325,7 +382,7 @@ Partial Class FormStockTakeProposeDet
         'DEPeriodFrom
         '
         Me.DEPeriodFrom.EditValue = Nothing
-        Me.DEPeriodFrom.Location = New System.Drawing.Point(67, 39)
+        Me.DEPeriodFrom.Location = New System.Drawing.Point(101, 39)
         Me.DEPeriodFrom.Name = "DEPeriodFrom"
         Me.DEPeriodFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEPeriodFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -359,10 +416,10 @@ Partial Class FormStockTakeProposeDet
         'XtraTabControl1
         '
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 152)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 173)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XTPStore
-        Me.XtraTabControl1.Size = New System.Drawing.Size(784, 364)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(784, 343)
         Me.XtraTabControl1.TabIndex = 1
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPStore, Me.XTPSurat, Me.XTPEmail})
         '
@@ -370,7 +427,7 @@ Partial Class FormStockTakeProposeDet
         '
         Me.XTPStore.Controls.Add(Me.GCStore)
         Me.XTPStore.Name = "XTPStore"
-        Me.XTPStore.Size = New System.Drawing.Size(778, 336)
+        Me.XTPStore.Size = New System.Drawing.Size(778, 315)
         Me.XTPStore.Text = "Store"
         '
         'GCStore
@@ -380,7 +437,7 @@ Partial Class FormStockTakeProposeDet
         Me.GCStore.MainView = Me.GVStore
         Me.GCStore.Name = "GCStore"
         Me.GCStore.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit, Me.RepositoryItemDateEdit})
-        Me.GCStore.Size = New System.Drawing.Size(778, 336)
+        Me.GCStore.Size = New System.Drawing.Size(778, 315)
         Me.GCStore.TabIndex = 0
         Me.GCStore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStore})
         '
@@ -455,7 +512,7 @@ Partial Class FormStockTakeProposeDet
         '
         Me.XTPSurat.Controls.Add(Me.WBSuratIjin)
         Me.XTPSurat.Name = "XTPSurat"
-        Me.XTPSurat.Size = New System.Drawing.Size(778, 336)
+        Me.XTPSurat.Size = New System.Drawing.Size(778, 315)
         Me.XTPSurat.Text = "Surat Ijin"
         '
         'WBSuratIjin
@@ -464,7 +521,7 @@ Partial Class FormStockTakeProposeDet
         Me.WBSuratIjin.Location = New System.Drawing.Point(0, 0)
         Me.WBSuratIjin.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WBSuratIjin.Name = "WBSuratIjin"
-        Me.WBSuratIjin.Size = New System.Drawing.Size(778, 336)
+        Me.WBSuratIjin.Size = New System.Drawing.Size(778, 315)
         Me.WBSuratIjin.TabIndex = 2
         '
         'XTPEmail
@@ -472,7 +529,7 @@ Partial Class FormStockTakeProposeDet
         Me.XTPEmail.Controls.Add(Me.WBEmail)
         Me.XTPEmail.Controls.Add(Me.PanelControl3)
         Me.XTPEmail.Name = "XTPEmail"
-        Me.XTPEmail.Size = New System.Drawing.Size(778, 336)
+        Me.XTPEmail.Size = New System.Drawing.Size(778, 315)
         Me.XTPEmail.Text = "Email"
         '
         'WBEmail
@@ -481,11 +538,14 @@ Partial Class FormStockTakeProposeDet
         Me.WBEmail.Location = New System.Drawing.Point(304, 0)
         Me.WBEmail.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WBEmail.Name = "WBEmail"
-        Me.WBEmail.Size = New System.Drawing.Size(474, 336)
+        Me.WBEmail.Size = New System.Drawing.Size(474, 315)
         Me.WBEmail.TabIndex = 1
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.SBPNP)
+        Me.PanelControl3.Controls.Add(Me.SBAttachmentStoreList)
+        Me.PanelControl3.Controls.Add(Me.SBAttachmentSuratIjin)
         Me.PanelControl3.Controls.Add(Me.LabelControl3)
         Me.PanelControl3.Controls.Add(Me.TEMailSubject)
         Me.PanelControl3.Controls.Add(Me.MEEmailCC)
@@ -495,8 +555,26 @@ Partial Class FormStockTakeProposeDet
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(304, 336)
+        Me.PanelControl3.Size = New System.Drawing.Size(304, 315)
         Me.PanelControl3.TabIndex = 0
+        '
+        'SBAttachmentStoreList
+        '
+        Me.SBAttachmentStoreList.Image = CType(resources.GetObject("SBAttachmentStoreList.Image"), System.Drawing.Image)
+        Me.SBAttachmentStoreList.Location = New System.Drawing.Point(106, 272)
+        Me.SBAttachmentStoreList.Name = "SBAttachmentStoreList"
+        Me.SBAttachmentStoreList.Size = New System.Drawing.Size(84, 23)
+        Me.SBAttachmentStoreList.TabIndex = 8
+        Me.SBAttachmentStoreList.Text = "List Toko"
+        '
+        'SBAttachmentSuratIjin
+        '
+        Me.SBAttachmentSuratIjin.Image = CType(resources.GetObject("SBAttachmentSuratIjin.Image"), System.Drawing.Image)
+        Me.SBAttachmentSuratIjin.Location = New System.Drawing.Point(16, 272)
+        Me.SBAttachmentSuratIjin.Name = "SBAttachmentSuratIjin"
+        Me.SBAttachmentSuratIjin.Size = New System.Drawing.Size(84, 23)
+        Me.SBAttachmentSuratIjin.TabIndex = 7
+        Me.SBAttachmentSuratIjin.Text = "Surat Ijin"
         '
         'LabelControl3
         '
@@ -550,6 +628,8 @@ Partial Class FormStockTakeProposeDet
         '
         Me.PanelControl2.Controls.Add(Me.SBMark)
         Me.PanelControl2.Controls.Add(Me.SBClose)
+        Me.PanelControl2.Controls.Add(Me.SBAttachment)
+        Me.PanelControl2.Controls.Add(Me.SBPrint)
         Me.PanelControl2.Controls.Add(Me.SBSubmit)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 516)
@@ -571,11 +651,31 @@ Partial Class FormStockTakeProposeDet
         '
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(584, 2)
+        Me.SBClose.Location = New System.Drawing.Point(368, 2)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(99, 41)
         Me.SBClose.TabIndex = 1
         Me.SBClose.Text = "Close"
+        '
+        'SBAttachment
+        '
+        Me.SBAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBAttachment.Image = CType(resources.GetObject("SBAttachment.Image"), System.Drawing.Image)
+        Me.SBAttachment.Location = New System.Drawing.Point(467, 2)
+        Me.SBAttachment.Name = "SBAttachment"
+        Me.SBAttachment.Size = New System.Drawing.Size(117, 41)
+        Me.SBAttachment.TabIndex = 4
+        Me.SBAttachment.Text = "Attachment"
+        '
+        'SBPrint
+        '
+        Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
+        Me.SBPrint.Location = New System.Drawing.Point(584, 2)
+        Me.SBPrint.Name = "SBPrint"
+        Me.SBPrint.Size = New System.Drawing.Size(99, 41)
+        Me.SBPrint.TabIndex = 3
+        Me.SBPrint.Text = "Print"
         '
         'SBSubmit
         '
@@ -586,6 +686,15 @@ Partial Class FormStockTakeProposeDet
         Me.SBSubmit.Size = New System.Drawing.Size(99, 41)
         Me.SBSubmit.TabIndex = 0
         Me.SBSubmit.Text = "Submit"
+        '
+        'SBPNP
+        '
+        Me.SBPNP.Image = CType(resources.GetObject("SBPNP.Image"), System.Drawing.Image)
+        Me.SBPNP.Location = New System.Drawing.Point(196, 272)
+        Me.SBPNP.Name = "SBPNP"
+        Me.SBPNP.Size = New System.Drawing.Size(71, 23)
+        Me.SBPNP.TabIndex = 9
+        Me.SBPNP.Text = "P&&P"
         '
         'FormStockTakeProposeDet
         '
@@ -602,6 +711,8 @@ Partial Class FormStockTakeProposeDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLUEStoreCompany.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEContact.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -689,4 +800,13 @@ Partial Class FormStockTakeProposeDet
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemDateEdit As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBAttachmentStoreList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBAttachmentSuratIjin As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents Label11 As Label
+    Friend WithEvents SLUEStoreCompany As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents SBAddContact As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBPNP As DevExpress.XtraEditors.SimpleButton
 End Class

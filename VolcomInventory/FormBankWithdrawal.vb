@@ -49,10 +49,12 @@
         '
         load_vendor_po()
         load_vendor_expense()
+        load_vendor_prepaid_expense()
         load_vendor_fgpo()
         load_vendor_refund()
         load_group_store_cn()
         load_vendor_dpkhusus()
+
 
         'VS sales
         viewCoaTag()
@@ -154,6 +156,13 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         viewSearchLookupQuery(SLEVendorExpense, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
+    Sub load_vendor_prepaid_expense()
+        Dim query As String = "SELECT  c.id_comp,cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+                                FROM tb_m_comp c
+                                INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1' "
+        viewSearchLookupQuery(SLEVendorPrepaidEx, query, "id_comp", "comp_name", "id_comp")
+    End Sub
+
     Sub load_trans_type_po()
         Dim query As String = "SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
         viewSearchLookupQuery(SLEPayType, query, "id_pay_type", "pay_type", "id_pay_type")
@@ -219,6 +228,8 @@ WHERE py.id_coa_tag='" & SLEUnitBBKList.EditValue.ToString & "' AND DATE(py.date
         SLEUnitExpense.EditValue = "1"
         viewSearchLookupQuery(SLEUnitBBKList, query, "id_coa_tag", "tag_description", "id_coa_tag")
         SLEUnitBBKList.EditValue = "1"
+        viewSearchLookupQuery(SLEUnitPrepaidEx, query, "id_coa_tag", "tag_description", "id_coa_tag")
+        SLEUnitPrepaidEx.EditValue = "1"
     End Sub
     '
     Sub load_fgpo()
@@ -1386,7 +1397,7 @@ ORDER BY pod.id_purc_order DESC"
     End Sub
 
     Sub view_sum()
-        Dim q As String = "SELECT ct.id_coa_type,ct.coa_type,pns.`id_pn_summary`,sts.report_status,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`currency`,SUM(IFNULL(pnd.`val_bef_kurs`,0)) AS val_bef_kurs
+        Dim q As String = "SELECT ct.id_coa_type,ct.coa_type,pns.`id_pn_summary`,sts.report_status,pns.number,pns.`date_payment`,pns.`created_date`,emp.`employee_name`, cur.`currency`,SUM(IF(pns.id_currency=1,IFNULL(pnd.`value`,0),IFNULL(pnd.`val_bef_kurs`,0))) AS val_bef_kurs
 FROM tb_pn_summary pns
 LEFT JOIN tb_pn_summary_det pnsd ON pnsd.id_pn_summary=pns.id_pn_summary
 LEFT JOIN tb_pn_det pnd ON pnd.`id_pn`=pnsd.`id_pn` AND pnd.`id_currency`=pns.`id_currency`
@@ -1575,5 +1586,111 @@ WHERE is_active=1"
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BMutasiValasBPL.Click
         FormStockValas.id_valas_bank = SLEAkunValas.EditValue.ToString
         FormStockValas.ShowDialog()
+    End Sub
+
+    Private Sub BPrepaidExpense_Click(sender As Object, e As EventArgs) Handles BPrepaidExpense.Click
+        Dim query_check As String = "SELECT IFNULL(id_acc_dp,0) AS id_acc_dp,IFNULL(id_acc_ap,0) AS id_acc_ap,IFNULL(id_acc_cabang_dp,0) AS id_acc_cabang_dp,IFNULL(id_acc_cabang_ap,0) AS id_acc_cabang_ap FROM tb_m_comp c
+WHERE c.id_comp='" & SLEVendorPrepaidEx.EditValue & "'"
+        Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+        If SLEUnitExpense.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
+            warningCustom("This vendor AP account is not set.")
+        ElseIf Not SLEUnitExpense.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_cabang_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
+            warningCustom("This vendor AP account is not set.")
+        Else
+            load_prepaid_expense()
+        End If
+    End Sub
+
+    Sub load_prepaid_expense()
+        Cursor = Cursors.WaitCursor
+
+        Dim where_string As String = ""
+        Dim having_string As String = ""
+
+        Dim q_acc As String = ""
+        Dim q_join_acc As String = ""
+
+        If Not SLEVendorPrepaidEx.EditValue.ToString = "0" Then
+            where_string = "AND e.id_comp='" & SLEVendorPrepaidEx.EditValue.ToString & "' "
+        End If
+
+        'cabang
+        where_string += " AND e.id_coa_tag='" & SLEUnitPrepaidEx.EditValue.ToString & "' "
+
+        Dim query As String = "SELECT e.id_coa_tag,ct.tag_description,e.inv_number,e.id_prepaid_expense,349 AS report_mark_type
+, IFNULL(e.id_comp,0) AS `id_comp`, c.comp_number, c.comp_name, CONCAT(c.comp_number, ' - ', c.comp_name) AS `comp`, e.`number`
+, e.created_date,e.date_reff, e.due_date, e.created_by, emp.employee_name AS `created_by_name`, e.id_report_status, stt.report_status
+, IF(e.id_report_status!=6, '-', IF(e.is_open=2, 'Paid', IF(DATE(NOW())>e.due_date,'Overdue', 'Open'))) AS `paid_status`, e.note, e.is_open,
+e.sub_total, e.vat_total,e.total, IFNULL(er.total,0) AS `total_paid`, (e.total-IFNULL(er.total,0)) AS `balance`, 'No' AS `is_select`, DATEDIFF(e.`due_date`,NOW()) AS due_days
+,cf.id_comp AS `id_comp_default`, cf.comp_number AS `comp_number_default`,SUM(ed.amount) AS amount,SUM(ed.amount_before) AS amount_before,ed.kurs,ed.id_currency,cur.currency
+, IFNULL(edp.total,0) AS `total_dp`
+, IFNULL(payment_pending.jml,0) AS `total_pending`
+, acc.id_acc,acc.acc_name,acc.acc_description 
+FROM tb_prepaid_expense e
+INNER JOIN tb_coa_tag ct ON ct.id_coa_tag=e.id_coa_tag
+INNER JOIN tb_m_comp cf ON cf.id_comp=1
+INNER JOIN tb_m_user u ON u.id_user = e.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee = u.id_employee
+INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = e.id_report_status
+INNER JOIN tb_prepaid_expense_det ed ON ed.id_prepaid_expense=e.id_prepaid_expense
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=ed.id_currency
+LEFT JOIN (
+	SELECT pd.id_report, SUM(pd.`value`) AS total 
+	FROM tb_pn p
+	INNER JOIN tb_pn_det pd ON pd.id_pn = p.id_pn  AND p.is_tolakan=2
+	WHERE p.report_mark_type=349 AND p.id_report_status!=5
+	GROUP BY pd.id_report
+) er ON er.id_report = e.id_prepaid_expense 
+LEFT JOIN (
+	SELECT pd.id_report, SUM(pd.`value`) AS total 
+	FROM tb_pn p
+	INNER JOIN tb_pn_det pd ON pd.id_pn = p.id_pn
+	WHERE p.report_mark_type=349 AND p.id_report_status!=5 
+	GROUP BY pd.id_report
+) edp ON edp.id_report = e.id_prepaid_expense 
+LEFT JOIN (
+	SELECT COUNT(pyd.id_report) AS jml,pyd.id_report FROM `tb_pn_det` pyd
+	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=6 AND py.id_report_status!=5 AND py.report_mark_type='349'
+	GROUP BY pyd.id_report
+) payment_pending ON payment_pending.id_report = e.id_prepaid_expense 
+LEFT JOIN tb_m_comp c ON c.id_comp = e.id_comp 
+LEFT JOIN tb_a_acc acc ON acc.id_acc=IF(e.id_coa_tag=1,c.id_acc_ap,c.id_acc_cabang_ap) 
+WHERE e.id_prepaid_expense>0 AND e.id_report_status!=5 AND e.id_report_status=6 " & where_string & "
+GROUP BY ed.id_prepaid_expense ORDER BY e.id_prepaid_expense DESC "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPrepaidExp.DataSource = data
+        GVPrepaidExp.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BCreatePaymentPrepaidEx_Click(sender As Object, e As EventArgs) Handles BCreatePaymentPrepaidEx.Click
+        Cursor = Cursors.WaitCursor
+
+        GVPrepaidExp.ActiveFilterString = ""
+        GVPrepaidExp.ActiveFilterString = "[is_select]='yes'"
+
+        If GVPrepaidExp.RowCount > 0 Then
+            Dim is_pending As Boolean = False
+            'check
+            For i As Integer = 0 To ((GVPrepaidExp.RowCount - 1) - GetGroupRowCount(GVPrepaidExp))
+                If GVPrepaidExp.GetRowCellValue(i, "total_pending") > 0 Then
+                    is_pending = True
+                    Exit For
+                End If
+            Next
+
+            If is_pending = True Then
+                warningCustom("Please process all pending payment for selected prepaid expense")
+            Else
+                FormBankWithdrawalDet.report_mark_type = "349"
+                FormBankWithdrawalDet.ShowDialog()
+            End If
+        Else
+            warningCustom("No data selected")
+        End If
+        GVPrepaidExp.ActiveFilterString = ""
+
+        Cursor = Cursors.Default
     End Sub
 End Class

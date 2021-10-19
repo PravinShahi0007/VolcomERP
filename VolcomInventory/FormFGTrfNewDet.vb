@@ -28,6 +28,12 @@ Public Class FormFGTrfNewDet
     Dim is_save_unreg_unique As String = "-1"
     Dim is_use_unique_code_wh As String = "-1"
 
+    'scan
+    Private cforKeyDown As Char = vbNullChar
+    Private _lastKeystroke As DateTime = DateTime.Now
+    Public speed_barcode_read As Integer = get_setup_field("speed_barcode_read")
+    Public speed_barcode_read_timer As Integer = get_setup_field("speed_barcode_read_timer")
+
     Private Sub FormFGTrfNewDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'get default store category for pick company
         id_comp_cat_wh = execute_query("SELECT id_comp_cat_wh FROM tb_opt", 0, True, "", "", "", "")
@@ -371,7 +377,7 @@ Public Class FormFGTrfNewDet
 
     Sub view_barcode_list()
         If action = "ins" Then
-            Dim query As String = "SELECT ('0') AS no, ('') AS code, ('') AS name, ('') AS size, ('0') AS id_fg_trf_det, ('0') AS id_pl_prod_order_rec_det_unique, ('0') AS id_product,('1') AS is_fix, ('') AS counting_code, ('0') AS id_fg_trf_det_counting "
+            Dim query As String = "SELECT ('0') AS no, ('') AS code, ('') AS name, ('') AS size,('') AS class, ('') AS color, ('') AS sht, ('0') AS id_fg_trf_det, ('0') AS id_pl_prod_order_rec_det_unique, ('0') AS id_product,('1') AS is_fix, ('') AS counting_code, ('0') AS id_fg_trf_det_counting "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCBarcode.DataSource = data
             deleteRowsBc()
@@ -380,13 +386,31 @@ Public Class FormFGTrfNewDet
             id_fg_trf_det_counting_list.Clear()
             Dim query As String = ""
             query += "SELECT ('') AS no, CONCAT(c.product_full_code, a.fg_trf_det_counting) AS code, "
-            query += "c.product_display_name AS `name`, cod.display_name AS `size`, (a.fg_trf_det_counting) AS counting_code, "
+            query += "c.product_display_name AS `name`, cod.display_name AS `size`, cd.class, cd.color, cd.sht,
+            (a.fg_trf_det_counting) AS counting_code, "
             query += "a.id_fg_trf_det_counting, ('2') AS is_fix, "
             query += "a.id_pl_prod_order_rec_det_unique, b.id_product "
             query += "FROM tb_fg_trf_det_counting a "
             query += "INNER JOIN tb_fg_trf_det b ON a.id_fg_trf_det = b.id_fg_trf_det "
             query += "JOIN tb_opt o "
-            query += "INNER JOIN tb_m_product c ON c.id_product = b.id_product "
+            query += "INNER JOIN tb_m_product c ON c.id_product = b.id_product 
+            INNER JOIN tb_m_design d ON d.id_design = c.id_design 
+            LEFT JOIN (
+		        SELECT dc.id_design, 
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		        FROM tb_m_design_code dc
+		        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		        AND cd.id_code IN (32,30,14, 43)
+		        GROUP BY dc.id_design
+	        ) cd ON cd.id_design = d.id_design "
             query += "INNER JOIN tb_m_product_code cc ON cc.id_product = c.id_product "
             query += "INNER JOIN tb_m_code_detail cod ON cod.id_code_detail = cc.id_code_detail AND cod.id_code = o.id_code_product_size "
             query += "WHERE b.id_fg_trf = '" + id_fg_trf + "' "
@@ -749,6 +773,9 @@ Public Class FormFGTrfNewDet
         Dim product_name As String = ""
         Dim id_design_cat As String = ""
         Dim size As String = ""
+        Dim prod_class As String = ""
+        Dim prod_color As String = ""
+        Dim prod_sht As String = ""
         Dim bom_unit_price As Decimal = 0.0
         Dim id_design_price As String = ""
         Dim design_price As Decimal = 0.0
@@ -765,6 +792,9 @@ Public Class FormFGTrfNewDet
             product_name = dt_filter(0)("name").ToString
             id_design_cat = dt_filter(0)("id_design_cat").ToString
             size = dt_filter(0)("size").ToString
+            prod_class = dt_filter(0)("class").ToString
+            prod_color = dt_filter(0)("color").ToString
+            prod_sht = dt_filter(0)("sht").ToString
             'MsgBox(dt_filter(0)("bom_unit_price").ToString)
             bom_unit_price = Decimal.Parse(dt_filter(0)("bom_unit_price").ToString)
             is_old = dt_filter(0)("is_old_design").ToString
@@ -826,6 +856,9 @@ Public Class FormFGTrfNewDet
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "class", prod_class)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "color", prod_color)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "sht", prod_sht)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "bom_unit_price", bom_unit_price)
                         countQty(id_product)
                         newRowsBc()
@@ -866,6 +899,9 @@ Public Class FormFGTrfNewDet
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "class", prod_class)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "color", prod_color)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "sht", prod_sht)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "bom_unit_price", bom_unit_price)
                         countQty(id_product)
                         newRowsBc()
@@ -1326,6 +1362,7 @@ Public Class FormFGTrfNewDet
 
         ' '... 
         ' ' creating and saving the view's layout to a new memory stream 
+        GVItemList.BestFitColumns()
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
         GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
@@ -1694,5 +1731,29 @@ Public Class FormFGTrfNewDet
             FormMenuAuth.type = "12"
             FormMenuAuth.ShowDialog()
         End If
+    End Sub
+
+    Private Sub RepositoryItemTextEdit_KeyDown(sender As Object, e As KeyEventArgs) Handles RepositoryItemTextEdit.KeyDown
+        cforKeyDown = ChrW(e.KeyCode)
+    End Sub
+
+    Private Sub RepositoryItemTextEdit_KeyUp(sender As Object, e As KeyEventArgs) Handles RepositoryItemTextEdit.KeyUp
+        If Len(GVBarcode.EditingValue.ToString) > 1 Then
+            If cforKeyDown <> ChrW(e.KeyCode) OrElse cforKeyDown = vbNullChar Then
+                cforKeyDown = vbNullChar
+                GVBarcode.SetRowCellValue(GVBarcode.FocusedRowHandle, "code", "")
+                Return
+            End If
+
+            Dim elapsed As TimeSpan = DateTime.Now - _lastKeystroke
+
+            If elapsed.TotalMilliseconds > speed_barcode_read Then GVBarcode.SetRowCellValue(GVBarcode.FocusedRowHandle, "code", "")
+
+            'If e.KeyCode = Keys.[Return] AndAlso TextEdit1.Text.Count > 0 Then
+            'action enter
+            'End If
+        End If
+
+        _lastKeystroke = DateTime.Now
     End Sub
 End Class

@@ -1,4 +1,6 @@
 ﻿Public Class FormOLStoreSummary
+    Public is_pop_up As Boolean = False
+
     Private Sub FormOLStoreSummary_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
 
     End Sub
@@ -26,6 +28,8 @@
         DEUpdatedUntil.EditValue = data_dt.Rows(0)("dt")
         DEExFrom.EditValue = data_dt.Rows(0)("dt")
         DEExUntil.EditValue = data_dt.Rows(0)("dt")
+        DEFromZalPrm.EditValue = data_dt.Rows(0)("dt")
+        DEUntilZalPrm.EditValue = data_dt.Rows(0)("dt")
         viewComp()
         viewCompGroup()
         viewCompGroupROR()
@@ -427,8 +431,9 @@
 
         Dim id_vios As String = get_setup_field("shopify_comp_group").ToString
         Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name,
-        IFNULL(so.id_sales_order,0) AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`, cg.description AS `store_group`,CONCAT(c.comp_number,' - ', c.comp_name) AS `store`, CONCAT(w.comp_number,' - ', w.comp_name) AS `wh`,
-        sod.id_sales_order_det, sod.item_id, sod.ol_store_id, sod.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, sz.code_detail_name AS `size`, sod.id_design_price, sod.design_price, sod.sales_order_det_qty AS `order_qty`, sod.sales_order_det_note, sod.discount, prm.promo_name AS `promo`, sod.discount_code, prm.number AS `propose_promo_number`, prm.id_ol_promo_collection,
+        IFNULL(so.id_sales_order,0) AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`, c.id_comp_group,cg.description AS `store_group`,CONCAT(c.comp_number,' - ', c.comp_name) AS `store`, CONCAT(w.comp_number,' - ', w.comp_name) AS `wh`,
+        sod.id_sales_order_det, sod.item_id, sod.ol_store_id, sod.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, sz.code_detail_name AS `size`, sod.id_design_price, sod.design_price, sod.sales_order_det_qty AS `order_qty`, sod.sales_order_det_note, sod.discount, sod.discount_fee,
+        IF(c.id_comp_group IN (76),prm.promo_name, pz.promo_name) AS `promo`, sod.discount_code, IF(c.id_comp_group IN (76),prm.number, pz.number) AS `propose_promo_number`, prm.id_ol_promo_collection, pz.id_promo_zalora,
         IFNULL(del.id_pl_sales_order_del,0) AS `id_del`,del.pl_sales_order_del_number AS `del_number`, del.pl_sales_order_del_date AS `del_date`, del.report_status AS `del_status`, awb_del.awbill_no, awb_del.del_received_date, awb_del.del_received_by,
         IFNULL(ro.id_sales_return_order,0) AS `id_ro`, ro.sales_return_order_number AS `ro_number`, ro.sales_return_order_date as `ro_date`, ro.report_status AS `ro_status`,
         IFNULL(ret.id_sales_return,0) AS `id_ret`,ret.sales_return_number AS `ret_number`, ret.sales_return_date AS `ret_date`, ret.report_status AS `ret_status`,
@@ -448,10 +453,12 @@
         so.sales_order_ol_shop_date,  so.`customer_name` , so.`shipping_name` , so.`shipping_address`, so.`shipping_phone` , so.`shipping_city` , 
         so.`shipping_post_code` , so.`shipping_region` , so.`payment_method`, so.`tracking_code`, cg.lead_time_return, '' AS view_shipping_label,
         rrf.id_return_refuse, rrf.`return_refuse_number`, rrf.`return_refuse_date`,rrf.`return_refuse_status`,
-        ccn.`id_cancel_cn`, ccn.`cancel_cn_number`, ccn.`cancel_cn_date`, ccn.cancel_cn_status, vios.checkout_id
+        ccn.`id_cancel_cn`, ccn.`cancel_cn_number`, ccn.`cancel_cn_date`, ccn.cancel_cn_status, vios.checkout_id,cd.class, cd.color, cd.sht
         FROM tb_sales_order so
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
         LEFT JOIN tb_ol_promo_collection prm ON prm.id_ol_promo_collection = sod.id_ol_promo_collection
+        LEFT JOIN tb_promo_zalora_det pzd ON pzd.id_promo_zalora_det = sod.id_promo_zalora_det
+        LEFT JOIN tb_promo_zalora pz ON pz.id_promo_zalora = pzd.id_promo_zalora
         LEFT JOIN (
             SELECT * FROM (
 	            SELECT stt.id_sales_order_det, stt.`status`, stt.status_date 
@@ -483,6 +490,22 @@
         INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
         INNER JOIN tb_m_product_code prodcode ON prodcode.id_product = prod.id_product
         INNER JOIN tb_m_code_detail sz ON sz.id_code_detail = prodcode.id_code_detail
+        LEFT JOIN (
+		    SELECT dc.id_design, 
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		    FROM tb_m_design_code dc
+		    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		    AND cd.id_code IN (32,30,14, 43)
+		    GROUP BY dc.id_design
+	    ) cd ON cd.id_design = prod.id_design
         LEFT JOIN (
            SELECT deld.id_sales_order_det, deld.id_pl_sales_order_del_det,del.id_pl_sales_order_del, del.pl_sales_order_del_number, del.pl_sales_order_del_date, del_stt.report_status 
            FROM tb_pl_sales_order_del_det deld
@@ -906,15 +929,28 @@
     Private Sub LinkProposedPromo_Click(sender As Object, e As EventArgs) Handles LinkProposedPromo.Click
         If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
-            Dim id_ol_promo_collection As String = ""
-            Try
-                id_ol_promo_collection = GVDetail.GetFocusedRowCellValue("id_ol_promo_collection").ToString
-            Catch ex As Exception
-            End Try
-            Dim s As New ClassShowPopUp
-            s.id_report = id_ol_promo_collection
-            s.report_mark_type = "250"
-            s.show()
+            Dim id_grp As String = GVDetail.GetFocusedRowCellValue("id_comp_group").ToString
+            If id_grp = "76" Then
+                Dim id_ol_promo_collection As String = ""
+                Try
+                    id_ol_promo_collection = GVDetail.GetFocusedRowCellValue("id_ol_promo_collection").ToString
+                Catch ex As Exception
+                End Try
+                Dim s As New ClassShowPopUp
+                s.id_report = id_ol_promo_collection
+                s.report_mark_type = "250"
+                s.show()
+            ElseIf id_grp = "64" Then
+                Dim id_promo_zalora As String = ""
+                Try
+                    id_promo_zalora = GVDetail.GetFocusedRowCellValue("id_promo_zalora").ToString
+                Catch ex As Exception
+                End Try
+                Dim s As New ClassShowPopUp
+                s.id_report = id_promo_zalora
+                s.report_mark_type = "351"
+                s.show()
+            End If
             Cursor = Cursors.Default
         End If
     End Sub
@@ -933,7 +969,7 @@
             cond_promo = "AND p.id_ol_promo_collection=" + id_ol_promo_collection + " "
         End If
 
-        Dim query As String = "SELECT prod.id_product, d.id_design, prod.product_full_code, d.design_code, d.design_display_name AS `name`,cd.code_detail_name AS `size`, 
+        Dim query As String = "SELECT prod.id_product, d.id_design, prod.product_full_code, d.design_code, d.design_display_name AS `name`,cd.code_detail_name AS `size`, dcd.class, dcd.color, dcd.sht,
         sod.sales_order_det_qty, sod.design_price, (sod.sales_order_det_qty * sod.design_price) AS `amount`, sod.discount, ((SELECT amount) - sod.discount)  AS `nett`,
         p.id_ol_promo_collection,prm.promo, p.`number` AS `proposed_number`, p.start_period, p.end_period,
         so.id_sales_order_ol_shop, so.sales_order_ol_shop_number, so.sales_order_ol_shop_date, 
@@ -944,6 +980,22 @@
         LEFT JOIN tb_ol_promo_collection p ON p.id_ol_promo_collection = sod.id_ol_promo_collection
         INNER JOIN tb_promo prm ON prm.id_promo = p.id_promo
         INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
+        LEFT JOIN (
+		    SELECT dc.id_design, 
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		    FROM tb_m_design_code dc
+		    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		    AND cd.id_code IN (32,30,14, 43)
+		    GROUP BY dc.id_design
+	    ) dcd ON dcd.id_design = prod.id_design
         INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
         INNER JOIN tb_m_design d ON d.id_design = prod.id_design
@@ -1065,7 +1117,7 @@
         Cursor = Cursors.WaitCursor
         Dim id_promo As String = SLEPromoDetail.EditValue.ToString
         Dim query As String = "SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 
-        n.nomer_urut,prod.id_design, d.design_code AS `code`, d.design_display_name AS `name`, pd.design_price,
+        n.nomer_urut,prod.id_design, d.design_code AS `code`, d.design_display_name AS `name`, pd.design_price,dcd.class, dcd.color, dcd.sht,
         SUBSTRING(prod.product_full_code, 10, 1) AS `size_type`,
         IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='1' THEN pd.qty END),0) AS `qty1`,
         IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='2' THEN pd.qty END),0) AS `qty2`,
@@ -1119,6 +1171,22 @@
         FROM tb_ol_promo_collection_sku pd
         INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
         INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+        LEFT JOIN (
+		    SELECT dc.id_design, 
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		    FROM tb_m_design_code dc
+		    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		    AND cd.id_code IN (32,30,14, 43)
+		    GROUP BY dc.id_design
+	    ) dcd ON dcd.id_design = d.id_design
         INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
         LEFT JOIN tb_m_design_price prc ON prc.id_design_price = pd.id_design_price
@@ -1605,4 +1673,167 @@ WHERE !ISNULL(od.id_ol_store_oos) AND od.sales_order_det_qty!= od.ol_order_qty "
     Private Sub BtnViewZaloraShipGreather30_Click(sender As Object, e As EventArgs) Handles BtnViewZaloraShipGreather30.Click
         viewZaloraShipReport(False)
     End Sub
+
+    Private Sub BtnViewZalPrm_Click(sender As Object, e As EventArgs) Handles BtnViewZalPrm.Click
+        viewZalPrm()
+    End Sub
+
+    Sub viewZalPrm()
+        Cursor = Cursors.WaitCursor
+
+        'date
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromZalPrm.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEUntilZalPrm.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Dim cond As String = ""
+
+        Dim query As String = "SELECT p.id_promo_zalora, p.id_promo_zalora_type, pzt.promo_zalora_type, p.`number`, p.promo_name, p.discount_code, p.discount_value, p.volcom_pros, 
+        p.start_period, p.end_period,p.propose_created_date, p.propose_created_by, ep.employee_name AS `propose_created_by_name`, 
+        p.id_report_status, stt.report_status, p.rmt_propose, p.propose_note, p.is_confirm, 
+        p.recon_created_date, p.recon_created_by, er.employee_name AS `recon_created_by_name`, p.id_report_status_recon, sttrecon.report_status AS `report_status_recon`, p.rmt_recon, p.recon_note, p.is_confirm_recon, IFNULL(ou.order_used,0) AS `order_used`
+        FROM tb_promo_zalora p
+        INNER JOIN tb_promo_zalora_type pzt ON pzt.id_promo_zalora_type = p.id_promo_zalora_type
+        INNER JOIN tb_m_user up ON up.id_user = p.propose_created_by
+        INNER JOIN tb_m_employee ep ON ep.id_employee = up.id_employee
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = p.id_report_status
+        LEFT JOIN tb_m_user ur ON ur.id_user = p.recon_created_by
+        LEFT JOIN tb_m_employee er ON er.id_employee = ur.id_employee
+        LEFT JOIN tb_lookup_report_status sttrecon ON sttrecon.id_report_status = p.id_report_status_recon
+        LEFT JOIN (
+            SELECT pd.id_promo_zalora, COUNT(pd.id_promo_zalora) AS `order_used` 
+            FROM (
+	            SELECT pd.id_promo_zalora, so.id_sales_order_ol_shop 
+	            FROM tb_sales_order so
+	            INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = so.id_store_contact_to
+	            INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+	            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+	            INNER JOIN tb_promo_zalora_det pd ON pd.id_promo_zalora_det = sod.id_promo_zalora_det
+	            WHERE so.id_report_status=6 AND !ISNULL(so.id_sales_order_ol_shop) AND s.id_comp_group=64
+	            GROUP BY pd.id_promo_zalora, so.id_sales_order_ol_shop
+            ) pd
+            GROUP BY pd.id_promo_zalora
+        ) ou ON ou.id_promo_zalora = p.id_promo_zalora
+        WHERE p.id_promo_zalora>0 
+        AND p.id_report_status_recon=6 AND (DATE(p.propose_created_date)>='" + date_from_selected + "' AND DATE(p.propose_created_date)<='" + date_until_selected + "') 
+        ORDER BY p.id_promo_zalora ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSumZalPrm.DataSource = data
+        GVSumZalPrm.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnExportXLSZalPrm_Click(sender As Object, e As EventArgs) Handles BtnExportXLSZalPrm.Click
+        If GVSumZalPrm.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "zalora_promo_list.xlsx"
+            exportToXLS(path, "alora_promo_list", GCSumZalPrm)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoPrmZalNUmber_Click(sender As Object, e As EventArgs) Handles RepoPrmZalNUmber.Click
+        If GVSumZalPrm.RowCount > 0 And GVSumZalPrm.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_promo As String = ""
+            Try
+                id_promo = GVSumZalPrm.GetFocusedRowCellValue("id_promo_zalora").ToString
+            Catch ex As Exception
+            End Try
+            Dim s As New ClassShowPopUp
+            s.id_report = id_promo
+            s.report_mark_type = "351"
+            s.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Sub viewDetailZalPrm()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT pd.id_promo_zalora,sod.discount_code,
+        so.id_sales_order, so.sales_order_ol_shop_number AS `order_no`, so.customer_name, 
+        sod.item_id, sod.ol_store_id, p.product_full_code AS `code`, cd.class, p.product_name AS `name`, cd.sht, cd.color, cd.code_detail_name AS `size`,
+        sod.design_price, sod.discount_fee, sod.sales_order_det_qty
+        FROM tb_sales_order so
+        INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = so.id_store_contact_to
+        INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+        INNER JOIN tb_promo_zalora_det pd ON pd.id_promo_zalora_det = sod.id_promo_zalora_det
+        INNER JOIN tb_m_product p ON p.id_product = sod.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        LEFT JOIN (
+	        SELECT dc.id_design, 
+	        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	        FROM tb_m_design_code dc
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        AND cd.id_code IN (32,30,14, 43)
+	        GROUP BY dc.id_design
+        ) cd ON cd.id_design = p.id_design
+        WHERE so.id_report_status=6 AND !ISNULL(so.id_sales_order_ol_shop) AND s.id_comp_group=64
+        AND pd.id_promo_zalora=" + TxtPromoZaloraID.Text + "
+        ORDER BY pd.id_promo_zalora ASC, so.id_sales_order ASC, cd.class ASC, `name` ASC, `code` ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDetailZalPrm.DataSource = data
+        GVDetailZalPrm.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnBrowseZaloraPromo_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles BtnBrowseZaloraPromo.ButtonClick
+        Cursor = Cursors.WaitCursor
+        FormPromoZalora.id_pop_up = "1"
+        FormPromoZalora.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepoLinkOrderUsed_Click(sender As Object, e As EventArgs) Handles RepoLinkOrderUsed.Click
+        If GVSumZalPrm.RowCount > 0 And GVSumZalPrm.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_promo As String = ""
+            Try
+                id_promo = GVSumZalPrm.GetFocusedRowCellValue("id_promo_zalora").ToString
+            Catch ex As Exception
+            End Try
+            TxtPromoZaloraID.Text = id_promo
+            BtnBrowseZaloraPromo.Text = GVSumZalPrm.GetFocusedRowCellValue("promo_name").ToString + " (" + GVSumZalPrm.GetFocusedRowCellValue("discount_code").ToString + ")"
+            viewDetailZalPrm()
+            XTCZaloraPromo.SelectedTabPageIndex = 1
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub SimpleButton3_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSOLStore.Click
+        If GVDetailZalPrm.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "zalora_promo_detail.xlsx"
+            exportToXLS(path, "zalora_promo_detail", GCDetailZalPrm)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+
 End Class

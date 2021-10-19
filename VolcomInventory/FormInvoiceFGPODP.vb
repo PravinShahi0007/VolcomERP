@@ -164,24 +164,84 @@
                     FormInvoiceFGPONew.ShowDialog()
 
                     'pop up DP
-                    Dim query_pop As String = "SELECT 'no' AS is_check, pnd.id_pn_fgpo_det, pn.`id_pn_fgpo`,pn.`number`,pnd.`value`,pnd.`vat`,pnd.`inv_number`,pnd.`note` 
-                ,dsg.`design_code`,dsg.`design_display_name`
-                FROM `tb_pn_fgpo_det` pnd
-                INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
-                INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` AND pnd.`report_mark_type`='22'
-                INNER JOIN `tb_prod_demand_design` pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
-                INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-                WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & id_po & "' AND pnd.report_mark_type='22' AND pn.`type`='1'"
-                    Dim data_pop As DataTable = execute_query(query_pop, -1, True, "", "", "", "")
-                    If data_pop.Rows.Count > 0 Then
-                        FormInvoiceFGPODPPop.id_po = id_po
-                        FormInvoiceFGPODPPop.ShowDialog()
-                    End If
+                    '    Dim query_pop As String = "SELECT 'no' AS is_check, pnd.id_pn_fgpo_det, pn.`id_pn_fgpo`,pn.`number`,pnd.`value`,pnd.`vat`,pnd.`inv_number`,pnd.`note` 
+                    ',dsg.`design_code`,dsg.`design_display_name`
+                    'FROM `tb_pn_fgpo_det` pnd
+                    'INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
+                    'INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` AND pnd.`report_mark_type`='22'
+                    'INNER JOIN `tb_prod_demand_design` pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+                    'INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+                    'WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & id_po & "' AND pnd.report_mark_type='22' AND pn.`type`='1'"
+                    '    Dim data_pop As DataTable = execute_query(query_pop, -1, True, "", "", "", "")
+                    '    If data_pop.Rows.Count > 0 Then
+                    '        FormInvoiceFGPODPPop.id_po = id_po
+                    '        FormInvoiceFGPODPPop.ShowDialog()
+                    '    End If
                     '
-                    calculate()
 
                     If GVList.RowCount <= 0 Then
                         Close()
+                    End If
+
+                    calculate()
+
+                    'auto DP
+                    Dim qdp As String = "SELECT 'no' AS is_check, pnd.id_pn_fgpo_det,pnd.qty, pn.`id_pn_fgpo`,pn.`number`,pnd.id_currency,cur.currency,pnd.kurs,(pnd.`value_bef_kurs`+IFNULL(used.val_bef_kurs,0)) AS value_bef_kurs_rem,(pnd.`value_bef_kurs`+IFNULL(used.val_bef_kurs,0)) AS value_bef_kurs
+,pnd.`vat`,pnd.`inv_number`,pnd.`note` 
+,dsg.`design_code`,dsg.`design_display_name`, wo.id_comp,wo.comp_name, IFNULL(wo.id_acc_dp,pnd.id_acc) AS id_acc
+FROM `tb_pn_fgpo_det` pnd
+INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
+INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` AND pnd.`report_mark_type`='22'
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=pnd.id_currency
+LEFT JOIN 
+(
+    SELECT c.`comp_name`,c.id_comp,wo.id_prod_order,c.id_acc_dp
+    FROM tb_prod_order_wo wo
+    INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=wo.id_ovh_price
+    INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovhp.id_comp_contact
+    INNER JOIN tb_m_comp c ON c.`id_comp`=cc.id_comp
+    WHERE wo.id_prod_order='" & id_po & "' AND wo.is_main_vendor=1
+)wo ON wo.id_prod_order=po.id_prod_order
+LEFT JOIN
+(
+    SELECT id_report,SUM(pnd.`value_bef_kurs`) AS val_bef_kurs
+    FROM `tb_pn_fgpo_det` pnd
+    INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
+    WHERE pnd.`report_mark_type`='199' AND pn.id_report_status!=5 AND pnd.id_prod_order='" & id_po & "'
+    GROUP BY pnd.`id_report`
+)used ON used.id_report=pnd.id_pn_fgpo 
+INNER JOIN `tb_prod_demand_design` pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & id_po & "' AND pnd.report_mark_type='22' AND pn.`type`='1'  AND (pn.doc_type='2' OR pn.doc_type='1')
+AND (pnd.`value_bef_kurs`+IFNULL(used.val_bef_kurs,0)) > 0"
+                    Dim dtdp As DataTable = execute_query(qdp, -1, True, "", "", "", "")
+
+                    If dtdp.Rows.Count > 1 Then
+                        FormInvoiceFGPODPPop.id_po = id_po
+                        FormInvoiceFGPODPPop.ShowDialog()
+                    ElseIf dtdp.Rows.Count = 1 Then
+                        'check
+                        If GVList.Columns("value_bef_kurs").SummaryItem.SummaryValue >= dtdp.Rows(0)("value_bef_kurs_rem") Then
+                            'insert
+                            Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                            newRow("id_prod_order") = id_po
+                            newRow("id_acc") = dtdp.Rows(0)("id_acc").ToString
+                            newRow("id_report") = dtdp.Rows(0)("id_pn_fgpo").ToString
+                            newRow("report_mark_type") = "199"
+                            newRow("report_number") = dtdp.Rows(0)("number").ToString
+                            newRow("info_design") = dtdp.Rows(0)("design_display_name").ToString
+                            newRow("qty") = dtdp.Rows(0)("qty")
+                            '
+                            newRow("id_currency") = dtdp.Rows(0)("id_currency").ToString
+                            newRow("kurs") = dtdp.Rows(0)("kurs")
+                            newRow("value_bef_kurs") = dtdp.Rows(0)("value_bef_kurs") * -1
+                            '
+                            newRow("pph_percent") = 0
+                            newRow("vat") = dtdp.Rows(0)("vat") * -1
+                            newRow("inv_number") = dtdp.Rows(0)("inv_number").ToString
+                            newRow("note") = dtdp.Rows(0)("note").ToString
+                            TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                        End If
                     End If
 
                     calculate()

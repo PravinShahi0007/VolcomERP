@@ -13,10 +13,26 @@
         Dim query As String = "SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 
         prod.id_design, prod.id_product, d.design_code,prod.product_full_code AS `code`, d.design_display_name AS `name`, 
         cd.code_detail_name AS `size`, pd.id_prod_shopify, pd.current_tag, pd.id_design_price,pd.design_price, design_price_type AS `price_type`, pd.qty,
-        pd.is_block, IF(pd.is_block=1,'Not Active', 'Active') AS `is_block_view`, 0.00 AS order_qty
+        pd.is_block, IF(pd.is_block=1,'Not Active', 'Active') AS `is_block_view`, 0.00 AS order_qty, dcd.class, dcd.color, dcd.sht
         FROM tb_ol_promo_collection_sku pd
         INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
         INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+        LEFT JOIN (
+		    SELECT dc.id_design, 
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		    FROM tb_m_design_code dc
+		    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		    AND cd.id_code IN (32,30,14, 43)
+		    GROUP BY dc.id_design
+	    ) dcd ON dcd.id_design = d.id_design
         INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
         LEFT JOIN tb_m_design_price prc ON prc.id_design_price = pd.id_design_price
@@ -66,6 +82,9 @@
                 newRow("name") = GVProduct.GetRowCellValue(i, "name").ToString
                 newRow("code") = GVProduct.GetRowCellValue(i, "code").ToString
                 newRow("size") = GVProduct.GetRowCellValue(i, "size").ToString
+                newRow("class") = GVProduct.GetRowCellValue(i, "class").ToString
+                newRow("color") = GVProduct.GetRowCellValue(i, "color").ToString
+                newRow("sht") = GVProduct.GetRowCellValue(i, "sht").ToString
                 newRow("sales_order_det_qty") = GVProduct.GetRowCellValue(i, "order_qty")
                 newRow("id_design_price") = GVProduct.GetRowCellValue(i, "id_design_price").ToString
                 newRow("design_price") = GVProduct.GetRowCellValue(i, "design_price")

@@ -49,6 +49,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumndel_amo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnscan_diff_amo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndel_diff_amo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncommerce_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnExportToXLSSO = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
@@ -61,17 +62,14 @@ Partial Class FormWHSvcLevel
         Me.XTPByCode = New DevExpress.XtraTab.XtraTabPage()
         Me.GCByCode = New DevExpress.XtraGrid.GridControl()
         Me.GVByCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPrice = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandOrderByCode = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnOrderAmount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandDelByCode = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDelAmount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnSvcLevelByCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -141,7 +139,15 @@ Partial Class FormWHSvcLevel
         Me.DEFromReturn = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumncommerce_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandOrderByCode = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandDelByCode = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSvcLelel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLelel.SuspendLayout()
         Me.XTPBySO.SuspendLayout()
@@ -219,7 +225,7 @@ Partial Class FormWHSvcLevel
         '
         'GVBySO
         '
-        Me.GVBySO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnPrepNumber, Me.GridColumnOnlineOrderDate, Me.GridColumnPrepDate, Me.GridColumnBarcode, Me.GridColumnDesignCode, Me.GridColumnClass, Me.GridColumnDsgName, Me.GridColumnSize, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnOrderQty, Me.GridColumnScannedQty, Me.GridColumnDelQty, Me.GridColumnDiffSc, Me.GridColumnDiff, Me.GridColumnCat, Me.GridColumnReff, Me.GridColumnStatus, Me.GridColumnNote, Me.GridColumnorder_type, Me.GridColumndesign_price, Me.GridColumnorder_amo, Me.GridColumnscan_amo, Me.GridColumndel_amo, Me.GridColumnscan_diff_amo, Me.GridColumndel_diff_amo, Me.GridColumncommerce_type})
+        Me.GVBySO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnPrepNumber, Me.GridColumnOnlineOrderDate, Me.GridColumnPrepDate, Me.GridColumnBarcode, Me.GridColumnDesignCode, Me.GridColumnClass, Me.GridColumnDsgName, Me.GridColumnSize, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnOrderQty, Me.GridColumnScannedQty, Me.GridColumnDelQty, Me.GridColumnDiffSc, Me.GridColumnDiff, Me.GridColumnCat, Me.GridColumnReff, Me.GridColumnStatus, Me.GridColumnNote, Me.GridColumnorder_type, Me.GridColumndesign_price, Me.GridColumnorder_amo, Me.GridColumnscan_amo, Me.GridColumndel_amo, Me.GridColumnscan_diff_amo, Me.GridColumndel_diff_amo, Me.GridColumncommerce_type, Me.GridColumn15, Me.GridColumn20})
         Me.GVBySO.GridControl = Me.GCBySO
         Me.GVBySO.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", Me.GridColumnOrderQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", Me.GridColumnDelQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty_sc", Me.GridColumnScannedQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_qty", Me.GridColumnDiff, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "scan_diff_qty", Me.GridColumnDiffSc, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_amo", Me.GridColumnorder_amo, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "scan_amo", Me.GridColumnscan_amo, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_amo", Me.GridColumndel_amo, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "scan_diff_amo", Me.GridColumnscan_diff_amo, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_diff_amo", Me.GridColumndel_diff_amo, "{0:N0}")})
         Me.GVBySO.Name = "GVBySO"
@@ -296,7 +302,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnSize.FieldName = "size"
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 10
+        Me.GridColumnSize.VisibleIndex = 12
         '
         'GridColumnFrom
         '
@@ -304,7 +310,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnFrom.FieldName = "comp_name_from"
         Me.GridColumnFrom.Name = "GridColumnFrom"
         Me.GridColumnFrom.Visible = True
-        Me.GridColumnFrom.VisibleIndex = 11
+        Me.GridColumnFrom.VisibleIndex = 13
         '
         'GridColumnTo
         '
@@ -312,7 +318,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnTo.FieldName = "comp_name_to"
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.Visible = True
-        Me.GridColumnTo.VisibleIndex = 12
+        Me.GridColumnTo.VisibleIndex = 14
         '
         'GridColumnOrderQty
         '
@@ -328,7 +334,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnOrderQty.Name = "GridColumnOrderQty"
         Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", "{0:n0}")})
         Me.GridColumnOrderQty.Visible = True
-        Me.GridColumnOrderQty.VisibleIndex = 15
+        Me.GridColumnOrderQty.VisibleIndex = 17
         Me.GridColumnOrderQty.Width = 49
         '
         'GridColumnScannedQty
@@ -345,7 +351,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnScannedQty.Name = "GridColumnScannedQty"
         Me.GridColumnScannedQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty_sc", "{0:n0}")})
         Me.GridColumnScannedQty.Visible = True
-        Me.GridColumnScannedQty.VisibleIndex = 16
+        Me.GridColumnScannedQty.VisibleIndex = 18
         Me.GridColumnScannedQty.Width = 65
         '
         'GridColumnDelQty
@@ -362,7 +368,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnDelQty.Name = "GridColumnDelQty"
         Me.GridColumnDelQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", "{0:n0}")})
         Me.GridColumnDelQty.Visible = True
-        Me.GridColumnDelQty.VisibleIndex = 17
+        Me.GridColumnDelQty.VisibleIndex = 19
         Me.GridColumnDelQty.Width = 64
         '
         'GridColumnDiffSc
@@ -381,7 +387,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnDiffSc.UnboundExpression = "[sales_order_det_qty] - [pl_sales_order_del_det_qty_sc]"
         Me.GridColumnDiffSc.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnDiffSc.Visible = True
-        Me.GridColumnDiffSc.VisibleIndex = 18
+        Me.GridColumnDiffSc.VisibleIndex = 20
         Me.GridColumnDiffSc.Width = 50
         '
         'GridColumnDiff
@@ -399,7 +405,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnDiff.UnboundExpression = "[sales_order_det_qty] - [pl_sales_order_del_det_qty]"
         Me.GridColumnDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnDiff.Visible = True
-        Me.GridColumnDiff.VisibleIndex = 19
+        Me.GridColumnDiff.VisibleIndex = 21
         Me.GridColumnDiff.Width = 43
         '
         'GridColumnCat
@@ -424,7 +430,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnStatus.FieldName = "prepare_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 25
+        Me.GridColumnStatus.VisibleIndex = 27
         '
         'GridColumnNote
         '
@@ -432,7 +438,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnNote.FieldName = "final_comment"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 26
+        Me.GridColumnNote.VisibleIndex = 28
         '
         'GridColumnorder_type
         '
@@ -450,7 +456,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumndesign_price.FieldName = "design_price"
         Me.GridColumndesign_price.Name = "GridColumndesign_price"
         Me.GridColumndesign_price.Visible = True
-        Me.GridColumndesign_price.VisibleIndex = 14
+        Me.GridColumndesign_price.VisibleIndex = 16
         '
         'GridColumnorder_amo
         '
@@ -463,7 +469,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnorder_amo.UnboundExpression = "[design_price] * [sales_order_det_qty]"
         Me.GridColumnorder_amo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnorder_amo.Visible = True
-        Me.GridColumnorder_amo.VisibleIndex = 20
+        Me.GridColumnorder_amo.VisibleIndex = 22
         '
         'GridColumnscan_amo
         '
@@ -476,7 +482,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnscan_amo.UnboundExpression = "[design_price] * [pl_sales_order_del_det_qty_sc]"
         Me.GridColumnscan_amo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnscan_amo.Visible = True
-        Me.GridColumnscan_amo.VisibleIndex = 21
+        Me.GridColumnscan_amo.VisibleIndex = 23
         '
         'GridColumndel_amo
         '
@@ -489,7 +495,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumndel_amo.UnboundExpression = "[design_price] * [pl_sales_order_del_det_qty]"
         Me.GridColumndel_amo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumndel_amo.Visible = True
-        Me.GridColumndel_amo.VisibleIndex = 22
+        Me.GridColumndel_amo.VisibleIndex = 24
         '
         'GridColumnscan_diff_amo
         '
@@ -502,7 +508,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnscan_diff_amo.UnboundExpression = "[design_price] * [scan_diff_qty]"
         Me.GridColumnscan_diff_amo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnscan_diff_amo.Visible = True
-        Me.GridColumnscan_diff_amo.VisibleIndex = 23
+        Me.GridColumnscan_diff_amo.VisibleIndex = 25
         '
         'GridColumndel_diff_amo
         '
@@ -515,7 +521,15 @@ Partial Class FormWHSvcLevel
         Me.GridColumndel_diff_amo.UnboundExpression = "[design_price] * [diff_qty]"
         Me.GridColumndel_diff_amo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumndel_diff_amo.Visible = True
-        Me.GridColumndel_diff_amo.VisibleIndex = 24
+        Me.GridColumndel_diff_amo.VisibleIndex = 26
+        '
+        'GridColumncommerce_type
+        '
+        Me.GridColumncommerce_type.Caption = "Commerce Type"
+        Me.GridColumncommerce_type.FieldName = "commerce_type"
+        Me.GridColumncommerce_type.Name = "GridColumncommerce_type"
+        Me.GridColumncommerce_type.Visible = True
+        Me.GridColumncommerce_type.VisibleIndex = 15
         '
         'GCFilter
         '
@@ -637,7 +651,7 @@ Partial Class FormWHSvcLevel
         'GVByCode
         '
         Me.GVByCode.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBandGeneral, Me.gridBandOrderByCode, Me.gridBandDelByCode})
-        Me.GVByCode.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn10, Me.BandedGridColumnOrderAmount, Me.GridColumn11, Me.BandedGridColumnDelAmount, Me.BandedGridColumnPrice, Me.BandedGridColumnSvcLevelByCode})
+        Me.GVByCode.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn10, Me.BandedGridColumnOrderAmount, Me.GridColumn11, Me.BandedGridColumnDelAmount, Me.BandedGridColumnPrice, Me.BandedGridColumnSvcLevelByCode, Me.BandedGridColumn2, Me.BandedGridColumn3})
         Me.GVByCode.GridControl = Me.GCByCode
         Me.GVByCode.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", Me.GridColumn10, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_amount", Me.BandedGridColumnOrderAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", Me.GridColumn11, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_amount", Me.BandedGridColumnDelAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Average, "svc_level", Me.BandedGridColumnSvcLevelByCode, "{0:N2}")})
         Me.GVByCode.Name = "GVByCode"
@@ -647,18 +661,6 @@ Partial Class FormWHSvcLevel
         Me.GVByCode.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVByCode.OptionsView.ShowFooter = True
         Me.GVByCode.OptionsView.ShowGroupPanel = False
-        '
-        'GridBandGeneral
-        '
-        Me.GridBandGeneral.Columns.Add(Me.GridColumn3)
-        Me.GridBandGeneral.Columns.Add(Me.GridColumn4)
-        Me.GridBandGeneral.Columns.Add(Me.GridColumn5)
-        Me.GridBandGeneral.Columns.Add(Me.GridColumn6)
-        Me.GridBandGeneral.Columns.Add(Me.GridColumn7)
-        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnPrice)
-        Me.GridBandGeneral.Name = "GridBandGeneral"
-        Me.GridBandGeneral.VisibleIndex = 0
-        Me.GridBandGeneral.Width = 450
         '
         'GridColumn3
         '
@@ -708,17 +710,6 @@ Partial Class FormWHSvcLevel
         Me.BandedGridColumnPrice.Name = "BandedGridColumnPrice"
         Me.BandedGridColumnPrice.Visible = True
         '
-        'gridBandOrderByCode
-        '
-        Me.gridBandOrderByCode.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBandOrderByCode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBandOrderByCode.Caption = "ORDER"
-        Me.gridBandOrderByCode.Columns.Add(Me.GridColumn10)
-        Me.gridBandOrderByCode.Columns.Add(Me.BandedGridColumnOrderAmount)
-        Me.gridBandOrderByCode.Name = "gridBandOrderByCode"
-        Me.gridBandOrderByCode.VisibleIndex = 1
-        Me.gridBandOrderByCode.Width = 124
-        '
         'GridColumn10
         '
         Me.GridColumn10.AppearanceCell.Options.UseTextOptions = True
@@ -748,18 +739,6 @@ Partial Class FormWHSvcLevel
         Me.BandedGridColumnOrderAmount.Name = "BandedGridColumnOrderAmount"
         Me.BandedGridColumnOrderAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_amount", "{0:n2}")})
         Me.BandedGridColumnOrderAmount.Visible = True
-        '
-        'gridBandDelByCode
-        '
-        Me.gridBandDelByCode.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBandDelByCode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBandDelByCode.Caption = "DELIVERY"
-        Me.gridBandDelByCode.Columns.Add(Me.GridColumn11)
-        Me.gridBandDelByCode.Columns.Add(Me.BandedGridColumnDelAmount)
-        Me.gridBandDelByCode.Columns.Add(Me.BandedGridColumnSvcLevelByCode)
-        Me.gridBandDelByCode.Name = "gridBandDelByCode"
-        Me.gridBandDelByCode.VisibleIndex = 2
-        Me.gridBandDelByCode.Width = 206
         '
         'GridColumn11
         '
@@ -1263,7 +1242,7 @@ Partial Class FormWHSvcLevel
         '
         'GVReturn
         '
-        Me.GVReturn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn9, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumnprepare_statusror, Me.GridColumnfinal_comment})
+        Me.GVReturn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn9, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumnprepare_statusror, Me.GridColumnfinal_comment, Me.GridColumn21, Me.GridColumn22})
         Me.GVReturn.GridControl = Me.GCReturn
         Me.GVReturn.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_order_det_qty", Me.GridColumn17, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty", Me.GridColumn18, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_qty", Me.GridColumn19, "{0:N0}")})
         Me.GVReturn.Name = "GVReturn"
@@ -1331,7 +1310,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumn14.FieldName = "size"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 6
+        Me.GridColumn14.VisibleIndex = 8
         '
         'GridColumn16
         '
@@ -1339,7 +1318,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumn16.FieldName = "comp_name_to"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 7
+        Me.GridColumn16.VisibleIndex = 9
         '
         'GridColumn17
         '
@@ -1355,7 +1334,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_order_det_qty", "{0:n0}")})
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 8
+        Me.GridColumn17.VisibleIndex = 10
         Me.GridColumn17.Width = 49
         '
         'GridColumn18
@@ -1372,7 +1351,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty", "{0:n0}")})
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 9
+        Me.GridColumn18.VisibleIndex = 11
         Me.GridColumn18.Width = 56
         '
         'GridColumn19
@@ -1391,7 +1370,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumn19.UnboundExpression = "[sales_return_det_qty] - [sales_return_order_det_qty]"
         Me.GridColumn19.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 10
+        Me.GridColumn19.VisibleIndex = 12
         '
         'GridColumnprepare_statusror
         '
@@ -1399,7 +1378,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnprepare_statusror.FieldName = "prepare_status"
         Me.GridColumnprepare_statusror.Name = "GridColumnprepare_statusror"
         Me.GridColumnprepare_statusror.Visible = True
-        Me.GridColumnprepare_statusror.VisibleIndex = 11
+        Me.GridColumnprepare_statusror.VisibleIndex = 13
         '
         'GridColumnfinal_comment
         '
@@ -1407,7 +1386,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnfinal_comment.FieldName = "final_comment"
         Me.GridColumnfinal_comment.Name = "GridColumnfinal_comment"
         Me.GridColumnfinal_comment.Visible = True
-        Me.GridColumnfinal_comment.VisibleIndex = 12
+        Me.GridColumnfinal_comment.VisibleIndex = 14
         '
         'GroupControl1
         '
@@ -1507,13 +1486,91 @@ Partial Class FormWHSvcLevel
         Me.LabelControl8.TabIndex = 8892
         Me.LabelControl8.Text = "From"
         '
-        'GridColumncommerce_type
+        'GridColumn15
         '
-        Me.GridColumncommerce_type.Caption = "Commerce Type"
-        Me.GridColumncommerce_type.FieldName = "commerce_type"
-        Me.GridColumncommerce_type.Name = "GridColumncommerce_type"
-        Me.GridColumncommerce_type.Visible = True
-        Me.GridColumncommerce_type.VisibleIndex = 13
+        Me.GridColumn15.Caption = "Color"
+        Me.GridColumn15.FieldName = "color"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 11
+        Me.GridColumn15.Width = 60
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Silhouette"
+        Me.GridColumn20.FieldName = "sht"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 10
+        Me.GridColumn20.Width = 111
+        '
+        'BandedGridColumn2
+        '
+        Me.BandedGridColumn2.Caption = "Color"
+        Me.BandedGridColumn2.FieldName = "color"
+        Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.Visible = True
+        '
+        'BandedGridColumn3
+        '
+        Me.BandedGridColumn3.Caption = "Silhouette"
+        Me.BandedGridColumn3.FieldName = "sht"
+        Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.Visible = True
+        Me.BandedGridColumn3.Width = 110
+        '
+        'GridBandGeneral
+        '
+        Me.GridBandGeneral.Columns.Add(Me.GridColumn3)
+        Me.GridBandGeneral.Columns.Add(Me.GridColumn4)
+        Me.GridBandGeneral.Columns.Add(Me.GridColumn5)
+        Me.GridBandGeneral.Columns.Add(Me.GridColumn6)
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumn3)
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBandGeneral.Columns.Add(Me.GridColumn7)
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnPrice)
+        Me.GridBandGeneral.Name = "GridBandGeneral"
+        Me.GridBandGeneral.VisibleIndex = 0
+        Me.GridBandGeneral.Width = 635
+        '
+        'gridBandOrderByCode
+        '
+        Me.gridBandOrderByCode.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBandOrderByCode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBandOrderByCode.Caption = "ORDER"
+        Me.gridBandOrderByCode.Columns.Add(Me.GridColumn10)
+        Me.gridBandOrderByCode.Columns.Add(Me.BandedGridColumnOrderAmount)
+        Me.gridBandOrderByCode.Name = "gridBandOrderByCode"
+        Me.gridBandOrderByCode.VisibleIndex = 1
+        Me.gridBandOrderByCode.Width = 124
+        '
+        'gridBandDelByCode
+        '
+        Me.gridBandDelByCode.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBandDelByCode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBandDelByCode.Caption = "DELIVERY"
+        Me.gridBandDelByCode.Columns.Add(Me.GridColumn11)
+        Me.gridBandDelByCode.Columns.Add(Me.BandedGridColumnDelAmount)
+        Me.gridBandDelByCode.Columns.Add(Me.BandedGridColumnSvcLevelByCode)
+        Me.gridBandDelByCode.Name = "gridBandDelByCode"
+        Me.gridBandDelByCode.VisibleIndex = 2
+        Me.gridBandDelByCode.Width = 206
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Color"
+        Me.GridColumn21.FieldName = "color"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 7
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Silhouette"
+        Me.GridColumn22.FieldName = "sht"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 6
         '
         'FormWHSvcLevel
         '
@@ -1640,9 +1697,6 @@ Partial Class FormWHSvcLevel
     Friend WithEvents DEFromCode As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents GridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandOrderByCode As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandDelByCode As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnSvcLevelByCode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnSO As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnCat As DevExpress.XtraGrid.Columns.GridColumn
@@ -1700,4 +1754,13 @@ Partial Class FormWHSvcLevel
     Friend WithEvents GridColumndel_diff_amo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOnlineOrderDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncommerce_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandOrderByCode As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandDelByCode As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

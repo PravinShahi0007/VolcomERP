@@ -57,6 +57,7 @@ Partial Class FormEmpUniCreditNoteDet
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControlTop = New DevExpress.XtraEditors.GroupControl()
+        Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowse = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtDepartement = New DevExpress.XtraEditors.TextEdit()
@@ -84,7 +85,6 @@ Partial Class FormEmpUniCreditNoteDet
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.TEExpense = New DevExpress.XtraEditors.TextEdit()
         Me.SBPick = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlMiddle.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -501,6 +501,15 @@ Partial Class FormEmpUniCreditNoteDet
         Me.GroupControlTop.Size = New System.Drawing.Size(1008, 175)
         Me.GroupControlTop.TabIndex = 10
         '
+        'SBAdd
+        '
+        Me.SBAdd.Image = CType(resources.GetObject("SBAdd.Image"), System.Drawing.Image)
+        Me.SBAdd.Location = New System.Drawing.Point(34, 140)
+        Me.SBAdd.Name = "SBAdd"
+        Me.SBAdd.Size = New System.Drawing.Size(75, 23)
+        Me.SBAdd.TabIndex = 8956
+        Me.SBAdd.Text = "Add"
+        '
         'BtnBrowse
         '
         Me.BtnBrowse.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -673,7 +682,6 @@ Partial Class FormEmpUniCreditNoteDet
         '
         Me.DEEnd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DEEnd.EditValue = Nothing
-        Me.DEEnd.Enabled = False
         Me.DEEnd.Location = New System.Drawing.Point(856, 142)
         Me.DEEnd.Name = "DEEnd"
         Me.DEEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -701,7 +709,6 @@ Partial Class FormEmpUniCreditNoteDet
         '
         Me.DEStart.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DEStart.EditValue = Nothing
-        Me.DEStart.Enabled = False
         Me.DEStart.Location = New System.Drawing.Point(696, 142)
         Me.DEStart.Name = "DEStart"
         Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -755,15 +762,6 @@ Partial Class FormEmpUniCreditNoteDet
         Me.SBPick.Size = New System.Drawing.Size(27, 20)
         Me.SBPick.TabIndex = 8936
         Me.SBPick.Text = "SimpleButton1"
-        '
-        'SBAdd
-        '
-        Me.SBAdd.Image = CType(resources.GetObject("SBAdd.Image"), System.Drawing.Image)
-        Me.SBAdd.Location = New System.Drawing.Point(34, 140)
-        Me.SBAdd.Name = "SBAdd"
-        Me.SBAdd.Size = New System.Drawing.Size(75, 23)
-        Me.SBAdd.TabIndex = 8956
-        Me.SBAdd.Text = "Add"
         '
         'FormEmpUniCreditNoteDet
         '

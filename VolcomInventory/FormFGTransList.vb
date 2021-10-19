@@ -20,6 +20,8 @@
         DEUntilSal.EditValue = data_dt.Rows(0)("dt")
         DEFromSO.EditValue = data_dt.Rows(0)("dt")
         DEUntilSO.EditValue = data_dt.Rows(0)("dt")
+        DEFromRepair.EditValue = data_dt.Rows(0)("dt")
+        DEUntilRepair.EditValue = data_dt.Rows(0)("dt")
 
         'lookup
         viewPeriodType()
@@ -36,6 +38,7 @@
         SLStatus8.EditValue = "6"
         SLStatus9.EditValue = "6"
         SLStatus10.EditValue = "6"
+        SLEReportStatusRepair.EditValue = "6"
 
         'set size
         setCaptionSize(GVPLMain)
@@ -94,6 +97,7 @@
         viewSearchLookupQuery(SLStatus8, query, "id_report_status", "report_status", "id_report_status")
         viewSearchLookupQuery(SLStatus9, query, "id_report_status", "report_status", "id_report_status")
         viewSearchLookupQuery(SLStatus10, query, "id_report_status", "report_status", "id_report_status")
+        viewSearchLookupQuery(SLEReportStatusRepair, query, "id_report_status", "report_status", "id_report_status")
         Cursor = Cursors.Default
     End Sub
 
@@ -977,7 +981,7 @@
         rs.id_report_status, rs.report_status,
         wh.comp_number AS `wh_account`, wh.comp_name AS `wh`, 
         store.comp_number AS `store_account`, store.comp_name AS `store`, cg.comp_group, cg.description AS `comp_group_name`,
-        so_det.id_product,prod.product_full_code, prod.design_code, (prod.`class`) AS `class_display`, prod.design_display_name, (prod.size) AS `size`,
+        so_det.id_product,prod.product_full_code, prod.design_code, (prod.`class`) AS `class_display`, prod.design_display_name, (prod.size) AS `size`, prod.color, prod.sht,
         so_det.sales_order_det_qty, so_det.design_price, (so_det.sales_order_det_qty * so_det.design_price) AS `amount`, 
         so.id_prepare_status, stt.prepare_status,so.final_comment
         FROM tb_sales_order_det so_det 
@@ -993,11 +997,27 @@
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = store.id_comp_group
         LEFT JOIN (
             SELECT  a.id_product,f.product_full_code, f.product_ean_code,f.product_name, f.product_display_name,e.id_season,e.season,d.id_design, d.design_code, d.id_sample,d.design_name, e.id_range, d.design_display_name,
-            (del.delivery_date) AS `design_del_date`, (del.est_wh_date) AS `design_wh_date`, b.code_detail_name AS `size`, d2.display_name AS `class`
+            (del.delivery_date) AS `design_del_date`, (del.est_wh_date) AS `design_wh_date`, b.code_detail_name AS `size`, d2.display_name AS `class`, cd.color, cd.sht
             FROM tb_m_product f  
             INNER JOIN tb_m_product_code a ON a.id_product = f.id_product 
             INNER JOIN tb_m_code_detail b ON a.id_code_detail = b.id_code_detail 
             INNER JOIN tb_m_design d ON f.id_design = d.id_design 
+            LEFT JOIN (
+		        SELECT dc.id_design, 
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		        FROM tb_m_design_code dc
+		        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		        AND cd.id_code IN (32,30,14, 43)
+		        GROUP BY dc.id_design
+	        ) cd ON cd.id_design = d.id_design
             INNER JOIN tb_m_design_code d1 ON d.id_design = d1.id_design 
             INNER JOIN tb_m_code_detail d2 ON d1.id_code_detail = d2.id_code_detail AND d2.id_code=30
             INNER JOIN tb_season e ON d.id_season=e.id_season
@@ -1033,7 +1053,7 @@
         rs.id_report_status, rs.report_status,
         wh.comp_number AS `wh_account`, wh.comp_name AS `wh`, 
         store.comp_number AS `store_account`, store.comp_name AS `store`, cg.comp_group, cg.description AS `comp_group_name`,
-        so_det.id_product,prod.product_full_code, prod.design_code, (prod.`class`) AS `class_display`, prod.design_display_name, (prod.size) AS `size`, 
+        so_det.id_product,prod.product_full_code, prod.design_code, (prod.`class`) AS `class_display`, prod.design_display_name, (prod.size) AS `size`, prod.color, prod.sht,
         SUBSTRING(prod.product_full_code, 10, 1) AS `sizetype`,
         IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='1' THEN so_det.sales_order_det_qty END),0) AS `qty1`,
         IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='2' THEN so_det.sales_order_det_qty END),0) AS `qty2`,
@@ -1062,11 +1082,27 @@
         LEFT JOIN (
             SELECT  a.id_product,f.product_full_code, f.product_ean_code,f.product_name, f.product_display_name,e.id_season,e.season,d.id_design, d.design_code, d.id_sample,d.design_name, e.id_range, d.design_display_name,
             (del.delivery_date) AS `design_del_date`, (del.est_wh_date) AS `design_wh_date`, b.code_detail_name AS `size`, b.code AS `code_size`,
-            d2.display_name AS `class`
+            d2.display_name AS `class`, cd.color , cd.sht
             FROM tb_m_product f  
             INNER JOIN tb_m_product_code a ON a.id_product = f.id_product 
             INNER JOIN tb_m_code_detail b ON a.id_code_detail = b.id_code_detail 
             INNER JOIN tb_m_design d ON f.id_design = d.id_design 
+            LEFT JOIN (
+		        SELECT dc.id_design, 
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		        FROM tb_m_design_code dc
+		        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		        AND cd.id_code IN (32,30,14, 43)
+		        GROUP BY dc.id_design
+	        ) cd ON cd.id_design = d.id_design
             INNER JOIN tb_m_design_code d1 ON d.id_design = d1.id_design 
             INNER JOIN tb_m_code_detail d2 ON d1.id_code_detail = d2.id_code_detail AND d2.id_code=30
             INNER JOIN tb_season e ON d.id_season=e.id_season
@@ -1261,5 +1297,80 @@
             exportToXLS(path, "adj_out", GCAdjOut1)
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub BtnXLSRepair_Click(sender As Object, e As EventArgs) Handles BtnXLSRepair.Click
+        If GVRepair.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "tl_repair.xlsx"
+            exportToXLS(path, "repair", GCRepair)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnRepair_Click(sender As Object, e As EventArgs) Handles BtnRepair.Click
+        viewRepair
+    End Sub
+
+    Sub viewRepair()
+        Cursor = Cursors.WaitCursor
+
+        'date paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+
+        Try
+            date_from_selected = DateTime.Parse(DEFromRepair.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilRepair.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim where_status As String = If(SLEReportStatusRepair.EditValue.ToString = "0", "", "AND r.id_report_status = " + SLStatus10.EditValue.ToString + " ")
+
+
+        Dim query As String = "SELECT r.id_fg_repair, r.fg_repair_number, r.fg_repair_date, 
+        cf.comp_number AS `comp_number_from`, cf.comp_name AS `comp_name_from`,
+        ct.comp_number AS `comp_number_to`, ct.comp_name AS `comp_name_to`,
+        p.id_product, p.product_full_code AS `code`, cd.class,p.product_display_name AS `name`, cd.color, cd.sht, sz.code_detail_name AS `size`, YEAR(d.design_first_rec_wh) AS `rec_wh`,
+        COUNT(rd.id_product) AS `qty`,r.fg_repair_note
+        FROM tb_fg_repair r
+        INNER JOIN tb_fg_repair_det rd ON rd.id_fg_repair = r.id_fg_repair
+        INNER JOIN tb_m_comp cf ON cf.id_drawer_def = r.id_wh_drawer_from
+        INNER JOIN tb_m_comp ct ON ct.id_drawer_def = r.id_wh_drawer_to
+        INNER JOIN tb_m_product p ON p.id_product = rd.id_product
+        INNER JOIN tb_m_design d ON d.id_design = p.id_design   
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail sz ON sz.id_code_detail = pc.id_code_detail
+        LEFT JOIN (
+	        SELECT dc.id_design, 
+	        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	        FROM tb_m_design_code dc
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        AND cd.id_code IN (32,30,14, 43)
+	        GROUP BY dc.id_design
+        ) cd ON cd.id_design = d.id_design
+        WHERE r.is_to_vendor=2 AND (r.fg_repair_date>='" + date_from_selected + "' AND r.fg_repair_date<='" + date_until_selected + "') " + where_status
+        query += "GROUP BY rd.id_fg_repair, rd.id_product 
+        ORDER BY id_fg_repair ASC, class ASC, name ASC, code ASC"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRepair.DataSource = Data
+        Cursor = Cursors.Default
     End Sub
 End Class

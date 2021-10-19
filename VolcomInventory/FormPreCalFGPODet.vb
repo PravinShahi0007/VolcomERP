@@ -114,6 +114,8 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                 MERemark.Text = dt.Rows(0)("reason").ToString
                 TEPPH.EditValue = dt.Rows(0)("pph")
                 TEPPN.EditValue = dt.Rows(0)("ppn")
+                TEPPH2.EditValue = dt.Rows(0)("pph")
+                TEPPN2.EditValue = dt.Rows(0)("ppn")
 
                 view_but()
 
@@ -134,6 +136,21 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                     load_list_chosen()
                 ElseIf steps > 2 Then
                     load_list_orign()
+                End If
+                '
+                If steps = 1 And Not id = "-1" Then
+                    BUpdateDuty.Visible = True
+                Else
+                    BUpdateDuty.Visible = False
+                End If
+
+                If is_view = "1" Then
+                    BPrintBudget2.Visible = False
+                    BPrintDuty.Visible = False
+                    BUpdateDuty.Visible = False
+                    '
+                    BPrintBudgetBefore.Visible = False
+                    BPrintDutyBefore.Visible = False
                 End If
             End If
         End If
@@ -291,10 +308,17 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = False
             PCPDest.Visible = False
             PCUAdm.Visible = False
+
+            PCPickVendor2.Visible = False
             PCPickVendor.Visible = False
             BUpdateReason.Visible = False
 
             XTC.SelectedTabPageIndex = 0
+
+            If Not id = "-1" Then
+                PCUFGPO.Visible = False
+                SLEVendorFGPO.Enabled = False
+            End If
         ElseIf steps = "2" Then
             XTPFGPO.PageVisible = True
             XTPVendor.PageVisible = True
@@ -315,6 +339,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = False
             PCPDest.Visible = False
             PCUAdm.Visible = False
+
+            PCPickVendor2.Visible = False
             PCPickVendor.Visible = False
             BUpdateReason.Visible = False
 
@@ -339,6 +365,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = True
             PCPDest.Visible = False
             PCUAdm.Visible = False
+
+            PCPickVendor2.Visible = False
             PCPickVendor.Visible = False
             BUpdateReason.Visible = False
             '
@@ -363,6 +391,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = False
             PCPDest.Visible = True
             PCUAdm.Visible = False
+
+            PCPickVendor2.Visible = False
             PCPickVendor.Visible = False
             BUpdateReason.Visible = False
             '
@@ -387,6 +417,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCPOrign.Visible = False
             PCPDest.Visible = False
             PCUAdm.Visible = True
+
+            PCPickVendor2.Visible = False
             PCPickVendor.Visible = False
             BUpdateReason.Visible = False
             '
@@ -405,6 +437,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCOrign.Visible = False
             PCDest.Visible = False
             PCAdm.Visible = False
+
+            PCPickVendor2.Visible = True
             PCPickVendor.Visible = True
             BUpdateReason.Visible = True
             '
@@ -429,6 +463,8 @@ SELECT 3 AS id_type,'Courier' AS type"
             PCOrign.Visible = False
             PCDest.Visible = False
             PCAdm.Visible = False
+
+            PCPickVendor.Visible = False
             PCPickVendor.Visible = False
             BUpdateReason.Visible = False
             '
@@ -475,7 +511,18 @@ VALUES(NOW(),'" & id_user & "','1','2','" & SLEVendorFGPO.EditValue.ToString & "
             load_head()
         Else
             'edit
+            Dim q As String = "UPDATE tb_pre_cal_fgpo SET step=2,`id_type`='" & SLETypeImport.EditValue.ToString & "',`weight`='" & decimalSQL(Decimal.Parse(TEWeight.EditValue.ToString).ToString) & "',`cbm`='" & decimalSQL(Decimal.Parse(TECBM.EditValue.ToString).ToString) & "',`pol`='" & addSlashes(TEPOL.Text) & "',`ctn`='" & decimalSQL(Decimal.Parse(TECTN.EditValue.ToString).ToString) & "' WHERE id_pre_cal_fgpo='" & id & "'"
+            execute_non_query(q, True, "", "", "", "")
 
+            'cbm recal
+            'orign
+
+
+            'dest
+
+            'adm
+
+            load_head()
         End If
     End Sub
 
@@ -653,7 +700,7 @@ HAVING tot=0"
 FROM
 (
 	SELECT l.id_pre_cal_fgpo,(l.price*l.qty) AS tot_fob,(l.duty/100) AS duty,fr.tot_freight,h.`rate_management`,l.`qty`,tq.tot_qty,(fr.tot_freight/tq.tot_qty)*l.`qty` AS freight_per_po
-	,ROUND((((fr.tot_freight/tq.tot_qty)*l.`qty`)+(l.price*l.qty*h.rate_management))*(l.duty/100)) AS duty_amo
+	,ROUND((((fr.tot_freight/tq.tot_qty)*l.`qty`)+(l.price*l.qty*h.rate_management))*(l.duty/100),2) AS duty_amo
 	FROM `tb_pre_cal_fgpo_list` l
 	INNER JOIN tb_pre_cal_fgpo h ON h.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo`
 	INNER JOIN
@@ -764,8 +811,8 @@ WHERE h.id_pre_cal_fgpo='" & id & "'"
         load_head()
     End Sub
 
-    Private Sub BPrintBudget_Click(sender As Object, e As EventArgs) Handles BPrintBudget.Click
-        Dim qc As String = "SELECT number,FORMAT(SUM(l.`qty`),0,'id_ID') AS qtyf,SUM(l.`qty`) AS qty,FORMAT(SUM(l.`price`*l.`qty`),2,'id_ID') AS fob_tot,c.`comp_name` AS best,cs.`comp_name` AS second_best,FORMAT(f.`cbm`,2,'id_ID') AS cbm,FORMAT(f.`ctn`,0,'id_ID') AS ctn,FORMAT(f.`weight`,0,'id_ID') AS weight,f.`pol`,cv.`comp_name` AS vendor_comp,FORMAT(f.`rate_management`,2,'id_ID') AS rate_management
+    Private Sub BPrintBudget_Click(sender As Object, e As EventArgs) Handles BPrintBudgetBefore.Click
+        Dim qc As String = "SELECT number,f.reason,FORMAT(SUM(l.`qty`),0,'id_ID') AS qtyf,SUM(l.`qty`) AS qty,FORMAT(SUM(l.`price`*l.`qty`),2,'id_ID') AS fob_tot,c.`comp_name` AS best,cs.`comp_name` AS second_best,FORMAT(f.`cbm`,2,'id_ID') AS cbm,FORMAT(f.`ctn`,0,'id_ID') AS ctn,FORMAT(f.`weight`,0,'id_ID') AS weight,f.`pol`,cv.`comp_name` AS vendor_comp,FORMAT(f.`rate_management`,2,'id_ID') AS rate_management
 FROM `tb_pre_cal_fgpo` f
 INNER JOIN tb_m_comp cv ON cv.`id_comp`=f.`id_comp`
 INNER JOIN tb_pre_cal_fgpo_list l ON l.`id_pre_cal_fgpo`=f.`id_pre_cal_fgpo`
@@ -795,8 +842,9 @@ AND NOT ISNULL(choosen_id_comp)"
     Private Sub BLoadOrign_Click(sender As Object, e As EventArgs) Handles BLoadOrign.Click
         Dim q As String = "SELECT t.`id_pre_cal_temp`,t.`desc`,0 AS unit_price_in_rp,IF(t.`is_use_cbm`=1,IF(t.`min_cbm`>cal.`cbm`,t.`min_cbm`,cal.`cbm`),1) AS qty
 FROM `tb_pre_cal_temp` t
-INNER JOIN `tb_pre_cal_fgpo` cal ON cal.`id_type`=t.`vendor_type` AND t.`id_type`='1' AND t.`is_active`='1' 
+INNER JOIN `tb_pre_cal_fgpo` cal ON  t.`id_type`='1' AND t.`is_active`='1' 
 WHERE cal.`id_pre_cal_fgpo`='" & id & "'"
+        'cal.`id_type`=t.`vendor_type` AND
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
         GCOrign.DataSource = dt
@@ -805,11 +853,12 @@ WHERE cal.`id_pre_cal_fgpo`='" & id & "'"
     Private Sub BLoadDest_Click(sender As Object, e As EventArgs) Handles BLoadDest.Click
         Dim q As String = "SELECT t.`id_pre_cal_temp`,t.`desc`,0 AS unit_price_in_rp,IF(t.`is_use_cbm`=1,IF(t.`min_cbm`>cal.`cbm`,t.`min_cbm`,cal.`cbm`),1) AS qty
 FROM `tb_pre_cal_temp` t
-INNER JOIN `tb_pre_cal_fgpo` cal ON cal.`id_type`=t.`vendor_type` AND t.`id_type`='2' AND t.`is_active`='1' AND cal.`id_pre_cal_fgpo`='" & id & "'
+INNER JOIN `tb_pre_cal_fgpo` cal ON t.`id_type`='2' AND t.`is_active`='1' AND cal.`id_pre_cal_fgpo`='" & id & "'
 UNION ALL
 SELECT 11 AS id_pre_cal_temp,'EST STORAGE FEE AND COST PEROUTLAY' AS `desc`, SUM(IF(st.`is_use_cbm`=1,IF(st.`min_cbm`>cal.`cbm`,st.`min_cbm`,CEIL(cal.`cbm`)),1)*st.price) AS unit_price_in_rp,1 AS qty
 FROM `tb_pre_cal_storage` st
 INNER JOIN `tb_pre_cal_fgpo` cal ON st.`is_active`='1'  AND  cal.`id_pre_cal_fgpo`='" & id & "'"
+        'cal.`id_type`=t.`vendor_type` AND
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
         GCDest.DataSource = dt
@@ -871,7 +920,7 @@ AND NOT ISNULL(choosen_id_comp)"
         load_head()
     End Sub
 
-    Private Sub BPrintDuty_Click(sender As Object, e As EventArgs) Handles BPrintDuty.Click
+    Sub print_duty()
         Dim qc As String = "SELECT FORMAT(SUM(bm.tot_fob),2,'ID_id') AS tot_fob,FORMAT(bm.total_freight_po,2,'ID_id') AS tot_freight,FORMAT(bm.tot_qty_royalty,'ID_id') AS tot_qty_royalty
 ,FORMAT(SUM(bm.tot_royalty),2,'ID_id') AS tot_freight_cost_royalty,FORMAT(SUM(bm.qty),'ID_id') AS tot_qty
 ,FORMAT(SUM(bm.tot_fob_rp),2,'ID_id') AS tot_fob_rp,FORMAT(SUM(bm.tot_cif),2,'ID_id') AS tot_cif,FORMAT(SUM(bm.tot_duty),2,'ID_id') AS tot_bm,FORMAT(SUM(bm.tot_cif)+SUM(bm.tot_duty),2,'ID_id') AS tot_cif_bm
@@ -915,7 +964,7 @@ INNER JOIN
 		SELECT SUM(det.`total_in_rp`) AS tot_freight
 		FROM tb_pre_cal_fgpo_det det
 		INNER JOIN tb_pre_cal_fgpo f ON f.`id_pre_cal_fgpo`=det.`id_pre_cal_fgpo` AND f.`choosen_id_comp`=det.`id_comp`
-		WHERE det.`id_pre_cal_fgpo`='7' AND det.id_type=1
+		WHERE det.`id_pre_cal_fgpo`='" & id & "' AND det.id_type=1
 	)tot_freight 
 	INNER JOIN 
 	(
@@ -944,5 +993,65 @@ WHERE h.`id_pre_cal_fgpo`='" & id & "'"
         Else
             warningCustom("Please choose vendor first")
         End If
+    End Sub
+
+    Private Sub BPrintDuty_Click(sender As Object, e As EventArgs) Handles BPrintDuty.Click
+        print_duty()
+    End Sub
+
+    Private Sub BUpdateDuty_Click(sender As Object, e As EventArgs) Handles BUpdateDuty.Click
+        For i = 0 To GVListFGPO.RowCount - 1
+            Dim q As String = "UPDATE tb_pre_cal_fgpo_list SET duty='" & decimalSQL(Decimal.Parse(GVListFGPO.GetRowCellValue(i, "duty").ToString).ToString) & "' WHERE id_pre_cal_fgpo='" & id & "' AND id_prod_order='" & GVListFGPO.GetRowCellValue(i, "id_prod_order").ToString & "'"
+            execute_non_query(q, True, "", "", "", "")
+        Next
+        infoCustom("Duty Updated")
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "334"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id
+        FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BPrintDutyBefore_Click(sender As Object, e As EventArgs) Handles BPrintDutyBefore.Click
+        print_duty()
+    End Sub
+
+    Private Sub BStorageCalculation_Click(sender As Object, e As EventArgs) Handles BStorageCalculation.Click
+        print_storage()
+    End Sub
+
+    Sub print_storage()
+        Dim qc As String = "SELECT 
+h.`number`
+FROM `tb_pre_cal_fgpo` h 
+WHERE h.`id_pre_cal_fgpo`='" & id & "'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            'print
+            Cursor = Cursors.WaitCursor
+
+            Dim Report As New ReportPreCalStorage()
+            Report.id_report = id
+            Report.DataSource = dtc
+
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+
+            Cursor = Cursors.Default
+        Else
+            warningCustom("Please choose vendor first")
+        End If
+    End Sub
+
+    Private Sub BPrintStorage2_Click(sender As Object, e As EventArgs) Handles BPrintStorage2.Click
+        print_storage()
+    End Sub
+
+    Private Sub BUpdatePP_Click(sender As Object, e As EventArgs) Handles BUpdatePP.Click
+        Dim q As String = "UPDATE tb_pre_cal_fgpo SET ppn='" & decimalSQL(Decimal.Parse(TEPPN2.EditValue.ToString)) & "',pph='" & decimalSQL(Decimal.Parse(TEPPH2.EditValue.ToString)) & "' WHERE id_pre_cal_fgpo='" & id & "'"
+        execute_non_query(q, True, "", "", "", "")
+        load_head()
     End Sub
 End Class

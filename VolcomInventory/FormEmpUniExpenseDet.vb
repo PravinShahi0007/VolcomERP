@@ -47,6 +47,9 @@ Public Class FormEmpUniExpenseDet
             BtnDraftJournal.Visible = False
             viewDetail()
             ActiveControl = SLECat
+
+            DEStart.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='1'", 0, True, "", "", "", "")
+            DEEnd.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='1'", 0, True, "", "", "", "")
         ElseIf action = "upd" Then
             BtnPrint.Visible = True
             BtnAttachment.Visible = True
@@ -236,6 +239,8 @@ Public Class FormEmpUniExpenseDet
             warningCustom("COA not found. Please setup first")
         ElseIf start_period_cek = "0000-01-01" Or end_period_cek = "9999-12-01" Then
             warningCustom("Please fill period")
+        ElseIf MENote.Text = "" Then
+            warningCustom("Please fill note")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -333,8 +338,11 @@ Public Class FormEmpUniExpenseDet
                     Dim de As DataTable = execute_query(qe, -1, True, "", "", "", "")
                     TxtNIP.Text = de.Rows(0)("employee_code").ToString
                     TxtEmployeeName.Text = de.Rows(0)("employee_name").ToString
-                    TxtDepartement.Text = de.Rows(0)("departement").ToString
-                    id_departement = de.Rows(0)("id_departement").ToString
+                    If de.Rows(0)("is_office_dept").ToString = "1" And de.Rows(0)("is_kk_unit").ToString = "2" And de.Rows(0)("is_store").ToString = "2" Then
+                        TxtDepartement.Text = de.Rows(0)("departement").ToString
+                        id_departement = de.Rows(0)("id_departement").ToString
+                    End If
+                    BtnBrowse.Enabled = True
                 End If
 
                 'find dept jka bukan uniform staff
@@ -647,5 +655,13 @@ Public Class FormEmpUniExpenseDet
             FormEmpUniExpenseSetQty.id_del_det = GVData.GetFocusedRowCellValue("id_pl_sales_order_del_det").ToString
             FormEmpUniExpenseSetQty.ShowDialog()
         End If
+    End Sub
+
+    Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
+        DEEnd.Properties.MinValue = DEStart.EditValue
+    End Sub
+
+    Private Sub GroupControlTop_Paint(sender As Object, e As PaintEventArgs) Handles GroupControlTop.Paint
+
     End Sub
 End Class

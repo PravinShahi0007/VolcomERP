@@ -4,11 +4,29 @@
     Private Sub FormUniqueSalesReturn_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cursor = Cursors.WaitCursor
         Dim query As String = "
-            SELECT 1 AS `#`, CONCAT(cmf.comp_number, ' - ', cmf.comp_name) AS `From`, CONCAT(cmt.comp_number, ' - ', cmt.comp_name) AS `To`, s.sales_return_number AS `Return`, CONCAT(c.product_full_code, a.sales_return_det_counting) AS `Unique Code`, c.product_name AS `Description`, cd.code_detail_name AS `Size`
+            SELECT 1 AS `#`, CONCAT(cmf.comp_number, ' - ', cmf.comp_name) AS `From`, CONCAT(cmt.comp_number, ' - ', cmt.comp_name) AS `To`, s.sales_return_number AS `Return`, 
+            CONCAT(c.product_full_code, a.sales_return_det_counting) AS `Unique Code`, dcd.class AS `Class`, c.product_name AS `Description`, dcd.color AS `Color`, cd.code_detail_name AS `Size`
             FROM tb_sales_return_det_counting a 
             INNER JOIN tb_sales_return_det b ON a.id_sales_return_det = b.id_sales_return_det 
             INNER JOIN tb_sales_return s ON b.id_sales_return = s.id_sales_return
             INNER JOIN tb_m_product c ON c.id_product = b.id_product 
+            INNER JOIN tb_m_design dsg ON dsg.id_design = c.id_design
+            LEFT JOIN (
+		        SELECT dc.id_design, 
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		        FROM tb_m_design_code dc
+		        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		        AND cd.id_code IN (32,30,14, 43)
+		        GROUP BY dc.id_design
+	        ) dcd ON dcd.id_design = dsg.id_design
             INNER JOIN tb_m_product_code pc ON pc.id_product = c.id_product 
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail 
             INNER JOIN tb_m_comp_contact cf ON cf.id_comp_contact = s.id_store_contact_from

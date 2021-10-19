@@ -684,6 +684,9 @@
         ElseIf report_mark_type = "307" Then
             'polis
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_polis_pps WHERE id_polis_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "309" Then
+            'polis reg
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_polis_reg WHERE id_polis_reg = '{0}'", id_report)
         ElseIf report_mark_type = "310" Then
             'verification invoice 3pl WH
             query = String.Format("SELECT id_report_status, inv_number as report_number FROM tb_awb_inv_sum WHERE id_awb_inv_sum = '{0}'", id_report)
@@ -723,6 +726,21 @@
         ElseIf report_mark_type = "333" Then
             'qc sni in
             query = String.Format("SELECT id_report_status_del AS id_report_status, del_wh_number as report_number FROM tb_qc_sni_out WHERE id_qc_sni_out = '{0}'", id_report)
+        ElseIf report_mark_type = "334" Then
+            'qc sni in
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_pre_cal_fgpo WHERE id_pre_cal_fgpo = '{0}'", id_report)
+        ElseIf report_mark_type = "348" Then
+            'surat ijin
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_st_store_propose WHERE id_st_store_propose = '{0}'", id_report)
+        ElseIf report_mark_type = "349" Then
+            'prepaid expense
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_prepaid_expense WHERE id_prepaid_expense = '{0}'", id_report)
+        ElseIf report_mark_type = "351" Then
+            'proposal promo zalora
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_promo_zalora WHERE id_promo_zalora = '{0}'", id_report)
+        ElseIf report_mark_type = "352" Then
+            'proposal promo zalora - rekon
+            query = String.Format("SELECT id_report_status_recon AS `id_report_status`, number as report_number FROM tb_promo_zalora WHERE id_promo_zalora = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -2160,9 +2178,11 @@ WHERE adjd.id_adj_out_mat='" & id_report & "'"
                 execute_non_query(query, True, "", "", "", "")
 
                 'check for mrs
-                Dim qc As String = "SELECT pod.id_prod_order,pod.`id_prod_order_det`,pod.`id_prod_demand_product`,rd.`prod_order_rec_det_qty` AS rec_qty,tot.qty,pod.`prod_order_qty`,(tot.qty-pod.`prod_order_qty`) AS more_qty
-,CONCAT(p.product_full_code,' - ',d.`design_display_name`) AS prod,cd.`code_detail_name` AS size,r.`prod_order_rec_number`,po.`prod_order_number`
-,IF((tot.qty-pod.`prod_order_qty`)-rd.`prod_order_rec_det_qty`>=0,rd.`prod_order_rec_det_qty`,(tot.qty-pod.`prod_order_qty`)) AS this_rec_more
+                Dim qc As String = "SELECT pod.id_prod_order,pod.`id_prod_order_det`,pod.`id_prod_demand_product`,SUM(rd.`prod_order_rec_det_qty`) AS rec_qty,SUM(tot.qty) AS qty
+,CONCAT(d.design_code,' - ',cd.class,' ',d.`design_name`,' ',cd.color) AS prod,cd.`code_detail_name` AS size,r.`prod_order_rec_number`,po.`prod_order_number`
+,SUM(pod.`prod_order_qty`) AS prod_order_qty
+,SUM(tot.qty-pod.`prod_order_qty`) AS grand_tot_rec_more
+,IF(SUM(tot.qty-pod.`prod_order_qty`)<SUM(rd.`prod_order_rec_det_qty`),SUM(tot.qty-pod.`prod_order_qty`),SUM(rd.`prod_order_rec_det_qty`)) AS this_rec_more
 FROM tb_prod_order_rec_det rd 
 INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec`
 INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=rd.`id_prod_order_det` AND rd.`id_prod_order_rec`='" & id_report & "' 
@@ -2172,6 +2192,22 @@ INNER JOIN tb_m_product p ON p.`id_product`=pdp.`id_product`
 INNER JOIN tb_m_design d ON d.`id_design`=p.`id_design`
 INNER JOIN tb_m_product_code c ON c.`id_product`=p.`id_product` 
 INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=c.`id_code_detail` AND cd.`id_code`=33
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = d.id_design
 LEFT JOIN
 (
 	SELECT rd.`id_prod_order_det`,SUM(prod_order_rec_det_qty) AS qty
@@ -2185,7 +2221,7 @@ HAVING this_rec_more>0"
                 If dtc.Rows.Count > 0 Then
 
                     'header MRS
-                    query = String.Format("INSERT INTO tb_prod_order_mrs(id_prod_order,id_comp_contact_req_to,id_comp_contact_req_from,prod_order_mrs_date,prod_order_mrs_note, created_by, id_pl_mat_type, id_prod_order_rec, id_report_status) VALUES('{0}','{1}','{2}',NOW(),'{3}','{4}','{5}','{6}','{7}',6);SELECT LAST_INSERT_ID()", dtc.Rows(0)("id_prod_order").ToString, "85", "74", "Auto RMRS from Receiving QC", id_user, "1", id_report)
+                    query = String.Format("INSERT INTO tb_prod_order_mrs(id_prod_order,id_comp_contact_req_to,id_comp_contact_req_from,prod_order_mrs_date,prod_order_mrs_note, created_by, id_pl_mat_type, id_prod_order_rec, id_report_status) VALUES('{0}','{1}','{2}',NOW(),'{3}','{4}','{5}','{6}',6);SELECT LAST_INSERT_ID()", dtc.Rows(0)("id_prod_order").ToString, "85", "74", "Auto RMRS from Receiving QC", id_user, "1", id_report)
                     Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
 
                     execute_non_query("CALL gen_number('" & last_id & "','29')", True, "", "", "", "")
@@ -2199,31 +2235,51 @@ INNER JOIN tb_m_mat_det_price d ON d.id_mat_det_price=e.id_mat_det_price
 INNER JOIN tb_m_mat_det f ON d.id_mat_det = f.id_mat_det
 INNER JOIN
 (
-	SELECT pod.`id_prod_order_det`,pdp.`id_product`,pod.`id_prod_demand_product`,rd.`prod_order_rec_det_qty` AS rec_qty,tot.qty,pod.`prod_order_qty`,(tot.qty-pod.`prod_order_qty`) AS more_qty
-	,CONCAT(p.product_full_code,' - ',d.`design_display_name`) AS prod,cd.`code_detail_name` AS size,r.`prod_order_rec_number`,po.`prod_order_number`
-	,SUM(IF((tot.qty-pod.`prod_order_qty`)-rd.`prod_order_rec_det_qty`>=0,rd.`prod_order_rec_det_qty`,(tot.qty-pod.`prod_order_qty`))) AS this_rec_more
-	FROM tb_prod_order_rec_det rd 
-	INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec`
-	INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=rd.`id_prod_order_det` AND rd.`id_prod_order_rec`='" & id_report & "' 
-	INNER JOIN tb_prod_order po ON po.`id_prod_order`=pod.`id_prod_order`
-	INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_product`=pod.`id_prod_demand_product`
-	INNER JOIN tb_m_product p ON p.`id_product`=pdp.`id_product`
-	INNER JOIN tb_m_design d ON d.`id_design`=p.`id_design`
-	INNER JOIN tb_m_product_code c ON c.`id_product`=p.`id_product` 
-	INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=c.`id_code_detail` AND cd.`id_code`=33
-	LEFT JOIN
-	(
-		SELECT rd.`id_prod_order_det`,SUM(prod_order_rec_det_qty) AS qty
-		FROM tb_prod_order_rec_det rd 
-		INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND (r.`id_report_status`=6 OR rd.`id_prod_order_rec`='" & id_report & "')
-		WHERE rd.`prod_order_rec_det_qty`
-		GROUP BY rd.`id_prod_order_det`
-	)tot ON tot.id_prod_order_det=pod.`id_prod_order_det`
-	HAVING this_rec_more>0
+	SELECT p.id_product,pod.`id_prod_order_det`,pod.`id_prod_demand_product`,SUM(tot.qty) AS qty
+    ,CONCAT(d.design_code,' - ',cd.class,' ',d.`design_name`,' ',cd.color) AS prod,cd.`code_detail_name` AS size,r.`prod_order_rec_number`,po.`prod_order_number`
+    ,SUM(pod.`prod_order_qty`) AS prod_order_qty
+    ,SUM(rd.`prod_order_rec_det_qty`) AS rec_qty
+    ,SUM(tot.qty-pod.`prod_order_qty`) AS grand_tot_rec_more
+    ,IF(SUM(tot.qty-pod.`prod_order_qty`)<SUM(rd.`prod_order_rec_det_qty`),SUM(tot.qty-pod.`prod_order_qty`),SUM(rd.`prod_order_rec_det_qty`)) AS this_rec_more
+    FROM tb_prod_order_rec_det rd 
+    INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec`
+    INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=rd.`id_prod_order_det` AND rd.`id_prod_order_rec`='" & id_report & "' 
+    INNER JOIN tb_prod_order po ON po.`id_prod_order`=pod.`id_prod_order`
+    INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_product`=pod.`id_prod_demand_product`
+    INNER JOIN tb_m_product p ON p.`id_product`=pdp.`id_product`
+    INNER JOIN tb_m_design d ON d.`id_design`=p.`id_design`
+    INNER JOIN tb_m_product_code c ON c.`id_product`=p.`id_product` 
+    INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=c.`id_code_detail` AND cd.`id_code`=33
+    LEFT JOIN (
+	    SELECT dc.id_design, 
+	    MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	    MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	    MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	    MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	    MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	    MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	    MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	    MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	    MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	    FROM tb_m_design_code dc
+	    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	    AND cd.id_code IN (32,30,14, 43)
+	    GROUP BY dc.id_design
+    ) cd ON cd.id_design = d.id_design
+    LEFT JOIN
+    (
+	    SELECT rd.`id_prod_order_det`,SUM(prod_order_rec_det_qty) AS qty
+	    FROM tb_prod_order_rec_det rd 
+	    INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND (r.`id_report_status`=6 OR rd.`id_prod_order_rec`='" & id_report & "')
+	    WHERE rd.`prod_order_rec_det_qty`
+	    GROUP BY rd.`id_prod_order_det`
+    )tot ON tot.id_prod_order_det=pod.`id_prod_order_det`
+    HAVING this_rec_more>0
 )rec ON rec.id_product=bom.`id_product`"
                     execute_non_query(query, True, "", "", "", "")
 
                     Dim mail As New ClassSendEmail()
+                    mail.par1 = last_id
                     mail.report_mark_type = "345"
                     mail.id_report = id_report
                     mail.comment = ""
@@ -6140,9 +6196,14 @@ VALUES('" & dtsi.Rows(i)("id_departement").ToString & "','" & id_item_detail & "
             '    GROUP BY po.id_purc_order, dep.id_main_comp
 
             'refresh view
-            FormPurcReceiveDet.actionLoad()
-            FormPurcReceive.viewReceive()
-            FormPurcReceive.GVReceive.FocusedRowHandle = find_row(FormPurcReceive.GVReceive, "id_purc_rec", id_report)
+            Try
+                FormPurcReceiveDet.actionLoad()
+                FormPurcReceive.viewReceive()
+                FormPurcReceive.GVReceive.FocusedRowHandle = find_row(FormPurcReceive.GVReceive, "id_purc_rec", id_report)
+            Catch ex As Exception
+
+            End Try
+
 
             'jika ada PPH dan receiving klop
             'DP pindah BBK
@@ -6844,7 +6905,13 @@ WHERE id_sales_branch ='" & dtv.Rows(0)("id_sales_branch").ToString & "' "
                     ElseIf data_payment.Rows(0)("report_mark_type").ToString = "167" Then
                         'close cash advance
                         execute_non_query("UPDATE tb_cash_advance SET is_bbk = 1 WHERE id_cash_advance IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
+                    ElseIf data_payment.Rows(0)("report_mark_type").ToString = "349" Then
+                        Dim qc As String = "UPDATE tb_prepaid_expense e
+                                                INNER JOIN tb_pn_det pyd ON pyd.`id_report`=e.`id_prepaid_expense` AND pyd.balance_due=pyd.`value` AND pyd.`id_pn`=" & id_report & "
+                                                SET e.is_open='2'"
+                        execute_non_query(qc, True, "", "", "", "")
                     End If
+
                     'check compen rmt 117 183 then close
                     Dim qce As String = "SELECT id_report FROM tb_pn_det WHERE id_pn='" & id_report & "' AND (report_mark_type='117' OR  report_mark_type='183')"
                     Dim dtce As DataTable = execute_query(qce, -1, True, "", "", "", "")
@@ -7090,6 +7157,25 @@ WHERE recd.balance_due=recd.`value` AND report_mark_type='231' AND id_rec_paymen
                     SET d.is_open=2
                     WHERE d.id_inv_mat = '" + dt.Rows(j)("id_report").ToString + "'; "
                         execute_non_query(qjd_upd, True, "", "", "", "")
+                    Next
+                ElseIf FormBankDepositDet.type_rec = "6" Then
+                    'break prepaid
+                    Dim q As String = "SELECT id_report,id_report_det,recd.value AS amo,IFNULL(p.`id_polis`,0) AS id_polis
+FROM `tb_rec_payment_det` recd
+INNER JOIN `tb_prepaid_expense_det` pd ON pd.`id_prepaid_expense_det`=recd.`id_report_det` AND pd.`id_prepaid_expense`=recd.`id_report`
+LEFT JOIN tb_polis p ON pd.`id_reff_det`=p.`id_polis_reg_det`
+WHERE recd.balance_due=recd.`value` AND recd.report_mark_type='349' AND recd.id_rec_payment='" + id_report + "'
+GROUP BY pd.`id_prepaid_expense_det`"
+                    Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                    For j = 0 To dt.Rows.Count - 1
+                        Dim qjd_ins = "INSERT INTO `tb_prepaid_expense_history`(id_prepaid_expense_det,date_input,value_prepaid,is_auto,id_reff)
+VALUES('" & dt.Rows(j)("id_report_det").ToString & "',NOW(),'" & decimalSQL(Decimal.Parse(dt.Rows(j)("amo").ToString).ToString) & "','2','" + id_report + "')"
+                        execute_non_query(qjd_ins, True, "", "", "", "")
+                        execute_non_query("UPDATE tb_prepaid_expense_det SET is_manual_close=1 WHERE id_prepaid_expense_det='" & dt.Rows(j)("id_report_det").ToString & "'", True, "", "", "", "")
+                        If Not dt.Rows(j)("id_polis").ToString = "0" Then
+
+                        End If
+                        execute_non_query("UPDATE tb_polis SET is_active=2 WHERE id_polis='" & dt.Rows(j)("id_polis").ToString & "'", True, "", "", "", "")
                     Next
                 End If
 
@@ -10126,6 +10212,37 @@ WHERE pps.id_product_weight_pps='" & id_report & "'"
             'update status
             query = String.Format("UPDATE tb_polis_pps SET id_report_status='{0}' WHERE id_polis_pps ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "309" Then
+            'polis
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                Dim ql As String = "SELECT regd.id_polis_reg_det,ppsd.`id_polis_pps_det`,ppsd.id_comp,regd.`id_desc_premi`,regd.`premi` AS premi_pps,regd.`polis_number`,regd.vendor_dipilih
+,ppsd.v_start_date,ppsd.v_end_date,ppsd.`nilai_stock`,ppsd.`nilai_fit_out`,ppsd.`nilai_building`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`,ppsd.`nilai_total`
+FROM tb_polis_reg_det regd
+INNER JOIN tb_polis_pps_det ppsd ON regd.`id_polis_pps_det`=ppsd.`id_polis_pps_det`
+WHERE regd.id_polis_reg='" & id_report & "'
+GROUP BY regd.`id_polis_pps_det`"
+                Dim dtl As DataTable = execute_query(ql, -1, True, "", "", "", "")
+
+                For i = 0 To dtl.Rows.Count - 1
+                    Dim qu As String = "UPDATE tb_polis SET is_active='2' WHERE id_reff='" & dtl.Rows(i)("id_comp").ToString & "' AND id_desc_premi='" & dtl.Rows(i)("id_desc_premi").ToString & "'"
+                    execute_non_query(qu, True, "", "", "", "")
+                    '
+                    qu = "INSERT INTO tb_polis(`id_polis_cat`,`id_polis_by`,`id_reff`,`start_date`,`end_date`,`nilai_stock`,`nilai_fit_out`,`nilai_building`,`nilai_peralatan`,`nilai_public_liability`,`nilai_total`,id_desc_premi,premi,number,`is_active`,`id_polis_reg_det`)
+SELECT 1 AS id_polis_cat,regd.vendor_dipilih,ppsd.id_comp,ppsd.v_start_date,ppsd.v_end_date,ppsd.`nilai_stock`,ppsd.`nilai_fit_out`,ppsd.`nilai_building`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`,ppsd.`nilai_total`,regd.id_desc_premi,regd.premi,regd.polis_number,1 AS is_active,regd.id_polis_reg_det
+FROM tb_polis_reg_det regd
+INNER JOIN tb_polis_pps_det ppsd ON regd.`id_polis_pps_det`=ppsd.`id_polis_pps_det`
+WHERE regd.id_polis_reg_det='" & dtl.Rows(i)("id_polis_reg_det").ToString & "' "
+                    execute_non_query(qu, True, "", "", "", "")
+                Next
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_polis_reg SET id_report_status='{0}' WHERE id_polis_reg ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         ElseIf report_mark_type = "310" Then
             'invoice verification
             If id_status_reportx = "3" Then
@@ -10531,6 +10648,162 @@ WHERE qci.id_qc_sni_in='" & id_report & "'"
                 FormSNIWH.load_list()
             Catch ex As Exception
             End Try
+        ElseIf report_mark_type = "334" Then
+            'pre cal fgpo
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            query = "UPDATE tb_pre_cal_fgpo SET id_report_status='" & id_status_reportx & "' WHERE id_pre_cal_fgpo='" & id_report & "' "
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            Try
+            Catch ex As Exception
+            End Try
+        ElseIf report_mark_type = "348" Then
+            'surat ijin
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                FormStockTakeProposeDet.send_mail()
+            End If
+
+            query = String.Format("UPDATE tb_st_store_propose SET id_report_status = '{0}' WHERE id_st_store_propose = '{1}'", id_status_reportx, id_report)
+
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "349" Then
+            'prepaid expense
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            Dim id_report_now As String = execute_query("SELECT id_report_status FROM tb_prepaid_expense WHERE id_prepaid_expense='" & id_report & "'", 0, True, "", "", "", "")
+
+            'update
+            query = String.Format("UPDATE tb_prepaid_expense SET id_report_status='{0}' WHERE id_prepaid_expense ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            If id_status_reportx = "5" And id_report_now = "6" Then 'cancel form
+                Dim old_id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+                WHERE ad.report_mark_type=349 AND ad.id_report=" + id_report + "
+                GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+                '
+                Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                Dim report_number As String = du.Rows(0)("report_number").ToString
+
+                Dim qe As String = "SELECT created_date,date_reff FROM tb_prepaid_expense WHERE id_prepaid_expense='" & id_report & "'"
+                Dim de As DataTable = execute_query(qe, -1, True, "", "", "", "")
+                Dim date_reff As String = Date.Parse(de.Rows(0)("date_reff").ToString).ToString("yyyy-MM-dd")
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
+                VALUES ('','" + report_number + "','0','" + id_user_prepared + "', NOW(), NOW(), 'Cancel Prepaid Expense', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
+                '
+                Dim q_balik = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor)
+SELECT id_acc_trans, id_acc, credit, debit, CONCAT('Cancel Form - ',acc_trans_det_note) AS acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor
+FROM tb_a_acc_trans_det
+WHERE id_acc_trans='" & old_id_acc_trans & "'"
+                execute_non_query(q_balik, True, "", "", "", "")
+            End If
+
+            If id_status_reportx = "6" Then
+                ' select user prepared
+                Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                Dim report_number As String = du.Rows(0)("report_number").ToString
+
+                Dim qe As String = "SELECT created_date,date_reff FROM tb_prepaid_expense WHERE id_prepaid_expense='" & id_report & "'"
+                Dim de As DataTable = execute_query(qe, -1, True, "", "", "", "")
+                Dim date_reff As String = Date.Parse(de.Rows(0)("date_reff").ToString).ToString("yyyy-MM-dd")
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
+                VALUES ('','" + report_number + "','0','" + id_user_prepared + "', NOW(), '" & date_reff & "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
+
+                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_vendor, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_coa_tag)
+                    SELECT " + id_acc_trans + ", ed.id_acc_pph, e.id_comp  AS id_vendor,IF(ed.amount<0,-ed.pph,0) AS `debit`, IF(ed.amount<0,0,ed.pph) AS `credit`, ed.description, 349, e.id_prepaid_expense, e.`number`,ed.cc
+                    ,e.inv_number,e.id_coa_tag
+                    FROM tb_prepaid_expense e
+                    INNER JOIN  tb_prepaid_expense_det ed ON ed.id_prepaid_expense = e.id_prepaid_expense
+                    WHERE e.id_prepaid_expense=" + id_report + " AND pph_percent>0 AND ed.`id_acc_pph` != (SELECT id_acc_skbp FROM tb_opt_accounting)
+                    UNION ALL
+                    SELECT " + id_acc_trans + ", ed.id_acc_pph, e.id_comp  AS id_vendor,IF(ed.amount<0,-FLOOR(ed.amount*(ed.`pph_percent`/100)),0) AS `debit`, IF(ed.amount<0,0,FLOOR(ed.amount*(ed.`pph_percent`/100))) AS `credit`, ed.description, 349, e.id_prepaid_expense, e.`number`,ed.cc
+                    ,e.inv_number,e.id_coa_tag
+                    FROM tb_prepaid_expense e
+                    INNER JOIN  tb_prepaid_expense_det ed ON ed.id_prepaid_expense = e.id_prepaid_expense
+                    WHERE e.id_prepaid_expense=" + id_report + " AND pph_percent>0 AND ed.`id_acc_pph` = (SELECT id_acc_skbp FROM tb_opt_accounting)
+                    UNION ALL
+                    SELECT " + id_acc_trans + ", ed.id_acc_pph, e.id_comp  AS id_vendor,IF(ed.amount<0,0,FLOOR(ed.amount*(ed.`pph_percent`/100))) AS `debit`, IF(ed.amount<0,-FLOOR(ed.amount*(ed.`pph_percent`/100)),0) AS `credit`, ed.description, 349, e.id_prepaid_expense, e.`number`,ed.cc
+                    ,e.inv_number,e.id_coa_tag
+                    FROM tb_prepaid_expense e
+                    INNER JOIN  tb_prepaid_expense_det ed ON ed.id_prepaid_expense = e.id_prepaid_expense
+                    WHERE e.id_prepaid_expense=" + id_report + " AND pph_percent>0 AND ed.`id_acc_pph` = (SELECT id_acc_skbp FROM tb_opt_accounting)
+                    UNION ALL
+                    SELECT " + id_acc_trans + ", ed.id_acc, e.id_comp  AS id_vendor, IF(ed.amount<0,0,ed.amount) AS `debit`, IF(ed.amount<0,-ed.amount,0) AS `credit`, ed.description, 349, e.id_prepaid_expense, e.`number`,ed.cc
+                    ,e.inv_number,e.id_coa_tag
+                    FROM tb_prepaid_expense e
+                    INNER JOIN  tb_prepaid_expense_det ed ON ed.id_prepaid_expense = e.id_prepaid_expense
+                    WHERE e.id_prepaid_expense=" + id_report + "
+                    UNION ALL
+                    SELECT " + id_acc_trans + ", IF(e.id_coa_tag=1,o.acc_coa_vat_in,o.acc_coa_vat_in_cabang), e.id_comp  AS id_vendor, e.vat_total AS `debit`, 0 AS `credit`, e.note AS description, 349, e.id_prepaid_expense, e.`number`,1
+                    ,e.inv_number,e.id_coa_tag
+                    FROM tb_prepaid_expense e
+                    JOIN tb_opt_purchasing o
+                    WHERE e.id_prepaid_expense=" + id_report + " AND e.vat_total>0
+                    UNION ALL
+                    SELECT " + id_acc_trans + ",  IF(e.id_coa_tag=1,c.id_acc_ap,c.id_acc_cabang_ap) AS `id_acc`, e.id_comp  AS id_vendor, 0 AS `debit`, e.`total` AS `credit`, e.note AS description, 349, e.id_prepaid_expense, e.`number`,1
+                    ,e.inv_number,e.id_coa_tag
+                    FROM tb_prepaid_expense e
+                    INNER JOIN tb_m_comp c ON c.id_comp = e.id_comp
+                    WHERE e.id_prepaid_expense=" + id_report + " "
+                execute_non_query(qjd, True, "", "", "", "")
+
+                'budget
+                Dim q_budget As String = "INSERT INTO tb_b_expense_opex_trans(id_b_expense_opex,is_po,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note)
+                SELECT ied.id_b_expense,'2' AS is_po, '5' AS id_departement,NOW() AS date_trans,amount,NULL AS id_item,ie.id_prepaid_expense,'349','Prepaid Expense'
+                FROM tb_prepaid_expense_det ied 
+                INNER JOIN tb_prepaid_expense ie ON ie.id_prepaid_expense=ied.id_prepaid_expense
+                WHERE ied.id_expense_type='1' AND ied.id_prepaid_expense='" + id_report + "';
+                INSERT INTO tb_b_expense_trans(id_b_expense,is_po,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note)
+                SELECT ied.id_b_expense,'2' AS is_po, be.id_departement AS id_departement,NOW() AS date_trans,amount,NULL AS id_item,ie.id_prepaid_expense,'349','Prepaid Expense'
+                FROM tb_prepaid_expense_det ied 
+                INNER JOIN tb_prepaid_expense ie ON ie.id_prepaid_expense=ied.id_prepaid_expense
+                INNER JOIN tb_b_expense be ON be.id_b_expense=ied.id_b_expense
+                WHERE ied.id_expense_type='2' AND ied.id_prepaid_expense='" + id_report + "';"
+                execute_non_query(q_budget, True, "", "", "", "")
+            End If
+
+            'refresh view
+            'Try
+            'FormItemExpenseDet.actionLoad()
+            'Catch ex As Exception
+            'End Try
+        ElseIf report_mark_type = "351" Then
+            'proposal promo zalora
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+            query = String.Format("UPDATE tb_promo_zalora SET id_report_status = '{0}' WHERE id_promo_zalora = '{1}'", id_status_reportx, id_report)
+
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "352" Then
+            'proposal promo zalora - rekon
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+            query = String.Format("UPDATE tb_promo_zalora SET id_report_status_recon = '{0}' WHERE id_promo_zalora = '{1}'", id_status_reportx, id_report)
+
+            execute_non_query(query, True, "", "", "", "")
         End If
 
         'adding lead time
