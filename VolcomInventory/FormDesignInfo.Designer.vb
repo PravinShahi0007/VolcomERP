@@ -224,7 +224,7 @@ Partial Class FormDesignInfo
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(784, 193)
+        Me.PanelControl2.Size = New System.Drawing.Size(884, 193)
         Me.PanelControl2.TabIndex = 8
         '
         'LabelEffectiveDate
@@ -455,7 +455,7 @@ Partial Class FormDesignInfo
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl1.Location = New System.Drawing.Point(0, 193)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(784, 368)
+        Me.PanelControl1.Size = New System.Drawing.Size(884, 368)
         Me.PanelControl1.TabIndex = 9
         '
         'XTCStockOnHandNew
@@ -465,7 +465,7 @@ Partial Class FormDesignInfo
         Me.XTCStockOnHandNew.Location = New System.Drawing.Point(2, 108)
         Me.XTCStockOnHandNew.Name = "XTCStockOnHandNew"
         Me.XTCStockOnHandNew.SelectedTabPage = Me.XTPBySizeBarcode
-        Me.XTCStockOnHandNew.Size = New System.Drawing.Size(780, 258)
+        Me.XTCStockOnHandNew.Size = New System.Drawing.Size(880, 258)
         Me.XTCStockOnHandNew.TabIndex = 8930
         Me.XTCStockOnHandNew.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBySizeBarcode, Me.XTPByCodeSOH})
         '
@@ -473,7 +473,7 @@ Partial Class FormDesignInfo
         '
         Me.XTPBySizeBarcode.Controls.Add(Me.GCSOH)
         Me.XTPBySizeBarcode.Name = "XTPBySizeBarcode"
-        Me.XTPBySizeBarcode.Size = New System.Drawing.Size(751, 252)
+        Me.XTPBySizeBarcode.Size = New System.Drawing.Size(851, 252)
         Me.XTPBySizeBarcode.Text = "By Size Barcode"
         '
         'GCSOH
@@ -482,7 +482,7 @@ Partial Class FormDesignInfo
         Me.GCSOH.Location = New System.Drawing.Point(0, 0)
         Me.GCSOH.MainView = Me.GVSOH
         Me.GCSOH.Name = "GCSOH"
-        Me.GCSOH.Size = New System.Drawing.Size(751, 252)
+        Me.GCSOH.Size = New System.Drawing.Size(851, 252)
         Me.GCSOH.TabIndex = 0
         Me.GCSOH.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSOH})
         '
@@ -1520,7 +1520,7 @@ Partial Class FormDesignInfo
         Me.PanelControlSOH.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlSOH.Location = New System.Drawing.Point(2, 2)
         Me.PanelControlSOH.Name = "PanelControlSOH"
-        Me.PanelControlSOH.Size = New System.Drawing.Size(780, 106)
+        Me.PanelControlSOH.Size = New System.Drawing.Size(880, 106)
         Me.PanelControlSOH.TabIndex = 1
         '
         'PanelControl3
@@ -1678,7 +1678,7 @@ Partial Class FormDesignInfo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(784, 561)
+        Me.ClientSize = New System.Drawing.Size(884, 561)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl2)
         Me.MaximizeBox = False
@@ -1686,7 +1686,6 @@ Partial Class FormDesignInfo
         Me.Name = "FormDesignInfo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Design Information"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
