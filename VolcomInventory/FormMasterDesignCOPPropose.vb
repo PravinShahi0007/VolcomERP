@@ -73,9 +73,25 @@
     Sub load_det()
         Dim query As String = "SELECT pd.target_cost,pd.`id_design_cop_propose_det`,pd.`id_design`,dsg.`design_code`,dsg.`design_display_name`
 ,pd.`id_currency_before`,cur_before.`currency` AS currency_before,pd.`id_comp_contact_before`,c_before.`comp_number` AS comp_number_before,c_before.`comp_name` AS comp_name_before,pd.`kurs_before`,pd.`design_cop_before`,pd.`add_cost_before`,(pd.`design_cop_before`-pd.`add_cost_before`) AS design_cop_ex_before
-,pd.`id_currency`,cur.`currency`,pd.`id_comp_contact`,c.`comp_number`,c.`comp_name`,pd.`kurs`,pd.`design_cop`,pd.`add_cost`,(pd.`design_cop`-pd.`add_cost`) AS design_cop_ex
+,pd.`id_currency`,cur.`currency`,pd.`id_comp_contact`,c.`comp_number`,c.`comp_name`,pd.`kurs`,pd.`design_cop`,pd.`add_cost`,(pd.`design_cop`-pd.`add_cost`) AS design_cop_ex, cd.class, cd.color
 FROM `tb_design_cop_propose_det` pd
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pd.`id_design`
+LEFT JOIN (
+    SELECT dc.id_design, 
+    MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+    MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+    MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+    MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+    MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+    MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+    MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+    MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+    MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+    FROM tb_m_design_code dc
+    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+    AND cd.id_code IN (32,30,14, 43)
+    GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
 INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=pd.`id_currency`
 LEFT JOIN tb_lookup_currency cur_before ON cur_before.`id_currency`=pd.`id_currency_before`
 LEFT JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=pd.`id_comp_contact`
