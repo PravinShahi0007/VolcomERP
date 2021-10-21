@@ -8250,6 +8250,12 @@
     <Compile Include="FormVMStoreDisplayDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormVMStoreDisplayQty.Designer.vb">
+      <DependentUpon>FormVMStoreDisplayQty.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVMStoreDisplayQty.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormVoucherPOS.Designer.vb">
       <DependentUpon>FormVoucherPOS.vb</DependentUpon>
     </Compile>
@@ -14723,6 +14729,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormVMStoreDisplayDet.resx">
       <DependentUpon>FormVMStoreDisplayDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVMStoreDisplayQty.resx">
+      <DependentUpon>FormVMStoreDisplayQty.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVoucherPOS.resx">
       <DependentUpon>FormVoucherPOS.vb</DependentUpon>
