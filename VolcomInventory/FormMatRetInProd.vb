@@ -261,6 +261,10 @@
             errorCustom("Qty can't blank or zero value !")
         ElseIf id_comp_contact_from = "-1" Then
             errorCustom("Please complete your input first !")
+        ElseIf id_comp_contact_from = "74" And LEPLType.EditValue.ToString = "2" Then
+            errorCustom("Untuk tujuan ke QC harus include ke dalam COP")
+        ElseIf Not id_comp_contact_from = "74" And LEPLType.EditValue.ToString = "1" Then
+            errorCustom("Untuk vendor gunakan tipe jual beli")
         Else
             Dim query As String
             Dim mat_prod_ret_in_number As String = addSlashes(TxtRetOutNumber.Text)

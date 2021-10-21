@@ -1297,4 +1297,24 @@ WHERE c.id_comp='" + id_comp + "' "
         actionLoad()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GrossUpPPHToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GrossUpPPHToolStripMenuItem.Click
+        If GVData.RowCount > 0 Then
+            Try
+                Dim dpp As Decimal = Decimal.Parse(GVData.GetFocusedRowCellValue("amount").ToString)
+                Dim pph As Decimal = Decimal.Parse(GVData.GetFocusedRowCellValue("pph_percent").ToString)
+                '
+                Dim kurs As Decimal = Decimal.Parse(GVData.GetFocusedRowCellValue("kurs").ToString)
+                '
+                Dim grossup_val As Decimal = 0.00
+                grossup_val = (100 / (100 - pph)) * dpp
+                'grossup_val = dpp - (1 - (pph / 100))
+                GVData.SetFocusedRowCellValue("amount_before", grossup_val / kurs)
+                GVData.SetFocusedRowCellValue("amount", grossup_val)
+                calculate()
+            Catch ex As Exception
+                warningCustom("Please check your input")
+            End Try
+        End If
+    End Sub
 End Class
