@@ -8619,6 +8619,12 @@
     <Compile Include="ReportDesignCOPPropose.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportDesignInfo.Designer.vb">
+      <DependentUpon>ReportDesignInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDesignInfo.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDynamic.Designer.vb">
       <DependentUpon>ReportDynamic.vb</DependentUpon>
     </Compile>
@@ -14870,6 +14876,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDesignCOPPropose.resx">
       <DependentUpon>ReportDesignCOPPropose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportDesignInfo.resx">
+      <DependentUpon>ReportDesignInfo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDynamic.resx">
       <DependentUpon>ReportDynamic.vb</DependentUpon>
