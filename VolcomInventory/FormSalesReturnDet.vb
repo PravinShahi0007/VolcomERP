@@ -1852,7 +1852,11 @@ Public Class FormSalesReturnDet
                         dtu = execute_query(qold, -1, True, "", "", "", "")
                     Else
                         'jika unik cek unik code
-                        dtu = execute_query("CALL view_stock_fg_unique_ret('" + dcr.Rows(0)("id_product").ToString + "','" + id_store + "', '0','0')", -1, True, "", "", "", "")
+                        If is_use_unique_code = "1" Then
+                            dtu = execute_query("CALL view_stock_fg_unique_with_table('" + dcr.Rows(0)("id_product").ToString + "', '" + id_store + "', '" + id_wh_drawer_store + "')", -1, True, "", "", "", "")
+                        Else
+                            dtu = execute_query("CALL view_stock_fg_unique_ret('" + dcr.Rows(0)("id_product").ToString + "','" + id_store + "', '0','0')", -1, True, "", "", "", "")
+                        End If
                     End If
 
 
