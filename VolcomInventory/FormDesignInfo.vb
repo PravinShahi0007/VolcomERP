@@ -297,4 +297,32 @@
         gv.Columns("ttl_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
         gv.Columns("ttl_qty0").Caption = "0" + System.Environment.NewLine + "SM"
     End Sub
+
+    Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        Dim report As ReportDesignInfo = New ReportDesignInfo
+
+        report.XLDesc.Text = LabelDesc.Text
+        report.XLCode.Text = LabelCode.Text
+        report.XLSeason.Text = LabelSeason.Text
+        report.XLColor.Text = LabelColor.Text
+        report.XLClass.Text = LabelClass.Text
+        report.XLPrice.Text = LabelPrice.Text
+        report.XLPriceType.Text = LabelPriceType.Text
+        report.XLEffectiveDate.Text = LabelEffectiveDate.Text
+
+        report.GCSOHCode.DataSource = GCSOHCode.DataSource
+        report.GCSOH.DataSource = GCSOH.DataSource
+
+        If XTCStockOnHandNew.SelectedTabPageIndex = 0 Then
+            report.DetailReportCode.Visible = False
+            report.DetailReportSize.Visible = True
+        Else
+            report.DetailReportCode.Visible = True
+            report.DetailReportSize.Visible = False
+        End If
+
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        tool.ShowPreviewDialog()
+    End Sub
 End Class

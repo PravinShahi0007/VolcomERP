@@ -84,6 +84,8 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControlBottomLeft = New DevExpress.XtraEditors.PanelControl()
         Me.CEAdditionalCost = New DevExpress.XtraEditors.CheckEdit()
         Me.CENeedMarketing = New DevExpress.XtraEditors.CheckEdit()
+        Me.BandedGridColumnclass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumncolor = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GBBefore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GBAfter = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -377,7 +379,7 @@ Partial Class FormMasterDesignCOPPropose
         'BGVItemList
         '
         Me.BGVItemList.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.GBBefore, Me.GBAfter})
-        Me.BGVItemList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnIdDet, Me.GridColumnIdDesign, Me.GridColumnDesignCode, Me.GridColumnDesign, Me.GridColumnIdCurrency, Me.BandedGridColumnIdCompContact, Me.GridColumnVendorCode, Me.GridColumnVendorName, Me.GridColumnCurrency, Me.GridColumnKurs, Me.GridColumnECOP, Me.GridColumnECOPExclude, Me.GridColumnAddCost, Me.BandedGridColumnIdCurrencyBefore, Me.BandedGridColumnIdCompContactBefore, Me.GridColumnVendorCodeBefore, Me.GridColumnVendorNameBefore, Me.GridColumnCurrencyBefore, Me.GridColumnKursBefore, Me.GridColumnECOPBefore, Me.GridColumnAddCostBefore, Me.GridColumnECOPExcludeBefore, Me.BandedGridColumn1, Me.BGCStorageBefore, Me.BGCStorageAfter})
+        Me.BGVItemList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnIdDet, Me.GridColumnIdDesign, Me.GridColumnDesignCode, Me.GridColumnDesign, Me.GridColumnIdCurrency, Me.BandedGridColumnIdCompContact, Me.GridColumnVendorCode, Me.GridColumnVendorName, Me.GridColumnCurrency, Me.GridColumnKurs, Me.GridColumnECOP, Me.GridColumnECOPExclude, Me.GridColumnAddCost, Me.BandedGridColumnIdCurrencyBefore, Me.BandedGridColumnIdCompContactBefore, Me.GridColumnVendorCodeBefore, Me.GridColumnVendorNameBefore, Me.GridColumnCurrencyBefore, Me.GridColumnKursBefore, Me.GridColumnECOPBefore, Me.GridColumnAddCostBefore, Me.GridColumnECOPExcludeBefore, Me.BandedGridColumn1, Me.BGCStorageBefore, Me.BGCStorageAfter, Me.BandedGridColumnclass, Me.BandedGridColumncolor})
         Me.BGVItemList.GridControl = Me.GCItemList
         Me.BGVItemList.Name = "BGVItemList"
         Me.BGVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -748,17 +750,33 @@ Partial Class FormMasterDesignCOPPropose
         Me.CENeedMarketing.Size = New System.Drawing.Size(151, 19)
         Me.CENeedMarketing.TabIndex = 145
         '
+        'BandedGridColumnclass
+        '
+        Me.BandedGridColumnclass.Caption = "Class"
+        Me.BandedGridColumnclass.FieldName = "class"
+        Me.BandedGridColumnclass.Name = "BandedGridColumnclass"
+        Me.BandedGridColumnclass.Visible = True
+        '
+        'BandedGridColumncolor
+        '
+        Me.BandedGridColumncolor.Caption = "Color"
+        Me.BandedGridColumncolor.FieldName = "color"
+        Me.BandedGridColumncolor.Name = "BandedGridColumncolor"
+        Me.BandedGridColumncolor.Visible = True
+        '
         'GridBand1
         '
         Me.GridBand1.Caption = "Detail"
         Me.GridBand1.Columns.Add(Me.GridColumnIdDet)
         Me.GridBand1.Columns.Add(Me.GridColumnIdDesign)
         Me.GridBand1.Columns.Add(Me.GridColumnDesignCode)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnclass)
         Me.GridBand1.Columns.Add(Me.GridColumnDesign)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumncolor)
         Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 225
+        Me.GridBand1.Width = 375
         '
         'GBBefore
         '
@@ -905,6 +923,8 @@ Partial Class FormMasterDesignCOPPropose
     Friend WithEvents BGCStorageBefore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BGCStorageAfter As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnclass As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumncolor As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GBBefore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBAfter As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

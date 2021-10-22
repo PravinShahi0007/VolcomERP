@@ -33,6 +33,9 @@ Partial Class FormFGTracking
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControlInfo = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelSht = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelProductStatus = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
@@ -78,9 +81,9 @@ Partial Class FormFGTracking
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelSht = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PictureEdit2 = New DevExpress.XtraEditors.PictureEdit()
+        Me.BtnViewImgCloud = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlFilter.SuspendLayout()
         CType(Me.PanelControlList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,6 +103,9 @@ Partial Class FormFGTracking
         CType(Me.GCTracking, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVTracking, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.PictureEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlFilter
@@ -216,6 +222,7 @@ Partial Class FormFGTracking
         'GroupControlInfo
         '
         Me.GroupControlInfo.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlInfo.Controls.Add(Me.PanelControl1)
         Me.GroupControlInfo.Controls.Add(Me.LabelControl22)
         Me.GroupControlInfo.Controls.Add(Me.LabelSht)
         Me.GroupControlInfo.Controls.Add(Me.LabelControl14)
@@ -256,10 +263,37 @@ Partial Class FormFGTracking
         Me.GroupControlInfo.TabIndex = 1
         Me.GroupControlInfo.Text = "Information"
         '
+        'LabelControl22
+        '
+        Me.LabelControl22.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl22.Location = New System.Drawing.Point(394, 199)
+        Me.LabelControl22.Name = "LabelControl22"
+        Me.LabelControl22.Size = New System.Drawing.Size(57, 16)
+        Me.LabelControl22.TabIndex = 31
+        Me.LabelControl22.Text = "Silhouette"
+        '
+        'LabelSht
+        '
+        Me.LabelSht.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelSht.Location = New System.Drawing.Point(486, 199)
+        Me.LabelSht.Name = "LabelSht"
+        Me.LabelSht.Size = New System.Drawing.Size(5, 16)
+        Me.LabelSht.TabIndex = 30
+        Me.LabelSht.Text = "-"
+        '
+        'LabelControl14
+        '
+        Me.LabelControl14.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl14.Location = New System.Drawing.Point(466, 199)
+        Me.LabelControl14.Name = "LabelControl14"
+        Me.LabelControl14.Size = New System.Drawing.Size(5, 16)
+        Me.LabelControl14.TabIndex = 29
+        Me.LabelControl14.Text = ":"
+        '
         'LabelProductStatus
         '
         Me.LabelProductStatus.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelProductStatus.Location = New System.Drawing.Point(630, 89)
+        Me.LabelProductStatus.Location = New System.Drawing.Point(808, 93)
         Me.LabelProductStatus.Name = "LabelProductStatus"
         Me.LabelProductStatus.Size = New System.Drawing.Size(5, 16)
         Me.LabelProductStatus.TabIndex = 28
@@ -268,7 +302,7 @@ Partial Class FormFGTracking
         'LabelControl23
         '
         Me.LabelControl23.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl23.Location = New System.Drawing.Point(610, 90)
+        Me.LabelControl23.Location = New System.Drawing.Point(788, 94)
         Me.LabelControl23.Name = "LabelControl23"
         Me.LabelControl23.Size = New System.Drawing.Size(5, 16)
         Me.LabelControl23.TabIndex = 27
@@ -277,7 +311,7 @@ Partial Class FormFGTracking
         'LabelControl24
         '
         Me.LabelControl24.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl24.Location = New System.Drawing.Point(462, 90)
+        Me.LabelControl24.Location = New System.Drawing.Point(640, 94)
         Me.LabelControl24.Name = "LabelControl24"
         Me.LabelControl24.Size = New System.Drawing.Size(130, 16)
         Me.LabelControl24.TabIndex = 26
@@ -286,7 +320,7 @@ Partial Class FormFGTracking
         'LabelPriceType
         '
         Me.LabelPriceType.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPriceType.Location = New System.Drawing.Point(630, 67)
+        Me.LabelPriceType.Location = New System.Drawing.Point(808, 71)
         Me.LabelPriceType.Name = "LabelPriceType"
         Me.LabelPriceType.Size = New System.Drawing.Size(5, 16)
         Me.LabelPriceType.TabIndex = 25
@@ -295,7 +329,7 @@ Partial Class FormFGTracking
         'LabelControl18
         '
         Me.LabelControl18.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl18.Location = New System.Drawing.Point(610, 67)
+        Me.LabelControl18.Location = New System.Drawing.Point(788, 71)
         Me.LabelControl18.Name = "LabelControl18"
         Me.LabelControl18.Size = New System.Drawing.Size(5, 16)
         Me.LabelControl18.TabIndex = 24
@@ -304,7 +338,7 @@ Partial Class FormFGTracking
         'LabelControl20
         '
         Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl20.Location = New System.Drawing.Point(462, 67)
+        Me.LabelControl20.Location = New System.Drawing.Point(640, 71)
         Me.LabelControl20.Name = "LabelControl20"
         Me.LabelControl20.Size = New System.Drawing.Size(107, 16)
         Me.LabelControl20.TabIndex = 23
@@ -313,7 +347,7 @@ Partial Class FormFGTracking
         'LabelPrice
         '
         Me.LabelPrice.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPrice.Location = New System.Drawing.Point(630, 44)
+        Me.LabelPrice.Location = New System.Drawing.Point(808, 48)
         Me.LabelPrice.Name = "LabelPrice"
         Me.LabelPrice.Size = New System.Drawing.Size(5, 16)
         Me.LabelPrice.TabIndex = 22
@@ -322,7 +356,7 @@ Partial Class FormFGTracking
         'LabelControl9
         '
         Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(610, 44)
+        Me.LabelControl9.Location = New System.Drawing.Point(788, 48)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(5, 16)
         Me.LabelControl9.TabIndex = 21
@@ -331,7 +365,7 @@ Partial Class FormFGTracking
         'LabelControl12
         '
         Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl12.Location = New System.Drawing.Point(462, 44)
+        Me.LabelControl12.Location = New System.Drawing.Point(640, 48)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(75, 16)
         Me.LabelControl12.TabIndex = 20
@@ -340,7 +374,7 @@ Partial Class FormFGTracking
         'LabelColor
         '
         Me.LabelColor.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelColor.Location = New System.Drawing.Point(308, 90)
+        Me.LabelColor.Location = New System.Drawing.Point(486, 94)
         Me.LabelColor.Name = "LabelColor"
         Me.LabelColor.Size = New System.Drawing.Size(5, 16)
         Me.LabelColor.TabIndex = 19
@@ -349,7 +383,7 @@ Partial Class FormFGTracking
         'LabelControl21
         '
         Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl21.Location = New System.Drawing.Point(288, 90)
+        Me.LabelControl21.Location = New System.Drawing.Point(466, 94)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(5, 16)
         Me.LabelControl21.TabIndex = 18
@@ -358,7 +392,7 @@ Partial Class FormFGTracking
         'LabelControl19
         '
         Me.LabelControl19.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl19.Location = New System.Drawing.Point(216, 90)
+        Me.LabelControl19.Location = New System.Drawing.Point(394, 94)
         Me.LabelControl19.Name = "LabelControl19"
         Me.LabelControl19.Size = New System.Drawing.Size(30, 16)
         Me.LabelControl19.TabIndex = 17
@@ -367,7 +401,7 @@ Partial Class FormFGTracking
         'LabelSource
         '
         Me.LabelSource.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSource.Location = New System.Drawing.Point(308, 169)
+        Me.LabelSource.Location = New System.Drawing.Point(486, 173)
         Me.LabelSource.Name = "LabelSource"
         Me.LabelSource.Size = New System.Drawing.Size(5, 16)
         Me.LabelSource.TabIndex = 16
@@ -376,7 +410,7 @@ Partial Class FormFGTracking
         'LabelControl17
         '
         Me.LabelControl17.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl17.Location = New System.Drawing.Point(288, 169)
+        Me.LabelControl17.Location = New System.Drawing.Point(466, 173)
         Me.LabelControl17.Name = "LabelControl17"
         Me.LabelControl17.Size = New System.Drawing.Size(5, 16)
         Me.LabelControl17.TabIndex = 15
@@ -385,7 +419,7 @@ Partial Class FormFGTracking
         'LabelControl16
         '
         Me.LabelControl16.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl16.Location = New System.Drawing.Point(216, 169)
+        Me.LabelControl16.Location = New System.Drawing.Point(394, 173)
         Me.LabelControl16.Name = "LabelControl16"
         Me.LabelControl16.Size = New System.Drawing.Size(40, 16)
         Me.LabelControl16.TabIndex = 14
@@ -394,7 +428,7 @@ Partial Class FormFGTracking
         'LabelClass
         '
         Me.LabelClass.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelClass.Location = New System.Drawing.Point(308, 144)
+        Me.LabelClass.Location = New System.Drawing.Point(486, 148)
         Me.LabelClass.Name = "LabelClass"
         Me.LabelClass.Size = New System.Drawing.Size(5, 16)
         Me.LabelClass.TabIndex = 13
@@ -403,7 +437,7 @@ Partial Class FormFGTracking
         'LabelControl15
         '
         Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl15.Location = New System.Drawing.Point(288, 144)
+        Me.LabelControl15.Location = New System.Drawing.Point(466, 148)
         Me.LabelControl15.Name = "LabelControl15"
         Me.LabelControl15.Size = New System.Drawing.Size(5, 16)
         Me.LabelControl15.TabIndex = 12
@@ -412,7 +446,7 @@ Partial Class FormFGTracking
         'LabelControl13
         '
         Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl13.Location = New System.Drawing.Point(216, 144)
+        Me.LabelControl13.Location = New System.Drawing.Point(394, 148)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(30, 16)
         Me.LabelControl13.TabIndex = 11
@@ -421,7 +455,7 @@ Partial Class FormFGTracking
         'LabelDivision
         '
         Me.LabelDivision.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDivision.Location = New System.Drawing.Point(308, 116)
+        Me.LabelDivision.Location = New System.Drawing.Point(486, 120)
         Me.LabelDivision.Name = "LabelDivision"
         Me.LabelDivision.Size = New System.Drawing.Size(5, 16)
         Me.LabelDivision.TabIndex = 10
@@ -430,7 +464,7 @@ Partial Class FormFGTracking
         'LabelControl11
         '
         Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(288, 116)
+        Me.LabelControl11.Location = New System.Drawing.Point(466, 120)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(5, 16)
         Me.LabelControl11.TabIndex = 9
@@ -439,7 +473,7 @@ Partial Class FormFGTracking
         'LabelControl10
         '
         Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Location = New System.Drawing.Point(216, 116)
+        Me.LabelControl10.Location = New System.Drawing.Point(394, 120)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(43, 16)
         Me.LabelControl10.TabIndex = 8
@@ -448,7 +482,7 @@ Partial Class FormFGTracking
         'LabelSize
         '
         Me.LabelSize.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSize.Location = New System.Drawing.Point(308, 67)
+        Me.LabelSize.Location = New System.Drawing.Point(486, 71)
         Me.LabelSize.Name = "LabelSize"
         Me.LabelSize.Size = New System.Drawing.Size(5, 16)
         Me.LabelSize.TabIndex = 7
@@ -457,7 +491,7 @@ Partial Class FormFGTracking
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(288, 67)
+        Me.LabelControl8.Location = New System.Drawing.Point(466, 71)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(5, 16)
         Me.LabelControl8.TabIndex = 6
@@ -466,7 +500,7 @@ Partial Class FormFGTracking
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(216, 67)
+        Me.LabelControl7.Location = New System.Drawing.Point(394, 71)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(24, 16)
         Me.LabelControl7.TabIndex = 5
@@ -475,7 +509,7 @@ Partial Class FormFGTracking
         'LabelCode
         '
         Me.LabelCode.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelCode.Location = New System.Drawing.Point(308, 44)
+        Me.LabelCode.Location = New System.Drawing.Point(486, 48)
         Me.LabelCode.Name = "LabelCode"
         Me.LabelCode.Size = New System.Drawing.Size(5, 16)
         Me.LabelCode.TabIndex = 4
@@ -484,7 +518,7 @@ Partial Class FormFGTracking
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(288, 44)
+        Me.LabelControl5.Location = New System.Drawing.Point(466, 48)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(5, 16)
         Me.LabelControl5.TabIndex = 3
@@ -493,7 +527,7 @@ Partial Class FormFGTracking
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(216, 44)
+        Me.LabelControl4.Location = New System.Drawing.Point(394, 48)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(29, 16)
         Me.LabelControl4.TabIndex = 2
@@ -502,7 +536,7 @@ Partial Class FormFGTracking
         'LabelTitle
         '
         Me.LabelTitle.Appearance.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelTitle.Location = New System.Drawing.Point(216, 11)
+        Me.LabelTitle.Location = New System.Drawing.Point(394, 15)
         Me.LabelTitle.Name = "LabelTitle"
         Me.LabelTitle.Size = New System.Drawing.Size(157, 23)
         Me.LabelTitle.TabIndex = 1
@@ -663,32 +697,35 @@ Partial Class FormFGTracking
         Me.GridColumnSize.VisibleIndex = 3
         Me.GridColumnSize.Width = 56
         '
-        'LabelSht
+        'PanelControl1
         '
-        Me.LabelSht.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSht.Location = New System.Drawing.Point(308, 195)
-        Me.LabelSht.Name = "LabelSht"
-        Me.LabelSht.Size = New System.Drawing.Size(5, 16)
-        Me.LabelSht.TabIndex = 30
-        Me.LabelSht.Text = "-"
+        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.PictureEdit2)
+        Me.PanelControl1.Controls.Add(Me.BtnViewImgCloud)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl1.Location = New System.Drawing.Point(198, 2)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(177, 232)
+        Me.PanelControl1.TabIndex = 32
         '
-        'LabelControl14
+        'PictureEdit2
         '
-        Me.LabelControl14.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl14.Location = New System.Drawing.Point(288, 195)
-        Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(5, 16)
-        Me.LabelControl14.TabIndex = 29
-        Me.LabelControl14.Text = ":"
+        Me.PictureEdit2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureEdit2.Location = New System.Drawing.Point(0, 0)
+        Me.PictureEdit2.Name = "PictureEdit2"
+        Me.PictureEdit2.Properties.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.Image
+        Me.PictureEdit2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
+        Me.PictureEdit2.Size = New System.Drawing.Size(177, 209)
+        Me.PictureEdit2.TabIndex = 100
         '
-        'LabelControl22
+        'BtnViewImgCloud
         '
-        Me.LabelControl22.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl22.Location = New System.Drawing.Point(216, 195)
-        Me.LabelControl22.Name = "LabelControl22"
-        Me.LabelControl22.Size = New System.Drawing.Size(57, 16)
-        Me.LabelControl22.TabIndex = 31
-        Me.LabelControl22.Text = "Silhouette"
+        Me.BtnViewImgCloud.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnViewImgCloud.Location = New System.Drawing.Point(0, 209)
+        Me.BtnViewImgCloud.Name = "BtnViewImgCloud"
+        Me.BtnViewImgCloud.Size = New System.Drawing.Size(177, 23)
+        Me.BtnViewImgCloud.TabIndex = 1
+        Me.BtnViewImgCloud.Text = "View Image"
         '
         'FormFGTracking
         '
@@ -728,6 +765,9 @@ Partial Class FormFGTracking
         CType(Me.GCTracking, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVTracking, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PictureEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -791,4 +831,7 @@ Partial Class FormFGTracking
     Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelSht As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PictureEdit2 As DevExpress.XtraEditors.PictureEdit
+    Friend WithEvents BtnViewImgCloud As DevExpress.XtraEditors.SimpleButton
 End Class

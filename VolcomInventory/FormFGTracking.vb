@@ -59,6 +59,13 @@
         GroupControlInfo.Enabled = True
         GroupControlTraccking.Enabled = True
         pre_viewImages("2", PictureEdit1, id_design_image, False)
+        PictureEdit2.Image = Nothing
+        Try
+            Dim tClient As Net.WebClient = New Net.WebClient
+            Dim tImage As Bitmap = Bitmap.FromStream(New IO.MemoryStream(tClient.DownloadData(get_setup_field("cloud_image_url").ToString + "/TH_" + LabelCode.Text.Substring(0, 9) + "_1.jpg")))
+            PictureEdit2.Image = tImage
+        Catch ex As Exception
+        End Try
         Cursor = Cursors.Default
     End Sub
 
@@ -118,5 +125,9 @@
 
     Private Sub BtnViewLess_Click(sender As Object, e As EventArgs) Handles BtnViewLess.Click
         viewData(True)
+    End Sub
+
+    Private Sub BtnViewImgCloud_Click(sender As Object, e As EventArgs) Handles BtnViewImgCloud.Click
+        Process.Start(get_setup_field("cloud_image_url").ToString + "/TH_" + LabelCode.Text.Substring(0, 9) + "_1.jpg")
     End Sub
 End Class
