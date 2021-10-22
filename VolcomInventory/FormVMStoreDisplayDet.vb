@@ -30,7 +30,8 @@
 
     Private Sub BtnAddItem_Click(sender As Object, e As EventArgs) Handles BtnAddItem.Click
         Cursor = Cursors.WaitCursor
-        FormVMStoreDisplayQty.id_item = "-1"
+        FormVMStoreDisplayQty.action = "ins"
+        FormVMStoreDisplayQty.id_comp = id_store
         FormVMStoreDisplayQty.ShowDialog()
         Cursor = Cursors.Default
     End Sub

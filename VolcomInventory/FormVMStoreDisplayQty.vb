@@ -5,7 +5,9 @@
 
     Private Sub FormVMStoreDisplayQty_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewItem()
-        If action = "upd" Then
+        If action = "ins" Then
+            resetInput()
+        ElseIf action = "upd" Then
             SLEItem.EditValue = id_item
         End If
     End Sub
@@ -21,7 +23,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Sub viewReset()
+    Sub resetInput()
         SLEItem.EditValue = Nothing
         SPQty.EditValue = 1
     End Sub
@@ -38,10 +40,14 @@
         If SLEItem.EditValue = Nothing Then
             stopCustom("Please complete all data")
         Else
-            If id_item = "-1" Then
+            Dim id_item_selected As String = SLEItem.EditValue.ToString
+            Dim qty As String = decimalSQL(SPQty.EditValue.to)
+            Dim query As String = "DELETE FROM tb_display_store WHERE id_comp='" + id_comp + "' AND id_item='" + id_item_selected + "'; 
+            INSERT INTO tb_display_store(id_comp, id_item, qty) VALUES('" + id_comp + "', '" + id_item_selected + "', '" + qty + "'); "
+            execute_non_query(query, True, "", "", "", "")
+            If action = "ins" Then
                 'insert
-                Dim query As String = "DELETE FROM tb_display_store WHERE id_comp='" + id_comp + "' AND id_item='" + id_item + "'; 
-                INSERT INTO tb_display_store(id_comp, id_item, qty) VALUES('" + id_comp + "', ); "
+
             Else
                 'update
             End If
@@ -50,7 +56,7 @@
 
     Private Sub SLEItem_EditValueChanged(sender As Object, e As EventArgs) Handles SLEItem.EditValueChanged
         If SLEItem.EditValue = Nothing Then
-            viewReset()
+            resetInput()
         Else
             TxtDisplayType.Text = SLEItem.Properties.View.GetFocusedRowCellValue("display_type").ToString
         End If
