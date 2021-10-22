@@ -2,7 +2,7 @@
     Public id_store As String = "-1"
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        print(GCData, "Display Item List")
+        print(GCData, TxtStoreCode.Text + " : " + TxtStoreName.Text + " - Display Item List")
     End Sub
 
     Private Sub FormVMStoreDisplayDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -15,7 +15,7 @@
 
     Sub viewData()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT ds.id_item, i.item_desc, dt.display_type,  SUM(ds.qty) AS `qty`
+        Dim query As String = "SELECT ds.id_item, i.item_desc, i.id_display_type,dt.display_type,  SUM(ds.qty) AS `qty`
         FROM tb_display_store ds 
         INNER JOIN tb_item i ON i.id_item = ds.id_item
         INNER JOIN tb_display_type dt ON dt.id_display_type = i.id_display_type
@@ -45,6 +45,7 @@
                 Cursor = Cursors.WaitCursor
                 FormVMStoreDisplayQty.action = "upd"
                 FormVMStoreDisplayQty.id_comp = id_store
+                FormVMStoreDisplayQty.id_display_type = GVData.GetFocusedRowCellValue("id_display_type").ToString
                 FormVMStoreDisplayQty.id_item = GVData.GetFocusedRowCellValue("id_item").ToString
                 FormVMStoreDisplayQty.ShowDialog()
                 Cursor = Cursors.Default

@@ -339,6 +339,7 @@
     <Compile Include="ClassSampleReturnPL.vb" />
     <Compile Include="ClassSendEmail.vb" />
     <Compile Include="ClassShipInvoice.vb" />
+    <Compile Include="ClassVMStoreDisplay.vb" />
     <Compile Include="ClassZaloraApi.vb" />
     <Compile Include="ClassShopifyApi.vb" />
     <Compile Include="ClassShowPopUp.vb" />

@@ -37,6 +37,7 @@ Partial Class FormVMStoreDisplayDet
         Me.GridColumnitem_desc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndisplay_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnqty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_display_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtStoreName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -153,7 +154,7 @@ Partial Class FormVMStoreDisplayDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_item, Me.GridColumnitem_desc, Me.GridColumndisplay_type, Me.GridColumnqty})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_item, Me.GridColumnitem_desc, Me.GridColumndisplay_type, Me.GridColumnqty, Me.GridColumnid_display_type})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsFind.AlwaysVisible = True
@@ -194,6 +195,12 @@ Partial Class FormVMStoreDisplayDet
         Me.GridColumnqty.Visible = True
         Me.GridColumnqty.VisibleIndex = 2
         '
+        'GridColumnid_display_type
+        '
+        Me.GridColumnid_display_type.Caption = "id_display_type"
+        Me.GridColumnid_display_type.FieldName = "id_display_type"
+        Me.GridColumnid_display_type.Name = "GridColumnid_display_type"
+        '
         'FormVMStoreDisplayDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -233,4 +240,5 @@ Partial Class FormVMStoreDisplayDet
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumnid_display_type As DevExpress.XtraGrid.Columns.GridColumn
 End Class

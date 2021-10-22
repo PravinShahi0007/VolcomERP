@@ -49,6 +49,7 @@
 
     Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
         Cursor = Cursors.WaitCursor
+        FormVMStoreDisplayDet.id_store = GVData.GetFocusedRowCellValue("id_comp").ToString
         FormVMStoreDisplayDet.TxtStoreCode.Text = GVData.GetFocusedRowCellValue("comp_number").ToString
         FormVMStoreDisplayDet.TxtStoreName.Text = GVData.GetFocusedRowCellValue("comp_name").ToString
         FormVMStoreDisplayDet.ShowDialog()

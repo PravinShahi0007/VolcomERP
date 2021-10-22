@@ -26,12 +26,14 @@ Partial Class FormVMStoreDisplayQty
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.SPQty = New DevExpress.XtraEditors.SpinEdit()
-        Me.TxtDisplayType = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.SLEItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SPQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtDisplayType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BtnConfirm
@@ -43,7 +45,7 @@ Partial Class FormVMStoreDisplayQty
         Me.BtnConfirm.Appearance.Options.UseFont = True
         Me.BtnConfirm.Appearance.Options.UseForeColor = True
         Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnConfirm.Location = New System.Drawing.Point(0, 185)
+        Me.BtnConfirm.Location = New System.Drawing.Point(0, 178)
         Me.BtnConfirm.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnConfirm.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BtnConfirm.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -62,7 +64,7 @@ Partial Class FormVMStoreDisplayQty
         Me.BtnDiscard.Appearance.Options.UseFont = True
         Me.BtnDiscard.Appearance.Options.UseForeColor = True
         Me.BtnDiscard.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnDiscard.Location = New System.Drawing.Point(0, 211)
+        Me.BtnDiscard.Location = New System.Drawing.Point(0, 204)
         Me.BtnDiscard.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnDiscard.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BtnDiscard.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -75,7 +77,7 @@ Partial Class FormVMStoreDisplayQty
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 12)
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 60)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(28, 13)
         Me.LabelControl1.TabIndex = 21
@@ -83,9 +85,10 @@ Partial Class FormVMStoreDisplayQty
         '
         'SLEItem
         '
-        Me.SLEItem.Location = New System.Drawing.Point(12, 31)
+        Me.SLEItem.Location = New System.Drawing.Point(12, 79)
         Me.SLEItem.Name = "SLEItem"
         Me.SLEItem.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEItem.Properties.ShowClearButton = False
         Me.SLEItem.Properties.View = Me.SearchLookUpEdit1View
         Me.SLEItem.Size = New System.Drawing.Size(328, 20)
         Me.SLEItem.TabIndex = 22
@@ -100,7 +103,7 @@ Partial Class FormVMStoreDisplayQty
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(12, 113)
+        Me.LabelControl2.Location = New System.Drawing.Point(12, 111)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(20, 13)
         Me.LabelControl2.TabIndex = 23
@@ -109,7 +112,7 @@ Partial Class FormVMStoreDisplayQty
         'SPQty
         '
         Me.SPQty.EditValue = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.SPQty.Location = New System.Drawing.Point(12, 132)
+        Me.SPQty.Location = New System.Drawing.Point(12, 130)
         Me.SPQty.Name = "SPQty"
         Me.SPQty.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SPQty.Properties.DisplayFormat.FormatString = "N0"
@@ -120,30 +123,39 @@ Partial Class FormVMStoreDisplayQty
         Me.SPQty.Size = New System.Drawing.Size(328, 20)
         Me.SPQty.TabIndex = 24
         '
-        'TxtDisplayType
-        '
-        Me.TxtDisplayType.Enabled = False
-        Me.TxtDisplayType.Location = New System.Drawing.Point(12, 80)
-        Me.TxtDisplayType.Name = "TxtDisplayType"
-        Me.TxtDisplayType.Size = New System.Drawing.Size(328, 20)
-        Me.TxtDisplayType.TabIndex = 29
-        '
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(12, 61)
+        Me.LabelControl5.Location = New System.Drawing.Point(12, 12)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(28, 13)
         Me.LabelControl5.TabIndex = 30
         Me.LabelControl5.Text = "Type"
         '
+        'SLEType
+        '
+        Me.SLEType.Location = New System.Drawing.Point(12, 31)
+        Me.SLEType.Name = "SLEType"
+        Me.SLEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEType.Properties.ShowClearButton = False
+        Me.SLEType.Properties.View = Me.GridView1
+        Me.SLEType.Size = New System.Drawing.Size(328, 20)
+        Me.SLEType.TabIndex = 31
+        '
+        'GridView1
+        '
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
         'FormVMStoreDisplayQty
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(356, 237)
+        Me.ClientSize = New System.Drawing.Size(356, 230)
+        Me.Controls.Add(Me.SLEType)
         Me.Controls.Add(Me.LabelControl5)
-        Me.Controls.Add(Me.TxtDisplayType)
         Me.Controls.Add(Me.SPQty)
         Me.Controls.Add(Me.LabelControl2)
         Me.Controls.Add(Me.SLEItem)
@@ -159,7 +171,8 @@ Partial Class FormVMStoreDisplayQty
         CType(Me.SLEItem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SPQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtDisplayType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -172,6 +185,7 @@ Partial Class FormVMStoreDisplayQty
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SPQty As DevExpress.XtraEditors.SpinEdit
-    Friend WithEvents TxtDisplayType As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class
