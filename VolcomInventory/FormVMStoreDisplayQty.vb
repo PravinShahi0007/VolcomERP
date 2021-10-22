@@ -8,7 +8,12 @@
         If action = "ins" Then
             resetInput()
         ElseIf action = "upd" Then
+            resetInput()
             SLEItem.EditValue = id_item
+            SLEItem.Enabled = False
+            Dim query As String = "SELECT ds.qty FROM tb_display_store ds WHERE ds.id_comp=" + id_comp + " and ds.id_item=" + id_item + " "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            SPQty.EditValue = data.Rows(0)("qty")
         End If
     End Sub
 
@@ -47,11 +52,19 @@
             execute_non_query(query, True, "", "", "", "")
             If action = "ins" Then
                 'insert
-
+                refreshMainView()
+                resetInput()
             Else
                 'update
+                refreshMainView()
+                Close()
             End If
         End If
+    End Sub
+
+    Sub refreshMainView()
+        FormVMStoreDisplayDet.viewData()
+        FormVMStoreDisplayDet.GVData.FocusedRowHandle = find_row(FormVMStoreDisplayDet.GVData, "id_item", SLEItem.EditValue.ToString)
     End Sub
 
     Private Sub SLEItem_EditValueChanged(sender As Object, e As EventArgs) Handles SLEItem.EditValueChanged

@@ -35,4 +35,15 @@
         FormVMStoreDisplayQty.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormVMStoreDisplayQty.action = "upd"
+            FormVMStoreDisplayQty.id_comp = id_store
+            FormVMStoreDisplayQty.id_item = GVData.GetFocusedRowCellValue("id_item").ToString
+            FormVMStoreDisplayQty.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
