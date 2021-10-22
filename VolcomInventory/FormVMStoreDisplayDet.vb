@@ -38,12 +38,37 @@
 
     Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
-            Cursor = Cursors.WaitCursor
-            FormVMStoreDisplayQty.action = "upd"
-            FormVMStoreDisplayQty.id_comp = id_store
-            FormVMStoreDisplayQty.id_item = GVData.GetFocusedRowCellValue("id_item").ToString
-            FormVMStoreDisplayQty.ShowDialog()
-            Cursor = Cursors.Default
+            Dim vm As New ClassVMStoreDisplay()
+            Dim cek_avail As Boolean = vm.checkAvailItem()
+
+            If cek_avail Then
+                Cursor = Cursors.WaitCursor
+                FormVMStoreDisplayQty.action = "upd"
+                FormVMStoreDisplayQty.id_comp = id_store
+                FormVMStoreDisplayQty.id_item = GVData.GetFocusedRowCellValue("id_item").ToString
+                FormVMStoreDisplayQty.ShowDialog()
+                Cursor = Cursors.Default
+            Else
+                stopCustom("Can't update, this item is already used.")
+            End If
+        End If
+    End Sub
+
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Dim vm As New ClassVMStoreDisplay()
+            Dim cek_avail As Boolean = vm.checkAvailItem()
+
+            If cek_avail Then
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Dim query As String = "DELETE FROM tb_display_store WHERE id_comp='" + id_store + "' AND id_item='" + GVData.GetFocusedRowCellValue("id_item").ToString + "' "
+                    execute_non_query(query, True, "", "", "", "")
+                    viewData()
+                End If
+            Else
+                stopCustom("Can't update, this item is already used.")
+            End If
         End If
     End Sub
 End Class

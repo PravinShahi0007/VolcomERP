@@ -42,7 +42,12 @@
     End Sub
 
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
-        If SLEItem.EditValue = Nothing Then
+        Dim vm As New ClassVMStoreDisplay()
+        Dim cek_avail As Boolean = vm.checkAvailItem()
+
+        If Not cek_avail Then
+            stopCustom("Can't update, this item is already used.")
+        ElseIf SLEItem.EditValue = Nothing Then
             stopCustom("Please complete all data")
         Else
             Dim id_item_selected As String = SLEItem.EditValue.ToString
