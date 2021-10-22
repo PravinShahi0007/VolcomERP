@@ -1,6 +1,9 @@
 ﻿Public Class FormSalesOrderSvcLevel
     Dim last_view_order As DateTime
     Dim expired_close_too As Integer = 0
+
+    Public is_md As String = "-1"
+
     Sub viewSalesOrder()
         CheckSelAll.Checked = False
 
@@ -36,6 +39,13 @@
         Dim query As String = query_c.queryMain("AND a.id_report_status='6' AND (a.sales_order_date>='" + date_from_selected + "' AND a.sales_order_date<='" + date_until_selected + "') " + cond_status, "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesOrder.DataSource = data
+
+        If is_md = "1" Then
+            Dim dataView As DataView = New DataView(data)
+            dataView.RowFilter = "so_completness = 0 AND outstanding = 0"
+            GCSalesOrder.DataSource = dataView
+        End If
+
         GVSalesOrder.BestFitColumns()
         last_view_order = Now
     End Sub
@@ -301,6 +311,19 @@
         expired_close_too = dex.Rows(0)("expired_close_too")
 
         load_surat_jalan()
+
+        If is_md = "1" Then
+            XTPClosingSuratJalan.PageVisible = False
+            XTPNonStockInv.PageVisible = False
+            XTPTrf.PageVisible = False
+            XTPReturnQC.PageVisible = False
+            XTPReturn.PageVisible = False
+            XTPDelOrder.PageVisible = False
+            XTPRec.PageVisible = False
+            XTPReturnOrder.PageVisible = False
+
+            Text = "Cancel Prepare Order"
+        End If
     End Sub
 
     Sub view_type_restock()
