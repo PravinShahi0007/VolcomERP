@@ -304,6 +304,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnPreparedRtrf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnprepared_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn70 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn74 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateReturnQC = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEStatusReturnQC = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -385,7 +386,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPClosingSuratJalan = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumn74 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn75 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.LETypeRestockTOO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3175,6 +3176,15 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn70.Visible = True
         Me.GridColumn70.VisibleIndex = 9
         '
+        'GridColumn74
+        '
+        Me.GridColumn74.Caption = "Final Comment"
+        Me.GridColumn74.FieldName = "final_comment"
+        Me.GridColumn74.Name = "GridColumn74"
+        Me.GridColumn74.OptionsColumn.AllowEdit = False
+        Me.GridColumn74.Visible = True
+        Me.GridColumn74.VisibleIndex = 13
+        '
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -3347,7 +3357,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'GVFGTrf
         '
-        Me.GVFGTrf.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFGTrfNumber, Me.GridColumnCompNameFrom, Me.GridColumn41, Me.GridColumnFGTrfDate, Me.GridColumn42, Me.GridColumnPrepOrder, Me.GridColumnIdFgTrf, Me.GridColumn43, Me.GridColumnUpdatedBy, Me.GridColumnSelTrf, Me.GridColumnTotalTrf, Me.GridColumnPreparedTrf, Me.GridColumnprepared_datetrf})
+        Me.GVFGTrf.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFGTrfNumber, Me.GridColumnCompNameFrom, Me.GridColumn41, Me.GridColumnFGTrfDate, Me.GridColumn42, Me.GridColumnPrepOrder, Me.GridColumnIdFgTrf, Me.GridColumn43, Me.GridColumnUpdatedBy, Me.GridColumnSelTrf, Me.GridColumnTotalTrf, Me.GridColumnPreparedTrf, Me.GridColumnprepared_datetrf, Me.GridColumn75})
         Me.GVFGTrf.GridControl = Me.GCFGTrf
         Me.GVFGTrf.Name = "GVFGTrf"
         Me.GVFGTrf.OptionsView.ShowFooter = True
@@ -3454,7 +3464,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnSelTrf.FieldName = "is_select"
         Me.GridColumnSelTrf.Name = "GridColumnSelTrf"
         Me.GridColumnSelTrf.Visible = True
-        Me.GridColumnSelTrf.VisibleIndex = 11
+        Me.GridColumnSelTrf.VisibleIndex = 12
         '
         'RepositoryItemCheckEdit5
         '
@@ -3939,14 +3949,14 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTPClosingSuratJalan.Size = New System.Drawing.Size(934, 311)
         Me.XTPClosingSuratJalan.Text = "Closing Surat Jalan"
         '
-        'GridColumn74
+        'GridColumn75
         '
-        Me.GridColumn74.Caption = "Final Comment"
-        Me.GridColumn74.FieldName = "final_comment"
-        Me.GridColumn74.Name = "GridColumn74"
-        Me.GridColumn74.OptionsColumn.AllowEdit = False
-        Me.GridColumn74.Visible = True
-        Me.GridColumn74.VisibleIndex = 13
+        Me.GridColumn75.Caption = "Final Comment"
+        Me.GridColumn75.FieldName = "final_comment"
+        Me.GridColumn75.Name = "GridColumn75"
+        Me.GridColumn75.OptionsColumn.AllowEdit = False
+        Me.GridColumn75.Visible = True
+        Me.GridColumn75.VisibleIndex = 11
         '
         'FormSalesOrderSvcLevel
         '
@@ -4469,4 +4479,5 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents GridColumn72 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn73 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn74 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn75 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
