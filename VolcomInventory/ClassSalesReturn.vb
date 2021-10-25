@@ -21,7 +21,7 @@
         a.id_ret_type, rty.ret_type, IFNULL(det.`total`,0) AS `total`, IFNULL(nsi.total_nsi,0) AS `total_nsi`, 
         so.sales_order_ol_shop_number, IFNULL(f.id_sales_order,0) AS `id_sales_order`, 
         IF(a.id_ret_type=1,'46',IF(a.id_ret_type=3,113,IF(a.id_ret_type=4,120,111))) AS `rmt`, IFNULL(pb.prepared_by,'-') AS `prepared_by`,pb.report_mark_datetime AS `prepared_date`,
-        a.is_non_list, IF(a.is_non_list=1,'Yes', 'No') AS `is_non_list_view` "
+        a.is_non_list, IF(a.is_non_list=1,'Yes', 'No') AS `is_non_list_view`, pc.final_comment "
         query += "FROM tb_sales_return a  "
         query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
         query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
@@ -48,7 +48,13 @@
             INNER JOIN tb_m_employee e ON e.id_employee = rm.id_employee
             WHERE (rm.report_mark_type=46 OR rm.report_mark_type=113 OR rm.report_mark_type=120 OR rm.report_mark_type=111) AND rm.id_report_status=1
             GROUP BY rm.id_report
-        ) pb ON pb.id_report = a.id_sales_return "
+        ) pb ON pb.id_report = a.id_sales_return
+        LEFT JOIN (
+            SELECT id_report, final_comment
+            FROM tb_report_mark_final_comment
+            WHERE report_mark_type = 46 OR report_mark_type = 113 OR report_mark_type = 120 OR report_mark_type = 111
+            GROUP BY id_report
+        ) pc ON pc.id_report = a.id_sales_return "
         query += "WHERE a.id_sales_return>0 "
         query += condition + " "
         query += "ORDER BY a.id_sales_return " + order_type
