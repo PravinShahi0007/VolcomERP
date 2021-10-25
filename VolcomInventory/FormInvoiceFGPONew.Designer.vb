@@ -41,6 +41,7 @@ Partial Class FormInvoiceFGPONew
         Me.BPick = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.PCSummary = New DevExpress.XtraEditors.PanelControl()
+        Me.DEYearBudget = New DevExpress.XtraEditors.DateEdit()
         Me.GCInvoice = New DevExpress.XtraGrid.GridControl()
         Me.GVInvoice = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdRec = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -102,7 +103,6 @@ Partial Class FormInvoiceFGPONew
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BLoadHistory = New DevExpress.XtraEditors.SimpleButton()
-        Me.DEYearBudget = New DevExpress.XtraEditors.DateEdit()
         CType(Me.SLETypeInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEFGPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,6 +112,8 @@ Partial Class FormInvoiceFGPONew
         Me.PCPick.SuspendLayout()
         CType(Me.PCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCSummary.SuspendLayout()
+        CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEYearBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,8 +137,6 @@ Partial Class FormInvoiceFGPONew
         Me.XTPHistory.SuspendLayout()
         CType(Me.GCPayment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPayment, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEYearBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -192,6 +192,7 @@ Partial Class FormInvoiceFGPONew
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn26})
         Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsFind.FindFilterColumns = "prod_order_number"
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
@@ -333,6 +334,24 @@ Partial Class FormInvoiceFGPONew
         Me.PCSummary.Name = "PCSummary"
         Me.PCSummary.Size = New System.Drawing.Size(857, 46)
         Me.PCSummary.TabIndex = 5
+        '
+        'DEYearBudget
+        '
+        Me.DEYearBudget.EditValue = Nothing
+        Me.DEYearBudget.Location = New System.Drawing.Point(63, 12)
+        Me.DEYearBudget.Name = "DEYearBudget"
+        Me.DEYearBudget.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEYearBudget.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEYearBudget.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista
+        Me.DEYearBudget.Properties.DisplayFormat.FormatString = "yyyy"
+        Me.DEYearBudget.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEYearBudget.Properties.Mask.EditMask = "yyyy"
+        Me.DEYearBudget.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEYearBudget.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearsGroupView
+        Me.DEYearBudget.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
+        Me.DEYearBudget.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
+        Me.DEYearBudget.Size = New System.Drawing.Size(141, 20)
+        Me.DEYearBudget.TabIndex = 8906
         '
         'GCInvoice
         '
@@ -994,24 +1013,6 @@ Partial Class FormInvoiceFGPONew
         Me.BLoadHistory.TabIndex = 23
         Me.BLoadHistory.Text = "Load"
         '
-        'DEYearBudget
-        '
-        Me.DEYearBudget.EditValue = Nothing
-        Me.DEYearBudget.Location = New System.Drawing.Point(63, 12)
-        Me.DEYearBudget.Name = "DEYearBudget"
-        Me.DEYearBudget.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEYearBudget.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEYearBudget.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista
-        Me.DEYearBudget.Properties.DisplayFormat.FormatString = "yyyy"
-        Me.DEYearBudget.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEYearBudget.Properties.Mask.EditMask = "yyyy"
-        Me.DEYearBudget.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.DEYearBudget.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearsGroupView
-        Me.DEYearBudget.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
-        Me.DEYearBudget.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
-        Me.DEYearBudget.Size = New System.Drawing.Size(141, 20)
-        Me.DEYearBudget.TabIndex = 8906
-        '
         'FormInvoiceFGPONew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1035,6 +1036,8 @@ Partial Class FormInvoiceFGPONew
         CType(Me.PCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCSummary.ResumeLayout(False)
         Me.PCSummary.PerformLayout()
+        CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEYearBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCFGPO, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1059,8 +1062,6 @@ Partial Class FormInvoiceFGPONew
         Me.XTPHistory.ResumeLayout(False)
         CType(Me.GCPayment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPayment, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEYearBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
