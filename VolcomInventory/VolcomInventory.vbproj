@@ -339,6 +339,7 @@
     <Compile Include="ClassSampleReturnPL.vb" />
     <Compile Include="ClassSendEmail.vb" />
     <Compile Include="ClassShipInvoice.vb" />
+    <Compile Include="ClassVMStoreDisplay.vb" />
     <Compile Include="ClassZaloraApi.vb" />
     <Compile Include="ClassShopifyApi.vb" />
     <Compile Include="ClassShowPopUp.vb" />
@@ -643,6 +644,18 @@
       <DependentUpon>FormCatalogSpec.vb</DependentUpon>
     </Compile>
     <Compile Include="FormCatalogSpec.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormClassGroup.designer.vb">
+      <DependentUpon>FormClassGroup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormClassGroup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormClassGroupDet.designer.vb">
+      <DependentUpon>FormClassGroupDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormClassGroupDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormCollie.Designer.vb">
@@ -1379,6 +1392,24 @@
       <DependentUpon>FormDesignInfo.vb</DependentUpon>
     </Compile>
     <Compile Include="FormDesignInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDisplayAlloc.Designer.vb">
+      <DependentUpon>FormDisplayAlloc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDisplayAlloc.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDisplayAllocDet.Designer.vb">
+      <DependentUpon>FormDisplayAllocDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDisplayAllocDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDisplayAllocLog.Designer.vb">
+      <DependentUpon>FormDisplayAllocLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDisplayAllocLog.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDocTracking.Designer.vb">
@@ -8208,6 +8239,24 @@
     <Compile Include="FormVIOSExpiredOrderDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormVMStoreDisplay.Designer.vb">
+      <DependentUpon>FormVMStoreDisplay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVMStoreDisplay.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVMStoreDisplayDet.Designer.vb">
+      <DependentUpon>FormVMStoreDisplayDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVMStoreDisplayDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVMStoreDisplayQty.Designer.vb">
+      <DependentUpon>FormVMStoreDisplayQty.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVMStoreDisplayQty.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormVoucherPOS.Designer.vb">
       <DependentUpon>FormVoucherPOS.vb</DependentUpon>
     </Compile>
@@ -10425,6 +10474,12 @@
     <EmbeddedResource Include="FormCatalogSpec.resx">
       <DependentUpon>FormCatalogSpec.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormClassGroup.resx">
+      <DependentUpon>FormClassGroup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormClassGroupDet.resx">
+      <DependentUpon>FormClassGroupDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCollie.resx">
       <DependentUpon>FormCollie.vb</DependentUpon>
     </EmbeddedResource>
@@ -10827,6 +10882,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDesignInfo.resx">
       <DependentUpon>FormDesignInfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDisplayAlloc.resx">
+      <DependentUpon>FormDisplayAlloc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDisplayAllocDet.resx">
+      <DependentUpon>FormDisplayAllocDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDisplayAllocLog.resx">
+      <DependentUpon>FormDisplayAllocLog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDocTracking.resx">
       <DependentUpon>FormDocTracking.vb</DependentUpon>
@@ -14666,6 +14730,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormVIOSExpiredOrderDetail.resx">
       <DependentUpon>FormVIOSExpiredOrderDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVMStoreDisplay.resx">
+      <DependentUpon>FormVMStoreDisplay.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVMStoreDisplayDet.resx">
+      <DependentUpon>FormVMStoreDisplayDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVMStoreDisplayQty.resx">
+      <DependentUpon>FormVMStoreDisplayQty.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVoucherPOS.resx">
       <DependentUpon>FormVoucherPOS.vb</DependentUpon>

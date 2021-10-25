@@ -16695,4 +16695,44 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBSalesOrderSvcLevelMD_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesOrderSvcLevelMD.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesOrderSvcLevel.MdiParent = Me
+            FormSalesOrderSvcLevel.is_md = "1"
+            FormSalesOrderSvcLevel.Show()
+            FormSalesOrderSvcLevel.WindowState = FormWindowState.Maximized
+            FormSalesOrderSvcLevel.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBDisplayCapacity_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDisplayCapacity.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormDisplayAlloc.MdiParent = Me
+            FormDisplayAlloc.Show()
+            FormDisplayAlloc.WindowState = FormWindowState.Maximized
+            FormDisplayAlloc.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBVMStoreDisplay_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBVMStoreDisplay.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormVMStoreDisplay.MdiParent = Me
+            FormVMStoreDisplay.Show()
+            FormVMStoreDisplay.WindowState = FormWindowState.Maximized
+            FormVMStoreDisplay.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
