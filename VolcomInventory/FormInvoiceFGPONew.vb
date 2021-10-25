@@ -726,4 +726,9 @@ WHERE pn.`type`=1 AND pnd.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "' A
 
         End Try
     End Sub
+
+    Private Sub SLEFGPO_EditValueChanged(sender As Object, e As EventArgs) Handles SLEFGPO.EditValueChanged
+        GCInvoice.DataSource = Nothing
+        GCRec.DataSource = Nothing
+    End Sub
 End Class
