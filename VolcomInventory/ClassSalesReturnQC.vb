@@ -18,7 +18,7 @@
         query += "CONCAT(c.comp_number,' - ',c.comp_name) AS store_name_from, (c.comp_number) AS store_number_from, "
         query += "CONCAT(e.comp_number,' - ',e.comp_name) AS comp_name_to, (e.comp_number) AS comp_number_to, get_custom_rmk(e.id_wh_type,49) AS `rmk`, "
         query += "f.sales_return_number, g.report_status, h.pl_category, det.`total`,cek_fisik.employee_name AS cek_fisik_by, "
-        query += "a.last_update, getUserEmp(a.last_update_by, 1) AS last_user, ('No') AS is_select, IFNULL(pb.prepared_by,'-') AS `prepared_by`, pb.report_mark_datetime AS `prepared_date`  "
+        query += "a.last_update, getUserEmp(a.last_update_by, 1) AS last_user, ('No') AS is_select, IFNULL(pb.prepared_by,'-') AS `prepared_by`, pb.report_mark_datetime AS `prepared_date`, pc.final_comment  "
         query += "FROM tb_sales_return_qc a  "
         query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
         query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
@@ -48,7 +48,13 @@
             INNER JOIN tb_m_employee e ON e.id_employee = rm.id_employee
             WHERE (rm.report_mark_type=49 OR rm.report_mark_type=106) AND rm.id_report_status=1
             GROUP BY rm.id_report
-        ) pb ON pb.id_report = a.id_sales_return_qc "
+        ) pb ON pb.id_report = a.id_sales_return_qc
+        LEFT JOIN (
+            SELECT id_report, final_comment
+            FROM tb_report_mark_final_comment
+            WHERE report_mark_type = 49 OR report_mark_type = 106
+            GROUP BY id_report
+        ) pc ON pc.id_report = a.id_sales_return_qc "
         query += "WHERE a.id_sales_return_qc>0 "
         query += condition + " "
         query += "ORDER BY a.id_sales_return_qc " + order_type
