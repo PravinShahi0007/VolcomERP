@@ -160,17 +160,33 @@
             Dim is_ok As Boolean = True
             Dim po_list As String = ""
             'check international ACC, harus klop qc report vs receiving
-            Dim qc As String = "SELECT d.design_display_name,fc.`prod_fc_number`,fc_sum_det.`id_prod_fc_sum`,po.`id_prod_order`,po.`prod_order_number`, fc_sum_det.`qty_rec`,fc_sum_det.`qty_po`,SUM(qty.prod_fc_det_qty)+IFNULL(old_fc_sum.qty,0) AS qty
+            '            Left Join
+            '(
+            '	Select Case fc.`id_prod_order`,qty.prod_fc_det_qty AS qty
+            '    From tb_prod_fc_sum_det fc_sum_det
+            '	INNER Join tb_prod_fc AS fc ON fc_sum_det.id_prod_fc = fc.id_prod_fc
+            '    INNER Join(
+            '		SELECT id_prod_fc, SUM(prod_fc_det_qty) AS prod_fc_det_qty
+            '        From tb_prod_fc_det
+            '        Group By id_prod_fc
+            '	) AS qty ON fc.id_prod_fc = qty.id_prod_fc
+            '	INNER Join tb_prod_fc_sum fc_sum ON fc_sum.id_prod_fc_sum=fc_sum_det.id_prod_fc_sum And fc_sum.`id_report_status`!=5 And fc_sum.id_prod_fc_sum!='" & id_prod_fc_sum & "'
+            '                GROUP BY fc.`id_prod_order`
+            ') AS old_fc_sum ON old_fc_sum.id_prod_order=po.`id_prod_order`
+            '+IFNULL(old_fc_sum.qty,0)
+            Dim qc As String = "SELECT d.design_display_name,fc.`prod_fc_number`,fc_sum_det.`id_prod_fc_sum`,po.`id_prod_order`,po.`prod_order_number`, fc_sum_det.`qty_rec`,fc_sum_det.`qty_po`,SUM(qty.prod_fc_det_qty) AS qty
 FROM tb_prod_fc_sum_det AS fc_sum_det
 INNER JOIN tb_prod_fc AS fc ON fc_sum_det.id_prod_fc = fc.id_prod_fc
 INNER JOIN tb_prod_order AS po ON fc.id_prod_order = po.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
 INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
 INNER JOIN (
-	SELECT id_prod_fc, SUM(prod_fc_det_qty) AS prod_fc_det_qty
-	FROM tb_prod_fc_det
-	GROUP BY id_prod_fc
-) AS qty ON fc.id_prod_fc = qty.id_prod_fc
+	SELECT f.id_prod_order, SUM(fd.prod_fc_det_qty) AS prod_fc_det_qty
+	FROM tb_prod_fc_det fd
+	INNER JOIN tb_prod_fc f ON f.id_prod_fc = fd.id_prod_fc
+	WHERE id_report_status!=5
+	GROUP BY id_prod_order
+) AS qty ON fc.id_prod_order = qty.id_prod_order
 INNER JOIN tb_m_design_code dc ON dc.id_design=d.`id_design` AND dc.id_code_detail='3822'
 INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order=po.`id_prod_order` AND wo.`is_main_vendor`=1
 INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price 
@@ -180,19 +196,6 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=comp.`id_city`
 INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
 INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
 INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country` 
-LEFT JOIN
-(
-	SELECT fc.`id_prod_order`,qty.prod_fc_det_qty AS qty
-	FROM tb_prod_fc_sum_det fc_sum_det
-	INNER JOIN tb_prod_fc AS fc ON fc_sum_det.id_prod_fc = fc.id_prod_fc
-	INNER JOIN (
-		SELECT id_prod_fc, SUM(prod_fc_det_qty) AS prod_fc_det_qty
-		FROM tb_prod_fc_det
-		GROUP BY id_prod_fc
-	) AS qty ON fc.id_prod_fc = qty.id_prod_fc
-	INNER JOIN tb_prod_fc_sum fc_sum ON fc_sum.id_prod_fc_sum=fc_sum_det.id_prod_fc_sum AND fc_sum.`id_report_status`!=5 AND fc_sum.id_prod_fc_sum!='" & id_prod_fc_sum & "'
-	GROUP BY fc.`id_prod_order`
-) AS old_fc_sum ON old_fc_sum.id_prod_order=po.`id_prod_order`
 WHERE (co.`id_country`!=5 OR po.`id_po_type`=2) AND fc_sum_det.id_prod_fc_sum='" & id_prod_fc_sum & "'
 GROUP BY po.`id_prod_order`"
             Dim dt As DataTable = execute_query(qc, -1, True, "", "", "", "")
