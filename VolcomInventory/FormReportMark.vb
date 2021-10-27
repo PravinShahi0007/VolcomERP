@@ -8030,6 +8030,30 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                 id_status_reportx = "6"
             End If
 
+            Dim id_report_now As String = execute_query("SELECT id_report_status FROM tb_pn_fgpo WHERE id_pn_fgpo='" & id_report & "'", 0, True, "", "", "", "")
+            If id_status_reportx = "5" And id_report_now = "6" Then 'cancel form
+                Dim old_id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+                    WHERE ad.report_mark_type=189 AND ad.id_report=" + id_report + "
+                GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+
+                Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                Dim report_number As String = du.Rows(0)("report_number").ToString
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
+                VALUES ('','" + report_number + "','0','" + id_user_prepared + "', NOW(), NOW(), 'Cancel BPL', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
+
+                Dim q_balik = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor)
+SELECT " + id_acc_trans + ", id_acc, credit, debit, CONCAT('Cancel Form - ',acc_trans_det_note) AS acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor
+FROM tb_a_acc_trans_det
+WHERE id_acc_trans='" & old_id_acc_trans & "'"
+                execute_non_query(q_balik, True, "", "", "", "")
+            End If
+
             If id_status_reportx = "6" Then
                 'select detail
                 Dim pn_type As String = ""
