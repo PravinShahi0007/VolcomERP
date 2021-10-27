@@ -3608,7 +3608,7 @@ LIMIT 1 "
                 'pl to wh
                 query_view = "Select 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
                                 FROM " & table_name & " tb
-                                LEFT JOIN `pl_prod_order_rec` rec ON rec.`id_pl_prod_order`=tb." & field_id & "  AND rec.id_report_status!=5
+                                LEFT JOIN `tb_pl_prod_order_rec` rec ON rec.`id_pl_prod_order`=tb." & field_id & "  AND rec.id_report_status!=5
                                 WHERE tb.id_report_status='6' AND ISNULL(rec.id_pl_prod_order)"
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
                     query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
