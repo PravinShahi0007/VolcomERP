@@ -127,6 +127,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCUAdm = New DevExpress.XtraEditors.PanelControl()
@@ -276,6 +277,7 @@ Partial Class FormPreCalFGPODet
         Me.XTPAdmCharges.SuspendLayout()
         CType(Me.GCAdm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAdm, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCUAdm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCUAdm.SuspendLayout()
         CType(Me.SLECompOther.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1439,6 +1441,7 @@ Partial Class FormPreCalFGPODet
         Me.GCAdm.Location = New System.Drawing.Point(0, 48)
         Me.GCAdm.MainView = Me.GVAdm
         Me.GCAdm.Name = "GCAdm"
+        Me.GCAdm.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
         Me.GCAdm.Size = New System.Drawing.Size(1016, 298)
         Me.GCAdm.TabIndex = 8
         Me.GCAdm.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAdm})
@@ -1487,6 +1490,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn27.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn27.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn27.Caption = "Unit Price"
+        Me.GridColumn27.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumn27.DisplayFormat.FormatString = "N2"
         Me.GridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn27.FieldName = "unit_price"
@@ -1494,6 +1498,11 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn27.Visible = True
         Me.GridColumn27.VisibleIndex = 2
         Me.GridColumn27.Width = 330
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
         'GridColumn28
         '
@@ -1686,12 +1695,12 @@ Partial Class FormPreCalFGPODet
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(156, 26)
+        Me.ViewMenu.Size = New System.Drawing.Size(155, 26)
         '
         'ViewDetailToolStripMenuItem
         '
         Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.ViewDetailToolStripMenuItem.Text = "Choose Vendor"
         '
         'GVPickVendor
@@ -2759,6 +2768,7 @@ Partial Class FormPreCalFGPODet
         Me.XTPAdmCharges.ResumeLayout(False)
         CType(Me.GCAdm, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVAdm, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCUAdm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCUAdm.ResumeLayout(False)
         Me.PCUAdm.PerformLayout()
@@ -2997,4 +3007,5 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEPPN2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

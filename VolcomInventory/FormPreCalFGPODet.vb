@@ -1054,4 +1054,32 @@ WHERE h.`id_pre_cal_fgpo`='" & id & "'"
         execute_non_query(q, True, "", "", "", "")
         load_head()
     End Sub
+
+    Private Sub GVAdm_KeyDown(sender As Object, e As KeyEventArgs) Handles GVAdm.KeyDown
+
+    End Sub
+
+    Private Sub RepositoryItemTextEdit1_KeyDown(sender As Object, e As KeyEventArgs) Handles RepositoryItemTextEdit1.KeyDown
+
+    End Sub
+
+    Private Sub RepositoryItemTextEdit1_KeyUp(sender As Object, e As KeyEventArgs) Handles RepositoryItemTextEdit1.KeyUp
+        Dim SpQty As DevExpress.XtraEditors.TextEdit = CType(sender, DevExpress.XtraEditors.TextEdit)
+        Dim prc As Decimal = SpQty.EditValue
+        Dim kurs As Decimal = GVAdm.GetFocusedRowCellValue("kurs")
+        Dim amo As Decimal = prc * kurs
+        'unit_price_in_rp
+        GVAdm.SetFocusedRowCellValue("unit_price_in_rp", amo)
+        GCAdm.Refresh()
+        GCAdm.RefreshDataSource()
+        GVAdm.RefreshData()
+    End Sub
+
+    Private Sub RepositoryItemTextEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemTextEdit1.EditValueChanged
+
+    End Sub
+
+    Private Sub GVAdm_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVAdm.CellValueChanged
+
+    End Sub
 End Class
