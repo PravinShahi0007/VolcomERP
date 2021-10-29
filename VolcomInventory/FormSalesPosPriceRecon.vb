@@ -67,7 +67,7 @@
             Next
             FormMain.SplashScreenManager1.CloseWaitForm()
         ElseIf action = "upd" Then
-            Dim query As String = "SELECT r.id_sales_pos_recon, r.number, r.created_date, r.note, r.id_report_status, rs.report_status, r.is_confirm 
+            Dim query As String = "SELECT r.id_sales_pos_recon, r.number, r.created_date, r.note, r.id_report_status, rs.report_status, r.is_confirm, r.is_cancel_sales
             FROM tb_sales_pos_recon r
             INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = r.id_report_status
             WHERE r.id_sales_pos_recon='" + id + "' "
@@ -78,6 +78,9 @@
             id_report_status = data.Rows(0)("id_report_status").ToString
             is_confirm = data.Rows(0)("is_confirm").ToString
             MENote.Text = data.Rows(0)("note").ToString
+            If data.Rows(0)("is_cancel_sales").ToString = "1" Then
+                CECancelSales.EditValue = True
+            End If
             viewDetail()
             allowStatus()
         End If
@@ -129,6 +132,7 @@
         End If
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
+        CECancelSales.Properties.ReadOnly = True
 
         'reset propose
         If is_view = "-1" And is_confirm = "1" Then
@@ -177,9 +181,13 @@
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     'save
+                    Dim is_cancel_sales As String = "2"
+                    If CECancelSales.EditValue Then
+                        is_cancel_sales = "1"
+                    End If
                     Dim note As String = addSlashes(MENote.Text.ToString)
-                    Dim query As String = "INSERT INTO tb_sales_pos_recon(created_date, note, id_report_status) 
-                    VALUES(NOW(), '" + note + "',1); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_pos_recon(created_date, note, id_report_status, is_cancel_sales) 
+                    VALUES(NOW(), '" + note + "',1," + is_cancel_sales + "); SELECT LAST_INSERT_ID(); "
                     id = execute_query(query, 0, True, "", "", "", "")
                     execute_non_query("CALL gen_number(" + id + ", " + rmt + ");", True, "", "", "", "")
 
@@ -377,6 +385,32 @@
             FormSalesPosPrice.ShowDialog()
             GCData.RefreshDataSource()
             GVData.RefreshData()
+        End If
+    End Sub
+
+    Private Sub CECancelSales_EditValueChanged(sender As Object, e As EventArgs) Handles CECancelSales.EditValueChanged
+        If CECancelSales.EditValue Then
+            For i = 0 To GVData.RowCount - 1
+                GVData.SetRowCellValue(i, "design_price_valid", GVData.GetRowCellValue(i, "design_price_retail"))
+                GVData.SetRowCellValue(i, "id_design_price_valid", GVData.GetRowCellValue(i, "id_design_price_retail").ToString)
+                GVData.SetRowCellValue(i, "note", "OK")
+            Next
+
+            SelectPriceToolStripMenuItem.Visible = False
+            GVData.OptionsSelection.EnableAppearanceFocusedCell = False
+            GVData.OptionsSelection.EnableAppearanceFocusedRow = False
+        Else
+            SelectPriceToolStripMenuItem.Visible = True
+            GVData.OptionsSelection.EnableAppearanceFocusedCell = True
+            GVData.OptionsSelection.EnableAppearanceFocusedRow = True
+        End If
+    End Sub
+
+    Private Sub GVData_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVData.RowCellStyle
+        If CECancelSales.EditValue Then
+            e.Appearance.BackColor = Color.LightPink
+        Else
+            e.Appearance.BackColor = Color.Transparent
         End If
     End Sub
 End Class
