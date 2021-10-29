@@ -30,6 +30,7 @@ Partial Class FormSalesPosPriceRecon
         Me.BtnCreate = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.CECancelSales = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
@@ -63,13 +64,14 @@ Partial Class FormSalesPosPriceRecon
         Me.GridColumncomp_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_comp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnrmt_inv = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_design = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SelectPriceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumnid_design = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.CECancelSales.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -178,12 +180,23 @@ Partial Class FormSalesPosPriceRecon
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.CECancelSales)
         Me.PanelControl2.Controls.Add(Me.PanelControl4)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(836, 103)
         Me.PanelControl2.TabIndex = 1
+        '
+        'CECancelSales
+        '
+        Me.CECancelSales.Location = New System.Drawing.Point(27, 63)
+        Me.CECancelSales.Name = "CECancelSales"
+        Me.CECancelSales.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.25!)
+        Me.CECancelSales.Properties.Appearance.Options.UseFont = True
+        Me.CECancelSales.Properties.Caption = "Cancel Sales"
+        Me.CECancelSales.Size = New System.Drawing.Size(103, 21)
+        Me.CECancelSales.TabIndex = 5
         '
         'PanelControl4
         '
@@ -465,6 +478,13 @@ Partial Class FormSalesPosPriceRecon
         Me.GridColumnrmt_inv.FieldName = "rmt_inv"
         Me.GridColumnrmt_inv.Name = "GridColumnrmt_inv"
         '
+        'GridColumnid_design
+        '
+        Me.GridColumnid_design.Caption = "id_design"
+        Me.GridColumnid_design.FieldName = "id_design"
+        Me.GridColumnid_design.Name = "GridColumnid_design"
+        Me.GridColumnid_design.OptionsColumn.AllowEdit = False
+        '
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SelectPriceToolStripMenuItem})
@@ -476,13 +496,6 @@ Partial Class FormSalesPosPriceRecon
         Me.SelectPriceToolStripMenuItem.Name = "SelectPriceToolStripMenuItem"
         Me.SelectPriceToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
         Me.SelectPriceToolStripMenuItem.Text = "Select Price"
-        '
-        'GridColumnid_design
-        '
-        Me.GridColumnid_design.Caption = "id_design"
-        Me.GridColumnid_design.FieldName = "id_design"
-        Me.GridColumnid_design.Name = "GridColumnid_design"
-        Me.GridColumnid_design.OptionsColumn.AllowEdit = False
         '
         'FormSalesPosPriceRecon
         '
@@ -502,6 +515,7 @@ Partial Class FormSalesPosPriceRecon
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        CType(Me.CECancelSales.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
@@ -566,4 +580,5 @@ Partial Class FormSalesPosPriceRecon
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents SelectPriceToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GridColumnid_design As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CECancelSales As DevExpress.XtraEditors.CheckEdit
 End Class
