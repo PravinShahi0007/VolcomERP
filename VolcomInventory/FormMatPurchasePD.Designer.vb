@@ -521,7 +521,6 @@ Partial Class FormMatPurchasePD
         'TEToleransi
         '
         Me.TEToleransi.EditValue = ""
-        Me.TEToleransi.Enabled = False
         Me.TEToleransi.Location = New System.Drawing.Point(112, 39)
         Me.TEToleransi.Name = "TEToleransi"
         Me.TEToleransi.Properties.Appearance.Options.UseTextOptions = True
@@ -531,7 +530,6 @@ Partial Class FormMatPurchasePD
         Me.TEToleransi.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEToleransi.Properties.Mask.SaveLiteral = False
         Me.TEToleransi.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEToleransi.Properties.ReadOnly = True
         Me.TEToleransi.Size = New System.Drawing.Size(51, 20)
         Me.TEToleransi.TabIndex = 162
         '
