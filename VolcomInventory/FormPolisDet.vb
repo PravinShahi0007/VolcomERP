@@ -525,9 +525,9 @@ WHERE ppsd.id_polis_pps='" & id_pps & "' AND ppsd.id_comp='" & GVNilaiLainnya.Ge
                         save_draft_penawaran()
                         Dim is_ok As Boolean = True
 
-                        Dim qc As String = "SELECT * FROM tb_polis_pps_vendor WHERE id_polis_pps = '" + id_pps + "' AND price <= 0"
+                        Dim qc As String = "SELECT * FROM tb_polis_pps_vendor WHERE id_polis_pps = '" + id_pps + "' AND price > 0"
                         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
-                        If dtc.Rows.Count > 0 Then
+                        If dtc.Rows.Count = 0 Then
                             is_ok = False
                         End If
 
