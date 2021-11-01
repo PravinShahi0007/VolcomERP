@@ -7986,7 +7986,7 @@ WHERE prcd.id_fg_propose_price_rev=" + id_report + " AND !ISNULL(id_design_price
                             mail.report_mark_type = "188"
                             mail.id_report = id_report
                             mail.date_string = FormFGProposePriceRev.DECreated.Text
-                            mail.comment = ""
+                            mail.comment = "Propose Price Revision"
                             mail.send_email()
                         End If
                     Catch ex As Exception
@@ -8038,7 +8038,7 @@ WHERE prcd.id_fg_propose_price_rev=" + id_report + " AND !ISNULL(id_design_price
                             mail.report_mark_type = "188_non_reg"
                             mail.id_report = id_report
                             mail.date_string = FormFGProposePriceRev.DECreated.Text
-                            mail.comment = ""
+                            mail.comment = "Propose Price Revision"
                             mail.send_email()
                         End If
                     Catch ex As Exception
