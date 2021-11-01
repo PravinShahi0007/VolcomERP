@@ -7975,6 +7975,23 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                     INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
                     WHERE rd.id_fg_propose_price_rev=" + id_report + " ; "
                     execute_non_query(query_ins, True, "", "", "", "")
+
+                    'send email
+                    Try
+                        Dim qc As String = "SELECT * FROM tb_fg_propose_price_rev_det prcd 
+WHERE prcd.id_fg_propose_price_rev=" + id_report + " AND !ISNULL(id_design_price_type_print) "
+                        Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                        If dc.Rows.Count > 0 Then
+                            Dim mail As New ClassSendEmail()
+                            mail.report_mark_type = "188"
+                            mail.id_report = id_report
+                            mail.date_string = FormFGProposePriceRev.DECreated.Text
+                            mail.comment = ""
+                            mail.send_email()
+                        End If
+                    Catch ex As Exception
+                        execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PP;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
+                    End Try
                 ElseIf FormFGProposePriceRev.id_pp_type = "2" Then 'nonreguler
                     'execute detail revision
                     execute_non_query(query_ins, True, "", "", "", "")
@@ -8010,6 +8027,23 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                             execute_non_query(qry, True, "", "", "", "")
                         End If
                     Next
+
+                    'send email
+                    Try
+                        Dim qc As String = "SELECT * FROM tb_fg_propose_price_rev_det prcd 
+                        WHERE prcd.id_fg_propose_price_rev=" + id_report + " AND !ISNULL(id_design_price_type_print) "
+                        Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                        If dc.Rows.Count > 0 Then
+                            Dim mail As New ClassSendEmail()
+                            mail.report_mark_type = "188_non_reg"
+                            mail.id_report = id_report
+                            mail.date_string = FormFGProposePriceRev.DECreated.Text
+                            mail.comment = ""
+                            mail.send_email()
+                        End If
+                    Catch ex As Exception
+                        execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PP;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
+                    End Try
                 End If
 
                 query = String.Format("UPDATE tb_fg_propose_price_rev SET id_report_status='{0}' WHERE id_fg_propose_price_rev ='{1}'", id_status_reportx, id_report)
