@@ -19,9 +19,8 @@ Public Class FormPolisDet
             Dim q As String = "SELECT 
 p.id_polis AS old_id_polis,p.end_date AS old_end_date,pol_by.comp_name AS comp_name_polis,c.comp_number,c.`comp_name`,c.`address_primary`,c.`id_comp`
 ,p.`nilai_stock` AS old_nilai_stock,p.`nilai_fit_out` AS old_nilai_fit_out,p.`nilai_peralatan` AS old_nilai_peralatan,p.`nilai_building` AS old_nilai_building,p.`nilai_public_liability` AS old_nilai_public_liability,p.`nilai_total` AS old_nilai_total,pol_by.`id_comp` AS old_id_vendor,pol_by.`comp_name` AS old_vendor
-,SUM(pd.`premi`) AS old_premi
-FROM tb_polis_det pd
-INNER JOIN tb_polis p ON p.`id_polis`=pd.`id_polis`
+,SUM(p.`premi`) AS old_premi
+FROM tb_polis p
 INNER JOIN tb_m_comp c ON c.`id_comp`=p.`id_reff` AND p.`id_polis_cat`=1
 INNER JOIN tb_m_comp pol_by ON pol_by.id_comp=p.id_polis_by
 LEFT JOIN
@@ -32,7 +31,7 @@ LEFT JOIN
     GROUP BY ppsd.`id_comp`
 )pps ON pps.id_comp=p.id_reff
 WHERE p.`is_active`=1 AND DATEDIFF(p.end_date,DATE(NOW()))<45 AND ISNULL(pps.id_polis_pps)
-GROUP BY pd.id_polis"
+GROUP BY p.id_polis"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
                 GCSummary.DataSource = dt
