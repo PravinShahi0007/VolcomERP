@@ -30,9 +30,10 @@ LEFT JOIN
     INNER JOIN tb_polis_pps pps ON pps.`id_polis_pps`=ppsd.`id_polis_pps` AND pps.`id_report_status`!=6 AND pps.`id_report_status`!=5
     GROUP BY ppsd.`id_comp`
 )pps ON pps.id_comp=p.id_reff
-WHERE p.`is_active`=1 AND DATEDIFF(p.end_date,DATE(NOW()))<45 AND ISNULL(pps.id_polis_pps)
+WHERE p.`is_active`=1 AND DATEDIFF(p.end_date,DATE(NOW()))<45 AND ISNULL(pps.id_polis_pps) AND p.id_desc_premi = '" + SLEPolisType.EditValue.ToString + "'
 GROUP BY p.id_polis"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            GCSummary.DataSource = Nothing
             If dt.Rows.Count > 0 Then
                 GCSummary.DataSource = dt
                 BGVSummary.BestFitColumns()
@@ -346,6 +347,7 @@ GROUP BY ppsd.`id_comp`"
         If id_pps = "-1" Then
             XTPNilaiStock.PageVisible = False
             XTPPenawaran.PageVisible = False
+            XTPVendor.PageVisible = False
             XTPDetail.PageVisible = False
             '
             BSaveDraft.Visible = False
@@ -522,6 +524,12 @@ WHERE ppsd.id_polis_pps='" & id_pps & "' AND ppsd.id_comp='" & GVNilaiLainnya.Ge
                         'mandiri
                         save_draft_penawaran()
                         Dim is_ok As Boolean = True
+
+                        Dim qc As String = "SELECT * FROM tb_polis_pps_vendor WHERE id_polis_pps = '" + id_pps + "' AND price <= 0"
+                        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                        If dtc.Rows.Count > 0 Then
+                            is_ok = False
+                        End If
 
                         'Dim qc As String = "SELECT * FROM tb_polis_pps_det WHERE id_polis_pps='" & id_pps & "' AND (ISNULL(polis_vendor) or premi<=0)"
                         'Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
