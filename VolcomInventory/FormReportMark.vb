@@ -7990,7 +7990,7 @@ WHERE prcd.id_fg_propose_price_rev=" + id_report + " AND !ISNULL(id_design_price
                             mail.send_email()
                         End If
                     Catch ex As Exception
-                        execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PP;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
+                        execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PP Rev;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
                     End Try
                 ElseIf FormFGProposePriceRev.id_pp_type = "2" Then 'nonreguler
                     'execute detail revision
@@ -8042,7 +8042,7 @@ WHERE prcd.id_fg_propose_price_rev=" + id_report + " AND !ISNULL(id_design_price
                             mail.send_email()
                         End If
                     Catch ex As Exception
-                        execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PP;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
+                        execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PP Rev;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
                     End Try
                 End If
 
