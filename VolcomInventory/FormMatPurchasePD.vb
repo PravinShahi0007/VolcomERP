@@ -55,6 +55,7 @@ WHERE p.id_mat_purc_list='" & id_list & "'"
                 set_calculate()
             End If
             BDuplicate.Visible = True
+            TEToleransi.Enabled = False
         Else
             LNumber.Text = "Number : -"
             BSetConsumption.Enabled = True
@@ -295,7 +296,11 @@ ORDER BY is_check DESC,id_prod_demand_design DESC"
     End Sub
 
     Private Sub BCalculate_Click(sender As Object, e As EventArgs) Handles BCalculate.Click
-        set_calculate()
+        If TEToleransi.EditValue >= 0 And TEToleransi.EditValue <= 2.5 Then
+            set_calculate()
+        Else
+            stopCustom("Please input toleransi between 0 - 2.5")
+        End If
     End Sub
 
     Sub set_calculate()
@@ -313,6 +318,8 @@ ORDER BY is_check DESC,id_prod_demand_design DESC"
             '
             GVPD.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never
             '
+            TEToleransi.Enabled = False
+            '
             BCalculate.Text = "Unlock"
         ElseIf BCalculate.Text = "Unlock" Then
             GVPD.ActiveFilterString = ""
@@ -325,6 +332,8 @@ ORDER BY is_check DESC,id_prod_demand_design DESC"
             SLEBreakDown.Enabled = True
             '
             GVPD.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Default
+            '
+            TEToleransi.Enabled = True
             '
             BCalculate.Text = "Calculate"
         End If
