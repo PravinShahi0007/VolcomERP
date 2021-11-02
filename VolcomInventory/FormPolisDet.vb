@@ -27,7 +27,7 @@ LEFT JOIN
 (
     SELECT ppsd.`id_comp`,ppsd.`id_polis_pps`
     FROM `tb_polis_pps_det` ppsd
-    INNER JOIN tb_polis_pps pps ON pps.`id_polis_pps`=ppsd.`id_polis_pps` AND pps.`id_report_status`!=6 AND pps.`id_report_status`!=5
+    INNER JOIN tb_polis_pps pps ON pps.`id_polis_pps`=ppsd.`id_polis_pps` AND pps.`id_report_status`!=6 AND pps.`id_report_status`!=5 AND pps.id_desc_premi = '" + SLEPolisType.EditValue.ToString + "'
     GROUP BY ppsd.`id_comp`
 )pps ON pps.id_comp=p.id_reff
 WHERE p.`is_active`=1 AND DATEDIFF(p.end_date,DATE(NOW()))<45 AND ISNULL(pps.id_polis_pps) AND p.id_desc_premi = '" + SLEPolisType.EditValue.ToString + "'
