@@ -24,6 +24,7 @@
             tb_no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             tb_no.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             tb_no.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
+            tb_no.KeepTogether = True
 
             Me.XPTableAmount.Controls.Add(tb_no)
             'column po no
@@ -36,6 +37,7 @@
             tb_po_no.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             tb_po_no.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             tb_po_no.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
+            tb_po_no.KeepTogether = True
 
             Me.XPTableAmount.Controls.Add(tb_po_no)
             'column description
@@ -48,6 +50,7 @@
             tb_desc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
             tb_desc.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             tb_desc.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
+            tb_desc.KeepTogether = True
 
             Me.XPTableAmount.Controls.Add(tb_desc)
             'column color
@@ -60,6 +63,7 @@
             tb_color.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             tb_color.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             tb_color.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
+            tb_color.KeepTogether = True
 
             Me.XPTableAmount.Controls.Add(tb_color)
             'column qty order
@@ -72,6 +76,7 @@
             tb_qty.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             tb_qty.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             tb_qty.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
+            tb_qty.KeepTogether = True
 
             Me.XPTableAmount.Controls.Add(tb_qty)
             'column unit price
@@ -84,6 +89,7 @@
             tb_unit_price.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             tb_unit_price.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             tb_unit_price.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
+            tb_unit_price.KeepTogether = True
 
             Me.XPTableAmount.Controls.Add(tb_unit_price)
             'column amount rp
@@ -96,6 +102,7 @@
             tb_amount.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
             tb_amount.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             tb_amount.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom Or DevExpress.XtraPrinting.BorderSide.Right
+            tb_amount.KeepTogether = True
 
             Me.XPTableAmount.Controls.Add(tb_amount)
 
@@ -109,6 +116,7 @@
             tb_desc_ltime.Font = New Font("Calibri", 11, FontStyle.Bold)
             tb_desc_ltime.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
             tb_desc_ltime.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            tb_desc_ltime.KeepTogether = True
 
             Me.XRLeadTime.Controls.Add(tb_desc_ltime)
             'column color ltime
@@ -120,6 +128,7 @@
             tb_color_ltime.Font = New Font("Calibri", 11, FontStyle.Bold)
             tb_color_ltime.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             tb_color_ltime.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            tb_color_ltime.KeepTogether = True
 
             Me.XRLeadTime.Controls.Add(tb_color_ltime)
 
@@ -132,6 +141,7 @@
             tb_leadtime.Font = New Font("Calibri", 11, FontStyle.Bold)
             tb_leadtime.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
             tb_leadtime.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            tb_leadtime.KeepTogether = True
 
             Me.XRLeadTime.Controls.Add(tb_leadtime)
 
@@ -148,6 +158,7 @@
             tb_revision.Font = New Font("Calibri", 11, FontStyle.Bold)
             tb_revision.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
             tb_revision.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+            tb_revision.KeepTogether = True
 
             Me.XRLeadTime.Controls.Add(tb_revision)
             '
