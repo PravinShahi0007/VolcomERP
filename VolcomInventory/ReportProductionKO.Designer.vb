@@ -157,6 +157,7 @@ Partial Public Class ReportProductionKO
         '
         'XPTableAmount
         '
+        Me.XPTableAmount.KeepTogether = False
         Me.XPTableAmount.LocationFloat = New DevExpress.Utils.PointFloat(0!, 48.00003!)
         Me.XPTableAmount.Name = "XPTableAmount"
         Me.XPTableAmount.SizeF = New System.Drawing.SizeF(689.0!, 20.0!)
