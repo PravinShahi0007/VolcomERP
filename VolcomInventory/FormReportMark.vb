@@ -2389,6 +2389,12 @@ INNER JOIN
                                                 WHERE a.id_pl_mrs = '" + id_report + "' "
                 Dim data As DataTable = execute_query(query_stock, -1, True, "", "", "", "")
 
+                Try
+                    Dim query_delete_storage = "DELETE FROM tb_storage_mat WHERE report_mark_type='" + report_mark_type + "' AND id_report='" + id_report + "' AND storage_mat_notes='Completion of packing list, PL : " + data.Rows(0)("pl_mrs_number").ToString + "'"
+                    execute_non_query(query_delete_storage, True, "", "", "", "")
+                Catch ex As Exception
+                End Try
+
                 For i As Integer = 0 To (data.Rows.Count - 1)
                     Dim id_wh_drawer As String = data.Rows(i)("id_wh_drawer").ToString
                     Dim id_mat_det As String = data.Rows(i)("id_mat_det").ToString
@@ -2397,9 +2403,6 @@ INNER JOIN
                     Dim pl_mrs_det_price As Decimal = data.Rows(i)("pl_mrs_det_price")
                     Dim id_mat_det_pricex As String = data.Rows(i)("id_mat_det_price").ToString
                     Dim query_upd_storage As String = ""
-
-                    query_upd_storage = "DELETE FROM tb_storage_mat WHERE report_mark_type='" + report_mark_type + "' AND id_report='" + id_report + "' AND storage_mat_notes='Completion of packing list, PL : " + pl_mrs_number + "'"
-                    execute_non_query(query_upd_storage, True, "", "", "", "")
 
                     query_upd_storage = "INSERT tb_storage_mat(id_wh_drawer, id_storage_category, id_mat_det,id_mat_det_price, price, storage_mat_qty, storage_mat_datetime, storage_mat_notes,id_stock_status,report_mark_type,id_report) "
                     query_upd_storage += "VALUES('" + id_wh_drawer + "', '1', '" + id_mat_det + "','" + id_mat_det_pricex + "','" + decimalSQL(pl_mrs_det_price.ToString) + "', '" + decimalSQL(pl_mrs_det_qty.ToString) + "', NOW(), 'Completion of packing list, PL : " + pl_mrs_number + "','2','" + report_mark_type + "','" + id_report + "')"
