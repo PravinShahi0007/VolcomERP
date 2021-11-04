@@ -55,10 +55,12 @@
                     newRow("id_design_price_valid") = dt_prc.Rows(0)("id_design_price").ToString
                     newRow("design_price_valid") = dt_prc.Rows(0)("design_price")
                     newRow("note") = "OK"
+                    newRow("note_cancel") = "Cancel Sales"
                 Else
                     newRow("id_design_price_valid") = "0"
                     newRow("design_price_valid") = 0.00
                     newRow("note") = "Price not found"
+                    newRow("note_cancel") = "Cancel Sales"
                 End If
                 TryCast(GCData.DataSource, DataTable).Rows.Add(newRow)
                 GCData.RefreshDataSource()
@@ -103,7 +105,7 @@
         rd.id_sales_pos_prob, rd.id_sales_pos, rd.id_comp, sp.sales_pos_number, c.comp_number, c.comp_name,
         p.id_design,rd.id_product, p.product_full_code As `code`, p.product_display_name As `name`, cd.code_detail_name As `size`,
         rd.id_design_price_retail, rd.design_price_retail, rd.design_price_store,
-        rd.id_design_price_valid, rd.design_price_valid, rd.note, sp.report_mark_type AS `rmt_inv`
+        rd.id_design_price_valid, rd.design_price_valid, rd.note, sp.report_mark_type AS `rmt_inv`, 'Cancel Sales' AS `note_cancel`
         FROM tb_sales_pos_recon_det rd
         INNER JOIN tb_m_product p ON p.id_product = rd.id_product
         INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
@@ -399,10 +401,14 @@
             SelectPriceToolStripMenuItem.Visible = False
             GVData.OptionsSelection.EnableAppearanceFocusedCell = False
             GVData.OptionsSelection.EnableAppearanceFocusedRow = False
+            GridColumnnote.Visible = False
+            GridColumnnote_cancel.VisibleIndex = 30
         Else
             SelectPriceToolStripMenuItem.Visible = True
             GVData.OptionsSelection.EnableAppearanceFocusedCell = True
             GVData.OptionsSelection.EnableAppearanceFocusedRow = True
+            GridColumnnote.VisibleIndex = 30
+            GridColumnnote_cancel.Visible = False
         End If
     End Sub
 

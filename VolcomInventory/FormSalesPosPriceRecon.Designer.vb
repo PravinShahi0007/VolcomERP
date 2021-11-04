@@ -67,6 +67,7 @@ Partial Class FormSalesPosPriceRecon
         Me.GridColumnid_design = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SelectPriceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumnnote_cancel = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -308,7 +309,7 @@ Partial Class FormSalesPosPriceRecon
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnno, Me.GridColumn, Me.GridColumnid_sales_pos_recon, Me.GridColumnid_sales_pos_prob, Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnid_design_price_retail, Me.GridColumndesign_price_retail, Me.GridColumndesign_price_store, Me.GridColumnid_design_price_valid, Me.GridColumndesign_price_valid, Me.GridColumnnote, Me.GridColumnsales_pos_number, Me.GridColumnid_sales_pos, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumnid_comp, Me.GridColumnrmt_inv, Me.GridColumnid_design})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnno, Me.GridColumn, Me.GridColumnid_sales_pos_recon, Me.GridColumnid_sales_pos_prob, Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnid_design_price_retail, Me.GridColumndesign_price_retail, Me.GridColumndesign_price_store, Me.GridColumnid_design_price_valid, Me.GridColumndesign_price_valid, Me.GridColumnnote, Me.GridColumnsales_pos_number, Me.GridColumnid_sales_pos, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumnid_comp, Me.GridColumnrmt_inv, Me.GridColumnid_design, Me.GridColumnnote_cancel})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -497,6 +498,18 @@ Partial Class FormSalesPosPriceRecon
         Me.SelectPriceToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
         Me.SelectPriceToolStripMenuItem.Text = "Select Price"
         '
+        'GridColumnnote_cancel
+        '
+        Me.GridColumnnote_cancel.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnnote_cancel.AppearanceCell.Options.UseFont = True
+        Me.GridColumnnote_cancel.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnnote_cancel.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnnote_cancel.Caption = "Note"
+        Me.GridColumnnote_cancel.FieldName = "note_cancel"
+        Me.GridColumnnote_cancel.Name = "GridColumnnote_cancel"
+        Me.GridColumnnote_cancel.OptionsColumn.AllowEdit = False
+        Me.GridColumnnote_cancel.OptionsColumn.ShowInCustomizationForm = False
+        '
         'FormSalesPosPriceRecon
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -581,4 +594,5 @@ Partial Class FormSalesPosPriceRecon
     Friend WithEvents SelectPriceToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GridColumnid_design As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CECancelSales As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnnote_cancel As DevExpress.XtraGrid.Columns.GridColumn
 End Class

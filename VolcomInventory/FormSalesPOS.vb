@@ -480,10 +480,11 @@
         IFNULL(p.id_design_price_valid,0) AS `id_design_price_valid`, p.design_price_valid, dpt.design_price_type AS `design_price_type_valid`,
         p.store_qty, 
         p.invoice_qty, IFNULL(proc_prc.qty_on_process,0) AS `qty_on_process_price`, IFNULL(proc_prc.qty_proceed,0) AS `qty_proceed_price`,
+        IFNULL(proc_cs.qty_on_process,0) AS `qty_on_process_cancel`, IFNULL(proc_cs.qty_proceed,0) AS `qty_proceed_cancel`,
         p.no_stock_qty, 0 AS `qty_on_process`, 0 AS `qty_proceed`,
         (p.invoice_qty+p.no_stock_qty) AS `total_qty`,
         'No' AS `is_select`, 0 AS `qty_new`,
-        IF(p.invoice_qty=IFNULL(proc_prc.qty_proceed,0),'Close','Open') AS `is_open_invoice_view`
+        IF(p.invoice_qty=IFNULL(proc_prc.qty_proceed,0)+IFNULL(proc_cs.qty_proceed,0),'Close','Open') AS `is_open_invoice_view`
         From tb_sales_pos_prob p
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = p.id_sales_pos
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -503,6 +504,16 @@
             WHERE !ISNULL(spd.id_sales_pos_prob_price)
             GROUP BY spd.id_sales_pos_prob_price
         ) proc_prc ON proc_prc.id_sales_pos_prob_price = p.id_sales_pos_prob
+        LEFT JOIN (
+            SELECT spd.id_sales_pos_prob, 
+            SUM(IF(sp.id_report_status<5,p.invoice_qty,0)) AS `qty_on_process`,
+            SUM(IF(sp.id_report_status=6,p.invoice_qty,0)) AS `qty_proceed`
+            FROM tb_sales_pos_recon sp
+            INNER JOIN tb_sales_pos_recon_det spd ON spd.id_sales_pos_recon = sp.id_sales_pos_recon
+            INNER JOIN tb_sales_pos_prob p ON p.id_sales_pos_prob = spd.id_sales_pos_prob
+            WHERE !ISNULL(spd.id_sales_pos_prob) AND sp.is_cancel_sales=1 
+            GROUP BY spd.id_sales_pos_prob
+        ) proc_cs ON proc_cs.id_sales_pos_prob = p.id_sales_pos_prob
         WHERE 1=1 AND sp.id_report_status=6 " + cond_recon + cond_status + cond_period + cond_type + cond_store
         query += "HAVING 1=1 "
         query += "ORDER BY id_sales_pos ASC,name ASC, code ASC "
