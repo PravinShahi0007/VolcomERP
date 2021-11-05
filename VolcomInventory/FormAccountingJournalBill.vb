@@ -72,7 +72,7 @@
             Dim dt_now As DateTime = getTimeDB()
             DERefDate.EditValue = dt_now
             '
-            DERefDate.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='" & SLEUnit.EditValue.ToString & "'", 0, True, "", "", "", "")
+            'DERefDate.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='" & SLEUnit.EditValue.ToString & "'", 0, True, "", "", "", "")
             '
             load_number()
             view_det()
@@ -886,6 +886,31 @@ WHERE a.id_acc_trans='" & id_trans & "'"
         Next
         but_check()
         '
-        DERefDate.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='" & SLEUnit.EditValue.ToString & "'", 0, True, "", "", "", "")
+        'DERefDate.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='" & SLEUnit.EditValue.ToString & "'", 0, True, "", "", "", "")
+    End Sub
+
+    Private Sub DERefDate_EditValueChanged(sender As Object, e As EventArgs) Handles DERefDate.EditValueChanged
+        Try
+            If id_trans = "-1" Then
+                Dim allow_input As Boolean = False
+
+                Dim query As String = "
+                    SELECT COUNT(*) FROM tb_closing_log WHERE MONTH(date_until) = MONTH('" + Date.Parse(DERefDate.EditValue.ToString).ToString("yyyy-MM-dd") + "') AND YEAR(date_until) = YEAR('" + Date.Parse(DERefDate.EditValue.ToString).ToString("yyyy-MM-dd") + "') AND id_coa_tag = '" & SLEUnit.EditValue.ToString & "'
+                "
+
+                Dim count As String = execute_query(query, 0, True, "", "", "", "")
+
+                If count = "0" Then
+                    allow_input = True
+                End If
+
+                If Not allow_input Then
+                    stopCustom("Selected date already closed.")
+
+                    DERefDate.EditValue = Now
+                End If
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
 End Class
