@@ -82,7 +82,7 @@ Public Class FormImportExcel
         If id_pop_up = "6" Or id_pop_up = "7" Then
             MyCommand = New OleDbDataAdapter("select code, SUM(qty) AS qty from [" & CBWorksheetName.SelectedItem.ToString & "] GROUP BY code", oledbconn)
         ElseIf id_pop_up = "8" Then
-            MyCommand = New OleDbDataAdapter("select kode_barang, ket_barang, no_faktur, nama_toko, npwp, alamat, total, ppn, dpp, referensi from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([no_faktur]='')", oledbconn)
+            MyCommand = New OleDbDataAdapter("select kode_barang, ket_barang, no_faktur, nama_toko, npwp, alamat, harga_jual, diskon, total, ppn, dpp, referensi from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([no_faktur]='')", oledbconn)
         ElseIf id_pop_up = "11" Then
             MyCommand = New OleDbDataAdapter("select code, SUM(qty) AS qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='') GROUP BY code", oledbconn)
         ElseIf id_pop_up = "13" Or id_pop_up = "19" Then
@@ -5161,6 +5161,8 @@ GROUP BY ol.checkout_id
                         Dim total As Decimal = Math.Round(Decimal.Parse(GVData.GetRowCellValue(i, "total").ToString))
                         Dim ppn As String = Math.Round(Decimal.Parse(GVData.GetRowCellValue(i, "ppn").ToString))
                         Dim dpp As String = Math.Round(Decimal.Parse(GVData.GetRowCellValue(i, "dpp").ToString))
+                        Dim harga_jual As String = Math.Round(Decimal.Parse(GVData.GetRowCellValue(i, "harga_jual").ToString))
+                        Dim diskon As String = Math.Round(Decimal.Parse(GVData.GetRowCellValue(i, "diskon").ToString))
 
 
                         'no faktur
@@ -5171,7 +5173,7 @@ GROUP BY ol.checkout_id
                         Dim no_faktur As String = col_foc_str(1).Replace("-", "").Replace(".", "") + col_foc_str(2).ToString
 
                         'query
-                        bulk_query += "('" + id_acc_fak_scan + "','" + kd_jenis_transaksi + "','" + fg_pengganti + "','" + addSlashes(no_faktur) + "','" + FormAccountingFakturScanSingle.TxtPeriod.Text + "','" + FormAccountingFakturScanSingle.TxtYear.Text + "', '" + FormAccountingFakturScanSingle.TxtFakturDate.Text + "', '" + addSlashes(GVData.GetRowCellValue(i, "npwp").Replace(".", "").Replace("-", "")) + "', '" + addSlashes(GVData.GetRowCellValue(i, "nama_toko").ToString) + "', '" + addSlashes(GVData.GetRowCellValue(i, "alamat").ToString) + "', '" + decimalSQL(dpp.ToString) + "', '" + decimalSQL(ppn.ToString) + "', '0', '','0','0', '0', '0', '" + addSlashes(GVData.GetRowCellValue(i, "referensi").ToString) + "', 'OF', '" + addSlashes(GVData.GetRowCellValue(i, "kode_barang").ToString) + "', '" + addSlashes(GVData.GetRowCellValue(i, "ket_barang").ToString) + "', '" + decimalSQL(dpp.ToString) + "', '1', '" + decimalSQL(dpp.ToString) + "', '0', '" + decimalSQL(dpp.ToString) + "', '" + decimalSQL(ppn.ToString) + "', '0', '0') "
+                        bulk_query += "('" + id_acc_fak_scan + "','" + kd_jenis_transaksi + "','" + fg_pengganti + "','" + addSlashes(no_faktur) + "','" + FormAccountingFakturScanSingle.TxtPeriod.Text + "','" + FormAccountingFakturScanSingle.TxtYear.Text + "', '" + FormAccountingFakturScanSingle.TxtFakturDate.Text + "', '" + addSlashes(GVData.GetRowCellValue(i, "npwp").Replace(".", "").Replace("-", "")) + "', '" + addSlashes(GVData.GetRowCellValue(i, "nama_toko").ToString) + "', '" + addSlashes(GVData.GetRowCellValue(i, "alamat").ToString) + "', '" + decimalSQL(dpp.ToString) + "', '" + decimalSQL(ppn.ToString) + "', '0', '','0','0', '0', '0', '" + addSlashes(GVData.GetRowCellValue(i, "referensi").ToString) + "', 'OF', '" + addSlashes(GVData.GetRowCellValue(i, "kode_barang").ToString) + "', '" + addSlashes(GVData.GetRowCellValue(i, "ket_barang").ToString) + "', '" + decimalSQL(harga_jual.ToString) + "', '1', '" + decimalSQL(harga_jual.ToString) + "', '" + decimalSQL(diskon.ToString) + "', '" + decimalSQL(dpp.ToString) + "', '" + decimalSQL(ppn.ToString) + "', '0', '0') "
                         If Not i = GVData.RowCount - 1 Then
                             bulk_query += ","
                         End If
