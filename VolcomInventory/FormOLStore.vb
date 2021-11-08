@@ -554,9 +554,10 @@
             End If
 
             'get api type
-            Dim dt_grp As DataTable = execute_query("SELECT cg.id_api_type, cg.comp_group FROM tb_m_comp_group cg WHERE cg.id_comp_group='" + id_comp_group + "' ", -1, True, "", "", "", "")
+            Dim dt_grp As DataTable = execute_query("SELECT cg.id_api_type, cg.comp_group, cg.is_order_check_awb FROM tb_m_comp_group cg WHERE cg.id_comp_group='" + id_comp_group + "' ", -1, True, "", "", "", "")
             Dim id_api_type As String = dt_grp.Rows(0)("id_api_type").ToString
             Dim comp_group As String = dt_grp.Rows(0)("comp_group").ToString.ToUpper
+            Dim is_order_check_awb As String = dt_grp.Rows(0)("is_order_check_awb").ToString.ToUpper
 
             'get order from web
             'hide when developed
@@ -588,16 +589,27 @@
             End If
 
             'get order yg belum diproses
-            Dim qord As String = "SELECT o.id, o.sales_order_ol_shop_number  FROM tb_ol_store_order o
-            WHERE o.is_process=2 AND o.id_comp_group='" + id_comp_group + "' AND ISNULL(o.id_ol_store_oos)
-            GROUP BY o.id "
+            Dim qord As String = ""
+            If is_order_check_awb = "1" Then
+                qord = "SELECT o.id, o.sales_order_ol_shop_number,o.tracking_code  FROM tb_ol_store_order o
+                WHERE o.is_process=2 AND o.id_comp_group='" + id_comp_group + "' AND ISNULL(o.id_ol_store_oos)
+                GROUP BY o.id, o.tracking_code "
+            Else
+                qord = "SELECT o.id, o.sales_order_ol_shop_number  FROM tb_ol_store_order o
+                WHERE o.is_process=2 AND o.id_comp_group='" + id_comp_group + "' AND ISNULL(o.id_ol_store_oos)
+                GROUP BY o.id "
+            End If
             Dim dord As DataTable = execute_query(qord, -1, True, "", "", "", "")
             Dim id_order_in As String = ""
             If dord.Rows.Count > 0 Then
                 Try
                     For i As Integer = 0 To dord.Rows.Count - 1
                         FormMain.SplashScreenManager1.SetWaitFormDescription(comp_group + " ORDER : " + (i + 1).ToString + "/" + dord.Rows.Count.ToString)
-                        execute_non_query_long("CALL create_web_order_grp(" + dord.Rows(i)("id").ToString + ", " + is_must_ok_stock + ",'" + id_comp_group + "');", True, "", "", "", "")
+                        If is_order_check_awb = "1" Then
+                            execute_non_query_long("CALL create_web_order_grp_awb(" + dord.Rows(i)("id").ToString + ", " + is_must_ok_stock + ",'" + id_comp_group + "', '" + dord.Rows(i)("tracking_code").ToString + "');", True, "", "", "", "")
+                        Else
+                            execute_non_query_long("CALL create_web_order_grp(" + dord.Rows(i)("id").ToString + ", " + is_must_ok_stock + ",'" + id_comp_group + "');", True, "", "", "", "")
+                        End If
                         If i > 0 Then
                             id_order_in += ","
                         End If
