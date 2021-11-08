@@ -631,7 +631,7 @@
 
             'evaluasi
             Dim jum_eval As Integer = 0
-            If id_api_type <> "1" Then 'selain VIOS
+            If id_api_type <> "1" And is_order_check_awb = "2" Then 'selain VIOS
                 Dim query_eval As String = "SELECT od.id, od.sales_order_ol_shop_number AS `order_number`
                 FROM tb_ol_store_order od 
                 WHERE od.id_comp_group='" + id_comp_group + "'  AND od.note_price='OK' AND od.note_promo='OK' AND od.note_stock<>'OK' AND od.is_process=2 AND ISNULL(od.id_ol_store_oos)
