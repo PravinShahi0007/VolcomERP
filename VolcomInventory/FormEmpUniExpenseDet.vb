@@ -114,7 +114,7 @@ Public Class FormEmpUniExpenseDet
         'BtnPrint.Enabled = False
         'End If
 
-        If id_report_status > 1 Then
+        If id_report_status >= "5" Then
             BtnDraftJournal.Visible = False
         End If
 
