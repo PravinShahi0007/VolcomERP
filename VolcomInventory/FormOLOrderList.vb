@@ -74,7 +74,7 @@
 	        HAVING so_completness<100
 	        ORDER BY indeks_order ASC, id_sales_order ASC 
         ) a
-        GROUP BY a.sales_order_ol_shop_number "
+        GROUP BY a.sales_order_ol_shop_number, a.tracking_code "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()
