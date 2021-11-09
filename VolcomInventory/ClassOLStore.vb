@@ -3,6 +3,10 @@
         execute_non_query_long("CALL check_oos_web_order_grp(" + id_order_par + ", " + id_comp_group_par + ");", True, "", "", "", "")
     End Sub
 
+    Sub evaluateOOSAWB(ByVal id_order_par As String, ByVal id_comp_group_par As String, ByVal awb_par As String)
+        execute_non_query_long("CALL check_oos_web_order_grp_awb(" + id_order_par + ", " + id_comp_group_par + ", '" + awb_par + "');", True, "", "", "", "")
+    End Sub
+
     Sub checkOOSEmptyOrder(ByVal id_order_par As String, ByVal id_comp_group_par As String)
         execute_non_query_long("CALL check_oos_empty_order_grp(" + id_order_par + ", " + id_comp_group_par + ");", True, "", "", "", "")
     End Sub

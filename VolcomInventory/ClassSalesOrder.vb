@@ -422,6 +422,20 @@ Public Class ClassSalesOrder
         execute_non_query(query, True, "", "", "", "")
     End Sub
 
+    Sub insertLogWebOrderAWB(ByVal id_order As String, ByVal note As String, ByVal id_grp As String, ByVal awb As String)
+        If id_order = "0" Then
+            id_order = "NULL"
+        End If
+        If id_grp = "0" Then
+            id_grp = "NULL"
+        End If
+        If awb = "0" Then
+            awb = "NULL"
+        End If
+        Dim query As String = "INSERT INTO tb_ol_store_order_log(id, log_date, log_note, id_comp_group, awb) VALUES(" + id_order + ", NOW(), '" + addSlashes(note) + "'," + id_grp + ", " + awb + ") "
+        execute_non_query(query, True, "", "", "", "")
+    End Sub
+
     Sub createVolcomWebOrder()
         ''activate processed
         'setProceccedWebOrder("1")

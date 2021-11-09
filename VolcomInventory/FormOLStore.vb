@@ -631,22 +631,35 @@
 
             'evaluasi
             Dim jum_eval As Integer = 0
-            If id_api_type <> "1" And is_order_check_awb = "2" Then 'selain VIOS
-                Dim query_eval As String = "SELECT od.id, od.sales_order_ol_shop_number AS `order_number`
+            If id_api_type <> "1" Then 'selain VIOS
+                Dim query_eval As String = "SELECT od.id, od.sales_order_ol_shop_number AS `order_number`, od.tracking_code
                 FROM tb_ol_store_order od 
                 WHERE od.id_comp_group='" + id_comp_group + "'  AND od.note_price='OK' AND od.note_promo='OK' AND od.note_stock<>'OK' AND od.is_process=2 AND ISNULL(od.id_ol_store_oos)
                 GROUP BY od.id "
+                If is_order_check_awb = "1" Then
+                    query_eval += ", od.tracking_code "
+                End If
+
                 Dim data_eval As DataTable = execute_query(query_eval, -1, True, "", "", "", "")
                 If data_eval.Rows.Count > 0 Then
                     For e As Integer = 0 To data_eval.Rows.Count - 1
                         jum_eval += 1
                         Dim id_order_eval As String = data_eval.Rows(e)("id").ToString
                         Dim no_eval As String = data_eval.Rows(e)("order_number").ToString
+                        Dim awb_eval As String = data_eval.Rows(e)("tracking_code").ToString
+
                         FormMain.SplashScreenManager1.SetWaitFormDescription("Evaluate order : " + (e + 1).ToString + "/" + data_eval.Rows.Count.ToString)
                         'evaluate oos
                         Dim oos As New ClassOLStore()
-                        oos.evaluateOOS(id_order_eval, id_comp_group)
-                        ord.insertLogWebOrder(id_order_eval, "Evaluate OOS", id_comp_group)
+                        If is_order_check_awb = "1" Then
+                            oos.evaluateOOSAWB(id_order_eval, id_comp_group, awb_eval)
+                            ord.insertLogWebOrderAWB(id_order_eval, "Evaluate OOS", id_comp_group, awb_eval)
+                        Else
+                            oos.evaluateOOS(id_order_eval, id_comp_group)
+                            ord.insertLogWebOrder(id_order_eval, "Evaluate OOS", id_comp_group)
+                        End If
+                        ' sampai sini
+
 
                         'cek apa ada yang bisa restok
                         Dim is_restock As Boolean = oos.checkOOSRestockOrder(id_order_eval, id_comp_group)
