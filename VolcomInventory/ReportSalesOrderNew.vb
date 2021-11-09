@@ -3,7 +3,8 @@
 
     Private Sub ReportSalesOrderNew_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         'header
-        Dim query As String = "SELECT a.id_sales_order,a.sales_order_number AS `order_number`, h.printed_name AS `title`, DATE_FORMAT(a.sales_order_date,'%d %M %Y') AS `order_date`,
+        Dim query As String = "SELECT a.id_sales_order,a.sales_order_number AS `order_number`, h.printed_name AS `title`, 
+        DATE_FORMAT(a.sales_order_date,'%d %M %Y') AS `order_date`, DATE_FORMAT(a.sales_order_ol_shop_date,'%d-%m-%Y %H:%i:%s') AS `ol_order_date`,
         d.id_commerce_type,CONCAT(wh.comp_number, ' - ', wh.comp_name) AS `from`,CONCAT(d.comp_number, ' - ', d.comp_name) AS `to`,IFNULL(an.fg_so_reff_number,'-') AS `reff`, g.so_type, a.id_so_status,h.so_status, UPPER(ot.description) AS `judul`,
         ube.employee_code AS `nik`, IF(a.id_so_status=7,ube.employee_name, a.customer_name) AS `name`, a.sales_order_ol_shop_number AS `ol_order_number`, a.sales_order_note AS `order_note` "
         query += "FROM tb_sales_order a "
@@ -43,6 +44,10 @@
             LabelOLStoreOrder.Visible = True
             LabelTitleOLStoreOrder.Visible = True
             LabelDotOLStoreOrder.Visible = True
+
+            LabelOLOrderDate.Visible = True
+            LabelTitleOLOrderDate.Visible = True
+            LabelDotOLOrderDate.Visible = True
             XRBarcode.Text = data.Rows(0)("ol_order_number").ToString
         Else
             XRBarcode.Text = data.Rows(0)("order_number").ToString
