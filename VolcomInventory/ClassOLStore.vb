@@ -301,7 +301,6 @@ HAVING so_qty<>rsv_qty"
         Dim ord As New ClassSalesOrder()
         Dim err_sync As String = ""
         Try
-            'sampai sini
             Dim qry As String = "CALL create_oos_close_stock_grp_awb('" + id_oos + "', '" + id_web_order + "', '" + id_comp_group + "', '" + awb + "');CALL create_oos_sync_grp_awb(" + id_web_order + ", " + id_comp_group + ", " + id_oos + ",4, '" + awb + "');"
             execute_non_query_long(qry, True, "", "", "", "")
         Catch ex As Exception
