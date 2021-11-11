@@ -520,9 +520,9 @@
         'cek valid fullfill & reserved qty
         Dim is_valid_fullfill As Boolean = False
         If is_order_check_awb = "1" Then
-            oos.isValidFullfillAWB(id_order, id_comp_group, id, awb)
+            is_valid_fullfill = oos.isValidFullfillAWB(id_order, id_comp_group, id, awb)
         Else
-            oos.isValidFullfill(id_order, id_comp_group, id)
+            is_valid_fullfill = oos.isValidFullfill(id_order, id_comp_group, id)
         End If
 
         If Not is_open_restock And is_valid_fullfill Then
