@@ -664,7 +664,7 @@
                         Dim is_restock As Boolean = False
                         If is_order_check_awb = "1" Then
                             is_restock = oos.checkOOSRestockOrderAWB(id_order_eval, id_comp_group, awb_eval)
-                            ord.insertLogWebOrderAWB(id_order_eval, "Evaluating restock", id_comp_group, awb)
+                            ord.insertLogWebOrderAWB(id_order_eval, "Evaluating restock", id_comp_group, awb_eval)
                         Else
                             is_restock = oos.checkOOSRestockOrder(id_order_eval, id_comp_group)
                             ord.insertLogWebOrder(id_order_eval, "Evaluating restock", id_comp_group)
