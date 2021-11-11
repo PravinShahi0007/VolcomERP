@@ -72,7 +72,7 @@
         os.manual_send_email_reason, os.sent_email_date,os.id_ol_store_oos_stt, stt.ol_store_oos_stt,
         od.customer_name, SUM(od.ol_order_qty) AS `total_order`, SUM(od.sales_order_det_qty) AS `total_fill`, 
         SUM(od.ol_order_qty)-SUM(od.sales_order_det_qty) AS `total_no_stock`,
-        IF(os.is_closed=1, 'Close', 'Open') AS `status`, cg.id_comp, cg.id_api_type
+        IF(os.is_closed=1, 'Close', 'Open') AS `status`, cg.id_comp, cg.id_api_type, cg.is_order_check_awb, od.tracking_code
         FROM tb_ol_store_oos os
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = os.id_comp_group
         INNER JOIN tb_ol_store_order od ON od.id_ol_store_oos = os.id_ol_store_oos
@@ -128,6 +128,18 @@ HAVING no_stock>0 "
         End If
     End Function
 
+    Function adaNoStockAWB(ByVal id_order_par As String, ByVal id_comp_group_par As String, ByVal awb_par As String) As Boolean
+        Dim query As String = "SELECT (od.ol_order_qty - od.sales_order_det_qty) AS `no_stock` 
+FROM tb_ol_store_order od WHERE od.id='" + id_order_par + "' AND od.id_comp_group='" + id_comp_group_par + "' AND od.tracking_code='" + awb_par + "'
+HAVING no_stock>0 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
     Function isValidFullfill(ByVal id_order_par As String, ByVal id_comp_group_par As String, ByVal id_oos_par As String) As Boolean
         Dim query As String = "SELECT od.id_product, SUM(od.sales_order_det_qty) AS `so_qty`, IFNULL(st.reserved_qty,0) AS `rsv_qty`
 FROM tb_ol_store_order od 
@@ -152,6 +164,25 @@ HAVING so_qty<>rsv_qty"
         Dim query As String = "SELECT SUM(od.sales_order_det_qty) AS `total_fill` 
         FROM tb_ol_store_order od
         WHERE od.id_comp_group='" + id_comp_group_par + "' AND od.id='" + id_order_par + "'
+        GROUP BY od.id "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Dim total_fill As Decimal = 0.00
+        If data.Rows.Count <= 0 Then
+            total_fill = 0.00
+        Else
+            total_fill = data.Rows(0)("total_fill")
+        End If
+        If total_fill <= 0 Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
+
+    Function isPartialOrderAWB(ByVal id_order_par As String, ByVal id_comp_group_par As String, ByVal awb_par As String) As Boolean
+        Dim query As String = "SELECT SUM(od.sales_order_det_qty) AS `total_fill` 
+        FROM tb_ol_store_order od
+        WHERE od.id_comp_group='" + id_comp_group_par + "' AND od.id='" + id_order_par + "' AND od.tracking_code='" + awb_par + "'
         GROUP BY od.id "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Dim total_fill As Decimal = 0.00
@@ -243,12 +274,27 @@ HAVING so_qty<>rsv_qty"
         End If
     End Sub
 
-    Sub oosRestockChecking(ByVal id_web_order As String, ByVal id_comp_group As String, ByVal id_oos As String, ByVal id_api_type As String)
+    Sub oosRestockChecking(ByVal id_web_order As String, ByVal id_comp_group As String, ByVal id_oos As String, ByVal id_api_type As String, ByVal awb As String)
+        Dim is_order_check_awb As String = execute_query("SELECT cg.is_order_check_awb FROM tb_m_comp_group cg WHERE cg.id_comp_group=" + id_comp_group + "", 0, True, "", "", "", "")
+
         Dim is_open_restock As Boolean = isRestockOpen(id_oos)
         'cek no stock
-        Dim is_no_stock As Boolean = adaNoStock(id_web_order, id_comp_group)
+        Dim is_no_stock As Boolean = False
+        If is_order_check_awb = "1" Then
+            is_no_stock = adaNoStockAWB(id_web_order, id_comp_group, awb)
+        Else
+            is_no_stock = adaNoStock(id_web_order, id_comp_group)
+        End If
+
         'cek fulfill
-        Dim is_partial_order As Boolean = isPartialOrder(id_web_order, id_comp_group)
+        Dim is_partial_order As Boolean = False
+        If is_order_check_awb = "1" Then
+            is_partial_order = isPartialOrderAWB(id_web_order, id_comp_group, awb)
+        Else
+            is_partial_order = isPartialOrder(id_web_order, id_comp_group)
+        End If
+        'sampai sini
+
         'cek valid fullfill & reserved qty
         Dim is_valid_fullfill As Boolean = isValidFullfill(id_web_order, id_comp_group, id_oos)
         Dim ord As New ClassSalesOrder()

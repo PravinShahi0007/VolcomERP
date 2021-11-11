@@ -8,6 +8,8 @@
     Dim id_api_type As String = "-1"
     Dim id_report_status As String = "-1"
     Public is_view As String = "-1"
+    Public is_order_check_awb As String = "-1"
+    Dim awb As String = ""
 
 
     Private Sub FormOLStoreOOSDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -26,6 +28,8 @@
         id_comp_group = data.Rows(0)("id_comp_group").ToString
         id_order = data.Rows(0)("id_order").ToString
         id_api_type = data.Rows(0)("id_api_type").ToString
+        is_order_check_awb = data.Rows(0)("is_order_check_awb").ToString
+        awb = data.Rows(0)("tracking_code").ToString
         allowStatus()
         viewProductList()
         viewRestockList()
@@ -165,6 +169,8 @@
                 FormOLStoreRestock.id_design_cat = GVProduct.GetFocusedRowCellValue("id_design_cat").ToString
                 FormOLStoreRestock.id_comp_group = id_comp_group
                 FormOLStoreRestock.id_web_order = id_order
+                FormOLStoreRestock.is_order_check_awb = is_order_check_awb
+                FormOLStoreRestock.awb = awb
                 FormOLStoreRestock.ShowDialog()
                 viewProductList()
             Else
