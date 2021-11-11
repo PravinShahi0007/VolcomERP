@@ -703,7 +703,6 @@
                             Else
                                 ord.insertLogWebOrder(id_order_eval, "Evaluate result : Restock process", id_comp_group)
                             End If
-                            ord.insertLogWebOrder(id_order_eval, "Evaluate result : Restock process", id_comp_group)
                         End If
                     Next
                 End If
