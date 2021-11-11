@@ -148,7 +148,7 @@
                         End If
                         For o As Integer = 0 To ((FormSalesOrderSvcLevel.GVSalesOrder.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVSalesOrder))
                             Dim id_oos As String = FormSalesOrderSvcLevel.GVSalesOrder.GetRowCellValue(o, "id_ol_store_oos").ToString
-                            Dim qoss As String = "SELECT oos.id_ol_store_oos, oos.id_comp_group, oos.id_order, cg.id_api_type
+                            Dim qoss As String = "SELECT oos.id_ol_store_oos, oos.id_comp_group, oos.id_order, cg.id_api_type, oos.tracking_code
                             FROM tb_ol_store_oos oos 
                             INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = oos.id_comp_group
                             WHERE oos.id_ol_store_oos='" + id_oos + "' "
@@ -157,9 +157,10 @@
                                 Dim id_comp_group As String = doss.Rows(0)("id_comp_group").ToString
                                 Dim id_api_type As String = doss.Rows(0)("id_api_type").ToString
                                 Dim id_web_order As String = doss.Rows(0)("id_order").ToString
+                                Dim awb As String = doss.Rows(0)("tracking_code").ToString
                                 'finalisasi restock
                                 Dim oos As New ClassOLStore()
-                                oos.oosRestockChecking(id_web_order, id_comp_group, id_oos, id_api_type)
+                                oos.oosRestockChecking(id_web_order, id_comp_group, id_oos, id_api_type, awb)
                             End If
                         Next
                         ord.setProceccedWebOrder("2")

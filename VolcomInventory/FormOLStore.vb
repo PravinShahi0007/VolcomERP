@@ -658,22 +658,29 @@
                             oos.evaluateOOS(id_order_eval, id_comp_group)
                             ord.insertLogWebOrder(id_order_eval, "Evaluate OOS", id_comp_group)
                         End If
-                        ' sampai sini
 
 
                         'cek apa ada yang bisa restok
-                        Dim is_restock As Boolean = oos.checkOOSRestockOrder(id_order_eval, id_comp_group)
-                        ord.insertLogWebOrder(id_order_eval, "Evaluating restock", id_comp_group)
+                        Dim is_restock As Boolean = False
+                        If is_order_check_awb = "1" Then
+                            is_restock = oos.checkOOSRestockOrderAWB(id_order_eval, id_comp_group, awb_eval)
+                            ord.insertLogWebOrderAWB(id_order_eval, "Evaluating restock", id_comp_group, awb)
+                        Else
+                            is_restock = oos.checkOOSRestockOrder(id_order_eval, id_comp_group)
+                            ord.insertLogWebOrder(id_order_eval, "Evaluating restock", id_comp_group)
+                        End If
                         If Not is_restock Then
                             'jika ndak ada yang bisa direstock langsung kirim email
                             Try
-                                oos.sendEmailOOS(id_order_eval, id_comp_group)
-                                Dim id_oos As String = execute_query("SELECT id_ol_store_oos FROM tb_ol_store_oos WHERE id_comp_group='" + id_comp_group + "' AND id_order='" + id_order_eval + "' AND tracking_code='" + awb_eval + "' ", 0, True, "", "", "", "")
-                                execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3, sent_email_date=NOW() WHERE id_ol_store_oos='" + id_oos + "' ", True, "", "", "", "")
-
                                 If is_order_check_awb = "1" Then
+                                    oos.sendEmailOOSAWB(id_order_eval, id_comp_group, awb_eval)
+                                    Dim id_oos As String = execute_query("SELECT id_ol_store_oos FROM tb_ol_store_oos WHERE id_comp_group='" + id_comp_group + "' AND id_order='" + id_order_eval + "' AND tracking_code='" + awb_eval + "' ", 0, True, "", "", "", "")
+                                    execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3, sent_email_date=NOW() WHERE id_ol_store_oos='" + id_oos + "' ", True, "", "", "", "")
                                     ord.insertLogWebOrderAWB(id_order_eval, "Evaluate result : No stock;Send Email OOS success; Status=email sent", id_comp_group, awb_eval)
                                 Else
+                                    oos.sendEmailOOS(id_order_eval, id_comp_group)
+                                    Dim id_oos As String = execute_query("SELECT id_ol_store_oos FROM tb_ol_store_oos WHERE id_comp_group='" + id_comp_group + "' AND id_order='" + id_order_eval + "' ", 0, True, "", "", "", "")
+                                    execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3, sent_email_date=NOW() WHERE id_ol_store_oos='" + id_oos + "' ", True, "", "", "", "")
                                     ord.insertLogWebOrder(id_order_eval, "Evaluate result : No stock;Send Email OOS success; Status=email sent", id_comp_group)
                                 End If
                             Catch ex As Exception

@@ -25,6 +25,17 @@
         End If
     End Function
 
+    Function checkOOSRestockOrderAWB(ByVal id_order_par As String, ByVal id_comp_group_par As String, ByVal awb_par As String)
+        Dim query_check As String = "SELECT * FROM tb_ol_store_order od WHERE od.id='" + id_order_par + "' AND od.id_comp_group='" + id_comp_group_par + "' AND od.is_poss_replace=1 AND od.tracking_code='" + awb_par + "' "
+        Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+        If data_check.Rows.Count > 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+
     Sub sendEmailOOS(ByVal id_order_par As String, ByVal id_comp_group_par As String)
         'get id oos
         Dim data As DataTable = viewListOOS("AND os.id_comp_group='" + id_comp_group_par + "' AND os.id_order='" + id_order_par + "' ")
@@ -116,7 +127,7 @@
         os.manual_send_email_reason, os.sent_email_date,os.id_ol_store_oos_stt, stt.ol_store_oos_stt,
         od.customer_name, SUM(od.ol_order_qty) AS `total_order`, SUM(od.sales_order_det_qty) AS `total_fill`, 
         SUM(od.ol_order_qty)-SUM(od.sales_order_det_qty) AS `total_no_stock`,
-        IF(os.is_closed=1, 'Close', 'Open') AS `status`, cg.id_comp, cg.id_api_type, cg.is_order_check_awb, od.tracking_code
+        IF(os.is_closed=1, 'Close', 'Open') AS `status`, cg.id_comp, cg.id_api_type, cg.is_order_check_awb, os.tracking_code
         FROM tb_ol_store_oos os
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = os.id_comp_group
         INNER JOIN tb_ol_store_order od ON od.id_ol_store_oos = os.id_ol_store_oos

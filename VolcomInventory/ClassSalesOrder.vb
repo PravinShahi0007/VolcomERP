@@ -432,7 +432,7 @@ Public Class ClassSalesOrder
         If awb = "0" Then
             awb = "NULL"
         End If
-        Dim query As String = "INSERT INTO tb_ol_store_order_log(id, log_date, log_note, id_comp_group, awb) VALUES(" + id_order + ", NOW(), '" + addSlashes(note) + "'," + id_grp + ", " + awb + ") "
+        Dim query As String = "INSERT INTO tb_ol_store_order_log(id, log_date, log_note, id_comp_group, awb) VALUES(" + id_order + ", NOW(), '" + addSlashes(note) + "'," + id_grp + ", '" + awb + "') "
         execute_non_query(query, True, "", "", "", "")
     End Sub
 
