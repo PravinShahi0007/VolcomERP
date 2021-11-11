@@ -516,8 +516,14 @@
         'cek open too restock
         Dim oos As New ClassOLStore()
         Dim is_open_restock As Boolean = oos.isRestockOpen(id)
+
         'cek valid fullfill & reserved qty
-        Dim is_valid_fullfill As Boolean = oos.isValidFullfill(id_order, id_comp_group, id)
+        Dim is_valid_fullfill As Boolean = False
+        If is_order_check_awb = "1" Then
+            oos.isValidFullfillAWB(id_order, id_comp_group, id, awb)
+        Else
+            oos.isValidFullfill(id_order, id_comp_group, id)
+        End If
 
         If Not is_open_restock And is_valid_fullfill Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Decision : Create Sales Order with partial items" + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -536,26 +542,49 @@
 
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Processing order")
                     Dim err_sync As String = ""
-                    Try
-                        Dim qry As String = "CALL create_oos_close_stock_grp('" + id + "', '" + id_order + "', '" + id_comp_group + "');CALL create_oos_sync_grp(" + id_order + ", " + id_comp_group + ", " + id + ",4);"
-                        execute_non_query_long(qry, True, "", "", "", "")
-                    Catch ex As Exception
-                        err_sync = addSlashes(ex.ToString)
-                        ord.insertLogWebOrder(id_order, "Problem closing order :" + addSlashes(ex.ToString), id_comp_group)
-                    End Try
-
-                    'other action
-                    FormMain.SplashScreenManager1.SetWaitFormDescription("Other action")
                     Dim err_other_act As String = ""
-                    If id_api_type = "2" Then
-                        'ZALORA
+                    If is_order_check_awb = "1" Then
                         Try
-                            Dim zal As New ClassZaloraApi()
-                            err_other_act = zal.setRTSPending()
+                            Dim qry As String = "CALL create_oos_close_stock_grp_awb('" + id + "', '" + id_order + "', '" + id_comp_group + "', '" + awb + "');CALL create_oos_sync_grp_awb(" + id_order + ", " + id_comp_group + ", " + id + ",4, '" + awb + "');"
+                            execute_non_query_long(qry, True, "", "", "", "")
                         Catch ex As Exception
-                            err_other_act = "Problem set RTS :" + addSlashes(ex.ToString)
-                            ord.insertLogWebOrder(id_order, err_other_act, id_comp_group)
+                            err_sync = addSlashes(ex.ToString)
+                            ord.insertLogWebOrderAWB(id_order, "Problem closing order :" + addSlashes(ex.ToString), id_comp_group, awb)
                         End Try
+
+                        'other action
+                        FormMain.SplashScreenManager1.SetWaitFormDescription("Other action")
+                        If id_api_type = "2" Then
+                            'ZALORA
+                            Try
+                                Dim zal As New ClassZaloraApi()
+                                err_other_act = zal.setRTSPending()
+                            Catch ex As Exception
+                                err_other_act = "Problem set RTS :" + addSlashes(ex.ToString)
+                                ord.insertLogWebOrderAWB(id_order, err_other_act, id_comp_group, awb)
+                            End Try
+                        End If
+                    Else
+                        Try
+                            Dim qry As String = "CALL create_oos_close_stock_grp('" + id + "', '" + id_order + "', '" + id_comp_group + "');CALL create_oos_sync_grp(" + id_order + ", " + id_comp_group + ", " + id + ",4);"
+                            execute_non_query_long(qry, True, "", "", "", "")
+                        Catch ex As Exception
+                            err_sync = addSlashes(ex.ToString)
+                            ord.insertLogWebOrder(id_order, "Problem closing order :" + addSlashes(ex.ToString), id_comp_group)
+                        End Try
+
+                        'other action
+                        FormMain.SplashScreenManager1.SetWaitFormDescription("Other action")
+                        If id_api_type = "2" Then
+                            'ZALORA
+                            Try
+                                Dim zal As New ClassZaloraApi()
+                                err_other_act = zal.setRTSPending()
+                            Catch ex As Exception
+                                err_other_act = "Problem set RTS :" + addSlashes(ex.ToString)
+                                ord.insertLogWebOrder(id_order, err_other_act, id_comp_group)
+                            End Try
+                        End If
                     End If
 
                     ord.setProceccedWebOrder("2")
