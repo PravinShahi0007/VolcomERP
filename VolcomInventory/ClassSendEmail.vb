@@ -3524,6 +3524,7 @@ FROM tb_opt o "
             mail.Body = body_temp
             client.Send(mail)
         ElseIf report_mark_type = "278_AWB" Then
+            Dim rmt As String = "278"
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Out of Stock - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
@@ -3552,7 +3553,7 @@ FROM tb_opt o "
                 End If
             Next
             'include email management
-            Dim management_mail As String = getMailManagement(report_mark_type)
+            Dim management_mail As String = getMailManagement(rmt)
             If management_mail <> "" Then
                 mail.CC.Add(management_mail)
             End If
