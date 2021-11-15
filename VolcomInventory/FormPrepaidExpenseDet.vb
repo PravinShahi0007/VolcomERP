@@ -1307,7 +1307,7 @@ WHERE c.id_comp='" + id_comp + "' "
                 Dim kurs As Decimal = Decimal.Parse(GVData.GetFocusedRowCellValue("kurs").ToString)
                 '
                 Dim grossup_val As Decimal = 0.00
-                grossup_val = (100 / (100 - pph)) * dpp
+                grossup_val = Math.Floor((100 / (100 - pph)) * dpp)
                 'grossup_val = dpp - (1 - (pph / 100))
                 GVData.SetFocusedRowCellValue("amount_before", grossup_val / kurs)
                 GVData.SetFocusedRowCellValue("amount", grossup_val)
