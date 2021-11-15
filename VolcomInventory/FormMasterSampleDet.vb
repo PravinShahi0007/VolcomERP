@@ -761,23 +761,37 @@
     Private Sub BSetFOBPrice_Click(sender As Object, e As EventArgs) Handles BSetFOBPrice.Click
         'change default cost 
         Dim id_sample_price As String = GVSamplePrice.GetFocusedRowCellDisplayText("id_sample_price").ToString
-        Dim query As String
+        Dim query As String = ""
 
-        Dim confirm As DialogResult
+        'check
 
-        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to change sample FOB price to this price?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        Dim qc As String = "SELECT * FROM `tb_sample_purc_rec_det` rd
+INNER JOIN tb_sample_purc_det pd ON pd.`id_sample_purc_det`=rd.`id_sample_purc_det`
+INNER JOIN tb_sample_purc_rec r ON r.`id_sample_purc_rec`=rd.`id_sample_purc_rec`
+INNER JOIN tb_m_sample_price pr ON pr.`id_sample_price`=pd.`id_sample_price`
+INNER JOIN tb_m_sample s ON s.`id_sample`=pr.`id_sample`
+WHERE r.`id_report_status`!=5 AND s.`id_sample`='" & id_sample & "'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
 
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
-            Try
-                query = String.Format("UPDATE tb_m_sample_price SET is_buy_price='2' WHERE id_sample='{1}'; UPDATE tb_m_sample_price SET is_buy_price='1' WHERE id_sample_price = '{0}'", id_sample_price, id_sample)
-                execute_non_query(query, True, "", "", "", "")
-                view_sample_price(id_sample)
-                infoCustom("Default FOB Price changed.")
-            Catch ex As Exception
-                DevExpress.XtraEditors.XtraMessageBox.Show("Please check your connection.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End Try
-            Cursor = Cursors.Default
+        If dtc.Rows.Count > 0 Then
+            warningCustom("Already created receiving")
+        Else
+            Dim confirm As DialogResult
+
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to change sample FOB price to this price?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Try
+                    query = String.Format("UPDATE tb_m_sample_price SET is_buy_price='2' WHERE id_sample='{1}'; UPDATE tb_m_sample_price SET is_buy_price='1' WHERE id_sample_price = '{0}'", id_sample_price, id_sample)
+                    execute_non_query(query, True, "", "", "", "")
+                    view_sample_price(id_sample)
+                    infoCustom("Default FOB Price changed.")
+                Catch ex As Exception
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Please check your connection.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 End Class
