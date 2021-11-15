@@ -20,6 +20,7 @@ Partial Class FormViewSampleReceive
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
@@ -36,6 +37,7 @@ Partial Class FormViewSampleReceive
         Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -68,8 +70,6 @@ Partial Class FormViewSampleReceive
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,6 +107,15 @@ Partial Class FormViewSampleReceive
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(919, 65)
         Me.GroupControl1.TabIndex = 40
+        '
+        'BAttachment
+        '
+        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BAttachment.Location = New System.Drawing.Point(20, 2)
+        Me.BAttachment.Name = "BAttachment"
+        Me.BAttachment.Size = New System.Drawing.Size(897, 32)
+        Me.BAttachment.TabIndex = 6
+        Me.BAttachment.Text = "Attachment"
         '
         'BMark
         '
@@ -281,6 +290,20 @@ Partial Class FormViewSampleReceive
         Me.ColSize.Visible = True
         Me.ColSize.VisibleIndex = 4
         Me.ColSize.Width = 50
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn2.Caption = "PO Price"
+        Me.GridColumn2.DisplayFormat.FormatString = "N2"
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn2.FieldName = "sample_purc_det_price"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 5
         '
         'GridColumn12
         '
@@ -636,29 +659,6 @@ Partial Class FormViewSampleReceive
         Me.LabelControl3.Size = New System.Drawing.Size(68, 13)
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "Order Number"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn2.Caption = "PO Price"
-        Me.GridColumn2.DisplayFormat.FormatString = "N2"
-        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn2.FieldName = "sample_purc_det_price"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 5
-        '
-        'BAttachment
-        '
-        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BAttachment.Location = New System.Drawing.Point(20, 2)
-        Me.BAttachment.Name = "BAttachment"
-        Me.BAttachment.Size = New System.Drawing.Size(897, 32)
-        Me.BAttachment.TabIndex = 6
-        Me.BAttachment.Text = "Attachment"
         '
         'FormViewSampleReceive
         '
