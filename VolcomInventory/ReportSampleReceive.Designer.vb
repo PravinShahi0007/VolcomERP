@@ -68,6 +68,10 @@ Partial Public Class ReportSampleReceive
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GClistPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,17 +103,27 @@ Partial Public Class ReportSampleReceive
         '
         'GVListPurchase
         '
+        Me.GVListPurchase.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
+        Me.GVListPurchase.AppearancePrint.FooterPanel.BackColor2 = System.Drawing.Color.White
+        Me.GVListPurchase.AppearancePrint.FooterPanel.ForeColor = System.Drawing.Color.Black
+        Me.GVListPurchase.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVListPurchase.AppearancePrint.FooterPanel.Options.UseForeColor = True
         Me.GVListPurchase.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
         Me.GVListPurchase.AppearancePrint.HeaderPanel.BackColor2 = System.Drawing.Color.White
         Me.GVListPurchase.AppearancePrint.HeaderPanel.ForeColor = System.Drawing.Color.Black
         Me.GVListPurchase.AppearancePrint.HeaderPanel.Options.UseBackColor = True
         Me.GVListPurchase.AppearancePrint.HeaderPanel.Options.UseForeColor = True
-        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyRec, Me.ColNote, Me.GridColumnUSCode})
+        Me.GVListPurchase.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.GVListPurchase.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVListPurchase.ColumnPanelRowHeight = 50
+        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyRec, Me.GridColumn4, Me.GridColumn2, Me.GridColumn1, Me.GridColumn3, Me.ColNote, Me.GridColumnUSCode})
         Me.GVListPurchase.GridControl = Me.GClistPurchase
         Me.GVListPurchase.Name = "GVListPurchase"
         Me.GVListPurchase.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
         Me.GVListPurchase.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GVListPurchase.OptionsPrint.PrintFooter = False
+        Me.GVListPurchase.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVListPurchase.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVListPurchase.OptionsView.ShowFooter = True
         Me.GVListPurchase.OptionsView.ShowGroupPanel = False
         '
         'ColIdRecDet
@@ -180,8 +194,6 @@ Partial Public Class ReportSampleReceive
         Me.ColQty.FieldName = "qty"
         Me.ColQty.Name = "ColQty"
         Me.ColQty.OptionsColumn.AllowEdit = False
-        Me.ColQty.Visible = True
-        Me.ColQty.VisibleIndex = 5
         Me.ColQty.Width = 99
         '
         'ColQtyRec
@@ -191,11 +203,13 @@ Partial Public Class ReportSampleReceive
         Me.ColQtyRec.AppearanceHeader.Options.UseTextOptions = True
         Me.ColQtyRec.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColQtyRec.Caption = "Qty Received"
+        Me.ColQtyRec.DisplayFormat.FormatString = "N2"
+        Me.ColQtyRec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColQtyRec.FieldName = "sample_purc_rec_det_qty"
         Me.ColQtyRec.Name = "ColQtyRec"
-        Me.ColQtyRec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.ColQtyRec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sample_purc_rec_det_qty", "{0:N2}")})
         Me.ColQtyRec.Visible = True
-        Me.ColQtyRec.VisibleIndex = 6
+        Me.ColQtyRec.VisibleIndex = 5
         Me.ColQtyRec.Width = 109
         '
         'ColNote
@@ -203,8 +217,6 @@ Partial Public Class ReportSampleReceive
         Me.ColNote.Caption = "Note"
         Me.ColNote.FieldName = "sample_purc_rec_det_note"
         Me.ColNote.Name = "ColNote"
-        Me.ColNote.Visible = True
-        Me.ColNote.VisibleIndex = 7
         Me.ColNote.Width = 132
         '
         'GridColumnUSCode
@@ -590,6 +602,57 @@ Partial Public Class ReportSampleReceive
         Me.XrLabel6.Text = "Note :"
         Me.XrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn1.Caption = "Updated Price"
+        Me.GridColumn1.DisplayFormat.FormatString = "N2"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn1.FieldName = "fob_price_update"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 8
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn2.Caption = "PO Price"
+        Me.GridColumn2.DisplayFormat.FormatString = "N2"
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn2.FieldName = "sample_purc_det_price"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 7
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn3.Caption = "Amount (Updated)"
+        Me.GridColumn3.DisplayFormat.FormatString = "N2"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn3.FieldName = "update_amount"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "update_amount", "{0:N2}")})
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 9
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Currency"
+        Me.GridColumn4.FieldName = "currency"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 6
+        '
         'ReportSampleReceive
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
@@ -652,4 +715,8 @@ Partial Public Class ReportSampleReceive
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents GridColumnUSCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
