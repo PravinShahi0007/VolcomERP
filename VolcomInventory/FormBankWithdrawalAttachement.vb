@@ -440,7 +440,7 @@ SELECT " + id_acc_trans + " AS id_acc_trans, po.`pph_account` AS `id_acc`, dep.i
 SUM(pod.pph) AS `credit`,
 CONCAT(i.item_desc,' - ',acc_pph.acc_description) AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
 FROM tb_purc_rec_det rd
-INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec AND r.`id_report_status`=6
 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
 INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=po.pph_account
 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
@@ -458,7 +458,7 @@ SUM(pod.pph) AS `debit`,
 0 AS `credit`,
 CONCAT(i.item_desc,' - ',acc_pph.acc_description) AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
 FROM tb_purc_rec_det rd
-INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec AND r.`id_report_status`=6
 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
 INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=po.pph_account
 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
@@ -479,7 +479,7 @@ SUM(pod.`gross_up_value`) AS `debit`,
 0 AS `credit`,
 CONCAT(i.item_desc,' - ',acc_pph.acc_description) AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
 FROM tb_purc_rec_det rd
-INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec  AND r.`id_report_status`=6
 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
 INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=po.pph_account
 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
@@ -499,7 +499,7 @@ SELECT " + id_acc_trans + " AS id_acc_trans, po.`pph_account` AS `id_acc`, dep.i
 SUM(pod.`gross_up_value`) AS `credit`,
 CONCAT(i.item_desc,' - ',acc_pph.acc_description) AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
 FROM tb_purc_rec_det rd
-INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec AND r.`id_report_status`=6
 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
 INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=po.pph_account
 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
@@ -518,7 +518,7 @@ SUM(pod.pph) AS `debit`,
 0 AS `credit`,
 CONCAT(i.item_desc,' - ',acc_pph.acc_description) AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
 FROM tb_purc_rec_det rd
-INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec AND r.`id_report_status`=6
 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
 INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=po.pph_account
 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
@@ -537,7 +537,7 @@ SELECT " + id_acc_trans + " AS id_acc_trans, po.`pph_account` AS `id_acc`, dep.i
 SUM(pod.pph) AS `credit`,
 CONCAT(i.item_desc,' - ',acc_pph.acc_description) AS `note`, 148, rd.id_purc_rec, r.purc_rec_number, IF(po.id_expense_type=1,139,202) AS rmt_reff,  po.id_purc_order, po.purc_order_number, po.id_coa_tag, cont.id_comp
 FROM tb_purc_rec_det rd
-INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec AND r.`id_report_status`=6
 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
 INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=po.pph_account
 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
