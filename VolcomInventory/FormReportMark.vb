@@ -2232,7 +2232,7 @@ HAVING this_rec_more>0"
                     query = "INSERT INTO `tb_prod_order_mrs_det`(`id_prod_order_mrs`,`id_mat_det`,`id_mat_det_price`,`prod_order_mrs_det_qty`,`prod_order_mrs_det_note`)
 SELECT '" & last_id & "' AS id_prod_order_mrs,f.id_mat_det,d.id_mat_det_price,rec.this_rec_more*e.component_qty AS qty,'Auto RMRS from Receiving QC' AS note
 FROM tb_bom_det e
-INNER JOIN tb_bom bom ON bom.id_bom=e.id_bom
+INNER JOIN tb_bom bom ON bom.id_bom=e.id_bom AND bom.is_default=1
 INNER JOIN tb_m_mat_det_price d ON d.id_mat_det_price=e.id_mat_det_price
 INNER JOIN tb_m_mat_det f ON d.id_mat_det = f.id_mat_det
 INNER JOIN
