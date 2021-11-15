@@ -765,15 +765,16 @@
 
         'check
 
-        Dim qc As String = "SELECT * FROM `tb_sample_purc_det` pd
-INNER JOIN tb_sample_purc p ON p.`id_sample_purc`=pd.`id_sample_purc`
+        Dim qc As String = "SELECT * FROM `tb_sample_purc_rec_det` rd
+INNER JOIN tb_sample_purc_det pd ON pd.`id_sample_purc_det`=rd.`id_sample_purc_det`
+INNER JOIN tb_sample_purc_rec r ON r.`id_sample_purc_rec`=rd.`id_sample_purc_rec`
 INNER JOIN tb_m_sample_price pr ON pr.`id_sample_price`=pd.`id_sample_price`
 INNER JOIN tb_m_sample s ON s.`id_sample`=pr.`id_sample`
-WHERE p.`id_report_status`!=5 AND s.`id_sample`='" & id_sample & "'"
+WHERE r.`id_report_status`!=5 AND s.`id_sample`='" & id_sample & "'"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
 
         If dtc.Rows.Count > 0 Then
-            warningCustom("Already created PO")
+            warningCustom("Already created receiving")
         Else
             Dim confirm As DialogResult
 
