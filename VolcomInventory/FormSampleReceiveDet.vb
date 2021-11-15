@@ -27,6 +27,7 @@
             BPrint.Visible = False
             BPrePrint.Visible = False
             BMark.Visible = False
+            BAttachment.Visible = False
             sample_purc_rec_det_qty_inp = 0.0
         Else
             'edit
@@ -656,5 +657,13 @@
         Else
             EPSampleRec.SetError(TEDODate, "")
         End If
+    End Sub
+
+    Private Sub BAttachment_Click(sender As Object, e As EventArgs) Handles BAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = "2"
+        FormDocumentUpload.id_report = id_receive
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -122,6 +122,8 @@ Partial Class FormSampleReceiveDet
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.EPSampleRec, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
@@ -177,6 +179,7 @@ Partial Class FormSampleReceiveDet
         'GroupControl4
         '
         Me.GroupControl4.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl4.Controls.Add(Me.BAttachment)
         Me.GroupControl4.Controls.Add(Me.BPrePrint)
         Me.GroupControl4.Controls.Add(Me.BPrint)
         Me.GroupControl4.Controls.Add(Me.BCancel)
@@ -611,7 +614,7 @@ Partial Class FormSampleReceiveDet
         '
         'GVListPurchase
         '
-        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.ColName, Me.ColSize, Me.GridColumn12, Me.GridColumn1, Me.ColQty, Me.ColQtyRec, Me.GridColumnQtyStored, Me.ColNote, Me.ColPriceSampleRec, Me.GridColumnIdSample, Me.GridColumnSamplePrice, Me.GridColumnIdSamplePrice, Me.GridColumnUSCode})
+        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.ColName, Me.ColSize, Me.GridColumn13, Me.GridColumn12, Me.GridColumn1, Me.ColQty, Me.ColQtyRec, Me.GridColumnQtyStored, Me.ColNote, Me.ColPriceSampleRec, Me.GridColumnIdSample, Me.GridColumnSamplePrice, Me.GridColumnIdSamplePrice, Me.GridColumnUSCode})
         Me.GVListPurchase.GridControl = Me.GCListPurchase
         Me.GVListPurchase.Name = "GVListPurchase"
         Me.GVListPurchase.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -644,7 +647,7 @@ Partial Class FormSampleReceiveDet
         Me.ColNo.OptionsColumn.AllowEdit = False
         Me.ColNo.Visible = True
         Me.ColNo.VisibleIndex = 0
-        Me.ColNo.Width = 27
+        Me.ColNo.Width = 46
         '
         'ColCode
         '
@@ -655,7 +658,7 @@ Partial Class FormSampleReceiveDet
         Me.ColCode.OptionsColumn.ReadOnly = True
         Me.ColCode.Visible = True
         Me.ColCode.VisibleIndex = 1
-        Me.ColCode.Width = 84
+        Me.ColCode.Width = 145
         '
         'ColName
         '
@@ -665,7 +668,7 @@ Partial Class FormSampleReceiveDet
         Me.ColName.OptionsColumn.AllowEdit = False
         Me.ColName.Visible = True
         Me.ColName.VisibleIndex = 3
-        Me.ColName.Width = 162
+        Me.ColName.Width = 280
         '
         'ColSize
         '
@@ -679,7 +682,7 @@ Partial Class FormSampleReceiveDet
         Me.ColSize.OptionsColumn.AllowEdit = False
         Me.ColSize.Visible = True
         Me.ColSize.VisibleIndex = 4
-        Me.ColSize.Width = 50
+        Me.ColSize.Width = 86
         '
         'GridColumn12
         '
@@ -688,11 +691,13 @@ Partial Class FormSampleReceiveDet
         Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn12.Caption = "FOB Price Update"
+        Me.GridColumn12.DisplayFormat.FormatString = "N2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn12.FieldName = "fob_price_update"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 5
-        Me.GridColumn12.Width = 104
+        Me.GridColumn12.VisibleIndex = 6
+        Me.GridColumn12.Width = 137
         '
         'GridColumn1
         '
@@ -708,8 +713,8 @@ Partial Class FormSampleReceiveDet
         Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 6
-        Me.GridColumn1.Width = 52
+        Me.GridColumn1.VisibleIndex = 7
+        Me.GridColumn1.Width = 85
         '
         'ColQty
         '
@@ -723,8 +728,8 @@ Partial Class FormSampleReceiveDet
         Me.ColQty.OptionsColumn.AllowEdit = False
         Me.ColQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Min)})
         Me.ColQty.Visible = True
-        Me.ColQty.VisibleIndex = 7
-        Me.ColQty.Width = 56
+        Me.ColQty.VisibleIndex = 8
+        Me.ColQty.Width = 92
         '
         'ColQtyRec
         '
@@ -740,8 +745,8 @@ Partial Class FormSampleReceiveDet
         Me.ColQtyRec.OptionsColumn.ReadOnly = True
         Me.ColQtyRec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.ColQtyRec.Visible = True
-        Me.ColQtyRec.VisibleIndex = 8
-        Me.ColQtyRec.Width = 61
+        Me.ColQtyRec.VisibleIndex = 9
+        Me.ColQtyRec.Width = 101
         '
         'RepositoryItemSpinEdit1
         '
@@ -766,8 +771,8 @@ Partial Class FormSampleReceiveDet
         Me.ColNote.Name = "ColNote"
         Me.ColNote.OptionsColumn.AllowEdit = False
         Me.ColNote.Visible = True
-        Me.ColNote.VisibleIndex = 10
-        Me.ColNote.Width = 117
+        Me.ColNote.VisibleIndex = 11
+        Me.ColNote.Width = 210
         '
         'ColPriceSampleRec
         '
@@ -799,8 +804,8 @@ Partial Class FormSampleReceiveDet
         Me.GridColumnSamplePrice.Name = "GridColumnSamplePrice"
         Me.GridColumnSamplePrice.OptionsColumn.AllowEdit = False
         Me.GridColumnSamplePrice.Visible = True
-        Me.GridColumnSamplePrice.VisibleIndex = 9
-        Me.GridColumnSamplePrice.Width = 83
+        Me.GridColumnSamplePrice.VisibleIndex = 10
+        Me.GridColumnSamplePrice.Width = 138
         '
         'GridColumnIdSamplePrice
         '
@@ -817,7 +822,7 @@ Partial Class FormSampleReceiveDet
         Me.GridColumnUSCode.OptionsColumn.AllowEdit = False
         Me.GridColumnUSCode.Visible = True
         Me.GridColumnUSCode.VisibleIndex = 2
-        Me.GridColumnUSCode.Width = 73
+        Me.GridColumnUSCode.Width = 126
         '
         'RepositoryItemCheckEdit1
         '
@@ -1179,6 +1184,32 @@ Partial Class FormSampleReceiveDet
         Me.BScan.TabIndex = 7
         Me.BScan.Text = "Start Scan"
         '
+        'GridColumn13
+        '
+        Me.GridColumn13.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn13.Caption = "PO Price"
+        Me.GridColumn13.DisplayFormat.FormatString = "N2"
+        Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn13.FieldName = "sample_purc_det_price"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 5
+        Me.GridColumn13.Width = 186
+        '
+        'BAttachment
+        '
+        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttachment.Image = CType(resources.GetObject("BAttachment.Image"), System.Drawing.Image)
+        Me.BAttachment.Location = New System.Drawing.Point(411, 2)
+        Me.BAttachment.Name = "BAttachment"
+        Me.BAttachment.Size = New System.Drawing.Size(110, 40)
+        Me.BAttachment.TabIndex = 11
+        Me.BAttachment.Text = "Attachment"
+        '
         'FormSampleReceiveDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1349,4 +1380,6 @@ Partial Class FormSampleReceiveDet
     Friend WithEvents GridColumnIdSamplePrice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnUSCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
 End Class

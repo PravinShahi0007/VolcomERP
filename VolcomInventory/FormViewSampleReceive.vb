@@ -85,9 +85,39 @@
         End If
     End Sub
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
-        FormReportMark.id_report = id_receive
-        FormReportMark.report_mark_type = "2"
-        FormReportMark.is_view = "1"
-        FormReportMark.ShowDialog()
+        'check ada attachment untuk beda PO price dan FGPO
+        Dim is_ok As Boolean = True
+
+        Dim q As String = "SELECT * 
+FROM `tb_sample_purc_rec_det` rd
+INNER JOIN tb_sample_purc_det pd ON pd.id_sample_purc_det=rd.id_sample_purc_det
+WHERE rd.id_sample_purc_rec='" & id_receive & "' AND pd.sample_purc_det_price!=fob_price_update"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            'check attachment
+            Dim qc As String = "SELECT * FROM tb_doc WHERE id_report='" & id_receive & "' AND report_mark_type='2'"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If Not dtc.Rows.Count > 0 Then
+                is_ok = False
+            End If
+        End If
+
+        If is_ok Then
+            FormReportMark.id_report = id_receive
+            FormReportMark.report_mark_type = "2"
+            FormReportMark.is_view = "1"
+            FormReportMark.ShowDialog()
+        Else
+            warningCustom("Karena harga PO dan harga update berbeda, butuh dilampirkan file pendukung terlebih dahulu.")
+        End If
+    End Sub
+
+    Private Sub BAttachment_Click(sender As Object, e As EventArgs) Handles BAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = "2"
+        FormDocumentUpload.id_report = id_receive
+        FormDocumentUpload.is_view = "1"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
