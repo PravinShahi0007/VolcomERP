@@ -719,7 +719,7 @@ Partial Class FormODM
         '
         Me.CMGetOldData.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GetDataToolStripMenuItem})
         Me.CMGetOldData.Name = "CMGetOldData"
-        Me.CMGetOldData.Size = New System.Drawing.Size(275, 48)
+        Me.CMGetOldData.Size = New System.Drawing.Size(275, 26)
         '
         'GetDataToolStripMenuItem
         '
