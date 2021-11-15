@@ -28,6 +28,26 @@ LEFT JOIN (
 	    INNER JOIN tb_sample_po_mat sm ON sm.id_sample_po_mat=smd.id_sample_po_mat
 	    WHERE sm.id_report_status!=5
 	    GROUP BY sm.id_sample_purc_budget
+        UNION ALL
+        SELECT sp.id_sample_purc_budget
+        ,-SUM(IF(sp.id_currency=1,rd.sample_purc_rec_det_qty,0)*spd.sample_purc_det_price) AS budget_rp
+        ,-SUM(IF(sp.id_currency=2,rd.sample_purc_rec_det_qty,0)*spd.sample_purc_det_price) AS budget_usd 
+        FROM tb_sample_purc_rec_det rd
+        INNER JOIN tb_sample_purc_rec r ON r.`id_sample_purc_rec`=rd.`id_sample_purc_rec` AND r.`id_report_status`=6
+        INNER JOIN tb_sample_purc_det spd ON spd.`id_sample_purc_det`=rd.`id_sample_purc_det`
+        INNER JOIN tb_sample_purc sp ON sp.id_sample_purc=spd.id_sample_purc
+        WHERE sp.id_report_status!=5
+        GROUP BY sp.id_sample_purc_budget
+        UNION ALL
+        SELECT sp.id_sample_purc_budget
+        ,SUM(IF(sp.id_currency=1,rd.sample_purc_rec_det_qty,0)*rd.fob_price_update) AS budget_rp
+        ,SUM(IF(sp.id_currency=2,rd.sample_purc_rec_det_qty,0)*rd.fob_price_update) AS budget_usd 
+        FROM tb_sample_purc_rec_det rd
+        INNER JOIN tb_sample_purc_rec r ON r.`id_sample_purc_rec`=rd.`id_sample_purc_rec` AND r.`id_report_status`=6
+        INNER JOIN tb_sample_purc_det spd ON spd.`id_sample_purc_det`=rd.`id_sample_purc_det`
+        INNER JOIN tb_sample_purc sp ON sp.id_sample_purc=spd.id_sample_purc
+        WHERE sp.id_report_status!=5
+        GROUP BY sp.id_sample_purc_budget
     )rb
     GROUP BY rb.id_sample_purc_budget
 )used_budget ON used_budget.id_sample_purc_budget=spb.id_sample_purc_budget
