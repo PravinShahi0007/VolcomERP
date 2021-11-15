@@ -164,7 +164,7 @@ INNER JOIN tb_lookup_payment py ON py.id_payment=sp.id_payment
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=sp.`id_comp_contact_to`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 LEFT JOIN (
-	SELECT pod.id_sample_purc,SUM(recd.sample_purc_rec_det_qty*pod.sample_purc_det_price) AS amount_rec,SUM(recd.sample_purc_rec_det_qty) AS qty_rec
+	SELECT pod.id_sample_purc,SUM(recd.sample_purc_rec_det_qty*recd.fob_price_update) AS amount_rec,SUM(recd.sample_purc_rec_det_qty) AS qty_rec
 	FROM `tb_sample_purc_rec_det` recd
 	INNER JOIN tb_sample_purc_det pod ON pod.id_sample_purc_det=recd.id_sample_purc_det
 	INNER JOIN tb_sample_purc_rec rec ON rec.id_sample_purc_rec=recd.id_sample_purc_rec AND rec.id_report_status=6
@@ -187,7 +187,7 @@ INNER JOIN tb_sample_purc_det spd ON spd.`id_sample_purc`=sp.`id_sample_purc`
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=sp.`id_comp_contact_to`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 LEFT JOIN (
-	SELECT pod.id_sample_purc,SUM(recd.sample_purc_rec_det_qty*pod.sample_purc_det_price) AS amount_rec,SUM(recd.sample_purc_rec_det_qty) AS qty_rec
+	SELECT pod.id_sample_purc,SUM(recd.sample_purc_rec_det_qty*recd.fob_price_update) AS amount_rec,SUM(recd.sample_purc_rec_det_qty) AS qty_rec
 	FROM `tb_sample_purc_rec_det` recd
 	INNER JOIN tb_sample_purc_det pod ON pod.id_sample_purc_det=recd.id_sample_purc_det
 	INNER JOIN tb_sample_purc_rec rec ON rec.id_sample_purc_rec=recd.id_sample_purc_rec AND rec.id_report_status=6
