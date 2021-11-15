@@ -929,6 +929,7 @@
 
         Return result
     End Function
+
     Function check_available_lead_time(ByVal id_report_markx As String)
         Dim result As Boolean = False
         Dim id_report_statusx As String = "-1"
@@ -947,6 +948,7 @@
 
         Return result
     End Function
+
     Private Sub GVMark_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVMark.DoubleClick
         'MsgBox(id_report_status_report)
         If id_report_status_report.ToString <> "5" And id_report_status_report.ToString <> "6" Then
