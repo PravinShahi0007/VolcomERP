@@ -10,6 +10,8 @@
     Dim id_gol_use_induk As String = "-1"
     Dim id_gol As String = "-1"
     Dim id_wh_ol_exclude As String = ""
+    Public is_order_check_awb As String = "-1"
+    Public awb As String = ""
 
     Private Sub FormOLStoreRestock_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actionLoad()
@@ -223,7 +225,12 @@
                             FormMain.SplashScreenManager1.SetWaitFormDescription("Restock " + (i + 1).ToString + "/" + GVOnlineWH.RowCount.ToString)
                             Dim id_wh_from As String = GVOnlineWH.GetRowCellValue(i, "id_comp").ToString
                             Dim qty As String = decimalSQL(GVOnlineWH.GetRowCellValue(i, "total_order").ToString)
-                            execute_non_query_long("CALL create_oos_restock_wh_ol_grp(" + id_oos + ", " + id_wh_from + ", " + id_gol + ", " + id_product + ", '" + qty + "','1');", True, "", "", "", "")
+
+                            If is_order_check_awb = "1" Then
+                                execute_non_query_long("CALL create_oos_restock_wh_ol_grp_awb(" + id_oos + ", " + id_wh_from + ", " + id_gol + ", " + id_product + ", '" + qty + "','1', '" + awb + "');", True, "", "", "", "")
+                            Else
+                                execute_non_query_long("CALL create_oos_restock_wh_ol_grp(" + id_oos + ", " + id_wh_from + ", " + id_gol + ", " + id_product + ", '" + qty + "','1');", True, "", "", "", "")
+                            End If
                         Next
                         FormMain.SplashScreenManager1.CloseWaitForm()
                         viewStockGOL()
@@ -268,6 +275,9 @@
 	        AND so.id_ol_store_oos='" + id_oos + "' AND td.id_product='" + id_product + "'
         ) cl ON cl.id_product = od.id_product
         WHERE od.id='" + id_web_order + "' AND od.id_comp_group='" + id_comp_group + "' AND od.id_product='" + id_product + "' "
+        If is_order_check_awb = "1" Then
+            query_tot += "AND od.tracking_code='" + awb + "' "
+        End If
         Dim data_tot As DataTable = execute_query(query_tot, -1, True, "", "", "", "")
         If total_order <= data_tot.Rows(0)("total_allowed") Then
             Return True
@@ -325,7 +335,12 @@
                             FormMain.SplashScreenManager1.SetWaitFormDescription("Restock " + (i + 1).ToString + "/" + GVWH.RowCount.ToString)
                             Dim id_wh_from As String = GVWH.GetRowCellValue(i, "id_comp").ToString
                             Dim qty As String = decimalSQL(GVWH.GetRowCellValue(i, "total_order").ToString)
-                            execute_non_query_long("CALL create_oos_restock_wh_other_grp(" + id_oos + ", " + id_wh_from + ", " + id_gol_use_induk + ", " + id_product + ", '" + qty + "');", True, "", "", "", "")
+
+                            If is_order_check_awb = "1" Then
+                                execute_non_query_long("CALL create_oos_restock_wh_other_grp_awb(" + id_oos + ", " + id_wh_from + ", " + id_gol_use_induk + ", " + id_product + ", '" + qty + "', '" + awb + "');", True, "", "", "", "")
+                            Else
+                                execute_non_query_long("CALL create_oos_restock_wh_other_grp(" + id_oos + ", " + id_wh_from + ", " + id_gol_use_induk + ", " + id_product + ", '" + qty + "');", True, "", "", "", "")
+                            End If
                         Next
                         FormMain.SplashScreenManager1.CloseWaitForm()
                         viewStockOther()

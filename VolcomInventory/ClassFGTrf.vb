@@ -202,7 +202,7 @@
         Dim trf_stt As String = data_stt.Rows(0)("id_report_status").ToString
         If trf_stt = "6" Then
             'get oos
-            Dim query_oos As String = "SELECT so.id_ol_store_oos, oos.id_comp_group, oos.id_order, cg.id_api_type
+            Dim query_oos As String = "SELECT so.id_ol_store_oos, oos.id_comp_group, oos.id_order, cg.id_api_type, cg.is_order_check_awb, oos.tracking_code
                 FROM tb_sales_order so
                 INNER JOIN tb_ol_store_oos oos ON oos.id_ol_store_oos = so.id_ol_store_oos
                 INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = oos.id_comp_group
@@ -212,6 +212,8 @@
             Dim id_comp_group As String = data_oos.Rows(0)("id_comp_group").ToString
             Dim id_api_type As String = data_oos.Rows(0)("id_api_type").ToString
             Dim id_web_order As String = data_oos.Rows(0)("id_order").ToString
+            Dim is_order_check_awb As String = data_oos.Rows(0)("is_order_check_awb").ToString
+            Dim awb As String = data_oos.Rows(0)("tracking_code").ToString
 
             'get product restok
             Dim query_prod As String = "SELECT td.id_product, CAST(SUM(td.fg_trf_det_qty) AS DECIMAL(10,0)) AS `qty` 
@@ -253,11 +255,15 @@
             End If
 
             'trf virtual by data
-            execute_non_query_long("CALL create_oos_restock_wh_ol_grp(" + id_oos + ", " + id_wh_from + ", " + id_wh_to + ", " + id_product_restock + ", " + qty_restock + ", 1)", True, "", "", "", "")
+            If is_order_check_awb = "1" Then
+                execute_non_query_long("CALL create_oos_restock_wh_ol_grp_awb(" + id_oos + ", " + id_wh_from + ", " + id_wh_to + ", " + id_product_restock + ", " + qty_restock + ", 1, '" + awb + "')", True, "", "", "", "")
+            Else
+                execute_non_query_long("CALL create_oos_restock_wh_ol_grp(" + id_oos + ", " + id_wh_from + ", " + id_wh_to + ", " + id_product_restock + ", " + qty_restock + ", 1)", True, "", "", "", "")
+            End If
 
             'finalisasi restock
             Dim oos As New ClassOLStore()
-            oos.oosRestockChecking(id_web_order, id_comp_group, id_oos, id_api_type)
+            oos.oosRestockChecking(id_web_order, id_comp_group, id_oos, id_api_type, awb)
         End If
     End Sub
 End Class

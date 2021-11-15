@@ -631,39 +631,72 @@
 
             'evaluasi
             Dim jum_eval As Integer = 0
-            If id_api_type <> "1" And is_order_check_awb = "2" Then 'selain VIOS
-                Dim query_eval As String = "SELECT od.id, od.sales_order_ol_shop_number AS `order_number`
+            If id_api_type <> "1" Then 'selain VIOS
+                Dim query_eval As String = "SELECT od.id, od.sales_order_ol_shop_number AS `order_number`, IFNULL(od.tracking_code,'0') AS `tracking_code`
                 FROM tb_ol_store_order od 
                 WHERE od.id_comp_group='" + id_comp_group + "'  AND od.note_price='OK' AND od.note_promo='OK' AND od.note_stock<>'OK' AND od.is_process=2 AND ISNULL(od.id_ol_store_oos)
                 GROUP BY od.id "
+                If is_order_check_awb = "1" Then
+                    query_eval += ", od.tracking_code "
+                End If
+
                 Dim data_eval As DataTable = execute_query(query_eval, -1, True, "", "", "", "")
                 If data_eval.Rows.Count > 0 Then
                     For e As Integer = 0 To data_eval.Rows.Count - 1
                         jum_eval += 1
                         Dim id_order_eval As String = data_eval.Rows(e)("id").ToString
                         Dim no_eval As String = data_eval.Rows(e)("order_number").ToString
+                        Dim awb_eval As String = data_eval.Rows(e)("tracking_code").ToString
+
                         FormMain.SplashScreenManager1.SetWaitFormDescription("Evaluate order : " + (e + 1).ToString + "/" + data_eval.Rows.Count.ToString)
                         'evaluate oos
                         Dim oos As New ClassOLStore()
-                        oos.evaluateOOS(id_order_eval, id_comp_group)
-                        ord.insertLogWebOrder(id_order_eval, "Evaluate OOS", id_comp_group)
+                        If is_order_check_awb = "1" Then
+                            oos.evaluateOOSAWB(id_order_eval, id_comp_group, awb_eval)
+                            ord.insertLogWebOrderAWB(id_order_eval, "Evaluate OOS", id_comp_group, awb_eval)
+                        Else
+                            oos.evaluateOOS(id_order_eval, id_comp_group)
+                            ord.insertLogWebOrder(id_order_eval, "Evaluate OOS", id_comp_group)
+                        End If
+
 
                         'cek apa ada yang bisa restok
-                        Dim is_restock As Boolean = oos.checkOOSRestockOrder(id_order_eval, id_comp_group)
-                        ord.insertLogWebOrder(id_order_eval, "Evaluating restock", id_comp_group)
+                        Dim is_restock As Boolean = False
+                        If is_order_check_awb = "1" Then
+                            is_restock = oos.checkOOSRestockOrderAWB(id_order_eval, id_comp_group, awb_eval)
+                            ord.insertLogWebOrderAWB(id_order_eval, "Evaluating restock", id_comp_group, awb_eval)
+                        Else
+                            is_restock = oos.checkOOSRestockOrder(id_order_eval, id_comp_group)
+                            ord.insertLogWebOrder(id_order_eval, "Evaluating restock", id_comp_group)
+                        End If
                         If Not is_restock Then
                             'jika ndak ada yang bisa direstock langsung kirim email
                             Try
-                                oos.sendEmailOOS(id_order_eval, id_comp_group)
-                                Dim id_oos As String = execute_query("SELECT id_ol_store_oos FROM tb_ol_store_oos WHERE id_comp_group='" + id_comp_group + "' AND id_order='" + id_order_eval + "' ", 0, True, "", "", "", "")
-                                execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3, sent_email_date=NOW() WHERE id_ol_store_oos='" + id_oos + "' ", True, "", "", "", "")
-                                ord.insertLogWebOrder(id_order_eval, "Evaluate result : No stock;Send Email OOS success; Status=email sent", id_comp_group)
+                                If is_order_check_awb = "1" Then
+                                    oos.sendEmailOOSAWB(id_order_eval, id_comp_group, awb_eval)
+                                    Dim id_oos As String = execute_query("SELECT id_ol_store_oos FROM tb_ol_store_oos WHERE id_comp_group='" + id_comp_group + "' AND id_order='" + id_order_eval + "' AND tracking_code='" + awb_eval + "' ", 0, True, "", "", "", "")
+                                    execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3, sent_email_date=NOW() WHERE id_ol_store_oos='" + id_oos + "' ", True, "", "", "", "")
+                                    ord.insertLogWebOrderAWB(id_order_eval, "Evaluate result : No stock;Send Email OOS success; Status=email sent", id_comp_group, awb_eval)
+                                Else
+                                    oos.sendEmailOOS(id_order_eval, id_comp_group)
+                                    Dim id_oos As String = execute_query("SELECT id_ol_store_oos FROM tb_ol_store_oos WHERE id_comp_group='" + id_comp_group + "' AND id_order='" + id_order_eval + "' ", 0, True, "", "", "", "")
+                                    execute_non_query("UPDATE tb_ol_store_oos SET id_ol_store_oos_stt=3, sent_email_date=NOW() WHERE id_ol_store_oos='" + id_oos + "' ", True, "", "", "", "")
+                                    ord.insertLogWebOrder(id_order_eval, "Evaluate result : No stock;Send Email OOS success; Status=email sent", id_comp_group)
+                                End If
                             Catch ex As Exception
-                                ord.insertLogWebOrder(id_order_eval, "Evaluate result : No stock & Send Email OOS failed", id_comp_group)
+                                If is_order_check_awb = "1" Then
+                                    ord.insertLogWebOrderAWB(id_order_eval, "Evaluate result : No stock & Send Email OOS failed", id_comp_group, awb_eval)
+                                Else
+                                    ord.insertLogWebOrder(id_order_eval, "Evaluate result : No stock & Send Email OOS failed", id_comp_group)
+                                End If
                             End Try
 
                             'check jika kosong langsung di closed
-                            oos.checkOOSEmptyOrder(id_order_eval, id_comp_group)
+                            If is_order_check_awb = "1" Then
+                                oos.checkOOSEmptyOrderAWB(id_order_eval, id_comp_group, awb_eval)
+                            Else
+                                oos.checkOOSEmptyOrder(id_order_eval, id_comp_group)
+                            End If
 
                             'other action
                             If id_api_type = "2" Then
@@ -672,7 +705,11 @@
                                 err_other_act = zal.setRTSPending()
                             End If
                         Else
-                            ord.insertLogWebOrder(id_order_eval, "Evaluate result : Restock process", id_comp_group)
+                            If is_order_check_awb = "1" Then
+                                ord.insertLogWebOrderAWB(id_order_eval, "Evaluate result : Restock process", id_comp_group, awb_eval)
+                            Else
+                                ord.insertLogWebOrder(id_order_eval, "Evaluate result : Restock process", id_comp_group)
+                            End If
                         End If
                     Next
                 End If
