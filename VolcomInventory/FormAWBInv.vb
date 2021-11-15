@@ -588,7 +588,7 @@ WHERE inv.id_awb_inv_sum='" & id_verification & "'"
             Dim queryx As String = ""
             If SLETypeImport.EditValue.ToString = "1" Then
                 queryx = "SELECT '' AS `no`,d.`id_del_manifest`,'' AS id_inbound_awb,'' AS id_awbill,dis.sub_district,d.id_comp,IF(d.`is_ol_shop`=1,cg.comp_group,store.comp_number) AS comp_number,IF(d.`is_ol_shop`=1,cg.description,store.comp_name) AS comp_name
-,d.`awbill_inv_no`,d.`awbill_no`,d.`rec_by_store_date`,d.`rec_by_store_person`
+,d.`awbill_inv_no`,TRIM(d.`awbill_no`) AS awbill_no,d.`rec_by_store_date`,d.`rec_by_store_person`
 ,d.`cargo_rate`
 ,odm.created_date AS pickup_date
 ,COUNT(dd.`id_del_manifest_det`) AS collie
@@ -603,7 +603,7 @@ INNER JOIN tb_odm_sc odm ON odm.id_odm_sc=odmd.id_odm_sc
 GROUP BY d.`id_del_manifest`"
             ElseIf SLETypeImport.EditValue.ToString = "2" Then
                 queryx = "SELECT '' AS `no`,'' AS `id_del_manifest`,dd.id_inbound_awb,'' AS id_awbill,dis.sub_district,d.id_comp,store.comp_number AS comp_number,store.comp_name AS comp_name
-,d.`awb_inv_number` AS awbill_inv_no,d.awb_number AS `awbill_no`,d.`created_date` AS rec_by_store_date,emp.employee_name AS `rec_by_store_person`
+,d.`awb_inv_number` AS awbill_inv_no,TRIM(d.awb_number) AS `awbill_no`,d.`created_date` AS rec_by_store_date,emp.employee_name AS `rec_by_store_person`
 ,rate.`cargo_rate`
 ,rn.date_return_note AS pickup_date
 ,COUNT(dd.`id_inbound_koli`) AS collie
@@ -631,7 +631,7 @@ INNER JOIN
 GROUP BY d.`id_inbound_awb`"
             ElseIf SLETypeImport.EditValue.ToString = "4" Then
                 queryx = "SELECT '' AS `no`,'' AS `id_del_manifest`,'' AS id_inbound_awb, d.id_awbill,'' AS sub_district,d.id_store AS id_comp,cg.comp_group AS comp_number,cg.description AS comp_name
-,d.`awbill_inv_no`,d.`awbill_no`,d.rec_by_store_date,d.`rec_by_store_person`
+,d.`awbill_inv_no`,TRIM(d.`awbill_no`) AS awbill_no,d.rec_by_store_date,d.`rec_by_store_person`
 ,d.`cargo_rate`
 ,d.awbill_date AS pickup_date
 ,1 AS collie
