@@ -847,7 +847,7 @@ Partial Class FormSalesWeekly
         '
         Me.CEPromo.Location = New System.Drawing.Point(358, 64)
         Me.CEPromo.Name = "CEPromo"
-        Me.CEPromo.Properties.Caption = "Include Promo"
+        Me.CEPromo.Properties.Caption = "Include GWP"
         Me.CEPromo.Size = New System.Drawing.Size(89, 19)
         Me.CEPromo.TabIndex = 8926
         '
@@ -1165,7 +1165,7 @@ Partial Class FormSalesWeekly
         '
         Me.CEPromoWeeklyByDate.Location = New System.Drawing.Point(532, 11)
         Me.CEPromoWeeklyByDate.Name = "CEPromoWeeklyByDate"
-        Me.CEPromoWeeklyByDate.Properties.Caption = "Include Promo"
+        Me.CEPromoWeeklyByDate.Properties.Caption = "Include GWP"
         Me.CEPromoWeeklyByDate.Size = New System.Drawing.Size(89, 19)
         Me.CEPromoWeeklyByDate.TabIndex = 8927
         '
@@ -1355,7 +1355,7 @@ Partial Class FormSalesWeekly
         '
         Me.CEPromoWeekly.Location = New System.Drawing.Point(483, 14)
         Me.CEPromoWeekly.Name = "CEPromoWeekly"
-        Me.CEPromoWeekly.Properties.Caption = "Include Promo"
+        Me.CEPromoWeekly.Properties.Caption = "Include GWP"
         Me.CEPromoWeekly.Size = New System.Drawing.Size(89, 19)
         Me.CEPromoWeekly.TabIndex = 8927
         '
