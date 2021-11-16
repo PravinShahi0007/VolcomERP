@@ -180,8 +180,16 @@
             is_all_unit_param = "2"
         End If
 
+        'include uniform/promo
+        Dim is_promo_uni As String = ""
+        If CEIncludePrmUni.EditValue = True Then
+            is_promo_uni = "1"
+        Else
+            is_promo_uni = "2"
+        End If
+
         Dim query_c As ClassSalesInv = New ClassSalesInv()
-        Dim query As String = query_c.queryMainReport("AND a.id_report_status=6 " + cond_group + " " + cond_store + " " + cond_promo + " " + cond_promo_trans + " AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "1", is_all_unit_param)
+        Dim query As String = query_c.queryMainReport("AND a.id_report_status=6 " + cond_group + " " + cond_store + " " + cond_promo + " " + cond_promo_trans + " AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "1", is_all_unit_param, is_promo_uni)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesPOS.DataSource = data
         dt = data
@@ -190,7 +198,7 @@
 
     Private Function CreateData() As DataTable
         Dim query_c As ClassSalesInv = New ClassSalesInv()
-        Dim query As String = query_c.queryMainReport("AND a.id_report_status=''6'' AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "1", "2")
+        Dim query As String = query_c.queryMainReport("AND a.id_report_status=''6'' AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "1", "2", "2")
 
         Dim dtm As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -1449,7 +1457,7 @@
 
         Dim query_c As ClassSalesInv = New ClassSalesInv()
 
-        Dim query As String = query_c.queryMainReport("AND a.id_report_status=6 AND (a.sales_pos_end_period >= ''" + date_from + "'' AND a.sales_pos_end_period <= ''" + date_to + "'') AND a.sales_pos_total > 0 AND a.report_mark_type != 116 ", "1", "2")
+        Dim query As String = query_c.queryMainReport("AND a.id_report_status=6 AND (a.sales_pos_end_period >= ''" + date_from + "'' AND a.sales_pos_end_period <= ''" + date_to + "'') AND a.sales_pos_total > 0 AND a.report_mark_type != 116 ", "1", "2", "2")
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
