@@ -89,6 +89,7 @@ ORDER BY id_stock_valas DESC LIMIT 1"
             XTPAdmCharges.PageVisible = False
             XTPChoosen.PageVisible = False
             XTPDutyReport.PageVisible = False
+            XTPWO.PageVisible = False
         Else
             'edit
             Dim q As String = "SELECT cal.reason,cal.ppn,cal.pph,cal.rate_current,cal.rate_management,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
@@ -296,6 +297,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPAdmCharges.PageVisible = False
             XTPChoosen.PageVisible = False
             XTPDutyReport.PageVisible = False
+            XTPWO.PageVisible = False
             '
             PCFGPOList.Visible = True
             PCVendor.Visible = False
@@ -327,6 +329,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPAdmCharges.PageVisible = False
             XTPChoosen.PageVisible = False
             XTPDutyReport.PageVisible = False
+            XTPWO.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = True
@@ -353,6 +356,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPAdmCharges.PageVisible = False
             XTPChoosen.PageVisible = False
             XTPDutyReport.PageVisible = False
+            XTPWO.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
@@ -379,6 +383,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPAdmCharges.PageVisible = False
             XTPChoosen.PageVisible = False
             XTPDutyReport.PageVisible = False
+            XTPWO.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
@@ -405,6 +410,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPAdmCharges.PageVisible = True
             XTPChoosen.PageVisible = False
             XTPDutyReport.PageVisible = False
+            XTPWO.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
@@ -431,6 +437,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPAdmCharges.PageVisible = True
             XTPChoosen.PageVisible = True
             XTPDutyReport.PageVisible = False
+            XTPWO.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
@@ -457,6 +464,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPAdmCharges.PageVisible = True
             XTPChoosen.PageVisible = True
             XTPDutyReport.PageVisible = True
+            XTPWO.PageVisible = True
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
@@ -1080,6 +1088,35 @@ WHERE h.`id_pre_cal_fgpo`='" & id & "'"
     End Sub
 
     Private Sub GVAdm_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVAdm.CellValueChanged
+
+    End Sub
+
+    Private Sub BPrintWO_Click(sender As Object, e As EventArgs) Handles BPrintWO.Click
+        'print
+        Cursor = Cursors.WaitCursor
+
+        Dim Report As New ReportIntShippingWO()
+        Report.id_report = id
+
+        Dim q As String = "SELECT cal.reason,cal.ppn,cal.pph,cal.rate_current,cal.rate_management,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
+,c.`comp_name` AS fgpo_vendor,cf.comp_name AS forwarder,cal.`quot_no`,cal.`quot_amo`, CONCAT('ISWO',LPAD(cal.id_pre_cal_fgpo,5,'0')) AS wo_no
+FROM
+`tb_pre_cal_fgpo` cal
+INNER JOIN tb_m_user usr ON usr.`id_user`=cal.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cal.`id_comp`
+INNER JOIN tb_m_comp cf ON cf.`id_comp`=cal.`choosen_id_comp`
+WHERE cal.id_pre_cal_fgpo='" & id & "'"
+
+        Report.DataSource = execute_query(q, -1, True, "", "", "", "")
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimpleButton4_Click(sender As Object, e As EventArgs) Handles SimpleButton4.Click
 
     End Sub
 End Class

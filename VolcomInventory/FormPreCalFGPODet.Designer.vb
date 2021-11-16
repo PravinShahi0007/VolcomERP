@@ -209,6 +209,16 @@ Partial Class FormPreCalFGPODet
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrintDuty = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrintBudget2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPWO = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrintWO = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton4 = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEQuotAmo = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEQuotNo = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.TECBM = New DevExpress.XtraEditors.TextEdit()
@@ -217,6 +227,10 @@ Partial Class FormPreCalFGPODet
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TECTN = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -307,11 +321,20 @@ Partial Class FormPreCalFGPODet
         CType(Me.TEPPN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl8.SuspendLayout()
+        Me.XTPWO.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl10.SuspendLayout()
+        CType(Me.TEQuotAmo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEQuotNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECBM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECTN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -572,7 +595,7 @@ Partial Class FormPreCalFGPODet
         Me.XTC.SelectedTabPage = Me.XTPFGPO
         Me.XTC.Size = New System.Drawing.Size(1022, 416)
         Me.XTC.TabIndex = 2
-        Me.XTC.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFGPO, Me.XTPVendor, Me.XTPOrignCharges, Me.XTPDestCharges, Me.XTPAdmCharges, Me.XTPChoosen, Me.XTPDutyReport})
+        Me.XTC.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFGPO, Me.XTPVendor, Me.XTPOrignCharges, Me.XTPDestCharges, Me.XTPAdmCharges, Me.XTPChoosen, Me.XTPDutyReport, Me.XTPWO})
         '
         'XTPFGPO
         '
@@ -1695,12 +1718,12 @@ Partial Class FormPreCalFGPODet
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(155, 26)
+        Me.ViewMenu.Size = New System.Drawing.Size(156, 26)
         '
         'ViewDetailToolStripMenuItem
         '
         Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.ViewDetailToolStripMenuItem.Text = "Choose Vendor"
         '
         'GVPickVendor
@@ -2588,6 +2611,128 @@ Partial Class FormPreCalFGPODet
         Me.BPrintBudget2.TabIndex = 21
         Me.BPrintBudget2.Text = "Print Budget"
         '
+        'XTPWO
+        '
+        Me.XTPWO.Controls.Add(Me.PanelControl3)
+        Me.XTPWO.Name = "XTPWO"
+        Me.XTPWO.PageVisible = False
+        Me.XTPWO.Size = New System.Drawing.Size(1016, 388)
+        Me.XTPWO.Text = "Work Order"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.LabelControl24)
+        Me.PanelControl3.Controls.Add(Me.TextEdit2)
+        Me.PanelControl3.Controls.Add(Me.LabelControl23)
+        Me.PanelControl3.Controls.Add(Me.TextEdit1)
+        Me.PanelControl3.Controls.Add(Me.PanelControl10)
+        Me.PanelControl3.Controls.Add(Me.LabelControl22)
+        Me.PanelControl3.Controls.Add(Me.TEQuotAmo)
+        Me.PanelControl3.Controls.Add(Me.LabelControl21)
+        Me.PanelControl3.Controls.Add(Me.TEQuotNo)
+        Me.PanelControl3.Controls.Add(Me.LabelControl20)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1016, 388)
+        Me.PanelControl3.TabIndex = 25
+        '
+        'PanelControl10
+        '
+        Me.PanelControl10.Controls.Add(Me.BPrintWO)
+        Me.PanelControl10.Controls.Add(Me.SimpleButton4)
+        Me.PanelControl10.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl10.Location = New System.Drawing.Point(2, 344)
+        Me.PanelControl10.Name = "PanelControl10"
+        Me.PanelControl10.Size = New System.Drawing.Size(1012, 42)
+        Me.PanelControl10.TabIndex = 170
+        '
+        'BPrintWO
+        '
+        Me.BPrintWO.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BPrintWO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BPrintWO.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BPrintWO.Appearance.Options.UseBackColor = True
+        Me.BPrintWO.Appearance.Options.UseFont = True
+        Me.BPrintWO.Appearance.Options.UseForeColor = True
+        Me.BPrintWO.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrintWO.Location = New System.Drawing.Point(756, 2)
+        Me.BPrintWO.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BPrintWO.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BPrintWO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BPrintWO.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BPrintWO.Name = "BPrintWO"
+        Me.BPrintWO.Size = New System.Drawing.Size(127, 38)
+        Me.BPrintWO.TabIndex = 26
+        Me.BPrintWO.Text = "Print Work Order"
+        '
+        'SimpleButton4
+        '
+        Me.SimpleButton4.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.SimpleButton4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.SimpleButton4.Appearance.ForeColor = System.Drawing.Color.White
+        Me.SimpleButton4.Appearance.Options.UseBackColor = True
+        Me.SimpleButton4.Appearance.Options.UseFont = True
+        Me.SimpleButton4.Appearance.Options.UseForeColor = True
+        Me.SimpleButton4.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton4.Location = New System.Drawing.Point(883, 2)
+        Me.SimpleButton4.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.SimpleButton4.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.SimpleButton4.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.SimpleButton4.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SimpleButton4.Name = "SimpleButton4"
+        Me.SimpleButton4.Size = New System.Drawing.Size(127, 38)
+        Me.SimpleButton4.TabIndex = 21
+        Me.SimpleButton4.Text = "Save"
+        '
+        'LabelControl22
+        '
+        Me.LabelControl22.Location = New System.Drawing.Point(15, 52)
+        Me.LabelControl22.Name = "LabelControl22"
+        Me.LabelControl22.Size = New System.Drawing.Size(95, 13)
+        Me.LabelControl22.TabIndex = 168
+        Me.LabelControl22.Text = "Choosen Forwarder"
+        '
+        'TEQuotAmo
+        '
+        Me.TEQuotAmo.Location = New System.Drawing.Point(261, 113)
+        Me.TEQuotAmo.Name = "TEQuotAmo"
+        Me.TEQuotAmo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEQuotAmo.Properties.Appearance.Options.UseFont = True
+        Me.TEQuotAmo.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEQuotAmo.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEQuotAmo.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEQuotAmo.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEQuotAmo.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEQuotAmo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEQuotAmo.Properties.Mask.EditMask = "N2"
+        Me.TEQuotAmo.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEQuotAmo.Size = New System.Drawing.Size(192, 20)
+        Me.TEQuotAmo.TabIndex = 167
+        '
+        'LabelControl21
+        '
+        Me.LabelControl21.Location = New System.Drawing.Point(14, 116)
+        Me.LabelControl21.Name = "LabelControl21"
+        Me.LabelControl21.Size = New System.Drawing.Size(88, 13)
+        Me.LabelControl21.TabIndex = 166
+        Me.LabelControl21.Text = "Amount Quotation"
+        '
+        'TEQuotNo
+        '
+        Me.TEQuotNo.Location = New System.Drawing.Point(116, 81)
+        Me.TEQuotNo.Name = "TEQuotNo"
+        Me.TEQuotNo.Size = New System.Drawing.Size(337, 20)
+        Me.TEQuotNo.TabIndex = 162
+        '
+        'LabelControl20
+        '
+        Me.LabelControl20.Location = New System.Drawing.Point(14, 84)
+        Me.LabelControl20.Name = "LabelControl20"
+        Me.LabelControl20.Size = New System.Drawing.Size(64, 13)
+        Me.LabelControl20.TabIndex = 163
+        Me.LabelControl20.Text = "Quotation No"
+        '
         'LabelControl5
         '
         Me.LabelControl5.Location = New System.Drawing.Point(260, 15)
@@ -2688,6 +2833,36 @@ Partial Class FormPreCalFGPODet
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Size = New System.Drawing.Size(1022, 42)
         Me.PanelControl6.TabIndex = 157
+        '
+        'TextEdit1
+        '
+        Me.TextEdit1.Location = New System.Drawing.Point(116, 49)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Size = New System.Drawing.Size(337, 20)
+        Me.TextEdit1.TabIndex = 171
+        '
+        'TextEdit2
+        '
+        Me.TextEdit2.Location = New System.Drawing.Point(116, 16)
+        Me.TextEdit2.Name = "TextEdit2"
+        Me.TextEdit2.Size = New System.Drawing.Size(337, 20)
+        Me.TextEdit2.TabIndex = 173
+        '
+        'LabelControl23
+        '
+        Me.LabelControl23.Location = New System.Drawing.Point(15, 19)
+        Me.LabelControl23.Name = "LabelControl23"
+        Me.LabelControl23.Size = New System.Drawing.Size(96, 13)
+        Me.LabelControl23.TabIndex = 172
+        Me.LabelControl23.Text = "Work Order Number"
+        '
+        'LabelControl24
+        '
+        Me.LabelControl24.Location = New System.Drawing.Point(242, 116)
+        Me.LabelControl24.Name = "LabelControl24"
+        Me.LabelControl24.Size = New System.Drawing.Size(13, 13)
+        Me.LabelControl24.TabIndex = 174
+        Me.LabelControl24.Text = "Rp"
         '
         'FormPreCalFGPODet
         '
@@ -2802,12 +2977,22 @@ Partial Class FormPreCalFGPODet
         CType(Me.TEPPN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl8.ResumeLayout(False)
+        Me.XTPWO.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl10.ResumeLayout(False)
+        CType(Me.TEQuotAmo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEQuotNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECBM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEWeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECTN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3008,4 +3193,18 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEPPN2 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEQuotNo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEQuotAmo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents XTPWO As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControl10 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BPrintWO As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton4 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
 End Class
