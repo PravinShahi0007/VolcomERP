@@ -302,7 +302,7 @@ LEFT JOIN
 (
     SELECT id.id_report_det,SUM(amount) AS amo,SUM(id.qty) AS tot_qty
     FROM tb_item_expense_det id
-    INNER JOIN tb_item_expense i ON i.`id_item_expense`=id.`id_item_expense` AND i.`id_report_status`=5
+    INNER JOIN tb_item_expense i ON i.`id_item_expense`=id.`id_item_expense` AND i.`id_report_status`!=5
     WHERE id.report_mark_type='319'
     GROUP BY id.`id_report_det`
 )r ON r.id_report_det=b.id_sni_pps_budget
