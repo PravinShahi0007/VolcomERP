@@ -22,9 +22,10 @@ WHERE a.id_status=1 AND a.id_is_det=2 AND a.id_coa_type='1'"
     End Sub
 
     Sub load_head()
-        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,b.id_sni_pps,budget_desc,budget_value,budget_qty,0.00 AS r_price,0 AS r_qty
+        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,b.id_sni_pps,budget_desc,budget_value,budget_qty,budget_value*budget_qty AS budget_amount,0.00 AS r_price,0 AS r_qty
 FROM `tb_sni_pps_budget` b
 WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
+        'tambahin exp yg sudah
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCBudget.DataSource = dt
         BGVBudget.BestFitColumns()
@@ -39,6 +40,8 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
             FormItemExpenseDet.ShowDialog()
 
             BGVBudget.ActiveFilterString = ""
+
+            Close()
         Else
             warningCustom("Please input data first.")
         End If
