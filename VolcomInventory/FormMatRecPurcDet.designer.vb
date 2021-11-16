@@ -130,6 +130,7 @@ Partial Class FormMatRecPurcDet
         Me.EPSampleRec = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.BalanceMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMEditPrice = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CEFreeOfCharge = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -179,6 +180,7 @@ Partial Class FormMatRecPurcDet
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPSampleRec, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BalanceMenu.SuspendLayout()
+        CType(Me.CEFreeOfCharge.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridView4
@@ -470,9 +472,9 @@ Partial Class FormMatRecPurcDet
         Me.GroupControl1.Controls.Add(Me.BSave)
         Me.GroupControl1.Controls.Add(Me.BMark)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 542)
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 561)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(909, 40)
+        Me.GroupControl1.Size = New System.Drawing.Size(909, 44)
         Me.GroupControl1.TabIndex = 40
         '
         'BAttach
@@ -481,7 +483,7 @@ Partial Class FormMatRecPurcDet
         Me.BAttach.Image = CType(resources.GetObject("BAttach.Image"), System.Drawing.Image)
         Me.BAttach.Location = New System.Drawing.Point(520, 2)
         Me.BAttach.Name = "BAttach"
-        Me.BAttach.Size = New System.Drawing.Size(109, 36)
+        Me.BAttach.Size = New System.Drawing.Size(109, 40)
         Me.BAttach.TabIndex = 10
         Me.BAttach.Text = "Attachment"
         '
@@ -491,7 +493,7 @@ Partial Class FormMatRecPurcDet
         Me.BPrint.Image = CType(resources.GetObject("BPrint.Image"), System.Drawing.Image)
         Me.BPrint.Location = New System.Drawing.Point(629, 2)
         Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(87, 36)
+        Me.BPrint.Size = New System.Drawing.Size(87, 40)
         Me.BPrint.TabIndex = 9
         Me.BPrint.Text = "Print"
         '
@@ -501,7 +503,7 @@ Partial Class FormMatRecPurcDet
         Me.BCancel.Image = CType(resources.GetObject("BCancel.Image"), System.Drawing.Image)
         Me.BCancel.Location = New System.Drawing.Point(716, 2)
         Me.BCancel.Name = "BCancel"
-        Me.BCancel.Size = New System.Drawing.Size(93, 36)
+        Me.BCancel.Size = New System.Drawing.Size(93, 40)
         Me.BCancel.TabIndex = 8
         Me.BCancel.Text = "Cancel"
         '
@@ -512,7 +514,7 @@ Partial Class FormMatRecPurcDet
         Me.BSave.Image = CType(resources.GetObject("BSave.Image"), System.Drawing.Image)
         Me.BSave.Location = New System.Drawing.Point(809, 2)
         Me.BSave.Name = "BSave"
-        Me.BSave.Size = New System.Drawing.Size(98, 36)
+        Me.BSave.Size = New System.Drawing.Size(98, 40)
         Me.BSave.TabIndex = 7
         Me.BSave.Text = "Save"
         '
@@ -522,13 +524,14 @@ Partial Class FormMatRecPurcDet
         Me.BMark.Image = CType(resources.GetObject("BMark.Image"), System.Drawing.Image)
         Me.BMark.Location = New System.Drawing.Point(20, 2)
         Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(75, 36)
+        Me.BMark.Size = New System.Drawing.Size(75, 40)
         Me.BMark.TabIndex = 5
         Me.BMark.Text = "Mark"
         '
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.CEFreeOfCharge)
         Me.GroupControl3.Controls.Add(Me.LEReportStatus)
         Me.GroupControl3.Controls.Add(Me.LabelControl21)
         Me.GroupControl3.Controls.Add(Me.MENote)
@@ -536,13 +539,13 @@ Partial Class FormMatRecPurcDet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl3.Location = New System.Drawing.Point(0, 447)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(909, 95)
+        Me.GroupControl3.Size = New System.Drawing.Size(909, 114)
         Me.GroupControl3.TabIndex = 39
         '
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(89, 61)
+        Me.LEReportStatus.Location = New System.Drawing.Point(89, 83)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -555,7 +558,7 @@ Partial Class FormMatRecPurcDet
         '
         'LabelControl21
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(27, 64)
+        Me.LabelControl21.Location = New System.Drawing.Point(27, 86)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl21.TabIndex = 144
@@ -1264,11 +1267,19 @@ Partial Class FormMatRecPurcDet
         Me.SMEditPrice.Size = New System.Drawing.Size(123, 22)
         Me.SMEditPrice.Text = "Edit Price"
         '
+        'CEFreeOfCharge
+        '
+        Me.CEFreeOfCharge.Location = New System.Drawing.Point(89, 59)
+        Me.CEFreeOfCharge.Name = "CEFreeOfCharge"
+        Me.CEFreeOfCharge.Properties.Caption = "Free of Charge"
+        Me.CEFreeOfCharge.Size = New System.Drawing.Size(129, 19)
+        Me.CEFreeOfCharge.TabIndex = 146
+        '
         'FormMatRecPurcDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(909, 582)
+        Me.ClientSize = New System.Drawing.Size(909, 605)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GConListPurchase)
@@ -1332,6 +1343,7 @@ Partial Class FormMatRecPurcDet
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPSampleRec, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BalanceMenu.ResumeLayout(False)
+        CType(Me.CEFreeOfCharge.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1444,4 +1456,5 @@ Partial Class FormMatRecPurcDet
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CEFreeOfCharge As DevExpress.XtraEditors.CheckEdit
 End Class

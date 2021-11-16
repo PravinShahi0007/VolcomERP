@@ -63,6 +63,8 @@ Partial Public Class ReportAccountingJournal
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LUnit = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,7 +107,7 @@ Partial Public Class ReportAccountingJournal
         Me.GVJournalDet.AppearancePrint.HeaderPanel.ForeColor = System.Drawing.Color.Black
         Me.GVJournalDet.AppearancePrint.HeaderPanel.Options.UseBackColor = True
         Me.GVJournalDet.AppearancePrint.HeaderPanel.Options.UseForeColor = True
-        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn9, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn9, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn10, Me.GridColumn11})
         Me.GVJournalDet.GridControl = Me.GCJournalDet
         Me.GVJournalDet.Name = "GVJournalDet"
         Me.GVJournalDet.OptionsView.ShowFooter = True
@@ -164,7 +166,7 @@ Partial Public Class ReportAccountingJournal
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 2
-        Me.GridColumn8.Width = 226
+        Me.GridColumn8.Width = 380
         '
         'GridColumn9
         '
@@ -176,8 +178,8 @@ Partial Public Class ReportAccountingJournal
         Me.GridColumn9.FieldName = "comp_number"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 3
-        Me.GridColumn9.Width = 32
+        Me.GridColumn9.VisibleIndex = 5
+        Me.GridColumn9.Width = 85
         '
         'GridColumn3
         '
@@ -185,8 +187,8 @@ Partial Public Class ReportAccountingJournal
         Me.GridColumn3.FieldName = "note"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 4
-        Me.GridColumn3.Width = 216
+        Me.GridColumn3.VisibleIndex = 6
+        Me.GridColumn3.Width = 521
         '
         'GridColumn4
         '
@@ -204,7 +206,7 @@ Partial Public Class ReportAccountingJournal
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 5
+        Me.GridColumn4.VisibleIndex = 7
         Me.GridColumn4.Width = 80
         '
         'RepositoryItemTextEdit1
@@ -235,7 +237,7 @@ Partial Public Class ReportAccountingJournal
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N2}")})
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 6
+        Me.GridColumn5.VisibleIndex = 8
         Me.GridColumn5.Width = 80
         '
         'RepositoryItemTextEdit2
@@ -566,6 +568,24 @@ Partial Public Class ReportAccountingJournal
         Me.XrLabel15.Text = "Unit"
         Me.XrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Report"
+        Me.GridColumn10.FieldName = "report_number"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 3
+        Me.GridColumn10.Width = 203
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Reff"
+        Me.GridColumn11.FieldName = "report_number_reff"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.Width = 203
+        '
         'ReportAccountingJournal
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.PageHeader})
@@ -625,4 +645,6 @@ Partial Public Class ReportAccountingJournal
     Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LUnit As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel15 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

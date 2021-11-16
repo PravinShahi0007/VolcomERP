@@ -1145,30 +1145,30 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
     End Sub
 
     Private Sub TEAwb_KeyDown(sender As Object, e As KeyEventArgs) Handles TEAwb.KeyDown
-        If Not SLEDelType.EditValue.ToString = "6" Then 'wholesale
-            cforKeyDown = ChrW(e.KeyCode)
-        End If
+        'If Not SLEDelType.EditValue.ToString = "6" Then 'wholesale
+        '    cforKeyDown = ChrW(e.KeyCode)
+        'End If
     End Sub
 
     Private Sub TEAwb_KeyUp(sender As Object, e As KeyEventArgs) Handles TEAwb.KeyUp
-        If Not SLEDelType.EditValue.ToString = "6" Then 'wholesale
-            If Len(TEAwb.EditValue.ToString) > 1 Then
-                If cforKeyDown <> ChrW(e.KeyCode) OrElse cforKeyDown = vbNullChar Then
-                    cforKeyDown = vbNullChar
-                    TEAwb.EditValue = ""
-                    Return
-                End If
+        'If Not SLEDelType.EditValue.ToString = "6" Then 'wholesale
+        '    If Len(TEAwb.EditValue.ToString) > 1 Then
+        '        If cforKeyDown <> ChrW(e.KeyCode) OrElse cforKeyDown = vbNullChar Then
+        '            cforKeyDown = vbNullChar
+        '            TEAwb.EditValue = ""
+        '            Return
+        '        End If
 
-                Dim elapsed As TimeSpan = DateTime.Now - _lastKeystroke
+        '        Dim elapsed As TimeSpan = DateTime.Now - _lastKeystroke
 
-                If elapsed.TotalMilliseconds > speed_barcode_read Then TEAwb.EditValue = ""
+        '        If elapsed.TotalMilliseconds > speed_barcode_read Then TEAwb.EditValue = ""
 
-                If e.KeyCode = Keys.Enter And TEAwb.Text.Length > 0 Then
+        '        If e.KeyCode = Keys.Enter And TEAwb.Text.Length > 0 Then
+        '            'kalau ada run sesuatu disini 
+        '        End If
+        '    End If
 
-                End If
-            End If
-
-            _lastKeystroke = DateTime.Now
-        End If
+        '    _lastKeystroke = DateTime.Now
+        'End If
     End Sub
 End Class
