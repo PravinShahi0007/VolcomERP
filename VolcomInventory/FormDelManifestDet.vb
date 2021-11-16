@@ -7,6 +7,12 @@
 
     Dim id_report_status As String = "-1"
 
+    'scan
+    Private cforKeyDown As Char = vbNullChar
+    Private _lastKeystroke As DateTime = DateTime.Now
+    Public speed_barcode_read As Integer = get_setup_field("speed_barcode_read")
+    Public speed_barcode_read_timer As Integer = get_setup_field("speed_barcode_read_timer")
+
     Private Sub FormDelManifestDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         loaded = False
 
@@ -1110,13 +1116,15 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
                 TEComp.Focus()
             End If
             '
-            If SLEDelType.EditValue.ToString = "6" Then
-                TEAwb.EditValue = GVList.GetRowCellValue(0, "ol_number").ToString
+            If SLEDelType.EditValue.ToString = "6" Then 'wholesale
+                'TEAwb.EditValue = GVList.GetRowCellValue(0, "ol_number").ToString
+                'TEAwb.ReadOnly = True
 
-                TEAwb.ReadOnly = True
+                'bisa ketik
+                TEAwb.EditValue = ""
+                TEAwb.ReadOnly = False
             Else
                 TEAwb.EditValue = ""
-
                 TEAwb.ReadOnly = False
             End If
         End If
@@ -1134,5 +1142,33 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
 
     Private Sub SLEStoreGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreGroup.EditValueChanged
         TEOrderNumber.Focus()
+    End Sub
+
+    Private Sub TEAwb_KeyDown(sender As Object, e As KeyEventArgs) Handles TEAwb.KeyDown
+        If Not SLEDelType.EditValue.ToString = "6" Then 'wholesale
+            cforKeyDown = ChrW(e.KeyCode)
+        End If
+    End Sub
+
+    Private Sub TEAwb_KeyUp(sender As Object, e As KeyEventArgs) Handles TEAwb.KeyUp
+        If Not SLEDelType.EditValue.ToString = "6" Then 'wholesale
+            If Len(TEAwb.EditValue.ToString) > 1 Then
+                If cforKeyDown <> ChrW(e.KeyCode) OrElse cforKeyDown = vbNullChar Then
+                    cforKeyDown = vbNullChar
+                    TEAwb.EditValue = ""
+                    Return
+                End If
+
+                Dim elapsed As TimeSpan = DateTime.Now - _lastKeystroke
+
+                If elapsed.TotalMilliseconds > speed_barcode_read Then TEAwb.EditValue = ""
+
+                If e.KeyCode = Keys.Enter And TEAwb.Text.Length > 0 Then
+
+                End If
+            End If
+
+            _lastKeystroke = DateTime.Now
+        End If
     End Sub
 End Class

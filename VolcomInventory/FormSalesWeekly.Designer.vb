@@ -186,6 +186,7 @@ Partial Class FormSalesWeekly
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.CEIncludePrmUni = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -290,6 +291,7 @@ Partial Class FormSalesWeekly
         Me.GroupControl5.SuspendLayout()
         CType(Me.SLUEUSASales.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEIncludePrmUni.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GVSalesPOSDet
@@ -790,6 +792,7 @@ Partial Class FormSalesWeekly
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.CEIncludePrmUni)
         Me.PanelControl3.Controls.Add(Me.CEAllUnit)
         Me.PanelControl3.Controls.Add(Me.PanelControl4)
         Me.PanelControl3.Controls.Add(Me.CEPromo)
@@ -809,7 +812,7 @@ Partial Class FormSalesWeekly
         '
         'CEAllUnit
         '
-        Me.CEAllUnit.Location = New System.Drawing.Point(235, 64)
+        Me.CEAllUnit.Location = New System.Drawing.Point(243, 64)
         Me.CEAllUnit.Name = "CEAllUnit"
         Me.CEAllUnit.Properties.Caption = "Include Branch Sales"
         Me.CEAllUnit.Size = New System.Drawing.Size(121, 19)
@@ -845,10 +848,10 @@ Partial Class FormSalesWeekly
         '
         'CEPromo
         '
-        Me.CEPromo.Location = New System.Drawing.Point(358, 64)
+        Me.CEPromo.Location = New System.Drawing.Point(366, 64)
         Me.CEPromo.Name = "CEPromo"
-        Me.CEPromo.Properties.Caption = "Include Promo"
-        Me.CEPromo.Size = New System.Drawing.Size(89, 19)
+        Me.CEPromo.Properties.Caption = "Include GWP"
+        Me.CEPromo.Size = New System.Drawing.Size(80, 19)
         Me.CEPromo.TabIndex = 8926
         '
         'LabelControl8
@@ -1165,7 +1168,7 @@ Partial Class FormSalesWeekly
         '
         Me.CEPromoWeeklyByDate.Location = New System.Drawing.Point(532, 11)
         Me.CEPromoWeeklyByDate.Name = "CEPromoWeeklyByDate"
-        Me.CEPromoWeeklyByDate.Properties.Caption = "Include Promo"
+        Me.CEPromoWeeklyByDate.Properties.Caption = "Include GWP"
         Me.CEPromoWeeklyByDate.Size = New System.Drawing.Size(89, 19)
         Me.CEPromoWeeklyByDate.TabIndex = 8927
         '
@@ -1355,7 +1358,7 @@ Partial Class FormSalesWeekly
         '
         Me.CEPromoWeekly.Location = New System.Drawing.Point(483, 14)
         Me.CEPromoWeekly.Name = "CEPromoWeekly"
-        Me.CEPromoWeekly.Properties.Caption = "Include Promo"
+        Me.CEPromoWeekly.Properties.Caption = "Include GWP"
         Me.CEPromoWeekly.Size = New System.Drawing.Size(89, 19)
         Me.CEPromoWeekly.TabIndex = 8927
         '
@@ -1897,6 +1900,14 @@ Partial Class FormSalesWeekly
         Me.SimpleButton2.TabIndex = 8896
         Me.SimpleButton2.Text = "View"
         '
+        'CEIncludePrmUni
+        '
+        Me.CEIncludePrmUni.Location = New System.Drawing.Point(110, 64)
+        Me.CEIncludePrmUni.Name = "CEIncludePrmUni"
+        Me.CEIncludePrmUni.Properties.Caption = "Include Promo/Uniform"
+        Me.CEIncludePrmUni.Size = New System.Drawing.Size(131, 19)
+        Me.CEIncludePrmUni.TabIndex = 8931
+        '
         'FormSalesWeekly
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2020,6 +2031,7 @@ Partial Class FormSalesWeekly
         Me.GroupControl5.PerformLayout()
         CType(Me.SLUEUSASales.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEIncludePrmUni.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2188,4 +2200,5 @@ Partial Class FormSalesWeekly
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemHyperLinkEdit As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents CEIncludePrmUni As DevExpress.XtraEditors.CheckEdit
 End Class

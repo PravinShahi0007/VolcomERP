@@ -22,9 +22,18 @@ WHERE a.id_status=1 AND a.id_is_det=2 AND a.id_coa_type='1'"
     End Sub
 
     Sub load_head()
-        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,b.id_sni_pps,budget_desc,budget_value,budget_qty,0.00 AS r_price,0 AS r_qty
+        Dim q As String = "SELECT 'no' AS is_check,id_sni_pps_budget,b.id_sni_pps,IFNULL(r.amo,0) AS `amo_exp`,budget_desc,budget_value,budget_qty,budget_value*budget_qty AS budget_amount,0.00 AS r_price,0 AS r_qty
 FROM `tb_sni_pps_budget` b
+LEFT JOIN
+(
+    SELECT id.id_report_det,SUM(amount) AS amo,SUM(id.qty) AS tot_qty
+    FROM tb_item_expense_det id
+    INNER JOIN tb_item_expense i ON i.`id_item_expense`=id.`id_item_expense` AND i.`id_report_status`!=5
+    WHERE id.report_mark_type='319'
+    GROUP BY id.`id_report_det`
+)r ON r.id_report_det=b.id_sni_pps_budget
 WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
+        'tambahin exp yg sudah
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCBudget.DataSource = dt
         BGVBudget.BestFitColumns()
@@ -39,6 +48,8 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
             FormItemExpenseDet.ShowDialog()
 
             BGVBudget.ActiveFilterString = ""
+
+            Close()
         Else
             warningCustom("Please input data first.")
         End If

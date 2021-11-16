@@ -29,6 +29,9 @@ Partial Class FormItemExpenseSNI
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn19 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -39,6 +42,8 @@ Partial Class FormItemExpenseSNI
         Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RICEBudgetDet = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -136,8 +141,8 @@ Partial Class FormItemExpenseSNI
         '
         'BGVBudget
         '
-        Me.BGVBudget.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
-        Me.BGVBudget.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn29, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.BGVBudget.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand4, Me.gridBand3})
+        Me.BGVBudget.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn17, Me.GridColumn18, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.GridColumn19, Me.GridColumn20, Me.GridColumn29, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.BandedGridColumn4})
         Me.BGVBudget.GridControl = Me.GCBudget
         Me.BGVBudget.Name = "BGVBudget"
         Me.BGVBudget.OptionsView.ShowFooter = True
@@ -148,9 +153,12 @@ Partial Class FormItemExpenseSNI
         Me.GridBand1.Caption = "Description"
         Me.GridBand1.Columns.Add(Me.GridColumn17)
         Me.GridBand1.Columns.Add(Me.GridColumn18)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 256
+        Me.GridBand1.Width = 467
         '
         'GridColumn17
         '
@@ -168,7 +176,49 @@ Partial Class FormItemExpenseSNI
         Me.GridColumn18.OptionsColumn.AllowEdit = False
         Me.GridColumn18.OptionsColumn.AllowFocus = False
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.Width = 256
+        Me.GridColumn18.Width = 247
+        '
+        'BandedGridColumn1
+        '
+        Me.BandedGridColumn1.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn1.Caption = "Budget Price"
+        Me.BandedGridColumn1.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn1.FieldName = "budget_value"
+        Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.BandedGridColumn1.Visible = True
+        Me.BandedGridColumn1.Width = 71
+        '
+        'BandedGridColumn2
+        '
+        Me.BandedGridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn2.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn2.Caption = "Budget Qty"
+        Me.BandedGridColumn2.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn2.FieldName = "budget_qty"
+        Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.Visible = True
+        Me.BandedGridColumn2.Width = 71
+        '
+        'BandedGridColumn3
+        '
+        Me.BandedGridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn3.Caption = "Budget Total"
+        Me.BandedGridColumn3.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn3.FieldName = "budget_amount"
+        Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.Visible = True
+        Me.BandedGridColumn3.Width = 78
         '
         'gridBand2
         '
@@ -240,8 +290,8 @@ Partial Class FormItemExpenseSNI
         Me.gridBand3.Columns.Add(Me.GridColumn2)
         Me.gridBand3.Columns.Add(Me.GridColumn3)
         Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 1
-        Me.gridBand3.Width = 324
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 312
         '
         'GridColumn1
         '
@@ -256,7 +306,7 @@ Partial Class FormItemExpenseSNI
         Me.GridColumn1.FieldName = "r_price"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.Width = 100
+        Me.GridColumn1.Width = 90
         '
         'RepositoryItemTextEdit2
         '
@@ -279,7 +329,7 @@ Partial Class FormItemExpenseSNI
         Me.GridColumn2.FieldName = "r_qty"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.Width = 62
+        Me.GridColumn2.Width = 81
         '
         'RepositoryItemTextEdit1
         '
@@ -306,7 +356,29 @@ Partial Class FormItemExpenseSNI
         Me.GridColumn3.UnboundExpression = "[r_price] * [r_qty]"
         Me.GridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.Width = 162
+        Me.GridColumn3.Width = 141
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "Expense Created"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn4)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 1
+        Me.gridBand4.Width = 154
+        '
+        'BandedGridColumn4
+        '
+        Me.BandedGridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn4.Caption = "Amount Expense Created"
+        Me.BandedGridColumn4.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn4.FieldName = "amo_exp"
+        Me.BandedGridColumn4.Name = "BandedGridColumn4"
+        Me.BandedGridColumn4.Visible = True
+        Me.BandedGridColumn4.Width = 154
         '
         'RICEBudgetDet
         '
@@ -460,14 +532,11 @@ Partial Class FormItemExpenseSNI
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents RICEBudgetDet As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BGVBudget As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -482,4 +551,12 @@ Partial Class FormItemExpenseSNI
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEPPN3PLInv As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
