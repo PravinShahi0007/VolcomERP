@@ -38,7 +38,7 @@
         If SLEQuarter.Text.ToString <> "ALL" Then
             cond = "AND a.quarter=''" + SLEQuarter.Text.ToString + "'' "
         End If
-        Dim query As String = "CALL view_abg_royalty_zone('" + year + "', '" + cond + "') "
+        Dim query As String = "CALL view_abg_royalty_zone_v2('" + year + "', '" + cond + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         'GVData.BestFitColumns()
