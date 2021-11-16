@@ -240,9 +240,9 @@ HAVING qty_rec>=po_qty"
                 Dim aft_kurs As Decimal = 0.00
 
                 LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", SLEReport.Properties.View.GetFocusedRowCellValue("id_currency").ToString)
-                TEBeforeKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("po_val")
+                TEBeforeKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("amount_rec")
                 TEKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("kurs")
-                TEQty.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("qty")
+                TEQty.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("qty_rec")
                 TEVATPercent.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("vat")
                 aft_kurs = TEBeforeKurs.EditValue * TEKurs.EditValue
                 TEAfterKurs.EditValue = aft_kurs

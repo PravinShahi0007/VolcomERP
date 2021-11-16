@@ -40,7 +40,7 @@
             Else
                 'edit
                 Dim order_created As String
-                Dim query = "SELECT a.id_report_status,a.mat_purc_rec_note,b.id_comp_contact_to as id_comp_from,b.id_mat_purc,a.id_comp_contact_to as id_comp_to,g.season,a.id_mat_purc_rec,a.mat_purc_rec_number,DATE_FORMAT(b.mat_purc_date,'%Y-%m-%d') as mat_purc_datex,b.mat_purc_lead_time,a.delivery_order_date,a.delivery_order_number,b.mat_purc_number,DATE_FORMAT(a.mat_purc_rec_date,'%Y-%m-%d') AS mat_purc_rec_date, f.comp_name AS comp_from,d.comp_name AS comp_to "
+                Dim query = "SELECT a.is_foc,a.id_report_status,a.mat_purc_rec_note,b.id_comp_contact_to as id_comp_from,b.id_mat_purc,a.id_comp_contact_to as id_comp_to,g.season,a.id_mat_purc_rec,a.mat_purc_rec_number,DATE_FORMAT(b.mat_purc_date,'%Y-%m-%d') as mat_purc_datex,b.mat_purc_lead_time,a.delivery_order_date,a.delivery_order_number,b.mat_purc_number,DATE_FORMAT(a.mat_purc_rec_date,'%Y-%m-%d') AS mat_purc_rec_date, f.comp_name AS comp_from,d.comp_name AS comp_to "
                 query += ",drw.id_wh_drawer,rck.id_wh_rack,loc.id_wh_locator,comp.id_comp "
                 query += "FROM tb_mat_purc_rec a INNER JOIN tb_mat_purc b ON a.id_mat_purc=b.id_mat_purc "
                 query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact=a.id_comp_contact_to "
@@ -62,6 +62,12 @@
                     SLEDrawer.EditValue = data.Rows(0)("id_wh_drawer").ToString
                 Catch ex As Exception
                 End Try
+
+                If data.Rows(0)("is_foc").ToString = "1" Then
+                    CEFreeOfCharge.Checked = True
+                Else
+                    CEFreeOfCharge.Checked = False
+                End If
 
                 TEPONumber.Text = data.Rows(0)("mat_purc_number").ToString
                 TEDONumber.Text = data.Rows(0)("delivery_order_number").ToString
@@ -296,9 +302,10 @@
     End Sub
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
+        'check remaining udah minus tp gk foc
         Dim query As String = ""
         Dim err_txt As String = ""
-        Dim rec_number, rec_date, do_number, do_date, rec_note, rec_stats, id_wh_drawer As String
+        Dim rec_number, rec_date, do_number, do_date, rec_note, rec_stats, id_wh_drawer, is_foc As String
         Dim id_rec_new As String
 
         rec_number = ""
@@ -308,12 +315,16 @@
         rec_note = ""
         rec_stats = ""
         id_wh_drawer = ""
+        is_foc = "2"
         'validasi
         Try
             rec_number = TERecNumber.Text
             rec_date = TERecDate.Text
             do_number = TEDONumber.Text
             do_date = DateTime.Parse(TEDODate.EditValue.ToString).ToString("yyyy-MM-dd")
+            If CEFreeOfCharge.Checked = True Then
+                is_foc = "1"
+            End If
             If do_date = "" Then
                 do_date = "0000-00-00"
             Else
@@ -372,7 +383,7 @@
             Else
                 Try
                     'insert rec
-                    query = String.Format("INSERT INTO tb_mat_purc_rec(id_mat_purc,mat_purc_rec_number,delivery_order_number,delivery_order_date,mat_purc_rec_date,mat_purc_rec_note,id_report_status,id_comp_contact_to,id_wh_drawer) VALUES('{0}','{1}','{2}','{3}',DATE(NOW()),'{4}','{5}','{6}','{7}');SELECT LAST_INSERT_ID()", id_order, rec_number, do_number, do_date, rec_note, rec_stats, id_comp_to, id_wh_drawer)
+                    query = String.Format("INSERT INTO tb_mat_purc_rec(id_mat_purc,mat_purc_rec_number,delivery_order_number,delivery_order_date,mat_purc_rec_date,mat_purc_rec_note,id_report_status,id_comp_contact_to,id_wh_drawer,is_foc) VALUES('{0}','{1}','{2}','{3}',DATE(NOW()),'{4}','{5}','{6}','{7}','{8}');SELECT LAST_INSERT_ID()", id_order, rec_number, do_number, do_date, rec_note, rec_stats, id_comp_to, id_wh_drawer, is_foc)
                     id_rec_new = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_mat("3")
 
