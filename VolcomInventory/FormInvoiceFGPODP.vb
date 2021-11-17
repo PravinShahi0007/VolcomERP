@@ -825,6 +825,7 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type='199'"
             If Not doc_type = "FGPO" Then
                 If GVList.GetFocusedRowCellValue("report_mark_type").ToString = "13" Or GVList.GetFocusedRowCellValue("report_mark_type").ToString = "23" Or GVList.GetFocusedRowCellValue("report_mark_type").ToString = "1" Then
                     GCDescription.OptionsColumn.AllowFocus = False
+                    GCReff.OptionsColumn.AllowFocus = False
                     GCQty.OptionsColumn.AllowFocus = False
                     GCCur.OptionsColumn.AllowFocus = False
                     GCBeforeKurs.OptionsColumn.AllowFocus = False
@@ -832,6 +833,7 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type='199'"
                     GCVat.OptionsColumn.AllowFocus = False
                 Else
                     GCDescription.OptionsColumn.AllowFocus = True
+                    GCReff.OptionsColumn.AllowFocus = True
                     GCQty.OptionsColumn.AllowFocus = True
                     GCCur.OptionsColumn.AllowFocus = True
                     GCBeforeKurs.OptionsColumn.AllowFocus = True
