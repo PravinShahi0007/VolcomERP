@@ -103,7 +103,7 @@ LIMIT 1"
             'INNER JOIN tb_m_comp v ON v.`id_comp`=ppsd.`polis_vendor`
             'LEFT JOIN `tb_polis_reg_det` regd ON ppsd.`id_polis_pps_det`=regd.id_polis_pps_det AND regd.`id_polis_reg`='" & id_reg & "'"
             Dim q As String = "SELECT regd.id_polis_reg_det,ppsd.old_end_date,pps.id_polis_pps,d.description,ppsd.`id_polis_pps_det`,ppsd.`nilai_stock`,ppsd.`nilai_building`,ppsd.`nilai_fit_out`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`,ppsd.`nilai_total`
-,c.id_comp,c.`comp_name`,c.`comp_number`,c.address_primary,recv.id_comp AS id_rekomendasi_vendor,recv.comp_name AS rekomendasi_vendor,regd.`rekomendasi_premi`,cv.id_comp AS id_vendor_dipilih,cv.comp_name AS vendor_dipilih,regd.`premi`,regd.`polis_number`
+,c.id_comp,c.`comp_name`,c.`comp_number`,c.address_primary,recv.id_comp AS id_rekomendasi_vendor,recv.comp_name AS rekomendasi_vendor,regd.`rekomendasi_premi`,cv.id_comp AS id_vendor_dipilih,cv.comp_name AS vendor_dipilih,regd.`premi`,regd.`polis_number`,regd.real_start_date,regd.real_end_date
 FROM 
 `tb_polis_reg_det` regd
 INNER JOIN `tb_polis_pps_det` ppsd ON ppsd.`id_polis_pps_det`=regd.id_polis_pps_det AND regd.`id_polis_reg`='" & id_reg & "'

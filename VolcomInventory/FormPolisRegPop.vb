@@ -12,12 +12,24 @@
             TENomorPolis.Properties.ReadOnly = True
             SLEPenawaran.Properties.ReadOnly = True
             TEPremi.Properties.ReadOnly = False
+            DEStart.Properties.ReadOnly = True
+            DEUntil.Properties.ReadOnly = True
         Else
             'mandiri
             load_mandiri()
             TENomorPolis.Properties.ReadOnly = False
             SLEPenawaran.Properties.ReadOnly = False
             TEPremi.Properties.ReadOnly = True
+            DEStart.Properties.ReadOnly = False
+            DEUntil.Properties.ReadOnly = False
+        End If
+
+        'view date
+        Dim q As String = "SELECT real_start_date,real_end_date FROM tb_polis_reg_det WHERE id_polis_reg_det='" & FormPolisReg.BGVSummary.GetFocusedRowCellValue("id_polis_reg_det").ToString & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            DEStart.EditValue = dt.Rows(0)("real_start_date")
+            DEUntil.EditValue = dt.Rows(0)("real_end_date")
         End If
     End Sub
 
@@ -54,7 +66,7 @@ GROUP BY ppsv.id_vendor"
         If TEPremi.EditValue <= 0 Or TEPremi.Text = "" Then
             warningCustom("Please put premi")
         Else
-            Dim q As String = "UPDATE tb_polis_reg_det SET vendor_dipilih='" & SLEPenawaran.EditValue.ToString & "',polis_number='" & addSlashes(TENomorPolis.Text) & "',premi='" & decimalSQL(Decimal.Parse(TEPremi.EditValue.ToString).ToString) & "' WHERE id_polis_reg_det='" & FormPolisReg.BGVSummary.GetFocusedRowCellValue("id_polis_reg_det").ToString & "'"
+            Dim q As String = "UPDATE tb_polis_reg_det SET vendor_dipilih='" & SLEPenawaran.EditValue.ToString & "',polis_number='" & addSlashes(TENomorPolis.Text) & "',premi='" & decimalSQL(Decimal.Parse(TEPremi.EditValue.ToString).ToString) & "',real_start_date='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "',real_end_date='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' WHERE id_polis_reg_det='" & FormPolisReg.BGVSummary.GetFocusedRowCellValue("id_polis_reg_det").ToString & "'"
             execute_non_query(q, True, "", "", "", "")
             FormPolisReg.load_pps_view()
             Close()

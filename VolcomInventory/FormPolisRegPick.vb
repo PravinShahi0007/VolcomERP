@@ -53,8 +53,8 @@ WHERE pps.id_report_status=6 AND ISNULL(reg.id_polis_reg) AND pps.id_pps_type='1
 
                 'mandiri perlu vendor dan nomor polis
                 'add details
-                q = "INSERT INTO `tb_polis_reg_det`(`id_polis_reg`,`id_polis_pps_det`,`rekomendasi_vendor`,`rekomendasi_premi`,`vendor_dipilih`,`premi`,`polis_number`,`id_desc_premi`)
-SELECT '" & id_reg & "' AS id_polis_reg,ppsd.id_polis_pps_det,ppsd.`polis_vendor` AS rekomendasi_vendor,ppsd.`premi` AS rekomendasi_premi,ppsd.`polis_vendor` AS vendor_dipilih,ppsd.`premi` AS premi,'' AS polis_number,pps.`id_desc_premi`
+                q = "INSERT INTO `tb_polis_reg_det`(`id_polis_reg`,`id_polis_pps_det`,`rekomendasi_vendor`,`rekomendasi_premi`,`vendor_dipilih`,`premi`,`polis_number`,`id_desc_premi`,real_start_date,real_end_date)
+SELECT '" & id_reg & "' AS id_polis_reg,ppsd.id_polis_pps_det,ppsd.`polis_vendor` AS rekomendasi_vendor,ppsd.`premi` AS rekomendasi_premi,ppsd.`polis_vendor` AS vendor_dipilih,ppsd.`premi` AS premi,'' AS polis_number,pps.`id_desc_premi`,ppsd.v_start_date,ppsd.v_end_date
 FROM `tb_polis_pps_det` ppsd
 INNER JOIN tb_polis_pps pps ON pps.`id_polis_pps`=ppsd.`id_polis_pps`
 WHERE ppsd.id_polis_pps='" & GVPolisPPS.GetFocusedRowCellValue("id_polis_pps").ToString & "'"
@@ -79,8 +79,8 @@ WHERE ppsd.id_polis_pps='" & GVPolisPPS.GetFocusedRowCellValue("id_polis_pps").T
                 '
                 'kolektif perlu premi
                 'add details
-                q = "INSERT INTO `tb_polis_reg_det`(`id_polis_reg`,`id_polis_pps_det`,`rekomendasi_vendor`,`rekomendasi_premi`,`vendor_dipilih`,`premi`,`polis_number`,`id_desc_premi`)
-SELECT '" & id_reg & "' AS id_polis_reg,ppsd.id_polis_pps_det,(SELECT id_vendor FROM  `tb_polis_pps_kolektif` WHERE is_recommended=1 AND id_polis_pps='" & GVPPSKolektif.GetFocusedRowCellValue("id_polis_pps").ToString & "' LIMIT 1) AS rekomendasi_vendor,0 AS rekomendasi_premi,'" & SLEPenawaran.EditValue.ToString & "' AS vendor_dipilih,0 AS premi,'" & addSlashes(TENomorPolis.Text) & "' AS polis_number,pps.`id_desc_premi`
+                q = "INSERT INTO `tb_polis_reg_det`(`id_polis_reg`,`id_polis_pps_det`,`rekomendasi_vendor`,`rekomendasi_premi`,`vendor_dipilih`,`premi`,`polis_number`,`id_desc_premi`,real_start_date,real_end_date)
+SELECT '" & id_reg & "' AS id_polis_reg,ppsd.id_polis_pps_det,(SELECT id_vendor FROM  `tb_polis_pps_kolektif` WHERE is_recommended=1 AND id_polis_pps='" & GVPPSKolektif.GetFocusedRowCellValue("id_polis_pps").ToString & "' LIMIT 1) AS rekomendasi_vendor,0 AS rekomendasi_premi,'" & SLEPenawaran.EditValue.ToString & "' AS vendor_dipilih,0 AS premi,'" & addSlashes(TENomorPolis.Text) & "' AS polis_number,pps.`id_desc_premi`,'" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' as real_start_date,'" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' as real_end_date
 FROM `tb_polis_pps_det` ppsd
 INNER JOIN tb_polis_pps pps ON pps.`id_polis_pps`=ppsd.`id_polis_pps`
 WHERE ppsd.id_polis_pps='" & GVPPSKolektif.GetFocusedRowCellValue("id_polis_pps").ToString & "'"
@@ -115,6 +115,15 @@ INNER JOIN tb_m_comp c ON c.id_comp=ppsv.id_vendor
 WHERE ppsv.id_polis_pps='" & GVPPSKolektif.GetFocusedRowCellValue("id_polis_pps").ToString & "'
 GROUP BY ppsv.id_vendor"
             viewSearchLookupQuery(SLEPenawaran, q, "id_comp", "comp_name", "id_comp")
+            '
+            Dim qd As String = "SELECT v_start_date,v_end_date
+FROM `tb_polis_pps_det` 
+WHERE id_polis_pps='" & GVPPSKolektif.GetFocusedRowCellValue("id_polis_pps").ToString & "'
+LIMIT 1"
+            Dim dtd As DataTable = execute_query(q, -1, True, "", "", "", "")
+            '
+            DEStart.EditValue = dtd.Rows(0)("v_start_date")
+            DEUntil.EditValue = dtd.Rows(0)("v_end_date")
         End If
     End Sub
 End Class
