@@ -441,9 +441,9 @@
         'invoice status
         Dim cond_status As String = ""
         If LEInvoiceStt.EditValue.ToString = "1" Then
-            cond_status = "AND p.invoice_qty!=IFNULL(proc_prc.qty_proceed,0) "
+            cond_status = "AND p.invoice_qty!=IFNULL(proc_prc.qty_proceed,0)+IFNULL(proc_cs.qty_proceed,0) "
         ElseIf LEInvoiceStt.EditValue.ToString = "2" Then
-            cond_status = "AND p.invoice_qty=IFNULL(proc_prc.qty_proceed,0) "
+            cond_status = "AND p.invoice_qty=IFNULL(proc_prc.qty_proceed,0)+IFNULL(proc_cs.qty_proceed,0) "
         Else
             cond_status = ""
         End If
