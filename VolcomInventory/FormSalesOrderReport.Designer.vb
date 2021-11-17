@@ -85,6 +85,8 @@ Partial Class FormSalesOrderReport
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnViewAll = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumncomp_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_group_desc = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSO.SuspendLayout()
         Me.XTPNew.SuspendLayout()
@@ -422,13 +424,14 @@ Partial Class FormSalesOrderReport
         '
         'GVAll
         '
-        Me.GVAll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_order, Me.GridColumnsales_order_number, Me.GridColumnsales_order_gen_reff, Me.GridColumnsales_order_ol_shop_date, Me.GridColumnsales_order_date, Me.GridColumnprepare_status, Me.GridColumnwh, Me.GridColumndestination, Me.GridColumntotal_order, Me.GridColumntotal_scan, Me.GridColumntotal_completed, Me.GridColumnpros_scan, Me.GridColumnpros_del, Me.GridColumnso_status, Me.GridColumnfinal_date, Me.GridColumnfinal_comment, Me.GridColumnAllfinal_by_name, Me.GridColumnorder_type, Me.GridColumn1, Me.GridColumn2})
+        Me.GVAll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_order, Me.GridColumnsales_order_number, Me.GridColumnsales_order_gen_reff, Me.GridColumnsales_order_ol_shop_date, Me.GridColumnsales_order_date, Me.GridColumnprepare_status, Me.GridColumnwh, Me.GridColumndestination, Me.GridColumntotal_order, Me.GridColumntotal_scan, Me.GridColumntotal_completed, Me.GridColumnpros_scan, Me.GridColumnpros_del, Me.GridColumnso_status, Me.GridColumnfinal_date, Me.GridColumnfinal_comment, Me.GridColumnAllfinal_by_name, Me.GridColumnorder_type, Me.GridColumn1, Me.GridColumn2, Me.GridColumncomp_group, Me.GridColumncomp_group_desc})
         Me.GVAll.GridControl = Me.GCAll
         Me.GVAll.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", Me.GridColumntotal_order, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_scan", Me.GridColumntotal_scan, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_completed", Me.GridColumntotal_completed, "{0:N0}")})
         Me.GVAll.Name = "GVAll"
         Me.GVAll.OptionsBehavior.ReadOnly = True
         Me.GVAll.OptionsFind.AlwaysVisible = True
         Me.GVAll.OptionsView.ColumnAutoWidth = False
+        Me.GVAll.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVAll.OptionsView.ShowFooter = True
         Me.GVAll.OptionsView.ShowGroupPanel = False
         '
@@ -482,7 +485,7 @@ Partial Class FormSalesOrderReport
         Me.GridColumnprepare_status.FieldName = "prepare_status"
         Me.GridColumnprepare_status.Name = "GridColumnprepare_status"
         Me.GridColumnprepare_status.Visible = True
-        Me.GridColumnprepare_status.VisibleIndex = 15
+        Me.GridColumnprepare_status.VisibleIndex = 17
         '
         'GridColumnwh
         '
@@ -509,7 +512,7 @@ Partial Class FormSalesOrderReport
         Me.GridColumntotal_order.Name = "GridColumntotal_order"
         Me.GridColumntotal_order.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", "{0:N0}")})
         Me.GridColumntotal_order.Visible = True
-        Me.GridColumntotal_order.VisibleIndex = 8
+        Me.GridColumntotal_order.VisibleIndex = 10
         '
         'GridColumntotal_scan
         '
@@ -520,7 +523,7 @@ Partial Class FormSalesOrderReport
         Me.GridColumntotal_scan.Name = "GridColumntotal_scan"
         Me.GridColumntotal_scan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_scan", "{0:N0}")})
         Me.GridColumntotal_scan.Visible = True
-        Me.GridColumntotal_scan.VisibleIndex = 9
+        Me.GridColumntotal_scan.VisibleIndex = 11
         '
         'GridColumntotal_completed
         '
@@ -531,7 +534,7 @@ Partial Class FormSalesOrderReport
         Me.GridColumntotal_completed.Name = "GridColumntotal_completed"
         Me.GridColumntotal_completed.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_completed", "{0:N0}")})
         Me.GridColumntotal_completed.Visible = True
-        Me.GridColumntotal_completed.VisibleIndex = 10
+        Me.GridColumntotal_completed.VisibleIndex = 12
         Me.GridColumntotal_completed.Width = 141
         '
         'GridColumnpros_scan
@@ -543,7 +546,7 @@ Partial Class FormSalesOrderReport
         Me.GridColumnpros_scan.UnboundExpression = "([total_scan]/[total_order])*100"
         Me.GridColumnpros_scan.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnpros_scan.Visible = True
-        Me.GridColumnpros_scan.VisibleIndex = 11
+        Me.GridColumnpros_scan.VisibleIndex = 13
         '
         'RepositoryItemProgressBar
         '
@@ -562,7 +565,7 @@ Partial Class FormSalesOrderReport
         Me.GridColumnpros_del.UnboundExpression = "([total_completed]/[total_order])*100"
         Me.GridColumnpros_del.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnpros_del.Visible = True
-        Me.GridColumnpros_del.VisibleIndex = 12
+        Me.GridColumnpros_del.VisibleIndex = 14
         Me.GridColumnpros_del.Width = 77
         '
         'GridColumnso_status
@@ -581,7 +584,7 @@ Partial Class FormSalesOrderReport
         Me.GridColumnfinal_date.FieldName = "final_date"
         Me.GridColumnfinal_date.Name = "GridColumnfinal_date"
         Me.GridColumnfinal_date.Visible = True
-        Me.GridColumnfinal_date.VisibleIndex = 17
+        Me.GridColumnfinal_date.VisibleIndex = 19
         '
         'GridColumnfinal_comment
         '
@@ -589,7 +592,7 @@ Partial Class FormSalesOrderReport
         Me.GridColumnfinal_comment.FieldName = "final_comment"
         Me.GridColumnfinal_comment.Name = "GridColumnfinal_comment"
         Me.GridColumnfinal_comment.Visible = True
-        Me.GridColumnfinal_comment.VisibleIndex = 16
+        Me.GridColumnfinal_comment.VisibleIndex = 18
         '
         'GridColumnAllfinal_by_name
         '
@@ -597,7 +600,7 @@ Partial Class FormSalesOrderReport
         Me.GridColumnAllfinal_by_name.FieldName = "final_by_name"
         Me.GridColumnAllfinal_by_name.Name = "GridColumnAllfinal_by_name"
         Me.GridColumnAllfinal_by_name.Visible = True
-        Me.GridColumnAllfinal_by_name.VisibleIndex = 18
+        Me.GridColumnAllfinal_by_name.VisibleIndex = 20
         '
         'GridColumnorder_type
         '
@@ -615,7 +618,7 @@ Partial Class FormSalesOrderReport
         Me.GridColumn1.FieldName = "first_scan_date"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 13
+        Me.GridColumn1.VisibleIndex = 15
         Me.GridColumn1.Width = 83
         '
         'GridColumn2
@@ -626,7 +629,7 @@ Partial Class FormSalesOrderReport
         Me.GridColumn2.FieldName = "last_scan_date"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 14
+        Me.GridColumn2.VisibleIndex = 16
         Me.GridColumn2.Width = 82
         '
         'RepositoryItemProgressBar1
@@ -763,6 +766,24 @@ Partial Class FormSalesOrderReport
         Me.SimpleButton2.Text = "Hide All Detail"
         Me.SimpleButton2.Visible = False
         '
+        'GridColumncomp_group
+        '
+        Me.GridColumncomp_group.Caption = "Acc. Group"
+        Me.GridColumncomp_group.FieldName = "comp_group"
+        Me.GridColumncomp_group.Name = "GridColumncomp_group"
+        Me.GridColumncomp_group.Visible = True
+        Me.GridColumncomp_group.VisibleIndex = 8
+        Me.GridColumncomp_group.Width = 90
+        '
+        'GridColumncomp_group_desc
+        '
+        Me.GridColumncomp_group_desc.Caption = "Acc. Group Descr."
+        Me.GridColumncomp_group_desc.FieldName = "comp_group_desc"
+        Me.GridColumncomp_group_desc.Name = "GridColumncomp_group_desc"
+        Me.GridColumncomp_group_desc.Visible = True
+        Me.GridColumncomp_group_desc.VisibleIndex = 9
+        Me.GridColumncomp_group_desc.Width = 127
+        '
         'FormSalesOrderReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -875,4 +896,6 @@ Partial Class FormSalesOrderReport
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsales_order_ol_shop_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_group_desc As DevExpress.XtraGrid.Columns.GridColumn
 End Class
