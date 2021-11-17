@@ -302,7 +302,6 @@
     End Sub
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
-        'check remaining udah minus tp gk foc
         Dim query As String = ""
         Dim err_txt As String = ""
         Dim rec_number, rec_date, do_number, do_date, rec_note, rec_stats, id_wh_drawer, is_foc As String
@@ -371,15 +370,35 @@
             End If
         Next
 
+        'validasi foc
+        Dim foc_c As Boolean = True
+        Dim tot_qty_rec As Decimal = GVListPurchase.Columns("mat_purc_rec_det_qty").SummaryItem.SummaryValue
+        Dim tot_qty_po As Decimal = GVListPurchase.Columns("qty").SummaryItem.SummaryValue
+        Dim qfoc As String = "SELECT recd.id_mat_purc_det,SUM(recd.`mat_purc_rec_det_qty`) AS qty
+FROM `tb_mat_purc_rec_det` recd
+INNER JOIN tb_mat_purc_rec rec ON rec.`id_mat_purc_rec`=recd.`id_mat_purc_rec` AND rec.`id_report_status`!=5 AND rec.`id_mat_purc`='" & id_order & "'"
+        Dim dtfoc As DataTable = execute_query(qfoc, -1, True, "", "", "", "")
+        If dtfoc.Rows.Count > 0 Then
+            tot_qty_rec += dtfoc.Rows(0)("qty")
+        End If
+
+        If tot_qty_rec > tot_qty_po Then
+            If CEFreeOfCharge.Checked = False Then
+                foc_c = False
+            End If
+        End If
+
         'end of validasi
         If id_receive = "-1" Then
             'new
             If err_txt = "1" Or Not formIsValidInGroup(EPSampleRec, GroupGeneralHeader) Or id_order = "-1" Or id_comp_to = "-1" Then
                 errorInput()
             ElseIf Not condv Then
-                stopCustom("This vendor has not finished in setup. Please contact the administrator.")
+                stopCustom("Please contact the accounting. Need COA setup.")
             ElseIf Not condc Then
-                stopCustom("Cost cannot zero.")
+                stopCustom("Cost tidak boleh 0.")
+            ElseIf Not foc_c Then
+                stopCustom("Qty yang diterima melebihi qty PO, mohon gunakan FOC untuk kelebihan penerimaan barang")
             Else
                 Try
                     'insert rec
