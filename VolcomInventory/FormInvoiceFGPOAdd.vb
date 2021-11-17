@@ -39,6 +39,7 @@
         'Catch ex As Exception
         '    MsgBox(ex.ToString)
         'End Try
+
         Close()
     End Sub
 
@@ -226,6 +227,7 @@ HAVING qty_rec>=po_qty"
                 TEVATPercent.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("vat")
                 aft_kurs = TEBeforeKurs.EditValue * TEKurs.EditValue
                 TEAfterKurs.EditValue = aft_kurs
+                disable_input()
             ElseIf SLEReportType.EditValue.ToString = "23" Then
                 Dim aft_kurs As Decimal = 0.00
 
@@ -236,6 +238,7 @@ HAVING qty_rec>=po_qty"
                 TEVATPercent.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("vat")
                 aft_kurs = TEBeforeKurs.EditValue * TEKurs.EditValue
                 TEAfterKurs.EditValue = aft_kurs
+                disable_input()
             ElseIf SLEReportType.EditValue.ToString = "1" Then 'sample
                 Dim aft_kurs As Decimal = 0.00
 
@@ -246,7 +249,12 @@ HAVING qty_rec>=po_qty"
                 TEVATPercent.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("vat")
                 aft_kurs = TEBeforeKurs.EditValue * TEKurs.EditValue
                 TEAfterKurs.EditValue = aft_kurs
+                disable_input()
+            Else
+                enable_input()
             End If
+
+
         Catch ex As Exception
         End Try
         '
@@ -255,6 +263,26 @@ HAVING qty_rec>=po_qty"
         Else
             calculate_fgpo(False)
         End If
+    End Sub
+
+    Sub disable_input()
+        TEInfoDesign.ReadOnly = True
+        LECurrency.ReadOnly = True
+        TEBeforeKurs.ReadOnly = True
+        TEKurs.ReadOnly = True
+        TEVATPercent.ReadOnly = True
+        TEVat.ReadOnly = True
+        TEQty.ReadOnly = True
+    End Sub
+
+    Sub enable_input()
+        TEInfoDesign.ReadOnly = False
+        LECurrency.ReadOnly = False
+        TEBeforeKurs.ReadOnly = False
+        TEKurs.ReadOnly = False
+        TEVATPercent.ReadOnly = False
+        TEVat.ReadOnly = False
+        TEQty.ReadOnly = False
     End Sub
 
     Sub calculate_fgpo(ByVal is_vatp As Boolean)
