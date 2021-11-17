@@ -39,14 +39,18 @@ Partial Class FormPolisRegPick
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.TENomorPolis = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LDateFrom = New DevExpress.XtraEditors.LabelControl()
         Me.SLEPenawaran = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LDateFrom = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TENomorPolis = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         CType(Me.GCPolisPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPolisPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,9 +61,13 @@ Partial Class FormPolisRegPick
         CType(Me.GVPPSKolektif, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TENomorPolis.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEPenawaran.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TENomorPolis.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BRefreshPenawaran
@@ -190,7 +198,7 @@ Partial Class FormPolisRegPick
         Me.GCPPSKolektif.Location = New System.Drawing.Point(0, 0)
         Me.GCPPSKolektif.MainView = Me.GVPPSKolektif
         Me.GCPPSKolektif.Name = "GCPPSKolektif"
-        Me.GCPPSKolektif.Size = New System.Drawing.Size(754, 227)
+        Me.GCPPSKolektif.Size = New System.Drawing.Size(754, 199)
         Me.GCPPSKolektif.TabIndex = 147
         Me.GCPPSKolektif.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPPSKolektif})
         '
@@ -243,15 +251,42 @@ Partial Class FormPolisRegPick
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.LabelControl6)
+        Me.PanelControl1.Controls.Add(Me.DEUntil)
+        Me.PanelControl1.Controls.Add(Me.LabelControl5)
+        Me.PanelControl1.Controls.Add(Me.DEStart)
         Me.PanelControl1.Controls.Add(Me.TENomorPolis)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.LDateFrom)
         Me.PanelControl1.Controls.Add(Me.SLEPenawaran)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 227)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 199)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(754, 69)
+        Me.PanelControl1.Size = New System.Drawing.Size(754, 97)
         Me.PanelControl1.TabIndex = 148
+        '
+        'TENomorPolis
+        '
+        Me.TENomorPolis.Location = New System.Drawing.Point(85, 38)
+        Me.TENomorPolis.Name = "TENomorPolis"
+        Me.TENomorPolis.Size = New System.Drawing.Size(437, 20)
+        Me.TENomorPolis.TabIndex = 183
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 41)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(55, 13)
+        Me.LabelControl1.TabIndex = 182
+        Me.LabelControl1.Text = "Nomor Polis"
+        '
+        'LDateFrom
+        '
+        Me.LDateFrom.Location = New System.Drawing.Point(11, 13)
+        Me.LDateFrom.Name = "LDateFrom"
+        Me.LDateFrom.Size = New System.Drawing.Size(64, 13)
+        Me.LDateFrom.TabIndex = 181
+        Me.LDateFrom.Text = "Vendor Dipilih"
         '
         'SLEPenawaran
         '
@@ -294,28 +329,45 @@ Partial Class FormPolisRegPick
         Me.GridColumn42.Visible = True
         Me.GridColumn42.VisibleIndex = 1
         '
-        'LDateFrom
+        'LabelControl6
         '
-        Me.LDateFrom.Location = New System.Drawing.Point(11, 13)
-        Me.LDateFrom.Name = "LDateFrom"
-        Me.LDateFrom.Size = New System.Drawing.Size(64, 13)
-        Me.LDateFrom.TabIndex = 181
-        Me.LDateFrom.Text = "Vendor Dipilih"
+        Me.LabelControl6.Location = New System.Drawing.Point(280, 67)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl6.TabIndex = 187
+        Me.LabelControl6.Text = "Polis Until"
         '
-        'LabelControl1
+        'DEUntil
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(11, 41)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(55, 13)
-        Me.LabelControl1.TabIndex = 182
-        Me.LabelControl1.Text = "Nomor Polis"
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Location = New System.Drawing.Point(333, 64)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Size = New System.Drawing.Size(189, 20)
+        Me.DEUntil.TabIndex = 186
         '
-        'TENomorPolis
+        'LabelControl5
         '
-        Me.TENomorPolis.Location = New System.Drawing.Point(85, 38)
-        Me.TENomorPolis.Name = "TENomorPolis"
-        Me.TENomorPolis.Size = New System.Drawing.Size(437, 20)
-        Me.TENomorPolis.TabIndex = 183
+        Me.LabelControl5.Location = New System.Drawing.Point(11, 67)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(48, 13)
+        Me.LabelControl5.TabIndex = 185
+        Me.LabelControl5.Text = "Polis From"
+        '
+        'DEStart
+        '
+        Me.DEStart.EditValue = Nothing
+        Me.DEStart.Location = New System.Drawing.Point(85, 64)
+        Me.DEStart.Name = "DEStart"
+        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Size = New System.Drawing.Size(189, 20)
+        Me.DEStart.TabIndex = 184
         '
         'FormPolisRegPick
         '
@@ -341,9 +393,13 @@ Partial Class FormPolisRegPick
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TENomorPolis.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEPenawaran.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TENomorPolis.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -376,4 +432,8 @@ Partial Class FormPolisRegPick
     Friend WithEvents TENomorPolis As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LDateFrom As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
 End Class
