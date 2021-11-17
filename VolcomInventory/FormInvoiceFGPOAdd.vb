@@ -114,7 +114,7 @@ INNER JOIN tb_m_mat_det md ON md.id_mat_det=mdp.id_mat_det
 INNER JOIN tb_mat_purc po ON pod.id_mat_purc=po.id_mat_purc 
 INNER JOIN tb_lookup_payment py ON py.id_payment=po.id_payment
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact_to
-INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp AND c.id_comp='" & FormInvoiceFGPODP.SLEVendor.EditValue.ToString & "'
 LEFT JOIN 
 (
     SELECT pn.id_pn_fgpo,pnd.id_report
@@ -132,7 +132,7 @@ INNER JOIN tb_m_mat_det_price mdp ON mdp.id_mat_det_price=pod.id_mat_det_price
 INNER JOIN tb_m_mat_det md ON md.id_mat_det=mdp.id_mat_det
 INNER JOIN tb_mat_purc po ON pod.id_mat_purc=po.id_mat_purc 
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact_to
-INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp AND c.id_comp='" & FormInvoiceFGPODP.SLEVendor.EditValue.ToString & "'
 LEFT JOIN 
 (
     SELECT pn.id_pn_fgpo,pnd.id_report
@@ -163,7 +163,7 @@ FROM `tb_sample_purc` sp
 INNER JOIN tb_sample_purc_det spd ON spd.`id_sample_purc`=sp.`id_sample_purc`
 INNER JOIN tb_lookup_payment py ON py.id_payment=sp.id_payment
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=sp.`id_comp_contact_to`
-INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` AND c.id_comp='" & FormInvoiceFGPODP.SLEVendor.EditValue.ToString & "'
 LEFT JOIN (
 	SELECT pod.id_sample_purc,SUM(recd.sample_purc_rec_det_qty*recd.fob_price_update) AS amount_rec,SUM(recd.sample_purc_rec_det_qty) AS qty_rec
 	FROM `tb_sample_purc_rec_det` recd
@@ -186,7 +186,7 @@ GROUP BY sp.`id_sample_purc`"
 FROM `tb_sample_purc` sp
 INNER JOIN tb_sample_purc_det spd ON spd.`id_sample_purc`=sp.`id_sample_purc`
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=sp.`id_comp_contact_to`
-INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` AND c.id_comp='" & FormInvoiceFGPODP.SLEVendor.EditValue.ToString & "'
 LEFT JOIN (
 	SELECT pod.id_sample_purc,SUM(recd.sample_purc_rec_det_qty*recd.fob_price_update) AS amount_rec,SUM(recd.sample_purc_rec_det_qty) AS qty_rec
 	FROM `tb_sample_purc_rec_det` recd
