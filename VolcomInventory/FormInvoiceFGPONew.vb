@@ -423,6 +423,10 @@ HAVING qty_rec_remaining > 0"
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BPick.Click
         If GVInvoice.RowCount > 0 Then
             Try
+                FormInvoiceFGPODP.id_po = SLEFGPO.EditValue.ToString
+                FormInvoiceFGPODP.SLEVendor.EditValue = GVInvoice.GetRowCellValue(0, "id_comp").ToString
+                FormInvoiceFGPODP.SLEPayType.EditValue = SLETypeInvoice.EditValue
+
                 Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
                 newRow("id_prod_order") = SLEFGPO.EditValue.ToString
                 newRow("id_acc") = GVInvoice.GetFocusedRowCellValue("id_acc")
@@ -441,9 +445,7 @@ HAVING qty_rec_remaining > 0"
                 newRow("inv_number") = ""
                 newRow("note") = ""
                 TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
-                FormInvoiceFGPODP.id_po = SLEFGPO.EditValue.ToString
-                FormInvoiceFGPODP.SLEVendor.EditValue = GVInvoice.GetRowCellValue(0, "id_comp").ToString
-                FormInvoiceFGPODP.SLEPayType.EditValue = SLETypeInvoice.EditValue
+
                 Close()
             Catch ex As Exception
                 MsgBox(ex.ToString)
@@ -497,6 +499,10 @@ WHERE pn.`type`=1 AND pnd.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "' A
     Private Sub BPickAll_Click(sender As Object, e As EventArgs) Handles BPickAll.Click
         If GVInvoice.RowCount > 0 Then
             Try
+                FormInvoiceFGPODP.id_po = SLEFGPO.EditValue.ToString
+                FormInvoiceFGPODP.SLEVendor.EditValue = GVInvoice.GetRowCellValue(0, "id_comp").ToString
+                FormInvoiceFGPODP.SLEPayType.EditValue = SLETypeInvoice.EditValue
+
                 For i As Integer = 0 To GVInvoice.RowCount - 1
                     Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
                     newRow("id_prod_order") = SLEFGPO.EditValue.ToString
@@ -517,14 +523,10 @@ WHERE pn.`type`=1 AND pnd.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "' A
                     newRow("note") = ""
                     TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
                 Next
-                FormInvoiceFGPODP.id_po = SLEFGPO.EditValue.ToString
-                FormInvoiceFGPODP.SLEVendor.EditValue = GVInvoice.GetRowCellValue(0, "id_comp").ToString
-                FormInvoiceFGPODP.SLEPayType.EditValue = SLETypeInvoice.EditValue
                 Close()
             Catch ex As Exception
                 MsgBox(ex.ToString)
             End Try
-
         Else
             warningCustom("No receiving")
         End If
