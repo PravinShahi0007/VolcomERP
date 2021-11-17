@@ -152,7 +152,7 @@ Partial Public Class ReportSalesReturnQC
         Me.XrTableCell8.StylePriority.UseTextAlignment = False
         Me.XrTableCell8.Text = "BARCODE"
         Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell8.Weight = 3.6663034793877896R
+        Me.XrTableCell8.Weight = 3.1425458401091797R
         '
         'XrTableCell2
         '
@@ -170,7 +170,7 @@ Partial Public Class ReportSalesReturnQC
         Me.XrTableCell2.StylePriority.UseTextAlignment = False
         Me.XrTableCell2.Text = "CLASS"
         Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell2.Weight = 1.7458587354336579R
+        Me.XrTableCell2.Weight = 1.7458587354336581R
         '
         'XrTableCell7
         '
@@ -188,7 +188,7 @@ Partial Public Class ReportSalesReturnQC
         Me.XrTableCell7.StylePriority.UseTextAlignment = False
         Me.XrTableCell7.Text = "DESCRIPTION"
         Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell7.Weight = 6.1105057760834685R
+        Me.XrTableCell7.Weight = 6.6342634153620788R
         '
         'XrTableCell3
         '
