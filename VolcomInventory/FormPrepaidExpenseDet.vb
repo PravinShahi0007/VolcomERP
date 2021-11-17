@@ -51,7 +51,7 @@
             report_mark_type = "309"
             '
 
-            Dim qg As String = "SELECT c.id_acc_dp AS id_acc,c.id_comp,ppsd.id_comp AS id_store,ppsd.v_start_date,TIMESTAMPDIFF(MONTH, ppsd.v_start_date, ppsd.v_end_date) AS month_dif,regd.id_polis_reg_det,reg.`number`,regd.polis_number,regd.premi AS val
+            Dim qg As String = "SELECT c.id_acc_dp AS id_acc,c.id_comp,ppsd.id_comp AS id_store,ppsd.v_start_date,TIMESTAMPDIFF(MONTH, regd.real_start_date, regd.real_end_date) AS month_dif,regd.id_polis_reg_det,reg.`number`,regd.polis_number,regd.premi AS val
 FROM `tb_polis_reg_det` regd
 INNER JOIN tb_polis_pps_det ppsd ON ppsd.id_polis_pps_det=regd.id_polis_pps_det
 INNER JOIN tb_polis_reg reg ON reg.`id_polis_reg`=regd.id_polis_reg
