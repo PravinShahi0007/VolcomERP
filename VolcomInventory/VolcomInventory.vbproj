@@ -9100,6 +9100,12 @@
     <Compile Include="ReportInboundAWB.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportIntShippingWO.Designer.vb">
+      <DependentUpon>ReportIntShippingWO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportIntShippingWO.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportInvMat.Designer.vb">
       <DependentUpon>ReportInvMat.vb</DependentUpon>
     </Compile>
@@ -15181,6 +15187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportInboundAWB.resx">
       <DependentUpon>ReportInboundAWB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportIntShippingWO.resx">
+      <DependentUpon>ReportIntShippingWO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportInvMat.resx">
       <DependentUpon>ReportInvMat.vb</DependentUpon>

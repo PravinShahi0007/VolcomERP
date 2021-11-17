@@ -443,6 +443,7 @@ INNER JOIN `tb_del_manifest_det` dmd ON dmd.`id_wh_awb_det`=awbd.`id_wh_awb_det`
 INNER JOIN tb_del_manifest dm ON dm.id_del_manifest=dmd.`id_del_manifest`
 SET awb.`awbill_no`=dm.`awbill_no`,awb.id_del_type=dm.id_del_type,awb.weight_calc=ROUND((awb.length*awb.width*awb.height)/" & div_by & ",2)
 ,awb.c_weight=IF(ROUND((awb.length*awb.width*awb.height)/" & div_by & ",2)>awb.weight,ROUND((awb.length*awb.width*awb.height)/" & div_by & ",2),awb.weight)
+,awb.id_sub_district=dm.id_sub_district
 WHERE dmd.`id_del_manifest`='" & id_del_manifest & "'"
                     execute_non_query(query, True, "", "", "", "")
                     '
