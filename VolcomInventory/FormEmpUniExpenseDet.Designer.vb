@@ -60,8 +60,11 @@ Partial Class FormEmpUniExpenseDet
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControlBottom = New DevExpress.XtraEditors.GroupControl()
         Me.PanelBottomRight = New DevExpress.XtraEditors.PanelControl()
-        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnGetKurs = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControlMiddle = New DevExpress.XtraEditors.GroupControl()
@@ -114,6 +117,7 @@ Partial Class FormEmpUniExpenseDet
         CType(Me.PanelBottomRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelBottomRight.SuspendLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlMiddle.SuspendLayout()
@@ -286,14 +290,17 @@ Partial Class FormEmpUniExpenseDet
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.LabelControl20)
         Me.PanelControl1.Controls.Add(Me.TxtNumber)
         Me.PanelControl1.Controls.Add(Me.LabelControl3)
+        Me.PanelControl1.Controls.Add(Me.BtnGetKurs)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.DECreated)
+        Me.PanelControl1.Controls.Add(Me.TEKurs)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(724, 2)
+        Me.PanelControl1.Location = New System.Drawing.Point(678, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(261, 188)
+        Me.PanelControl1.Size = New System.Drawing.Size(307, 188)
         Me.PanelControl1.TabIndex = 10
         '
         'TxtNumber
@@ -301,7 +308,7 @@ Partial Class FormEmpUniExpenseDet
         Me.TxtNumber.Enabled = False
         Me.TxtNumber.Location = New System.Drawing.Point(72, 41)
         Me.TxtNumber.Name = "TxtNumber"
-        Me.TxtNumber.Size = New System.Drawing.Size(171, 20)
+        Me.TxtNumber.Size = New System.Drawing.Size(224, 20)
         Me.TxtNumber.TabIndex = 0
         '
         'LabelControl3
@@ -330,7 +337,7 @@ Partial Class FormEmpUniExpenseDet
         Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy hh:mm tt"
         Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DECreated.Size = New System.Drawing.Size(171, 20)
+        Me.DECreated.Size = New System.Drawing.Size(224, 20)
         Me.DECreated.TabIndex = 4
         '
         'TxtAcc
@@ -508,18 +515,43 @@ Partial Class FormEmpUniExpenseDet
         'PanelBottomRight
         '
         Me.PanelBottomRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelBottomRight.Controls.Add(Me.LEReportStatus)
         Me.PanelBottomRight.Controls.Add(Me.LabelControl21)
+        Me.PanelBottomRight.Controls.Add(Me.LEReportStatus)
         Me.PanelBottomRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelBottomRight.Location = New System.Drawing.Point(678, 2)
+        Me.PanelBottomRight.Location = New System.Drawing.Point(702, 2)
         Me.PanelBottomRight.Name = "PanelBottomRight"
-        Me.PanelBottomRight.Size = New System.Drawing.Size(307, 67)
+        Me.PanelBottomRight.Size = New System.Drawing.Size(283, 67)
         Me.PanelBottomRight.TabIndex = 140
+        '
+        'LabelControl20
+        '
+        Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl20.Location = New System.Drawing.Point(14, 70)
+        Me.LabelControl20.Name = "LabelControl20"
+        Me.LabelControl20.Size = New System.Drawing.Size(38, 13)
+        Me.LabelControl20.TabIndex = 8942
+        Me.LabelControl20.Text = "Kurs ($)"
+        '
+        'BtnGetKurs
+        '
+        Me.BtnGetKurs.Location = New System.Drawing.Point(238, 67)
+        Me.BtnGetKurs.Name = "BtnGetKurs"
+        Me.BtnGetKurs.Size = New System.Drawing.Size(59, 20)
+        Me.BtnGetKurs.TabIndex = 8943
+        Me.BtnGetKurs.Text = "Get Kurs"
+        '
+        'LabelControl21
+        '
+        Me.LabelControl21.Location = New System.Drawing.Point(11, 9)
+        Me.LabelControl21.Name = "LabelControl21"
+        Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl21.TabIndex = 144
+        Me.LabelControl21.Text = "Status"
         '
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(90, 6)
+        Me.LEReportStatus.Location = New System.Drawing.Point(61, 6)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -532,13 +564,20 @@ Partial Class FormEmpUniExpenseDet
         Me.LEReportStatus.Size = New System.Drawing.Size(211, 20)
         Me.LEReportStatus.TabIndex = 7
         '
-        'LabelControl21
+        'TEKurs
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(40, 9)
-        Me.LabelControl21.Name = "LabelControl21"
-        Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
-        Me.LabelControl21.TabIndex = 144
-        Me.LabelControl21.Text = "Status"
+        Me.TEKurs.Location = New System.Drawing.Point(72, 67)
+        Me.TEKurs.Name = "TEKurs"
+        Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEKurs.Properties.EditValueChangedDelay = 1
+        Me.TEKurs.Properties.Mask.EditMask = "N2"
+        Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEKurs.Properties.Mask.SaveLiteral = False
+        Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEKurs.Properties.ReadOnly = True
+        Me.TEKurs.Size = New System.Drawing.Size(159, 20)
+        Me.TEKurs.TabIndex = 8941
         '
         'MENote
         '
@@ -779,6 +818,7 @@ Partial Class FormEmpUniExpenseDet
         Me.PanelBottomRight.ResumeLayout(False)
         Me.PanelBottomRight.PerformLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlMiddle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlMiddle.ResumeLayout(False)
@@ -853,4 +893,7 @@ Partial Class FormEmpUniExpenseDet
     Friend WithEvents GridColumnstt_acc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents SetQtyToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnGetKurs As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
 End Class

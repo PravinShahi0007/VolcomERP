@@ -73,6 +73,7 @@ Public Class FormEmpUniExpenseDet
             id_departement = data.Rows(0)("id_departement").ToString
             TxtDepartement.Text = data.Rows(0)("departement").ToString
             SLECat.EditValue = data.Rows(0)("id_item_cat").ToString
+            TEKurs.EditValue = data.Rows(0)("kurs_trans")
 
             printed_name = data.Rows(0)("printed_name").ToString
 
@@ -107,6 +108,7 @@ Public Class FormEmpUniExpenseDet
         TxtDel.Enabled = False
         DEStart.Properties.ReadOnly = True
         DEEnd.Properties.ReadOnly = True
+        BtnGetKurs.Enabled = False
 
         'If check_print_report_status(id_report_status) Then
         'BtnPrint.Enabled = True
@@ -249,10 +251,11 @@ Public Class FormEmpUniExpenseDet
                 Dim period_from As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim period_until As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim id_item_cat As String = SLECat.EditValue.ToString
+                Dim kurs_trans As String = decimalSQL(TEKurs.EditValue.ToString)
 
                 'main
-                Dim qi As String = "INSERT INTO tb_emp_uni_ex(id_comp_contact, id_pl_sales_order_del, emp_uni_ex_number, emp_uni_ex_date, period_from, period_until, emp_uni_ex_note, id_report_status, id_departement, id_item_cat) 
-                VALUES('" + id_comp_contact + "','" + id_pl_sales_order_del + "', '" + header_number_sales("35") + "', NOW(), '" + period_from + "','" + period_until + "', '" + emp_uni_ex_note + "', 1, '" + id_departement + "', '" + id_item_cat + "'); SELECT LAST_INSERT_ID(); "
+                Dim qi As String = "INSERT INTO tb_emp_uni_ex(id_comp_contact, id_pl_sales_order_del, emp_uni_ex_number, emp_uni_ex_date, period_from, period_until, emp_uni_ex_note, id_report_status, id_departement, id_item_cat,kurs_trans) 
+                VALUES('" + id_comp_contact + "','" + id_pl_sales_order_del + "', '" + header_number_sales("35") + "', NOW(), '" + period_from + "','" + period_until + "', '" + emp_uni_ex_note + "', 1, '" + id_departement + "', '" + id_item_cat + "', '" + kurs_trans + "'); SELECT LAST_INSERT_ID(); "
                 id_emp_uni_ex = execute_query(qi, 0, True, "", "", "", "")
                 increase_inc_sales("35")
 
@@ -663,5 +666,37 @@ Public Class FormEmpUniExpenseDet
 
     Private Sub GroupControlTop_Paint(sender As Object, e As PaintEventArgs) Handles GroupControlTop.Paint
 
+    End Sub
+
+    Private Sub BtnGetKurs_Click(sender As Object, e As EventArgs) Handles BtnGetKurs.Click
+        load_kurs()
+    End Sub
+
+    Sub load_kurs()
+        If action = "ins" Then
+            Cursor = Cursors.WaitCursor
+            'check kurs first
+            Dim end_period As String = "1991-01-01"
+            Try
+                end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            Dim query_kurs As String = "SELECT * FROM tb_kurs_trans a WHERE DATE(a.created_date) <= '" + end_period + "' ORDER BY a.created_date DESC LIMIT 1"
+            Dim data_kurs As DataTable = execute_query(query_kurs, -1, True, "", "", "", "")
+
+            If Not data_kurs.Rows.Count > 0 Then
+                'warningCustom("Get kurs error.")
+                TEKurs.EditValue = 0.00
+            Else
+                TEKurs.EditValue = data_kurs.Rows(0)("kurs_trans")
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub DEEnd_EditValueChanged(sender As Object, e As EventArgs) Handles DEEnd.EditValueChanged
+        If action = "ins" Then
+            load_kurs()
+        End If
     End Sub
 End Class

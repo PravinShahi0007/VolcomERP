@@ -85,6 +85,9 @@ Partial Class FormEmpUniCreditNoteDet
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.TEExpense = New DevExpress.XtraEditors.TextEdit()
         Me.SBPick = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnGetKurs = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupControlMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlMiddle.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,6 +118,7 @@ Partial Class FormEmpUniCreditNoteDet
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEExpense.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlMiddle
@@ -470,6 +474,9 @@ Partial Class FormEmpUniCreditNoteDet
         'GroupControlTop
         '
         Me.GroupControlTop.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlTop.Controls.Add(Me.LabelControl20)
+        Me.GroupControlTop.Controls.Add(Me.BtnGetKurs)
+        Me.GroupControlTop.Controls.Add(Me.TEKurs)
         Me.GroupControlTop.Controls.Add(Me.SBAdd)
         Me.GroupControlTop.Controls.Add(Me.BtnBrowse)
         Me.GroupControlTop.Controls.Add(Me.LabelControl9)
@@ -763,6 +770,38 @@ Partial Class FormEmpUniCreditNoteDet
         Me.SBPick.TabIndex = 8936
         Me.SBPick.Text = "SimpleButton1"
         '
+        'LabelControl20
+        '
+        Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl20.Location = New System.Drawing.Point(33, 93)
+        Me.LabelControl20.Name = "LabelControl20"
+        Me.LabelControl20.Size = New System.Drawing.Size(38, 13)
+        Me.LabelControl20.TabIndex = 8958
+        Me.LabelControl20.Text = "Kurs ($)"
+        '
+        'BtnGetKurs
+        '
+        Me.BtnGetKurs.Location = New System.Drawing.Point(366, 90)
+        Me.BtnGetKurs.Name = "BtnGetKurs"
+        Me.BtnGetKurs.Size = New System.Drawing.Size(59, 20)
+        Me.BtnGetKurs.TabIndex = 8959
+        Me.BtnGetKurs.Text = "Get Kurs"
+        '
+        'TEKurs
+        '
+        Me.TEKurs.Location = New System.Drawing.Point(125, 90)
+        Me.TEKurs.Name = "TEKurs"
+        Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEKurs.Properties.EditValueChangedDelay = 1
+        Me.TEKurs.Properties.Mask.EditMask = "N2"
+        Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEKurs.Properties.Mask.SaveLiteral = False
+        Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEKurs.Properties.ReadOnly = True
+        Me.TEKurs.Size = New System.Drawing.Size(235, 20)
+        Me.TEKurs.TabIndex = 8957
+        '
         'FormEmpUniCreditNoteDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -809,6 +848,7 @@ Partial Class FormEmpUniCreditNoteDet
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEExpense.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -877,4 +917,7 @@ Partial Class FormEmpUniCreditNoteDet
     Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents SBAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnGetKurs As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
 End Class

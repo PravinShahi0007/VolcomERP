@@ -10,37 +10,50 @@
     End Sub
 
     Private Sub BPick_Click(sender As Object, e As EventArgs) Handles BPick.Click
-        'Try
-        Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
-        '
-        If SLEReportType.EditValue.ToString = "22" Then
-            newRow("id_prod_order") = SLEReport.EditValue.ToString
+        'check sudah ada atau belum
+        Dim sudah As Boolean = False
+        For i = 0 To FormInvoiceFGPODP.GVList.RowCount - 1
+            If FormInvoiceFGPODP.GVList.GetRowCellValue(i, "id_report").ToString = SLEReport.EditValue.ToString And FormInvoiceFGPODP.GVList.GetRowCellValue(i, "report_mark_type").ToString = SLEReportType.EditValue.ToString Then
+                sudah = True
+                Exit For
+            End If
+        Next
+
+        If sudah Then
+            warningCustom("Dokumen ini sudah dipilih pada form")
         Else
-            newRow("id_prod_order") = SLEReport.Properties.View.GetFocusedRowCellValue("id_prod_order").ToString
+            'Try
+            Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
+            '
+            If SLEReportType.EditValue.ToString = "22" Then
+                newRow("id_prod_order") = SLEReport.EditValue.ToString
+            Else
+                newRow("id_prod_order") = SLEReport.Properties.View.GetFocusedRowCellValue("id_prod_order").ToString
+            End If
+            newRow("id_report") = SLEReport.EditValue.ToString
+
+            newRow("report_mark_type") = SLEReportType.EditValue.ToString
+            newRow("report_number") = SLEReport.Text
+            newRow("info_design") = TEInfoDesign.Text
+            '
+            newRow("qty") = TEQty.EditValue
+            newRow("id_currency") = LECurrency.EditValue.ToString
+            newRow("kurs") = Decimal.Parse(TEKurs.EditValue.ToString)
+            newRow("value_bef_kurs") = TEBeforeKurs.EditValue
+            '
+            newRow("pph_percent") = 0
+            newRow("vat") = TEVat.EditValue
+            newRow("inv_number") = ""
+            newRow("note") = ""
+
+            TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
+            FormInvoiceFGPODP.calculate()
+            'Catch ex As Exception
+            '    MsgBox(ex.ToString)
+            'End Try
+
+            Close()
         End If
-        newRow("id_report") = SLEReport.EditValue.ToString
-
-        newRow("report_mark_type") = SLEReportType.EditValue.ToString
-        newRow("report_number") = SLEReport.Text
-        newRow("info_design") = TEInfoDesign.Text
-        '
-        newRow("qty") = TEQty.EditValue
-        newRow("id_currency") = LECurrency.EditValue.ToString
-        newRow("kurs") = Decimal.Parse(TEKurs.EditValue.ToString)
-        newRow("value_bef_kurs") = TEBeforeKurs.EditValue
-        '
-        newRow("pph_percent") = 0
-        newRow("vat") = TEVat.EditValue
-        newRow("inv_number") = ""
-        newRow("note") = ""
-
-        TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
-        FormInvoiceFGPODP.calculate()
-        'Catch ex As Exception
-        '    MsgBox(ex.ToString)
-        'End Try
-
-        Close()
     End Sub
 
     Sub load_kurs()
@@ -106,7 +119,9 @@ WHERE po.`id_report_status`='6'
 GROUP BY po.`id_prod_order`"
         ElseIf SLEReportType.EditValue.ToString = "13" Then 'material dibulatkan ke atas (Alit 11 Januari 2021)
             If is_dp Then
-                query = "SELECT po.`id_mat_purc` AS id_report,0 AS id_prod_order,po.`mat_purc_number` AS report_number,GROUP_CONCAT(TRIM(md.mat_det_name) SEPARATOR '\n') AS description,c.comp_name AS info
+                query = "SELECT po.`id_mat_purc` AS id_report,0 AS id_prod_order,po.`mat_purc_number` AS report_number
+,CONCAT('DP PO nomor ',po.`mat_purc_number`,',Total item=',COUNT(pod.id_mat_det_price),',Qty=',IFNULL(SUM(pod.mat_purc_det_qty),0)) AS description
+,c.comp_name AS info
 ,po.id_currency,po.mat_purc_kurs AS kurs,po.mat_purc_vat AS vat,CEIL((py.dp_amount/100)*SUM(pod.mat_purc_det_price*pod.mat_purc_det_qty)*100)/100 AS po_val,SUM(pod.mat_purc_det_qty) AS qty, (py.dp_amount/100) AS dp_percent
 FROM tb_mat_purc_det pod 
 INNER JOIN tb_m_mat_det_price mdp ON mdp.id_mat_det_price=pod.id_mat_det_price
@@ -124,9 +139,30 @@ LEFT JOIN
 )pn ON pn.id_report=po.id_mat_purc
 WHERE po.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) AND py.dp_amount>0
 GROUP BY pod.id_mat_purc"
+                '--,GROUP_CONCAT(TRIM(md.mat_det_name) SEPARATOR '\n') AS description
             Else
-                query = "SELECT po.`id_mat_purc` AS id_report,0 AS id_prod_order,po.`mat_purc_number` AS report_number,GROUP_CONCAT(TRIM(md.mat_det_name) SEPARATOR '\n') AS description,c.comp_name AS info
+                '                query = "SELECT po.`id_mat_purc` AS id_report,0 AS id_prod_order,po.`mat_purc_number` AS report_number,GROUP_CONCAT(TRIM(md.mat_det_name) SEPARATOR '\n') AS description,c.comp_name AS info
+                ',po.id_currency,po.mat_purc_kurs AS kurs,po.mat_purc_vat AS vat,CEIL(SUM(pod.mat_purc_det_price*pod.mat_purc_det_qty)*100)/100 AS po_val,SUM(pod.mat_purc_det_qty) AS qty
+                'FROM tb_mat_purc_det pod 
+                'INNER JOIN tb_m_mat_det_price mdp ON mdp.id_mat_det_price=pod.id_mat_det_price
+                'INNER JOIN tb_m_mat_det md ON md.id_mat_det=mdp.id_mat_det
+                'INNER JOIN tb_mat_purc po ON pod.id_mat_purc=po.id_mat_purc 
+                'INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact_to
+                'INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp AND c.id_comp='" & FormInvoiceFGPODP.SLEVendor.EditValue.ToString & "'
+                'LEFT JOIN 
+                '(
+                '    SELECT pn.id_pn_fgpo,pnd.id_report
+                '    FROM `tb_pn_fgpo_det` pnd 
+                '    INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
+                '    WHERE pn.id_report_status!=5 AND pnd.report_mark_type=13 AND pn.type=2
+                ')pn ON pn.id_report=po.id_mat_purc
+                'WHERE po.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo)
+                'GROUP BY pod.id_mat_purc"
+                query = "SELECT po.`id_mat_purc` AS id_report,0 AS id_prod_order,po.`mat_purc_number` AS report_number
+,CONCAT('Pelunasan PO nomor ',po.`mat_purc_number`,',Total item=',COUNT(pod.id_mat_det_price),',Qty=',IFNULL(SUM(rec.qty_rec_no_foc),0)) AS description
+,c.comp_name AS info
 ,po.id_currency,po.mat_purc_kurs AS kurs,po.mat_purc_vat AS vat,CEIL(SUM(pod.mat_purc_det_price*pod.mat_purc_det_qty)*100)/100 AS po_val,SUM(pod.mat_purc_det_qty) AS qty
+,SUM(rec.qty_rec) AS qty_rec,SUM(rec.qty_rec_no_foc) AS qty_rec_no_foc,CEIL(SUM(pod.mat_purc_det_price*rec.qty_rec_no_foc)*100)/100 AS rec_val
 FROM tb_mat_purc_det pod 
 INNER JOIN tb_m_mat_det_price mdp ON mdp.id_mat_det_price=pod.id_mat_det_price
 INNER JOIN tb_m_mat_det md ON md.id_mat_det=mdp.id_mat_det
@@ -140,8 +176,17 @@ LEFT JOIN
     INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
     WHERE pn.id_report_status!=5 AND pnd.report_mark_type=13 AND pn.type=2
 )pn ON pn.id_report=po.id_mat_purc
+LEFT JOIN
+(
+	SELECT id_mat_purc_det,SUM(rd.mat_purc_rec_det_qty) AS qty_rec,SUM(IF(r.is_foc=1,0,rd.mat_purc_rec_det_qty)) AS qty_rec_no_foc
+	FROM tb_mat_purc_rec_det rd
+	INNER JOIN tb_mat_purc_rec r ON r.id_mat_purc_rec=rd.id_mat_purc_rec AND r.id_report_status=6
+	GROUP BY rd.id_mat_purc_det
+)rec ON rec.id_mat_purc_det=pod.id_mat_purc_det
 WHERE po.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo)
-GROUP BY pod.id_mat_purc"
+GROUP BY pod.id_mat_purc
+HAVING qty_rec >= qty"
+                ',GROUP_CONCAT(TRIM(md.mat_det_name) SEPARATOR '\n') AS description
             End If
         ElseIf SLEReportType.EditValue.ToString = "23" Then 'FG WO
             query = "SELECT wo.`id_prod_order_wo` AS id_report,wo.`id_prod_order_wo` AS id_prod_order,wo.`prod_order_wo_number` AS report_number,CONCAT(ovh.`overhead`,' - ',dsg.`design_display_name`) AS description,dsg.`design_code` AS info
@@ -218,16 +263,29 @@ HAVING qty_rec>=po_qty"
     Private Sub SLEFGPO_EditValueChanged(sender As Object, e As EventArgs) Handles SLEReport.EditValueChanged
         Try
             If SLEReportType.EditValue.ToString = "13" Then
-                Dim aft_kurs As Decimal = 0.00
+                If is_dp Then
+                    Dim aft_kurs As Decimal = 0.00
 
-                LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", SLEReport.Properties.View.GetFocusedRowCellValue("id_currency").ToString)
-                TEBeforeKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("po_val")
-                TEKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("kurs")
-                TEQty.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("qty")
-                TEVATPercent.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("vat")
-                aft_kurs = TEBeforeKurs.EditValue * TEKurs.EditValue
-                TEAfterKurs.EditValue = aft_kurs
-                disable_input()
+                    LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", SLEReport.Properties.View.GetFocusedRowCellValue("id_currency").ToString)
+                    TEBeforeKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("po_val")
+                    TEKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("kurs")
+                    TEQty.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("qty")
+                    TEVATPercent.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("vat")
+                    aft_kurs = TEBeforeKurs.EditValue * TEKurs.EditValue
+                    TEAfterKurs.EditValue = aft_kurs
+                    disable_input()
+                Else
+                    Dim aft_kurs As Decimal = 0.00
+
+                    LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", SLEReport.Properties.View.GetFocusedRowCellValue("id_currency").ToString)
+                    TEBeforeKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("rec_val")
+                    TEKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("kurs")
+                    TEQty.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("qty_rec_no_foc")
+                    TEVATPercent.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("vat")
+                    aft_kurs = TEBeforeKurs.EditValue * TEKurs.EditValue
+                    TEAfterKurs.EditValue = aft_kurs
+                    disable_input()
+                End If
             ElseIf SLEReportType.EditValue.ToString = "23" Then
                 Dim aft_kurs As Decimal = 0.00
 
