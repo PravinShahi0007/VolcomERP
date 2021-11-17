@@ -292,6 +292,7 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
                 '
                 id_report_status = data.Rows(0)("id_report_status").ToString
             End If
+            load_det()
             calculate()
         End If
     End Sub
