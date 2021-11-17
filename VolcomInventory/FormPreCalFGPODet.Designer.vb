@@ -211,6 +211,9 @@ Partial Class FormPreCalFGPODet
         Me.BPrintBudget2 = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPWO = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
         Me.BPrintWO = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton4 = New DevExpress.XtraEditors.SimpleButton()
@@ -227,10 +230,16 @@ Partial Class FormPreCalFGPODet
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TECTN = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
+        Me.GCWOFGPO = New DevExpress.XtraGrid.GridControl()
+        Me.GVWOFGPO = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn70 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn71 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn72 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn73 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn74 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn75 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn76 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn77 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -324,6 +333,8 @@ Partial Class FormPreCalFGPODet
         Me.XTPWO.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl10.SuspendLayout()
         CType(Me.TEQuotAmo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -333,8 +344,8 @@ Partial Class FormPreCalFGPODet
         CType(Me.TECTN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCWOFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVWOFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -2613,7 +2624,9 @@ Partial Class FormPreCalFGPODet
         '
         'XTPWO
         '
+        Me.XTPWO.Controls.Add(Me.GCWOFGPO)
         Me.XTPWO.Controls.Add(Me.PanelControl3)
+        Me.XTPWO.Controls.Add(Me.PanelControl10)
         Me.XTPWO.Name = "XTPWO"
         Me.XTPWO.PageVisible = False
         Me.XTPWO.Size = New System.Drawing.Size(1016, 388)
@@ -2621,30 +2634,50 @@ Partial Class FormPreCalFGPODet
         '
         'PanelControl3
         '
-        Me.PanelControl3.Controls.Add(Me.LabelControl24)
         Me.PanelControl3.Controls.Add(Me.TextEdit2)
         Me.PanelControl3.Controls.Add(Me.LabelControl23)
         Me.PanelControl3.Controls.Add(Me.TextEdit1)
-        Me.PanelControl3.Controls.Add(Me.PanelControl10)
         Me.PanelControl3.Controls.Add(Me.LabelControl22)
         Me.PanelControl3.Controls.Add(Me.TEQuotAmo)
         Me.PanelControl3.Controls.Add(Me.LabelControl21)
         Me.PanelControl3.Controls.Add(Me.TEQuotNo)
         Me.PanelControl3.Controls.Add(Me.LabelControl20)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1016, 388)
+        Me.PanelControl3.Size = New System.Drawing.Size(1016, 84)
         Me.PanelControl3.TabIndex = 25
+        '
+        'TextEdit2
+        '
+        Me.TextEdit2.Location = New System.Drawing.Point(116, 16)
+        Me.TextEdit2.Name = "TextEdit2"
+        Me.TextEdit2.Size = New System.Drawing.Size(337, 20)
+        Me.TextEdit2.TabIndex = 173
+        '
+        'LabelControl23
+        '
+        Me.LabelControl23.Location = New System.Drawing.Point(15, 19)
+        Me.LabelControl23.Name = "LabelControl23"
+        Me.LabelControl23.Size = New System.Drawing.Size(96, 13)
+        Me.LabelControl23.TabIndex = 172
+        Me.LabelControl23.Text = "Work Order Number"
+        '
+        'TextEdit1
+        '
+        Me.TextEdit1.Location = New System.Drawing.Point(116, 49)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Size = New System.Drawing.Size(337, 20)
+        Me.TextEdit1.TabIndex = 171
         '
         'PanelControl10
         '
         Me.PanelControl10.Controls.Add(Me.BPrintWO)
         Me.PanelControl10.Controls.Add(Me.SimpleButton4)
         Me.PanelControl10.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl10.Location = New System.Drawing.Point(2, 344)
+        Me.PanelControl10.Location = New System.Drawing.Point(0, 346)
         Me.PanelControl10.Name = "PanelControl10"
-        Me.PanelControl10.Size = New System.Drawing.Size(1012, 42)
+        Me.PanelControl10.Size = New System.Drawing.Size(1016, 42)
         Me.PanelControl10.TabIndex = 170
         '
         'BPrintWO
@@ -2656,7 +2689,7 @@ Partial Class FormPreCalFGPODet
         Me.BPrintWO.Appearance.Options.UseFont = True
         Me.BPrintWO.Appearance.Options.UseForeColor = True
         Me.BPrintWO.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrintWO.Location = New System.Drawing.Point(756, 2)
+        Me.BPrintWO.Location = New System.Drawing.Point(760, 2)
         Me.BPrintWO.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BPrintWO.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BPrintWO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -2675,7 +2708,7 @@ Partial Class FormPreCalFGPODet
         Me.SimpleButton4.Appearance.Options.UseFont = True
         Me.SimpleButton4.Appearance.Options.UseForeColor = True
         Me.SimpleButton4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton4.Location = New System.Drawing.Point(883, 2)
+        Me.SimpleButton4.Location = New System.Drawing.Point(887, 2)
         Me.SimpleButton4.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.SimpleButton4.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.SimpleButton4.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -2695,7 +2728,7 @@ Partial Class FormPreCalFGPODet
         '
         'TEQuotAmo
         '
-        Me.TEQuotAmo.Location = New System.Drawing.Point(261, 113)
+        Me.TEQuotAmo.Location = New System.Drawing.Point(596, 49)
         Me.TEQuotAmo.Name = "TEQuotAmo"
         Me.TEQuotAmo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEQuotAmo.Properties.Appearance.Options.UseFont = True
@@ -2707,27 +2740,27 @@ Partial Class FormPreCalFGPODet
         Me.TEQuotAmo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEQuotAmo.Properties.Mask.EditMask = "N2"
         Me.TEQuotAmo.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEQuotAmo.Size = New System.Drawing.Size(192, 20)
+        Me.TEQuotAmo.Size = New System.Drawing.Size(337, 20)
         Me.TEQuotAmo.TabIndex = 167
         '
         'LabelControl21
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(14, 116)
+        Me.LabelControl21.Location = New System.Drawing.Point(468, 51)
         Me.LabelControl21.Name = "LabelControl21"
-        Me.LabelControl21.Size = New System.Drawing.Size(88, 13)
+        Me.LabelControl21.Size = New System.Drawing.Size(112, 13)
         Me.LabelControl21.TabIndex = 166
-        Me.LabelControl21.Text = "Amount Quotation"
+        Me.LabelControl21.Text = "Amount Quotation (Rp)"
         '
         'TEQuotNo
         '
-        Me.TEQuotNo.Location = New System.Drawing.Point(116, 81)
+        Me.TEQuotNo.Location = New System.Drawing.Point(596, 16)
         Me.TEQuotNo.Name = "TEQuotNo"
         Me.TEQuotNo.Size = New System.Drawing.Size(337, 20)
         Me.TEQuotNo.TabIndex = 162
         '
         'LabelControl20
         '
-        Me.LabelControl20.Location = New System.Drawing.Point(14, 84)
+        Me.LabelControl20.Location = New System.Drawing.Point(468, 19)
         Me.LabelControl20.Name = "LabelControl20"
         Me.LabelControl20.Size = New System.Drawing.Size(64, 13)
         Me.LabelControl20.TabIndex = 163
@@ -2834,35 +2867,141 @@ Partial Class FormPreCalFGPODet
         Me.PanelControl6.Size = New System.Drawing.Size(1022, 42)
         Me.PanelControl6.TabIndex = 157
         '
-        'TextEdit1
+        'GCWOFGPO
         '
-        Me.TextEdit1.Location = New System.Drawing.Point(116, 49)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Size = New System.Drawing.Size(337, 20)
-        Me.TextEdit1.TabIndex = 171
+        Me.GCWOFGPO.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCWOFGPO.Location = New System.Drawing.Point(0, 84)
+        Me.GCWOFGPO.MainView = Me.GVWOFGPO
+        Me.GCWOFGPO.Name = "GCWOFGPO"
+        Me.GCWOFGPO.Size = New System.Drawing.Size(1016, 262)
+        Me.GCWOFGPO.TabIndex = 171
+        Me.GCWOFGPO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVWOFGPO})
         '
-        'TextEdit2
+        'GVWOFGPO
         '
-        Me.TextEdit2.Location = New System.Drawing.Point(116, 16)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Size = New System.Drawing.Size(337, 20)
-        Me.TextEdit2.TabIndex = 173
+        Me.GVWOFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn70, Me.GridColumn71, Me.GridColumn72, Me.GridColumn73, Me.GridColumn74, Me.GridColumn75, Me.GridColumn76, Me.GridColumn77})
+        Me.GVWOFGPO.GridControl = Me.GCWOFGPO
+        Me.GVWOFGPO.Name = "GVWOFGPO"
+        Me.GVWOFGPO.OptionsView.ShowFooter = True
+        Me.GVWOFGPO.OptionsView.ShowGroupPanel = False
         '
-        'LabelControl23
+        'GridColumn70
         '
-        Me.LabelControl23.Location = New System.Drawing.Point(15, 19)
-        Me.LabelControl23.Name = "LabelControl23"
-        Me.LabelControl23.Size = New System.Drawing.Size(96, 13)
-        Me.LabelControl23.TabIndex = 172
-        Me.LabelControl23.Text = "Work Order Number"
+        Me.GridColumn70.Caption = "ID"
+        Me.GridColumn70.FieldName = "id_prod_order"
+        Me.GridColumn70.Name = "GridColumn70"
+        Me.GridColumn70.OptionsColumn.AllowEdit = False
+        Me.GridColumn70.OptionsColumn.AllowFocus = False
+        Me.GridColumn70.OptionsColumn.ReadOnly = True
         '
-        'LabelControl24
+        'GridColumn71
         '
-        Me.LabelControl24.Location = New System.Drawing.Point(242, 116)
-        Me.LabelControl24.Name = "LabelControl24"
-        Me.LabelControl24.Size = New System.Drawing.Size(13, 13)
-        Me.LabelControl24.TabIndex = 174
-        Me.LabelControl24.Text = "Rp"
+        Me.GridColumn71.Caption = "FGPO Number"
+        Me.GridColumn71.FieldName = "prod_order_number"
+        Me.GridColumn71.Name = "GridColumn71"
+        Me.GridColumn71.OptionsColumn.AllowEdit = False
+        Me.GridColumn71.OptionsColumn.AllowFocus = False
+        Me.GridColumn71.OptionsColumn.ReadOnly = True
+        Me.GridColumn71.Visible = True
+        Me.GridColumn71.VisibleIndex = 0
+        Me.GridColumn71.Width = 141
+        '
+        'GridColumn72
+        '
+        Me.GridColumn72.Caption = "Design"
+        Me.GridColumn72.FieldName = "design_display_name"
+        Me.GridColumn72.Name = "GridColumn72"
+        Me.GridColumn72.OptionsColumn.AllowEdit = False
+        Me.GridColumn72.OptionsColumn.AllowFocus = False
+        Me.GridColumn72.OptionsColumn.ReadOnly = True
+        Me.GridColumn72.Visible = True
+        Me.GridColumn72.VisibleIndex = 2
+        Me.GridColumn72.Width = 293
+        '
+        'GridColumn73
+        '
+        Me.GridColumn73.Caption = "Design Code"
+        Me.GridColumn73.FieldName = "design_code"
+        Me.GridColumn73.Name = "GridColumn73"
+        Me.GridColumn73.OptionsColumn.AllowEdit = False
+        Me.GridColumn73.OptionsColumn.AllowFocus = False
+        Me.GridColumn73.OptionsColumn.ReadOnly = True
+        Me.GridColumn73.Visible = True
+        Me.GridColumn73.VisibleIndex = 1
+        Me.GridColumn73.Width = 168
+        '
+        'GridColumn74
+        '
+        Me.GridColumn74.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn74.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn74.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn74.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn74.Caption = "FOB Price"
+        Me.GridColumn74.DisplayFormat.FormatString = "N2"
+        Me.GridColumn74.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn74.FieldName = "price"
+        Me.GridColumn74.Name = "GridColumn74"
+        Me.GridColumn74.OptionsColumn.AllowEdit = False
+        Me.GridColumn74.OptionsColumn.AllowFocus = False
+        Me.GridColumn74.OptionsColumn.ReadOnly = True
+        Me.GridColumn74.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "price", "{0:N2}")})
+        Me.GridColumn74.Visible = True
+        Me.GridColumn74.VisibleIndex = 3
+        Me.GridColumn74.Width = 114
+        '
+        'GridColumn75
+        '
+        Me.GridColumn75.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn75.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn75.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn75.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn75.Caption = "Qty Order"
+        Me.GridColumn75.DisplayFormat.FormatString = "N2"
+        Me.GridColumn75.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn75.FieldName = "qty"
+        Me.GridColumn75.Name = "GridColumn75"
+        Me.GridColumn75.OptionsColumn.AllowEdit = False
+        Me.GridColumn75.OptionsColumn.AllowFocus = False
+        Me.GridColumn75.OptionsColumn.ReadOnly = True
+        Me.GridColumn75.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
+        Me.GridColumn75.Visible = True
+        Me.GridColumn75.VisibleIndex = 4
+        Me.GridColumn75.Width = 132
+        '
+        'GridColumn76
+        '
+        Me.GridColumn76.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn76.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn76.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn76.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn76.Caption = "Total FOB"
+        Me.GridColumn76.DisplayFormat.FormatString = "N2"
+        Me.GridColumn76.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn76.FieldName = "total_amount"
+        Me.GridColumn76.Name = "GridColumn76"
+        Me.GridColumn76.OptionsColumn.AllowEdit = False
+        Me.GridColumn76.OptionsColumn.AllowFocus = False
+        Me.GridColumn76.OptionsColumn.ReadOnly = True
+        Me.GridColumn76.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", "{0:N2}")})
+        Me.GridColumn76.UnboundExpression = "[qty] * [price]"
+        Me.GridColumn76.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn76.Visible = True
+        Me.GridColumn76.VisibleIndex = 5
+        Me.GridColumn76.Width = 150
+        '
+        'GridColumn77
+        '
+        Me.GridColumn77.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn77.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn77.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn77.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn77.Caption = "Duty %"
+        Me.GridColumn77.DisplayFormat.FormatString = "N2"
+        Me.GridColumn77.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn77.FieldName = "duty"
+        Me.GridColumn77.Name = "GridColumn77"
+        Me.GridColumn77.Visible = True
+        Me.GridColumn77.VisibleIndex = 6
         '
         'FormPreCalFGPODet
         '
@@ -2981,6 +3120,8 @@ Partial Class FormPreCalFGPODet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl10.ResumeLayout(False)
         CType(Me.TEQuotAmo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2991,8 +3132,8 @@ Partial Class FormPreCalFGPODet
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCWOFGPO, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVWOFGPO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3204,7 +3345,16 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents BPrintWO As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton4 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCWOFGPO As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVWOFGPO As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn70 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn71 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn72 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn73 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn74 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn75 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn76 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn77 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

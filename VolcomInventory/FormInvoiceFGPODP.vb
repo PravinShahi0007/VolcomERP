@@ -819,4 +819,26 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type='199'"
             End Try
         End If
     End Sub
+
+    Private Sub GVList_GotFocus(sender As Object, e As EventArgs) Handles GVList.GotFocus
+        If GVList.RowCount > 0 Then
+            If Not doc_type = "FGPO" Then
+                If GVList.GetFocusedRowCellValue("report_mark_type").ToString = "13" Or GVList.GetFocusedRowCellValue("report_mark_type").ToString = "23" Or GVList.GetFocusedRowCellValue("report_mark_type").ToString = "1" Then
+                    GCDescription.OptionsColumn.AllowFocus = False
+                    GCQty.OptionsColumn.AllowFocus = False
+                    GCCur.OptionsColumn.AllowFocus = False
+                    GCBeforeKurs.OptionsColumn.AllowFocus = False
+                    GCKurs.OptionsColumn.AllowFocus = False
+                    GCVat.OptionsColumn.AllowFocus = False
+                Else
+                    GCDescription.OptionsColumn.AllowFocus = True
+                    GCQty.OptionsColumn.AllowFocus = True
+                    GCCur.OptionsColumn.AllowFocus = True
+                    GCBeforeKurs.OptionsColumn.AllowFocus = True
+                    GCKurs.OptionsColumn.AllowFocus = True
+                    GCVat.OptionsColumn.AllowFocus = True
+                End If
+            End If
+        End If
+    End Sub
 End Class
