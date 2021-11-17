@@ -10,37 +10,50 @@
     End Sub
 
     Private Sub BPick_Click(sender As Object, e As EventArgs) Handles BPick.Click
-        'Try
-        Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
-        '
-        If SLEReportType.EditValue.ToString = "22" Then
-            newRow("id_prod_order") = SLEReport.EditValue.ToString
+        'check sudah ada atau belum
+        Dim sudah As Boolean = False
+        For i = 0 To FormInvoiceFGPODP.GVList.RowCount - 1
+            If FormInvoiceFGPODP.GVList.GetRowCellValue(i, "id_report").ToString = SLEReport.EditValue.ToString And FormInvoiceFGPODP.GVList.GetRowCellValue(i, "report_mark_type").ToString = SLEReportType.EditValue.ToString Then
+                sudah = True
+                Exit For
+            End If
+        Next
+
+        If sudah Then
+            warningCustom("Dokumen ini sudah dipilih pada form")
         Else
-            newRow("id_prod_order") = SLEReport.Properties.View.GetFocusedRowCellValue("id_prod_order").ToString
+            'Try
+            Dim newRow As DataRow = (TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable)).NewRow()
+            '
+            If SLEReportType.EditValue.ToString = "22" Then
+                newRow("id_prod_order") = SLEReport.EditValue.ToString
+            Else
+                newRow("id_prod_order") = SLEReport.Properties.View.GetFocusedRowCellValue("id_prod_order").ToString
+            End If
+            newRow("id_report") = SLEReport.EditValue.ToString
+
+            newRow("report_mark_type") = SLEReportType.EditValue.ToString
+            newRow("report_number") = SLEReport.Text
+            newRow("info_design") = TEInfoDesign.Text
+            '
+            newRow("qty") = TEQty.EditValue
+            newRow("id_currency") = LECurrency.EditValue.ToString
+            newRow("kurs") = Decimal.Parse(TEKurs.EditValue.ToString)
+            newRow("value_bef_kurs") = TEBeforeKurs.EditValue
+            '
+            newRow("pph_percent") = 0
+            newRow("vat") = TEVat.EditValue
+            newRow("inv_number") = ""
+            newRow("note") = ""
+
+            TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
+            FormInvoiceFGPODP.calculate()
+            'Catch ex As Exception
+            '    MsgBox(ex.ToString)
+            'End Try
+
+            Close()
         End If
-        newRow("id_report") = SLEReport.EditValue.ToString
-
-        newRow("report_mark_type") = SLEReportType.EditValue.ToString
-        newRow("report_number") = SLEReport.Text
-        newRow("info_design") = TEInfoDesign.Text
-        '
-        newRow("qty") = TEQty.EditValue
-        newRow("id_currency") = LECurrency.EditValue.ToString
-        newRow("kurs") = Decimal.Parse(TEKurs.EditValue.ToString)
-        newRow("value_bef_kurs") = TEBeforeKurs.EditValue
-        '
-        newRow("pph_percent") = 0
-        newRow("vat") = TEVat.EditValue
-        newRow("inv_number") = ""
-        newRow("note") = ""
-
-        TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)
-        FormInvoiceFGPODP.calculate()
-        'Catch ex As Exception
-        '    MsgBox(ex.ToString)
-        'End Try
-
-        Close()
     End Sub
 
     Sub load_kurs()
