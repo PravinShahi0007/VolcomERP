@@ -290,14 +290,17 @@ Partial Class FormEmpUniExpenseDet
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.LabelControl20)
         Me.PanelControl1.Controls.Add(Me.TxtNumber)
         Me.PanelControl1.Controls.Add(Me.LabelControl3)
+        Me.PanelControl1.Controls.Add(Me.BtnGetKurs)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.DECreated)
+        Me.PanelControl1.Controls.Add(Me.TEKurs)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(724, 2)
+        Me.PanelControl1.Location = New System.Drawing.Point(678, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(261, 188)
+        Me.PanelControl1.Size = New System.Drawing.Size(307, 188)
         Me.PanelControl1.TabIndex = 10
         '
         'TxtNumber
@@ -305,7 +308,7 @@ Partial Class FormEmpUniExpenseDet
         Me.TxtNumber.Enabled = False
         Me.TxtNumber.Location = New System.Drawing.Point(72, 41)
         Me.TxtNumber.Name = "TxtNumber"
-        Me.TxtNumber.Size = New System.Drawing.Size(171, 20)
+        Me.TxtNumber.Size = New System.Drawing.Size(224, 20)
         Me.TxtNumber.TabIndex = 0
         '
         'LabelControl3
@@ -334,7 +337,7 @@ Partial Class FormEmpUniExpenseDet
         Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy hh:mm tt"
         Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DECreated.Size = New System.Drawing.Size(171, 20)
+        Me.DECreated.Size = New System.Drawing.Size(224, 20)
         Me.DECreated.TabIndex = 4
         '
         'TxtAcc
@@ -512,21 +515,18 @@ Partial Class FormEmpUniExpenseDet
         'PanelBottomRight
         '
         Me.PanelBottomRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelBottomRight.Controls.Add(Me.LabelControl20)
-        Me.PanelBottomRight.Controls.Add(Me.BtnGetKurs)
         Me.PanelBottomRight.Controls.Add(Me.LabelControl21)
         Me.PanelBottomRight.Controls.Add(Me.LEReportStatus)
-        Me.PanelBottomRight.Controls.Add(Me.TEKurs)
         Me.PanelBottomRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelBottomRight.Location = New System.Drawing.Point(678, 2)
+        Me.PanelBottomRight.Location = New System.Drawing.Point(702, 2)
         Me.PanelBottomRight.Name = "PanelBottomRight"
-        Me.PanelBottomRight.Size = New System.Drawing.Size(307, 67)
+        Me.PanelBottomRight.Size = New System.Drawing.Size(283, 67)
         Me.PanelBottomRight.TabIndex = 140
         '
         'LabelControl20
         '
         Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl20.Location = New System.Drawing.Point(40, 13)
+        Me.LabelControl20.Location = New System.Drawing.Point(14, 70)
         Me.LabelControl20.Name = "LabelControl20"
         Me.LabelControl20.Size = New System.Drawing.Size(38, 13)
         Me.LabelControl20.TabIndex = 8942
@@ -534,7 +534,7 @@ Partial Class FormEmpUniExpenseDet
         '
         'BtnGetKurs
         '
-        Me.BtnGetKurs.Location = New System.Drawing.Point(242, 10)
+        Me.BtnGetKurs.Location = New System.Drawing.Point(238, 67)
         Me.BtnGetKurs.Name = "BtnGetKurs"
         Me.BtnGetKurs.Size = New System.Drawing.Size(59, 20)
         Me.BtnGetKurs.TabIndex = 8943
@@ -542,7 +542,7 @@ Partial Class FormEmpUniExpenseDet
         '
         'LabelControl21
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(40, 39)
+        Me.LabelControl21.Location = New System.Drawing.Point(11, 9)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl21.TabIndex = 144
@@ -551,7 +551,7 @@ Partial Class FormEmpUniExpenseDet
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(90, 36)
+        Me.LEReportStatus.Location = New System.Drawing.Point(61, 6)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -566,7 +566,7 @@ Partial Class FormEmpUniExpenseDet
         '
         'TEKurs
         '
-        Me.TEKurs.Location = New System.Drawing.Point(90, 10)
+        Me.TEKurs.Location = New System.Drawing.Point(72, 67)
         Me.TEKurs.Name = "TEKurs"
         Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
         Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -576,7 +576,7 @@ Partial Class FormEmpUniExpenseDet
         Me.TEKurs.Properties.Mask.SaveLiteral = False
         Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEKurs.Properties.ReadOnly = True
-        Me.TEKurs.Size = New System.Drawing.Size(146, 20)
+        Me.TEKurs.Size = New System.Drawing.Size(159, 20)
         Me.TEKurs.TabIndex = 8941
         '
         'MENote

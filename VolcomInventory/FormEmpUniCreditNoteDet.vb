@@ -49,6 +49,7 @@
             DEEnd.EditValue = data.Rows(0)("period_until")
             TxtDepartement.Text = data.Rows(0)("departement").ToString
             SLECat.EditValue = data.Rows(0)("id_item_cat").ToString
+            TEKurs.EditValue = data.Rows(0)("kurs_trans")
 
             id_pl_sales_order_del = data.Rows(0)("id_pl_sales_order_del").ToString
             id_departement = data.Rows(0)("id_departement").ToString
@@ -83,6 +84,7 @@
             DEStart.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='1'", 0, True, "", "", "", "")
             DEEnd.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='1'", 0, True, "", "", "", "")
         Else
+            BtnGetKurs.Enabled = False
             BtnMark.Enabled = True
             BtnViewJournal.Enabled = True
             BtnXlsBOF.Enabled = True
@@ -94,6 +96,8 @@
             SBPick.Enabled = False
             RepositoryItemTextEdit.ReadOnly = True
             MENote.ReadOnly = True
+            DEStart.Enabled = False
+            DEEnd.Enabled = False
         End If
 
         If LEReportStatus.EditValue.ToString = "6" Then
@@ -256,10 +260,11 @@
                 Dim period_from As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim period_until As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim id_item_cat As String = SLECat.EditValue.ToString
+                Dim kurs_trans As String = decimalSQL(TEKurs.EditValue)
 
                 'main
-                Dim qi As String = "INSERT INTO tb_emp_uni_ex (id_emp_uni_ex_ref, id_comp_contact, id_pl_sales_order_del, emp_uni_ex_number, emp_uni_ex_date, period_from, period_until, emp_uni_ex_note, id_report_status, id_departement, id_item_cat, report_mark_type) 
-                VALUES('" + id_emp_uni_ex_ref + "', '" + id_comp_contact + "', '" + id_pl_sales_order_del + "', '" + header_number_sales("40") + "', NOW(), '" + period_from + "', '" + period_until + "', '" + emp_uni_ex_note + "', 1, '" + id_departement + "', '" + id_item_cat + "', 236); SELECT LAST_INSERT_ID();"
+                Dim qi As String = "INSERT INTO tb_emp_uni_ex (id_emp_uni_ex_ref, id_comp_contact, id_pl_sales_order_del, emp_uni_ex_number, emp_uni_ex_date, period_from, period_until, emp_uni_ex_note, id_report_status, id_departement, id_item_cat, report_mark_type, kurs_trans) 
+                VALUES('" + id_emp_uni_ex_ref + "', '" + id_comp_contact + "', '" + id_pl_sales_order_del + "', '" + header_number_sales("40") + "', NOW(), '" + period_from + "', '" + period_until + "', '" + emp_uni_ex_note + "', 1, '" + id_departement + "', '" + id_item_cat + "', 236, '" + kurs_trans + "'); SELECT LAST_INSERT_ID();"
 
                 id_emp_uni_ex = execute_query(qi, 0, True, "", "", "", "")
 
@@ -604,5 +609,37 @@
                 Next
             End If
         Next
+    End Sub
+
+    Sub load_kurs()
+        If id_emp_uni_ex = "0" Then
+            Cursor = Cursors.WaitCursor
+            'check kurs first
+            Dim end_period As String = "1991-01-01"
+            Try
+                end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            Dim query_kurs As String = "SELECT * FROM tb_kurs_trans a WHERE DATE(a.created_date) <= '" + end_period + "' ORDER BY a.created_date DESC LIMIT 1"
+            Dim data_kurs As DataTable = execute_query(query_kurs, -1, True, "", "", "", "")
+
+            If Not data_kurs.Rows.Count > 0 Then
+                'warningCustom("Get kurs error.")
+                TEKurs.EditValue = 0.00
+            Else
+                TEKurs.EditValue = data_kurs.Rows(0)("kurs_trans")
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnGetKurs_Click(sender As Object, e As EventArgs) Handles BtnGetKurs.Click
+        load_kurs()
+    End Sub
+
+    Private Sub DEEnd_EditValueChanged(sender As Object, e As EventArgs) Handles DEEnd.EditValueChanged
+        If id_emp_uni_ex = "0" Then
+            load_kurs()
+        End If
     End Sub
 End Class

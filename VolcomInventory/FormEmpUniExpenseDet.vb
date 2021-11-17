@@ -685,7 +685,7 @@ Public Class FormEmpUniExpenseDet
             Dim data_kurs As DataTable = execute_query(query_kurs, -1, True, "", "", "", "")
 
             If Not data_kurs.Rows.Count > 0 Then
-                warningCustom("Get kurs error.")
+                'warningCustom("Get kurs error.")
                 TEKurs.EditValue = 0.00
             Else
                 TEKurs.EditValue = data_kurs.Rows(0)("kurs_trans")
