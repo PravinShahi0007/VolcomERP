@@ -1516,7 +1516,7 @@
                 ON e.id_departement = d.id_departement
             WHERE s.date BETWEEN 
                 IF(d.is_store = 2, (SELECT periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_start FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) AND 
-                IF(d.is_store = 2, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) 
+                IF(d.is_store = 2, IF(e.employee_last_date IS NULL, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), e.employee_last_date), IF(e.employee_last_date IS NULL, (SELECT store_periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + "), e.employee_last_date)) 
                 AND s.id_schedule_type IN (1, 3)
             GROUP BY s.id_employee
         "
