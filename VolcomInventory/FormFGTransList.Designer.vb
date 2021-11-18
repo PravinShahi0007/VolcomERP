@@ -715,6 +715,7 @@ Partial Class FormFGTransList
         Me.DEFromRepair = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl35 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl36 = New DevExpress.XtraEditors.LabelControl()
+        Me.CEIncludePrmUni = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.XTCSvcLevel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLevel.SuspendLayout()
         Me.XTPRec.SuspendLayout()
@@ -902,6 +903,7 @@ Partial Class FormFGTransList
         CType(Me.DEUntilRepair.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromRepair.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromRepair.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEIncludePrmUni.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSvcLevel
@@ -5654,6 +5656,7 @@ Partial Class FormFGTransList
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.CEIncludePrmUni)
         Me.PanelControl1.Controls.Add(Me.DEUntilSal)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.SLStatus7)
@@ -5754,10 +5757,10 @@ Partial Class FormFGTransList
         '
         'CEPromo
         '
-        Me.CEPromo.Location = New System.Drawing.Point(251, 91)
+        Me.CEPromo.Location = New System.Drawing.Point(259, 91)
         Me.CEPromo.Name = "CEPromo"
         Me.CEPromo.Properties.Caption = "Include GWP"
-        Me.CEPromo.Size = New System.Drawing.Size(89, 19)
+        Me.CEPromo.Size = New System.Drawing.Size(81, 19)
         Me.CEPromo.TabIndex = 8926
         '
         'LabelControl3
@@ -7508,6 +7511,14 @@ Partial Class FormFGTransList
         Me.LabelControl36.TabIndex = 8892
         Me.LabelControl36.Text = "From"
         '
+        'CEIncludePrmUni
+        '
+        Me.CEIncludePrmUni.Location = New System.Drawing.Point(123, 91)
+        Me.CEIncludePrmUni.Name = "CEIncludePrmUni"
+        Me.CEIncludePrmUni.Properties.Caption = "Include Promo/Uniform"
+        Me.CEIncludePrmUni.Size = New System.Drawing.Size(131, 19)
+        Me.CEIncludePrmUni.TabIndex = 8932
+        '
         'FormFGTransList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -7717,6 +7728,7 @@ Partial Class FormFGTransList
         CType(Me.DEUntilRepair.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromRepair.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromRepair.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEIncludePrmUni.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -8416,4 +8428,5 @@ Partial Class FormFGTransList
     Friend WithEvents GridColumnfg_repair_note As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnclassrep As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnrec_wh As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CEIncludePrmUni As DevExpress.XtraEditors.CheckEdit
 End Class
