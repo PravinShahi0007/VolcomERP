@@ -89,7 +89,7 @@
 
     Sub viewSummary()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT cg.description AS `store_group`, IF(SUM(CASE WHEN e.is_paid=2 THEN 1 ELSE 0 END)>0,IF(e.is_manual_release=1,'Manual Release', 'Hold'), 'Release') AS `status`,
+        Dim query As String = "SELECT cg.description AS `store_group`, IF(SUM(CASE WHEN e.is_paid=2 THEN 1 ELSE 0 END)>0,IF(MIN(e.is_manual_release)=1,'Manual Release', 'Hold'), 'Release') AS `status`,
         SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) ) AS `inv_amount`,
         SUM(IFNULL(pyd.`value`,0.00)) AS total_rec,
         SUM(IFNULL(pyd.`value`,0.00) - CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS `diff`
