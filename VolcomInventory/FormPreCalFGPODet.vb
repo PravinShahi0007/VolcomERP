@@ -464,7 +464,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPAdmCharges.PageVisible = True
             XTPChoosen.PageVisible = True
             XTPDutyReport.PageVisible = True
-            XTPWO.PageVisible = True
+            XTPWO.PageVisible = False
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
