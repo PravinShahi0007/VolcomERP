@@ -21,7 +21,7 @@ ORDER BY lm.`id_month` ASC"
 
     Private Sub BUpdateDuty_Click(sender As Object, e As EventArgs) Handles BUpdateDuty.Click
         If GVPlan.RowCount > 0 Then
-            Dim q As String = "DELETE FROM tb_bulan_import WHERE bi.`year`='" & Date.Parse(DEYearInput.EditValue.ToString).ToString("yyyy") & "'"
+            Dim q As String = "DELETE FROM tb_bulan_import WHERE `year`='" & Date.Parse(DEYearInput.EditValue.ToString).ToString("yyyy") & "'"
             execute_non_query(q, True, "", "", "", "")
             '
             GVPlan.ActiveFilterString = "[rencana_import]='yes'"
@@ -31,8 +31,9 @@ ORDER BY lm.`id_month` ASC"
                     If Not i = 0 Then
                         q += ","
                     End If
-                    q = "('" & Date.Parse(DEYearInput.EditValue.ToString).ToString("yyyy") & "','" & GVPlan.GetRowCellValue(i, "id_month").ToString & "')"
+                    q += "('" & Date.Parse(DEYearInput.EditValue.ToString).ToString("yyyy") & "','" & GVPlan.GetRowCellValue(i, "id_month").ToString & "')"
                 Next
+                execute_non_query(q, True, "", "", "", "")
             End If
             GVPlan.ActiveFilterString = ""
         End If
