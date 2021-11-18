@@ -48,4 +48,38 @@ ORDER BY lm.`id_month` ASC"
     Private Sub DEYearInput_EditValueChanged(sender As Object, e As EventArgs) Handles DEYearInput.EditValueChanged
         del_all()
     End Sub
+
+    Private Sub DEYearStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEYearStart.EditValueChanged
+        DEYearUntil.Properties.MinValue = DEYearStart.EditValue
+    End Sub
+
+    Private Sub DEYearUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEYearUntil.EditValueChanged
+        DEYearStart.Properties.MaxValue = DEYearUntil.EditValue
+    End Sub
+
+    Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+        view_summary()
+    End Sub
+
+    Sub view_summary()
+        Dim q As String = "SELECT bi.`year`
+,IF(INSTR(GROUP_CONCAT('[',bi.`bulan`,']'),'[1]')>0,'yes','no') AS `jan`
+,IF(INSTR(GROUP_CONCAT('[',bi.`bulan`,']'),'[2]')>0,'yes','no') AS `feb`
+,IF(INSTR(GROUP_CONCAT('[',bi.`bulan`,']'),'[3]')>0,'yes','no') AS `mar`
+,IF(INSTR(GROUP_CONCAT('[',bi.`bulan`,']'),'[4]')>0,'yes','no') AS `apr`
+,IF(INSTR(GROUP_CONCAT('[',bi.`bulan`,']'),'[5]')>0,'yes','no') AS `may`
+,IF(INSTR(GROUP_CONCAT('[',bi.`bulan`,']'),'[6]')>0,'yes','no') AS `jun`
+,IF(INSTR(GROUP_CONCAT('[',bi.`bulan`,']'),'[7]')>0,'yes','no') AS `jul`
+,IF(INSTR(GROUP_CONCAT('[',bi.`bulan`,']'),'[8]')>0,'yes','no') AS `aug`
+,IF(INSTR(GROUP_CONCAT('[',bi.`bulan`,']'),'[9]')>0,'yes','no') AS `sep`
+,IF(INSTR(GROUP_CONCAT('[',bi.`bulan`,']'),'[10]')>0,'yes','no') AS `oct`
+,IF(INSTR(GROUP_CONCAT('[',bi.`bulan`,']'),'[11]')>0,'yes','no') AS `nov`
+,IF(INSTR(GROUP_CONCAT('[',bi.`bulan`,']'),'[12]')>0,'yes','no') AS `dec`
+,COUNT(bi.bulan) AS jml_bln
+FROM `tb_bulan_import` bi
+WHERE bi.`year`>='" & Date.Parse(DEYearStart.EditValue.ToString).ToString("yyyy") & "' AND bi.`year`<='" & Date.Parse(DEYearUntil.EditValue.ToString).ToString("yyyy") & "'
+GROUP BY bi.`year`"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCSummary.DataSource = dt
+    End Sub
 End Class

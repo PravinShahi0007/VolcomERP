@@ -26,6 +26,7 @@ Partial Class FormBulanImport
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -37,6 +38,7 @@ Partial Class FormBulanImport
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.DEYearUntil = New DevExpress.XtraEditors.DateEdit()
         Me.DEYearStart = New DevExpress.XtraEditors.DateEdit()
@@ -60,6 +62,7 @@ Partial Class FormBulanImport
         Me.XTPListPerencanaan.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEYearUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -101,13 +104,14 @@ Partial Class FormBulanImport
         Me.GCSummary.Location = New System.Drawing.Point(0, 49)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
+        Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
         Me.GCSummary.Size = New System.Drawing.Size(1032, 471)
         Me.GCSummary.TabIndex = 1
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
         'GVSummary
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn18})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.Name = "GVSummary"
         Me.GVSummary.OptionsView.ShowGroupPanel = False
@@ -120,6 +124,7 @@ Partial Class FormBulanImport
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Year"
+        Me.GridColumn2.FieldName = "year"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
@@ -127,13 +132,24 @@ Partial Class FormBulanImport
         'GridColumn3
         '
         Me.GridColumn3.Caption = "January"
+        Me.GridColumn3.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumn3.FieldName = "jan"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
         '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        Me.RepositoryItemCheckEdit2.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit2.ValueUnchecked = "no"
+        '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "February"
+        Me.GridColumn4.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumn4.FieldName = "feb"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
@@ -141,6 +157,8 @@ Partial Class FormBulanImport
         'GridColumn5
         '
         Me.GridColumn5.Caption = "March"
+        Me.GridColumn5.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumn5.FieldName = "mar"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
@@ -148,6 +166,8 @@ Partial Class FormBulanImport
         'GridColumn6
         '
         Me.GridColumn6.Caption = "April"
+        Me.GridColumn6.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumn6.FieldName = "apr"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
@@ -155,6 +175,8 @@ Partial Class FormBulanImport
         'GridColumn7
         '
         Me.GridColumn7.Caption = "May"
+        Me.GridColumn7.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumn7.FieldName = "may"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 5
@@ -162,6 +184,8 @@ Partial Class FormBulanImport
         'GridColumn8
         '
         Me.GridColumn8.Caption = "June"
+        Me.GridColumn8.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumn8.FieldName = "jun"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 6
@@ -169,6 +193,8 @@ Partial Class FormBulanImport
         'GridColumn9
         '
         Me.GridColumn9.Caption = "July"
+        Me.GridColumn9.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumn9.FieldName = "jul"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 7
@@ -176,6 +202,8 @@ Partial Class FormBulanImport
         'GridColumn10
         '
         Me.GridColumn10.Caption = "August"
+        Me.GridColumn10.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumn10.FieldName = "aug"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 8
@@ -183,6 +211,8 @@ Partial Class FormBulanImport
         'GridColumn11
         '
         Me.GridColumn11.Caption = "September"
+        Me.GridColumn11.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumn11.FieldName = "sep"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 9
@@ -190,6 +220,8 @@ Partial Class FormBulanImport
         'GridColumn12
         '
         Me.GridColumn12.Caption = "October"
+        Me.GridColumn12.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumn12.FieldName = "oct"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 10
@@ -197,6 +229,8 @@ Partial Class FormBulanImport
         'GridColumn13
         '
         Me.GridColumn13.Caption = "November"
+        Me.GridColumn13.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumn13.FieldName = "nov"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 11
@@ -204,9 +238,23 @@ Partial Class FormBulanImport
         'GridColumn14
         '
         Me.GridColumn14.Caption = "December"
+        Me.GridColumn14.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumn14.FieldName = "dec"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 12
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn18.Caption = "Jumlah Bulan Import"
+        Me.GridColumn18.FieldName = "jml_bln"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 13
         '
         'PanelControl1
         '
@@ -412,6 +460,7 @@ Partial Class FormBulanImport
         Me.XTPListPerencanaan.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -468,4 +517,6 @@ Partial Class FormBulanImport
     Friend WithEvents DEYearStart As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEYearUntil As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEYearInput As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
