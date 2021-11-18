@@ -19,7 +19,7 @@
             load_mandiri()
             TENomorPolis.Properties.ReadOnly = False
             SLEPenawaran.Properties.ReadOnly = False
-            TEPremi.Properties.ReadOnly = True
+            TEPremi.Properties.ReadOnly = False 'bisa verubah kata kezia
             DEStart.Properties.ReadOnly = False
             DEUntil.Properties.ReadOnly = False
         End If
@@ -59,6 +59,11 @@ GROUP BY ppsv.id_vendor"
             SLEPenawaran.EditValue = FormPolisReg.BGVSummary.GetFocusedRowCellValue("id_vendor_dipilih").ToString
         Else
             SLEPenawaran.EditValue = FormPolisReg.BGVSummary.GetFocusedRowCellValue("id_vendor_rekomendasi").ToString
+        End If
+
+        'load premi
+        If Not FormPolisReg.BGVSummary.GetFocusedRowCellValue("premi") = 0 Then
+            TEPremi.EditValue = FormPolisReg.BGVSummary.GetFocusedRowCellValue("premi")
         End If
     End Sub
 
