@@ -200,4 +200,12 @@
         FormFGAdjOutDet.id_st_store_bap = GVOutBAP.GetFocusedRowCellValue("id_st_store_bap").ToString
         FormFGAdjOutDet.ShowDialog()
     End Sub
+
+    Private Sub GVAdjIn_DoubleClick(sender As Object, e As EventArgs) Handles GVAdjIn.DoubleClick
+        FormMain.but_edit()
+    End Sub
+
+    Private Sub GVAdjOut_DoubleClick(sender As Object, e As EventArgs) Handles GVAdjOut.DoubleClick
+        FormMain.but_edit()
+    End Sub
 End Class

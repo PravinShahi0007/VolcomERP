@@ -634,6 +634,12 @@
     <Compile Include="FormBudgetProdDemandNew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBulanImport.Designer.vb">
+      <DependentUpon>FormBulanImport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBulanImport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormCapsule.Designer.vb">
       <DependentUpon>FormCapsule.vb</DependentUpon>
     </Compile>
@@ -2168,6 +2174,18 @@
     <Compile Include="FormFabricTypeDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGAdjInInvoice.Designer.vb">
+      <DependentUpon>FormFGAdjInInvoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGAdjInInvoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGAdjOutAdjIn.Designer.vb">
+      <DependentUpon>FormFGAdjOutAdjIn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGAdjOutAdjIn.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGAdjReport.Designer.vb">
       <DependentUpon>FormFGAdjReport.vb</DependentUpon>
     </Compile>
@@ -3689,6 +3707,12 @@
       <DependentUpon>FormPayoutZaloraReconSummary.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPayoutZaloraReconSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPIBReview.Designer.vb">
+      <DependentUpon>FormPIBReview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPIBReview.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPickFromPR.Designer.vb">
@@ -10474,6 +10498,9 @@
     <EmbeddedResource Include="FormBudgetProdDemandNew.resx">
       <DependentUpon>FormBudgetProdDemandNew.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormBulanImport.resx">
+      <DependentUpon>FormBulanImport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCapsule.resx">
       <DependentUpon>FormCapsule.vb</DependentUpon>
     </EmbeddedResource>
@@ -11270,6 +11297,12 @@
     <EmbeddedResource Include="FormFabricTypeDet.resx">
       <DependentUpon>FormFabricTypeDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormFGAdjInInvoice.resx">
+      <DependentUpon>FormFGAdjInInvoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGAdjOutAdjIn.resx">
+      <DependentUpon>FormFGAdjOutAdjIn.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFGAdjReport.resx">
       <DependentUpon>FormFGAdjReport.vb</DependentUpon>
     </EmbeddedResource>
@@ -12049,6 +12082,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPayoutZaloraReconSummary.resx">
       <DependentUpon>FormPayoutZaloraReconSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPIBReview.resx">
+      <DependentUpon>FormPIBReview.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPickFromPR.resx">
       <DependentUpon>FormPickFromPR.vb</DependentUpon>

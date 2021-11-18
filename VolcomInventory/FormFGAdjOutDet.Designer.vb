@@ -19,9 +19,15 @@ Partial Class FormFGAdjOutDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGAdjOutDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLUEAdjIn = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.SBSelectAdjIn = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLUEAdjType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtAdjDate = New DevExpress.XtraEditors.TextEdit()
@@ -56,11 +62,15 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnAccount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnretail_price = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnretail_price_amount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PCEdit = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralFooter = New DevExpress.XtraEditors.GroupControl()
@@ -71,15 +81,19 @@ Partial Class FormFGAdjOutDet
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBExportToXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.EPAdj = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.SBExportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.EPAdj = New System.Windows.Forms.ErrorProvider()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.SLUEAdjIn.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUEAdjType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAdjDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAdjNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,6 +121,11 @@ Partial Class FormFGAdjOutDet
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl2)
+        Me.GroupGeneralHeader.Controls.Add(Me.SLUEAdjIn)
+        Me.GroupGeneralHeader.Controls.Add(Me.SBSelectAdjIn)
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl1)
+        Me.GroupGeneralHeader.Controls.Add(Me.SLUEAdjType)
         Me.GroupGeneralHeader.Controls.Add(Me.LECurrency)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl13)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtAdjDate)
@@ -116,8 +135,64 @@ Partial Class FormFGAdjOutDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(829, 75)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(829, 94)
         Me.GroupGeneralHeader.TabIndex = 33
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(455, 41)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl2.TabIndex = 155
+        Me.LabelControl2.Text = "Adjustment In"
+        '
+        'SLUEAdjIn
+        '
+        Me.SLUEAdjIn.Location = New System.Drawing.Point(540, 38)
+        Me.SLUEAdjIn.Name = "SLUEAdjIn"
+        Me.SLUEAdjIn.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEAdjIn.Properties.View = Me.GridView2
+        Me.SLUEAdjIn.Size = New System.Drawing.Size(277, 20)
+        Me.SLUEAdjIn.TabIndex = 154
+        '
+        'GridView2
+        '
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'SBSelectAdjIn
+        '
+        Me.SBSelectAdjIn.Location = New System.Drawing.Point(540, 62)
+        Me.SBSelectAdjIn.Name = "SBSelectAdjIn"
+        Me.SBSelectAdjIn.Size = New System.Drawing.Size(130, 23)
+        Me.SBSelectAdjIn.TabIndex = 153
+        Me.SBSelectAdjIn.Text = "Select Products"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(32, 67)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(82, 13)
+        Me.LabelControl1.TabIndex = 152
+        Me.LabelControl1.Text = "Adjustment Type"
+        '
+        'SLUEAdjType
+        '
+        Me.SLUEAdjType.Location = New System.Drawing.Point(163, 64)
+        Me.SLUEAdjType.Name = "SLUEAdjType"
+        Me.SLUEAdjType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEAdjType.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLUEAdjType.Size = New System.Drawing.Size(250, 20)
+        Me.SLUEAdjType.TabIndex = 151
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'LECurrency
         '
@@ -184,7 +259,7 @@ Partial Class FormFGAdjOutDet
         Me.GConListPurchase.Controls.Add(Me.PanelControl1)
         Me.GConListPurchase.Controls.Add(Me.PCEdit)
         Me.GConListPurchase.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GConListPurchase.Location = New System.Drawing.Point(0, 75)
+        Me.GConListPurchase.Location = New System.Drawing.Point(0, 94)
         Me.GConListPurchase.Name = "GConListPurchase"
         Me.GConListPurchase.Size = New System.Drawing.Size(829, 259)
         Me.GConListPurchase.TabIndex = 34
@@ -235,7 +310,7 @@ Partial Class FormFGAdjOutDet
         Me.GVDetail.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
         Me.GVDetail.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVDetail.AppearancePrint.Row.Options.UseBorderColor = True
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAdj, Me.GridColumnNo, Me.GridColumnIdWHDrawer, Me.GridColumnIdWHRack, Me.GridColumnIdWHLOcator, Me.GridColumnIdWH, Me.GridColumnIdSample, Me.GridColumnIdAdjSampleDet, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnCompName, Me.GridColumnWHLoactor, Me.GridColumnWHRack, Me.GridColumnWHDrawer, Me.GridColumnUOM, Me.GridColumnRemark, Me.GridColumnAdjPrice, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnAccount, Me.GridColumnretail_price, Me.GridColumnretail_price_amount})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAdj, Me.GridColumnNo, Me.GridColumnIdWHDrawer, Me.GridColumnIdWHRack, Me.GridColumnIdWHLOcator, Me.GridColumnIdWH, Me.GridColumnIdSample, Me.GridColumnIdAdjSampleDet, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnCompName, Me.GridColumnWHLoactor, Me.GridColumnWHRack, Me.GridColumnWHDrawer, Me.GridColumnUOM, Me.GridColumnRemark, Me.GridColumnAdjPrice, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnAccount, Me.GridColumnretail_price, Me.GridColumnretail_price_amount, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -330,7 +405,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnCode.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnCode.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 2
+        Me.GridColumnCode.VisibleIndex = 5
         Me.GridColumnCode.Width = 93
         '
         'GridColumnName
@@ -342,7 +417,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnName.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnName.OptionsColumn.AllowShowHide = False
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 3
+        Me.GridColumnName.VisibleIndex = 6
         Me.GridColumnName.Width = 165
         '
         'GridColumnSize
@@ -354,7 +429,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnSize.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnSize.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 4
+        Me.GridColumnSize.VisibleIndex = 7
         Me.GridColumnSize.Width = 46
         '
         'GridColumnCompName
@@ -405,7 +480,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 10
+        Me.GridColumnRemark.VisibleIndex = 13
         '
         'GridColumnAdjPrice
         '
@@ -419,7 +494,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnAdjPrice.FieldName = "adj_out_fg_det_price"
         Me.GridColumnAdjPrice.Name = "GridColumnAdjPrice"
         Me.GridColumnAdjPrice.Visible = True
-        Me.GridColumnAdjPrice.VisibleIndex = 6
+        Me.GridColumnAdjPrice.VisibleIndex = 9
         Me.GridColumnAdjPrice.Width = 70
         '
         'GridColumnQty
@@ -437,7 +512,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_out_fg_det_qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
+        Me.GridColumnQty.VisibleIndex = 8
         Me.GridColumnQty.Width = 56
         '
         'RepositoryItemSpinEdit1
@@ -461,7 +536,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnAmount.Name = "GridColumnAmount"
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_out_fg_det_amount", "{0:n2}")})
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 7
+        Me.GridColumnAmount.VisibleIndex = 10
         Me.GridColumnAmount.Width = 103
         '
         'GridColumnAccount
@@ -480,7 +555,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnretail_price.FieldName = "retail_price"
         Me.GridColumnretail_price.Name = "GridColumnretail_price"
         Me.GridColumnretail_price.Visible = True
-        Me.GridColumnretail_price.VisibleIndex = 8
+        Me.GridColumnretail_price.VisibleIndex = 11
         '
         'GridColumnretail_price_amount
         '
@@ -491,7 +566,36 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnretail_price_amount.Name = "GridColumnretail_price_amount"
         Me.GridColumnretail_price_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "retail_price_amount", "{0:N0}")})
         Me.GridColumnretail_price_amount.Visible = True
-        Me.GridColumnretail_price_amount.VisibleIndex = 9
+        Me.GridColumnretail_price_amount.VisibleIndex = 12
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.FieldName = "id_adj_in_fg_det"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Code (Old)"
+        Me.GridColumn2.FieldName = "code_old"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 2
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Name (Old)"
+        Me.GridColumn3.FieldName = "name_old"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 3
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Size (Old)"
+        Me.GridColumn4.FieldName = "size_old"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 4
         '
         'GridView1
         '
@@ -576,7 +680,7 @@ Partial Class FormFGAdjOutDet
         Me.GroupGeneralFooter.Controls.Add(Me.LabelControl18)
         Me.GroupGeneralFooter.Controls.Add(Me.MENote)
         Me.GroupGeneralFooter.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupGeneralFooter.Location = New System.Drawing.Point(0, 334)
+        Me.GroupGeneralFooter.Location = New System.Drawing.Point(0, 353)
         Me.GroupGeneralFooter.Name = "GroupGeneralFooter"
         Me.GroupGeneralFooter.Size = New System.Drawing.Size(829, 101)
         Me.GroupGeneralFooter.TabIndex = 35
@@ -647,12 +751,22 @@ Partial Class FormFGAdjOutDet
         Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Controls.Add(Me.BtnSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 435)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 454)
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(829, 42)
+        Me.PanelControl3.Size = New System.Drawing.Size(829, 49)
         Me.PanelControl3.TabIndex = 170
+        '
+        'SBExportToXLS
+        '
+        Me.SBExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBExportToXLS.Image = CType(resources.GetObject("SBExportToXLS.Image"), System.Drawing.Image)
+        Me.SBExportToXLS.Location = New System.Drawing.Point(429, 2)
+        Me.SBExportToXLS.Name = "SBExportToXLS"
+        Me.SBExportToXLS.Size = New System.Drawing.Size(121, 45)
+        Me.SBExportToXLS.TabIndex = 18
+        Me.SBExportToXLS.Text = "Export to XLS"
         '
         'BtnPrint
         '
@@ -660,7 +774,7 @@ Partial Class FormFGAdjOutDet
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
         Me.BtnPrint.Location = New System.Drawing.Point(550, 2)
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(93, 38)
+        Me.BtnPrint.Size = New System.Drawing.Size(93, 45)
         Me.BtnPrint.TabIndex = 14
         Me.BtnPrint.Text = "Print"
         '
@@ -670,7 +784,7 @@ Partial Class FormFGAdjOutDet
         Me.BtnCancel.Image = CType(resources.GetObject("BtnCancel.Image"), System.Drawing.Image)
         Me.BtnCancel.Location = New System.Drawing.Point(643, 2)
         Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(93, 38)
+        Me.BtnCancel.Size = New System.Drawing.Size(93, 45)
         Me.BtnCancel.TabIndex = 15
         Me.BtnCancel.Text = "Cancel"
         '
@@ -689,7 +803,7 @@ Partial Class FormFGAdjOutDet
         Me.BMark.Image = CType(resources.GetObject("BMark.Image"), System.Drawing.Image)
         Me.BMark.Location = New System.Drawing.Point(2, 2)
         Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(95, 38)
+        Me.BMark.Size = New System.Drawing.Size(95, 45)
         Me.BMark.TabIndex = 16
         Me.BMark.Text = "Mark"
         '
@@ -699,7 +813,7 @@ Partial Class FormFGAdjOutDet
         Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
         Me.BtnSave.Location = New System.Drawing.Point(736, 2)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(91, 38)
+        Me.BtnSave.Size = New System.Drawing.Size(91, 45)
         Me.BtnSave.TabIndex = 13
         Me.BtnSave.Text = "Save"
         '
@@ -707,21 +821,11 @@ Partial Class FormFGAdjOutDet
         '
         Me.EPAdj.ContainerControl = Me
         '
-        'SBExportToXLS
-        '
-        Me.SBExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBExportToXLS.Image = CType(resources.GetObject("SBExportToXLS.Image"), System.Drawing.Image)
-        Me.SBExportToXLS.Location = New System.Drawing.Point(429, 2)
-        Me.SBExportToXLS.Name = "SBExportToXLS"
-        Me.SBExportToXLS.Size = New System.Drawing.Size(121, 38)
-        Me.SBExportToXLS.TabIndex = 18
-        Me.SBExportToXLS.Text = "Export to XLS"
-        '
         'FormFGAdjOutDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(829, 477)
+        Me.ClientSize = New System.Drawing.Size(829, 503)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.GroupGeneralFooter)
         Me.Controls.Add(Me.GConListPurchase)
@@ -736,6 +840,10 @@ Partial Class FormFGAdjOutDet
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.SLUEAdjIn.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUEAdjType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAdjDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAdjNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -819,4 +927,15 @@ Partial Class FormFGAdjOutDet
     Friend WithEvents GridColumnretail_price As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnretail_price_amount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SBExportToXLS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLUEAdjType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents SBSelectAdjIn As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLUEAdjIn As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
