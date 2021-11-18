@@ -4,17 +4,18 @@
     Dim bdel_active As String = "1"
 
     Private Sub FormPreCalFGPO_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        load_list()
     End Sub
 
     Sub load_list()
-        Dim q As String = "SELECT c.comp_name,cal.id_report_status,sts.report_status,cal.id_pre_cal_fgpo,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
+        Dim q As String = "SELECT c.comp_name,cf.comp_name AS forwarder,cal.id_report_status,sts.report_status,cal.id_pre_cal_fgpo,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
 FROM
 `tb_pre_cal_fgpo` cal
 INNER JOIN tb_m_user usr ON usr.`id_user`=cal.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_m_comp c ON c.id_comp=cal.id_comp
-INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=cal.id_report_status
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=cal.id_report_status " & If(CENoCancel.Checked = True, " AND cal .id_report_status !=5 ", "") & "
+LEFT JOIN tb_m_comp cf ON cf.id_comp=cal.choosen_id_comp
 ORDER BY cal.id_pre_cal_fgpo DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCPreCal.DataSource = dt
@@ -59,5 +60,9 @@ ORDER BY cal.id_pre_cal_fgpo DESC"
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
         End If
+    End Sub
+
+    Private Sub BRefresh_Click(sender As Object, e As EventArgs) Handles BRefresh.Click
+        load_list()
     End Sub
 End Class
