@@ -228,10 +228,12 @@ Partial Class FormBulanImport
         Me.DEYearUntil.Name = "DEYearUntil"
         Me.DEYearUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEYearUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEYearUntil.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista
         Me.DEYearUntil.Properties.Mask.EditMask = "yyyy"
         Me.DEYearUntil.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.DEYearUntil.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearsGroupView
-        Me.DEYearUntil.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.QuarterView
+        Me.DEYearUntil.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.QuarterView
+        Me.DEYearUntil.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
+        Me.DEYearUntil.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
         Me.DEYearUntil.Size = New System.Drawing.Size(171, 20)
         Me.DEYearUntil.TabIndex = 6
         '
@@ -242,10 +244,12 @@ Partial Class FormBulanImport
         Me.DEYearStart.Name = "DEYearStart"
         Me.DEYearStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEYearStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEYearStart.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista
         Me.DEYearStart.Properties.Mask.EditMask = "yyyy"
         Me.DEYearStart.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.DEYearStart.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearsGroupView
-        Me.DEYearStart.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.QuarterView
+        Me.DEYearStart.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.QuarterView
+        Me.DEYearStart.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
+        Me.DEYearStart.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
         Me.DEYearStart.Size = New System.Drawing.Size(171, 20)
         Me.DEYearStart.TabIndex = 5
         '
