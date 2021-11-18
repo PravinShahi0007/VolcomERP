@@ -49,6 +49,11 @@
         total_amount = Double.Parse(GVDetail.Columns("adj_in_fg_det_amount").SummaryItem.SummaryValue.ToString)
         METotSay.Text = ConvertCurrencyToEnglish(total_amount, LECurrency.EditValue.ToString)
         check_but()
+
+        If data.Rows(0)("id_adj_type").ToString = "1" Then
+            GVDetail.Columns("sales_pos_number").Visible = False
+            GVDetail.Columns("sales_pos_number").VisibleIndex = -1
+        End If
     End Sub
 
     Sub check_but()

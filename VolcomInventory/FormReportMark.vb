@@ -219,10 +219,10 @@
         ElseIf report_mark_type = "40" Then
             'Entry Journal Adjustment
             query = String.Format("SELECT id_report_status FROM tb_a_acc_trans_adj WHERE id_acc_trans_adj = '{0}'", id_report)
-        ElseIf report_mark_type = "41" Or report_mark_type = "342" Then
+        ElseIf report_mark_type = "41" Or report_mark_type = "342" Or report_mark_type = "354" Then
             'FG Adj In
             query = String.Format("SELECT id_report_status,adj_in_fg_number as report_number FROM tb_adj_in_fg WHERE id_adj_in_fg = '{0}'", id_report)
-        ElseIf report_mark_type = "42" Or report_mark_type = "341" Then
+        ElseIf report_mark_type = "42" Or report_mark_type = "341" Or report_mark_type = "355" Then
             'FG Adj Out
             query = String.Format("SELECT id_report_status,adj_out_fg_number as report_number FROM tb_adj_out_fg WHERE id_adj_out_fg = '{0}'", id_report)
         ElseIf report_mark_type = "43" Then
@@ -2786,7 +2786,7 @@ INNER JOIN
                 FormAccountingJournalAdj.GVAccTrans.FocusedRowHandle = find_row(FormAccountingJournalAdj.GVAccTrans, "id_trans_adj", id_report)
             Catch ex As Exception
             End Try
-        ElseIf report_mark_type = "41" Or report_mark_type = "342" Then
+        ElseIf report_mark_type = "41" Or report_mark_type = "342" Or report_mark_type = "354" Then
             'FG Adj In
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
@@ -2839,7 +2839,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 End If
             Catch ex As Exception
             End Try
-        ElseIf report_mark_type = "42" Or report_mark_type = "341" Then
+        ElseIf report_mark_type = "42" Or report_mark_type = "341" Or report_mark_type = "355" Then
             'FG Adj Out
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
@@ -2861,9 +2861,9 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 '    query_upd_storage += "VALUES('" + id_wh_drawer + "', '1', '" + id_product + "', '" + decimalSQL(adj_out_fg_det_qty.ToString) + "', NOW(), 'Finished Goods Out cancelled, Adjustment Out : " + adj_out_fg_number + "','" & decimalSQL(adj_out_fg_det_price.ToString) & "','2','42','" & id_report & "')"
                 '    execute_non_query(query_upd_storage, True, "", "", "", "")
                 'Next
-                If report_mark_type = "42" Then
+                If report_mark_type = "42" Or report_mark_type = "341" Or report_mark_type = "355" Then
                     Dim qry As String = "INSERT tb_storage_fg(id_wh_drawer, id_storage_category, id_product, storage_product_qty, storage_product_datetime, storage_product_notes, bom_unit_price,id_stock_status,report_mark_type,id_report) 
-                    SELECT d.id_wh_drawer, '1', d.id_product, d.adj_out_fg_det_qty, NOW(), '',d.adj_out_fg_det_price,'2','42', d.id_adj_out_fg 
+                    SELECT d.id_wh_drawer, '1', d.id_product, d.adj_out_fg_det_qty, NOW(), '',d.adj_out_fg_det_price,'2','" + report_mark_type + "', d.id_adj_out_fg 
                     FROM tb_adj_out_fg_det d
                     WHERE d.id_adj_out_fg=" + id_report + " "
                     execute_non_query(qry, True, "", "", "", "")
@@ -2901,12 +2901,26 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 ElseIf report_mark_type = "341" Then
                     Dim qry As String = "
                         INSERT tb_storage_fg(id_wh_drawer, id_storage_category, id_product, storage_product_qty, storage_product_datetime, storage_product_notes, bom_unit_price,id_stock_status,report_mark_type,id_report)
-                        SELECT d.id_wh_drawer, '1', d.id_product, d.adj_out_fg_det_qty, NOW(), '',d.adj_out_fg_det_price,'2','340', a.id_st_store_bap 
+                        SELECT d.id_wh_drawer, '1', d.id_product, d.adj_out_fg_det_qty, NOW(), '',d.adj_out_fg_det_price,'2','341', a.id_st_store_bap 
                         FROM tb_adj_out_fg_det d
                         LEFT JOIN tb_adj_out_fg AS a ON d.id_adj_out_fg = a.id_adj_out_fg
                         WHERE d.id_adj_out_fg=" + id_report + "   
                         UNION ALL  
                         SELECT d.id_wh_drawer, '2', d.id_product, d.adj_out_fg_det_qty, NOW(), '',d.adj_out_fg_det_price,'1','341', a.id_adj_out_fg 
+                        FROM tb_adj_out_fg_det d
+                        LEFT JOIN tb_adj_out_fg AS a ON d.id_adj_out_fg = a.id_adj_out_fg
+                        WHERE d.id_adj_out_fg=" + id_report + "  
+                    "
+                    execute_non_query(qry, True, "", "", "", "")
+                ElseIf report_mark_type = "355" Then
+                    Dim qry As String = "
+                        INSERT tb_storage_fg(id_wh_drawer, id_storage_category, id_product, storage_product_qty, storage_product_datetime, storage_product_notes, bom_unit_price,id_stock_status,report_mark_type,id_report)
+                        SELECT d.id_wh_drawer, '1', d.id_product, d.adj_out_fg_det_qty, NOW(), '',d.adj_out_fg_det_price,'2','355', a.id_st_store_bap 
+                        FROM tb_adj_out_fg_det d
+                        LEFT JOIN tb_adj_out_fg AS a ON d.id_adj_out_fg = a.id_adj_out_fg
+                        WHERE d.id_adj_out_fg=" + id_report + "   
+                        UNION ALL  
+                        SELECT d.id_wh_drawer, '2', d.id_product, d.adj_out_fg_det_qty, NOW(), '',d.adj_out_fg_det_price,'1','355', a.id_adj_out_fg 
                         FROM tb_adj_out_fg_det d
                         LEFT JOIN tb_adj_out_fg AS a ON d.id_adj_out_fg = a.id_adj_out_fg
                         WHERE d.id_adj_out_fg=" + id_report + "  

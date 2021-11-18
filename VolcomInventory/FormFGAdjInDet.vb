@@ -16,13 +16,15 @@
     Public report_mark_type As String = "41"
 
     Private Sub FormFGAdjInDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        view_adj_type()
+
         If Not id_st_store_bap = "" Then
             report_mark_type = "342"
         End If
 
         If Not id_adj_in_fg = "" Then
             Dim data_header As DataTable = execute_query("
-                SELECT id_st_store_bap, report_mark_type
+                SELECT id_st_store_bap, report_mark_type, id_adj_type
                 FROM tb_adj_in_fg
                 WHERE id_adj_in_fg = " + id_adj_in_fg + "
             ", -1, True, "", "", "", "")
@@ -30,6 +32,7 @@
             If data_header.Rows.Count > 0 Then
                 id_st_store_bap = data_header.Rows(0)("id_st_store_bap").ToString
                 report_mark_type = data_header.Rows(0)("report_mark_type").ToString
+                SLUEAdjType.EditValue = data_header.Rows(0)("id_adj_type").ToString
             End If
         End If
 
@@ -49,7 +52,7 @@
 
             If Not id_st_store_bap = "" Then
                 Dim query As String = "
-                    SELECT 0 AS id_adj_in_fg_det, d.id_product, p.name, p.size, u.uom, p.full_code AS code, ABS(v.qty) AS adj_in_fg_det_qty, p.unit_cost AS adj_in_fg_det_price, (ABS(v.qty) * p.unit_cost) AS adj_in_fg_det_amount, d.price AS retail_price, (ABS(v.qty) * d.price) AS retail_price_amount, '' AS adj_in_fg_det_note, c.id_drawer_def AS id_wh_drawer, w.id_wh_rack, r.id_wh_locator, b.id_comp, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp, w.wh_drawer, r.wh_rack, l.wh_locator, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name
+                    SELECT 0 AS id_adj_in_fg_det, d.id_product, p.name, p.size, u.uom, p.full_code AS code, ABS(v.qty) AS adj_in_fg_det_qty, p.unit_cost AS adj_in_fg_det_price, (ABS(v.qty) * p.unit_cost) AS adj_in_fg_det_amount, d.price AS retail_price, (ABS(v.qty) * d.price) AS retail_price_amount, '' AS adj_in_fg_det_note, c.id_drawer_def AS id_wh_drawer, w.id_wh_rack, r.id_wh_locator, b.id_comp, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp, w.wh_drawer, r.wh_rack, l.wh_locator, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, NULL AS id_sales_pos_det, '' AS sales_pos_number
                     FROM tb_st_store_bap_ver AS v
                     LEFT JOIN tb_st_store_bap_det AS d ON v.id_st_store_bap_det = d.id_st_store_bap_det
                     LEFT JOIN tb_st_store_bap AS b ON d.id_st_store_bap = b.id_st_store_bap
@@ -95,6 +98,7 @@
             MENote.Text = data.Rows(0)("adj_in_fg_note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", data.Rows(0)("id_currency").ToString)
+            SLUEAdjType.EditValue = data.Rows(0)("id_adj_type").ToString
 
             'based on sttatus
             id_report_status = data.Rows(0)("id_report_status").ToString
@@ -110,6 +114,8 @@
 
             BtnPrint.Enabled = True
 
+            SBSelectInvoice.Visible = False
+
             'Fetch db detail
             viewDetailReturn()
 
@@ -121,6 +127,8 @@
             'get Total
             total_amount = Double.Parse(GVDetail.Columns("adj_in_fg_det_amount").SummaryItem.SummaryValue.ToString)
             METotSay.Text = ConvertCurrencyToEnglish(total_amount, LECurrency.EditValue.ToString)
+
+            SLUEAdjType.Properties.ReadOnly = True
         End If
         check_but()
     End Sub
@@ -131,6 +139,10 @@
             BtnEdit.Visible = True
         Else
             BtnDel.Visible = False
+            BtnEdit.Visible = False
+        End If
+
+        If SLUEAdjType.EditValue.ToString = "2" Then
             BtnEdit.Visible = False
         End If
     End Sub
@@ -276,68 +288,80 @@
         ElseIf Not cond_qty Or GVDetail.RowCount = 0 Then
             errorCustom("Error : " + System.Environment.NewLine + "- Data can't blank. " + System.Environment.NewLine + "- Qty can't blank or zero value !")
         Else
-            'Main var
-            Dim query As String = ""
-            Dim query2 As String = ""
-            Dim adj_in_fg_number As String = addSlashes(TxtAdjNumber.Text)
-            Dim adj_in_fg_note As String = addSlashes(MENote.Text)
-            Dim id_report_status As String = LEReportStatus.EditValue
-            Dim succes As Boolean = False
-            Dim adj_in_fg_total As String = decimalSQL(GVDetail.Columns("adj_in_fg_det_amount").SummaryItem.SummaryValue.ToString)
-            Dim retail_price_total As String = decimalSQL(GVDetail.Columns("retail_price_amount").SummaryItem.SummaryValue.ToString)
-            Dim id_currency As String = LECurrency.EditValue.ToString
-            If action = "ins" Then
-                'Main table
-                query = "INSERT INTO tb_adj_in_fg(adj_in_fg_number, adj_in_fg_date, adj_in_fg_note, id_report_status, adj_in_fg_total, id_currency, retail_price_total, id_st_store_bap, report_mark_type) "
-                query += "VALUES('', NOW(), '" + adj_in_fg_note + "', '" + id_report_status + "', '" + adj_in_fg_total + "', '" + id_currency + "', '" + retail_price_total + "', " + If(id_st_store_bap = "", "NULL", id_st_store_bap) + ", " + report_mark_type + "); SELECT LAST_INSERT_ID(); "
-                id_adj_in_fg = execute_query(query, 0, True, "", "", "", "")
-                execute_non_query("CALL gen_number(" + id_adj_in_fg + ",41); ", True, "", "", "", "")
-                'MsgBox(id_product_return)
+            Dim confirm As DialogResult
 
-                'increase_inc_sales("14")
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to submit ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-                'preapred default
-                submit_who_prepared(report_mark_type, id_adj_in_fg, id_user)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                'Main var
+                Dim query As String = ""
+                Dim query2 As String = ""
+                Dim adj_in_fg_number As String = addSlashes(TxtAdjNumber.Text)
+                Dim adj_in_fg_note As String = addSlashes(MENote.Text)
+                Dim id_report_status As String = LEReportStatus.EditValue
+                Dim succes As Boolean = False
+                Dim adj_in_fg_total As String = decimalSQL(GVDetail.Columns("adj_in_fg_det_amount").SummaryItem.SummaryValue.ToString)
+                Dim retail_price_total As String = decimalSQL(GVDetail.Columns("retail_price_amount").SummaryItem.SummaryValue.ToString)
+                Dim id_currency As String = LECurrency.EditValue.ToString
 
-                'detail table
-                query = "INSERT tb_adj_in_fg_det(id_adj_in_fg, adj_in_fg_det_note, adj_in_fg_det_qty, id_wh_drawer, id_product, adj_in_fg_det_price, retail_price) "
-                query += "VALUES "
+                If SLUEAdjType.EditValue.ToString = "2" Then
+                    report_mark_type = "354"
+                End If
 
-                For i As Integer = 0 To GVDetail.RowCount - 1
-                    'Try
-                    Dim adj_in_fg_det_note As String = GVDetail.GetRowCellValue(i, "adj_in_fg_det_note").ToString
-                    Dim adj_in_fg_det_qty As String = decimalSQL(GVDetail.GetRowCellValue(i, "adj_in_fg_det_qty").ToString)
-                    Dim id_wh_drawer As String = GVDetail.GetRowCellValue(i, "id_wh_drawer").ToString
-                    Dim id_product As String = GVDetail.GetRowCellValue(i, "id_product").ToString
-                    Dim adj_in_fg_det_price As String = decimalSQL(GVDetail.GetRowCellValue(i, "adj_in_fg_det_price").ToString)
-                    Dim retail_price As String = decimalSQL(GVDetail.GetRowCellValue(i, "retail_price").ToString)
+                If action = "ins" Then
+                    'Main table
+                    query = "INSERT INTO tb_adj_in_fg(adj_in_fg_number, adj_in_fg_date, adj_in_fg_note, id_report_status, adj_in_fg_total, id_currency, retail_price_total, id_st_store_bap, report_mark_type, id_adj_type) "
+                    query += "VALUES('', NOW(), '" + adj_in_fg_note + "', '" + id_report_status + "', '" + adj_in_fg_total + "', '" + id_currency + "', '" + retail_price_total + "', " + If(id_st_store_bap = "", "NULL", id_st_store_bap) + ", " + report_mark_type + ", " + SLUEAdjType.EditValue.ToString + "); SELECT LAST_INSERT_ID(); "
+                    id_adj_in_fg = execute_query(query, 0, True, "", "", "", "")
+                    execute_non_query("CALL gen_number(" + id_adj_in_fg + ",41); ", True, "", "", "", "")
+                    'MsgBox(id_product_return)
 
-                    'INSERT TB DETAIL
-                    If Not i = 0 Then
-                        query += ","
-                    End If
-                    query += "('" + id_adj_in_fg + "','" + adj_in_fg_det_note + "', '" + adj_in_fg_det_qty + "', '" + id_wh_drawer + "', '" + id_product + "', '" + adj_in_fg_det_price + "', '" + retail_price + "') "
-                    'Catch ex As Exception
-                    'End Try
-                Next
+                    'increase_inc_sales("14")
 
-                execute_non_query(query, True, "", "", "", "")
+                    'preapred default
+                    submit_who_prepared(report_mark_type, id_adj_in_fg, id_user)
 
+                    'detail table
+                    query = "INSERT tb_adj_in_fg_det(id_adj_in_fg, adj_in_fg_det_note, adj_in_fg_det_qty, id_wh_drawer, id_product, adj_in_fg_det_price, retail_price, id_sales_pos_det) "
+                    query += "VALUES "
 
-                FormFGAdj.XTCAdj.SelectedTabPageIndex = 0
-                FormFGAdj.viewAdjIn()
-                Close()
-            ElseIf action = "upd" Then
-                Try
-                    'update main table
-                    query = "UPDATE tb_adj_in_fg SET adj_in_fg_number = '" + adj_in_fg_number + "', adj_in_fg_note = '" + adj_in_fg_note + "', id_report_status = '" + id_report_status + "', adj_in_fg_total = '" + adj_in_fg_total + "', id_currency = '" + id_currency + "' WHERE id_adj_in_fg = '" + id_adj_in_fg + "' "
+                    For i As Integer = 0 To GVDetail.RowCount - 1
+                        'Try
+                        Dim adj_in_fg_det_note As String = GVDetail.GetRowCellValue(i, "adj_in_fg_det_note").ToString
+                        Dim adj_in_fg_det_qty As String = decimalSQL(GVDetail.GetRowCellValue(i, "adj_in_fg_det_qty").ToString)
+                        Dim id_wh_drawer As String = GVDetail.GetRowCellValue(i, "id_wh_drawer").ToString
+                        Dim id_product As String = GVDetail.GetRowCellValue(i, "id_product").ToString
+                        Dim adj_in_fg_det_price As String = decimalSQL(GVDetail.GetRowCellValue(i, "adj_in_fg_det_price").ToString)
+                        Dim retail_price As String = decimalSQL(GVDetail.GetRowCellValue(i, "retail_price").ToString)
+                        Dim id_sales_pos_det As String = If(GVDetail.GetRowCellValue(i, "id_sales_pos_det").ToString = "", "NULL", "'" + GVDetail.GetRowCellValue(i, "id_sales_pos_det").ToString + "'")
+
+                        'INSERT TB DETAIL
+                        If Not i = 0 Then
+                            query += ","
+                        End If
+                        query += "('" + id_adj_in_fg + "','" + adj_in_fg_det_note + "', '" + adj_in_fg_det_qty + "', '" + id_wh_drawer + "', '" + id_product + "', '" + adj_in_fg_det_price + "', '" + retail_price + "', " + id_sales_pos_det + ") "
+                        'Catch ex As Exception
+                        'End Try
+                    Next
+
                     execute_non_query(query, True, "", "", "", "")
+
+
                     FormFGAdj.XTCAdj.SelectedTabPageIndex = 0
                     FormFGAdj.viewAdjIn()
                     Close()
-                Catch ex As Exception
-                    errorCustom(ex.ToString)
-                End Try
+                ElseIf action = "upd" Then
+                    Try
+                        'update main table
+                        query = "UPDATE tb_adj_in_fg SET adj_in_fg_number = '" + adj_in_fg_number + "', adj_in_fg_note = '" + adj_in_fg_note + "', id_report_status = '" + id_report_status + "', adj_in_fg_total = '" + adj_in_fg_total + "', id_currency = '" + id_currency + "' WHERE id_adj_in_fg = '" + id_adj_in_fg + "' "
+                        execute_non_query(query, True, "", "", "", "")
+                        FormFGAdj.XTCAdj.SelectedTabPageIndex = 0
+                        FormFGAdj.viewAdjIn()
+                        Close()
+                    Catch ex As Exception
+                        errorCustom(ex.ToString)
+                    End Try
+                End If
             End If
         End If
         FormFGAdj.view_in_bap()
@@ -445,5 +469,43 @@
             stopCustom(ex.ToString)
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Sub view_adj_type()
+        Dim query As String = "SELECT id_adj_type, adj_type FROM tb_lookup_adj_type"
+
+        viewSearchLookupQuery(SLUEAdjType, query, "id_adj_type", "adj_type", "id_adj_type")
+    End Sub
+
+    Private Sub SLUEAdjType_EditValueChanged(sender As Object, e As EventArgs) Handles SLUEAdjType.EditValueChanged
+        If SLUEAdjType.EditValue.ToString = "1" Then
+            SBSelectInvoice.Visible = False
+            BtnAdd.Visible = True
+            BImport.Visible = True
+            check_but()
+
+            GVDetail.Columns("sales_pos_number").Visible = False
+            GVDetail.Columns("sales_pos_number").VisibleIndex = -1
+        Else
+            SBSelectInvoice.Visible = True
+            BImport.Visible = False
+            BtnEdit.Visible = False
+            BtnAdd.Visible = False
+
+            GVDetail.Columns("sales_pos_number").Visible = True
+            GVDetail.Columns("sales_pos_number").VisibleIndex = 2
+        End If
+
+        Dim query As String = "CALL view_fg_adj_in_less(0)"
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCDetail.DataSource = data
+
+        GVDetail.BestFitColumns()
+    End Sub
+
+    Private Sub SBSelectInvoice_Click(sender As Object, e As EventArgs) Handles SBSelectInvoice.Click
+        FormFGAdjInInvoice.ShowDialog()
     End Sub
 End Class

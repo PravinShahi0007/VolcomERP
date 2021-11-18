@@ -112,7 +112,7 @@
         'Try
         If id_pop_up = "1" Then
 
-            Dim query As String = "CALL view_stock_fg('" + id_wh_view + "','" + id_wh_locator_view + "','" + id_wh_rack_view + "','" + id_wh_drawer_view + "', '0', '4', '9999-01-01')"
+            Dim query As String = "CALL view_stock_fg_adj_out('" + id_wh_view + "','" + id_wh_locator_view + "','" + id_wh_rack_view + "','" + id_wh_drawer_view + "', '0', '4', '9999-01-01')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             'data = execute_query(query, -1, True, "", "", "", "")
@@ -169,6 +169,8 @@
         End If
     End Sub
     Private Sub SLEWH_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SLEWH.EditValueChanged
+        GCFG.DataSource = Nothing
+
         Try
             viewWHLocatorSLE()
         Catch ex As Exception
@@ -177,6 +179,8 @@
     End Sub
 
     Private Sub SLELocator_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SLELocator.EditValueChanged
+        GCFG.DataSource = Nothing
+
         Try
             viewWHRack()
         Catch ex As Exception
@@ -185,6 +189,8 @@
     End Sub
 
     Private Sub SLERack_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SLERack.EditValueChanged
+        GCFG.DataSource = Nothing
+
         Try
             viewWHDrawer()
         Catch ex As Exception
@@ -193,6 +199,8 @@
     End Sub
 
     Private Sub SLEDrawer_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SLEDrawer.EditValueChanged
+        GCFG.DataSource = Nothing
+
         Try
             If SLEDrawer.EditValue Is Nothing Then
                 BtnViewStock.Enabled = False
@@ -257,6 +265,10 @@
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("adj_out_fg_det_amount", (TEUnitPrice.EditValue * qty_input_grid))
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("retail_price", TxtUnitPrice.EditValue)
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("retail_price_amount", (TxtUnitPrice.EditValue * qty_input_grid))
+                            FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("id_adj_in_fg_det", "")
+                            FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("code_old", "")
+                            FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("name_old", "")
+                            FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("size_old", "")
 
                             'Save in Gridview
                             FormFGAdjOutDet.GVDetail.CloseEditor()
@@ -307,6 +319,10 @@
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("adj_out_fg_det_amount", (TEUnitPrice.EditValue * qty_input_grid))
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("retail_price", TxtUnitPrice.EditValue)
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("retail_price_amount", (TxtUnitPrice.EditValue * qty_input_grid))
+                            FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("id_adj_in_fg_det", "")
+                            FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("code_old", "")
+                            FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("name_old", "")
+                            FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("size_old", "")
 
                             'Save in Gridview
                             FormFGAdjOutDet.GVDetail.CloseEditor()

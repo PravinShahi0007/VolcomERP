@@ -120,6 +120,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([SEX]='')", oledbconn)
         ElseIf id_pop_up = "44" Then
             MyCommand = New OleDbDataAdapter("select [awb] AS awb_no,[inv no] as inv_no,[berat kargo] as a_weight from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([awb]='') ", oledbconn)
+        ElseIf id_pop_up = "48" Then
+            MyCommand = New OleDbDataAdapter("select product_code, qty, note from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([product_code]='')", oledbconn)
         ElseIf id_pop_up = "50" Then
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Order]='') ", oledbconn)
         ElseIf id_pop_up = "51" Then
@@ -3095,11 +3097,22 @@ WHERE awbill_no != '' AND awbill_type='2' AND is_lock='2' AND is_old_ways=1
             GVData.Columns("qty").SummaryItem.DisplayFormat = "{0:n0}"
         ElseIf id_pop_up = "48" Then
             'vendor code 
-            Dim queryx As String = "SELECT p.id_product,p.product_full_code,p.product_name,dsg.design_cop, cd.code_detail_name AS `size`
+            Dim queryx As String = "SELECT p.id_product,p.product_full_code,p.product_name,IFNULL(dsg.design_cop,0) AS `design_cop`, cd.code_detail_name AS `size`, IFNULL(prc.design_price,0) AS `design_price`
             FROM tb_m_product p 
             INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
             INNER JOIN tb_m_design dsg ON dsg.id_design=p.id_design 
+            LEFT JOIN (
+			    SELECT p.* , LEFT(pt.design_price_type,1) AS `price_type`, LEFT(cat.design_cat,1) AS `design_cat`
+			    FROM tb_m_design_price p
+			    INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = p.id_design_price_type
+			    INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = pt.id_design_cat
+			    WHERE p.id_design_price IN (
+				    SELECT MAX(p.id_design_price) FROM tb_m_design_price p
+				    WHERE p.design_price_start_date<=DATE(NOW()) AND is_active_wh=1 AND is_design_cost=0
+				    GROUP BY p.id_design
+			    )
+		    ) prc ON prc.id_design = dsg.id_design
             WHERE dsg.`id_lookup_status_order`!='2' "
             Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
             Dim tb1 = data_temp.AsEnumerable()
@@ -3116,8 +3129,8 @@ WHERE awbill_no != '' AND awbill_type='2' AND is_lock='2' AND is_old_ways=1
                                 .name = If(y1 Is Nothing, "0", y1("product_name")),
                                 .size = If(y1 Is Nothing, "0", y1("size")),
                                 .qty = table1("qty"),
-                                .retail_price = table1("retail_price"),
-                                .design_cop = If(y1 Is Nothing, "0", y1("design_cop")),
+                                .retail_price = If(y1 Is Nothing, 0, y1("design_price")),
+                                .design_cop = If(y1 Is Nothing, 0, y1("design_cop")),
                                 .id_comp = FormFGAdjOutDet.id_comp,
                                 .comp = FormFGAdjOutDet.comp_name,
                                 .id_locator = FormFGAdjOutDet.id_locator,
@@ -6861,6 +6874,7 @@ GROUP BY ol.checkout_id
                                 R("wh_rack") = GVData.GetRowCellValue(i, "rack").ToString
                                 R("wh_locator") = GVData.GetRowCellValue(i, "locator").ToString
                                 R("comp_name") = GVData.GetRowCellValue(i, "comp").ToString
+                                R("id_sales_pos_det") = DBNull.Value
                                 TryCast(FormFGAdjInDet.GCDetail.DataSource, DataTable).Rows.Add(R)
                                 FormFGAdjInDet.GCDetail.RefreshDataSource()
                                 FormFGAdjInDet.GVDetail.RefreshData()
@@ -6908,6 +6922,10 @@ GROUP BY ol.checkout_id
                                 R("id_comp") = GVData.GetRowCellValue(i, "id_comp").ToString
                                 R("comp") = GVData.GetRowCellValue(i, "comp").ToString
                                 R("wh_drawer") = GVData.GetRowCellValue(i, "drawer").ToString
+                                R("id_adj_in_fg_det") = DBNull.Value
+                                R("code_old") = DBNull.Value
+                                R("name_old") = DBNull.Value
+                                R("size_old") = DBNull.Value
                                 'R("wh_rack") = GVData.GetRowCellValue(i, "rack").ToString
                                 'R("wh_locator") = GVData.GetRowCellValue(i, "locator").ToString
                                 'R("comp_name") = GVData.GetRowCellValue(i, "comp").ToString
