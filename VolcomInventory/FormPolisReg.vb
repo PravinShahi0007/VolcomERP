@@ -39,7 +39,7 @@ GROUP BY ppsv.id_vendor"
         Else
 
             'head
-            Dim qh As String = "SELECT reg.*,emp.`employee_name`,pps.id_pps_type,pps.id_desc_premi FROM `tb_polis_reg` reg
+            Dim qh As String = "SELECT reg.*,emp.`employee_name`,pps.id_pps_type,pps.id_desc_premi,reg.id_report_status FROM `tb_polis_reg` reg
 INNER JOIN tb_m_user usr ON usr.`id_user`=reg.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_polis_pps pps ON pps.id_polis_pps=reg.id_polis_pps
@@ -53,6 +53,7 @@ WHERE reg.id_polis_reg='" & id_reg & "'"
                 SLEPolisType.EditValue = dth.Rows(0)("id_desc_premi").ToString
                 SLEPPSType.EditValue = dth.Rows(0)("id_pps_type").ToString
                 '
+
                 BAttachment.Visible = True
                 If dth.Rows(0)("is_submit").ToString = "1" Then
                     BtnSave.Visible = False
@@ -62,6 +63,10 @@ WHERE reg.id_polis_reg='" & id_reg & "'"
                     BtnSave.Visible = True
                     BtnMark.Visible = False
                     BtnPrint.Visible = False
+                End If
+                '
+                If dth.Rows(0)("id_report_status").ToString = "5" Then
+                    BtnSave.Visible = False
                 End If
                 '
                 If dth.Rows(0)("id_report_status").ToString = "5" Or dth.Rows(0)("id_report_status").ToString = "6" Then
