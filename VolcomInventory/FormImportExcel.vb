@@ -6874,6 +6874,7 @@ GROUP BY ol.checkout_id
                                 R("wh_rack") = GVData.GetRowCellValue(i, "rack").ToString
                                 R("wh_locator") = GVData.GetRowCellValue(i, "locator").ToString
                                 R("comp_name") = GVData.GetRowCellValue(i, "comp").ToString
+                                R("id_sales_pos_det") = DBNull.Value
                                 TryCast(FormFGAdjInDet.GCDetail.DataSource, DataTable).Rows.Add(R)
                                 FormFGAdjInDet.GCDetail.RefreshDataSource()
                                 FormFGAdjInDet.GVDetail.RefreshData()
@@ -6921,6 +6922,10 @@ GROUP BY ol.checkout_id
                                 R("id_comp") = GVData.GetRowCellValue(i, "id_comp").ToString
                                 R("comp") = GVData.GetRowCellValue(i, "comp").ToString
                                 R("wh_drawer") = GVData.GetRowCellValue(i, "drawer").ToString
+                                R("id_adj_in_fg_det") = DBNull.Value
+                                R("code_old") = DBNull.Value
+                                R("name_old") = DBNull.Value
+                                R("size_old") = DBNull.Value
                                 'R("wh_rack") = GVData.GetRowCellValue(i, "rack").ToString
                                 'R("wh_locator") = GVData.GetRowCellValue(i, "locator").ToString
                                 'R("comp_name") = GVData.GetRowCellValue(i, "comp").ToString

@@ -51,6 +51,14 @@
         'Fetch db detail
         viewDetailReturn()
 
+        If data.Rows(0)("id_adj_type").ToString = "1" Then
+            GVDetail.Columns("code_old").Visible = False
+            GVDetail.Columns("code_old").VisibleIndex = -1
+            GVDetail.Columns("name_old").Visible = False
+            GVDetail.Columns("name_old").VisibleIndex = -1
+            GVDetail.Columns("size_old").Visible = False
+            GVDetail.Columns("size_old").VisibleIndex = -1
+        End If
 
         'get Total
         total_amount = Double.Parse(GVDetail.Columns("adj_out_fg_det_amount").SummaryItem.SummaryValue.ToString)
@@ -134,5 +142,4 @@
         FormReportMark.is_view = "1"
         FormReportMark.ShowDialog()
     End Sub
-
 End Class

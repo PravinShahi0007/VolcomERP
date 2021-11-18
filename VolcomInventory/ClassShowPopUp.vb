@@ -108,10 +108,10 @@
         ElseIf report_mark_type = "36" Then
             'entry journal
             FormViewJournal.Close()
-        ElseIf report_mark_type = "41" Or report_mark_type = "342" Then
+        ElseIf report_mark_type = "41" Or report_mark_type = "342" Or report_mark_type = "354" Then
             'Adj In Fg
             FormViewFGAdjIn.Close()
-        ElseIf report_mark_type = "42" Or report_mark_type = "341" Then
+        ElseIf report_mark_type = "42" Or report_mark_type = "341" Or report_mark_type = "355" Then
             'Adj Out Fg
             FormViewFGAdjOut.Close()
         ElseIf report_mark_type = "44" Then
@@ -685,12 +685,12 @@ GROUP BY rec.`id_prod_order`"
             FormAccountingJournalAdjDet.is_view = "1"
             FormAccountingJournalAdjDet.id_trans_adj = id_report
             FormAccountingJournalAdjDet.ShowDialog()
-        ElseIf report_mark_type = "41" Or report_mark_type = "342" Then
+        ElseIf report_mark_type = "41" Or report_mark_type = "342" Or report_mark_type = "354" Then
             'FG IN
             FormViewFGAdjIn.id_adj_in_fg = id_report
             FormViewFGAdjIn.report_mark_type = report_mark_type
             FormViewFGAdjIn.ShowDialog()
-        ElseIf report_mark_type = "42" Or report_mark_type = "341" Then
+        ElseIf report_mark_type = "42" Or report_mark_type = "341" Or report_mark_type = "355" Then
             'FG OUT
             FormViewFGAdjOut.id_adj_out_fg = id_report
             FormViewFGAdjOut.report_mark_type = report_mark_type
@@ -1880,13 +1880,13 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_acc_trans_adj"
             field_number = "acc_trans_adj_number"
             field_date = "date_created"
-        ElseIf report_mark_type = "41" Or report_mark_type = "342" Then
+        ElseIf report_mark_type = "41" Or report_mark_type = "342" Or report_mark_type = "354" Then
             'Adj In FG
             table_name = "tb_adj_in_fg"
             field_id = "id_adj_in_fg"
             field_number = "adj_in_fg_number"
             field_date = "adj_in_fg_date"
-        ElseIf report_mark_type = "42" Or report_mark_type = "341" Then
+        ElseIf report_mark_type = "42" Or report_mark_type = "341" Or report_mark_type = "355" Then
             'Adj Out FG
             table_name = "tb_adj_out_fg"
             field_id = "id_adj_out_fg"
