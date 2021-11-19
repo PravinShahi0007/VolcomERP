@@ -767,7 +767,7 @@
         Else
             col_date = "sp.sales_pos_date"
         End If
-        'filter promo
+        'filter gwp (invoice nol/pendapatan lain dari missing)
         Dim cond_promo As String = ""
         Dim cond_promo_trans As String = ""
         If CEPromo.EditValue = True Then
@@ -820,7 +820,10 @@
         ) prod ON prod.id_product = spd.id_product
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = sp.id_report_status
         WHERE 1=1 AND (" + col_date + ">='" + date_from_selected + "' AND " + col_date + "<='" + date_until_selected + "') " + cond_promo + cond_promo_trans + w_status
-        query += " ORDER BY sp.id_report_status DESC, spd.id_sales_pos ASC "
+        If CEIncludePrmUni.EditValue = True Then
+            query += ""
+        End If
+        query += " ORDER BY id_report_status DESC, id_sales_pos ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSales.DataSource = data
         Cursor = Cursors.Default
