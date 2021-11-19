@@ -370,7 +370,7 @@
             Dim band_desc As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVSalesPOSWeekly.Bands.AddBand("DESCRIPTION")
             band_desc.AppearanceHeader.Font = New Font(BGVSalesPOSWeekly.Appearance.Row.Font.FontFamily, BGVSalesPOSWeekly.Appearance.Row.Font.Size, FontStyle.Bold)
 
-            'cond promo
+            'cond gwp
             Dim include_promo As String = ""
             If CEPromoWeekly.EditValue = True Then
                 include_promo = "1"
@@ -378,8 +378,16 @@
                 include_promo = "2"
             End If
 
+            'cond promo/uniform
+            Dim include_unif As String = ""
+            If CEIncPromoUni.EditValue = True Then
+                include_unif = "1"
+            Else
+                include_unif = "2"
+            End If
+
             'excecute query
-            Dim query As String = "CALL view_sales_weekly_v2('" + date_from_weekly_selected + "', '" + date_until_weekly_selected + "', '" + id_day_weekly_selected + "', " + include_promo + ")"
+            Dim query As String = "CALL view_sales_weekly_v2('" + date_from_weekly_selected + "', '" + date_until_weekly_selected + "', '" + id_day_weekly_selected + "', " + include_promo + ", " + include_unif + ")"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             For i As Integer = 0 To data.Columns.Count - 1
                 If data.Columns(i).ColumnName.ToString = "id_store_contact_from" Or data.Columns(i).ColumnName.ToString = "id_store" _
