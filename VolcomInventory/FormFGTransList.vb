@@ -866,10 +866,13 @@
         Dim id_code_class As String = get_setup_field("id_code_fg_class")
         'period type
         Dim col_date As String = ""
+        Dim col_date_uni As String = ""
         If SLEPeriodType.EditValue.ToString = "1" Then
             col_date = "sp.sales_pos_end_period"
+            col_date_uni = "sp.period_until"
         Else
             col_date = "sp.sales_pos_date"
+            col_date_uni = "sp.emp_uni_ex_date"
         End If
         'filter promo
         Dim cond_promo As String = ""
@@ -936,8 +939,52 @@
         ) prod ON prod.id_product = spd.id_product
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = sp.id_report_status
         WHERE 1=1 AND (" + col_date + ">='" + date_from_selected + "' AND " + col_date + "<='" + date_until_selected + "') " + cond_promo + cond_promo_trans + w_status
-        query += " GROUP BY sp.id_sales_pos, prod.id_design, SUBSTRING(prod.product_full_code, 10, 1)
-        ORDER BY sp.id_report_status DESC, spd.id_sales_pos ASC "
+        query += " GROUP BY sp.id_sales_pos, prod.id_design, SUBSTRING(prod.product_full_code, 10, 1) "
+        If CEIncludePrmUni.EditValue = True Then
+            query += " UNION ALL SELECT spd.id_emp_uni_ex_det AS id_sales_pos_det, spd.id_emp_uni_ex AS id_sales_pos, sp.emp_uni_ex_number AS sales_pos_number, rmt.report_mark_type_name, 
+            c.comp_number, c.comp_name, cg.comp_group, cg.description AS `comp_group_name`, lct.commerce_type,
+            sp.emp_uni_ex_date AS sales_pos_date, sp.emp_uni_ex_date AS sales_pos_due_date,
+            sp.period_from AS sales_pos_start_period, sp.period_until AS sales_pos_end_period,
+            prod.id_product, prod.id_design, prod.`code`,
+            prod.`name`, SUBSTRING(prod.product_full_code, 10, 1) AS `sizetype`, prod.`class`, prod.season, 
+            IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='1' THEN spd.qty END),0) AS `qty1`,
+            IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='2' THEN spd.qty END),0) AS `qty2`,
+            IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='3' THEN spd.qty END),0) AS `qty3`,
+            IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='4' THEN spd.qty END),0) AS `qty4`,
+            IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='5' THEN spd.qty END),0) AS `qty5`,
+            IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='6' THEN spd.qty END),0) AS `qty6`,
+            IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='7' THEN spd.qty END),0) AS `qty7`,
+            IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='8' THEN spd.qty END),0) AS `qty8`,
+            IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='9' THEN spd.qty END),0) AS `qty9`,
+            IFNULL(SUM(CASE WHEN SUBSTRING(prod.code_size,2,1)='0' THEN spd.qty END),0) AS `qty0`,
+            SUM(spd.qty) AS `sales_pos_det_qty`,(spd.design_cop + ((sp.vat_trans/100)*spd.design_cop)) AS design_price_retail, 
+            SUM(spd.qty * (SELECT design_price_retail)) AS `amount`,
+            stt.report_status, IFNULL(prod.unit_cost,0) AS `unit_cost`
+            FROM tb_emp_uni_ex_det spd
+            INNER JOIN tb_emp_uni_ex sp ON sp.id_emp_uni_ex = spd.id_emp_uni_ex
+            INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= sp.id_comp_contact
+            INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type = sp.report_mark_type
+            INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+            INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+            INNER JOIN tb_lookup_commerce_type lct ON lct.id_commerce_type = c.id_commerce_type
+            LEFT JOIN (
+              SELECT prod.id_product, prod.id_design, prod.product_full_code, dsg.design_code AS `code`,
+              prod.product_display_name AS `name`, sz.code_detail_name AS `size`, cls.display_name AS `class`, sz.code AS `code_size`, dsg.design_cop AS `unit_cost`, ss.season
+              FROM tb_m_product prod
+              INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
+              INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+              INNER JOIN tb_m_code_detail sz ON sz.id_code_detail = prod_code.id_code_detail
+              INNER JOIN tb_m_design_code dsg_code ON dsg_code.id_design = dsg.id_design
+              INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dsg_code.id_code_detail AND cls.id_code=" + id_code_class + "
+               INNER JOIN tb_season ss ON ss.id_season = dsg.id_season
+              WHERE dsg.id_lookup_status_order!=2
+            ) prod ON prod.id_product = spd.id_product
+            INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = sp.id_report_status
+            JOIN tb_opt o
+            WHERE sp.period_until>=o.sales_uni_start_period  AND (" + col_date_uni + ">='" + date_from_selected + "' AND " + col_date_uni + "<='" + date_until_selected + "') " + w_status
+            query += " GROUP BY sp.id_emp_uni_ex, prod.id_design, SUBSTRING(prod.product_full_code, 10, 1) "
+        End If
+        query += " ORDER BY id_sales_pos ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesMain.DataSource = data
         Cursor = Cursors.Default
