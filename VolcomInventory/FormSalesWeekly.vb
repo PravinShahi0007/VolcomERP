@@ -379,7 +379,7 @@
             End If
 
             'excecute query
-            Dim query As String = "CALL view_sales_weekly('" + date_from_weekly_selected + "', '" + date_until_weekly_selected + "', '" + id_day_weekly_selected + "', " + include_promo + ")"
+            Dim query As String = "CALL view_sales_weekly_v2('" + date_from_weekly_selected + "', '" + date_until_weekly_selected + "', '" + id_day_weekly_selected + "', " + include_promo + ")"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             For i As Integer = 0 To data.Columns.Count - 1
                 If data.Columns(i).ColumnName.ToString = "id_store_contact_from" Or data.Columns(i).ColumnName.ToString = "id_store" _
