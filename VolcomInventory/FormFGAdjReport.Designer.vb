@@ -34,6 +34,7 @@ Partial Class FormFGAdjReport
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,7 +129,7 @@ Partial Class FormFGAdjReport
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnNumber, Me.GridColumnAcc, Me.GridColumnNote, Me.GridColumnQty, Me.GridColumnDate})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnNumber, Me.GridColumnAcc, Me.GridColumnNote, Me.GridColumnQty, Me.GridColumnDate, Me.GridColumn1})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:N0}")})
         Me.GVData.Name = "GVData"
@@ -151,7 +152,7 @@ Partial Class FormFGAdjReport
         Me.GridColumnNumber.FieldName = "number"
         Me.GridColumnNumber.Name = "GridColumnNumber"
         Me.GridColumnNumber.Visible = True
-        Me.GridColumnNumber.VisibleIndex = 1
+        Me.GridColumnNumber.VisibleIndex = 2
         Me.GridColumnNumber.Width = 313
         '
         'GridColumnAcc
@@ -160,7 +161,7 @@ Partial Class FormFGAdjReport
         Me.GridColumnAcc.FieldName = "acc"
         Me.GridColumnAcc.Name = "GridColumnAcc"
         Me.GridColumnAcc.Visible = True
-        Me.GridColumnAcc.VisibleIndex = 3
+        Me.GridColumnAcc.VisibleIndex = 4
         Me.GridColumnAcc.Width = 359
         '
         'GridColumnNote
@@ -169,7 +170,7 @@ Partial Class FormFGAdjReport
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 4
+        Me.GridColumnNote.VisibleIndex = 5
         Me.GridColumnNote.Width = 643
         '
         'GridColumnQty
@@ -181,7 +182,7 @@ Partial Class FormFGAdjReport
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
+        Me.GridColumnQty.VisibleIndex = 6
         Me.GridColumnQty.Width = 76
         '
         'GridColumnDate
@@ -192,8 +193,16 @@ Partial Class FormFGAdjReport
         Me.GridColumnDate.FieldName = "date"
         Me.GridColumnDate.Name = "GridColumnDate"
         Me.GridColumnDate.Visible = True
-        Me.GridColumnDate.VisibleIndex = 2
+        Me.GridColumnDate.VisibleIndex = 3
         Me.GridColumnDate.Width = 175
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Type"
+        Me.GridColumn1.FieldName = "adj_type"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 1
         '
         'FormFGAdjReport
         '
@@ -234,4 +243,5 @@ Partial Class FormFGAdjReport
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
