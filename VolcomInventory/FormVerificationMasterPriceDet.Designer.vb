@@ -19,7 +19,6 @@ Partial Class FormVerificationMasterPriceDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormVerificationMasterPriceDet))
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -42,8 +41,8 @@ Partial Class FormVerificationMasterPriceDet
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.DropDownButtonExport = New DevExpress.XtraEditors.DropDownButton()
-        Me.PopupMenuExport = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.BarManagerExport = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.PopupMenuExport = New DevExpress.XtraBars.PopupMenu()
+        Me.BarManagerExport = New DevExpress.XtraBars.BarManager()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -57,6 +56,7 @@ Partial Class FormVerificationMasterPriceDet
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SLUEOnlineStore = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SBImportExcel = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.TEFileName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUETemplate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -343,6 +343,7 @@ Partial Class FormVerificationMasterPriceDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SBPrint)
         Me.PanelControl1.Controls.Add(Me.DropDownButtonExport)
         Me.PanelControl1.Controls.Add(Me.SLUETemplate)
         Me.PanelControl1.Controls.Add(Me.LabelControl5)
@@ -384,6 +385,16 @@ Partial Class FormVerificationMasterPriceDet
         Me.SBImportExcel.Size = New System.Drawing.Size(115, 46)
         Me.SBImportExcel.TabIndex = 0
         Me.SBImportExcel.Text = "Import Excel"
+        '
+        'SBPrint
+        '
+        Me.SBPrint.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
+        Me.SBPrint.Location = New System.Drawing.Point(680, 28)
+        Me.SBPrint.Name = "SBPrint"
+        Me.SBPrint.Size = New System.Drawing.Size(88, 46)
+        Me.SBPrint.TabIndex = 9
+        Me.SBPrint.Text = "Print"
         '
         'FormVerificationMasterPriceDet
         '
@@ -464,4 +475,5 @@ Partial Class FormVerificationMasterPriceDet
     Friend WithEvents SBImportExcel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BarButtonItem1 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BarButtonItem2 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
 End Class

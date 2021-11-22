@@ -10274,6 +10274,12 @@
     <Compile Include="ReportVA.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportVerificationMasterPrice.Designer.vb">
+      <DependentUpon>ReportVerificationMasterPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportVerificationMasterPrice.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportWeightPPS.Designer.vb">
       <DependentUpon>ReportWeightPPS.vb</DependentUpon>
     </Compile>
@@ -15859,6 +15865,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportVA.resx">
       <DependentUpon>ReportVA.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportVerificationMasterPrice.resx">
+      <DependentUpon>ReportVerificationMasterPrice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportWeightPPS.resx">
       <DependentUpon>ReportWeightPPS.vb</DependentUpon>
