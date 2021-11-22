@@ -114,6 +114,8 @@ Partial Class FormBulanImport
         Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn18})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.Name = "GVSummary"
+        Me.GVSummary.OptionsBehavior.Editable = False
+        Me.GVSummary.OptionsBehavior.ReadOnly = True
         Me.GVSummary.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
