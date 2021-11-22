@@ -44,8 +44,8 @@
         check_menu()
     End Sub
     Sub viewAdjOut()
-        Dim date_from As String = Date.Parse(DEInFrom.EditValue.ToString).ToString("yyyy-MM-dd")
-        Dim date_to As String = Date.Parse(DEInTo.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim date_from As String = Date.Parse(DEOutFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim date_to As String = Date.Parse(DEOutTo.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim query As String = ""
         query += "SELECT *, DATE_FORMAT(a.adj_out_fg_date, '%d %M %Y') AS adj_out_fg_datex,
         SUM(adj_out_fg_det_qty) AS `total_qty`, 
