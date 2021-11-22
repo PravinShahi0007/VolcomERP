@@ -1,4 +1,18 @@
 ﻿Public Class FormBulanImport
+    Dim bnew_active As String = "1"
+    Dim bedit_active As String = "1"
+    Dim bdel_active As String = "1"
+
+    Private Sub FormBulanImport_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        FormMain.show_rb(Name)
+        checkFormAccess(Name)
+        button_main(bnew_active, bedit_active, bdel_active)
+    End Sub
+
+    Private Sub FormBulanImport_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
+    End Sub
+
     Private Sub FormBulanImport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEYearStart.EditValue = Now()
         DEYearUntil.EditValue = Now()

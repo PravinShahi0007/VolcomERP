@@ -35,6 +35,7 @@
                     FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("wh_rack", GVInvoice.GetRowCellValue(i, "wh_rack").ToString)
                     FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("wh_locator", GVInvoice.GetRowCellValue(i, "wh_locator").ToString)
                     FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("comp_name", GVInvoice.GetRowCellValue(i, "comp_name").ToString)
+                    FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("sales_period", GVInvoice.GetRowCellValue(i, "sales_period").ToString)
                     FormFGAdjInDet.GVDetail.CloseEditor()
                     FormFGAdjInDet.GCDetail.RefreshDataSource()
                     FormFGAdjInDet.GVDetail.RefreshData()

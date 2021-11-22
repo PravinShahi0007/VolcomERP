@@ -16,7 +16,7 @@ INNER JOIN
 	SELECT SUM(det.`total_in_rp`) AS tot_freight
 	FROM tb_pre_cal_fgpo_det det
 	INNER JOIN tb_pre_cal_fgpo f ON f.`id_pre_cal_fgpo`=det.`id_pre_cal_fgpo` AND f.`choosen_id_comp`=det.`id_comp`
-	WHERE det.`id_pre_cal_fgpo`='7' AND det.id_type=1
+	WHERE det.`id_pre_cal_fgpo`='" & id_report & "' AND det.id_type=1
 )tot_freight 
 INNER JOIN 
 (
