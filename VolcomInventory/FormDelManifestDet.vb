@@ -190,8 +190,10 @@ GROUP BY cg.`id_comp_group`"
         Dim query_det As String = "
             SELECT *
                 FROM (
-                SELECT 0 AS NO, mdet.id_wh_awb_det, c.id_comp_group, a.ol_number, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, IFNULL(so.shipping_city,ct.city) AS city, a.weight, a.width, a.length, a.height, ((a.width * a.length * a.height) / 6000) AS volume, a.c_weight
+                SELECT 0 AS NO, mdet.id_wh_awb_det, c.id_comp_group, a.ol_number, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, IFNULL(so.shipping_city,ct.city) AS city, a.weight, a.width, a.length, a.height, ((a.width * a.length * a.height) / dt.`volume_divide_by`) AS volume, a.c_weight
                 FROM tb_del_manifest_det AS mdet
+                INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest`
+                INNER JOIN tb_lookup_del_type dt ON dt.`id_del_type`=md.`id_del_type`
                 LEFT JOIN tb_wh_awbill_det AS adet ON mdet.id_wh_awb_det = adet.id_wh_awb_det
                 LEFT JOIN tb_wh_awbill AS a ON adet.id_awbill = a.id_awbill
                 LEFT JOIN tb_pl_sales_order_del AS pdel ON adet.id_pl_sales_order_del = pdel.id_pl_sales_order_del
@@ -207,7 +209,7 @@ GROUP BY cg.`id_comp_group`"
 	                LEFT JOIN tb_pl_sales_order_del_combine AS z3 ON z2.id_combine = z3.id_combine
 	                GROUP BY z2.id_combine
                 ) AS z ON pdelc.combine_number = z.combine_number
-                WHERE mdet.id_del_manifest = " + id_del_manifest + "
+                WHERE mdet.id_del_manifest = " & id_del_manifest & "
             ) AS tb
             ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC
         "

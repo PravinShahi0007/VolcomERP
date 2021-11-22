@@ -218,7 +218,13 @@
             '    weight.Borders = DevExpress.XtraPrinting.BorderSide.Left
             'End If
 
-            weight.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
+
+            If Not last_collie = dt.Rows(i)("id_awbill").ToString Then
+                weight.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
+            Else
+                weight.Text = ""
+                weight.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            End If
 
             If XrLabel3PL.Text = "WAREHOUSE" Then
                 'rec by
@@ -285,7 +291,12 @@
                 '    width.Borders = DevExpress.XtraPrinting.BorderSide.Left
                 'End If
 
-                width.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
+                If Not last_collie = dt.Rows(i)("id_awbill").ToString Then
+                    width.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
+                Else
+                    width.Text = ""
+                    width.Borders = DevExpress.XtraPrinting.BorderSide.Left
+                End If
 
                 'l
                 Dim length As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(11)
@@ -305,7 +316,12 @@
                 '    length.Borders = DevExpress.XtraPrinting.BorderSide.Left
                 'End If
 
-                length.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
+                If Not last_collie = dt.Rows(i)("id_awbill").ToString Then
+                    length.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
+                Else
+                    length.Text = ""
+                    length.Borders = DevExpress.XtraPrinting.BorderSide.Left
+                End If
 
                 't
                 Dim height As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(12)
@@ -324,7 +340,13 @@
                 '    height.Text = ""
                 '    height.Borders = DevExpress.XtraPrinting.BorderSide.Left
                 'End If
-                height.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
+
+                If Not last_collie = dt.Rows(i)("id_awbill").ToString Then
+                    height.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
+                Else
+                    height.Text = ""
+                    height.Borders = DevExpress.XtraPrinting.BorderSide.Left
+                End If
 
                 'dim
                 Dim volume As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(13)
@@ -344,7 +366,12 @@
                 '    volume.Borders = DevExpress.XtraPrinting.BorderSide.Left
                 'End If
 
-                volume.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
+                If Not last_collie = dt.Rows(i)("id_awbill").ToString Then
+                    volume.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
+                Else
+                    volume.Text = ""
+                    volume.Borders = DevExpress.XtraPrinting.BorderSide.Left
+                End If
 
                 'final weight
                 Dim c_weight As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(14)
