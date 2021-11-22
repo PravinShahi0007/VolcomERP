@@ -3738,6 +3738,7 @@ FROM tb_opt o "
 
             Dim Report As New Report3PLInsurance()
             Report.id_odm_print = id_report
+            Report.id_3pl = par3
             Report.LManifestNo.Text = par1
             Report.LVendor.Text = par2
 
