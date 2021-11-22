@@ -165,13 +165,19 @@ ORDER BY tb.awbill_no ASC,tb.ol_number ASC,tb.combine_number ASC"
     End Sub
 
     Sub send_insurance()
-        Dim qc As String = "SELECT p.id_3pl,p.number FROM tb_odm_print p WHERE p.id_odm_print='" & id_print & "'"
+        Dim qc As String = "SELECT p.id_3pl,p.number,asr.`report_mark_type`,c.`comp_name`
+FROM tb_odm_print p 
+INNER JOIN tb_asuransi_3pl asr ON asr.`id_comp`=p.`id_3pl`
+INNER JOIN tb_m_comp c ON c.`id_comp`=p.`id_3pl`
+WHERE p.id_odm_print='" & id_print & "'"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count > 0 Then
-            If dtc.Rows(0)("id_3pl").ToString = "1215" Then
-                Dim q As String = "SELECT del.awbill_no,SUM(pld.`pl_sales_order_del_det_qty` * pld.design_price) AS total_harga
+            'If dtc.Rows(0)("id_3pl").ToString = "1215" Then
+
+            'End If
+            Dim q As String = "SELECT del.awbill_no,SUM(pld.`pl_sales_order_del_det_qty` * pld.design_price) AS total_harga
 FROM tb_odm_print_det odmp
-INNER JOIN tb_odm_print odmph ON odmph.id_odm_print=odmp.id_odm_print AND odmph.id_3pl='1215' -- JNE
+INNER JOIN tb_odm_print odmph ON odmph.id_odm_print=odmp.id_odm_print AND odmph.id_3pl='" & dtc.Rows(0)("id_3pl").ToString & "' -- vendor
 INNER JOIN tb_odm_sc odm ON odm.id_odm_sc=odmp.id_odm_sc AND odmp.id_odm_print='" & id_print & "'
 INNER JOIN tb_odm_sc_det odmd ON odmd.id_odm_sc=odm.id_odm_sc
 INNER JOIN `tb_del_manifest_det` deld ON deld.id_del_manifest=odmd.id_del_manifest
@@ -187,22 +193,24 @@ INNER JOIN tb_m_design dsg ON dsg.`id_design`=p.`id_design`
 LEFT JOIN tb_m_product_code pc ON pc.`id_product`=p.`id_product`
 LEFT JOIN tb_m_code_detail cd ON cd.`id_code_detail`=pc.`id_code_detail`
 GROUP BY del.awbill_no"
-                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
-                If dt.Rows.Count > 0 Then
-                    'check log
-                    Dim qc2 As String = "SELECT * FROM tb_odm_print_log WHERE report_mark_type=313 AND id_odm_print='" & id_print & "'"
-                    Dim dtc2 As DataTable = execute_query(qc2, -1, True, "", "", "", "")
-                    If Not dtc2.Rows.Count > 0 Then
-                        'hanya kirim jika belum pernah ngirim
-                        Dim mail As ClassSendEmail = New ClassSendEmail()
-                        mail.id_report = id_print
-                        mail.par1 = dtc.Rows(0)("number").ToString
-                        mail.report_mark_type = "313"
-                        mail.send_email()
-                        'log
-                        execute_non_query("INSERT INTO tb_odm_print_log(id_odm_print,report_mark_type,id_comp,date_log) VALUES('" & id_print & "','313','1215',NOW())", True, "", "", "", "")
-                    End If
+            If dt.Rows.Count > 0 Then
+                'check log
+                Dim qc2 As String = "SELECT * FROM tb_odm_print_log WHERE report_mark_type='" & dtc.Rows(0)("report_mark_type").ToString & "' AND id_odm_print='" & id_print & "'"
+                Dim dtc2 As DataTable = execute_query(qc2, -1, True, "", "", "", "")
+                If Not dtc2.Rows.Count > 0 Then
+                    'hanya kirim jika belum pernah ngirim
+                    Dim mail As ClassSendEmail = New ClassSendEmail()
+                    mail.id_report = id_print
+                    mail.par1 = dtc.Rows(0)("number").ToString
+                    mail.par2 = dtc.Rows(0)("comp_name").ToString
+                    mail.par3 = dtc.Rows(0)("id_3pl").ToString
+                    mail.report_mark_type = dtc.Rows(0)("report_mark_type").ToString
+                    mail.is_odm_asuransi = True
+                    mail.send_email()
+                    'log
+                    execute_non_query("INSERT INTO tb_odm_print_log(id_odm_print,report_mark_type,id_comp,date_log) VALUES('" & id_print & "','" & dtc.Rows(0)("report_mark_type").ToString & "','" & dtc.Rows(0)("id_3pl").ToString & "',NOW())", True, "", "", "", "")
                 End If
             End If
         End If
