@@ -486,6 +486,8 @@
 
             GVDetail.Columns("sales_pos_number").Visible = False
             GVDetail.Columns("sales_pos_number").VisibleIndex = -1
+            GVDetail.Columns("sales_period").Visible = False
+            GVDetail.Columns("sales_period").VisibleIndex = -1
         Else
             SBSelectInvoice.Visible = True
             BImport.Visible = False
@@ -494,6 +496,8 @@
 
             GVDetail.Columns("sales_pos_number").Visible = True
             GVDetail.Columns("sales_pos_number").VisibleIndex = 2
+            GVDetail.Columns("sales_period").Visible = True
+            GVDetail.Columns("sales_period").VisibleIndex = 3
         End If
 
         Dim query As String = "CALL view_fg_adj_in_less(0)"

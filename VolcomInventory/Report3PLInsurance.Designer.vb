@@ -42,6 +42,7 @@ Partial Public Class Report3PLInsurance
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
+        Me.LVendor = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XTDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,7 +112,7 @@ Partial Public Class Report3PLInsurance
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel4, Me.XrLabel3, Me.XrPictureBox1, Me.XrLabel1, Me.XrLabel2, Me.LManifestNo, Me.XrTable1})
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LVendor, Me.XrLabel4, Me.XrLabel3, Me.XrPictureBox1, Me.XrLabel1, Me.XrLabel2, Me.LManifestNo, Me.XrTable1})
         Me.PageHeader.HeightF = 132.2917!
         Me.PageHeader.Name = "PageHeader"
         '
@@ -121,10 +122,10 @@ Partial Public Class Report3PLInsurance
         Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 24.16666!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(435.4166!, 24.16667!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(302.0833!, 24.16667!)
         Me.XrLabel4.StylePriority.UseFont = False
         Me.XrLabel4.StylePriority.UseTextAlignment = False
-        Me.XrLabel4.Text = "LAPORAN NILAI PERTANGGUNGAN ASURANSI JNE"
+        Me.XrLabel4.Text = "LAPORAN NILAI PERTANGGUNGAN ASURANSI"
         Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel3
@@ -250,6 +251,17 @@ Partial Public Class Report3PLInsurance
         Me.XrPageInfo1.StylePriority.UseTextAlignment = False
         Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
+        'LVendor
+        '
+        Me.LVendor.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.LVendor.LocationFloat = New DevExpress.Utils.PointFloat(302.0833!, 24.16666!)
+        Me.LVendor.Name = "LVendor"
+        Me.LVendor.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LVendor.SizeF = New System.Drawing.SizeF(201.9167!, 24.16667!)
+        Me.LVendor.StylePriority.UseFont = False
+        Me.LVendor.StylePriority.UseTextAlignment = False
+        Me.LVendor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
         'Report3PLInsurance
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader, Me.PageFooter})
@@ -286,4 +298,5 @@ Partial Public Class Report3PLInsurance
     Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
     Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LVendor As DevExpress.XtraReports.UI.XRLabel
 End Class

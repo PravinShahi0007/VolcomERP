@@ -17,18 +17,20 @@
         Dim query As String = ""
         If is_out Then 'adj out
             query = "SELECT o.id_adj_out_fg AS `id`, o.adj_out_fg_number AS `number`, o.adj_out_fg_date AS `date`, c.comp_number AS `acc_no`, c.comp_name AS `acc_name`, CONCAT(c.comp_number,' - ', c.comp_name) AS `acc`,
-            od.adj_out_fg_det_note AS `note`, SUM(od.adj_out_fg_det_qty) AS `qty` 
+            od.adj_out_fg_det_note AS `note`, SUM(od.adj_out_fg_det_qty) AS `qty`, t.adj_type
             FROM tb_adj_out_fg o
             INNER JOIN tb_adj_out_fg_det od ON od.id_adj_out_fg = o.id_adj_out_fg
             INNER JOIN tb_m_comp c ON c.id_drawer_def = od.id_wh_drawer
+            INNER JOIN tb_lookup_adj_type t ON o.id_adj_type = t.id_adj_type
             WHERE (o.adj_out_fg_date>='" + date_from_selected + "' AND o.adj_out_fg_date<='" + date_until_selected + "')
             GROUP BY o.id_adj_out_fg, od.id_wh_drawer "
         Else
             query = "SELECT i.id_adj_in_fg AS `id`, i.adj_in_fg_number AS `number`, i.adj_in_fg_date AS `date`, c.comp_number AS `acc_no`, c.comp_name AS `acc_name`, CONCAT(c.comp_number,' - ', c.comp_name) AS `acc`,
-            id.adj_in_fg_det_note AS `note`, SUM(id.adj_in_fg_det_qty) AS `qty` 
+            id.adj_in_fg_det_note AS `note`, SUM(id.adj_in_fg_det_qty) AS `qty`, t.adj_type
             FROM tb_adj_in_fg i
             INNER JOIN tb_adj_in_fg_det id ON id.id_adj_in_fg = i.id_adj_in_fg
             INNER JOIN tb_m_comp c ON c.id_drawer_def = id.id_wh_drawer
+            INNER JOIN tb_lookup_adj_type t ON i.id_adj_type = t.id_adj_type
             WHERE (i.adj_in_fg_date>='" + date_from_selected + "' AND i.adj_in_fg_date<='" + date_until_selected + "')
             GROUP BY i.id_adj_in_fg, id.id_wh_drawer "
         End If

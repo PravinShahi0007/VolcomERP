@@ -36,14 +36,14 @@ Partial Class FormItemExpenseSNI
         Me.GridColumn19 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RICEBudgetDet = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -283,6 +283,30 @@ Partial Class FormItemExpenseSNI
         Me.GridColumn29.Visible = True
         Me.GridColumn29.Width = 170
         '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "Expense Created"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn4)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 1
+        Me.gridBand4.Width = 154
+        '
+        'BandedGridColumn4
+        '
+        Me.BandedGridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn4.Caption = "Amount Expense Created"
+        Me.BandedGridColumn4.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn4.FieldName = "amo_exp"
+        Me.BandedGridColumn4.Name = "BandedGridColumn4"
+        Me.BandedGridColumn4.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn4.OptionsColumn.AllowFocus = False
+        Me.BandedGridColumn4.Visible = True
+        Me.BandedGridColumn4.Width = 154
+        '
         'gridBand3
         '
         Me.gridBand3.Caption = "Pembayaran"
@@ -357,28 +381,6 @@ Partial Class FormItemExpenseSNI
         Me.GridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn3.Visible = True
         Me.GridColumn3.Width = 141
-        '
-        'gridBand4
-        '
-        Me.gridBand4.Caption = "Expense Created"
-        Me.gridBand4.Columns.Add(Me.BandedGridColumn4)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 1
-        Me.gridBand4.Width = 154
-        '
-        'BandedGridColumn4
-        '
-        Me.BandedGridColumn4.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn4.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn4.Caption = "Amount Expense Created"
-        Me.BandedGridColumn4.DisplayFormat.FormatString = "N2"
-        Me.BandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn4.FieldName = "amo_exp"
-        Me.BandedGridColumn4.Name = "BandedGridColumn4"
-        Me.BandedGridColumn4.Visible = True
-        Me.BandedGridColumn4.Width = 154
         '
         'RICEBudgetDet
         '

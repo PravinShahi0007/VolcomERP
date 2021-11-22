@@ -17,6 +17,8 @@ Public Class ClassSendEmail
     Public type_email As String = "4"
     Public par1 As String = ""
     Public par2 As String = ""
+    Public par3 As String = ""
+    Public is_odm_asuransi As Boolean = False
     Public dt As DataTable
     Public subj As String = ""
     Public titl As String = ""
@@ -3726,15 +3728,19 @@ FROM tb_opt o "
             mail.IsBodyHtml = True
             mail.Body = body_temp
             client.Send(mail)
-        ElseIf report_mark_type = "313" Then
-            'send mail asuransi JNE
+        ElseIf is_odm_asuransi Then
+            'ElseIf report_mark_type = "313" Then ' lihat ke tabel tb_asuransi_3pl
+
+            'send mail asuransi
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Volcom Indonesia - Nilai Pertanggungan Asuransi - " & par1)
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
 
             Dim Report As New Report3PLInsurance()
             Report.id_odm_print = id_report
+            Report.id_3pl = par3
             Report.LManifestNo.Text = par1
+            Report.LVendor.Text = par2
 
             ' Create a new memory stream and export the report into it as XLS.
             Dim Mem As New MemoryStream()
@@ -3816,7 +3822,7 @@ FROM tb_opt o "
                  <tr>
                   <td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
                   <div>
-                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Dear JNE, </span><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Dear " & par2 & ", </span><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
                   </div>
                   </td>
 
@@ -3864,6 +3870,8 @@ FROM tb_opt o "
 </table> "
             mail.Body = body_temp
             client.Send(mail)
+
+            is_odm_asuransi = False
         ElseIf report_mark_type = "314" Then
             'send stok toko
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Volcom Indonesia - Laporan Pengiriman Produk (" & par2 & ") - " & par1)

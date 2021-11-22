@@ -8,6 +8,7 @@
         Dim query As String = "SELECT *, DATE_FORMAT(a.adj_in_fg_date, '%Y-%m-%d') AS adj_in_fg_datex FROM tb_adj_in_fg a "
         query += "INNER JOIN tb_lookup_currency b ON a.id_currency = b.id_currency "
         query += "INNER JOIN tb_lookup_report_status c ON a.id_report_status = c.id_report_status "
+        query += "INNER JOIN tb_lookup_adj_type t ON a.id_adj_type = t.id_adj_type "
         query += "WHERE a.id_adj_in_fg = '" + id_adj_in_fg + "' "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -16,6 +17,8 @@
         LabelDate.Text = view_date_from(data.Rows(0)("adj_in_fg_datex").ToString, 0)
         LabelNote.Text = data.Rows(0)("adj_in_fg_note").ToString
         currency = data.Rows(0)("currency").ToString
+        currency = data.Rows(0)("currency").ToString
+        XLType.Text = data.Rows(0)("adj_type").ToString
 
         'Detail
         viewDetailReturn()

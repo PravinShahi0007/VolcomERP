@@ -144,7 +144,6 @@
 
     Sub load_dp()
         Dim query As String = ""
-
         If FormInvoiceFGPODP.doc_type = "2" Then
             If id_po = "-1" Then
                 XTPDP.PageVisible = False
@@ -178,6 +177,8 @@ INNER JOIN `tb_prod_demand_design` pdd ON pdd.`id_prod_demand_design`=po.`id_pro
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
 WHERE pn.`id_report_status`= '6' AND pnd.`id_report`='" & id_po & "' AND pnd.report_mark_type='22' AND pn.`type`='1'  AND (pn.doc_type='2' OR pn.doc_type='1')
 AND (pnd.`value_bef_kurs`+IFNULL(used.val_bef_kurs,0)) > 0"
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                GCList.DataSource = data
             End If
         Else
             query = "SELECT 'no' AS is_check, pnd.id_pn_fgpo_det,pnd.qty, pn.`id_pn_fgpo`,pn.`number`,pnd.id_currency,cur.currency,pnd.kurs,pnd.`vat`,pnd.`inv_number`,pnd.`note`,(pnd.`value_bef_kurs`+IFNULL(used.val_bef_kurs,0)) AS value_bef_kurs_rem,(pnd.`value_bef_kurs`+IFNULL(used.val_bef_kurs,0)) AS value_bef_kurs 
@@ -193,9 +194,9 @@ LEFT JOIN
     WHERE pnd.`report_mark_type`='199' AND pn.id_report_status!=5 AND pn.id_comp='" & FormInvoiceFGPODP.SLEVendor.EditValue.ToString & "'
 )used ON used.id_report=pnd.id_pn_fgpo
 WHERE pn.`id_report_status`= '6' AND pn.id_comp='" & FormInvoiceFGPODP.SLEVendor.EditValue.ToString & "' AND pnd.report_mark_type!='199' AND pn.`type`='1' AND (pnd.`value_bef_kurs`+IFNULL(used.val_bef_kurs,0)) > 0 AND pn.doc_type!='2'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCList.DataSource = data
         End If
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCList.DataSource = data
     End Sub
 
     Sub load_dp_khusus()
