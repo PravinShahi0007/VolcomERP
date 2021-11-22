@@ -916,10 +916,10 @@ ORDER BY awbd.id_awbill ASC,awbd.id_pl_sales_order_del ASC"
 
             If SLEOnlineShop.EditValue.ToString = "1" Then
                 'online
-                q_weight = "SELECT SUM(tb.weight) AS weight, tb.width, tb.length, tb.height,SUM(tb.volume) AS volume
+                q_weight = "SELECT SUM(tb.weight) AS weight, tb.width, tb.length, tb.height,SUM(tb.volume) AS volume,SUM(tb.final) AS final
 FROM 
 (
-	SELECT SUM(awb.weight) AS weight, awb.width, awb.length, awb.height, SUM(awb.`volume`) AS volume
+	SELECT SUM(awb.weight) AS weight, awb.width, awb.length, awb.height, SUM(awb.`volume`) AS volume,SUM(IF(awb.weight>awb.volume,awb.weight,awb.volume)) AS final
 	FROM (
         SELECT awb.id_awbill,awb.weight AS weight, awb.width, awb.length, awb.height
         ,ROUND((awb.width* awb.length*awb.height)/" & div_by & ",2) AS volume
@@ -938,10 +938,10 @@ FROM
 )tb "
             Else
                 'offline
-                q_weight = "SELECT SUM(tb.weight) AS weight, tb.width, tb.length, tb.height,SUM(tb.volume) AS volume
+                q_weight = "SELECT SUM(tb.weight) AS weight, tb.width, tb.length, tb.height,SUM(tb.volume) AS volume,SUM(tb.final) AS final
 FROM 
 (
-    SELECT SUM(awb.weight) AS weight, awb.width, awb.length, awb.height, SUM(awb.`volume`) AS volume
+    SELECT SUM(awb.weight) AS weight, awb.width, awb.length, awb.height, SUM(awb.`volume`) AS volume,SUM(IF(awb.weight>awb.volume,awb.weight,awb.volume)) AS final
 	FROM (
 	    SELECT awb.id_awbill,awb.weight, awb.width, awb.length, awb.height
         ,ROUND((awb.width* awb.length*awb.height)/" & div_by & ",2) AS volume
@@ -966,11 +966,13 @@ FROM
                 berat_dim = Decimal.Parse(dt_weight.Rows(0)("volume").ToString)
                 berat_aktual = Decimal.Parse(dt_weight.Rows(0)("weight").ToString)
 
-                If berat_dim > berat_aktual Then
-                    berat_terpakai = berat_dim
-                Else
-                    berat_terpakai = berat_aktual
-                End If
+                'If berat_dim > berat_aktual Then
+                '    berat_terpakai = berat_dim
+                'Else
+                '    berat_terpakai = berat_aktual
+                'End If
+
+                berat_terpakai = Decimal.Parse(dt_weight.Rows(0)("final").ToString)
 
                 Dim q As String = ""
 
