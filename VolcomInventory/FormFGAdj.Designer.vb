@@ -87,6 +87,8 @@ Partial Class FormFGAdj
         Me.Label4 = New System.Windows.Forms.Label()
         Me.DEOutFrom = New DevExpress.XtraEditors.DateEdit()
         Me.BtnSummaryOut = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCAdj, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAdj.SuspendLayout()
         Me.XTPAdjIn.SuspendLayout()
@@ -174,7 +176,7 @@ Partial Class FormFGAdj
         '
         'GVAdjIn
         '
-        Me.GVAdjIn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAdjInSample, Me.GridColumnNumberAdjInSampleNumber, Me.GridColumnAdjInSampleDate, Me.GridColumnCurrencyAdjInSample, Me.GridColumnAmount, Me.GridColumnReportStatus, Me.GridColumnretail_price_total, Me.GridColumntotal_qty, Me.GridColumnaccount})
+        Me.GVAdjIn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAdjInSample, Me.GridColumnNumberAdjInSampleNumber, Me.GridColumnAdjInSampleDate, Me.GridColumnCurrencyAdjInSample, Me.GridColumnAmount, Me.GridColumnReportStatus, Me.GridColumnretail_price_total, Me.GridColumntotal_qty, Me.GridColumnaccount, Me.GridColumn21})
         Me.GVAdjIn.GridControl = Me.GCAdjIn
         Me.GVAdjIn.Name = "GVAdjIn"
         Me.GVAdjIn.OptionsBehavior.Editable = False
@@ -217,7 +219,7 @@ Partial Class FormFGAdj
         Me.GridColumnAmount.FieldName = "adj_in_fg_total"
         Me.GridColumnAmount.Name = "GridColumnAmount"
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 4
+        Me.GridColumnAmount.VisibleIndex = 5
         '
         'GridColumnReportStatus
         '
@@ -225,7 +227,7 @@ Partial Class FormFGAdj
         Me.GridColumnReportStatus.FieldName = "report_status"
         Me.GridColumnReportStatus.Name = "GridColumnReportStatus"
         Me.GridColumnReportStatus.Visible = True
-        Me.GridColumnReportStatus.VisibleIndex = 6
+        Me.GridColumnReportStatus.VisibleIndex = 7
         '
         'GridColumnretail_price_total
         '
@@ -236,7 +238,7 @@ Partial Class FormFGAdj
         Me.GridColumnretail_price_total.Name = "GridColumnretail_price_total"
         Me.GridColumnretail_price_total.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "retail_price_total", "{0:N0}")})
         Me.GridColumnretail_price_total.Visible = True
-        Me.GridColumnretail_price_total.VisibleIndex = 5
+        Me.GridColumnretail_price_total.VisibleIndex = 6
         '
         'GridColumntotal_qty
         '
@@ -247,7 +249,7 @@ Partial Class FormFGAdj
         Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
         Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
         Me.GridColumntotal_qty.Visible = True
-        Me.GridColumntotal_qty.VisibleIndex = 3
+        Me.GridColumntotal_qty.VisibleIndex = 4
         '
         'GridColumnaccount
         '
@@ -255,7 +257,7 @@ Partial Class FormFGAdj
         Me.GridColumnaccount.FieldName = "account"
         Me.GridColumnaccount.Name = "GridColumnaccount"
         Me.GridColumnaccount.Visible = True
-        Me.GridColumnaccount.VisibleIndex = 2
+        Me.GridColumnaccount.VisibleIndex = 3
         '
         'XTPInBAP
         '
@@ -463,7 +465,7 @@ Partial Class FormFGAdj
         '
         'GVAdjOut
         '
-        Me.GVAdjOut.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumnretail_price_total_Out, Me.GridColumntotal_qty_out, Me.GridColumnaccount_out})
+        Me.GVAdjOut.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumnretail_price_total_Out, Me.GridColumntotal_qty_out, Me.GridColumnaccount_out, Me.GridColumn22})
         Me.GVAdjOut.GridControl = Me.GCAdjOut
         Me.GVAdjOut.Name = "GVAdjOut"
         Me.GVAdjOut.OptionsBehavior.Editable = False
@@ -506,7 +508,7 @@ Partial Class FormFGAdj
         Me.GridColumn11.FieldName = "adj_out_fg_total"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.VisibleIndex = 5
         '
         'GridColumn12
         '
@@ -514,7 +516,7 @@ Partial Class FormFGAdj
         Me.GridColumn12.FieldName = "report_status"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 6
+        Me.GridColumn12.VisibleIndex = 7
         '
         'GridColumnretail_price_total_Out
         '
@@ -525,7 +527,7 @@ Partial Class FormFGAdj
         Me.GridColumnretail_price_total_Out.Name = "GridColumnretail_price_total_Out"
         Me.GridColumnretail_price_total_Out.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "retail_price_total", "{0:N0}")})
         Me.GridColumnretail_price_total_Out.Visible = True
-        Me.GridColumnretail_price_total_Out.VisibleIndex = 5
+        Me.GridColumnretail_price_total_Out.VisibleIndex = 6
         '
         'GridColumntotal_qty_out
         '
@@ -536,7 +538,7 @@ Partial Class FormFGAdj
         Me.GridColumntotal_qty_out.Name = "GridColumntotal_qty_out"
         Me.GridColumntotal_qty_out.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
         Me.GridColumntotal_qty_out.Visible = True
-        Me.GridColumntotal_qty_out.VisibleIndex = 3
+        Me.GridColumntotal_qty_out.VisibleIndex = 4
         '
         'GridColumnaccount_out
         '
@@ -544,7 +546,7 @@ Partial Class FormFGAdj
         Me.GridColumnaccount_out.FieldName = "account"
         Me.GridColumnaccount_out.Name = "GridColumnaccount_out"
         Me.GridColumnaccount_out.Visible = True
-        Me.GridColumnaccount_out.VisibleIndex = 2
+        Me.GridColumnaccount_out.VisibleIndex = 3
         '
         'XTPOutBAP
         '
@@ -715,6 +717,22 @@ Partial Class FormFGAdj
         Me.BtnSummaryOut.TabIndex = 0
         Me.BtnSummaryOut.Text = "Summary"
         '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Type"
+        Me.GridColumn21.FieldName = "adj_type"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 2
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Type"
+        Me.GridColumn22.FieldName = "adj_type"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 2
+        '
         'FormFGAdj
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -836,4 +854,6 @@ Partial Class FormFGAdj
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SBCreateAdjOut As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

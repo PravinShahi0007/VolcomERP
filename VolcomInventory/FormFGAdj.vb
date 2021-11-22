@@ -26,7 +26,7 @@
 
         Dim query As String = ""
         query += "SELECT *, DATE_FORMAT(a.adj_in_fg_date, '%d %M %Y') AS adj_in_fg_datex, SUM(adj_in_fg_det_qty) AS `total_qty`, 
-        GROUP_CONCAT(DISTINCT comp.comp_number) AS `account` "
+        GROUP_CONCAT(DISTINCT comp.comp_number) AS `account`, d.adj_type "
         query += "FROM tb_adj_in_fg a 
         INNER JOIN tb_adj_in_fg_det ad ON ad.id_adj_in_fg = a.id_adj_in_fg 
         INNER JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = ad.id_wh_drawer
@@ -35,6 +35,7 @@
         INNER JOIN tb_m_comp comp ON comp.id_comp = loc.id_comp "
         query += "INNER JOIN tb_lookup_report_status b ON a.id_report_status = b.id_report_status "
         query += "INNER JOIN tb_lookup_currency c ON a.id_currency = c.id_currency  "
+        query += "INNER JOIN tb_lookup_adj_type d ON a.id_adj_type = d.id_adj_type  "
         query += "WHERE a.adj_in_fg_date BETWEEN '" + date_from + "' AND '" + date_to + "'"
         query += "GROUP BY a.id_adj_in_fg "
         query += "ORDER BY a.id_adj_in_fg DESC "
@@ -48,7 +49,7 @@
         Dim query As String = ""
         query += "SELECT *, DATE_FORMAT(a.adj_out_fg_date, '%d %M %Y') AS adj_out_fg_datex,
         SUM(adj_out_fg_det_qty) AS `total_qty`, 
-        GROUP_CONCAT(DISTINCT comp.comp_number) AS `account` "
+        GROUP_CONCAT(DISTINCT comp.comp_number) AS `account`, d.adj_type "
         query += "FROM tb_adj_out_fg a 
         INNER JOIN tb_adj_out_fg_det ad ON ad.id_adj_out_fg = a.id_adj_out_fg 
         INNER JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = ad.id_wh_drawer
@@ -57,6 +58,7 @@
         INNER JOIN tb_m_comp comp ON comp.id_comp = loc.id_comp "
         query += "INNER JOIN tb_lookup_report_status b ON a.id_report_status = b.id_report_status "
         query += "INNER JOIN tb_lookup_currency c ON a.id_currency = c.id_currency  "
+        query += "INNER JOIN tb_lookup_adj_type d ON a.id_adj_type = d.id_adj_type  "
         query += "WHERE a.adj_out_fg_date BETWEEN '" + date_from + "' AND '" + date_to + "'"
         query += "GROUP BY a.id_adj_out_fg  "
         query += "ORDER BY a.id_adj_out_fg DESC "
