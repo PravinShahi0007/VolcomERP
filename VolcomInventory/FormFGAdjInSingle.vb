@@ -154,6 +154,7 @@
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("wh_locator", SLELocator.Properties.GetDisplayText(SLELocator.EditValue))
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("comp_name", SLEWH.Properties.GetDisplayText(SLEWH.EditValue))
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("id_sales_pos_det", "")
+                            FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("sales_period", "")
                             FormFGAdjInDet.GVDetail.CloseEditor()
                             FormFGAdjInDet.GCDetail.RefreshDataSource()
                             FormFGAdjInDet.GVDetail.RefreshData()
