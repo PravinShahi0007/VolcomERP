@@ -376,7 +376,8 @@
         Dim tot_qty_po As Decimal = GVListPurchase.Columns("qty").SummaryItem.SummaryValue
         Dim qfoc As String = "SELECT recd.id_mat_purc_det,SUM(recd.`mat_purc_rec_det_qty`) AS qty
 FROM `tb_mat_purc_rec_det` recd
-INNER JOIN tb_mat_purc_rec rec ON rec.`id_mat_purc_rec`=recd.`id_mat_purc_rec` AND rec.`id_report_status`!=5 AND rec.`id_mat_purc`='" & id_order & "'"
+INNER JOIN tb_mat_purc_rec rec ON rec.`id_mat_purc_rec`=recd.`id_mat_purc_rec` AND rec.`id_report_status`!=5 AND rec.`id_mat_purc`='" & id_order & "'
+HAVING NOT ISNULL(qty)"
         Dim dtfoc As DataTable = execute_query(qfoc, -1, True, "", "", "", "")
         If dtfoc.Rows.Count > 0 Then
             tot_qty_rec += dtfoc.Rows(0)("qty")
