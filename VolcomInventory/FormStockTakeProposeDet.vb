@@ -562,7 +562,7 @@
 
         'path
         Dim path As String = Application.StartupPath & "\download\"
-        Dim filename As String = path + "\List Toko.pdf"
+        Dim filename As String = path + "\Jadwal Remote Stock Take.pdf"
 
         If Not IO.Directory.Exists(path) Then
             System.IO.Directory.CreateDirectory(path)
@@ -707,7 +707,7 @@
 
         mem_toko.Seek(0, System.IO.SeekOrigin.Begin)
 
-        Dim att_toko = New Net.Mail.Attachment(mem_toko, "List Toko.pdf", "application/pdf")
+        Dim att_toko = New Net.Mail.Attachment(mem_toko, "Jadwal Remote Stock Take.pdf", "application/pdf")
 
         mail.Attachments.Add(att_toko)
 

@@ -480,7 +480,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 13
+        Me.GridColumnRemark.VisibleIndex = 11
         '
         'GridColumnAdjPrice
         '
@@ -493,8 +493,6 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnAdjPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAdjPrice.FieldName = "adj_out_fg_det_price"
         Me.GridColumnAdjPrice.Name = "GridColumnAdjPrice"
-        Me.GridColumnAdjPrice.Visible = True
-        Me.GridColumnAdjPrice.VisibleIndex = 9
         Me.GridColumnAdjPrice.Width = 70
         '
         'GridColumnQty
@@ -535,8 +533,6 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnAmount.FieldName = "adj_out_fg_det_amount"
         Me.GridColumnAmount.Name = "GridColumnAmount"
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_out_fg_det_amount", "{0:n2}")})
-        Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 10
         Me.GridColumnAmount.Width = 103
         '
         'GridColumnAccount
@@ -555,7 +551,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnretail_price.FieldName = "retail_price"
         Me.GridColumnretail_price.Name = "GridColumnretail_price"
         Me.GridColumnretail_price.Visible = True
-        Me.GridColumnretail_price.VisibleIndex = 11
+        Me.GridColumnretail_price.VisibleIndex = 9
         '
         'GridColumnretail_price_amount
         '
@@ -566,7 +562,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnretail_price_amount.Name = "GridColumnretail_price_amount"
         Me.GridColumnretail_price_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "retail_price_amount", "{0:N0}")})
         Me.GridColumnretail_price_amount.Visible = True
-        Me.GridColumnretail_price_amount.VisibleIndex = 12
+        Me.GridColumnretail_price_amount.VisibleIndex = 10
         '
         'GridColumn1
         '
