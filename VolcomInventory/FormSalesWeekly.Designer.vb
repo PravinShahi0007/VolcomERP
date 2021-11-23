@@ -20,7 +20,7 @@ Partial Class FormSalesWeekly
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Me.GVSalesPOSDet = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -103,6 +103,7 @@ Partial Class FormSalesWeekly
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnExportToXLSDateWeekly = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEIncludePrmUniWeekly = New DevExpress.XtraEditors.CheckEdit()
         Me.DEEndWeek = New DevExpress.XtraEditors.DateEdit()
         Me.DEFromWeek = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
@@ -124,6 +125,7 @@ Partial Class FormSalesWeekly
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnExportToXLSWeekly = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEIncPromoUni = New DevExpress.XtraEditors.CheckEdit()
         Me.DEEndWeekly = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -187,7 +189,6 @@ Partial Class FormSalesWeekly
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.CEIncPromoUni = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -224,6 +225,7 @@ Partial Class FormSalesWeekly
         Me.GroupControl3.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.CEIncludePrmUniWeekly.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEndWeek.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEndWeek.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromWeek.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -245,6 +247,7 @@ Partial Class FormSalesWeekly
         Me.GroupControl1.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.CEIncPromoUni.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEndWeekly.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEndWeekly.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromWeekly.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -293,7 +296,6 @@ Partial Class FormSalesWeekly
         Me.GroupControl5.SuspendLayout()
         CType(Me.SLUEUSASales.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CEIncPromoUni.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GVSalesPOSDet
@@ -495,9 +497,9 @@ Partial Class FormSalesWeekly
         'GCSalesPOS
         '
         Me.GCSalesPOS.Dock = System.Windows.Forms.DockStyle.Fill
-        GridLevelNode1.LevelTemplate = Me.GVSalesPOSDet
-        GridLevelNode1.RelationName = "Detail Transaction"
-        Me.GCSalesPOS.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
+        GridLevelNode2.LevelTemplate = Me.GVSalesPOSDet
+        GridLevelNode2.RelationName = "Detail Transaction"
+        Me.GCSalesPOS.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
         Me.GCSalesPOS.Location = New System.Drawing.Point(0, 0)
         Me.GCSalesPOS.MainView = Me.GVSalesPOS
         Me.GCSalesPOS.Name = "GCSalesPOS"
@@ -1032,10 +1034,10 @@ Partial Class FormSalesWeekly
         'GCSalesWeeklyByDate
         '
         Me.GCSalesWeeklyByDate.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSalesWeeklyByDate.Location = New System.Drawing.Point(0, 46)
+        Me.GCSalesWeeklyByDate.Location = New System.Drawing.Point(0, 78)
         Me.GCSalesWeeklyByDate.MainView = Me.BGVSalesWeeklyByDate
         Me.GCSalesWeeklyByDate.Name = "GCSalesWeeklyByDate"
-        Me.GCSalesWeeklyByDate.Size = New System.Drawing.Size(1132, 440)
+        Me.GCSalesWeeklyByDate.Size = New System.Drawing.Size(1132, 408)
         Me.GCSalesWeeklyByDate.TabIndex = 4
         Me.GCSalesWeeklyByDate.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVSalesWeeklyByDate})
         '
@@ -1061,12 +1063,12 @@ Partial Class FormSalesWeekly
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl3.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(1132, 46)
+        Me.GroupControl3.Size = New System.Drawing.Size(1132, 78)
         Me.GroupControl3.TabIndex = 3
         '
         'BtnExportToXLSDateWeekly
         '
-        Me.BtnExportToXLSDateWeekly.Location = New System.Drawing.Point(743, 13)
+        Me.BtnExportToXLSDateWeekly.Location = New System.Drawing.Point(655, 25)
         Me.BtnExportToXLSDateWeekly.LookAndFeel.SkinName = "Blue"
         Me.BtnExportToXLSDateWeekly.Name = "BtnExportToXLSDateWeekly"
         Me.BtnExportToXLSDateWeekly.Size = New System.Drawing.Size(92, 20)
@@ -1075,6 +1077,7 @@ Partial Class FormSalesWeekly
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.CEIncludePrmUniWeekly)
         Me.PanelControl2.Controls.Add(Me.DEEndWeek)
         Me.PanelControl2.Controls.Add(Me.DEFromWeek)
         Me.PanelControl2.Controls.Add(Me.LabelControl11)
@@ -1087,14 +1090,22 @@ Partial Class FormSalesWeekly
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl2.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(636, 42)
+        Me.PanelControl2.Size = New System.Drawing.Size(549, 74)
         Me.PanelControl2.TabIndex = 8933
+        '
+        'CEIncludePrmUniWeekly
+        '
+        Me.CEIncludePrmUniWeekly.Location = New System.Drawing.Point(307, 41)
+        Me.CEIncludePrmUniWeekly.Name = "CEIncludePrmUniWeekly"
+        Me.CEIncludePrmUniWeekly.Properties.Caption = "Include Promo/Uniform"
+        Me.CEIncludePrmUniWeekly.Size = New System.Drawing.Size(131, 19)
+        Me.CEIncludePrmUniWeekly.TabIndex = 8934
         '
         'DEEndWeek
         '
         Me.DEEndWeek.EditValue = Nothing
         Me.DEEndWeek.Enabled = False
-        Me.DEEndWeek.Location = New System.Drawing.Point(386, 11)
+        Me.DEEndWeek.Location = New System.Drawing.Point(386, 15)
         Me.DEEndWeek.Name = "DEEndWeek"
         Me.DEEndWeek.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEEndWeek.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1109,7 +1120,7 @@ Partial Class FormSalesWeekly
         '
         Me.DEFromWeek.EditValue = Nothing
         Me.DEFromWeek.Enabled = False
-        Me.DEFromWeek.Location = New System.Drawing.Point(213, 11)
+        Me.DEFromWeek.Location = New System.Drawing.Point(213, 15)
         Me.DEFromWeek.Name = "DEFromWeek"
         Me.DEFromWeek.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEFromWeek.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1122,7 +1133,7 @@ Partial Class FormSalesWeekly
         '
         'LabelControl11
         '
-        Me.LabelControl11.Location = New System.Drawing.Point(96, 14)
+        Me.LabelControl11.Location = New System.Drawing.Point(96, 18)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(27, 13)
         Me.LabelControl11.TabIndex = 8931
@@ -1130,7 +1141,7 @@ Partial Class FormSalesWeekly
         '
         'LabelControl15
         '
-        Me.LabelControl15.Location = New System.Drawing.Point(16, 14)
+        Me.LabelControl15.Location = New System.Drawing.Point(16, 18)
         Me.LabelControl15.Name = "LabelControl15"
         Me.LabelControl15.Size = New System.Drawing.Size(22, 13)
         Me.LabelControl15.TabIndex = 8930
@@ -1139,7 +1150,7 @@ Partial Class FormSalesWeekly
         'TxtWeek
         '
         Me.TxtWeek.EditValue = "1"
-        Me.TxtWeek.Location = New System.Drawing.Point(129, 11)
+        Me.TxtWeek.Location = New System.Drawing.Point(129, 15)
         Me.TxtWeek.Name = "TxtWeek"
         Me.TxtWeek.Properties.Mask.EditMask = "F0"
         Me.TxtWeek.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
@@ -1148,7 +1159,7 @@ Partial Class FormSalesWeekly
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(183, 14)
+        Me.LabelControl10.Location = New System.Drawing.Point(183, 18)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl10.TabIndex = 8892
@@ -1156,7 +1167,7 @@ Partial Class FormSalesWeekly
         '
         'LabelControl14
         '
-        Me.LabelControl14.Location = New System.Drawing.Point(359, 14)
+        Me.LabelControl14.Location = New System.Drawing.Point(359, 18)
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl14.TabIndex = 8893
@@ -1165,7 +1176,7 @@ Partial Class FormSalesWeekly
         'TxtYear
         '
         Me.TxtYear.EditValue = "2020"
-        Me.TxtYear.Location = New System.Drawing.Point(46, 11)
+        Me.TxtYear.Location = New System.Drawing.Point(46, 15)
         Me.TxtYear.Name = "TxtYear"
         Me.TxtYear.Properties.DisplayFormat.FormatString = "yyyy"
         Me.TxtYear.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
@@ -1176,7 +1187,7 @@ Partial Class FormSalesWeekly
         '
         'CEPromoWeeklyByDate
         '
-        Me.CEPromoWeeklyByDate.Location = New System.Drawing.Point(532, 11)
+        Me.CEPromoWeeklyByDate.Location = New System.Drawing.Point(444, 41)
         Me.CEPromoWeeklyByDate.Name = "CEPromoWeeklyByDate"
         Me.CEPromoWeeklyByDate.Properties.Caption = "Include GWP"
         Me.CEPromoWeeklyByDate.Size = New System.Drawing.Size(89, 19)
@@ -1184,7 +1195,7 @@ Partial Class FormSalesWeekly
         '
         'BtnViewDateWeekly
         '
-        Me.BtnViewDateWeekly.Location = New System.Drawing.Point(663, 13)
+        Me.BtnViewDateWeekly.Location = New System.Drawing.Point(575, 25)
         Me.BtnViewDateWeekly.LookAndFeel.SkinName = "Blue"
         Me.BtnViewDateWeekly.Name = "BtnViewDateWeekly"
         Me.BtnViewDateWeekly.Size = New System.Drawing.Size(75, 20)
@@ -1193,7 +1204,7 @@ Partial Class FormSalesWeekly
         '
         'CheckEdit3
         '
-        Me.CheckEdit3.Location = New System.Drawing.Point(973, 58)
+        Me.CheckEdit3.Location = New System.Drawing.Point(971, 123)
         Me.CheckEdit3.Name = "CheckEdit3"
         Me.CheckEdit3.Properties.Caption = "Show Revenue Before Tax"
         Me.CheckEdit3.Size = New System.Drawing.Size(154, 19)
@@ -1202,7 +1213,7 @@ Partial Class FormSalesWeekly
         '
         'CheckEdit4
         '
-        Me.CheckEdit4.Location = New System.Drawing.Point(893, 58)
+        Me.CheckEdit4.Location = New System.Drawing.Point(891, 123)
         Me.CheckEdit4.Name = "CheckEdit4"
         Me.CheckEdit4.Properties.Caption = "Show Retail"
         Me.CheckEdit4.Size = New System.Drawing.Size(90, 19)
@@ -1305,6 +1316,14 @@ Partial Class FormSalesWeekly
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(497, 68)
         Me.PanelControl1.TabIndex = 8933
+        '
+        'CEIncPromoUni
+        '
+        Me.CEIncPromoUni.Location = New System.Drawing.Point(256, 40)
+        Me.CEIncPromoUni.Name = "CEIncPromoUni"
+        Me.CEIncPromoUni.Properties.Caption = "Include Promo/Uniform"
+        Me.CEIncPromoUni.Size = New System.Drawing.Size(131, 19)
+        Me.CEIncPromoUni.TabIndex = 8932
         '
         'DEEndWeekly
         '
@@ -1911,14 +1930,6 @@ Partial Class FormSalesWeekly
         Me.SimpleButton2.TabIndex = 8896
         Me.SimpleButton2.Text = "View"
         '
-        'CEIncPromoUni
-        '
-        Me.CEIncPromoUni.Location = New System.Drawing.Point(256, 40)
-        Me.CEIncPromoUni.Name = "CEIncPromoUni"
-        Me.CEIncPromoUni.Properties.Caption = "Include Promo/Uniform"
-        Me.CEIncPromoUni.Size = New System.Drawing.Size(131, 19)
-        Me.CEIncPromoUni.TabIndex = 8932
-        '
         'FormSalesWeekly
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1969,6 +1980,7 @@ Partial Class FormSalesWeekly
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.CEIncludePrmUniWeekly.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEndWeek.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEndWeek.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromWeek.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1991,6 +2003,7 @@ Partial Class FormSalesWeekly
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.CEIncPromoUni.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEndWeekly.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEndWeekly.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromWeekly.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2043,7 +2056,6 @@ Partial Class FormSalesWeekly
         Me.GroupControl5.PerformLayout()
         CType(Me.SLUEUSASales.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CEIncPromoUni.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2214,4 +2226,5 @@ Partial Class FormSalesWeekly
     Friend WithEvents RepositoryItemHyperLinkEdit As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents CEIncludePrmUni As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents CEIncPromoUni As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CEIncludePrmUniWeekly As DevExpress.XtraEditors.CheckEdit
 End Class

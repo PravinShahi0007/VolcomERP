@@ -77,16 +77,16 @@ Partial Class FormItemExpense
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPSNI = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BrefreshSNI = New DevExpress.XtraEditors.SimpleButton()
         Me.GCListSNI = New DevExpress.XtraGrid.GridControl()
         Me.GVListSNI = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BrefreshSNI = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,10 +114,10 @@ Partial Class FormItemExpense
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.XTPSNI.SuspendLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
         CType(Me.GCListSNI, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListSNI, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCData
@@ -662,25 +662,6 @@ Partial Class FormItemExpense
         Me.XTPSNI.Size = New System.Drawing.Size(1006, 528)
         Me.XTPSNI.Text = "SNI"
         '
-        'PanelControl3
-        '
-        Me.PanelControl3.Controls.Add(Me.BrefreshSNI)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1006, 48)
-        Me.PanelControl3.TabIndex = 1
-        '
-        'BrefreshSNI
-        '
-        Me.BrefreshSNI.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BrefreshSNI.Image = CType(resources.GetObject("BrefreshSNI.Image"), System.Drawing.Image)
-        Me.BrefreshSNI.Location = New System.Drawing.Point(890, 2)
-        Me.BrefreshSNI.Name = "BrefreshSNI"
-        Me.BrefreshSNI.Size = New System.Drawing.Size(114, 44)
-        Me.BrefreshSNI.TabIndex = 2
-        Me.BrefreshSNI.Text = "Refresh"
-        '
         'GCListSNI
         '
         Me.GCListSNI.Dock = System.Windows.Forms.DockStyle.Fill
@@ -696,6 +677,8 @@ Partial Class FormItemExpense
         Me.GVListSNI.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn12, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10})
         Me.GVListSNI.GridControl = Me.GCListSNI
         Me.GVListSNI.Name = "GVListSNI"
+        Me.GVListSNI.OptionsBehavior.Editable = False
+        Me.GVListSNI.OptionsBehavior.ReadOnly = True
         Me.GVListSNI.OptionsView.ShowGroupPanel = False
         '
         'GridColumn6
@@ -703,6 +686,19 @@ Partial Class FormItemExpense
         Me.GridColumn6.Caption = "ID"
         Me.GridColumn6.FieldName = "id_awb_office"
         Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.Caption = "Season"
+        Me.GridColumn12.FieldName = "season"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 1
+        Me.GridColumn12.Width = 155
         '
         'GridColumn7
         '
@@ -742,18 +738,24 @@ Partial Class FormItemExpense
         Me.GridColumn10.VisibleIndex = 3
         Me.GridColumn10.Width = 210
         '
-        'GridColumn12
+        'PanelControl3
         '
-        Me.GridColumn12.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn12.Caption = "Season"
-        Me.GridColumn12.FieldName = "season"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 1
-        Me.GridColumn12.Width = 155
+        Me.PanelControl3.Controls.Add(Me.BrefreshSNI)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1006, 48)
+        Me.PanelControl3.TabIndex = 1
+        '
+        'BrefreshSNI
+        '
+        Me.BrefreshSNI.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BrefreshSNI.Image = CType(resources.GetObject("BrefreshSNI.Image"), System.Drawing.Image)
+        Me.BrefreshSNI.Location = New System.Drawing.Point(890, 2)
+        Me.BrefreshSNI.Name = "BrefreshSNI"
+        Me.BrefreshSNI.Size = New System.Drawing.Size(114, 44)
+        Me.BrefreshSNI.TabIndex = 2
+        Me.BrefreshSNI.Text = "Refresh"
         '
         'FormItemExpense
         '
@@ -793,10 +795,10 @@ Partial Class FormItemExpense
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.XTPSNI.ResumeLayout(False)
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
         CType(Me.GCListSNI, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListSNI, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

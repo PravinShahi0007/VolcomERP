@@ -126,7 +126,7 @@ GROUP BY ed.id_prepaid_expense ORDER BY e.id_prepaid_expense DESC "
     Private Sub BRefresh_Click(sender As Object, e As EventArgs) Handles BRefresh.Click
         Dim q As String = "SELECT reg.id_polis_reg,reg.`number`,regd.polis_number,SUM(regd.premi) AS val,c.comp_name,c.id_comp,c.comp_number,p.description
 FROM `tb_polis_reg_det` regd
-INNER JOIN tb_polis_reg reg ON reg.`id_polis_reg`=regd.id_polis_reg
+INNER JOIN tb_polis_reg reg ON reg.`id_polis_reg`=regd.id_polis_reg AND reg.id_report_status=6
 INNER JOIN tb_m_comp c ON c.id_comp=regd.vendor_dipilih
 INNER JOIN tb_lookup_desc_premi p ON p.id_desc_premi=regd.id_desc_premi
 LEFT JOIN
