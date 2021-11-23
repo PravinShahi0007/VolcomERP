@@ -329,6 +329,7 @@ Partial Class FormImportFGRule
         Me.GridColumn2.Caption = "Min Qty Order"
         Me.GridColumn2.DisplayFormat.FormatString = "N0"
         Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn2.FieldName = "min_qty_order"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
@@ -342,6 +343,7 @@ Partial Class FormImportFGRule
         Me.GridColumn3.Caption = "Max Qty Order"
         Me.GridColumn3.DisplayFormat.FormatString = "N0"
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn3.FieldName = "max_qty_order"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
@@ -355,6 +357,7 @@ Partial Class FormImportFGRule
         Me.GridColumn4.Caption = "Batas Maksimum Reject Minor"
         Me.GridColumn4.DisplayFormat.FormatString = "N0"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4.FieldName = "max_minor"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
@@ -368,6 +371,7 @@ Partial Class FormImportFGRule
         Me.GridColumn5.Caption = "Batas Maksimum Reject Major"
         Me.GridColumn5.DisplayFormat.FormatString = "N0"
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn5.FieldName = "max_major"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3

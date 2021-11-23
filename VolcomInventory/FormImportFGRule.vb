@@ -83,6 +83,10 @@ WHERE d.id_import_rule='" & GVRule.GetFocusedRowCellValue("id_import_rule").ToSt
 
     Private Sub FormImportFGRule_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_vendor()
+        TEMinQty.EditValue = 0
+        TEMaxQty.EditValue = 0
+        TEMaxMajor.EditValue = 0
+        TEMaxMinor.EditValue = 0
     End Sub
 
     Sub view_vendor()
@@ -124,6 +128,22 @@ INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country` AND co.id_country
     End Sub
 
     Private Sub BAddDetailRule_Click(sender As Object, e As EventArgs) Handles BAddDetailRule.Click
-
+        If GVRule.RowCount > 0 Then
+            If TEMaxMajor.EditValue = 0 Or TEMaxMinor.EditValue = 0 Or TEMaxQty.EditValue = 0 Then
+                warningCustom("Isi isian dengan value yang benar")
+            Else
+                Dim q As String = "INSERT INTO tb_import_rule_det(`id_import_rule`,`min_qty_order`,`max_qty_order`,`max_minor`,`max_major`) VALUES('" & GVRule.GetFocusedRowCellValue("id_import_rule").ToString & "','" & TEMinQty.EditValue.ToString & "','" & TEMaxQty.EditValue.ToString & "','" & TEMaxMinor.EditValue.ToString & "','" & TEMaxMajor.EditValue.ToString & "')"
+                execute_non_query(q, True, "", "", "", "")
+                '
+                TEMaxMajor.EditValue = 0
+                TEMaxMinor.EditValue = 0
+                TEMinQty.EditValue = 0
+                TEMaxQty.EditValue = 0
+                '
+                refresh_det()
+            End If
+        Else
+            warningCustom("Pilih rule terlebih dahulu")
+        End If
     End Sub
 End Class
