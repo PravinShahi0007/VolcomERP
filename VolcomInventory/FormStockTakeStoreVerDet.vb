@@ -282,9 +282,9 @@
         BGVData.ClearColumnsFilter()
 
         'stock check
-        Dim id_prod As String = ""
+        Dim id_prod As String = "0, "
 
-        Dim qs As String = "DELETE FROM tb_temp_val_stock WHERE id_user='" + id_user + "'; INSERT INTO tb_temp_val_stock(id_user, code, name, size, id_product, qty) VALUES "
+        Dim qs As String = "DELETE FROM tb_temp_val_stock WHERE id_user='" + id_user + "'; INSERT INTO tb_temp_val_stock(id_user, code, name, size, id_product, qty) VALUES ('" + id_user + "', NULL, NULL, NULL, NULL, NULL), "
 
         'missing
         For i = 0 To BGVData.RowCount - 1

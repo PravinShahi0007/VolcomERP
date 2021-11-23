@@ -180,10 +180,12 @@
             SLUEDivision.ReadOnly = True
             TEFileName.ReadOnly = True
             SBImportExcel.Enabled = False
+            SBPrint.Visible = True
         Else
             SLUEOnlineStore.EditValue = "0"
             SLUEDivision.EditValue = "0"
             TEFileName.EditValue = ""
+            SBPrint.Visible = False
         End If
 
         TEFileName.ReadOnly = True
@@ -1420,5 +1422,49 @@
         End If
 
         GVVerification.ActiveFilterString = ""
+    End Sub
+
+    Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        Dim id_comp As String = execute_query("SELECT id_comp FROM tb_verification_master_p WHERE id_verification_master = '" + id_verification_master + "'", 0, True, "", "", "", "")
+        Dim id_template As String = execute_query("SELECT id_template FROM tb_verification_master_p WHERE id_verification_master = '" + id_verification_master + "'", 0, True, "", "", "", "")
+
+        Dim query As String = ""
+
+        If id_comp = "653" Then
+            query = "
+                    SELECT SellerSku, FORMAT(Price, 2) AS Price, FORMAT(SalePrice, 2) AS SalePrice, SellerSku_erp, FORMAT(Price_erp, 2) AS Price_erp, FORMAT(SalePrice_erp, 2) AS SalePrice_erp
+                    FROM tb_verification_master_p_zalora
+                    WHERE id_verification_master = '" + id_verification_master + "'
+                "
+        ElseIf id_comp = "1177" Then
+            If id_template = "1" Then
+                query = "
+                        SELECT SellerSKU, FORMAT(NormalHargaRp, 2) AS NormalHargaRp, FORMAT(HargaPenjualanRp, 2) AS HargaPenjualanRp, SellerSKU_erp, FORMAT(NormalHargaRp_erp, 2) AS NormalHargaRp_erp, FORMAT(HargaPenjualanRp_erp, 2) AS HargaPenjualanRp_erp
+                        FROM tb_verification_master_p_blibli
+                        WHERE id_verification_master = '" + id_verification_master + "'
+                    "
+            ElseIf id_template = "2" Then
+                query = "
+                        SELECT SellerSKU, FORMAT(HargaRp, 2) AS HargaRp, FORMAT(HargaPenjualanRp, 2) AS HargaPenjualanRp, SellerSKU_erp, FORMAT(HargaRp_erp, 2) AS HargaRp_erp, FORMAT(HargaPenjualanRp_erp, 2) AS HargaPenjualanRp_erp
+                        FROM tb_verification_master_p_blibli_update
+                        WHERE id_verification_master = '" + id_verification_master + "'
+                    "
+            End If
+        ElseIf id_comp = "1286" Then
+            query = "
+                    SELECT SKU, FORMAT(Harga, 2) AS Harga, FORMAT(HargaDiskon, 2) AS HargaDiskon, SKU_erp, FORMAT(Harga_erp, 2) AS Harga_erp, FORMAT(HargaDiskon_erp, 2) AS HargaDiskon_erp
+                    FROM tb_verification_master_p_shopee
+                    WHERE id_verification_master = '" + id_verification_master + "'
+                "
+        End If
+
+        Dim report As New ReportVerificationMasterPrice()
+
+        report.GCVerification.DataSource = execute_query(query, -1, True, "", "", "", "")
+        report.XLFilename.Text = TEFileName.Text
+
+        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+        tool.ShowPreview()
     End Sub
 End Class

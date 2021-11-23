@@ -20,6 +20,7 @@
         Dim number As Integer = 0
 
         Dim total_qty As Integer = 0
+        Dim total_final_weight As Decimal = 0.00
 
         Dim rowspan_del_manifest As Integer = 0
         Dim rowspan_koli As Integer = 0
@@ -209,7 +210,16 @@
             '    weight.RowSpan = rowspan_del_manifest
             'End If
 
-            If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+            'pak hendri 22 november 2021, per koli
+            'If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+            '    weight.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
+            'Else
+            '    weight.Text = ""
+            '    weight.Borders = DevExpress.XtraPrinting.BorderSide.Left
+            'End If
+
+
+            If Not last_collie = dt.Rows(i)("id_awbill").ToString Then
                 weight.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
             Else
                 weight.Text = ""
@@ -273,7 +283,15 @@
                 '    width.RowSpan = rowspan_del_manifest
                 'End If
 
-                If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+                'pak hendri 22 november 2021, per koli
+                'If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+                '    width.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
+                'Else
+                '    width.Text = ""
+                '    width.Borders = DevExpress.XtraPrinting.BorderSide.Left
+                'End If
+
+                If Not last_collie = dt.Rows(i)("id_awbill").ToString Then
                     width.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
                 Else
                     width.Text = ""
@@ -290,7 +308,15 @@
                 '    length.RowSpan = rowspan_del_manifest
                 'End If
 
-                If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+                'pak hendri 22 november 2021, per koli
+                'If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+                '    length.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
+                'Else
+                '    length.Text = ""
+                '    length.Borders = DevExpress.XtraPrinting.BorderSide.Left
+                'End If
+
+                If Not last_collie = dt.Rows(i)("id_awbill").ToString Then
                     length.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
                 Else
                     length.Text = ""
@@ -307,7 +333,15 @@
                 '    height.RowSpan = rowspan_del_manifest
                 'End If
 
-                If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+                'pak hendri 22 november 2021, per koli
+                'If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+                '    height.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
+                'Else
+                '    height.Text = ""
+                '    height.Borders = DevExpress.XtraPrinting.BorderSide.Left
+                'End If
+
+                If Not last_collie = dt.Rows(i)("id_awbill").ToString Then
                     height.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
                 Else
                     height.Text = ""
@@ -324,7 +358,15 @@
                 '    volume.RowSpan = rowspan_del_manifest
                 'End If
 
-                If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+                'pak hendri 22 november 2021, per koli
+                'If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+                '    volume.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
+                'Else
+                '    volume.Text = ""
+                '    volume.Borders = DevExpress.XtraPrinting.BorderSide.Left
+                'End If
+
+                If Not last_collie = dt.Rows(i)("id_awbill").ToString Then
                     volume.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top
                 Else
                     volume.Text = ""
@@ -367,6 +409,10 @@
                 row.HeightF = 0
             End If
 
+            If Not last_del_manifest = dt.Rows(i)("id_del_manifest").ToString Then
+                total_final_weight += Decimal.Round(dt.Rows(i)("c_weight"), 2)
+            End If
+
             last_del_manifest = dt.Rows(i)("id_del_manifest").ToString
             last_collie = dt.Rows(i)("id_awbill").ToString
             last_combine = dt.Rows(i)("combine_number").ToString
@@ -375,6 +421,7 @@
         XrTableRowTotal.HeightF = 25
 
         XTCCollie.Text = total_qty
+        XTCFW.Text = total_final_weight
 
         XrLabelJumlahKoli.Text = number.ToString
     End Sub

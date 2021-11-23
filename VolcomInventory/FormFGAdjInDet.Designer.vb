@@ -19,7 +19,6 @@ Partial Class FormFGAdjInDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGAdjInDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.SBSelectInvoice = New DevExpress.XtraEditors.SimpleButton()
@@ -62,10 +61,11 @@ Partial Class FormFGAdjInDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PCEdit = New DevExpress.XtraEditors.PanelControl()
         Me.BImport = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
@@ -83,8 +83,7 @@ Partial Class FormFGAdjInDet
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.EPAdj = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.EPAdj = New System.Windows.Forms.ErrorProvider()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.SLUEAdjType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -453,8 +452,6 @@ Partial Class FormFGAdjInDet
         Me.GridColumnAdjPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAdjPrice.FieldName = "adj_in_fg_det_price"
         Me.GridColumnAdjPrice.Name = "GridColumnAdjPrice"
-        Me.GridColumnAdjPrice.Visible = True
-        Me.GridColumnAdjPrice.VisibleIndex = 8
         Me.GridColumnAdjPrice.Width = 117
         '
         'GridColumnQty
@@ -495,8 +492,6 @@ Partial Class FormFGAdjInDet
         Me.GridColumnAmount.FieldName = "adj_in_fg_det_amount"
         Me.GridColumnAmount.Name = "GridColumnAmount"
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_in_fg_det_amount", "{0:n2}")})
-        Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 9
         Me.GridColumnAmount.Width = 138
         '
         'GridColumnAccount
@@ -515,7 +510,7 @@ Partial Class FormFGAdjInDet
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 12
+        Me.GridColumnRemark.VisibleIndex = 10
         '
         'GridColumnretail_price
         '
@@ -525,7 +520,7 @@ Partial Class FormFGAdjInDet
         Me.GridColumnretail_price.FieldName = "retail_price"
         Me.GridColumnretail_price.Name = "GridColumnretail_price"
         Me.GridColumnretail_price.Visible = True
-        Me.GridColumnretail_price.VisibleIndex = 10
+        Me.GridColumnretail_price.VisibleIndex = 8
         '
         'GridColumn1
         '
@@ -536,7 +531,7 @@ Partial Class FormFGAdjInDet
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "retail_price_amount", "{0:N0}")})
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 11
+        Me.GridColumn1.VisibleIndex = 9
         '
         'GridColumn2
         '
@@ -550,6 +545,14 @@ Partial Class FormFGAdjInDet
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Period"
+        Me.GridColumn4.FieldName = "sales_period"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
         '
         'GridView1
         '
@@ -774,14 +777,6 @@ Partial Class FormFGAdjInDet
         'EPAdj
         '
         Me.EPAdj.ContainerControl = Me
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Period"
-        Me.GridColumn4.FieldName = "sales_period"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
         '
         'FormFGAdjInDet
         '
