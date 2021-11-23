@@ -336,6 +336,8 @@
         confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to submit ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
         If confirm = Windows.Forms.DialogResult.Yes Then
+            Dim is_reserved As Boolean = False
+
             'reserved stock
             Dim id_wh_drawer As String = execute_query("
                 SELECT id_drawer_def FROM tb_m_comp WHERE id_comp = " + SLUEAccount.EditValue.ToString + "
@@ -352,6 +354,8 @@
                         Dim adj_out_fg_det_qty As String = BGVData.GetRowCellValue(i, "qty_akhir").ToString
 
                         query_reserved += "('" + id_wh_drawer + "', '2', '" + id_product + "', '" + decimalSQL(adj_out_fg_det_price) + "', '" + decimalSQL(adj_out_fg_det_qty) + "', NOW(), 'BAP Missing : " + TENumber.EditValue.ToString + "', '2', '343', '" + id_st_store_bap + "'), "
+
+                        is_reserved = True
                     End If
                 End If
             Next
@@ -364,12 +368,16 @@
                     Dim adj_out_fg_det_qty As String = data_adj.Rows(i)("qty").ToString
 
                     query_reserved += "('" + id_wh_drawer + "', '2', '" + id_product + "', '" + decimalSQL(adj_out_fg_det_price) + "', '" + decimalSQL(adj_out_fg_det_qty) + "', NOW(), 'BAP Adjustment Out : " + TENumber.EditValue.ToString + "', '2', '340', '" + id_st_store_bap + "'), "
+
+                    is_reserved = True
                 Next
             End If
 
-            query_reserved = query_reserved.Substring(0, query_reserved.Length - 2)
+            If is_reserved Then
+                query_reserved = query_reserved.Substring(0, query_reserved.Length - 2)
 
-            execute_non_query(query_reserved, True, "", "", "", "")
+                execute_non_query(query_reserved, True, "", "", "", "")
+            End If
 
             Dim is_volcom_store As String = execute_query("SELECT is_volcom_store FROM tb_m_store WHERE id_store = (SELECT id_store FROM tb_m_comp WHERE id_comp = " + SLUEAccount.EditValue.ToString + ")", 0, True, "", "", "", "")
 
