@@ -64,6 +64,7 @@ Partial Class FormStockTakeProposeDet
         Me.XTPEmail = New DevExpress.XtraTab.XtraTabPage()
         Me.WBEmail = New System.Windows.Forms.WebBrowser()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBPNP = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAttachmentStoreList = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAttachmentSuratIjin = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -78,7 +79,6 @@ Partial Class FormStockTakeProposeDet
         Me.SBAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.SBPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSubmit = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBPNP = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLUEStoreCompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -558,6 +558,15 @@ Partial Class FormStockTakeProposeDet
         Me.PanelControl3.Size = New System.Drawing.Size(304, 315)
         Me.PanelControl3.TabIndex = 0
         '
+        'SBPNP
+        '
+        Me.SBPNP.Image = CType(resources.GetObject("SBPNP.Image"), System.Drawing.Image)
+        Me.SBPNP.Location = New System.Drawing.Point(196, 272)
+        Me.SBPNP.Name = "SBPNP"
+        Me.SBPNP.Size = New System.Drawing.Size(71, 23)
+        Me.SBPNP.TabIndex = 9
+        Me.SBPNP.Text = "P&&P"
+        '
         'SBAttachmentStoreList
         '
         Me.SBAttachmentStoreList.Image = CType(resources.GetObject("SBAttachmentStoreList.Image"), System.Drawing.Image)
@@ -565,7 +574,7 @@ Partial Class FormStockTakeProposeDet
         Me.SBAttachmentStoreList.Name = "SBAttachmentStoreList"
         Me.SBAttachmentStoreList.Size = New System.Drawing.Size(84, 23)
         Me.SBAttachmentStoreList.TabIndex = 8
-        Me.SBAttachmentStoreList.Text = "List Toko"
+        Me.SBAttachmentStoreList.Text = "Jadwal"
         '
         'SBAttachmentSuratIjin
         '
@@ -686,15 +695,6 @@ Partial Class FormStockTakeProposeDet
         Me.SBSubmit.Size = New System.Drawing.Size(99, 41)
         Me.SBSubmit.TabIndex = 0
         Me.SBSubmit.Text = "Submit"
-        '
-        'SBPNP
-        '
-        Me.SBPNP.Image = CType(resources.GetObject("SBPNP.Image"), System.Drawing.Image)
-        Me.SBPNP.Location = New System.Drawing.Point(196, 272)
-        Me.SBPNP.Name = "SBPNP"
-        Me.SBPNP.Size = New System.Drawing.Size(71, 23)
-        Me.SBPNP.TabIndex = 9
-        Me.SBPNP.Text = "P&&P"
         '
         'FormStockTakeProposeDet
         '
