@@ -2629,6 +2629,12 @@
     <Compile Include="FormHistoryProposeChanges.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormImportFGRule.Designer.vb">
+      <DependentUpon>FormImportFGRule.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormImportFGRule.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormInbound3PL.Designer.vb">
       <DependentUpon>FormInbound3PL.vb</DependentUpon>
     </Compile>
@@ -11551,6 +11557,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormHistoryProposeChanges.resx">
       <DependentUpon>FormHistoryProposeChanges.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormImportFGRule.resx">
+      <DependentUpon>FormImportFGRule.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInbound3PL.resx">
       <DependentUpon>FormInbound3PL.vb</DependentUpon>

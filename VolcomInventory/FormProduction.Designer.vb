@@ -279,6 +279,7 @@ Partial Class FormProduction
         Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BSearchCopyProto2 = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.BImportRule = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -383,18 +384,18 @@ Partial Class FormProduction
         Me.XTPListProduction.Controls.Add(Me.PCFilterDate)
         Me.XTPListProduction.Controls.Add(Me.PanelControl1)
         Me.XTPListProduction.Name = "XTPListProduction"
-        Me.XTPListProduction.Size = New System.Drawing.Size(992, 327)
+        Me.XTPListProduction.Size = New System.Drawing.Size(992, 443)
         Me.XTPListProduction.Text = "List FGPO"
         '
         'GCProd
         '
         Me.GCProd.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCProd.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCProd.Location = New System.Drawing.Point(0, 38)
+        Me.GCProd.Location = New System.Drawing.Point(0, 41)
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
         Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit, Me.RepositoryItemCheckEdit1})
-        Me.GCProd.Size = New System.Drawing.Size(992, 251)
+        Me.GCProd.Size = New System.Drawing.Size(992, 364)
         Me.GCProd.TabIndex = 2
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
         '
@@ -896,7 +897,7 @@ Partial Class FormProduction
         Me.PCFilterDate.Controls.Add(Me.DEEnd)
         Me.PCFilterDate.Controls.Add(Me.DEStart)
         Me.PCFilterDate.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCFilterDate.Location = New System.Drawing.Point(0, 289)
+        Me.PCFilterDate.Location = New System.Drawing.Point(0, 405)
         Me.PCFilterDate.Name = "PCFilterDate"
         Me.PCFilterDate.Size = New System.Drawing.Size(992, 38)
         Me.PCFilterDate.TabIndex = 4
@@ -996,6 +997,7 @@ Partial Class FormProduction
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BImportRule)
         Me.PanelControl1.Controls.Add(Me.BShowPrintPanel)
         Me.PanelControl1.Controls.Add(Me.SLEVendor)
         Me.PanelControl1.Controls.Add(Me.SLESeason)
@@ -1007,12 +1009,12 @@ Partial Class FormProduction
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(992, 38)
+        Me.PanelControl1.Size = New System.Drawing.Size(992, 41)
         Me.PanelControl1.TabIndex = 3
         '
         'BShowPrintPanel
         '
-        Me.BShowPrintPanel.Location = New System.Drawing.Point(669, 6)
+        Me.BShowPrintPanel.Location = New System.Drawing.Point(669, 8)
         Me.BShowPrintPanel.Name = "BShowPrintPanel"
         Me.BShowPrintPanel.Size = New System.Drawing.Size(105, 23)
         Me.BShowPrintPanel.TabIndex = 8909
@@ -1020,7 +1022,7 @@ Partial Class FormProduction
         '
         'SLEVendor
         '
-        Me.SLEVendor.Location = New System.Drawing.Point(450, 8)
+        Me.SLEVendor.Location = New System.Drawing.Point(450, 10)
         Me.SLEVendor.Name = "SLEVendor"
         Me.SLEVendor.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEVendor.Properties.Appearance.Options.UseFont = True
@@ -1063,7 +1065,7 @@ Partial Class FormProduction
         '
         'SLESeason
         '
-        Me.SLESeason.Location = New System.Drawing.Point(251, 8)
+        Me.SLESeason.Location = New System.Drawing.Point(251, 10)
         Me.SLESeason.Name = "SLESeason"
         Me.SLESeason.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
@@ -1096,7 +1098,7 @@ Partial Class FormProduction
         '
         'BSearch
         '
-        Me.BSearch.Location = New System.Drawing.Point(604, 6)
+        Me.BSearch.Location = New System.Drawing.Point(604, 8)
         Me.BSearch.Name = "BSearch"
         Me.BSearch.Size = New System.Drawing.Size(59, 23)
         Me.BSearch.TabIndex = 8903
@@ -1105,7 +1107,7 @@ Partial Class FormProduction
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(410, 11)
+        Me.LabelControl3.Location = New System.Drawing.Point(410, 13)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl3.TabIndex = 8901
@@ -1114,7 +1116,7 @@ Partial Class FormProduction
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(210, 11)
+        Me.LabelControl1.Location = New System.Drawing.Point(210, 13)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl1.TabIndex = 8897
@@ -1122,7 +1124,7 @@ Partial Class FormProduction
         '
         'SLEDesignStockStore
         '
-        Me.SLEDesignStockStore.Location = New System.Drawing.Point(53, 8)
+        Me.SLEDesignStockStore.Location = New System.Drawing.Point(53, 10)
         Me.SLEDesignStockStore.Name = "SLEDesignStockStore"
         Me.SLEDesignStockStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEDesignStockStore.Properties.View = Me.GVSLEDesgSearch
@@ -1171,7 +1173,7 @@ Partial Class FormProduction
         'LabelControl9
         '
         Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(11, 11)
+        Me.LabelControl9.Location = New System.Drawing.Point(11, 13)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(32, 13)
         Me.LabelControl9.TabIndex = 8895
@@ -1578,7 +1580,7 @@ Partial Class FormProduction
         Me.XTPListWO.Controls.Add(Me.GCProdWO)
         Me.XTPListWO.Controls.Add(Me.PanelControl2)
         Me.XTPListWO.Name = "XTPListWO"
-        Me.XTPListWO.Size = New System.Drawing.Size(992, 327)
+        Me.XTPListWO.Size = New System.Drawing.Size(992, 443)
         Me.XTPListWO.Text = "List Work Order"
         '
         'GCProdWO
@@ -1588,7 +1590,7 @@ Partial Class FormProduction
         Me.GCProdWO.MainView = Me.GVProdWO
         Me.GCProdWO.Name = "GCProdWO"
         Me.GCProdWO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.PGBProg, Me.RCIMainVendor})
-        Me.GCProdWO.Size = New System.Drawing.Size(992, 289)
+        Me.GCProdWO.Size = New System.Drawing.Size(992, 405)
         Me.GCProdWO.TabIndex = 8
         Me.GCProdWO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProdWO})
         '
@@ -1940,7 +1942,7 @@ Partial Class FormProduction
         Me.XTPListMRS.Controls.Add(Me.GCMRS)
         Me.XTPListMRS.Controls.Add(Me.PanelControl3)
         Me.XTPListMRS.Name = "XTPListMRS"
-        Me.XTPListMRS.Size = New System.Drawing.Size(992, 327)
+        Me.XTPListMRS.Size = New System.Drawing.Size(992, 443)
         Me.XTPListMRS.Text = "List MRS"
         '
         'GCMRS
@@ -1950,7 +1952,7 @@ Partial Class FormProduction
         Me.GCMRS.MainView = Me.GVMRS
         Me.GCMRS.Name = "GCMRS"
         Me.GCMRS.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1})
-        Me.GCMRS.Size = New System.Drawing.Size(992, 289)
+        Me.GCMRS.Size = New System.Drawing.Size(992, 405)
         Me.GCMRS.TabIndex = 9
         Me.GCMRS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMRS})
         '
@@ -2247,7 +2249,7 @@ Partial Class FormProduction
         Me.XTPFGPOKO.Controls.Add(Me.GCKO)
         Me.XTPFGPOKO.Controls.Add(Me.PanelControl5)
         Me.XTPFGPOKO.Name = "XTPFGPOKO"
-        Me.XTPFGPOKO.Size = New System.Drawing.Size(992, 327)
+        Me.XTPFGPOKO.Size = New System.Drawing.Size(992, 443)
         Me.XTPFGPOKO.Text = "Konfirmasi Order (SKO)"
         '
         'GCKO
@@ -2257,7 +2259,7 @@ Partial Class FormProduction
         Me.GCKO.MainView = Me.GVKO
         Me.GCKO.Name = "GCKO"
         Me.GCKO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar2, Me.RepositoryItemMemoEdit2})
-        Me.GCKO.Size = New System.Drawing.Size(992, 289)
+        Me.GCKO.Size = New System.Drawing.Size(992, 405)
         Me.GCKO.TabIndex = 10
         Me.GCKO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVKO})
         '
@@ -2442,7 +2444,7 @@ Partial Class FormProduction
         Me.XTPFGPOKP.Controls.Add(Me.GCKP)
         Me.XTPFGPOKP.Controls.Add(Me.PanelControl6)
         Me.XTPFGPOKP.Name = "XTPFGPOKP"
-        Me.XTPFGPOKP.Size = New System.Drawing.Size(992, 327)
+        Me.XTPFGPOKP.Size = New System.Drawing.Size(992, 443)
         Me.XTPFGPOKP.Text = "Konfirmasi Produksi (SKP)"
         '
         'GCKP
@@ -2452,7 +2454,7 @@ Partial Class FormProduction
         Me.GCKP.MainView = Me.GVKP
         Me.GCKP.Name = "GCKP"
         Me.GCKP.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar3, Me.RepositoryItemMemoEdit1})
-        Me.GCKP.Size = New System.Drawing.Size(992, 289)
+        Me.GCKP.Size = New System.Drawing.Size(992, 405)
         Me.GCKP.TabIndex = 12
         Me.GCKP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVKP})
         '
@@ -2638,7 +2640,7 @@ Partial Class FormProduction
         Me.XTPCopyProto2.Controls.Add(Me.PanelControl7)
         Me.XTPCopyProto2.Name = "XTPCopyProto2"
         Me.XTPCopyProto2.PageVisible = False
-        Me.XTPCopyProto2.Size = New System.Drawing.Size(992, 327)
+        Me.XTPCopyProto2.Size = New System.Drawing.Size(992, 443)
         Me.XTPCopyProto2.Text = "Copy Proto 2 Sample Order"
         '
         'GCCopyProto2
@@ -2648,7 +2650,7 @@ Partial Class FormProduction
         Me.GCCopyProto2.MainView = Me.GVCopyProto2
         Me.GCCopyProto2.Name = "GCCopyProto2"
         Me.GCCopyProto2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar4})
-        Me.GCCopyProto2.Size = New System.Drawing.Size(992, 289)
+        Me.GCCopyProto2.Size = New System.Drawing.Size(992, 405)
         Me.GCCopyProto2.TabIndex = 13
         Me.GCCopyProto2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCopyProto2})
         '
@@ -2809,6 +2811,16 @@ Partial Class FormProduction
         Me.LabelControl13.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl13.TabIndex = 8901
         Me.LabelControl13.Text = "Vendor"
+        '
+        'BImportRule
+        '
+        Me.BImportRule.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BImportRule.Image = CType(resources.GetObject("BImportRule.Image"), System.Drawing.Image)
+        Me.BImportRule.Location = New System.Drawing.Point(871, 2)
+        Me.BImportRule.Name = "BImportRule"
+        Me.BImportRule.Size = New System.Drawing.Size(119, 37)
+        Me.BImportRule.TabIndex = 8910
+        Me.BImportRule.Text = "Import Rule"
         '
         'FormProduction
         '
@@ -3177,4 +3189,5 @@ Partial Class FormProduction
     Friend WithEvents BReportView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn89 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn90 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BImportRule As DevExpress.XtraEditors.SimpleButton
 End Class

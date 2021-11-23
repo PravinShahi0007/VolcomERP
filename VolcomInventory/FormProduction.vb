@@ -850,4 +850,8 @@ GROUP BY id_prod_order_cps2_reff) AND is_purc_mat=2 " & query_where & " ORDER BY
         FormProductionPrint.is_report_view = True
         FormProductionPrint.ShowDialog()
     End Sub
+
+    Private Sub BImportRule_Click(sender As Object, e As EventArgs) Handles BImportRule.Click
+
+    End Sub
 End Class
