@@ -852,6 +852,6 @@ GROUP BY id_prod_order_cps2_reff) AND is_purc_mat=2 " & query_where & " ORDER BY
     End Sub
 
     Private Sub BImportRule_Click(sender As Object, e As EventArgs) Handles BImportRule.Click
-
+        FormImportFGRule.ShowDialog()
     End Sub
 End Class

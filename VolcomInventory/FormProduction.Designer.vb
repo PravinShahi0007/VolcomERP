@@ -83,6 +83,7 @@ Partial Class FormProduction
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BImportRule = New DevExpress.XtraEditors.SimpleButton()
         Me.BShowPrintPanel = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -279,7 +280,6 @@ Partial Class FormProduction
         Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BSearchCopyProto2 = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.BImportRule = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -1011,6 +1011,16 @@ Partial Class FormProduction
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(992, 41)
         Me.PanelControl1.TabIndex = 3
+        '
+        'BImportRule
+        '
+        Me.BImportRule.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BImportRule.Image = CType(resources.GetObject("BImportRule.Image"), System.Drawing.Image)
+        Me.BImportRule.Location = New System.Drawing.Point(863, 2)
+        Me.BImportRule.Name = "BImportRule"
+        Me.BImportRule.Size = New System.Drawing.Size(127, 37)
+        Me.BImportRule.TabIndex = 8910
+        Me.BImportRule.Text = "Int Reject Rule"
         '
         'BShowPrintPanel
         '
@@ -2811,16 +2821,6 @@ Partial Class FormProduction
         Me.LabelControl13.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl13.TabIndex = 8901
         Me.LabelControl13.Text = "Vendor"
-        '
-        'BImportRule
-        '
-        Me.BImportRule.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BImportRule.Image = CType(resources.GetObject("BImportRule.Image"), System.Drawing.Image)
-        Me.BImportRule.Location = New System.Drawing.Point(871, 2)
-        Me.BImportRule.Name = "BImportRule"
-        Me.BImportRule.Size = New System.Drawing.Size(119, 37)
-        Me.BImportRule.TabIndex = 8910
-        Me.BImportRule.Text = "Import Rule"
         '
         'FormProduction
         '
