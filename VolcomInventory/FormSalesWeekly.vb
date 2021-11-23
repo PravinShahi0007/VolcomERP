@@ -1106,7 +1106,7 @@
         End If
 
         'excecute query
-        Dim query As String = "CALL view_sales_weekly_by_date_v2('" + date_from_weekdate_selected + "', '" + date_until_weekdate_selected + "', " + include_promo + ")"
+        Dim query As String = "CALL view_sales_weekly_by_date_v2('" + date_from_weekdate_selected + "', '" + date_until_weekdate_selected + "', " + include_promo + ", " + include_uni + ")"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To data.Columns.Count - 1
             If data.Columns(i).ColumnName.ToString.Contains("_Qty") Then
