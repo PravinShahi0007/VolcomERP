@@ -14,10 +14,19 @@
 
     Private Sub BAddRule_Click(sender As Object, e As EventArgs) Handles BAddRule.Click
         If Not TERuleName.Text = "" Then
-            Dim q As String = "INSERT INTO tb_import_rule(import_rule,is_active) VALUES('" & addSlashes(TERuleName.Text) & "','1')"
-            execute_non_query(q, True, "", "", "", "")
-            '
-            refresh_rule()
+            Dim qc As String = "SELECT * FROM tb_import_rule WHERE import_rule='" & addSlashes(TERuleName.Text) & "' AND is_active='1'"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dtc.Rows.Count = 0 Then
+                Dim q As String = "INSERT INTO tb_import_rule(import_rule,is_active) VALUES('" & addSlashes(TERuleName.Text) & "','1')"
+                execute_non_query(q, True, "", "", "", "")
+                '
+                TERuleName.Text = ""
+                '
+                refresh_rule()
+            Else
+                warningCustom("Duplicate rule name")
+                TERuleName.Text = ""
+            End If
         End If
     End Sub
 
@@ -112,5 +121,9 @@ INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country` AND co.id_country
                 refresh_vendor()
             End If
         End If
+    End Sub
+
+    Private Sub BAddDetailRule_Click(sender As Object, e As EventArgs) Handles BAddDetailRule.Click
+
     End Sub
 End Class

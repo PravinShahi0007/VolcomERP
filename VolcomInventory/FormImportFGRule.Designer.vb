@@ -60,6 +60,15 @@ Partial Class FormImportFGRule
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.CMVendor = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMDropVendor = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BAddDetailRule = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEMinQty = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEMaxQty = New DevExpress.XtraEditors.TextEdit()
+        Me.TEMaxMinor = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEMaxMajor = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GCRule, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CMSRuleName.SuspendLayout()
         CType(Me.GVRule, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,6 +92,10 @@ Partial Class FormImportFGRule
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
         Me.CMVendor.SuspendLayout()
+        CType(Me.TEMinQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEMaxQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEMaxMinor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEMaxMajor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCRule
@@ -259,6 +272,15 @@ Partial Class FormImportFGRule
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.TEMaxMajor)
+        Me.PanelControl3.Controls.Add(Me.LabelControl6)
+        Me.PanelControl3.Controls.Add(Me.TEMaxMinor)
+        Me.PanelControl3.Controls.Add(Me.LabelControl5)
+        Me.PanelControl3.Controls.Add(Me.TEMaxQty)
+        Me.PanelControl3.Controls.Add(Me.LabelControl4)
+        Me.PanelControl3.Controls.Add(Me.LabelControl3)
+        Me.PanelControl3.Controls.Add(Me.TEMinQty)
+        Me.PanelControl3.Controls.Add(Me.BAddDetailRule)
         Me.PanelControl3.Controls.Add(Me.BRefreshDetailRule)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
@@ -304,7 +326,7 @@ Partial Class FormImportFGRule
         Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn2.Caption = "Qty Order"
+        Me.GridColumn2.Caption = "Min Qty Order"
         Me.GridColumn2.DisplayFormat.FormatString = "N0"
         Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn2.Name = "GridColumn2"
@@ -317,7 +339,7 @@ Partial Class FormImportFGRule
         Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn3.Caption = "Qty Sample"
+        Me.GridColumn3.Caption = "Max Qty Order"
         Me.GridColumn3.DisplayFormat.FormatString = "N0"
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn3.Name = "GridColumn3"
@@ -433,13 +455,93 @@ Partial Class FormImportFGRule
         '
         Me.CMVendor.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMDropVendor})
         Me.CMVendor.Name = "CMSRuleName"
-        Me.CMVendor.Size = New System.Drawing.Size(153, 48)
+        Me.CMVendor.Size = New System.Drawing.Size(142, 26)
         '
         'SMDropVendor
         '
         Me.SMDropVendor.Name = "SMDropVendor"
-        Me.SMDropVendor.Size = New System.Drawing.Size(152, 22)
+        Me.SMDropVendor.Size = New System.Drawing.Size(141, 22)
         Me.SMDropVendor.Text = "Drop Vendor"
+        '
+        'BAddDetailRule
+        '
+        Me.BAddDetailRule.Location = New System.Drawing.Point(801, 12)
+        Me.BAddDetailRule.Name = "BAddDetailRule"
+        Me.BAddDetailRule.Size = New System.Drawing.Size(50, 23)
+        Me.BAddDetailRule.TabIndex = 5
+        Me.BAddDetailRule.Text = "add"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(10, 17)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl3.TabIndex = 7
+        Me.LabelControl3.Text = "Min Qty Order"
+        '
+        'TEMinQty
+        '
+        Me.TEMinQty.Location = New System.Drawing.Point(84, 14)
+        Me.TEMinQty.Name = "TEMinQty"
+        Me.TEMinQty.Properties.Mask.EditMask = "N0"
+        Me.TEMinQty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEMinQty.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEMinQty.Size = New System.Drawing.Size(126, 20)
+        Me.TEMinQty.TabIndex = 6
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(216, 17)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(72, 13)
+        Me.LabelControl4.TabIndex = 8
+        Me.LabelControl4.Text = "Max Qty Order"
+        '
+        'TEMaxQty
+        '
+        Me.TEMaxQty.Location = New System.Drawing.Point(294, 14)
+        Me.TEMaxQty.Name = "TEMaxQty"
+        Me.TEMaxQty.Properties.Mask.EditMask = "N0"
+        Me.TEMaxQty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEMaxQty.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEMaxQty.Size = New System.Drawing.Size(126, 20)
+        Me.TEMaxQty.TabIndex = 9
+        '
+        'TEMaxMinor
+        '
+        Me.TEMaxMinor.Location = New System.Drawing.Point(481, 14)
+        Me.TEMaxMinor.Name = "TEMaxMinor"
+        Me.TEMaxMinor.Properties.Mask.EditMask = "N0"
+        Me.TEMaxMinor.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEMaxMinor.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEMaxMinor.Size = New System.Drawing.Size(126, 20)
+        Me.TEMaxMinor.TabIndex = 11
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(426, 17)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(49, 13)
+        Me.LabelControl5.TabIndex = 10
+        Me.LabelControl5.Text = "Max Minor"
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(613, 17)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(50, 13)
+        Me.LabelControl6.TabIndex = 12
+        Me.LabelControl6.Text = "Max Major"
+        '
+        'TEMaxMajor
+        '
+        Me.TEMaxMajor.Location = New System.Drawing.Point(669, 14)
+        Me.TEMaxMajor.Name = "TEMaxMajor"
+        Me.TEMaxMajor.Properties.Mask.EditMask = "N0"
+        Me.TEMaxMajor.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEMaxMajor.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEMaxMajor.Size = New System.Drawing.Size(126, 20)
+        Me.TEMaxMajor.TabIndex = 13
         '
         'FormImportFGRule
         '
@@ -467,6 +569,7 @@ Partial Class FormImportFGRule
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
         CType(Me.GCDetailRule, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetailRule, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -478,6 +581,10 @@ Partial Class FormImportFGRule
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.CMVendor.ResumeLayout(False)
+        CType(Me.TEMinQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEMaxQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEMaxMinor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEMaxMajor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -520,4 +627,13 @@ Partial Class FormImportFGRule
     Friend WithEvents SetNonActiveToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CMVendor As ContextMenuStrip
     Friend WithEvents SMDropVendor As ToolStripMenuItem
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEMinQty As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BAddDetailRule As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEMaxQty As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEMaxMajor As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEMaxMinor As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
 End Class
