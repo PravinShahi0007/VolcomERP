@@ -6,7 +6,7 @@
 
     Private Sub SetNonActiveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetNonActiveToolStripMenuItem.Click
         If GVRule.RowCount > 0 Then
-            Dim q As String = "DELETE FROM tb_import_rule WHERE id_import='" & addSlashes(TERuleName.Text) & "'"
+            Dim q As String = "UPDATE tb_import_rule SET is_active=2 WHERE id_import_rule='" & GVRule.GetFocusedRowCellValue("id_import_rule").ToString & "'"
             execute_non_query(q, True, "", "", "", "")
             refresh_rule()
         End If
@@ -78,7 +78,11 @@ WHERE d.id_import_rule='" & GVRule.GetFocusedRowCellValue("id_import_rule").ToSt
 
     Sub view_vendor()
         Dim q As String = ""
-        q = "SELECT comp.id_comp,comp.comp_number, comp.comp_name, CONCAT_WS(' - ', comp.comp_number,comp.comp_name) AS comp_name_label FROM tb_m_comp comp "
+        q = "SELECT comp.id_comp,comp.comp_number, comp.comp_name, CONCAT_WS(' - ', comp.comp_number,comp.comp_name) AS comp_name_label FROM tb_m_comp comp
+INNER JOIN tb_m_city ct ON ct.`id_city`=comp.`id_city` AND comp.is_active=1
+INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country` AND co.id_country!=5 "
         Dim data As DataTable = execute_query(q, -1, True, "", "", "", "")
         viewSearchLookupQuery(SLEVendor, q, "id_comp", "comp_name_label", "id_comp")
     End Sub
@@ -88,7 +92,7 @@ WHERE d.id_import_rule='" & GVRule.GetFocusedRowCellValue("id_import_rule").ToSt
             'check sudah insert apa blm
             Dim qc As String = "SELECT * FROM tb_import_rule_vendor WHERE id_comp='" & SLEVendor.EditValue.ToString & "' AND id_import_rule='" & GVRule.GetFocusedRowCellValue("id_import_rule").ToString & "'"
             Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
-            If dtc.Rows.Count > 0 Then
+            If dtc.Rows.Count = 0 Then
                 Dim q As String = "INSERT INTO tb_import_rule_vendor(id_import_rule,id_comp) VALUES('" & GVRule.GetFocusedRowCellValue("id_import_rule").ToString & "','" & SLEVendor.EditValue.ToString & "')"
                 execute_non_query(q, True, "", "", "", "")
                 refresh_vendor()
@@ -97,6 +101,16 @@ WHERE d.id_import_rule='" & GVRule.GetFocusedRowCellValue("id_import_rule").ToSt
             End If
         Else
             warningCustom("Pilih rule terlebih dahulu")
+        End If
+    End Sub
+
+    Private Sub SMDropVendor_Click(sender As Object, e As EventArgs) Handles SMDropVendor.Click
+        If GVRule.RowCount > 0 Then
+            If GVVendor.RowCount > 0 Then
+                Dim q As String = "DELETE FROM tb_import_rule_vendor WHERE id_import_rule_vendor='" & GVVendor.GetFocusedRowCellValue("id_import_rule_vendor").ToString & "'"
+                execute_non_query(q, True, "", "", "", "")
+                refresh_vendor()
+            End If
         End If
     End Sub
 End Class

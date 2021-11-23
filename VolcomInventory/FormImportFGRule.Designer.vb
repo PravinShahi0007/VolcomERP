@@ -58,6 +58,8 @@ Partial Class FormImportFGRule
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.CMVendor = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMDropVendor = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCRule, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CMSRuleName.SuspendLayout()
         CType(Me.GVRule, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,6 +82,7 @@ Partial Class FormImportFGRule
         Me.PanelControl5.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
+        Me.CMVendor.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCRule
@@ -426,6 +429,18 @@ Partial Class FormImportFGRule
         Me.PanelControl6.Size = New System.Drawing.Size(1159, 298)
         Me.PanelControl6.TabIndex = 2
         '
+        'CMVendor
+        '
+        Me.CMVendor.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMDropVendor})
+        Me.CMVendor.Name = "CMSRuleName"
+        Me.CMVendor.Size = New System.Drawing.Size(153, 48)
+        '
+        'SMDropVendor
+        '
+        Me.SMDropVendor.Name = "SMDropVendor"
+        Me.SMDropVendor.Size = New System.Drawing.Size(152, 22)
+        Me.SMDropVendor.Text = "Drop Vendor"
+        '
         'FormImportFGRule
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -462,6 +477,7 @@ Partial Class FormImportFGRule
         Me.PanelControl5.ResumeLayout(False)
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
+        Me.CMVendor.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -502,4 +518,6 @@ Partial Class FormImportFGRule
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents CMSRuleName As ContextMenuStrip
     Friend WithEvents SetNonActiveToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CMVendor As ContextMenuStrip
+    Friend WithEvents SMDropVendor As ToolStripMenuItem
 End Class
