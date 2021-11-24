@@ -910,34 +910,43 @@
                             GVData.SetRowCellValue(i, "propose_status", "")
                         Else
                             Dim erp_discount As Decimal = GVData.GetRowCellValue(i, "erp_discount")
-                            If id_mkd_type = "1" Then
-                                'eos
-                                If erp_discount > 30 Then
-                                    GVData.SetRowCellValue(i, "propose_disc", Nothing)
-                                    GVData.SetRowCellValue(i, "propose_price", Nothing)
-                                    GVData.SetRowCellValue(i, "propose_price_final", Nothing)
-                                    GVData.SetRowCellValue(i, "propose_disc_group", "")
-                                    GVData.SetRowCellValue(i, "propose_status", "")
-                                Else
-                                    Dim propose_disc As Decimal = GVData.GetRowCellValue(i, "erp_discount")
-                                    Dim propose_price As Decimal = normal_price * ((100 - propose_disc) / 100)
-                                    Dim propose_price_final As Decimal = Math.Floor(Decimal.Parse(propose_price) / 1000D) * 1000
-                                    GVData.SetRowCellValue(i, "propose_disc", propose_disc)
-                                    GVData.SetRowCellValue(i, "propose_price", propose_price)
-                                    GVData.SetRowCellValue(i, "propose_price_final", propose_price_final)
-                                    GVData.SetRowCellValue(i, "propose_disc_group", "Up to " + Decimal.Parse(propose_disc.ToString).ToString("N0") + "%")
-                                    GVData.SetRowCellValue(i, "propose_status", "Turun")
-                                End If
-                            Else
-                                Dim propose_disc As Decimal = GVData.GetRowCellValue(i, "erp_discount")
-                                Dim propose_price As Decimal = normal_price * ((100 - propose_disc) / 100)
-                                Dim propose_price_final As Decimal = Math.Floor(Decimal.Parse(propose_price) / 1000D) * 1000
-                                GVData.SetRowCellValue(i, "propose_disc", propose_disc)
-                                GVData.SetRowCellValue(i, "propose_price", propose_price)
-                                GVData.SetRowCellValue(i, "propose_price_final", propose_price_final)
-                                GVData.SetRowCellValue(i, "propose_disc_group", "Up to " + Decimal.Parse(propose_disc.ToString).ToString("N0") + "%")
-                                GVData.SetRowCellValue(i, "propose_status", "Turun")
-                            End If
+                            Dim propose_disc As Decimal = GVData.GetRowCellValue(i, "erp_discount")
+                            Dim propose_price As Decimal = normal_price * ((100 - propose_disc) / 100)
+                            Dim propose_price_final As Decimal = Math.Floor(Decimal.Parse(propose_price) / 1000D) * 1000
+                            GVData.SetRowCellValue(i, "propose_disc", propose_disc)
+                            GVData.SetRowCellValue(i, "propose_price", propose_price)
+                            GVData.SetRowCellValue(i, "propose_price_final", propose_price_final)
+                            GVData.SetRowCellValue(i, "propose_disc_group", "Up to " + Decimal.Parse(propose_disc.ToString).ToString("N0") + "%")
+                            GVData.SetRowCellValue(i, "propose_status", "Turun")
+                            'old
+                            'If id_mkd_type = "1" Then
+                            '    'eos
+                            '    If erp_discount > 30 Then
+                            '        GVData.SetRowCellValue(i, "propose_disc", Nothing)
+                            '        GVData.SetRowCellValue(i, "propose_price", Nothing)
+                            '        GVData.SetRowCellValue(i, "propose_price_final", Nothing)
+                            '        GVData.SetRowCellValue(i, "propose_disc_group", "")
+                            '        GVData.SetRowCellValue(i, "propose_status", "")
+                            '    Else
+                            '        Dim propose_disc As Decimal = GVData.GetRowCellValue(i, "erp_discount")
+                            '        Dim propose_price As Decimal = normal_price * ((100 - propose_disc) / 100)
+                            '        Dim propose_price_final As Decimal = Math.Floor(Decimal.Parse(propose_price) / 1000D) * 1000
+                            '        GVData.SetRowCellValue(i, "propose_disc", propose_disc)
+                            '        GVData.SetRowCellValue(i, "propose_price", propose_price)
+                            '        GVData.SetRowCellValue(i, "propose_price_final", propose_price_final)
+                            '        GVData.SetRowCellValue(i, "propose_disc_group", "Up to " + Decimal.Parse(propose_disc.ToString).ToString("N0") + "%")
+                            '        GVData.SetRowCellValue(i, "propose_status", "Turun")
+                            '    End If
+                            'Else
+                            '    Dim propose_disc As Decimal = GVData.GetRowCellValue(i, "erp_discount")
+                            '    Dim propose_price As Decimal = normal_price * ((100 - propose_disc) / 100)
+                            '    Dim propose_price_final As Decimal = Math.Floor(Decimal.Parse(propose_price) / 1000D) * 1000
+                            '    GVData.SetRowCellValue(i, "propose_disc", propose_disc)
+                            '    GVData.SetRowCellValue(i, "propose_price", propose_price)
+                            '    GVData.SetRowCellValue(i, "propose_price_final", propose_price_final)
+                            '    GVData.SetRowCellValue(i, "propose_disc_group", "Up to " + Decimal.Parse(propose_disc.ToString).ToString("N0") + "%")
+                            '    GVData.SetRowCellValue(i, "propose_status", "Turun")
+                            'End If
                         End If
                         GVData.SetRowCellValue(i, "check_stt", "2")
                         GVData.SetRowCellValue(i, "is_select", "No")
