@@ -270,8 +270,8 @@ SELECT dn.is_check,dn.id_prod_fc_sum,dn.report_mark_type,dn.prod_fc_number,dn.id
 ,dn.qc_afkir,dn.p_afkir
 ,dn.unit_price
 ,dn.rec_discount
-,IF(ISNULL(rv.id_import_rule),dn.amo_claim_minor,ROUND(((SELECT p_normal_minor)-dn.rec_discount)*dn.qc_normal_minor)+ROUND(((SELECT p_minor)-dn.rec_discount)*dn.qc_minor)) AS amo_claim_minor
-,IF(ISNULL(rv.id_import_rule),dn.amo_claim_major,ROUND(((SELECT p_minor_major)-dn.rec_discount)*dn.qc_minor_major)+ROUND(((SELECT p_major)-dn.rec_discount)*dn.qc_major)) AS amo_claim_major
+,IF(ISNULL(rv.id_import_rule),dn.amo_claim_minor,ROUND((((IF(dn.tot_minor>rv.max_minor,rv.claim_minor,0))-dn.rec_discount)/100)*dn.qc_normal_minor*dn.unit_price)+ROUND((((IF(dn.tot_minor>rv.max_minor,rv.claim_minor,0))-dn.rec_discount)/100)*dn.qc_minor*dn.unit_price)) AS amo_claim_minor
+,IF(ISNULL(rv.id_import_rule),dn.amo_claim_major,ROUND((((IF(dn.tot_major>rv.max_major,rv.claim_major,0))-dn.rec_discount)/100)*dn.qc_minor_major*dn.unit_price)+ROUND((((IF(dn.tot_major>rv.max_major,rv.claim_major,0))-dn.rec_discount)/100)*dn.qc_major*dn.unit_price)) AS amo_claim_major
 ,IF(ISNULL(rv.id_import_rule),dn.special_note,rv.special_note) AS special_note
 ,dn.amo_claim_afkir
 ,dn.qty_rec,dn.qty_order
@@ -436,7 +436,7 @@ FROM
 LEFT JOIN
 (
 	SELECT r.`id_import_rule`,r.import_rule,rv.id_comp,rd.`max_qty_order`,rd.`min_qty_order`,rd.`max_major`,rd.`max_minor`,r.claim_minor,r.claim_major
-	,CONCAT(r.`import_rule`,', Minor ',r.`claim_minor`,'% Major ',r.`claim_major`,'%, Rec Qty(',rd.`min_qty_order`,'-',IF(rd.`max_qty_order`=100000,' ',rd.`max_qty_order`),')') AS special_note
+	,CONCAT(r.`import_rule`,', Minor ',r.`claim_minor`,'% Major ',r.`claim_major`,'%, Rec Qty(',rd.`min_qty_order`,'-',IF(rd.`max_qty_order`=100000,' ',rd.`max_qty_order`),'),Max Minor ',rd.`max_minor`,' pcs,Max Major ',rd.`max_major`,' pcs') AS special_note
 	FROM `tb_import_rule_vendor` rv
 	INNER JOIN tb_import_rule r ON r.`id_import_rule`=rv.`id_import_rule` AND r.`is_active`=1
 	INNER JOIN tb_import_rule_det rd ON rd.`id_import_rule`=r.`id_import_rule`
