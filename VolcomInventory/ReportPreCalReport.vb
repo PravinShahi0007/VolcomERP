@@ -41,7 +41,7 @@ GROUP BY l.duty"
 ,ROUND((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)) AS price_ppn
 ,ROUND(l.`qty`*(cal.`sales_percent`/100)) AS qty_sales
 ,ROUND(tot_freight.tot_freight/tot_fgpo.tot_qty_sales,2) AS freight_cost
-,ROUND((tot_freight.tot_freight/tot_fgpo.tot_qty_sales)*l.`qty`*(cal.`sales_percent`/100),2) AS tot_freight
+,ROUND((tot_freight.tot_freight/tot_fgpo.tot_qty_sales)*ROUND(l.`qty`*(cal.`sales_percent`/100)),2) AS tot_freight
 ,ROUND((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100),2) AS royalty
 ,ROUND((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100) * ROUND(l.`qty`*(cal.`sales_percent`/100)),2) AS tot_royalty
 ,ROUND((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100) * (l.duty/100),2) AS bm
@@ -96,7 +96,10 @@ WHERE l.`id_pre_cal_fgpo`='" & id_report & "'"
             tot_royalty_ppn += dt_duty.Rows(i)("total_ppn_royalty")
             tot_royalty_pph += dt_duty.Rows(i)("total_pph_royalty")
         Next
-
+        '
+        Dim dtx As DataTable = DataSource
+        tot_freight = dtx.Rows(0)("tot_freight")
+        '
         insert_row_duty_total(row_baru, tot_qty_po, tot_fob, tot_fob_rp, tot_qty_sales, tot_freight, tot_royalty, tot_bm, tot_royalty_ppn, tot_royalty_pph)
 
         pre_load_mark_horz("334", id_report, "2", "2", XrTable6)
