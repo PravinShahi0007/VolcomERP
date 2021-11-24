@@ -271,7 +271,8 @@ SELECT dn.is_check,dn.id_prod_fc_sum,dn.report_mark_type,dn.prod_fc_number,dn.id
 ,dn.unit_price
 ,dn.rec_discount
 ,IF(ISNULL(rv.id_import_rule),dn.amo_claim_minor,ROUND(((SELECT p_normal_minor)-dn.rec_discount)*dn.qc_normal_minor)+ROUND(((SELECT p_minor)-dn.rec_discount)*dn.qc_minor)) AS amo_claim_minor
-,IF(ISNULL(rv.id_import_rule),dn.amo_claim_major,ROUND(((SELECT qc_minor_major)-dn.rec_discount)*dn.qc_minor_major)+ROUND(((SELECT p_major)-dn.rec_discount)*dn.qc_major)) AS amo_claim_major
+,IF(ISNULL(rv.id_import_rule),dn.amo_claim_major,ROUND(((SELECT p_minor_major)-dn.rec_discount)*dn.qc_minor_major)+ROUND(((SELECT p_major)-dn.rec_discount)*dn.qc_major)) AS amo_claim_major
+,IF(ISNULL(rv.id_import_rule),dn.special_note,rv.special_note) AS special_note
 ,dn.amo_claim_afkir
 ,dn.qty_rec,dn.qty_order
 ,dn.comp_name,dn.design_display_name
@@ -310,6 +311,7 @@ FROM
     -- ROUND(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100) * (SUM(IF(fc.id_pl_category_sub=6,fcd.prod_fc_det_qty,0))*(get_claim_reject_percent_new(100,ko.`id_claim_reject`,6)/100))) AS amo_claim_afkir
     ,IFNULL(recfc.qty_rec,rec.qty_rec) AS qty_rec,wo_price.qty_order AS qty_order
     ,wo_price.comp_name
+    ,wo_price.id_comp
     ,dsg.design_display_name
     ,(wo_price.prod_order_wo_det_price*((100-IFNULL(recfc.claim_percent,0))/100)) AS prod_order_wo_det_price -- real price rec
     ,recfc.prod_order_rec_number,IFNULL(recfc.claim_percent,0) AS rec_discount
@@ -319,6 +321,7 @@ FROM
     ,wo_price.id_currency,wo_price.currency,wo_price.prod_order_wo_kurs
     ,tot_rej.qty_minor AS tot_minor,tot_rej.perc_minor  AS tot_minor_perc,tot_rej.qty_major AS tot_major,tot_rej.perc_major  AS tot_major_perc,tot_rej.qty_rec AS total_rec
     ,ko.po_type,ko.dsg_cat
+    ,crn.description AS special_note
     FROM tb_prod_fc_sum_det fcsd
     INNER JOIN tb_prod_fc_sum fcs ON fcs.`id_prod_fc_sum`=fcsd.`id_prod_fc_sum` AND fcs.`id_report_status`='6'
     INNER JOIN tb_prod_fc fc ON fc.`id_prod_fc`=fcsd.`id_prod_fc` AND fc.id_report_status=6
@@ -392,6 +395,7 @@ FROM
         )ko GROUP BY ko.id_prod_order
     ) ko ON ko.id_prod_order=po.id_prod_order 
     INNER JOIN tb_m_claim_reject_det crd ON crd.`id_claim_reject`=ko.`id_claim_reject` AND crd.`id_pl_category_sub`=fc.`id_pl_category_sub`
+    INNER JOIN tb_m_claim_reject crn ON crn.`id_claim_reject`=crd.`id_claim_reject`
     LEFT JOIN (
 	    SELECT comp.id_comp, comp.comp_name,wo.id_prod_order, wo.prod_order_wo_del_date,wo.id_ovh_price, cur.id_currency, cur.currency, wo.prod_order_wo_vat, wod.prod_order_wo_det_price, IFNULL(wo_old.old_kurs,wo.`prod_order_wo_kurs`) AS prod_order_wo_kurs, SUM(pod.prod_order_qty) AS qty_order
 	    FROM tb_prod_order_wo wo
@@ -432,6 +436,7 @@ FROM
 LEFT JOIN
 (
 	SELECT r.`id_import_rule`,r.import_rule,rv.id_comp,rd.`max_qty_order`,rd.`min_qty_order`,rd.`max_major`,rd.`max_minor`,r.claim_minor,r.claim_major
+	,CONCAT(r.`import_rule`,', Minor ',r.`claim_minor`,'% Major ',r.`claim_major`,'%, Rec Qty(',rd.`min_qty_order`,'-',IF(rd.`max_qty_order`=100000,' ',rd.`max_qty_order`),')') AS special_note
 	FROM `tb_import_rule_vendor` rv
 	INNER JOIN tb_import_rule r ON r.`id_import_rule`=rv.`id_import_rule` AND r.`is_active`=1
 	INNER JOIN tb_import_rule_det rd ON rd.`id_import_rule`=r.`id_import_rule`
