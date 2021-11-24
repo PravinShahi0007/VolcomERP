@@ -5,7 +5,7 @@
     Sub viewDisc()
         Dim cond As String = ""
         If id_mkd_type = "1" Then
-            cond = "AND d.value=30 "
+            cond = "AND d.value>=30 "
         Else
             cond = "AND d.value>30 "
         End If
@@ -121,11 +121,12 @@
                 FormProposePriceMKDDet.GVData.SetRowCellValue(i, "note", MENote.Text)
 
                 'cek not use recom
-                If id_mkd_type = "1" Then
-                    If erp_discount > 30 Then
-                        erp_discount = -1
-                    End If
-                End If
+                'old
+                'If id_mkd_type = "1" Then
+                '    If erp_discount > 30 Then
+                '        erp_discount = -1
+                '    End If
+                'End If
                 If propose_disc_selected <> erp_discount Then
                     FormProposePriceMKDDet.GVData.SetRowCellValue(i, "check_stt", "1")
                 Else
