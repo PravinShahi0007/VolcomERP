@@ -4357,6 +4357,18 @@
     <Compile Include="FormProposePriceMKDSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProposePromo.Designer.vb">
+      <DependentUpon>FormProposePromo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposePromo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProposePromoDet.Designer.vb">
+      <DependentUpon>FormProposePromoDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposePromoDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPurcAsset.Designer.vb">
       <DependentUpon>FormPurcAsset.vb</DependentUpon>
     </Compile>
@@ -12416,6 +12428,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProposePriceMKDSingle.resx">
       <DependentUpon>FormProposePriceMKDSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposePromo.resx">
+      <DependentUpon>FormProposePromo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposePromoDet.resx">
+      <DependentUpon>FormProposePromoDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcAsset.resx">
       <DependentUpon>FormPurcAsset.vb</DependentUpon>
