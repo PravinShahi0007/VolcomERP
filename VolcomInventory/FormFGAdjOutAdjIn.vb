@@ -100,7 +100,7 @@
                 SELECT f.id_wh_drawer, f.id_product, SUM(f.qty_avl) AS qty_avl
                 FROM (
                     (SELECT f.id_wh_drawer, f.id_product, f.qty_avl
-                    FROM tb_storage_fg_2021 f
+                    FROM tb_storage_fg_" + fg_year + " f
                     WHERE f.month = MONTH((STR_TO_DATE(DATE_SUB(CONCAT(YEAR(NOW()), '-', MONTH(NOW()),'-', '01'), INTERVAL 1 DAY), '%Y-%m-%d'))) AND f.id_wh_drawer = (SELECT id_wh_drawer FROM tb_adj_in_fg_det WHERE id_adj_in_fg_det = " + SLUEProduct.EditValue.ToString + ") AND f.id_product <> (SELECT id_product FROM tb_adj_in_fg_det WHERE id_adj_in_fg_det = " + SLUEProduct.EditValue.ToString + "))
                     UNION ALL
                     (SELECT f.id_wh_drawer, f.id_product, SUM(IF(f.id_storage_category = 2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS qty_avl
