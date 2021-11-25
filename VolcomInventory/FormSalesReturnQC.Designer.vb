@@ -249,25 +249,25 @@ Partial Class FormSalesReturnQC
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMPrePrint, Me.SMPrint, Me.PrintDetailScanToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(161, 70)
+        Me.ViewMenu.Size = New System.Drawing.Size(168, 92)
         '
         'SMPrePrint
         '
         Me.SMPrePrint.Name = "SMPrePrint"
-        Me.SMPrePrint.Size = New System.Drawing.Size(160, 22)
-        Me.SMPrePrint.Text = "Pre Printing"
+        Me.SMPrePrint.Size = New System.Drawing.Size(167, 22)
+        Me.SMPrePrint.Text = "Pre Printing (WH)"
         '
         'SMPrint
         '
         Me.SMPrint.Name = "SMPrint"
-        Me.SMPrint.Size = New System.Drawing.Size(160, 22)
-        Me.SMPrint.Text = "Print"
+        Me.SMPrint.Size = New System.Drawing.Size(167, 22)
+        Me.SMPrint.Text = "Print (WH)"
         '
         'PrintDetailScanToolStripMenuItem
         '
         Me.PrintDetailScanToolStripMenuItem.Name = "PrintDetailScanToolStripMenuItem"
-        Me.PrintDetailScanToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
-        Me.PrintDetailScanToolStripMenuItem.Text = "Print Detail Scan"
+        Me.PrintDetailScanToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.PrintDetailScanToolStripMenuItem.Text = "Print (Store)"
         '
         'XTCReturnQC
         '

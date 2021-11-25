@@ -1368,45 +1368,40 @@ Public Class FormSalesReturnQCDet
     Sub getReport(ByVal is_detail_scan As Boolean)
         If Not is_detail_scan Then
             ReportSalesReturnQC.dt = GCItemList.DataSource
+            ReportSalesReturnQC.id_sales_return_qc = id_sales_return_qc
+            ReportSalesReturnQC.rmt = report_mark_type_loc
+            Dim Report As New ReportSalesReturnQC()
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
+            Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
+            Report.LRecDate.Text = DEForm.Text
+            Report.XRBarcode.Text = TxtSalesReturnQCNumber.Text
+            Report.LRecNumber.Text = "NO. " + TxtSalesReturnQCNumber.Text
+            Report.LabelReturn.Text = TxtSalesReturnNumber.Text
+            Report.LabelNote.Text = MENote.Text
+            Report.LabelPLCategory.Text = LEPLCategory.Text
+            Report.LabelDrawer.Text = TEDrawer.Text
+            Report.LabelDestination.Text = TxtCodeFrom.Text + "-" + TxtNameFrom.Text
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
         Else
-            ReportSalesReturnQC.dt = GCBarcode.DataSource
+            ReportSalesReturnQCStore.dt = GCBarcode.DataSource
+            ReportSalesReturnQCStore.id_sales_return_qc = id_sales_return_qc
+            ReportSalesReturnQCStore.rmt = report_mark_type_loc
+            Dim Report As New ReportSalesReturnQCStore()
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
+            Report.LRecDate.Text = DEForm.Text
+            Report.XRBarcode.Text = TxtSalesReturnQCNumber.Text
+            Report.LRecNumber.Text = "NO. " + TxtSalesReturnQCNumber.Text
+            Report.LabelReturn.Text = TxtSalesReturnNumber.Text
+            Report.LabelNote.Text = MENote.Text
+            Report.CellStore.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
         End If
-        ReportSalesReturnQC.id_sales_return_qc = id_sales_return_qc
-        ReportSalesReturnQC.rmt = report_mark_type_loc
-        Dim Report As New ReportSalesReturnQC()
 
-        '' '... 
-        '' ' creating and saving the view's layout to a new memory stream 
-        'Dim str As System.IO.Stream
-        'str = New System.IO.MemoryStream()
-        'If Not is_detail_scan Then
-        '    GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'Else
-        '    GVBarcode.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'End If
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
-        'Report.GVSalesReturnQC.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
-
-        ''Grid Detail
-        'ReportStyleGridview(Report.GVSalesReturnQC)
-
-        'Parse val
-
-        Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
-        Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
-        Report.LRecDate.Text = DEForm.Text
-        Report.XRBarcode.Text = TxtSalesReturnQCNumber.Text
-        Report.LRecNumber.Text = "NO. " + TxtSalesReturnQCNumber.Text
-        Report.LabelReturn.Text = TxtSalesReturnNumber.Text
-        Report.LabelNote.Text = MENote.Text
-        Report.LabelPLCategory.Text = LEPLCategory.Text
-        Report.LabelDrawer.Text = TEDrawer.Text
-        Report.LabelDestination.Text = TxtCodeFrom.Text + "-" + TxtNameFrom.Text
-
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
     End Sub
 
     Sub checkUnitCost(ByVal id_product_param As String, ByVal bom_unit_price_param As Decimal, ByVal id_design_price_param As String)
