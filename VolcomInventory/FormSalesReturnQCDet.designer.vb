@@ -114,6 +114,7 @@ Partial Class FormSalesReturnQCDet
         Me.GVBarcode = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBarcode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnCountingCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdPLCounting = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsFix = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -171,7 +172,6 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnIdx2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Timer = New System.Windows.Forms.Timer(Me.components)
-        Me.RepositoryItemTextEdit = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -216,6 +216,7 @@ Partial Class FormSalesReturnQCDet
         Me.GroupControlScannedItem.SuspendLayout()
         CType(Me.GCBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -236,7 +237,6 @@ Partial Class FormSalesReturnQCDet
         CType(Me.GCDrawerDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDrawerDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemTextEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -933,8 +933,7 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnPriceType.FieldName = "design_price_type"
         Me.GridColumnPriceType.Name = "GridColumnPriceType"
         Me.GridColumnPriceType.OptionsColumn.ReadOnly = True
-        Me.GridColumnPriceType.Visible = True
-        Me.GridColumnPriceType.VisibleIndex = 9
+        Me.GridColumnPriceType.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnPriceType.Width = 110
         '
         'GridColumnQty
@@ -979,8 +978,7 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnPrice.FieldName = "design_price"
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.OptionsColumn.ReadOnly = True
-        Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 10
+        Me.GridColumnPrice.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnPrice.Width = 149
         '
         'GridColumnAmount
@@ -995,9 +993,8 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnAmount.FieldName = "sales_return_qc_det_amount"
         Me.GridColumnAmount.Name = "GridColumnAmount"
         Me.GridColumnAmount.OptionsColumn.ReadOnly = True
+        Me.GridColumnAmount.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_amount", "{0:n2}")})
-        Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 11
         Me.GridColumnAmount.Width = 173
         '
         'GridColumnRemark
@@ -1006,7 +1003,7 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnRemark.FieldName = "sales_return_qc_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 12
+        Me.GridColumnRemark.VisibleIndex = 9
         Me.GridColumnRemark.Width = 363
         '
         'GridColumnUOM
@@ -1233,6 +1230,11 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnBarcode.VisibleIndex = 1
         Me.GridColumnBarcode.Width = 381
         '
+        'RepositoryItemTextEdit
+        '
+        Me.RepositoryItemTextEdit.AutoHeight = False
+        Me.RepositoryItemTextEdit.Name = "RepositoryItemTextEdit"
+        '
         'GridColumnCountingCode
         '
         Me.GridColumnCountingCode.Caption = "Counting Code"
@@ -1322,7 +1324,7 @@ Partial Class FormSalesReturnQCDet
         '
         'GridColumnRejectType
         '
-        Me.GridColumnRejectType.Caption = "Reject"
+        Me.GridColumnRejectType.Caption = "Remark/Reject"
         Me.GridColumnRejectType.FieldName = "reject_type"
         Me.GridColumnRejectType.Name = "GridColumnRejectType"
         Me.GridColumnRejectType.OptionsColumn.AllowEdit = False
@@ -1705,11 +1707,6 @@ Partial Class FormSalesReturnQCDet
         '
         Me.EPForm.ContainerControl = Me
         '
-        'RepositoryItemTextEdit
-        '
-        Me.RepositoryItemTextEdit.AutoHeight = False
-        Me.RepositoryItemTextEdit.Name = "RepositoryItemTextEdit"
-        '
         'FormSalesReturnQCDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1779,6 +1776,7 @@ Partial Class FormSalesReturnQCDet
         Me.GroupControlScannedItem.ResumeLayout(False)
         CType(Me.GCBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1800,7 +1798,6 @@ Partial Class FormSalesReturnQCDet
         CType(Me.GCDrawerDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDrawerDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemTextEdit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

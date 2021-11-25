@@ -1,17 +1,10 @@
-﻿Public Class ReportSalesReturnQC
+﻿Public Class ReportSalesReturnQCStore
     Public Shared id_pre As String = "-1"
     Public Shared id_sales_return_qc As String = "-1"
     Public Shared dt As DataTable
     Public Shared rmt As String = "-1"
 
-    Private Sub GVSalesReturnQC_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
-        If e.Column.FieldName = "no" Then
-            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
-        End If
-    End Sub
-
-
-    Private Sub ReportSalesReturn_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles MyBase.BeforePrint
+    Private Sub ReportSalesReturnQCStore_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         'sorting
         Dim dt2 As System.Data.DataView = dt.DefaultView
 
@@ -21,12 +14,8 @@
 
         Dim row As DevExpress.XtraReports.UI.XRTableRow = XTRow
 
-        Dim total_sales_return_qc_det_qty As Integer = 0
-        Dim total_sales_return_qc_det_amount As Integer = 0
 
         For i = 0 To dt.Rows.Count - 1
-            total_sales_return_qc_det_qty = total_sales_return_qc_det_qty + dt.Rows(i)("sales_return_qc_det_qty")
-            total_sales_return_qc_det_amount = total_sales_return_qc_det_amount + dt.Rows(i)("sales_return_qc_det_amount")
 
             row = XTable.InsertRowBelow(row)
 
@@ -68,16 +57,15 @@
             size.BorderWidth = 0
             size.Font = New Font(size.Font.FontFamily, size.Font.Size, FontStyle.Regular)
 
-            'sales_return_qc_det_qty
-            Dim sales_return_qc_det_qty As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
-            sales_return_qc_det_qty.Text = Format(dt.Rows(i)("sales_return_qc_det_qty"), "##")
-            sales_return_qc_det_qty.BorderWidth = 0
-            sales_return_qc_det_qty.Font = New Font(sales_return_qc_det_qty.Font.FontFamily, sales_return_qc_det_qty.Font.Size, FontStyle.Regular)
+            'sales_return_qc_det_qty 
+            Dim remark As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
+            remark.Text = dt.Rows(i)("reject_type").ToString
+            remark.BorderWidth = 0
+            remark.Font = New Font(remark.Font.FontFamily, remark.Font.Size, FontStyle.Regular)
         Next
 
         XrRowTotal.HeightF = 25
 
-        XCReturnQty.Text = total_sales_return_qc_det_qty
 
         'custom mark
         Dim query As String = "
