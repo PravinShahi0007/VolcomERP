@@ -138,7 +138,9 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         Dim query As String = "SELECT c.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name,sts.comp_status  
                                 FROM tb_m_comp c
                                 INNER JOIN tb_lookup_comp_status sts ON sts.id_comp_status=c.is_active
-                                WHERE c.id_comp_cat='1' OR c.id_comp_cat='8' AND (c.is_active='1' OR c.is_active='2') "
+                                WHERE c.id_comp_cat='1' OR c.id_comp_cat='8' AND (c.is_active='1' OR c.is_active='2')
+UNION ALL
+SELECT 'KGS' AS id_comp,'KGS Group' AS comp_name,'KGS' AS comp_status  "
         viewSearchLookupQuery(SLEFGPOVendor, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
@@ -235,7 +237,10 @@ WHERE py.id_coa_tag='" & SLEUnitBBKList.EditValue.ToString & "' AND DATE(py.date
     Sub load_fgpo()
         Dim where_string As String = ""
 
-        If Not SLEFGPOVendor.EditValue.ToString = "0" Then
+        If SLEFGPOVendor.EditValue.ToString = "KGS" Then
+            where_string = " AND c.id_comp IN (SELECT id_comp FROM tb_import_rule_vendor WHERE id_import_rule=3) "
+            BCreatePaymentFGPO.Visible = True
+        ElseIf Not SLEFGPOVendor.EditValue.ToString = "0" Then
             where_string = " AND c.id_comp = " & SLEFGPOVendor.EditValue.ToString & " "
             BCreatePaymentFGPO.Visible = True
         Else

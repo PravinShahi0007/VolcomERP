@@ -73,10 +73,11 @@ Partial Class FormBankWithdrawalDet
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BViewJurnalBUM = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
@@ -142,7 +143,6 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -265,7 +265,7 @@ Partial Class FormBankWithdrawalDet
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl4.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(768, 98)
+        Me.PanelControl4.Size = New System.Drawing.Size(483, 98)
         Me.PanelControl4.TabIndex = 166
         '
         'CEPembelianValas
@@ -698,6 +698,39 @@ Partial Class FormBankWithdrawalDet
         Me.PanelControl7.Size = New System.Drawing.Size(1144, 40)
         Me.PanelControl7.TabIndex = 2
         '
+        'BAttachment
+        '
+        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttachment.ImageIndex = 14
+        Me.BAttachment.ImageList = Me.LargeImageCollection
+        Me.BAttachment.Location = New System.Drawing.Point(549, 2)
+        Me.BAttachment.Name = "BAttachment"
+        Me.BAttachment.Size = New System.Drawing.Size(114, 36)
+        Me.BAttachment.TabIndex = 22
+        Me.BAttachment.TabStop = False
+        Me.BAttachment.Text = "Attachment"
+        '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
+        '
         'BViewJurnalBUM
         '
         Me.BViewJurnalBUM.Dock = System.Windows.Forms.DockStyle.Right
@@ -731,27 +764,6 @@ Partial Class FormBankWithdrawalDet
         Me.BtnPrint.TabIndex = 17
         Me.BtnPrint.TabStop = False
         Me.BtnPrint.Text = "Print"
-        '
-        'LargeImageCollection
-        '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
-        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
-        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
-        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
-        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
-        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
-        Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
-        Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
         '
         'BMark
         '
@@ -1447,18 +1459,6 @@ Partial Class FormBankWithdrawalDet
         Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn17.FieldName = "value_view"
         Me.GridColumn17.Name = "GridColumn17"
-        '
-        'BAttachment
-        '
-        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAttachment.ImageIndex = 14
-        Me.BAttachment.ImageList = Me.LargeImageCollection
-        Me.BAttachment.Location = New System.Drawing.Point(549, 2)
-        Me.BAttachment.Name = "BAttachment"
-        Me.BAttachment.Size = New System.Drawing.Size(114, 36)
-        Me.BAttachment.TabIndex = 22
-        Me.BAttachment.TabStop = False
-        Me.BAttachment.Text = "Attachment"
         '
         'FormBankWithdrawalDet
         '

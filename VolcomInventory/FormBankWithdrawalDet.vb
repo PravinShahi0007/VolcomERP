@@ -208,7 +208,7 @@ SELECT 1 AS id,'Yes' AS auto_debet"
             ElseIf report_mark_type = "189" Then 'BPL
                 If FormBankWithdrawal.XTCPO.SelectedTabPage.Name = "XTPFGPO" Then
                     'load header
-                    Dim id_comp As String = FormBankWithdrawal.SLEFGPOVendor.EditValue
+                    Dim id_comp As String = If(FormBankWithdrawal.SLEFGPOVendor.EditValue.ToString = "KGS", "353", FormBankWithdrawal.SLEFGPOVendor.EditValue.ToString)
                     Dim id_comp_contact As String = get_company_x(id_comp, 6)
 
                     SLEVendor.EditValue = id_comp_contact
@@ -401,6 +401,7 @@ GROUP BY dn.`id_debit_note`"
                         newRow("val_bef_kurs") = selisih_kurs
                         newRow("value") = selisih_kurs
                         newRow("value_view") = selisih_kurs
+
                         If selisih_kurs > 0 Then 'kerugian kurs
                             newRow("id_dc") = 1
                             newRow("dc_code") = "D"
