@@ -392,7 +392,7 @@ GROUP BY dn.`id_debit_note`"
                         newRow("acc_description") = dt_acc.Rows(0)("acc_description").ToString
                         newRow("note") = dt_acc.Rows(0)("acc_description").ToString
 
-                        newRow("vendor") = FormBankWithdrawal.GVFGPO.GetRowCellValue(0, "comp_number").ToString
+                        newRow("vendor") = get_company_x(id_comp, "2")
 
                         newRow("id_comp") = FormBankWithdrawal.GVFGPO.GetRowCellValue(0, "id_comp_default").ToString
                         newRow("comp_number") = FormBankWithdrawal.GVFGPO.GetRowCellValue(0, "comp_number_default").ToString
