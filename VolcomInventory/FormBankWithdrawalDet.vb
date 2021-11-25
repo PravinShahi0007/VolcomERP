@@ -208,6 +208,8 @@ SELECT 1 AS id,'Yes' AS auto_debet"
             ElseIf report_mark_type = "189" Then 'BPL
                 If FormBankWithdrawal.XTCPO.SelectedTabPage.Name = "XTPFGPO" Then
                     'load header
+                    SLEAkunValas.EditValue = FormBankWithdrawal.SLEAkunValas.EditValue
+
                     Dim id_comp As String = If(FormBankWithdrawal.SLEFGPOVendor.EditValue.ToString = "KGS", "353", FormBankWithdrawal.SLEFGPOVendor.EditValue.ToString)
                     Dim id_comp_contact As String = get_company_x(id_comp, 6)
 
