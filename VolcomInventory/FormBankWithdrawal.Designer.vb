@@ -493,10 +493,6 @@ Partial Class FormBankWithdrawal
         Me.GridColumn245 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn246 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn247 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemSearchLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
-        Me.GridView25 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn249 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn250 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn253 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn254 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn255 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -511,6 +507,10 @@ Partial Class FormBankWithdrawal
         Me.GridColumn262 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn263 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn264 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSearchLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView25 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn249 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn250 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
         Me.BCreatePaymentPrepaidEx = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -701,10 +701,10 @@ Partial Class FormBankWithdrawal
         Me.XTPPrepaidExpense.SuspendLayout()
         CType(Me.GCPrepaidExp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPrepaidExp, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView25, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView25, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl10.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2974,7 +2974,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn40.OptionsColumn.AllowEdit = False
         Me.GridColumn40.OptionsColumn.AllowFocus = False
         Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 3
+        Me.GridColumn40.VisibleIndex = 5
         Me.GridColumn40.Width = 108
         '
         'GridColumn45
@@ -2986,7 +2986,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn45.OptionsColumn.AllowFocus = False
         Me.GridColumn45.OptionsColumn.ReadOnly = True
         Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 1
+        Me.GridColumn45.VisibleIndex = 3
         Me.GridColumn45.Width = 143
         '
         'GridColumn46
@@ -3000,7 +3000,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn46.OptionsColumn.AllowFocus = False
         Me.GridColumn46.OptionsColumn.ReadOnly = True
         Me.GridColumn46.Visible = True
-        Me.GridColumn46.VisibleIndex = 2
+        Me.GridColumn46.VisibleIndex = 4
         Me.GridColumn46.Width = 146
         '
         'GridColumn47
@@ -3039,7 +3039,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn58.OptionsColumn.AllowEdit = False
         Me.GridColumn58.OptionsColumn.AllowFocus = False
         Me.GridColumn58.Visible = True
-        Me.GridColumn58.VisibleIndex = 4
+        Me.GridColumn58.VisibleIndex = 6
         Me.GridColumn58.Width = 66
         '
         'GridColumn55
@@ -3056,7 +3056,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn55.OptionsColumn.AllowEdit = False
         Me.GridColumn55.OptionsColumn.AllowFocus = False
         Me.GridColumn55.Visible = True
-        Me.GridColumn55.VisibleIndex = 5
+        Me.GridColumn55.VisibleIndex = 7
         Me.GridColumn55.Width = 98
         '
         'GridColumn56
@@ -3088,7 +3088,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn57.OptionsColumn.AllowEdit = False
         Me.GridColumn57.OptionsColumn.AllowFocus = False
         Me.GridColumn57.Visible = True
-        Me.GridColumn57.VisibleIndex = 6
+        Me.GridColumn57.VisibleIndex = 8
         Me.GridColumn57.Width = 81
         '
         'GridColumn60
@@ -3106,7 +3106,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn60.OptionsColumn.AllowFocus = False
         Me.GridColumn60.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_bpl", "{0:N2}")})
         Me.GridColumn60.Visible = True
-        Me.GridColumn60.VisibleIndex = 7
+        Me.GridColumn60.VisibleIndex = 9
         Me.GridColumn60.Width = 160
         '
         'GridColumn49
@@ -3125,7 +3125,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn49.OptionsColumn.ReadOnly = True
         Me.GridColumn49.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.GridColumn49.Visible = True
-        Me.GridColumn49.VisibleIndex = 8
+        Me.GridColumn49.VisibleIndex = 10
         Me.GridColumn49.Width = 189
         '
         'GridColumn53
@@ -3143,7 +3143,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn53.OptionsColumn.AllowFocus = False
         Me.GridColumn53.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_paid", "{0:N2}")})
         Me.GridColumn53.Visible = True
-        Me.GridColumn53.VisibleIndex = 11
+        Me.GridColumn53.VisibleIndex = 13
         Me.GridColumn53.Width = 134
         '
         'GridColumn41
@@ -3161,7 +3161,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn41.OptionsColumn.AllowFocus = False
         Me.GridColumn41.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N2}")})
         Me.GridColumn41.Visible = True
-        Me.GridColumn41.VisibleIndex = 10
+        Me.GridColumn41.VisibleIndex = 12
         Me.GridColumn41.Width = 141
         '
         'GridColumn54
@@ -3176,7 +3176,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn54.OptionsColumn.AllowEdit = False
         Me.GridColumn54.OptionsColumn.AllowFocus = False
         Me.GridColumn54.Visible = True
-        Me.GridColumn54.VisibleIndex = 9
+        Me.GridColumn54.VisibleIndex = 11
         Me.GridColumn54.Width = 177
         '
         'GridColumn50
@@ -3187,6 +3187,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn50.OptionsColumn.AllowEdit = False
         Me.GridColumn50.OptionsColumn.AllowFocus = False
         Me.GridColumn50.OptionsColumn.ReadOnly = True
+        Me.GridColumn50.Visible = True
+        Me.GridColumn50.VisibleIndex = 1
         Me.GridColumn50.Width = 82
         '
         'GridColumn51
@@ -3197,6 +3199,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn51.OptionsColumn.AllowEdit = False
         Me.GridColumn51.OptionsColumn.AllowFocus = False
         Me.GridColumn51.OptionsColumn.ReadOnly = True
+        Me.GridColumn51.Visible = True
+        Me.GridColumn51.VisibleIndex = 2
         Me.GridColumn51.Width = 131
         '
         'GridColumn224
@@ -3205,7 +3209,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn224.FieldName = "inv_number"
         Me.GridColumn224.Name = "GridColumn224"
         Me.GridColumn224.Visible = True
-        Me.GridColumn224.VisibleIndex = 12
+        Me.GridColumn224.VisibleIndex = 14
         '
         'GridColumn221
         '
@@ -3213,7 +3217,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn221.FieldName = "extra_note"
         Me.GridColumn221.Name = "GridColumn221"
         Me.GridColumn221.Visible = True
-        Me.GridColumn221.VisibleIndex = 13
+        Me.GridColumn221.VisibleIndex = 15
         '
         'BCreatePaymentFGPO
         '
@@ -5448,35 +5452,6 @@ Partial Class FormBankWithdrawal
         Me.GridColumn247.Visible = True
         Me.GridColumn247.VisibleIndex = 9
         '
-        'RepositoryItemSearchLookUpEdit1
-        '
-        Me.RepositoryItemSearchLookUpEdit1.AutoHeight = False
-        Me.RepositoryItemSearchLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemSearchLookUpEdit1.Name = "RepositoryItemSearchLookUpEdit1"
-        Me.RepositoryItemSearchLookUpEdit1.View = Me.GridView25
-        '
-        'GridView25
-        '
-        Me.GridView25.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn249, Me.GridColumn250})
-        Me.GridView25.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView25.Name = "GridView25"
-        Me.GridView25.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView25.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn249
-        '
-        Me.GridColumn249.Caption = "ID"
-        Me.GridColumn249.FieldName = "id_currency"
-        Me.GridColumn249.Name = "GridColumn249"
-        '
-        'GridColumn250
-        '
-        Me.GridColumn250.Caption = "Currency"
-        Me.GridColumn250.FieldName = "currency"
-        Me.GridColumn250.Name = "GridColumn250"
-        Me.GridColumn250.Visible = True
-        Me.GridColumn250.VisibleIndex = 0
-        '
         'GridColumn253
         '
         Me.GridColumn253.Caption = "Total Expense"
@@ -5607,6 +5582,35 @@ Partial Class FormBankWithdrawal
         Me.GridColumn264.Caption = "Is Open"
         Me.GridColumn264.FieldName = "is_open"
         Me.GridColumn264.Name = "GridColumn264"
+        '
+        'RepositoryItemSearchLookUpEdit1
+        '
+        Me.RepositoryItemSearchLookUpEdit1.AutoHeight = False
+        Me.RepositoryItemSearchLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSearchLookUpEdit1.Name = "RepositoryItemSearchLookUpEdit1"
+        Me.RepositoryItemSearchLookUpEdit1.View = Me.GridView25
+        '
+        'GridView25
+        '
+        Me.GridView25.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn249, Me.GridColumn250})
+        Me.GridView25.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView25.Name = "GridView25"
+        Me.GridView25.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView25.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn249
+        '
+        Me.GridColumn249.Caption = "ID"
+        Me.GridColumn249.FieldName = "id_currency"
+        Me.GridColumn249.Name = "GridColumn249"
+        '
+        'GridColumn250
+        '
+        Me.GridColumn250.Caption = "Currency"
+        Me.GridColumn250.FieldName = "currency"
+        Me.GridColumn250.Name = "GridColumn250"
+        Me.GridColumn250.Visible = True
+        Me.GridColumn250.VisibleIndex = 0
         '
         'PanelControl10
         '
@@ -6085,10 +6089,10 @@ Partial Class FormBankWithdrawal
         Me.XTPPrepaidExpense.ResumeLayout(False)
         CType(Me.GCPrepaidExp, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPrepaidExp, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView25, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView25, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl10.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()

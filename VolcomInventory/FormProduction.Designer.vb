@@ -1021,6 +1021,7 @@ Partial Class FormProduction
         Me.BImportRule.Size = New System.Drawing.Size(127, 37)
         Me.BImportRule.TabIndex = 8910
         Me.BImportRule.Text = "Int Reject Rule"
+        Me.BImportRule.Visible = False
         '
         'BShowPrintPanel
         '
