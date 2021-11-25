@@ -319,10 +319,18 @@
             soh_by_sal_period = "2"
         End If
 
+        'include promo/uniform
+        Dim is_include_promo As String = ""
+        If CEIncludePromoUni.EditValue = True Then
+            is_include_promo = "1"
+        Else
+            is_include_promo = "2"
+        End If
+
         'excecute
         'old query
         'Dim query As String = "CALL view_sales_inv('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "', '" + id_period_type + "', '" + is_with_sizetype_param + "', '" + opt_display_param + "', '" + where_param + "') "
-        Dim query As String = "CALL view_sales_inv_by_sal_v2('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "', '" + id_period_type + "', '" + is_with_sizetype_param + "', '" + opt_display_param + "', '" + where_param + "', '" + soh_by_sal_period + "') "
+        Dim query As String = "CALL view_sales_inv_by_sal_v3('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "', '" + id_period_type + "', '" + is_with_sizetype_param + "', '" + opt_display_param + "', '" + where_param + "', '" + soh_by_sal_period + "', '" + is_include_promo + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCByProduct.DataSource = data
         FormMain.SplashScreenManager1.CloseWaitForm()
@@ -545,10 +553,18 @@
             is_soh_sal_period = "2"
         End If
 
+        'include uniform
+        Dim include_prm_uni As String = ""
+        If CEIncludePrmUniByAcc.EditValue = True Then
+            include_prm_uni = "1"
+        Else
+            include_prm_uni = "2"
+        End If
+
         'excecute
         'old query
         'Dim query As String = "CALL view_sales_inv_per_account('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "','" + id_design_per_outlet + "', '" + id_period_type + "', '" + opt_display_param + "', '" + where_param + "')"
-        Dim query As String = "CALL view_sales_inv_per_acc_by_sal_v2('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "','" + id_design_per_outlet + "', '" + id_period_type + "', '" + opt_display_param + "', '" + where_param + "', '" + is_soh_sal_period + "')"
+        Dim query As String = "CALL view_sales_inv_per_acc_by_sal_v3('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "','" + id_design_per_outlet + "', '" + id_period_type + "', '" + opt_display_param + "', '" + where_param + "', '" + is_soh_sal_period + "', '" + include_prm_uni + "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCByAccount.DataSource = data
         FormMain.SplashScreenManager1.CloseWaitForm()

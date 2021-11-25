@@ -75,11 +75,12 @@ Partial Class FormSalesInv
         Me.BtnShowFilter = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlViewByProduct = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEIncludePromoUni = New DevExpress.XtraEditors.CheckEdit()
         Me.CESOHBySalPeriodByProduct = New DevExpress.XtraEditors.CheckEdit()
-        Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnHideFilter = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnExportToXLSRec = New DevExpress.XtraEditors.SimpleButton()
         Me.SLESubFilter = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -165,10 +166,11 @@ Partial Class FormSalesInv
         Me.BtnShowFilterAcc = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlViewByAcc = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEIncludePrmUniByAcc = New DevExpress.XtraEditors.CheckEdit()
         Me.CESOHBySalPeriod = New DevExpress.XtraEditors.CheckEdit()
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewAcc = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnExportToXLSAcc = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnHideFilterAcc = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowseProduct = New DevExpress.XtraEditors.SimpleButton()
@@ -206,6 +208,7 @@ Partial Class FormSalesInv
         Me.PanelControlViewByProduct.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.CEIncludePromoUni.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CESOHBySalPeriodByProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
@@ -229,6 +232,7 @@ Partial Class FormSalesInv
         Me.PanelControlViewByAcc.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.CEIncludePrmUniByAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CESOHBySalPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
@@ -271,10 +275,10 @@ Partial Class FormSalesInv
         'GCByProduct
         '
         Me.GCByProduct.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCByProduct.Location = New System.Drawing.Point(0, 186)
+        Me.GCByProduct.Location = New System.Drawing.Point(0, 188)
         Me.GCByProduct.MainView = Me.GVByProduct
         Me.GCByProduct.Name = "GCByProduct"
-        Me.GCByProduct.Size = New System.Drawing.Size(781, 355)
+        Me.GCByProduct.Size = New System.Drawing.Size(781, 353)
         Me.GCByProduct.TabIndex = 1
         Me.GCByProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVByProduct})
         '
@@ -760,7 +764,7 @@ Partial Class FormSalesInv
         Me.BtnShowFilter.Image = CType(resources.GetObject("BtnShowFilter.Image"), System.Drawing.Image)
         Me.BtnShowFilter.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
         Me.BtnShowFilter.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftTop
-        Me.BtnShowFilter.Location = New System.Drawing.Point(0, 166)
+        Me.BtnShowFilter.Location = New System.Drawing.Point(0, 168)
         Me.BtnShowFilter.LookAndFeel.SkinName = "Blue"
         Me.BtnShowFilter.Name = "BtnShowFilter"
         Me.BtnShowFilter.Size = New System.Drawing.Size(781, 20)
@@ -774,7 +778,7 @@ Partial Class FormSalesInv
         Me.PanelControlViewByProduct.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlViewByProduct.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlViewByProduct.Name = "PanelControlViewByProduct"
-        Me.PanelControlViewByProduct.Size = New System.Drawing.Size(781, 166)
+        Me.PanelControlViewByProduct.Size = New System.Drawing.Size(781, 168)
         Me.PanelControlViewByProduct.TabIndex = 0
         '
         'PanelControl2
@@ -800,34 +804,38 @@ Partial Class FormSalesInv
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl2.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(569, 162)
+        Me.PanelControl2.Size = New System.Drawing.Size(569, 164)
         Me.PanelControl2.TabIndex = 8926
+        '
+        'CEIncludePromoUni
+        '
+        Me.CEIncludePromoUni.Location = New System.Drawing.Point(7, 8)
+        Me.CEIncludePromoUni.Name = "CEIncludePromoUni"
+        Me.CEIncludePromoUni.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(53, Byte), Integer))
+        Me.CEIncludePromoUni.Properties.Appearance.Options.UseForeColor = True
+        Me.CEIncludePromoUni.Properties.Caption = "Include Promo/Uniform"
+        Me.CEIncludePromoUni.Size = New System.Drawing.Size(138, 19)
+        Me.CEIncludePromoUni.TabIndex = 8930
+        Me.CEIncludePromoUni.Visible = False
         '
         'CESOHBySalPeriodByProduct
         '
         Me.CESOHBySalPeriodByProduct.Location = New System.Drawing.Point(289, 90)
         Me.CESOHBySalPeriodByProduct.Name = "CESOHBySalPeriodByProduct"
-        Me.CESOHBySalPeriodByProduct.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.CESOHBySalPeriodByProduct.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(53, Byte), Integer))
         Me.CESOHBySalPeriodByProduct.Properties.Appearance.Options.UseForeColor = True
         Me.CESOHBySalPeriodByProduct.Properties.Caption = "SOH by Sales Period"
         Me.CESOHBySalPeriodByProduct.Size = New System.Drawing.Size(125, 19)
         Me.CESOHBySalPeriodByProduct.TabIndex = 8928
         '
-        'LabelControl32
-        '
-        Me.LabelControl32.Location = New System.Drawing.Point(423, 93)
-        Me.LabelControl32.Name = "LabelControl32"
-        Me.LabelControl32.Size = New System.Drawing.Size(126, 13)
-        Me.LabelControl32.TabIndex = 8929
-        Me.LabelControl32.Text = "Press F7 to show unit cost"
-        '
         'PanelControl5
         '
+        Me.PanelControl5.Controls.Add(Me.CEIncludePromoUni)
         Me.PanelControl5.Controls.Add(Me.BtnHideFilter)
         Me.PanelControl5.Controls.Add(Me.BtnView)
         Me.PanelControl5.Controls.Add(Me.BtnExportToXLSRec)
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl5.Location = New System.Drawing.Point(2, 123)
+        Me.PanelControl5.Location = New System.Drawing.Point(2, 125)
         Me.PanelControl5.Name = "PanelControl5"
         Me.PanelControl5.Size = New System.Drawing.Size(565, 37)
         Me.PanelControl5.TabIndex = 8926
@@ -851,6 +859,14 @@ Partial Class FormSalesInv
         Me.BtnView.Size = New System.Drawing.Size(69, 20)
         Me.BtnView.TabIndex = 8906
         Me.BtnView.Text = "View"
+        '
+        'LabelControl32
+        '
+        Me.LabelControl32.Location = New System.Drawing.Point(423, 93)
+        Me.LabelControl32.Name = "LabelControl32"
+        Me.LabelControl32.Size = New System.Drawing.Size(126, 13)
+        Me.LabelControl32.TabIndex = 8929
+        Me.LabelControl32.Text = "Press F7 to show unit cost"
         '
         'BtnExportToXLSRec
         '
@@ -1665,6 +1681,17 @@ Partial Class FormSalesInv
         Me.PanelControl3.Size = New System.Drawing.Size(514, 185)
         Me.PanelControl3.TabIndex = 8926
         '
+        'CEIncludePrmUniByAcc
+        '
+        Me.CEIncludePrmUniByAcc.Location = New System.Drawing.Point(11, 9)
+        Me.CEIncludePrmUniByAcc.Name = "CEIncludePrmUniByAcc"
+        Me.CEIncludePrmUniByAcc.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(53, Byte), Integer))
+        Me.CEIncludePrmUniByAcc.Properties.Appearance.Options.UseForeColor = True
+        Me.CEIncludePrmUniByAcc.Properties.Caption = "Include Promo/Uniform"
+        Me.CEIncludePrmUniByAcc.Size = New System.Drawing.Size(138, 19)
+        Me.CEIncludePrmUniByAcc.TabIndex = 8931
+        Me.CEIncludePrmUniByAcc.Visible = False
+        '
         'CESOHBySalPeriod
         '
         Me.CESOHBySalPeriod.Location = New System.Drawing.Point(212, 116)
@@ -1675,16 +1702,9 @@ Partial Class FormSalesInv
         Me.CESOHBySalPeriod.Size = New System.Drawing.Size(125, 19)
         Me.CESOHBySalPeriod.TabIndex = 8927
         '
-        'LabelControl15
-        '
-        Me.LabelControl15.Location = New System.Drawing.Point(371, 119)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(126, 13)
-        Me.LabelControl15.TabIndex = 8930
-        Me.LabelControl15.Text = "Press F7 to show unit cost"
-        '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.CEIncludePrmUniByAcc)
         Me.PanelControl4.Controls.Add(Me.BtnViewAcc)
         Me.PanelControl4.Controls.Add(Me.BtnExportToXLSAcc)
         Me.PanelControl4.Controls.Add(Me.BtnHideFilterAcc)
@@ -1703,6 +1723,14 @@ Partial Class FormSalesInv
         Me.BtnViewAcc.Size = New System.Drawing.Size(69, 20)
         Me.BtnViewAcc.TabIndex = 8906
         Me.BtnViewAcc.Text = "View"
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Location = New System.Drawing.Point(371, 119)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(126, 13)
+        Me.LabelControl15.TabIndex = 8930
+        Me.LabelControl15.Text = "Press F7 to show unit cost"
         '
         'BtnExportToXLSAcc
         '
@@ -1970,6 +1998,7 @@ Partial Class FormSalesInv
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.CEIncludePromoUni.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CESOHBySalPeriodByProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
@@ -1994,6 +2023,7 @@ Partial Class FormSalesInv
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.CEIncludePrmUniByAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CESOHBySalPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
@@ -2192,4 +2222,6 @@ Partial Class FormSalesInv
     Friend WithEvents gridBandSOH As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents CESOHBySalPeriod As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents CESOHBySalPeriodByProduct As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CEIncludePromoUni As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CEIncludePrmUniByAcc As DevExpress.XtraEditors.CheckEdit
 End Class
