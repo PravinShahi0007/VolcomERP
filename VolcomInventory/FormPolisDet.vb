@@ -181,6 +181,14 @@ WHERE ppsd.id_polis_pps='" & id_pps & "'"
                         PCPenawaran.Visible = False
                     End If
                     '
+                    If CECustom.Checked = True Then
+                        GCEndDate.OptionsColumn.AllowEdit = True
+                        GCEndDate.OptionsColumn.AllowFocus = True
+                    Else
+                        GCEndDate.OptionsColumn.AllowEdit = False
+                        GCEndDate.OptionsColumn.AllowFocus = False
+                    End If
+                    '
                     BtnPrint.Visible = True
                     BSaveDraft.Visible = False
                     BtnSave.Visible = False
@@ -531,31 +539,55 @@ WHERE ppsd.id_polis_pps='" & id_pps & "' AND ppsd.id_comp='" & GVNilaiLainnya.Ge
                         End If
                     Else
                         'mandiri
-                        save_draft_penawaran()
-                        Dim is_ok As Boolean = True
-
-                        Dim qc As String = "SELECT * FROM tb_polis_pps_vendor WHERE id_polis_pps = '" + id_pps + "' AND price > 0"
-                        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
-                        If dtc.Rows.Count = 0 Then
-                            is_ok = False
+                        'check
+                        Dim is_ok_tgl As Boolean = True
+                        If CECustom.Checked = True And GVPenawaran.RowCount > 0 Then
+                            For i = 0 To GVPenawaran.RowCount - 1
+                                If Date.Parse(GVPenawaran.GetRowCellValue(i, "v_end_date").ToString) > Date.Parse(GVPenawaran.GetRowCellValue(i, "v_start_date").ToString).AddYears(1) Then
+                                    is_ok_tgl = False
+                                    Exit For
+                                End If
+                            Next
                         End If
 
-                        'Dim qc As String = "SELECT * FROM tb_polis_pps_det WHERE id_polis_pps='" & id_pps & "' AND (ISNULL(polis_vendor) or premi<=0)"
-                        'Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
-                        'If dtc.Rows.Count > 0 Then
-                        '    is_ok = False
-                        'End If
-
-                        If is_ok Then
-                            'next step
-                            Dim q As String = "UPDATE tb_polis_pps SET step=4 WHERE id_polis_pps='" & id_pps & "'"
-                            execute_non_query(q, True, "", "", "", "")
-                            'mark
-                            submit_who_prepared("307", id_pps, id_user)
-                            infoCustom("Penawaran disubmit, menunggu persetujuan.")
-                            Close()
+                        If Not is_ok_tgl Then
+                            warningCustom("Please make end date below 1 year period")
                         Else
-                            warningCustom("Pastikan semua memiliki vendor yang dipilih dan memiliki penawaran harga")
+                            'mandiri
+                            If CECustom.Checked = True And GVPenawaran.RowCount > 0 Then
+                                For i = 0 To GVPenawaran.RowCount - 1
+                                    Dim qudate As String = "UPDATE tb_polis_pps_det SET v_end_date='" & Date.Parse(GVPenawaran.GetRowCellValue(i, "v_end_date").ToString).ToString("yyyy-MM-dd") & "' WHERE id_polis_pps_det='" & GVPenawaran.GetRowCellValue(i, "id_polis_pps_det").ToString & "'"
+                                    execute_non_query(qudate, True, "", "", "", "")
+                                Next
+                            End If
+
+                            save_draft_penawaran()
+
+                            Dim is_ok As Boolean = True
+
+                            Dim qc As String = "SELECT * FROM tb_polis_pps_vendor WHERE id_polis_pps = '" + id_pps + "' AND price > 0"
+                            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                            If dtc.Rows.Count = 0 Then
+                                is_ok = False
+                            End If
+
+                            'Dim qc As String = "SELECT * FROM tb_polis_pps_det WHERE id_polis_pps='" & id_pps & "' AND (ISNULL(polis_vendor) or premi<=0)"
+                            'Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                            'If dtc.Rows.Count > 0 Then
+                            '    is_ok = False
+                            'End If
+
+                            If is_ok Then
+                                'next step
+                                Dim q As String = "UPDATE tb_polis_pps SET step=4 WHERE id_polis_pps='" & id_pps & "'"
+                                execute_non_query(q, True, "", "", "", "")
+                                'mark
+                                submit_who_prepared("307", id_pps, id_user)
+                                infoCustom("Penawaran disubmit, menunggu persetujuan.")
+                                Close()
+                            Else
+                                warningCustom("Pastikan semua memiliki vendor yang dipilih dan memiliki penawaran harga")
+                            End If
                         End If
                     End If
                 End If
@@ -593,19 +625,34 @@ WHERE ppsd.id_polis_pps='" & id_pps & "' AND ppsd.id_comp='" & GVNilaiLainnya.Ge
                 infoCustom("Draft saved.")
             Else
                 'mandiri
-                If GVPenawaran.RowCount > 0 And GVPenawaran.Columns.Count >= 15 Then
-                    save_draft_penawaran()
-
-                    infoCustom("Draft saved.")
-                Else
-
-                End If
-
+                'check
+                Dim is_ok_tgl As Boolean = True
                 If CECustom.Checked = True And GVPenawaran.RowCount > 0 Then
                     For i = 0 To GVPenawaran.RowCount - 1
-                        Dim qudate As String = "UPDATE tb_polis_pps_det SET v_end_date='" & Date.Parse(GVPenawaran.GetRowCellValue(i, "v_end_date").ToString).ToString("yyyy-MM-dd") & "' WHERE id_polis_pps_det='" & GVPenawaran.GetRowCellValue(i, "id_polis_pps_det").ToString & "'"
-                        execute_non_query(qudate, True, "", "", "", "")
+                        If Date.Parse(GVPenawaran.GetRowCellValue(i, "v_end_date").ToString) > Date.Parse(GVPenawaran.GetRowCellValue(i, "v_start_date").ToString).AddYears(1) Then
+                            is_ok_tgl = False
+                            Exit For
+                        End If
                     Next
+                End If
+
+                If Not is_ok_tgl Then
+                    warningCustom("Please make end date below 1 year period")
+                Else
+                    If GVPenawaran.RowCount > 0 And GVPenawaran.Columns.Count >= 15 Then
+                        save_draft_penawaran()
+
+                        infoCustom("Draft saved.")
+                    Else
+
+                    End If
+
+                    If CECustom.Checked = True And GVPenawaran.RowCount > 0 Then
+                        For i = 0 To GVPenawaran.RowCount - 1
+                            Dim qudate As String = "UPDATE tb_polis_pps_det SET v_end_date='" & Date.Parse(GVPenawaran.GetRowCellValue(i, "v_end_date").ToString).ToString("yyyy-MM-dd") & "' WHERE id_polis_pps_det='" & GVPenawaran.GetRowCellValue(i, "id_polis_pps_det").ToString & "'"
+                            execute_non_query(qudate, True, "", "", "", "")
+                        Next
+                    End If
                 End If
             End If
         End If
