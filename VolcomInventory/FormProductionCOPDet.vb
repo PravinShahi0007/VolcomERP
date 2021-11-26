@@ -13,7 +13,7 @@
     Public file_ext As String = ""
     '
     Private Sub FormProductionCOPDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TEEcop.EditValue = 0.00
+        TEEcop.EditValue = 0.0000
         TEKurs.EditValue = 1.0
 
         view_currency(LECurrency)

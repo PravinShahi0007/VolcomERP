@@ -3715,6 +3715,18 @@
     <Compile Include="FormPayoutZaloraReconSummary.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPIBInput.Designer.vb">
+      <DependentUpon>FormPIBInput.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPIBInput.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPIBPPS.Designer.vb">
+      <DependentUpon>FormPIBPPS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPIBPPS.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPIBReview.Designer.vb">
       <DependentUpon>FormPIBReview.vb</DependentUpon>
     </Compile>
@@ -12127,6 +12139,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPayoutZaloraReconSummary.resx">
       <DependentUpon>FormPayoutZaloraReconSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPIBInput.resx">
+      <DependentUpon>FormPIBInput.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPIBPPS.resx">
+      <DependentUpon>FormPIBPPS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPIBReview.resx">
       <DependentUpon>FormPIBReview.vb</DependentUpon>
