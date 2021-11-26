@@ -170,6 +170,7 @@ Partial Class FormPolisDet
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CECustom = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -227,6 +228,7 @@ Partial Class FormPolisDet
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEPenawaranAdd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CECustom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -340,6 +342,7 @@ Partial Class FormPolisDet
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.CECustom)
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
         Me.PanelControl2.Controls.Add(Me.SLEPPSType)
         Me.PanelControl2.Controls.Add(Me.DEStart)
@@ -374,7 +377,7 @@ Partial Class FormPolisDet
         Me.SLEPPSType.Name = "SLEPPSType"
         Me.SLEPPSType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEPPSType.Properties.View = Me.GridView6
-        Me.SLEPPSType.Size = New System.Drawing.Size(345, 20)
+        Me.SLEPPSType.Size = New System.Drawing.Size(259, 20)
         Me.SLEPPSType.TabIndex = 183
         '
         'GridView6
@@ -1543,6 +1546,9 @@ Partial Class FormPolisDet
         Me.GridColumn48.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn48.FieldName = "v_start_date"
         Me.GridColumn48.Name = "GridColumn48"
+        Me.GridColumn48.OptionsColumn.AllowEdit = False
+        Me.GridColumn48.OptionsColumn.AllowFocus = False
+        Me.GridColumn48.OptionsColumn.ReadOnly = True
         Me.GridColumn48.Visible = True
         Me.GridColumn48.VisibleIndex = 5
         '
@@ -1914,6 +1920,15 @@ Partial Class FormPolisDet
         Me.GridColumn39.Visible = True
         Me.GridColumn39.VisibleIndex = 1
         '
+        'CECustom
+        '
+        Me.CECustom.Location = New System.Drawing.Point(719, 9)
+        Me.CECustom.Name = "CECustom"
+        Me.CECustom.Properties.Caption = "Non Annual"
+        Me.CECustom.Size = New System.Drawing.Size(80, 19)
+        Me.CECustom.TabIndex = 185
+        Me.CECustom.Visible = False
+        '
         'FormPolisDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1985,6 +2000,7 @@ Partial Class FormPolisDet
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEPenawaranAdd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CECustom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2138,4 +2154,5 @@ Partial Class FormPolisDet
     Friend WithEvents LDateFrom As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LDateUntil As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents CECustom As DevExpress.XtraEditors.CheckEdit
 End Class

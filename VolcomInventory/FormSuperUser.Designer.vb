@@ -37,6 +37,7 @@ Partial Class FormSuperUser
         Me.BMockMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSetupDBIA = New DevExpress.XtraEditors.SimpleButton()
         Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.BImportRule = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -189,11 +190,21 @@ Partial Class FormSuperUser
         Me.TextEdit1.Size = New System.Drawing.Size(139, 20)
         Me.TextEdit1.TabIndex = 20
         '
+        'BImportRule
+        '
+        Me.BImportRule.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BImportRule.Location = New System.Drawing.Point(0, 111)
+        Me.BImportRule.Name = "BImportRule"
+        Me.BImportRule.Size = New System.Drawing.Size(430, 23)
+        Me.BImportRule.TabIndex = 21
+        Me.BImportRule.Text = "International Reject Rule"
+        '
         'FormSuperUser
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(430, 341)
+        Me.Controls.Add(Me.BImportRule)
         Me.Controls.Add(Me.TextEdit1)
         Me.Controls.Add(Me.BMockMark)
         Me.Controls.Add(Me.BtnConn)
@@ -240,4 +251,5 @@ Partial Class FormSuperUser
     Friend WithEvents BMockMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSetupDBIA As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BImportRule As DevExpress.XtraEditors.SimpleButton
 End Class

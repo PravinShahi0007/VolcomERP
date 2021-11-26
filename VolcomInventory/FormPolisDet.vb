@@ -62,6 +62,11 @@ WHERE pps.id_polis_pps='" & id_pps & "'"
                 DEStart.EditValue = dt.Rows(0)("start_polis").ToString
                 DEUntil.EditValue = dt.Rows(0)("end_polis").ToString
                 '
+                If dt.Rows(0)("is_annual").ToString = "2" Then
+                    CECustom.Checked = True
+                End If
+                CECustom.ReadOnly = True
+                '
                 SLEPPSType.Properties.ReadOnly = True
                 SLEPolisType.Properties.ReadOnly = True
                 DEStart.Properties.ReadOnly = True
@@ -250,7 +255,7 @@ LEFT JOIN
 "
         Next
 
-        qs = "SELECT 'no' AS is_check,ppsd.`id_comp`,ppsd.old_end_date,c.`comp_name`,c.`comp_number`,c.`address_primary`
+        qs = "SELECT 'no' AS is_check,ppsd.id_polis_pps_det,ppsd.`id_comp`,ppsd.old_end_date,c.`comp_name`,c.`comp_number`,c.`address_primary`
 ,ppsd.`nilai_stock`,ppsd.`nilai_fit_out`,ppsd.`nilai_building`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`
 ,ppsd.old_nilai_total,ppsd.nilai_total,ppsd.old_premi,ppsd.old_polis_vendor,v_old.comp_name AS old_vendor
 ,ppsd.old_premi
@@ -406,7 +411,11 @@ SELECT 2 AS id_pps_type,'Mandiri' AS pps_type"
                     warningCustom("Please add more store")
                 Else
                     Dim q As String = ""
-                    q = "INSERT INTO tb_polis_pps(`created_by`,`created_date`,`last_update_by`,`last_update_date`,`id_report_status`,id_desc_premi,id_pps_type,start_polis,end_polis,`step`) VALUES('" & id_user & "',NOW(),'" & id_user & "',NOW(),'1','" & SLEPolisType.EditValue.ToString & "','" & SLEPPSType.EditValue.ToString & "','" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "','1'); SELECT LAST_INSERT_ID();"
+                    Dim is_annual As String = "1"
+                    If CECustom.Checked = True Then
+                        is_annual = "2"
+                    End If
+                    q = "INSERT INTO tb_polis_pps(`created_by`,`created_date`,`last_update_by`,`last_update_date`,`id_report_status`,id_desc_premi,id_pps_type,start_polis,end_polis,`step`,`is_annual`) VALUES('" & id_user & "',NOW(),'" & id_user & "',NOW(),'1','" & SLEPolisType.EditValue.ToString & "','" & SLEPPSType.EditValue.ToString & "','" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "','1','" & is_annual & "'); SELECT LAST_INSERT_ID();"
                     id_pps = execute_query(q, 0, True, "", "", "", "")
                     q = "INSERT INTO tb_polis_pps_det(`id_polis_pps`,`id_comp`,`old_id_polis`,`old_end_date`,`old_nilai_stock`,`old_nilai_fit_out`,`old_nilai_building`,`old_nilai_peralatan`,`old_nilai_public_liability`,`old_nilai_total`,`old_polis_vendor`,`old_premi`) VALUES"
                     For i = 0 To BGVSummary.RowCount - 1
@@ -584,10 +593,19 @@ WHERE ppsd.id_polis_pps='" & id_pps & "' AND ppsd.id_comp='" & GVNilaiLainnya.Ge
                 infoCustom("Draft saved.")
             Else
                 'mandiri
-                If GVPenawaran.RowCount > 0 And GVPenawaran.Columns.Count > 15 Then
+                If GVPenawaran.RowCount > 0 And GVPenawaran.Columns.Count >= 15 Then
                     save_draft_penawaran()
 
                     infoCustom("Draft saved.")
+                Else
+
+                End If
+
+                If CECustom.Checked = True And GVPenawaran.RowCount > 0 Then
+                    For i = 0 To GVPenawaran.RowCount - 1
+                        Dim qudate As String = "UPDATE tb_polis_pps_det SET v_end_date='" & Date.Parse(GVPenawaran.GetRowCellValue(i, "v_end_date").ToString).ToString("yyyy-MM-dd") & "' WHERE id_polis_pps_det='" & GVPenawaran.GetRowCellValue(i, "id_polis_pps_det").ToString & "'"
+                        execute_non_query(qudate, True, "", "", "", "")
+                    Next
                 End If
             End If
         End If
@@ -647,7 +665,7 @@ WHERE ppsd.`id_polis_pps`='" & id_pps & "'"
             'WHERE ppsd.id_polis_pps='" & id_pps & "'"
             '    execute_non_query(q, True, "", "", "", "")
 
-            'set rekomendasi
+            'set rekomendasi + v_end_date
             q = "UPDATE `tb_polis_pps_det` ppsd
 INNER JOIN
 (
@@ -1146,7 +1164,7 @@ LEFT JOIN
 "
         Next
 
-        qs = "SELECT 'no' AS is_check,ppsd.`id_comp`,ppsd.old_end_date,c.`comp_name`,c.`comp_number`,c.`address_primary`
+        qs = "SELECT 'no' AS is_check,ppsd.id_polis_pps_det,ppsd.`id_comp`,ppsd.old_end_date,c.`comp_name`,c.`comp_number`,c.`address_primary`
 ,ppsd.`nilai_stock`,ppsd.`nilai_fit_out`,ppsd.`nilai_building`,ppsd.`nilai_peralatan`,ppsd.`nilai_public_liability`
 ,ppsd.old_nilai_total,ppsd.nilai_total,ppsd.old_premi,ppsd.old_polis_vendor,v_old.comp_name AS old_vendor
 ,ppsd.old_premi
@@ -1335,6 +1353,14 @@ WHERE pd.`id_polis_pps`='" & id_pps & "' "
             DEUntil.Visible = False
             DEStart.Visible = False
         End If
+
+        If SLEPPSType.EditValue.ToString = "2" Then 'mandiri
+            CECustom.Visible = True
+            CECustom.Checked = False
+        Else
+            CECustom.Visible = False
+            CECustom.Checked = False
+        End If
     End Sub
 
     Private Sub BAddPenawaranKolektif_Click(sender As Object, e As EventArgs) Handles BAddPenawaranKolektif.Click
@@ -1367,5 +1393,9 @@ WHERE pd.`id_polis_pps`='" & id_pps & "' "
             view_vendor_penawaran_kolektif()
             load_nilai_penawaran_kolektif()
         End If
+    End Sub
+
+    Private Sub SLEPolisType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEPolisType.EditValueChanged
+
     End Sub
 End Class
