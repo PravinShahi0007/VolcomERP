@@ -30,6 +30,7 @@ Partial Class FormPolisDet
         Me.BSaveDraft = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.CECustom = New DevExpress.XtraEditors.CheckEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEPPSType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -141,7 +142,7 @@ Partial Class FormPolisDet
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCEndDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
@@ -170,12 +171,12 @@ Partial Class FormPolisDet
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CECustom = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.CECustom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEPPSType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -228,7 +229,6 @@ Partial Class FormPolisDet
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEPenawaranAdd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CECustom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -362,6 +362,15 @@ Partial Class FormPolisDet
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1017, 96)
         Me.PanelControl2.TabIndex = 8
+        '
+        'CECustom
+        '
+        Me.CECustom.Location = New System.Drawing.Point(719, 9)
+        Me.CECustom.Name = "CECustom"
+        Me.CECustom.Properties.Caption = "Non Annual"
+        Me.CECustom.Size = New System.Drawing.Size(80, 19)
+        Me.CECustom.TabIndex = 185
+        Me.CECustom.Visible = False
         '
         'LabelControl5
         '
@@ -1467,7 +1476,7 @@ Partial Class FormPolisDet
         '
         Me.GVPenawaran.Appearance.FocusedRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.GVPenawaran.Appearance.FocusedRow.Options.UseBackColor = True
-        Me.GVPenawaran.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn49, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn48, Me.GridColumn47, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn44, Me.GridColumn43, Me.GridColumn45, Me.GridColumn46})
+        Me.GVPenawaran.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn49, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn48, Me.GCEndDate, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn44, Me.GridColumn43, Me.GridColumn45, Me.GridColumn46})
         Me.GVPenawaran.GridControl = Me.GCPenawaran
         Me.GVPenawaran.Name = "GVPenawaran"
         Me.GVPenawaran.OptionsView.ColumnAutoWidth = False
@@ -1552,15 +1561,15 @@ Partial Class FormPolisDet
         Me.GridColumn48.Visible = True
         Me.GridColumn48.VisibleIndex = 5
         '
-        'GridColumn47
+        'GCEndDate
         '
-        Me.GridColumn47.Caption = "End Date New"
-        Me.GridColumn47.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn47.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn47.FieldName = "v_end_date"
-        Me.GridColumn47.Name = "GridColumn47"
-        Me.GridColumn47.Visible = True
-        Me.GridColumn47.VisibleIndex = 6
+        Me.GCEndDate.Caption = "End Date New"
+        Me.GCEndDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GCEndDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GCEndDate.FieldName = "v_end_date"
+        Me.GCEndDate.Name = "GCEndDate"
+        Me.GCEndDate.Visible = True
+        Me.GCEndDate.VisibleIndex = 6
         '
         'GridColumn31
         '
@@ -1920,15 +1929,6 @@ Partial Class FormPolisDet
         Me.GridColumn39.Visible = True
         Me.GridColumn39.VisibleIndex = 1
         '
-        'CECustom
-        '
-        Me.CECustom.Location = New System.Drawing.Point(719, 9)
-        Me.CECustom.Name = "CECustom"
-        Me.CECustom.Properties.Caption = "Non Annual"
-        Me.CECustom.Size = New System.Drawing.Size(80, 19)
-        Me.CECustom.TabIndex = 185
-        Me.CECustom.Visible = False
-        '
         'FormPolisDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1948,6 +1948,7 @@ Partial Class FormPolisDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.CECustom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEPPSType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2000,7 +2001,6 @@ Partial Class FormPolisDet
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEPenawaranAdd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CECustom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2109,7 +2109,7 @@ Partial Class FormPolisDet
     Friend WithEvents BDel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCEndDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PCNilaiStock As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BGetExelNilaiStock As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BImportNilaiStock As DevExpress.XtraEditors.SimpleButton
