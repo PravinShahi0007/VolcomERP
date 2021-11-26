@@ -12134,6 +12134,9 @@
     <EmbeddedResource Include="FormPayoutZaloraReconSummary.resx">
       <DependentUpon>FormPayoutZaloraReconSummary.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPIBInput.resx">
+      <DependentUpon>FormPIBInput.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPIBReview.resx">
       <DependentUpon>FormPIBReview.vb</DependentUpon>
     </EmbeddedResource>
