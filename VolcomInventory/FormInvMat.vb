@@ -61,7 +61,8 @@ INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=inv.id_report_sta
 INNER JOIN tb_m_comp c ON c.id_comp=inv.id_comp " & q_where & "
 INNER JOIN tb_m_user usr ON usr.`id_user`=inv.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-GROUP BY invd.`id_inv_mat`"
+GROUP BY invd.`id_inv_mat`
+ORDER BY inv.id_inv_mat DESC"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 '
                 GCInvoice.DataSource = data
@@ -71,7 +72,7 @@ GROUP BY invd.`id_inv_mat`"
                 Dim query As String = "SELECT 'no' AS is_check,pl.`id_pl_mrs`,inv.id_report,c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,pl.`id_pl_mrs`,pl.`pl_mrs_number`,SUM(ROUND(pld.`pl_mrs_det_price`,2)*pld.`pl_mrs_det_qty`) AS amount,0 AS `id_prod_order`,'' AS prod_order_number
 ,'-' AS design_display_name
 FROM tb_pl_mrs_det pld
-INNER JOIN tb_pl_mrs pl ON pl.`id_pl_mrs`=pld.`id_pl_mrs` AND pl.id_pl_mat_type=2
+INNER JOIN tb_pl_mrs pl ON pl.`id_pl_mrs`=pld.`id_pl_mrs` AND pl.id_pl_mat_type=2 AND pl.id_report_status=6
 LEFT JOIN 
 (
     SELECT id_report
@@ -82,7 +83,8 @@ INNER JOIN `tb_prod_order_mrs` mrs ON mrs.`id_prod_order_mrs`=pl.`id_prod_order_
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=pl.`id_comp_contact_to` AND pl.`id_pl_mat_type`='2'
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` " & q_where & "
 WHERE ISNULL(inv.id_report)
-GROUP BY pl.`id_pl_mrs`"
+GROUP BY pl.`id_pl_mrs`
+ORDER BY pl.id_pl_mrs DESC"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCPL.DataSource = data
                 GVPL.BestFitColumns()
@@ -136,7 +138,8 @@ INNER JOIN tb_m_comp c ON c.id_comp=inv.id_comp " & q_where & "
 INNER JOIN tb_m_user usr ON usr.`id_user`=inv.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=invd.`id_prod_order`
-GROUP BY invd.`id_inv_mat`"
+GROUP BY invd.`id_inv_mat`
+ORDER BY invd.`id_inv_mat` DESC"
                     Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                     '
                     GCInvoice.DataSource = data
@@ -146,7 +149,7 @@ GROUP BY invd.`id_inv_mat`"
                     Dim query As String = "SELECT 'no' AS is_check,pl.`id_pl_mrs`,inv.id_report,c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,pl.`id_pl_mrs`,pl.`pl_mrs_number`,SUM(ROUND(pld.`pl_mrs_det_price`,2)*pld.`pl_mrs_det_qty`) AS amount,mrs.`id_prod_order`,po.`prod_order_number`
 ,dsg.`design_display_name`
 FROM tb_pl_mrs_det pld
-INNER JOIN tb_pl_mrs pl ON pl.`id_pl_mrs`=pld.`id_pl_mrs`
+INNER JOIN tb_pl_mrs pl ON pl.`id_pl_mrs`=pld.`id_pl_mrs`  AND pl.id_report_status=6
 LEFT JOIN 
 (
     SELECT id_report
@@ -160,7 +163,8 @@ INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=pl.`id_comp_contact_to` AND pl.`id_pl_mat_type`='2'
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` " & q_where & "
 WHERE ISNULL(inv.id_report)
-GROUP BY pl.`id_pl_mrs`"
+GROUP BY pl.`id_pl_mrs`
+ORDER BY pl.`id_pl_mrs` DESC"
                     Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                     GCPL.DataSource = data
                     GVPL.BestFitColumns()
@@ -189,7 +193,8 @@ INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ret.`id_comp_contact_from` AND ret.`id_pl_mat_type`='2'
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` " & q_where & "
 WHERE ISNULL(inv.id_report)
-GROUP BY ret.`id_mat_prod_ret_in`"
+GROUP BY ret.`id_mat_prod_ret_in`
+ORDER BY ret.`id_mat_prod_ret_in` DESC"
                     Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                     GCRetur.DataSource = data
                     GVRetur.BestFitColumns()
@@ -203,7 +208,7 @@ GROUP BY ret.`id_mat_prod_ret_in`"
                     Dim query As String = "SELECT 'no' AS is_check,pl.`id_pl_mrs`,inv.id_report,c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,pl.`id_pl_mrs`,pl.`pl_mrs_number`,SUM(ROUND(pld.`pl_mrs_det_price`,2)*pld.`pl_mrs_det_qty`) AS amount,mrs.`id_prod_order`,po.`prod_order_number`
 ,dsg.`design_display_name`
 FROM tb_pl_mrs_det pld
-INNER JOIN tb_pl_mrs pl ON pl.`id_pl_mrs`=pld.`id_pl_mrs`
+INNER JOIN tb_pl_mrs pl ON pl.`id_pl_mrs`=pld.`id_pl_mrs` AND pl.id_report_status=6
 LEFT JOIN 
 (
     SELECT id_report
@@ -217,7 +222,8 @@ INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=pl.`id_comp_contact_to` AND pl.`id_pl_mat_type`='2'
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` " & q_where & "
 WHERE ISNULL(inv.id_report)
-GROUP BY pl.`id_pl_mrs`"
+GROUP BY pl.`id_pl_mrs`
+ORDER BY pl.`id_pl_mrs` DESC"
                     Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                     GCPLMemo.DataSource = data
                     GVPLMemo.BestFitColumns()
