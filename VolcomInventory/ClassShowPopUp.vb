@@ -503,6 +503,9 @@
         ElseIf report_mark_type = "351" Or report_mark_type = "352" Then
             'promo zalora
             FormPromoZaloraDet.Close()
+        ElseIf report_mark_type = "358" Then
+            'propose promo
+            FormProposePromoDet.Close()
         End If
     End Sub
     Sub show()
@@ -1630,6 +1633,10 @@ GROUP BY rec.`id_prod_order`"
             FormPromoZaloraDet.is_view = "1"
             FormPromoZaloraDet.id_menu = "2"
             FormPromoZaloraDet.ShowDialog()
+        ElseIf report_mark_type = "358" Then
+            'propose promo
+            FormProposePromoDet.id_propose_promo = id_report
+            FormProposePromoDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2911,6 +2918,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_promo_zalora"
             field_number = "number"
             field_date = "recon_created_date"
+        ElseIf report_mark_type = "358" Then
+            'propose promo
+            table_name = "tb_propose_promo"
+            field_id = "id_propose_promo"
+            field_number = "number"
+            field_date = "created_at"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
