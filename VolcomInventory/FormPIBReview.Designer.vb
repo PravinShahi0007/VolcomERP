@@ -44,6 +44,15 @@ Partial Class FormPIBReview
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPInput = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BRefreshPPS = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCListPPS = New DevExpress.XtraGrid.GridControl()
+        Me.GVListPPS = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BCreatePPS = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPib, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPib.SuspendLayout()
         Me.XTPReview.SuspendLayout()
@@ -51,6 +60,11 @@ Partial Class FormPIBReview
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        Me.XTPInput.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.GCListPPS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVListPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPib
@@ -67,6 +81,7 @@ Partial Class FormPIBReview
         'XTPReview
         '
         Me.XTPReview.Controls.Add(Me.GCSummary)
+        Me.XTPReview.Controls.Add(Me.BCreatePPS)
         Me.XTPReview.Controls.Add(Me.PanelControl1)
         Me.XTPReview.Name = "XTPReview"
         Me.XTPReview.Size = New System.Drawing.Size(1005, 528)
@@ -78,7 +93,7 @@ Partial Class FormPIBReview
         Me.GCSummary.Location = New System.Drawing.Point(0, 49)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(1005, 479)
+        Me.GCSummary.Size = New System.Drawing.Size(1005, 439)
         Me.GCSummary.TabIndex = 1
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
@@ -301,9 +316,87 @@ Partial Class FormPIBReview
         '
         'XTPInput
         '
+        Me.XTPInput.Controls.Add(Me.GCListPPS)
+        Me.XTPInput.Controls.Add(Me.PanelControl2)
         Me.XTPInput.Name = "XTPInput"
         Me.XTPInput.Size = New System.Drawing.Size(1005, 528)
-        Me.XTPInput.Text = "Input Perencanaan"
+        Me.XTPInput.Text = "Input PIB Detail"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.BRefreshPPS)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1005, 49)
+        Me.PanelControl2.TabIndex = 1
+        '
+        'BRefreshPPS
+        '
+        Me.BRefreshPPS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefreshPPS.Image = CType(resources.GetObject("BRefreshPPS.Image"), System.Drawing.Image)
+        Me.BRefreshPPS.Location = New System.Drawing.Point(887, 2)
+        Me.BRefreshPPS.Name = "BRefreshPPS"
+        Me.BRefreshPPS.Size = New System.Drawing.Size(116, 45)
+        Me.BRefreshPPS.TabIndex = 0
+        Me.BRefreshPPS.Text = "Refresh"
+        '
+        'GCListPPS
+        '
+        Me.GCListPPS.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCListPPS.Location = New System.Drawing.Point(0, 49)
+        Me.GCListPPS.MainView = Me.GVListPPS
+        Me.GCListPPS.Name = "GCListPPS"
+        Me.GCListPPS.Size = New System.Drawing.Size(1005, 479)
+        Me.GCListPPS.TabIndex = 2
+        Me.GCListPPS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListPPS})
+        '
+        'GVListPPS
+        '
+        Me.GVListPPS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21})
+        Me.GVListPPS.GridControl = Me.GCListPPS
+        Me.GVListPPS.Name = "GVListPPS"
+        Me.GVListPPS.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "ID"
+        Me.GridColumn18.Name = "GridColumn18"
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Propose Number"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 0
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Created Date"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 1
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Report Status"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 2
+        '
+        'BCreatePPS
+        '
+        Me.BCreatePPS.Appearance.BackColor = System.Drawing.Color.DarkBlue
+        Me.BCreatePPS.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreatePPS.Appearance.Options.UseBackColor = True
+        Me.BCreatePPS.Appearance.Options.UseForeColor = True
+        Me.BCreatePPS.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BCreatePPS.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreatePPS.Location = New System.Drawing.Point(0, 488)
+        Me.BCreatePPS.Name = "BCreatePPS"
+        Me.BCreatePPS.Size = New System.Drawing.Size(1005, 40)
+        Me.BCreatePPS.TabIndex = 6
+        Me.BCreatePPS.Text = "Input Detail PIB"
         '
         'FormPIBReview
         '
@@ -324,6 +417,11 @@ Partial Class FormPIBReview
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        Me.XTPInput.ResumeLayout(False)
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        CType(Me.GCListPPS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVListPPS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -352,4 +450,13 @@ Partial Class FormPIBReview
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BRefreshPPS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCListPPS As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVListPPS As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BCreatePPS As DevExpress.XtraEditors.SimpleButton
 End Class
