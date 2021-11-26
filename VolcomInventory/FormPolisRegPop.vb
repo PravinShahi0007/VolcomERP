@@ -21,7 +21,11 @@
             SLEPenawaran.Properties.ReadOnly = False
             TEPremi.Properties.ReadOnly = False 'bisa verubah kata kezia
             DEStart.Properties.ReadOnly = False
-            DEUntil.Properties.ReadOnly = False
+            If FormPolisReg.is_annual = "1" Then
+                DEUntil.Properties.ReadOnly = True
+            Else
+                DEUntil.Properties.ReadOnly = False
+            End If
         End If
 
         'view date
@@ -89,5 +93,15 @@ GROUP BY ppsv.id_vendor"
                 TEPremi.EditValue = 0
             End If
         End If
+    End Sub
+
+    Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
+        Try
+            If FormPolisReg.is_annual = "1" Then
+                DEUntil.EditValue = Date.Parse(DEStart.EditValue.ToString).AddYears(1)
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

@@ -635,4 +635,8 @@
     Private Sub BtnSetupDBIA_Click(sender As Object, e As EventArgs) Handles BtnSetupDBIA.Click
         FormSetupDBStockTake.ShowDialog()
     End Sub
+
+    Private Sub BImportRule_Click(sender As Object, e As EventArgs) Handles BImportRule.Click
+        FormImportFGRule.ShowDialog()
+    End Sub
 End Class
