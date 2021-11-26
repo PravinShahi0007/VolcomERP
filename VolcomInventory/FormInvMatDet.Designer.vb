@@ -30,6 +30,7 @@ Partial Class FormInvMatDet
         Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEKas = New DevExpress.XtraEditors.CheckEdit()
         Me.SLEPayType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -81,7 +82,19 @@ Partial Class FormInvMatDet
         Me.GridColumnPayment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.CEKas = New DevExpress.XtraEditors.CheckEdit()
+        Me.XTCInvMat = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPDraft = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCDraft = New DevExpress.XtraGrid.GridControl()
+        Me.GVDraft = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNoDraft = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnacc_name_Draft = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnacc_description_draft = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnreport_number_draft = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnote_draft = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndebit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncredit_draft = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncc = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,6 +107,7 @@ Partial Class FormInvMatDet
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.CEKas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEPayType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,7 +135,12 @@ Partial Class FormInvMatDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CEKas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCInvMat, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCInvMat.SuspendLayout()
+        Me.XTPList.SuspendLayout()
+        Me.XTPDraft.SuspendLayout()
+        CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -228,6 +247,14 @@ Partial Class FormInvMatDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(527, 92)
         Me.PanelControl3.TabIndex = 165
+        '
+        'CEKas
+        '
+        Me.CEKas.Location = New System.Drawing.Point(381, 65)
+        Me.CEKas.Name = "CEKas"
+        Me.CEKas.Properties.Caption = "Jual Beli Internal Volcom"
+        Me.CEKas.Size = New System.Drawing.Size(143, 19)
+        Me.CEKas.TabIndex = 8920
         '
         'SLEPayType
         '
@@ -619,11 +646,11 @@ Partial Class FormInvMatDet
         '
         Me.GCList.ContextMenuStrip = Me.ViewMenu
         Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCList.Location = New System.Drawing.Point(0, 96)
+        Me.GCList.Location = New System.Drawing.Point(0, 0)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
         Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive, Me.RITEDecimal})
-        Me.GCList.Size = New System.Drawing.Size(951, 240)
+        Me.GCList.Size = New System.Drawing.Size(945, 212)
         Me.GCList.TabIndex = 20
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
@@ -778,20 +805,133 @@ Partial Class FormInvMatDet
         Me.RICECheckReceive.ValueChecked = "yes"
         Me.RICECheckReceive.ValueUnchecked = "no"
         '
-        'CEKas
+        'XTCInvMat
         '
-        Me.CEKas.Location = New System.Drawing.Point(381, 65)
-        Me.CEKas.Name = "CEKas"
-        Me.CEKas.Properties.Caption = "Jual Beli Internal Volcom"
-        Me.CEKas.Size = New System.Drawing.Size(143, 19)
-        Me.CEKas.TabIndex = 8920
+        Me.XTCInvMat.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCInvMat.Location = New System.Drawing.Point(0, 96)
+        Me.XTCInvMat.Name = "XTCInvMat"
+        Me.XTCInvMat.SelectedTabPage = Me.XTPList
+        Me.XTCInvMat.Size = New System.Drawing.Size(951, 240)
+        Me.XTCInvMat.TabIndex = 21
+        Me.XTCInvMat.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPList, Me.XTPDraft})
+        '
+        'XTPList
+        '
+        Me.XTPList.Controls.Add(Me.GCList)
+        Me.XTPList.Name = "XTPList"
+        Me.XTPList.Size = New System.Drawing.Size(945, 212)
+        Me.XTPList.Text = "Detail"
+        '
+        'XTPDraft
+        '
+        Me.XTPDraft.Controls.Add(Me.GCDraft)
+        Me.XTPDraft.Name = "XTPDraft"
+        Me.XTPDraft.Size = New System.Drawing.Size(945, 212)
+        Me.XTPDraft.Text = "Draft Jurnal"
+        '
+        'GCDraft
+        '
+        Me.GCDraft.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDraft.Location = New System.Drawing.Point(0, 0)
+        Me.GCDraft.MainView = Me.GVDraft
+        Me.GCDraft.Name = "GCDraft"
+        Me.GCDraft.Size = New System.Drawing.Size(945, 212)
+        Me.GCDraft.TabIndex = 3
+        Me.GCDraft.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDraft})
+        '
+        'GVDraft
+        '
+        Me.GVDraft.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoDraft, Me.GridColumnacc_name_Draft, Me.GridColumnacc_description_draft, Me.GridColumnreport_number_draft, Me.GridColumnnote_draft, Me.GridColumndebit_draft, Me.GridColumncredit_draft, Me.GridColumncc})
+        Me.GVDraft.GridControl = Me.GCDraft
+        Me.GVDraft.Name = "GVDraft"
+        Me.GVDraft.OptionsBehavior.Editable = False
+        Me.GVDraft.OptionsView.ShowFooter = True
+        Me.GVDraft.OptionsView.ShowGroupPanel = False
+        Me.GVDraft.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumndebit_draft, DevExpress.Data.ColumnSortOrder.Descending)})
+        '
+        'GridColumnNoDraft
+        '
+        Me.GridColumnNoDraft.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnNoDraft.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnNoDraft.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnNoDraft.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnNoDraft.Caption = "No"
+        Me.GridColumnNoDraft.FieldName = "no"
+        Me.GridColumnNoDraft.Name = "GridColumnNoDraft"
+        Me.GridColumnNoDraft.Width = 59
+        '
+        'GridColumnacc_name_Draft
+        '
+        Me.GridColumnacc_name_Draft.Caption = "Account"
+        Me.GridColumnacc_name_Draft.FieldName = "acc_name"
+        Me.GridColumnacc_name_Draft.Name = "GridColumnacc_name_Draft"
+        Me.GridColumnacc_name_Draft.Visible = True
+        Me.GridColumnacc_name_Draft.VisibleIndex = 0
+        Me.GridColumnacc_name_Draft.Width = 194
+        '
+        'GridColumnacc_description_draft
+        '
+        Me.GridColumnacc_description_draft.Caption = "COA"
+        Me.GridColumnacc_description_draft.FieldName = "acc_description"
+        Me.GridColumnacc_description_draft.Name = "GridColumnacc_description_draft"
+        Me.GridColumnacc_description_draft.Visible = True
+        Me.GridColumnacc_description_draft.VisibleIndex = 1
+        Me.GridColumnacc_description_draft.Width = 126
+        '
+        'GridColumnreport_number_draft
+        '
+        Me.GridColumnreport_number_draft.Caption = "Reference"
+        Me.GridColumnreport_number_draft.FieldName = "report_number"
+        Me.GridColumnreport_number_draft.Name = "GridColumnreport_number_draft"
+        Me.GridColumnreport_number_draft.Width = 125
+        '
+        'GridColumnnote_draft
+        '
+        Me.GridColumnnote_draft.Caption = "Description"
+        Me.GridColumnnote_draft.FieldName = "note"
+        Me.GridColumnnote_draft.Name = "GridColumnnote_draft"
+        Me.GridColumnnote_draft.Visible = True
+        Me.GridColumnnote_draft.VisibleIndex = 3
+        Me.GridColumnnote_draft.Width = 547
+        '
+        'GridColumndebit_draft
+        '
+        Me.GridColumndebit_draft.Caption = "Debit"
+        Me.GridColumndebit_draft.DisplayFormat.FormatString = "N2"
+        Me.GridColumndebit_draft.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndebit_draft.FieldName = "debit"
+        Me.GridColumndebit_draft.Name = "GridColumndebit_draft"
+        Me.GridColumndebit_draft.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
+        Me.GridColumndebit_draft.Visible = True
+        Me.GridColumndebit_draft.VisibleIndex = 4
+        Me.GridColumndebit_draft.Width = 267
+        '
+        'GridColumncredit_draft
+        '
+        Me.GridColumncredit_draft.Caption = "Credit"
+        Me.GridColumncredit_draft.DisplayFormat.FormatString = "N2"
+        Me.GridColumncredit_draft.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumncredit_draft.FieldName = "credit"
+        Me.GridColumncredit_draft.Name = "GridColumncredit_draft"
+        Me.GridColumncredit_draft.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N2}")})
+        Me.GridColumncredit_draft.Visible = True
+        Me.GridColumncredit_draft.VisibleIndex = 5
+        Me.GridColumncredit_draft.Width = 314
+        '
+        'GridColumncc
+        '
+        Me.GridColumncc.Caption = "CC"
+        Me.GridColumncc.FieldName = "cc"
+        Me.GridColumncc.Name = "GridColumncc"
+        Me.GridColumncc.Visible = True
+        Me.GridColumncc.VisibleIndex = 2
         '
         'FormInvMatDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(951, 472)
-        Me.Controls.Add(Me.GCList)
+        Me.Controls.Add(Me.XTCInvMat)
         Me.Controls.Add(Me.PanelControl8)
         Me.Controls.Add(Me.PanelControl7)
         Me.Controls.Add(Me.PanelControl2)
@@ -813,6 +953,7 @@ Partial Class FormInvMatDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.CEKas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEPayType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -842,7 +983,12 @@ Partial Class FormInvMatDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CEKas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCInvMat, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCInvMat.ResumeLayout(False)
+        Me.XTPList.ResumeLayout(False)
+        Me.XTPDraft.ResumeLayout(False)
+        CType(Me.GCDraft, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDraft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -908,4 +1054,17 @@ Partial Class FormInvMatDet
     Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents CEKas As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents XTCInvMat As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPDraft As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCDraft As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDraft As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnNoDraft As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnacc_name_Draft As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnacc_description_draft As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnreport_number_draft As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnote_draft As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndebit_draft As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncredit_draft As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncc As DevExpress.XtraGrid.Columns.GridColumn
 End Class

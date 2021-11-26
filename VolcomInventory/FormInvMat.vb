@@ -71,7 +71,7 @@ GROUP BY invd.`id_inv_mat`"
                 Dim query As String = "SELECT 'no' AS is_check,pl.`id_pl_mrs`,inv.id_report,c.`id_comp`,c.`comp_number`,c.`comp_name`,c.`id_acc_ar`,pl.`id_pl_mrs`,pl.`pl_mrs_number`,SUM(ROUND(pld.`pl_mrs_det_price`,2)*pld.`pl_mrs_det_qty`) AS amount,0 AS `id_prod_order`,'' AS prod_order_number
 ,'-' AS design_display_name
 FROM tb_pl_mrs_det pld
-INNER JOIN tb_pl_mrs pl ON pl.`id_pl_mrs`=pld.`id_pl_mrs` AND pl.id_pl_mat_type=2
+INNER JOIN tb_pl_mrs pl ON pl.`id_pl_mrs`=pld.`id_pl_mrs` AND pl.id_pl_mat_type=2 AND pl.id_report_status=6
 LEFT JOIN 
 (
     SELECT id_report
