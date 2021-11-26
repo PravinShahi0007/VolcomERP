@@ -53,10 +53,11 @@
 
             If Not id_st_store_bap = "" Then
                 Dim query As String = "
-                    SELECT 0 AS id_adj_out_fg_det, NULL AS code_old, NULL AS name_old, NULL AS size_old, d.id_product, p.name, p.size, u.uom, p.full_code AS code, ABS(v.qty) AS adj_out_fg_det_qty, p.unit_cost AS adj_out_fg_det_price, (ABS(v.qty) * p.unit_cost) AS adj_out_fg_det_amount, d.price AS retail_price, (ABS(v.qty) * d.price) AS retail_price_amount, '' AS adj_out_fg_det_note, c.id_drawer_def AS id_wh_drawer, w.id_wh_rack, r.id_wh_locator, b.id_comp, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp, w.wh_drawer, r.wh_rack, l.wh_locator, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, NULL AS id_adj_in_fg_det
+                    SELECT 0 AS id_adj_out_fg_det, NULL AS code_old, NULL AS name_old, NULL AS size_old, d.id_product, p.name, p.size, u.uom, p.full_code AS code, ABS(v.qty) AS adj_out_fg_det_qty, p.unit_cost AS adj_out_fg_det_price, (ABS(v.qty) * p.unit_cost) AS adj_out_fg_det_amount, d.price AS retail_price, (ABS(v.qty) * d.price) AS retail_price_amount, '' AS adj_out_fg_det_note, c.id_drawer_def AS id_wh_drawer, w.id_wh_rack, r.id_wh_locator, b.id_comp, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp, w.wh_drawer, r.wh_rack, l.wh_locator, CONCAT(c.comp_number, ' - ', c.comp_name) AS comp_name, NULL AS id_adj_in_fg_det, DATE_FORMAT(sp.schedule_start, '%d %M %Y') AS stocktake_date
                     FROM tb_st_store_bap_ver AS v
                     LEFT JOIN tb_st_store_bap_det AS d ON v.id_st_store_bap_det = d.id_st_store_bap_det
                     LEFT JOIN tb_st_store_bap AS b ON d.id_st_store_bap = b.id_st_store_bap
+                    LEFT JOIN tb_st_store_period AS sp ON b.id_st_store_period = sp.id_st_store_period
                     LEFT JOIN tb_m_product_store AS p ON d.id_product = p.id_product
                     LEFT JOIN tb_m_design AS s ON p.id_design = s.id_design
                     LEFT JOIN tb_m_uom AS u ON s.id_uom = u.id_uom
@@ -78,7 +79,7 @@
                 BtnEdit.Enabled = False
                 BtnImportExcel.Enabled = False
 
-                MENote.EditValue = FormFGAdj.GVOutBAP.GetFocusedRowCellValue("number").ToString
+                MENote.EditValue = FormFGAdj.GVOutBAP.GetFocusedRowCellValue("number").ToString + " - " + data.Rows(0)("stocktake_date").ToString
             End If
         ElseIf action = "upd" Then
             PCEdit.Visible = False
