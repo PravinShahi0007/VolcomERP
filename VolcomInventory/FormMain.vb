@@ -1963,7 +1963,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPromoZalora" Then
             FormPromoZalora.newPropose()
         ElseIf formName = "FormProposePromo" Then
-            FormProposePromoDet.id_propose_promo = "-1"
+            FormProposePromoDet.id_propose_promo = "0"
             FormProposePromoDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
