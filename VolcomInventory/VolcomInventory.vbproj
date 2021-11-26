@@ -3715,6 +3715,12 @@
     <Compile Include="FormPayoutZaloraReconSummary.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPIBInput.Designer.vb">
+      <DependentUpon>FormPIBInput.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPIBInput.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPIBReview.Designer.vb">
       <DependentUpon>FormPIBReview.vb</DependentUpon>
     </Compile>
