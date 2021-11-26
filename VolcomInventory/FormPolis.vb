@@ -76,7 +76,8 @@ WHERE p.`is_active`=1 AND DATEDIFF(p.end_date,DATE(NOW()))<60"
     Private Sub BRefreshPolisPPS_Click(sender As Object, e As EventArgs) Handles BRefreshPolisPPS.Click
         Dim q As String = "SELECT pps.id_polis_pps,pps.number,sts.report_status,IF(pps.id_report_status=6 OR pps.id_report_status=5,'',IF(pps.step=1,'Waiting nilai stock',IF(pps.step=2,'Waiting nilai lainnya',IF(pps.step=3,'Waiting penawaran vendor','Waiting approval')))) as step_desc
 FROM tb_polis_pps pps
-INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status"
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
+ORDER BY pps.id_polis_pps DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCPolisPPS.DataSource = dt
         GVPolisPPS.BestFitColumns()
@@ -90,7 +91,8 @@ INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_sta
         Dim q As String = "SELECT reg.number,reg.id_polis_reg,reg.id_polis_pps,pps.number AS pps_number,sts.report_status
 FROM tb_polis_reg reg
 INNER JOIN tb_polis_pps pps ON pps.id_polis_pps=reg.id_polis_pps
-INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=reg.id_report_status"
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=reg.id_report_status
+ORDER BY reg.id_polis_reg DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCRegisterPolis.DataSource = dt
         GVRegisterPolis.BestFitColumns()
