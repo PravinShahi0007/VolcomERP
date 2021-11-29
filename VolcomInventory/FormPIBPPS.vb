@@ -24,6 +24,8 @@ WHERE pps.id_pib_pps='" & id & "'"
                 MENote.Text = dt.Rows(0)("note").ToString
                 TEProposedBy.Text = dt.Rows(0)("employee_name").ToString
             End If
+            BtnAttachment.Visible = True
+            BtnPrint.Visible = True
         End If
 
         load_det()
@@ -122,5 +124,9 @@ GROUP BY f.id_pre_cal_fgpo"
 
             End If
         End If
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
     End Sub
 End Class
