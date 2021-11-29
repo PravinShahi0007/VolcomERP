@@ -232,11 +232,13 @@ LEFT JOIN
 )pn ON pn.id_report=wo.id_prod_order_wo
 LEFT JOIN
 (
-    SELECT ret.id_prod_order,SUM(retd.prod_order_ret_in_det_qty) AS qty_ret
+    SELECT reto.id_prod_order_wo,SUM(retd.prod_order_ret_in_det_qty) AS qty_ret
     FROM tb_prod_order_ret_in_det retd
     INNER JOIN tb_prod_order_ret_in ret ON ret.id_prod_order_ret_in=retd.id_prod_order_ret_in AND ret.id_report_status=6
-    GROUP BY ret.id_prod_order
-)ret ON ret.id_prod_order=po.id_prod_order
+    INNER JOIN tb_prod_order_ret_out reto ON reto.id_prod_order_ret_out=ret.id_prod_order_ret_out
+    WHERE NOT ISNULL(reto.id_prod_order_wo)
+    GROUP BY reto.id_prod_order_wo
+)ret ON ret.id_prod_order_wo=wo.id_prod_order_wo
 WHERE po.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) 
 GROUP BY wo.`id_prod_order_wo`"
             Else
@@ -271,11 +273,13 @@ LEFT JOIN
 )pn ON pn.id_report=wo.id_prod_order_wo
 LEFT JOIN
 (
-    SELECT ret.id_prod_order,SUM(retd.prod_order_ret_in_det_qty) AS qty_ret
+    SELECT reto.id_prod_order_wo,SUM(retd.prod_order_ret_in_det_qty) AS qty_ret
     FROM tb_prod_order_ret_in_det retd
     INNER JOIN tb_prod_order_ret_in ret ON ret.id_prod_order_ret_in=retd.id_prod_order_ret_in AND ret.id_report_status=6
-    GROUP BY ret.id_prod_order
-)ret ON ret.id_prod_order=po.id_prod_order
+    INNER JOIN tb_prod_order_ret_out reto ON reto.id_prod_order_ret_out=ret.id_prod_order_ret_out
+    WHERE NOT ISNULL(reto.id_prod_order_wo)
+    GROUP BY reto.id_prod_order_wo
+)ret ON ret.id_prod_order_wo=wo.id_prod_order
 WHERE po.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) 
 GROUP BY wo.`id_prod_order_wo`"
             End If
