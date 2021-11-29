@@ -57,6 +57,7 @@ Partial Class FormProdClosingPps
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrderQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRecQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -147,7 +148,6 @@ Partial Class FormProdClosingPps
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -416,8 +416,6 @@ Partial Class FormProdClosingPps
         Me.GridColumn26.FieldName = "id_claim_reject"
         Me.GridColumn26.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumn26.Name = "GridColumn26"
-        Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 4
         '
         'RISLERejectClaim
         '
@@ -455,8 +453,6 @@ Partial Class FormProdClosingPps
         Me.GridColumn25.FieldName = "id_claim_late"
         Me.GridColumn25.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumn25.Name = "GridColumn25"
-        Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 5
         '
         'RISLEClaimLate
         '
@@ -562,6 +558,21 @@ Partial Class FormProdClosingPps
         Me.GridColumnRecQty.Visible = True
         Me.GridColumnRecQty.VisibleIndex = 8
         Me.GridColumnRecQty.Width = 96
+        '
+        'GridColumn47
+        '
+        Me.GridColumn47.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn47.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn47.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn47.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn47.Caption = "SNI Qty"
+        Me.GridColumn47.DisplayFormat.FormatString = "N0"
+        Me.GridColumn47.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn47.FieldName = "qty_sni"
+        Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_sni", "{0:N0}")})
+        Me.GridColumn47.Visible = True
+        Me.GridColumn47.VisibleIndex = 9
         '
         'GridColumn23
         '
@@ -1512,21 +1523,6 @@ Partial Class FormProdClosingPps
         Me.GridColumn38.Visible = True
         Me.GridColumn38.VisibleIndex = 0
         '
-        'GridColumn47
-        '
-        Me.GridColumn47.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn47.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn47.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn47.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn47.Caption = "SNI Qty"
-        Me.GridColumn47.DisplayFormat.FormatString = "N0"
-        Me.GridColumn47.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn47.FieldName = "qty_sni"
-        Me.GridColumn47.Name = "GridColumn47"
-        Me.GridColumn47.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_sni", "{0:N0}")})
-        Me.GridColumn47.Visible = True
-        Me.GridColumn47.VisibleIndex = 9
-        '
         'FormProdClosingPps
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1539,7 +1535,7 @@ Partial Class FormProdClosingPps
         Me.MinimizeBox = False
         Me.Name = "FormProdClosingPps"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Propose Closing"
+        Me.Text = "Propose Closing Receiving"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)

@@ -10,7 +10,7 @@
     End Sub
 
     Sub load_propose()
-        Dim q As String = "SELECT f.id_pre_cal_fgpo,GROUP_CONCAT(CONCAT(po.prod_order_number,' - ',cd.class,' ',dsg.design_name,' ',cd.color) SEPARATOR '\n') AS list_fgpo,pr.pib_no,pr.pib_date,pr.pib_tax_amo
+        Dim q As String = "SELECT f.number AS pre_cal_fgpo_number,f.id_pre_cal_fgpo,GROUP_CONCAT(CONCAT(po.prod_order_number,' - ',cd.class,' ',dsg.design_name,' ',cd.color) SEPARATOR '\n') AS list_fgpo,IFNULL(pr.pib_no,'') AS pib_no,IFNULL(pr.pib_date,DATE(NOW())) AS pib_date,pr.pib_tax_amo
 FROM tb_pre_cal_fgpo_list fl
 INNER JOIN tb_pre_cal_fgpo f ON f.id_pre_cal_fgpo=fl.id_pre_cal_fgpo
 INNER JOIN tb_pib_review pr ON pr.id_pre_cal_fgpo=fl.id_pre_cal_fgpo AND fl.id_prod_order=pr.id_prod_order AND is_active=1
@@ -32,5 +32,66 @@ GROUP BY f.id_pre_cal_fgpo"
         '
         GCSummary.DataSource = dt
         GVSummary.BestFitColumns()
+    End Sub
+
+    Private Sub BCreatePPS_Click(sender As Object, e As EventArgs) Handles BCreatePPS.Click
+        If GVSummary.RowCount > 0 Then
+            If TEPIBNumber.Text = "" Or DEPIB.EditValue = Nothing Or TEPIBTaxAmount.EditValue <= 0 Then
+                warningCustom("Please input value correctly")
+            Else
+                'check main pps
+                Dim is_ok As Boolean = True
+                For i = 0 To FormPIBPPS.BGVPIBPPS.RowCount - 1
+                    If FormPIBPPS.BGVPIBPPS.GetRowCellValue(i, "id_pre_cal_fgpo").ToString = GVSummary.GetFocusedRowCellValue("id_pre_cal_fgpo").ToString Then
+                        is_ok = False
+                        Exit For
+                    End If
+                Next
+                If Not is_ok Then
+                    warningCustom("ISB already on list")
+                Else
+                    'save
+                    Dim newRow As DataRow = (TryCast(FormPIBPPS.GCPIBPPps.DataSource, DataTable)).NewRow()
+                    '
+                    newRow("id_pre_cal_fgpo") = GVSummary.GetFocusedRowCellValue("id_pre_cal_fgpo").ToString
+                    newRow("pre_cal_fgpo_number") = GVSummary.GetFocusedRowCellValue("pre_cal_fgpo_number").ToString
+                    newRow("list_fgpo") = GVSummary.GetFocusedRowCellValue("list_fgpo").ToString
+
+                    newRow("old_pib_no") = TEPIBNumberOld.EditValue
+                    newRow("old_pib_date") = DEPIBOld.EditValue
+                    newRow("old_pib_tax_amo") = TEPIBTaxAmountOld.EditValue
+                    '
+                    newRow("pib_no") = TEPIBNumber.EditValue
+                    newRow("pib_date") = DEPIB.EditValue
+                    newRow("pib_tax_amo") = TEPIBTaxAmount.EditValue
+
+                    TryCast(FormPIBPPS.GCPIBPPps.DataSource, DataTable).Rows.Add(newRow)
+
+                    Close()
+                End If
+            End If
+        Else
+            warningCustom("Please pick budget first")
+        End If
+    End Sub
+
+    Private Sub GVSummary_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVSummary.FocusedRowChanged
+        view_det()
+    End Sub
+
+    Sub view_det()
+        If GVSummary.RowCount > 0 Then
+            TEPIBNumberOld.Text = GVSummary.GetFocusedRowCellValue("pib_no").ToString
+            DEPIBOld.EditValue = GVSummary.GetFocusedRowCellValue("pib_date")
+            TEPIBTaxAmountOld.EditValue = GVSummary.GetFocusedRowCellValue("pib_tax_amo")
+            '
+            TEPIBNumber.Text = GVSummary.GetFocusedRowCellValue("pib_no").ToString
+            DEPIB.EditValue = GVSummary.GetFocusedRowCellValue("pib_date")
+            TEPIBTaxAmount.EditValue = GVSummary.GetFocusedRowCellValue("pib_tax_amo")
+        End If
+    End Sub
+
+    Private Sub GVSummary_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVSummary.ColumnFilterChanged
+        view_det()
     End Sub
 End Class

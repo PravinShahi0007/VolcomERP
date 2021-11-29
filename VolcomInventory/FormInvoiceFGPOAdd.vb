@@ -203,12 +203,12 @@ HAVING qty_rec >= qty"
             If is_dp Then
                 query = "SELECT wo.`id_prod_order_wo` AS id_report,wo.`id_prod_order_wo` AS id_prod_order,wo.`prod_order_wo_number` AS report_number,CONCAT(ovh.`overhead`,' - ',dsg.`design_display_name`) AS description,dsg.`design_code` AS info
 ,IFNULL(oldest_price.old_curr,wo.`id_currency`) AS id_currency,IFNULL(oldest_price.old_kurs,wo.prod_order_wo_kurs) AS kurs,wo.prod_order_wo_vat AS vat
-,SUM(IFNULL(oldest_price.old_price,wod.`prod_order_wo_det_price`)*wod.prod_order_wo_det_qty) AS wo_val
-,SUM(wod.prod_order_wo_det_qty) AS qty
+,IF(wo.is_manual_add=1,(ret.qty_ret*IFNULL(oldest_price.old_price,wod.`prod_order_wo_det_price`)),SUM(IFNULL(oldest_price.old_price,wod.`prod_order_wo_det_price`)*wod.prod_order_wo_det_qty)) AS wo_val
+,IF(wo.is_manual_add=1,ret.qty_ret,SUM(wod.prod_order_wo_det_qty)) AS qty
 FROM tb_prod_order_wo_det wod 
-INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
+INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo` AND wo.is_main_vendor=2
 INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
-INNER JOIN tb_m_ovh ovh ON ovh.`id_ovh`=ovhp.`id_ovh`
+INNER JOIN tb_m_ovh ovh ON ovh.`id_ovh`=ovhp.`id_ovh`  AND (wo.is_manual_add=1 OR ovh.id_ovh=13)
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=wo.id_prod_Order
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
@@ -228,19 +228,26 @@ LEFT JOIN
     FROM `tb_pn_fgpo_det` pnd 
     INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
     WHERE pn.id_report_status!=5 AND pnd.report_mark_type=23 AND pn.type=1
-    group by pnd.report_mark_type=23 AND pnd.id_report
-)pn ON pn.id_report=sp.id_prod_order_wo
+    GROUP BY pnd.report_mark_type=23 AND pnd.id_report
+)pn ON pn.id_report=wo.id_prod_order_wo
+LEFT JOIN
+(
+    SELECT ret.id_prod_order,SUM(retd.prod_order_ret_in_det_qty) AS qty_ret
+    FROM tb_prod_order_ret_in_det retd
+    INNER JOIN tb_prod_order_ret_in ret ON ret.id_prod_order_ret_in=retd.id_prod_order_ret_in AND ret.id_report_status=6
+    GROUP BY ret.id_prod_order
+)ret ON ret.id_prod_order=po.id_prod_order
 WHERE po.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) 
 GROUP BY wo.`id_prod_order_wo`"
             Else
                 query = "SELECT wo.`id_prod_order_wo` AS id_report,wo.`id_prod_order_wo` AS id_prod_order,wo.`prod_order_wo_number` AS report_number,CONCAT(ovh.`overhead`,' - ',dsg.`design_display_name`) AS description,dsg.`design_code` AS info
 ,IFNULL(oldest_price.old_curr,wo.`id_currency`) AS id_currency,IFNULL(oldest_price.old_kurs,wo.prod_order_wo_kurs) AS kurs,wo.prod_order_wo_vat AS vat
-,SUM(IFNULL(oldest_price.old_price,wod.`prod_order_wo_det_price`)*wod.prod_order_wo_det_qty) AS wo_val
-,SUM(wod.prod_order_wo_det_qty) AS qty
+,IF(wo.is_manual_add=1,(ret.qty_ret*IFNULL(oldest_price.old_price,wod.`prod_order_wo_det_price`)),SUM(IFNULL(oldest_price.old_price,wod.`prod_order_wo_det_price`)*wod.prod_order_wo_det_qty)) AS wo_val
+,IF(wo.is_manual_add=1,ret.qty_ret,SUM(wod.prod_order_wo_det_qty)) AS qty
 FROM tb_prod_order_wo_det wod 
-INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
+INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo` AND wo.is_main_vendor=2 
 INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
-INNER JOIN tb_m_ovh ovh ON ovh.`id_ovh`=ovhp.`id_ovh`
+INNER JOIN tb_m_ovh ovh ON ovh.`id_ovh`=ovhp.`id_ovh` AND (wo.is_manual_add=1 OR ovh.id_ovh=13)
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=wo.id_prod_Order
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
@@ -260,8 +267,15 @@ LEFT JOIN
     FROM `tb_pn_fgpo_det` pnd 
     INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
     WHERE pn.id_report_status!=5 AND pnd.report_mark_type=23 AND pn.type=2
-    group by pnd.report_mark_type=23 AND pnd.id_report
-)pn ON pn.id_report=sp.id_prod_order_wo
+    GROUP BY pnd.report_mark_type=23 AND pnd.id_report
+)pn ON pn.id_report=wo.id_prod_order_wo
+LEFT JOIN
+(
+    SELECT ret.id_prod_order,SUM(retd.prod_order_ret_in_det_qty) AS qty_ret
+    FROM tb_prod_order_ret_in_det retd
+    INNER JOIN tb_prod_order_ret_in ret ON ret.id_prod_order_ret_in=retd.id_prod_order_ret_in AND ret.id_report_status=6
+    GROUP BY ret.id_prod_order
+)ret ON ret.id_prod_order=po.id_prod_order
 WHERE po.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) 
 GROUP BY wo.`id_prod_order_wo`"
             End If

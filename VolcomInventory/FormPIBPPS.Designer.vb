@@ -23,11 +23,11 @@ Partial Class FormPIBPPS
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEProposedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -42,6 +42,19 @@ Partial Class FormPIBPPS
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCPIBPPps = New DevExpress.XtraGrid.GridControl()
+        Me.BGVPIBPPS = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GVPIBPps = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -49,27 +62,14 @@ Partial Class FormPIBPPS
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BGVPIBPPS = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEProposedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,8 +79,8 @@ Partial Class FormPIBPPS
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.GCPIBPPps, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVPIBPps, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVPIBPPS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPIBPps, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -96,11 +96,11 @@ Partial Class FormPIBPPS
         '
         Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl5.Controls.Add(Me.LabelControl1)
-        Me.PanelControl5.Controls.Add(Me.TextEdit1)
+        Me.PanelControl5.Controls.Add(Me.TEProposedBy)
         Me.PanelControl5.Controls.Add(Me.LabelControl4)
         Me.PanelControl5.Controls.Add(Me.DECreated)
         Me.PanelControl5.Controls.Add(Me.LabelControl3)
-        Me.PanelControl5.Controls.Add(Me.TxtNumber)
+        Me.PanelControl5.Controls.Add(Me.TENumber)
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl5.Location = New System.Drawing.Point(601, 2)
         Me.PanelControl5.Name = "PanelControl5"
@@ -116,15 +116,15 @@ Partial Class FormPIBPPS
         Me.LabelControl1.TabIndex = 8
         Me.LabelControl1.Text = "Proposed By"
         '
-        'TextEdit1
+        'TEProposedBy
         '
-        Me.TextEdit1.Enabled = False
-        Me.TextEdit1.Location = New System.Drawing.Point(105, 65)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit1.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit1.Size = New System.Drawing.Size(174, 20)
-        Me.TextEdit1.TabIndex = 9
+        Me.TEProposedBy.Enabled = False
+        Me.TEProposedBy.Location = New System.Drawing.Point(105, 65)
+        Me.TEProposedBy.Name = "TEProposedBy"
+        Me.TEProposedBy.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEProposedBy.Properties.Appearance.Options.UseFont = True
+        Me.TEProposedBy.Size = New System.Drawing.Size(174, 20)
+        Me.TEProposedBy.TabIndex = 9
         '
         'LabelControl4
         '
@@ -159,15 +159,15 @@ Partial Class FormPIBPPS
         Me.LabelControl3.TabIndex = 5
         Me.LabelControl3.Text = "Propose Number"
         '
-        'TxtNumber
+        'TENumber
         '
-        Me.TxtNumber.Enabled = False
-        Me.TxtNumber.Location = New System.Drawing.Point(105, 13)
-        Me.TxtNumber.Name = "TxtNumber"
-        Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtNumber.Properties.Appearance.Options.UseFont = True
-        Me.TxtNumber.Size = New System.Drawing.Size(174, 20)
-        Me.TxtNumber.TabIndex = 5
+        Me.TENumber.Enabled = False
+        Me.TENumber.Location = New System.Drawing.Point(105, 13)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TENumber.Properties.Appearance.Options.UseFont = True
+        Me.TENumber.Size = New System.Drawing.Size(174, 20)
+        Me.TENumber.TabIndex = 5
         '
         'PanelControl2
         '
@@ -176,9 +176,9 @@ Partial Class FormPIBPPS
         Me.PanelControl2.Controls.Add(Me.BtnSave)
         Me.PanelControl2.Controls.Add(Me.BtnMark)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 515)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 518)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(895, 39)
+        Me.PanelControl2.Size = New System.Drawing.Size(895, 46)
         Me.PanelControl2.TabIndex = 1
         '
         'BtnAttachment
@@ -187,7 +187,7 @@ Partial Class FormPIBPPS
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
         Me.BtnAttachment.Location = New System.Drawing.Point(618, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(103, 35)
+        Me.BtnAttachment.Size = New System.Drawing.Size(103, 42)
         Me.BtnAttachment.TabIndex = 8
         Me.BtnAttachment.Text = "Attachment"
         Me.BtnAttachment.Visible = False
@@ -198,7 +198,7 @@ Partial Class FormPIBPPS
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
         Me.BtnPrint.Location = New System.Drawing.Point(721, 2)
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(88, 35)
+        Me.BtnPrint.Size = New System.Drawing.Size(88, 42)
         Me.BtnPrint.TabIndex = 7
         Me.BtnPrint.Text = "Print"
         Me.BtnPrint.Visible = False
@@ -209,7 +209,7 @@ Partial Class FormPIBPPS
         Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
         Me.BtnSave.Location = New System.Drawing.Point(809, 2)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(84, 35)
+        Me.BtnSave.Size = New System.Drawing.Size(84, 42)
         Me.BtnSave.TabIndex = 9
         Me.BtnSave.Text = "Save"
         '
@@ -219,7 +219,7 @@ Partial Class FormPIBPPS
         Me.BtnMark.Image = CType(resources.GetObject("BtnMark.Image"), System.Drawing.Image)
         Me.BtnMark.Location = New System.Drawing.Point(2, 2)
         Me.BtnMark.Name = "BtnMark"
-        Me.BtnMark.Size = New System.Drawing.Size(89, 35)
+        Me.BtnMark.Size = New System.Drawing.Size(89, 42)
         Me.BtnMark.TabIndex = 6
         Me.BtnMark.Text = "Mark"
         Me.BtnMark.Visible = False
@@ -231,9 +231,9 @@ Partial Class FormPIBPPS
         Me.PanelControl3.Controls.Add(Me.MENote)
         Me.PanelControl3.Controls.Add(Me.LabelControl6)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 367)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 360)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(895, 148)
+        Me.PanelControl3.Size = New System.Drawing.Size(895, 158)
         Me.PanelControl3.TabIndex = 2
         '
         'LabelControl13
@@ -315,9 +315,125 @@ Partial Class FormPIBPPS
         Me.GCPIBPPps.Location = New System.Drawing.Point(0, 138)
         Me.GCPIBPPps.MainView = Me.BGVPIBPPS
         Me.GCPIBPPps.Name = "GCPIBPPps"
-        Me.GCPIBPPps.Size = New System.Drawing.Size(895, 229)
+        Me.GCPIBPPps.Size = New System.Drawing.Size(895, 222)
         Me.GCPIBPPps.TabIndex = 4
-        Me.GCPIBPPps.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPIBPps, Me.BGVPIBPPS})
+        Me.GCPIBPPps.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVPIBPPS, Me.GVPIBPps})
+        '
+        'BGVPIBPPS
+        '
+        Me.BGVPIBPPS.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
+        Me.BGVPIBPPS.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9})
+        Me.BGVPIBPPS.GridControl = Me.GCPIBPPps
+        Me.BGVPIBPPS.Name = "BGVPIBPPS"
+        Me.BGVPIBPPS.OptionsView.ShowGroupPanel = False
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Detail"
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 150
+        '
+        'BandedGridColumn2
+        '
+        Me.BandedGridColumn2.Caption = "ISB Number"
+        Me.BandedGridColumn2.FieldName = "pre_cal_fgpo_number"
+        Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.Visible = True
+        '
+        'BandedGridColumn3
+        '
+        Me.BandedGridColumn3.Caption = "FGPO List"
+        Me.BandedGridColumn3.FieldName = "list_fgpo"
+        Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.Visible = True
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "Old Value"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn7)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn8)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn9)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 225
+        '
+        'BandedGridColumn7
+        '
+        Me.BandedGridColumn7.Caption = "PIB No"
+        Me.BandedGridColumn7.FieldName = "old_pib_no"
+        Me.BandedGridColumn7.Name = "BandedGridColumn7"
+        Me.BandedGridColumn7.Visible = True
+        '
+        'BandedGridColumn8
+        '
+        Me.BandedGridColumn8.Caption = "PIB Date"
+        Me.BandedGridColumn8.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn8.FieldName = "old_pib_date"
+        Me.BandedGridColumn8.Name = "BandedGridColumn8"
+        Me.BandedGridColumn8.Visible = True
+        '
+        'BandedGridColumn9
+        '
+        Me.BandedGridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn9.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn9.Caption = "PIB Tax Amount"
+        Me.BandedGridColumn9.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn9.FieldName = "old_pib_tax_amo"
+        Me.BandedGridColumn9.Name = "BandedGridColumn9"
+        Me.BandedGridColumn9.Visible = True
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "New Value"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn4)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn5)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn6)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 225
+        '
+        'BandedGridColumn4
+        '
+        Me.BandedGridColumn4.Caption = "PIB No"
+        Me.BandedGridColumn4.FieldName = "pib_no"
+        Me.BandedGridColumn4.Name = "BandedGridColumn4"
+        Me.BandedGridColumn4.Visible = True
+        '
+        'BandedGridColumn5
+        '
+        Me.BandedGridColumn5.Caption = "PIB Date"
+        Me.BandedGridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn5.FieldName = "pib_date"
+        Me.BandedGridColumn5.Name = "BandedGridColumn5"
+        Me.BandedGridColumn5.Visible = True
+        '
+        'BandedGridColumn6
+        '
+        Me.BandedGridColumn6.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn6.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn6.Caption = "PIB Tax Amount"
+        Me.BandedGridColumn6.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn6.FieldName = "pib_tax_amo"
+        Me.BandedGridColumn6.Name = "BandedGridColumn6"
+        Me.BandedGridColumn6.Visible = True
+        '
+        'BandedGridColumn1
+        '
+        Me.BandedGridColumn1.Caption = "ID Det"
+        Me.BandedGridColumn1.FieldName = "id_pib_pps_det"
+        Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.BandedGridColumn1.Visible = True
         '
         'GVPIBPps
         '
@@ -366,127 +482,11 @@ Partial Class FormPIBPPS
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
         '
-        'BGVPIBPPS
-        '
-        Me.BGVPIBPPS.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
-        Me.BGVPIBPPS.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9})
-        Me.BGVPIBPPS.GridControl = Me.GCPIBPPps
-        Me.BGVPIBPPS.Name = "BGVPIBPPS"
-        Me.BGVPIBPPS.OptionsView.ShowGroupPanel = False
-        '
-        'BandedGridColumn1
-        '
-        Me.BandedGridColumn1.Caption = "ID Det"
-        Me.BandedGridColumn1.FieldName = "id_pib_pps_det"
-        Me.BandedGridColumn1.Name = "BandedGridColumn1"
-        Me.BandedGridColumn1.Visible = True
-        '
-        'BandedGridColumn2
-        '
-        Me.BandedGridColumn2.Caption = "ISB Number"
-        Me.BandedGridColumn2.FieldName = "isb_no"
-        Me.BandedGridColumn2.Name = "BandedGridColumn2"
-        Me.BandedGridColumn2.Visible = True
-        '
-        'BandedGridColumn3
-        '
-        Me.BandedGridColumn3.Caption = "FGPO List"
-        Me.BandedGridColumn3.FieldName = "fgpo_list"
-        Me.BandedGridColumn3.Name = "BandedGridColumn3"
-        Me.BandedGridColumn3.Visible = True
-        '
-        'BandedGridColumn4
-        '
-        Me.BandedGridColumn4.Caption = "PIB No"
-        Me.BandedGridColumn4.FieldName = "pib_no"
-        Me.BandedGridColumn4.Name = "BandedGridColumn4"
-        Me.BandedGridColumn4.Visible = True
-        '
-        'BandedGridColumn5
-        '
-        Me.BandedGridColumn5.Caption = "PIB Date"
-        Me.BandedGridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.BandedGridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.BandedGridColumn5.FieldName = "pib_date"
-        Me.BandedGridColumn5.Name = "BandedGridColumn5"
-        Me.BandedGridColumn5.Visible = True
-        '
-        'BandedGridColumn6
-        '
-        Me.BandedGridColumn6.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn6.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn6.Caption = "PIB Tax Amount"
-        Me.BandedGridColumn6.DisplayFormat.FormatString = "N2"
-        Me.BandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn6.FieldName = "pib_tax_amo"
-        Me.BandedGridColumn6.Name = "BandedGridColumn6"
-        Me.BandedGridColumn6.Visible = True
-        '
-        'BandedGridColumn7
-        '
-        Me.BandedGridColumn7.Caption = "PIB No"
-        Me.BandedGridColumn7.FieldName = "old_pib_no"
-        Me.BandedGridColumn7.Name = "BandedGridColumn7"
-        Me.BandedGridColumn7.Visible = True
-        '
-        'BandedGridColumn8
-        '
-        Me.BandedGridColumn8.Caption = "PIB Date"
-        Me.BandedGridColumn8.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.BandedGridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.BandedGridColumn8.FieldName = "old_pib_date"
-        Me.BandedGridColumn8.Name = "BandedGridColumn8"
-        Me.BandedGridColumn8.Visible = True
-        '
-        'BandedGridColumn9
-        '
-        Me.BandedGridColumn9.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn9.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn9.Caption = "PIB Tax Amount"
-        Me.BandedGridColumn9.DisplayFormat.FormatString = "N2"
-        Me.BandedGridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn9.FieldName = "old_pib_tax_amo"
-        Me.BandedGridColumn9.Name = "BandedGridColumn9"
-        Me.BandedGridColumn9.Visible = True
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "Detail"
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 150
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "Old Value"
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn7)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn8)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn9)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 225
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "New Value"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn4)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn5)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn6)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 225
-        '
         'FormPIBPPS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(895, 554)
+        Me.ClientSize = New System.Drawing.Size(895, 564)
         Me.Controls.Add(Me.GCPIBPPps)
         Me.Controls.Add(Me.PanelControl4)
         Me.Controls.Add(Me.PanelControl3)
@@ -503,10 +503,10 @@ Partial Class FormPIBPPS
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
         Me.PanelControl5.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEProposedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -517,8 +517,8 @@ Partial Class FormPIBPPS
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         CType(Me.GCPIBPPps, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVPIBPps, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BGVPIBPPS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPIBPps, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -549,9 +549,9 @@ Partial Class FormPIBPPS
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TxtNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEProposedBy As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BGVPIBPPS As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
