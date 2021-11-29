@@ -744,6 +744,9 @@
         ElseIf report_mark_type = "358" Then
             'propose promo
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_propose_promo WHERE id_propose_promo = '{0}'", id_report)
+        ElseIf report_mark_type = "359" Then
+            'propose pib
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_pib_pps WHERE id_pib_pps = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -10892,6 +10895,22 @@ WHERE id_acc_trans='" & old_id_acc_trans & "'"
 
             query = String.Format("UPDATE tb_propose_promo SET id_report_status = '{0}' WHERE id_propose_promo = '{1}'", id_status_reportx, id_report)
 
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "359" Then
+            'propose pib
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                Dim q As String = "UPDATE tb_pib_review pr
+INNER JOIN tb_pib_pps_det ppsd ON ppsd.id_pre_cal_fgpo=pr.id_pre_cal_fgpo AND is_active=1
+SET pr.pib_no=ppsd.pib_no,pr.pib_date=ppsd.pib_date,pr.pib_tax_amo=ppsd.pib_tax_amo
+WHERE ppsd.id_pib_pps='" & id_report & "'"
+                execute_non_query(q, True, "", "", "", "")
+            End If
+
+            query = String.Format("UPDATE tb_pib_pps SET id_report_status = '{0}' WHERE id_pib_pps = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

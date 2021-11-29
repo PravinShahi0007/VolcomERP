@@ -125,4 +125,8 @@ GROUP BY f.id_pre_cal_fgpo"
             End If
         End If
     End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
+    End Sub
 End Class
