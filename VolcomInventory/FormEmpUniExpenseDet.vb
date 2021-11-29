@@ -50,6 +50,16 @@ Public Class FormEmpUniExpenseDet
 
             DEStart.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='1'", 0, True, "", "", "", "")
             DEEnd.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='1'", 0, True, "", "", "", "")
+
+            'initial total
+            TxtTotal.EditValue = 0.00
+            TxtDPP.EditValue = 0.00
+            TxtPPNPros.EditValue = 0.00
+            TxtPPN.EditValue = 0.00
+            'default vat
+            Dim qvat As String = "SELECT o.vat_inv_default FROM tb_opt o"
+            Dim dvat As DataTable = execute_query(qvat, -1, True, "", "", "", "")
+            TxtPPNPros.EditValue = dvat.Rows(0)("vat_inv_default")
         ElseIf action = "upd" Then
             BtnPrint.Visible = True
             BtnAttachment.Visible = True
@@ -74,6 +84,7 @@ Public Class FormEmpUniExpenseDet
             TxtDepartement.Text = data.Rows(0)("departement").ToString
             SLECat.EditValue = data.Rows(0)("id_item_cat").ToString
             TEKurs.EditValue = data.Rows(0)("kurs_trans")
+            TxtPPNPros.EditValue = data.Rows(0)("vat_trans")
 
             printed_name = data.Rows(0)("printed_name").ToString
 
@@ -88,6 +99,7 @@ Public Class FormEmpUniExpenseDet
                 TxtEmployeeName.Text = de.Rows(0)("employee_name").ToString
             End If
             viewDetail()
+            calculate()
             allow_status()
         End If
     End Sub
@@ -252,10 +264,11 @@ Public Class FormEmpUniExpenseDet
                 Dim period_until As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim id_item_cat As String = SLECat.EditValue.ToString
                 Dim kurs_trans As String = decimalSQL(TEKurs.EditValue.ToString)
+                Dim vat_trans As String = decimalSQL(TxtPPNPros.EditValue.ToString)
 
                 'main
-                Dim qi As String = "INSERT INTO tb_emp_uni_ex(id_comp_contact, id_pl_sales_order_del, emp_uni_ex_number, emp_uni_ex_date, period_from, period_until, emp_uni_ex_note, id_report_status, id_departement, id_item_cat,kurs_trans) 
-                VALUES('" + id_comp_contact + "','" + id_pl_sales_order_del + "', '" + header_number_sales("35") + "', NOW(), '" + period_from + "','" + period_until + "', '" + emp_uni_ex_note + "', 1, '" + id_departement + "', '" + id_item_cat + "', '" + kurs_trans + "'); SELECT LAST_INSERT_ID(); "
+                Dim qi As String = "INSERT INTO tb_emp_uni_ex(id_comp_contact, id_pl_sales_order_del, emp_uni_ex_number, emp_uni_ex_date, period_from, period_until, emp_uni_ex_note, id_report_status, id_departement, id_item_cat,kurs_trans, vat_trans) 
+                VALUES('" + id_comp_contact + "','" + id_pl_sales_order_del + "', '" + header_number_sales("35") + "', NOW(), '" + period_from + "','" + period_until + "', '" + emp_uni_ex_note + "', 1, '" + id_departement + "', '" + id_item_cat + "', '" + kurs_trans + "', '" + vat_trans + "'); SELECT LAST_INSERT_ID(); "
                 id_emp_uni_ex = execute_query(qi, 0, True, "", "", "", "")
                 increase_inc_sales("35")
 
@@ -364,6 +377,7 @@ Public Class FormEmpUniExpenseDet
 
                 ' fill GV
                 view_do()
+                calculate()
                 DEStart.Focus()
             End If
         Else
@@ -698,5 +712,27 @@ Public Class FormEmpUniExpenseDet
         If action = "ins" Then
             load_kurs()
         End If
+    End Sub
+
+    Sub calculate()
+        'biaya
+        Dim gross_total As Double = 0.00
+        Try
+            gross_total = GVData.Columns("amount").SummaryItem.SummaryValue
+        Catch ex As Exception
+        End Try
+        Dim ppn_pros As Decimal = 0.00
+        Try
+            ppn_pros = TxtPPNPros.EditValue
+        Catch ex As Exception
+        End Try
+        Dim biaya As Decimal = gross_total + (gross_total * (ppn_pros / 100))
+        TxtTotal.EditValue = biaya
+
+        'DPP
+        TxtDPP.EditValue = TxtTotal.EditValue * (100 / (100 + ppn_pros))
+
+        'PPN
+        TxtPPN.EditValue = TxtTotal.EditValue * (ppn_pros / (100 + ppn_pros))
     End Sub
 End Class

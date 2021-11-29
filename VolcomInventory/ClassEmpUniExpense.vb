@@ -15,7 +15,7 @@
         Dim query As String = "SELECT e.id_emp_uni_ex, e.id_emp_uni_ex_ref, e.id_item_cat, cat.item_cat, e.id_departement, dept.departement, e.id_comp_contact, c.comp_number, c.comp_name, CONCAT(c.comp_number,' - ', c.comp_name) AS `comp`, 
         e.id_pl_sales_order_del, del.pl_sales_order_del_number, 
         e.emp_uni_ex_number, e.emp_uni_ex_date, e.emp_uni_ex_note, e.id_report_status , rs.report_status,
-        so.id_so_status, so.id_emp_uni_budget, e.period_from, e.period_until, e_ref.emp_uni_ex_number AS emp_uni_ex_number_ref, stt.printed_name, e.kurs_trans
+        so.id_so_status, so.id_emp_uni_budget, e.period_from, e.period_until, e_ref.emp_uni_ex_number AS emp_uni_ex_number_ref, stt.printed_name, e.kurs_trans, e.vat_trans
         FROM tb_emp_uni_ex e
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = e.id_comp_contact
         INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp

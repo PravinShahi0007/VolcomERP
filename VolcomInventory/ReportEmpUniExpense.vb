@@ -8,6 +8,20 @@
         LabelTitleOwnComp.Text = execute_query("SELECT comp_name FROM tb_m_comp WHERE id_comp = (SELECT id_own_company FROM tb_opt LIMIT 1)", 0, True, "", "", "", "")
         LabelOwnCompNPWP.Text = execute_query("SELECT npwp FROM tb_m_comp WHERE id_comp = (SELECT id_own_company FROM tb_opt LIMIT 1)", 0, True, "", "", "", "")
 
+        'get total
+        Dim qtot As String = "SELECT e.id_emp_uni_ex, ABS(SUM(ed.design_cop * ed.qty) + (SUM(ed.design_cop * ed.qty) * (e.vat_trans/100))) AS `total`,
+        e.vat_trans AS `ppn_pros`, ABS((SUM(ed.design_cop * ed.qty) + (SUM(ed.design_cop * ed.qty) * (e.vat_trans/100))) * (e.vat_trans/(100 + e.vat_trans))) AS `ppn`,
+        ABS((SUM(ed.design_cop * ed.qty) + (SUM(ed.design_cop * ed.qty) * (e.vat_trans/100))) * (100/(100 + e.vat_trans))) AS `dpp`
+        FROM tb_emp_uni_ex e
+        INNER JOIN tb_emp_uni_ex_det ed ON ed.id_emp_uni_ex = e.id_emp_uni_ex
+        WHERE e.id_emp_uni_ex=" + id_emp_uni_ex + "
+        GROUP BY e.id_emp_uni_ex "
+        Dim dtot As DataTable = execute_query(qtot, -1, True, "", "", "", "")
+        LabelTotal.Text = Decimal.Parse(dtot.Rows(0)("total").ToString).ToString("N2")
+        LabelDPP.Text = Decimal.Parse(dtot.Rows(0)("dpp").ToString).ToString("N2")
+        LabelPPNPros.Text = "PPN " + Decimal.Parse(dtot.Rows(0)("ppn_pros").ToString).ToString("N0") + "%"
+        LabelPPN.Text = Decimal.Parse(dtot.Rows(0)("ppn").ToString).ToString("N2")
+
         Dim total As Decimal = 0.00
         Dim total_qty As Decimal = 0.00
 

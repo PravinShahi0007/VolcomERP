@@ -37,6 +37,7 @@
                             stopCustom("No stock available for some items.")
 
                             FormValidateStock.dt = data_sc
+
                             FormValidateStock.ShowDialog()
 
                             Exit Sub
@@ -80,9 +81,22 @@
 
                     submit_who_prepared("358", id_propose_promo, id_user)
 
-                    infoCustom("Submitted.")
-
                     form_load()
+
+                    'reserved stock
+                    For i = 0 To GVProduct.RowCount - 1
+                        If GVProduct.IsValidRowHandle(i) Then
+                            Dim id_wh_drawer_reserved As String = execute_query("
+                                SELECT id_drawer_def FROM tb_m_comp WHERE id_comp = " + GVProduct.GetRowCellValue(i, "id_comp").ToString + "
+                            ", 0, True, "", "", "", "")
+
+                            Dim query_reserved As String = "INSERT INTO tb_storage_fg (id_wh_drawer, id_storage_category, id_product, bom_unit_price, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status, report_mark_type, id_report) VALUES ('" + id_wh_drawer_reserved + "', '2', '" + GVProduct.GetRowCellValue(i, "id_product").ToString + "', '" + decimalSQL(GVProduct.GetRowCellValue(i, "design_cop").ToString) + "', '" + decimalSQL(GVProduct.GetRowCellValue(i, "qty").ToString) + "', NOW(), 'Propose Promo : " + TENumber.EditValue.ToString + "', '2', '358', '" + id_propose_promo + "')"
+
+                            execute_non_query(query_reserved, True, "", "", "", "")
+                        End If
+                    Next
+
+                    infoCustom("Submitted.")
                 End If
             Else
                 stopCustom("Please select product.")
