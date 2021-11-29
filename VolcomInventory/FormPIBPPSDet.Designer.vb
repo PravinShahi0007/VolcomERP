@@ -27,6 +27,12 @@ Partial Class FormPIBPPSDet
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreatePPS = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEPIBOld = New DevExpress.XtraEditors.DateEdit()
+        Me.TEPIBNumberOld = New DevExpress.XtraEditors.TextEdit()
+        Me.TEPIBTaxAmountOld = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.DEPIB = New DevExpress.XtraEditors.DateEdit()
         Me.TEPIBNumber = New DevExpress.XtraEditors.TextEdit()
         Me.TEPIBTaxAmount = New DevExpress.XtraEditors.TextEdit()
@@ -39,6 +45,10 @@ Partial Class FormPIBPPSDet
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.DEPIBOld.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEPIBOld.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEPIBNumberOld.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEPIBTaxAmountOld.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEPIB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEPIB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPIBNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,7 +93,7 @@ Partial Class FormPIBPPSDet
         'GridColumn2
         '
         Me.GridColumn2.Caption = "ISB Number"
-        Me.GridColumn2.FieldName = "isb_number"
+        Me.GridColumn2.FieldName = "pre_cal_fgpo_number"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
@@ -92,7 +102,7 @@ Partial Class FormPIBPPSDet
         'GridColumn16
         '
         Me.GridColumn16.Caption = "FGPO List"
-        Me.GridColumn16.FieldName = "prod_order_number"
+        Me.GridColumn16.FieldName = "list_fgpo"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 1
@@ -114,6 +124,12 @@ Partial Class FormPIBPPSDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.DEPIBOld)
+        Me.PanelControl1.Controls.Add(Me.TEPIBNumberOld)
+        Me.PanelControl1.Controls.Add(Me.TEPIBTaxAmountOld)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
+        Me.PanelControl1.Controls.Add(Me.LabelControl5)
+        Me.PanelControl1.Controls.Add(Me.LabelControl6)
         Me.PanelControl1.Controls.Add(Me.DEPIB)
         Me.PanelControl1.Controls.Add(Me.TEPIBNumber)
         Me.PanelControl1.Controls.Add(Me.TEPIBTaxAmount)
@@ -126,35 +142,88 @@ Partial Class FormPIBPPSDet
         Me.PanelControl1.Size = New System.Drawing.Size(623, 120)
         Me.PanelControl1.TabIndex = 8
         '
+        'DEPIBOld
+        '
+        Me.DEPIBOld.EditValue = Nothing
+        Me.DEPIBOld.Location = New System.Drawing.Point(118, 50)
+        Me.DEPIBOld.Name = "DEPIBOld"
+        Me.DEPIBOld.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEPIBOld.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEPIBOld.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEPIBOld.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEPIBOld.Properties.ReadOnly = True
+        Me.DEPIBOld.Size = New System.Drawing.Size(183, 20)
+        Me.DEPIBOld.TabIndex = 193
+        '
+        'TEPIBNumberOld
+        '
+        Me.TEPIBNumberOld.Location = New System.Drawing.Point(118, 18)
+        Me.TEPIBNumberOld.Name = "TEPIBNumberOld"
+        Me.TEPIBNumberOld.Properties.ReadOnly = True
+        Me.TEPIBNumberOld.Size = New System.Drawing.Size(183, 20)
+        Me.TEPIBNumberOld.TabIndex = 192
+        '
+        'TEPIBTaxAmountOld
+        '
+        Me.TEPIBTaxAmountOld.Location = New System.Drawing.Point(118, 83)
+        Me.TEPIBTaxAmountOld.Name = "TEPIBTaxAmountOld"
+        Me.TEPIBTaxAmountOld.Properties.ReadOnly = True
+        Me.TEPIBTaxAmountOld.Size = New System.Drawing.Size(183, 20)
+        Me.TEPIBTaxAmountOld.TabIndex = 191
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(17, 86)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(96, 13)
+        Me.LabelControl1.TabIndex = 190
+        Me.LabelControl1.Text = "Old PIB Tax Amount"
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(17, 53)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(61, 13)
+        Me.LabelControl5.TabIndex = 189
+        Me.LabelControl5.Text = "Old PIB Date"
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(17, 21)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(75, 13)
+        Me.LabelControl6.TabIndex = 188
+        Me.LabelControl6.Text = "Old PIB Number"
+        '
         'DEPIB
         '
         Me.DEPIB.EditValue = Nothing
-        Me.DEPIB.Location = New System.Drawing.Point(112, 49)
+        Me.DEPIB.Location = New System.Drawing.Point(419, 50)
         Me.DEPIB.Name = "DEPIB"
         Me.DEPIB.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEPIB.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEPIB.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEPIB.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEPIB.Size = New System.Drawing.Size(242, 20)
+        Me.DEPIB.Size = New System.Drawing.Size(183, 20)
         Me.DEPIB.TabIndex = 187
         '
         'TEPIBNumber
         '
-        Me.TEPIBNumber.Location = New System.Drawing.Point(112, 17)
+        Me.TEPIBNumber.Location = New System.Drawing.Point(419, 18)
         Me.TEPIBNumber.Name = "TEPIBNumber"
-        Me.TEPIBNumber.Size = New System.Drawing.Size(353, 20)
+        Me.TEPIBNumber.Size = New System.Drawing.Size(183, 20)
         Me.TEPIBNumber.TabIndex = 186
         '
         'TEPIBTaxAmount
         '
-        Me.TEPIBTaxAmount.Location = New System.Drawing.Point(112, 82)
+        Me.TEPIBTaxAmount.Location = New System.Drawing.Point(419, 83)
         Me.TEPIBTaxAmount.Name = "TEPIBTaxAmount"
-        Me.TEPIBTaxAmount.Size = New System.Drawing.Size(213, 20)
+        Me.TEPIBTaxAmount.Size = New System.Drawing.Size(183, 20)
         Me.TEPIBTaxAmount.TabIndex = 185
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(12, 85)
+        Me.LabelControl4.Location = New System.Drawing.Point(336, 86)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(77, 13)
         Me.LabelControl4.TabIndex = 184
@@ -162,7 +231,7 @@ Partial Class FormPIBPPSDet
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 52)
+        Me.LabelControl3.Location = New System.Drawing.Point(336, 53)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(42, 13)
         Me.LabelControl3.TabIndex = 183
@@ -170,7 +239,7 @@ Partial Class FormPIBPPSDet
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(12, 20)
+        Me.LabelControl2.Location = New System.Drawing.Point(336, 21)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(56, 13)
         Me.LabelControl2.TabIndex = 182
@@ -197,6 +266,10 @@ Partial Class FormPIBPPSDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.DEPIBOld.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEPIBOld.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEPIBNumberOld.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEPIBTaxAmountOld.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEPIB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEPIB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPIBNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -213,6 +286,12 @@ Partial Class FormPIBPPSDet
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents DEPIBOld As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents TEPIBNumberOld As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEPIBTaxAmountOld As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEPIB As DevExpress.XtraEditors.DateEdit
     Friend WithEvents TEPIBNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TEPIBTaxAmount As DevExpress.XtraEditors.TextEdit

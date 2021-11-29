@@ -66,4 +66,8 @@ WHERE pir.`is_active`=1 AND pir.`is_notified`=2"
     Private Sub FormPIBReview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
+
+    Private Sub BCreatePPS_Click(sender As Object, e As EventArgs) Handles BCreatePPS.Click
+        FormPIBPPS.ShowDialog()
+    End Sub
 End Class

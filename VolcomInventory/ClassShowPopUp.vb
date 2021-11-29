@@ -506,6 +506,9 @@
         ElseIf report_mark_type = "358" Then
             'propose promo
             FormProposePromoDet.Close()
+        ElseIf report_mark_type = "359" Then
+            'propose pib
+            FormPIBPPS.Close()
         End If
     End Sub
     Sub show()
@@ -1637,6 +1640,10 @@ GROUP BY rec.`id_prod_order`"
             'propose promo
             FormProposePromoDet.id_propose_promo = id_report
             FormProposePromoDet.ShowDialog()
+        ElseIf report_mark_type = "359" Then
+            'propose pib
+            FormPIBPPS.id = id_report
+            FormPIBPPS.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2924,6 +2931,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_propose_promo"
             field_number = "number"
             field_date = "created_at"
+        ElseIf report_mark_type = "359" Then
+            'propose pib
+            table_name = "tb_pib_pps"
+            field_id = "id_pib_pps"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
