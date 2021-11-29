@@ -62,4 +62,8 @@ WHERE pir.`is_active`=1 AND pir.`is_notified`=2"
     Private Sub GVSummary_DoubleClick(sender As Object, e As EventArgs) Handles GVSummary.DoubleClick
 
     End Sub
+
+    Private Sub FormPIBReview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class
