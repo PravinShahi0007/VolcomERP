@@ -279,7 +279,7 @@ LEFT JOIN
     INNER JOIN tb_prod_order_ret_out reto ON reto.id_prod_order_ret_out=ret.id_prod_order_ret_out
     WHERE NOT ISNULL(reto.id_prod_order_wo)
     GROUP BY reto.id_prod_order_wo
-)ret ON ret.id_prod_order_wo=wo.id_prod_order
+)ret ON ret.id_prod_order_wo=wo.id_prod_order_wo
 WHERE po.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) 
 GROUP BY wo.`id_prod_order_wo`"
             End If

@@ -9538,6 +9538,12 @@
     <Compile Include="ReportPengirimanProduk.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPIBPPS.Designer.vb">
+      <DependentUpon>ReportPIBPPS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPIBPPS.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPLMat.designer.vb">
       <DependentUpon>ReportPLMat.vb</DependentUpon>
     </Compile>
@@ -15509,6 +15515,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPengirimanProduk.resx">
       <DependentUpon>ReportPengirimanProduk.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPIBPPS.resx">
+      <DependentUpon>ReportPIBPPS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPLMat.resx">
       <DependentUpon>ReportPLMat.vb</DependentUpon>
