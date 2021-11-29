@@ -591,7 +591,7 @@ Public Class FormSalesOrderDet
             FormCustomDialog.BtnAction.Text = "View " + dt_existing_order.Rows(0)("sales_order_number").ToString
             FormCustomDialog.ShowDialog()
             Cursor = Cursors.Default
-        ElseIf Not block_stocktake Then
+        ElseIf Not block_stocktake And id_commerce_type = "1" Then
             stopCustom("Some product already in EOS and need to stock take first.")
         Else
             Dim sales_order_note As String = addSlashes(MENote.Text)
