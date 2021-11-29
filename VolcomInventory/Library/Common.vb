@@ -7698,7 +7698,7 @@ INNER JOIN tb_sales_return_qc awb ON awb.`id_sales_return_qc`='" & id_report & "
             WHERE id_design IN (
 	            SELECT d.id_design 
 	            FROM tb_pp_change_det AS d
-	            LEFT JOIN tb_pp_change AS h ON d.id_pp_change = d.id_pp_change
+	            LEFT JOIN tb_pp_change AS h ON h.id_pp_change = d.id_pp_change
 	            WHERE h.effective_date > DATE(NOW()) AND h.id_report_status = 6 AND d.propose_price_final IS NOT NULL
                 AND h.id_design_mkd=1
             )
