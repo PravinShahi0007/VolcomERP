@@ -30,6 +30,12 @@
     End Sub
 
     Sub load_form()
+        'initial total
+        TxtTotal.EditValue = 0.00
+        TxtDPP.EditValue = 0.00
+        TxtPPNPros.EditValue = 0.00
+        TxtPPN.EditValue = 0.00
+
         If Not id_emp_uni_ex = "0" Then
             Dim query_c As New ClassEmpUniExpense()
 
@@ -50,6 +56,7 @@
             TxtDepartement.Text = data.Rows(0)("departement").ToString
             SLECat.EditValue = data.Rows(0)("id_item_cat").ToString
             TEKurs.EditValue = data.Rows(0)("kurs_trans")
+            TxtPPNPros.EditValue = data.Rows(0)("vat_trans")
 
             id_pl_sales_order_del = data.Rows(0)("id_pl_sales_order_del").ToString
             id_departement = data.Rows(0)("id_departement").ToString
@@ -62,6 +69,7 @@
         Dim data_detail As DataTable = execute_query("CALL view_emp_uni_ex(" + id_emp_uni_ex + ")", -1, True, "", "", "", "")
 
         GCData.DataSource = data_detail
+        calculate()
 
         If LEReportStatus.EditValue.ToString = "5" Or LEReportStatus.EditValue.ToString = "6" Then
             is_view = True
@@ -261,10 +269,11 @@
                 Dim period_until As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim id_item_cat As String = SLECat.EditValue.ToString
                 Dim kurs_trans As String = decimalSQL(TEKurs.EditValue)
+                Dim vat_trans As String = decimalSQL(TxtPPNPros.EditValue.ToString)
 
                 'main
-                Dim qi As String = "INSERT INTO tb_emp_uni_ex (id_emp_uni_ex_ref, id_comp_contact, id_pl_sales_order_del, emp_uni_ex_number, emp_uni_ex_date, period_from, period_until, emp_uni_ex_note, id_report_status, id_departement, id_item_cat, report_mark_type, kurs_trans) 
-                VALUES('" + id_emp_uni_ex_ref + "', '" + id_comp_contact + "', '" + id_pl_sales_order_del + "', '" + header_number_sales("40") + "', NOW(), '" + period_from + "', '" + period_until + "', '" + emp_uni_ex_note + "', 1, '" + id_departement + "', '" + id_item_cat + "', 236, '" + kurs_trans + "'); SELECT LAST_INSERT_ID();"
+                Dim qi As String = "INSERT INTO tb_emp_uni_ex (id_emp_uni_ex_ref, id_comp_contact, id_pl_sales_order_del, emp_uni_ex_number, emp_uni_ex_date, period_from, period_until, emp_uni_ex_note, id_report_status, id_departement, id_item_cat, report_mark_type, kurs_trans, vat_trans) 
+                VALUES('" + id_emp_uni_ex_ref + "', '" + id_comp_contact + "', '" + id_pl_sales_order_del + "', '" + header_number_sales("40") + "', NOW(), '" + period_from + "', '" + period_until + "', '" + emp_uni_ex_note + "', 1, '" + id_departement + "', '" + id_item_cat + "', 236, '" + kurs_trans + "', '" + vat_trans + "'); SELECT LAST_INSERT_ID();"
 
                 id_emp_uni_ex = execute_query(qi, 0, True, "", "", "", "")
 
@@ -609,6 +618,7 @@
                 Next
             End If
         Next
+        calculate()
     End Sub
 
     Sub load_kurs()
@@ -643,5 +653,25 @@
         End If
     End Sub
 
+    Sub calculate()
+        'biaya
+        Dim gross_total As Double = 0.00
+        Try
+            gross_total = GVData.Columns("amount").SummaryItem.SummaryValue
+        Catch ex As Exception
+        End Try
+        Dim ppn_pros As Decimal = 0.00
+        Try
+            ppn_pros = TxtPPNPros.EditValue
+        Catch ex As Exception
+        End Try
+        Dim biaya As Decimal = gross_total + (gross_total * (ppn_pros / 100))
+        TxtTotal.EditValue = biaya
 
+        'DPP
+        TxtDPP.EditValue = TxtTotal.EditValue * (100 / (100 + ppn_pros))
+
+        'PPN
+        TxtPPN.EditValue = TxtTotal.EditValue * (ppn_pros / (100 + ppn_pros))
+    End Sub
 End Class

@@ -9,9 +9,9 @@
         LabelOwnCompNPWP.Text = execute_query("SELECT npwp FROM tb_m_comp WHERE id_comp = (SELECT id_own_company FROM tb_opt LIMIT 1)", 0, True, "", "", "", "")
 
         'get total
-        Dim qtot As String = "SELECT e.id_emp_uni_ex, SUM(ed.design_cop * ed.qty) + (SUM(ed.design_cop * ed.qty) * (e.vat_trans/100)) AS `total`,
-        e.vat_trans AS `ppn_pros`, (SUM(ed.design_cop * ed.qty) + (SUM(ed.design_cop * ed.qty) * (e.vat_trans/100))) * (e.vat_trans/(100 + e.vat_trans)) AS `ppn`,
-        (SUM(ed.design_cop * ed.qty) + (SUM(ed.design_cop * ed.qty) * (e.vat_trans/100))) * (100/(100 + e.vat_trans)) AS `dpp`
+        Dim qtot As String = "SELECT e.id_emp_uni_ex, ABS(SUM(ed.design_cop * ed.qty) + (SUM(ed.design_cop * ed.qty) * (e.vat_trans/100))) AS `total`,
+        e.vat_trans AS `ppn_pros`, ABS((SUM(ed.design_cop * ed.qty) + (SUM(ed.design_cop * ed.qty) * (e.vat_trans/100))) * (e.vat_trans/(100 + e.vat_trans))) AS `ppn`,
+        ABS((SUM(ed.design_cop * ed.qty) + (SUM(ed.design_cop * ed.qty) * (e.vat_trans/100))) * (100/(100 + e.vat_trans))) AS `dpp`
         FROM tb_emp_uni_ex e
         INNER JOIN tb_emp_uni_ex_det ed ON ed.id_emp_uni_ex = e.id_emp_uni_ex
         WHERE e.id_emp_uni_ex=" + id_emp_uni_ex + "
