@@ -642,4 +642,6 @@
             load_kurs()
         End If
     End Sub
+
+
 End Class
