@@ -19,6 +19,9 @@
             errorCustom("Can't exceed " + limit_qty.ToString)
         Else
             FormEmpUniExpenseDet.GVData.SetFocusedRowCellValue("qty", TxtQty.EditValue)
+            FormEmpUniExpenseDet.GCData.RefreshDataSource()
+            FormEmpUniExpenseDet.GVData.RefreshData()
+            FormEmpUniExpenseDet.calculate()
             Close()
         End If
     End Sub

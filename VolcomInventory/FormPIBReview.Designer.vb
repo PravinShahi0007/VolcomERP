@@ -41,18 +41,18 @@ Partial Class FormPIBReview
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BCreatePPS = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPInput = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BRefreshPPS = New DevExpress.XtraEditors.SimpleButton()
         Me.GCListPPS = New DevExpress.XtraGrid.GridControl()
         Me.GVListPPS = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BCreatePPS = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BRefreshPPS = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPib, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPib.SuspendLayout()
         Me.XTPReview.SuspendLayout()
@@ -61,10 +61,10 @@ Partial Class FormPIBReview
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.XTPInput.SuspendLayout()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
         CType(Me.GCListPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListPPS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCPib
@@ -295,6 +295,20 @@ Partial Class FormPIBReview
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 14
         '
+        'BCreatePPS
+        '
+        Me.BCreatePPS.Appearance.BackColor = System.Drawing.Color.DarkBlue
+        Me.BCreatePPS.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreatePPS.Appearance.Options.UseBackColor = True
+        Me.BCreatePPS.Appearance.Options.UseForeColor = True
+        Me.BCreatePPS.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BCreatePPS.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreatePPS.Location = New System.Drawing.Point(0, 488)
+        Me.BCreatePPS.Name = "BCreatePPS"
+        Me.BCreatePPS.Size = New System.Drawing.Size(1005, 40)
+        Me.BCreatePPS.TabIndex = 6
+        Me.BCreatePPS.Text = "Input Detail PIB"
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BRefresh)
@@ -321,25 +335,6 @@ Partial Class FormPIBReview
         Me.XTPInput.Name = "XTPInput"
         Me.XTPInput.Size = New System.Drawing.Size(1005, 528)
         Me.XTPInput.Text = "Input PIB Detail"
-        '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.BRefreshPPS)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1005, 49)
-        Me.PanelControl2.TabIndex = 1
-        '
-        'BRefreshPPS
-        '
-        Me.BRefreshPPS.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BRefreshPPS.Image = CType(resources.GetObject("BRefreshPPS.Image"), System.Drawing.Image)
-        Me.BRefreshPPS.Location = New System.Drawing.Point(887, 2)
-        Me.BRefreshPPS.Name = "BRefreshPPS"
-        Me.BRefreshPPS.Size = New System.Drawing.Size(116, 45)
-        Me.BRefreshPPS.TabIndex = 0
-        Me.BRefreshPPS.Text = "Refresh"
         '
         'GCListPPS
         '
@@ -384,19 +379,24 @@ Partial Class FormPIBReview
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 2
         '
-        'BCreatePPS
+        'PanelControl2
         '
-        Me.BCreatePPS.Appearance.BackColor = System.Drawing.Color.DarkBlue
-        Me.BCreatePPS.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BCreatePPS.Appearance.Options.UseBackColor = True
-        Me.BCreatePPS.Appearance.Options.UseForeColor = True
-        Me.BCreatePPS.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
-        Me.BCreatePPS.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCreatePPS.Location = New System.Drawing.Point(0, 488)
-        Me.BCreatePPS.Name = "BCreatePPS"
-        Me.BCreatePPS.Size = New System.Drawing.Size(1005, 40)
-        Me.BCreatePPS.TabIndex = 6
-        Me.BCreatePPS.Text = "Input Detail PIB"
+        Me.PanelControl2.Controls.Add(Me.BRefreshPPS)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1005, 49)
+        Me.PanelControl2.TabIndex = 1
+        '
+        'BRefreshPPS
+        '
+        Me.BRefreshPPS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefreshPPS.Image = CType(resources.GetObject("BRefreshPPS.Image"), System.Drawing.Image)
+        Me.BRefreshPPS.Location = New System.Drawing.Point(887, 2)
+        Me.BRefreshPPS.Name = "BRefreshPPS"
+        Me.BRefreshPPS.Size = New System.Drawing.Size(116, 45)
+        Me.BRefreshPPS.TabIndex = 0
+        Me.BRefreshPPS.Text = "Refresh"
         '
         'FormPIBReview
         '
@@ -418,10 +418,10 @@ Partial Class FormPIBReview
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.XTPInput.ResumeLayout(False)
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
         CType(Me.GCListPPS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListPPS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

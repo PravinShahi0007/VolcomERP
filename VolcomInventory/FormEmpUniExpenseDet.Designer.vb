@@ -38,10 +38,13 @@ Partial Class FormEmpUniExpenseDet
         Me.TxtNIP = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnGetKurs = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
+        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
         Me.TxtAcc = New DevExpress.XtraEditors.TextEdit()
         Me.TxtAccNo = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -60,11 +63,8 @@ Partial Class FormEmpUniExpenseDet
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControlBottom = New DevExpress.XtraEditors.GroupControl()
         Me.PanelBottomRight = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnGetKurs = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
-        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControlMiddle = New DevExpress.XtraEditors.GroupControl()
@@ -88,6 +88,13 @@ Partial Class FormEmpUniExpenseDet
         Me.GridColumnDueEate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnstt_acc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TxtTotal = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtDPP = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtPPNPros = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtPPN = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlTop.SuspendLayout()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,6 +111,7 @@ Partial Class FormEmpUniExpenseDet
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAccNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,13 +125,16 @@ Partial Class FormEmpUniExpenseDet
         CType(Me.PanelBottomRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelBottomRight.SuspendLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlMiddle.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDPP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPPNPros.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPPN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlTop
@@ -303,6 +314,15 @@ Partial Class FormEmpUniExpenseDet
         Me.PanelControl1.Size = New System.Drawing.Size(307, 188)
         Me.PanelControl1.TabIndex = 10
         '
+        'LabelControl20
+        '
+        Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl20.Location = New System.Drawing.Point(14, 70)
+        Me.LabelControl20.Name = "LabelControl20"
+        Me.LabelControl20.Size = New System.Drawing.Size(38, 13)
+        Me.LabelControl20.TabIndex = 8942
+        Me.LabelControl20.Text = "Kurs ($)"
+        '
         'TxtNumber
         '
         Me.TxtNumber.Enabled = False
@@ -318,6 +338,14 @@ Partial Class FormEmpUniExpenseDet
         Me.LabelControl3.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl3.TabIndex = 3
         Me.LabelControl3.Text = "Date"
+        '
+        'BtnGetKurs
+        '
+        Me.BtnGetKurs.Location = New System.Drawing.Point(238, 67)
+        Me.BtnGetKurs.Name = "BtnGetKurs"
+        Me.BtnGetKurs.Size = New System.Drawing.Size(59, 20)
+        Me.BtnGetKurs.TabIndex = 8943
+        Me.BtnGetKurs.Text = "Get Kurs"
         '
         'LabelControl1
         '
@@ -339,6 +367,21 @@ Partial Class FormEmpUniExpenseDet
         Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DECreated.Size = New System.Drawing.Size(224, 20)
         Me.DECreated.TabIndex = 4
+        '
+        'TEKurs
+        '
+        Me.TEKurs.Location = New System.Drawing.Point(72, 67)
+        Me.TEKurs.Name = "TEKurs"
+        Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEKurs.Properties.EditValueChangedDelay = 1
+        Me.TEKurs.Properties.Mask.EditMask = "N2"
+        Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEKurs.Properties.Mask.SaveLiteral = False
+        Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEKurs.Properties.ReadOnly = True
+        Me.TEKurs.Size = New System.Drawing.Size(159, 20)
+        Me.TEKurs.TabIndex = 8941
         '
         'TxtAcc
         '
@@ -502,47 +545,37 @@ Partial Class FormEmpUniExpenseDet
         'GroupControlBottom
         '
         Me.GroupControlBottom.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlBottom.Controls.Add(Me.LabelControl21)
         Me.GroupControlBottom.Controls.Add(Me.PanelBottomRight)
+        Me.GroupControlBottom.Controls.Add(Me.LEReportStatus)
         Me.GroupControlBottom.Controls.Add(Me.MENote)
         Me.GroupControlBottom.Controls.Add(Me.LabelControl2)
         Me.GroupControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControlBottom.Location = New System.Drawing.Point(0, 521)
+        Me.GroupControlBottom.Location = New System.Drawing.Point(0, 485)
         Me.GroupControlBottom.Name = "GroupControlBottom"
-        Me.GroupControlBottom.Size = New System.Drawing.Size(987, 71)
+        Me.GroupControlBottom.Size = New System.Drawing.Size(987, 107)
         Me.GroupControlBottom.TabIndex = 4
         Me.GroupControlBottom.Text = "."
         '
         'PanelBottomRight
         '
         Me.PanelBottomRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelBottomRight.Controls.Add(Me.LabelControl21)
-        Me.PanelBottomRight.Controls.Add(Me.LEReportStatus)
+        Me.PanelBottomRight.Controls.Add(Me.TxtPPN)
+        Me.PanelBottomRight.Controls.Add(Me.LabelControl13)
+        Me.PanelBottomRight.Controls.Add(Me.TxtPPNPros)
+        Me.PanelBottomRight.Controls.Add(Me.LabelControl12)
+        Me.PanelBottomRight.Controls.Add(Me.TxtDPP)
+        Me.PanelBottomRight.Controls.Add(Me.LabelControl11)
+        Me.PanelBottomRight.Controls.Add(Me.TxtTotal)
         Me.PanelBottomRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelBottomRight.Location = New System.Drawing.Point(702, 2)
         Me.PanelBottomRight.Name = "PanelBottomRight"
-        Me.PanelBottomRight.Size = New System.Drawing.Size(283, 67)
+        Me.PanelBottomRight.Size = New System.Drawing.Size(283, 103)
         Me.PanelBottomRight.TabIndex = 140
-        '
-        'LabelControl20
-        '
-        Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl20.Location = New System.Drawing.Point(14, 70)
-        Me.LabelControl20.Name = "LabelControl20"
-        Me.LabelControl20.Size = New System.Drawing.Size(38, 13)
-        Me.LabelControl20.TabIndex = 8942
-        Me.LabelControl20.Text = "Kurs ($)"
-        '
-        'BtnGetKurs
-        '
-        Me.BtnGetKurs.Location = New System.Drawing.Point(238, 67)
-        Me.BtnGetKurs.Name = "BtnGetKurs"
-        Me.BtnGetKurs.Size = New System.Drawing.Size(59, 20)
-        Me.BtnGetKurs.TabIndex = 8943
-        Me.BtnGetKurs.Text = "Get Kurs"
         '
         'LabelControl21
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(11, 9)
+        Me.LabelControl21.Location = New System.Drawing.Point(32, 14)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl21.TabIndex = 144
@@ -551,7 +584,7 @@ Partial Class FormEmpUniExpenseDet
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(61, 6)
+        Me.LEReportStatus.Location = New System.Drawing.Point(86, 11)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -561,34 +594,19 @@ Partial Class FormEmpUniExpenseDet
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
         Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(211, 20)
+        Me.LEReportStatus.Size = New System.Drawing.Size(285, 20)
         Me.LEReportStatus.TabIndex = 7
-        '
-        'TEKurs
-        '
-        Me.TEKurs.Location = New System.Drawing.Point(72, 67)
-        Me.TEKurs.Name = "TEKurs"
-        Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEKurs.Properties.EditValueChangedDelay = 1
-        Me.TEKurs.Properties.Mask.EditMask = "N2"
-        Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEKurs.Properties.Mask.SaveLiteral = False
-        Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEKurs.Properties.ReadOnly = True
-        Me.TEKurs.Size = New System.Drawing.Size(159, 20)
-        Me.TEKurs.TabIndex = 8941
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(71, 9)
+        Me.MENote.Location = New System.Drawing.Point(86, 37)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(285, 49)
         Me.MENote.TabIndex = 1
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(33, 11)
+        Me.LabelControl2.Location = New System.Drawing.Point(33, 39)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl2.TabIndex = 2
@@ -601,7 +619,7 @@ Partial Class FormEmpUniExpenseDet
         Me.GroupControlMiddle.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlMiddle.Location = New System.Drawing.Point(0, 192)
         Me.GroupControlMiddle.Name = "GroupControlMiddle"
-        Me.GroupControlMiddle.Size = New System.Drawing.Size(987, 329)
+        Me.GroupControlMiddle.Size = New System.Drawing.Size(987, 293)
         Me.GroupControlMiddle.TabIndex = 5
         '
         'GCData
@@ -611,7 +629,7 @@ Partial Class FormEmpUniExpenseDet
         Me.GCData.Location = New System.Drawing.Point(20, 2)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(965, 325)
+        Me.GCData.Size = New System.Drawing.Size(965, 289)
         Me.GCData.TabIndex = 0
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -771,6 +789,71 @@ Partial Class FormEmpUniExpenseDet
         Me.GridColumnstt_acc.FieldName = "stt_acc"
         Me.GridColumnstt_acc.Name = "GridColumnstt_acc"
         '
+        'TxtTotal
+        '
+        Me.TxtTotal.Enabled = False
+        Me.TxtTotal.Location = New System.Drawing.Point(96, 12)
+        Me.TxtTotal.Name = "TxtTotal"
+        Me.TxtTotal.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtTotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtTotal.Size = New System.Drawing.Size(176, 20)
+        Me.TxtTotal.TabIndex = 145
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(9, 15)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl11.TabIndex = 145
+        Me.LabelControl11.Text = "Total"
+        '
+        'TxtDPP
+        '
+        Me.TxtDPP.Enabled = False
+        Me.TxtDPP.Location = New System.Drawing.Point(96, 38)
+        Me.TxtDPP.Name = "TxtDPP"
+        Me.TxtDPP.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtDPP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtDPP.Size = New System.Drawing.Size(176, 20)
+        Me.TxtDPP.TabIndex = 146
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Location = New System.Drawing.Point(9, 41)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(77, 13)
+        Me.LabelControl12.TabIndex = 147
+        Me.LabelControl12.Text = "Dasar Kena PPN"
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Location = New System.Drawing.Point(9, 67)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(19, 13)
+        Me.LabelControl13.TabIndex = 148
+        Me.LabelControl13.Text = "PPN"
+        '
+        'TxtPPNPros
+        '
+        Me.TxtPPNPros.EditValue = ""
+        Me.TxtPPNPros.Enabled = False
+        Me.TxtPPNPros.Location = New System.Drawing.Point(34, 64)
+        Me.TxtPPNPros.Name = "TxtPPNPros"
+        Me.TxtPPNPros.Properties.DisplayFormat.FormatString = "{0:n0}%"
+        Me.TxtPPNPros.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtPPNPros.Size = New System.Drawing.Size(53, 20)
+        Me.TxtPPNPros.TabIndex = 148
+        '
+        'TxtPPN
+        '
+        Me.TxtPPN.Enabled = False
+        Me.TxtPPN.Location = New System.Drawing.Point(96, 64)
+        Me.TxtPPN.Name = "TxtPPN"
+        Me.TxtPPN.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtPPN.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtPPN.Size = New System.Drawing.Size(176, 20)
+        Me.TxtPPN.TabIndex = 147
+        '
         'FormEmpUniExpenseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -803,6 +886,7 @@ Partial Class FormEmpUniExpenseDet
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAccNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -818,13 +902,16 @@ Partial Class FormEmpUniExpenseDet
         Me.PanelBottomRight.ResumeLayout(False)
         Me.PanelBottomRight.PerformLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlMiddle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlMiddle.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDPP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPPNPros.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPPN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -896,4 +983,11 @@ Partial Class FormEmpUniExpenseDet
     Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnGetKurs As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtTotal As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtPPN As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtPPNPros As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtDPP As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
 End Class

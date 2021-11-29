@@ -21,7 +21,29 @@
         If TENama.EditValue.ToString = "" Or TEKTP.EditValue.ToString = "" Or TENPWP.EditValue.ToString = "" Or MEAlamat.EditValue.ToString = "" Then
             stopCustom("Please check your input.")
         Else
+            GVProduct.FindFilterText = ""
+            GVProduct.ActiveFilterString = ""
+            GVProduct.ClearColumnsFilter()
+
             If GVProduct.RowCount > 0 Then
+                'stock check
+                For i = 0 To GVProduct.RowCount - 1
+                    If GVProduct.IsValidRowHandle(i) Then
+                        Dim query_sc As String = "DELETE FROM tb_temp_val_stock WHERE id_user='" + id_user + "'; INSERT INTO tb_temp_val_stock(id_user, code, name, size, id_product, qty) VALUES ('" + id_user + "', '" + GVProduct.GetRowCellValue(i, "code").ToString + "', '" + addSlashes(GVProduct.GetRowCellValue(i, "name").ToString) + "', '" + GVProduct.GetRowCellValue(i, "size").ToString + "', '" + GVProduct.GetRowCellValue(i, "id_product").ToString + "', '" + decimalSQL(GVProduct.GetRowCellValue(i, "qty").ToString) + "'); CALL view_validate_stock(" + id_user + ", " + GVProduct.GetRowCellValue(i, "id_comp").ToString + ", '" + GVProduct.GetRowCellValue(i, "id_product").ToString + "', 1);"
+
+                        Dim data_sc As DataTable = execute_query(query_sc, -1, True, "", "", "", "")
+
+                        If data_sc.Rows.Count > 0 Then
+                            stopCustom("No stock available for some items.")
+
+                            FormValidateStock.dt = data_sc
+                            FormValidateStock.ShowDialog()
+
+                            Exit Sub
+                        End If
+                    End If
+                Next
+
                 Dim confirm As DialogResult
 
                 confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to submit ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
