@@ -47,6 +47,8 @@ Partial Class FormPIBPPS
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,6 +66,7 @@ Partial Class FormPIBPPS
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -72,7 +75,7 @@ Partial Class FormPIBPPS
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(895, 80)
+        Me.PanelControl1.Size = New System.Drawing.Size(895, 99)
         Me.PanelControl1.TabIndex = 0
         '
         'PanelControl2
@@ -104,7 +107,7 @@ Partial Class FormPIBPPS
         Me.PanelControl4.Controls.Add(Me.BtnDelete)
         Me.PanelControl4.Controls.Add(Me.BtnAdd)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 80)
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 99)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(895, 39)
         Me.PanelControl4.TabIndex = 3
@@ -112,10 +115,10 @@ Partial Class FormPIBPPS
         'GCPIBPPps
         '
         Me.GCPIBPPps.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCPIBPPps.Location = New System.Drawing.Point(0, 119)
+        Me.GCPIBPPps.Location = New System.Drawing.Point(0, 138)
         Me.GCPIBPPps.MainView = Me.GVPIBPps
         Me.GCPIBPPps.Name = "GCPIBPPps"
-        Me.GCPIBPPps.Size = New System.Drawing.Size(895, 248)
+        Me.GCPIBPPps.Size = New System.Drawing.Size(895, 229)
         Me.GCPIBPPps.TabIndex = 4
         Me.GCPIBPPps.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPIBPps})
         '
@@ -275,6 +278,8 @@ Partial Class FormPIBPPS
         'PanelControl5
         '
         Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl5.Controls.Add(Me.LabelControl1)
+        Me.PanelControl5.Controls.Add(Me.TextEdit1)
         Me.PanelControl5.Controls.Add(Me.LabelControl4)
         Me.PanelControl5.Controls.Add(Me.DECreated)
         Me.PanelControl5.Controls.Add(Me.LabelControl3)
@@ -282,13 +287,13 @@ Partial Class FormPIBPPS
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl5.Location = New System.Drawing.Point(601, 2)
         Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(292, 76)
+        Me.PanelControl5.Size = New System.Drawing.Size(292, 95)
         Me.PanelControl5.TabIndex = 6
         '
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(13, 45)
+        Me.LabelControl4.Location = New System.Drawing.Point(13, 42)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl4.TabIndex = 7
@@ -298,7 +303,7 @@ Partial Class FormPIBPPS
         '
         Me.DECreated.EditValue = Nothing
         Me.DECreated.Enabled = False
-        Me.DECreated.Location = New System.Drawing.Point(105, 42)
+        Me.DECreated.Location = New System.Drawing.Point(105, 39)
         Me.DECreated.Name = "DECreated"
         Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DECreated.Properties.Appearance.Options.UseFont = True
@@ -312,7 +317,7 @@ Partial Class FormPIBPPS
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(13, 19)
+        Me.LabelControl3.Location = New System.Drawing.Point(13, 16)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(79, 13)
         Me.LabelControl3.TabIndex = 5
@@ -321,12 +326,31 @@ Partial Class FormPIBPPS
         'TxtNumber
         '
         Me.TxtNumber.Enabled = False
-        Me.TxtNumber.Location = New System.Drawing.Point(105, 16)
+        Me.TxtNumber.Location = New System.Drawing.Point(105, 13)
         Me.TxtNumber.Name = "TxtNumber"
         Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNumber.Properties.Appearance.Options.UseFont = True
         Me.TxtNumber.Size = New System.Drawing.Size(174, 20)
         Me.TxtNumber.TabIndex = 5
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(13, 68)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(60, 13)
+        Me.LabelControl1.TabIndex = 8
+        Me.LabelControl1.Text = "Proposed By"
+        '
+        'TextEdit1
+        '
+        Me.TextEdit1.Enabled = False
+        Me.TextEdit1.Location = New System.Drawing.Point(105, 65)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextEdit1.Properties.Appearance.Options.UseFont = True
+        Me.TextEdit1.Size = New System.Drawing.Size(174, 20)
+        Me.TextEdit1.TabIndex = 9
         '
         'FormPIBPPS
         '
@@ -363,6 +387,7 @@ Partial Class FormPIBPPS
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -394,4 +419,6 @@ Partial Class FormPIBPPS
     Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
 End Class
