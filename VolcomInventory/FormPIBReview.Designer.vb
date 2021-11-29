@@ -361,6 +361,7 @@ Partial Class FormPIBReview
         'GridColumn19
         '
         Me.GridColumn19.Caption = "Propose Number"
+        Me.GridColumn19.FieldName = "number"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 0
@@ -368,6 +369,7 @@ Partial Class FormPIBReview
         'GridColumn20
         '
         Me.GridColumn20.Caption = "Created Date"
+        Me.GridColumn20.FieldName = "created_date"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 1
@@ -375,6 +377,7 @@ Partial Class FormPIBReview
         'GridColumn21
         '
         Me.GridColumn21.Caption = "Report Status"
+        Me.GridColumn21.FieldName = "report_status"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 2

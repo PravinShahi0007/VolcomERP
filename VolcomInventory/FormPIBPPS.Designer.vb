@@ -38,7 +38,7 @@ Partial Class FormPIBPPS
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCNew = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCPIBPPps = New DevExpress.XtraGrid.GridControl()
@@ -62,6 +62,7 @@ Partial Class FormPIBPPS
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,11 +77,12 @@ Partial Class FormPIBPPS
         Me.PanelControl3.SuspendLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
+        CType(Me.PCNew, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCNew.SuspendLayout()
         CType(Me.GCPIBPPps, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVPIBPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPIBPps, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -279,15 +281,15 @@ Partial Class FormPIBPPS
         Me.LabelControl6.TabIndex = 149
         Me.LabelControl6.Text = "Note"
         '
-        'PanelControl4
+        'PCNew
         '
-        Me.PanelControl4.Controls.Add(Me.BtnDelete)
-        Me.PanelControl4.Controls.Add(Me.BtnAdd)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 99)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(895, 39)
-        Me.PanelControl4.TabIndex = 3
+        Me.PCNew.Controls.Add(Me.BtnDelete)
+        Me.PCNew.Controls.Add(Me.BtnAdd)
+        Me.PCNew.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCNew.Location = New System.Drawing.Point(0, 99)
+        Me.PCNew.Name = "PCNew"
+        Me.PCNew.Size = New System.Drawing.Size(895, 39)
+        Me.PCNew.TabIndex = 3
         '
         'BtnDelete
         '
@@ -315,6 +317,7 @@ Partial Class FormPIBPPS
         Me.GCPIBPPps.Location = New System.Drawing.Point(0, 138)
         Me.GCPIBPPps.MainView = Me.BGVPIBPPS
         Me.GCPIBPPps.Name = "GCPIBPPps"
+        Me.GCPIBPPps.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1})
         Me.GCPIBPPps.Size = New System.Drawing.Size(895, 222)
         Me.GCPIBPPps.TabIndex = 4
         Me.GCPIBPPps.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVPIBPPS, Me.GVPIBPps})
@@ -325,6 +328,7 @@ Partial Class FormPIBPPS
         Me.BGVPIBPPS.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9})
         Me.BGVPIBPPS.GridControl = Me.GCPIBPPps
         Me.BGVPIBPPS.Name = "BGVPIBPPS"
+        Me.BGVPIBPPS.OptionsView.RowAutoHeight = True
         Me.BGVPIBPPS.OptionsView.ShowGroupPanel = False
         '
         'GridBand1
@@ -346,6 +350,7 @@ Partial Class FormPIBPPS
         'BandedGridColumn3
         '
         Me.BandedGridColumn3.Caption = "FGPO List"
+        Me.BandedGridColumn3.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.BandedGridColumn3.FieldName = "list_fgpo"
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
         Me.BandedGridColumn3.Visible = True
@@ -402,6 +407,7 @@ Partial Class FormPIBPPS
         'BandedGridColumn4
         '
         Me.BandedGridColumn4.Caption = "PIB No"
+        Me.BandedGridColumn4.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.BandedGridColumn4.FieldName = "pib_no"
         Me.BandedGridColumn4.Name = "BandedGridColumn4"
         Me.BandedGridColumn4.Visible = True
@@ -482,13 +488,17 @@ Partial Class FormPIBPPS
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
         '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
         'FormPIBPPS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(895, 564)
         Me.Controls.Add(Me.GCPIBPPps)
-        Me.Controls.Add(Me.PanelControl4)
+        Me.Controls.Add(Me.PCNew)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
@@ -514,11 +524,12 @@ Partial Class FormPIBPPS
         Me.PanelControl3.PerformLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
+        CType(Me.PCNew, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCNew.ResumeLayout(False)
         CType(Me.GCPIBPPps, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BGVPIBPPS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPIBPps, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -526,7 +537,7 @@ Partial Class FormPIBPPS
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCNew As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GCPIBPPps As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVPIBPps As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
@@ -565,4 +576,5 @@ Partial Class FormPIBPPS
     Friend WithEvents BandedGridColumn8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class

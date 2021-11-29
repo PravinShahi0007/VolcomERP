@@ -723,7 +723,7 @@ Public Class FormSalesDelOrderDet
             errorCustom("Delivery item or scanned item data can't blank")
         ElseIf Not cond_check_dt Then
             stopCustom("Please see different in column status.")
-        ElseIf Not block_stocktake Then
+        ElseIf Not block_stocktake And id_commerce_type = "1" Then
             stopCustom("Some product already in EOS and need to stock take first.")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
