@@ -200,7 +200,8 @@ HAVING qty_rec >= qty"
             'INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
             'WHERE po.`id_report_status`='6'
             'GROUP BY wo.`id_prod_order_wo`"
-            query = "SELECT wo.`id_prod_order_wo` AS id_report,wo.`id_prod_order_wo` AS id_prod_order,wo.`prod_order_wo_number` AS report_number,CONCAT(ovh.`overhead`,' - ',dsg.`design_display_name`) AS description,dsg.`design_code` AS info
+            If is_dp Then
+                query = "SELECT wo.`id_prod_order_wo` AS id_report,wo.`id_prod_order_wo` AS id_prod_order,wo.`prod_order_wo_number` AS report_number,CONCAT(ovh.`overhead`,' - ',dsg.`design_display_name`) AS description,dsg.`design_code` AS info
 ,IFNULL(oldest_price.old_curr,wo.`id_currency`) AS id_currency,IFNULL(oldest_price.old_kurs,wo.prod_order_wo_kurs) AS kurs,wo.prod_order_wo_vat AS vat
 ,SUM(IFNULL(oldest_price.old_price,wod.`prod_order_wo_det_price`)*wod.prod_order_wo_det_qty) AS wo_val
 ,SUM(wod.prod_order_wo_det_qty) AS qty
@@ -221,8 +222,49 @@ LEFT JOIN
 		GROUP BY wo.`id_prod_order_wo`
 	)
 )oldest_price ON oldest_price.id_wo=wo.`id_prod_order_wo`
-WHERE po.`id_report_status`='6' 
+LEFT JOIN 
+(
+    SELECT pn.id_pn_fgpo,pnd.id_report
+    FROM `tb_pn_fgpo_det` pnd 
+    INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
+    WHERE pn.id_report_status!=5 AND pnd.report_mark_type=23 AND pn.type=1
+    group by pnd.report_mark_type=23 AND pnd.id_report
+)pn ON pn.id_report=sp.id_prod_order_wo
+WHERE po.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) 
 GROUP BY wo.`id_prod_order_wo`"
+            Else
+                query = "SELECT wo.`id_prod_order_wo` AS id_report,wo.`id_prod_order_wo` AS id_prod_order,wo.`prod_order_wo_number` AS report_number,CONCAT(ovh.`overhead`,' - ',dsg.`design_display_name`) AS description,dsg.`design_code` AS info
+,IFNULL(oldest_price.old_curr,wo.`id_currency`) AS id_currency,IFNULL(oldest_price.old_kurs,wo.prod_order_wo_kurs) AS kurs,wo.prod_order_wo_vat AS vat
+,SUM(IFNULL(oldest_price.old_price,wod.`prod_order_wo_det_price`)*wod.prod_order_wo_det_qty) AS wo_val
+,SUM(wod.prod_order_wo_det_qty) AS qty
+FROM tb_prod_order_wo_det wod 
+INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
+INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
+INNER JOIN tb_m_ovh ovh ON ovh.`id_ovh`=ovhp.`id_ovh`
+INNER JOIN tb_prod_order po ON po.`id_prod_order`=wo.id_prod_Order
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+LEFT JOIN
+(
+	SELECT id_wo,old_kurs,old_price,old_curr FROM `tb_prod_order_wo_log`
+	WHERE id_wo_log IN (
+		SELECT MIN(id_wo_log)
+		FROM tb_prod_order_wo_log logx
+		INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo=logx.id_wo 
+		GROUP BY wo.`id_prod_order_wo`
+	)
+)oldest_price ON oldest_price.id_wo=wo.`id_prod_order_wo`
+LEFT JOIN 
+(
+    SELECT pn.id_pn_fgpo,pnd.id_report
+    FROM `tb_pn_fgpo_det` pnd 
+    INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
+    WHERE pn.id_report_status!=5 AND pnd.report_mark_type=23 AND pn.type=2
+    group by pnd.report_mark_type=23 AND pnd.id_report
+)pn ON pn.id_report=sp.id_prod_order_wo
+WHERE po.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) 
+GROUP BY wo.`id_prod_order_wo`"
+            End If
         ElseIf SLEReportType.EditValue.ToString = "1" Then 'purchase sample
             If is_dp Then
                 query = "SELECT sp.`id_sample_purc` AS id_report,0 AS id_prod_order,sp.`sample_purc_number` AS report_number,'Purchase Sample' AS description,c.comp_name AS info
@@ -246,7 +288,7 @@ LEFT JOIN
     INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
     WHERE pn.id_report_status!=5 AND pnd.report_mark_type=1 AND pn.type=2
 )pn ON pn.id_report=sp.id_sample_purc
-WHERE sp.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) AND py.dp_amount>0
+WHERE sp.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) AND pn.dp_amount>0
 GROUP BY sp.`id_sample_purc`"
             Else
                 query = "SELECT sp.`id_sample_purc` AS id_report,0 AS id_prod_order,sp.`sample_purc_number` AS report_number,'Purchase Sample' AS description,c.comp_name AS info
