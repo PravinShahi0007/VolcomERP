@@ -24,6 +24,8 @@ WHERE pps.id_pib_pps='" & id & "'"
                 MENote.Text = dt.Rows(0)("note").ToString
                 TEProposedBy.Text = dt.Rows(0)("employee_name").ToString
             End If
+            BtnAttachment.Visible = True
+            BtnPrint.Visible = True
         End If
 
         load_det()

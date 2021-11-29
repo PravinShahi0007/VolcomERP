@@ -70,4 +70,23 @@ WHERE pir.`is_active`=1 AND pir.`is_notified`=2"
     Private Sub BCreatePPS_Click(sender As Object, e As EventArgs) Handles BCreatePPS.Click
         FormPIBPPS.ShowDialog()
     End Sub
+
+    Private Sub BRefreshPPS_Click(sender As Object, e As EventArgs) Handles BRefreshPPS.Click
+        Dim q As String = "SELECT pps.id_pib_pps,pps.number,emp.employee_name,pps.created_date,pps.note,sts.report_status
+FROM tb_pib_pps pps
+INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
+ORDER BY pps.id_pib_pps DESC"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCListPPS.DataSource = dt
+        GVListPPS.BestFitColumns()
+    End Sub
+
+    Private Sub GVListPPS_DoubleClick(sender As Object, e As EventArgs) Handles GVListPPS.DoubleClick
+        If GVListPPS.RowCount > 0 Then
+            FormPIBPPS.id = GVListPPS.GetFocusedRowCellValue("id_pib_pps").ToString
+            FormPIBPPS.ShowDialog()
+        End If
+    End Sub
 End Class
