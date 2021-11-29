@@ -3727,6 +3727,12 @@
     <Compile Include="FormPIBPPS.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPIBPPSDet.Designer.vb">
+      <DependentUpon>FormPIBPPSDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPIBPPSDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPIBReview.Designer.vb">
       <DependentUpon>FormPIBReview.vb</DependentUpon>
     </Compile>
@@ -12145,6 +12151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPIBPPS.resx">
       <DependentUpon>FormPIBPPS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPIBPPSDet.resx">
+      <DependentUpon>FormPIBPPSDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPIBReview.resx">
       <DependentUpon>FormPIBReview.vb</DependentUpon>
