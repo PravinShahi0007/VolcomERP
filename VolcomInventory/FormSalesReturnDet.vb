@@ -1586,9 +1586,7 @@ Public Class FormSalesReturnDet
             data_eos.Clear()
         Catch ex As Exception
         End Try
-        If id_commerce_type = "1" Then
-            data_eos = listBlockProductEOS()
-        End If
+        data_eos = listBlockProductEOS(id_commerce_type)
         Cursor = Cursors.Default
     End Sub
 
