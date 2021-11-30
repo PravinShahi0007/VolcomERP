@@ -9,6 +9,7 @@
         Dim def_dec As Decimal = 0.0
         TxtPrice.EditValue = def_dec
         TEQtyinBulk.EditValue = 1.0
+        TEMOQ.EditValue = 1.0
         '
         TEUnit.Text = "pcs"
         '

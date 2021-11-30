@@ -7,7 +7,9 @@
     '
     Public is_submit As String = "-1"
     Public id_vendor_tax As String = "-1"
-
+    '
+    Public is_not_match_destination As Boolean = False
+    '
     Private Sub FormPurcOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_form()
     End Sub
@@ -77,8 +79,14 @@
                         TryCast(GCPurcReq.DataSource, DataTable).Rows.Add(newRow)
                     Next
                     '
-                    TEShipDestination.Text = FormPurcOrder.GVPurcReq.GetRowCellValue(0, "ship_destination").ToString
-                    MESHipAddress.Text = FormPurcOrder.GVPurcReq.GetRowCellValue(0, "ship_address").ToString
+                    If is_not_match_destination = True Then
+                        TEShipDestination.Text = "Multiple address"
+                        MESHipAddress.Text = "Multiple address"
+                    Else
+                        TEShipDestination.Text = FormPurcOrder.GVPurcReq.GetRowCellValue(0, "ship_destination").ToString
+                        MESHipAddress.Text = FormPurcOrder.GVPurcReq.GetRowCellValue(0, "ship_address").ToString
+                    End If
+
                     MENote.Text = FormPurcOrder.GVPurcReq.GetRowCellValue(0, "note").ToString
                     '
                 End If
