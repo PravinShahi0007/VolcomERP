@@ -7716,13 +7716,16 @@ INNER JOIN tb_sales_return_qc awb ON awb.`id_sales_return_qc`='" & id_report & "
         Return out
     End Function
 
-    Function listBlockProductEOS()
+    Function listBlockProductEOS(ByVal typ_comm As String)
         Dim query As String = "SELECT p.id_product 
         FROM tb_pp_change_det AS d
         INNER JOIN tb_pp_change AS h ON h.id_pp_change = d.id_pp_change
         INNER JOIN tb_m_product AS p ON p.id_design = d.id_design 
         WHERE h.effective_date > DATE(NOW()) AND h.id_report_status = 6 AND d.propose_price_final IS NOT NULL
         AND h.id_design_mkd=1 "
+        If typ_comm = "2" Then
+            query += "AND 1=2 "
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
