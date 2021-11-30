@@ -127,6 +127,20 @@ GROUP BY f.id_pre_cal_fgpo"
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Dim q As String = "SELECT pps.number,emp.employee_name,pps.created_date,pps.note
+FROM tb_pib_pps pps
+INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE pps.id_pib_pps='" & id & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            ReportItemExpense.id = id
+            ReportItemExpense.dt = GCPIBPPps.DataSource
+            Dim Report As New ReportItemExpense()
 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+
+        End If
     End Sub
 End Class

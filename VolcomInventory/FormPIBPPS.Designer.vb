@@ -46,6 +46,7 @@ Partial Class FormPIBPPS
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -62,7 +63,6 @@ Partial Class FormPIBPPS
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,8 +81,8 @@ Partial Class FormPIBPPS
         Me.PCNew.SuspendLayout()
         CType(Me.GCPIBPPps, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVPIBPPS, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVPIBPps, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPIBPps, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -355,6 +355,10 @@ Partial Class FormPIBPPS
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
         Me.BandedGridColumn3.Visible = True
         '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
         'gridBand2
         '
         Me.gridBand2.Caption = "Old Value"
@@ -407,7 +411,6 @@ Partial Class FormPIBPPS
         'BandedGridColumn4
         '
         Me.BandedGridColumn4.Caption = "PIB No"
-        Me.BandedGridColumn4.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.BandedGridColumn4.FieldName = "pib_no"
         Me.BandedGridColumn4.Name = "BandedGridColumn4"
         Me.BandedGridColumn4.Visible = True
@@ -488,10 +491,6 @@ Partial Class FormPIBPPS
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
         '
-        'RepositoryItemMemoEdit1
-        '
-        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
-        '
         'FormPIBPPS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -528,8 +527,8 @@ Partial Class FormPIBPPS
         Me.PCNew.ResumeLayout(False)
         CType(Me.GCPIBPPps, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BGVPIBPPS, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVPIBPps, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPIBPps, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
