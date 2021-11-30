@@ -1018,6 +1018,7 @@ Public Class FormSalesDelOrderDet
         'allowDelete()
     End Sub
 
+    Dim data_eos As DataTable = Nothing
     Sub loadCodeDetail()
         Cursor = Cursors.WaitCursor
         makeSafeGV(GVItemList)
@@ -1036,6 +1037,13 @@ Public Class FormSalesDelOrderDet
             codeAvailableIns(id_product_param, id_product_param_comma)
         End If
         GVItemList.ActiveFilterString = ""
+
+        'check eos
+        Try
+            data_eos.Clear()
+        Catch ex As Exception
+        End Try
+        data_eos = listBlockProductEOS()
         Cursor = Cursors.Default
     End Sub
 
@@ -1181,6 +1189,16 @@ Public Class FormSalesDelOrderDet
             is_old = dt_filter(0)("is_old_design").ToString
             prc = dt_filter(0)("design_price")
             code_found = True
+        End If
+
+        'check eos
+        Dim data_eos_filter As DataRow() = data_eos.Select("[id_product]='" + id_product + "' ")
+        If data_eos_filter.Length > 0 Then
+            GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+            GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+            stopCustomDialog("This item can't scan, because already proposed on EOS")
+            Cursor = Cursors.Default
+            Exit Sub
         End If
 
         'get jum del & limit
