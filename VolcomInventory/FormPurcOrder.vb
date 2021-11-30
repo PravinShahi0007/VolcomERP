@@ -285,6 +285,8 @@ WHERE po.id_report_status='6' AND po.is_close_rec='2'"
         load_req()
     End Sub
 
+    Public is_not_match_destination = False
+
     Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
         'check first
         Dim is_already_created, is_zero, is_pr_not_match, is_not_match_destination As Boolean
@@ -292,6 +294,7 @@ WHERE po.id_report_status='6' AND po.is_close_rec='2'"
         is_already_created = False
         is_zero = False
         is_pr_not_match = False
+
         is_not_match_destination = False
 
         GVPurcReq.ActiveFilterString = ""
@@ -336,6 +339,7 @@ WHERE po.id_report_status='6' AND po.is_close_rec='2'"
             Else
                 If is_not_match_destination = True Then
                     warningCustom("Please note that destination address is different !")
+                    FormPurcOrderDet.is_not_match_destination = True
                 End If
                 FormPurcOrderDet.is_pick = "1"
                 FormPurcOrderDet.ShowDialog()
