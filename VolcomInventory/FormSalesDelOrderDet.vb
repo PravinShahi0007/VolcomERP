@@ -1192,7 +1192,7 @@ Public Class FormSalesDelOrderDet
         End If
 
         'check eos
-        If data_eos.Rows.Count > 0 Then
+        If data_eos.Rows.Count > 0 And code_found Then
             Dim data_eos_filter As DataRow() = data_eos.Select("[id_product]='" + id_product + "' ")
             If data_eos_filter.Length > 0 Then
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
