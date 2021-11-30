@@ -113,7 +113,7 @@ Partial Public Class ReportPIBPPS
         Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 150
+        Me.GridBand1.Width = 613
         '
         'BandedGridColumn2
         '
@@ -121,6 +121,7 @@ Partial Public Class ReportPIBPPS
         Me.BandedGridColumn2.FieldName = "pre_cal_fgpo_number"
         Me.BandedGridColumn2.Name = "BandedGridColumn2"
         Me.BandedGridColumn2.Visible = True
+        Me.BandedGridColumn2.Width = 201
         '
         'BandedGridColumn3
         '
@@ -129,6 +130,7 @@ Partial Public Class ReportPIBPPS
         Me.BandedGridColumn3.FieldName = "list_fgpo"
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
         Me.BandedGridColumn3.Visible = True
+        Me.BandedGridColumn3.Width = 412
         '
         'RepositoryItemMemoEdit1
         '
@@ -142,7 +144,7 @@ Partial Public Class ReportPIBPPS
         Me.gridBand2.Columns.Add(Me.BandedGridColumn9)
         Me.gridBand2.Name = "gridBand2"
         Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 225
+        Me.gridBand2.Width = 507
         '
         'BandedGridColumn7
         '
@@ -150,6 +152,7 @@ Partial Public Class ReportPIBPPS
         Me.BandedGridColumn7.FieldName = "old_pib_no"
         Me.BandedGridColumn7.Name = "BandedGridColumn7"
         Me.BandedGridColumn7.Visible = True
+        Me.BandedGridColumn7.Width = 167
         '
         'BandedGridColumn8
         '
@@ -159,6 +162,7 @@ Partial Public Class ReportPIBPPS
         Me.BandedGridColumn8.FieldName = "old_pib_date"
         Me.BandedGridColumn8.Name = "BandedGridColumn8"
         Me.BandedGridColumn8.Visible = True
+        Me.BandedGridColumn8.Width = 167
         '
         'BandedGridColumn9
         '
@@ -172,6 +176,7 @@ Partial Public Class ReportPIBPPS
         Me.BandedGridColumn9.FieldName = "old_pib_tax_amo"
         Me.BandedGridColumn9.Name = "BandedGridColumn9"
         Me.BandedGridColumn9.Visible = True
+        Me.BandedGridColumn9.Width = 173
         '
         'gridBand3
         '
@@ -181,7 +186,7 @@ Partial Public Class ReportPIBPPS
         Me.gridBand3.Columns.Add(Me.BandedGridColumn6)
         Me.gridBand3.Name = "gridBand3"
         Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 225
+        Me.gridBand3.Width = 512
         '
         'BandedGridColumn4
         '
@@ -189,6 +194,7 @@ Partial Public Class ReportPIBPPS
         Me.BandedGridColumn4.FieldName = "pib_no"
         Me.BandedGridColumn4.Name = "BandedGridColumn4"
         Me.BandedGridColumn4.Visible = True
+        Me.BandedGridColumn4.Width = 169
         '
         'BandedGridColumn5
         '
@@ -198,6 +204,7 @@ Partial Public Class ReportPIBPPS
         Me.BandedGridColumn5.FieldName = "pib_date"
         Me.BandedGridColumn5.Name = "BandedGridColumn5"
         Me.BandedGridColumn5.Visible = True
+        Me.BandedGridColumn5.Width = 169
         '
         'BandedGridColumn6
         '
@@ -211,6 +218,7 @@ Partial Public Class ReportPIBPPS
         Me.BandedGridColumn6.FieldName = "pib_tax_amo"
         Me.BandedGridColumn6.Name = "BandedGridColumn6"
         Me.BandedGridColumn6.Visible = True
+        Me.BandedGridColumn6.Width = 174
         '
         'BandedGridColumn1
         '
@@ -283,7 +291,7 @@ Partial Public Class ReportPIBPPS
         'ReportFooter
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel6, Me.LNote, Me.LNotex, Me.XrTable1})
-        Me.ReportFooter.HeightF = 89.99999!
+        Me.ReportFooter.HeightF = 108.0!
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrLabel6
@@ -291,7 +299,7 @@ Partial Public Class ReportPIBPPS
         Me.XrLabel6.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel6.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel6.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(46.875!, 0!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(46.87513!, 18.00001!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(10.3334!, 26.45831!)
@@ -305,7 +313,7 @@ Partial Public Class ReportPIBPPS
         Me.LNote.BorderColor = System.Drawing.Color.DimGray
         Me.LNote.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LNote.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(57.20838!, 0!)
+        Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(57.20851!, 18.00001!)
         Me.LNote.Name = "LNote"
         Me.LNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LNote.SizeF = New System.Drawing.SizeF(992.7915!, 64.99999!)
@@ -319,7 +327,7 @@ Partial Public Class ReportPIBPPS
         Me.LNotex.BorderColor = System.Drawing.Color.DimGray
         Me.LNotex.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LNotex.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LNotex.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.LNotex.LocationFloat = New DevExpress.Utils.PointFloat(0.0001271566!, 18.00001!)
         Me.LNotex.Name = "LNotex"
         Me.LNotex.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LNotex.SizeF = New System.Drawing.SizeF(46.87503!, 26.45835!)
@@ -331,7 +339,7 @@ Partial Public Class ReportPIBPPS
         'XrTable1
         '
         Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.0006357829!, 64.99999!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.0007629395!, 83.00003!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
         Me.XrTable1.SizeF = New System.Drawing.SizeF(1049.999!, 25.0!)

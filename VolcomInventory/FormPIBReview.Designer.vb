@@ -369,6 +369,8 @@ Partial Class FormPIBReview
         'GridColumn20
         '
         Me.GridColumn20.Caption = "Created Date"
+        Me.GridColumn20.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn20.FieldName = "created_date"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True

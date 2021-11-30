@@ -26,6 +26,7 @@ WHERE pps.id_pib_pps='" & id & "'"
             End If
             BtnAttachment.Visible = True
             BtnPrint.Visible = True
+            BtnMark.Visible = True
         End If
 
         load_det()
@@ -134,13 +135,13 @@ INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 WHERE pps.id_pib_pps='" & id & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         If dt.Rows.Count > 0 Then
-            ReportItemExpense.id = id
-            ReportItemExpense.dt = GCPIBPPps.DataSource
-            Dim Report As New ReportItemExpense()
+            ReportPIBPPS.id = id
+            ReportPIBPPS.dt = GCPIBPPps.DataSource
+            Dim Report As New ReportPIBPPS()
+            Report.DataSource = dt
 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreviewDialog()
-
         End If
     End Sub
 End Class
