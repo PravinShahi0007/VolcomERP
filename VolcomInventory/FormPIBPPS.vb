@@ -26,6 +26,7 @@ WHERE pps.id_pib_pps='" & id & "'"
             End If
             BtnAttachment.Visible = True
             BtnPrint.Visible = True
+            BtnMark.Visible = True
         End If
 
         load_det()

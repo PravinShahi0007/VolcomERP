@@ -10737,6 +10737,17 @@ WHERE qci.id_qc_sni_in='" & id_report & "'"
                 id_status_reportx = "6"
             End If
 
+            If id_status_reportx = "6" Then
+                'masukkan ke pib review
+                Dim qu As String = "INSERT INTO `tb_pib_review`(`id_pre_cal_fgpo`,`id_pre_cal_fgpo_list`,`id_prod_order`,`id_design`,`notif_qty_sales_percent`,`notif_days_before`,`is_notified`,`is_active`)
+SELECT fl.`id_pre_cal_fgpo`,fl.`id_pre_cal_fgpo_list`,fl.`id_prod_order`,pdd.`id_design`,f.`sales_percent`,45 AS notif_days_before,2 AS is_notified,1 AS is_active
+FROM tb_pre_cal_fgpo_list fl
+INNER JOIN tb_pre_cal_fgpo f ON f.`id_pre_cal_fgpo`=fl.`id_pre_cal_fgpo` AND f.`id_pre_cal_fgpo`='" & id_report & "'
+INNER JOIN tb_prod_order po ON fl.`id_prod_order`=po.id_prod_order
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`"
+                execute_non_query(qu, True, "", "", "", "")
+            End If
+
             query = "UPDATE tb_pre_cal_fgpo SET id_report_status='" & id_status_reportx & "' WHERE id_pre_cal_fgpo='" & id_report & "' "
             execute_non_query(query, True, "", "", "", "")
 
