@@ -1553,6 +1553,7 @@ Public Class FormSalesReturnDet
         BtnBrowseContactTo.Enabled = False
     End Sub
 
+    Dim data_eos As DataTable = Nothing
     Sub loadCodeDetail()
         Cursor = Cursors.WaitCursor
         makeSafeGV(GVItemList)
@@ -1579,6 +1580,15 @@ Public Class FormSalesReturnDet
         End If
 
         GVItemList.ActiveFilterString = ""
+
+        'check eos
+        Try
+            data_eos.Clear()
+        Catch ex As Exception
+        End Try
+        If id_commerce_type = "1" Then
+            data_eos = listBlockProductEOS()
+        End If
         Cursor = Cursors.Default
     End Sub
 
@@ -1929,6 +1939,19 @@ Public Class FormSalesReturnDet
                 prc = dt_filter(0)("design_price").ToString
                 code_found = True
             End If
+
+            'check eos
+            If data_eos.Rows.Count > 0 Then
+                Dim data_eos_filter As DataRow() = data_eos.Select("[id_product]='" + id_product + "' ")
+                If data_eos_filter.Length > 0 Then
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                    GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                    stopCustomDialog("This item can't scan, because already proposed on EOS")
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
+            End If
+
 
             'check unik code custormer - ol store
             If id_ret_type = "4" Then

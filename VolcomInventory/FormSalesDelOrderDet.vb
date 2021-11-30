@@ -1043,7 +1043,9 @@ Public Class FormSalesDelOrderDet
             data_eos.Clear()
         Catch ex As Exception
         End Try
-        data_eos = listBlockProductEOS()
+        If id_commerce_type = "1" Then
+            data_eos = listBlockProductEOS()
+        End If
         Cursor = Cursors.Default
     End Sub
 
@@ -1192,14 +1194,17 @@ Public Class FormSalesDelOrderDet
         End If
 
         'check eos
-        Dim data_eos_filter As DataRow() = data_eos.Select("[id_product]='" + id_product + "' ")
-        If data_eos_filter.Length > 0 Then
-            GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
-            GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-            stopCustomDialog("This item can't scan, because already proposed on EOS")
-            Cursor = Cursors.Default
-            Exit Sub
+        If data_eos.Rows.Count > 0 Then
+            Dim data_eos_filter As DataRow() = data_eos.Select("[id_product]='" + id_product + "' ")
+            If data_eos_filter.Length > 0 Then
+                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                stopCustomDialog("This item can't scan, because already proposed on EOS")
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
         End If
+
 
         'get jum del & limit
         If id_commerce_type = "2" Then 'online store
