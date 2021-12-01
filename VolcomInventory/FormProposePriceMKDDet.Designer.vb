@@ -67,6 +67,8 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnpropose_price_final = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
+        Me.DEPlanEndDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.LEMKDType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnChangeEffectiveDate = New DevExpress.XtraEditors.SimpleButton()
@@ -129,6 +131,7 @@ Partial Class FormProposePriceMKDDet
         Me.gridBandPropose = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnpropose_disc_group = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnpropose_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnextended_eos = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBandTotalValue = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumntotal_normal_value = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntotal_current_value = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -151,9 +154,12 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnis_edit = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnnote_old = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_pp_change_hist = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnis_extended_eos = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnid_extended_eos_old = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelOpt = New DevExpress.XtraEditors.PanelControl()
         Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.BtnExtendedEOS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnUseERPRecom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBulkEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
@@ -164,14 +170,14 @@ Partial Class FormProposePriceMKDDet
         Me.BtnFinalPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAllProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEPlanEndDate = New DevExpress.XtraEditors.DateEdit()
         CType(Me.LinkDesignCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDisc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
+        CType(Me.DEPlanEndDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEPlanEndDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEMKDType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DESOHDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -204,8 +210,6 @@ Partial Class FormProposePriceMKDDet
         CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelOpt.SuspendLayout()
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEPlanEndDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEPlanEndDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BandedGridColumncheck_stt
@@ -421,6 +425,30 @@ Partial Class FormProposePriceMKDDet
         Me.GroupControlHead.Name = "GroupControlHead"
         Me.GroupControlHead.Size = New System.Drawing.Size(1066, 215)
         Me.GroupControlHead.TabIndex = 10
+        '
+        'DEPlanEndDate
+        '
+        Me.DEPlanEndDate.EditValue = Nothing
+        Me.DEPlanEndDate.Location = New System.Drawing.Point(353, 66)
+        Me.DEPlanEndDate.Name = "DEPlanEndDate"
+        Me.DEPlanEndDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEPlanEndDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DEPlanEndDate.Properties.Appearance.Options.UseFont = True
+        Me.DEPlanEndDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEPlanEndDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEPlanEndDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEPlanEndDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEPlanEndDate.Size = New System.Drawing.Size(184, 20)
+        Me.DEPlanEndDate.TabIndex = 8930
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl13.Location = New System.Drawing.Point(277, 68)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(67, 13)
+        Me.LabelControl13.TabIndex = 8929
+        Me.LabelControl13.Text = "End Date Plan"
         '
         'LEMKDType
         '
@@ -775,11 +803,11 @@ Partial Class FormProposePriceMKDDet
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 39)
+        Me.GCData.Location = New System.Drawing.Point(0, 60)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDisc, Me.RepositoryItemTextEdit1, Me.RepositoryItemTENote, Me.RepoBtnEditPropose, Me.RepoCESelAll, Me.RepoBtnHist, Me.RepoLinkHist, Me.LinkDesignCode})
-        Me.GCData.Size = New System.Drawing.Size(1060, 258)
+        Me.GCData.Size = New System.Drawing.Size(1060, 237)
         Me.GCData.TabIndex = 18
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -790,7 +818,7 @@ Partial Class FormProposePriceMKDDet
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandAction, Me.gridBandDetail, Me.gridBandHistory, Me.gridBandPropose, Me.gridBandTotalValue, Me.gridBandOther})
         Me.GVData.ColumnPanelRowHeight = 40
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnno, Me.BandedGridColumnid_pp_change_det, Me.BandedGridColumnid_design, Me.BandedGridColumndesign_code, Me.BandedGridColumnname, Me.BandedGridColumnclass, Me.BandedGridColumnid_disc, Me.BandedGridColumndisc_desc, Me.BandedGridColumnmkd_normal_view, Me.BandedGridColumnmkd_30_view, Me.BandedGridColumnmkd_50_view, Me.BandedGridColumnmkd_70_view, Me.BandedGridColumnfirst_del, Me.BandedGridColumnage, Me.BandedGridColumndesign_cop, Me.BandedGridColumnid_design_price, Me.BandedGridColumndesign_price, Me.BandedGridColumnprice_type, Me.BandedGridColumndesign_cat, Me.BandedGridColumnid_design_price_normal, Me.BandedGridColumndesign_price_normal, Me.BandedGridColumncurr_disc, Me.BandedGridColumnpropose_disc, Me.BandedGridColumnpropose_price, Me.BandedGridColumnpropose_price_final, Me.BandedGridColumnerp_discount, Me.BandedGridColumnnote, Me.BandedGridColumnpropose_disc_old, Me.BandedGridColumnpropose_price_old, Me.BandedGridColumnpropose_price_final_old, Me.BandedGridColumnis_edit, Me.BandedGridColumnnote_old, Me.BandedGridColumnpropose_disc_group, Me.BandedGridColumnpropose_status, Me.BandedGridColumntotal_sal, Me.BandedGridColumntotal_soh, Me.BandedGridColumntotal_bos, Me.BandedGridColumnsas, Me.BandedGridColumntotal_normal_value, Me.BandedGridColumntotal_current_value, Me.BandedGridColumntotal_propose_value, Me.BandedGridColumntotal_cost, Me.BandedGridColumnmarked_down_value, Me.BandedGridColumnmark_up, Me.BandedGridColumnbtn_edit_propose, Me.BandedGridColumncheck_stt, Me.BandedGridColumnis_select, Me.BandedGridColumnid_pp_change_hist, Me.BandedGridColumnnumber_hist, Me.BandedGridColumnpropose_discount_hist, Me.BandedGridColumnpropose_price_final_hist, Me.BandedGridColumnbtn_more_hist})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnno, Me.BandedGridColumnid_pp_change_det, Me.BandedGridColumnid_design, Me.BandedGridColumndesign_code, Me.BandedGridColumnname, Me.BandedGridColumnclass, Me.BandedGridColumnid_disc, Me.BandedGridColumndisc_desc, Me.BandedGridColumnmkd_normal_view, Me.BandedGridColumnmkd_30_view, Me.BandedGridColumnmkd_50_view, Me.BandedGridColumnmkd_70_view, Me.BandedGridColumnfirst_del, Me.BandedGridColumnage, Me.BandedGridColumndesign_cop, Me.BandedGridColumnid_design_price, Me.BandedGridColumndesign_price, Me.BandedGridColumnprice_type, Me.BandedGridColumndesign_cat, Me.BandedGridColumnid_design_price_normal, Me.BandedGridColumndesign_price_normal, Me.BandedGridColumncurr_disc, Me.BandedGridColumnpropose_disc, Me.BandedGridColumnpropose_price, Me.BandedGridColumnpropose_price_final, Me.BandedGridColumnerp_discount, Me.BandedGridColumnnote, Me.BandedGridColumnpropose_disc_old, Me.BandedGridColumnpropose_price_old, Me.BandedGridColumnpropose_price_final_old, Me.BandedGridColumnis_edit, Me.BandedGridColumnnote_old, Me.BandedGridColumnpropose_disc_group, Me.BandedGridColumnpropose_status, Me.BandedGridColumntotal_sal, Me.BandedGridColumntotal_soh, Me.BandedGridColumntotal_bos, Me.BandedGridColumnsas, Me.BandedGridColumntotal_normal_value, Me.BandedGridColumntotal_current_value, Me.BandedGridColumntotal_propose_value, Me.BandedGridColumntotal_cost, Me.BandedGridColumnmarked_down_value, Me.BandedGridColumnmark_up, Me.BandedGridColumnbtn_edit_propose, Me.BandedGridColumncheck_stt, Me.BandedGridColumnis_select, Me.BandedGridColumnid_pp_change_hist, Me.BandedGridColumnnumber_hist, Me.BandedGridColumnpropose_discount_hist, Me.BandedGridColumnpropose_price_final_hist, Me.BandedGridColumnbtn_more_hist, Me.BandedGridColumnis_extended_eos, Me.BandedGridColumnextended_eos, Me.BandedGridColumnid_extended_eos_old})
         GridFormatRule1.Column = Me.BandedGridColumncheck_stt
         GridFormatRule1.ColumnApplyTo = Me.BandedGridColumndesign_code
         GridFormatRule1.Name = "Format1"
@@ -1313,9 +1341,10 @@ Partial Class FormProposePriceMKDDet
         Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_price_final)
         Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_disc_group)
         Me.gridBandPropose.Columns.Add(Me.BandedGridColumnpropose_status)
+        Me.gridBandPropose.Columns.Add(Me.BandedGridColumnextended_eos)
         Me.gridBandPropose.Name = "gridBandPropose"
         Me.gridBandPropose.VisibleIndex = 3
-        Me.gridBandPropose.Width = 471
+        Me.gridBandPropose.Width = 546
         '
         'BandedGridColumnpropose_disc_group
         '
@@ -1340,6 +1369,14 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnpropose_status.Name = "BandedGridColumnpropose_status"
         Me.BandedGridColumnpropose_status.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnpropose_status.Visible = True
+        '
+        'BandedGridColumnextended_eos
+        '
+        Me.BandedGridColumnextended_eos.Caption = "EOS Remark"
+        Me.BandedGridColumnextended_eos.FieldName = "extended_eos"
+        Me.BandedGridColumnextended_eos.Name = "BandedGridColumnextended_eos"
+        Me.BandedGridColumnextended_eos.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnextended_eos.Visible = True
         '
         'gridBandTotalValue
         '
@@ -1627,9 +1664,24 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnid_pp_change_hist.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnid_pp_change_hist.Visible = True
         '
+        'BandedGridColumnis_extended_eos
+        '
+        Me.BandedGridColumnis_extended_eos.Caption = "is_extended_eos"
+        Me.BandedGridColumnis_extended_eos.FieldName = "id_extended_eos"
+        Me.BandedGridColumnis_extended_eos.Name = "BandedGridColumnis_extended_eos"
+        Me.BandedGridColumnis_extended_eos.OptionsColumn.AllowEdit = False
+        '
+        'BandedGridColumnid_extended_eos_old
+        '
+        Me.BandedGridColumnid_extended_eos_old.Caption = "id_extended_eos_old"
+        Me.BandedGridColumnid_extended_eos_old.FieldName = "id_extended_eos_old"
+        Me.BandedGridColumnid_extended_eos_old.Name = "BandedGridColumnid_extended_eos_old"
+        Me.BandedGridColumnid_extended_eos_old.OptionsColumn.AllowEdit = False
+        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.PanelOpt)
+        Me.PanelControl3.Controls.Add(Me.BtnExtendedEOS)
         Me.PanelControl3.Controls.Add(Me.BtnUseERPRecom)
         Me.PanelControl3.Controls.Add(Me.BtnBulkEdit)
         Me.PanelControl3.Controls.Add(Me.LabelControl11)
@@ -1643,7 +1695,7 @@ Partial Class FormProposePriceMKDDet
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1060, 39)
+        Me.PanelControl3.Size = New System.Drawing.Size(1060, 60)
         Me.PanelControl3.TabIndex = 17
         '
         'PanelOpt
@@ -1651,26 +1703,39 @@ Partial Class FormProposePriceMKDDet
         Me.PanelOpt.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelOpt.Controls.Add(Me.CESelectAll)
         Me.PanelOpt.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelOpt.Location = New System.Drawing.Point(437, 2)
+        Me.PanelOpt.Location = New System.Drawing.Point(509, 2)
         Me.PanelOpt.Name = "PanelOpt"
-        Me.PanelOpt.Size = New System.Drawing.Size(74, 35)
+        Me.PanelOpt.Size = New System.Drawing.Size(74, 56)
         Me.PanelOpt.TabIndex = 8932
         '
         'CESelectAll
         '
-        Me.CESelectAll.Location = New System.Drawing.Point(4, 8)
+        Me.CESelectAll.Location = New System.Drawing.Point(4, 18)
         Me.CESelectAll.Name = "CESelectAll"
         Me.CESelectAll.Properties.Caption = "Select All"
         Me.CESelectAll.Size = New System.Drawing.Size(75, 19)
         Me.CESelectAll.TabIndex = 0
         '
+        'BtnExtendedEOS
+        '
+        Me.BtnExtendedEOS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExtendedEOS.Image = CType(resources.GetObject("BtnExtendedEOS.Image"), System.Drawing.Image)
+        Me.BtnExtendedEOS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnExtendedEOS.Location = New System.Drawing.Point(583, 2)
+        Me.BtnExtendedEOS.Name = "BtnExtendedEOS"
+        Me.BtnExtendedEOS.Size = New System.Drawing.Size(83, 56)
+        Me.BtnExtendedEOS.TabIndex = 8934
+        Me.BtnExtendedEOS.Text = "Extended EOS"
+        Me.BtnExtendedEOS.Visible = False
+        '
         'BtnUseERPRecom
         '
         Me.BtnUseERPRecom.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnUseERPRecom.Image = CType(resources.GetObject("BtnUseERPRecom.Image"), System.Drawing.Image)
-        Me.BtnUseERPRecom.Location = New System.Drawing.Point(511, 2)
+        Me.BtnUseERPRecom.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnUseERPRecom.Location = New System.Drawing.Point(666, 2)
         Me.BtnUseERPRecom.Name = "BtnUseERPRecom"
-        Me.BtnUseERPRecom.Size = New System.Drawing.Size(124, 35)
+        Me.BtnUseERPRecom.Size = New System.Drawing.Size(88, 56)
         Me.BtnUseERPRecom.TabIndex = 8933
         Me.BtnUseERPRecom.Text = "Use ERP Recom."
         Me.BtnUseERPRecom.Visible = False
@@ -1679,9 +1744,10 @@ Partial Class FormProposePriceMKDDet
         '
         Me.BtnBulkEdit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnBulkEdit.Image = CType(resources.GetObject("BtnBulkEdit.Image"), System.Drawing.Image)
-        Me.BtnBulkEdit.Location = New System.Drawing.Point(635, 2)
+        Me.BtnBulkEdit.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnBulkEdit.Location = New System.Drawing.Point(754, 2)
         Me.BtnBulkEdit.Name = "BtnBulkEdit"
-        Me.BtnBulkEdit.Size = New System.Drawing.Size(93, 35)
+        Me.BtnBulkEdit.Size = New System.Drawing.Size(69, 56)
         Me.BtnBulkEdit.TabIndex = 8931
         Me.BtnBulkEdit.Text = "Bulk Edit"
         Me.BtnBulkEdit.Visible = False
@@ -1693,7 +1759,7 @@ Partial Class FormProposePriceMKDDet
         Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl11.Appearance.ForeColor = System.Drawing.Color.Black
         Me.LabelControl11.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.LabelControl11.Location = New System.Drawing.Point(280, 10)
+        Me.LabelControl11.Location = New System.Drawing.Point(280, 19)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Padding = New System.Windows.Forms.Padding(3)
         Me.LabelControl11.Size = New System.Drawing.Size(108, 21)
@@ -1707,7 +1773,7 @@ Partial Class FormProposePriceMKDDet
         Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl10.Appearance.ForeColor = System.Drawing.Color.Black
         Me.LabelControl10.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.LabelControl10.Location = New System.Drawing.Point(217, 10)
+        Me.LabelControl10.Location = New System.Drawing.Point(217, 19)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Padding = New System.Windows.Forms.Padding(3)
         Me.LabelControl10.Size = New System.Drawing.Size(60, 21)
@@ -1717,7 +1783,7 @@ Partial Class FormProposePriceMKDDet
         'LabelControl9
         '
         Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(11, 13)
+        Me.LabelControl9.Location = New System.Drawing.Point(11, 22)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(25, 13)
         Me.LabelControl9.TabIndex = 8927
@@ -1730,7 +1796,7 @@ Partial Class FormProposePriceMKDDet
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl8.Appearance.ForeColor = System.Drawing.Color.Black
         Me.LabelControl8.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.LabelControl8.Location = New System.Drawing.Point(154, 10)
+        Me.LabelControl8.Location = New System.Drawing.Point(154, 19)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Padding = New System.Windows.Forms.Padding(3)
         Me.LabelControl8.Size = New System.Drawing.Size(60, 21)
@@ -1744,7 +1810,7 @@ Partial Class FormProposePriceMKDDet
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl6.Appearance.ForeColor = System.Drawing.Color.Black
         Me.LabelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.LabelControl6.Location = New System.Drawing.Point(41, 10)
+        Me.LabelControl6.Location = New System.Drawing.Point(41, 19)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Padding = New System.Windows.Forms.Padding(3)
         Me.LabelControl6.Size = New System.Drawing.Size(111, 21)
@@ -1755,9 +1821,10 @@ Partial Class FormProposePriceMKDDet
         '
         Me.BtnFinalPropose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnFinalPropose.Image = CType(resources.GetObject("BtnFinalPropose.Image"), System.Drawing.Image)
-        Me.BtnFinalPropose.Location = New System.Drawing.Point(728, 2)
+        Me.BtnFinalPropose.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnFinalPropose.Location = New System.Drawing.Point(823, 2)
         Me.BtnFinalPropose.Name = "BtnFinalPropose"
-        Me.BtnFinalPropose.Size = New System.Drawing.Size(112, 35)
+        Me.BtnFinalPropose.Size = New System.Drawing.Size(81, 56)
         Me.BtnFinalPropose.TabIndex = 13
         Me.BtnFinalPropose.Text = "Final Propose"
         Me.BtnFinalPropose.Visible = False
@@ -1766,9 +1833,10 @@ Partial Class FormProposePriceMKDDet
         '
         Me.BtnAllProduct.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAllProduct.Image = CType(resources.GetObject("BtnAllProduct.Image"), System.Drawing.Image)
-        Me.BtnAllProduct.Location = New System.Drawing.Point(840, 2)
+        Me.BtnAllProduct.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnAllProduct.Location = New System.Drawing.Point(904, 2)
         Me.BtnAllProduct.Name = "BtnAllProduct"
-        Me.BtnAllProduct.Size = New System.Drawing.Size(112, 35)
+        Me.BtnAllProduct.Size = New System.Drawing.Size(79, 56)
         Me.BtnAllProduct.TabIndex = 12
         Me.BtnAllProduct.Text = "Proposal List"
         Me.BtnAllProduct.Visible = False
@@ -1777,35 +1845,12 @@ Partial Class FormProposePriceMKDDet
         '
         Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
-        Me.BtnExportToXLS.Location = New System.Drawing.Point(952, 2)
+        Me.BtnExportToXLS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(983, 2)
         Me.BtnExportToXLS.Name = "BtnExportToXLS"
-        Me.BtnExportToXLS.Size = New System.Drawing.Size(106, 35)
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(75, 56)
         Me.BtnExportToXLS.TabIndex = 11
         Me.BtnExportToXLS.Text = "Export XLS"
-        '
-        'LabelControl13
-        '
-        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl13.Location = New System.Drawing.Point(277, 68)
-        Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(67, 13)
-        Me.LabelControl13.TabIndex = 8929
-        Me.LabelControl13.Text = "End Date Plan"
-        '
-        'DEPlanEndDate
-        '
-        Me.DEPlanEndDate.EditValue = Nothing
-        Me.DEPlanEndDate.Location = New System.Drawing.Point(353, 66)
-        Me.DEPlanEndDate.Name = "DEPlanEndDate"
-        Me.DEPlanEndDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.DEPlanEndDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DEPlanEndDate.Properties.Appearance.Options.UseFont = True
-        Me.DEPlanEndDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEPlanEndDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEPlanEndDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEPlanEndDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEPlanEndDate.Size = New System.Drawing.Size(184, 20)
-        Me.DEPlanEndDate.TabIndex = 8930
         '
         'FormProposePriceMKDDet
         '
@@ -1827,6 +1872,8 @@ Partial Class FormProposePriceMKDDet
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
+        CType(Me.DEPlanEndDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEPlanEndDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEMKDType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DESOHDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DESOHDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1861,8 +1908,6 @@ Partial Class FormProposePriceMKDDet
         CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelOpt.ResumeLayout(False)
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEPlanEndDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEPlanEndDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1971,16 +2016,20 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents RepoBtnHist As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents BandedGridColumnid_pp_change_hist As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepoLinkHist As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
-    Friend WithEvents gridBandAction As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandHistory As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandPropose As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandTotalValue As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandOther As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents PanelOpt As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CESelectAll As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents LinkDesignCode As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents BtnUseERPRecom As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DEPlanEndDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BandedGridColumnextended_eos As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnis_extended_eos As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BtnExtendedEOS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents gridBandAction As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandHistory As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandPropose As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandTotalValue As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandOther As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnid_extended_eos_old As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

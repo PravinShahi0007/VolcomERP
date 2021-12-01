@@ -132,6 +132,11 @@
         Dim data As DataTable = execute_query_no_pooling(query, -1, True, "", "", "", "")
         GCData.DataSource = data
 
+        'option jika eos
+        If LEMKDType.EditValue.ToString <> "1" Then
+            BandedGridColumnextended_eos.Visible = False
+        End If
+
         'column option
         If is_show_all = "1" Then
             GVData.RestoreLayoutFromStream(dvs, DevExpress.Utils.OptionsLayoutBase.FullLayout)
@@ -180,6 +185,9 @@
             BtnBulkEdit.Visible = True
             BtnUseERPRecom.Visible = True
             PanelOpt.Visible = True
+            If LEMKDType.EditValue = "1" Then
+                BtnExtendedEOS.Visible = True
+            End If
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -197,6 +205,7 @@
             BtnBulkEdit.Visible = False
             BtnUseERPRecom.Visible = False
             PanelOpt.Visible = False
+            BtnExtendedEOS.Visible = False
         End If
 
         'reset propose
@@ -225,6 +234,7 @@
             BtnBulkEdit.Visible = False
             BtnUseERPRecom.Visible = False
             PanelOpt.Visible = False
+            BtnExtendedEOS.Visible = False
         End If
     End Sub
 
@@ -260,7 +270,7 @@
             If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
                 FormMain.SplashScreenManager1.ShowWaitForm()
             End If
-            GVData.ActiveFilterString = "[id_pp_change_det]>0 AND ([propose_disc]<>[propose_disc_old] OR [propose_price]<>[propose_price_old] OR [propose_price_final]<>[propose_price_final_old] OR [note]<>[note_old]) "
+            GVData.ActiveFilterString = "[id_pp_change_det]>0 AND ([propose_disc]<>[propose_disc_old] OR [propose_price]<>[propose_price_old] OR [propose_price_final]<>[propose_price_final_old] OR [note]<>[note_old] OR [id_extended_eos]<>[id_extended_eos_old]) "
             For u As Integer = 0 To (GVData.RowCount - 1) - GetGroupRowCount(GVData)
                 Cursor = Cursors.WaitCursor
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Update Detail " + (u + 1).ToString + "/" + GVData.RowCount.ToString)
@@ -278,9 +288,10 @@
                     propose_price_final = "NULL"
                 End If
                 Dim note As String = addSlashes(GVData.GetRowCellValue(u, "note").ToString)
+                Dim id_extended_eos As String = GVData.GetRowCellValue(u, "id_extended_eos").ToString
                 Dim qupd As String = "UPDATE tb_pp_change_det SET propose_discount=" + propose_discount + ",
                 propose_price=" + propose_price + ", propose_price_final=" + propose_price_final + ", 
-                note='" + note + "' WHERE id_pp_change_det='" + id_pp_change_det + "'"
+                note='" + note + "',id_extended_eos='" + id_extended_eos + "' WHERE id_pp_change_det='" + id_pp_change_det + "'"
                 execute_non_query_long(qupd, True, "", "", "", "")
                 Cursor = Cursors.Default
             Next
@@ -291,7 +302,7 @@
                 FormMain.SplashScreenManager1.ShowWaitForm()
             End If
             GVData.ActiveFilterString = "[id_pp_change_det]=0 AND ([propose_disc]>0 OR [propose_price]>0 OR [propose_price_final]>0 OR [note]<>'') "
-            Dim qins As String = "INSERT INTO tb_pp_change_det(id_pp_change, id_design, id_design_price, design_price, age, erp_discount, propose_discount, propose_price, propose_price_final, note) VALUES "
+            Dim qins As String = "INSERT INTO tb_pp_change_det(id_pp_change, id_design, id_design_price, design_price, age, erp_discount, propose_discount, propose_price, propose_price_final, note, id_extended_eos) VALUES "
             For i As Integer = 0 To (GVData.RowCount - 1) - GetGroupRowCount(GVData)
                 Cursor = Cursors.WaitCursor
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Processing new detail " + (i + 1).ToString + "/" + GVData.RowCount.ToString)
@@ -316,10 +327,11 @@
                     propose_price_final = "NULL"
                 End If
                 Dim note As String = addSlashes(GVData.GetRowCellValue(i, "note").ToString)
+                Dim id_extended_eos As String = GVData.GetRowCellValue(i, "id_extended_eos").ToString
                 If i > 0 Then
                     qins += ","
                 End If
-                qins += "('" + id + "', '" + id_design + "', '" + id_design_price + "', '" + design_price + "', '" + age + "', " + erp_discount + ", " + propose_discount + ", " + propose_price + ", " + propose_price_final + ", '" + note + "') "
+                qins += "('" + id + "', '" + id_design + "', '" + id_design_price + "', '" + design_price + "', '" + age + "', " + erp_discount + ", " + propose_discount + ", " + propose_price + ", " + propose_price_final + ", '" + note + "', '" + id_extended_eos + "') "
                 Cursor = Cursors.Default
             Next
             If GVData.RowCount > 0 Then
@@ -977,6 +989,56 @@
             If confirm = Windows.Forms.DialogResult.No Then
                 e.Cancel = True
             End If
+        End If
+    End Sub
+
+    Private Sub BtnExtendedEOS_Click(sender As Object, e As EventArgs) Handles BtnExtendedEOS.Click
+        Dim id_mkd_type As String = LEMKDType.EditValue.ToString
+        If id_mkd_type = "1" Then
+            'check ud extended ato belum
+            Cursor = Cursors.WaitCursor
+            is_enable_custom_calc = False
+            Dim last_filter As String = GVData.ActiveFilterString.ToString
+            Dim ftr As String = "[is_select]='Yes' "
+            If last_filter <> "" Then
+                ftr += "AND " + last_filter
+            End If
+            GVData.ActiveFilterString = ftr
+            If GVData.RowCount > 0 Then
+                'check ud extended ato belum
+                Dim id_design_selected As String = ""
+                For i As Integer = 0 To (GVData.RowCount - 1) - GetGroupRowCount(GVData)
+                    If i > 0 Then
+                        id_design_selected += ","
+                    End If
+                    id_design_selected = GVData.GetRowCellValue(i, "id_design").ToString
+                Next
+                Dim qcek As String = "SELECT d.design_code, d.design_display_name 
+                FROM tb_design_extended_eos e 
+                INNER JOIN tb_m_design d ON d.id_design = e.id_design
+                WHERE e.is_active=1 AND e.id_design IN(" + id_design_selected + ") "
+                Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+
+                If dcek.Rows.Count > 0 Then
+                    Dim err As String = "These item already set as extended EOS : " + System.Environment.NewLine
+                    For s As Integer = 0 To dcek.Rows.Count - 1
+                        If s > 0 Then
+                            err += System.Environment.NewLine
+                        End If
+                        err += dcek.Rows(s)("design_code").ToString + " - " + dcek.Rows(s)("design_display_name").ToString
+                    Next
+                    stopCustom(err)
+                Else
+                    FormProposePriceMKDExtendedEOS.ShowDialog()
+                    GCData.RefreshDataSource()
+                    GVData.RefreshData()
+                End If
+            Else
+                stopCustom("No selected items")
+            End If
+            GVData.ActiveFilterString = "" + last_filter
+            is_enable_custom_calc = True
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class
