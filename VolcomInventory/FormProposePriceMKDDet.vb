@@ -106,6 +106,7 @@
             DECreated.EditValue = data.Rows(0)("created_date")
             is_confirm = data.Rows(0)("is_confirm").ToString
             DEConfirmDate.EditValue = data.Rows(0)("confirm_date")
+            DEPlanEndDate.EditValue = data.Rows(0)("plan_end_date")
             Dim is_show_all As String = ""
             If is_confirm = "2" And id_report_status = "1" Then
                 is_show_all = "1"
@@ -172,6 +173,7 @@
             GVData.OptionsBehavior.ReadOnly = False
             BtnChangeEffectiveDate.Enabled = True
             DESOHDate.Enabled = True
+            DEPlanEndDate.Enabled = True
             BtnAllProduct.Visible = False
             BtnFinalPropose.Visible = False
             gridBandAction.Visible = True
@@ -188,6 +190,7 @@
             GVData.OptionsBehavior.ReadOnly = True
             BtnChangeEffectiveDate.Enabled = False
             DESOHDate.Enabled = False
+            DEPlanEndDate.Enabled = False
             BtnAllProduct.Visible = True
             BtnFinalPropose.Visible = True
             gridBandAction.Visible = False
@@ -230,11 +233,12 @@
         Dim id_design_mkd As String = LEMKDType.EditValue.ToString
         Dim id_design_price_type As String = LEPriceType.EditValue.ToString
         Dim effective_date As String = DateTime.Parse(DEEffectDate.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim plan_end_date As String = DateTime.Parse(DEPlanEndDate.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim soh_sal_date As String = DateTime.Parse(DESOHDate.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim note As String = addSlashes(MENote.Text)
         If action = "ins" Then
-            Dim query_head As String = "INSERT INTO tb_pp_change(id_design_mkd,id_design_price_type, created_date, effective_date, soh_sal_date, note, id_report_status)
-            VALUES('" + id_design_mkd + "','" + id_design_price_type + "', NOW(), '" + effective_date + "', '" + soh_sal_date + "','" + note + "', 1); SELECT LAST_INSERT_ID(); "
+            Dim query_head As String = "INSERT INTO tb_pp_change(id_design_mkd,id_design_price_type, created_date, effective_date, soh_sal_date, note, id_report_status, plan_end_date)
+            VALUES('" + id_design_mkd + "','" + id_design_price_type + "', NOW(), '" + effective_date + "', '" + soh_sal_date + "','" + note + "', 1, '" + plan_end_date + "'); SELECT LAST_INSERT_ID(); "
             id = execute_query(query_head, 0, True, "", "", "", "")
             'update number
             execute_non_query("CALL gen_number('" + id + "', '" + rmt + "');CALL gen_pp_change(" + id + ", '" + effective_date + "');", True, "", "", "", "")
@@ -244,7 +248,7 @@
             Close()
         ElseIf action = "upd" Then
             Dim query As String = "UPDATE tb_pp_change SET id_design_price_type='" + id_design_price_type + "',
-            soh_sal_date='" + soh_sal_date + "', note='" + note + "' WHERE id_pp_change='" + id + "' "
+            soh_sal_date='" + soh_sal_date + "', note='" + note + "', plan_end_date='" + plan_end_date + "' WHERE id_pp_change='" + id + "' "
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub
@@ -328,7 +332,7 @@
     End Sub
 
     Function checkHead()
-        If LEPriceType.EditValue <> Nothing And DEEffectDate.EditValue <> Nothing And DESOHDate.EditValue <> Nothing And MENote.Text <> "" Then
+        If LEPriceType.EditValue <> Nothing And DEEffectDate.EditValue <> Nothing And DEPlanEndDate.EditValue <> Nothing And DESOHDate.EditValue <> Nothing And MENote.Text <> "" Then
             Return True
         Else
             Return False

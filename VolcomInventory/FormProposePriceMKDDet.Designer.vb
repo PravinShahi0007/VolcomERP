@@ -164,6 +164,8 @@ Partial Class FormProposePriceMKDDet
         Me.BtnFinalPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAllProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEPlanEndDate = New DevExpress.XtraEditors.DateEdit()
         CType(Me.LinkDesignCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDisc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -202,6 +204,8 @@ Partial Class FormProposePriceMKDDet
         CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelOpt.SuspendLayout()
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEPlanEndDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEPlanEndDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BandedGridColumncheck_stt
@@ -395,6 +399,8 @@ Partial Class FormProposePriceMKDDet
         'GroupControlHead
         '
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlHead.Controls.Add(Me.DEPlanEndDate)
+        Me.GroupControlHead.Controls.Add(Me.LabelControl13)
         Me.GroupControlHead.Controls.Add(Me.LEMKDType)
         Me.GroupControlHead.Controls.Add(Me.LabelControl12)
         Me.GroupControlHead.Controls.Add(Me.BtnChangeEffectiveDate)
@@ -427,13 +433,13 @@ Partial Class FormProposePriceMKDDet
         Me.LEMKDType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEMKDType.Properties.NullText = ""
         Me.LEMKDType.Properties.ShowFooter = False
-        Me.LEMKDType.Size = New System.Drawing.Size(131, 20)
+        Me.LEMKDType.Size = New System.Drawing.Size(155, 20)
         Me.LEMKDType.TabIndex = 8928
         '
         'LabelControl12
         '
         Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl12.Location = New System.Drawing.Point(253, 43)
+        Me.LabelControl12.Location = New System.Drawing.Point(277, 43)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(50, 13)
         Me.LabelControl12.TabIndex = 8927
@@ -482,7 +488,7 @@ Partial Class FormProposePriceMKDDet
         Me.DESOHDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DESOHDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DESOHDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DESOHDate.Size = New System.Drawing.Size(330, 20)
+        Me.DESOHDate.Size = New System.Drawing.Size(421, 20)
         Me.DESOHDate.TabIndex = 8923
         '
         'LabelEffectiveDate
@@ -506,13 +512,13 @@ Partial Class FormProposePriceMKDDet
         Me.DEEffectDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEEffectDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEEffectDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEEffectDate.Size = New System.Drawing.Size(330, 20)
+        Me.DEEffectDate.Size = New System.Drawing.Size(155, 20)
         Me.DEEffectDate.TabIndex = 145
         '
         'LEPriceType
         '
         Me.LEPriceType.Enabled = False
-        Me.LEPriceType.Location = New System.Drawing.Point(309, 40)
+        Me.LEPriceType.Location = New System.Drawing.Point(353, 40)
         Me.LEPriceType.Name = "LEPriceType"
         Me.LEPriceType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LEPriceType.Properties.Appearance.Options.UseFont = True
@@ -522,7 +528,7 @@ Partial Class FormProposePriceMKDDet
         Me.LEPriceType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_design_price_type", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("design_price_type", "Price Type")})
         Me.LEPriceType.Properties.NullText = ""
         Me.LEPriceType.Properties.ShowFooter = False
-        Me.LEPriceType.Size = New System.Drawing.Size(137, 20)
+        Me.LEPriceType.Size = New System.Drawing.Size(184, 20)
         Me.LEPriceType.TabIndex = 145
         '
         'LabelControl5
@@ -538,7 +544,7 @@ Partial Class FormProposePriceMKDDet
         '
         Me.MENote.Location = New System.Drawing.Point(116, 119)
         Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(330, 41)
+        Me.MENote.Size = New System.Drawing.Size(421, 41)
         Me.MENote.TabIndex = 151
         Me.MENote.TabStop = False
         '
@@ -558,7 +564,7 @@ Partial Class FormProposePriceMKDDet
         Me.TxtNumber.Name = "TxtNumber"
         Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNumber.Properties.Appearance.Options.UseFont = True
-        Me.TxtNumber.Size = New System.Drawing.Size(330, 20)
+        Me.TxtNumber.Size = New System.Drawing.Size(421, 20)
         Me.TxtNumber.TabIndex = 147
         '
         'LabelControl2
@@ -1777,6 +1783,30 @@ Partial Class FormProposePriceMKDDet
         Me.BtnExportToXLS.TabIndex = 11
         Me.BtnExportToXLS.Text = "Export XLS"
         '
+        'LabelControl13
+        '
+        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl13.Location = New System.Drawing.Point(277, 68)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(67, 13)
+        Me.LabelControl13.TabIndex = 8929
+        Me.LabelControl13.Text = "End Date Plan"
+        '
+        'DEPlanEndDate
+        '
+        Me.DEPlanEndDate.EditValue = Nothing
+        Me.DEPlanEndDate.Location = New System.Drawing.Point(353, 66)
+        Me.DEPlanEndDate.Name = "DEPlanEndDate"
+        Me.DEPlanEndDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEPlanEndDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DEPlanEndDate.Properties.Appearance.Options.UseFont = True
+        Me.DEPlanEndDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEPlanEndDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEPlanEndDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEPlanEndDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEPlanEndDate.Size = New System.Drawing.Size(184, 20)
+        Me.DEPlanEndDate.TabIndex = 8930
+        '
         'FormProposePriceMKDDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1831,6 +1861,8 @@ Partial Class FormProposePriceMKDDet
         CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelOpt.ResumeLayout(False)
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEPlanEndDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEPlanEndDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1949,4 +1981,6 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents CESelectAll As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents LinkDesignCode As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents BtnUseERPRecom As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEPlanEndDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
 End Class

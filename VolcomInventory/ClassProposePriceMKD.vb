@@ -13,7 +13,7 @@
         End If
 
         Dim query As String = "SELECT p.id_pp_change, p.`number`, p.created_date, p.effective_date, p.soh_sal_date, 
-        p.note, p.id_report_status, rs.report_status,p.id_design_price_type, p.id_design_mkd, pt.design_price_type, p.is_confirm, p.confirm_date
+        p.note, p.id_report_status, rs.report_status,p.id_design_price_type, p.id_design_mkd, pt.design_price_type, p.is_confirm, p.confirm_date, p.plan_end_date
         FROM tb_pp_change p 
         INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = p.id_report_status
         LEFT JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = p.id_design_price_type
