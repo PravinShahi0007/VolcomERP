@@ -40,12 +40,6 @@
             SLECoolStorage.Visible = False
         End If
 
-        If is_sni_enabled = "1" Then
-            GridColumnAdditional.OptionsColumn.ReadOnly = True
-            GridColumnAdditional.OptionsColumn.AllowEdit = False
-            GridColumnAdditional.OptionsColumn.AllowFocus = False
-        End If
-
         TEEcop.EditValue = 0.00
         TEKurs.EditValue = 1.0
         TEAdditionalCost.EditValue = 0.00
@@ -54,10 +48,20 @@
         TEVendor.Focus()
         '
         Dim qv As String = "SELECT cc.`id_comp` AS id_comp_pd,cc.`id_comp_contact` AS prod_order_cop_pd_vendor,c.comp_number AS comp_number_pd,c.comp_name AS comp_name_pd,d.prod_order_cop_kurs_pd,d.cop_pd_note,d.coo
-,d.prod_order_cop_pd_addcost,d.prod_order_cop_pd,d.is_cold_storage,d.prod_order_cop_pd_curr
+,d.prod_order_cop_pd_addcost,d.prod_order_cop_pd,d.is_cold_storage,d.prod_order_cop_pd_curr,IFNULL(cd.source,'Local') AS source,IFNULL(cd.division,'-') AS division
 FROM tb_m_design d
 LEFT JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=d.`aging_design`
 LEFT JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=5 THEN cd.code_detail_name END) AS `source`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,5)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = d.id_design
 WHERE d.id_design='" & id_design & "'"
         Dim dtv As DataTable = execute_query(qv, -1, True, "", "", "", "")
         If dtv.Rows.Count > 0 Then
@@ -81,6 +85,14 @@ WHERE d.id_design='" & id_design & "'"
             LECurrency.EditValue = Nothing
             LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_curr").ToString)
             LECurrency.Visible = False
+            '
+            If dtv.Rows(0)("source").ToString = "Local" And dtv.Rows(0)("division").ToString = "KID" Then
+                If is_sni_enabled = "1" Then
+                    GridColumnAdditional.OptionsColumn.ReadOnly = True
+                    GridColumnAdditional.OptionsColumn.AllowEdit = False
+                    GridColumnAdditional.OptionsColumn.AllowFocus = False
+                End If
+            End If
         Else
             warningCustom("Design not found")
             Close()
