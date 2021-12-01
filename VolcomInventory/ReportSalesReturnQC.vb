@@ -73,6 +73,12 @@
             sales_return_qc_det_qty.Text = Format(dt.Rows(i)("sales_return_qc_det_qty"), "##")
             sales_return_qc_det_qty.BorderWidth = 0
             sales_return_qc_det_qty.Font = New Font(sales_return_qc_det_qty.Font.FontFamily, sales_return_qc_det_qty.Font.Size, FontStyle.Regular)
+
+            'PRICE TYPE
+            Dim price_typ As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
+            price_typ.Text = dt.Rows(i)("design_price_type").ToString.ToUpper.Substring(0, 1)
+            price_typ.BorderWidth = 0
+            price_typ.Font = New Font(size.Font.FontFamily, size.Font.Size, FontStyle.Regular)
         Next
 
         XrRowTotal.HeightF = 25

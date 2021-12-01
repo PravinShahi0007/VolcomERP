@@ -890,7 +890,7 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 54
+        Me.GridColumnNo.Width = 66
         '
         'GridColumnCode
         '
@@ -900,7 +900,7 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnCode.OptionsColumn.ReadOnly = True
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 93
+        Me.GridColumnCode.Width = 114
         '
         'GridColumnName
         '
@@ -911,7 +911,7 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 3
-        Me.GridColumnName.Width = 187
+        Me.GridColumnName.Width = 230
         '
         'GridColumnSize
         '
@@ -925,7 +925,7 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 5
-        Me.GridColumnSize.Width = 71
+        Me.GridColumnSize.Width = 87
         '
         'GridColumnPriceType
         '
@@ -934,7 +934,9 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnPriceType.Name = "GridColumnPriceType"
         Me.GridColumnPriceType.OptionsColumn.ReadOnly = True
         Me.GridColumnPriceType.OptionsColumn.ShowInCustomizationForm = False
-        Me.GridColumnPriceType.Width = 110
+        Me.GridColumnPriceType.Visible = True
+        Me.GridColumnPriceType.VisibleIndex = 9
+        Me.GridColumnPriceType.Width = 92
         '
         'GridColumnQty
         '
@@ -952,7 +954,7 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 7
-        Me.GridColumnQty.Width = 76
+        Me.GridColumnQty.Width = 93
         '
         'GridColumnQtyLimit
         '
@@ -964,7 +966,7 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnQtyLimit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_qc_det_qty_limit", "{0:N0}")})
         Me.GridColumnQtyLimit.Visible = True
         Me.GridColumnQtyLimit.VisibleIndex = 6
-        Me.GridColumnQtyLimit.Width = 99
+        Me.GridColumnQtyLimit.Width = 122
         '
         'GridColumnPrice
         '
@@ -1003,8 +1005,8 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnRemark.FieldName = "sales_return_qc_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 9
-        Me.GridColumnRemark.Width = 363
+        Me.GridColumnRemark.VisibleIndex = 10
+        Me.GridColumnRemark.Width = 496
         '
         'GridColumnUOM
         '
@@ -1096,7 +1098,7 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnStt.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.GridColumnStt.Visible = True
         Me.GridColumnStt.VisibleIndex = 8
-        Me.GridColumnStt.Width = 91
+        Me.GridColumnStt.Width = 112
         '
         'GridColumnNumber
         '
@@ -1127,7 +1129,7 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnclass.OptionsColumn.ReadOnly = True
         Me.GridColumnclass.Visible = True
         Me.GridColumnclass.VisibleIndex = 2
-        Me.GridColumnclass.Width = 86
+        Me.GridColumnclass.Width = 106
         '
         'GridColumncolor
         '
@@ -1137,7 +1139,7 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumncolor.OptionsColumn.ReadOnly = True
         Me.GridColumncolor.Visible = True
         Me.GridColumncolor.VisibleIndex = 4
-        Me.GridColumncolor.Width = 80
+        Me.GridColumncolor.Width = 98
         '
         'GridColumnsht
         '
