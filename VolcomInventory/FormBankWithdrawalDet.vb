@@ -1861,6 +1861,19 @@ WHERE id_stock_valas = (SELECT MAX(id_stock_valas) FROM `tb_stock_valas` WHERE i
                 '                    End If
                 '                End If
 
+                'cek milih valas tapi semua rupiah
+                Dim is_ok_pay_valas As Boolean = False
+                If SLEAkunValas.EditValue.ToString = "0" Then
+                    is_ok_pay_valas = True
+                Else
+                    For i As Integer = 0 To GVList.RowCount - 1
+                        If Not GVList.GetRowCellValue(i, "id_currency").ToString = "1" Then
+                            is_ok_pay_valas = True
+                            Exit For
+                        End If
+                    Next
+                End If
+
                 If GVList.RowCount = 0 Then
                     warningCustom("No item listed.")
                 ElseIf desc_blank Then
@@ -1873,6 +1886,8 @@ WHERE id_stock_valas = (SELECT MAX(id_stock_valas) FROM `tb_stock_valas` WHERE i
                     warningCustom("You pay more than balance due.")
                 ElseIf MENote.Text = "" Then
                     warningCustom("Please put some note")
+                ElseIf Not is_ok_pay_valas Then
+                    warningCustom("No item with USD found, please choose payment with no valas.")
                 ElseIf value_is_wrong Then
                     warningCustom("Make sure debit is positive value, credit is negative value")
                     'ElseIf using_valas_pend Then

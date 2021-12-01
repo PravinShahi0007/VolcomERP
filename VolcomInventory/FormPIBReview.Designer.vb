@@ -53,6 +53,7 @@ Partial Class FormPIBReview
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefreshPPS = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPib, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPib.SuspendLayout()
         Me.XTPReview.SuspendLayout()
@@ -99,7 +100,7 @@ Partial Class FormPIBReview
         '
         'GVSummary
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn16, Me.GridColumn15, Me.GridColumn17, Me.GridColumn14, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn13, Me.GridColumn12})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn16, Me.GridColumn15, Me.GridColumn17, Me.GridColumn14, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn22, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn13, Me.GridColumn12})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.Name = "GVSummary"
         Me.GVSummary.OptionsBehavior.Editable = False
@@ -125,7 +126,7 @@ Partial Class FormPIBReview
         Me.GridColumn16.FieldName = "prod_order_number"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 2
+        Me.GridColumn16.VisibleIndex = 1
         '
         'GridColumn15
         '
@@ -137,7 +138,7 @@ Partial Class FormPIBReview
         Me.GridColumn15.FieldName = "class"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 3
+        Me.GridColumn15.VisibleIndex = 2
         '
         'GridColumn17
         '
@@ -145,7 +146,7 @@ Partial Class FormPIBReview
         Me.GridColumn17.FieldName = "design_name"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 4
+        Me.GridColumn17.VisibleIndex = 3
         '
         'GridColumn14
         '
@@ -157,7 +158,7 @@ Partial Class FormPIBReview
         Me.GridColumn14.FieldName = "color"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 5
+        Me.GridColumn14.VisibleIndex = 4
         '
         'GridColumn3
         '
@@ -165,7 +166,7 @@ Partial Class FormPIBReview
         Me.GridColumn3.FieldName = "pib_no"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.VisibleIndex = 5
         '
         'GridColumn4
         '
@@ -183,10 +184,10 @@ Partial Class FormPIBReview
         Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn5.Caption = "PIB Tax Amount"
+        Me.GridColumn5.Caption = "PIB Royalty Duty Amount"
         Me.GridColumn5.DisplayFormat.FormatString = "N2"
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn5.FieldName = "pib_tax_amo"
+        Me.GridColumn5.FieldName = "tot_royalty_full"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 7
@@ -199,7 +200,7 @@ Partial Class FormPIBReview
         Me.GridColumn6.FieldName = "second_date_limit"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 8
+        Me.GridColumn6.VisibleIndex = 10
         '
         'GridColumn7
         '
@@ -210,7 +211,7 @@ Partial Class FormPIBReview
         Me.GridColumn7.Caption = "First Payment"
         Me.GridColumn7.DisplayFormat.FormatString = "N2"
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn7.FieldName = "first_payment"
+        Me.GridColumn7.FieldName = "tot_royalty"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 9
@@ -227,7 +228,7 @@ Partial Class FormPIBReview
         Me.GridColumn8.FieldName = "qty_rec"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 10
+        Me.GridColumn8.VisibleIndex = 11
         '
         'GridColumn9
         '
@@ -238,20 +239,20 @@ Partial Class FormPIBReview
         Me.GridColumn9.Caption = "Sales Qty"
         Me.GridColumn9.DisplayFormat.FormatString = "N0"
         Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn9.FieldName = "sales_qty"
+        Me.GridColumn9.FieldName = "qty_sales"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 11
+        Me.GridColumn9.VisibleIndex = 12
         '
         'GridColumn10
         '
         Me.GridColumn10.Caption = "Last Update Sales Qty"
         Me.GridColumn10.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn10.FieldName = "last_upd_sales"
+        Me.GridColumn10.FieldName = "last_upd_qty_sales"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 12
+        Me.GridColumn10.VisibleIndex = 13
         '
         'GridColumn11
         '
@@ -265,7 +266,7 @@ Partial Class FormPIBReview
         Me.GridColumn11.FieldName = "sales_thru"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 13
+        Me.GridColumn11.VisibleIndex = 14
         '
         'GridColumn13
         '
@@ -279,7 +280,7 @@ Partial Class FormPIBReview
         Me.GridColumn13.FieldName = "second_payment"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 15
+        Me.GridColumn13.VisibleIndex = 16
         '
         'GridColumn12
         '
@@ -293,7 +294,7 @@ Partial Class FormPIBReview
         Me.GridColumn12.FieldName = "remaining_payment"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 14
+        Me.GridColumn12.VisibleIndex = 15
         '
         'BCreatePPS
         '
@@ -403,6 +404,16 @@ Partial Class FormPIBReview
         Me.BRefreshPPS.TabIndex = 0
         Me.BRefreshPPS.Text = "Refresh"
         '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "First Payment Sales %"
+        Me.GridColumn22.DisplayFormat.FormatString = "N2"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn22.FieldName = "notif_qty_sales_percent"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 8
+        '
         'FormPIBReview
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -414,7 +425,7 @@ Partial Class FormPIBReview
         Me.MinimizeBox = False
         Me.Name = "FormPIBReview"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Review PIB"
+        Me.Text = "Review PIB Royalty Duty"
         CType(Me.XTCPib, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCPib.ResumeLayout(False)
         Me.XTPReview.ResumeLayout(False)
@@ -464,4 +475,5 @@ Partial Class FormPIBReview
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BCreatePPS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

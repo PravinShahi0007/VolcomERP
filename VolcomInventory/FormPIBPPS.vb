@@ -34,7 +34,7 @@ WHERE pps.id_pib_pps='" & id & "'"
 
     Sub load_det()
         Dim q As String = "SELECT f.number AS pre_cal_fgpo_number,f.id_pre_cal_fgpo,GROUP_CONCAT(CONCAT(po.prod_order_number,' - ',cd.class,' ',dsg.design_name,' ',cd.color) SEPARATOR '\n') AS list_fgpo
-,ppsd.old_pib_no,ppsd.old_pib_date,ppsd.old_pib_tax_amo,ppsd.pib_no,ppsd.pib_date,ppsd.pib_tax_amo
+,ppsd.old_pib_no,ppsd.old_pib_date,ppsd.pib_no,ppsd.pib_date
 FROM tb_pre_cal_fgpo_list fl
 INNER JOIN tb_pre_cal_fgpo f ON f.id_pre_cal_fgpo=fl.id_pre_cal_fgpo
 INNER JOIN `tb_pib_pps_det` ppsd ON ppsd.id_pre_cal_fgpo=f.id_pre_cal_fgpo AND ppsd.id_pib_pps='" & id & "'
@@ -106,12 +106,12 @@ GROUP BY f.id_pre_cal_fgpo"
                 q = "CALL gen_number('" & id & "','359')"
                 execute_non_query(q, True, "", "", "", "")
                 '
-                q = "INSERT INTO `tb_pib_pps_det`(`id_pib_pps`,`id_pre_cal_fgpo`,`old_pib_no`,`old_pib_date`,`old_pib_tax_amo`,`pib_no`,`pib_date`,`pib_tax_amo`) VALUES"
+                q = "INSERT INTO `tb_pib_pps_det`(`id_pib_pps`,`id_pre_cal_fgpo`,`old_pib_no`,`old_pib_date`,`pib_no`,`pib_date`) VALUES"
                 For i = 0 To BGVPIBPPS.RowCount - 1
                     If Not i = 0 Then
                         q += ","
                     End If
-                    q += "('" & id & "','" & BGVPIBPPS.GetRowCellValue(i, "id_pre_cal_fgpo").ToString & "','" & addSlashes(BGVPIBPPS.GetRowCellValue(i, "old_pib_no").ToString) & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "old_pib_date").ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(Decimal.Parse(BGVPIBPPS.GetRowCellValue(i, "old_pib_tax_amo").ToString).ToString()) & "','" & addSlashes(BGVPIBPPS.GetRowCellValue(i, "pib_no").ToString) & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "pib_date").ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(Decimal.Parse(BGVPIBPPS.GetRowCellValue(i, "pib_tax_amo").ToString).ToString()) & "')"
+                    q += "('" & id & "','" & BGVPIBPPS.GetRowCellValue(i, "id_pre_cal_fgpo").ToString & "','" & addSlashes(BGVPIBPPS.GetRowCellValue(i, "old_pib_no").ToString) & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "old_pib_date").ToString).ToString("yyyy-MM-dd") & "','" & addSlashes(BGVPIBPPS.GetRowCellValue(i, "pib_no").ToString) & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "pib_date").ToString).ToString("yyyy-MM-dd") & "')"
                 Next
                 execute_query(q, -1, True, "", "", "", "")
 
