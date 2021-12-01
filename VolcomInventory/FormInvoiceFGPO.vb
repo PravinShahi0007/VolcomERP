@@ -106,13 +106,13 @@ WHERE pnt.is_payment=2 AND pn.doc_type <> 4 " & query_where
 ,SUM(wod.`prod_order_wo_det_qty`) AS qty
 ,CAST(wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) AS po_amount_bef_kurs
 ,CAST(wod.`prod_order_wo_det_price` * (wo.prod_order_wo_vat/100)*SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) AS po_amount_vat_bef_kurs
-,CAST(wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * wo.prod_order_wo_kurs AS po_amount
-,CAST(wod.`prod_order_wo_det_price` * (wo.prod_order_wo_vat/100)*SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * wo.prod_order_wo_kurs AS po_amount_vat
-,wo.id_currency,cur.currency,wo.prod_order_wo_kurs
+,CAST(wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * IFNULL(oldest_price.old_kurs,wo.prod_order_wo_kurs) AS po_amount
+,CAST(wod.`prod_order_wo_det_price` * (wo.prod_order_wo_vat/100)*SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * IFNULL(oldest_price.old_kurs,wo.prod_order_wo_kurs) AS po_amount_vat
+,wo.id_currency,cur.currency,IFNULL(oldest_price.old_kurs,wo.prod_order_wo_kurs) AS prod_order_wo_kurs
 ,CAST((py.`dp_amount`/100) * wod.`prod_order_wo_det_price`*SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) AS dp_amount_bef_kurs
 ,CAST((py.`dp_amount`/100) * (wo.prod_order_wo_vat/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) AS dp_amount_vat_bef_kurs
-,CAST((py.`dp_amount`/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * wo.prod_order_wo_kurs AS dp_amount 
-,CAST((py.`dp_amount`/100) * (wo.prod_order_wo_vat/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * wo.prod_order_wo_kurs AS dp_amount_vat
+,CAST((py.`dp_amount`/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * IFNULL(oldest_price.old_kurs,wo.prod_order_wo_kurs) AS dp_amount 
+,CAST((py.`dp_amount`/100) * (wo.prod_order_wo_vat/100) * wod.`prod_order_wo_det_price` * SUM(wod.`prod_order_wo_det_qty`) AS DECIMAL(15,2)) * IFNULL(oldest_price.old_kurs,wo.prod_order_wo_kurs) AS dp_amount_vat
 ,IFNULL(dp_paid.val_dp,0) AS val_dp
 ,IFNULL(dp_paid.val_vat_dp,0) AS val_vat_dp
 FROM tb_prod_order_wo_det wod
@@ -133,6 +133,16 @@ LEFT JOIN
 	WHERE pn.id_report_status !=5 AND pn.doc_type=2 AND pn.type=1
 	GROUP BY id_prod_order
 )dp_paid ON dp_paid.id_prod_order=po.id_prod_order
+LEFT JOIN
+(
+	SELECT id_wo,old_kurs,old_price,old_curr FROM `tb_prod_order_wo_log`
+	WHERE id_wo_log IN (
+		SELECT MIN(id_wo_log)
+		FROM tb_prod_order_wo_log logx
+		INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo=logx.id_wo 
+		GROUP BY wo.`id_prod_order_wo`
+	)
+)oldest_price ON oldest_price.id_wo=wo.`id_prod_order_wo`
 WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' " & query_where & "
 -- AND ISNULL(dp_paid.id_prod_order) 
 GROUP BY wo.`id_prod_order_wo`
@@ -378,5 +388,13 @@ GROUP BY dp.id_pn_fgpo,dpd.id_report"
 
     Private Sub BPrintDPPaid_Click(sender As Object, e As EventArgs) Handles BPrintDPPaid.Click
         print_no_footer(GCDPUsed, "List DP " & SLEVendor.Text)
+    End Sub
+
+    Private Sub XTCInvoiceFGPO_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCInvoiceFGPO.SelectedPageChanged
+        If XTCInvoiceFGPO.SelectedTabPageIndex = 5 Then
+            PCVendor.Visible = False
+        Else
+            PCVendor.Visible = True
+        End If
     End Sub
 End Class

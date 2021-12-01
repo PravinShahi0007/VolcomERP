@@ -29,14 +29,10 @@ Partial Class FormPIBPPSDet
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.DEPIBOld = New DevExpress.XtraEditors.DateEdit()
         Me.TEPIBNumberOld = New DevExpress.XtraEditors.TextEdit()
-        Me.TEPIBTaxAmountOld = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.DEPIB = New DevExpress.XtraEditors.DateEdit()
         Me.TEPIBNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.TEPIBTaxAmount = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,11 +44,9 @@ Partial Class FormPIBPPSDet
         CType(Me.DEPIBOld.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEPIBOld.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPIBNumberOld.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEPIBTaxAmountOld.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEPIB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEPIB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPIBNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEPIBTaxAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -61,7 +55,7 @@ Partial Class FormPIBPPSDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(623, 414)
+        Me.GroupControl1.Size = New System.Drawing.Size(623, 431)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Pick ISB"
         '
@@ -71,7 +65,7 @@ Partial Class FormPIBPPSDet
         Me.GCSummary.Location = New System.Drawing.Point(2, 20)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(619, 392)
+        Me.GCSummary.Size = New System.Drawing.Size(619, 409)
         Me.GCSummary.TabIndex = 2
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
@@ -116,7 +110,7 @@ Partial Class FormPIBPPSDet
         Me.BCreatePPS.Appearance.Options.UseForeColor = True
         Me.BCreatePPS.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
         Me.BCreatePPS.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCreatePPS.Location = New System.Drawing.Point(0, 534)
+        Me.BCreatePPS.Location = New System.Drawing.Point(0, 517)
         Me.BCreatePPS.Name = "BCreatePPS"
         Me.BCreatePPS.Size = New System.Drawing.Size(623, 40)
         Me.BCreatePPS.TabIndex = 7
@@ -126,20 +120,16 @@ Partial Class FormPIBPPSDet
         '
         Me.PanelControl1.Controls.Add(Me.DEPIBOld)
         Me.PanelControl1.Controls.Add(Me.TEPIBNumberOld)
-        Me.PanelControl1.Controls.Add(Me.TEPIBTaxAmountOld)
-        Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.LabelControl5)
         Me.PanelControl1.Controls.Add(Me.LabelControl6)
         Me.PanelControl1.Controls.Add(Me.DEPIB)
         Me.PanelControl1.Controls.Add(Me.TEPIBNumber)
-        Me.PanelControl1.Controls.Add(Me.TEPIBTaxAmount)
-        Me.PanelControl1.Controls.Add(Me.LabelControl4)
         Me.PanelControl1.Controls.Add(Me.LabelControl3)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 414)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 431)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(623, 120)
+        Me.PanelControl1.Size = New System.Drawing.Size(623, 86)
         Me.PanelControl1.TabIndex = 8
         '
         'DEPIBOld
@@ -162,22 +152,6 @@ Partial Class FormPIBPPSDet
         Me.TEPIBNumberOld.Properties.ReadOnly = True
         Me.TEPIBNumberOld.Size = New System.Drawing.Size(183, 20)
         Me.TEPIBNumberOld.TabIndex = 192
-        '
-        'TEPIBTaxAmountOld
-        '
-        Me.TEPIBTaxAmountOld.Location = New System.Drawing.Point(118, 83)
-        Me.TEPIBTaxAmountOld.Name = "TEPIBTaxAmountOld"
-        Me.TEPIBTaxAmountOld.Properties.ReadOnly = True
-        Me.TEPIBTaxAmountOld.Size = New System.Drawing.Size(183, 20)
-        Me.TEPIBTaxAmountOld.TabIndex = 191
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(17, 86)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(96, 13)
-        Me.LabelControl1.TabIndex = 190
-        Me.LabelControl1.Text = "Old PIB Tax Amount"
         '
         'LabelControl5
         '
@@ -214,21 +188,6 @@ Partial Class FormPIBPPSDet
         Me.TEPIBNumber.Size = New System.Drawing.Size(183, 20)
         Me.TEPIBNumber.TabIndex = 186
         '
-        'TEPIBTaxAmount
-        '
-        Me.TEPIBTaxAmount.Location = New System.Drawing.Point(419, 83)
-        Me.TEPIBTaxAmount.Name = "TEPIBTaxAmount"
-        Me.TEPIBTaxAmount.Size = New System.Drawing.Size(183, 20)
-        Me.TEPIBTaxAmount.TabIndex = 185
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(336, 86)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(77, 13)
-        Me.LabelControl4.TabIndex = 184
-        Me.LabelControl4.Text = "PIB Tax Amount"
-        '
         'LabelControl3
         '
         Me.LabelControl3.Location = New System.Drawing.Point(336, 53)
@@ -249,7 +208,7 @@ Partial Class FormPIBPPSDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(623, 574)
+        Me.ClientSize = New System.Drawing.Size(623, 557)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.BCreatePPS)
@@ -269,11 +228,9 @@ Partial Class FormPIBPPSDet
         CType(Me.DEPIBOld.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEPIBOld.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPIBNumberOld.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEPIBTaxAmountOld.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEPIB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEPIB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPIBNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEPIBTaxAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -288,14 +245,10 @@ Partial Class FormPIBPPSDet
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents DEPIBOld As DevExpress.XtraEditors.DateEdit
     Friend WithEvents TEPIBNumberOld As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TEPIBTaxAmountOld As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEPIB As DevExpress.XtraEditors.DateEdit
     Friend WithEvents TEPIBNumber As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TEPIBTaxAmount As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
 End Class
