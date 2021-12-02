@@ -632,14 +632,16 @@ GROUP BY prd.`id_design`"
                 End If
             Else
                 'Payment to do
-                If LEStatus.EditValue.ToString = "2" Then
-                    Dim query As String = "SELECT pp_cop_kurs FROM tb_m_design
+                If TEKursCurrent.EditValue <= 1 Then
+                    If LEStatus.EditValue.ToString = "2" Then
+                        Dim query As String = "SELECT pp_cop_kurs FROM tb_m_design
 WHERE `id_design`='" & id_design & "' "
-                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-                    If data.Rows.Count > 0 Then
-                        TEKursCurrent.EditValue = data.Rows(0)("pp_cop_kurs")
-                    Else
-                        TEKursCurrent.EditValue = 1
+                        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                        If data.Rows.Count > 0 Then
+                            TEKursCurrent.EditValue = data.Rows(0)("pp_cop_kurs")
+                        Else
+                            TEKursCurrent.EditValue = 1
+                        End If
                     End If
                 End If
             End If
