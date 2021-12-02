@@ -135,6 +135,7 @@
         'option jika eos
         If LEMKDType.EditValue.ToString <> "1" Then
             BandedGridColumnextended_eos.Visible = False
+            BandedGridColumncurr_extended_eos.Visible = False
         End If
 
         'column option
@@ -301,7 +302,7 @@
             If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
                 FormMain.SplashScreenManager1.ShowWaitForm()
             End If
-            GVData.ActiveFilterString = "[id_pp_change_det]=0 AND ([propose_disc]>0 OR [propose_price]>0 OR [propose_price_final]>0 OR [note]<>'') "
+            GVData.ActiveFilterString = "[id_pp_change_det]=0 AND ([propose_disc]>0 OR [propose_price]>0 OR [propose_price_final]>0 OR [note]<>'' OR [id_extended_eos]<>2) "
             Dim qins As String = "INSERT INTO tb_pp_change_det(id_pp_change, id_design, id_design_price, design_price, age, erp_discount, propose_discount, propose_price, propose_price_final, note, id_extended_eos) VALUES "
             For i As Integer = 0 To (GVData.RowCount - 1) - GetGroupRowCount(GVData)
                 Cursor = Cursors.WaitCursor
@@ -500,16 +501,20 @@
         BandedGridColumnpropose_disc.Width = 43
         BandedGridColumnpropose_price.Width = 62
         BandedGridColumnpropose_price_final.Width = 70
-        BandedGridColumnpropose_disc_group.Width = 30
+        BandedGridColumnpropose_disc_group.Width = 40
         BandedGridColumntotal_sal.Width = 38
         BandedGridColumntotal_soh.Width = 38
         BandedGridColumntotal_bos.Width = 38
         BandedGridColumnsas.Width = 45
-        BandedGridColumntotal_normal_value.Width = 97
+        BandedGridColumntotal_normal_value.Width = 87
         BandedGridColumntotal_current_value.Width = 100
         BandedGridColumntotal_propose_value.Width = 100
         BandedGridColumntotal_cost.Width = 87
         BandedGridColumnmarked_down_value.Width = 114
+        If LEMKDType.EditValue = "1" Then
+            BandedGridColumncurr_extended_eos.Width = 65
+            BandedGridColumnextended_eos.Width = 65
+        End If
         BandedGridColumnmark_up.Width = 59
         BandedGridColumnpropose_price_final.AppearanceCell.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
         BandedGridColumnpropose_price_final.AppearanceCell.ForeColor = Color.Black

@@ -118,6 +118,7 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumnprice_type = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndesign_cop = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndesign_price_normal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumncurr_extended_eos = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntotal_sal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntotal_soh = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumntotal_bos = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -818,7 +819,7 @@ Partial Class FormProposePriceMKDDet
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandAction, Me.gridBandDetail, Me.gridBandHistory, Me.gridBandPropose, Me.gridBandTotalValue, Me.gridBandOther})
         Me.GVData.ColumnPanelRowHeight = 40
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnno, Me.BandedGridColumnid_pp_change_det, Me.BandedGridColumnid_design, Me.BandedGridColumndesign_code, Me.BandedGridColumnname, Me.BandedGridColumnclass, Me.BandedGridColumnid_disc, Me.BandedGridColumndisc_desc, Me.BandedGridColumnmkd_normal_view, Me.BandedGridColumnmkd_30_view, Me.BandedGridColumnmkd_50_view, Me.BandedGridColumnmkd_70_view, Me.BandedGridColumnfirst_del, Me.BandedGridColumnage, Me.BandedGridColumndesign_cop, Me.BandedGridColumnid_design_price, Me.BandedGridColumndesign_price, Me.BandedGridColumnprice_type, Me.BandedGridColumndesign_cat, Me.BandedGridColumnid_design_price_normal, Me.BandedGridColumndesign_price_normal, Me.BandedGridColumncurr_disc, Me.BandedGridColumnpropose_disc, Me.BandedGridColumnpropose_price, Me.BandedGridColumnpropose_price_final, Me.BandedGridColumnerp_discount, Me.BandedGridColumnnote, Me.BandedGridColumnpropose_disc_old, Me.BandedGridColumnpropose_price_old, Me.BandedGridColumnpropose_price_final_old, Me.BandedGridColumnis_edit, Me.BandedGridColumnnote_old, Me.BandedGridColumnpropose_disc_group, Me.BandedGridColumnpropose_status, Me.BandedGridColumntotal_sal, Me.BandedGridColumntotal_soh, Me.BandedGridColumntotal_bos, Me.BandedGridColumnsas, Me.BandedGridColumntotal_normal_value, Me.BandedGridColumntotal_current_value, Me.BandedGridColumntotal_propose_value, Me.BandedGridColumntotal_cost, Me.BandedGridColumnmarked_down_value, Me.BandedGridColumnmark_up, Me.BandedGridColumnbtn_edit_propose, Me.BandedGridColumncheck_stt, Me.BandedGridColumnis_select, Me.BandedGridColumnid_pp_change_hist, Me.BandedGridColumnnumber_hist, Me.BandedGridColumnpropose_discount_hist, Me.BandedGridColumnpropose_price_final_hist, Me.BandedGridColumnbtn_more_hist, Me.BandedGridColumnis_extended_eos, Me.BandedGridColumnextended_eos, Me.BandedGridColumnid_extended_eos_old})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnno, Me.BandedGridColumnid_pp_change_det, Me.BandedGridColumnid_design, Me.BandedGridColumndesign_code, Me.BandedGridColumnname, Me.BandedGridColumnclass, Me.BandedGridColumnid_disc, Me.BandedGridColumndisc_desc, Me.BandedGridColumnmkd_normal_view, Me.BandedGridColumnmkd_30_view, Me.BandedGridColumnmkd_50_view, Me.BandedGridColumnmkd_70_view, Me.BandedGridColumnfirst_del, Me.BandedGridColumnage, Me.BandedGridColumndesign_cop, Me.BandedGridColumnid_design_price, Me.BandedGridColumndesign_price, Me.BandedGridColumnprice_type, Me.BandedGridColumndesign_cat, Me.BandedGridColumnid_design_price_normal, Me.BandedGridColumndesign_price_normal, Me.BandedGridColumncurr_disc, Me.BandedGridColumnpropose_disc, Me.BandedGridColumnpropose_price, Me.BandedGridColumnpropose_price_final, Me.BandedGridColumnerp_discount, Me.BandedGridColumnnote, Me.BandedGridColumnpropose_disc_old, Me.BandedGridColumnpropose_price_old, Me.BandedGridColumnpropose_price_final_old, Me.BandedGridColumnis_edit, Me.BandedGridColumnnote_old, Me.BandedGridColumnpropose_disc_group, Me.BandedGridColumnpropose_status, Me.BandedGridColumntotal_sal, Me.BandedGridColumntotal_soh, Me.BandedGridColumntotal_bos, Me.BandedGridColumnsas, Me.BandedGridColumntotal_normal_value, Me.BandedGridColumntotal_current_value, Me.BandedGridColumntotal_propose_value, Me.BandedGridColumntotal_cost, Me.BandedGridColumnmarked_down_value, Me.BandedGridColumnmark_up, Me.BandedGridColumnbtn_edit_propose, Me.BandedGridColumncheck_stt, Me.BandedGridColumnis_select, Me.BandedGridColumnid_pp_change_hist, Me.BandedGridColumnnumber_hist, Me.BandedGridColumnpropose_discount_hist, Me.BandedGridColumnpropose_price_final_hist, Me.BandedGridColumnbtn_more_hist, Me.BandedGridColumnis_extended_eos, Me.BandedGridColumnextended_eos, Me.BandedGridColumnid_extended_eos_old, Me.BandedGridColumncurr_extended_eos})
         GridFormatRule1.Column = Me.BandedGridColumncheck_stt
         GridFormatRule1.ColumnApplyTo = Me.BandedGridColumndesign_code
         GridFormatRule1.Name = "Format1"
@@ -994,7 +995,6 @@ Partial Class FormProposePriceMKDDet
         Me.GVData.OptionsCustomization.AllowSort = False
         Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsPrint.AllowMultilineHeaders = True
-        Me.GVData.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVData.OptionsView.ShowFooter = True
@@ -1068,6 +1068,7 @@ Partial Class FormProposePriceMKDDet
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_price_normal)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumndesign_price)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumncurr_disc)
+        Me.gridBandDetail.Columns.Add(Me.BandedGridColumncurr_extended_eos)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumntotal_sal)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumntotal_soh)
         Me.gridBandDetail.Columns.Add(Me.BandedGridColumntotal_bos)
@@ -1075,7 +1076,7 @@ Partial Class FormProposePriceMKDDet
         Me.gridBandDetail.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.gridBandDetail.Name = "gridBandDetail"
         Me.gridBandDetail.VisibleIndex = 1
-        Me.gridBandDetail.Width = 1472
+        Me.gridBandDetail.Width = 1547
         '
         'BandedGridColumnage
         '
@@ -1202,6 +1203,18 @@ Partial Class FormProposePriceMKDDet
         Me.BandedGridColumndesign_price_normal.Name = "BandedGridColumndesign_price_normal"
         Me.BandedGridColumndesign_price_normal.OptionsColumn.ReadOnly = True
         Me.BandedGridColumndesign_price_normal.Visible = True
+        '
+        'BandedGridColumncurr_extended_eos
+        '
+        Me.BandedGridColumncurr_extended_eos.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumncurr_extended_eos.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumncurr_extended_eos.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumncurr_extended_eos.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumncurr_extended_eos.Caption = "Current Eos Remark"
+        Me.BandedGridColumncurr_extended_eos.FieldName = "curr_extended_eos"
+        Me.BandedGridColumncurr_extended_eos.Name = "BandedGridColumncurr_extended_eos"
+        Me.BandedGridColumncurr_extended_eos.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumncurr_extended_eos.Visible = True
         '
         'BandedGridColumntotal_sal
         '
@@ -1372,10 +1385,14 @@ Partial Class FormProposePriceMKDDet
         '
         'BandedGridColumnextended_eos
         '
+        Me.BandedGridColumnextended_eos.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnextended_eos.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnextended_eos.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnextended_eos.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BandedGridColumnextended_eos.Caption = "EOS Remark"
         Me.BandedGridColumnextended_eos.FieldName = "extended_eos"
         Me.BandedGridColumnextended_eos.Name = "BandedGridColumnextended_eos"
-        Me.BandedGridColumnextended_eos.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnextended_eos.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnextended_eos.Visible = True
         '
         'gridBandTotalValue
@@ -1673,6 +1690,10 @@ Partial Class FormProposePriceMKDDet
         '
         'BandedGridColumnid_extended_eos_old
         '
+        Me.BandedGridColumnid_extended_eos_old.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnid_extended_eos_old.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnid_extended_eos_old.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnid_extended_eos_old.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BandedGridColumnid_extended_eos_old.Caption = "id_extended_eos_old"
         Me.BandedGridColumnid_extended_eos_old.FieldName = "id_extended_eos_old"
         Me.BandedGridColumnid_extended_eos_old.Name = "BandedGridColumnid_extended_eos_old"
@@ -1703,7 +1724,7 @@ Partial Class FormProposePriceMKDDet
         Me.PanelOpt.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelOpt.Controls.Add(Me.CESelectAll)
         Me.PanelOpt.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelOpt.Location = New System.Drawing.Point(509, 2)
+        Me.PanelOpt.Location = New System.Drawing.Point(503, 2)
         Me.PanelOpt.Name = "PanelOpt"
         Me.PanelOpt.Size = New System.Drawing.Size(74, 56)
         Me.PanelOpt.TabIndex = 8932
@@ -1721,9 +1742,9 @@ Partial Class FormProposePriceMKDDet
         Me.BtnExtendedEOS.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnExtendedEOS.Image = CType(resources.GetObject("BtnExtendedEOS.Image"), System.Drawing.Image)
         Me.BtnExtendedEOS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnExtendedEOS.Location = New System.Drawing.Point(583, 2)
+        Me.BtnExtendedEOS.Location = New System.Drawing.Point(577, 2)
         Me.BtnExtendedEOS.Name = "BtnExtendedEOS"
-        Me.BtnExtendedEOS.Size = New System.Drawing.Size(83, 56)
+        Me.BtnExtendedEOS.Size = New System.Drawing.Size(89, 56)
         Me.BtnExtendedEOS.TabIndex = 8934
         Me.BtnExtendedEOS.Text = "Extended EOS"
         Me.BtnExtendedEOS.Visible = False
@@ -2025,11 +2046,12 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents BandedGridColumnextended_eos As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnis_extended_eos As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BtnExtendedEOS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BandedGridColumnid_extended_eos_old As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandAction As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumncurr_extended_eos As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandHistory As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandPropose As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandTotalValue As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandOther As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumnid_extended_eos_old As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
