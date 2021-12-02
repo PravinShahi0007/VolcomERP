@@ -203,7 +203,7 @@
         If id_departement_user = "11" Then
             query_in = "653, 1177, 1286"
         Else
-            query_in = "0"
+            query_in = "653, 1177, 1286"
         End If
 
         If id_role_login = "1" Then
