@@ -67,7 +67,7 @@
 
             'option
             BtnCreateNew.Visible = True
-            Width = 501
+            Width = 600
             Height = 250
             WindowState = FormWindowState.Normal
             MaximizeBox = False
