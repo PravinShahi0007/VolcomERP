@@ -52,6 +52,7 @@ Partial Class FormFGLineList
         Me.BBQuickUpdate = New DevExpress.XtraBars.BarButtonItem()
         Me.BBSubOther = New DevExpress.XtraBars.BarSubItem()
         Me.BBSetAddPrc = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBRateManagementToday = New DevExpress.XtraBars.BarButtonItem()
         Me.PanelImg = New DevExpress.XtraEditors.PanelControl()
         Me.CheckImg = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
@@ -86,7 +87,6 @@ Partial Class FormFGLineList
         Me.SMViewCostHist = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewHistoryProposeChangesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProposeChangesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BBRateManagementToday = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -370,6 +370,12 @@ Partial Class FormFGLineList
         Me.BBSetAddPrc.Caption = "Set Additional Price"
         Me.BBSetAddPrc.Id = 11
         Me.BBSetAddPrc.Name = "BBSetAddPrc"
+        '
+        'BBRateManagementToday
+        '
+        Me.BBRateManagementToday.Caption = "Today Rate Management"
+        Me.BBRateManagementToday.Id = 13
+        Me.BBRateManagementToday.Name = "BBRateManagementToday"
         '
         'PanelImg
         '
@@ -700,12 +706,6 @@ Partial Class FormFGLineList
         Me.ProposeChangesToolStripMenuItem.Name = "ProposeChangesToolStripMenuItem"
         Me.ProposeChangesToolStripMenuItem.Size = New System.Drawing.Size(235, 22)
         Me.ProposeChangesToolStripMenuItem.Text = "[changes]"
-        '
-        'BBRateManagementToday
-        '
-        Me.BBRateManagementToday.Caption = "Today Rate Management"
-        Me.BBRateManagementToday.Id = 13
-        Me.BBRateManagementToday.Name = "BBRateManagementToday"
         '
         'FormFGLineList
         '
