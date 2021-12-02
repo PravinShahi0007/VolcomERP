@@ -37,6 +37,7 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnRetDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColuminStoreDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLifetime = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,7 +74,7 @@ Partial Class FormFGLineListPrepPrice
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCode, Me.GridColumnId, Me.GridColumnPrice, Me.GridColumnRate, Me.GridColumnMsrp, Me.GridColumnName, Me.GridColumnColor, Me.GridColumnDel, Me.GridColumnRetCode, Me.GridColumnEOS, Me.GridColumnDiv, Me.GridColumnRetDate, Me.GridColuminStoreDate, Me.GridColumnLifetime})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCode, Me.GridColumnId, Me.GridColumnPrice, Me.GridColumnRate, Me.GridColumnMsrp, Me.GridColumnName, Me.GridColumnColor, Me.GridColumnDel, Me.GridColumnRetCode, Me.GridColumnEOS, Me.GridColumnDiv, Me.GridColumnRetDate, Me.GridColuminStoreDate, Me.GridColumnLifetime, Me.GridColumnclass})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
@@ -103,7 +104,7 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnPrice.FieldName = "est_price"
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 6
+        Me.GridColumnPrice.VisibleIndex = 7
         Me.GridColumnPrice.Width = 148
         '
         'GridColumnRate
@@ -114,7 +115,7 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnRate.FieldName = "rate_current"
         Me.GridColumnRate.Name = "GridColumnRate"
         Me.GridColumnRate.Visible = True
-        Me.GridColumnRate.VisibleIndex = 4
+        Me.GridColumnRate.VisibleIndex = 5
         Me.GridColumnRate.Width = 148
         '
         'GridColumnMsrp
@@ -125,7 +126,7 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnMsrp.FieldName = "msrp"
         Me.GridColumnMsrp.Name = "GridColumnMsrp"
         Me.GridColumnMsrp.Visible = True
-        Me.GridColumnMsrp.VisibleIndex = 5
+        Me.GridColumnMsrp.VisibleIndex = 6
         Me.GridColumnMsrp.Width = 148
         '
         'GridColumnName
@@ -143,7 +144,7 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnColor.FieldName = "color"
         Me.GridColumnColor.Name = "GridColumnColor"
         Me.GridColumnColor.Visible = True
-        Me.GridColumnColor.VisibleIndex = 2
+        Me.GridColumnColor.VisibleIndex = 3
         Me.GridColumnColor.Width = 114
         '
         'GridColumnDel
@@ -152,7 +153,7 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnDel.FieldName = "delivery"
         Me.GridColumnDel.Name = "GridColumnDel"
         Me.GridColumnDel.Visible = True
-        Me.GridColumnDel.VisibleIndex = 7
+        Me.GridColumnDel.VisibleIndex = 8
         Me.GridColumnDel.Width = 148
         '
         'GridColumnRetCode
@@ -161,7 +162,7 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnRetCode.FieldName = "ret_code"
         Me.GridColumnRetCode.Name = "GridColumnRetCode"
         Me.GridColumnRetCode.Visible = True
-        Me.GridColumnRetCode.VisibleIndex = 9
+        Me.GridColumnRetCode.VisibleIndex = 10
         Me.GridColumnRetCode.Width = 76
         '
         'GridColumnEOS
@@ -172,7 +173,7 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnEOS.FieldName = "design_eos"
         Me.GridColumnEOS.Name = "GridColumnEOS"
         Me.GridColumnEOS.Visible = True
-        Me.GridColumnEOS.VisibleIndex = 12
+        Me.GridColumnEOS.VisibleIndex = 13
         Me.GridColumnEOS.Width = 196
         '
         'GridColumnDiv
@@ -181,7 +182,7 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnDiv.FieldName = "division"
         Me.GridColumnDiv.Name = "GridColumnDiv"
         Me.GridColumnDiv.Visible = True
-        Me.GridColumnDiv.VisibleIndex = 3
+        Me.GridColumnDiv.VisibleIndex = 4
         Me.GridColumnDiv.Width = 116
         '
         'GridColumnRetDate
@@ -192,7 +193,7 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnRetDate.FieldName = "ret_date"
         Me.GridColumnRetDate.Name = "GridColumnRetDate"
         Me.GridColumnRetDate.Visible = True
-        Me.GridColumnRetDate.VisibleIndex = 10
+        Me.GridColumnRetDate.VisibleIndex = 11
         Me.GridColumnRetDate.Width = 108
         '
         'GridColuminStoreDate
@@ -203,7 +204,7 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColuminStoreDate.FieldName = "delivery_date"
         Me.GridColuminStoreDate.Name = "GridColuminStoreDate"
         Me.GridColuminStoreDate.Visible = True
-        Me.GridColuminStoreDate.VisibleIndex = 8
+        Me.GridColuminStoreDate.VisibleIndex = 9
         Me.GridColuminStoreDate.Width = 86
         '
         'GridColumnLifetime
@@ -216,8 +217,16 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnLifetime.UnboundExpression = "DateDiffMonth([delivery_date], [ret_date])"
         Me.GridColumnLifetime.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumnLifetime.Visible = True
-        Me.GridColumnLifetime.VisibleIndex = 11
+        Me.GridColumnLifetime.VisibleIndex = 12
         Me.GridColumnLifetime.Width = 62
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
         '
         'FormFGLineListPrepPrice
         '
@@ -258,4 +267,5 @@ Partial Class FormFGLineListPrepPrice
     Friend WithEvents GridColumnRetDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColuminStoreDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnLifetime As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
 End Class
