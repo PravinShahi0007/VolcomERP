@@ -200,17 +200,22 @@ GROUP BY del.awbill_no"
                 Dim qc2 As String = "SELECT * FROM tb_odm_print_log WHERE report_mark_type='" & dtc.Rows(0)("report_mark_type").ToString & "' AND id_odm_print='" & id_print & "'"
                 Dim dtc2 As DataTable = execute_query(qc2, -1, True, "", "", "", "")
                 If Not dtc2.Rows.Count > 0 Then
-                    'hanya kirim jika belum pernah ngirim
-                    Dim mail As ClassSendEmail = New ClassSendEmail()
-                    mail.id_report = id_print
-                    mail.par1 = dtc.Rows(0)("number").ToString
-                    mail.par2 = dtc.Rows(0)("comp_name").ToString
-                    mail.par3 = dtc.Rows(0)("id_3pl").ToString
-                    mail.report_mark_type = dtc.Rows(0)("report_mark_type").ToString
-                    mail.is_odm_asuransi = True
-                    mail.send_email()
-                    'log
-                    execute_non_query("INSERT INTO tb_odm_print_log(id_odm_print,report_mark_type,id_comp,date_log) VALUES('" & id_print & "','" & dtc.Rows(0)("report_mark_type").ToString & "','" & dtc.Rows(0)("id_3pl").ToString & "',NOW())", True, "", "", "", "")
+                    Try
+                        'hanya kirim jika belum pernah ngirim
+                        Dim mail As ClassSendEmail = New ClassSendEmail()
+                        mail.id_report = id_print
+                        mail.par1 = dtc.Rows(0)("number").ToString
+                        mail.par2 = dtc.Rows(0)("comp_name").ToString
+                        mail.par3 = dtc.Rows(0)("id_3pl").ToString
+                        mail.report_mark_type = dtc.Rows(0)("report_mark_type").ToString
+                        mail.is_odm_asuransi = True
+                        mail.send_email()
+                        'log
+                        execute_non_query("INSERT INTO tb_odm_print_log(id_odm_print,report_mark_type,id_comp,date_log) VALUES('" & id_print & "','" & dtc.Rows(0)("report_mark_type").ToString & "','" & dtc.Rows(0)("id_3pl").ToString & "',NOW())", True, "", "", "", "")
+                    Catch ex As Exception
+                        stopCustom("ERROR SENDING EMAIL, PLEASE CONTACT ADMINISTRATOR")
+                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'ERROR SEND EMAIL INSURANCE')", -1, True, "", "", "", "")
+                    End Try
                 End If
             End If
         End If
@@ -290,15 +295,20 @@ GROUP BY c.`id_comp`"
                                 Dim dtc3 As DataTable = execute_query(qc3, -1, True, "", "", "", "")
 
                                 If dtc3.Rows.Count > 0 Then
-                                    Dim mail As ClassSendEmail = New ClassSendEmail()
-                                    mail.id_report = id_print
-                                    mail.id_reff = dts.Rows(k)("id_comp").ToString
-                                    mail.par1 = TENumber.Text
-                                    mail.par2 = dts.Rows(k)("comp_name").ToString
-                                    mail.report_mark_type = "320"
-                                    mail.send_email()
-                                    'log
-                                    execute_non_query("INSERT INTO tb_odm_print_log(id_odm_print,report_mark_type,id_comp,id_comp_group,date_log) VALUES('" & id_print & "','320','" & dts.Rows(k)("id_comp").ToString & "','" & dt.Rows(i)("id_comp_group").ToString & "',NOW())", True, "", "", "", "")
+                                    Try
+                                        Dim mail As ClassSendEmail = New ClassSendEmail()
+                                        mail.id_report = id_print
+                                        mail.id_reff = dts.Rows(k)("id_comp").ToString
+                                        mail.par1 = TENumber.Text
+                                        mail.par2 = dts.Rows(k)("comp_name").ToString
+                                        mail.report_mark_type = "320"
+                                        mail.send_email()
+                                        'log
+                                        execute_non_query("INSERT INTO tb_odm_print_log(id_odm_print,report_mark_type,id_comp,id_comp_group,date_log) VALUES('" & id_print & "','320','" & dts.Rows(k)("id_comp").ToString & "','" & dt.Rows(i)("id_comp_group").ToString & "',NOW())", True, "", "", "", "")
+                                    Catch ex As Exception
+                                        stopCustom("ERROR SENDING EMAIL, PLEASE CONTACT ADMINISTRATOR")
+                                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'ERROR SEND EMAIL STOK DEL TO STORE')", -1, True, "", "", "", "")
+                                    End Try
                                 End If
                             Next
                         End If
@@ -307,15 +317,20 @@ GROUP BY c.`id_comp`"
                         Dim dtc3 As DataTable = execute_query(qc3, -1, True, "", "", "", "")
 
                         If dtc3.Rows.Count > 0 Then
-                            Dim mail As ClassSendEmail = New ClassSendEmail()
-                            mail.id_report = id_print
-                            mail.id_reff = dt.Rows(i)("id_comp_group").ToString
-                            mail.par1 = TENumber.Text
-                            mail.par2 = dt.Rows(i)("description").ToString
-                            mail.report_mark_type = "314"
-                            mail.send_email()
-                            'log
-                            execute_non_query("INSERT INTO tb_odm_print_log(id_odm_print,report_mark_type,id_comp_group,date_log) VALUES('" & id_print & "','314','" & dt.Rows(i)("id_comp_group").ToString & "',NOW())", True, "", "", "", "")
+                            Try
+                                Dim mail As ClassSendEmail = New ClassSendEmail()
+                                mail.id_report = id_print
+                                mail.id_reff = dt.Rows(i)("id_comp_group").ToString
+                                mail.par1 = TENumber.Text
+                                mail.par2 = dt.Rows(i)("description").ToString
+                                mail.report_mark_type = "314"
+                                mail.send_email()
+                                'log
+                                execute_non_query("INSERT INTO tb_odm_print_log(id_odm_print,report_mark_type,id_comp_group,date_log) VALUES('" & id_print & "','314','" & dt.Rows(i)("id_comp_group").ToString & "',NOW())", True, "", "", "", "")
+                            Catch ex As Exception
+                                stopCustom("ERROR SENDING EMAIL, PLEASE CONTACT ADMINISTRATOR")
+                                execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'ERROR SEND EMAIL STOK DEL TO STORE')", -1, True, "", "", "", "")
+                            End Try
                         End If
                     End If
                 End If
