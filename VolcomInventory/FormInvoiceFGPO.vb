@@ -379,4 +379,12 @@ GROUP BY dp.id_pn_fgpo,dpd.id_report"
     Private Sub BPrintDPPaid_Click(sender As Object, e As EventArgs) Handles BPrintDPPaid.Click
         print_no_footer(GCDPUsed, "List DP " & SLEVendor.Text)
     End Sub
+
+    Private Sub XTCInvoiceFGPO_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCInvoiceFGPO.SelectedPageChanged
+        If XTCInvoiceFGPO.SelectedTabPageIndex = 5 Then
+            PCVendor.Visible = False
+        Else
+            PCVendor.Visible = True
+        End If
+    End Sub
 End Class

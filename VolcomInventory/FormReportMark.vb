@@ -10739,12 +10739,33 @@ WHERE qci.id_qc_sni_in='" & id_report & "'"
 
             If id_status_reportx = "6" Then
                 'masukkan ke pib review
-                Dim qu As String = "INSERT INTO `tb_pib_review`(`id_pre_cal_fgpo`,`id_pre_cal_fgpo_list`,`id_prod_order`,`id_design`,`notif_qty_sales_percent`,`notif_days_before`,`is_notified`,`is_active`)
-SELECT fl.`id_pre_cal_fgpo`,fl.`id_pre_cal_fgpo_list`,fl.`id_prod_order`,pdd.`id_design`,f.`sales_percent`,45 AS notif_days_before,2 AS is_notified,1 AS is_active
-FROM tb_pre_cal_fgpo_list fl
-INNER JOIN tb_pre_cal_fgpo f ON f.`id_pre_cal_fgpo`=fl.`id_pre_cal_fgpo` AND f.`id_pre_cal_fgpo`='" & id_report & "'
-INNER JOIN tb_prod_order po ON fl.`id_prod_order`=po.id_prod_order
-INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`"
+                Dim qu As String = "INSERT INTO `tb_pib_review`(`id_pre_cal_fgpo`,`id_pre_cal_fgpo_list`,`id_prod_order`,`id_design`,`notif_qty_sales_percent`,`notif_days_before`,`is_notified`,`is_active`,`tot_qty_royalty`,tot_royalty,qty_po)
+SELECT cal.`id_pre_cal_fgpo`,l.`id_pre_cal_fgpo_list`,l.`id_prod_order`,d.`id_design`,cal.`sales_percent`,45 AS notif_days_before,2 AS is_notified,1 AS is_active
+,ROUND(l.`qty`*(cal.`sales_percent`/100)) AS tot_qty_royalty
+,SUM(ROUND((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100) * ROUND(l.`qty`*(cal.`sales_percent`/100)),2)) AS tot_royalty
+,l.qty
+FROM `tb_pre_cal_fgpo_list` l
+INNER JOIN tb_pre_cal_fgpo cal ON cal.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo` AND cal.id_report_status=6
+INNER JOIN tb_prod_order po ON po.`id_prod_order`=l.`id_prod_order`
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+INNER JOIN tb_m_design d ON d.`id_design`=pdd.`id_design`
+INNER JOIN 
+(
+	SELECT det.`id_pre_cal_fgpo`,SUM(det.`total_in_rp`) AS tot_freight
+	FROM tb_pre_cal_fgpo_det det
+	INNER JOIN tb_pre_cal_fgpo f ON f.`id_pre_cal_fgpo`=det.`id_pre_cal_fgpo` AND f.`choosen_id_comp`=det.`id_comp`
+	WHERE det.id_type=1
+	GROUP BY det.`id_pre_cal_fgpo`
+)tot_freight ON tot_freight.id_pre_cal_fgpo=cal.id_pre_cal_fgpo
+INNER JOIN 
+(
+	SELECT f.`id_pre_cal_fgpo`,SUM(l.`qty`) AS tot_qty,SUM(ROUND(l.`qty`*(f.`sales_percent`/100))) AS tot_qty_sales
+	FROM tb_pre_cal_fgpo_list l
+	INNER JOIN tb_pre_cal_fgpo f ON f.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo`  
+	GROUP BY f.`id_pre_cal_fgpo`
+)tot_fgpo ON tot_fgpo.id_pre_cal_fgpo=cal.id_pre_cal_fgpo
+WHERE l.id_pre_cal_fgpo='" & id_report & "'
+GROUP BY l.`id_pre_cal_fgpo`,l.id_prod_order"
                 execute_non_query(qu, True, "", "", "", "")
             End If
 
@@ -10916,7 +10937,7 @@ WHERE id_acc_trans='" & old_id_acc_trans & "'"
             If id_status_reportx = "6" Then
                 Dim q As String = "UPDATE tb_pib_review pr
 INNER JOIN tb_pib_pps_det ppsd ON ppsd.id_pre_cal_fgpo=pr.id_pre_cal_fgpo AND is_active=1
-SET pr.pib_no=ppsd.pib_no,pr.pib_date=ppsd.pib_date,pr.pib_tax_amo=ppsd.pib_tax_amo
+SET pr.pib_no=ppsd.pib_no,pr.pib_date=ppsd.pib_date
 WHERE ppsd.id_pib_pps='" & id_report & "'"
                 execute_non_query(q, True, "", "", "", "")
             End If
