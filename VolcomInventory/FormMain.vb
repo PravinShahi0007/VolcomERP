@@ -8393,7 +8393,11 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormPurcReq" Then
             print_raw_no_export(FormPurcReq.GCPurcReq)
         ElseIf formName = "FormPurcOrder" Then
-            print_raw(FormPurcOrder.GCPO, "List PO")
+            If FormPurcOrder.XTCPO.SelectedTabPageIndex = 0 Then
+                print_raw(FormPurcOrder.GCPurcReq, "List Purchase Request")
+            ElseIf FormPurcOrder.XTCPO.SelectedTabPageIndex = 1 Then
+                print_raw(FormPurcOrder.GCPO, "List Purchase Order")
+            End If
         ElseIf formName = "FormProdDemandRev" Then
             print_raw_no_export(FormProdDemandRev.GCData)
         ElseIf formName = "FormReportMarkCancelList" Then

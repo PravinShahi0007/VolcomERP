@@ -35,6 +35,7 @@ Partial Class FormPIBPPSDet
         Me.TEPIBNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -47,6 +48,7 @@ Partial Class FormPIBPPSDet
         CType(Me.DEPIB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEPIB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPIBNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -65,6 +67,7 @@ Partial Class FormPIBPPSDet
         Me.GCSummary.Location = New System.Drawing.Point(2, 20)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
+        Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1})
         Me.GCSummary.Size = New System.Drawing.Size(619, 409)
         Me.GCSummary.TabIndex = 2
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
@@ -77,6 +80,7 @@ Partial Class FormPIBPPSDet
         Me.GVSummary.OptionsBehavior.Editable = False
         Me.GVSummary.OptionsBehavior.ReadOnly = True
         Me.GVSummary.OptionsFind.AlwaysVisible = True
+        Me.GVSummary.OptionsView.RowAutoHeight = True
         Me.GVSummary.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -96,6 +100,7 @@ Partial Class FormPIBPPSDet
         'GridColumn16
         '
         Me.GridColumn16.Caption = "FGPO List"
+        Me.GridColumn16.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.GridColumn16.FieldName = "list_fgpo"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
@@ -204,6 +209,10 @@ Partial Class FormPIBPPSDet
         Me.LabelControl2.TabIndex = 182
         Me.LabelControl2.Text = "PIB Number"
         '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
         'FormPIBPPSDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -231,6 +240,7 @@ Partial Class FormPIBPPSDet
         CType(Me.DEPIB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEPIB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPIBNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -251,4 +261,5 @@ Partial Class FormPIBPPSDet
     Friend WithEvents TEPIBNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class
