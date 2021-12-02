@@ -7,7 +7,7 @@
     End Sub
 
     Sub viewDesign()
-        Dim query As String = "SELECT dsg.design_display_name AS `name`, det.color, dv.division, pd_dsg.id_prod_demand_design AS `id`, dsg.design_code as `code`, pd_dsg.prod_demand_design_propose_price AS `est_price`, "
+        Dim query As String = "SELECT dsg.design_display_name AS `name`, cls.class, det.color, dv.division, pd_dsg.id_prod_demand_design AS `id`, dsg.design_code as `code`, pd_dsg.prod_demand_design_propose_price AS `est_price`, "
         query += "pd_dsg.rate_current, pd_dsg.msrp, dsg.id_delivery, del.delivery, del.delivery_date, dsg.id_ret_code, rc.ret_code, rc.ret_date, dsg.design_eos "
         query += "FROM tb_m_design dsg "
         query += "LEFT JOIN tb_season_delivery del ON del.id_delivery = dsg.id_delivery "
@@ -30,6 +30,12 @@
         query += "INNER Join tb_m_code_detail b ON a.id_code_detail = b.id_code_detail And b.id_code = '32' "
         query += "GROUP BY a.id_design "
         query += ") dv ON dv.id_design = dsg.id_design "
+        query += "LEFT JOIN (
+            Select b.display_name As class, a.id_design 
+            FROM tb_m_design_code a 
+            INNER Join tb_m_code_detail b ON a.id_code_detail = b.id_code_detail And b.id_code = '30' 
+            GROUP BY a.id_design
+        ) cls ON cls.id_design = dsg.id_design "
         query += "WHERE dsg.id_season = '" + id_season + "' AND dsg.id_active=1 "
         query += "ORDER BY dsg.id_design ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
