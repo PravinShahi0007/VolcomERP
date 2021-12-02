@@ -146,15 +146,16 @@ Partial Class FormFGProposePriceRev
         Me.GridColumnFGPO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnActive = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.CEFreezeColAll = New DevExpress.XtraEditors.CheckEdit()
-        Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
         Me.GridColumnSalePriceAll = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSalePriceMinAdditionalAll = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnMarkUpSaleAll = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnMarkUpManagRateSaleAll = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSetAsMasterDisplayAll = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSetAsPrintDisplayAll = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEFreezeColAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
+        Me.BtnResetPropose = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -333,6 +334,7 @@ Partial Class FormFGProposePriceRev
         Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnMark)
         Me.PanelControlBottom.Controls.Add(Me.BtnCancell)
+        Me.PanelControlBottom.Controls.Add(Me.BtnResetPropose)
         Me.PanelControlBottom.Controls.Add(Me.BtnSaveChanges)
         Me.PanelControlBottom.Controls.Add(Me.BtnConfirm)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -345,7 +347,7 @@ Partial Class FormFGProposePriceRev
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(384, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(261, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
         Me.BtnPrint.TabIndex = 3
@@ -355,7 +357,7 @@ Partial Class FormFGProposePriceRev
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(471, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(348, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 40)
         Me.BtnAttachment.TabIndex = 4
@@ -377,7 +379,7 @@ Partial Class FormFGProposePriceRev
         '
         Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(577, 2)
+        Me.BtnCancell.Location = New System.Drawing.Point(454, 2)
         Me.BtnCancell.Name = "BtnCancell"
         Me.BtnCancell.Size = New System.Drawing.Size(126, 40)
         Me.BtnCancell.TabIndex = 7
@@ -1687,32 +1689,6 @@ Partial Class FormFGProposePriceRev
         Me.GridColumnActive.Name = "GridColumnActive"
         Me.GridColumnActive.OptionsColumn.AllowEdit = False
         '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.CEFreezeColAll)
-        Me.PanelControl2.Controls.Add(Me.CEShowHighlight)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(915, 34)
-        Me.PanelControl2.TabIndex = 3
-        '
-        'CEFreezeColAll
-        '
-        Me.CEFreezeColAll.Location = New System.Drawing.Point(105, 8)
-        Me.CEFreezeColAll.Name = "CEFreezeColAll"
-        Me.CEFreezeColAll.Properties.Caption = "Freeze Column"
-        Me.CEFreezeColAll.Size = New System.Drawing.Size(95, 19)
-        Me.CEFreezeColAll.TabIndex = 8
-        '
-        'CEShowHighlight
-        '
-        Me.CEShowHighlight.Location = New System.Drawing.Point(11, 8)
-        Me.CEShowHighlight.Name = "CEShowHighlight"
-        Me.CEShowHighlight.Properties.Caption = "show highlight"
-        Me.CEShowHighlight.Size = New System.Drawing.Size(104, 19)
-        Me.CEShowHighlight.TabIndex = 0
-        '
         'GridColumnSalePriceAll
         '
         Me.GridColumnSalePriceAll.Caption = "Sale Price"
@@ -1762,6 +1738,42 @@ Partial Class FormFGProposePriceRev
         Me.GridColumnSetAsPrintDisplayAll.Caption = "Print On Tag"
         Me.GridColumnSetAsPrintDisplayAll.FieldName = "design_price_type_print"
         Me.GridColumnSetAsPrintDisplayAll.Name = "GridColumnSetAsPrintDisplayAll"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.CEFreezeColAll)
+        Me.PanelControl2.Controls.Add(Me.CEShowHighlight)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(915, 34)
+        Me.PanelControl2.TabIndex = 3
+        '
+        'CEFreezeColAll
+        '
+        Me.CEFreezeColAll.Location = New System.Drawing.Point(105, 8)
+        Me.CEFreezeColAll.Name = "CEFreezeColAll"
+        Me.CEFreezeColAll.Properties.Caption = "Freeze Column"
+        Me.CEFreezeColAll.Size = New System.Drawing.Size(95, 19)
+        Me.CEFreezeColAll.TabIndex = 8
+        '
+        'CEShowHighlight
+        '
+        Me.CEShowHighlight.Location = New System.Drawing.Point(11, 8)
+        Me.CEShowHighlight.Name = "CEShowHighlight"
+        Me.CEShowHighlight.Properties.Caption = "show highlight"
+        Me.CEShowHighlight.Size = New System.Drawing.Size(104, 19)
+        Me.CEShowHighlight.TabIndex = 0
+        '
+        'BtnResetPropose
+        '
+        Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
+        Me.BtnResetPropose.Location = New System.Drawing.Point(580, 2)
+        Me.BtnResetPropose.Name = "BtnResetPropose"
+        Me.BtnResetPropose.Size = New System.Drawing.Size(123, 40)
+        Me.BtnResetPropose.TabIndex = 10
+        Me.BtnResetPropose.Text = "Reset Propose"
         '
         'FormFGProposePriceRev
         '
@@ -1951,4 +1963,5 @@ Partial Class FormFGProposePriceRev
     Friend WithEvents GridColumnMarkUpManagRateSaleAll As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSetAsMasterDisplayAll As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSetAsPrintDisplayAll As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnResetPropose As DevExpress.XtraEditors.SimpleButton
 End Class
