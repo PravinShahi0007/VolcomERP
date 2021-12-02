@@ -10279,7 +10279,12 @@ WHERE pps.id_product_weight_pps='" & id_report & "'"
                 FROM tb_pp_change_det pd
                 INNER JOIN tb_pp_change p ON p.id_pp_change = pd.id_pp_change
                 INNER JOIN tb_lookup_design_mkd t ON t.id_design_mkd = p.id_design_mkd
-                WHERE pd.id_pp_change='" + id_report + "' AND !ISNULL(pd.propose_price_final) AND pd.propose_price_final>0 "
+                WHERE pd.id_pp_change='" + id_report + "' AND !ISNULL(pd.propose_price_final) AND pd.propose_price_final>0;
+                -- extended eos
+                INSERT INTO tb_design_extended_eos(id_design, id_extended_eos, id_pp_change, active_date, is_active)
+                SELECT d.id_design, d.id_extended_eos, d.id_pp_change, NOW(), 1
+                FROM tb_pp_change_det d
+                WHERE d.id_pp_change='" + id_report + "' AND d.id_extended_eos=1; "
                 execute_non_query(qm, True, "", "", "", "")
             End If
 
