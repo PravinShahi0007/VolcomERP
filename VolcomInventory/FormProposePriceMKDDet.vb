@@ -303,7 +303,7 @@
                 FormMain.SplashScreenManager1.ShowWaitForm()
             End If
             GVData.ActiveFilterString = "[id_pp_change_det]=0 AND ([propose_disc]>0 OR [propose_price]>0 OR [propose_price_final]>0 OR [note]<>'' OR [id_extended_eos]<>2) "
-            Dim qins As String = "INSERT INTO tb_pp_change_det(id_pp_change, id_design, id_design_price, design_price, age, erp_discount, propose_discount, propose_price, propose_price_final, note, id_extended_eos) VALUES "
+            Dim qins As String = "INSERT INTO tb_pp_change_det(id_pp_change, id_design, id_design_price, design_price, age, erp_discount, propose_discount, propose_price, propose_price_final, note, id_extended_eos, id_design_extended_eos) VALUES "
             For i As Integer = 0 To (GVData.RowCount - 1) - GetGroupRowCount(GVData)
                 Cursor = Cursors.WaitCursor
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Processing new detail " + (i + 1).ToString + "/" + GVData.RowCount.ToString)
@@ -329,10 +329,14 @@
                 End If
                 Dim note As String = addSlashes(GVData.GetRowCellValue(i, "note").ToString)
                 Dim id_extended_eos As String = GVData.GetRowCellValue(i, "id_extended_eos").ToString
+                Dim id_design_extended_eos As String = GVData.GetRowCellValue(i, "id_design_extended_eos").ToString
+                If id_design_extended_eos = "" Then
+                    id_design_extended_eos = "NULL"
+                End If
                 If i > 0 Then
                     qins += ","
                 End If
-                qins += "('" + id + "', '" + id_design + "', '" + id_design_price + "', '" + design_price + "', '" + age + "', " + erp_discount + ", " + propose_discount + ", " + propose_price + ", " + propose_price_final + ", '" + note + "', '" + id_extended_eos + "') "
+                qins += "('" + id + "', '" + id_design + "', '" + id_design_price + "', '" + design_price + "', '" + age + "', " + erp_discount + ", " + propose_discount + ", " + propose_price + ", " + propose_price_final + ", '" + note + "', '" + id_extended_eos + "'," + id_design_extended_eos + ") "
                 Cursor = Cursors.Default
             Next
             If GVData.RowCount > 0 Then
@@ -1016,7 +1020,7 @@
                     If i > 0 Then
                         id_design_selected += ","
                     End If
-                    id_design_selected = GVData.GetRowCellValue(i, "id_design").ToString
+                    id_design_selected += GVData.GetRowCellValue(i, "id_design").ToString
                 Next
                 Dim qcek As String = "SELECT d.design_code, d.design_display_name 
                 FROM tb_design_extended_eos e 
