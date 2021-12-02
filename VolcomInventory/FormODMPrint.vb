@@ -213,7 +213,7 @@ GROUP BY del.awbill_no"
                         'log
                         execute_non_query("INSERT INTO tb_odm_print_log(id_odm_print,report_mark_type,id_comp,date_log) VALUES('" & id_print & "','" & dtc.Rows(0)("report_mark_type").ToString & "','" & dtc.Rows(0)("id_3pl").ToString & "',NOW())", True, "", "", "", "")
                     Catch ex As Exception
-                        stopCustom("ERROR SENDING EMAIL, PLEASE CONTACT ADMINISTRATOR")
+                        stopCustom("ERROR SENDING EMAIL INSURANCE, PLEASE CONTACT ADMINISTRATOR")
                         execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'ERROR SEND EMAIL INSURANCE')", -1, True, "", "", "", "")
                     End Try
                 End If
@@ -306,8 +306,8 @@ GROUP BY c.`id_comp`"
                                         'log
                                         execute_non_query("INSERT INTO tb_odm_print_log(id_odm_print,report_mark_type,id_comp,id_comp_group,date_log) VALUES('" & id_print & "','320','" & dts.Rows(k)("id_comp").ToString & "','" & dt.Rows(i)("id_comp_group").ToString & "',NOW())", True, "", "", "", "")
                                     Catch ex As Exception
-                                        stopCustom("ERROR SENDING EMAIL, PLEASE CONTACT ADMINISTRATOR")
-                                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'ERROR SEND EMAIL STOK DEL TO STORE')", -1, True, "", "", "", "")
+                                        stopCustom("ERROR SENDING EMAIL STOCK TO " & dts.Rows(k)("comp_name").ToString & ", PLEASE CONTACT ADMINISTRATOR")
+                                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'ERROR SEND EMAIL STOK DEL TO STORE id_comp = " & dts.Rows(k)("id_comp").ToString & "')", -1, True, "", "", "", "")
                                     End Try
                                 End If
                             Next
@@ -328,8 +328,8 @@ GROUP BY c.`id_comp`"
                                 'log
                                 execute_non_query("INSERT INTO tb_odm_print_log(id_odm_print,report_mark_type,id_comp_group,date_log) VALUES('" & id_print & "','314','" & dt.Rows(i)("id_comp_group").ToString & "',NOW())", True, "", "", "", "")
                             Catch ex As Exception
-                                stopCustom("ERROR SENDING EMAIL, PLEASE CONTACT ADMINISTRATOR")
-                                execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'ERROR SEND EMAIL STOK DEL TO STORE')", -1, True, "", "", "", "")
+                                stopCustom("ERROR SENDING EMAIL STOCK TO " & dt.Rows(i)("description").ToString & ", PLEASE CONTACT ADMINISTRATOR")
+                                execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'ERROR SEND EMAIL STOK DEL TO STORE id_comp_group = " & dt.Rows(i)("id_comp_group").ToString & "')", -1, True, "", "", "", "")
                             End Try
                         End If
                     End If
