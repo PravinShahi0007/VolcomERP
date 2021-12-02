@@ -39,6 +39,7 @@ Partial Class FormPurcItem
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndisplay_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -56,7 +57,7 @@ Partial Class FormPurcItem
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumndisplay_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCItem, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVItem, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -235,8 +236,17 @@ Partial Class FormPurcItem
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 11
         '
+        'GridColumndisplay_type
+        '
+        Me.GridColumndisplay_type.Caption = "VM Items"
+        Me.GridColumndisplay_type.FieldName = "display_type"
+        Me.GridColumndisplay_type.Name = "GridColumndisplay_type"
+        Me.GridColumndisplay_type.Visible = True
+        Me.GridColumndisplay_type.VisibleIndex = 9
+        '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BPrint)
         Me.PanelControl1.Controls.Add(Me.SLEType)
         Me.PanelControl1.Controls.Add(Me.LabelControl3)
         Me.PanelControl1.Controls.Add(Me.SimpleButton1)
@@ -375,13 +385,13 @@ Partial Class FormPurcItem
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Category"
         '
-        'GridColumndisplay_type
+        'BPrint
         '
-        Me.GridColumndisplay_type.Caption = "VM Items"
-        Me.GridColumndisplay_type.FieldName = "display_type"
-        Me.GridColumndisplay_type.Name = "GridColumndisplay_type"
-        Me.GridColumndisplay_type.Visible = True
-        Me.GridColumndisplay_type.VisibleIndex = 9
+        Me.BPrint.Location = New System.Drawing.Point(675, 7)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(55, 23)
+        Me.BPrint.TabIndex = 8906
+        Me.BPrint.Text = "print"
         '
         'FormPurcItem
         '
@@ -450,4 +460,5 @@ Partial Class FormPurcItem
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndisplay_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
 End Class
