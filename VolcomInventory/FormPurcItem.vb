@@ -134,4 +134,8 @@
             FormPurcItemDet.ShowDialog()
         End If
     End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        print(GCItem, "Item List")
+    End Sub
 End Class
