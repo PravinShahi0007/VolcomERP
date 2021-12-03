@@ -13,7 +13,7 @@
         Dim query As String = "
             SELECT id_comp, CONCAT(comp_number, ' - ', comp_name) AS account
             FROM tb_m_comp
-            WHERE id_comp_cat = 5
+            WHERE id_comp_cat = 5 AND is_only_for_alloc = 2
         "
 
         viewSearchLookupQuery(SLUEFromAccount, query, "id_comp", "account", "id_comp")
