@@ -318,6 +318,7 @@
     <Compile Include="ClassPurcReturn.vb" />
     <Compile Include="ClassRefundOLStore.vb" />
     <Compile Include="ClassRequestRetOLStore.vb" />
+    <Compile Include="ClassRetExos.vb" />
     <Compile Include="ClassRetOLStore.vb" />
     <Compile Include="ClassReturn.vb" />
     <Compile Include="ClassSalesBranch.vb" />
@@ -4721,6 +4722,12 @@
       <DependentUpon>FormRequestRetOLStoreSingle.vb</DependentUpon>
     </Compile>
     <Compile Include="FormRequestRetOLStoreSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRetExos.Designer.vb">
+      <DependentUpon>FormRetExos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRetExos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormRetOlStore.Designer.vb">
@@ -12659,6 +12666,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRequestRetOLStoreSingle.resx">
       <DependentUpon>FormRequestRetOLStoreSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRetExos.resx">
+      <DependentUpon>FormRetExos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRetOlStore.resx">
       <DependentUpon>FormRetOlStore.vb</DependentUpon>
