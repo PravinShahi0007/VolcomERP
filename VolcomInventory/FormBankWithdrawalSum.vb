@@ -399,7 +399,7 @@ WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
                         execute_non_query(query, True, "", "", "", "")
                         query = "DELETE FROM tb_pn_summary_det WHERE id_pn_summary='" & id_sum & "' AND id_pn='" & GVList.GetRowCellValue(i, "id_pn").ToString & "'"
                         execute_non_query(query, True, "", "", "", "")
-                        qc = "SELECT id_pn_summary FROM tb_pn_summary WHERE DATE(date_payment)='" & Date.Parse(DEChangeDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND id_currency='" & SLEType.EditValue.ToString & "' AND id_report_status!=6"
+                        qc = "SELECT id_pn_summary FROM tb_pn_summary WHERE DATE(date_payment)='" & Date.Parse(DEChangeDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND id_currency='" & SLEType.EditValue.ToString & "' AND id_coa_type='" & id_coa_type & "' AND id_report_status!=6"
                         dtc = execute_query(qc, -1, True, "", "", "", "")
                         If dtc.Rows.Count > 0 Then
                             query = "INSERT INTO tb_pn_summary_det(id_pn_summary,id_pn) VALUES('" & dtc.Rows(0)("id_pn_summary").ToString & "','" & GVList.GetRowCellValue(i, "id_pn").ToString & "')"
