@@ -72,6 +72,18 @@
                 End If
             Next
 
+            'check extended eos
+            For i As Integer = 0 To ((GVProduct.RowCount - 1) - GetGroupRowCount(GVProduct))
+                Dim id_extended_eos As String = GVProduct.GetRowCellValue(i, "id_extended_eos").ToString
+
+                If id_extended_eos = 1 Then
+                    stopCustom(GVProduct.GetRowCellValue(i, "name").ToString + "/Size " + GVProduct.GetRowCellValue(i, "size").ToString + " is Extended EOS product. Please create via 'Propose Return Extended EOSS' ")
+                    GVProduct.FocusedRowHandle = i
+                    GVProduct.ActiveFilterString = ""
+                    Exit Sub
+                End If
+            Next
+
             If cond Then
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to continue this process ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then

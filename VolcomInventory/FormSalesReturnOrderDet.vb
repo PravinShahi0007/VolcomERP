@@ -109,9 +109,10 @@
             Dim query As String = "SELECT j.id_product, p.id_design,0 AS `id_sample`, 
             p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,dcd.class, dcd.color, dcd.sht,
             SUM(IF(j.id_storage_category='2', CONCAT('-', j.storage_product_qty), j.storage_product_qty)) AS qty_all_product,
-            prc.id_design_price_retail, prc.design_price_retail
+            prc.id_design_price_retail, prc.design_price_retail, IFNULL(de.id_extended_eos,2) AS `id_extended_eos`
             FROM tb_storage_fg j
             INNER JOIN tb_m_product p ON p.id_product = j.id_product
+            LEFT JOIN tb_design_extended_eos de ON de.id_design = p.id_design AND de.is_active=1
             INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
             LEFT JOIN (
