@@ -953,6 +953,6 @@
     End Sub
 
     Sub view_clasification()
-        viewSearchLookupQuery(SLUEClasification, "SELECT * FROM tb_lookup_return_clasification", "id_return_clasification", "return_clasification", "id_return_clasification")
+        viewSearchLookupQuery(SLUEClasification, "SELECT * FROM tb_lookup_return_clasification WHERE is_reguler=1", "id_return_clasification", "return_clasification", "id_return_clasification")
     End Sub
 End Class
