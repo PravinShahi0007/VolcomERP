@@ -807,6 +807,10 @@
                         stopCustom("Product not found !")
                         setDefautMyRow(rh)
                         CType(GCItemList.DataSource, DataTable).AcceptChanges()
+                    ElseIf data_filter(0)("id_extended_eos").ToString = "1" Then
+                        stopCustom("This product is still in Extended EOS, please create via menu 'Propose Return Extended EOSS' !")
+                        setDefautMyRow(rh)
+                        CType(GCItemList.DataSource, DataTable).AcceptChanges()
                     Else
                         Dim dt_dupe As DataTable = GCItemList.DataSource
                         Dim data_filter_dupe As DataRow() = dt_dupe.Select("[code]='" + code_pas + "' ")
