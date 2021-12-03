@@ -21,7 +21,7 @@
 
     'VIEW
     Sub viewProduct()
-        Dim query As String = "CALL view_stock_fg('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', '" + date_param + "') "
+        Dim query As String = "CALL view_stock_fg_ror('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', '" + date_param + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProduct.DataSource = data
         If GVProduct.RowCount > 0 Then
