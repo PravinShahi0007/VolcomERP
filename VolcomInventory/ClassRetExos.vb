@@ -13,7 +13,7 @@
         End If
 
         Dim query As String = "SELECT r.id_ret_exos, r.number, r.created_date, r.return_est_date, r.return_del_date, 
-        r.id_store, c.comp_number AS `store_acc`, c.comp_number AS `store`, 
+        r.id_store, c.comp_number AS `store_acc`, c.comp_name AS `store`, 
         r.id_order_type, ot.order_type, r.id_return_clasification, rc.return_clasification, 
         r.id_report_status, stt.report_status, r.note 
         FROM tb_ret_exos r 

@@ -7,7 +7,7 @@
     Dim lead_time_ro As String = "0"
     Public dt As DataTable
     Dim rmt As String = "363"
-    Public is_view = "1"
+    Public is_view = "-1"
 
     Private Sub FormRetExosDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewOrderType()
@@ -60,8 +60,8 @@
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             id_report_status = data.Rows(0)("id_report_status").ToString
             id_store = data.Rows(0)("id_store").ToString
-            TxtNameCompTo.Text = data.Rows(0)("store_acc").ToString
-            TxtCodeCompTo.Text = data.Rows(0)("store").ToString
+            TxtNameCompTo.Text = data.Rows(0)("store").ToString
+            TxtCodeCompTo.Text = data.Rows(0)("store_acc").ToString
             DEForm.EditValue = data.Rows(0)("created_date")
             TxtSalesOrderNumber.Text = data.Rows(0)("number").ToString
             MENote.Text = data.Rows(0)("note").ToString
@@ -96,20 +96,16 @@
         LEOrderType.Enabled = False
         BtnAdd.Visible = False
         BtnDel.Visible = False
+        DERetDueDate.Enabled = False
+        DEDelDate.Enabled = False
+        BtnSave.Enabled = False
+        MENote.Properties.ReadOnly = True
+        SLUEClasification.Enabled = False
         If check_edit_report_status(id_report_status, rmt, id) Then
-            PanelControlNav.Enabled = False
-            MENote.Properties.ReadOnly = False
-            BtnSave.Enabled = True
-            DERetDueDate.Enabled = False
-            DEDelDate.Enabled = True
-            TxtCodeCompTo.Properties.ReadOnly = True
+            PanelControlNav.Enabled = True
         Else
             PanelControlNav.Enabled = False
-            MENote.Properties.ReadOnly = True
-            BtnSave.Enabled = False
-            DERetDueDate.Enabled = False
-            DEDelDate.Enabled = False
-            TxtCodeCompTo.Properties.ReadOnly = True
+
         End If
         TxtSalesOrderNumber.Focus()
     End Sub

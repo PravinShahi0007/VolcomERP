@@ -515,6 +515,7 @@ Partial Class FormRetExosDet
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVItemList.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVItemList.OptionsBehavior.ReadOnly = True
         Me.GVItemList.OptionsCustomization.AllowQuickHideColumns = False
         Me.GVItemList.OptionsView.ColumnAutoWidth = False
         Me.GVItemList.OptionsView.ShowFooter = True
