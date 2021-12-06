@@ -747,6 +747,9 @@
         ElseIf report_mark_type = "359" Then
             'propose pib
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_pib_pps WHERE id_pib_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "363" Then
+            'ROR EXTENDED EOS
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_ret_exos WHERE id_ret_exos = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -10948,6 +10951,45 @@ WHERE ppsd.id_pib_pps='" & id_report & "'"
             End If
 
             query = String.Format("UPDATE tb_pib_pps SET id_report_status = '{0}' WHERE id_pib_pps = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "363" Then
+            'propose ror extentded eos
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'create ror
+                Dim qhead As String = "INSERT INTO tb_sales_return_order(id_store_contact_to, sales_return_order_number, sales_return_order_date, sales_return_order_note, id_report_status, sales_return_order_est_date, sales_return_order_est_del_date, id_order_type, id_return_clasification, id_ret_exos)
+                SELECT cc.id_comp_contact,'', NOW(), r.note, 1, r.return_est_date, r.return_del_date, r.id_order_type, r.id_return_clasification, r.id_ret_exos
+                FROM tb_ret_exos r
+                INNER JOIN tb_m_comp c ON c.id_comp = r.id_store
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp AND cc.is_default=1
+                WHERE r.id_ret_exos=" + id_report + "; SELECT LAST_INSERT_ID(); "
+                Dim id_new As String = execute_query(qhead, 0, True, "", "", "", "")
+                'set number
+                Dim id_order_type As String = execute_query("SELECT id_order_type FROM tb_ret_exos WHERE id_ret_exos='" + id_report + "' ", 0, True, "", "", "", "")
+                Dim sales_return_order_number As String = ""
+                If id_order_type = "4" Then
+                    sales_return_order_number = header_number_sales("41")
+                    increase_inc_sales("41")
+                ElseIf id_order_type = "6" Then
+                    sales_return_order_number = header_number_sales("42")
+                    increase_inc_sales("42")
+                Else
+                    sales_return_order_number = header_number_sales("4")
+                    increase_inc_sales("4")
+                End If
+
+                'detail
+                Dim qdetail As String = "UPDATE tb_sales_return_order SET sales_return_order_number='" + sales_return_order_number + "', id_report_status=6 WHERE id_sales_return_order='" + id_new + "'; 
+                INSERT INTO tb_sales_return_order_det(id_sales_return_order, id_product, id_return_cat, id_design_price, design_price, sales_return_order_det_qty)
+                SELECT " + id_new + ", rd.id_product,1, rd.id_design_price, rd.design_price, rd.qty 
+                FROM tb_ret_exos_det rd
+                WHERE rd.id_ret_exos=" + id_report + "; "
+            End If
+
+            query = String.Format("UPDATE tb_ret_exos SET id_report_status = '{0}' WHERE id_ret_exos = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

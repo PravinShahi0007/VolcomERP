@@ -74,6 +74,7 @@ Partial Class FormRetExosDet
         Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_price_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnExportAsFile = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
@@ -432,9 +433,9 @@ Partial Class FormRetExosDet
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
         Me.BtnAttachment.ImageIndex = 10
-        Me.BtnAttachment.Location = New System.Drawing.Point(512, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(514, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(107, 37)
+        Me.BtnAttachment.Size = New System.Drawing.Size(105, 37)
         Me.BtnAttachment.TabIndex = 10
         Me.BtnAttachment.Text = "Attachment"
         '
@@ -508,7 +509,7 @@ Partial Class FormRetExosDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdDesignPrice, Me.GridColumnPriceType, Me.GridColumnQtyAvail, Me.GridColumnFound, Me.GridColumnclass, Me.GridColumncolor, Me.GridColumnsht})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdDesignPrice, Me.GridColumnPriceType, Me.GridColumnQtyAvail, Me.GridColumnFound, Me.GridColumnclass, Me.GridColumncolor, Me.GridColumnsht, Me.GridColumndesign_price_type})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_order_det_qty", Me.GridColumnQty, "{0:f2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:n2}")})
         Me.GVItemList.Name = "GVItemList"
@@ -694,6 +695,13 @@ Partial Class FormRetExosDet
         Me.GridColumnsht.VisibleIndex = 4
         Me.GridColumnsht.Width = 168
         '
+        'GridColumndesign_price_type
+        '
+        Me.GridColumndesign_price_type.Caption = "Price Type"
+        Me.GridColumndesign_price_type.FieldName = "design_price_type"
+        Me.GridColumndesign_price_type.Name = "GridColumndesign_price_type"
+        Me.GridColumndesign_price_type.OptionsColumn.AllowEdit = False
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -848,4 +856,5 @@ Partial Class FormRetExosDet
     Friend WithEvents BtnDel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DEForm As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumndesign_price_type As DevExpress.XtraGrid.Columns.GridColumn
 End Class

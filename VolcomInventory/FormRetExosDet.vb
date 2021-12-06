@@ -7,6 +7,7 @@
     Dim lead_time_ro As String = "0"
     Public dt As DataTable
     Dim rmt As String = "363"
+    Public is_view = "1"
 
     Private Sub FormRetExosDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewOrderType()
@@ -48,7 +49,6 @@
             Dim data As DataTable = execute_query("SELECT DATE(NOW()) AS `tgl`, DATE_ADD(NOW(),INTERVAL " + lead_time_ro + " DAY) AS `tgl_ret`, DATE_ADD(NOW(),INTERVAL 1 MONTH) AS `tgl_del` ", -1, True, "", "", "", "")
             DERetDueDate.EditValue = data.Rows(0)("tgl_ret")
             DEDelDate.EditValue = data.Rows(0)("tgl_del")
-            SLUEClasification.EditValue = "1"
         ElseIf action = "upd" Then
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
             BtnBrowseContactTo.Enabled = False
@@ -94,6 +94,8 @@
 
     Sub allow_status()
         LEOrderType.Enabled = False
+        BtnAdd.Visible = False
+        BtnDel.Visible = False
         If check_edit_report_status(id_report_status, rmt, id) Then
             PanelControlNav.Enabled = False
             MENote.Properties.ReadOnly = False
@@ -129,8 +131,158 @@
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         Cursor = Cursors.WaitCursor
-        FormRetExosItemList.id_comp = id_store
-        FormRetExosItemList.ShowDialog()
+        If Not id_store = "-1" Then
+            FormRetExosItemList.id_comp = id_store
+            FormRetExosItemList.ShowDialog()
+        Else
+            stopCustom("Please select store first")
+        End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
+                CType(GCItemList.DataSource, DataTable).AcceptChanges()
+                GCItemList.RefreshDataSource()
+                GVItemList.RefreshData()
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub BtnExportAsFile_Click(sender As Object, e As EventArgs) Handles BtnExportAsFile.Click
+        Cursor = Cursors.WaitCursor
+        print_raw(GCItemList, "")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LEOrderType_EditValueChanged(sender As Object, e As EventArgs) Handles LEOrderType.EditValueChanged
+        Try
+            Dim editor As DevExpress.XtraEditors.LookUpEdit = CType(sender, DevExpress.XtraEditors.LookUpEdit)
+            Dim row As DataRowView = CType(editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue), DataRowView)
+            Dim value As String = row("description").ToString
+            TxtOrderType.Text = value
+        Catch ex As Exception
+            TxtOrderType.Text = ""
+        End Try
+
+    End Sub
+
+    Private Sub GVItemList_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVItemList.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.id_report = id
+        FormReportMark.report_mark_type = rmt
+        FormReportMark.form_origin = Name
+        FormReportMark.is_view = is_view
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        'Cursor = Cursors.WaitCursor
+        'ReportSalesReturnOrder.id_sales_return_order = id_sales_return_order
+        'ReportSalesReturnOrder.dt = GCItemList.DataSource
+        'Dim Report As New ReportSalesReturnOrder()
+
+        ''... 
+        '' creating and saving the view's layout to a new memory stream 
+        'Dim str As System.IO.Stream
+        'str = New System.IO.MemoryStream()
+        'GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        'Report.GridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        'ReportStyleGridview(Report.GridView1)
+
+        'Parse val
+        'Report.LRecNumber.Text = TxtSalesOrderNumber.Text
+        'Report.LRecDate.Text = DEForm.Text
+        'Report.LabelTo.Text = TxtCodeCompTo.Text + " - " + TxtNameCompTo.Text
+        'Report.LabelAddress.Text = MEAdrressCompTo.Text
+        'Report.LabelEstReturn.Text = DERetDueDate.Text
+        'Report.LabelNote.Text = MENote.Text
+
+
+        'Show the report's preview. 
+        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        'Tool.ShowPreview()
+        'Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.id_report = id
+        FormDocumentUpload.report_mark_type = rmt
+        If id_report_status = 6 Then
+            FormDocumentUpload.is_no_delete = "1"
+        ElseIf id_report_status = "5" Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        makeSafeGV(GVItemList)
+        If GVItemList.RowCount <= 0 Or MENote.Text = "" Then
+            stopCustom("Please input all data")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to propose this document?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim note As String = addSlashes(MENote.Text)
+                Dim return_est_date As String = DateTime.Parse(DERetDueDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim return_del_date As String = DateTime.Parse(DEDelDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim id_order_type As String = LEOrderType.EditValue.ToString
+                Dim id_return_clasification As String = SLUEClasification.EditValue.ToString
+
+                'head
+                Dim query As String = "INSERT INTO tb_ret_exos(number, created_date, return_est_date, return_del_date, id_store, id_order_type, id_return_clasification, id_report_status, note)
+                VALUES('', NOW(), '" + return_est_date + "', '" + return_del_date + "', '" + id_store + "', '" + id_order_type + "', '" + id_return_clasification + "', 1, '" + note + "');SELECT LAST_INSERT_ID(); "
+                id = execute_query(query, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id + ", " + rmt + "); ", True, "", "", "", "")
+
+                'detail
+                Dim jum_ins_i As Integer = 0
+                Dim query_detail As String = ""
+                If GVItemList.RowCount > 0 Then
+                    query_detail = "INSERT INTO tb_ret_exos_det(id_ret_exos,id_product, id_design_price, design_price, qty) VALUES "
+                End If
+                For i As Integer = 0 To (GVItemList.RowCount - 1)
+                    Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
+                    Dim id_design_price As String = GVItemList.GetRowCellValue(i, "id_design_price").ToString
+                    Dim design_price As String = decimalSQL(GVItemList.GetRowCellValue(i, "design_price").ToString)
+                    Dim qty As String = decimalSQL(GVItemList.GetRowCellValue(i, "qty").ToString)
+
+                    If jum_ins_i > 0 Then
+                        query_detail += ", "
+                    End If
+                    query_detail += "('" + id + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + qty + "') "
+                    jum_ins_i = jum_ins_i + 1
+                Next
+                If jum_ins_i > 0 Then
+                    execute_non_query(query_detail, True, "", "", "", "")
+                End If
+
+                submit_who_prepared(rmt, id, id_user)
+
+                FormRetExos.viewData()
+                FormRetExos.GVData.FocusedRowHandle = find_row(FormRetExos.GVData, "id_ret_exos", id)
+                action = "upd"
+                actionLoad()
+                infoCustom("Document #" + TxtSalesOrderNumber.Text + " was created successfully. Waiting for approval")
+            End If
+        End If
     End Sub
 End Class

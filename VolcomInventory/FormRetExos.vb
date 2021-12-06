@@ -28,11 +28,13 @@
     End Sub
 
     Sub viewDetail()
-        Cursor = Cursors.WaitCursor
-        FormRetExosDet.id = GVData.GetFocusedRowCellValue("id_ret_exos").ToString
-        FormRetExosDet.action = "upd"
-        FormRetExosDet.ShowDialog()
-        Cursor = Cursors.Default
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormRetExosDet.id = GVData.GetFocusedRowCellValue("id_ret_exos").ToString
+            FormRetExosDet.action = "upd"
+            FormRetExosDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 
     Sub printList()
@@ -46,5 +48,9 @@
         FormRetExosDet.action = "ins"
         FormRetExosDet.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        viewDetail()
     End Sub
 End Class

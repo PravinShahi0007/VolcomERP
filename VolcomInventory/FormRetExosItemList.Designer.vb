@@ -35,15 +35,19 @@ Partial Class FormRetExosItemList
         Me.GridColumnqty_input = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumndesign_price_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.CESelectAll)
         Me.PanelControl1.Controls.Add(Me.BtnDiscard)
         Me.PanelControl1.Controls.Add(Me.BtnAdd)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -85,7 +89,7 @@ Partial Class FormRetExosItemList
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnclass, Me.GridColumnname, Me.GridColumnsht, Me.GridColumncolor, Me.GridColumnqty_avl, Me.GridColumnqty_input, Me.GridColumndesign_price_type})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnclass, Me.GridColumnname, Me.GridColumnsht, Me.GridColumncolor, Me.GridColumnqty_avl, Me.GridColumnqty_input, Me.GridColumndesign_price_type, Me.GridColumnsize})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -107,6 +111,7 @@ Partial Class FormRetExosItemList
         Me.GridColumncode.OptionsColumn.AllowEdit = False
         Me.GridColumncode.Visible = True
         Me.GridColumncode.VisibleIndex = 0
+        Me.GridColumncode.Width = 222
         '
         'GridColumnclass
         '
@@ -116,6 +121,7 @@ Partial Class FormRetExosItemList
         Me.GridColumnclass.OptionsColumn.AllowEdit = False
         Me.GridColumnclass.Visible = True
         Me.GridColumnclass.VisibleIndex = 1
+        Me.GridColumnclass.Width = 222
         '
         'GridColumnname
         '
@@ -125,6 +131,7 @@ Partial Class FormRetExosItemList
         Me.GridColumnname.OptionsColumn.AllowEdit = False
         Me.GridColumnname.Visible = True
         Me.GridColumnname.VisibleIndex = 2
+        Me.GridColumnname.Width = 222
         '
         'GridColumnsht
         '
@@ -134,6 +141,7 @@ Partial Class FormRetExosItemList
         Me.GridColumnsht.OptionsColumn.AllowEdit = False
         Me.GridColumnsht.Visible = True
         Me.GridColumnsht.VisibleIndex = 3
+        Me.GridColumnsht.Width = 222
         '
         'GridColumncolor
         '
@@ -143,6 +151,7 @@ Partial Class FormRetExosItemList
         Me.GridColumncolor.OptionsColumn.AllowEdit = False
         Me.GridColumncolor.Visible = True
         Me.GridColumncolor.VisibleIndex = 4
+        Me.GridColumncolor.Width = 222
         '
         'GridColumnqty_avl
         '
@@ -154,13 +163,14 @@ Partial Class FormRetExosItemList
         Me.GridColumnqty_avl.OptionsColumn.AllowEdit = False
         Me.GridColumnqty_avl.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_avl", "{0:N0}")})
         Me.GridColumnqty_avl.Visible = True
-        Me.GridColumnqty_avl.VisibleIndex = 5
+        Me.GridColumnqty_avl.VisibleIndex = 6
+        Me.GridColumnqty_avl.Width = 384
         '
         'GridColumnqty_input
         '
-        Me.GridColumnqty_input.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnqty_input.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GridColumnqty_input.AppearanceCell.Options.UseFont = True
-        Me.GridColumnqty_input.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnqty_input.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GridColumnqty_input.AppearanceHeader.Options.UseFont = True
         Me.GridColumnqty_input.Caption = "Proposed Qty"
         Me.GridColumnqty_input.ColumnEdit = Me.RepositoryItemSpinEdit1
@@ -171,7 +181,7 @@ Partial Class FormRetExosItemList
         Me.GridColumnqty_input.Name = "GridColumnqty_input"
         Me.GridColumnqty_input.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_input", "{0:N0}")})
         Me.GridColumnqty_input.Visible = True
-        Me.GridColumnqty_input.VisibleIndex = 6
+        Me.GridColumnqty_input.VisibleIndex = 7
         '
         'RepositoryItemSpinEdit1
         '
@@ -190,6 +200,23 @@ Partial Class FormRetExosItemList
         Me.GridColumndesign_price_type.Name = "GridColumndesign_price_type"
         Me.GridColumndesign_price_type.OptionsColumn.AllowEdit = False
         '
+        'GridColumnsize
+        '
+        Me.GridColumnsize.Caption = "Size"
+        Me.GridColumnsize.FieldName = "size"
+        Me.GridColumnsize.Name = "GridColumnsize"
+        Me.GridColumnsize.Visible = True
+        Me.GridColumnsize.VisibleIndex = 5
+        Me.GridColumnsize.Width = 61
+        '
+        'CESelectAll
+        '
+        Me.CESelectAll.Location = New System.Drawing.Point(12, 13)
+        Me.CESelectAll.Name = "CESelectAll"
+        Me.CESelectAll.Properties.Caption = "Select All"
+        Me.CESelectAll.Size = New System.Drawing.Size(75, 19)
+        Me.CESelectAll.TabIndex = 3
+        '
         'FormRetExosItemList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -206,6 +233,7 @@ Partial Class FormRetExosItemList
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -225,4 +253,6 @@ Partial Class FormRetExosItemList
     Friend WithEvents GridColumnqty_input As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents GridColumndesign_price_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CESelectAll As DevExpress.XtraEditors.CheckEdit
 End Class

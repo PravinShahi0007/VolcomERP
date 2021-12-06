@@ -47,9 +47,9 @@
                 newRow("sht") = GVData.GetRowCellValue(i, "sht").ToString
                 newRow("qty") = GVData.GetRowCellValue(i, "qty_input")
                 'newRow("qty_avail") = GVData.GetRowCellValue(i, "qty_all_product")design_price_type
-                newRow("design_price_type") = GVData.GetRowCellValue(i, "design_price_type").ToString
+                newRow("design_price_type") = GVData.GetRowCellValue(i, "price_type").ToString
                 newRow("id_design_price") = GVData.GetRowCellValue(i, "id_design_price").ToString
-                newRow("design_price") = GVData.GetRowCellValue(i, "design_price")
+                newRow("design_price") = GVData.GetRowCellValue(i, "unit_price")
                 newRow("id_design") = GVData.GetRowCellValue(i, "id_design").ToString
                 newRow("id_product") = GVData.GetRowCellValue(i, "id_product").ToString
                 TryCast(FormRetExosDet.GCItemList.DataSource, DataTable).Rows.Add(newRow)
@@ -69,6 +69,18 @@
         If qty_rec > qty_limit Then
             stopCustom("Qty cannot exceed " + qty_limit.ToString + "")
             GVData.SetFocusedRowCellValue("qty_input", 0)
+        End If
+    End Sub
+
+    Private Sub CESelectAll_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectAll.EditValueChanged
+        viewData()
+        If CESelectAll.EditValue = True Then
+            GCData.Enabled = False
+            For i As Integer = 0 To GVData.RowCount - 1
+                GVData.SetRowCellValue(i, "qty_input", GVData.GetRowCellValue(i, "qty_avl"))
+            Next
+        Else
+            GCData.Enabled = True
         End If
     End Sub
 End Class

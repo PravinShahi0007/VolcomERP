@@ -509,6 +509,9 @@
         ElseIf report_mark_type = "359" Then
             'propose pib
             FormPIBPPS.Close()
+        ElseIf report_mark_type = "363" Then
+            'propose ret exos
+            FormRetExosDet.Close()
         End If
     End Sub
     Sub show()
@@ -1644,6 +1647,12 @@ GROUP BY rec.`id_prod_order`"
             'propose pib
             FormPIBPPS.id = id_report
             FormPIBPPS.ShowDialog()
+        ElseIf report_mark_type = "363" Then
+            'propose ret exos
+            FormRetExosDet.is_view = "1"
+            FormRetExosDet.action = "upd"
+            FormRetExosDet.id = id_report
+            FormRetExosDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2935,6 +2944,12 @@ GROUP BY rec.`id_prod_order`"
             'propose pib
             table_name = "tb_pib_pps"
             field_id = "id_pib_pps"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "363" Then
+            'propose ret exos
+            table_name = "tb_ret_exos"
+            field_id = "id_ret_exos"
             field_number = "number"
             field_date = "created_date"
         Else
