@@ -397,4 +397,15 @@ GROUP BY dp.id_pn_fgpo,dpd.id_report"
             PCVendor.Visible = True
         End If
     End Sub
+
+    Private Sub BRefresh_Click(sender As Object, e As EventArgs) Handles BRefresh.Click
+        view_analisa_pib()
+    End Sub
+
+    Sub view_analisa_pib()
+        Dim q As String = "CALL pib_analisa()"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCAnalisa.DataSource = dt
+        GVAnalisa.BestFitColumns()
+    End Sub
 End Class
