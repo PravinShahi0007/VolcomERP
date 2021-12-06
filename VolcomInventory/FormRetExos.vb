@@ -1,13 +1,18 @@
 ﻿Public Class FormRetExos
+    Public is_test As String = "-1"
+
     Private Sub FormRetExos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewData()
+        If is_test = "1" Then
+            createNew()
+        End If
     End Sub
 
     Sub viewData()
         Cursor = Cursors.WaitCursor
         Dim r As New ClassRetExos()
         Dim query As String = r.queryMain("", "2")
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "", "")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()
         Cursor = Cursors.Default

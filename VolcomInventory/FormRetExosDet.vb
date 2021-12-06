@@ -26,7 +26,7 @@
     Sub view_clasification()
         Dim qry As String = "SELECT * FROM tb_lookup_return_clasification WHERE 1=1 "
         If action = "ins" Then
-            qry += "AND is_reguler=1 "
+            qry += "AND is_extended_eos=1 "
         End If
         viewSearchLookupQuery(SLUEClasification, qry, "id_return_clasification", "return_clasification", "id_return_clasification")
     End Sub

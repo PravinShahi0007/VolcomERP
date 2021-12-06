@@ -21,8 +21,8 @@ Partial Class FormRetExosItemList
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormRetExosItemList))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -34,6 +34,7 @@ Partial Class FormRetExosItemList
         Me.GridColumnqty_avl = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnqty_input = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridColumndesign_price_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -51,16 +52,6 @@ Partial Class FormRetExosItemList
         Me.PanelControl1.Size = New System.Drawing.Size(556, 46)
         Me.PanelControl1.TabIndex = 0
         '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(478, 2)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(76, 42)
-        Me.BtnAdd.TabIndex = 1
-        Me.BtnAdd.Text = "Add"
-        '
         'BtnDiscard
         '
         Me.BtnDiscard.Dock = System.Windows.Forms.DockStyle.Right
@@ -70,6 +61,16 @@ Partial Class FormRetExosItemList
         Me.BtnDiscard.Size = New System.Drawing.Size(88, 42)
         Me.BtnDiscard.TabIndex = 2
         Me.BtnDiscard.Text = "Discard"
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
+        Me.BtnAdd.Location = New System.Drawing.Point(478, 2)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(76, 42)
+        Me.BtnAdd.TabIndex = 1
+        Me.BtnAdd.Text = "Add"
         '
         'GCData
         '
@@ -84,7 +85,7 @@ Partial Class FormRetExosItemList
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnclass, Me.GridColumnname, Me.GridColumnsht, Me.GridColumncolor, Me.GridColumnqty_avl, Me.GridColumnqty_input})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnclass, Me.GridColumnname, Me.GridColumnsht, Me.GridColumncolor, Me.GridColumnqty_avl, Me.GridColumnqty_input, Me.GridColumndesign_price_type})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -182,6 +183,13 @@ Partial Class FormRetExosItemList
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {1874919423, 2328306, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
+        'GridColumndesign_price_type
+        '
+        Me.GridColumndesign_price_type.Caption = "design_price_type"
+        Me.GridColumndesign_price_type.FieldName = "design_price_type"
+        Me.GridColumndesign_price_type.Name = "GridColumndesign_price_type"
+        Me.GridColumndesign_price_type.OptionsColumn.AllowEdit = False
+        '
         'FormRetExosItemList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -216,4 +224,5 @@ Partial Class FormRetExosItemList
     Friend WithEvents GridColumnqty_avl As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnqty_input As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents GridColumndesign_price_type As DevExpress.XtraGrid.Columns.GridColumn
 End Class
