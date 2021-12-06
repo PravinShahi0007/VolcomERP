@@ -23,12 +23,23 @@
     End Sub
 
     Sub viewDetail()
-
+        Cursor = Cursors.WaitCursor
+        FormRetExosDet.id = GVData.GetFocusedRowCellValue("id_ret_exos").ToString
+        FormRetExosDet.action = "upd"
+        FormRetExosDet.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 
     Sub printList()
         Cursor = Cursors.WaitCursor
         print(GCData, "Propose Return Extended EOS")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub createNew()
+        Cursor = Cursors.WaitCursor
+        FormRetExosDet.action = "ins"
+        FormRetExosDet.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

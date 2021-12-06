@@ -4736,6 +4736,12 @@
     <Compile Include="FormRetExosDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormRetExosItemList.Designer.vb">
+      <DependentUpon>FormRetExosItemList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRetExosItemList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormRetOlStore.Designer.vb">
       <DependentUpon>FormRetOlStore.vb</DependentUpon>
     </Compile>
@@ -12678,6 +12684,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRetExosDet.resx">
       <DependentUpon>FormRetExosDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRetExosItemList.resx">
+      <DependentUpon>FormRetExosItemList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRetOlStore.resx">
       <DependentUpon>FormRetOlStore.vb</DependentUpon>

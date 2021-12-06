@@ -6,6 +6,7 @@
     Dim date_start As Date
     Dim lead_time_ro As String = "0"
     Public dt As DataTable
+    Dim rmt As String = "363"
 
     Private Sub FormRetExosDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewOrderType()
@@ -92,6 +93,44 @@
     End Sub
 
     Sub allow_status()
+        LEOrderType.Enabled = False
+        If check_edit_report_status(id_report_status, rmt, id) Then
+            PanelControlNav.Enabled = False
+            MENote.Properties.ReadOnly = False
+            BtnSave.Enabled = True
+            DERetDueDate.Enabled = False
+            DEDelDate.Enabled = True
+            TxtCodeCompTo.Properties.ReadOnly = True
+        Else
+            PanelControlNav.Enabled = False
+            MENote.Properties.ReadOnly = True
+            BtnSave.Enabled = False
+            DERetDueDate.Enabled = False
+            DEDelDate.Enabled = False
+            TxtCodeCompTo.Properties.ReadOnly = True
+        End If
+        TxtSalesOrderNumber.Focus()
+    End Sub
 
+    Private Sub BtnBrowseContactTo_Click(sender As Object, e As EventArgs) Handles BtnBrowseContactTo.Click
+        FormPopUpContact.id_pop_up = "96"
+        FormPopUpContact.id_cat = "6"
+        FormPopUpContact.ShowDialog()
+    End Sub
+
+    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to cancel data changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Close()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        Cursor = Cursors.WaitCursor
+        FormRetExosItemList.id_comp = id_store
+        FormRetExosItemList.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -22,6 +22,9 @@ Partial Class FormRetExosDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormRetExosDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.DEForm = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDelDate = New DevExpress.XtraEditors.DateEdit()
         Me.DERetDueDate = New DevExpress.XtraEditors.DateEdit()
@@ -30,22 +33,20 @@ Partial Class FormRetExosDet
         Me.TxtSalesOrderNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtOrderType = New DevExpress.XtraEditors.TextEdit()
+        Me.SLUEClasification = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LEOrderType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtCodeCompTo = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit()
         Me.BtnBrowseContactTo = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLUEClasification = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
-        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -63,21 +64,13 @@ Partial Class FormRetExosDet
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdSalesTarget = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnReturnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdSalesOrderDet = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnProductName = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdReturnCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyAvail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFound = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_detail_on_hold = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -85,11 +78,13 @@ Partial Class FormRetExosDet
         Me.BtnExportAsFile = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.DEForm = New DevExpress.XtraEditors.DateEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.DEForm.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDelDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDelDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERetDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,14 +92,13 @@ Partial Class FormRetExosDet
         CType(Me.TxtSalesOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopLeft.SuspendLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtOrderType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUEClasification.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEOrderType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUEClasification.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,8 +108,6 @@ Partial Class FormRetExosDet
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
-        CType(Me.DEForm.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -147,6 +139,41 @@ Partial Class FormRetExosDet
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(263, 145)
         Me.PanelControlTopRight.TabIndex = 8892
+        '
+        'DEForm
+        '
+        Me.DEForm.EditValue = Nothing
+        Me.DEForm.Enabled = False
+        Me.DEForm.Location = New System.Drawing.Point(110, 9)
+        Me.DEForm.Name = "DEForm"
+        Me.DEForm.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEForm.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEForm.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEForm.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEForm.Size = New System.Drawing.Size(132, 20)
+        Me.DEForm.TabIndex = 8893
+        '
+        'LabelControl21
+        '
+        Me.LabelControl21.Location = New System.Drawing.Point(12, 114)
+        Me.LabelControl21.Name = "LabelControl21"
+        Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl21.TabIndex = 187
+        Me.LabelControl21.Text = "Status"
+        '
+        'LEReportStatus
+        '
+        Me.LEReportStatus.Enabled = False
+        Me.LEReportStatus.Location = New System.Drawing.Point(110, 111)
+        Me.LEReportStatus.Name = "LEReportStatus"
+        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
+        Me.LEReportStatus.Properties.NullText = ""
+        Me.LEReportStatus.Properties.ShowFooter = False
+        Me.LEReportStatus.Size = New System.Drawing.Size(132, 20)
+        Me.LEReportStatus.TabIndex = 186
         '
         'LabelControl4
         '
@@ -246,6 +273,30 @@ Partial Class FormRetExosDet
         Me.PanelControlTopLeft.Size = New System.Drawing.Size(761, 145)
         Me.PanelControlTopLeft.TabIndex = 8891
         '
+        'LabelControl18
+        '
+        Me.LabelControl18.Location = New System.Drawing.Point(10, 88)
+        Me.LabelControl18.Name = "LabelControl18"
+        Me.LabelControl18.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl18.TabIndex = 187
+        Me.LabelControl18.Text = "Note"
+        '
+        'MENote
+        '
+        Me.MENote.Location = New System.Drawing.Point(63, 86)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Properties.MaxLength = 100
+        Me.MENote.Size = New System.Drawing.Size(406, 36)
+        Me.MENote.TabIndex = 186
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(10, 62)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl8.TabIndex = 189
+        Me.LabelControl8.Text = "Reason"
+        '
         'TxtOrderType
         '
         Me.TxtOrderType.EditValue = ""
@@ -259,6 +310,37 @@ Partial Class FormRetExosDet
         Me.TxtOrderType.Size = New System.Drawing.Size(318, 20)
         Me.TxtOrderType.TabIndex = 8911
         Me.TxtOrderType.TabStop = False
+        '
+        'SLUEClasification
+        '
+        Me.SLUEClasification.Location = New System.Drawing.Point(63, 61)
+        Me.SLUEClasification.Name = "SLUEClasification"
+        Me.SLUEClasification.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEClasification.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLUEClasification.Size = New System.Drawing.Size(406, 20)
+        Me.SLUEClasification.TabIndex = 188
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "GridColumn1"
+        Me.GridColumn1.FieldName = "id_return_clasification"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Return Clasification"
+        Me.GridColumn2.FieldName = "return_clasification"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
         '
         'LEOrderType
         '
@@ -329,83 +411,6 @@ Partial Class FormRetExosDet
         Me.BtnBrowseContactTo.TabStop = False
         Me.BtnBrowseContactTo.Text = "..."
         '
-        'LabelControl8
-        '
-        Me.LabelControl8.Location = New System.Drawing.Point(10, 62)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(36, 13)
-        Me.LabelControl8.TabIndex = 189
-        Me.LabelControl8.Text = "Reason"
-        '
-        'SLUEClasification
-        '
-        Me.SLUEClasification.Location = New System.Drawing.Point(63, 61)
-        Me.SLUEClasification.Name = "SLUEClasification"
-        Me.SLUEClasification.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUEClasification.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLUEClasification.Size = New System.Drawing.Size(406, 20)
-        Me.SLUEClasification.TabIndex = 188
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "GridColumn1"
-        Me.GridColumn1.FieldName = "id_return_clasification"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Return Clasification"
-        Me.GridColumn2.FieldName = "return_clasification"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        '
-        'MENote
-        '
-        Me.MENote.Location = New System.Drawing.Point(63, 86)
-        Me.MENote.Name = "MENote"
-        Me.MENote.Properties.MaxLength = 100
-        Me.MENote.Size = New System.Drawing.Size(406, 36)
-        Me.MENote.TabIndex = 186
-        '
-        'LabelControl18
-        '
-        Me.LabelControl18.Location = New System.Drawing.Point(10, 88)
-        Me.LabelControl18.Name = "LabelControl18"
-        Me.LabelControl18.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl18.TabIndex = 187
-        Me.LabelControl18.Text = "Note"
-        '
-        'LEReportStatus
-        '
-        Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(110, 111)
-        Me.LEReportStatus.Name = "LEReportStatus"
-        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
-        Me.LEReportStatus.Properties.NullText = ""
-        Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(132, 20)
-        Me.LEReportStatus.TabIndex = 186
-        '
-        'LabelControl21
-        '
-        Me.LabelControl21.Location = New System.Drawing.Point(12, 114)
-        Me.LabelControl21.Name = "LabelControl21"
-        Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
-        Me.LabelControl21.TabIndex = 187
-        Me.LabelControl21.Text = "Status"
-        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
@@ -426,9 +431,9 @@ Partial Class FormRetExosDet
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
         Me.BtnAttachment.ImageIndex = 10
-        Me.BtnAttachment.Location = New System.Drawing.Point(519, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(512, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(100, 37)
+        Me.BtnAttachment.Size = New System.Drawing.Size(107, 37)
         Me.BtnAttachment.TabIndex = 10
         Me.BtnAttachment.Text = "Attachment"
         '
@@ -502,13 +507,14 @@ Partial Class FormRetExosDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnIdSalesTarget, Me.GridColumnUOM, Me.GridColumnReturnCategory, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnProductName, Me.GridColumnIdReturnCat, Me.GridColumnIdDesignPrice, Me.GridColumnPriceType, Me.GridColumnQtyAvail, Me.GridColumnFound, Me.GridColumnid_detail_on_hold, Me.GridColumnclass, Me.GridColumncolor, Me.GridColumnsht})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdDesignPrice, Me.GridColumnPriceType, Me.GridColumnQtyAvail, Me.GridColumnFound, Me.GridColumnclass, Me.GridColumncolor, Me.GridColumnsht})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_order_det_qty", Me.GridColumnQty, "{0:f2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:n2}")})
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVItemList.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVItemList.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVItemList.OptionsView.ColumnAutoWidth = False
         Me.GVItemList.OptionsView.ShowFooter = True
         Me.GVItemList.OptionsView.ShowGroupPanel = False
         '
@@ -564,10 +570,10 @@ Partial Class FormRetExosDet
         Me.GridColumnQty.ColumnEdit = Me.RepositoryItemSpinEdit1
         Me.GridColumnQty.DisplayFormat.FormatString = "N0"
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQty.FieldName = "sales_return_order_det_qty"
+        Me.GridColumnQty.FieldName = "qty"
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_order_det_qty", "{0:n0}")})
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 7
         Me.GridColumnQty.Width = 153
@@ -595,51 +601,17 @@ Partial Class FormRetExosDet
         'GridColumnAmount
         '
         Me.GridColumnAmount.Caption = "Amount"
-        Me.GridColumnAmount.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumnAmount.DisplayFormat.FormatString = "{0:n0}"
         Me.GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAmount.FieldName = "amount"
         Me.GridColumnAmount.Name = "GridColumnAmount"
         Me.GridColumnAmount.OptionsColumn.AllowEdit = False
-        Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n2}")})
+        Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n0}")})
+        Me.GridColumnAmount.UnboundExpression = "[qty] * [design_price]"
+        Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmount.Visible = True
         Me.GridColumnAmount.VisibleIndex = 9
         Me.GridColumnAmount.Width = 214
-        '
-        'GridColumnRemark
-        '
-        Me.GridColumnRemark.Caption = "Remark"
-        Me.GridColumnRemark.FieldName = "sales_return_order_det_note"
-        Me.GridColumnRemark.Name = "GridColumnRemark"
-        Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 10
-        Me.GridColumnRemark.Width = 322
-        '
-        'GridColumnIdSalesTarget
-        '
-        Me.GridColumnIdSalesTarget.Caption = "ID Sales Target"
-        Me.GridColumnIdSalesTarget.FieldName = "id_sales_return_order"
-        Me.GridColumnIdSalesTarget.Name = "GridColumnIdSalesTarget"
-        Me.GridColumnIdSalesTarget.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnUOM
-        '
-        Me.GridColumnUOM.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnUOM.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnUOM.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnUOM.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnUOM.Caption = "UOM"
-        Me.GridColumnUOM.FieldName = "uom"
-        Me.GridColumnUOM.Name = "GridColumnUOM"
-        Me.GridColumnUOM.OptionsColumn.AllowEdit = False
-        Me.GridColumnUOM.Width = 71
-        '
-        'GridColumnReturnCategory
-        '
-        Me.GridColumnReturnCategory.Caption = "Return Category"
-        Me.GridColumnReturnCategory.FieldName = "return_cat"
-        Me.GridColumnReturnCategory.Name = "GridColumnReturnCategory"
-        Me.GridColumnReturnCategory.OptionsColumn.AllowEdit = False
-        Me.GridColumnReturnCategory.Width = 90
         '
         'GridColumnIdDesign
         '
@@ -657,37 +629,14 @@ Partial Class FormRetExosDet
         Me.GridColumnIdProduct.OptionsColumn.AllowEdit = False
         Me.GridColumnIdProduct.OptionsColumn.ShowInCustomizationForm = False
         '
-        'GridColumnIdSample
-        '
-        Me.GridColumnIdSample.Caption = "Id Sample"
-        Me.GridColumnIdSample.FieldName = "id_sample"
-        Me.GridColumnIdSample.Name = "GridColumnIdSample"
-        Me.GridColumnIdSample.OptionsColumn.AllowEdit = False
-        Me.GridColumnIdSample.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnIdSample.OptionsColumn.ShowInCustomizationForm = False
-        '
         'GridColumnIdSalesOrderDet
         '
         Me.GridColumnIdSalesOrderDet.Caption = "Id Sales Order Det"
-        Me.GridColumnIdSalesOrderDet.FieldName = "id_sales_return_order_det"
+        Me.GridColumnIdSalesOrderDet.FieldName = "id_ret_exos_det"
         Me.GridColumnIdSalesOrderDet.Name = "GridColumnIdSalesOrderDet"
         Me.GridColumnIdSalesOrderDet.OptionsColumn.AllowEdit = False
         Me.GridColumnIdSalesOrderDet.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnIdSalesOrderDet.OptionsColumn.ShowInCustomizationForm = False
-        '
-        'GridColumnProductName
-        '
-        Me.GridColumnProductName.Caption = "Product Name"
-        Me.GridColumnProductName.FieldName = "product_name"
-        Me.GridColumnProductName.Name = "GridColumnProductName"
-        Me.GridColumnProductName.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnIdReturnCat
-        '
-        Me.GridColumnIdReturnCat.Caption = "GridColumnIdReturnCat"
-        Me.GridColumnIdReturnCat.FieldName = "id_return_cat"
-        Me.GridColumnIdReturnCat.Name = "GridColumnIdReturnCat"
-        Me.GridColumnIdReturnCat.OptionsColumn.AllowEdit = False
         '
         'GridColumnIdDesignPrice
         '
@@ -716,12 +665,6 @@ Partial Class FormRetExosDet
         Me.GridColumnFound.Caption = "Found"
         Me.GridColumnFound.FieldName = "is_found"
         Me.GridColumnFound.Name = "GridColumnFound"
-        '
-        'GridColumnid_detail_on_hold
-        '
-        Me.GridColumnid_detail_on_hold.Caption = "Id Detail On Hold"
-        Me.GridColumnid_detail_on_hold.FieldName = "id_detail_on_hold"
-        Me.GridColumnid_detail_on_hold.Name = "GridColumnid_detail_on_hold"
         '
         'GridColumnclass
         '
@@ -797,19 +740,6 @@ Partial Class FormRetExosDet
         Me.BtnAdd.TabIndex = 2
         Me.BtnAdd.Text = "Add Item"
         '
-        'DEForm
-        '
-        Me.DEForm.EditValue = Nothing
-        Me.DEForm.Enabled = False
-        Me.DEForm.Location = New System.Drawing.Point(110, 9)
-        Me.DEForm.Name = "DEForm"
-        Me.DEForm.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEForm.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEForm.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEForm.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEForm.Size = New System.Drawing.Size(132, 20)
-        Me.DEForm.TabIndex = 8893
-        '
         'FormRetExosDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -828,6 +758,9 @@ Partial Class FormRetExosDet
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.DEForm.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDelDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDelDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERetDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -836,14 +769,13 @@ Partial Class FormRetExosDet
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopLeft.ResumeLayout(False)
         Me.PanelControlTopLeft.PerformLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtOrderType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUEClasification.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEOrderType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUEClasification.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).EndInit()
@@ -853,8 +785,6 @@ Partial Class FormRetExosDet
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
-        CType(Me.DEForm.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -902,21 +832,13 @@ Partial Class FormRetExosDet
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents GridColumnPrice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdSalesTarget As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnUOM As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnReturnCategory As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdDesign As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdProduct As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdSample As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdSalesOrderDet As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnProductName As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdReturnCat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdDesignPrice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPriceType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQtyAvail As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnFound As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnid_detail_on_hold As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
