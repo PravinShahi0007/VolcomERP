@@ -49,6 +49,8 @@ Partial Class FormDisableExosDet
         Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.DEEffectDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -63,11 +65,15 @@ Partial Class FormDisableExosDet
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEEffectDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEEffectDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl1)
+        Me.GroupGeneralHeader.Controls.Add(Me.DEEffectDate)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl18)
         Me.GroupGeneralHeader.Controls.Add(Me.MENote)
         Me.GroupGeneralHeader.Controls.Add(Me.DEForm)
@@ -79,7 +85,7 @@ Partial Class FormDisableExosDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(836, 134)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(836, 157)
         Me.GroupGeneralHeader.TabIndex = 186
         '
         'LabelControl18
@@ -92,7 +98,7 @@ Partial Class FormDisableExosDet
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(85, 69)
+        Me.MENote.Location = New System.Drawing.Point(115, 69)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
         Me.MENote.Size = New System.Drawing.Size(385, 43)
@@ -102,7 +108,7 @@ Partial Class FormDisableExosDet
         '
         Me.DEForm.EditValue = Nothing
         Me.DEForm.Enabled = False
-        Me.DEForm.Location = New System.Drawing.Point(294, 17)
+        Me.DEForm.Location = New System.Drawing.Point(324, 17)
         Me.DEForm.Name = "DEForm"
         Me.DEForm.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEForm.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -113,7 +119,7 @@ Partial Class FormDisableExosDet
         '
         'LabelControl21
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(34, 46)
+        Me.LabelControl21.Location = New System.Drawing.Point(34, 121)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl21.TabIndex = 187
@@ -122,7 +128,7 @@ Partial Class FormDisableExosDet
         'TxtSalesOrderNumber
         '
         Me.TxtSalesOrderNumber.EditValue = ""
-        Me.TxtSalesOrderNumber.Location = New System.Drawing.Point(85, 17)
+        Me.TxtSalesOrderNumber.Location = New System.Drawing.Point(115, 17)
         Me.TxtSalesOrderNumber.Name = "TxtSalesOrderNumber"
         Me.TxtSalesOrderNumber.Properties.EditValueChangedDelay = 1
         Me.TxtSalesOrderNumber.Properties.ReadOnly = True
@@ -133,7 +139,7 @@ Partial Class FormDisableExosDet
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(85, 43)
+        Me.LEReportStatus.Location = New System.Drawing.Point(115, 118)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -156,7 +162,7 @@ Partial Class FormDisableExosDet
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(223, 20)
+        Me.LabelControl7.Location = New System.Drawing.Point(253, 20)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl7.TabIndex = 159
@@ -239,7 +245,7 @@ Partial Class FormDisableExosDet
         Me.PanelControlNav.Controls.Add(Me.BtnDel)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNav.Location = New System.Drawing.Point(0, 134)
+        Me.PanelControlNav.Location = New System.Drawing.Point(0, 157)
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(836, 54)
         Me.PanelControlNav.TabIndex = 190
@@ -282,12 +288,12 @@ Partial Class FormDisableExosDet
         'GCItemList
         '
         Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCItemList.Location = New System.Drawing.Point(0, 188)
+        Me.GCItemList.Location = New System.Drawing.Point(0, 211)
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(836, 283)
+        Me.GCItemList.Size = New System.Drawing.Size(836, 260)
         Me.GCItemList.TabIndex = 191
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -375,6 +381,29 @@ Partial Class FormDisableExosDet
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
+        'DEEffectDate
+        '
+        Me.DEEffectDate.EditValue = Nothing
+        Me.DEEffectDate.Location = New System.Drawing.Point(115, 43)
+        Me.DEEffectDate.Name = "DEEffectDate"
+        Me.DEEffectDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEEffectDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEffectDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEEffectDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEEffectDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEEffectDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEEffectDate.Size = New System.Drawing.Size(385, 20)
+        Me.DEEffectDate.TabIndex = 8894
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(34, 46)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(69, 13)
+        Me.LabelControl1.TabIndex = 8895
+        Me.LabelControl1.Text = "Effective Date"
+        '
         'FormDisableExosDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -403,6 +432,8 @@ Partial Class FormDisableExosDet
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEffectDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEffectDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -436,4 +467,6 @@ Partial Class FormDisableExosDet
     Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEEffectDate As DevExpress.XtraEditors.DateEdit
 End Class
