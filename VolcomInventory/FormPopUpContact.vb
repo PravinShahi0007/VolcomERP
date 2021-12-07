@@ -266,6 +266,11 @@
             query += " AND tb_m_comp.id_vendor_type >= '" & max_vendor_type.ToString & "' "
         End If
         '
+
+        If id_pop_up = "96" Then 'ret order ofline
+            query += "AND tb_m_comp.id_commerce_type=1 "
+        End If
+
         query += "ORDER BY comp_name "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCompany.DataSource = data
@@ -1346,6 +1351,13 @@
                 FormPrepaidExpenseDet.TxtCompName.Text = GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString
                 Close()
             End If
+        ElseIf id_pop_up = "96" Then
+            'Sales Return Order EXtended eos
+            FormRetExosDet.id_store = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
+            FormRetExosDet.TxtNameCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "1")
+            FormRetExosDet.TxtCodeCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
+            FormRetExosDet.viewDetail()
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub

@@ -258,6 +258,7 @@
     <Compile Include="ClassDelEmpty.vb" />
     <Compile Include="ClassDepartement.vb" />
     <Compile Include="ClassDesign.vb" />
+    <Compile Include="ClassDisableExos.vb" />
     <Compile Include="ClassEmpUni.vb" />
     <Compile Include="ClassEmpUniExpense.vb" />
     <Compile Include="ClassFGBorrowQCReq.vb" />
@@ -318,6 +319,7 @@
     <Compile Include="ClassPurcReturn.vb" />
     <Compile Include="ClassRefundOLStore.vb" />
     <Compile Include="ClassRequestRetOLStore.vb" />
+    <Compile Include="ClassRetExos.vb" />
     <Compile Include="ClassRetOLStore.vb" />
     <Compile Include="ClassReturn.vb" />
     <Compile Include="ClassSalesBranch.vb" />
@@ -1398,6 +1400,24 @@
       <DependentUpon>FormDesignInfo.vb</DependentUpon>
     </Compile>
     <Compile Include="FormDesignInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDisableExos.Designer.vb">
+      <DependentUpon>FormDisableExos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDisableExos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDisableExosDet.Designer.vb">
+      <DependentUpon>FormDisableExosDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDisableExosDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDisableExosList.Designer.vb">
+      <DependentUpon>FormDisableExosList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDisableExosList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDisplayAlloc.Designer.vb">
@@ -4721,6 +4741,24 @@
       <DependentUpon>FormRequestRetOLStoreSingle.vb</DependentUpon>
     </Compile>
     <Compile Include="FormRequestRetOLStoreSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRetExos.Designer.vb">
+      <DependentUpon>FormRetExos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRetExos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRetExosDet.Designer.vb">
+      <DependentUpon>FormRetExosDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRetExosDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRetExosItemList.Designer.vb">
+      <DependentUpon>FormRetExosItemList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRetExosItemList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormRetOlStore.Designer.vb">
@@ -8746,6 +8784,12 @@
     <Compile Include="ReportDesignInfo.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportDisableExos.Designer.vb">
+      <DependentUpon>ReportDisableExos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDisableExos.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDynamic.Designer.vb">
       <DependentUpon>ReportDynamic.vb</DependentUpon>
     </Compile>
@@ -9860,6 +9904,12 @@
       <DependentUpon>ReportRequestRetOLStore.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportRequestRetOLStore.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportRetExos.Designer.vb">
+      <DependentUpon>ReportRetExos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportRetExos.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportRetOLStoreDet.Designer.vb">
@@ -10987,6 +11037,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDesignInfo.resx">
       <DependentUpon>FormDesignInfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDisableExos.resx">
+      <DependentUpon>FormDisableExos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDisableExosDet.resx">
+      <DependentUpon>FormDisableExosDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDisableExosList.resx">
+      <DependentUpon>FormDisableExosList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDisplayAlloc.resx">
       <DependentUpon>FormDisplayAlloc.vb</DependentUpon>
@@ -12659,6 +12718,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRequestRetOLStoreSingle.resx">
       <DependentUpon>FormRequestRetOLStoreSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRetExos.resx">
+      <DependentUpon>FormRetExos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRetExosDet.resx">
+      <DependentUpon>FormRetExosDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRetExosItemList.resx">
+      <DependentUpon>FormRetExosItemList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRetOlStore.resx">
       <DependentUpon>FormRetOlStore.vb</DependentUpon>
@@ -15091,6 +15159,9 @@
     <EmbeddedResource Include="ReportDesignInfo.resx">
       <DependentUpon>ReportDesignInfo.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportDisableExos.resx">
+      <DependentUpon>ReportDisableExos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportDynamic.resx">
       <DependentUpon>ReportDynamic.vb</DependentUpon>
     </EmbeddedResource>
@@ -15699,6 +15770,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportRequestRetOLStore.resx">
       <DependentUpon>ReportRequestRetOLStore.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportRetExos.resx">
+      <DependentUpon>ReportRetExos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportRetOLStoreDet.resx">
       <DependentUpon>ReportRetOLStoreDet.vb</DependentUpon>

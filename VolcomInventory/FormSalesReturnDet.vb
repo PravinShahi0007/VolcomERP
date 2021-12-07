@@ -1807,11 +1807,12 @@ Public Class FormSalesReturnDet
                 'tambah ror jika ada SOH
                 Dim qcr As String = "SELECT p.id_product, d.id_design, d.is_old_design, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`, 
                 SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS qty_avl,
-                prc.id_design_price, prc.design_price, prc.design_price_type, dcd.class, dcd.color, dcd.sht
+                prc.id_design_price, prc.design_price, prc.design_price_type, dcd.class, dcd.color, dcd.sht, IFNULL(de.id_extended_eos,2) AS `id_extended_eos`
                 FROM tb_storage_fg f 
                 INNER JOIN tb_m_comp c ON c.id_drawer_def = f.id_wh_drawer
                 INNER JOIN tb_m_product p ON p.id_product = f.id_product
                 INNER JOIN tb_m_design d ON d.id_design = p.id_design
+                LEFT JOIN tb_design_extended_eos de ON de.id_design = d.id_design AND de.is_active=1
                 LEFT JOIN (
 		            SELECT dc.id_design, 
 		            MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
@@ -1852,6 +1853,16 @@ Public Class FormSalesReturnDet
                     stopCustomDialog("Stock not available")
                     Exit Sub
                 Else
+                    'cek extended eos (id_extended_eos)
+                    If dcr.Rows(0)("id_extended_eos").ToString = "1" Then
+                        Cursor = Cursors.Default
+                        makeSafeGV(GVItemList)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                        GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                        stopCustomDialog("This product is still in Extended EOS, please contact MD Dept. to create propose return via menu 'Propose Return Extended EOSS' !")
+                        Exit Sub
+                    End If
+
                     Dim dtu As DataTable = Nothing
                     If dcr.Rows(0)("is_old_design").ToString <> "2" Then
                         'jika bukan unik
@@ -3199,22 +3210,22 @@ Public Class FormSalesReturnDet
     End Sub
 
     Private Sub RepositoryItemTextEdit_KeyUp(sender As Object, e As KeyEventArgs) Handles RepositoryItemTextEdit.KeyUp
-        If Len(GVBarcode.EditingValue.ToString) > 1 Then
-            If cforKeyDown <> ChrW(e.KeyCode) OrElse cforKeyDown = vbNullChar Then
-                cforKeyDown = vbNullChar
-                GVBarcode.SetRowCellValue(GVBarcode.FocusedRowHandle, "code", "")
-                Return
-            End If
+        'If Len(GVBarcode.EditingValue.ToString) > 1 Then
+        '    If cforKeyDown <> ChrW(e.KeyCode) OrElse cforKeyDown = vbNullChar Then
+        '        cforKeyDown = vbNullChar
+        '        GVBarcode.SetRowCellValue(GVBarcode.FocusedRowHandle, "code", "")
+        '        Return
+        '    End If
 
-            Dim elapsed As TimeSpan = DateTime.Now - _lastKeystroke
+        '    Dim elapsed As TimeSpan = DateTime.Now - _lastKeystroke
 
-            If elapsed.TotalMilliseconds > speed_barcode_read Then GVBarcode.SetRowCellValue(GVBarcode.FocusedRowHandle, "code", "")
+        '    If elapsed.TotalMilliseconds > speed_barcode_read Then GVBarcode.SetRowCellValue(GVBarcode.FocusedRowHandle, "code", "")
 
-            'If e.KeyCode = Keys.[Return] AndAlso TextEdit1.Text.Count > 0 Then
-            'action enter
-            'End If
-        End If
+        '    'If e.KeyCode = Keys.[Return] AndAlso TextEdit1.Text.Count > 0 Then
+        '    'action enter
+        '    'End If
+        'End If
 
-        _lastKeystroke = DateTime.Now
+        '_lastKeystroke = DateTime.Now
     End Sub
 End Class
