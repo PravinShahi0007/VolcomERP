@@ -70,7 +70,6 @@
                 newRow("id_disable_exos_det") = "0"
                 newRow("name") = GVData.GetRowCellValue(i, "name").ToString
                 newRow("code") = GVData.GetRowCellValue(i, "code").ToString
-                newRow("size") = GVData.GetRowCellValue(i, "size").ToString
                 newRow("class") = GVData.GetRowCellValue(i, "class").ToString
                 newRow("color") = GVData.GetRowCellValue(i, "color").ToString
                 newRow("sht") = GVData.GetRowCellValue(i, "sht").ToString

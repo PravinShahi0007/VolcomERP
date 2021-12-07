@@ -45,8 +45,14 @@
 
     Sub createNew()
         Cursor = Cursors.WaitCursor
-        FormDisableExosDet.action = "ins"
-        FormDisableExosDet.ShowDialog()
+        Dim qcek As String = "SELECT * FROM tb_disable_exos s WHERE s.id_report_status<5 "
+        Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+        If dcek.Rows.Count > 0 Then
+            stopCustom("Please complete all pending transaction first")
+        Else
+            FormDisableExosDet.action = "ins"
+            FormDisableExosDet.ShowDialog()
+        End If
         Cursor = Cursors.Default
     End Sub
 

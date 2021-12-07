@@ -27,13 +27,14 @@
             BMark.Enabled = False
             BtnAttachment.Enabled = False
             DEForm.Text = view_date(0)
+            viewDetail()
         ElseIf action = "upd" Then
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
             BMark.Enabled = True
 
             'query view based on edit id's
             Dim r As New ClassDisableExos()
-            Dim query As String = r.queryMain("AND r.id_disable_exos='" + id + "'", "1")
+            Dim query As String = r.queryMain("AND s.id_disable_exos='" + id + "'", "1")
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             id_report_status = data.Rows(0)("id_report_status").ToString
             DEForm.EditValue = data.Rows(0)("created_date")

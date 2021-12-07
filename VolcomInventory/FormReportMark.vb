@@ -11004,11 +11004,16 @@ WHERE ppsd.id_pib_pps='" & id_report & "'"
             If id_status_reportx = "6" Then
                 Dim qry As String = "-- nonaktif extended eos
                 UPDATE tb_design_extended_eos main
-                SET main.id_disable_exos=" + id_report + ", main.nonactive_date=NOW(), main.is_active=2
+                SET main.id_disable_exos=" + id_report + ", main.updated_date=NOW(), main.is_active=2
                 WHERE main.is_active=1 AND main.id_design IN (
 	                SELECT id_design FROM tb_disable_exos_det WHERE id_disable_exos=" + id_report + "
                 ); 
-                -- insert active "
+                -- insert active 
+                INSERT INTO tb_design_extended_eos(id_design, id_extended_eos, active_date,id_disable_exos, is_active)
+                SELECT d.id_design, 2, NOW(), d.id_disable_exos, 1 
+                FROM tb_disable_exos_det d
+                WHERE d.id_disable_exos="+id_report+"; "
+                execute_non_query(qry, True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_disable_exos SET id_report_status = '{0}' WHERE id_disable_exos = '{1}'", id_status_reportx, id_report)
