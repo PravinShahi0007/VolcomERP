@@ -11007,7 +11007,8 @@ WHERE ppsd.id_pib_pps='" & id_report & "'"
                 SET main.id_disable_exos=" + id_report + ", main.nonactive_date=NOW(), main.is_active=2
                 WHERE main.is_active=1 AND main.id_design IN (
 	                SELECT id_design FROM tb_disable_exos_det WHERE id_disable_exos=" + id_report + "
-                ); "
+                ); 
+                -- insert active "
             End If
 
             query = String.Format("UPDATE tb_disable_exos SET id_report_status = '{0}' WHERE id_disable_exos = '{1}'", id_status_reportx, id_report)
