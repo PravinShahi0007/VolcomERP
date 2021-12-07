@@ -8279,6 +8279,14 @@ GROUP BY pn.id_pn_fgpo"
                         execute_non_query(query, True, "", "", "", "")
                     End If
                 End If
+                If pn_type = "9" Then
+                    'PIB
+                    Dim qpib As String = "UPDATE tb_pib_review pir 
+INNER JOIN tb_pib_review pir2 ON pir.`id_pre_cal_fgpo`=pir2.`id_pre_cal_fgpo` 
+INNER JOIN tb_pn_fgpo_det pd ON pd.`id_report`=pir.`id_pib_review` AND pd.`report_mark_type`='360' AND pd.`id_report`='" & id_report & "'
+SET pir.is_active=2"
+                    execute_non_query(qpib, True, "", "", "", "")
+                End If
             End If
 
             'update

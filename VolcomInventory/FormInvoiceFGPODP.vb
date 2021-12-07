@@ -109,21 +109,7 @@
                 End If
             ElseIf doc_type = "5" Then
                 TEDocType.Text = "PIB Voluntary Payment"
-
-                GCReff.OptionsColumn.AllowFocus = False
-                GCDescription.OptionsColumn.AllowFocus = False
-                GCQty.OptionsColumn.AllowFocus = False
-                GCCur.OptionsColumn.AllowFocus = False
-                GCBeforeKurs.OptionsColumn.AllowFocus = False
-                GCKurs.OptionsColumn.AllowFocus = False
-                GCVat.OptionsColumn.AllowFocus = False
-
-                BtnPrint.Visible = False
-                BtnViewJournal.Visible = False
-                BMark.Visible = False
-                DEDueDate.Properties.ReadOnly = False
-                DERefDate.Properties.ReadOnly = False
-                'new
+                SLEPayType.EditValue = "9"
                 'vendor 
                 SLEVendor.EditValue = get_opt_prod_field("id_comp_bea_cukai")
                 'detail
