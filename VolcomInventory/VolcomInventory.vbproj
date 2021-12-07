@@ -9881,6 +9881,12 @@
     <Compile Include="ReportRequestRetOLStore.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportRetExos.Designer.vb">
+      <DependentUpon>ReportRetExos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportRetExos.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportRetOLStoreDet.Designer.vb">
       <DependentUpon>ReportRetOLStoreDet.vb</DependentUpon>
     </Compile>
@@ -15727,6 +15733,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportRequestRetOLStore.resx">
       <DependentUpon>ReportRequestRetOLStore.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportRetExos.resx">
+      <DependentUpon>ReportRetExos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportRetOLStoreDet.resx">
       <DependentUpon>ReportRetOLStoreDet.vb</DependentUpon>

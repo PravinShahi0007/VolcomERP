@@ -221,9 +221,9 @@ Partial Class FormRetExosDet
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl5.Location = New System.Drawing.Point(12, 38)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(92, 13)
+        Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
         Me.LabelControl5.TabIndex = 155
-        Me.LabelControl5.Text = "Ret. Order Number"
+        Me.LabelControl5.Text = "Number"
         '
         'LabelControl2
         '
