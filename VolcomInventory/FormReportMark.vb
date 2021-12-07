@@ -10987,6 +10987,7 @@ WHERE ppsd.id_pib_pps='" & id_report & "'"
                 SELECT " + id_new + ", rd.id_product,1, rd.id_design_price, rd.design_price, rd.qty 
                 FROM tb_ret_exos_det rd
                 WHERE rd.id_ret_exos=" + id_report + "; "
+                execute_non_query(qdetail, True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_ret_exos SET id_report_status = '{0}' WHERE id_ret_exos = '{1}'", id_status_reportx, id_report)
