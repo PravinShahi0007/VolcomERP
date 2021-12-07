@@ -438,6 +438,7 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='360'"
                 Next
                 warningCustom("Payment with number : " & number_already_pay & " still on process.")
             Else
+                FormInvoiceFGPODP.doc_type = "5"
                 FormInvoiceFGPODP.ShowDialog()
             End If
         End If

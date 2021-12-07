@@ -131,12 +131,12 @@
                     For i = 0 To FormInvoiceFGPO.GVAnalisa.RowCount - 1
                         Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                         newRow("id_prod_order") = FormInvoiceFGPO.GVAnalisa.GetRowCellValue(i, "id_prod_order").ToString
-                        newRow("id_acc") = get_opt_prod_field("id_comp_bea_cukai")
+                        newRow("id_acc") = FormInvoiceFGPO.GVAnalisa.GetRowCellValue(i, "id_acc").ToString
                         newRow("id_report") = FormInvoiceFGPO.GVAnalisa.GetRowCellValue(i, "id_pib_review").ToString
                         newRow("report_mark_type") = "22"
-                        newRow("report_number") = FormInvoiceFGPO.GVAnalisa.GetRowCellValue(i, "number").ToString
+                        newRow("report_number") = FormInvoiceFGPO.GVAnalisa.GetRowCellValue(i, "pib_no").ToString
                         newRow("info_design") = FormInvoiceFGPO.GVAnalisa.GetRowCellValue(i, "design_display_name").ToString
-                        newRow("qty") = FormInvoiceFGPO.GVAnalisa.GetRowCellValue(i, "qty")
+                        newRow("qty") = FormInvoiceFGPO.GVAnalisa.GetRowCellValue(i, "qty_remaining")
                         '
                         newRow("id_currency") = "1"
                         newRow("kurs") = 1
@@ -875,7 +875,7 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type='199'"
     Private Sub GVList_ShownEditor(sender As Object, e As EventArgs) Handles GVList.ShownEditor
         If GVList.RowCount > 0 Then
             If Not doc_type = "FGPO" Then
-                If GVList.GetFocusedRowCellValue("report_mark_type").ToString = "13" Or GVList.GetFocusedRowCellValue("report_mark_type").ToString = "23" Or GVList.GetFocusedRowCellValue("report_mark_type").ToString = "1" Then
+                If GVList.GetFocusedRowCellValue("report_mark_type").ToString = "13" Or GVList.GetFocusedRowCellValue("report_mark_type").ToString = "22" Or GVList.GetFocusedRowCellValue("report_mark_type").ToString = "23" Or GVList.GetFocusedRowCellValue("report_mark_type").ToString = "1" Or GVList.GetFocusedRowCellValue("report_mark_type").ToString = "360" Then
                     GCDescription.OptionsColumn.AllowFocus = False
                     GCReff.OptionsColumn.AllowFocus = False
                     GCQty.OptionsColumn.AllowFocus = False

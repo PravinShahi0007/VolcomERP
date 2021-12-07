@@ -3,9 +3,9 @@
     Private Sub ReportPreCalReport_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         Dim qorign As String = "SELECT l.duty
 ,SUM((l.`price`*cal.`rate_management`)*l.`qty`) AS tot_fob_rp
-,SUM(ROUND((tot_freight.tot_freight/tot_fgpo.tot_qty_sales)*l.`qty`*(cal.`sales_percent`/100),2)) AS tot_freight
-,SUM(ROUND((tot_freight.tot_freight/tot_fgpo.tot_qty_sales)*l.`qty`*(cal.`sales_percent`/100),2))+SUM((l.`price`*cal.`rate_management`)*l.`qty`) AS tot_cif
-,ROUND((SUM(ROUND((tot_freight.tot_freight/tot_fgpo.tot_qty_sales)*l.`qty`*(cal.`sales_percent`/100),2))+SUM((l.`price`*cal.`rate_management`)*l.`qty`))*(l.duty/100),2) AS tot_duty
+,SUM((tot_freight.tot_freight/tot_fgpo.tot_qty)*l.`qty`) AS tot_freight
+,SUM((tot_freight.tot_freight/tot_fgpo.tot_qty)*l.`qty`)+SUM((l.`price`*cal.`rate_management`)*l.`qty`) AS tot_cif
+,(SUM((tot_freight.tot_freight/tot_fgpo.tot_qty)*l.`qty`)+SUM((l.`price`*cal.`rate_management`)*l.`qty`))*(l.duty/100) AS tot_duty
 FROM `tb_pre_cal_fgpo_list` l
 INNER JOIN tb_pre_cal_fgpo cal ON cal.`id_pre_cal_fgpo`=l.`id_pre_cal_fgpo`
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=l.`id_prod_order`
@@ -187,7 +187,7 @@ WHERE l.`id_pre_cal_fgpo`='" & id_report & "'"
 
         'qty sales
         Dim qty_sales As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(12)
-        qty_sales.Text = Decimal.Parse(dt.Rows(row_i)("qty_sales").ToString).ToString("N2")
+        qty_sales.Text = Decimal.Parse(dt.Rows(row_i)("qty_sales").ToString).ToString("N0")
         qty_sales.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         qty_sales.Font = font_row_style
 
@@ -352,7 +352,7 @@ WHERE l.`id_pre_cal_fgpo`='" & id_report & "'"
 
         'qty sales
         Dim qty_sales As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(12)
-        qty_sales.Text = Decimal.Parse(qty_salesh.ToString).ToString("N2")
+        qty_sales.Text = Decimal.Parse(qty_salesh.ToString).ToString("N0")
         qty_sales.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         qty_sales.Font = font_row_style
 

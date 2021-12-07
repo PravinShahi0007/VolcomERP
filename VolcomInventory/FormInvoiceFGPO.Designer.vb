@@ -1738,8 +1738,6 @@ Partial Class FormInvoiceFGPO
         Me.GVAnalisa.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn35, Me.BandedGridColumn6, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn10, Me.BandedGridColumn9, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn33, Me.BandedGridColumn34, Me.BandedGridColumn20, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn21, Me.BandedGridColumn22, Me.BandedGridColumn23, Me.BandedGridColumn25, Me.BandedGridColumn24, Me.BandedGridColumn26, Me.BandedGridColumn27, Me.BandedGridColumn28, Me.BandedGridColumn29, Me.BandedGridColumn30, Me.BandedGridColumn31, Me.BandedGridColumn32})
         Me.GVAnalisa.GridControl = Me.GCAnalisa
         Me.GVAnalisa.Name = "GVAnalisa"
-        Me.GVAnalisa.OptionsBehavior.Editable = False
-        Me.GVAnalisa.OptionsBehavior.ReadOnly = True
         Me.GVAnalisa.OptionsView.ColumnAutoWidth = False
         Me.GVAnalisa.OptionsView.ShowGroupPanel = False
         '
@@ -1779,6 +1777,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn1.Caption = "ISB Number"
         Me.BandedGridColumn1.FieldName = "isb_number"
         Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.BandedGridColumn1.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn1.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn1.Visible = True
         '
         'BandedGridColumn2
@@ -1786,6 +1786,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn2.Caption = "FGPO Number"
         Me.BandedGridColumn2.FieldName = "prod_order_number"
         Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn2.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn2.Visible = True
         '
         'BandedGridColumn3
@@ -1797,6 +1799,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn3.Caption = "Class"
         Me.BandedGridColumn3.FieldName = "class"
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn3.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn3.Visible = True
         '
         'BandedGridColumn4
@@ -1804,6 +1808,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn4.Caption = "Design"
         Me.BandedGridColumn4.FieldName = "design_name"
         Me.BandedGridColumn4.Name = "BandedGridColumn4"
+        Me.BandedGridColumn4.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn4.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn4.Visible = True
         '
         'BandedGridColumn5
@@ -1815,6 +1821,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn5.Caption = "Color"
         Me.BandedGridColumn5.FieldName = "color"
         Me.BandedGridColumn5.Name = "BandedGridColumn5"
+        Me.BandedGridColumn5.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn5.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn5.Visible = True
         '
         'BandedGridColumn7
@@ -1822,6 +1830,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn7.Caption = "PIB Number"
         Me.BandedGridColumn7.FieldName = "pib_no"
         Me.BandedGridColumn7.Name = "BandedGridColumn7"
+        Me.BandedGridColumn7.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn7.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn7.Visible = True
         '
         'GridBand1
@@ -1842,6 +1852,8 @@ Partial Class FormInvoiceFGPO
         '
         Me.BandedGridColumn6.Caption = "id"
         Me.BandedGridColumn6.Name = "BandedGridColumn6"
+        Me.BandedGridColumn6.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn6.OptionsColumn.AllowFocus = False
         '
         'BandedGridColumn8
         '
@@ -1850,6 +1862,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn8.FieldName = "pib_date"
         Me.BandedGridColumn8.Name = "BandedGridColumn8"
+        Me.BandedGridColumn8.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn8.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn8.Visible = True
         '
         'BandedGridColumn9
@@ -1859,6 +1873,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn9.FieldName = "second_date_limit"
         Me.BandedGridColumn9.Name = "BandedGridColumn9"
+        Me.BandedGridColumn9.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn9.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn9.Visible = True
         Me.BandedGridColumn9.Width = 165
         '
@@ -1873,6 +1889,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn10.FieldName = "tot_royalty_full"
         Me.BandedGridColumn10.Name = "BandedGridColumn10"
+        Me.BandedGridColumn10.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn10.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn10.Visible = True
         '
         'BandedGridColumn11
@@ -1882,6 +1900,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn11.FieldName = "notif_qty_sales_percent"
         Me.BandedGridColumn11.Name = "BandedGridColumn11"
+        Me.BandedGridColumn11.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn11.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn11.Visible = True
         '
         'BandedGridColumn12
@@ -1895,6 +1915,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn12.FieldName = "tot_royalty"
         Me.BandedGridColumn12.Name = "BandedGridColumn12"
+        Me.BandedGridColumn12.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn12.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn12.Visible = True
         '
         'BandedGridColumn13
@@ -1908,6 +1930,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn13.FieldName = "qty_rec"
         Me.BandedGridColumn13.Name = "BandedGridColumn13"
+        Me.BandedGridColumn13.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn13.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn13.Visible = True
         '
         'gridBand5
@@ -1931,6 +1955,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn14.FieldName = "qty_sales"
         Me.BandedGridColumn14.Name = "BandedGridColumn14"
+        Me.BandedGridColumn14.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn14.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn14.Visible = True
         '
         'BandedGridColumn15
@@ -1940,6 +1966,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn15.FieldName = "last_upd_qty_sales"
         Me.BandedGridColumn15.Name = "BandedGridColumn15"
+        Me.BandedGridColumn15.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn15.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn15.Visible = True
         '
         'BandedGridColumn16
@@ -1953,6 +1981,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn16.FieldName = "sales_thru"
         Me.BandedGridColumn16.Name = "BandedGridColumn16"
+        Me.BandedGridColumn16.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn16.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn16.Visible = True
         '
         'gridBand2
@@ -1972,6 +2002,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn17.Caption = "Until Second Payment (days)"
         Me.BandedGridColumn17.FieldName = "day_to_second_payment"
         Me.BandedGridColumn17.Name = "BandedGridColumn17"
+        Me.BandedGridColumn17.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn17.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn17.Visible = True
         Me.BandedGridColumn17.Width = 150
         '
@@ -1980,6 +2012,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn18.Caption = "Send Notif expired at (days)"
         Me.BandedGridColumn18.FieldName = "notif_days_before"
         Me.BandedGridColumn18.Name = "BandedGridColumn18"
+        Me.BandedGridColumn18.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn18.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn18.Visible = True
         Me.BandedGridColumn18.Width = 106
         '
@@ -1990,6 +2024,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn19.FieldName = "notif_expired_date"
         Me.BandedGridColumn19.Name = "BandedGridColumn19"
+        Me.BandedGridColumn19.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn19.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn19.Visible = True
         '
         'BandedGridColumn20
@@ -1999,6 +2035,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn20.FieldName = "notif_qty_sales_percent"
         Me.BandedGridColumn20.Name = "BandedGridColumn20"
+        Me.BandedGridColumn20.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn20.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn20.Visible = True
         Me.BandedGridColumn20.Width = 121
         '
@@ -2009,6 +2047,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn21.FieldName = "notif_sales_thru_date"
         Me.BandedGridColumn21.Name = "BandedGridColumn21"
+        Me.BandedGridColumn21.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn21.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn21.Visible = True
         '
         'gridBand6
@@ -2031,6 +2071,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn22.Caption = "Jml Bulan Kalender Lewat"
         Me.BandedGridColumn22.FieldName = "jml_bulan_kalender_lewat"
         Me.BandedGridColumn22.Name = "BandedGridColumn22"
+        Me.BandedGridColumn22.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn22.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn22.Visible = True
         '
         'BandedGridColumn23
@@ -2038,6 +2080,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn23.Caption = "Jml Bulan Import Lewat"
         Me.BandedGridColumn23.FieldName = "jml_bulan_import_lewat"
         Me.BandedGridColumn23.Name = "BandedGridColumn23"
+        Me.BandedGridColumn23.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn23.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn23.Visible = True
         Me.BandedGridColumn23.Width = 55
         '
@@ -2048,6 +2092,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn24.FieldName = "tgl_akhir_audit"
         Me.BandedGridColumn24.Name = "BandedGridColumn24"
+        Me.BandedGridColumn24.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn24.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn24.Visible = True
         '
         'BandedGridColumn25
@@ -2055,6 +2101,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn25.Caption = "Jml Bulan Import Sisa"
         Me.BandedGridColumn25.FieldName = "jml_bulan_import_sampai_audit_habis"
         Me.BandedGridColumn25.Name = "BandedGridColumn25"
+        Me.BandedGridColumn25.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn25.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn25.Visible = True
         '
         'BandedGridColumn26
@@ -2062,6 +2110,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn26.Caption = "Jml Bln Kalender s/d Bulan Audit Berakhir"
         Me.BandedGridColumn26.FieldName = "jml_bulan_kalender_sampai_audit_habis"
         Me.BandedGridColumn26.Name = "BandedGridColumn26"
+        Me.BandedGridColumn26.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn26.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn26.Visible = True
         '
         'BandedGridColumn27
@@ -2071,6 +2121,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn27.FieldName = "sales_thru_per_month"
         Me.BandedGridColumn27.Name = "BandedGridColumn27"
+        Me.BandedGridColumn27.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn27.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn27.Visible = True
         '
         'BandedGridColumn28
@@ -2080,6 +2132,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn28.FieldName = "sales_thru_sampai_expired"
         Me.BandedGridColumn28.Name = "BandedGridColumn28"
+        Me.BandedGridColumn28.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn28.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn28.Visible = True
         '
         'BandedGridColumn29
@@ -2089,6 +2143,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn29.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn29.FieldName = "sales_thru_sampai_audit_habis"
         Me.BandedGridColumn29.Name = "BandedGridColumn29"
+        Me.BandedGridColumn29.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn29.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn29.Visible = True
         '
         'gridBand7
@@ -2106,6 +2162,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn30.Caption = "Jml Bulan Import Teranalisa"
         Me.BandedGridColumn30.FieldName = "jml_bulan_import_teranalisa"
         Me.BandedGridColumn30.Name = "BandedGridColumn30"
+        Me.BandedGridColumn30.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn30.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn30.Visible = True
         '
         'BandedGridColumn31
@@ -2113,6 +2171,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn31.Caption = "Notes"
         Me.BandedGridColumn31.FieldName = "notes"
         Me.BandedGridColumn31.Name = "BandedGridColumn31"
+        Me.BandedGridColumn31.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn31.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn31.Visible = True
         '
         'BandedGridColumn32
@@ -2120,6 +2180,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn32.Caption = "Payment Notes"
         Me.BandedGridColumn32.FieldName = "note_payment"
         Me.BandedGridColumn32.Name = "BandedGridColumn32"
+        Me.BandedGridColumn32.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn32.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn32.Visible = True
         '
         'gridBand3
@@ -2142,6 +2204,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn33.FieldName = "second_payment"
         Me.BandedGridColumn33.Name = "BandedGridColumn33"
+        Me.BandedGridColumn33.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn33.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn33.Visible = True
         '
         'BandedGridColumn34
@@ -2155,6 +2219,8 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn34.FieldName = "remaining_payment"
         Me.BandedGridColumn34.Name = "BandedGridColumn34"
+        Me.BandedGridColumn34.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn34.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn34.Visible = True
         '
         'BCreateBPL
