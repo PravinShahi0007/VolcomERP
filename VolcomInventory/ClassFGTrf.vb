@@ -186,6 +186,68 @@
             execute_non_query(query, True, "", "", "", "")
             'action for restock
             If id_status_reportx_par = "6" Then
+                'propose promo
+                Dim id_propose_promo As String = execute_query("SELECT id_propose_promo FROM tb_sales_order WHERE id_sales_order = '" + id_so + "'", 0, True, "", "", "", "")
+
+                If Not id_propose_promo = "" Then
+                    Dim qty_propose_promo As String = execute_query("
+                        SELECT ROUND(SUM(qty)) AS qty
+                        FROM tb_propose_promo_det
+                        WHERE id_propose_promo = '" + id_propose_promo + "' AND id_comp <> '437'
+                    ", 0, True, "", "", "", "")
+
+                    Dim qty_sales_order As String = execute_query("
+                        SELECT ROUND(IFNULL(SUM(trf_det.fg_trf_det_qty), 0)) AS qty
+                        FROM tb_fg_trf_det AS trf_det
+                        LEFT JOIN tb_fg_trf AS trf ON trf_det.id_fg_trf = trf.id_fg_trf
+                        LEFT JOIN tb_sales_order AS so ON trf.id_sales_order = so.id_sales_order
+                        WHERE trf.id_report_status = 6 AND so.id_propose_promo = '" + id_propose_promo + "'
+                    ", 0, True, "", "", "", "")
+
+                    execute_non_query("
+                        INSERT INTO tb_storage_fg (id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status)
+                        SELECT '459' AS id_wh_drawer, '2' AS id_storage_category, trf_det.id_product, IFNULL(dsg.design_cop, 0) AS bom_unit_price, '361' AS report_mark_type, '" + id_propose_promo + "' AS id_report, trf_det.fg_trf_det_qty AS storage_product_qty, NOW() AS storage_product_datetime, '' AS storage_product_notes, '2' AS id_stock_status
+                        FROM tb_fg_trf_det AS trf_det
+                        LEFT JOIN tb_m_product AS pro ON trf_det.id_product = pro.id_product
+                        LEFT JOIN tb_m_design AS dsg ON pro.id_design = dsg.id_design
+                        WHERE trf_det.id_fg_trf = '" + id_report_par + "'
+                    ", True, "", "", "", "")
+
+                    If Integer.Parse(qty_propose_promo) = Integer.Parse(qty_sales_order) Then
+                        Dim id_sales_order As String = execute_query("
+                            SELECT id_sales_order FROM tb_sales_order WHERE id_propose_promo = '" + id_propose_promo + "' AND id_store_contact_to = 584 AND id_warehouse_contact_to = 611
+                        ", 0, True, "", "", "", "")
+
+                        execute_non_query("
+                            INSERT INTO tb_sales_order_det (id_sales_order, id_product, id_design_price, design_price, sales_order_det_qty, sales_order_det_note, item_id, ol_store_id, id_ol_promo_collection_sku_replace)
+                            SELECT '" + id_sales_order + "' AS id_sales_order, d.id_product, d.id_design_price, d.design_price, d.qty AS sales_order_det_qty, '' AS sales_order_det_note, '' AS item_id, '' AS ol_store_id, NULL AS id_ol_promo_collection_sku_replace
+                            FROM tb_propose_promo_det AS d
+                            WHERE d.id_propose_promo = '" + id_propose_promo + "' AND d.id_comp <> '437'
+                        ", True, "", "", "", "")
+
+                        execute_non_query("
+                            INSERT INTO tb_storage_fg (id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status)
+                            SELECT '459' AS id_wh_drawer, '2' AS id_storage_category, so_det.id_product, IFNULL(dsg.design_cop, 0) AS bom_unit_price, '39' AS report_mark_type, '" + id_sales_order + "' AS id_report, so_det.sales_order_det_qty, NOW() AS storage_product_datetime, '' AS storage_product_notes, '2' AS id_stock_status
+                            FROM tb_sales_order AS so
+                            INNER JOIN tb_sales_order_det AS so_det ON so_det.id_sales_order = so.id_sales_order
+                            INNER JOIN tb_m_product AS prod ON prod.id_product = so_det.id_product
+                            INNER JOIN tb_m_design AS dsg ON dsg.id_design = prod.id_design
+                            WHERE so.id_propose_promo = '" + id_propose_promo + "' AND id_store_contact_to = 611
+                        ", True, "", "", "", "")
+
+                        execute_non_query("
+                            INSERT INTO tb_storage_fg (id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status)
+                            SELECT '459' AS id_wh_drawer, '1' AS id_storage_category, d.id_product, IFNULL(dsg.design_cop, 0) AS bom_unit_price, '361' AS report_mark_type, '" + id_propose_promo + "' AS id_report, d.qty AS storage_product_qty, NOW() AS storage_product_datetime, '' AS storage_product_notes, '2' AS id_stock_status
+                            FROM tb_propose_promo_det AS d
+                            LEFT JOIN tb_m_product AS p ON d.id_product = p.id_product
+                            LEFT JOIN tb_m_design AS dsg ON p.id_design = dsg.id_design
+                            WHERE d.id_propose_promo = '" + id_propose_promo + "' AND d.id_comp <> '437'
+                        ", True, "", "", "", "")
+
+                        execute_non_query("UPDATE tb_sales_order SET id_report_status = '6' WHERE id_sales_order = (SELECT id_sales_order FROM tb_propose_promo WHERE id_propose_promo = '" + id_propose_promo + "' LIMIT 1)", True, "", "", "", "")
+                    End If
+                End If
+
                 'close too
                 execute_non_query_long("CALL closing_too(" + id_so + ")", True, "", "", "", "")
             End If

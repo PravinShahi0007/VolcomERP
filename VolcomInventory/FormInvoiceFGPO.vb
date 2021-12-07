@@ -397,4 +397,50 @@ GROUP BY dp.id_pn_fgpo,dpd.id_report"
             PCVendor.Visible = True
         End If
     End Sub
+
+    Private Sub BRefresh_Click(sender As Object, e As EventArgs) Handles BRefresh.Click
+        view_analisa_pib()
+    End Sub
+
+    Sub view_analisa_pib()
+        Dim q As String = "CALL pib_analisa_pay()"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCAnalisa.DataSource = dt
+        GVAnalisa.BestFitColumns()
+    End Sub
+
+    Private Sub BCreateBPL_Click(sender As Object, e As EventArgs) Handles BCreateBPL.Click
+        GVAnalisa.ActiveFilterString = "[is_check]='yes'"
+        If GVAnalisa.RowCount > 0 Then
+            'check if already DP
+            Dim id As String = ""
+            For i = 0 To GVAnalisa.RowCount - 1
+                If Not i = 0 Then
+                    id += ","
+                End If
+                id += "'" & GVAnalisa.GetRowCellValue(i, "id_pib_review").ToString & "'"
+            Next
+            '
+            Dim query_check As String = "SELECT * 
+FROM tb_pn_fgpo_det pnd
+INNER JOIN tb_pn_fgpo pn ON pnd.`id_pn_fgpo`=pn.`id_pn_fgpo` AND pn.`id_report_status` != 5 AND pn.`id_report_status` != 6 
+INNER JOIN tb_pib_review pir ON pir.id_pib_review=pnd.id_report
+INNER JOIN tb_prod_order po ON po.id_prod_order=pir.id_prod_order
+WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='360'"
+            Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+            If data_check.Rows.Count > 0 Then
+                Dim number_already_pay As String = ""
+                For i = 0 To data_check.Rows.Count - 1
+                    If Not i = 0 Then
+                        number_already_pay += ","
+                    End If
+                    number_already_pay += "'" & data_check.Rows(i)("prod_order_number").ToString & "'"
+                Next
+                warningCustom("Payment with number : " & number_already_pay & " still on process.")
+            Else
+                FormInvoiceFGPODP.ShowDialog()
+            End If
+        End If
+        GVDPFGPO.ActiveFilterString = ""
+    End Sub
 End Class

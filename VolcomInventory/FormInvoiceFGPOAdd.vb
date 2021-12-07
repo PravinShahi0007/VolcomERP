@@ -301,10 +301,11 @@ LEFT JOIN (
 )rec ON rec.id_sample_purc=sp.`id_sample_purc`
 LEFT JOIN 
 (
-    SELECT pn.id_pn_fgpo,pnd.id_report
+    SELECT pn.id_pn_fgpo,pnd.id_report,SUM(pnd.value_bef_kurs) AS dp_amount
     FROM `tb_pn_fgpo_det` pnd 
     INNER JOIN tb_pn_fgpo pn ON pn.id_pn_fgpo=pnd.id_pn_fgpo
     WHERE pn.id_report_status!=5 AND pnd.report_mark_type=1 AND pn.type=2
+    GROUP BY pnd.id_report,pnd.report_mark_type
 )pn ON pn.id_report=sp.id_sample_purc
 WHERE sp.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) AND pn.dp_amount>0
 GROUP BY sp.`id_sample_purc`"

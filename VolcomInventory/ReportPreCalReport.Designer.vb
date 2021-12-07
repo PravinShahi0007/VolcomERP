@@ -1614,7 +1614,7 @@ Partial Public Class ReportPreCalReport
         Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(96.875!, 45.0!)
         Me.XrLabel20.Name = "XrLabel20"
         Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel20.SizeF = New System.Drawing.SizeF(226.7993!, 15.0!)
+        Me.XrLabel20.SizeF = New System.Drawing.SizeF(580.2764!, 15.0!)
         Me.XrLabel20.StylePriority.UseTextAlignment = False
         Me.XrLabel20.Text = "[forwarder]"
         Me.XrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -1624,17 +1624,17 @@ Partial Public Class ReportPreCalReport
         Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(96.875!, 30.0!)
         Me.XrLabel19.Name = "XrLabel19"
         Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel19.SizeF = New System.Drawing.SizeF(226.7993!, 15.0!)
+        Me.XrLabel19.SizeF = New System.Drawing.SizeF(580.2764!, 15.0!)
         Me.XrLabel19.StylePriority.UseTextAlignment = False
         Me.XrLabel19.Text = "[ctn]/[cbm]"
         Me.XrLabel19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel18
         '
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(96.875!, 15.0!)
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(96.875!, 14.99999!)
         Me.XrLabel18.Name = "XrLabel18"
         Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel18.SizeF = New System.Drawing.SizeF(226.7993!, 15.0!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(580.2764!, 15.0!)
         Me.XrLabel18.StylePriority.UseTextAlignment = False
         Me.XrLabel18.Text = "[vendor_name]"
         Me.XrLabel18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -1656,7 +1656,7 @@ Partial Public Class ReportPreCalReport
         Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(96.875!, 0!)
         Me.XrLabel16.Name = "XrLabel16"
         Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel16.SizeF = New System.Drawing.SizeF(226.7993!, 15.0!)
+        Me.XrLabel16.SizeF = New System.Drawing.SizeF(580.2764!, 15.0!)
         Me.XrLabel16.StylePriority.UseTextAlignment = False
         Me.XrLabel16.Text = "Budget Royalty"
         Me.XrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft

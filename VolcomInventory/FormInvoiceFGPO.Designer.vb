@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormInvoiceFGPO
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormInvoiceFGPO
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormInvoiceFGPO))
@@ -161,6 +161,55 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn67 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreateInvoiceLain = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPPIBTaxPayment = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCAnalisa = New DevExpress.XtraGrid.GridControl()
+        Me.GVAnalisa = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn35 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RICE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn19 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn22 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn24 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn25 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn26 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn27 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn28 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn29 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn30 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn31 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn32 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn33 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn34 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BCreateBPL = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.PCVendor = New DevExpress.XtraEditors.PanelControl()
         Me.SLEVendorPayment = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -168,28 +217,6 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.XTPPIBTaxPayment = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCSummary = New DevExpress.XtraGrid.GridControl()
-        Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn81 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn82 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn83 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn84 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn85 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn86 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn87 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn88 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn89 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn90 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn91 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn92 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn93 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn94 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn95 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn96 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCInvoiceFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInvoiceFGPO.SuspendLayout()
         Me.XTPBPL.SuspendLayout()
@@ -233,15 +260,16 @@ Partial Class FormInvoiceFGPO
         Me.XTPInvoiceClaimLain.SuspendLayout()
         CType(Me.GCInvoiceLain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVInvoiceLain, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPPIBTaxPayment.SuspendLayout()
+        CType(Me.GCAnalisa, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVAnalisa, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICE, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         CType(Me.PCVendor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCVendor.SuspendLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTPPIBTaxPayment.SuspendLayout()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
-        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCInvoiceFGPO
@@ -1684,6 +1712,489 @@ Partial Class FormInvoiceFGPO
         Me.BCreateInvoiceLain.TabIndex = 21
         Me.BCreateInvoiceLain.Text = "Create Invoice Claim Lain-lain"
         '
+        'XTPPIBTaxPayment
+        '
+        Me.XTPPIBTaxPayment.Controls.Add(Me.GCAnalisa)
+        Me.XTPPIBTaxPayment.Controls.Add(Me.BCreateBPL)
+        Me.XTPPIBTaxPayment.Controls.Add(Me.PanelControl1)
+        Me.XTPPIBTaxPayment.Name = "XTPPIBTaxPayment"
+        Me.XTPPIBTaxPayment.Size = New System.Drawing.Size(1155, 558)
+        Me.XTPPIBTaxPayment.Text = "Royalty Duty"
+        '
+        'GCAnalisa
+        '
+        Me.GCAnalisa.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCAnalisa.Location = New System.Drawing.Point(0, 43)
+        Me.GCAnalisa.MainView = Me.GVAnalisa
+        Me.GCAnalisa.Name = "GCAnalisa"
+        Me.GCAnalisa.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICE})
+        Me.GCAnalisa.Size = New System.Drawing.Size(1155, 478)
+        Me.GCAnalisa.TabIndex = 3
+        Me.GCAnalisa.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAnalisa})
+        '
+        'GVAnalisa
+        '
+        Me.GVAnalisa.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand4, Me.GridBand1, Me.gridBand5, Me.gridBand2, Me.gridBand6, Me.gridBand7, Me.gridBand3})
+        Me.GVAnalisa.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn35, Me.BandedGridColumn6, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn10, Me.BandedGridColumn9, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn33, Me.BandedGridColumn34, Me.BandedGridColumn20, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn21, Me.BandedGridColumn22, Me.BandedGridColumn23, Me.BandedGridColumn25, Me.BandedGridColumn24, Me.BandedGridColumn26, Me.BandedGridColumn27, Me.BandedGridColumn28, Me.BandedGridColumn29, Me.BandedGridColumn30, Me.BandedGridColumn31, Me.BandedGridColumn32})
+        Me.GVAnalisa.GridControl = Me.GCAnalisa
+        Me.GVAnalisa.Name = "GVAnalisa"
+        Me.GVAnalisa.OptionsBehavior.Editable = False
+        Me.GVAnalisa.OptionsBehavior.ReadOnly = True
+        Me.GVAnalisa.OptionsView.ColumnAutoWidth = False
+        Me.GVAnalisa.OptionsView.ShowGroupPanel = False
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "Detail FG"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn35)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn1)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn2)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn3)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn4)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn5)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn7)
+        Me.gridBand4.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 0
+        Me.gridBand4.Width = 481
+        '
+        'BandedGridColumn35
+        '
+        Me.BandedGridColumn35.Caption = "*"
+        Me.BandedGridColumn35.ColumnEdit = Me.RICE
+        Me.BandedGridColumn35.FieldName = "is_check"
+        Me.BandedGridColumn35.Name = "BandedGridColumn35"
+        Me.BandedGridColumn35.Visible = True
+        Me.BandedGridColumn35.Width = 31
+        '
+        'RICE
+        '
+        Me.RICE.AutoHeight = False
+        Me.RICE.Name = "RICE"
+        Me.RICE.ValueChecked = "yes"
+        Me.RICE.ValueUnchecked = "no"
+        '
+        'BandedGridColumn1
+        '
+        Me.BandedGridColumn1.Caption = "ISB Number"
+        Me.BandedGridColumn1.FieldName = "isb_number"
+        Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.BandedGridColumn1.Visible = True
+        '
+        'BandedGridColumn2
+        '
+        Me.BandedGridColumn2.Caption = "FGPO Number"
+        Me.BandedGridColumn2.FieldName = "prod_order_number"
+        Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.Visible = True
+        '
+        'BandedGridColumn3
+        '
+        Me.BandedGridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn3.Caption = "Class"
+        Me.BandedGridColumn3.FieldName = "class"
+        Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.Visible = True
+        '
+        'BandedGridColumn4
+        '
+        Me.BandedGridColumn4.Caption = "Design"
+        Me.BandedGridColumn4.FieldName = "design_name"
+        Me.BandedGridColumn4.Name = "BandedGridColumn4"
+        Me.BandedGridColumn4.Visible = True
+        '
+        'BandedGridColumn5
+        '
+        Me.BandedGridColumn5.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn5.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn5.Caption = "Color"
+        Me.BandedGridColumn5.FieldName = "color"
+        Me.BandedGridColumn5.Name = "BandedGridColumn5"
+        Me.BandedGridColumn5.Visible = True
+        '
+        'BandedGridColumn7
+        '
+        Me.BandedGridColumn7.Caption = "PIB Number"
+        Me.BandedGridColumn7.FieldName = "pib_no"
+        Me.BandedGridColumn7.Name = "BandedGridColumn7"
+        Me.BandedGridColumn7.Visible = True
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Detail PIB"
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn6)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn8)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn9)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn10)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn11)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn12)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn13)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 1
+        Me.GridBand1.Width = 540
+        '
+        'BandedGridColumn6
+        '
+        Me.BandedGridColumn6.Caption = "id"
+        Me.BandedGridColumn6.Name = "BandedGridColumn6"
+        '
+        'BandedGridColumn8
+        '
+        Me.BandedGridColumn8.Caption = "PIB Date"
+        Me.BandedGridColumn8.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn8.FieldName = "pib_date"
+        Me.BandedGridColumn8.Name = "BandedGridColumn8"
+        Me.BandedGridColumn8.Visible = True
+        '
+        'BandedGridColumn9
+        '
+        Me.BandedGridColumn9.Caption = "Second Payment Date Limit"
+        Me.BandedGridColumn9.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn9.FieldName = "second_date_limit"
+        Me.BandedGridColumn9.Name = "BandedGridColumn9"
+        Me.BandedGridColumn9.Visible = True
+        Me.BandedGridColumn9.Width = 165
+        '
+        'BandedGridColumn10
+        '
+        Me.BandedGridColumn10.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn10.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn10.Caption = "PIB Royalty Duty Amount"
+        Me.BandedGridColumn10.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn10.FieldName = "tot_royalty_full"
+        Me.BandedGridColumn10.Name = "BandedGridColumn10"
+        Me.BandedGridColumn10.Visible = True
+        '
+        'BandedGridColumn11
+        '
+        Me.BandedGridColumn11.Caption = "First Payment Sales %"
+        Me.BandedGridColumn11.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn11.FieldName = "notif_qty_sales_percent"
+        Me.BandedGridColumn11.Name = "BandedGridColumn11"
+        Me.BandedGridColumn11.Visible = True
+        '
+        'BandedGridColumn12
+        '
+        Me.BandedGridColumn12.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn12.Caption = "First Payment"
+        Me.BandedGridColumn12.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn12.FieldName = "tot_royalty"
+        Me.BandedGridColumn12.Name = "BandedGridColumn12"
+        Me.BandedGridColumn12.Visible = True
+        '
+        'BandedGridColumn13
+        '
+        Me.BandedGridColumn13.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn13.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn13.Caption = "Import Qty"
+        Me.BandedGridColumn13.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn13.FieldName = "qty_rec"
+        Me.BandedGridColumn13.Name = "BandedGridColumn13"
+        Me.BandedGridColumn13.Visible = True
+        '
+        'gridBand5
+        '
+        Me.gridBand5.Caption = "Sales Performance"
+        Me.gridBand5.Columns.Add(Me.BandedGridColumn14)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumn15)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumn16)
+        Me.gridBand5.Name = "gridBand5"
+        Me.gridBand5.VisibleIndex = 2
+        Me.gridBand5.Width = 225
+        '
+        'BandedGridColumn14
+        '
+        Me.BandedGridColumn14.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn14.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn14.Caption = "Sales Qty"
+        Me.BandedGridColumn14.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn14.FieldName = "qty_sales"
+        Me.BandedGridColumn14.Name = "BandedGridColumn14"
+        Me.BandedGridColumn14.Visible = True
+        '
+        'BandedGridColumn15
+        '
+        Me.BandedGridColumn15.Caption = "Last Update Sales Qty"
+        Me.BandedGridColumn15.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn15.FieldName = "last_upd_qty_sales"
+        Me.BandedGridColumn15.Name = "BandedGridColumn15"
+        Me.BandedGridColumn15.Visible = True
+        '
+        'BandedGridColumn16
+        '
+        Me.BandedGridColumn16.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn16.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn16.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn16.Caption = "Sales Thru"
+        Me.BandedGridColumn16.DisplayFormat.FormatString = "{0:N2} %"
+        Me.BandedGridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn16.FieldName = "sales_thru"
+        Me.BandedGridColumn16.Name = "BandedGridColumn16"
+        Me.BandedGridColumn16.Visible = True
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "Notification Area"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn17)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn18)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn19)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn20)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn21)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 3
+        Me.gridBand2.Width = 527
+        '
+        'BandedGridColumn17
+        '
+        Me.BandedGridColumn17.Caption = "Until Second Payment (days)"
+        Me.BandedGridColumn17.FieldName = "day_to_second_payment"
+        Me.BandedGridColumn17.Name = "BandedGridColumn17"
+        Me.BandedGridColumn17.Visible = True
+        Me.BandedGridColumn17.Width = 150
+        '
+        'BandedGridColumn18
+        '
+        Me.BandedGridColumn18.Caption = "Send Notif expired at (days)"
+        Me.BandedGridColumn18.FieldName = "notif_days_before"
+        Me.BandedGridColumn18.Name = "BandedGridColumn18"
+        Me.BandedGridColumn18.Visible = True
+        Me.BandedGridColumn18.Width = 106
+        '
+        'BandedGridColumn19
+        '
+        Me.BandedGridColumn19.Caption = "Notif Expired Date"
+        Me.BandedGridColumn19.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn19.FieldName = "notif_expired_date"
+        Me.BandedGridColumn19.Name = "BandedGridColumn19"
+        Me.BandedGridColumn19.Visible = True
+        '
+        'BandedGridColumn20
+        '
+        Me.BandedGridColumn20.Caption = "Notify Sales Thru at"
+        Me.BandedGridColumn20.DisplayFormat.FormatString = "{0:N2} %"
+        Me.BandedGridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn20.FieldName = "notif_qty_sales_percent"
+        Me.BandedGridColumn20.Name = "BandedGridColumn20"
+        Me.BandedGridColumn20.Visible = True
+        Me.BandedGridColumn20.Width = 121
+        '
+        'BandedGridColumn21
+        '
+        Me.BandedGridColumn21.Caption = "Notified Sales Thru Date"
+        Me.BandedGridColumn21.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn21.FieldName = "notif_sales_thru_date"
+        Me.BandedGridColumn21.Name = "BandedGridColumn21"
+        Me.BandedGridColumn21.Visible = True
+        '
+        'gridBand6
+        '
+        Me.gridBand6.Caption = "Analisa"
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn22)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn23)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn24)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn25)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn26)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn27)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn28)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn29)
+        Me.gridBand6.Name = "gridBand6"
+        Me.gridBand6.VisibleIndex = 4
+        Me.gridBand6.Width = 580
+        '
+        'BandedGridColumn22
+        '
+        Me.BandedGridColumn22.Caption = "Jml Bulan Kalender Lewat"
+        Me.BandedGridColumn22.FieldName = "jml_bulan_kalender_lewat"
+        Me.BandedGridColumn22.Name = "BandedGridColumn22"
+        Me.BandedGridColumn22.Visible = True
+        '
+        'BandedGridColumn23
+        '
+        Me.BandedGridColumn23.Caption = "Jml Bulan Import Lewat"
+        Me.BandedGridColumn23.FieldName = "jml_bulan_import_lewat"
+        Me.BandedGridColumn23.Name = "BandedGridColumn23"
+        Me.BandedGridColumn23.Visible = True
+        Me.BandedGridColumn23.Width = 55
+        '
+        'BandedGridColumn24
+        '
+        Me.BandedGridColumn24.Caption = "Tanggal Bulan Audit Berakhir"
+        Me.BandedGridColumn24.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn24.FieldName = "tgl_akhir_audit"
+        Me.BandedGridColumn24.Name = "BandedGridColumn24"
+        Me.BandedGridColumn24.Visible = True
+        '
+        'BandedGridColumn25
+        '
+        Me.BandedGridColumn25.Caption = "Jml Bulan Import Sisa"
+        Me.BandedGridColumn25.FieldName = "jml_bulan_import_sampai_audit_habis"
+        Me.BandedGridColumn25.Name = "BandedGridColumn25"
+        Me.BandedGridColumn25.Visible = True
+        '
+        'BandedGridColumn26
+        '
+        Me.BandedGridColumn26.Caption = "Jml Bln Kalender s/d Bulan Audit Berakhir"
+        Me.BandedGridColumn26.FieldName = "jml_bulan_kalender_sampai_audit_habis"
+        Me.BandedGridColumn26.Name = "BandedGridColumn26"
+        Me.BandedGridColumn26.Visible = True
+        '
+        'BandedGridColumn27
+        '
+        Me.BandedGridColumn27.Caption = "Sal Thru Per Bulan"
+        Me.BandedGridColumn27.DisplayFormat.FormatString = "{0:N2} %"
+        Me.BandedGridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn27.FieldName = "sales_thru_per_month"
+        Me.BandedGridColumn27.Name = "BandedGridColumn27"
+        Me.BandedGridColumn27.Visible = True
+        '
+        'BandedGridColumn28
+        '
+        Me.BandedGridColumn28.Caption = "Sal Thru Hingga Expired"
+        Me.BandedGridColumn28.DisplayFormat.FormatString = "{0:N2} %"
+        Me.BandedGridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn28.FieldName = "sales_thru_sampai_expired"
+        Me.BandedGridColumn28.Name = "BandedGridColumn28"
+        Me.BandedGridColumn28.Visible = True
+        '
+        'BandedGridColumn29
+        '
+        Me.BandedGridColumn29.Caption = "Sal Thru Hingga Habis Bulan Audit"
+        Me.BandedGridColumn29.DisplayFormat.FormatString = "{0:N2} %"
+        Me.BandedGridColumn29.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn29.FieldName = "sales_thru_sampai_audit_habis"
+        Me.BandedGridColumn29.Name = "BandedGridColumn29"
+        Me.BandedGridColumn29.Visible = True
+        '
+        'gridBand7
+        '
+        Me.gridBand7.Caption = "Notes"
+        Me.gridBand7.Columns.Add(Me.BandedGridColumn30)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumn31)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumn32)
+        Me.gridBand7.Name = "gridBand7"
+        Me.gridBand7.VisibleIndex = 5
+        Me.gridBand7.Width = 225
+        '
+        'BandedGridColumn30
+        '
+        Me.BandedGridColumn30.Caption = "Jml Bulan Import Teranalisa"
+        Me.BandedGridColumn30.FieldName = "jml_bulan_import_teranalisa"
+        Me.BandedGridColumn30.Name = "BandedGridColumn30"
+        Me.BandedGridColumn30.Visible = True
+        '
+        'BandedGridColumn31
+        '
+        Me.BandedGridColumn31.Caption = "Notes"
+        Me.BandedGridColumn31.FieldName = "notes"
+        Me.BandedGridColumn31.Name = "BandedGridColumn31"
+        Me.BandedGridColumn31.Visible = True
+        '
+        'BandedGridColumn32
+        '
+        Me.BandedGridColumn32.Caption = "Payment Notes"
+        Me.BandedGridColumn32.FieldName = "note_payment"
+        Me.BandedGridColumn32.Name = "BandedGridColumn32"
+        Me.BandedGridColumn32.Visible = True
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Second Payment"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn33)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn34)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 6
+        Me.gridBand3.Width = 150
+        '
+        'BandedGridColumn33
+        '
+        Me.BandedGridColumn33.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn33.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn33.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn33.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn33.Caption = "Second Payment"
+        Me.BandedGridColumn33.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn33.FieldName = "second_payment"
+        Me.BandedGridColumn33.Name = "BandedGridColumn33"
+        Me.BandedGridColumn33.Visible = True
+        '
+        'BandedGridColumn34
+        '
+        Me.BandedGridColumn34.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn34.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn34.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn34.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn34.Caption = "Remaining Payment"
+        Me.BandedGridColumn34.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn34.FieldName = "remaining_payment"
+        Me.BandedGridColumn34.Name = "BandedGridColumn34"
+        Me.BandedGridColumn34.Visible = True
+        '
+        'BCreateBPL
+        '
+        Me.BCreateBPL.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreateBPL.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreateBPL.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreateBPL.Appearance.Options.UseBackColor = True
+        Me.BCreateBPL.Appearance.Options.UseFont = True
+        Me.BCreateBPL.Appearance.Options.UseForeColor = True
+        Me.BCreateBPL.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreateBPL.Location = New System.Drawing.Point(0, 521)
+        Me.BCreateBPL.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreateBPL.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreateBPL.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreateBPL.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreateBPL.Name = "BCreateBPL"
+        Me.BCreateBPL.Size = New System.Drawing.Size(1155, 37)
+        Me.BCreateBPL.TabIndex = 21
+        Me.BCreateBPL.Text = "Create BPL"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BRefresh)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1155, 43)
+        Me.PanelControl1.TabIndex = 2
+        '
+        'BRefresh
+        '
+        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
+        Me.BRefresh.Location = New System.Drawing.Point(1037, 2)
+        Me.BRefresh.Name = "BRefresh"
+        Me.BRefresh.Size = New System.Drawing.Size(116, 39)
+        Me.BRefresh.TabIndex = 1
+        Me.BRefresh.Text = "Refresh"
+        '
         'PCVendor
         '
         Me.PCVendor.Controls.Add(Me.SLEVendorPayment)
@@ -1741,241 +2252,6 @@ Partial Class FormInvoiceFGPO
         Me.BViewPayment.Size = New System.Drawing.Size(60, 23)
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
-        '
-        'XTPPIBTaxPayment
-        '
-        Me.XTPPIBTaxPayment.Controls.Add(Me.GCSummary)
-        Me.XTPPIBTaxPayment.Controls.Add(Me.PanelControl1)
-        Me.XTPPIBTaxPayment.Name = "XTPPIBTaxPayment"
-        Me.XTPPIBTaxPayment.Size = New System.Drawing.Size(1155, 558)
-        Me.XTPPIBTaxPayment.Text = "Royalty Duty"
-        '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.BRefresh)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1155, 43)
-        Me.PanelControl1.TabIndex = 2
-        '
-        'BRefresh
-        '
-        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
-        Me.BRefresh.Location = New System.Drawing.Point(1037, 2)
-        Me.BRefresh.Name = "BRefresh"
-        Me.BRefresh.Size = New System.Drawing.Size(116, 39)
-        Me.BRefresh.TabIndex = 1
-        Me.BRefresh.Text = "Refresh"
-        '
-        'GCSummary
-        '
-        Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSummary.Location = New System.Drawing.Point(0, 43)
-        Me.GCSummary.MainView = Me.GVSummary
-        Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(1155, 515)
-        Me.GCSummary.TabIndex = 3
-        Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
-        '
-        'GVSummary
-        '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn80, Me.GridColumn81, Me.GridColumn82, Me.GridColumn83, Me.GridColumn84, Me.GridColumn85, Me.GridColumn86, Me.GridColumn87, Me.GridColumn88, Me.GridColumn89, Me.GridColumn90, Me.GridColumn91, Me.GridColumn92, Me.GridColumn93, Me.GridColumn94, Me.GridColumn95, Me.GridColumn96})
-        Me.GVSummary.GridControl = Me.GCSummary
-        Me.GVSummary.Name = "GVSummary"
-        Me.GVSummary.OptionsBehavior.Editable = False
-        Me.GVSummary.OptionsBehavior.ReadOnly = True
-        Me.GVSummary.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn80
-        '
-        Me.GridColumn80.Caption = "id"
-        Me.GridColumn80.Name = "GridColumn80"
-        '
-        'GridColumn81
-        '
-        Me.GridColumn81.Caption = "ISB Number"
-        Me.GridColumn81.FieldName = "isb_number"
-        Me.GridColumn81.Name = "GridColumn81"
-        Me.GridColumn81.Visible = True
-        Me.GridColumn81.VisibleIndex = 0
-        '
-        'GridColumn82
-        '
-        Me.GridColumn82.Caption = "FGPO Number"
-        Me.GridColumn82.FieldName = "prod_order_number"
-        Me.GridColumn82.Name = "GridColumn82"
-        Me.GridColumn82.Visible = True
-        Me.GridColumn82.VisibleIndex = 1
-        '
-        'GridColumn83
-        '
-        Me.GridColumn83.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn83.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn83.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn83.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn83.Caption = "Class"
-        Me.GridColumn83.FieldName = "class"
-        Me.GridColumn83.Name = "GridColumn83"
-        Me.GridColumn83.Visible = True
-        Me.GridColumn83.VisibleIndex = 2
-        '
-        'GridColumn84
-        '
-        Me.GridColumn84.Caption = "Design"
-        Me.GridColumn84.FieldName = "design_name"
-        Me.GridColumn84.Name = "GridColumn84"
-        Me.GridColumn84.Visible = True
-        Me.GridColumn84.VisibleIndex = 3
-        '
-        'GridColumn85
-        '
-        Me.GridColumn85.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn85.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn85.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn85.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn85.Caption = "Color"
-        Me.GridColumn85.FieldName = "color"
-        Me.GridColumn85.Name = "GridColumn85"
-        Me.GridColumn85.Visible = True
-        Me.GridColumn85.VisibleIndex = 4
-        '
-        'GridColumn86
-        '
-        Me.GridColumn86.Caption = "PIB Number"
-        Me.GridColumn86.FieldName = "pib_no"
-        Me.GridColumn86.Name = "GridColumn86"
-        Me.GridColumn86.Visible = True
-        Me.GridColumn86.VisibleIndex = 5
-        '
-        'GridColumn87
-        '
-        Me.GridColumn87.Caption = "PIB Date"
-        Me.GridColumn87.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn87.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn87.FieldName = "pib_date"
-        Me.GridColumn87.Name = "GridColumn87"
-        Me.GridColumn87.Visible = True
-        Me.GridColumn87.VisibleIndex = 6
-        '
-        'GridColumn88
-        '
-        Me.GridColumn88.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn88.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn88.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn88.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn88.Caption = "PIB Royalty Duty Amount"
-        Me.GridColumn88.DisplayFormat.FormatString = "N2"
-        Me.GridColumn88.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn88.FieldName = "pib_tax_amo"
-        Me.GridColumn88.Name = "GridColumn88"
-        Me.GridColumn88.Visible = True
-        Me.GridColumn88.VisibleIndex = 7
-        '
-        'GridColumn89
-        '
-        Me.GridColumn89.Caption = "Second Payment Date Limit"
-        Me.GridColumn89.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn89.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn89.FieldName = "second_date_limit"
-        Me.GridColumn89.Name = "GridColumn89"
-        Me.GridColumn89.Visible = True
-        Me.GridColumn89.VisibleIndex = 8
-        '
-        'GridColumn90
-        '
-        Me.GridColumn90.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn90.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn90.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn90.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn90.Caption = "First Payment"
-        Me.GridColumn90.DisplayFormat.FormatString = "N2"
-        Me.GridColumn90.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn90.FieldName = "first_payment"
-        Me.GridColumn90.Name = "GridColumn90"
-        Me.GridColumn90.Visible = True
-        Me.GridColumn90.VisibleIndex = 9
-        '
-        'GridColumn91
-        '
-        Me.GridColumn91.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn91.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn91.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn91.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn91.Caption = "Import Qty"
-        Me.GridColumn91.DisplayFormat.FormatString = "N0"
-        Me.GridColumn91.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn91.FieldName = "qty_rec"
-        Me.GridColumn91.Name = "GridColumn91"
-        Me.GridColumn91.Visible = True
-        Me.GridColumn91.VisibleIndex = 10
-        '
-        'GridColumn92
-        '
-        Me.GridColumn92.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn92.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn92.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn92.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn92.Caption = "Sales Qty"
-        Me.GridColumn92.DisplayFormat.FormatString = "N0"
-        Me.GridColumn92.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn92.FieldName = "qty_sales"
-        Me.GridColumn92.Name = "GridColumn92"
-        Me.GridColumn92.Visible = True
-        Me.GridColumn92.VisibleIndex = 11
-        '
-        'GridColumn93
-        '
-        Me.GridColumn93.Caption = "Last Update Sales Qty"
-        Me.GridColumn93.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn93.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn93.FieldName = "last_upd_qty_sales"
-        Me.GridColumn93.Name = "GridColumn93"
-        Me.GridColumn93.Visible = True
-        Me.GridColumn93.VisibleIndex = 12
-        '
-        'GridColumn94
-        '
-        Me.GridColumn94.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn94.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn94.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn94.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn94.Caption = "Sales Thru"
-        Me.GridColumn94.DisplayFormat.FormatString = "N2"
-        Me.GridColumn94.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn94.FieldName = "sales_thru"
-        Me.GridColumn94.Name = "GridColumn94"
-        Me.GridColumn94.Visible = True
-        Me.GridColumn94.VisibleIndex = 13
-        '
-        'GridColumn95
-        '
-        Me.GridColumn95.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn95.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn95.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn95.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn95.Caption = "Second Payment"
-        Me.GridColumn95.DisplayFormat.FormatString = "N2"
-        Me.GridColumn95.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn95.FieldName = "second_payment"
-        Me.GridColumn95.Name = "GridColumn95"
-        Me.GridColumn95.Visible = True
-        Me.GridColumn95.VisibleIndex = 15
-        '
-        'GridColumn96
-        '
-        Me.GridColumn96.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn96.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn96.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn96.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn96.Caption = "Remaining Payment"
-        Me.GridColumn96.DisplayFormat.FormatString = "N2"
-        Me.GridColumn96.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn96.FieldName = "remaining_payment"
-        Me.GridColumn96.Name = "GridColumn96"
-        Me.GridColumn96.Visible = True
-        Me.GridColumn96.VisibleIndex = 14
         '
         'FormInvoiceFGPO
         '
@@ -2038,16 +2314,17 @@ Partial Class FormInvoiceFGPO
         Me.XTPInvoiceClaimLain.ResumeLayout(False)
         CType(Me.GCInvoiceLain, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVInvoiceLain, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPPIBTaxPayment.ResumeLayout(False)
+        CType(Me.GCAnalisa, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVAnalisa, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICE, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         CType(Me.PCVendor, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCVendor.ResumeLayout(False)
         Me.PCVendor.PerformLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTPPIBTaxPayment.ResumeLayout(False)
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2203,23 +2480,50 @@ Partial Class FormInvoiceFGPO
     Friend WithEvents XTPPIBTaxPayment As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BRefresh As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GCSummary As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVSummary As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn80 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn81 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn82 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn83 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn84 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn85 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn86 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn87 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn88 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn89 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn90 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn91 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn92 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn93 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn94 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn95 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn96 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCAnalisa As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVAnalisa As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn6 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn12 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn13 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn15 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn16 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn17 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn18 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn19 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn20 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn21 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn22 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn23 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn24 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn25 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn26 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn27 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn28 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn29 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn30 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn31 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn32 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn33 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn34 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn35 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RICE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BCreateBPL As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -741,7 +741,7 @@
         ElseIf report_mark_type = "352" Then
             'proposal promo zalora - rekon
             query = String.Format("SELECT id_report_status_recon AS `id_report_status`, number as report_number FROM tb_promo_zalora WHERE id_promo_zalora = '{0}'", id_report)
-        ElseIf report_mark_type = "358" Then
+        ElseIf report_mark_type = "358" Or report_mark_type = "362" Then
             'propose promo
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_propose_promo WHERE id_propose_promo = '{0}'", id_report)
         ElseIf report_mark_type = "359" Then
@@ -10930,13 +10930,30 @@ WHERE id_acc_trans='" & old_id_acc_trans & "'"
             query = String.Format("UPDATE tb_promo_zalora SET id_report_status_recon = '{0}' WHERE id_promo_zalora = '{1}'", id_status_reportx, id_report)
 
             execute_non_query(query, True, "", "", "", "")
-        ElseIf report_mark_type = "358" Then
+        ElseIf report_mark_type = "358" Or report_mark_type = "362" Then
             'propose promo
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
             End If
 
             query = String.Format("UPDATE tb_propose_promo SET id_report_status = '{0}' WHERE id_propose_promo = '{1}'", id_status_reportx, id_report)
+
+            If id_status_reportx = "6" Then
+                FormProposePromoDet.create_nmo(id_report)
+                FormProposePromoDet.create_too(id_report)
+            End If
+
+            If id_status_reportx = "5" Then
+                execute_non_query("
+                    INSERT INTO tb_storage_fg (id_wh_drawer, id_storage_category, id_product, bom_unit_price, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status, report_mark_type, id_report)
+                    SELECT (SELECT id_drawer_def FROM tb_m_comp WHERE id_comp = d.id_comp) AS id_wh_drawer, '1' AS id_storage_category, d.id_product, dsg.design_cop AS bom_unit_price, d.qty AS storage_product_qty, NOW() AS storage_product_datetime, CONCAT('Propose Promo : ', p.number) AS storage_product_notes, '2' AS id_stock_status, p.report_mark_type, p.id_propose_promo AS id_report
+                    FROM tb_propose_promo_det AS d
+                    LEFT JOIN tb_propose_promo AS p ON d.id_propose_promo = p.id_propose_promo
+                    LEFT JOIN tb_m_product AS pr ON d.id_product = pr.id_product
+                    LEFT JOIN tb_m_design AS dsg ON pr.id_design = dsg.id_design
+                    WHERE d.id_propose_promo = '" + id_report + "'
+                ", True, "", "", "", "")
+            End If
 
             execute_non_query(query, True, "", "", "", "")
         ElseIf report_mark_type = "359" Then

@@ -193,6 +193,7 @@ Partial Class FormBankWithdrawalSum
         '
         'BChangeDate
         '
+        Me.BChangeDate.Enabled = False
         Me.BChangeDate.Location = New System.Drawing.Point(671, 88)
         Me.BChangeDate.Name = "BChangeDate"
         Me.BChangeDate.Size = New System.Drawing.Size(124, 23)
