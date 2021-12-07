@@ -107,6 +107,51 @@
                 Else
                     TEDocType.Text = "Umum"
                 End If
+            ElseIf doc_type = "5" Then
+                TEDocType.Text = "PIB Voluntary Payment"
+
+                GCReff.OptionsColumn.AllowFocus = False
+                GCDescription.OptionsColumn.AllowFocus = False
+                GCQty.OptionsColumn.AllowFocus = False
+                GCCur.OptionsColumn.AllowFocus = False
+                GCBeforeKurs.OptionsColumn.AllowFocus = False
+                GCKurs.OptionsColumn.AllowFocus = False
+                GCVat.OptionsColumn.AllowFocus = False
+
+                BtnPrint.Visible = False
+                BtnViewJournal.Visible = False
+                BMark.Visible = False
+                DEDueDate.Properties.ReadOnly = False
+                DERefDate.Properties.ReadOnly = False
+                'new
+                'vendor 
+                SLEVendor.EditValue = get_opt_prod_field("id_comp_bea_cukai")
+                'detail
+                Try
+                    For i = 0 To FormInvoiceFGPO.GVAnalisa.RowCount - 1
+                        Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                        newRow("id_prod_order") = FormInvoiceFGPO.GVAnalisa.GetRowCellValue(i, "id_prod_order").ToString
+                        newRow("id_acc") = FormInvoiceFGPO.GVAnalisa.GetRowCellValue(i, "id_acc").ToString
+                        newRow("id_report") = FormInvoiceFGPO.GVAnalisa.GetRowCellValue(i, "id_pib_review").ToString
+                        newRow("report_mark_type") = "22"
+                        newRow("report_number") = FormInvoiceFGPO.GVAnalisa.GetRowCellValue(i, "pib_no").ToString
+                        newRow("info_design") = FormInvoiceFGPO.GVAnalisa.GetRowCellValue(i, "design_display_name").ToString
+                        newRow("qty") = FormInvoiceFGPO.GVAnalisa.GetRowCellValue(i, "qty_remaining")
+                        '
+                        newRow("id_currency") = "1"
+                        newRow("kurs") = 1
+                        newRow("value_bef_kurs") = FormInvoiceFGPO.GVAnalisa.GetRowCellValue(i, "remaining_payment")
+                        '
+                        newRow("pph_percent") = 0
+                        newRow("vat") = 0
+                        newRow("inv_number") = ""
+                        newRow("note") = ""
+                        TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                    Next
+                    calculate()
+                Catch ex As Exception
+                    MsgBox(ex.ToString)
+                End Try
             Else
                 TEDocType.Text = "FGPO"
 
@@ -275,6 +320,8 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
                     TEDocType.Text = "FGPO"
                 ElseIf data.Rows(0)("doc_type").ToString = "4" Then
                     TEDocType.Text = "Khusus"
+                ElseIf data.Rows(0)("doc_type").ToString = "5" Then
+                    TEDocType.Text = "PIB Voluntary Payment"
                 Else
                     TEDocType.Text = "Umum"
                 End If
@@ -828,7 +875,7 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type='199'"
     Private Sub GVList_ShownEditor(sender As Object, e As EventArgs) Handles GVList.ShownEditor
         If GVList.RowCount > 0 Then
             If Not doc_type = "FGPO" Then
-                If GVList.GetFocusedRowCellValue("report_mark_type").ToString = "13" Or GVList.GetFocusedRowCellValue("report_mark_type").ToString = "23" Or GVList.GetFocusedRowCellValue("report_mark_type").ToString = "1" Then
+                If GVList.GetFocusedRowCellValue("report_mark_type").ToString = "13" Or GVList.GetFocusedRowCellValue("report_mark_type").ToString = "22" Or GVList.GetFocusedRowCellValue("report_mark_type").ToString = "23" Or GVList.GetFocusedRowCellValue("report_mark_type").ToString = "1" Or GVList.GetFocusedRowCellValue("report_mark_type").ToString = "360" Then
                     GCDescription.OptionsColumn.AllowFocus = False
                     GCReff.OptionsColumn.AllowFocus = False
                     GCQty.OptionsColumn.AllowFocus = False

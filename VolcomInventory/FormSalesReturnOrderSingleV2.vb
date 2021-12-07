@@ -21,7 +21,7 @@
 
     'VIEW
     Sub viewProduct()
-        Dim query As String = "CALL view_stock_fg('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', '" + date_param + "') "
+        Dim query As String = "CALL view_stock_fg_ror('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', '" + date_param + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProduct.DataSource = data
         If GVProduct.RowCount > 0 Then
@@ -69,6 +69,18 @@
                     GVProduct.ActiveFilterString = ""
                     cond = False
                     Exit For
+                End If
+            Next
+
+            'check extended eos
+            For i As Integer = 0 To ((GVProduct.RowCount - 1) - GetGroupRowCount(GVProduct))
+                Dim id_extended_eos As String = GVProduct.GetRowCellValue(i, "id_extended_eos").ToString
+
+                If id_extended_eos = 1 Then
+                    stopCustom(GVProduct.GetRowCellValue(i, "name").ToString + "/Size " + GVProduct.GetRowCellValue(i, "size").ToString + " is Extended EOS product. Please create via 'Propose Return Extended EOSS' ")
+                    GVProduct.FocusedRowHandle = i
+                    GVProduct.ActiveFilterString = ""
+                    Exit Sub
                 End If
             Next
 

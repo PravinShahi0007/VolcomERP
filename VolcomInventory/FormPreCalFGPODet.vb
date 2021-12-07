@@ -931,7 +931,7 @@ AND NOT ISNULL(choosen_id_comp)"
     Sub print_duty()
         Dim qc As String = "SELECT FORMAT(SUM(bm.tot_fob),2,'ID_id') AS tot_fob,FORMAT(bm.total_freight_po,2,'ID_id') AS tot_freight,FORMAT(bm.tot_qty_royalty,'ID_id') AS tot_qty_royalty
 ,FORMAT(SUM(bm.tot_royalty),2,'ID_id') AS tot_freight_cost_royalty,FORMAT(SUM(bm.qty),'ID_id') AS tot_qty
-,FORMAT(SUM(bm.tot_fob_rp),2,'ID_id') AS tot_fob_rp,FORMAT(SUM(bm.tot_cif),2,'ID_id') AS tot_cif,FORMAT(SUM(bm.tot_duty),2,'ID_id') AS tot_bm,FORMAT(SUM(bm.tot_cif)+SUM(bm.tot_duty),2,'ID_id') AS tot_cif_bm
+,FORMAT(SUM(bm.tot_fob_rp),2,'ID_id') AS tot_fob_rp,FORMAT((SUM(bm.tot_cif)),2,'ID_id') AS tot_cif,FORMAT(SUM(bm.tot_duty),2,'ID_id') AS tot_bm,FORMAT(SUM(bm.tot_cif)+SUM(bm.tot_duty),2,'ID_id') AS tot_cif_bm
 ,FORMAT(h.ppn,2,'ID_id') AS ppn,FORMAT(ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.ppn/100),2),2,'ID_id') AS tot_ppn
 ,FORMAT(h.pph,2,'ID_id') AS pph,FORMAT(ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.pph/100),2),2,'ID_id') AS tot_pph
 ,FORMAT((SUM(bm.tot_duty)) + ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.ppn/100),2) + ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.pph/100),2),2,'ID_id') AS tot_bm_ppn_pph
@@ -955,9 +955,9 @@ INNER JOIN
 	,SUM(l.`price`*l.`qty`) AS tot_fob
 	,tot_freight.tot_freight AS total_freight_po
 	,tot_fgpo.tot_qty_sales AS tot_qty_royalty
-	,SUM(ROUND((tot_freight.tot_freight/tot_fgpo.tot_qty_sales)*l.`qty`*(cal.`sales_percent`/100),2)) AS tot_freight
-	,SUM(ROUND((tot_freight.tot_freight/tot_fgpo.tot_qty_sales)*l.`qty`*(cal.`sales_percent`/100),2))+SUM((l.`price`*cal.`rate_management`)*l.`qty`) AS tot_cif
-	,ROUND((SUM(ROUND((tot_freight.tot_freight/tot_fgpo.tot_qty_sales)*l.`qty`*(cal.`sales_percent`/100),2))+SUM((l.`price`*cal.`rate_management`)*l.`qty`))*(l.duty/100),2) AS tot_duty
+	,SUM((tot_freight.tot_freight/tot_fgpo.tot_qty)*l.`qty`) AS tot_freight
+	,SUM((tot_freight.tot_freight/tot_fgpo.tot_qty)*l.`qty`)+SUM((l.`price`*cal.`rate_management`)*l.`qty`) AS tot_cif
+	,(SUM((tot_freight.tot_freight/tot_fgpo.tot_qty)*l.`qty`)+SUM((l.`price`*cal.`rate_management`)*l.`qty`))*(l.duty/100) AS tot_duty
 	,SUM(ROUND((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100) * ROUND(l.`qty`*(cal.`sales_percent`/100)),2)) AS tot_royalty
 	,SUM((((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100))+((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100) * (l.duty/100)))*(cal.ppn/100)*ROUND(l.`qty`*(cal.`sales_percent`/100))) AS total_ppn_royalty
 	,SUM((((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100))+((((100-cal.`sales_commission`)/100)*pdd.`prod_demand_design_propose_price`) / ((100+cal.sales_ppn)/100)*(cal.sales_royalty/100) * (l.duty/100)))*(cal.pph/100)*ROUND(l.`qty`*(cal.`sales_percent`/100))) AS total_pph_royalty

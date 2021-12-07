@@ -527,6 +527,7 @@ Public Class FormImportExcel
             GVData.Columns("id_design").Visible = False
             GVData.Columns("id_product").Visible = False
             GVData.Columns("SOH").Visible = False
+            GVData.Columns("id_extended_eos").Visible = False
             GVData.Columns("Code").VisibleIndex = 0
             GVData.Columns("Class").VisibleIndex = 1
             GVData.Columns("Style").VisibleIndex = 2
@@ -1715,6 +1716,7 @@ Public Class FormImportExcel
             GVData.Columns("Amount").Visible = False
             GVData.Columns("Price").Visible = False
             GVData.Columns("SOH").Visible = False
+            GVData.Columns("id_extended_eos").Visible = False
             GVData.Columns("Code").VisibleIndex = 0
             GVData.Columns("Class").VisibleIndex = 1
             GVData.Columns("Style").VisibleIndex = 2

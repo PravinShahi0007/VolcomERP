@@ -87,6 +87,9 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumnQtyAvail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFound = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_detail_on_hold = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnExportAsFile = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnOnHoldList = New DevExpress.XtraEditors.SimpleButton()
@@ -110,9 +113,7 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumncargo_rate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncargo_lead_time = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncargo_min_weight = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CEExtendedEOSProduct = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -157,6 +158,7 @@ Partial Class FormSalesReturnOrderDet
         Me.XTPRate.SuspendLayout()
         CType(Me.GCRate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEExtendedEOSProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -279,6 +281,7 @@ Partial Class FormSalesReturnOrderDet
         'PanelControlTopLeft
         '
         Me.PanelControlTopLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopLeft.Controls.Add(Me.CEExtendedEOSProduct)
         Me.PanelControlTopLeft.Controls.Add(Me.TxtOrderType)
         Me.PanelControlTopLeft.Controls.Add(Me.LEOrderType)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl6)
@@ -855,6 +858,33 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumnid_detail_on_hold.FieldName = "id_detail_on_hold"
         Me.GridColumnid_detail_on_hold.Name = "GridColumnid_detail_on_hold"
         '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
+        Me.GridColumnclass.Width = 70
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 5
+        Me.GridColumncolor.Width = 58
+        '
+        'GridColumnsht
+        '
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.Visible = True
+        Me.GridColumnsht.VisibleIndex = 4
+        Me.GridColumnsht.Width = 168
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -1070,32 +1100,14 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumncargo_min_weight.Visible = True
         Me.GridColumncargo_min_weight.VisibleIndex = 3
         '
-        'GridColumnclass
+        'CEExtendedEOSProduct
         '
-        Me.GridColumnclass.Caption = "Class"
-        Me.GridColumnclass.FieldName = "class"
-        Me.GridColumnclass.Name = "GridColumnclass"
-        Me.GridColumnclass.Visible = True
-        Me.GridColumnclass.VisibleIndex = 2
-        Me.GridColumnclass.Width = 70
-        '
-        'GridColumncolor
-        '
-        Me.GridColumncolor.Caption = "Color"
-        Me.GridColumncolor.FieldName = "color"
-        Me.GridColumncolor.Name = "GridColumncolor"
-        Me.GridColumncolor.Visible = True
-        Me.GridColumncolor.VisibleIndex = 5
-        Me.GridColumncolor.Width = 58
-        '
-        'GridColumnsht
-        '
-        Me.GridColumnsht.Caption = "Silhouette"
-        Me.GridColumnsht.FieldName = "sht"
-        Me.GridColumnsht.Name = "GridColumnsht"
-        Me.GridColumnsht.Visible = True
-        Me.GridColumnsht.VisibleIndex = 4
-        Me.GridColumnsht.Width = 168
+        Me.CEExtendedEOSProduct.Enabled = False
+        Me.CEExtendedEOSProduct.Location = New System.Drawing.Point(118, 115)
+        Me.CEExtendedEOSProduct.Name = "CEExtendedEOSProduct"
+        Me.CEExtendedEOSProduct.Properties.Caption = "Extended EOS Product"
+        Me.CEExtendedEOSProduct.Size = New System.Drawing.Size(137, 19)
+        Me.CEExtendedEOSProduct.TabIndex = 8912
         '
         'FormSalesReturnOrderDet
         '
@@ -1163,6 +1175,7 @@ Partial Class FormSalesReturnOrderDet
         Me.XTPRate.ResumeLayout(False)
         CType(Me.GCRate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEExtendedEOSProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1258,4 +1271,5 @@ Partial Class FormSalesReturnOrderDet
     Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CEExtendedEOSProduct As DevExpress.XtraEditors.CheckEdit
 End Class

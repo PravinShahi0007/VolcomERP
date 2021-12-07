@@ -45,6 +45,8 @@ Partial Class FormSalesReturnOrderSingleV2
         Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnid_extended_eos = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnextended_eos = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,7 +102,7 @@ Partial Class FormSalesReturnOrderSingleV2
         '
         'GVProduct
         '
-        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCode, Me.GridColumnColor, Me.GridColumnSize, Me.GridColumnDesign, Me.GridColumn2, Me.GridColumnQtyQC, Me.GridColumnIdProduct, Me.GridColumnDesignPriceType, Me.GridColumnPrice, Me.GridColumnSelect, Me.GridColumnSOH})
+        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCode, Me.GridColumnColor, Me.GridColumnSize, Me.GridColumnDesign, Me.GridColumn2, Me.GridColumnQtyQC, Me.GridColumnIdProduct, Me.GridColumnDesignPriceType, Me.GridColumnPrice, Me.GridColumnSelect, Me.GridColumnSOH, Me.GridColumnid_extended_eos, Me.GridColumnextended_eos})
         Me.GVProduct.GridControl = Me.GCProduct
         Me.GVProduct.GroupCount = 2
         Me.GVProduct.Name = "GVProduct"
@@ -134,7 +136,7 @@ Partial Class FormSalesReturnOrderSingleV2
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.AllowEdit = False
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 2
+        Me.GridColumnSize.VisibleIndex = 3
         '
         'GridColumnDesign
         '
@@ -165,7 +167,7 @@ Partial Class FormSalesReturnOrderSingleV2
         Me.GridColumnQtyQC.FieldName = "qty_ord"
         Me.GridColumnQtyQC.Name = "GridColumnQtyQC"
         Me.GridColumnQtyQC.Visible = True
-        Me.GridColumnQtyQC.VisibleIndex = 5
+        Me.GridColumnQtyQC.VisibleIndex = 6
         '
         'RepositoryItemSpinEdit1
         '
@@ -200,7 +202,7 @@ Partial Class FormSalesReturnOrderSingleV2
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.OptionsColumn.AllowEdit = False
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 3
+        Me.GridColumnPrice.VisibleIndex = 4
         '
         'GridColumnSelect
         '
@@ -213,7 +215,7 @@ Partial Class FormSalesReturnOrderSingleV2
         Me.GridColumnSelect.FieldName = "is_select"
         Me.GridColumnSelect.Name = "GridColumnSelect"
         Me.GridColumnSelect.Visible = True
-        Me.GridColumnSelect.VisibleIndex = 6
+        Me.GridColumnSelect.VisibleIndex = 7
         '
         'RepositoryItemCheckEdit1
         '
@@ -235,7 +237,7 @@ Partial Class FormSalesReturnOrderSingleV2
         Me.GridColumnSOH.Name = "GridColumnSOH"
         Me.GridColumnSOH.OptionsColumn.AllowEdit = False
         Me.GridColumnSOH.Visible = True
-        Me.GridColumnSOH.VisibleIndex = 4
+        Me.GridColumnSOH.VisibleIndex = 5
         '
         'PanelControl2
         '
@@ -308,6 +310,21 @@ Partial Class FormSalesReturnOrderSingleV2
         Me.BtnView.TabStop = False
         Me.BtnView.Text = "View"
         '
+        'GridColumnid_extended_eos
+        '
+        Me.GridColumnid_extended_eos.Caption = "id_extended_eos"
+        Me.GridColumnid_extended_eos.FieldName = "id_extended_eos"
+        Me.GridColumnid_extended_eos.Name = "GridColumnid_extended_eos"
+        Me.GridColumnid_extended_eos.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnextended_eos
+        '
+        Me.GridColumnextended_eos.Caption = "Remark"
+        Me.GridColumnextended_eos.FieldName = "extended_eos"
+        Me.GridColumnextended_eos.Name = "GridColumnextended_eos"
+        Me.GridColumnextended_eos.Visible = True
+        Me.GridColumnextended_eos.VisibleIndex = 2
+        '
         'FormSalesReturnOrderSingleV2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -363,4 +380,6 @@ Partial Class FormSalesReturnOrderSingleV2
     Friend WithEvents GridColumnSeason As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnid_extended_eos As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnextended_eos As DevExpress.XtraGrid.Columns.GridColumn
 End Class

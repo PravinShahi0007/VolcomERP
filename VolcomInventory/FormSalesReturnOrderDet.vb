@@ -52,7 +52,7 @@
             'query view based on edit id's
             Dim query As String = "SELECT d.id_comp, a.id_sales_return_order, a.id_store_contact_to, getCompByContact(a.id_store_contact_to, 4) AS `id_wh_drawer_store`, getCompByContact(a.id_store_contact_to, 6) AS `id_wh_rack_store`, getCompByContact(a.id_store_contact_to, 7) AS `id_wh_locator_store`, (d.comp_name) AS store_name_to, (d.comp_number) AS store_number_to, (d.address_primary) AS store_address_to, a.id_report_status, f.report_status, "
             query += "a.sales_return_order_note, a.sales_return_order_date, a.sales_return_order_note, a.sales_return_order_number, "
-            query += "DATE_FORMAT(a.sales_return_order_date,'%Y-%m-%d') AS sales_return_order_datex, a.sales_return_order_est_date, a.sales_return_order_est_del_date, a.id_prepare_status, a.is_on_hold, IFNULL(a.id_order_type,0) AS `id_order_type`, ot.order_type, a.id_return_clasification "
+            query += "DATE_FORMAT(a.sales_return_order_date,'%Y-%m-%d') AS sales_return_order_datex, a.sales_return_order_est_date, a.sales_return_order_est_del_date, a.id_prepare_status, a.is_on_hold, IFNULL(a.id_order_type,0) AS `id_order_type`, ot.order_type, a.id_return_clasification, IFNULL(a.id_ret_exos,0) AS `id_ret_exos` "
             query += "FROM tb_sales_return_order a "
             query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to "
             query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
@@ -88,6 +88,12 @@
             Else
                 LEOrderType.ItemIndex = LEOrderType.Properties.GetDataSourceRowIndex("id_order_type", data.Rows(0)("id_order_type").ToString)
             End If
+            If Not data.Rows(0)("id_ret_exos").ToString = "0" Then
+                CEExtendedEOSProduct.EditValue = True
+            Else
+                CEExtendedEOSProduct.EditValue = False
+            End If
+
 
 
             'detail2
@@ -109,9 +115,10 @@
             Dim query As String = "SELECT j.id_product, p.id_design,0 AS `id_sample`, 
             p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,dcd.class, dcd.color, dcd.sht,
             SUM(IF(j.id_storage_category='2', CONCAT('-', j.storage_product_qty), j.storage_product_qty)) AS qty_all_product,
-            prc.id_design_price_retail, prc.design_price_retail
+            prc.id_design_price_retail, prc.design_price_retail, IFNULL(de.id_extended_eos,2) AS `id_extended_eos`
             FROM tb_storage_fg j
             INNER JOIN tb_m_product p ON p.id_product = j.id_product
+            LEFT JOIN tb_design_extended_eos de ON de.id_design = p.id_design AND de.is_active=1
             INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
             LEFT JOIN (
@@ -612,6 +619,10 @@
     End Sub
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
+        If CEExtendedEOSProduct.EditValue = True Then
+            Exit Sub
+        End If
+
         Cursor = Cursors.WaitCursor
         FormReportMark.id_report = id_sales_return_order
         FormReportMark.report_mark_type = "45"
@@ -806,6 +817,10 @@
                         stopCustom("Product not found !")
                         setDefautMyRow(rh)
                         CType(GCItemList.DataSource, DataTable).AcceptChanges()
+                    ElseIf data_filter(0)("id_extended_eos").ToString = "1" Then
+                        stopCustom("This product is still in Extended EOS, please create via menu 'Propose Return Extended EOSS' !")
+                        setDefautMyRow(rh)
+                        CType(GCItemList.DataSource, DataTable).AcceptChanges()
                     Else
                         Dim dt_dupe As DataTable = GCItemList.DataSource
                         Dim data_filter_dupe As DataRow() = dt_dupe.Select("[code]='" + code_pas + "' ")
@@ -948,6 +963,10 @@
     End Sub
 
     Sub view_clasification()
-        viewSearchLookupQuery(SLUEClasification, "SELECT * FROM tb_lookup_return_clasification", "id_return_clasification", "return_clasification", "id_return_clasification")
+        Dim qry As String = "SELECT * FROM tb_lookup_return_clasification WHERE 1=1 "
+        If action = "ins" Then
+            qry += "AND is_reguler=1 "
+        End If
+        viewSearchLookupQuery(SLUEClasification, qry, "id_return_clasification", "return_clasification", "id_return_clasification")
     End Sub
 End Class
