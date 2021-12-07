@@ -8833,6 +8833,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPromoZalora.printList()
         ElseIf formname = "FormProposePromo" Then
             print(FormProposePromo.GCPromo, "List Propose Promo")
+        ElseIf formname = "FormNominatifPromo" Then
+            FormNominatifPromo.form_print()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9875,6 +9877,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formname = "FormProposePromo" Then
             FormProposePromo.Close()
             FormProposePromo.Dispose()
+        ElseIf formname = "FormNominatifPromo" Then
+            FormNominatifPromo.Close()
+            FormNominatifPromo.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10921,6 +10926,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPromoZalora.viewData()
         ElseIf formName = "FormProposePromo" Then
             FormProposePromo.form_load()
+        ElseIf formName = "FormNominatifPromo" Then
+            FormNominatifPromo.form_load()
         End If
     End Sub
     'Switch
@@ -16786,6 +16793,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormProposePromo.Show()
             FormProposePromo.WindowState = FormWindowState.Maximized
             FormProposePromo.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBNominatifPromo_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBNominatifPromo.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormNominatifPromo.MdiParent = Me
+            FormNominatifPromo.Show()
+            FormNominatifPromo.WindowState = FormWindowState.Maximized
+            FormNominatifPromo.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

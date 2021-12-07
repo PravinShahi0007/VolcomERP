@@ -3345,6 +3345,12 @@
     <Compile Include="FormMonthlySalesPerformancePick.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormNominatifPromo.Designer.vb">
+      <DependentUpon>FormNominatifPromo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormNominatifPromo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormNotification.designer.vb">
       <DependentUpon>FormNotification.vb</DependentUpon>
     </Compile>
@@ -9510,6 +9516,12 @@
     <Compile Include="ReportMonthlyISVs.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportNominatifPromo.Designer.vb">
+      <DependentUpon>ReportNominatifPromo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportNominatifPromo.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportODMScan.Designer.vb">
       <DependentUpon>ReportODMScan.vb</DependentUpon>
     </Compile>
@@ -12024,6 +12036,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMonthlySalesPerformancePick.resx">
       <DependentUpon>FormMonthlySalesPerformancePick.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNominatifPromo.resx">
+      <DependentUpon>FormNominatifPromo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormNotification.resx">
       <DependentUpon>FormNotification.vb</DependentUpon>
@@ -15556,6 +15571,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMonthlyISVs.resx">
       <DependentUpon>ReportMonthlyISVs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportNominatifPromo.resx">
+      <DependentUpon>ReportNominatifPromo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportODMScan.resx">
       <DependentUpon>ReportODMScan.vb</DependentUpon>
