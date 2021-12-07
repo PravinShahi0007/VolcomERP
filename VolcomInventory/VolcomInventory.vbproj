@@ -258,6 +258,7 @@
     <Compile Include="ClassDelEmpty.vb" />
     <Compile Include="ClassDepartement.vb" />
     <Compile Include="ClassDesign.vb" />
+    <Compile Include="ClassDisableExos.vb" />
     <Compile Include="ClassEmpUni.vb" />
     <Compile Include="ClassEmpUniExpense.vb" />
     <Compile Include="ClassFGBorrowQCReq.vb" />
@@ -1399,6 +1400,24 @@
       <DependentUpon>FormDesignInfo.vb</DependentUpon>
     </Compile>
     <Compile Include="FormDesignInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDisableExos.Designer.vb">
+      <DependentUpon>FormDisableExos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDisableExos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDisableExosDet.Designer.vb">
+      <DependentUpon>FormDisableExosDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDisableExosDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDisableExosList.Designer.vb">
+      <DependentUpon>FormDisableExosList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDisableExosList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDisplayAlloc.Designer.vb">
@@ -11012,6 +11031,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDesignInfo.resx">
       <DependentUpon>FormDesignInfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDisableExos.resx">
+      <DependentUpon>FormDisableExos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDisableExosDet.resx">
+      <DependentUpon>FormDisableExosDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDisableExosList.resx">
+      <DependentUpon>FormDisableExosList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDisplayAlloc.resx">
       <DependentUpon>FormDisplayAlloc.vb</DependentUpon>

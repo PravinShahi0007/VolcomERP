@@ -512,6 +512,9 @@
         ElseIf report_mark_type = "363" Then
             'propose ret exos
             FormRetExosDet.Close()
+        ElseIf report_mark_type = "364" Then
+            'propose changhe status exos
+            FormDisableExosDet.Close()
         End If
     End Sub
     Sub show()
@@ -1653,6 +1656,12 @@ GROUP BY rec.`id_prod_order`"
             FormRetExosDet.action = "upd"
             FormRetExosDet.id = id_report
             FormRetExosDet.ShowDialog()
+        ElseIf report_mark_type = "364" Then
+            'propose changhe status exos
+            FormDisableExosDet.is_view = "1"
+            FormDisableExosDet.action = "upd"
+            FormDisableExosDet.id = id_report
+            FormDisableExosDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2950,6 +2959,12 @@ GROUP BY rec.`id_prod_order`"
             'propose ret exos
             table_name = "tb_ret_exos"
             field_id = "id_ret_exos"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "364" Then
+            'propose changhe status exos
+            table_name = "tb_disable_exos"
+            field_id = "id_disable_exos"
             field_number = "number"
             field_date = "created_date"
         Else

@@ -112,8 +112,8 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        FormRetExos.is_test = "1"
-        FormRetExos.ShowDialog()
+        FormDisableExos.is_test = "1"
+        FormDisableExos.ShowDialog()
 
         'send mail
         '        Dim id_print As String = "1446"

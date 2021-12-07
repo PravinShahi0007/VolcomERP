@@ -750,6 +750,9 @@
         ElseIf report_mark_type = "363" Then
             'ROR EXTENDED EOS
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_ret_exos WHERE id_ret_exos = '{0}'", id_report)
+        ElseIf report_mark_type = "364" Then
+            'CHANGE STATUS EXTENDED EOS
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_disable_exos WHERE id_disable_exos = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -10991,6 +10994,23 @@ WHERE ppsd.id_pib_pps='" & id_report & "'"
             End If
 
             query = String.Format("UPDATE tb_ret_exos SET id_report_status = '{0}' WHERE id_ret_exos = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "364" Then
+            'CHANGE STATUS EXTENDED EOS
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                Dim qry As String = "-- nonaktif extended eos
+                UPDATE tb_design_extended_eos main
+                SET main.id_disable_exos=" + id_report + ", main.nonactive_date=NOW(), main.is_active=2
+                WHERE main.is_active=1 AND main.id_design IN (
+	                SELECT id_design FROM tb_disable_exos_det WHERE id_disable_exos=" + id_report + "
+                ); "
+            End If
+
+            query = String.Format("UPDATE tb_disable_exos SET id_report_status = '{0}' WHERE id_disable_exos = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 
