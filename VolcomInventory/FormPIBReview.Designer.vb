@@ -63,9 +63,9 @@ Partial Class FormPIBReview
         Me.GridColumn26 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn28 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn32 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -137,7 +137,7 @@ Partial Class FormPIBReview
         Me.XTPReview.Controls.Add(Me.PanelControl1)
         Me.XTPReview.Name = "XTPReview"
         Me.XTPReview.Size = New System.Drawing.Size(1005, 528)
-        Me.XTPReview.Text = "Summary"
+        Me.XTPReview.Text = "PIB Waiting List"
         '
         'GCSummary
         '
@@ -471,7 +471,7 @@ Partial Class FormPIBReview
         Me.XTPAnalisa.Controls.Add(Me.PanelControl3)
         Me.XTPAnalisa.Name = "XTPAnalisa"
         Me.XTPAnalisa.Size = New System.Drawing.Size(1005, 528)
-        Me.XTPAnalisa.Text = "Analisa"
+        Me.XTPAnalisa.Text = "Analisa (Notified PIB)"
         '
         'GCAnalisa
         '
@@ -551,6 +551,13 @@ Partial Class FormPIBReview
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.Visible = True
         '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "PIB Number"
+        Me.GridColumn29.FieldName = "pib_no"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        '
         'GridBand1
         '
         Me.GridBand1.Caption = "Detail PIB"
@@ -569,13 +576,6 @@ Partial Class FormPIBReview
         '
         Me.GridColumn23.Caption = "id"
         Me.GridColumn23.Name = "GridColumn23"
-        '
-        'GridColumn29
-        '
-        Me.GridColumn29.Caption = "PIB Number"
-        Me.GridColumn29.FieldName = "pib_no"
-        Me.GridColumn29.Name = "GridColumn29"
-        Me.GridColumn29.Visible = True
         '
         'GridColumn30
         '
