@@ -1812,7 +1812,16 @@ Public Class FormSalesReturnDet
                 INNER JOIN tb_m_comp c ON c.id_drawer_def = f.id_wh_drawer
                 INNER JOIN tb_m_product p ON p.id_product = f.id_product
                 INNER JOIN tb_m_design d ON d.id_design = p.id_design
-                LEFT JOIN tb_design_extended_eos de ON de.id_design = d.id_design AND de.is_active=1
+                LEFT JOIN (
+				    SELECT de.*, e.extended_eos
+				    FROM tb_design_extended_eos de
+				    INNER JOIN tb_lookup_extended_eos e ON e.id_extended_eos = de.id_extended_eos
+				    WHERE de.id_design_extended_eos IN (
+					    SELECT MAX(de.id_design_extended_eos) FROM tb_design_extended_eos de
+					    WHERE de.start_date<=NOW()
+					    GROUP BY de.id_design
+				    )
+			    ) de ON de.id_design = d.id_design 
                 LEFT JOIN (
 		            SELECT dc.id_design, 
 		            MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,

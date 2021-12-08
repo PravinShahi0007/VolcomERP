@@ -118,7 +118,16 @@
             prc.id_design_price_retail, prc.design_price_retail, IFNULL(de.id_extended_eos,2) AS `id_extended_eos`
             FROM tb_storage_fg j
             INNER JOIN tb_m_product p ON p.id_product = j.id_product
-            LEFT JOIN tb_design_extended_eos de ON de.id_design = p.id_design AND de.is_active=1
+            LEFT JOIN (
+				SELECT de.*, e.extended_eos
+				FROM tb_design_extended_eos de
+				INNER JOIN tb_lookup_extended_eos e ON e.id_extended_eos = de.id_extended_eos
+				WHERE de.id_design_extended_eos IN (
+					SELECT MAX(de.id_design_extended_eos) FROM tb_design_extended_eos de
+					WHERE de.start_date<=NOW()
+					GROUP BY de.id_design
+				)
+			) de ON de.id_design = p.id_design 
             INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
             LEFT JOIN (

@@ -10295,9 +10295,10 @@ WHERE pps.id_product_weight_pps='" & id_report & "'"
                 INNER JOIN tb_lookup_design_mkd t ON t.id_design_mkd = p.id_design_mkd
                 WHERE pd.id_pp_change='" + id_report + "' AND !ISNULL(pd.propose_price_final) AND pd.propose_price_final>0;
                 -- extended eos
-                INSERT INTO tb_design_extended_eos(id_design, id_extended_eos, id_pp_change, active_date, is_active)
-                SELECT d.id_design, d.id_extended_eos, d.id_pp_change, NOW(), 1
+                INSERT INTO tb_design_extended_eos(id_design, id_extended_eos, id_pp_change, active_date, is_active, start_date)
+                SELECT d.id_design, d.id_extended_eos, d.id_pp_change, NOW(), 1, m.effective_date
                 FROM tb_pp_change_det d
+                INNER JOIN tb_pp_change m ON m.id_pp_change = d.id_pp_change
                 WHERE d.id_pp_change='" + id_report + "' AND d.id_extended_eos=1; "
                 execute_non_query(qm, True, "", "", "", "")
             End If
@@ -11027,17 +11028,13 @@ WHERE ppsd.id_pib_pps='" & id_report & "'"
             End If
 
             If id_status_reportx = "6" Then
-                Dim qry As String = "-- nonaktif extended eos
-                UPDATE tb_design_extended_eos main
-                SET main.id_disable_exos=" + id_report + ", main.updated_date=NOW(), main.is_active=2
-                WHERE main.is_active=1 AND main.id_design IN (
-	                SELECT id_design FROM tb_disable_exos_det WHERE id_disable_exos=" + id_report + "
-                ); 
+                Dim qry As String = "
                 -- insert active 
-                INSERT INTO tb_design_extended_eos(id_design, id_extended_eos, active_date,id_disable_exos, is_active)
-                SELECT d.id_design, 2, NOW(), d.id_disable_exos, 1 
+                INSERT INTO tb_design_extended_eos(id_design, id_extended_eos, active_date,id_disable_exos, is_active, start_date)
+                SELECT d.id_design, 2, NOW(), d.id_disable_exos, 1, m.effective_date
                 FROM tb_disable_exos_det d
-                WHERE d.id_disable_exos="+id_report+"; "
+                INNER JOIN tb_disable_exos m ON m.id_disable_exos = d.id_disable_exos
+                WHERE d.id_disable_exos=" + id_report + "; "
                 execute_non_query(qry, True, "", "", "", "")
             End If
 

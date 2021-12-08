@@ -1025,7 +1025,7 @@
                 Dim qcek As String = "SELECT d.design_code, d.design_display_name 
                 FROM tb_design_extended_eos e 
                 INNER JOIN tb_m_design d ON d.id_design = e.id_design
-                WHERE e.is_active=1 AND e.id_design IN(" + id_design_selected + ") "
+                WHERE e.id_extended_eos=1 AND e.id_design IN(" + id_design_selected + ") "
                 Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
 
                 If dcek.Rows.Count > 0 Then
