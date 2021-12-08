@@ -221,6 +221,8 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn76 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn77 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEActCBM = New DevExpress.XtraEditors.TextEdit()
         Me.TEWO = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.TEChoosenVendor = New DevExpress.XtraEditors.TextEdit()
@@ -240,8 +242,6 @@ Partial Class FormPreCalFGPODet
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TECTN = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -337,6 +337,7 @@ Partial Class FormPreCalFGPODet
         CType(Me.GVWOFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.TEActCBM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEWO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEChoosenVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEQuotAmo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -348,7 +349,6 @@ Partial Class FormPreCalFGPODet
         CType(Me.TECTN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -2774,7 +2774,7 @@ Partial Class FormPreCalFGPODet
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.LabelControl24)
-        Me.PanelControl3.Controls.Add(Me.TextEdit1)
+        Me.PanelControl3.Controls.Add(Me.TEActCBM)
         Me.PanelControl3.Controls.Add(Me.TEWO)
         Me.PanelControl3.Controls.Add(Me.LabelControl23)
         Me.PanelControl3.Controls.Add(Me.TEChoosenVendor)
@@ -2788,6 +2788,31 @@ Partial Class FormPreCalFGPODet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(1016, 75)
         Me.PanelControl3.TabIndex = 25
+        '
+        'LabelControl24
+        '
+        Me.LabelControl24.Location = New System.Drawing.Point(784, 19)
+        Me.LabelControl24.Name = "LabelControl24"
+        Me.LabelControl24.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl24.TabIndex = 174
+        Me.LabelControl24.Text = "Actual CBM"
+        '
+        'TEActCBM
+        '
+        Me.TEActCBM.Location = New System.Drawing.Point(844, 16)
+        Me.TEActCBM.Name = "TEActCBM"
+        Me.TEActCBM.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEActCBM.Properties.Appearance.Options.UseFont = True
+        Me.TEActCBM.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEActCBM.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEActCBM.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEActCBM.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEActCBM.Properties.DisplayFormat.FormatString = "N4"
+        Me.TEActCBM.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEActCBM.Properties.Mask.EditMask = "N4"
+        Me.TEActCBM.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEActCBM.Size = New System.Drawing.Size(155, 20)
+        Me.TEActCBM.TabIndex = 175
         '
         'TEWO
         '
@@ -2907,7 +2932,7 @@ Partial Class FormPreCalFGPODet
         Me.BSaveWO.Name = "BSaveWO"
         Me.BSaveWO.Size = New System.Drawing.Size(127, 38)
         Me.BSaveWO.TabIndex = 21
-        Me.BSaveWO.Text = "Save"
+        Me.BSaveWO.Text = "Update"
         '
         'LabelControl5
         '
@@ -3009,31 +3034,6 @@ Partial Class FormPreCalFGPODet
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Size = New System.Drawing.Size(1022, 42)
         Me.PanelControl6.TabIndex = 157
-        '
-        'LabelControl24
-        '
-        Me.LabelControl24.Location = New System.Drawing.Point(784, 19)
-        Me.LabelControl24.Name = "LabelControl24"
-        Me.LabelControl24.Size = New System.Drawing.Size(54, 13)
-        Me.LabelControl24.TabIndex = 174
-        Me.LabelControl24.Text = "Actual CBM"
-        '
-        'TextEdit1
-        '
-        Me.TextEdit1.Location = New System.Drawing.Point(844, 16)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit1.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit1.Properties.Appearance.Options.UseTextOptions = True
-        Me.TextEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit1.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TextEdit1.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit1.Properties.DisplayFormat.FormatString = "N4"
-        Me.TextEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TextEdit1.Properties.Mask.EditMask = "N4"
-        Me.TextEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TextEdit1.Size = New System.Drawing.Size(155, 20)
-        Me.TextEdit1.TabIndex = 175
         '
         'FormPreCalFGPODet
         '
@@ -3154,6 +3154,7 @@ Partial Class FormPreCalFGPODet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.TEActCBM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEWO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEChoosenVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEQuotAmo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3166,7 +3167,6 @@ Partial Class FormPreCalFGPODet
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3391,5 +3391,5 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents GridColumn76 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn77 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEActCBM As DevExpress.XtraEditors.TextEdit
 End Class
