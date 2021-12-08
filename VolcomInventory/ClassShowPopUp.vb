@@ -515,6 +515,9 @@
         ElseIf report_mark_type = "364" Then
             'propose changhe status exos
             FormDisableExosDet.Close()
+        ElseIf report_mark_type = "365" Then
+            'perpanjang eos
+            FormEOSChange.Close()
         End If
     End Sub
     Sub show()
@@ -1662,6 +1665,12 @@ GROUP BY rec.`id_prod_order`"
             FormDisableExosDet.action = "upd"
             FormDisableExosDet.id = id_report
             FormDisableExosDet.ShowDialog()
+        ElseIf report_mark_type = "365" Then
+            'perpanjang eos
+            FormEOSChangeDet.is_view = "1"
+            FormEOSChangeDet.action = "upd"
+            FormEOSChangeDet.id = id_report
+            FormEOSChangeDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2965,6 +2974,12 @@ GROUP BY rec.`id_prod_order`"
             'propose changhe status exos
             table_name = "tb_disable_exos"
             field_id = "id_disable_exos"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "365" Then
+            'perpanjang eos
+            table_name = "tb_eos_change"
+            field_id = "id_eos_change"
             field_number = "number"
             field_date = "created_date"
         Else
