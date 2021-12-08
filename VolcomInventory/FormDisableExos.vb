@@ -1,5 +1,5 @@
 ﻿Public Class FormDisableExos
-    Public is_test As String = "1"
+    Public is_test As String = "-1"
 
     Private Sub FormDisableExos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewData()

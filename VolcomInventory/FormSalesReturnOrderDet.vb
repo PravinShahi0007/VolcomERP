@@ -513,8 +513,8 @@
         End If
 
         If id_report_status = "6" Then
-            GCItemList.ContextMenuStrip = ContextMenuStrip1
-            'GCItemList.ContextMenuStrip = Nothing
+            'GCItemList.ContextMenuStrip = ContextMenuStrip1
+            GCItemList.ContextMenuStrip = Nothing
         Else
             GCItemList.ContextMenuStrip = Nothing
         End If

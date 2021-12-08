@@ -14,6 +14,7 @@
         DEFrom.EditValue = dt_now.Rows(0)("tgl")
         DEFromList.EditValue = dt_now.Rows(0)("tgl")
         DEUntilList.EditValue = dt_now.Rows(0)("tgl")
+        DEStartDateExos.EditValue = dt_now.Rows(0)("tgl")
 
         If is_price_list Then
             XTPImport.PageVisible = False
@@ -494,5 +495,77 @@
         ORDER BY cd.class ASC, d.id_design ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCHistSummary.DataSource = data
+    End Sub
+
+    Private Sub BtnViewExos_Click(sender As Object, e As EventArgs) Handles BtnViewExos.Click
+        viewExos
+    End Sub
+
+    Sub viewExos()
+        Cursor = Cursors.WaitCursor
+        Dim date_from_selected As String = ""
+        Try
+            date_from_selected = DateTime.Parse(DEStartDateExos.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim query As String = "SELECT d.id_design, d.design_code AS `code`, cd.class,d.design_display_name AS `name`, cd.sht, cd.color,
+        prc.design_price, prc.design_price_type, prc.design_cat
+        FROM tb_design_extended_eos de
+        INNER JOIN tb_lookup_extended_eos e ON e.id_extended_eos = de.id_extended_eos
+        INNER JOIN tb_m_design d ON d.id_design = de.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, 
+	        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	        FROM tb_m_design_code dc
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        AND cd.id_code IN (32,30,14, 43)
+	        GROUP BY dc.id_design
+        ) cd ON cd.id_design = d.id_design
+        LEFT JOIN (
+		    SELECT prc.id_design, prc.id_design_price, prc.design_price, prc.id_design_cat,prc.design_cat, prc.design_price_type
+		    FROM (
+			    SELECT prc.id_design, prc.id_design_price, prc.design_price, cat.id_design_cat, cat.design_cat, pt.design_price_type
+			    FROM tb_m_design_price prc
+			    INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
+			    INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = pt.id_design_cat
+			    WHERE design_price_start_date<='" + date_from_selected + "' AND is_active_wh=1 AND is_design_cost=0
+			    ORDER BY design_price_start_date DESC, id_design_price DESC
+		    ) prc
+		    GROUP BY id_design
+	    ) prc ON prc.id_design = d.id_design
+        WHERE de.id_design_extended_eos IN (
+	         SELECT MAX(de.id_design_extended_eos) FROM tb_design_extended_eos de
+	         WHERE de.start_date<='" + date_from_selected + "'
+	         GROUP BY de.id_design
+        ) 
+        AND de.id_extended_eos=1 
+        ORDER BY class ASC, name ASC"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCExos.DataSource = data
+        GVExos.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnExporttoXLSExos_Click(sender As Object, e As EventArgs) Handles BtnExporttoXLSExos.Click
+        If GVExos.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "extended_eos_list.xlsx"
+            exportToXLS(path, "extended_eos_list price", GCExos)
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
