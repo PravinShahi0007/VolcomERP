@@ -94,7 +94,7 @@ Partial Class FormEOSChange
         '
         'GridColumnpps_date
         '
-        Me.GridColumnpps_date.Caption = "Renewal Date"
+        Me.GridColumnpps_date.Caption = "Diperpanjang hingga"
         Me.GridColumnpps_date.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumnpps_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnpps_date.FieldName = "pps_date"
@@ -105,7 +105,7 @@ Partial Class FormEOSChange
         '
         'GridColumnplan_end_date
         '
-        Me.GridColumnplan_end_date.Caption = "Plan End Date "
+        Me.GridColumnplan_end_date.Caption = "Rencana Berakhir"
         Me.GridColumnplan_end_date.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumnplan_end_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnplan_end_date.FieldName = "plan_end_date"

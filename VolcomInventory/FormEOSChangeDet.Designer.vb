@@ -99,9 +99,9 @@ Partial Class FormEOSChangeDet
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl1.Location = New System.Drawing.Point(34, 69)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(100, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(99, 13)
         Me.LabelControl1.TabIndex = 8934
-        Me.LabelControl1.Text = "Diperpanjang sampai"
+        Me.LabelControl1.Text = "Diperpanjang hingga"
         '
         'DENewEndDate
         '

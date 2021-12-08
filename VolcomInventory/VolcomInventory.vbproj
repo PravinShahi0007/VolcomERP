@@ -8977,6 +8977,12 @@
     <Compile Include="ReportEmpUniPeriod.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEOSChange.Designer.vb">
+      <DependentUpon>ReportEOSChange.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEOSChange.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGAdjIn.Designer.vb">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>
     </Compile>
@@ -15279,6 +15285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpUniPeriod.resx">
       <DependentUpon>ReportEmpUniPeriod.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEOSChange.resx">
+      <DependentUpon>ReportEOSChange.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGAdjIn.resx">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>
