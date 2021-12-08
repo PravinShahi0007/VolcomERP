@@ -126,7 +126,7 @@ Partial Class FormPIBReview
         Me.XTCPib.Location = New System.Drawing.Point(0, 0)
         Me.XTCPib.Name = "XTCPib"
         Me.XTCPib.SelectedTabPage = Me.XTPReview
-        Me.XTCPib.Size = New System.Drawing.Size(1011, 556)
+        Me.XTCPib.Size = New System.Drawing.Size(1032, 556)
         Me.XTCPib.TabIndex = 1
         Me.XTCPib.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPReview, Me.XTPInput, Me.XTPAnalisa})
         '
@@ -470,7 +470,7 @@ Partial Class FormPIBReview
         Me.XTPAnalisa.Controls.Add(Me.GCAnalisa)
         Me.XTPAnalisa.Controls.Add(Me.PanelControl3)
         Me.XTPAnalisa.Name = "XTPAnalisa"
-        Me.XTPAnalisa.Size = New System.Drawing.Size(1005, 528)
+        Me.XTPAnalisa.Size = New System.Drawing.Size(1026, 528)
         Me.XTPAnalisa.Text = "Analisa (Notified PIB)"
         '
         'GCAnalisa
@@ -479,7 +479,7 @@ Partial Class FormPIBReview
         Me.GCAnalisa.Location = New System.Drawing.Point(0, 49)
         Me.GCAnalisa.MainView = Me.GVAnalisa
         Me.GCAnalisa.Name = "GCAnalisa"
-        Me.GCAnalisa.Size = New System.Drawing.Size(1005, 479)
+        Me.GCAnalisa.Size = New System.Drawing.Size(1026, 479)
         Me.GCAnalisa.TabIndex = 2
         Me.GCAnalisa.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAnalisa})
         '
@@ -897,14 +897,14 @@ Partial Class FormPIBReview
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1005, 49)
+        Me.PanelControl3.Size = New System.Drawing.Size(1026, 49)
         Me.PanelControl3.TabIndex = 1
         '
         'BRefreshAnalisa
         '
         Me.BRefreshAnalisa.Dock = System.Windows.Forms.DockStyle.Right
         Me.BRefreshAnalisa.Image = CType(resources.GetObject("BRefreshAnalisa.Image"), System.Drawing.Image)
-        Me.BRefreshAnalisa.Location = New System.Drawing.Point(887, 2)
+        Me.BRefreshAnalisa.Location = New System.Drawing.Point(908, 2)
         Me.BRefreshAnalisa.Name = "BRefreshAnalisa"
         Me.BRefreshAnalisa.Size = New System.Drawing.Size(116, 45)
         Me.BRefreshAnalisa.TabIndex = 0
@@ -914,7 +914,7 @@ Partial Class FormPIBReview
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1011, 556)
+        Me.ClientSize = New System.Drawing.Size(1032, 556)
         Me.Controls.Add(Me.XTCPib)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False

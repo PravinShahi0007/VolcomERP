@@ -430,18 +430,18 @@ Partial Class FormInvoiceFGPODP
         Me.TEDocType.Name = "TEDocType"
         Me.TEDocType.Properties.EditValueChangedDelay = 1
         Me.TEDocType.Properties.ReadOnly = True
-        Me.TEDocType.Size = New System.Drawing.Size(112, 20)
+        Me.TEDocType.Size = New System.Drawing.Size(287, 20)
         Me.TEDocType.TabIndex = 8920
         Me.TEDocType.TabStop = False
         '
         'SLEPayType
         '
-        Me.SLEPayType.Location = New System.Drawing.Point(206, 64)
+        Me.SLEPayType.Location = New System.Drawing.Point(88, 90)
         Me.SLEPayType.Name = "SLEPayType"
         Me.SLEPayType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEPayType.Properties.ReadOnly = True
         Me.SLEPayType.Properties.View = Me.GridView1
-        Me.SLEPayType.Size = New System.Drawing.Size(169, 20)
+        Me.SLEPayType.Size = New System.Drawing.Size(287, 20)
         Me.SLEPayType.TabIndex = 8919
         '
         'GridView1
