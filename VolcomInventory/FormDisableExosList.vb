@@ -5,9 +5,8 @@
 
     Sub viewData()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT e.id_design, d.design_code AS `code`, cd.class, d.design_display_name AS `name`, cd.sht, cd.color, 'No' AS `is_select`
-        FROM tb_design_extended_eos e
-        INNER JOIN tb_m_design d ON d.id_design = e.id_design
+        Dim query As String = "SELECT d.id_design, d.design_code AS `code`, cd.class, d.design_display_name AS `name`, cd.sht, cd.color, 'No' AS `is_select`, IFNULL(e.id_extended_eos,2) AS `id_extended_eos`
+        FROM tb_m_design d 
         LEFT JOIN (
 	        SELECT dc.id_design, 
 	        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
@@ -24,7 +23,18 @@
 	        AND cd.id_code IN (32,30,14, 43)
 	        GROUP BY dc.id_design
         ) cd ON cd.id_design = d.id_design
-        WHERE e.is_active=1 
+        LEFT JOIN (
+		    SELECT de.*, e.extended_eos
+		    FROM tb_design_extended_eos de
+		    INNER JOIN tb_lookup_extended_eos e ON e.id_extended_eos = de.id_extended_eos
+		    WHERE de.id_design_extended_eos IN (
+		        SELECT MAX(de.id_design_extended_eos) FROM tb_design_extended_eos de
+		        WHERE de.start_date<=NOW()
+		        GROUP BY de.id_design
+		    )
+	    ) e ON e.id_design = d.id_design 
+        WHERE d.id_lookup_status_order!=2
+        HAVING id_extended_eos=1
         ORDER BY `class` ASC, `name` ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Dim dv As DataView = New DataView(data)

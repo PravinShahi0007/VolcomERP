@@ -104,10 +104,11 @@ Partial Class FormProposePromoDet
         '
         'TENPWP
         '
-        Me.TENPWP.Location = New System.Drawing.Point(99, 127)
+        Me.TENPWP.EditValue = ""
+        Me.TENPWP.Location = New System.Drawing.Point(127, 127)
         Me.TENPWP.Name = "TENPWP"
-        Me.TENPWP.Size = New System.Drawing.Size(250, 20)
-        Me.TENPWP.TabIndex = 15
+        Me.TENPWP.Size = New System.Drawing.Size(200, 20)
+        Me.TENPWP.TabIndex = 3
         '
         'LabelControl8
         '
@@ -121,23 +122,25 @@ Partial Class FormProposePromoDet
         '
         Me.LabelControl7.Location = New System.Drawing.Point(451, 78)
         Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(33, 13)
+        Me.LabelControl7.Size = New System.Drawing.Size(101, 13)
         Me.LabelControl7.TabIndex = 13
-        Me.LabelControl7.Text = "Alamat"
+        Me.LabelControl7.Text = "Alamat (KTP / NPWP)"
         '
         'MEAlamat
         '
-        Me.MEAlamat.Location = New System.Drawing.Point(516, 71)
+        Me.MEAlamat.EditValue = ""
+        Me.MEAlamat.Location = New System.Drawing.Point(566, 71)
         Me.MEAlamat.Name = "MEAlamat"
-        Me.MEAlamat.Size = New System.Drawing.Size(250, 76)
-        Me.MEAlamat.TabIndex = 12
+        Me.MEAlamat.Size = New System.Drawing.Size(200, 76)
+        Me.MEAlamat.TabIndex = 4
         '
         'TEKTP
         '
-        Me.TEKTP.Location = New System.Drawing.Point(99, 101)
+        Me.TEKTP.EditValue = ""
+        Me.TEKTP.Location = New System.Drawing.Point(127, 101)
         Me.TEKTP.Name = "TEKTP"
-        Me.TEKTP.Size = New System.Drawing.Size(250, 20)
-        Me.TEKTP.TabIndex = 11
+        Me.TEKTP.Size = New System.Drawing.Size(200, 20)
+        Me.TEKTP.TabIndex = 2
         '
         'LabelControl6
         '
@@ -149,25 +152,26 @@ Partial Class FormProposePromoDet
         '
         'TENama
         '
-        Me.TENama.Location = New System.Drawing.Point(99, 75)
+        Me.TENama.EditValue = ""
+        Me.TENama.Location = New System.Drawing.Point(127, 75)
         Me.TENama.Name = "TENama"
-        Me.TENama.Size = New System.Drawing.Size(250, 20)
-        Me.TENama.TabIndex = 9
+        Me.TENama.Size = New System.Drawing.Size(200, 20)
+        Me.TENama.TabIndex = 1
         '
         'LabelControl5
         '
         Me.LabelControl5.Location = New System.Drawing.Point(21, 78)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(27, 13)
+        Me.LabelControl5.Size = New System.Drawing.Size(95, 13)
         Me.LabelControl5.TabIndex = 8
-        Me.LabelControl5.Text = "Nama"
+        Me.LabelControl5.Text = "Nama (KTP / NPWP)"
         '
         'TEReportStatus
         '
-        Me.TEReportStatus.Location = New System.Drawing.Point(99, 45)
+        Me.TEReportStatus.Location = New System.Drawing.Point(127, 45)
         Me.TEReportStatus.Name = "TEReportStatus"
         Me.TEReportStatus.Properties.ReadOnly = True
-        Me.TEReportStatus.Size = New System.Drawing.Size(250, 20)
+        Me.TEReportStatus.Size = New System.Drawing.Size(200, 20)
         Me.TEReportStatus.TabIndex = 7
         '
         'LabelControl4
@@ -180,11 +184,11 @@ Partial Class FormProposePromoDet
         '
         'TECreatedBy
         '
-        Me.TECreatedBy.Location = New System.Drawing.Point(516, 45)
+        Me.TECreatedBy.Location = New System.Drawing.Point(566, 45)
         Me.TECreatedBy.Name = "TECreatedBy"
         Me.TECreatedBy.Properties.ReadOnly = True
-        Me.TECreatedBy.Size = New System.Drawing.Size(250, 20)
-        Me.TECreatedBy.TabIndex = 5
+        Me.TECreatedBy.Size = New System.Drawing.Size(200, 20)
+        Me.TECreatedBy.TabIndex = 9
         '
         'LabelControl3
         '
@@ -196,11 +200,11 @@ Partial Class FormProposePromoDet
         '
         'TECreatedAt
         '
-        Me.TECreatedAt.Location = New System.Drawing.Point(516, 19)
+        Me.TECreatedAt.Location = New System.Drawing.Point(566, 19)
         Me.TECreatedAt.Name = "TECreatedAt"
         Me.TECreatedAt.Properties.ReadOnly = True
-        Me.TECreatedAt.Size = New System.Drawing.Size(250, 20)
-        Me.TECreatedAt.TabIndex = 3
+        Me.TECreatedAt.Size = New System.Drawing.Size(200, 20)
+        Me.TECreatedAt.TabIndex = 9
         '
         'LabelControl2
         '
@@ -212,11 +216,11 @@ Partial Class FormProposePromoDet
         '
         'TENumber
         '
-        Me.TENumber.Location = New System.Drawing.Point(99, 19)
+        Me.TENumber.Location = New System.Drawing.Point(127, 19)
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(250, 20)
-        Me.TENumber.TabIndex = 1
+        Me.TENumber.Size = New System.Drawing.Size(200, 20)
+        Me.TENumber.TabIndex = 9
         '
         'LabelControl1
         '

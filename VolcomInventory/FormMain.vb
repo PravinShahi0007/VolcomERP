@@ -1965,6 +1965,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormProposePromo" Then
             FormProposePromoDet.id_propose_promo = "0"
             FormProposePromoDet.ShowDialog()
+        ElseIf formName = "FormRetExos" Then
+            FormRetExos.createNew()
+        ElseIf formName = "FormDisableExos" Then
+            FormDisableExos.createNew()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3324,6 +3328,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormProposePromo" Then
                 FormProposePromoDet.id_propose_promo = FormProposePromo.GVPromo.GetFocusedRowCellValue("id_propose_promo").ToString
                 FormProposePromoDet.ShowDialog()
+            ElseIf formName = "FormRetExos" Then
+                FormRetExos.viewDetail()
+            ElseIf formName = "FormDisableExos" Then
+                FormDisableExos.viewDetail()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8833,6 +8841,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPromoZalora.printList()
         ElseIf formname = "FormProposePromo" Then
             print(FormProposePromo.GCPromo, "List Propose Promo")
+        ElseIf formname = "FormNominatifPromo" Then
+            FormNominatifPromo.form_print()
+        ElseIf formName = "FormRetExos" Then
+            FormRetExos.printList()
+        ElseIf formName = "FormDisableExos" Then
+            FormDisableExos.printList()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9875,6 +9889,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formname = "FormProposePromo" Then
             FormProposePromo.Close()
             FormProposePromo.Dispose()
+        ElseIf formname = "FormNominatifPromo" Then
+            FormNominatifPromo.Close()
+            FormNominatifPromo.Dispose()
+        ElseIf formName = "FormRetExos" Then
+            FormRetExos.Close()
+            FormRetExos.Dispose()
+        ElseIf formName = "FormDisableExos" Then
+            FormDisableExos.Close()
+            FormDisableExos.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10921,6 +10944,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormPromoZalora.viewData()
         ElseIf formName = "FormProposePromo" Then
             FormProposePromo.form_load()
+        ElseIf formName = "FormNominatifPromo" Then
+            FormNominatifPromo.form_load()
+        ElseIf formName = "FormRetExos" Then
+            FormRetExos.viewData()
+        ElseIf formName = "FormDisableExos" Then
+            FormDisableExos.viewData()
         End If
     End Sub
     'Switch
@@ -16786,6 +16815,45 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormProposePromo.Show()
             FormProposePromo.WindowState = FormWindowState.Maximized
             FormProposePromo.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBNominatifPromo_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBNominatifPromo.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormNominatifPromo.MdiParent = Me
+            FormNominatifPromo.Show()
+            FormNominatifPromo.WindowState = FormWindowState.Maximized
+            FormNominatifPromo.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBRetExos_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRetExos.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormRetExos.MdiParent = Me
+            FormRetExos.Show()
+            FormRetExos.WindowState = FormWindowState.Maximized
+            FormRetExos.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBDisableExos_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDisableExos.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormDisableExos.MdiParent = Me
+            FormDisableExos.Show()
+            FormDisableExos.WindowState = FormWindowState.Maximized
+            FormDisableExos.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

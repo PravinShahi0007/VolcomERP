@@ -18,7 +18,7 @@
     End Sub
 
     Private Sub SBSubmit_Click(sender As Object, e As EventArgs) Handles SBSubmit.Click
-        If TENama.EditValue.ToString = "" Or TEKTP.EditValue.ToString = "" Or TENPWP.EditValue.ToString = "" Or MEAlamat.EditValue.ToString = "" Then
+        If TENama.EditValue.ToString = "" Or MEAlamat.EditValue.ToString = "" Or (TEKTP.EditValue.ToString = "" And TENPWP.EditValue.ToString = "") Then
             stopCustom("Please check your input.")
         Else
             GVProduct.FindFilterText = ""

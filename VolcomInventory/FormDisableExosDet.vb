@@ -28,6 +28,10 @@
             BtnAttachment.Enabled = False
             DEForm.Text = view_date(0)
             viewDetail()
+
+            'min date
+            Dim tgl_sekarang As DateTime = getTimeDB()
+            DEEffectDate.Properties.MinValue = tgl_sekarang
         ElseIf action = "upd" Then
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
             BMark.Enabled = True
@@ -55,6 +59,7 @@
     End Sub
 
     Sub allow_status()
+        DEEffectDate.Enabled = False
         BtnAdd.Visible = False
         BtnDel.Visible = False
         BtnSave.Enabled = False
@@ -138,6 +143,7 @@
         Report.LabelDate.Text = DEForm.Text.ToUpper
         Report.LNote.Text = MENote.Text
         Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+        Report.LabelEffectDate.Text = DEEffectDate.Text.ToUpper
 
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
@@ -166,10 +172,11 @@
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to propose this document?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Dim note As String = addSlashes(MENote.Text)
+                Dim effective_date As String = DateTime.Parse(DEEffectDate.EditValue.ToString).ToString("yyyy-MM-dd")
 
                 'head
-                Dim query As String = "INSERT INTO tb_disable_exos(number, created_date, id_report_status, note)
-                VALUES('', NOW(), 1, '" + note + "');SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_disable_exos(number, created_date, id_report_status, note, effective_date)
+                VALUES('', NOW(), 1, '" + note + "', '" + effective_date + "');SELECT LAST_INSERT_ID(); "
                 id = execute_query(query, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id + ", " + rmt + "); ", True, "", "", "", "")
 
