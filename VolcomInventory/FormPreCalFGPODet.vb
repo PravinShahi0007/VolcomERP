@@ -122,6 +122,7 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                 '
                 TEQuotAmo.EditValue = dt.Rows(0)("quot_amo")
                 TEQuotNo.EditValue = dt.Rows(0)("quot_no")
+                TEActCBM.EditValue = dt.Rows(0)("act_cbm")
                 '
                 view_but()
 
@@ -1136,7 +1137,12 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
     End Sub
 
     Private Sub BSaveWO_Click(sender As Object, e As EventArgs) Handles BSaveWO.Click
-        Dim q As String = ""
-
+        If TEQuotNo.Text = "" Or TEQuotAmo.EditValue <= 0 Or TEActCBM.EditValue <= 0 Then
+            warningCustom("Please complete your input")
+        Else
+            Dim q As String = "UPDATE tb_pre_cal_fgpo SET quot_no='" & addSlashes(TEQuotNo.EditValue.ToString) & "',quot_amo='" & decimalSQL(Decimal.Parse(TEQuotAmo.EditValue.ToString)) & "',act_cbm='" & decimalSQL(Decimal.Parse(TECBM.EditValue.ToString)) & "' WHERE id_pre_cal_fgpo='" & id & "'"
+            execute_non_query(q, True, "", "", "", "")
+            load_head()
+        End If
     End Sub
 End Class
