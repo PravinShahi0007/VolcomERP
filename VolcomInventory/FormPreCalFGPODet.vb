@@ -93,10 +93,12 @@ ORDER BY id_stock_valas DESC LIMIT 1"
         Else
             'edit
             Dim q As String = "SELECT cal.reason,cal.ppn,cal.pph,cal.rate_current,cal.rate_management,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
+,cal.quot_amo,cal.quot_no,c.comp_name AS choosen_forwarder
 FROM
 `tb_pre_cal_fgpo` cal
 INNER JOIN tb_m_user usr ON usr.`id_user`=cal.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+LEFT JOIN tb_m_comp c ON c.id_comp=cal.choosen_id_comp
 WHERE cal.id_pre_cal_fgpo='" & id & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
@@ -117,7 +119,10 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                 TEPPN.EditValue = dt.Rows(0)("ppn")
                 TEPPH2.EditValue = dt.Rows(0)("pph")
                 TEPPN2.EditValue = dt.Rows(0)("ppn")
-
+                '
+                TEQuotAmo.EditValue = dt.Rows(0)("quot_amo")
+                TEQuotNo.EditValue = dt.Rows(0)("quot_no")
+                '
                 view_but()
 
                 load_list_fgpo()
@@ -137,6 +142,8 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                     load_list_chosen()
                 ElseIf steps > 2 Then
                     load_list_orign()
+                ElseIf steps > 7 Then
+                    load_list_wo()
                 End If
                 '
                 If steps = 1 And Not id = "-1" Then
@@ -217,6 +224,18 @@ ORDER BY unit_cost DESC"
 
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCAdm.DataSource = dt
+    End Sub
+
+    Sub load_list_wo()
+        Dim q As String = "SELECT d.`design_display_name`,d.`design_code`,pcl.id_prod_order,a.prod_order_number,pcl.qty,pcl.id_currency,pcl.price,pcl.duty
+FROM `tb_pre_cal_fgpo_list` pcl
+INNER JOIN tb_prod_order a ON a.id_prod_order=pcl.id_prod_order 
+INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 
+INNER JOIN tb_m_design d ON b.id_design = d.id_design
+WHERE pcl.id_pre_cal_fgpo='" & id & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCWOFGPO.DataSource = dt
+        GVWOFGPO.BestFitColumns()
     End Sub
 
     Sub load_list_orign()
@@ -464,7 +483,7 @@ SELECT 3 AS id_type,'Courier' AS type"
             XTPAdmCharges.PageVisible = True
             XTPChoosen.PageVisible = True
             XTPDutyReport.PageVisible = True
-            XTPWO.PageVisible = False
+            XTPWO.PageVisible = True
             '
             PCFGPOList.Visible = False
             PCVendor.Visible = False
@@ -1116,7 +1135,8 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub SimpleButton4_Click(sender As Object, e As EventArgs) Handles SimpleButton4.Click
+    Private Sub BSaveWO_Click(sender As Object, e As EventArgs) Handles BSaveWO.Click
+        Dim q As String = ""
 
     End Sub
 End Class
