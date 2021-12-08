@@ -127,6 +127,10 @@ Partial Class FormMasterPrice
         Me.GridColumnsum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnsourcesum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclasshistsum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshthistsum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolorhistsum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor_deschistsum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEClassHistSum = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -157,10 +161,23 @@ Partial Class FormMasterPrice
         Me.DEFromList = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnclasshistsum = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnshthistsum = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncolorhistsum = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncolor_deschistsum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPExos = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExporttoXLSExos = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnViewExos = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEStartDateExos = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
+        Me.GCExos = New DevExpress.XtraGrid.GridControl()
+        Me.GVExos = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_designexos = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncodeexos = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclassexos = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshtexos = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolorexos = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnameexos = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_price_typeexos = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_catexos = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_priceexos = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPrice, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -211,6 +228,13 @@ Partial Class FormMasterPrice
         CType(Me.DEUntilList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPExos.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.DEStartDateExos.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStartDateExos.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCExos, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVExos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCPrice
@@ -309,7 +333,7 @@ Partial Class FormMasterPrice
         Me.XTCBrowse.SelectedTabPage = Me.XTPActivePrice
         Me.XTCBrowse.Size = New System.Drawing.Size(963, 511)
         Me.XTCBrowse.TabIndex = 101
-        Me.XTCBrowse.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPActivePrice, Me.XTPHistDetail, Me.XTPHistSum})
+        Me.XTCBrowse.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPActivePrice, Me.XTPHistDetail, Me.XTPHistSum, Me.XTPExos})
         '
         'XTPActivePrice
         '
@@ -1165,6 +1189,38 @@ Partial Class FormMasterPrice
         Me.GridColumnsourcesum.VisibleIndex = 8
         Me.GridColumnsourcesum.Width = 53
         '
+        'GridColumnclasshistsum
+        '
+        Me.GridColumnclasshistsum.Caption = "Class"
+        Me.GridColumnclasshistsum.FieldName = "class"
+        Me.GridColumnclasshistsum.Name = "GridColumnclasshistsum"
+        Me.GridColumnclasshistsum.Visible = True
+        Me.GridColumnclasshistsum.VisibleIndex = 1
+        '
+        'GridColumnshthistsum
+        '
+        Me.GridColumnshthistsum.Caption = "Silhouette"
+        Me.GridColumnshthistsum.FieldName = "sht"
+        Me.GridColumnshthistsum.Name = "GridColumnshthistsum"
+        Me.GridColumnshthistsum.Visible = True
+        Me.GridColumnshthistsum.VisibleIndex = 3
+        '
+        'GridColumncolorhistsum
+        '
+        Me.GridColumncolorhistsum.Caption = "Color"
+        Me.GridColumncolorhistsum.FieldName = "color"
+        Me.GridColumncolorhistsum.Name = "GridColumncolorhistsum"
+        Me.GridColumncolorhistsum.Visible = True
+        Me.GridColumncolorhistsum.VisibleIndex = 4
+        '
+        'GridColumncolor_deschistsum
+        '
+        Me.GridColumncolor_deschistsum.Caption = "Color Desc."
+        Me.GridColumncolor_deschistsum.FieldName = "color_desc"
+        Me.GridColumncolor_deschistsum.Name = "GridColumncolor_deschistsum"
+        Me.GridColumncolor_deschistsum.Visible = True
+        Me.GridColumncolor_deschistsum.VisibleIndex = 5
+        '
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.LabelControl13)
@@ -1441,37 +1497,156 @@ Partial Class FormMasterPrice
         Me.LabelControl5.TabIndex = 8892
         Me.LabelControl5.Text = "From"
         '
-        'GridColumnclasshistsum
+        'XTPExos
         '
-        Me.GridColumnclasshistsum.Caption = "Class"
-        Me.GridColumnclasshistsum.FieldName = "class"
-        Me.GridColumnclasshistsum.Name = "GridColumnclasshistsum"
-        Me.GridColumnclasshistsum.Visible = True
-        Me.GridColumnclasshistsum.VisibleIndex = 1
+        Me.XTPExos.Controls.Add(Me.GCExos)
+        Me.XTPExos.Controls.Add(Me.PanelControl3)
+        Me.XTPExos.Name = "XTPExos"
+        Me.XTPExos.Size = New System.Drawing.Size(934, 505)
+        Me.XTPExos.Text = "Extended EOS"
         '
-        'GridColumnshthistsum
+        'PanelControl3
         '
-        Me.GridColumnshthistsum.Caption = "Silhouette"
-        Me.GridColumnshthistsum.FieldName = "sht"
-        Me.GridColumnshthistsum.Name = "GridColumnshthistsum"
-        Me.GridColumnshthistsum.Visible = True
-        Me.GridColumnshthistsum.VisibleIndex = 3
+        Me.PanelControl3.Controls.Add(Me.BtnExporttoXLSExos)
+        Me.PanelControl3.Controls.Add(Me.BtnViewExos)
+        Me.PanelControl3.Controls.Add(Me.DEStartDateExos)
+        Me.PanelControl3.Controls.Add(Me.LabelControl16)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(934, 39)
+        Me.PanelControl3.TabIndex = 101
         '
-        'GridColumncolorhistsum
+        'BtnExporttoXLSExos
         '
-        Me.GridColumncolorhistsum.Caption = "Color"
-        Me.GridColumncolorhistsum.FieldName = "color"
-        Me.GridColumncolorhistsum.Name = "GridColumncolorhistsum"
-        Me.GridColumncolorhistsum.Visible = True
-        Me.GridColumncolorhistsum.VisibleIndex = 4
+        Me.BtnExporttoXLSExos.Location = New System.Drawing.Point(245, 9)
+        Me.BtnExporttoXLSExos.LookAndFeel.SkinName = "Blue"
+        Me.BtnExporttoXLSExos.Name = "BtnExporttoXLSExos"
+        Me.BtnExporttoXLSExos.Size = New System.Drawing.Size(92, 20)
+        Me.BtnExporttoXLSExos.TabIndex = 8929
+        Me.BtnExporttoXLSExos.Text = "Export to XLS"
         '
-        'GridColumncolor_deschistsum
+        'BtnViewExos
         '
-        Me.GridColumncolor_deschistsum.Caption = "Color Desc."
-        Me.GridColumncolor_deschistsum.FieldName = "color_desc"
-        Me.GridColumncolor_deschistsum.Name = "GridColumncolor_deschistsum"
-        Me.GridColumncolor_deschistsum.Visible = True
-        Me.GridColumncolor_deschistsum.VisibleIndex = 5
+        Me.BtnViewExos.Location = New System.Drawing.Point(171, 9)
+        Me.BtnViewExos.Name = "BtnViewExos"
+        Me.BtnViewExos.Size = New System.Drawing.Size(70, 20)
+        Me.BtnViewExos.TabIndex = 3
+        Me.BtnViewExos.Text = "View"
+        '
+        'DEStartDateExos
+        '
+        Me.DEStartDateExos.EditValue = Nothing
+        Me.DEStartDateExos.Location = New System.Drawing.Point(45, 9)
+        Me.DEStartDateExos.Name = "DEStartDateExos"
+        Me.DEStartDateExos.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEStartDateExos.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartDateExos.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEStartDateExos.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEStartDateExos.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStartDateExos.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEStartDateExos.Size = New System.Drawing.Size(120, 20)
+        Me.DEStartDateExos.TabIndex = 2
+        '
+        'LabelControl16
+        '
+        Me.LabelControl16.Location = New System.Drawing.Point(16, 12)
+        Me.LabelControl16.Name = "LabelControl16"
+        Me.LabelControl16.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl16.TabIndex = 99
+        Me.LabelControl16.Text = "Date"
+        '
+        'GCExos
+        '
+        Me.GCExos.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCExos.Location = New System.Drawing.Point(0, 39)
+        Me.GCExos.MainView = Me.GVExos
+        Me.GCExos.Name = "GCExos"
+        Me.GCExos.Size = New System.Drawing.Size(934, 466)
+        Me.GCExos.TabIndex = 102
+        Me.GCExos.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVExos})
+        '
+        'GVExos
+        '
+        Me.GVExos.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_designexos, Me.GridColumncodeexos, Me.GridColumnclassexos, Me.GridColumnshtexos, Me.GridColumncolorexos, Me.GridColumnnameexos, Me.GridColumndesign_price_typeexos, Me.GridColumndesign_catexos, Me.GridColumndesign_priceexos})
+        Me.GVExos.GridControl = Me.GCExos
+        Me.GVExos.Name = "GVExos"
+        Me.GVExos.OptionsBehavior.ReadOnly = True
+        Me.GVExos.OptionsFind.AlwaysVisible = True
+        Me.GVExos.OptionsView.ColumnAutoWidth = False
+        Me.GVExos.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_designexos
+        '
+        Me.GridColumnid_designexos.Caption = "id_design"
+        Me.GridColumnid_designexos.FieldName = "id_design"
+        Me.GridColumnid_designexos.Name = "GridColumnid_designexos"
+        '
+        'GridColumncodeexos
+        '
+        Me.GridColumncodeexos.Caption = "Code"
+        Me.GridColumncodeexos.FieldName = "code"
+        Me.GridColumncodeexos.Name = "GridColumncodeexos"
+        Me.GridColumncodeexos.Visible = True
+        Me.GridColumncodeexos.VisibleIndex = 0
+        '
+        'GridColumnclassexos
+        '
+        Me.GridColumnclassexos.Caption = "Class"
+        Me.GridColumnclassexos.FieldName = "class"
+        Me.GridColumnclassexos.Name = "GridColumnclassexos"
+        Me.GridColumnclassexos.Visible = True
+        Me.GridColumnclassexos.VisibleIndex = 1
+        '
+        'GridColumnshtexos
+        '
+        Me.GridColumnshtexos.Caption = "Silhouette"
+        Me.GridColumnshtexos.FieldName = "sht"
+        Me.GridColumnshtexos.Name = "GridColumnshtexos"
+        Me.GridColumnshtexos.Visible = True
+        Me.GridColumnshtexos.VisibleIndex = 3
+        '
+        'GridColumncolorexos
+        '
+        Me.GridColumncolorexos.Caption = "Color"
+        Me.GridColumncolorexos.FieldName = "color"
+        Me.GridColumncolorexos.Name = "GridColumncolorexos"
+        Me.GridColumncolorexos.Visible = True
+        Me.GridColumncolorexos.VisibleIndex = 4
+        '
+        'GridColumnnameexos
+        '
+        Me.GridColumnnameexos.Caption = "Description"
+        Me.GridColumnnameexos.FieldName = "name"
+        Me.GridColumnnameexos.Name = "GridColumnnameexos"
+        Me.GridColumnnameexos.Visible = True
+        Me.GridColumnnameexos.VisibleIndex = 2
+        '
+        'GridColumndesign_price_typeexos
+        '
+        Me.GridColumndesign_price_typeexos.Caption = "Price Type"
+        Me.GridColumndesign_price_typeexos.FieldName = "design_price_type"
+        Me.GridColumndesign_price_typeexos.Name = "GridColumndesign_price_typeexos"
+        Me.GridColumndesign_price_typeexos.Visible = True
+        Me.GridColumndesign_price_typeexos.VisibleIndex = 6
+        '
+        'GridColumndesign_catexos
+        '
+        Me.GridColumndesign_catexos.Caption = "Status"
+        Me.GridColumndesign_catexos.FieldName = "design_cat"
+        Me.GridColumndesign_catexos.Name = "GridColumndesign_catexos"
+        Me.GridColumndesign_catexos.Visible = True
+        Me.GridColumndesign_catexos.VisibleIndex = 5
+        '
+        'GridColumndesign_priceexos
+        '
+        Me.GridColumndesign_priceexos.Caption = "Price"
+        Me.GridColumndesign_priceexos.DisplayFormat.FormatString = "N0"
+        Me.GridColumndesign_priceexos.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndesign_priceexos.FieldName = "design_price"
+        Me.GridColumndesign_priceexos.Name = "GridColumndesign_priceexos"
+        Me.GridColumndesign_priceexos.Visible = True
+        Me.GridColumndesign_priceexos.VisibleIndex = 7
         '
         'FormMasterPrice
         '
@@ -1538,6 +1713,14 @@ Partial Class FormMasterPrice
         CType(Me.DEUntilList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromList.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPExos.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.DEStartDateExos.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStartDateExos.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCExos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVExos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1684,4 +1867,21 @@ Partial Class FormMasterPrice
     Friend WithEvents GridColumnshthistsum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncolorhistsum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncolor_deschistsum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPExos As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnExporttoXLSExos As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnViewExos As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEStartDateExos As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCExos As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVExos As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_designexos As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncodeexos As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclassexos As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnshtexos As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolorexos As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnameexos As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndesign_price_typeexos As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndesign_catexos As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndesign_priceexos As DevExpress.XtraGrid.Columns.GridColumn
 End Class
