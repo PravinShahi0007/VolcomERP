@@ -44,23 +44,25 @@ Partial Class FormEtsDet
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPTH = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPProductList = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControlNavPTH = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnExtendedEOS = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAddPTH = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnFinalPropose = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAllProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.GCPTH = New DevExpress.XtraGrid.GridControl()
         Me.GVPTH = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_pp_change = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumneffective_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnplan_end_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControlNavPTH = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExtendedEOS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddPTH = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPProductList = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
+        Me.BtnFinalPropose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAllProduct = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.DEEffectDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,16 +79,18 @@ Partial Class FormEtsDet
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPPTH.SuspendLayout()
-        Me.XTPProductList.SuspendLayout()
+        CType(Me.GCPTH, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPTH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNavPTH, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavPTH.SuspendLayout()
+        Me.XTPProductList.SuspendLayout()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCPTH, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVPTH, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -360,125 +364,6 @@ Partial Class FormEtsDet
         Me.XTPPTH.Size = New System.Drawing.Size(815, 267)
         Me.XTPPTH.Text = "Proposal Turun Harga"
         '
-        'XTPProductList
-        '
-        Me.XTPProductList.Controls.Add(Me.PanelControlNav)
-        Me.XTPProductList.Name = "XTPProductList"
-        Me.XTPProductList.Size = New System.Drawing.Size(815, 267)
-        Me.XTPProductList.Text = "Product List"
-        '
-        'PanelControlNavPTH
-        '
-        Me.PanelControlNavPTH.Controls.Add(Me.BtnExtendedEOS)
-        Me.PanelControlNavPTH.Controls.Add(Me.BtnAddPTH)
-        Me.PanelControlNavPTH.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNavPTH.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControlNavPTH.Name = "PanelControlNavPTH"
-        Me.PanelControlNavPTH.Size = New System.Drawing.Size(815, 62)
-        Me.PanelControlNavPTH.TabIndex = 19
-        '
-        'BtnExtendedEOS
-        '
-        Me.BtnExtendedEOS.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnExtendedEOS.Image = CType(resources.GetObject("BtnExtendedEOS.Image"), System.Drawing.Image)
-        Me.BtnExtendedEOS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnExtendedEOS.Location = New System.Drawing.Point(677, 2)
-        Me.BtnExtendedEOS.Name = "BtnExtendedEOS"
-        Me.BtnExtendedEOS.Size = New System.Drawing.Size(68, 58)
-        Me.BtnExtendedEOS.TabIndex = 8934
-        Me.BtnExtendedEOS.Text = "Delete"
-        Me.BtnExtendedEOS.Visible = False
-        '
-        'BtnAddPTH
-        '
-        Me.BtnAddPTH.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAddPTH.Image = CType(resources.GetObject("BtnAddPTH.Image"), System.Drawing.Image)
-        Me.BtnAddPTH.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnAddPTH.Location = New System.Drawing.Point(745, 2)
-        Me.BtnAddPTH.Name = "BtnAddPTH"
-        Me.BtnAddPTH.Size = New System.Drawing.Size(68, 58)
-        Me.BtnAddPTH.TabIndex = 8933
-        Me.BtnAddPTH.Text = "Add"
-        Me.BtnAddPTH.Visible = False
-        '
-        'PanelControlNav
-        '
-        Me.PanelControlNav.Controls.Add(Me.PanelControl3)
-        Me.PanelControlNav.Controls.Add(Me.BtnFinalPropose)
-        Me.PanelControlNav.Controls.Add(Me.BtnAllProduct)
-        Me.PanelControlNav.Controls.Add(Me.BtnAdd)
-        Me.PanelControlNav.Controls.Add(Me.BtnExportToXLS)
-        Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNav.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(815, 60)
-        Me.PanelControlNav.TabIndex = 20
-        '
-        'PanelControl3
-        '
-        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Controls.Add(Me.CheckEdit1)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl3.Location = New System.Drawing.Point(435, 2)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(74, 56)
-        Me.PanelControl3.TabIndex = 8932
-        '
-        'CheckEdit1
-        '
-        Me.CheckEdit1.Location = New System.Drawing.Point(4, 18)
-        Me.CheckEdit1.Name = "CheckEdit1"
-        Me.CheckEdit1.Properties.Caption = "Select All"
-        Me.CheckEdit1.Size = New System.Drawing.Size(75, 19)
-        Me.CheckEdit1.TabIndex = 0
-        '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnAdd.Location = New System.Drawing.Point(669, 2)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(69, 56)
-        Me.BtnAdd.TabIndex = 8933
-        Me.BtnAdd.Text = "Edit"
-        Me.BtnAdd.Visible = False
-        '
-        'BtnExportToXLS
-        '
-        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
-        Me.BtnExportToXLS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnExportToXLS.Location = New System.Drawing.Point(738, 2)
-        Me.BtnExportToXLS.Name = "BtnExportToXLS"
-        Me.BtnExportToXLS.Size = New System.Drawing.Size(75, 56)
-        Me.BtnExportToXLS.TabIndex = 11
-        Me.BtnExportToXLS.Text = "Export XLS"
-        '
-        'BtnFinalPropose
-        '
-        Me.BtnFinalPropose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnFinalPropose.Image = CType(resources.GetObject("BtnFinalPropose.Image"), System.Drawing.Image)
-        Me.BtnFinalPropose.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnFinalPropose.Location = New System.Drawing.Point(509, 2)
-        Me.BtnFinalPropose.Name = "BtnFinalPropose"
-        Me.BtnFinalPropose.Size = New System.Drawing.Size(81, 56)
-        Me.BtnFinalPropose.TabIndex = 8935
-        Me.BtnFinalPropose.Text = "Final Propose"
-        Me.BtnFinalPropose.Visible = False
-        '
-        'BtnAllProduct
-        '
-        Me.BtnAllProduct.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAllProduct.Image = CType(resources.GetObject("BtnAllProduct.Image"), System.Drawing.Image)
-        Me.BtnAllProduct.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnAllProduct.Location = New System.Drawing.Point(590, 2)
-        Me.BtnAllProduct.Name = "BtnAllProduct"
-        Me.BtnAllProduct.Size = New System.Drawing.Size(79, 56)
-        Me.BtnAllProduct.TabIndex = 8934
-        Me.BtnAllProduct.Text = "Proposal List"
-        Me.BtnAllProduct.Visible = False
-        '
         'GCPTH
         '
         Me.GCPTH.Dock = System.Windows.Forms.DockStyle.Fill
@@ -533,6 +418,142 @@ Partial Class FormEtsDet
         Me.GridColumnplan_end_date.Visible = True
         Me.GridColumnplan_end_date.VisibleIndex = 2
         '
+        'PanelControlNavPTH
+        '
+        Me.PanelControlNavPTH.Controls.Add(Me.BtnExtendedEOS)
+        Me.PanelControlNavPTH.Controls.Add(Me.BtnAddPTH)
+        Me.PanelControlNavPTH.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlNavPTH.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlNavPTH.Name = "PanelControlNavPTH"
+        Me.PanelControlNavPTH.Size = New System.Drawing.Size(815, 62)
+        Me.PanelControlNavPTH.TabIndex = 19
+        '
+        'BtnExtendedEOS
+        '
+        Me.BtnExtendedEOS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExtendedEOS.Image = CType(resources.GetObject("BtnExtendedEOS.Image"), System.Drawing.Image)
+        Me.BtnExtendedEOS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnExtendedEOS.Location = New System.Drawing.Point(677, 2)
+        Me.BtnExtendedEOS.Name = "BtnExtendedEOS"
+        Me.BtnExtendedEOS.Size = New System.Drawing.Size(68, 58)
+        Me.BtnExtendedEOS.TabIndex = 8934
+        Me.BtnExtendedEOS.Text = "Delete"
+        Me.BtnExtendedEOS.Visible = False
+        '
+        'BtnAddPTH
+        '
+        Me.BtnAddPTH.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddPTH.Image = CType(resources.GetObject("BtnAddPTH.Image"), System.Drawing.Image)
+        Me.BtnAddPTH.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnAddPTH.Location = New System.Drawing.Point(745, 2)
+        Me.BtnAddPTH.Name = "BtnAddPTH"
+        Me.BtnAddPTH.Size = New System.Drawing.Size(68, 58)
+        Me.BtnAddPTH.TabIndex = 8933
+        Me.BtnAddPTH.Text = "Add"
+        Me.BtnAddPTH.Visible = False
+        '
+        'XTPProductList
+        '
+        Me.XTPProductList.Controls.Add(Me.GridControl1)
+        Me.XTPProductList.Controls.Add(Me.PanelControlNav)
+        Me.XTPProductList.Name = "XTPProductList"
+        Me.XTPProductList.Size = New System.Drawing.Size(815, 267)
+        Me.XTPProductList.Text = "Product List"
+        '
+        'PanelControlNav
+        '
+        Me.PanelControlNav.Controls.Add(Me.PanelControl3)
+        Me.PanelControlNav.Controls.Add(Me.BtnFinalPropose)
+        Me.PanelControlNav.Controls.Add(Me.BtnAllProduct)
+        Me.PanelControlNav.Controls.Add(Me.BtnAdd)
+        Me.PanelControlNav.Controls.Add(Me.BtnExportToXLS)
+        Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlNav.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlNav.Name = "PanelControlNav"
+        Me.PanelControlNav.Size = New System.Drawing.Size(815, 60)
+        Me.PanelControlNav.TabIndex = 20
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.CheckEdit1)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl3.Location = New System.Drawing.Point(435, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(74, 56)
+        Me.PanelControl3.TabIndex = 8932
+        '
+        'CheckEdit1
+        '
+        Me.CheckEdit1.Location = New System.Drawing.Point(4, 18)
+        Me.CheckEdit1.Name = "CheckEdit1"
+        Me.CheckEdit1.Properties.Caption = "Select All"
+        Me.CheckEdit1.Size = New System.Drawing.Size(75, 19)
+        Me.CheckEdit1.TabIndex = 0
+        '
+        'BtnFinalPropose
+        '
+        Me.BtnFinalPropose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnFinalPropose.Image = CType(resources.GetObject("BtnFinalPropose.Image"), System.Drawing.Image)
+        Me.BtnFinalPropose.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnFinalPropose.Location = New System.Drawing.Point(509, 2)
+        Me.BtnFinalPropose.Name = "BtnFinalPropose"
+        Me.BtnFinalPropose.Size = New System.Drawing.Size(81, 56)
+        Me.BtnFinalPropose.TabIndex = 8935
+        Me.BtnFinalPropose.Text = "Final Propose"
+        Me.BtnFinalPropose.Visible = False
+        '
+        'BtnAllProduct
+        '
+        Me.BtnAllProduct.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAllProduct.Image = CType(resources.GetObject("BtnAllProduct.Image"), System.Drawing.Image)
+        Me.BtnAllProduct.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnAllProduct.Location = New System.Drawing.Point(590, 2)
+        Me.BtnAllProduct.Name = "BtnAllProduct"
+        Me.BtnAllProduct.Size = New System.Drawing.Size(79, 56)
+        Me.BtnAllProduct.TabIndex = 8934
+        Me.BtnAllProduct.Text = "Proposal List"
+        Me.BtnAllProduct.Visible = False
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
+        Me.BtnAdd.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnAdd.Location = New System.Drawing.Point(669, 2)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(69, 56)
+        Me.BtnAdd.TabIndex = 8933
+        Me.BtnAdd.Text = "Edit"
+        Me.BtnAdd.Visible = False
+        '
+        'BtnExportToXLS
+        '
+        Me.BtnExportToXLS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
+        Me.BtnExportToXLS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(738, 2)
+        Me.BtnExportToXLS.Name = "BtnExportToXLS"
+        Me.BtnExportToXLS.Size = New System.Drawing.Size(75, 56)
+        Me.BtnExportToXLS.TabIndex = 11
+        Me.BtnExportToXLS.Text = "Export XLS"
+        '
+        'GridControl1
+        '
+        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridControl1.Location = New System.Drawing.Point(0, 60)
+        Me.GridControl1.MainView = Me.GridView1
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.Size = New System.Drawing.Size(815, 207)
+        Me.GridControl1.TabIndex = 21
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        '
+        'GridView1
+        '
+        Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
         'FormEtsDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -563,16 +584,18 @@ Partial Class FormEtsDet
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCData.ResumeLayout(False)
         Me.XTPPTH.ResumeLayout(False)
-        Me.XTPProductList.ResumeLayout(False)
+        CType(Me.GCPTH, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPTH, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNavPTH, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNavPTH.ResumeLayout(False)
+        Me.XTPProductList.ResumeLayout(False)
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCPTH, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVPTH, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -618,4 +641,6 @@ Partial Class FormEtsDet
     Friend WithEvents GridColumnnumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumneffective_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnplan_end_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

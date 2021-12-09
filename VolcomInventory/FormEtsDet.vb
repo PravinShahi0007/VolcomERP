@@ -101,7 +101,9 @@
     End Sub
 
     Sub viewDetail(ByVal is_show_all As String)
-
+        Cursor = Cursors.WaitCursor
+        Dim query As String = ""
+        Cursor = Cursors.Default
     End Sub
 
     Sub allowStatus()
