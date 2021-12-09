@@ -139,7 +139,24 @@
                     MsgBox(ex.ToString)
                 End Try
             ElseIf doc_type = "6" Then
+                SLEPayType.Properties.ReadOnly = True
+                TEDocType.Text = "Import Payment"
+                '
+                If FormInvoiceFGPO.SLEBPLImport.EditValue.ToString = "368A" Then
+                    SLEPayType.EditValue = "1"
+                Else
+                    SLEPayType.EditValue = "2"
+                End If
 
+                If FormInvoiceFGPO.SLEBPLImport.EditValue.ToString = "366" Or FormInvoiceFGPO.SLEBPLImport.EditValue.ToString = "369" Then
+                    SLEVendor.EditValue = FormInvoiceFGPO.GVSummary.GetFocusedRowCellValue("id_comp").ToString
+                    SLEVendor.Properties.ReadOnly = True
+                ElseIf FormInvoiceFGPO.SLEBPLImport.EditValue.ToString = "368A" Or FormInvoiceFGPO.SLEBPLImport.EditValue.ToString = "368B" Then 'surveyor
+                    SLEVendor.EditValue = get_opt_prod_field("id_comp_surveyor")
+                    SLEVendor.Properties.ReadOnly = True
+                ElseIf FormInvoiceFGPO.SLEBPLImport.EditValue.ToString = "367" Then 'asuransi
+                    SLEVendor.Properties.ReadOnly = False
+                End If
             Else
                 TEDocType.Text = "FGPO"
 
@@ -311,7 +328,7 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
                 ElseIf data.Rows(0)("doc_type").ToString = "5" Then
                     TEDocType.Text = "PIB Voluntary Payment"
                 ElseIf data.Rows(0)("doc_type").ToString = "6" Then
-                    TEDocType.Text = "PIB Voluntary Payment"
+                    TEDocType.Text = "Import Payment"
                 Else
                     TEDocType.Text = "Umum"
                 End If
@@ -803,6 +820,18 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type='199'"
         newRow("vat") = 0
         newRow("inv_number") = ""
         newRow("note") = ""
+
+        If doc_type = "6" Then
+            newRow("id_report") = FormInvoiceFGPO.GVSummary.GetFocusedRowCellValue("id_pre_cal_fgpo").ToString
+
+            If FormInvoiceFGPO.SLEBPLImport.EditValue.ToString = "368A" Or FormInvoiceFGPO.SLEBPLImport.EditValue.ToString = "368B" Then
+                newRow("report_mark_type") = "368"
+            Else
+                newRow("report_mark_type") = FormInvoiceFGPO.SLEBPLImport.EditValue.ToString
+            End If
+
+            newRow("report_number") = FormInvoiceFGPO.GVSummary.GetFocusedRowCellValue("wo_number").ToString
+        End If
 
         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
     End Sub

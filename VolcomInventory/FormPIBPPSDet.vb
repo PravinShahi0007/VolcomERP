@@ -25,7 +25,7 @@ LEFT JOIN (
 	AND cd.id_code IN (32,30,14,43)
 	GROUP BY dc.id_design
 ) cd ON cd.id_design = dsg.id_design
-WHERE po.id_report_status=6
+WHERE f.id_report_status=6
 GROUP BY f.id_pre_cal_fgpo"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         '
