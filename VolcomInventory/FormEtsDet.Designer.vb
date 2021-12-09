@@ -50,19 +50,36 @@ Partial Class FormEtsDet
         Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumneffective_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnplan_end_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnopth = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNavPTH = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnExtendedEOS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDeletePTH = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddPTH = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPProductList = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCProduct = New DevExpress.XtraGrid.GridControl()
+        Me.GVProduct = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_ets_det = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_ets = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_pp_change_det = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_design = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_design_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_propose_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpropose_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_select = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
+        Me.PanelOpt = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnFinalPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAllProduct = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnBulkEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.DEEffectDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,13 +101,14 @@ Partial Class FormEtsDet
         CType(Me.PanelControlNavPTH, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavPTH.SuspendLayout()
         Me.XTPProductList.SuspendLayout()
+        CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVProduct, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelOpt.SuspendLayout()
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -376,7 +394,7 @@ Partial Class FormEtsDet
         '
         'GVPTH
         '
-        Me.GVPTH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pp_change, Me.GridColumnnumber, Me.GridColumneffective_date, Me.GridColumnplan_end_date})
+        Me.GVPTH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pp_change, Me.GridColumnnumber, Me.GridColumneffective_date, Me.GridColumnplan_end_date, Me.GridColumnnopth})
         Me.GVPTH.GridControl = Me.GCPTH
         Me.GVPTH.Name = "GVPTH"
         Me.GVPTH.OptionsBehavior.ReadOnly = True
@@ -396,7 +414,7 @@ Partial Class FormEtsDet
         Me.GridColumnnumber.FieldName = "number"
         Me.GridColumnnumber.Name = "GridColumnnumber"
         Me.GridColumnnumber.Visible = True
-        Me.GridColumnnumber.VisibleIndex = 0
+        Me.GridColumnnumber.VisibleIndex = 1
         '
         'GridColumneffective_date
         '
@@ -406,7 +424,7 @@ Partial Class FormEtsDet
         Me.GridColumneffective_date.FieldName = "effective_date"
         Me.GridColumneffective_date.Name = "GridColumneffective_date"
         Me.GridColumneffective_date.Visible = True
-        Me.GridColumneffective_date.VisibleIndex = 1
+        Me.GridColumneffective_date.VisibleIndex = 2
         '
         'GridColumnplan_end_date
         '
@@ -416,11 +434,19 @@ Partial Class FormEtsDet
         Me.GridColumnplan_end_date.FieldName = "plan_end_date"
         Me.GridColumnplan_end_date.Name = "GridColumnplan_end_date"
         Me.GridColumnplan_end_date.Visible = True
-        Me.GridColumnplan_end_date.VisibleIndex = 2
+        Me.GridColumnplan_end_date.VisibleIndex = 3
+        '
+        'GridColumnnopth
+        '
+        Me.GridColumnnopth.Caption = "No"
+        Me.GridColumnnopth.FieldName = "no"
+        Me.GridColumnnopth.Name = "GridColumnnopth"
+        Me.GridColumnnopth.Visible = True
+        Me.GridColumnnopth.VisibleIndex = 0
         '
         'PanelControlNavPTH
         '
-        Me.PanelControlNavPTH.Controls.Add(Me.BtnExtendedEOS)
+        Me.PanelControlNavPTH.Controls.Add(Me.BtnDeletePTH)
         Me.PanelControlNavPTH.Controls.Add(Me.BtnAddPTH)
         Me.PanelControlNavPTH.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNavPTH.Location = New System.Drawing.Point(0, 0)
@@ -428,17 +454,17 @@ Partial Class FormEtsDet
         Me.PanelControlNavPTH.Size = New System.Drawing.Size(815, 62)
         Me.PanelControlNavPTH.TabIndex = 19
         '
-        'BtnExtendedEOS
+        'BtnDeletePTH
         '
-        Me.BtnExtendedEOS.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnExtendedEOS.Image = CType(resources.GetObject("BtnExtendedEOS.Image"), System.Drawing.Image)
-        Me.BtnExtendedEOS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnExtendedEOS.Location = New System.Drawing.Point(677, 2)
-        Me.BtnExtendedEOS.Name = "BtnExtendedEOS"
-        Me.BtnExtendedEOS.Size = New System.Drawing.Size(68, 58)
-        Me.BtnExtendedEOS.TabIndex = 8934
-        Me.BtnExtendedEOS.Text = "Delete"
-        Me.BtnExtendedEOS.Visible = False
+        Me.BtnDeletePTH.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDeletePTH.Image = CType(resources.GetObject("BtnDeletePTH.Image"), System.Drawing.Image)
+        Me.BtnDeletePTH.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnDeletePTH.Location = New System.Drawing.Point(677, 2)
+        Me.BtnDeletePTH.Name = "BtnDeletePTH"
+        Me.BtnDeletePTH.Size = New System.Drawing.Size(68, 58)
+        Me.BtnDeletePTH.TabIndex = 8934
+        Me.BtnDeletePTH.Text = "Delete"
+        Me.BtnDeletePTH.Visible = False
         '
         'BtnAddPTH
         '
@@ -454,18 +480,157 @@ Partial Class FormEtsDet
         '
         'XTPProductList
         '
-        Me.XTPProductList.Controls.Add(Me.GridControl1)
+        Me.XTPProductList.Controls.Add(Me.GCProduct)
         Me.XTPProductList.Controls.Add(Me.PanelControlNav)
         Me.XTPProductList.Name = "XTPProductList"
         Me.XTPProductList.Size = New System.Drawing.Size(815, 267)
         Me.XTPProductList.Text = "Product List"
         '
+        'GCProduct
+        '
+        Me.GCProduct.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCProduct.Location = New System.Drawing.Point(0, 60)
+        Me.GCProduct.MainView = Me.GVProduct
+        Me.GCProduct.Name = "GCProduct"
+        Me.GCProduct.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCProduct.Size = New System.Drawing.Size(815, 207)
+        Me.GCProduct.TabIndex = 21
+        Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProduct})
+        '
+        'GVProduct
+        '
+        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_ets_det, Me.GridColumnid_ets, Me.GridColumnid_pp_change_det, Me.GridColumnid_design, Me.GridColumncode, Me.GridColumnclass, Me.GridColumnname, Me.GridColumnsht, Me.GridColumncolor, Me.GridColumnid_design_price, Me.GridColumndesign_price, Me.GridColumnid_propose_type, Me.GridColumnpropose_type, Me.GridColumnnote, Me.GridColumnis_select})
+        Me.GVProduct.GridControl = Me.GCProduct
+        Me.GVProduct.Name = "GVProduct"
+        Me.GVProduct.OptionsFind.AlwaysVisible = True
+        Me.GVProduct.OptionsView.ColumnAutoWidth = False
+        Me.GVProduct.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_ets_det
+        '
+        Me.GridColumnid_ets_det.Caption = "id_ets_det"
+        Me.GridColumnid_ets_det.FieldName = "id_ets_det"
+        Me.GridColumnid_ets_det.Name = "GridColumnid_ets_det"
+        '
+        'GridColumnid_ets
+        '
+        Me.GridColumnid_ets.Caption = "id_ets"
+        Me.GridColumnid_ets.FieldName = "id_ets"
+        Me.GridColumnid_ets.Name = "GridColumnid_ets"
+        '
+        'GridColumnid_pp_change_det
+        '
+        Me.GridColumnid_pp_change_det.Caption = "id_pp_change_det"
+        Me.GridColumnid_pp_change_det.FieldName = "id_pp_change_det"
+        Me.GridColumnid_pp_change_det.Name = "GridColumnid_pp_change_det"
+        '
+        'GridColumnid_design
+        '
+        Me.GridColumnid_design.Caption = "id_design"
+        Me.GridColumnid_design.FieldName = "id_design"
+        Me.GridColumnid_design.Name = "GridColumnid_design"
+        '
+        'GridColumncode
+        '
+        Me.GridColumncode.Caption = "Code"
+        Me.GridColumncode.FieldName = "code"
+        Me.GridColumncode.Name = "GridColumncode"
+        Me.GridColumncode.Visible = True
+        Me.GridColumncode.VisibleIndex = 1
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
+        '
+        'GridColumnname
+        '
+        Me.GridColumnname.Caption = "Description"
+        Me.GridColumnname.FieldName = "name"
+        Me.GridColumnname.Name = "GridColumnname"
+        Me.GridColumnname.Visible = True
+        Me.GridColumnname.VisibleIndex = 3
+        '
+        'GridColumnsht
+        '
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.Visible = True
+        Me.GridColumnsht.VisibleIndex = 4
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 5
+        '
+        'GridColumnid_design_price
+        '
+        Me.GridColumnid_design_price.Caption = "id_design_price"
+        Me.GridColumnid_design_price.FieldName = "id_design_price"
+        Me.GridColumnid_design_price.Name = "GridColumnid_design_price"
+        '
+        'GridColumndesign_price
+        '
+        Me.GridColumndesign_price.Caption = "Price"
+        Me.GridColumndesign_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumndesign_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndesign_price.FieldName = "design_price"
+        Me.GridColumndesign_price.Name = "GridColumndesign_price"
+        Me.GridColumndesign_price.Visible = True
+        Me.GridColumndesign_price.VisibleIndex = 6
+        '
+        'GridColumnid_propose_type
+        '
+        Me.GridColumnid_propose_type.Caption = "id_propose_type"
+        Me.GridColumnid_propose_type.FieldName = "id_propose_type"
+        Me.GridColumnid_propose_type.Name = "GridColumnid_propose_type"
+        '
+        'GridColumnpropose_type
+        '
+        Me.GridColumnpropose_type.Caption = "Propose Status"
+        Me.GridColumnpropose_type.FieldName = "propose_type"
+        Me.GridColumnpropose_type.Name = "GridColumnpropose_type"
+        Me.GridColumnpropose_type.Visible = True
+        Me.GridColumnpropose_type.VisibleIndex = 7
+        '
+        'GridColumnnote
+        '
+        Me.GridColumnnote.Caption = "Note"
+        Me.GridColumnnote.FieldName = "note"
+        Me.GridColumnnote.Name = "GridColumnnote"
+        Me.GridColumnnote.Visible = True
+        Me.GridColumnnote.VisibleIndex = 8
+        '
+        'GridColumnis_select
+        '
+        Me.GridColumnis_select.Caption = "Select"
+        Me.GridColumnis_select.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumnis_select.FieldName = "is_select"
+        Me.GridColumnis_select.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnis_select.Name = "GridColumnis_select"
+        Me.GridColumnis_select.Visible = True
+        Me.GridColumnis_select.VisibleIndex = 0
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
+        '
         'PanelControlNav
         '
-        Me.PanelControlNav.Controls.Add(Me.PanelControl3)
+        Me.PanelControlNav.Controls.Add(Me.PanelOpt)
         Me.PanelControlNav.Controls.Add(Me.BtnFinalPropose)
         Me.PanelControlNav.Controls.Add(Me.BtnAllProduct)
-        Me.PanelControlNav.Controls.Add(Me.BtnAdd)
+        Me.PanelControlNav.Controls.Add(Me.BtnBulkEdit)
         Me.PanelControlNav.Controls.Add(Me.BtnExportToXLS)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 0)
@@ -473,23 +638,23 @@ Partial Class FormEtsDet
         Me.PanelControlNav.Size = New System.Drawing.Size(815, 60)
         Me.PanelControlNav.TabIndex = 20
         '
-        'PanelControl3
+        'PanelOpt
         '
-        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Controls.Add(Me.CheckEdit1)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl3.Location = New System.Drawing.Point(435, 2)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(74, 56)
-        Me.PanelControl3.TabIndex = 8932
+        Me.PanelOpt.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelOpt.Controls.Add(Me.CESelectAll)
+        Me.PanelOpt.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelOpt.Location = New System.Drawing.Point(435, 2)
+        Me.PanelOpt.Name = "PanelOpt"
+        Me.PanelOpt.Size = New System.Drawing.Size(74, 56)
+        Me.PanelOpt.TabIndex = 8932
         '
-        'CheckEdit1
+        'CESelectAll
         '
-        Me.CheckEdit1.Location = New System.Drawing.Point(4, 18)
-        Me.CheckEdit1.Name = "CheckEdit1"
-        Me.CheckEdit1.Properties.Caption = "Select All"
-        Me.CheckEdit1.Size = New System.Drawing.Size(75, 19)
-        Me.CheckEdit1.TabIndex = 0
+        Me.CESelectAll.Location = New System.Drawing.Point(4, 18)
+        Me.CESelectAll.Name = "CESelectAll"
+        Me.CESelectAll.Properties.Caption = "Select All"
+        Me.CESelectAll.Size = New System.Drawing.Size(75, 19)
+        Me.CESelectAll.TabIndex = 0
         '
         'BtnFinalPropose
         '
@@ -515,17 +680,17 @@ Partial Class FormEtsDet
         Me.BtnAllProduct.Text = "Proposal List"
         Me.BtnAllProduct.Visible = False
         '
-        'BtnAdd
+        'BtnBulkEdit
         '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnAdd.Location = New System.Drawing.Point(669, 2)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(69, 56)
-        Me.BtnAdd.TabIndex = 8933
-        Me.BtnAdd.Text = "Edit"
-        Me.BtnAdd.Visible = False
+        Me.BtnBulkEdit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnBulkEdit.Image = CType(resources.GetObject("BtnBulkEdit.Image"), System.Drawing.Image)
+        Me.BtnBulkEdit.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnBulkEdit.Location = New System.Drawing.Point(669, 2)
+        Me.BtnBulkEdit.Name = "BtnBulkEdit"
+        Me.BtnBulkEdit.Size = New System.Drawing.Size(69, 56)
+        Me.BtnBulkEdit.TabIndex = 8933
+        Me.BtnBulkEdit.Text = "Edit"
+        Me.BtnBulkEdit.Visible = False
         '
         'BtnExportToXLS
         '
@@ -537,22 +702,6 @@ Partial Class FormEtsDet
         Me.BtnExportToXLS.Size = New System.Drawing.Size(75, 56)
         Me.BtnExportToXLS.TabIndex = 11
         Me.BtnExportToXLS.Text = "Export XLS"
-        '
-        'GridControl1
-        '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 60)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(815, 207)
-        Me.GridControl1.TabIndex = 21
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
-        '
-        'GridView1
-        '
-        Me.GridView1.GridControl = Me.GridControl1
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'FormEtsDet
         '
@@ -589,13 +738,14 @@ Partial Class FormEtsDet
         CType(Me.PanelControlNavPTH, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNavPTH.ResumeLayout(False)
         Me.XTPProductList.ResumeLayout(False)
+        CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVProduct, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelOpt.ResumeLayout(False)
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -625,13 +775,13 @@ Partial Class FormEtsDet
     Friend WithEvents XTCData As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPPTH As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControlNavPTH As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnExtendedEOS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnDeletePTH As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAddPTH As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTPProductList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelOpt As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CESelectAll As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents BtnBulkEdit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnExportToXLS As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnFinalPropose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAllProduct As DevExpress.XtraEditors.SimpleButton
@@ -641,6 +791,23 @@ Partial Class FormEtsDet
     Friend WithEvents GridColumnnumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumneffective_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnplan_end_date As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCProduct As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVProduct As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_ets_det As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_ets As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_pp_change_det As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_design As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnname As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_design_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndesign_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_propose_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpropose_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_select As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumnnopth As DevExpress.XtraGrid.Columns.GridColumn
 End Class

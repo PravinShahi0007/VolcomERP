@@ -2190,6 +2190,12 @@
     <Compile Include="FormEtsDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEtsSingle.Designer.vb">
+      <DependentUpon>FormEtsSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEtsSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEvaluation.Designer.vb">
       <DependentUpon>FormEvaluation.vb</DependentUpon>
     </Compile>
@@ -11471,6 +11477,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEtsDet.resx">
       <DependentUpon>FormEtsDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEtsSingle.resx">
+      <DependentUpon>FormEtsSingle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormExternalUser.resx">
       <DependentUpon>FormExternalUser.vb</DependentUpon>

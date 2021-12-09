@@ -1,5 +1,6 @@
 ﻿Public Class FormEts
     Public is_test As String = "-1"
+    Public is_load_new As Boolean = False
 
     Private Sub FormEts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewData()
@@ -52,11 +53,19 @@
         Else
             FormEtsDet.action = "ins"
             FormEtsDet.ShowDialog()
+            loadNewDetail()
         End If
         Cursor = Cursors.Default
     End Sub
 
     Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
         viewDetail()
+    End Sub
+
+    Sub loadNewDetail()
+        If is_load_new Then
+            is_load_new = False
+            viewDetail()
+        End If
     End Sub
 End Class
