@@ -8125,13 +8125,15 @@ WHERE id_acc_trans='" & old_id_acc_trans & "'"
             If id_status_reportx = "6" Then
                 'select detail
                 Dim pn_type As String = ""
+                Dim pn_doc_type As String = ""
                 Dim pn_date As String = ""
                 Dim ref_date As String = ""
 
-                Dim q_head As String = "SELECT id_pn_fgpo,`type`,created_date,ref_date FROM tb_pn_fgpo WHERE id_pn_fgpo='" & id_report & "'"
+                Dim q_head As String = "SELECT id_pn_fgpo,doc_type,`type`,created_date,ref_date FROM tb_pn_fgpo WHERE id_pn_fgpo='" & id_report & "'"
                 Dim dt_head As DataTable = execute_query(q_head, -1, True, "", "", "", "")
                 If dt_head.Rows.Count > 0 Then
                     pn_type = dt_head.Rows(0)("type").ToString
+                    pn_doc_type = dt_head.Rows(0)("doc_type").ToString
                     pn_date = Date.Parse(dt_head.Rows(0)("created_date").ToString).ToString("yyyy-MM-dd")
                     ref_date = Date.Parse(dt_head.Rows(0)("ref_date").ToString).ToString("yyyy-MM-dd")
                 End If
@@ -8282,8 +8284,8 @@ GROUP BY pn.id_pn_fgpo"
                         execute_non_query(query, True, "", "", "", "")
                     End If
                 End If
-                If pn_type = "9" Then
-                    'PIB
+                If pn_doc_type = "5" Then
+                    'PIB voluntary
                     Dim qpib As String = "UPDATE tb_pib_review pir 
 INNER JOIN tb_pib_review pir2 ON pir.`id_pre_cal_fgpo`=pir2.`id_pre_cal_fgpo` 
 INNER JOIN tb_pn_fgpo_det pd ON pd.`id_report`=pir.`id_pib_review` AND pd.`report_mark_type`='360' AND pd.`id_report`='" & id_report & "'

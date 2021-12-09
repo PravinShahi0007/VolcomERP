@@ -210,26 +210,6 @@ Partial Class FormPreCalFGPODet
         Me.BPrintDuty = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrintBudget2 = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPWO = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
-        Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
-        Me.BPrintWO = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton4 = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEQuotAmo = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEQuotNo = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.TECBM = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEWeight = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.TECTN = New DevExpress.XtraEditors.TextEdit()
-        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.GCWOFGPO = New DevExpress.XtraGrid.GridControl()
         Me.GVWOFGPO = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn70 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -240,6 +220,28 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn75 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn76 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn77 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEActCBM = New DevExpress.XtraEditors.TextEdit()
+        Me.TEWO = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEChoosenVendor = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEQuotAmo = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEQuotNo = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrintWO = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSaveWO = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.TECBM = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEWeight = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.TECTN = New DevExpress.XtraEditors.TextEdit()
+        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -331,21 +333,22 @@ Partial Class FormPreCalFGPODet
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl8.SuspendLayout()
         Me.XTPWO.SuspendLayout()
+        CType(Me.GCWOFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVWOFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl10.SuspendLayout()
+        CType(Me.TEActCBM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEWO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEChoosenVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEQuotAmo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEQuotNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl10.SuspendLayout()
         CType(Me.TECBM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECTN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
-        CType(Me.GCWOFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVWOFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -453,7 +456,7 @@ Partial Class FormPreCalFGPODet
         Me.TERatePayment.Properties.Mask.EditMask = "N2"
         Me.TERatePayment.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TERatePayment.Properties.ReadOnly = True
-        Me.TERatePayment.Size = New System.Drawing.Size(134, 20)
+        Me.TERatePayment.Size = New System.Drawing.Size(141, 20)
         Me.TERatePayment.TabIndex = 158
         '
         'LabelControl12
@@ -2632,248 +2635,13 @@ Partial Class FormPreCalFGPODet
         Me.XTPWO.Size = New System.Drawing.Size(1016, 388)
         Me.XTPWO.Text = "Work Order"
         '
-        'PanelControl3
-        '
-        Me.PanelControl3.Controls.Add(Me.TextEdit2)
-        Me.PanelControl3.Controls.Add(Me.LabelControl23)
-        Me.PanelControl3.Controls.Add(Me.TextEdit1)
-        Me.PanelControl3.Controls.Add(Me.LabelControl22)
-        Me.PanelControl3.Controls.Add(Me.TEQuotAmo)
-        Me.PanelControl3.Controls.Add(Me.LabelControl21)
-        Me.PanelControl3.Controls.Add(Me.TEQuotNo)
-        Me.PanelControl3.Controls.Add(Me.LabelControl20)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1016, 84)
-        Me.PanelControl3.TabIndex = 25
-        '
-        'TextEdit2
-        '
-        Me.TextEdit2.Location = New System.Drawing.Point(116, 16)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Size = New System.Drawing.Size(337, 20)
-        Me.TextEdit2.TabIndex = 173
-        '
-        'LabelControl23
-        '
-        Me.LabelControl23.Location = New System.Drawing.Point(15, 19)
-        Me.LabelControl23.Name = "LabelControl23"
-        Me.LabelControl23.Size = New System.Drawing.Size(96, 13)
-        Me.LabelControl23.TabIndex = 172
-        Me.LabelControl23.Text = "Work Order Number"
-        '
-        'TextEdit1
-        '
-        Me.TextEdit1.Location = New System.Drawing.Point(116, 49)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Size = New System.Drawing.Size(337, 20)
-        Me.TextEdit1.TabIndex = 171
-        '
-        'PanelControl10
-        '
-        Me.PanelControl10.Controls.Add(Me.BPrintWO)
-        Me.PanelControl10.Controls.Add(Me.SimpleButton4)
-        Me.PanelControl10.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl10.Location = New System.Drawing.Point(0, 346)
-        Me.PanelControl10.Name = "PanelControl10"
-        Me.PanelControl10.Size = New System.Drawing.Size(1016, 42)
-        Me.PanelControl10.TabIndex = 170
-        '
-        'BPrintWO
-        '
-        Me.BPrintWO.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BPrintWO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BPrintWO.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BPrintWO.Appearance.Options.UseBackColor = True
-        Me.BPrintWO.Appearance.Options.UseFont = True
-        Me.BPrintWO.Appearance.Options.UseForeColor = True
-        Me.BPrintWO.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrintWO.Location = New System.Drawing.Point(760, 2)
-        Me.BPrintWO.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BPrintWO.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BPrintWO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BPrintWO.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BPrintWO.Name = "BPrintWO"
-        Me.BPrintWO.Size = New System.Drawing.Size(127, 38)
-        Me.BPrintWO.TabIndex = 26
-        Me.BPrintWO.Text = "Print Work Order"
-        '
-        'SimpleButton4
-        '
-        Me.SimpleButton4.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.SimpleButton4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.SimpleButton4.Appearance.ForeColor = System.Drawing.Color.White
-        Me.SimpleButton4.Appearance.Options.UseBackColor = True
-        Me.SimpleButton4.Appearance.Options.UseFont = True
-        Me.SimpleButton4.Appearance.Options.UseForeColor = True
-        Me.SimpleButton4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton4.Location = New System.Drawing.Point(887, 2)
-        Me.SimpleButton4.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.SimpleButton4.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.SimpleButton4.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.SimpleButton4.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.SimpleButton4.Name = "SimpleButton4"
-        Me.SimpleButton4.Size = New System.Drawing.Size(127, 38)
-        Me.SimpleButton4.TabIndex = 21
-        Me.SimpleButton4.Text = "Save"
-        '
-        'LabelControl22
-        '
-        Me.LabelControl22.Location = New System.Drawing.Point(15, 52)
-        Me.LabelControl22.Name = "LabelControl22"
-        Me.LabelControl22.Size = New System.Drawing.Size(95, 13)
-        Me.LabelControl22.TabIndex = 168
-        Me.LabelControl22.Text = "Choosen Forwarder"
-        '
-        'TEQuotAmo
-        '
-        Me.TEQuotAmo.Location = New System.Drawing.Point(596, 49)
-        Me.TEQuotAmo.Name = "TEQuotAmo"
-        Me.TEQuotAmo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TEQuotAmo.Properties.Appearance.Options.UseFont = True
-        Me.TEQuotAmo.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEQuotAmo.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEQuotAmo.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TEQuotAmo.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEQuotAmo.Properties.DisplayFormat.FormatString = "N2"
-        Me.TEQuotAmo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TEQuotAmo.Properties.Mask.EditMask = "N2"
-        Me.TEQuotAmo.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEQuotAmo.Size = New System.Drawing.Size(337, 20)
-        Me.TEQuotAmo.TabIndex = 167
-        '
-        'LabelControl21
-        '
-        Me.LabelControl21.Location = New System.Drawing.Point(468, 51)
-        Me.LabelControl21.Name = "LabelControl21"
-        Me.LabelControl21.Size = New System.Drawing.Size(112, 13)
-        Me.LabelControl21.TabIndex = 166
-        Me.LabelControl21.Text = "Amount Quotation (Rp)"
-        '
-        'TEQuotNo
-        '
-        Me.TEQuotNo.Location = New System.Drawing.Point(596, 16)
-        Me.TEQuotNo.Name = "TEQuotNo"
-        Me.TEQuotNo.Size = New System.Drawing.Size(337, 20)
-        Me.TEQuotNo.TabIndex = 162
-        '
-        'LabelControl20
-        '
-        Me.LabelControl20.Location = New System.Drawing.Point(468, 19)
-        Me.LabelControl20.Name = "LabelControl20"
-        Me.LabelControl20.Size = New System.Drawing.Size(64, 13)
-        Me.LabelControl20.TabIndex = 163
-        Me.LabelControl20.Text = "Quotation No"
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Location = New System.Drawing.Point(260, 15)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl5.TabIndex = 97
-        Me.LabelControl5.Text = "Type"
-        '
-        'LabelControl7
-        '
-        Me.LabelControl7.Location = New System.Drawing.Point(397, 15)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(21, 13)
-        Me.LabelControl7.TabIndex = 151
-        Me.LabelControl7.Text = "CBM"
-        '
-        'TECBM
-        '
-        Me.TECBM.Location = New System.Drawing.Point(424, 12)
-        Me.TECBM.Name = "TECBM"
-        Me.TECBM.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TECBM.Properties.Appearance.Options.UseFont = True
-        Me.TECBM.Properties.Appearance.Options.UseTextOptions = True
-        Me.TECBM.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TECBM.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TECBM.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TECBM.Properties.DisplayFormat.FormatString = "N4"
-        Me.TECBM.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TECBM.Properties.Mask.EditMask = "N4"
-        Me.TECBM.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TECBM.Size = New System.Drawing.Size(94, 20)
-        Me.TECBM.TabIndex = 152
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Location = New System.Drawing.Point(524, 15)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(34, 13)
-        Me.LabelControl8.TabIndex = 153
-        Me.LabelControl8.Text = "Weight"
-        '
-        'TEWeight
-        '
-        Me.TEWeight.Location = New System.Drawing.Point(564, 12)
-        Me.TEWeight.Name = "TEWeight"
-        Me.TEWeight.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TEWeight.Properties.Appearance.Options.UseFont = True
-        Me.TEWeight.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEWeight.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TEWeight.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEWeight.Properties.DisplayFormat.FormatString = "N2"
-        Me.TEWeight.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TEWeight.Properties.Mask.EditMask = "N2"
-        Me.TEWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEWeight.Size = New System.Drawing.Size(101, 20)
-        Me.TEWeight.TabIndex = 154
-        '
-        'LabelControl9
-        '
-        Me.LabelControl9.Location = New System.Drawing.Point(671, 15)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(20, 13)
-        Me.LabelControl9.TabIndex = 155
-        Me.LabelControl9.Text = "CTN"
-        '
-        'TECTN
-        '
-        Me.TECTN.Location = New System.Drawing.Point(697, 12)
-        Me.TECTN.Name = "TECTN"
-        Me.TECTN.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TECTN.Properties.Appearance.Options.UseFont = True
-        Me.TECTN.Properties.Appearance.Options.UseTextOptions = True
-        Me.TECTN.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TECTN.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TECTN.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TECTN.Properties.DisplayFormat.FormatString = "N2"
-        Me.TECTN.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TECTN.Properties.Mask.EditMask = "N2"
-        Me.TECTN.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TECTN.Size = New System.Drawing.Size(82, 20)
-        Me.TECTN.TabIndex = 156
-        '
-        'PanelControl6
-        '
-        Me.PanelControl6.Controls.Add(Me.LabelControl4)
-        Me.PanelControl6.Controls.Add(Me.TECTN)
-        Me.PanelControl6.Controls.Add(Me.SLETypeImport)
-        Me.PanelControl6.Controls.Add(Me.SLEVendorFGPO)
-        Me.PanelControl6.Controls.Add(Me.LabelControl7)
-        Me.PanelControl6.Controls.Add(Me.LabelControl5)
-        Me.PanelControl6.Controls.Add(Me.LabelControl9)
-        Me.PanelControl6.Controls.Add(Me.TECBM)
-        Me.PanelControl6.Controls.Add(Me.LabelControl8)
-        Me.PanelControl6.Controls.Add(Me.TEWeight)
-        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl6.Location = New System.Drawing.Point(0, 95)
-        Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(1022, 42)
-        Me.PanelControl6.TabIndex = 157
-        '
         'GCWOFGPO
         '
         Me.GCWOFGPO.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCWOFGPO.Location = New System.Drawing.Point(0, 84)
+        Me.GCWOFGPO.Location = New System.Drawing.Point(0, 75)
         Me.GCWOFGPO.MainView = Me.GVWOFGPO
         Me.GCWOFGPO.Name = "GCWOFGPO"
-        Me.GCWOFGPO.Size = New System.Drawing.Size(1016, 262)
+        Me.GCWOFGPO.Size = New System.Drawing.Size(1016, 271)
         Me.GCWOFGPO.TabIndex = 171
         Me.GCWOFGPO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVWOFGPO})
         '
@@ -3003,6 +2771,270 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn77.Visible = True
         Me.GridColumn77.VisibleIndex = 6
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.LabelControl24)
+        Me.PanelControl3.Controls.Add(Me.TEActCBM)
+        Me.PanelControl3.Controls.Add(Me.TEWO)
+        Me.PanelControl3.Controls.Add(Me.LabelControl23)
+        Me.PanelControl3.Controls.Add(Me.TEChoosenVendor)
+        Me.PanelControl3.Controls.Add(Me.LabelControl22)
+        Me.PanelControl3.Controls.Add(Me.TEQuotAmo)
+        Me.PanelControl3.Controls.Add(Me.LabelControl21)
+        Me.PanelControl3.Controls.Add(Me.TEQuotNo)
+        Me.PanelControl3.Controls.Add(Me.LabelControl20)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1016, 75)
+        Me.PanelControl3.TabIndex = 25
+        '
+        'LabelControl24
+        '
+        Me.LabelControl24.Location = New System.Drawing.Point(784, 19)
+        Me.LabelControl24.Name = "LabelControl24"
+        Me.LabelControl24.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl24.TabIndex = 174
+        Me.LabelControl24.Text = "Actual CBM"
+        '
+        'TEActCBM
+        '
+        Me.TEActCBM.Location = New System.Drawing.Point(844, 16)
+        Me.TEActCBM.Name = "TEActCBM"
+        Me.TEActCBM.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEActCBM.Properties.Appearance.Options.UseFont = True
+        Me.TEActCBM.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEActCBM.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEActCBM.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEActCBM.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEActCBM.Properties.DisplayFormat.FormatString = "N4"
+        Me.TEActCBM.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEActCBM.Properties.Mask.EditMask = "N4"
+        Me.TEActCBM.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEActCBM.Size = New System.Drawing.Size(155, 20)
+        Me.TEActCBM.TabIndex = 175
+        '
+        'TEWO
+        '
+        Me.TEWO.Location = New System.Drawing.Point(116, 16)
+        Me.TEWO.Name = "TEWO"
+        Me.TEWO.Properties.ReadOnly = True
+        Me.TEWO.Size = New System.Drawing.Size(233, 20)
+        Me.TEWO.TabIndex = 173
+        '
+        'LabelControl23
+        '
+        Me.LabelControl23.Location = New System.Drawing.Point(11, 19)
+        Me.LabelControl23.Name = "LabelControl23"
+        Me.LabelControl23.Size = New System.Drawing.Size(96, 13)
+        Me.LabelControl23.TabIndex = 172
+        Me.LabelControl23.Text = "Work Order Number"
+        '
+        'TEChoosenVendor
+        '
+        Me.TEChoosenVendor.Location = New System.Drawing.Point(116, 42)
+        Me.TEChoosenVendor.Name = "TEChoosenVendor"
+        Me.TEChoosenVendor.Properties.ReadOnly = True
+        Me.TEChoosenVendor.Size = New System.Drawing.Size(233, 20)
+        Me.TEChoosenVendor.TabIndex = 171
+        '
+        'LabelControl22
+        '
+        Me.LabelControl22.Location = New System.Drawing.Point(11, 45)
+        Me.LabelControl22.Name = "LabelControl22"
+        Me.LabelControl22.Size = New System.Drawing.Size(95, 13)
+        Me.LabelControl22.TabIndex = 168
+        Me.LabelControl22.Text = "Choosen Forwarder"
+        '
+        'TEQuotAmo
+        '
+        Me.TEQuotAmo.Location = New System.Drawing.Point(483, 42)
+        Me.TEQuotAmo.Name = "TEQuotAmo"
+        Me.TEQuotAmo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEQuotAmo.Properties.Appearance.Options.UseFont = True
+        Me.TEQuotAmo.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEQuotAmo.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEQuotAmo.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEQuotAmo.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEQuotAmo.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEQuotAmo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEQuotAmo.Properties.Mask.EditMask = "N2"
+        Me.TEQuotAmo.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEQuotAmo.Size = New System.Drawing.Size(295, 20)
+        Me.TEQuotAmo.TabIndex = 167
+        '
+        'LabelControl21
+        '
+        Me.LabelControl21.Location = New System.Drawing.Point(355, 44)
+        Me.LabelControl21.Name = "LabelControl21"
+        Me.LabelControl21.Size = New System.Drawing.Size(112, 13)
+        Me.LabelControl21.TabIndex = 166
+        Me.LabelControl21.Text = "Amount Quotation (Rp)"
+        '
+        'TEQuotNo
+        '
+        Me.TEQuotNo.Location = New System.Drawing.Point(483, 16)
+        Me.TEQuotNo.Name = "TEQuotNo"
+        Me.TEQuotNo.Size = New System.Drawing.Size(295, 20)
+        Me.TEQuotNo.TabIndex = 162
+        '
+        'LabelControl20
+        '
+        Me.LabelControl20.Location = New System.Drawing.Point(355, 19)
+        Me.LabelControl20.Name = "LabelControl20"
+        Me.LabelControl20.Size = New System.Drawing.Size(64, 13)
+        Me.LabelControl20.TabIndex = 163
+        Me.LabelControl20.Text = "Quotation No"
+        '
+        'PanelControl10
+        '
+        Me.PanelControl10.Controls.Add(Me.BPrintWO)
+        Me.PanelControl10.Controls.Add(Me.BSaveWO)
+        Me.PanelControl10.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl10.Location = New System.Drawing.Point(0, 346)
+        Me.PanelControl10.Name = "PanelControl10"
+        Me.PanelControl10.Size = New System.Drawing.Size(1016, 42)
+        Me.PanelControl10.TabIndex = 170
+        '
+        'BPrintWO
+        '
+        Me.BPrintWO.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BPrintWO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BPrintWO.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BPrintWO.Appearance.Options.UseBackColor = True
+        Me.BPrintWO.Appearance.Options.UseFont = True
+        Me.BPrintWO.Appearance.Options.UseForeColor = True
+        Me.BPrintWO.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrintWO.Location = New System.Drawing.Point(760, 2)
+        Me.BPrintWO.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BPrintWO.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BPrintWO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BPrintWO.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BPrintWO.Name = "BPrintWO"
+        Me.BPrintWO.Size = New System.Drawing.Size(127, 38)
+        Me.BPrintWO.TabIndex = 26
+        Me.BPrintWO.Text = "Print Work Order"
+        '
+        'BSaveWO
+        '
+        Me.BSaveWO.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BSaveWO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BSaveWO.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BSaveWO.Appearance.Options.UseBackColor = True
+        Me.BSaveWO.Appearance.Options.UseFont = True
+        Me.BSaveWO.Appearance.Options.UseForeColor = True
+        Me.BSaveWO.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BSaveWO.Location = New System.Drawing.Point(887, 2)
+        Me.BSaveWO.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BSaveWO.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BSaveWO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BSaveWO.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BSaveWO.Name = "BSaveWO"
+        Me.BSaveWO.Size = New System.Drawing.Size(127, 38)
+        Me.BSaveWO.TabIndex = 21
+        Me.BSaveWO.Text = "Update"
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(260, 15)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl5.TabIndex = 97
+        Me.LabelControl5.Text = "Type"
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(397, 15)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl7.TabIndex = 151
+        Me.LabelControl7.Text = "CBM"
+        '
+        'TECBM
+        '
+        Me.TECBM.Location = New System.Drawing.Point(424, 12)
+        Me.TECBM.Name = "TECBM"
+        Me.TECBM.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECBM.Properties.Appearance.Options.UseFont = True
+        Me.TECBM.Properties.Appearance.Options.UseTextOptions = True
+        Me.TECBM.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TECBM.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TECBM.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TECBM.Properties.DisplayFormat.FormatString = "N4"
+        Me.TECBM.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TECBM.Properties.Mask.EditMask = "N4"
+        Me.TECBM.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TECBM.Size = New System.Drawing.Size(94, 20)
+        Me.TECBM.TabIndex = 152
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(524, 15)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl8.TabIndex = 153
+        Me.LabelControl8.Text = "Weight"
+        '
+        'TEWeight
+        '
+        Me.TEWeight.Location = New System.Drawing.Point(564, 12)
+        Me.TEWeight.Name = "TEWeight"
+        Me.TEWeight.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEWeight.Properties.Appearance.Options.UseFont = True
+        Me.TEWeight.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEWeight.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEWeight.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEWeight.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEWeight.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEWeight.Properties.Mask.EditMask = "N2"
+        Me.TEWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEWeight.Size = New System.Drawing.Size(101, 20)
+        Me.TEWeight.TabIndex = 154
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(671, 15)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(20, 13)
+        Me.LabelControl9.TabIndex = 155
+        Me.LabelControl9.Text = "CTN"
+        '
+        'TECTN
+        '
+        Me.TECTN.Location = New System.Drawing.Point(697, 12)
+        Me.TECTN.Name = "TECTN"
+        Me.TECTN.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECTN.Properties.Appearance.Options.UseFont = True
+        Me.TECTN.Properties.Appearance.Options.UseTextOptions = True
+        Me.TECTN.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TECTN.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TECTN.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TECTN.Properties.DisplayFormat.FormatString = "N2"
+        Me.TECTN.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TECTN.Properties.Mask.EditMask = "N2"
+        Me.TECTN.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TECTN.Size = New System.Drawing.Size(82, 20)
+        Me.TECTN.TabIndex = 156
+        '
+        'PanelControl6
+        '
+        Me.PanelControl6.Controls.Add(Me.LabelControl4)
+        Me.PanelControl6.Controls.Add(Me.TECTN)
+        Me.PanelControl6.Controls.Add(Me.SLETypeImport)
+        Me.PanelControl6.Controls.Add(Me.SLEVendorFGPO)
+        Me.PanelControl6.Controls.Add(Me.LabelControl7)
+        Me.PanelControl6.Controls.Add(Me.LabelControl5)
+        Me.PanelControl6.Controls.Add(Me.LabelControl9)
+        Me.PanelControl6.Controls.Add(Me.TECBM)
+        Me.PanelControl6.Controls.Add(Me.LabelControl8)
+        Me.PanelControl6.Controls.Add(Me.TEWeight)
+        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl6.Location = New System.Drawing.Point(0, 95)
+        Me.PanelControl6.Name = "PanelControl6"
+        Me.PanelControl6.Size = New System.Drawing.Size(1022, 42)
+        Me.PanelControl6.TabIndex = 157
+        '
         'FormPreCalFGPODet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3117,23 +3149,24 @@ Partial Class FormPreCalFGPODet
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl8.ResumeLayout(False)
         Me.XTPWO.ResumeLayout(False)
+        CType(Me.GCWOFGPO, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVWOFGPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl10.ResumeLayout(False)
+        CType(Me.TEActCBM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEWO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEChoosenVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEQuotAmo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEQuotNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl10.ResumeLayout(False)
         CType(Me.TECBM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEWeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECTN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
-        CType(Me.GCWOFGPO, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVWOFGPO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3343,9 +3376,9 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl10 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BPrintWO As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton4 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BSaveWO As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEChoosenVendor As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEWO As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCWOFGPO As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVWOFGPO As DevExpress.XtraGrid.Views.Grid.GridView
@@ -3357,4 +3390,6 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents GridColumn75 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn76 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn77 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEActCBM As DevExpress.XtraEditors.TextEdit
 End Class

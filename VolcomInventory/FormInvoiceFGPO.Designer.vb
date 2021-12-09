@@ -161,6 +161,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn67 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreateInvoiceLain = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPImport = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPPIBTaxPayment = New DevExpress.XtraTab.XtraTabPage()
         Me.GCAnalisa = New DevExpress.XtraGrid.GridControl()
         Me.GVAnalisa = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
@@ -207,7 +208,7 @@ Partial Class FormInvoiceFGPO
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn33 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn34 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BCreateBPL = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCreateBPLVoluntary = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.PCVendor = New DevExpress.XtraEditors.PanelControl()
@@ -217,6 +218,22 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCSummary = New DevExpress.XtraGrid.GridControl()
+        Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn81 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn82 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GridColumn83 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEWO = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn85 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn84 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn86 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCInvoiceFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInvoiceFGPO.SuspendLayout()
         Me.XTPBPL.SuspendLayout()
@@ -260,6 +277,7 @@ Partial Class FormInvoiceFGPO
         Me.XTPInvoiceClaimLain.SuspendLayout()
         CType(Me.GCInvoiceLain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVInvoiceLain, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPImport.SuspendLayout()
         Me.XTPPIBTaxPayment.SuspendLayout()
         CType(Me.GCAnalisa, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAnalisa, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -270,6 +288,16 @@ Partial Class FormInvoiceFGPO
         Me.PCVendor.SuspendLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEWO, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl6.SuspendLayout()
+        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCInvoiceFGPO
@@ -281,7 +309,7 @@ Partial Class FormInvoiceFGPO
         Me.XTCInvoiceFGPO.SelectedTabPage = Me.XTPBPL
         Me.XTCInvoiceFGPO.Size = New System.Drawing.Size(1161, 586)
         Me.XTCInvoiceFGPO.TabIndex = 0
-        Me.XTCInvoiceFGPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBPL, Me.XTPDP, Me.XTPPayment, Me.XTPDPKhusus, Me.XTPInvoiceClaimLain, Me.XTPPIBTaxPayment})
+        Me.XTCInvoiceFGPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBPL, Me.XTPDP, Me.XTPPayment, Me.XTPDPKhusus, Me.XTPInvoiceClaimLain, Me.XTPImport, Me.XTPPIBTaxPayment})
         '
         'XTPBPL
         '
@@ -1712,14 +1740,22 @@ Partial Class FormInvoiceFGPO
         Me.BCreateInvoiceLain.TabIndex = 21
         Me.BCreateInvoiceLain.Text = "Create Invoice Claim Lain-lain"
         '
+        'XTPImport
+        '
+        Me.XTPImport.Controls.Add(Me.GCSummary)
+        Me.XTPImport.Controls.Add(Me.PanelControl5)
+        Me.XTPImport.Name = "XTPImport"
+        Me.XTPImport.Size = New System.Drawing.Size(1155, 558)
+        Me.XTPImport.Text = "Import Payment"
+        '
         'XTPPIBTaxPayment
         '
         Me.XTPPIBTaxPayment.Controls.Add(Me.GCAnalisa)
-        Me.XTPPIBTaxPayment.Controls.Add(Me.BCreateBPL)
+        Me.XTPPIBTaxPayment.Controls.Add(Me.BCreateBPLVoluntary)
         Me.XTPPIBTaxPayment.Controls.Add(Me.PanelControl1)
         Me.XTPPIBTaxPayment.Name = "XTPPIBTaxPayment"
         Me.XTPPIBTaxPayment.Size = New System.Drawing.Size(1155, 558)
-        Me.XTPPIBTaxPayment.Text = "Royalty Duty"
+        Me.XTPPIBTaxPayment.Text = "Royalty Duty Voluntary"
         '
         'GCAnalisa
         '
@@ -2223,24 +2259,24 @@ Partial Class FormInvoiceFGPO
         Me.BandedGridColumn34.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn34.Visible = True
         '
-        'BCreateBPL
+        'BCreateBPLVoluntary
         '
-        Me.BCreateBPL.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BCreateBPL.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BCreateBPL.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BCreateBPL.Appearance.Options.UseBackColor = True
-        Me.BCreateBPL.Appearance.Options.UseFont = True
-        Me.BCreateBPL.Appearance.Options.UseForeColor = True
-        Me.BCreateBPL.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCreateBPL.Location = New System.Drawing.Point(0, 521)
-        Me.BCreateBPL.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BCreateBPL.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BCreateBPL.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BCreateBPL.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BCreateBPL.Name = "BCreateBPL"
-        Me.BCreateBPL.Size = New System.Drawing.Size(1155, 37)
-        Me.BCreateBPL.TabIndex = 21
-        Me.BCreateBPL.Text = "Create BPL"
+        Me.BCreateBPLVoluntary.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreateBPLVoluntary.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreateBPLVoluntary.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreateBPLVoluntary.Appearance.Options.UseBackColor = True
+        Me.BCreateBPLVoluntary.Appearance.Options.UseFont = True
+        Me.BCreateBPLVoluntary.Appearance.Options.UseForeColor = True
+        Me.BCreateBPLVoluntary.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreateBPLVoluntary.Location = New System.Drawing.Point(0, 521)
+        Me.BCreateBPLVoluntary.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreateBPLVoluntary.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreateBPLVoluntary.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreateBPLVoluntary.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreateBPLVoluntary.Name = "BCreateBPLVoluntary"
+        Me.BCreateBPLVoluntary.Size = New System.Drawing.Size(1155, 37)
+        Me.BCreateBPLVoluntary.TabIndex = 21
+        Me.BCreateBPLVoluntary.Text = "Create BPL"
         '
         'PanelControl1
         '
@@ -2250,6 +2286,7 @@ Partial Class FormInvoiceFGPO
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1155, 43)
         Me.PanelControl1.TabIndex = 2
+        Me.PanelControl1.Visible = False
         '
         'BRefresh
         '
@@ -2319,6 +2356,148 @@ Partial Class FormInvoiceFGPO
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
         '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.White
+        Me.SimpleButton1.Appearance.Options.UseBackColor = True
+        Me.SimpleButton1.Appearance.Options.UseFont = True
+        Me.SimpleButton1.Appearance.Options.UseForeColor = True
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SimpleButton1.Location = New System.Drawing.Point(2, 2)
+        Me.SimpleButton1.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.SimpleButton1.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.SimpleButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.SimpleButton1.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(1151, 41)
+        Me.SimpleButton1.TabIndex = 20
+        Me.SimpleButton1.Text = "Create BPL"
+        '
+        'GCSummary
+        '
+        Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSummary.Location = New System.Drawing.Point(0, 0)
+        Me.GCSummary.MainView = Me.GVSummary
+        Me.GCSummary.Name = "GCSummary"
+        Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RICEWO})
+        Me.GCSummary.Size = New System.Drawing.Size(1155, 513)
+        Me.GCSummary.TabIndex = 21
+        Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
+        '
+        'GVSummary
+        '
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn80, Me.GridColumn83, Me.GridColumn81, Me.GridColumn85, Me.GridColumn82})
+        Me.GVSummary.GridControl = Me.GCSummary
+        Me.GVSummary.Name = "GVSummary"
+        Me.GVSummary.OptionsBehavior.Editable = False
+        Me.GVSummary.OptionsBehavior.ReadOnly = True
+        Me.GVSummary.OptionsFind.AlwaysVisible = True
+        Me.GVSummary.OptionsView.RowAutoHeight = True
+        Me.GVSummary.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn80
+        '
+        Me.GridColumn80.Caption = "id"
+        Me.GridColumn80.Name = "GridColumn80"
+        '
+        'GridColumn81
+        '
+        Me.GridColumn81.Caption = "ISB Number"
+        Me.GridColumn81.FieldName = "pre_cal_fgpo_number"
+        Me.GridColumn81.Name = "GridColumn81"
+        Me.GridColumn81.Visible = True
+        Me.GridColumn81.VisibleIndex = 1
+        Me.GridColumn81.Width = 199
+        '
+        'GridColumn82
+        '
+        Me.GridColumn82.Caption = "FGPO List"
+        Me.GridColumn82.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumn82.FieldName = "list_fgpo"
+        Me.GridColumn82.Name = "GridColumn82"
+        Me.GridColumn82.Visible = True
+        Me.GridColumn82.VisibleIndex = 3
+        Me.GridColumn82.Width = 909
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
+        'GridColumn83
+        '
+        Me.GridColumn83.Caption = "Work Order Number"
+        Me.GridColumn83.Name = "GridColumn83"
+        Me.GridColumn83.Visible = True
+        Me.GridColumn83.VisibleIndex = 0
+        Me.GridColumn83.Width = 190
+        '
+        'RICEWO
+        '
+        Me.RICEWO.AutoHeight = False
+        Me.RICEWO.Name = "RICEWO"
+        '
+        'GridColumn85
+        '
+        Me.GridColumn85.Caption = "Forwarder"
+        Me.GridColumn85.FieldName = "forwarder"
+        Me.GridColumn85.Name = "GridColumn85"
+        Me.GridColumn85.Visible = True
+        Me.GridColumn85.VisibleIndex = 2
+        Me.GridColumn85.Width = 282
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.Controls.Add(Me.PanelControl6)
+        Me.PanelControl5.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 513)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(1155, 45)
+        Me.PanelControl5.TabIndex = 22
+        '
+        'PanelControl6
+        '
+        Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl6.Controls.Add(Me.SearchLookUpEdit1)
+        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl6.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl6.Name = "PanelControl6"
+        Me.PanelControl6.Size = New System.Drawing.Size(240, 41)
+        Me.PanelControl6.TabIndex = 0
+        '
+        'SearchLookUpEdit1
+        '
+        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(10, 11)
+        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
+        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SearchLookUpEdit1.Properties.View = Me.GridView3
+        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(217, 20)
+        Me.SearchLookUpEdit1.TabIndex = 8922
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn84, Me.GridColumn86})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn84
+        '
+        Me.GridColumn84.Caption = "ID Comp Contact"
+        Me.GridColumn84.FieldName = "id_comp_contact"
+        Me.GridColumn84.Name = "GridColumn84"
+        '
+        'GridColumn86
+        '
+        Me.GridColumn86.Caption = "Vendor"
+        Me.GridColumn86.FieldName = "comp_name"
+        Me.GridColumn86.Name = "GridColumn86"
+        Me.GridColumn86.Visible = True
+        Me.GridColumn86.VisibleIndex = 0
+        '
         'FormInvoiceFGPO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2380,6 +2559,7 @@ Partial Class FormInvoiceFGPO
         Me.XTPInvoiceClaimLain.ResumeLayout(False)
         CType(Me.GCInvoiceLain, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVInvoiceLain, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPImport.ResumeLayout(False)
         Me.XTPPIBTaxPayment.ResumeLayout(False)
         CType(Me.GCAnalisa, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVAnalisa, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2391,6 +2571,16 @@ Partial Class FormInvoiceFGPO
         Me.PCVendor.PerformLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEWO, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl6.ResumeLayout(False)
+        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2591,5 +2781,22 @@ Partial Class FormInvoiceFGPO
     Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BCreateBPL As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BCreateBPLVoluntary As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPImport As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCSummary As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSummary As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn80 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICEWO As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn83 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn81 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn82 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents GridColumn85 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn84 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn86 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

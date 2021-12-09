@@ -109,9 +109,9 @@
                 End If
             ElseIf doc_type = "5" Then
                 TEDocType.Text = "PIB Voluntary Payment"
-                SLEPayType.EditValue = "9"
+                SLEPayType.EditValue = "2"
                 'vendor 
-                SLEVendor.EditValue = get_opt_prod_field("id_comp_bea_cukai")
+                SLEVendor.EditValue = FormInvoiceFGPO.SLEVendorPayment.EditValue
                 'detail
                 Try
                     For i = 0 To FormInvoiceFGPO.GVAnalisa.RowCount - 1
@@ -138,6 +138,8 @@
                 Catch ex As Exception
                     MsgBox(ex.ToString)
                 End Try
+            ElseIf doc_type = "6" Then
+
             Else
                 TEDocType.Text = "FGPO"
 
@@ -307,6 +309,8 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
                 ElseIf data.Rows(0)("doc_type").ToString = "4" Then
                     TEDocType.Text = "Khusus"
                 ElseIf data.Rows(0)("doc_type").ToString = "5" Then
+                    TEDocType.Text = "PIB Voluntary Payment"
+                ElseIf data.Rows(0)("doc_type").ToString = "6" Then
                     TEDocType.Text = "PIB Voluntary Payment"
                 Else
                     TEDocType.Text = "Umum"

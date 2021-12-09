@@ -215,6 +215,23 @@ WHERE 1=1  " & query_where & " ORDER BY pn.created_date DESC"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCInvoiceLain.DataSource = data
                 GVInvoiceLain.BestFitColumns()
+            ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 5 Then
+                'Import payment
+                Dim query As String = ""
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                GCInvoiceLain.DataSource = data
+                GVInvoiceLain.BestFitColumns()
+            ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 6 Then
+                'PIB voluntary declaration
+                Dim query As String = "CALL pib_analisa_pay('" & query_where & "')"
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                GCAnalisa.DataSource = data
+                GVAnalisa.BestFitColumns()
+                If Not SLEVendorPayment.EditValue.ToString = "0" Then
+                    BCreateBPLVoluntary.Visible = True
+                Else
+                    BCreateBPLVoluntary.Visible = False
+                End If
             End If
         End If
     End Sub
@@ -390,26 +407,18 @@ GROUP BY dp.id_pn_fgpo,dpd.id_report"
         print_no_footer(GCDPUsed, "List DP " & SLEVendor.Text)
     End Sub
 
-    Private Sub XTCInvoiceFGPO_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCInvoiceFGPO.SelectedPageChanged
-        If XTCInvoiceFGPO.SelectedTabPageIndex = 5 Then
-            PCVendor.Visible = False
-        Else
-            PCVendor.Visible = True
-        End If
-    End Sub
+    'Private Sub BRefresh_Click(sender As Object, e As EventArgs) Handles BRefresh.Click
+    '    view_analisa_pib()
+    'End Sub
 
-    Private Sub BRefresh_Click(sender As Object, e As EventArgs) Handles BRefresh.Click
-        view_analisa_pib()
-    End Sub
+    'Sub view_analisa_pib()
+    '    Dim q As String = "CALL pib_analisa_pay()"
+    '    Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+    '    GCAnalisa.DataSource = dt
+    '    GVAnalisa.BestFitColumns()
+    'End Sub
 
-    Sub view_analisa_pib()
-        Dim q As String = "CALL pib_analisa_pay()"
-        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
-        GCAnalisa.DataSource = dt
-        GVAnalisa.BestFitColumns()
-    End Sub
-
-    Private Sub BCreateBPL_Click(sender As Object, e As EventArgs) Handles BCreateBPL.Click
+    Private Sub BCreateBPL_Click(sender As Object, e As EventArgs) Handles BCreateBPLVoluntary.Click
         GVAnalisa.ActiveFilterString = "[is_check]='yes'"
         If GVAnalisa.RowCount > 0 Then
             'check if already DP
