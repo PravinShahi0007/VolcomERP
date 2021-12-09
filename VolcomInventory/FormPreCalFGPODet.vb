@@ -93,7 +93,7 @@ ORDER BY id_stock_valas DESC LIMIT 1"
         Else
             'edit
             Dim q As String = "SELECT cal.reason,cal.ppn,cal.pph,cal.rate_current,cal.rate_management,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
-,cal.quot_amo,cal.quot_no,c.comp_name AS choosen_forwarder
+,cal.quot_amo,cal.act_cbm,cal.quot_no,c.comp_name AS choosen_forwarder,CONCAT((SELECT iwo_code_head FROM tb_opt_prod LIMIT 1),LPAD(cal.id_pre_cal_fgpo,(SELECT iwo_code_digit FROM tb_opt_prod LIMIT 1),'0')) as wo_number
 FROM
 `tb_pre_cal_fgpo` cal
 INNER JOIN tb_m_user usr ON usr.`id_user`=cal.`created_by`
@@ -123,6 +123,9 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                 TEQuotAmo.EditValue = dt.Rows(0)("quot_amo")
                 TEQuotNo.EditValue = dt.Rows(0)("quot_no")
                 TEActCBM.EditValue = dt.Rows(0)("act_cbm")
+                '
+                TEChoosenVendor.Text = dt.Rows(0)("choosen_forwarder").ToString
+                TEWO.Text = dt.Rows(0)("wo_number").ToString
                 '
                 view_but()
 
@@ -1119,7 +1122,7 @@ WHERE h.`id_pre_cal_fgpo`='" & id & "'"
         Report.id_report = id
 
         Dim q As String = "SELECT cal.reason,cal.ppn,cal.pph,cal.rate_current,cal.rate_management,cal.`number`,cal.`id_comp`,cal.`id_type`,cal.`weight`,cal.`cbm`,cal.`pol`,cal.`ctn`,cal.`created_date`,cal.`step`,emp.`employee_name`
-,c.`comp_name` AS fgpo_vendor,cf.comp_name AS forwarder,cal.`quot_no`,cal.`quot_amo`, CONCAT('ISWO',LPAD(cal.id_pre_cal_fgpo,5,'0')) AS wo_no
+,c.`comp_name` AS fgpo_vendor,cf.comp_name AS forwarder,cal.`quot_no`,cal.`quot_amo`, CONCAT((SELECT iwo_code_head FROM tb_opt_prod LIMIT 1),LPAD(cal.id_pre_cal_fgpo,(SELECT iwo_code_digit FROM tb_opt_prod LIMIT 1),'0')) AS wo_no
 FROM
 `tb_pre_cal_fgpo` cal
 INNER JOIN tb_m_user usr ON usr.`id_user`=cal.`created_by`
