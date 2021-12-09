@@ -1969,6 +1969,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormRetExos.createNew()
         ElseIf formName = "FormDisableExos" Then
             FormDisableExos.createNew()
+        ElseIf formName = "FormEOSChange" Then
+            FormEOSChange.createNew()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3332,6 +3334,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormRetExos.viewDetail()
             ElseIf formName = "FormDisableExos" Then
                 FormDisableExos.viewDetail()
+            ElseIf formName = "FormEOSChange" Then
+                FormEOSChange.viewDetail()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8847,6 +8851,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormRetExos.printList()
         ElseIf formName = "FormDisableExos" Then
             FormDisableExos.printList()
+        ElseIf formName = "FormEOSChange" Then
+            FormEOSChange.printList()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9898,6 +9904,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormDisableExos" Then
             FormDisableExos.Close()
             FormDisableExos.Dispose()
+        ElseIf formName = "FormEOSChange" Then
+            FormEOSChange.Close()
+            FormEOSChange.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10950,6 +10959,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormRetExos.viewData()
         ElseIf formName = "FormDisableExos" Then
             FormDisableExos.viewData()
+        ElseIf formName = "FormEOSChange" Then
+            FormEOSChange.viewData()
         End If
     End Sub
     'Switch
@@ -16854,6 +16865,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDisableExos.Show()
             FormDisableExos.WindowState = FormWindowState.Maximized
             FormDisableExos.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBEOSChange_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEOSChange.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEOSChange.MdiParent = Me
+            FormEOSChange.Show()
+            FormEOSChange.WindowState = FormWindowState.Maximized
+            FormEOSChange.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

@@ -261,6 +261,7 @@
     <Compile Include="ClassDisableExos.vb" />
     <Compile Include="ClassEmpUni.vb" />
     <Compile Include="ClassEmpUniExpense.vb" />
+    <Compile Include="ClassEOSChange.vb" />
     <Compile Include="ClassFGBorrowQCReq.vb" />
     <Compile Include="ClassFGCodeReplace.vb" />
     <Compile Include="ClassFGMissingInv.vb" />
@@ -2156,6 +2157,18 @@
       <DependentUpon>FormEmpUniSumReport.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpUniSumReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEOSChange.Designer.vb">
+      <DependentUpon>FormEOSChange.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEOSChange.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEOSChangeDet.Designer.vb">
+      <DependentUpon>FormEOSChangeDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEOSChangeDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormError.designer.vb">
@@ -8964,6 +8977,12 @@
     <Compile Include="ReportEmpUniPeriod.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEOSChange.Designer.vb">
+      <DependentUpon>ReportEOSChange.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEOSChange.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGAdjIn.Designer.vb">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>
     </Compile>
@@ -11424,6 +11443,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniSumReport.resx">
       <DependentUpon>FormEmpUniSumReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEOSChange.resx">
+      <DependentUpon>FormEOSChange.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEOSChangeDet.resx">
+      <DependentUpon>FormEOSChangeDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormError.resx">
       <DependentUpon>FormError.vb</DependentUpon>
@@ -15260,6 +15285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpUniPeriod.resx">
       <DependentUpon>ReportEmpUniPeriod.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEOSChange.resx">
+      <DependentUpon>ReportEOSChange.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGAdjIn.resx">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>

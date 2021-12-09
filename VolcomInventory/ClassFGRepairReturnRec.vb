@@ -18,7 +18,7 @@
         query += "rec.id_wh_drawer_to, comp_to.id_comp As `id_comp_to`, comp_to.comp_number As `comp_number_to`, comp_to.comp_name As `comp_name_to`, CONCAT(comp_to.comp_number,' - ', comp_to.comp_name) AS `comp_to`, "
         query += "rec.id_wh_drawer_dest, wh.id_comp As `id_wh`, wh.comp_number As `wh_number`, wh.comp_name As `wh_name`, CONCAT(wh.comp_number,' - ', wh.comp_name) AS `wh`, "
         query += "rec.fg_repair_return_rec_number, r.fg_repair_return_number, rec.fg_repair_return_rec_date, DATE_FORMAT(rec.fg_repair_return_rec_date, '%Y-%m-%d') AS fg_repair_return_rec_datex, "
-        query += "rec.fg_repair_return_rec_note, rec.id_report_status, stt.report_status,rec.is_use_unique_code "
+        query += "rec.fg_repair_return_rec_note, rec.id_report_status, stt.report_status,rec.is_use_unique_code, COUNT(id_fg_repair_return_rec_det) AS `total_qty` "
         query += "From tb_fg_repair_return_rec rec "
         query += "INNER JOIN tb_fg_repair_return r ON r.id_fg_repair_return = rec.id_fg_repair_return "
         query += "INNER Join tb_m_wh_drawer drw_frm On drw_frm.id_wh_drawer = rec.id_wh_drawer_from  "
@@ -26,9 +26,11 @@
         query += "INNER Join tb_m_wh_drawer drw_to On drw_to.id_wh_drawer = rec.id_wh_drawer_to "
         query += "INNER Join tb_m_comp comp_to On comp_to.id_drawer_def = drw_to.id_wh_drawer "
         query += "LEFT JOIN tb_m_comp wh ON wh.id_drawer_def = rec.id_wh_drawer_dest "
-        query += "INNER Join tb_lookup_report_status stt On stt.id_report_status = rec.id_report_status "
+        query += "INNER Join tb_lookup_report_status stt On stt.id_report_status = rec.id_report_status 
+        INNER JOIN tb_fg_repair_return_rec_det rd ON rd.id_fg_repair_return_rec = rec.id_fg_repair_return_rec "
         query += "WHERE rec.id_fg_repair_return_rec>0 "
-        query += condition + " "
+        query += condition + " 
+        GROUP BY rec.id_fg_repair_return_rec "
         query += "ORDER BY rec.id_fg_repair_return_rec " + order_type
         Return query
     End Function

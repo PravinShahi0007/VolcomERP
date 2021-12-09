@@ -1,17 +1,28 @@
-﻿Public Class FormDisableExosDet
+﻿Public Class FormEOSChangeDet
     Public action As String
     Public id As String = "-1"
     Public id_report_status As String
-    Dim rmt As String = "364"
+    Dim rmt As String = "365"
     Public is_view = "-1"
+    Dim id_pp As String = "-1"
 
-    Private Sub FormDisableExosDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FormEOSChangeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        viewMKD()
         viewReportStatus()
         actionLoad()
     End Sub
 
-    Private Sub FormDisableExosDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+    Private Sub FormEOSChangeDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Sub viewMKD()
+        Dim query As String = "SELECT p.id_pp_change, p.number, p.effective_date, p.plan_end_date 
+        FROM tb_pp_change p WHERE p.id_report_status=6 "
+        If action = "ins" Then
+            query += "AND p.id_design_mkd=1 AND p.plan_end_date>=NOW() "
+        End If
+        viewSearchLookupQuery(SLEMKD, query, "id_pp_change", "number", "id_pp_change")
     End Sub
 
     Sub viewReportStatus()
@@ -22,29 +33,29 @@
 
     Sub actionLoad()
         If action = "ins" Then
+            SLEMKD.EditValue = Nothing
             TxtSalesOrderNumber.Text = ""
             BtnPrint.Enabled = False
             BMark.Enabled = False
             BtnAttachment.Enabled = False
             DEForm.Text = view_date(0)
-            viewDetail()
-
-            'min date
-            Dim tgl_sekarang As DateTime = getTimeDB()
-            DEEffectDate.Properties.MinValue = tgl_sekarang
         ElseIf action = "upd" Then
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
             BMark.Enabled = True
 
             'query view based on edit id's
-            Dim r As New ClassDisableExos()
-            Dim query As String = r.queryMain("AND s.id_disable_exos='" + id + "'", "1")
+            Dim r As New ClassEOSChange()
+            Dim query As String = r.queryMain("AND s.id_eos_change='" + id + "'", "1")
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
+            SLEMKD.EditValue = data.Rows(0)("id_pp_change").ToString
             id_report_status = data.Rows(0)("id_report_status").ToString
             DEForm.EditValue = data.Rows(0)("created_date")
             TxtSalesOrderNumber.Text = data.Rows(0)("number").ToString
             MENote.Text = data.Rows(0)("note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+            DEPlanEndDate.EditValue = data.Rows(0)("plan_end_date")
+            DENewEndDate.EditValue = data.Rows(0)("pps_date")
+            id_pp = data.Rows(0)("id_pp_change").ToString
 
             'detail2
             viewDetail()
@@ -52,56 +63,63 @@
         End If
     End Sub
 
+    Private Sub SLEMKD_EditValueChanged(sender As Object, e As EventArgs) Handles SLEMKD.EditValueChanged
+        If action = "ins" Then
+            id_pp = "-1"
+            Dim endd As Date = Now
+            Try
+                id_pp = SLEMKD.EditValue.ToString
+                endd = SLEMKD.Properties.View.GetFocusedRowCellValue("plan_end_date")
+            Catch ex As Exception
+            End Try
+            DEPlanEndDate.EditValue = endd
+            Dim min_date As Date = endd.AddDays(1)
+            DENewEndDate.Properties.MinValue = min_date
+            viewDetail()
+        End If
+    End Sub
+
     Sub viewDetail()
-        Dim query As String = "CALL view_disable_exos('" + id + "')"
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT d.id_pp_change_det, d.id_design, dsg.design_code AS `code`, cd.class,dsg.design_display_name AS `name`, cd.sht, cd.color,
+        d.propose_price_final
+        FROM tb_pp_change_det d
+        INNER JOIN tb_m_design dsg ON dsg.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT dc.id_design, 
+	        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	        FROM tb_m_design_code dc
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        AND cd.id_code IN (32,30,14, 43)
+	        GROUP BY dc.id_design
+        ) cd ON cd.id_design = dsg.id_design
+        WHERE d.id_pp_change=" + id_pp + " AND d.id_extended_eos=1
+        ORDER BY `class` ASC, `name` ASC "
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
         GCItemList.DataSource = data
+        Cursor = Cursors.Default
     End Sub
 
     Sub allow_status()
         BtnPrint.Enabled = True
-        DEEffectDate.Enabled = False
-        BtnAdd.Visible = False
-        BtnDel.Visible = False
+        SLEMKD.Enabled = False
+        DEPlanEndDate.Enabled = False
+        DENewEndDate.Enabled = False
         BtnSave.Enabled = False
         MENote.Properties.ReadOnly = True
-        If check_edit_report_status(id_report_status, rmt, id) Then
-            PanelControlNav.Enabled = True
-        Else
-            PanelControlNav.Enabled = False
-
-        End If
         TxtSalesOrderNumber.Focus()
     End Sub
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
-    End Sub
-
-    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-        Cursor = Cursors.WaitCursor
-        FormDisableExosList.ShowDialog()
-        Cursor = Cursors.Default
-    End Sub
-
-    Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
-        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                Cursor = Cursors.WaitCursor
-                GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
-                CType(GCItemList.DataSource, DataTable).AcceptChanges()
-                GCItemList.RefreshDataSource()
-                GVItemList.RefreshData()
-                Cursor = Cursors.Default
-            End If
-        End If
-    End Sub
-
-    Private Sub BtnExportAsFile_Click(sender As Object, e As EventArgs) Handles BtnExportAsFile.Click
-        Cursor = Cursors.WaitCursor
-        print_raw(GCItemList, "")
-        Cursor = Cursors.Default
     End Sub
 
     Private Sub GVItemList_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVItemList.CustomColumnDisplayText
@@ -122,10 +140,10 @@
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        ReportDisableExos.id = id
-        ReportDisableExos.dt = GCItemList.DataSource
-        ReportDisableExos.rmt = rmt
-        Dim Report As New ReportDisableExos()
+        ReportEOSChange.id = id
+        ReportEOSChange.dt = GCItemList.DataSource
+        ReportEOSChange.rmt = rmt
+        Dim Report As New ReportEOSChange()
 
         '... 
         ' creating and saving the view's layout to a new memory stream 
@@ -144,12 +162,41 @@
         Report.LabelDate.Text = DEForm.Text.ToUpper
         Report.LNote.Text = MENote.Text
         Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
-        Report.LabelEffectDate.Text = DEEffectDate.Text.ToUpper
+        Report.LabelPPno.Text = SLEMKD.Text.ToUpper
+        Report.LabelRencanaAkhir.Text = DEPlanEndDate.Text.ToUpper
+        Report.LabelDiperpanjangHingga.Text = DENewEndDate.Text.ToUpper
 
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreviewDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        makeSafeGV(GVItemList)
+        If SLEMKD.EditValue = Nothing Or GVItemList.RowCount <= 0 Or MENote.Text = "" Then
+            stopCustom("Please input all data")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to propose this document?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim note As String = addSlashes(MENote.Text)
+                Dim pps_date As String = DateTime.Parse(DENewEndDate.EditValue.ToString).ToString("yyyy-MM-dd")
+
+                'head
+                Dim query As String = "INSERT INTO tb_eos_change(number, created_date, id_report_status, note, id_pp_change, pps_date)
+                VALUES('', NOW(), 1, '" + note + "', '" + id_pp + "', '" + pps_date + "');SELECT LAST_INSERT_ID(); "
+                id = execute_query(query, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id + ", " + rmt + "); ", True, "", "", "", "")
+
+                submit_who_prepared(rmt, id, id_user)
+
+                FormEOSChange.viewData()
+                FormEOSChange.GVData.FocusedRowHandle = find_row(FormEOSChange.GVData, "id_eos_change", id)
+                action = "upd"
+                actionLoad()
+                infoCustom("Document #" + TxtSalesOrderNumber.Text + " was created successfully. Waiting for approval")
+            End If
+        End If
     End Sub
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
@@ -163,51 +210,5 @@
         End If
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
-    End Sub
-
-    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        makeSafeGV(GVItemList)
-        If GVItemList.RowCount <= 0 Or MENote.Text = "" Then
-            stopCustom("Please input all data")
-        Else
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to propose this document?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                Dim note As String = addSlashes(MENote.Text)
-                Dim effective_date As String = DateTime.Parse(DEEffectDate.EditValue.ToString).ToString("yyyy-MM-dd")
-
-                'head
-                Dim query As String = "INSERT INTO tb_disable_exos(number, created_date, id_report_status, note, effective_date)
-                VALUES('', NOW(), 1, '" + note + "', '" + effective_date + "');SELECT LAST_INSERT_ID(); "
-                id = execute_query(query, 0, True, "", "", "", "")
-                execute_non_query("CALL gen_number(" + id + ", " + rmt + "); ", True, "", "", "", "")
-
-                'detail
-                Dim jum_ins_i As Integer = 0
-                Dim query_detail As String = ""
-                If GVItemList.RowCount > 0 Then
-                    query_detail = "INSERT INTO tb_disable_exos_det(id_disable_exos,id_design) VALUES "
-                End If
-                For i As Integer = 0 To (GVItemList.RowCount - 1)
-                    Dim id_design As String = GVItemList.GetRowCellValue(i, "id_design").ToString
-
-                    If jum_ins_i > 0 Then
-                        query_detail += ", "
-                    End If
-                    query_detail += "('" + id + "', '" + id_design + "') "
-                    jum_ins_i = jum_ins_i + 1
-                Next
-                If jum_ins_i > 0 Then
-                    execute_non_query(query_detail, True, "", "", "", "")
-                End If
-
-                submit_who_prepared(rmt, id, id_user)
-
-                FormDisableExos.viewData()
-                FormDisableExos.GVData.FocusedRowHandle = find_row(FormDisableExos.GVData, "id_disable_exos", id)
-                action = "upd"
-                actionLoad()
-                infoCustom("Document #" + TxtSalesOrderNumber.Text + " was created successfully. Waiting for approval")
-            End If
-        End If
     End Sub
 End Class
