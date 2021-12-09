@@ -39,7 +39,6 @@
             BMark.Enabled = False
             BtnAttachment.Enabled = False
             DEForm.Text = view_date(0)
-            viewDetail()
         ElseIf action = "upd" Then
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
             BMark.Enabled = True
@@ -48,6 +47,7 @@
             Dim r As New ClassEOSChange()
             Dim query As String = r.queryMain("AND s.id_eos_change='" + id + "'", "1")
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
+            SLEMKD.EditValue = data.Rows(0)("id_pp_change").ToString
             id_report_status = data.Rows(0)("id_report_status").ToString
             DEForm.EditValue = data.Rows(0)("created_date")
             TxtSalesOrderNumber.Text = data.Rows(0)("number").ToString
@@ -65,13 +65,17 @@
 
     Private Sub SLEMKD_EditValueChanged(sender As Object, e As EventArgs) Handles SLEMKD.EditValueChanged
         If action = "ins" Then
+            id_pp = "-1"
+            Dim endd As Date = Now
             Try
                 id_pp = SLEMKD.EditValue.ToString
-                DEPlanEndDate.EditValue = SLEMKD.Properties.View.GetFocusedRowCellValue("plan_end_date")
-                DENewEndDate.Properties.MinValue = DEPlanEndDate.EditValue
+                endd = SLEMKD.Properties.View.GetFocusedRowCellValue("plan_end_date")
             Catch ex As Exception
-
             End Try
+            DEPlanEndDate.EditValue = endd
+            Dim min_date As Date = endd.AddDays(1)
+            DENewEndDate.Properties.MinValue = min_date
+            viewDetail()
         End If
     End Sub
 
@@ -105,6 +109,7 @@
     End Sub
 
     Sub allow_status()
+        BtnPrint.Enabled = True
         SLEMKD.Enabled = False
         DEPlanEndDate.Enabled = False
         DENewEndDate.Enabled = False
@@ -192,5 +197,18 @@
                 infoCustom("Document #" + TxtSalesOrderNumber.Text + " was created successfully. Waiting for approval")
             End If
         End If
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.id_report = id
+        FormDocumentUpload.report_mark_type = rmt
+        If id_report_status = 6 Then
+            FormDocumentUpload.is_no_delete = "1"
+        ElseIf id_report_status = "5" Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -51,7 +51,7 @@
             stopCustom("Please complete all pending transaction first")
         Else
             FormEOSChangeDet.action = "ins"
-            FormDisableExosDet.ShowDialog()
+            FormEOSChangeDet.ShowDialog()
         End If
         Cursor = Cursors.Default
     End Sub

@@ -121,6 +121,7 @@ Partial Class FormEOSChangeDet
         'DEPlanEndDate
         '
         Me.DEPlanEndDate.EditValue = Nothing
+        Me.DEPlanEndDate.Enabled = False
         Me.DEPlanEndDate.Location = New System.Drawing.Point(151, 40)
         Me.DEPlanEndDate.Name = "DEPlanEndDate"
         Me.DEPlanEndDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -235,6 +236,7 @@ Partial Class FormEOSChangeDet
         Me.SLEMKD.Location = New System.Drawing.Point(151, 14)
         Me.SLEMKD.Name = "SLEMKD"
         Me.SLEMKD.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEMKD.Properties.NullText = "- Pilih Proposal -"
         Me.SLEMKD.Properties.View = Me.SearchLookUpEdit1View
         Me.SLEMKD.Size = New System.Drawing.Size(294, 20)
         Me.SLEMKD.TabIndex = 8896
@@ -423,6 +425,8 @@ Partial Class FormEOSChangeDet
         'GridColumnpropose_price_final
         '
         Me.GridColumnpropose_price_final.Caption = "Price"
+        Me.GridColumnpropose_price_final.DisplayFormat.FormatString = "N0"
+        Me.GridColumnpropose_price_final.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnpropose_price_final.FieldName = "propose_price_final"
         Me.GridColumnpropose_price_final.Name = "GridColumnpropose_price_final"
         Me.GridColumnpropose_price_final.Visible = True
@@ -448,6 +452,7 @@ Partial Class FormEOSChangeDet
         Me.Name = "FormEOSChangeDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Perpanjangan EOS"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()

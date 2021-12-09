@@ -1,5 +1,5 @@
-﻿Public Class ReportEOSChange+ Public Shared id As String = "-1"
- Public Shared id As String = "-1"
+﻿Public Class ReportEOSChange
+    Public Shared id As String = "-1"
     Public Shared dt As DataTable
     Public Shared rmt As String = "-1"
     Public Shared is_pre As String = "-1"

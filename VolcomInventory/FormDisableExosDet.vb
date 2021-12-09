@@ -59,6 +59,7 @@
     End Sub
 
     Sub allow_status()
+        BtnPrint.Enabled = True
         DEEffectDate.Enabled = False
         BtnAdd.Visible = False
         BtnDel.Visible = False
