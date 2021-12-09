@@ -139,6 +139,7 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                     load_list_adm()
                     load_list_chosen()
                     load_duty()
+                    load_list_wo()
                 ElseIf steps > 3 Then
                     load_list_orign()
                     load_list_dest()
@@ -146,8 +147,6 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
                     load_list_chosen()
                 ElseIf steps > 2 Then
                     load_list_orign()
-                ElseIf steps > 7 Then
-                    load_list_wo()
                 End If
                 '
                 If steps = 1 And Not id = "-1" Then
