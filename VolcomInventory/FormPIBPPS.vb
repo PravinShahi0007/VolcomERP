@@ -106,12 +106,12 @@ GROUP BY f.id_pre_cal_fgpo"
                 q = "CALL gen_number('" & id & "','359')"
                 execute_non_query(q, True, "", "", "", "")
                 '
-                q = "INSERT INTO `tb_pib_pps_det`(`id_pib_pps`,`id_pre_cal_fgpo`,`old_pib_no`,`old_pib_date`,`pib_no`,`pib_date`) VALUES"
+                q = "INSERT INTO `tb_pib_pps_det`(`id_pib_pps`,`id_pre_cal_fgpo`,`old_pib_no`,`old_pib_date`,`old_vp_due_date`,`pib_no`,`pib_date`,`vp_due_date`) VALUES"
                 For i = 0 To BGVPIBPPS.RowCount - 1
                     If Not i = 0 Then
                         q += ","
                     End If
-                    q += "('" & id & "','" & BGVPIBPPS.GetRowCellValue(i, "id_pre_cal_fgpo").ToString & "','" & addSlashes(BGVPIBPPS.GetRowCellValue(i, "old_pib_no").ToString) & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "old_pib_date").ToString).ToString("yyyy-MM-dd") & "','" & addSlashes(BGVPIBPPS.GetRowCellValue(i, "pib_no").ToString) & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "pib_date").ToString).ToString("yyyy-MM-dd") & "')"
+                    q += "('" & id & "','" & BGVPIBPPS.GetRowCellValue(i, "id_pre_cal_fgpo").ToString & "','" & addSlashes(BGVPIBPPS.GetRowCellValue(i, "old_pib_no").ToString) & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "old_pib_date").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "old_vp_due_date").ToString).ToString("yyyy-MM-dd") & "','" & addSlashes(BGVPIBPPS.GetRowCellValue(i, "pib_no").ToString) & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "pib_date").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "vp_due_date").ToString).ToString("yyyy-MM-dd") & "')"
                 Next
                 execute_query(q, -1, True, "", "", "", "")
 

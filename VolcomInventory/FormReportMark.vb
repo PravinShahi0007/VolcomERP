@@ -10979,7 +10979,7 @@ WHERE id_acc_trans='" & old_id_acc_trans & "'"
             If id_status_reportx = "6" Then
                 Dim q As String = "UPDATE tb_pib_review pr
 INNER JOIN tb_pib_pps_det ppsd ON ppsd.id_pre_cal_fgpo=pr.id_pre_cal_fgpo AND is_active=1
-SET pr.pib_no=ppsd.pib_no,pr.pib_date=ppsd.pib_date
+SET pr.pib_no=ppsd.pib_no,pr.pib_date=ppsd.pib_date,pr.vp_due_date=ppsd.vp_due_date
 WHERE ppsd.id_pib_pps='" & id_report & "'"
                 execute_non_query(q, True, "", "", "", "")
             End If
