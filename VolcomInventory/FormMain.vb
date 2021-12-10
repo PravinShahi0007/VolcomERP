@@ -16891,4 +16891,16 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             apply_darkmode_skin()
         End If
     End Sub
+
+    Sub call_click(ByVal btn As String)
+        For Each group As DevExpress.XtraNavBar.NavBarGroup In NBProdRet.Groups
+            For i As Integer = 0 To (group.ItemLinks.Count - 1)
+                If group.ItemLinks(i).ItemName.ToString = btn Then
+                    NBEOSChange_LinkClicked(group.ItemLinks(i).Item, New DevExpress.XtraNavBar.NavBarLinkEventArgs(group.ItemLinks(i).Item.Links(0)))
+
+                    Exit For
+                End If
+            Next
+        Next group
+    End Sub
 End Class
