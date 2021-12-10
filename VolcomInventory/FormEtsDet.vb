@@ -441,7 +441,25 @@
 
     Private Sub BtnAddPTH_Click(sender As Object, e As EventArgs) Handles BtnAddPTH.Click
         Cursor = Cursors.WaitCursor
+        FormEtsSingle.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 
+    Private Sub BtnBulkEdit_Click(sender As Object, e As EventArgs) Handles BtnBulkEdit.Click
+        'check ud extended ato belum
+        Cursor = Cursors.WaitCursor
+        Dim last_filter As String = GVProduct.ActiveFilterString.ToString
+        Dim ftr As String = "[is_select]='Yes' "
+        If last_filter <> "" Then
+            ftr += "AND " + last_filter
+        End If
+        GVProduct.ActiveFilterString = ftr
+        If GVProduct.RowCount > 0 Then
+            FormEtsProposeType.ShowDialog()
+        Else
+            stopCustom("No selected items")
+        End If
+        GVProduct.ActiveFilterString = "" + last_filter
         Cursor = Cursors.Default
     End Sub
 End Class

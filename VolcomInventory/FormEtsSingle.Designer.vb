@@ -21,8 +21,8 @@ Partial Class FormEtsSingle
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEtsSingle))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_pp_change = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -45,16 +45,6 @@ Partial Class FormEtsSingle
         Me.PanelControl1.Size = New System.Drawing.Size(551, 50)
         Me.PanelControl1.TabIndex = 0
         '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(474, 2)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(75, 46)
-        Me.BtnAdd.TabIndex = 1
-        Me.BtnAdd.Text = "Add"
-        '
         'BtnDiscard
         '
         Me.BtnDiscard.Dock = System.Windows.Forms.DockStyle.Right
@@ -64,6 +54,16 @@ Partial Class FormEtsSingle
         Me.BtnDiscard.Size = New System.Drawing.Size(85, 46)
         Me.BtnDiscard.TabIndex = 2
         Me.BtnDiscard.Text = "Discard"
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
+        Me.BtnAdd.Location = New System.Drawing.Point(474, 2)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(75, 46)
+        Me.BtnAdd.TabIndex = 1
+        Me.BtnAdd.Text = "Add"
         '
         'GCData
         '

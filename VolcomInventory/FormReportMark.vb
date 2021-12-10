@@ -10294,7 +10294,7 @@ WHERE pps.id_product_weight_pps='" & id_report & "'"
             If id_status_reportx = "6" Then
                 'post master
                 Dim qm As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, is_active_wh, id_user)
-                SELECT pd.id_design, p.id_design_price_type,t.design_mkd,1,pd.propose_price_final, NOW(), p.effective_date,2,1," + id_user + "
+                SELECT pd.id_design, p.id_design_price_type,t.design_mkd,1,pd.propose_price_final, NOW(), p.effective_date,0,1," + id_user + "
                 FROM tb_pp_change_det pd
                 INNER JOIN tb_pp_change p ON p.id_pp_change = pd.id_pp_change
                 INNER JOIN tb_lookup_design_mkd t ON t.id_design_mkd = p.id_design_mkd
@@ -11067,6 +11067,21 @@ WHERE ppsd.id_pib_pps='" & id_report & "'"
             End If
 
             query = String.Format("UPDATE tb_eos_change SET id_report_status = '{0}' WHERE id_eos_change = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "370" Then
+            'eos to sale
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'insert price
+                Dim query_ins As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) "
+                query_ins += ""
+                execute_non_query(query_ins, True, "", "", "", "")
+            End If
+
+            query = String.Format("UPDATE tb_ets SET id_report_status = '{0}' WHERE id_ets = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

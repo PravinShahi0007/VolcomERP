@@ -689,7 +689,7 @@ Partial Class FormEtsDet
         Me.BtnBulkEdit.Name = "BtnBulkEdit"
         Me.BtnBulkEdit.Size = New System.Drawing.Size(69, 56)
         Me.BtnBulkEdit.TabIndex = 8933
-        Me.BtnBulkEdit.Text = "Edit"
+        Me.BtnBulkEdit.Text = "Bulk Edit"
         Me.BtnBulkEdit.Visible = False
         '
         'BtnExportToXLS
