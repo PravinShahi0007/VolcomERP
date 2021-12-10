@@ -117,6 +117,7 @@ Partial Class FormSOPIndex
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Menu ERP"
+        Me.GridColumn4.FieldName = "menu_caption"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3

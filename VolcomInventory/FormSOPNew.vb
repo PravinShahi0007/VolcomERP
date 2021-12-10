@@ -15,6 +15,9 @@
         DELastUpdate.EditValue = Now()
         TELastUpdate.Text = get_emp(id_employee_user, "2")
         '
+        load_departement()
+        load_modul_erp()
+        '
         If id = "-1" Then
 
         Else
@@ -72,7 +75,7 @@ FROM tb_m_departement"
             qw += " AND emp.`id_departement`='" & id_departement_user & "' AND emp.`id_employee_active`=1 "
         End If
 
-        Dim q As String = "SELECT menu.id_menu,c.`form_control_name`,f.`form_name`,c.`form_control_name`,i.`id_menu`,m.`menu_name`,role.`role`,m.`description_menu_name`,m.`menu_caption`
+        Dim q As String = "SELECT m.id_menu,c.`form_control_name`,f.`form_name`,c.`form_control_name`,i.`id_menu`,m.`menu_name`,role.`role`,m.`description_menu_name`,m.`menu_caption`
 FROM tb_m_user usr
 INNER JOIN tb_m_employee emp ON usr.`id_employee`=emp.`id_employee` " & qw & "
 INNER JOIN `tb_menu_acc` menu ON menu.`id_role`=usr.`id_role`
@@ -84,6 +87,7 @@ INNER JOIN tb_menu m ON m.`id_menu`=i.`id_menu`
 GROUP BY m.`id_menu`"
 
         viewSearchLookupQuery(SLEModul, q, "id_menu", "menu_caption", "id_menu")
+        SLEModul.EditValue = Nothing
     End Sub
 
     Private Sub BUpdate_Click(sender As Object, e As EventArgs) Handles BUpdate.Click

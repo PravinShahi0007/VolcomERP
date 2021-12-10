@@ -21,59 +21,59 @@ Partial Class FormSOPNew
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.TESOPName = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.DECreatedDate = New DevExpress.XtraEditors.DateEdit()
-        Me.BUpdate = New DevExpress.XtraEditors.SimpleButton()
-        Me.BUploadFile = New DevExpress.XtraEditors.ButtonEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.PCUpload = New DevExpress.XtraEditors.PanelControl()
-        Me.GCModulERP = New DevExpress.XtraGrid.GridControl()
-        Me.GVModulERP = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PCModul = New DevExpress.XtraEditors.PanelControl()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SLEModul = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.CM = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.DeleteModulToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.TELastUpdate = New DevExpress.XtraEditors.TextEdit()
-        Me.DELastUpdate = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEDepartement = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.TELastUpdate = New DevExpress.XtraEditors.TextEdit()
+        Me.DELastUpdate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
+        Me.DECreatedDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TESOPName = New DevExpress.XtraEditors.TextEdit()
+        Me.BUpdate = New DevExpress.XtraEditors.SimpleButton()
+        Me.BUploadFile = New DevExpress.XtraEditors.ButtonEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.PCUpload = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCModulERP = New DevExpress.XtraGrid.GridControl()
+        Me.CM = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DeleteModulToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GVModulERP = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PCModul = New DevExpress.XtraEditors.PanelControl()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEModul = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TELastUpdate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DELastUpdate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DELastUpdate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TESOPName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TESOPName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BUploadFile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCUpload, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCUpload.SuspendLayout()
         CType(Me.GCModulERP, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CM.SuspendLayout()
         CType(Me.GVModulERP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCModul, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCModul.SuspendLayout()
         CType(Me.SLEModul.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.CM.SuspendLayout()
-        CType(Me.TELastUpdate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DELastUpdate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DELastUpdate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -96,222 +96,45 @@ Partial Class FormSOPNew
         Me.PanelControl1.Size = New System.Drawing.Size(719, 125)
         Me.PanelControl1.TabIndex = 1
         '
-        'LabelControl1
+        'SLEDepartement
         '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(19, 15)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(54, 13)
-        Me.LabelControl1.TabIndex = 8
-        Me.LabelControl1.Text = "Created By"
+        Me.SLEDepartement.Location = New System.Drawing.Point(111, 93)
+        Me.SLEDepartement.Name = "SLEDepartement"
+        Me.SLEDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEDepartement.Properties.View = Me.GridView1
+        Me.SLEDepartement.Size = New System.Drawing.Size(290, 20)
+        Me.SLEDepartement.TabIndex = 16
         '
-        'TECreatedBy
+        'GridView1
         '
-        Me.TECreatedBy.Enabled = False
-        Me.TECreatedBy.Location = New System.Drawing.Point(111, 12)
-        Me.TECreatedBy.Name = "TECreatedBy"
-        Me.TECreatedBy.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TECreatedBy.Properties.Appearance.Options.UseFont = True
-        Me.TECreatedBy.Properties.ReadOnly = True
-        Me.TECreatedBy.Size = New System.Drawing.Size(232, 20)
-        Me.TECreatedBy.TabIndex = 9
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        'LabelControl2
+        'GridColumn4
         '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(19, 70)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(50, 13)
-        Me.LabelControl2.TabIndex = 7
-        Me.LabelControl2.Text = "SOP Name"
+        Me.GridColumn4.Caption = "ID"
+        Me.GridColumn4.FieldName = "id_departement"
+        Me.GridColumn4.Name = "GridColumn4"
         '
-        'TESOPName
+        'GridColumn5
         '
-        Me.TESOPName.Enabled = False
-        Me.TESOPName.Location = New System.Drawing.Point(111, 67)
-        Me.TESOPName.Name = "TESOPName"
-        Me.TESOPName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TESOPName.Properties.Appearance.Options.UseFont = True
-        Me.TESOPName.Size = New System.Drawing.Size(585, 20)
-        Me.TESOPName.TabIndex = 8
+        Me.GridColumn5.Caption = "Departement"
+        Me.GridColumn5.FieldName = "departement"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
         '
-        'LabelControl5
+        'LabelControl8
         '
-        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(19, 43)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(65, 13)
-        Me.LabelControl5.TabIndex = 10
-        Me.LabelControl5.Text = "Created Date"
-        '
-        'DECreatedDate
-        '
-        Me.DECreatedDate.EditValue = Nothing
-        Me.DECreatedDate.Enabled = False
-        Me.DECreatedDate.Location = New System.Drawing.Point(111, 40)
-        Me.DECreatedDate.Name = "DECreatedDate"
-        Me.DECreatedDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DECreatedDate.Properties.Appearance.Options.UseFont = True
-        Me.DECreatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreatedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DECreatedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DECreatedDate.Properties.ReadOnly = True
-        Me.DECreatedDate.Size = New System.Drawing.Size(232, 20)
-        Me.DECreatedDate.TabIndex = 9
-        '
-        'BUpdate
-        '
-        Me.BUpdate.Appearance.BackColor = System.Drawing.Color.DarkBlue
-        Me.BUpdate.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BUpdate.Appearance.Options.UseBackColor = True
-        Me.BUpdate.Appearance.Options.UseForeColor = True
-        Me.BUpdate.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
-        Me.BUpdate.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BUpdate.Location = New System.Drawing.Point(0, 497)
-        Me.BUpdate.Name = "BUpdate"
-        Me.BUpdate.Size = New System.Drawing.Size(719, 40)
-        Me.BUpdate.TabIndex = 8
-        Me.BUpdate.Text = "Update Data"
-        '
-        'BUploadFile
-        '
-        Me.BUploadFile.Location = New System.Drawing.Point(111, 10)
-        Me.BUploadFile.Name = "BUploadFile"
-        Me.BUploadFile.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.BUploadFile.Properties.ReadOnly = True
-        Me.BUploadFile.Size = New System.Drawing.Size(458, 20)
-        Me.BUploadFile.TabIndex = 9
-        Me.BUploadFile.Tag = "ButtonEdit"
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(19, 13)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(67, 13)
-        Me.LabelControl3.TabIndex = 10
-        Me.LabelControl3.Text = "File Document"
-        '
-        'PCUpload
-        '
-        Me.PCUpload.Controls.Add(Me.SimpleButton2)
-        Me.PCUpload.Controls.Add(Me.LabelControl3)
-        Me.PCUpload.Controls.Add(Me.BUploadFile)
-        Me.PCUpload.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PCUpload.Enabled = False
-        Me.PCUpload.Location = New System.Drawing.Point(0, 125)
-        Me.PCUpload.Name = "PCUpload"
-        Me.PCUpload.Size = New System.Drawing.Size(719, 41)
-        Me.PCUpload.TabIndex = 11
-        '
-        'GCModulERP
-        '
-        Me.GCModulERP.ContextMenuStrip = Me.CM
-        Me.GCModulERP.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCModulERP.Location = New System.Drawing.Point(0, 211)
-        Me.GCModulERP.MainView = Me.GVModulERP
-        Me.GCModulERP.Name = "GCModulERP"
-        Me.GCModulERP.Size = New System.Drawing.Size(719, 286)
-        Me.GCModulERP.TabIndex = 12
-        Me.GCModulERP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVModulERP})
-        '
-        'GVModulERP
-        '
-        Me.GVModulERP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
-        Me.GVModulERP.GridControl = Me.GCModulERP
-        Me.GVModulERP.Name = "GVModulERP"
-        Me.GVModulERP.OptionsView.ShowGroupPanel = False
-        '
-        'PCModul
-        '
-        Me.PCModul.Controls.Add(Me.BAdd)
-        Me.PCModul.Controls.Add(Me.LabelControl4)
-        Me.PCModul.Controls.Add(Me.SLEModul)
-        Me.PCModul.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PCModul.Enabled = False
-        Me.PCModul.Location = New System.Drawing.Point(0, 166)
-        Me.PCModul.Name = "PCModul"
-        Me.PCModul.Size = New System.Drawing.Size(719, 45)
-        Me.PCModul.TabIndex = 13
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID"
-        Me.GridColumn1.FieldName = "id_menu"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Menu Name"
-        Me.GridColumn2.FieldName = "description_menu_name"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 816
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Caption"
-        Me.GridColumn3.FieldName = "menu_caption"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 816
-        '
-        'SLEModul
-        '
-        Me.SLEModul.Location = New System.Drawing.Point(111, 13)
-        Me.SLEModul.Name = "SLEModul"
-        Me.SLEModul.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEModul.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEModul.Size = New System.Drawing.Size(290, 20)
-        Me.SLEModul.TabIndex = 0
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(19, 16)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(50, 13)
-        Me.LabelControl4.TabIndex = 8
-        Me.LabelControl4.Text = "Modul ERP"
-        '
-        'BAdd
-        '
-        Me.BAdd.Location = New System.Drawing.Point(407, 11)
-        Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(61, 23)
-        Me.BAdd.TabIndex = 9
-        Me.BAdd.Text = "add"
-        '
-        'CM
-        '
-        Me.CM.Enabled = False
-        Me.CM.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteModulToolStripMenuItem})
-        Me.CM.Name = "CM"
-        Me.CM.Size = New System.Drawing.Size(146, 26)
-        '
-        'DeleteModulToolStripMenuItem
-        '
-        Me.DeleteModulToolStripMenuItem.Enabled = False
-        Me.DeleteModulToolStripMenuItem.Name = "DeleteModulToolStripMenuItem"
-        Me.DeleteModulToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
-        Me.DeleteModulToolStripMenuItem.Text = "Delete Modul"
-        '
-        'SimpleButton2
-        '
-        Me.SimpleButton2.Location = New System.Drawing.Point(575, 8)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(61, 23)
-        Me.SimpleButton2.TabIndex = 11
-        Me.SimpleButton2.Text = "upload"
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl8.Location = New System.Drawing.Point(19, 96)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl8.TabIndex = 15
+        Me.LabelControl8.Text = "Departement"
         '
         'LabelControl6
         '
@@ -358,43 +181,221 @@ Partial Class FormSOPNew
         Me.DELastUpdate.Size = New System.Drawing.Size(232, 20)
         Me.DELastUpdate.TabIndex = 13
         '
-        'LabelControl8
+        'LabelControl1
         '
-        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(19, 96)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(63, 13)
-        Me.LabelControl8.TabIndex = 15
-        Me.LabelControl8.Text = "Departement"
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(19, 15)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl1.TabIndex = 8
+        Me.LabelControl1.Text = "Created By"
         '
-        'SLEDepartement
+        'LabelControl5
         '
-        Me.SLEDepartement.Location = New System.Drawing.Point(111, 93)
-        Me.SLEDepartement.Name = "SLEDepartement"
-        Me.SLEDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEDepartement.Properties.View = Me.GridView1
-        Me.SLEDepartement.Size = New System.Drawing.Size(290, 20)
-        Me.SLEDepartement.TabIndex = 16
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(19, 43)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl5.TabIndex = 10
+        Me.LabelControl5.Text = "Created Date"
         '
-        'GridView1
+        'TECreatedBy
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.TECreatedBy.Enabled = False
+        Me.TECreatedBy.Location = New System.Drawing.Point(111, 12)
+        Me.TECreatedBy.Name = "TECreatedBy"
+        Me.TECreatedBy.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECreatedBy.Properties.Appearance.Options.UseFont = True
+        Me.TECreatedBy.Properties.ReadOnly = True
+        Me.TECreatedBy.Size = New System.Drawing.Size(232, 20)
+        Me.TECreatedBy.TabIndex = 9
         '
-        'GridColumn4
+        'DECreatedDate
         '
-        Me.GridColumn4.Caption = "ID"
-        Me.GridColumn4.Name = "GridColumn4"
+        Me.DECreatedDate.EditValue = Nothing
+        Me.DECreatedDate.Enabled = False
+        Me.DECreatedDate.Location = New System.Drawing.Point(111, 40)
+        Me.DECreatedDate.Name = "DECreatedDate"
+        Me.DECreatedDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DECreatedDate.Properties.Appearance.Options.UseFont = True
+        Me.DECreatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreatedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DECreatedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECreatedDate.Properties.ReadOnly = True
+        Me.DECreatedDate.Size = New System.Drawing.Size(232, 20)
+        Me.DECreatedDate.TabIndex = 9
         '
-        'GridColumn5
+        'LabelControl2
         '
-        Me.GridColumn5.Caption = "Departement"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 0
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(19, 70)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(50, 13)
+        Me.LabelControl2.TabIndex = 7
+        Me.LabelControl2.Text = "SOP Name"
+        '
+        'TESOPName
+        '
+        Me.TESOPName.Location = New System.Drawing.Point(111, 67)
+        Me.TESOPName.Name = "TESOPName"
+        Me.TESOPName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TESOPName.Properties.Appearance.Options.UseFont = True
+        Me.TESOPName.Size = New System.Drawing.Size(585, 20)
+        Me.TESOPName.TabIndex = 8
+        '
+        'BUpdate
+        '
+        Me.BUpdate.Appearance.BackColor = System.Drawing.Color.DarkBlue
+        Me.BUpdate.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BUpdate.Appearance.Options.UseBackColor = True
+        Me.BUpdate.Appearance.Options.UseForeColor = True
+        Me.BUpdate.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BUpdate.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BUpdate.Location = New System.Drawing.Point(0, 497)
+        Me.BUpdate.Name = "BUpdate"
+        Me.BUpdate.Size = New System.Drawing.Size(719, 40)
+        Me.BUpdate.TabIndex = 8
+        Me.BUpdate.Text = "Update Data"
+        '
+        'BUploadFile
+        '
+        Me.BUploadFile.Location = New System.Drawing.Point(111, 10)
+        Me.BUploadFile.Name = "BUploadFile"
+        Me.BUploadFile.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.BUploadFile.Properties.ReadOnly = True
+        Me.BUploadFile.Size = New System.Drawing.Size(458, 20)
+        Me.BUploadFile.TabIndex = 9
+        Me.BUploadFile.Tag = "ButtonEdit"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(19, 13)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(67, 13)
+        Me.LabelControl3.TabIndex = 10
+        Me.LabelControl3.Text = "File Document"
+        '
+        'PCUpload
+        '
+        Me.PCUpload.Controls.Add(Me.SimpleButton2)
+        Me.PCUpload.Controls.Add(Me.LabelControl3)
+        Me.PCUpload.Controls.Add(Me.BUploadFile)
+        Me.PCUpload.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCUpload.Enabled = False
+        Me.PCUpload.Location = New System.Drawing.Point(0, 125)
+        Me.PCUpload.Name = "PCUpload"
+        Me.PCUpload.Size = New System.Drawing.Size(719, 41)
+        Me.PCUpload.TabIndex = 11
+        '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.Location = New System.Drawing.Point(575, 8)
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(61, 23)
+        Me.SimpleButton2.TabIndex = 11
+        Me.SimpleButton2.Text = "upload"
+        '
+        'GCModulERP
+        '
+        Me.GCModulERP.ContextMenuStrip = Me.CM
+        Me.GCModulERP.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCModulERP.Location = New System.Drawing.Point(0, 211)
+        Me.GCModulERP.MainView = Me.GVModulERP
+        Me.GCModulERP.Name = "GCModulERP"
+        Me.GCModulERP.Size = New System.Drawing.Size(719, 286)
+        Me.GCModulERP.TabIndex = 12
+        Me.GCModulERP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVModulERP})
+        '
+        'CM
+        '
+        Me.CM.Enabled = False
+        Me.CM.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteModulToolStripMenuItem})
+        Me.CM.Name = "CM"
+        Me.CM.Size = New System.Drawing.Size(146, 26)
+        '
+        'DeleteModulToolStripMenuItem
+        '
+        Me.DeleteModulToolStripMenuItem.Enabled = False
+        Me.DeleteModulToolStripMenuItem.Name = "DeleteModulToolStripMenuItem"
+        Me.DeleteModulToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
+        Me.DeleteModulToolStripMenuItem.Text = "Delete Modul"
+        '
+        'GVModulERP
+        '
+        Me.GVModulERP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GVModulERP.GridControl = Me.GCModulERP
+        Me.GVModulERP.Name = "GVModulERP"
+        Me.GVModulERP.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID"
+        Me.GridColumn1.FieldName = "id_menu"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Menu Name"
+        Me.GridColumn2.FieldName = "description_menu_name"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.Width = 816
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Caption"
+        Me.GridColumn3.FieldName = "menu_caption"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.Width = 816
+        '
+        'PCModul
+        '
+        Me.PCModul.Controls.Add(Me.BAdd)
+        Me.PCModul.Controls.Add(Me.LabelControl4)
+        Me.PCModul.Controls.Add(Me.SLEModul)
+        Me.PCModul.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCModul.Enabled = False
+        Me.PCModul.Location = New System.Drawing.Point(0, 166)
+        Me.PCModul.Name = "PCModul"
+        Me.PCModul.Size = New System.Drawing.Size(719, 45)
+        Me.PCModul.TabIndex = 13
+        '
+        'BAdd
+        '
+        Me.BAdd.Location = New System.Drawing.Point(407, 11)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(61, 23)
+        Me.BAdd.TabIndex = 9
+        Me.BAdd.Text = "add"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(19, 16)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(50, 13)
+        Me.LabelControl4.TabIndex = 8
+        Me.LabelControl4.Text = "Modul ERP"
+        '
+        'SLEModul
+        '
+        Me.SLEModul.Location = New System.Drawing.Point(111, 13)
+        Me.SLEModul.Name = "SLEModul"
+        Me.SLEModul.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEModul.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEModul.Size = New System.Drawing.Size(290, 20)
+        Me.SLEModul.TabIndex = 0
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'FormSOPNew
         '
@@ -415,27 +416,27 @@ Partial Class FormSOPNew
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TELastUpdate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DELastUpdate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DELastUpdate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TESOPName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TESOPName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BUploadFile.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCUpload, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCUpload.ResumeLayout(False)
         Me.PCUpload.PerformLayout()
         CType(Me.GCModulERP, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CM.ResumeLayout(False)
         CType(Me.GVModulERP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCModul, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCModul.ResumeLayout(False)
         Me.PCModul.PerformLayout()
         CType(Me.SLEModul.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.CM.ResumeLayout(False)
-        CType(Me.TELastUpdate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DELastUpdate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DELastUpdate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
