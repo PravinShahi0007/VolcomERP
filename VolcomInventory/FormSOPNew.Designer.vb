@@ -53,6 +53,9 @@ Partial Class FormSOPNew
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEModul = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -392,10 +395,33 @@ Partial Class FormSOPNew
         '
         'SearchLookUpEdit1View
         '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "id"
+        Me.GridColumn6.FieldName = "id_menu"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Menu"
+        Me.GridColumn7.FieldName = "description_menu_name"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Caption"
+        Me.GridColumn8.FieldName = "menu_caption"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 1
         '
         'FormSOPNew
         '
@@ -474,4 +500,7 @@ Partial Class FormSOPNew
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

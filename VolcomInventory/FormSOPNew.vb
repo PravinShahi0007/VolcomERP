@@ -102,7 +102,7 @@ VALUES('" & addSlashes(TESOPName.Text) & "','" & SLEDepartement.EditValue.ToStri
                 infoCustom("SOP data entry success")
             Else
                 'update
-                Dim q As String = "UPDATE tb_sop SET sop_name='',id_departement='',`last_update`=NOW(),`last_update_by`'" & id_user & "' WHERE id_sop='" & id & "'"
+                Dim q As String = "UPDATE tb_sop SET sop_name='',id_departement='',`last_update`=NOW(),`last_update_by`='" & id_user & "' WHERE id_sop='" & id & "'"
                 execute_non_query(q, True, "", "", "", "")
 
                 'modul
