@@ -70,6 +70,26 @@ Public Class FormMain
         NotifyIconVI.ShowBalloonTip(2000, "Information", "Volcom ERP is now running." + Environment.NewLine + "Right click at volcom icon for more option.", ToolTipIcon.Info)
         Cursor = Cursors.Default
     End Sub
+
+    Sub sop_index()
+        Dim q As String = "SELECT * FROM(
+	SELECT id_user_head AS id_user,2 AS is_super_admin FROM tb_m_departement
+	UNION ALL
+	SELECT id_user,is_super_admin FROM tb_sop_user
+)tb WHERE tb.id_user='" & id_user & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            Try
+                FormSOPIndex.MdiParent = Me
+                FormSOPIndex.Show()
+                FormSOPIndex.WindowState = FormWindowState.Maximized
+                FormSOPIndex.Focus()
+            Catch ex As Exception
+                errorProcess()
+            End Try
+        End If
+    End Sub
+
     '----------- check version
     Sub check_and_update_version()
         Dim update_url As String = get_setup_field("update_address")
@@ -16882,5 +16902,25 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             errorProcess()
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BBDarkMode_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBDarkMode.ItemClick
+        If DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Visual Studio 2013 Dark" Then
+            apply_skin()
+        Else
+            apply_darkmode_skin()
+        End If
+    End Sub
+
+    Sub call_click(ByVal btn As String)
+        For Each group As DevExpress.XtraNavBar.NavBarGroup In NBProdRet.Groups
+            For i As Integer = 0 To (group.ItemLinks.Count - 1)
+                If group.ItemLinks(i).ItemName.ToString = btn Then
+                    NBEOSChange_LinkClicked(group.ItemLinks(i).Item, New DevExpress.XtraNavBar.NavBarLinkEventArgs(group.ItemLinks(i).Item.Links(0)))
+
+                    Exit For
+                End If
+            Next
+        Next group
     End Sub
 End Class

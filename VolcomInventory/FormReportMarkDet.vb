@@ -83,6 +83,7 @@
 
     Private Sub BAccept_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BAccept.Click
         Cursor = Cursors.WaitCursor
+        BAccept.Enabled = False
         If BAccept.Text = "Upload" Then
             FormDocumentUpload.id_report = id_report
             FormDocumentUpload.report_mark_type = report_mark_type
@@ -92,6 +93,7 @@
         Else
             accept("form")
         End If
+        BAccept.Enabled = True
         Cursor = Cursors.Default
     End Sub
 

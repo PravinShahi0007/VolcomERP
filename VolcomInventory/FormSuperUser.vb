@@ -112,6 +112,15 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+        'Dim q As String = "INSERT INTO tb_temp_menu(menu_name,menu_caption) VALUES('tes','tes')"
+        'For Each group As DevExpress.XtraNavBar.NavBarGroup In FormMain.NBProdRet.Groups
+        '    For i As Integer = 0 To (group.ItemLinks.Count - 1)
+        '        q += ",('" & group.ItemLinks(i).ItemName.ToString & "','" & group.ItemLinks(i).Item.Caption.ToString & "')"
+        '    Next
+        'Next group
+
+        'execute_non_query(q, True, "", "", "", "")
+
         'send mail
         '        Dim id_print As String = "1446"
         '        Dim qc As String = "SELECT p.id_3pl,p.number,asr.`report_mark_type`,c.`comp_name`

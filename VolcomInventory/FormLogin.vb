@@ -67,6 +67,7 @@ Public Class FormLogin
                     FormMain.LogoutToolStripMenuItem.Visible = True
                     FormMain.DashboardToolStripMenuItem.Visible = True
                     FormMain.checkChangePass()
+                    FormMain.sop_index()
                 Else
                     XtraMessageBox.Show("Login failure, please check your input !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
