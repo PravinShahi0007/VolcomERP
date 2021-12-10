@@ -367,30 +367,30 @@
                                 End If
 
                                 'overtime in shedule
-                                If GVAttendance.GetRowCellValue(i, "id_employee").ToString = GVEmployee.GetRowCellValue(j, "id_employee").ToString And GVAttendance.GetRowCellValue(i, "ot_potention").ToString = "2" Then
-                                    If (overtime_in >= start_work_att And overtime_in <= end_work_att) Or (overtime_out >= start_work_att And overtime_out <= end_work_att) Then
-                                        Dim start_work_sch As DateTime = If(overtime_in > start_work_att, overtime_in, start_work_att)
-                                        Dim end_work_sch As DateTime = If(overtime_out < end_work_att, overtime_out, end_work_att)
+                                'If GVAttendance.GetRowCellValue(i, "id_employee").ToString = GVEmployee.GetRowCellValue(j, "id_employee").ToString And GVAttendance.GetRowCellValue(i, "ot_potention").ToString = "2" Then
+                                '    If (overtime_in >= start_work_att And overtime_in <= end_work_att) Or (overtime_out >= start_work_att And overtime_out <= end_work_att) Then
+                                '        Dim start_work_sch As DateTime = If(overtime_in > start_work_att, overtime_in, start_work_att)
+                                '        Dim end_work_sch As DateTime = If(overtime_out < end_work_att, overtime_out, end_work_att)
 
-                                        Dim ot_hours_sch As Decimal = (end_work_sch - start_work_sch).TotalHours - GVEmployee.GetRowCellValue(j, "ot_break")
-                                        Dim total_hours As Decimal = Math.Floor(ot_hours_sch / 0.5) * 0.5
+                                '        Dim ot_hours_sch As Decimal = (end_work_sch - start_work_sch).TotalHours - GVEmployee.GetRowCellValue(j, "ot_break")
+                                '        Dim total_hours As Decimal = Math.Floor(ot_hours_sch / 0.5) * 0.5
 
-                                        If total_hours >= ot_min Then
-                                            GVAttendance.SetRowCellValue(i, "ot_potention", "1")
+                                '        If total_hours >= ot_min Then
+                                '            GVAttendance.SetRowCellValue(i, "ot_potention", "1")
 
-                                            GVAttendance.SetRowCellValue(i, "start_work_ot", DateTime.Parse(start_work_sch.ToString).ToString("HH:mm:ss"))
-                                            GVAttendance.SetRowCellValue(i, "end_work_ot", DateTime.Parse(end_work_sch.ToString).ToString("HH:mm:ss"))
-                                            GVAttendance.SetRowCellValue(i, "break_hours", GVEmployee.GetRowCellValue(j, "ot_break"))
-                                            GVAttendance.SetRowCellValue(i, "ot_hours", ot_hours_sch)
-                                            GVAttendance.SetRowCellValue(i, "total_hours", total_hours)
+                                '            GVAttendance.SetRowCellValue(i, "start_work_ot", DateTime.Parse(start_work_sch.ToString).ToString("HH:mm:ss"))
+                                '            GVAttendance.SetRowCellValue(i, "end_work_ot", DateTime.Parse(end_work_sch.ToString).ToString("HH:mm:ss"))
+                                '            GVAttendance.SetRowCellValue(i, "break_hours", GVEmployee.GetRowCellValue(j, "ot_break"))
+                                '            GVAttendance.SetRowCellValue(i, "ot_hours", ot_hours_sch)
+                                '            GVAttendance.SetRowCellValue(i, "total_hours", total_hours)
 
-                                            GVAttendance.SetRowCellValue(i, "is_valid", "yes")
-                                            GVAttendance.SetRowCellValue(i, "ot_note", GVEmployee.GetRowCellValue(j, "ot_note").ToString)
+                                '            GVAttendance.SetRowCellValue(i, "is_valid", "yes")
+                                '            GVAttendance.SetRowCellValue(i, "ot_note", GVEmployee.GetRowCellValue(j, "ot_note").ToString)
 
-                                            GVAttendance.SetRowCellValue(i, "conversion_type", GVEmployee.GetRowCellValue(j, "conversion_type").ToString)
-                                        End If
-                                    End If
-                                End If
+                                '            GVAttendance.SetRowCellValue(i, "conversion_type", GVEmployee.GetRowCellValue(j, "conversion_type").ToString)
+                                '        End If
+                                '    End If
+                                'End If
                             End If
                         Next
                     End If
