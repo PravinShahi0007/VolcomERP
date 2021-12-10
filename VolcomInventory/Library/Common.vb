@@ -983,6 +983,13 @@ WHERE note='Closing End' AND id_coa_tag='" & id_coa_tag & "'"
         UserLookAndFeel.Default.SkinName = "Office 2010 Blue"
     End Sub
 
+    Sub apply_darkmode_skin()
+        DevExpress.Skins.SkinManager.EnableFormSkins()
+        DevExpress.UserSkins.BonusSkins.Register()
+        UserLookAndFeel.Default.UseWindowsXPTheme = False
+        UserLookAndFeel.Default.SkinName = "Visual Studio 2013 Dark"
+    End Sub
+
     Public Sub RunAtStartup(ByVal ApplicationName As String, ByVal ApplicationPath As String)
         Dim CU As Microsoft.Win32.RegistryKey = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("SOFTWARE\Microsoft\Windows\CurrentVersion\Run")
         With CU
@@ -1257,7 +1264,7 @@ WHERE note='Closing End' AND id_coa_tag='" & id_coa_tag & "'"
     End Sub
     Public Sub disableBarBtn()
         For Each item As DevExpress.XtraBars.BarItem In FormMain.RibbonControl.Items
-            If item.Name <> "BBClose" And item.Name <> "BBEditAccount" And item.Name <> "BBLogout" And item.Name <> "BBAbout" And item.Name <> "BBFeedback" And item.Name <> "BBToggleMenu" And item.Name <> "BBGuide" And item.Name <> "BBRefresh" And item.Name <> "BBNotif" Then
+            If item.Name <> "BBClose" And item.Name <> "BBEditAccount" And item.Name <> "BBLogout" And item.Name <> "BBAbout" And item.Name <> "BBFeedback" And item.Name <> "BBToggleMenu" And item.Name <> "BBGuide" And item.Name <> "BBRefresh" And item.Name <> "BBNotif" And item.Name <> "BBDarkMode" Then
                 item.Enabled = False
             End If
         Next item

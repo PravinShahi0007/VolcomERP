@@ -25,6 +25,7 @@ Partial Class FormPIBPPSDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.BCreatePPS = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.DEPIBOld = New DevExpress.XtraEditors.DateEdit()
@@ -35,11 +36,15 @@ Partial Class FormPIBPPSDet
         Me.TEPIBNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.DEVp = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEOldVp = New DevExpress.XtraEditors.DateEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEPIBOld.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,7 +53,10 @@ Partial Class FormPIBPPSDet
         CType(Me.DEPIB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEPIB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPIBNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEVp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEVp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEOldVp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEOldVp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -57,7 +65,7 @@ Partial Class FormPIBPPSDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(623, 431)
+        Me.GroupControl1.Size = New System.Drawing.Size(623, 436)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Pick ISB"
         '
@@ -68,7 +76,7 @@ Partial Class FormPIBPPSDet
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
         Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1})
-        Me.GCSummary.Size = New System.Drawing.Size(619, 409)
+        Me.GCSummary.Size = New System.Drawing.Size(619, 414)
         Me.GCSummary.TabIndex = 2
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
@@ -107,6 +115,10 @@ Partial Class FormPIBPPSDet
         Me.GridColumn16.VisibleIndex = 1
         Me.GridColumn16.Width = 446
         '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
         'BCreatePPS
         '
         Me.BCreatePPS.Appearance.BackColor = System.Drawing.Color.DarkBlue
@@ -115,7 +127,7 @@ Partial Class FormPIBPPSDet
         Me.BCreatePPS.Appearance.Options.UseForeColor = True
         Me.BCreatePPS.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
         Me.BCreatePPS.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCreatePPS.Location = New System.Drawing.Point(0, 517)
+        Me.BCreatePPS.Location = New System.Drawing.Point(0, 550)
         Me.BCreatePPS.Name = "BCreatePPS"
         Me.BCreatePPS.Size = New System.Drawing.Size(623, 40)
         Me.BCreatePPS.TabIndex = 7
@@ -123,6 +135,10 @@ Partial Class FormPIBPPSDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.DEOldVp)
+        Me.PanelControl1.Controls.Add(Me.LabelControl4)
+        Me.PanelControl1.Controls.Add(Me.DEVp)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.DEPIBOld)
         Me.PanelControl1.Controls.Add(Me.TEPIBNumberOld)
         Me.PanelControl1.Controls.Add(Me.LabelControl5)
@@ -132,9 +148,9 @@ Partial Class FormPIBPPSDet
         Me.PanelControl1.Controls.Add(Me.LabelControl3)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 431)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 436)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(623, 86)
+        Me.PanelControl1.Size = New System.Drawing.Size(623, 114)
         Me.PanelControl1.TabIndex = 8
         '
         'DEPIBOld
@@ -209,15 +225,52 @@ Partial Class FormPIBPPSDet
         Me.LabelControl2.TabIndex = 182
         Me.LabelControl2.Text = "PIB Number"
         '
-        'RepositoryItemMemoEdit1
+        'DEVp
         '
-        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        Me.DEVp.EditValue = Nothing
+        Me.DEVp.Location = New System.Drawing.Point(419, 82)
+        Me.DEVp.Name = "DEVp"
+        Me.DEVp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEVp.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEVp.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEVp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEVp.Size = New System.Drawing.Size(183, 20)
+        Me.DEVp.TabIndex = 195
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(336, 85)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(60, 13)
+        Me.LabelControl1.TabIndex = 194
+        Me.LabelControl1.Text = "VP Due Date"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(17, 85)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(79, 13)
+        Me.LabelControl4.TabIndex = 196
+        Me.LabelControl4.Text = "Old VP Due Date"
+        '
+        'DEOldVp
+        '
+        Me.DEOldVp.EditValue = Nothing
+        Me.DEOldVp.Location = New System.Drawing.Point(118, 82)
+        Me.DEOldVp.Name = "DEOldVp"
+        Me.DEOldVp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEOldVp.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEOldVp.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEOldVp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEOldVp.Properties.ReadOnly = True
+        Me.DEOldVp.Size = New System.Drawing.Size(183, 20)
+        Me.DEOldVp.TabIndex = 197
         '
         'FormPIBPPSDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(623, 557)
+        Me.ClientSize = New System.Drawing.Size(623, 590)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.BCreatePPS)
@@ -231,6 +284,7 @@ Partial Class FormPIBPPSDet
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -240,7 +294,10 @@ Partial Class FormPIBPPSDet
         CType(Me.DEPIB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEPIB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPIBNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEVp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEVp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEOldVp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEOldVp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -262,4 +319,8 @@ Partial Class FormPIBPPSDet
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents DEOldVp As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEVp As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
 End Class

@@ -28,7 +28,22 @@
         DEBPLFrom.EditValue = Now
         DEBPLTo.EditValue = Now
         load_vendor()
+        load_import_bpl()
+
         load_list("0")
+    End Sub
+
+    Sub load_import_bpl()
+        Dim query As String = "SELECT '366' AS rmt,'Import Payment - Logistik' AS `description`
+UNION ALL
+SELECT '367' AS rmt,'Import Payment - Asuransi' AS `description`
+UNION ALL
+SELECT '368A' AS rmt,'Import Payment - Surveyor (DP)' AS `description`
+UNION ALL
+SELECT '368B' AS rmt,'Import Payment - Surveyor (Payment)' AS `description`
+UNION ALL
+SELECT '369' AS rmt,'Import Payment - PIB' AS `description`"
+        viewSearchLookupQuery(SLEBPLImport, query, "rmt", "description", "rmt")
     End Sub
 
     Sub load_vendor()
@@ -42,7 +57,6 @@
                                 FROM tb_m_comp c
                                 WHERE (c.id_comp_cat='1' OR c.id_comp_cat='8') AND c.is_active='1'"
         viewSearchLookupQuery(SLEVendor, query, "id_comp", "comp_name", "id_comp")
-
     End Sub
 
     Sub load_list(ByVal is_filter_design As String)
@@ -61,7 +75,7 @@
             '
             If XTCInvoiceFGPO.SelectedTabPageIndex = 0 Then
                 'list payment
-                Dim query As String = "SELECT pn.*,CONCAT((IF(pn.doc_type=2,'FGPO','Umum')),' - ',pnt.pn_type) AS pn_type,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,det.amount,det.amount_vat,det.total_amount 
+                Dim query As String = "SELECT pn.*,CONCAT((IF(pn.doc_type=2,'FGPO',IF(pn.doc_type=5,'Voluntary Payment PIB',IF(pn.doc_type=6,'Import Payment','Umum')))),' - ',pnt.pn_type) AS pn_type,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,det.amount,det.amount_vat,det.total_amount 
 ,det.report_number,det.inv_number
 FROM tb_pn_fgpo pn
 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
@@ -217,10 +231,34 @@ WHERE 1=1  " & query_where & " ORDER BY pn.created_date DESC"
                 GVInvoiceLain.BestFitColumns()
             ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 5 Then
                 'Import payment
-                Dim query As String = ""
+                Dim query As String = "SELECT 'no' AS is_check,c.comp_name,f.number AS pre_cal_fgpo_number,f.id_pre_cal_fgpo,GROUP_CONCAT(CONCAT(po.prod_order_number,' - ',cd.class,' ',dsg.design_name,' ',cd.color) SEPARATOR '\n') AS list_fgpo
+,CONCAT((SELECT iwo_code_head FROM tb_opt_prod LIMIT 1),LPAD(f.id_pre_cal_fgpo,(SELECT iwo_code_digit FROM tb_opt_prod LIMIT 1),'0')) as wo_number,c.id_comp
+FROM tb_pre_cal_fgpo_list fl
+INNER JOIN tb_pre_cal_fgpo f ON f.id_pre_cal_fgpo=fl.id_pre_cal_fgpo
+INNER JOIN tb_m_comp c ON c.id_comp=f.choosen_id_comp
+INNER JOIN tb_prod_order po ON po.id_prod_order=fl.id_prod_order
+INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
+INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14,43)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
+WHERE f.id_report_status=6 " & query_where & "
+GROUP BY f.id_pre_cal_fgpo"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-                GCInvoiceLain.DataSource = data
-                GVInvoiceLain.BestFitColumns()
+                GCSummary.DataSource = data
+                GVSummary.BestFitColumns()
+                '
+                If GVSummary.RowCount > 0 Then
+                    PCBPLImport.Visible = True
+                Else
+                    PCBPLImport.Visible = False
+                End If
             ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 6 Then
                 'PIB voluntary declaration
                 Dim query As String = "CALL pib_analisa_pay('" & query_where & "')"
@@ -452,5 +490,28 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='360'"
             End If
         End If
         GVDPFGPO.ActiveFilterString = ""
+    End Sub
+
+    Private Sub BCreateBPLImport_Click(sender As Object, e As EventArgs) Handles BCreateBPLImport.Click
+        'check here
+        Dim rmt As String = ""
+
+        If SLEBPLImport.EditValue.ToString = "368A" Or SLEBPLImport.EditValue.ToString = "368B" Then
+            rmt = "368"
+        Else
+            rmt = SLEBPLImport.EditValue.ToString
+        End If
+
+        Dim qc As String = "SELECT * 
+FROM tb_pn_fgpo_det fd
+INNER JOIN tb_pn_fgpo f ON f.`id_pn_fgpo`=fd.`id_pn_fgpo`
+WHERE fd.`id_report`='" & GVSummary.GetFocusedRowCellValue("id_pre_cal_fgpo").ToString & "' AND fd.`report_mark_type`='" & rmt & "' AND f.`id_report_status`!=5"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            warningCustom("This payment already created")
+        Else
+            FormInvoiceFGPODP.doc_type = "6"
+            FormInvoiceFGPODP.ShowDialog()
+        End If
     End Sub
 End Class

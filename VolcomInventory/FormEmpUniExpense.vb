@@ -8,6 +8,7 @@
         DEFrom.EditValue = data_dt.Rows(0)("dt")
         DEUntil.EditValue = data_dt.Rows(0)("dt")
         DEFrom.Focus()
+        load_delivery()
     End Sub
 
     Private Sub FormEmpUniExpense_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -107,5 +108,18 @@
 
     Private Sub FormEmpUniExpense_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
+    End Sub
+
+    Sub load_delivery()
+        Dim query_c As ClassSalesDelOrder = New ClassSalesDelOrder()
+        Dim query As String = query_c.queryMainLess("AND b.id_so_status IN (3, 7, 9, 10) AND a.id_report_status = 6 AND a.id_pl_sales_order_del NOT IN (SELECT id_pl_sales_order_del FROM tb_emp_uni_ex WHERE id_report_status <> 5) ", "2")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSalesDelOrder.DataSource = data
+        GVSalesDelOrder.BestFitColumns()
+    End Sub
+
+    Private Sub SBNew_Click(sender As Object, e As EventArgs) Handles SBNew.Click
+        FormEmpUniExpenseDet.delivery_number = GVSalesDelOrder.GetFocusedRowCellValue("pl_sales_order_del_number").ToString
+        FormEmpUniExpenseDet.ShowDialog()
     End Sub
 End Class

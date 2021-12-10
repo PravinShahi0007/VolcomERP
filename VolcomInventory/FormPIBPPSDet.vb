@@ -9,10 +9,12 @@
     End Sub
 
     Sub load_propose()
-        Dim q As String = "SELECT f.number AS pre_cal_fgpo_number,f.id_pre_cal_fgpo,GROUP_CONCAT(CONCAT(po.prod_order_number,' - ',cd.class,' ',dsg.design_name,' ',cd.color) SEPARATOR '\n') AS list_fgpo,IFNULL(pr.pib_no,'') AS pib_no,IFNULL(pr.pib_date,DATE(NOW())) AS pib_date
+        Dim q As String = "SELECT f.number AS pre_cal_fgpo_number,f.id_pre_cal_fgpo,GROUP_CONCAT(CONCAT(po.prod_order_number,' - ',cd.class,' ',dsg.design_name,' ',cd.color) SEPARATOR '\n') AS list_fgpo,IFNULL(pr.pib_no,'') AS pib_no
+,IFNULL(pr.pib_date,DATE(NOW())) AS pib_date
+,IFNULL(pr.vp_due_date,DATE(NOW())) AS vp_due_date
 FROM tb_pre_cal_fgpo_list fl
 INNER JOIN tb_pre_cal_fgpo f ON f.id_pre_cal_fgpo=fl.id_pre_cal_fgpo
-INNER JOIN tb_pib_review pr ON pr.id_pre_cal_fgpo=fl.id_pre_cal_fgpo AND fl.id_prod_order=pr.id_prod_order AND is_active=1
+INNER JOIN tb_pib_review pr ON pr.id_pre_cal_fgpo=fl.id_pre_cal_fgpo AND fl.id_prod_order=pr.id_prod_order AND is_active=1 AND is_notified=2
 INNER JOIN tb_prod_order po ON po.id_prod_order=fl.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
@@ -25,7 +27,7 @@ LEFT JOIN (
 	AND cd.id_code IN (32,30,14,43)
 	GROUP BY dc.id_design
 ) cd ON cd.id_design = dsg.id_design
-WHERE po.id_report_status=6
+WHERE f.id_report_status=6
 GROUP BY f.id_pre_cal_fgpo"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         '
@@ -58,9 +60,11 @@ GROUP BY f.id_pre_cal_fgpo"
 
                     newRow("old_pib_no") = TEPIBNumberOld.EditValue
                     newRow("old_pib_date") = DEPIBOld.EditValue
+                    newRow("old_vp_due_date") = DEOldVp.EditValue
                     '
                     newRow("pib_no") = TEPIBNumber.EditValue
                     newRow("pib_date") = DEPIB.EditValue
+                    newRow("vp_due_date") = DEVp.EditValue
 
                     TryCast(FormPIBPPS.GCPIBPPps.DataSource, DataTable).Rows.Add(newRow)
 
@@ -80,9 +84,11 @@ GROUP BY f.id_pre_cal_fgpo"
         If GVSummary.RowCount > 0 Then
             TEPIBNumberOld.Text = GVSummary.GetFocusedRowCellValue("pib_no").ToString
             DEPIBOld.EditValue = GVSummary.GetFocusedRowCellValue("pib_date")
+            DEOldVp.EditValue = GVSummary.GetFocusedRowCellValue("vp_due_date")
             '
             TEPIBNumber.Text = GVSummary.GetFocusedRowCellValue("pib_no").ToString
             DEPIB.EditValue = GVSummary.GetFocusedRowCellValue("pib_date")
+            DEVp.EditValue = GVSummary.GetFocusedRowCellValue("vp_due_date")
         End If
     End Sub
 
