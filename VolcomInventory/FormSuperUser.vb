@@ -112,9 +112,6 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        FormEts.is_test = "1"
-        FormEts.ShowDialog()
-
         'send mail
         '        Dim id_print As String = "1446"
         '        Dim qc As String = "SELECT p.id_3pl,p.number,asr.`report_mark_type`,c.`comp_name`
