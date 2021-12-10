@@ -36,7 +36,9 @@ WHERE id_sop='" & id & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
                 TESOPName.Text = dt.Rows(0)("sop_name").ToString
-
+                '
+                SLEDepartement.EditValue = dt.Rows(0)("id_departement").ToString
+                '
                 DECreatedDate.EditValue = dt.Rows(0)("created_date")
                 TECreatedBy.Text = dt.Rows(0)("empc").ToString
                 DELastUpdate.EditValue = dt.Rows(0)("created_date")
@@ -102,7 +104,7 @@ VALUES('" & addSlashes(TESOPName.Text) & "','" & SLEDepartement.EditValue.ToStri
                 infoCustom("SOP data entry success")
             Else
                 'update
-                Dim q As String = "UPDATE tb_sop SET sop_name='',id_departement='',`last_update`=NOW(),`last_update_by`='" & id_user & "' WHERE id_sop='" & id & "'"
+                Dim q As String = "UPDATE tb_sop SET sop_name='" & addSlashes(TESOPName.Text) & "',id_departement='" & SLEDepartement.EditValue.ToString & "',`last_update`=NOW(),`last_update_by`='" & id_user & "' WHERE id_sop='" & id & "'"
                 execute_non_query(q, True, "", "", "", "")
 
                 'modul
