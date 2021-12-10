@@ -246,7 +246,7 @@
         INNER JOIN tb_lookup_status sa ON sa.id_status = ppd.is_active 
         INNER JOIN tb_lookup_design_price_type ptm ON ptm.id_design_price_type = ppd.id_design_price_type_master
         INNER JOIN tb_lookup_design_price_type ptp ON ptp.id_design_price_type = ppd.id_design_price_type_print
-        WHERE ppd.id_fg_propose_price='" + id_pp + "' AND ppd.id_design NOT IN (
+        WHERE ppd.id_fg_propose_price='" + id_pp + "' AND ppd.is_active=1 AND ppd.id_design NOT IN (
             SELECT id_design FROM tb_fg_propose_price_rev_det WHERE id_fg_propose_price_rev='" + id + "'
         ) 
         UNION ALL

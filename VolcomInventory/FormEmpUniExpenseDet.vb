@@ -15,10 +15,18 @@ Public Class FormEmpUniExpenseDet
 
     Private printed_name As String = ""
 
+    Public delivery_number As String = ""
+
     Private Sub FormEmpUniExpenseDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewItemCat()
         viewReportStatus()
         actionLoad()
+
+        If delivery_number <> "" Then
+            TxtDel.EditValue = delivery_number
+
+            TxtDel_KeyDown(TxtDel, New KeyEventArgs(Keys.Enter))
+        End If
     End Sub
 
     Sub viewItemCat()
