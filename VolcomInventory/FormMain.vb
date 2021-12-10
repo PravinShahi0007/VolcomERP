@@ -72,15 +72,16 @@ Public Class FormMain
     End Sub
 
     Sub sop_index()
+        '    Select Case id_user_head As id_user,2 As is_super_admin FROM tb_m_departement
+        'UNION ALL
         Dim q As String = "SELECT * FROM(
-	SELECT id_user_head AS id_user,2 AS is_super_admin FROM tb_m_departement
-	UNION ALL
-	SELECT id_user,is_super_admin FROM tb_sop_user
+		SELECT id_user,is_super_admin FROM tb_sop_user
 )tb WHERE tb.id_user='" & id_user & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         If dt.Rows.Count > 0 Then
             Try
                 FormSOPIndex.MdiParent = Me
+                FormSOPIndex.is_super_admin = dt.Rows(0)("is_super_admin").ToString
                 FormSOPIndex.Show()
                 FormSOPIndex.WindowState = FormWindowState.Maximized
                 FormSOPIndex.Focus()

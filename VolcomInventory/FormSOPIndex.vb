@@ -4,6 +4,8 @@
     Private Sub FormSOPIndex_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If Not is_super_admin = "1" Then
             BNewSOP.Visible = False
+        Else
+            BNewSOP.Visible = True
         End If
     End Sub
 
