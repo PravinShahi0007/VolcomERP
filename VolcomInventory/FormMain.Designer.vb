@@ -97,6 +97,7 @@ Partial Class FormMain
         Me.BBToggleMenu = New DevExpress.XtraBars.BarButtonItem()
         Me.BBGuide = New DevExpress.XtraBars.BarButtonItem()
         Me.BBNotif = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBDarkMode = New DevExpress.XtraBars.BarButtonItem()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.RPSubMenu = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RGAreaManage = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -469,6 +470,7 @@ Partial Class FormMain
         Me.NBNominatifPromo = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBRetExos = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBDisableExos = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBEOSChange = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGAccounting = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBBankWithdrawal = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBDebitNote = New DevExpress.XtraNavBar.NavBarItem()
@@ -558,7 +560,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBEOSChange = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -580,10 +581,10 @@ Partial Class FormMain
         '
         Me.RibbonControl.ApplicationButtonText = Nothing
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.BarButtonItemAddMasterItemCategory, Me.BarButtonItemEditMasterItemCategory, Me.BarButtonItemDeleteMasterItemCategory, Me.BarButtonItemUtemCategoryPrint, Me.BarButtonItemItemCategoryExit, Me.BBtnItemSizeNewData, Me.BBtnItemSizeEdit, Me.BBtnItemSizeDelete, Me.BBtnItemSizePrint, Me.BBtnItemSizeClose, Me.BBtnItemColorNew, Me.BBtnItemColorEdit, Me.BBtnItemColorDelete, Me.BBtnPrint, Me.BBtnItemColorClose, Me.BBNew, Me.BBEdit, Me.BBDelete, Me.BBPrint, Me.BBClose, Me.BBCompCatNew, Me.BBCompCatEdit, Me.BBCompCatDelete, Me.BBCompCatPrint, Me.BBCompCatClose, Me.BBCompNew, Me.BBCompEdit, Me.BBCompDelete, Me.BBCompPrint, Me.BBCompClose, Me.BarBtnNewUOM, Me.BarBtnEditUOM, Me.BarBtnDeleteUOM, Me.BarBtnPrint, Me.BarBtnCloseUOM, Me.BarBtnNewSeason, Me.BarBtnEditSeason, Me.BarBtnDeleteSeason, Me.BarBtnPrintSeason, Me.BarBtnCloseSeason, Me.BBDepartementNew, Me.BBDepartementEdit, Me.BBDepartementDelete, Me.BBDepartementPrint, Me.BBDepartementClose, Me.BBUserNew, Me.BBUserEdit, Me.BBUserDelete, Me.BBUserPrint, Me.BBUserClose, Me.BBCompContact, Me.BBtnNewRawMat, Me.BbtnEditRowMat, Me.BBtnDeleteRawMat, Me.BBtnNewRawMaterial, Me.BBtnEditRawMaterial, Me.BbtnDeleteRawMaterial, Me.BBContact, Me.BB, Me.BBMapping, Me.BBDuplicate, Me.BBLogout, Me.BBEditAccount, Me.BBAbout, Me.BBRefresh, Me.BBSwitch, Me.BBView, Me.BBMappingCOA, Me.BBFeedback, Me.BBPay, Me.BEProgress, Me.BBToggleMenu, Me.BBGuide, Me.BBNotif})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.BarButtonItemAddMasterItemCategory, Me.BarButtonItemEditMasterItemCategory, Me.BarButtonItemDeleteMasterItemCategory, Me.BarButtonItemUtemCategoryPrint, Me.BarButtonItemItemCategoryExit, Me.BBtnItemSizeNewData, Me.BBtnItemSizeEdit, Me.BBtnItemSizeDelete, Me.BBtnItemSizePrint, Me.BBtnItemSizeClose, Me.BBtnItemColorNew, Me.BBtnItemColorEdit, Me.BBtnItemColorDelete, Me.BBtnPrint, Me.BBtnItemColorClose, Me.BBNew, Me.BBEdit, Me.BBDelete, Me.BBPrint, Me.BBClose, Me.BBCompCatNew, Me.BBCompCatEdit, Me.BBCompCatDelete, Me.BBCompCatPrint, Me.BBCompCatClose, Me.BBCompNew, Me.BBCompEdit, Me.BBCompDelete, Me.BBCompPrint, Me.BBCompClose, Me.BarBtnNewUOM, Me.BarBtnEditUOM, Me.BarBtnDeleteUOM, Me.BarBtnPrint, Me.BarBtnCloseUOM, Me.BarBtnNewSeason, Me.BarBtnEditSeason, Me.BarBtnDeleteSeason, Me.BarBtnPrintSeason, Me.BarBtnCloseSeason, Me.BBDepartementNew, Me.BBDepartementEdit, Me.BBDepartementDelete, Me.BBDepartementPrint, Me.BBDepartementClose, Me.BBUserNew, Me.BBUserEdit, Me.BBUserDelete, Me.BBUserPrint, Me.BBUserClose, Me.BBCompContact, Me.BBtnNewRawMat, Me.BbtnEditRowMat, Me.BBtnDeleteRawMat, Me.BBtnNewRawMaterial, Me.BBtnEditRawMaterial, Me.BbtnDeleteRawMaterial, Me.BBContact, Me.BB, Me.BBMapping, Me.BBDuplicate, Me.BBLogout, Me.BBEditAccount, Me.BBAbout, Me.BBRefresh, Me.BBSwitch, Me.BBView, Me.BBMappingCOA, Me.BBFeedback, Me.BBPay, Me.BEProgress, Me.BBToggleMenu, Me.BBGuide, Me.BBNotif, Me.BBDarkMode})
         Me.RibbonControl.LargeImages = Me.LargeImageCollection
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 5
+        Me.RibbonControl.MaxItemId = 6
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RPSubMenu, Me.RBMain})
         Me.RibbonControl.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1})
@@ -1235,6 +1236,14 @@ Partial Class FormMain
         Me.BBNotif.LargeGlyph = CType(resources.GetObject("BBNotif.LargeGlyph"), System.Drawing.Image)
         Me.BBNotif.Name = "BBNotif"
         '
+        'BBDarkMode
+        '
+        Me.BBDarkMode.Caption = "Dark Mode"
+        Me.BBDarkMode.Id = 5
+        Me.BBDarkMode.LargeImageIndex = 26
+        Me.BBDarkMode.LargeWidth = 80
+        Me.BBDarkMode.Name = "BBDarkMode"
+        '
         'LargeImageCollection
         '
         Me.LargeImageCollection.ImageSize = New System.Drawing.Size(32, 32)
@@ -1267,6 +1276,8 @@ Partial Class FormMain
         Me.LargeImageCollection.Images.SetKeyName(25, "lessonsx32.png")
         Me.LargeImageCollection.Images.SetKeyName(26, "Actions-rating-icon.png")
         Me.LargeImageCollection.Images.SetKeyName(27, "taskbar_and_start_menu (1).png")
+        Me.LargeImageCollection.InsertGalleryImage("boscheduler_32x32.png", "images/business%20objects/boscheduler_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/business%20objects/boscheduler_32x32.png"), 28)
+        Me.LargeImageCollection.Images.SetKeyName(28, "boscheduler_32x32.png")
         '
         'RPSubMenu
         '
@@ -1315,6 +1326,7 @@ Partial Class FormMain
         'RBPMenu
         '
         Me.RBPMenu.ItemLinks.Add(Me.BBToggleMenu)
+        Me.RBPMenu.ItemLinks.Add(Me.BBDarkMode)
         Me.RBPMenu.Name = "RBPMenu"
         Me.RBPMenu.ShowCaptionButton = False
         Me.RBPMenu.Text = "Menu"
@@ -2875,7 +2887,6 @@ Partial Class FormMain
         '
         Me.NBGSales.Caption = "Sales & Inventory"
         Me.NBGSales.DragDropFlags = DevExpress.XtraNavBar.NavBarDragDrop.None
-        Me.NBGSales.Expanded = True
         Me.NBGSales.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
         Me.NBGSales.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesTarget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLinePlan), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLinePlanPublic), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGLineList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLineListNonMerch), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDesignLineList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDesignListApp), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGLineListDsg), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProposePrice), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGDS), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDistSchemaSetup), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGSOReff), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGWHAlloc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGWHAllocLog), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrderReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPrepareOrderUni), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrderList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrderCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesDelOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGTrfNew), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesReturnOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesReturnOrderOL), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesReturnQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBNonStockInv), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDelEmpty), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrderSvcLevel), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBVerifyMaster), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWHSvcLevel), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesPOS), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvDiffMargin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesPromo), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGMissing), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScanReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvoiceStaff), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesCreditNote), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRetOlStoreList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCreditNoteOLStore), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBODMComplete), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBUniformExpense), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBUniformCreditNote), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOLStoreReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesWeekly), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGSoStore), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGSOWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGAdj), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGTrf), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGTrfRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGWoff), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGWoffList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGTracking), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBTransList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSOHPeriode), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSOHPrice), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSOH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSOHSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAWB), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWHAwbillLock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDeliveryMonitoring), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCargoRate), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBImportDO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGMissingInvoice), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGMissingCreditNote), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesInvoice), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGRepair), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGRepairReturnRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPromoTrf), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBTransSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBackupStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFirstDel), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCompareStockCard), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesTracking), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRevenueBudget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRevenue), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesReturnRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOLStoreWork), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesTargetPropose), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEstQtyToWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesRecord), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBVoucherPOS), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPromoRules), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBuktiPickup), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBTrackingReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvTracking), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDelManifest), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDocTracking), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesInv), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLineListMD), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLineListMKT), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLineListRetail), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLineListVM), New DevExpress.XtraNavBar.NavBarItemLink(Me.NB3plRate), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFabricType), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSetupBudgetProdDemand), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRetOlShop), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRetOlStoreCust), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCompareStockWebsite), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAcceptRefundOLStore), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOutboundList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPromoCollection), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBVerificationMasterOL), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBVerificationMasterPrice), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSendEmailReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBReturnNote), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInboundAwb), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBListStore), New DevExpress.XtraNavBar.NavBarItemLink(Me.NB3PLMailReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOOSFinalize), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAdjustmentOG), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPromoCollectionMarketplace), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBReturnForBOF), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOLReturnRefuse), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCancellationCN), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProposePriceMKD), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPODReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvoiceVerification), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMonthlySalesPerformance), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockTakePropose), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockTakeStorePeriod), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockTakePartial), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSNIpps), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSNIWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProductPerform), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCapsule), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPromoZalora), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrderSvcLevelMD), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProposePromo), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBNominatifPromo), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRetExos), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDisableExos), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEOSChange)})
         Me.NBGSales.LargeImage = CType(resources.GetObject("NBGSales.LargeImage"), System.Drawing.Image)
@@ -3674,6 +3685,12 @@ Partial Class FormMain
         Me.NBDisableExos.Name = "NBDisableExos"
         Me.NBDisableExos.SmallImage = CType(resources.GetObject("NBDisableExos.SmallImage"), System.Drawing.Image)
         '
+        'NBEOSChange
+        '
+        Me.NBEOSChange.Caption = "Perpanjangan EOS"
+        Me.NBEOSChange.Name = "NBEOSChange"
+        Me.NBEOSChange.SmallImage = CType(resources.GetObject("NBEOSChange.SmallImage"), System.Drawing.Image)
+        '
         'NBGAccounting
         '
         Me.NBGAccounting.Caption = "Accounting"
@@ -4284,7 +4301,7 @@ Partial Class FormMain
         Me.Badge1.Appearance.BorderColor = System.Drawing.Color.Black
         Me.Badge1.Appearance.Options.UseBorderColor = True
         Me.Badge1.Properties.Location = System.Drawing.ContentAlignment.TopLeft
-        Me.Badge1.Properties.Offset = New System.Drawing.Point(150, 65)
+        Me.Badge1.Properties.Offset = New System.Drawing.Point(230, 65)
         Me.Badge1.Properties.Text = "1"
         Me.Badge1.Properties.TextMargin = New System.Windows.Forms.Padding(5, 0, 0, 0)
         Me.Badge1.TargetElement = Me.RibbonControl
@@ -4292,12 +4309,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBEOSChange
-        '
-        Me.NBEOSChange.Caption = "Perpanjangan EOS"
-        Me.NBEOSChange.Name = "NBEOSChange"
-        Me.NBEOSChange.SmallImage = CType(resources.GetObject("NBEOSChange.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
@@ -4875,4 +4886,5 @@ Partial Class FormMain
     Friend WithEvents NBRetExos As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents NBDisableExos As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents NBEOSChange As DevExpress.XtraNavBar.NavBarItem
+    Friend WithEvents BBDarkMode As DevExpress.XtraBars.BarButtonItem
 End Class

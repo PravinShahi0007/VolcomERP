@@ -34,7 +34,7 @@ WHERE pps.id_pib_pps='" & id & "'"
 
     Sub load_det()
         Dim q As String = "SELECT f.number AS pre_cal_fgpo_number,f.id_pre_cal_fgpo,GROUP_CONCAT(CONCAT(po.prod_order_number,' - ',cd.class,' ',dsg.design_name,' ',cd.color) SEPARATOR '\n') AS list_fgpo
-,ppsd.old_pib_no,ppsd.old_pib_date,ppsd.pib_no,ppsd.pib_date
+,ppsd.old_pib_no,ppsd.old_pib_date,ppsd.pib_no,ppsd.pib_date,ppsd.old_vp_due_date,ppsd.vp_due_date
 FROM tb_pre_cal_fgpo_list fl
 INNER JOIN tb_pre_cal_fgpo f ON f.id_pre_cal_fgpo=fl.id_pre_cal_fgpo
 INNER JOIN `tb_pib_pps_det` ppsd ON ppsd.id_pre_cal_fgpo=f.id_pre_cal_fgpo AND ppsd.id_pib_pps='" & id & "'
@@ -71,7 +71,7 @@ GROUP BY f.id_pre_cal_fgpo"
     End Sub
 
     Sub del()
-        If GVPIBPps.RowCount > 0 And GVPIBPps.FocusedRowHandle >= 0 Then
+        If GVPIBPps.RowCount > 0 Then
             GVPIBPps.DeleteSelectedRows()
             GCPIBPPps.RefreshDataSource()
             GVPIBPps.RefreshData()

@@ -16883,4 +16883,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BBDarkMode_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBDarkMode.ItemClick
+        If DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Visual Studio 2013 Dark" Then
+            apply_skin()
+        Else
+            apply_darkmode_skin()
+        End If
+    End Sub
 End Class

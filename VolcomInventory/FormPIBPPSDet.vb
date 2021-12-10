@@ -14,7 +14,7 @@
 ,IFNULL(pr.vp_due_date,DATE(NOW())) AS vp_due_date
 FROM tb_pre_cal_fgpo_list fl
 INNER JOIN tb_pre_cal_fgpo f ON f.id_pre_cal_fgpo=fl.id_pre_cal_fgpo
-INNER JOIN tb_pib_review pr ON pr.id_pre_cal_fgpo=fl.id_pre_cal_fgpo AND fl.id_prod_order=pr.id_prod_order AND is_active=1
+INNER JOIN tb_pib_review pr ON pr.id_pre_cal_fgpo=fl.id_pre_cal_fgpo AND fl.id_prod_order=pr.id_prod_order AND is_active=1 AND is_notified=2
 INNER JOIN tb_prod_order po ON po.id_prod_order=fl.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
