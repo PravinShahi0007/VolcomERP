@@ -9,14 +9,14 @@
     End Sub
 
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
-        If MENote.Text = "" Then
+        If MENote.Text = "" And LEProposeType.EditValue.ToString = "2" Then
             warningCustom("Please complete all data")
         Else
             Dim id_propose_type As String = LEProposeType.EditValue.ToString
             Dim note As String = addSlashes(MENote.Text)
-            For i As Integer = 0 To (FormProposePriceMKDDet.GVData.RowCount - 1) - GetGroupRowCount(FormProposePriceMKDDet.GVData)
+            For i As Integer = 0 To (FormEtsDet.GVProduct.RowCount - 1) - GetGroupRowCount(FormEtsDet.GVProduct)
                 Dim id_ets_det As String = FormEtsDet.GVProduct.GetRowCellValue(i, "id_ets_det").ToString
-                Dim query As String = "UPDATE tb_ets_det SET note='" + note + "' WHERE id_ets_det='" + id_ets_det + "' "
+                Dim query As String = "UPDATE tb_ets_det SET note='" + note + "', id_propose_type='" + id_propose_type + "' WHERE id_ets_det='" + id_ets_det + "' "
                 execute_non_query(query, True, "", "", "", "")
             Next
             FormEtsDet.viewDetail(1)

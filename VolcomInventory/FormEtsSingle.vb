@@ -45,7 +45,7 @@
 	            GROUP BY de.id_design
 	         )
         ) de ON de.id_design = pd.id_design 
-        LEFT JOIN tb_ets_det ed ON ed.id_pp_change_det = pd.id_pp_change_det
+        LEFT JOIN tb_ets_det ed ON ed.id_pp_change_det = pd.id_pp_change_det AND ed.id_propose_type=1
         WHERE p.id_design_mkd=1 AND p.id_report_status=6 AND p.id_pp_change>1 AND ISNULL(ed.id_pp_change_det) 
         AND IFNULL(prc.id_design_price_type,0)=3 AND IFNULL(de.id_extended_eos,2)=2 "
         Return body

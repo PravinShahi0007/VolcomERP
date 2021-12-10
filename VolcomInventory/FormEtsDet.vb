@@ -38,13 +38,14 @@
             'option
             BtnCreateNew.Visible = True
             Width = 450
-            Height = 230
+            Height = 200
             WindowState = FormWindowState.Normal
             MaximizeBox = False
             FormBorderStyle = FormBorderStyle.FixedDialog
             StartPosition = FormStartPosition.CenterScreen
             PanelControl1.Visible = False
             PanelControlBottom.Visible = False
+            XTCData.Visible = False
             'location form
             Dim r As Rectangle
             If Parent IsNot Nothing Then
@@ -76,6 +77,7 @@
                 is_show_all = "1"
             Else
                 is_show_all = "2"
+                XTCData.SelectedTabPageIndex = 1
             End If
 
             'detail
@@ -128,6 +130,7 @@
         If is_show_all = "2" Then
             query += "AND ed.id_propose_type=1 "
         End If
+        query += "ORDER BY id_propose_type DESC, class ASC, `name` ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProduct.DataSource = data
         GVProduct.BestFitColumns()
@@ -155,6 +158,7 @@
             BtnBulkEdit.Visible = True
             PanelOpt.Visible = True
             PanelControlNavPTH.Visible = True
+            GridColumnis_select.VisibleIndex = 0
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -170,8 +174,8 @@
             GridColumnnote.Visible = False
             BtnBulkEdit.Visible = False
             PanelOpt.Visible = False
-            BtnDeletePTH.Visible = False
             PanelControlNavPTH.Visible = False
+            GridColumnis_select.Visible = False
         End If
 
         'reset propose
@@ -199,8 +203,8 @@
             GridColumnnote.Visible = False
             BtnBulkEdit.Visible = False
             PanelOpt.Visible = False
-            BtnDeletePTH.Visible = False
             PanelControlNavPTH.Visible = False
+            GridColumnis_select.Visible = False
         End If
     End Sub
 
@@ -343,7 +347,35 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportEts.id = id
+        ReportEts.dt = GCProduct.DataSource
+        ReportEts.rmt = rmt
+        Dim Report As New ReportEts()
 
+        '... 
+        ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVProduct.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVProduct.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVProduct)
+
+        'Parse Val
+        Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+        Report.LabelDate.Text = DECreated.Text.ToUpper
+        Report.LNote.Text = MENote.Text
+        Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+        Report.LabelEffectDate.Text = DEEffectDate.Text.ToUpper
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click

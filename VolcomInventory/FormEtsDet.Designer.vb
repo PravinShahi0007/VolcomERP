@@ -407,12 +407,14 @@ Partial Class FormEtsDet
         Me.GridColumnid_pp_change.Caption = "id_pp_change"
         Me.GridColumnid_pp_change.FieldName = "id_pp_change"
         Me.GridColumnid_pp_change.Name = "GridColumnid_pp_change"
+        Me.GridColumnid_pp_change.OptionsColumn.AllowEdit = False
         '
         'GridColumnnumber
         '
         Me.GridColumnnumber.Caption = "Number"
         Me.GridColumnnumber.FieldName = "number"
         Me.GridColumnnumber.Name = "GridColumnnumber"
+        Me.GridColumnnumber.OptionsColumn.AllowEdit = False
         Me.GridColumnnumber.Visible = True
         Me.GridColumnnumber.VisibleIndex = 1
         '
@@ -423,6 +425,7 @@ Partial Class FormEtsDet
         Me.GridColumneffective_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumneffective_date.FieldName = "effective_date"
         Me.GridColumneffective_date.Name = "GridColumneffective_date"
+        Me.GridColumneffective_date.OptionsColumn.AllowEdit = False
         Me.GridColumneffective_date.Visible = True
         Me.GridColumneffective_date.VisibleIndex = 2
         '
@@ -433,6 +436,7 @@ Partial Class FormEtsDet
         Me.GridColumnplan_end_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnplan_end_date.FieldName = "plan_end_date"
         Me.GridColumnplan_end_date.Name = "GridColumnplan_end_date"
+        Me.GridColumnplan_end_date.OptionsColumn.AllowEdit = False
         Me.GridColumnplan_end_date.Visible = True
         Me.GridColumnplan_end_date.VisibleIndex = 3
         '
@@ -441,6 +445,7 @@ Partial Class FormEtsDet
         Me.GridColumnnopth.Caption = "No"
         Me.GridColumnnopth.FieldName = "no"
         Me.GridColumnnopth.Name = "GridColumnnopth"
+        Me.GridColumnnopth.OptionsColumn.AllowEdit = False
         Me.GridColumnnopth.Visible = True
         Me.GridColumnnopth.VisibleIndex = 0
         '
@@ -464,7 +469,6 @@ Partial Class FormEtsDet
         Me.BtnDeletePTH.Size = New System.Drawing.Size(68, 58)
         Me.BtnDeletePTH.TabIndex = 8934
         Me.BtnDeletePTH.Text = "Delete"
-        Me.BtnDeletePTH.Visible = False
         '
         'BtnAddPTH
         '
@@ -476,7 +480,6 @@ Partial Class FormEtsDet
         Me.BtnAddPTH.Size = New System.Drawing.Size(68, 58)
         Me.BtnAddPTH.TabIndex = 8933
         Me.BtnAddPTH.Text = "Add"
-        Me.BtnAddPTH.Visible = False
         '
         'XTPProductList
         '
@@ -511,30 +514,35 @@ Partial Class FormEtsDet
         Me.GridColumnid_ets_det.Caption = "id_ets_det"
         Me.GridColumnid_ets_det.FieldName = "id_ets_det"
         Me.GridColumnid_ets_det.Name = "GridColumnid_ets_det"
+        Me.GridColumnid_ets_det.OptionsColumn.ReadOnly = True
         '
         'GridColumnid_ets
         '
         Me.GridColumnid_ets.Caption = "id_ets"
         Me.GridColumnid_ets.FieldName = "id_ets"
         Me.GridColumnid_ets.Name = "GridColumnid_ets"
+        Me.GridColumnid_ets.OptionsColumn.ReadOnly = True
         '
         'GridColumnid_pp_change_det
         '
         Me.GridColumnid_pp_change_det.Caption = "id_pp_change_det"
         Me.GridColumnid_pp_change_det.FieldName = "id_pp_change_det"
         Me.GridColumnid_pp_change_det.Name = "GridColumnid_pp_change_det"
+        Me.GridColumnid_pp_change_det.OptionsColumn.ReadOnly = True
         '
         'GridColumnid_design
         '
         Me.GridColumnid_design.Caption = "id_design"
         Me.GridColumnid_design.FieldName = "id_design"
         Me.GridColumnid_design.Name = "GridColumnid_design"
+        Me.GridColumnid_design.OptionsColumn.ReadOnly = True
         '
         'GridColumncode
         '
         Me.GridColumncode.Caption = "Code"
         Me.GridColumncode.FieldName = "code"
         Me.GridColumncode.Name = "GridColumncode"
+        Me.GridColumncode.OptionsColumn.ReadOnly = True
         Me.GridColumncode.Visible = True
         Me.GridColumncode.VisibleIndex = 1
         '
@@ -543,6 +551,7 @@ Partial Class FormEtsDet
         Me.GridColumnclass.Caption = "Class"
         Me.GridColumnclass.FieldName = "class"
         Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.OptionsColumn.ReadOnly = True
         Me.GridColumnclass.Visible = True
         Me.GridColumnclass.VisibleIndex = 2
         '
@@ -551,6 +560,7 @@ Partial Class FormEtsDet
         Me.GridColumnname.Caption = "Description"
         Me.GridColumnname.FieldName = "name"
         Me.GridColumnname.Name = "GridColumnname"
+        Me.GridColumnname.OptionsColumn.ReadOnly = True
         Me.GridColumnname.Visible = True
         Me.GridColumnname.VisibleIndex = 3
         '
@@ -559,6 +569,7 @@ Partial Class FormEtsDet
         Me.GridColumnsht.Caption = "Silhouette"
         Me.GridColumnsht.FieldName = "sht"
         Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.OptionsColumn.ReadOnly = True
         Me.GridColumnsht.Visible = True
         Me.GridColumnsht.VisibleIndex = 4
         '
@@ -567,6 +578,7 @@ Partial Class FormEtsDet
         Me.GridColumncolor.Caption = "Color"
         Me.GridColumncolor.FieldName = "color"
         Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.OptionsColumn.ReadOnly = True
         Me.GridColumncolor.Visible = True
         Me.GridColumncolor.VisibleIndex = 5
         '
@@ -575,6 +587,7 @@ Partial Class FormEtsDet
         Me.GridColumnid_design_price.Caption = "id_design_price"
         Me.GridColumnid_design_price.FieldName = "id_design_price"
         Me.GridColumnid_design_price.Name = "GridColumnid_design_price"
+        Me.GridColumnid_design_price.OptionsColumn.ReadOnly = True
         '
         'GridColumndesign_price
         '
@@ -583,6 +596,7 @@ Partial Class FormEtsDet
         Me.GridColumndesign_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumndesign_price.FieldName = "design_price"
         Me.GridColumndesign_price.Name = "GridColumndesign_price"
+        Me.GridColumndesign_price.OptionsColumn.ReadOnly = True
         Me.GridColumndesign_price.Visible = True
         Me.GridColumndesign_price.VisibleIndex = 6
         '
@@ -591,12 +605,14 @@ Partial Class FormEtsDet
         Me.GridColumnid_propose_type.Caption = "id_propose_type"
         Me.GridColumnid_propose_type.FieldName = "id_propose_type"
         Me.GridColumnid_propose_type.Name = "GridColumnid_propose_type"
+        Me.GridColumnid_propose_type.OptionsColumn.ReadOnly = True
         '
         'GridColumnpropose_type
         '
         Me.GridColumnpropose_type.Caption = "Propose Status"
         Me.GridColumnpropose_type.FieldName = "propose_type"
         Me.GridColumnpropose_type.Name = "GridColumnpropose_type"
+        Me.GridColumnpropose_type.OptionsColumn.ReadOnly = True
         Me.GridColumnpropose_type.Visible = True
         Me.GridColumnpropose_type.VisibleIndex = 7
         '
@@ -605,6 +621,7 @@ Partial Class FormEtsDet
         Me.GridColumnnote.Caption = "Note"
         Me.GridColumnnote.FieldName = "note"
         Me.GridColumnnote.Name = "GridColumnnote"
+        Me.GridColumnnote.OptionsColumn.ReadOnly = True
         Me.GridColumnnote.Visible = True
         Me.GridColumnnote.VisibleIndex = 8
         '
@@ -715,6 +732,7 @@ Partial Class FormEtsDet
         Me.Name = "FormEtsDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Propose Change Status EOS to Sale"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
