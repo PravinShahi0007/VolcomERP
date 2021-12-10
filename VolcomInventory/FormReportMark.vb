@@ -11077,7 +11077,11 @@ WHERE ppsd.id_pib_pps='" & id_report & "'"
             If id_status_reportx = "6" Then
                 'insert price
                 Dim query_ins As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) "
-                query_ins += ""
+                query_ins += "SELECT det.id_design, 4 AS id_design_price_type, 'SALE' AS design_price_name, 1 AS id_currency, det.design_price, 
+                NOW(), IF(prc.effective_date = 0000-00-00, NOW(), prc.effective_date) AS fg_effective_date, 0 AS is_print, '" + id_user + "' 
+                FROM tb_ets_det det 
+                INNER JOIN tb_ets prc ON prc.id_ets = det.id_ets 
+                WHERE det.id_ets='" + id_report + "' AND det.id_propose_type=1 "
                 execute_non_query(query_ins, True, "", "", "", "")
             End If
 
