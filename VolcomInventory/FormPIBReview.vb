@@ -21,7 +21,7 @@
 
     Sub view_list_pib()
         Dim q As String = "SELECT pir.`id_pib_review`,pir.`id_pre_cal_fgpo_list`,pir.`id_pre_cal_fgpo`,prec.`number` AS isb_number,po.`prod_order_number`,d.`design_code`,d.`design_name`,IFNULL(cd.color,'-') AS color,IFNULL(cd.class,'-') AS class
-,pir.`pib_no`,pir.`pib_date`,DATE_ADD(pir.pib_date,INTERVAL 1 YEAR) AS second_date_limit,((pir.qty_po/pir.tot_qty_royalty)*pir.tot_royalty) AS tot_royalty_full
+,pir.`pib_no`,pir.`pib_date`,pir.vp_due_date AS second_date_limit,((pir.qty_po/pir.tot_qty_royalty)*pir.tot_royalty) AS tot_royalty_full
 ,rec.qty_rec,pir.`qty_sales`,pir.`last_upd_qty_sales`
 ,IFNULL(pir.`qty_sales`/rec.qty_rec,0)*100 AS sales_thru
 ,pir.tot_royalty
