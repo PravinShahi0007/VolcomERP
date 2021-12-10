@@ -108,6 +108,7 @@
         load_contract_template()
         load_vendor_type()
         load_kode_bank()
+        view_status_pabean()
         'default value
         TxtCommission.EditValue = 0.0
         LEStoreType.EditValue = Nothing
@@ -285,6 +286,9 @@ WHERE comp.id_comp = '{0}'", id_company)
             Dim id_state As String = get_state(id_city.ToString)
             Dim id_region As String = get_region(id_state.ToString)
             Dim id_country As String = get_country(id_region.ToString)
+
+            Dim id_status_pabean As String = data.Rows(0)("id_status_pabean").ToString
+            SLUEStatusPabean.EditValue = id_status_pabean
 
             TECompanyName.Text = company_name
             TECompanyPrintedName.Text = company_printed_name
@@ -619,6 +623,8 @@ WHERE comp.id_comp = '{0}'", id_company)
         Catch ex As Exception
         End Try
 
+        Dim id_status_pabean As String = SLUEStatusPabean.EditValue.ToString
+
         If id_company = "-1" Then
             'new
             If Not (id_company_category = "5" Or id_company_category = "6") And id_tax = 1 Then
@@ -627,7 +633,7 @@ WHERE comp.id_comp = '{0}'", id_company)
                 errorInput()
             Else
                 'insert to company
-                query = "INSERT INTO tb_m_comp(comp_name,comp_display_name,comp_number,address_primary,address_other,postal_code,email,website,id_city,id_comp_cat,is_active,id_tax,npwp,fax,id_comp_group,awb_destination,awb_zone,awb_cargo_code, phone, id_vendor_type,id_bank,bank_rek,bank_attn_name,bank_address,npwp_name,npwp_address, id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_pd_alloc, id_wh_type, id_so_type, id_drawer_def,id_store_company,id_sub_district,id_coa_tag) "
+                query = "INSERT INTO tb_m_comp(comp_name,comp_display_name,comp_number,address_primary,address_other,postal_code,email,website,id_city,id_comp_cat,is_active,id_tax,npwp,fax,id_comp_group,awb_destination,awb_zone,awb_cargo_code, phone, id_vendor_type,id_bank,bank_rek,bank_attn_name,bank_address,npwp_name,npwp_address, id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_pd_alloc, id_wh_type, id_so_type, id_drawer_def,id_store_company,id_sub_district,id_coa_tag,id_status_pabean) "
                 query += "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}',"
                 If id_dept = "0" Then
                     query += "NULL, "
@@ -680,6 +686,7 @@ WHERE comp.id_comp = '{0}'", id_company)
                     query += "'" + id_store_company + "', "
                 End If
                 query += "'" + id_sub_district + "','1' "
+                query += "," + id_status_pabean + ""
                 query += "); SELECT LAST_INSERT_ID(); "
                 query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone, id_vendor_type, id_bank, bank_rek, bank_atas_nama, bank_address, npwp_name, npwp_address)
 
@@ -816,6 +823,7 @@ WHERE comp.id_comp = '{0}'", id_company)
                 End Try
 
                 query += "id_sub_district='" + id_sub_district + "'"
+                query += ",id_status_pabean='" + id_status_pabean + "'"
                 query += "WHERE id_comp='" + id_company + "' "
                 query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone, id_vendor_type, id_bank, bank_rek, bank_atas_nama, bank_address, npwp_name, npwp_address)
                 execute_non_query(query, True, "", "", "", "")
@@ -1382,9 +1390,13 @@ WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
             If LECompanyCategory.EditValue.ToString = "1" Or LECompanyCategory.EditValue.ToString = "8" Then
                 LVendorType.Visible = True
                 SLEVendorType.Visible = True
+                LCStatusPabean.Visible = True
+                SLUEStatusPabean.Visible = True
             Else
                 LVendorType.Visible = False
                 SLEVendorType.Visible = False
+                LCStatusPabean.Visible = False
+                SLUEStatusPabean.Visible = False
             End If
             '
             Dim query As String = "SELECT is_need_bank_account 
@@ -1634,5 +1646,13 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
         If SLEBankAccount.EditValue = Nothing Then
             SLEBankAccount.EditValue = "0"
         End If
+    End Sub
+
+    Sub view_status_pabean()
+        Dim query As String = "
+            SELECT * FROM tb_lookup_status_pabean
+        "
+
+        viewSearchLookupQuery(SLUEStatusPabean, query, "id_status_pabean", "status_pabean", "id_status_pabean")
     End Sub
 End Class
