@@ -7552,6 +7552,12 @@
     <Compile Include="FormSOPIndex.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSOPNew.Designer.vb">
+      <DependentUpon>FormSOPNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSOPNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockCardDepDet.Designer.vb">
       <DependentUpon>FormStockCardDepDet.vb</DependentUpon>
     </Compile>
@@ -14504,6 +14510,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSOPIndex.resx">
       <DependentUpon>FormSOPIndex.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSOPNew.resx">
+      <DependentUpon>FormSOPNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockCardDepDet.resx">
       <DependentUpon>FormStockCardDepDet.vb</DependentUpon>

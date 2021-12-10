@@ -22,25 +22,25 @@ Partial Class FormSOPIndex
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSOPIndex))
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPBySOP = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPByModul = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.GCBySOP = New DevExpress.XtraGrid.GridControl()
         Me.GVBySOP = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BNewSOP = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPByModul = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPBySOP.SuspendLayout()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
         CType(Me.GCBySOP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBySOP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'XtraTabControl1
@@ -61,21 +61,6 @@ Partial Class FormSOPIndex
         Me.XTPBySOP.Name = "XTPBySOP"
         Me.XTPBySOP.Size = New System.Drawing.Size(1040, 492)
         Me.XTPBySOP.Text = "By SOP"
-        '
-        'XTPByModul
-        '
-        Me.XTPByModul.Name = "XTPByModul"
-        Me.XTPByModul.Size = New System.Drawing.Size(1040, 487)
-        Me.XTPByModul.Text = "By Modul ERP"
-        '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.BRefresh)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1046, 48)
-        Me.PanelControl1.TabIndex = 1
         '
         'GCBySOP
         '
@@ -100,6 +85,14 @@ Partial Class FormSOPIndex
         Me.GridColumn1.FieldName = "id_sop"
         Me.GridColumn1.Name = "GridColumn1"
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Departement"
+        Me.GridColumn6.FieldName = "departement"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 0
+        '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "SOP"
@@ -116,35 +109,17 @@ Partial Class FormSOPIndex
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
         '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Button Name ERP"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Menu ERP"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Button Name ERP"
-        Me.GridColumn5.Name = "GridColumn5"
-        '
-        'BRefresh
-        '
-        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
-        Me.BRefresh.Location = New System.Drawing.Point(928, 2)
-        Me.BRefresh.Name = "BRefresh"
-        Me.BRefresh.Size = New System.Drawing.Size(116, 44)
-        Me.BRefresh.TabIndex = 1
-        Me.BRefresh.Text = "Refresh"
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Departement"
-        Me.GridColumn6.FieldName = "departement"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
         '
         'BNewSOP
         '
@@ -160,11 +135,37 @@ Partial Class FormSOPIndex
         Me.BNewSOP.TabIndex = 7
         Me.BNewSOP.Text = "New SOP"
         '
+        'XTPByModul
+        '
+        Me.XTPByModul.Name = "XTPByModul"
+        Me.XTPByModul.Size = New System.Drawing.Size(1040, 492)
+        Me.XTPByModul.Text = "By Modul ERP"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BRefresh)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1046, 48)
+        Me.PanelControl1.TabIndex = 1
+        '
+        'BRefresh
+        '
+        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
+        Me.BRefresh.Location = New System.Drawing.Point(928, 2)
+        Me.BRefresh.Name = "BRefresh"
+        Me.BRefresh.Size = New System.Drawing.Size(116, 44)
+        Me.BRefresh.TabIndex = 1
+        Me.BRefresh.Text = "Refresh"
+        '
         'FormSOPIndex
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1046, 568)
+        Me.ControlBox = False
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -177,10 +178,10 @@ Partial Class FormSOPIndex
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPBySOP.ResumeLayout(False)
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
         CType(Me.GCBySOP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBySOP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

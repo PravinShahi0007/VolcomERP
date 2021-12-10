@@ -70,6 +70,26 @@ Public Class FormMain
         NotifyIconVI.ShowBalloonTip(2000, "Information", "Volcom ERP is now running." + Environment.NewLine + "Right click at volcom icon for more option.", ToolTipIcon.Info)
         Cursor = Cursors.Default
     End Sub
+
+    Sub sop_index()
+        Dim q As String = "SELECT * FROM(
+	SELECT id_user_head AS id_user,2 AS is_super_admin FROM tb_m_departement
+	UNION ALL
+	SELECT id_user,is_super_admin FROM tb_sop_user
+)tb WHERE tb.id_user='" & id_user & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            Try
+                FormSOPIndex.MdiParent = Me
+                FormSOPIndex.Show()
+                FormSOPIndex.WindowState = FormWindowState.Maximized
+                FormSOPIndex.Focus()
+            Catch ex As Exception
+                errorProcess()
+            End Try
+        End If
+    End Sub
+
     '----------- check version
     Sub check_and_update_version()
         Dim update_url As String = get_setup_field("update_address")
