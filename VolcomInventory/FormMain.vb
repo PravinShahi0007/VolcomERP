@@ -75,6 +75,8 @@ Public Class FormMain
         '    Select Case id_user_head As id_user,2 As is_super_admin FROM tb_m_departement
         'UNION ALL
         Dim q As String = "SELECT * FROM(
+ Select id_user_head As id_user,2 As is_super_admin FROM tb_m_departement
+        UNION ALL
 		SELECT id_user,is_super_admin FROM tb_sop_user
 )tb WHERE tb.id_user='" & id_user & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
