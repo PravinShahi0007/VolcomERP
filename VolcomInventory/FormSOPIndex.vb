@@ -31,21 +31,68 @@
         End If
     End Sub
 
+    Private Sub GVByModul_CellMerge(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs) Handles GVByModul.CellMerge
+        If (e.Column.FieldName = "menu_caption") Then
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim val1 As String = view.GetRowCellValue(e.RowHandle1, "id_menu")
+            Dim val2 As String = view.GetRowCellValue(e.RowHandle2, "id_menu")
+
+            e.Merge = (val1.ToString = val2.ToString)
+            e.Handled = True
+        Else
+            e.Merge = False
+            e.Handled = True
+        End If
+    End Sub
+
     Private Sub BRefresh_Click(sender As Object, e As EventArgs) Handles BRefresh.Click
-        Dim q As String = "SELECT s.*,dep.departement,m.menu_name,m.`menu_caption`,CONCAT(d.id_doc,'_371_',s.id_sop,d.ext) AS filename,d.doc_desc
+        If XTCSOPIndex.SelectedTabPageIndex = 0 Then 'by SOP
+            Dim q As String = "SELECT s.*,dep.departement,m.menu_name,m.`menu_caption`,CONCAT(d.id_doc,'_371_',s.id_sop,d.ext) AS filename,d.doc_desc
 FROM `tb_sop` s
 INNER JOIN tb_m_departement dep ON dep.id_departement=s.id_departement
 LEFT JOIN tb_sop_menu_erp er ON er.id_sop=s.id_sop
 LEFT JOIN tb_menu m ON m.`id_menu`=er.`id_menu`
-LEFT JOIN tb_doc d ON d.id_report=s.id_sop AND d.report_mark_type=371
+LEFT JOIN (SELECT * FROM tb_doc WHERE report_mark_type=371) d ON d.id_report=s.id_sop AND d.report_mark_type=371
 ORDER BY s.id_sop ASC"
-        If Not is_super_admin = "1" Then
-            q += " WHERE s.id_departement='" & id_departement_user & "' "
-        End If
+            If Not is_super_admin = "1" Then
+                q += " WHERE s.id_departement='" & id_departement_user & "' "
+            End If
 
-        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
-        GCBySOP.DataSource = dt
-        GVBySOP.BestFitColumns()
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            GCBySOP.DataSource = dt
+            GVBySOP.BestFitColumns()
+        ElseIf XTCSOPIndex.SelectedTabPageIndex = 1 Then 'by menu
+            Dim qw As String = ""
+
+            If Not is_super_admin = "1" Then
+                qw = " AND emp.`id_departement`='" & id_departement_user & "' AND emp.`id_employee_active`=1 "
+            End If
+
+            Dim q As String = "SELECT s.*,dep.departement,m.id_menu,m.menu_name,m.`menu_caption`,CONCAT(d.id_doc,'_371_',s.id_sop,d.ext) AS filename,d.doc_desc
+FROM (
+	SELECT m.id_menu,m.`description_menu_name`,m.`menu_caption`,m.`menu_name`
+	FROM tb_m_user usr
+	INNER JOIN tb_m_employee emp ON usr.`id_employee`=emp.`id_employee` " & qw & "
+	INNER JOIN `tb_menu_acc` menu ON menu.`id_role`=usr.`id_role`
+	INNER JOIN tb_m_role role ON role.`id_role`=menu.`id_role`
+	INNER JOIN tb_menu_form_control c ON c.`id_form_control`=menu.`id_form_control`
+	INNER JOIN tb_menu_form f ON f.`id_form`=c.`id_form`
+	INNER JOIN `tb_menu_involved` i ON i.`id_form`=f.`id_form`
+	INNER JOIN tb_menu m ON m.`id_menu`=i.`id_menu`
+	GROUP BY m.`id_menu`
+) m
+LEFT JOIN tb_sop_menu_erp er ON er.id_menu=m.id_menu
+LEFT JOIN `tb_sop` s ON s.`id_sop`=er.`id_sop`
+LEFT JOIN tb_m_departement dep ON dep.id_departement=s.id_departement
+LEFT JOIN 
+(SELECT * FROM tb_doc WHERE report_mark_type=371) d ON d.id_report=s.id_sop
+ORDER BY id_menu"
+
+
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            GCByModul.DataSource = dt
+            GVByModul.BestFitColumns()
+        End If
     End Sub
 
     Private Sub GVBySOP_DoubleClick(sender As Object, e As EventArgs) Handles GVBySOP.DoubleClick
@@ -96,15 +143,28 @@ ORDER BY s.id_sop ASC"
 
     Private Sub RepoLinkFile_Click(sender As Object, e As EventArgs) Handles RepoLinkFile.Click
         'download file
-        If Not GVBySOP.GetFocusedRowCellValue("doc_desc").ToString = "" Then
-            download_doc(GVBySOP.GetFocusedRowCellValue("filename").ToString, GVBySOP.GetFocusedRowCellValue("doc_desc").ToString)
+        If XTCSOPIndex.SelectedTabPageIndex = 0 Then
+            If Not GVBySOP.GetFocusedRowCellValue("doc_desc").ToString = "" Then
+                download_doc(GVBySOP.GetFocusedRowCellValue("filename").ToString, GVBySOP.GetFocusedRowCellValue("doc_desc").ToString)
+            End If
+        ElseIf XTCSOPIndex.SelectedTabPageIndex = 0 Then
+            If Not GVByModul.GetFocusedRowCellValue("doc_desc").ToString = "" Then
+                download_doc(GVByModul.GetFocusedRowCellValue("filename").ToString, GVByModul.GetFocusedRowCellValue("doc_desc").ToString)
+            End If
         End If
+
     End Sub
 
     Private Sub RepoLinkMenuERP_Click(sender As Object, e As EventArgs) Handles RepoLinkMenuERP.Click
         'menu file
-        If Not GVBySOP.GetFocusedRowCellValue("menu_name").ToString = "" Then
-            FormMain.call_click(GVBySOP.GetFocusedRowCellValue("menu_name").ToString)
+        If XTCSOPIndex.SelectedTabPageIndex = 0 Then
+            If Not GVBySOP.GetFocusedRowCellValue("menu_name").ToString = "" Then
+                FormMain.call_click(GVBySOP.GetFocusedRowCellValue("menu_name").ToString)
+            End If
+        ElseIf XTCSOPIndex.SelectedTabPageIndex = 0 Then
+            If Not GVByModul.GetFocusedRowCellValue("menu_name").ToString = "" Then
+                FormMain.call_click(GVByModul.GetFocusedRowCellValue("menu_name").ToString)
+            End If
         End If
     End Sub
 End Class
