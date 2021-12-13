@@ -7242,6 +7242,7 @@ GROUP BY ol.checkout_id
                                 Dim sku As String = GVData.GetRowCellValue(i, "sku").ToString
                                 Dim design_price As String = decimalSQL(GVData.GetRowCellValue(i, "design_price").ToString)
                                 Dim sales_order_det_qty As String = decimalSQL(GVData.GetRowCellValue(i, "sales_order_det_qty").ToString)
+                                Dim ol_order_qty As String = sales_order_det_qty
                                 Dim grams As String = decimalSQL(GVData.GetRowCellValue(i, "grams").ToString)
                                 Dim total_disc_order As String = decimalSQL(GVData.GetRowCellValue(i, "total_disc_order").ToString)
                                 Dim discount_allocations_amo As String = decimalSQL(GVData.GetRowCellValue(i, "discount_allocations_amo").ToString)
@@ -7280,6 +7281,7 @@ GROUP BY ol.checkout_id
                                 sku,
                                 design_price ,
                                 sales_order_det_qty,
+                                ol_order_qty,
                                 grams ,
                                 total_disc_order ,
                                 discount_allocations_amo ,
@@ -7311,6 +7313,7 @@ GROUP BY ol.checkout_id
                                 '" + sku + "',
                                 '" + design_price + "' ,
                                 '" + sales_order_det_qty + "',
+                                '" + ol_order_qty + "',
                                 '" + grams + "' ,
                                 '" + total_disc_order + "' ,
                                 '" + discount_allocations_amo + "' ,

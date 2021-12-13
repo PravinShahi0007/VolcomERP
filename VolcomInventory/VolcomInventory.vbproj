@@ -3371,6 +3371,12 @@
     <Compile Include="FormMenuAuth.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMKDEvent.Designer.vb">
+      <DependentUpon>FormMKDEvent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMKDEvent.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMonthlySalesPerformance.Designer.vb">
       <DependentUpon>FormMonthlySalesPerformance.vb</DependentUpon>
     </Compile>
@@ -12110,6 +12116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMenuAuth.resx">
       <DependentUpon>FormMenuAuth.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMKDEvent.resx">
+      <DependentUpon>FormMKDEvent.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMonthlySalesPerformance.resx">
       <DependentUpon>FormMonthlySalesPerformance.vb</DependentUpon>
