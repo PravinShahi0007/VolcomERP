@@ -28,22 +28,22 @@ Partial Class FormSOPIndex
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoLinkFile = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoLinkMenuERP = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BNewSOP = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPByModul = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
-        Me.RepoLinkFile = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
-        Me.RepoLinkMenuERP = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPBySOP.SuspendLayout()
         CType(Me.GCBySOP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBySOP, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
         CType(Me.RepoLinkFile, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkMenuERP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'XtraTabControl1
@@ -82,6 +82,7 @@ Partial Class FormSOPIndex
         Me.GVBySOP.GridControl = Me.GCBySOP
         Me.GVBySOP.Name = "GVBySOP"
         Me.GVBySOP.OptionsBehavior.ReadOnly = True
+        Me.GVBySOP.OptionsView.AllowCellMerge = True
         Me.GVBySOP.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -115,6 +116,11 @@ Partial Class FormSOPIndex
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
         '
+        'RepoLinkFile
+        '
+        Me.RepoLinkFile.AutoHeight = False
+        Me.RepoLinkFile.Name = "RepoLinkFile"
+        '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Menu ERP"
@@ -123,6 +129,11 @@ Partial Class FormSOPIndex
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
+        '
+        'RepoLinkMenuERP
+        '
+        Me.RepoLinkMenuERP.AutoHeight = False
+        Me.RepoLinkMenuERP.Name = "RepoLinkMenuERP"
         '
         'BNewSOP
         '
@@ -163,16 +174,6 @@ Partial Class FormSOPIndex
         Me.BRefresh.TabIndex = 1
         Me.BRefresh.Text = "Refresh"
         '
-        'RepoLinkFile
-        '
-        Me.RepoLinkFile.AutoHeight = False
-        Me.RepoLinkFile.Name = "RepoLinkFile"
-        '
-        'RepoLinkMenuERP
-        '
-        Me.RepoLinkMenuERP.AutoHeight = False
-        Me.RepoLinkMenuERP.Name = "RepoLinkMenuERP"
-        '
         'FormSOPIndex
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -193,10 +194,10 @@ Partial Class FormSOPIndex
         Me.XTPBySOP.ResumeLayout(False)
         CType(Me.GCBySOP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBySOP, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
         CType(Me.RepoLinkFile, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkMenuERP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
