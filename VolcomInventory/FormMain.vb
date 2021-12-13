@@ -16928,8 +16928,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         For Each group As DevExpress.XtraNavBar.NavBarGroup In NBProdRet.Groups
             For i As Integer = 0 To (group.ItemLinks.Count - 1)
                 If group.ItemLinks(i).ItemName.ToString = btn Then
-                    NBEOSChange_LinkClicked(group.ItemLinks(i).Item, New DevExpress.XtraNavBar.NavBarLinkEventArgs(group.ItemLinks(i).Item.Links(0)))
-
+                    group.ItemLinks(i).Item.Links(0).PerformClick()
+                    'NBEOSChange_LinkClicked(group.ItemLinks(i).Item, New DevExpress.XtraNavBar.NavBarLinkEventArgs(group.ItemLinks(i).Item.Links(0)))
                     Exit For
                 End If
             Next

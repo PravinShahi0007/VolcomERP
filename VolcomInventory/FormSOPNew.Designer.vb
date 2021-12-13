@@ -21,6 +21,7 @@ Partial Class FormSOPNew
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEFile = New DevExpress.XtraEditors.TextEdit()
         Me.SLEDepartement = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -40,7 +41,8 @@ Partial Class FormSOPNew
         Me.BUploadFile = New DevExpress.XtraEditors.ButtonEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PCUpload = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BDownload = New DevExpress.XtraEditors.SimpleButton()
+        Me.BUpload = New DevExpress.XtraEditors.SimpleButton()
         Me.GCModulERP = New DevExpress.XtraGrid.GridControl()
         Me.CM = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.DeleteModulToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -58,6 +60,7 @@ Partial Class FormSOPNew
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TEFile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TELastUpdate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,6 +84,7 @@ Partial Class FormSOPNew
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.TEFile)
         Me.PanelControl1.Controls.Add(Me.SLEDepartement)
         Me.PanelControl1.Controls.Add(Me.LabelControl8)
         Me.PanelControl1.Controls.Add(Me.LabelControl6)
@@ -98,6 +102,17 @@ Partial Class FormSOPNew
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(719, 125)
         Me.PanelControl1.TabIndex = 1
+        '
+        'TEFile
+        '
+        Me.TEFile.Enabled = False
+        Me.TEFile.Location = New System.Drawing.Point(407, 93)
+        Me.TEFile.Name = "TEFile"
+        Me.TEFile.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEFile.Properties.Appearance.Options.UseFont = True
+        Me.TEFile.Properties.ReadOnly = True
+        Me.TEFile.Size = New System.Drawing.Size(289, 20)
+        Me.TEFile.TabIndex = 17
         '
         'SLEDepartement
         '
@@ -281,7 +296,8 @@ Partial Class FormSOPNew
         '
         'PCUpload
         '
-        Me.PCUpload.Controls.Add(Me.SimpleButton2)
+        Me.PCUpload.Controls.Add(Me.BDownload)
+        Me.PCUpload.Controls.Add(Me.BUpload)
         Me.PCUpload.Controls.Add(Me.LabelControl3)
         Me.PCUpload.Controls.Add(Me.BUploadFile)
         Me.PCUpload.Dock = System.Windows.Forms.DockStyle.Top
@@ -291,13 +307,21 @@ Partial Class FormSOPNew
         Me.PCUpload.Size = New System.Drawing.Size(719, 41)
         Me.PCUpload.TabIndex = 11
         '
-        'SimpleButton2
+        'BDownload
         '
-        Me.SimpleButton2.Location = New System.Drawing.Point(575, 8)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(61, 23)
-        Me.SimpleButton2.TabIndex = 11
-        Me.SimpleButton2.Text = "upload"
+        Me.BDownload.Location = New System.Drawing.Point(633, 8)
+        Me.BDownload.Name = "BDownload"
+        Me.BDownload.Size = New System.Drawing.Size(74, 23)
+        Me.BDownload.TabIndex = 12
+        Me.BDownload.Text = "download"
+        '
+        'BUpload
+        '
+        Me.BUpload.Location = New System.Drawing.Point(575, 8)
+        Me.BUpload.Name = "BUpload"
+        Me.BUpload.Size = New System.Drawing.Size(52, 23)
+        Me.BUpload.TabIndex = 11
+        Me.BUpload.Text = "upload"
         '
         'GCModulERP
         '
@@ -442,6 +466,7 @@ Partial Class FormSOPNew
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TEFile.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TELastUpdate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -490,7 +515,7 @@ Partial Class FormSOPNew
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents CM As ContextMenuStrip
     Friend WithEvents DeleteModulToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BUpload As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TELastUpdate As DevExpress.XtraEditors.TextEdit
@@ -503,4 +528,6 @@ Partial Class FormSOPNew
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BDownload As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEFile As DevExpress.XtraEditors.TextEdit
 End Class
