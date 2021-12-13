@@ -143,26 +143,21 @@ ORDER BY id_menu"
 
     Private Sub RepoLinkFile_Click(sender As Object, e As EventArgs) Handles RepoLinkFile.Click
         'download file
+        'merge gk bisa
         If XTCSOPIndex.SelectedTabPageIndex = 0 Then
             If Not GVBySOP.GetFocusedRowCellValue("doc_desc").ToString = "" Then
                 download_doc(GVBySOP.GetFocusedRowCellValue("filename").ToString, GVBySOP.GetFocusedRowCellValue("doc_desc").ToString)
             End If
-        ElseIf XTCSOPIndex.SelectedTabPageIndex = 0 Then
-            If Not GVByModul.GetFocusedRowCellValue("doc_desc").ToString = "" Then
-                download_doc(GVByModul.GetFocusedRowCellValue("filename").ToString, GVByModul.GetFocusedRowCellValue("doc_desc").ToString)
-            End If
         End If
-
     End Sub
 
     Private Sub RepoFileByModul_Click(sender As Object, e As EventArgs) Handles RepoFileByModul.Click
         'download file
-        If XTCSOPIndex.SelectedTabPageIndex = 0 Then
+        If XTCSOPIndex.SelectedTabPageIndex = 1 Then
             If Not GVByModul.GetFocusedRowCellValue("doc_desc").ToString = "" Then
                 download_doc(GVByModul.GetFocusedRowCellValue("filename").ToString, GVByModul.GetFocusedRowCellValue("doc_desc").ToString)
             End If
         End If
-
     End Sub
 
     Private Sub RepoLinkMenuERP_Click(sender As Object, e As EventArgs) Handles RepoLinkMenuERP.Click
@@ -171,16 +166,31 @@ ORDER BY id_menu"
             If Not GVBySOP.GetFocusedRowCellValue("menu_name").ToString = "" Then
                 FormMain.call_click(GVBySOP.GetFocusedRowCellValue("menu_name").ToString)
             End If
-        ElseIf XTCSOPIndex.SelectedTabPageIndex = 0 Then
+        End If
+    End Sub
+
+    Private Sub RepoMenuByModul_Click(sender As Object, e As EventArgs) Handles RepoMenuByModul.Click
+        'menu link
+        'merge gk bisa
+        If XTCSOPIndex.SelectedTabPageIndex = 1 Then
             If Not GVByModul.GetFocusedRowCellValue("menu_name").ToString = "" Then
                 FormMain.call_click(GVByModul.GetFocusedRowCellValue("menu_name").ToString)
             End If
         End If
     End Sub
 
-    Private Sub RepoMenuByModul_Click(sender As Object, e As EventArgs) Handles RepoMenuByModul.Click
-        'menu link
-        If XTCSOPIndex.SelectedTabPageIndex = 0 Then
+    Private Sub GCBySOP_MouseClick(sender As Object, e As MouseEventArgs) Handles GCBySOP.MouseClick
+        Dim hi As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo = GVBySOP.CalcHitInfo(New Point(e.X, e.Y))
+        If hi.InRowCell AndAlso hi.Column IsNot Nothing AndAlso hi.Column.FieldName = "doc_desc" Then
+            If Not GVBySOP.GetFocusedRowCellValue("doc_desc").ToString = "" Then
+                download_doc(GVBySOP.GetFocusedRowCellValue("filename").ToString, GVBySOP.GetFocusedRowCellValue("doc_desc").ToString)
+            End If
+        End If
+    End Sub
+
+    Private Sub GCByModul_MouseClick(sender As Object, e As MouseEventArgs) Handles GCByModul.MouseClick
+        Dim hi As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo = GVByModul.CalcHitInfo(New Point(e.X, e.Y))
+        If hi.InRowCell AndAlso hi.Column IsNot Nothing AndAlso hi.Column.FieldName = "menu_caption" Then
             If Not GVByModul.GetFocusedRowCellValue("menu_name").ToString = "" Then
                 FormMain.call_click(GVByModul.GetFocusedRowCellValue("menu_name").ToString)
             End If
