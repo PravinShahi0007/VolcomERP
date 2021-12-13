@@ -1992,6 +1992,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDisableExos.createNew()
         ElseIf formName = "FormEOSChange" Then
             FormEOSChange.createNew()
+        ElseIf formName = "FormEts" Then
+            FormEts.createNew()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3357,6 +3359,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormDisableExos.viewDetail()
             ElseIf formName = "FormEOSChange" Then
                 FormEOSChange.viewDetail()
+            ElseIf formName = "FormEts" Then
+                FormEts.viewDetail()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8874,6 +8878,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDisableExos.printList()
         ElseIf formName = "FormEOSChange" Then
             FormEOSChange.printList()
+        ElseIf formName = "FormEts" Then
+            FormEts.printList()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9928,6 +9934,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormEOSChange" Then
             FormEOSChange.Close()
             FormEOSChange.Dispose()
+        ElseIf formName = "FormEts" Then
+            FormEts.Close()
+            FormEts.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10982,6 +10991,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDisableExos.viewData()
         ElseIf formName = "FormEOSChange" Then
             FormEOSChange.viewData()
+        ElseIf formName = "FormEts" Then
+            FormEts.viewData()
         End If
     End Sub
     'Switch
@@ -16917,11 +16928,24 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         For Each group As DevExpress.XtraNavBar.NavBarGroup In NBProdRet.Groups
             For i As Integer = 0 To (group.ItemLinks.Count - 1)
                 If group.ItemLinks(i).ItemName.ToString = btn Then
-                    NBEOSChange_LinkClicked(group.ItemLinks(i).Item, New DevExpress.XtraNavBar.NavBarLinkEventArgs(group.ItemLinks(i).Item.Links(0)))
-
+                    group.ItemLinks(i).Item.Links(0).PerformClick()
+                    'NBEOSChange_LinkClicked(group.ItemLinks(i).Item, New DevExpress.XtraNavBar.NavBarLinkEventArgs(group.ItemLinks(i).Item.Links(0)))
                     Exit For
                 End If
             Next
         Next group
+    End Sub
+
+    Private Sub NBEts_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEts.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEts.MdiParent = Me
+            FormEts.Show()
+            FormEts.WindowState = FormWindowState.Maximized
+            FormEts.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class

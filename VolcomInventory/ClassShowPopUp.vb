@@ -518,6 +518,9 @@
         ElseIf report_mark_type = "365" Then
             'perpanjang eos
             FormEOSChange.Close()
+        ElseIf report_mark_type = "370" Then
+            'eos to sale
+            FormEtsDet.Close()
         End If
     End Sub
     Sub show()
@@ -1671,6 +1674,12 @@ GROUP BY rec.`id_prod_order`"
             FormEOSChangeDet.action = "upd"
             FormEOSChangeDet.id = id_report
             FormEOSChangeDet.ShowDialog()
+        ElseIf report_mark_type = "370" Then
+            'eos to sale
+            FormEtsDet.is_view = "1"
+            FormEtsDet.action = "upd"
+            FormEtsDet.id = id_report
+            FormEtsDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2980,6 +2989,12 @@ GROUP BY rec.`id_prod_order`"
             'perpanjang eos
             table_name = "tb_eos_change"
             field_id = "id_eos_change"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "370" Then
+            'eos to sale
+            table_name = "tb_ets"
+            field_id = "id_ets"
             field_number = "number"
             field_date = "created_date"
         Else

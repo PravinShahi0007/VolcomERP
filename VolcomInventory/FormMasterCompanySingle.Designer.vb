@@ -247,6 +247,9 @@ Partial Class FormMasterCompanySingle
         Me.BClearAR = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtARCode = New DevExpress.XtraEditors.TextEdit()
         Me.BCreateCOA = New DevExpress.XtraEditors.SimpleButton()
+        Me.LCStatusPabean = New DevExpress.XtraEditors.LabelControl()
+        Me.SLUEStatusPabean = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView12 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.EPCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCCP.SuspendLayout()
@@ -359,6 +362,8 @@ Partial Class FormMasterCompanySingle
         CType(Me.SLEAR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtARCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUEStatusPabean.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView12, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPCompany
@@ -379,9 +384,9 @@ Partial Class FormMasterCompanySingle
         Me.GCCP.Controls.Add(Me.TECPName)
         Me.GCCP.Controls.Add(Me.LabelControl10)
         Me.GCCP.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCCP.Location = New System.Drawing.Point(0, 505)
+        Me.GCCP.Location = New System.Drawing.Point(0, 536)
         Me.GCCP.Name = "GCCP"
-        Me.GCCP.Size = New System.Drawing.Size(639, 123)
+        Me.GCCP.Size = New System.Drawing.Size(639, 118)
         Me.GCCP.TabIndex = 14
         Me.GCCP.Text = "Contact Person"
         '
@@ -424,7 +429,7 @@ Partial Class FormMasterCompanySingle
         Me.BCPSetup.Appearance.Options.UseFont = True
         Me.BCPSetup.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BCPSetup.ImageList = Me.LargeImageCollection
-        Me.BCPSetup.Location = New System.Drawing.Point(2, 96)
+        Me.BCPSetup.Location = New System.Drawing.Point(2, 91)
         Me.BCPSetup.Name = "BCPSetup"
         Me.BCPSetup.Size = New System.Drawing.Size(635, 25)
         Me.BCPSetup.TabIndex = 13
@@ -727,7 +732,7 @@ Partial Class FormMasterCompanySingle
         Me.GCAddress.Controls.Add(Me.MEAddress)
         Me.GCAddress.Controls.Add(Me.LabelControl3)
         Me.GCAddress.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GCAddress.Location = New System.Drawing.Point(0, 320)
+        Me.GCAddress.Location = New System.Drawing.Point(0, 351)
         Me.GCAddress.Name = "GCAddress"
         Me.GCAddress.Size = New System.Drawing.Size(639, 185)
         Me.GCAddress.TabIndex = 13
@@ -894,6 +899,8 @@ Partial Class FormMasterCompanySingle
         '
         'GroupControlDesc
         '
+        Me.GroupControlDesc.Controls.Add(Me.SLUEStatusPabean)
+        Me.GroupControlDesc.Controls.Add(Me.LCStatusPabean)
         Me.GroupControlDesc.Controls.Add(Me.TENPWPAddress)
         Me.GroupControlDesc.Controls.Add(Me.LabelControl39)
         Me.GroupControlDesc.Controls.Add(Me.TENPWPName)
@@ -933,7 +940,7 @@ Partial Class FormMasterCompanySingle
         Me.GroupControlDesc.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlDesc.Location = New System.Drawing.Point(0, 56)
         Me.GroupControlDesc.Name = "GroupControlDesc"
-        Me.GroupControlDesc.Size = New System.Drawing.Size(639, 264)
+        Me.GroupControlDesc.Size = New System.Drawing.Size(639, 295)
         Me.GroupControlDesc.TabIndex = 12
         Me.GroupControlDesc.Text = "Description"
         '
@@ -1767,7 +1774,7 @@ Partial Class FormMasterCompanySingle
         Me.PanelControl1.Controls.Add(Me.BCancel)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 656)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 682)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(645, 44)
         Me.PanelControl1.TabIndex = 16
@@ -1812,7 +1819,7 @@ Partial Class FormMasterCompanySingle
         Me.XTCCompany.Location = New System.Drawing.Point(0, 0)
         Me.XTCCompany.Name = "XTCCompany"
         Me.XTCCompany.SelectedTabPage = Me.XTPDesc
-        Me.XTCCompany.Size = New System.Drawing.Size(645, 656)
+        Me.XTCCompany.Size = New System.Drawing.Size(645, 682)
         Me.XTCCompany.TabIndex = 28
         Me.XTCCompany.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesc, Me.XTPLegal, Me.XTPSetup, Me.XTPCOA})
         '
@@ -1823,7 +1830,7 @@ Partial Class FormMasterCompanySingle
         Me.XTPDesc.Controls.Add(Me.GroupControlDesc)
         Me.XTPDesc.Controls.Add(Me.GroupControlStoreGroup)
         Me.XTPDesc.Name = "XTPDesc"
-        Me.XTPDesc.Size = New System.Drawing.Size(639, 628)
+        Me.XTPDesc.Size = New System.Drawing.Size(639, 654)
         Me.XTPDesc.Text = "General"
         '
         'GroupControlStoreGroup
@@ -2639,11 +2646,36 @@ Partial Class FormMasterCompanySingle
         Me.BCreateCOA.Text = "Manage COA"
         Me.BCreateCOA.Visible = False
         '
+        'LCStatusPabean
+        '
+        Me.LCStatusPabean.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LCStatusPabean.Location = New System.Drawing.Point(11, 267)
+        Me.LCStatusPabean.Name = "LCStatusPabean"
+        Me.LCStatusPabean.Size = New System.Drawing.Size(70, 13)
+        Me.LCStatusPabean.TabIndex = 8921
+        Me.LCStatusPabean.Text = "Status Pabean"
+        '
+        'SLUEStatusPabean
+        '
+        Me.SLUEStatusPabean.Location = New System.Drawing.Point(93, 264)
+        Me.SLUEStatusPabean.Name = "SLUEStatusPabean"
+        Me.SLUEStatusPabean.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEStatusPabean.Properties.View = Me.GridView12
+        Me.SLUEStatusPabean.Size = New System.Drawing.Size(230, 20)
+        Me.SLUEStatusPabean.TabIndex = 8922
+        '
+        'GridView12
+        '
+        Me.GridView12.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView12.Name = "GridView12"
+        Me.GridView12.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView12.OptionsView.ShowGroupPanel = False
+        '
         'FormMasterCompanySingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(645, 700)
+        Me.ClientSize = New System.Drawing.Size(645, 726)
         Me.Controls.Add(Me.XTCCompany)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -2775,6 +2807,8 @@ Partial Class FormMasterCompanySingle
         CType(Me.SLEAR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtARCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUEStatusPabean.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView12, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3004,4 +3038,7 @@ Partial Class FormMasterCompanySingle
     Friend WithEvents LabelControl47 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BClearARCabang As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TxtARCodeCabang As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents SLUEStatusPabean As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView12 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LCStatusPabean As DevExpress.XtraEditors.LabelControl
 End Class

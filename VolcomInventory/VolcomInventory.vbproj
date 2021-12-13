@@ -262,6 +262,7 @@
     <Compile Include="ClassEmpUni.vb" />
     <Compile Include="ClassEmpUniExpense.vb" />
     <Compile Include="ClassEOSChange.vb" />
+    <Compile Include="ClassEts.vb" />
     <Compile Include="ClassFGBorrowQCReq.vb" />
     <Compile Include="ClassFGCodeReplace.vb" />
     <Compile Include="ClassFGMissingInv.vb" />
@@ -2177,6 +2178,30 @@
     <Compile Include="FormError.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEts.Designer.vb">
+      <DependentUpon>FormEts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEts.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEtsDet.Designer.vb">
+      <DependentUpon>FormEtsDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEtsDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEtsProposeType.Designer.vb">
+      <DependentUpon>FormEtsProposeType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEtsProposeType.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEtsSingle.Designer.vb">
+      <DependentUpon>FormEtsSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEtsSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEvaluation.Designer.vb">
       <DependentUpon>FormEvaluation.vb</DependentUpon>
     </Compile>
@@ -3344,6 +3369,12 @@
       <DependentUpon>FormMenuAuth.vb</DependentUpon>
     </Compile>
     <Compile Include="FormMenuAuth.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMKDEvent.Designer.vb">
+      <DependentUpon>FormMKDEvent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMKDEvent.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMonthlySalesPerformance.Designer.vb">
@@ -8995,6 +9026,12 @@
     <Compile Include="ReportEOSChange.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEts.Designer.vb">
+      <DependentUpon>ReportEts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEts.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGAdjIn.Designer.vb">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>
     </Compile>
@@ -11465,6 +11502,18 @@
     <EmbeddedResource Include="FormError.resx">
       <DependentUpon>FormError.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEts.resx">
+      <DependentUpon>FormEts.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEtsDet.resx">
+      <DependentUpon>FormEtsDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEtsProposeType.resx">
+      <DependentUpon>FormEtsProposeType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEtsSingle.resx">
+      <DependentUpon>FormEtsSingle.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormExternalUser.resx">
       <DependentUpon>FormExternalUser.vb</DependentUpon>
     </EmbeddedResource>
@@ -12067,6 +12116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMenuAuth.resx">
       <DependentUpon>FormMenuAuth.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMKDEvent.resx">
+      <DependentUpon>FormMKDEvent.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMonthlySalesPerformance.resx">
       <DependentUpon>FormMonthlySalesPerformance.vb</DependentUpon>
@@ -15306,6 +15358,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEOSChange.resx">
       <DependentUpon>ReportEOSChange.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEts.resx">
+      <DependentUpon>ReportEts.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGAdjIn.resx">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>
