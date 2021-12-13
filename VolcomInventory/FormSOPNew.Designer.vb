@@ -113,6 +113,7 @@ Partial Class FormSOPNew
         Me.TEFile.Properties.ReadOnly = True
         Me.TEFile.Size = New System.Drawing.Size(289, 20)
         Me.TEFile.TabIndex = 17
+        Me.TEFile.Visible = False
         '
         'SLEDepartement
         '
