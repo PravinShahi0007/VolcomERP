@@ -1169,6 +1169,7 @@ WHERE c.id_comp='" + id_comp + "' "
         GridColumnCurr.Visible = False
         GridColumnCurrView.VisibleIndex = 5
         '
+        GridColumnStartPeriod.Visible = False
         GridColumnEndPeriod.Visible = False
         GridColumnCOABiaya.Visible = False
         GridColumnCoaBiayaCol.Visible = False
