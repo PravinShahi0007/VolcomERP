@@ -35,7 +35,7 @@
         If FormEmpSchedule.is_security = "1" And opt = "1" Then
             query += " WHERE emp.employee_position LIKE '%security%' AND (emp.id_employee_active='1' OR emp.employee_last_date >= DATE(NOW()))"
         ElseIf opt = "2" Then
-            query += " WHERE emp.id_departement='" & FormEmpAttnAssign.LEDeptSum.EditValue.ToString & "' AND (emp.id_employee_active='1' OR emp.employee_last_date >= DATE(NOW()))"
+            query += " WHERE emp.id_departement='" & FormEmpAttnAssign.LEDeptSum.EditValue.ToString & "'"
 
             If FormEmpAttnAssign.LEDeptSum.EditValue.ToString = "17" Then
                 query += " AND emp.id_departement_sub='" + FormEmpAttnAssign.LESubDeptSum.EditValue.ToString + "'"
