@@ -30,6 +30,21 @@ Partial Class FormMKDEvent
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridColumnid_pp_change = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstart_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnend_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncount_day = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoLinkNo = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.PanelControlDetail = New DevExpress.XtraEditors.PanelControl()
+        Me.GCDetail = New DevExpress.XtraGrid.GridControl()
+        Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEMKD = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BtnPrintList = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCEvent, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCEvent.SuspendLayout()
         Me.XTPList.SuspendLayout()
@@ -39,6 +54,15 @@ Partial Class FormMKDEvent
         Me.PanelControlList.SuspendLayout()
         CType(Me.SLEOption.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPDetail.SuspendLayout()
+        CType(Me.RepoLinkNo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlDetail.SuspendLayout()
+        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEMKD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCEvent
@@ -66,12 +90,14 @@ Partial Class FormMKDEvent
         Me.GCList.Location = New System.Drawing.Point(0, 54)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
+        Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoLinkNo})
         Me.GCList.Size = New System.Drawing.Size(645, 337)
         Me.GCList.TabIndex = 1
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
         'GVList
         '
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pp_change, Me.GridColumnnumber, Me.GridColumnstart_date, Me.GridColumnend_date, Me.GridColumnnote, Me.GridColumncount_day})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.ReadOnly = True
@@ -81,6 +107,7 @@ Partial Class FormMKDEvent
         '
         'PanelControlList
         '
+        Me.PanelControlList.Controls.Add(Me.BtnPrintList)
         Me.PanelControlList.Controls.Add(Me.BtnViewList)
         Me.PanelControlList.Controls.Add(Me.LabelControl2)
         Me.PanelControlList.Controls.Add(Me.SLEOption)
@@ -132,9 +159,132 @@ Partial Class FormMKDEvent
         '
         'XTPDetail
         '
+        Me.XTPDetail.Controls.Add(Me.GCDetail)
+        Me.XTPDetail.Controls.Add(Me.PanelControlDetail)
         Me.XTPDetail.Name = "XTPDetail"
         Me.XTPDetail.Size = New System.Drawing.Size(645, 391)
         Me.XTPDetail.Text = "Detail"
+        '
+        'GridColumnid_pp_change
+        '
+        Me.GridColumnid_pp_change.Caption = "id_pp_change"
+        Me.GridColumnid_pp_change.FieldName = "id_pp_change"
+        Me.GridColumnid_pp_change.Name = "GridColumnid_pp_change"
+        '
+        'GridColumnnumber
+        '
+        Me.GridColumnnumber.Caption = "Number"
+        Me.GridColumnnumber.ColumnEdit = Me.RepoLinkNo
+        Me.GridColumnnumber.FieldName = "number"
+        Me.GridColumnnumber.Name = "GridColumnnumber"
+        Me.GridColumnnumber.Visible = True
+        Me.GridColumnnumber.VisibleIndex = 0
+        '
+        'GridColumnstart_date
+        '
+        Me.GridColumnstart_date.Caption = "Start Date"
+        Me.GridColumnstart_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnstart_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnstart_date.FieldName = "start_date"
+        Me.GridColumnstart_date.Name = "GridColumnstart_date"
+        Me.GridColumnstart_date.Visible = True
+        Me.GridColumnstart_date.VisibleIndex = 1
+        '
+        'GridColumnend_date
+        '
+        Me.GridColumnend_date.Caption = "End Date"
+        Me.GridColumnend_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnend_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnend_date.FieldName = "end_date"
+        Me.GridColumnend_date.Name = "GridColumnend_date"
+        Me.GridColumnend_date.Visible = True
+        Me.GridColumnend_date.VisibleIndex = 2
+        '
+        'GridColumnnote
+        '
+        Me.GridColumnnote.Caption = "Note"
+        Me.GridColumnnote.FieldName = "note"
+        Me.GridColumnnote.Name = "GridColumnnote"
+        Me.GridColumnnote.Visible = True
+        Me.GridColumnnote.VisibleIndex = 3
+        '
+        'GridColumncount_day
+        '
+        Me.GridColumncount_day.Caption = "count_day"
+        Me.GridColumncount_day.FieldName = "count_day"
+        Me.GridColumncount_day.Name = "GridColumncount_day"
+        '
+        'RepoLinkNo
+        '
+        Me.RepoLinkNo.AutoHeight = False
+        Me.RepoLinkNo.Name = "RepoLinkNo"
+        '
+        'PanelControlDetail
+        '
+        Me.PanelControlDetail.Controls.Add(Me.SLEMKD)
+        Me.PanelControlDetail.Controls.Add(Me.LabelControl3)
+        Me.PanelControlDetail.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlDetail.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlDetail.Name = "PanelControlDetail"
+        Me.PanelControlDetail.Size = New System.Drawing.Size(645, 54)
+        Me.PanelControlDetail.TabIndex = 0
+        '
+        'GCDetail
+        '
+        Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDetail.Location = New System.Drawing.Point(0, 54)
+        Me.GCDetail.MainView = Me.GVDetail
+        Me.GCDetail.Name = "GCDetail"
+        Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemHyperLinkEdit1})
+        Me.GCDetail.Size = New System.Drawing.Size(645, 337)
+        Me.GCDetail.TabIndex = 2
+        Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
+        '
+        'GVDetail
+        '
+        Me.GVDetail.GridControl = Me.GCDetail
+        Me.GVDetail.Name = "GVDetail"
+        Me.GVDetail.OptionsBehavior.ReadOnly = True
+        Me.GVDetail.OptionsFind.AlwaysVisible = True
+        Me.GVDetail.OptionsView.ColumnAutoWidth = False
+        Me.GVDetail.OptionsView.ShowGroupPanel = False
+        '
+        'RepositoryItemHyperLinkEdit1
+        '
+        Me.RepositoryItemHyperLinkEdit1.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit1.Name = "RepositoryItemHyperLinkEdit1"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(14, 20)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(61, 13)
+        Me.LabelControl3.TabIndex = 0
+        Me.LabelControl3.Text = "Proposal No."
+        '
+        'SLEMKD
+        '
+        Me.SLEMKD.Location = New System.Drawing.Point(81, 17)
+        Me.SLEMKD.Name = "SLEMKD"
+        Me.SLEMKD.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEMKD.Properties.View = Me.GridView1
+        Me.SLEMKD.Size = New System.Drawing.Size(164, 20)
+        Me.SLEMKD.TabIndex = 2
+        '
+        'GridView1
+        '
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'BtnPrintList
+        '
+        Me.BtnPrintList.Location = New System.Drawing.Point(304, 15)
+        Me.BtnPrintList.Name = "BtnPrintList"
+        Me.BtnPrintList.Size = New System.Drawing.Size(75, 23)
+        Me.BtnPrintList.TabIndex = 3
+        Me.BtnPrintList.Text = "Print List"
         '
         'FormMKDEvent
         '
@@ -154,6 +304,16 @@ Partial Class FormMKDEvent
         Me.PanelControlList.PerformLayout()
         CType(Me.SLEOption.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPDetail.ResumeLayout(False)
+        CType(Me.RepoLinkNo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlDetail.ResumeLayout(False)
+        Me.PanelControlDetail.PerformLayout()
+        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEMKD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -169,4 +329,19 @@ Partial Class FormMKDEvent
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCList As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVList As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_pp_change As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepoLinkNo As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents GridColumnstart_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnend_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncount_day As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnPrintList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCDetail As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDetail As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents RepositoryItemHyperLinkEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents PanelControlDetail As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SLEMKD As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
 End Class
