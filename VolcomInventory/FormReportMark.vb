@@ -10306,6 +10306,36 @@ WHERE pps.id_product_weight_pps='" & id_report & "'"
                 INNER JOIN tb_pp_change m ON m.id_pp_change = d.id_pp_change
                 WHERE d.id_pp_change='" + id_report + "' AND d.id_extended_eos=1; "
                 execute_non_query(qm, True, "", "", "", "")
+
+                'sending mail
+                Dim id_design_mkd_selected As String = execute_query("SELECT p.id_design_mkd FROM tb_pp_change p WHERE p.id_pp_change=" + id_report + "", 0, True, "", "", "", "")
+                If id_design_mkd_selected = "1" Then
+                    Dim qmail As String = "SELECT cg.id_comp_group, cg.comp_group, cg.description 
+                    FROM tb_mail_to_group mtg 
+                    INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = mtg.id_comp_group
+                    WHERE mtg.report_mark_type=373
+                    GROUP BY mtg.id_comp_group "
+                    Dim dmail As DataTable = execute_query(qmail, -1, True, "", "", "", "")
+                    If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                        FormMain.SplashScreenManager1.ShowWaitForm()
+                    End If
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Checking mail address")
+                    For d As Integer = 0 To dmail.Rows.Count - 1
+                        FormMain.SplashScreenManager1.SetWaitFormDescription("Sending mail " + (d + 1).ToString + "/" + dmail.Rows.Count.ToString)
+                        Try
+                            Dim sm As New ClassSendEmail()
+                            sm.report_mark_type = "373"
+                            sm.id_report = id_report
+                            sm.par1 = dmail.Rows(d)("id_comp_group").ToString
+                            Dim qlog As String = "INSERT INTO tb_pp_change_email_log(id_pp_change, log_note, log_date) VALUES('" + id_report + "', 'Success: Sending mail to " + addSlashes(dmail.Rows(d)("description").ToString) + "', NOW()); "
+                            execute_non_query(qlog, True, "", "", "", "")
+                        Catch ex As Exception
+                            Dim qlog As String = "INSERT INTO tb_pp_change_email_log(id_pp_change, log_note, log_date) VALUES('" + id_report + "', 'Error:" + addSlashes(ex.ToString) + "', NOW()); "
+                            execute_non_query(qlog, True, "", "", "", "")
+                        End Try
+                    Next
+                    FormMain.SplashScreenManager1.CloseWaitForm()
+                End If
             End If
 
             'update status
