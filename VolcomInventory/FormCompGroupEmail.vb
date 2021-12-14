@@ -1,4 +1,6 @@
 ﻿Public Class FormCompGroupEmail
+    Public rmt As String = "-1"
+
     Private Sub FormPopUpCompGroup_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         checkFormAccess(Name)
@@ -27,7 +29,7 @@
 FROM tb_m_comp_group cg 
 INNER JOIN tb_m_comp c ON c.id_comp_group=cg.id_comp_group AND c.is_active=1
 WHERE cg.is_send_per_comp=1"
-        ElseIf SLEReportMarkType.EditValue.ToString = "322" Then
+        ElseIf SLEReportMarkType.EditValue.ToString = "322" Or SLEReportMarkType.EditValue.ToString = "373" Then
             q = "SELECT id_comp_group,comp_group,description FROM tb_m_comp_group"
         End If
 
@@ -41,6 +43,11 @@ WHERE cg.is_send_per_comp=1"
     Private Sub FormCompGroupEmail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_rmt()
         load_comp_group()
+        If rmt = "373" Then
+            SLEReportMarkType.EditValue = rmt
+            SLEReportMarkType.Enabled = False
+            BAddInternal.Visible = False
+        End If
     End Sub
 
     Sub view_rmt()
@@ -59,7 +66,7 @@ WHERE report_mark_type='" & SLEReportMarkType.EditValue.ToString & "' AND id_com
                 q = "SELECT id_mail_to_group,`email`,`name`,IF(is_to=1,'To','CC') AS is_to , IF(ISNULL(id_employee),'External','Internal') AS `type`
 FROM tb_mail_to_group
 WHERE report_mark_type='" & SLEReportMarkType.EditValue.ToString & "' AND id_comp_group='" & GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString & "' AND id_comp='" & GVGroupComp.GetFocusedRowCellValue("id_comp").ToString & "'"
-            ElseIf SLEReportMarkType.EditValue.ToString = "322" Then
+            ElseIf SLEReportMarkType.EditValue.ToString = "322" Or SLEReportMarkType.EditValue.ToString = "373" Then
                 q = "SELECT id_mail_to_group,`email`,`name`,IF(is_to=1,'To','CC') AS is_to , IF(ISNULL(id_employee),'External','Internal') AS `type`
 FROM tb_mail_to_group
 WHERE report_mark_type='" & SLEReportMarkType.EditValue.ToString & "' AND id_comp_group='" & GVGroupComp.GetFocusedRowCellValue("id_comp_group").ToString & "'"
