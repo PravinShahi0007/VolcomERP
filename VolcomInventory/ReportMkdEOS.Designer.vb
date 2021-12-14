@@ -19,12 +19,7 @@ Partial Public Class ReportMkdEOS
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue1 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
-        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue2 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
-        Dim GridFormatRule3 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue3 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportMkdEOS))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
@@ -36,6 +31,7 @@ Partial Public Class ReportMkdEOS
         Me.GridColumndeskripsi = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnwarna = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndeskripsi_warna = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnharga_normal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndisc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnharga_update = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnket = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -92,8 +88,7 @@ Partial Public Class ReportMkdEOS
         '
         'GVData
         '
-        Me.GVData.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.Transparent
-        Me.GVData.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GVData.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GVData.AppearancePrint.HeaderPanel.ForeColor = System.Drawing.Color.Black
         Me.GVData.AppearancePrint.HeaderPanel.Options.UseBackColor = True
         Me.GVData.AppearancePrint.HeaderPanel.Options.UseFont = True
@@ -101,41 +96,15 @@ Partial Public Class ReportMkdEOS
         Me.GVData.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVData.AppearancePrint.Row.BackColor = System.Drawing.Color.Transparent
-        Me.GVData.AppearancePrint.Row.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GVData.AppearancePrint.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GVData.AppearancePrint.Row.ForeColor = System.Drawing.Color.Black
         Me.GVData.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVData.AppearancePrint.Row.Options.UseFont = True
         Me.GVData.AppearancePrint.Row.Options.UseForeColor = True
         Me.GVData.AppearancePrint.Row.Options.UseTextOptions = True
         Me.GVData.AppearancePrint.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnkode_lengkap, Me.GridColumnkode, Me.GridColumnsize, Me.GridColumnclass, Me.GridColumndeskripsi, Me.GridColumnwarna, Me.GridColumndeskripsi_warna, Me.GridColumndisc, Me.GridColumnharga_update, Me.GridColumnket})
-        GridFormatRule1.Name = "Format0"
-        FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.Yellow
-        FormatConditionRuleValue1.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue1.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue1.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue1.Expression = "Iif([propose_disc] > 0 And [propose_disc] <= 30, True, False)"
-        GridFormatRule1.Rule = FormatConditionRuleValue1
-        GridFormatRule2.Name = "Format1"
-        FormatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue2.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue2.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue2.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue2.Expression = "Iif([propose_disc] > 31 And [propose_disc] <= 50, True, False)"
-        GridFormatRule2.Rule = FormatConditionRuleValue2
-        GridFormatRule3.Name = "Format2"
-        FormatConditionRuleValue3.Appearance.BackColor = System.Drawing.Color.Lime
-        FormatConditionRuleValue3.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleValue3.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue3.Appearance.Options.UseBorderColor = True
-        FormatConditionRuleValue3.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue3.Expression = "Iif([propose_disc] > 51, True, False)"
-        GridFormatRule3.Rule = FormatConditionRuleValue3
-        Me.GVData.FormatRules.Add(GridFormatRule1)
-        Me.GVData.FormatRules.Add(GridFormatRule2)
-        Me.GVData.FormatRules.Add(GridFormatRule3)
+        Me.GVData.ColumnPanelRowHeight = 50
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnkode_lengkap, Me.GridColumnkode, Me.GridColumnsize, Me.GridColumnclass, Me.GridColumndeskripsi, Me.GridColumnwarna, Me.GridColumndeskripsi_warna, Me.GridColumnharga_normal, Me.GridColumndisc, Me.GridColumnharga_update, Me.GridColumnket})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -144,9 +113,12 @@ Partial Public Class ReportMkdEOS
         Me.GVData.OptionsPrint.AllowMultilineHeaders = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowGroupPanel = False
+        Me.GVData.RowHeight = 30
         '
         'GridColumnkode_lengkap
         '
+        Me.GridColumnkode_lengkap.AppearanceHeader.BackColor = System.Drawing.Color.White
+        Me.GridColumnkode_lengkap.AppearanceHeader.Options.UseBackColor = True
         Me.GridColumnkode_lengkap.Caption = "KODE LENGKAP"
         Me.GridColumnkode_lengkap.FieldName = "kode_lengkap"
         Me.GridColumnkode_lengkap.Name = "GridColumnkode_lengkap"
@@ -156,6 +128,8 @@ Partial Public Class ReportMkdEOS
         '
         'GridColumnkode
         '
+        Me.GridColumnkode.AppearanceHeader.BackColor = System.Drawing.Color.White
+        Me.GridColumnkode.AppearanceHeader.Options.UseBackColor = True
         Me.GridColumnkode.Caption = "KODE"
         Me.GridColumnkode.FieldName = "kode"
         Me.GridColumnkode.Name = "GridColumnkode"
@@ -164,6 +138,8 @@ Partial Public Class ReportMkdEOS
         '
         'GridColumnsize
         '
+        Me.GridColumnsize.AppearanceHeader.BackColor = System.Drawing.Color.White
+        Me.GridColumnsize.AppearanceHeader.Options.UseBackColor = True
         Me.GridColumnsize.Caption = "SIZE"
         Me.GridColumnsize.FieldName = "size"
         Me.GridColumnsize.Name = "GridColumnsize"
@@ -172,6 +148,8 @@ Partial Public Class ReportMkdEOS
         '
         'GridColumnclass
         '
+        Me.GridColumnclass.AppearanceHeader.BackColor = System.Drawing.Color.White
+        Me.GridColumnclass.AppearanceHeader.Options.UseBackColor = True
         Me.GridColumnclass.Caption = "KELAS"
         Me.GridColumnclass.FieldName = "class"
         Me.GridColumnclass.Name = "GridColumnclass"
@@ -180,6 +158,10 @@ Partial Public Class ReportMkdEOS
         '
         'GridColumndeskripsi
         '
+        Me.GridColumndeskripsi.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumndeskripsi.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumndeskripsi.AppearanceHeader.BackColor = System.Drawing.Color.White
+        Me.GridColumndeskripsi.AppearanceHeader.Options.UseBackColor = True
         Me.GridColumndeskripsi.Caption = "DESKRIPSI"
         Me.GridColumndeskripsi.FieldName = "deskripsi"
         Me.GridColumndeskripsi.Name = "GridColumndeskripsi"
@@ -188,7 +170,9 @@ Partial Public Class ReportMkdEOS
         '
         'GridColumnwarna
         '
-        Me.GridColumnwarna.Caption = "KODE WARNA"
+        Me.GridColumnwarna.AppearanceHeader.BackColor = System.Drawing.Color.White
+        Me.GridColumnwarna.AppearanceHeader.Options.UseBackColor = True
+        Me.GridColumnwarna.Caption = "WARNA"
         Me.GridColumnwarna.FieldName = "warna"
         Me.GridColumnwarna.Name = "GridColumnwarna"
         Me.GridColumnwarna.Visible = True
@@ -197,36 +181,69 @@ Partial Public Class ReportMkdEOS
         '
         'GridColumndeskripsi_warna
         '
-        Me.GridColumndeskripsi_warna.Caption = "WARNA"
+        Me.GridColumndeskripsi_warna.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumndeskripsi_warna.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumndeskripsi_warna.AppearanceHeader.BackColor = System.Drawing.Color.White
+        Me.GridColumndeskripsi_warna.AppearanceHeader.Options.UseBackColor = True
+        Me.GridColumndeskripsi_warna.Caption = "DESKRIPSI WARNA"
         Me.GridColumndeskripsi_warna.FieldName = "deskripsi_warna"
         Me.GridColumndeskripsi_warna.Name = "GridColumndeskripsi_warna"
         Me.GridColumndeskripsi_warna.Visible = True
         Me.GridColumndeskripsi_warna.VisibleIndex = 6
         '
+        'GridColumnharga_normal
+        '
+        Me.GridColumnharga_normal.AppearanceHeader.BackColor = System.Drawing.Color.White
+        Me.GridColumnharga_normal.AppearanceHeader.Options.UseBackColor = True
+        Me.GridColumnharga_normal.Caption = "HARGA NORMAL"
+        Me.GridColumnharga_normal.DisplayFormat.FormatString = "N0"
+        Me.GridColumnharga_normal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnharga_normal.FieldName = "harga_normal"
+        Me.GridColumnharga_normal.Name = "GridColumnharga_normal"
+        Me.GridColumnharga_normal.Visible = True
+        Me.GridColumnharga_normal.VisibleIndex = 7
+        '
         'GridColumndisc
         '
+        Me.GridColumndisc.AppearanceHeader.BackColor = System.Drawing.Color.White
+        Me.GridColumndisc.AppearanceHeader.Options.UseBackColor = True
         Me.GridColumndisc.Caption = "DISC"
         Me.GridColumndisc.FieldName = "disc"
         Me.GridColumndisc.Name = "GridColumndisc"
         Me.GridColumndisc.Visible = True
-        Me.GridColumndisc.VisibleIndex = 7
+        Me.GridColumndisc.VisibleIndex = 8
         '
         'GridColumnharga_update
         '
+        Me.GridColumnharga_update.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnharga_update.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnharga_update.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumnharga_update.AppearanceCell.Options.UseFont = True
+        Me.GridColumnharga_update.AppearanceHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnharga_update.AppearanceHeader.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnharga_update.AppearanceHeader.Options.UseBackColor = True
         Me.GridColumnharga_update.Caption = "HARGA UPDATE"
+        Me.GridColumnharga_update.DisplayFormat.FormatString = "N0"
+        Me.GridColumnharga_update.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnharga_update.FieldName = "harga_update"
+        Me.GridColumnharga_update.Image = CType(resources.GetObject("GridColumnharga_update.Image"), System.Drawing.Image)
+        Me.GridColumnharga_update.ImageAlignment = System.Drawing.StringAlignment.Far
         Me.GridColumnharga_update.Name = "GridColumnharga_update"
         Me.GridColumnharga_update.Visible = True
-        Me.GridColumnharga_update.VisibleIndex = 8
+        Me.GridColumnharga_update.VisibleIndex = 9
         Me.GridColumnharga_update.Width = 109
         '
         'GridColumnket
         '
+        Me.GridColumnket.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnket.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnket.AppearanceHeader.BackColor = System.Drawing.Color.White
+        Me.GridColumnket.AppearanceHeader.Options.UseBackColor = True
         Me.GridColumnket.Caption = "KET"
         Me.GridColumnket.FieldName = "ket"
         Me.GridColumnket.Name = "GridColumnket"
         Me.GridColumnket.Visible = True
-        Me.GridColumnket.VisibleIndex = 9
+        Me.GridColumnket.VisibleIndex = 10
         '
         'RepoLinkNumber
         '
@@ -453,7 +470,6 @@ Partial Public Class ReportMkdEOS
         Me.LabelNotice.StylePriority.UseTextAlignment = False
         Me.LabelNotice.Text = "* This is computer generated Price List. Signature not required."
         Me.LabelNotice.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.LabelNotice.Visible = False
         '
         'ReportMkdEOS
         '
@@ -505,4 +521,5 @@ Partial Public Class ReportMkdEOS
     Friend WithEvents GridColumndisc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnharga_update As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnket As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnharga_normal As DevExpress.XtraGrid.Columns.GridColumn
 End Class
