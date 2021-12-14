@@ -112,6 +112,11 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+        FormMKDEvent.ShowDialog()
+        'split kacamata
+        'MsgBox(TextEdit1.Text.Split("/")(0).ToString().TrimEnd)
+        'MsgBox(TextEdit1.Text.Split("/")(1).ToString().TrimStart)
+
         'Dim q As String = "INSERT INTO tb_temp_menu(menu_name,menu_caption) VALUES('tes','tes')"
         'For Each group As DevExpress.XtraNavBar.NavBarGroup In FormMain.NBProdRet.Groups
         '    For i As Integer = 0 To (group.ItemLinks.Count - 1)
