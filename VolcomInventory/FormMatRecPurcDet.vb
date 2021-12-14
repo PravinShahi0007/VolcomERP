@@ -372,22 +372,27 @@
 
         'validasi foc
         Dim foc_c As Boolean = True
-        Dim tot_qty_rec As Decimal = GVListPurchase.Columns("mat_purc_rec_det_qty").SummaryItem.SummaryValue
-        Dim tot_qty_po As Decimal = GVListPurchase.Columns("qty").SummaryItem.SummaryValue
-        Dim qfoc As String = "SELECT recd.id_mat_purc_det,SUM(recd.`mat_purc_rec_det_qty`) AS qty
-FROM `tb_mat_purc_rec_det` recd
-INNER JOIN tb_mat_purc_rec rec ON rec.`id_mat_purc_rec`=recd.`id_mat_purc_rec` AND rec.`id_report_status`!=5 AND rec.`id_mat_purc`='" & id_order & "'
-HAVING NOT ISNULL(qty)"
-        Dim dtfoc As DataTable = execute_query(qfoc, -1, True, "", "", "", "")
-        If dtfoc.Rows.Count > 0 Then
-            tot_qty_rec += dtfoc.Rows(0)("qty")
-        End If
 
-        If tot_qty_rec > tot_qty_po Then
-            If CEFreeOfCharge.Checked = False Then
-                foc_c = False
+        For i As Integer = 0 To GVListPurchase.RowCount - 1
+            Dim tot_qty_rec As Decimal = GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_qty")
+            Dim tot_qty_po As Decimal = GVListPurchase.GetRowCellValue(i, "qty")
+            Dim qfoc As String = "SELECT recd.id_mat_purc_det,SUM(recd.`mat_purc_rec_det_qty`) AS qty
+FROM `tb_mat_purc_rec_det` recd
+INNER JOIN tb_mat_purc_rec rec ON rec.`id_mat_purc_rec`=recd.`id_mat_purc_rec` AND rec.is_foc='2' AND rec.`id_report_status`!=5 AND rec.`id_mat_purc`='" & id_order & "'
+WHERE recd.id_mat_purc_det='" & GVListPurchase.GetRowCellValue(i, "id_mat_purc_det").ToString & "'
+HAVING NOT ISNULL(qty)"
+            Dim dtfoc As DataTable = execute_query(qfoc, -1, True, "", "", "", "")
+            If dtfoc.Rows.Count > 0 Then
+                tot_qty_rec += dtfoc.Rows(0)("qty")
             End If
-        End If
+
+            If tot_qty_rec > tot_qty_po Then
+                If CEFreeOfCharge.Checked = False Then
+                    foc_c = False
+                    Exit For
+                End If
+            End If
+        Next
 
         'end of validasi
         If id_receive = "-1" Then

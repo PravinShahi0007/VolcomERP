@@ -773,7 +773,7 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type='199'"
             dp = Decimal.Parse(dt_dp.Rows(0)("tot_dp").ToString).ToString("N2")
         End If
         'Parse val
-        Dim query As String = "SELECT '" & TENumber.Text & "' AS number,'" & addSlashes(MENote.Text) & "' AS note,'" & ConvertCurrencyToIndonesian(TEGrandTotal.EditValue) & "' AS tot_say,'" & If(doc_type = 2, "FGPO", If(doc_type = 4, "Khusus", "Umum")) & " - " & SLEPayType.Text & "' AS type,'" & addSlashes(SLEVendor.Text) & "' AS comp_name,'" & DERefDate.Text & "' AS ref_date,'" & DEDueDate.Text & "' AS due_date,'" & DEDueDateInv.Text & "' AS due_date_inv,'" & tot & "' AS total_amount,'" & tot_vat & "' AS total_vat,'" & dp & "' AS tot_dp,'" & TEGrandTotal.Text & "' AS total_after_vat,'" & DEDateCreated.Text & "' AS date_created,DATE_FORMAT(NOW(),'%d %M %Y') AS printed_date"
+        Dim query As String = "SELECT '" & TENumber.Text & "' AS number,'" & addSlashes(MENote.Text) & "' AS note,'" & ConvertCurrencyToIndonesian(TEGrandTotal.EditValue) & "' AS tot_say,'" & If(doc_type = 2, "FGPO", If(doc_type = 4, "Khusus", If(doc_type = 5, "Voluntary payment", If(doc_type = 6, "Import Payment", "Umum")))) & " - " & SLEPayType.Text & "' AS type,'" & addSlashes(SLEVendor.Text) & "' AS comp_name,'" & DERefDate.Text & "' AS ref_date,'" & DEDueDate.Text & "' AS due_date,'" & DEDueDateInv.Text & "' AS due_date_inv,'" & tot & "' AS total_amount,'" & tot_vat & "' AS total_vat,'" & dp & "' AS tot_dp,'" & TEGrandTotal.Text & "' AS total_after_vat,'" & DEDateCreated.Text & "' AS date_created,DATE_FORMAT(NOW(),'%d %M %Y') AS printed_date"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Report.DataSource = data
 
