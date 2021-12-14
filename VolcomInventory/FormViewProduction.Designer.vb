@@ -104,7 +104,7 @@ Partial Class FormViewProduction
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
         Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
-        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCmark = New DevExpress.XtraEditors.GroupControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
@@ -181,8 +181,8 @@ Partial Class FormViewProduction
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
         CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl3.SuspendLayout()
+        CType(Me.GCmark, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GCmark.SuspendLayout()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1152,16 +1152,16 @@ Partial Class FormViewProduction
         Me.LabelControl19.TabIndex = 140
         Me.LabelControl19.Text = "Say"
         '
-        'GroupControl3
+        'GCmark
         '
-        Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl3.Controls.Add(Me.SimpleButton1)
-        Me.GroupControl3.Controls.Add(Me.BMark)
-        Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 478)
-        Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(977, 70)
-        Me.GroupControl3.TabIndex = 60
+        Me.GCmark.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GCmark.Controls.Add(Me.SimpleButton1)
+        Me.GCmark.Controls.Add(Me.BMark)
+        Me.GCmark.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GCmark.Location = New System.Drawing.Point(0, 478)
+        Me.GCmark.Name = "GCmark"
+        Me.GCmark.Size = New System.Drawing.Size(977, 70)
+        Me.GCmark.TabIndex = 60
         '
         'SimpleButton1
         '
@@ -1567,7 +1567,7 @@ Partial Class FormViewProduction
         Me.ClientSize = New System.Drawing.Size(977, 548)
         Me.Controls.Add(Me.GConListPurchase)
         Me.Controls.Add(Me.GroupGeneralFooter)
-        Me.Controls.Add(Me.GroupControl3)
+        Me.Controls.Add(Me.GCmark)
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MinimizeBox = False
@@ -1617,8 +1617,8 @@ Partial Class FormViewProduction
         Me.PanelControl7.ResumeLayout(False)
         Me.PanelControl7.PerformLayout()
         CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl3.ResumeLayout(False)
+        CType(Me.GCmark, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GCmark.ResumeLayout(False)
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1670,7 +1670,7 @@ Partial Class FormViewProduction
     Friend WithEvents METotSay As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
-    Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GCmark As DevExpress.XtraEditors.GroupControl
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GroupGeneralHeader As DevExpress.XtraEditors.GroupControl
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl

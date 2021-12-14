@@ -6,8 +6,14 @@
     Public id_design As String = "-1"
     '
     Public is_no_cost As String = "-1"
+    Public is_view_only As String = "-1"
     '
     Private Sub FormViewProduction_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        If is_view_only = "1" Then
+            GCmark.Visible = False
+        Else
+            GCmark.Visible = True
+        End If
         '
         RCIMainVendorWO.ValueChecked = Convert.ToSByte(1)
         RCIMainVendorWO.ValueUnchecked = Convert.ToSByte(2)
