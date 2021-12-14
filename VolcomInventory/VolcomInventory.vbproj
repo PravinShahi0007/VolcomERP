@@ -4169,6 +4169,12 @@
     <Compile Include="FormProductionAssemblySingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionAttach.Designer.vb">
+      <DependentUpon>FormProductionAttach.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionAttach.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionClaimReturn.Designer.vb">
       <DependentUpon>FormProductionClaimReturn.vb</DependentUpon>
     </Compile>
@@ -12513,6 +12519,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionAssemblySingle.resx">
       <DependentUpon>FormProductionAssemblySingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionAttach.resx">
+      <DependentUpon>FormProductionAttach.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionClaimReturn.resx">
       <DependentUpon>FormProductionClaimReturn.vb</DependentUpon>

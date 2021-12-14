@@ -17,14 +17,21 @@
         If can_all_dep = "1" Or is_for_purchasing = "1" Then
             query = "SELECT '0' AS id_departement,'ALL' AS departement 
                     UNION
-                    SELECT id_departement,departement FROM tb_m_departement"
+                    SELECT dep.id_departement,dep.departement FROM tb_m_departement dep"
+
+            If is_for_store = "1" Then
+                query += " WHERE dep.id_coa_tag=1 "
+            End If
         Else
-            query = "SELECT id_departement,departement FROM tb_m_departement WHERE id_departement='" & id_departement_user & "'"
+            query = "SELECT dep.id_departement,dep.departement FROM tb_m_departement dep WHERE dep.id_departement='" & id_departement_user & "'"
             query += " UNION ALL "
             query += " SELECT dep.`id_departement`,dep.`departement`
 FROM `tb_purc_req_extra_dep` ext 
 INNER JOIN tb_m_departement dep ON dep.`id_departement`=ext.`id_departement`
 WHERE ext.id_user='" & id_user & "' "
+            If is_for_store = "1" Then
+                query += " AND dep.id_coa_tag=1 "
+            End If
         End If
 
         viewSearchLookupQuery(SLEDepartement, query, "id_departement", "departement", "id_departement")
