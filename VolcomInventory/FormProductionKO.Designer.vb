@@ -57,8 +57,9 @@ Partial Class FormProductionKO
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.PCControl = New DevExpress.XtraEditors.PanelControl()
-        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.ImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrintKO = New DevExpress.XtraEditors.SimpleButton()
         Me.BUpdate = New DevExpress.XtraEditors.SimpleButton()
         Me.BLock = New DevExpress.XtraEditors.SimpleButton()
@@ -108,7 +109,6 @@ Partial Class FormProductionKO
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.PCDel = New DevExpress.XtraEditors.PanelControl()
         Me.Bdel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -511,16 +511,16 @@ Partial Class FormProductionKO
         Me.PCControl.Size = New System.Drawing.Size(875, 41)
         Me.PCControl.TabIndex = 1
         '
-        'BAttachment
+        'BMark
         '
-        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAttachment.ImageIndex = 16
-        Me.BAttachment.ImageList = Me.ImageCollection
-        Me.BAttachment.Location = New System.Drawing.Point(475, 2)
-        Me.BAttachment.Name = "BAttachment"
-        Me.BAttachment.Size = New System.Drawing.Size(96, 37)
-        Me.BAttachment.TabIndex = 8912
-        Me.BAttachment.Text = "Attachment"
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.ImageIndex = 4
+        Me.BMark.ImageList = Me.ImageCollection
+        Me.BMark.Location = New System.Drawing.Point(2, 2)
+        Me.BMark.Name = "BMark"
+        Me.BMark.Size = New System.Drawing.Size(82, 37)
+        Me.BMark.TabIndex = 8913
+        Me.BMark.Text = "Mark"
         '
         'ImageCollection
         '
@@ -544,6 +544,17 @@ Partial Class FormProductionKO
         Me.ImageCollection.Images.SetKeyName(15, "attachment-icon.png")
         Me.ImageCollection.InsertGalleryImage("locknavigation_32x32.png", "images/dashboards/locknavigation_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/dashboards/locknavigation_32x32.png"), 17)
         Me.ImageCollection.Images.SetKeyName(17, "locknavigation_32x32.png")
+        '
+        'BAttachment
+        '
+        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttachment.ImageIndex = 16
+        Me.BAttachment.ImageList = Me.ImageCollection
+        Me.BAttachment.Location = New System.Drawing.Point(475, 2)
+        Me.BAttachment.Name = "BAttachment"
+        Me.BAttachment.Size = New System.Drawing.Size(96, 37)
+        Me.BAttachment.TabIndex = 8912
+        Me.BAttachment.Text = "Attachment"
         '
         'BPrintKO
         '
@@ -570,13 +581,13 @@ Partial Class FormProductionKO
         'BLock
         '
         Me.BLock.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BLock.ImageIndex = 17
+        Me.BLock.ImageIndex = 4
         Me.BLock.ImageList = Me.ImageCollection
         Me.BLock.Location = New System.Drawing.Point(766, 2)
         Me.BLock.Name = "BLock"
         Me.BLock.Size = New System.Drawing.Size(107, 37)
         Me.BLock.TabIndex = 8909
-        Me.BLock.Text = "Lock"
+        Me.BLock.Text = "Submit"
         '
         'GCProd
         '
@@ -1055,17 +1066,6 @@ Partial Class FormProductionKO
         Me.Bdel.Size = New System.Drawing.Size(91, 38)
         Me.Bdel.TabIndex = 17
         Me.Bdel.Text = "Delete"
-        '
-        'BMark
-        '
-        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BMark.ImageIndex = 4
-        Me.BMark.ImageList = Me.ImageCollection
-        Me.BMark.Location = New System.Drawing.Point(2, 2)
-        Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(82, 37)
-        Me.BMark.TabIndex = 8913
-        Me.BMark.Text = "Mark"
         '
         'FormProductionKO
         '
