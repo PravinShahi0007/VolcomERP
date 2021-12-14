@@ -16,6 +16,7 @@
             query += "INNER JOIN tb_m_comp c ON b.id_comp = c.id_comp "
             query += "INNER JOIN tb_lookup_currency d ON a.id_currency = d.id_currency "
             query += "WHERE a.id_ovh_price = '" + FormMasterOVHSingle.GVPrice.GetFocusedRowCellDisplayText("id_ovh_price") + "' "
+
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             SLEVendor.EditValue = data.Rows(0)("id_comp").ToString
             SLEVendorContact.EditValue = data.Rows(0)("id_comp_contact").ToString
@@ -28,13 +29,20 @@
     Sub viewVendor()
         Dim query As String = "SELECT *, CONCAT_WS('-', a.comp_number, a.comp_name) AS vendor_select FROM tb_m_comp a "
         query += "INNER JOIN tb_m_comp_cat b ON a.id_comp_cat = b.id_comp_cat AND (b.id_comp_cat='1' OR b.id_comp_cat='8') "
+        If action = "ins" Then
+            query += " WHERE a.is_active=1 "
+        End If
         query += "ORDER BY comp_number ASC"
         viewSearchLookupQuery(SLEVendor, query, "id_comp", "vendor_select", "id_comp")
     End Sub
     'View Vendor Contact
     Sub viewVendorContact()
         Dim id_comp As String = SLEVendor.EditValue
-        Dim query As String = "SELECT * FROM tb_m_comp_contact a WHERE a.id_comp = '" + id_comp + "' ORDER BY a.is_default ASC"
+        Dim query As String = "SELECT * FROM tb_m_comp_contact a WHERE a.id_comp = '" + id_comp + "' "
+        If action = "ins" Then
+            query += " AND a.is_default=1 "
+        End If
+        query += " ORDER BY a.is_default ASC"
         viewSearchLookupQuery(SLEVendorContact, query, "id_comp_contact", "contact_person", "id_comp_contact")
     End Sub
     'View Currency
