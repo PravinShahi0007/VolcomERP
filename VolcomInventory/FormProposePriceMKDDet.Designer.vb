@@ -91,6 +91,7 @@ Partial Class FormProposePriceMKDDet
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnMailSetup = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
@@ -695,6 +696,7 @@ Partial Class FormProposePriceMKDDet
         '
         'PanelControlBottom
         '
+        Me.PanelControlBottom.Controls.Add(Me.BtnMailSetup)
         Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
         Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnMark)
@@ -707,6 +709,16 @@ Partial Class FormProposePriceMKDDet
         Me.PanelControlBottom.Name = "PanelControlBottom"
         Me.PanelControlBottom.Size = New System.Drawing.Size(1066, 44)
         Me.PanelControlBottom.TabIndex = 15
+        '
+        'BtnMailSetup
+        '
+        Me.BtnMailSetup.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnMailSetup.Image = CType(resources.GetObject("BtnMailSetup.Image"), System.Drawing.Image)
+        Me.BtnMailSetup.Location = New System.Drawing.Point(305, 2)
+        Me.BtnMailSetup.Name = "BtnMailSetup"
+        Me.BtnMailSetup.Size = New System.Drawing.Size(101, 40)
+        Me.BtnMailSetup.TabIndex = 10
+        Me.BtnMailSetup.Text = "Mail Setup"
         '
         'BtnPrint
         '
@@ -2054,4 +2066,5 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents gridBandPropose As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandTotalValue As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandOther As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BtnMailSetup As DevExpress.XtraEditors.SimpleButton
 End Class

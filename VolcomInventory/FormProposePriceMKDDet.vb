@@ -174,6 +174,7 @@
             BtnMark.Visible = False
             MENote.Enabled = False
             BtnPrint.Visible = False
+            BtnMailSetup.Visible = False
             BtnSaveChanges.Visible = True
             MENote.Enabled = True
             GVData.OptionsBehavior.ReadOnly = False
@@ -194,6 +195,7 @@
             BtnMark.Visible = True
             MENote.Enabled = False
             BtnPrint.Visible = True
+            BtnMailSetup.Visible = True
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
             GVData.OptionsBehavior.ReadOnly = True
@@ -225,6 +227,7 @@
             BtnConfirm.Visible = False
             MENote.Enabled = False
             BtnPrint.Visible = False
+            BtnMailSetup.Visible = False
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
             GVData.OptionsBehavior.ReadOnly = True
@@ -372,6 +375,9 @@
         GVData.ActiveFilterString = ""
         If GVData.RowCount <= 0 Or Not checkHead() Then
             stopCustom("Please input all data")
+        ElseIf Not checkMail() Then
+            stopCustom("Please input all email for store")
+            mailSetup()
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this Propose Price ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -1050,4 +1056,30 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub BtnMailSetup_Click(sender As Object, e As EventArgs) Handles BtnMailSetup.Click
+        mailSetup()
+    End Sub
+
+    Sub mailSetup()
+        Cursor = Cursors.WaitCursor
+        FormProposePriceMKDMail.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Function checkMail()
+        Dim query As String = "SELECT cg.id_comp_group, cg.comp_group, cg.description, COUNT(mtg.id_comp_group) AS `jum`
+FROM tb_m_comp c 
+INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+LEFT JOIN tb_mail_to_group mtg ON mtg.id_comp_group = cg.id_comp_group AND mtg.report_mark_type IN (373)
+WHERE c.id_comp_cat=6 AND c.is_active=1 AND c.id_store_type=1 AND c.id_commerce_type=1 AND c.id_comp_group!=59
+GROUP BY c.id_comp_group
+HAVING jum=0 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 And LEMKDType.EditValue.ToString = 1 Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
 End Class

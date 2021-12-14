@@ -1,4 +1,6 @@
 ﻿Public Class FormCompGroupEmail
+    Public rmt As String = "-1"
+
     Private Sub FormPopUpCompGroup_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         checkFormAccess(Name)
@@ -41,6 +43,11 @@ WHERE cg.is_send_per_comp=1"
     Private Sub FormCompGroupEmail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_rmt()
         load_comp_group()
+        If rmt = "373" Then
+            SLEReportMarkType.EditValue = rmt
+            SLEReportMarkType.Enabled = False
+            BAddInternal.Visible = False
+        End If
     End Sub
 
     Sub view_rmt()
