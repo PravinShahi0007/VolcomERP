@@ -131,14 +131,22 @@
     End Sub
 
     Private Sub XTCEvent_Click(sender As Object, e As EventArgs) Handles XTCEvent.Click
+
+    End Sub
+
+    Private Sub FormMKDEvent_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
+
+    Private Sub RepositoryItemHyperLinkEdit1_Click(sender As Object, e As EventArgs) Handles RepositoryItemHyperLinkEdit1.Click
+
+    End Sub
+
+    Private Sub RepoLinkNo_Click(sender As Object, e As EventArgs) Handles RepoLinkNo.Click
         If GVList.RowCount > 0 And GVList.FocusedRowHandle >= 0 Then
             SLEMKD.EditValue = GVList.GetFocusedRowCellValue("id_pp_change").ToString
             viewDetail()
             XTCEvent.SelectedTabPageIndex = 1
         End If
-    End Sub
-
-    Private Sub FormMKDEvent_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        Dispose()
     End Sub
 End Class

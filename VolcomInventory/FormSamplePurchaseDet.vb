@@ -295,13 +295,15 @@ GROUP BY spb.`id_sample_purc_budget`"
                 clear_all_request()
                 FormPopUpContact.id_pop_up = "1"
                 FormPopUpContact.is_must_active = "1"
-                FormPopUpContact.id_cat = get_setup_field("id_comp_cat_vendor")
+                'FormPopUpContact.id_cat = get_setup_field("id_comp_cat_vendor")
+                FormPopUpContact.id_cat = "1,8"
                 FormPopUpContact.ShowDialog()
             End If
         Else
             FormPopUpContact.id_pop_up = "1"
             FormPopUpContact.is_must_active = "1"
-            FormPopUpContact.id_cat = get_setup_field("id_comp_cat_vendor")
+            'FormPopUpContact.id_cat = get_setup_field("id_comp_cat_vendor")
+            FormPopUpContact.id_cat = "1,8"
             FormPopUpContact.ShowDialog()
         End If
     End Sub
