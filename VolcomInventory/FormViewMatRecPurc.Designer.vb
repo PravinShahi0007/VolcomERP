@@ -110,6 +110,7 @@ Partial Class FormViewMatRecPurc
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.CEFreeOfCharge = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -152,6 +153,7 @@ Partial Class FormViewMatRecPurc
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompShipToName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEFreeOfCharge.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -160,9 +162,9 @@ Partial Class FormViewMatRecPurc
         Me.GroupControl1.Controls.Add(Me.Battach)
         Me.GroupControl1.Controls.Add(Me.BMark)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 485)
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 498)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(909, 65)
+        Me.GroupControl1.Size = New System.Drawing.Size(909, 68)
         Me.GroupControl1.TabIndex = 44
         '
         'Battach
@@ -170,14 +172,14 @@ Partial Class FormViewMatRecPurc
         Me.Battach.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Battach.Location = New System.Drawing.Point(20, 2)
         Me.Battach.Name = "Battach"
-        Me.Battach.Size = New System.Drawing.Size(887, 32)
+        Me.Battach.Size = New System.Drawing.Size(887, 35)
         Me.Battach.TabIndex = 6
         Me.Battach.Text = "Attachment"
         '
         'BMark
         '
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BMark.Location = New System.Drawing.Point(20, 34)
+        Me.BMark.Location = New System.Drawing.Point(20, 37)
         Me.BMark.Name = "BMark"
         Me.BMark.Size = New System.Drawing.Size(887, 29)
         Me.BMark.TabIndex = 5
@@ -186,6 +188,7 @@ Partial Class FormViewMatRecPurc
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.CEFreeOfCharge)
         Me.GroupControl3.Controls.Add(Me.LEReportStatus)
         Me.GroupControl3.Controls.Add(Me.LabelControl21)
         Me.GroupControl3.Controls.Add(Me.MENote)
@@ -193,13 +196,13 @@ Partial Class FormViewMatRecPurc
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl3.Location = New System.Drawing.Point(0, 388)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(909, 97)
+        Me.GroupControl3.Size = New System.Drawing.Size(909, 110)
         Me.GroupControl3.TabIndex = 43
         '
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(89, 61)
+        Me.LEReportStatus.Location = New System.Drawing.Point(89, 84)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -212,7 +215,7 @@ Partial Class FormViewMatRecPurc
         '
         'LabelControl21
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(27, 64)
+        Me.LabelControl21.Location = New System.Drawing.Point(27, 87)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl21.TabIndex = 144
@@ -1061,11 +1064,19 @@ Partial Class FormViewMatRecPurc
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "Order Number"
         '
+        'CEFreeOfCharge
+        '
+        Me.CEFreeOfCharge.Location = New System.Drawing.Point(89, 60)
+        Me.CEFreeOfCharge.Name = "CEFreeOfCharge"
+        Me.CEFreeOfCharge.Properties.Caption = "Free of Charge"
+        Me.CEFreeOfCharge.Size = New System.Drawing.Size(129, 19)
+        Me.CEFreeOfCharge.TabIndex = 147
+        '
         'FormViewMatRecPurc
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(909, 550)
+        Me.ClientSize = New System.Drawing.Size(909, 566)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GConListPurchase)
@@ -1122,6 +1133,7 @@ Partial Class FormViewMatRecPurc
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompShipToName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEFreeOfCharge.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1216,4 +1228,5 @@ Partial Class FormViewMatRecPurc
     Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemSpinEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents CEFreeOfCharge As DevExpress.XtraEditors.CheckEdit
 End Class

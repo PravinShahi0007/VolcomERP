@@ -10,7 +10,7 @@
         view_report_status(LEReportStatus)
 
         Dim order_created As String
-        Dim query = "SELECT a.id_report_status,a.mat_purc_rec_note,b.id_comp_contact_to as id_comp_from,b.id_mat_purc,a.id_comp_contact_to as id_comp_to,g.season,a.id_mat_purc_rec,a.mat_purc_rec_number,DATE_FORMAT(b.mat_purc_date,'%Y-%m-%d') as mat_purc_datex,b.mat_purc_lead_time,a.delivery_order_date,a.delivery_order_number,b.mat_purc_number,DATE_FORMAT(a.mat_purc_rec_date,'%Y-%m-%d') AS mat_purc_rec_date, f.comp_name AS comp_from,d.comp_name AS comp_to "
+        Dim query = "SELECT a.is_foc,a.id_report_status,a.mat_purc_rec_note,b.id_comp_contact_to as id_comp_from,b.id_mat_purc,a.id_comp_contact_to as id_comp_to,g.season,a.id_mat_purc_rec,a.mat_purc_rec_number,DATE_FORMAT(b.mat_purc_date,'%Y-%m-%d') as mat_purc_datex,b.mat_purc_lead_time,a.delivery_order_date,a.delivery_order_number,b.mat_purc_number,DATE_FORMAT(a.mat_purc_rec_date,'%Y-%m-%d') AS mat_purc_rec_date, f.comp_name AS comp_from,d.comp_name AS comp_to "
         query += ",drw.id_wh_drawer,rck.id_wh_rack,loc.id_wh_locator,comp.id_comp "
         query += "FROM tb_mat_purc_rec a INNER JOIN tb_mat_purc b ON a.id_mat_purc=b.id_mat_purc "
         query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact=a.id_comp_contact_to "
@@ -37,6 +37,12 @@
         TEPONumber.Text = data.Rows(0)("mat_purc_number").ToString
         TEDONumber.Text = data.Rows(0)("delivery_order_number").ToString
         TERecNumber.Text = data.Rows(0)("mat_purc_rec_number").ToString
+
+        If data.Rows(0)("is_foc").ToString = "1" Then
+            CEFreeOfCharge.Checked = True
+        Else
+            CEFreeOfCharge.Checked = False
+        End If
 
         id_order = data.Rows(0)("id_mat_purc").ToString
         id_comp_from = data.Rows(0)("id_comp_from").ToString
