@@ -9939,6 +9939,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormEts" Then
             FormEts.Close()
             FormEts.Dispose()
+        ElseIf formName = "FormMKDEvent" Then
+            FormMKDEvent.Close()
+            FormMKDEvent.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -16945,6 +16948,23 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEts.Show()
             FormEts.WindowState = FormWindowState.Maximized
             FormEts.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBMKDEvent_ItemChanged(sender As Object, e As EventArgs) Handles NBMKDEvent.ItemChanged
+
+    End Sub
+
+    Private Sub NBMKDEvent_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBMKDEvent.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormMKDEvent.MdiParent = Me
+            FormMKDEvent.Show()
+            FormMKDEvent.WindowState = FormWindowState.Maximized
+            FormMKDEvent.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
