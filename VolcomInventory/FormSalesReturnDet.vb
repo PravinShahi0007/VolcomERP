@@ -58,6 +58,7 @@ Public Class FormSalesReturnDet
     Private _lastKeystroke As DateTime = DateTime.Now
     Public speed_barcode_read As Integer = get_setup_field("speed_barcode_read")
     Public speed_barcode_read_timer As Integer = get_setup_field("speed_barcode_read_timer")
+    Dim id_store_group As String = "-1"
 
     Private Sub FormSalesReturnDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         view_type_scan()
@@ -264,7 +265,7 @@ Public Class FormSalesReturnDet
         End If
     End Sub
     Sub viewSalesReturnOrder()
-        Dim query As String = "SELECT a.id_sales_return_order, a.id_store_contact_to, a.id_wh_contact_to, d.is_use_unique_code, d.id_commerce_type, d.id_store_type,(d.comp_name) AS store_name_to, (d.id_drawer_def) AS `id_wh_drawer_store`, IFNULL(rck.id_wh_rack,-1) AS `id_wh_rack_store`, IFNULL(rck.id_wh_locator,-1) AS `id_wh_locator_store`,a.id_report_status, f.report_status, "
+        Dim query As String = "SELECT a.id_sales_return_order, a.id_store_contact_to, a.id_wh_contact_to, d.is_use_unique_code, d.id_commerce_type, d.id_store_type,(d.comp_name) AS store_name_to, (d.id_drawer_def) AS `id_wh_drawer_store`, d.id_comp_group AS `id_store_group`, IFNULL(rck.id_wh_rack,-1) AS `id_wh_rack_store`, IFNULL(rck.id_wh_locator,-1) AS `id_wh_locator_store`,a.id_report_status, f.report_status, "
         query += "a.sales_return_order_note, a.sales_return_order_note, a.sales_return_order_number, "
         query += "DATE_FORMAT(a.sales_return_order_date,'%d %M %Y') AS sales_return_order_date, "
         query += "DATE_FORMAT(a.sales_return_order_est_date,'%d %M %Y') AS sales_return_order_est_date "
@@ -297,6 +298,7 @@ Public Class FormSalesReturnDet
         id_store_contact_from = data.Rows(0)("id_store_contact_to").ToString
         id_store_type = data.Rows(0)("id_store_type").ToString
         id_commerce_type = data.Rows(0)("id_commerce_type").ToString
+        id_store_group = data.Rows(0)("id_store_group").ToString
         'is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
         is_use_unique_code = get_setup_field("is_use_unique_code_all")
         TxtCodeCompFrom.Text = get_company_x(id_comp_from, 2)
@@ -334,13 +336,26 @@ Public Class FormSalesReturnDet
                 dt_cust.Clear()
             Catch ex As Exception
             End Try
-            Dim qry As String = "SELECT sod.item_id, sod.ol_store_id, CONCAT(p.product_full_code, dc.pl_sales_order_del_det_counting) AS `full_code`, '2' AS `is_used`
-            FROM tb_sales_return_order_det rod
-            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = rod.id_sales_order_det
-            INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = sod.id_sales_order_det
-            INNER JOIN tb_pl_sales_order_del_det_counting dc ON dc.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
-            INNER JOIN tb_m_product p ON p.id_product = dd.id_product
-            WHERE rod.id_sales_return_order=" + id_sales_return_order + " "
+            Dim qry As String = ""
+            If id_store_group = "76" Then
+                'vios
+                qry = "SELECT sod.item_id, sod.ol_store_id, CONCAT(p.product_full_code, dc.pl_sales_order_del_det_counting) AS `full_code`, '2' AS `is_used`
+                FROM tb_sales_return_order_det rod
+                INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = rod.id_sales_order_det
+                INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = sod.id_sales_order_det
+                INNER JOIN tb_pl_sales_order_del_det_counting dc ON dc.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
+                INNER JOIN tb_m_product p ON p.id_product = dd.id_product
+                WHERE rod.id_sales_return_order=" + id_sales_return_order + " "
+            Else
+                qry = "SELECT sod.item_id, sod.ol_store_id, CONCAT(p.product_full_code, dc.pl_sales_order_del_det_counting) AS `full_code`, '2' AS `is_used`
+                FROM tb_pl_sales_order_del_det dd
+                INNER JOIN tb_pl_sales_order_del_det_counting dc ON dc.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
+                INNER JOIN tb_m_product p ON p.id_product = dd.id_product
+                INNER JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del
+                INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+                INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order AND so.sales_order_ol_shop_number='" + TxtOLStoreOrder.Text + "'
+                WHERE d.id_report_status=6 AND d.id_store_contact_to=" + id_store_contact_from + " "
+            End If
             dt_cust = execute_query(qry, -1, True, "", "", "", "")
         End If
 
@@ -786,32 +801,51 @@ Public Class FormSalesReturnDet
     Sub countQty(ByVal id_product_param As String, ByVal ol_store_id_param As String, ByVal item_id_param As String)
         If id_commerce_type = "2" Then
             'onine store
-            'focus
-            makeSafeGV(GVItemList)
-            If action_scan_btn = "start" Then
-                GVItemList.ActiveFilterString = "[id_product]='" + id_product_param + "' AND [ol_store_id]='" + ol_store_id_param + "' AND [item_id]='" + item_id_param + "' "
-            ElseIf action_scan_btn = "delete" Then
-                GVItemList.ActiveFilterString = "[id_product]='" + id_product_param + "' AND [ol_store_id]='" + ol_store_id_param + "' AND [item_id]='" + item_id_param + "' "
-            End If
-            GVItemList.FocusedRowHandle = 0
-            makeSafeGV(GVItemList)
-
             Dim tot As Integer = 0
-            If action_scan_btn = "start" Then
-                tot = GVItemList.GetFocusedRowCellValue("sales_return_det_qty") + 1
-            ElseIf action_scan_btn = "delete" Then
-                tot = GVItemList.GetFocusedRowCellValue("sales_return_det_qty") - 1
+            If id_store_group = "76" Then
+                'vios
+                makeSafeGV(GVItemList)
+                If action_scan_btn = "start" Then
+                    GVItemList.ActiveFilterString = "[id_product]='" + id_product_param + "' AND [ol_store_id]='" + ol_store_id_param + "' AND [item_id]='" + item_id_param + "' "
+                ElseIf action_scan_btn = "delete" Then
+                    GVItemList.ActiveFilterString = "[id_product]='" + id_product_param + "' AND [ol_store_id]='" + ol_store_id_param + "' AND [item_id]='" + item_id_param + "' "
+                End If
+                GVItemList.FocusedRowHandle = 0
+                makeSafeGV(GVItemList)
+
+
+                If action_scan_btn = "start" Then
+                    tot = GVItemList.GetFocusedRowCellValue("sales_return_det_qty") + 1
+                ElseIf action_scan_btn = "delete" Then
+                    tot = GVItemList.GetFocusedRowCellValue("sales_return_det_qty") - 1
+                End If
+
+                'update dt
+                Dim dtf As DataRow() = dt_cust.Select("[ol_store_id]='" + ol_store_id_param + "' AND [item_id]='" + item_id_param + "' ")
+                If action_scan_btn = "start" Then
+                    dtf(0)("is_used") = "1"
+                ElseIf action_scan_btn = "delete" Then
+                    dtf(0)("is_used") = "2"
+                End If
+            Else
+                'markeyplace
+                makeSafeGV(GVItemList)
+                If action_scan_btn = "start" Then
+                    GVItemList.ActiveFilterString = "[id_product]='" + id_product_param + "' AND [diff]>0 "
+                ElseIf action_scan_btn = "delete" Then
+                    GVItemList.ActiveFilterString = "[id_product]='" + id_product_param + "' AND [sales_return_det_qty]>0 "
+                End If
+                GVItemList.FocusedRowHandle = 0
+                makeSafeGV(GVItemList)
+
+                If action_scan_btn = "start" Then
+                    tot = GVItemList.GetFocusedRowCellValue("sales_return_det_qty") + 1
+                ElseIf action_scan_btn = "delete" Then
+                    tot = GVItemList.GetFocusedRowCellValue("sales_return_det_qty") - 1
+                End If
             End If
 
-            'update dt
-            Dim dtf As DataRow() = dt_cust.Select("[ol_store_id]='" + ol_store_id_param + "' AND [item_id]='" + item_id_param + "' ")
-            If action_scan_btn = "start" Then
-                dtf(0)("is_used") = "1"
-            ElseIf action_scan_btn = "delete" Then
-                dtf(0)("is_used") = "2"
-            End If
-
-
+            'focus
             Dim price As Decimal = Decimal.Parse(GVItemList.GetFocusedRowCellValue("design_price").ToString)
             GVItemList.SetFocusedRowCellValue("sales_return_det_amount", tot * price)
             GVItemList.SetFocusedRowCellValue("sales_return_det_qty", tot)
@@ -1979,13 +2013,24 @@ Public Class FormSalesReturnDet
                     ol_store_id = dt_cust_filter(0)("ol_store_id").ToString
                     item_id = dt_cust_filter(0)("item_id").ToString
                 End If
-                Console.WriteLine(condition_str)
+
+                If ol_store_id = "" Or item_id = "" Then
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                    GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                    stopCustomDialog("Unique code not found for this order")
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
             End If
 
 
             'get jum del & limit
             If id_commerce_type = "2" Then 'online store
-                GVItemList.ActiveFilterString = "[id_product]='" + id_product + "' AND [ol_store_id]='" + ol_store_id + "' AND [item_id]='" + item_id + "' "
+                If id_store_group = "76" Then
+                    GVItemList.ActiveFilterString = "[id_product]='" + id_product + "' AND [ol_store_id]='" + ol_store_id + "' AND [item_id]='" + item_id + "' "
+                Else
+                    GVItemList.ActiveFilterString = "[id_product]='" + id_product + "' AND [diff]>0 "
+                End If
             Else
                 GVItemList.ActiveFilterString = "[id_product]='" + id_product + "' "
             End If
@@ -3219,22 +3264,22 @@ Public Class FormSalesReturnDet
     End Sub
 
     Private Sub RepositoryItemTextEdit_KeyUp(sender As Object, e As KeyEventArgs) Handles RepositoryItemTextEdit.KeyUp
-        'If Len(GVBarcode.EditingValue.ToString) > 1 Then
-        '    If cforKeyDown <> ChrW(e.KeyCode) OrElse cforKeyDown = vbNullChar Then
-        '        cforKeyDown = vbNullChar
-        '        GVBarcode.SetRowCellValue(GVBarcode.FocusedRowHandle, "code", "")
-        '        Return
-        '    End If
+        If Len(GVBarcode.EditingValue.ToString) > 1 Then
+            If cforKeyDown <> ChrW(e.KeyCode) OrElse cforKeyDown = vbNullChar Then
+                cforKeyDown = vbNullChar
+                GVBarcode.SetRowCellValue(GVBarcode.FocusedRowHandle, "code", "")
+                Return
+            End If
 
-        '    Dim elapsed As TimeSpan = DateTime.Now - _lastKeystroke
+            Dim elapsed As TimeSpan = DateTime.Now - _lastKeystroke
 
-        '    If elapsed.TotalMilliseconds > speed_barcode_read Then GVBarcode.SetRowCellValue(GVBarcode.FocusedRowHandle, "code", "")
+            If elapsed.TotalMilliseconds > speed_barcode_read Then GVBarcode.SetRowCellValue(GVBarcode.FocusedRowHandle, "code", "")
 
-        '    'If e.KeyCode = Keys.[Return] AndAlso TextEdit1.Text.Count > 0 Then
-        '    'action enter
-        '    'End If
-        'End If
+            'If e.KeyCode = Keys.[Return] AndAlso TextEdit1.Text.Count > 0 Then
+            'action enter
+            'End If
+        End If
 
-        '_lastKeystroke = DateTime.Now
+        _lastKeystroke = DateTime.Now
     End Sub
 End Class

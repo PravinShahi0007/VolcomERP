@@ -4445,6 +4445,12 @@
     <Compile Include="FormProposePriceMKDHist.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProposePriceMKDMail.Designer.vb">
+      <DependentUpon>FormProposePriceMKDMail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposePriceMKDMail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProposePriceMKDNew.Designer.vb">
       <DependentUpon>FormProposePriceMKDNew.vb</DependentUpon>
     </Compile>
@@ -4455,6 +4461,12 @@
       <DependentUpon>FormProposePriceMKDSingle.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProposePriceMKDSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProposePriceMKDStore.Designer.vb">
+      <DependentUpon>FormProposePriceMKDStore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProposePriceMKDStore.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProposePromo.Designer.vb">
@@ -9572,6 +9584,12 @@
     <Compile Include="ReportMISVsYear.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMkdEOS.Designer.vb">
+      <DependentUpon>ReportMkdEOS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMkdEOS.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMonthlyBSvs.Designer.vb">
       <DependentUpon>ReportMonthlyBSvs.vb</DependentUpon>
     </Compile>
@@ -12658,8 +12676,14 @@
     <EmbeddedResource Include="FormProposePriceMKDHist.resx">
       <DependentUpon>FormProposePriceMKDHist.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProposePriceMKDMail.resx">
+      <DependentUpon>FormProposePriceMKDMail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProposePriceMKDSingle.resx">
       <DependentUpon>FormProposePriceMKDSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProposePriceMKDStore.resx">
+      <DependentUpon>FormProposePriceMKDStore.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProposePromo.resx">
       <DependentUpon>FormProposePromo.vb</DependentUpon>
@@ -15672,6 +15696,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMISVsYear.resx">
       <DependentUpon>ReportMISVsYear.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMkdEOS.resx">
+      <DependentUpon>ReportMkdEOS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMonthlyBSvs.resx">
       <DependentUpon>ReportMonthlyBSvs.vb</DependentUpon>

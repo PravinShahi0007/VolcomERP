@@ -54,7 +54,7 @@
             INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
             WHERE sp.id_sales_pos IN (" + id_sales_pos_par + ") "
             dt = execute_query(qdet, -1, True, "", "", "", "")
-        ElseIf rmt = "226" Or rmt = "227" Then
+        ElseIf rmt = "226" Then
             Dim qdet As String = "SELECT '' AS `no`, sp.id_sales_pos AS `id_report`, sp.sales_pos_number AS `report_number`,
             CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`, g.description AS `group_store`,
             cg.comp_name AS `group_company`, 
@@ -78,6 +78,32 @@
                 GROUP BY pyd.id_report, pyd.report_mark_type
             ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
             WHERE sp.id_sales_pos IN (" + id_sales_pos_par + ") "
+            dt = execute_query(qdet, -1, True, "", "", "", "")
+        ElseIf rmt = "227" Then
+            Dim id_comp_group As String = execute_query("SELECT mail_parameter FROM tb_mail_manage WHERE id_mail_manage='" + id + "' ", 0, True, "", "", "", "")
+            Dim qdet As String = "SELECT '' AS `no`, sp.id_sales_pos AS `id_report`, sp.sales_pos_number AS `report_number`,
+            CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`, g.description AS `group_store`,
+            cg.comp_name AS `group_company`, 
+            CONCAT(DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `period`,
+            DATE_FORMAT(sp.sales_pos_due_date,'%d-%m-%y') AS `sales_pos_due_date`,
+            CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `amount`,
+            sp.report_mark_type
+            FROM tb_sales_pos sp 
+            INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+            INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+            INNER JOIN tb_m_comp_group g ON g.id_comp_group = c.id_comp_group
+            INNER JOIN tb_m_comp cg ON cg.id_comp = g.id_comp
+            INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
+            LEFT JOIN (
+                SELECT pyd.id_report, pyd.report_mark_type, 
+                COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS `total_pending`,
+                SUM(pyd.value) AS  `value`
+                FROM tb_rec_payment_det pyd
+                INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
+                WHERE py.`id_report_status`=6
+                GROUP BY pyd.id_report, pyd.report_mark_type
+            ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
+            WHERE sp.id_sales_pos IN (" + id_sales_pos_par + ") AND c.id_comp_group='" + id_comp_group + "' "
             dt = execute_query(qdet, -1, True, "", "", "", "")
         End If
         Return dt

@@ -8,10 +8,11 @@
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT p.id_pp_change, p.`number`, p.created_date, p.effective_date, p.soh_sal_date, 
         p.note, p.id_report_status, rs.report_status,p.id_design_price_type, p.id_design_mkd, pt.design_price_type, p.is_confirm, p.confirm_date,
-        la.employee_name
+        la.employee_name, p.id_design_mkd,dm.design_mkd
         FROM tb_pp_change p 
         INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = p.id_report_status
         LEFT JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = p.id_design_price_type
+        LEFT JOIN tb_lookup_design_mkd dm ON dm.id_design_mkd = p.id_design_mkd
         LEFT JOIN (
 	        SELECT a.id_report, a.id_user, a.username, a.employee_name 
 	        FROM (
@@ -62,5 +63,13 @@
         End If
     End Sub
 
-
+    Private Sub PriceListForStoreToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PriceListForStoreToolStripMenuItem.Click
+        If GVSummary.RowCount > 0 And GVSummary.FocusedRowHandle >= 0 Then
+            If GVSummary.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
+                FormProposePriceMKDStore.ShowDialog()
+            Else
+                warningCustom("Only for completed transaction")
+            End If
+        End If
+    End Sub
 End Class

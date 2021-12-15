@@ -19,6 +19,7 @@ Partial Class FormProposePriceMKD
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
@@ -33,11 +34,14 @@ Partial Class FormProposePriceMKD
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign_price_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnemployee_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.PriceListForStoreToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCData
@@ -60,6 +64,7 @@ Partial Class FormProposePriceMKD
         '
         'GCSummary
         '
+        Me.GCSummary.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCSummary.Location = New System.Drawing.Point(0, 0)
         Me.GCSummary.MainView = Me.GVSummary
@@ -159,6 +164,18 @@ Partial Class FormProposePriceMKD
         Me.GridColumnemployee_name.Visible = True
         Me.GridColumnemployee_name.VisibleIndex = 7
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PriceListForStoreToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(170, 48)
+        '
+        'PriceListForStoreToolStripMenuItem
+        '
+        Me.PriceListForStoreToolStripMenuItem.Name = "PriceListForStoreToolStripMenuItem"
+        Me.PriceListForStoreToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
+        Me.PriceListForStoreToolStripMenuItem.Text = "Price List for Store"
+        '
         'FormProposePriceMKD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -174,6 +191,7 @@ Partial Class FormProposePriceMKD
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -192,4 +210,6 @@ Partial Class FormProposePriceMKD
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndesign_price_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnemployee_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents PriceListForStoreToolStripMenuItem As ToolStripMenuItem
 End Class
