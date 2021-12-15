@@ -1415,15 +1415,16 @@
         Catch ex As Exception
         End Try
 
-        Dim where_status As String = If(SLEReportStatusRepair.EditValue.ToString = "0", "", "AND r.id_report_status = " + SLStatus10.EditValue.ToString + " ")
+        Dim where_status As String = If(SLEReportStatusRepair.EditValue.ToString = "0", "", "AND r.id_report_status = " + SLEReportStatusRepair.EditValue.ToString + " ")
 
 
         Dim query As String = "SELECT r.id_fg_repair, r.fg_repair_number, r.fg_repair_date, 
         cf.comp_number AS `comp_number_from`, cf.comp_name AS `comp_name_from`,
         ct.comp_number AS `comp_number_to`, ct.comp_name AS `comp_name_to`,
         p.id_product, p.product_full_code AS `code`, cd.class,p.product_display_name AS `name`, cd.color, cd.sht, sz.code_detail_name AS `size`, YEAR(d.design_first_rec_wh) AS `rec_wh`,
-        COUNT(rd.id_product) AS `qty`,r.fg_repair_note
+        COUNT(rd.id_product) AS `qty`,r.fg_repair_note, stt.report_status
         FROM tb_fg_repair r
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
         INNER JOIN tb_fg_repair_det rd ON rd.id_fg_repair = r.id_fg_repair
         INNER JOIN tb_m_comp cf ON cf.id_drawer_def = r.id_wh_drawer_from
         INNER JOIN tb_m_comp ct ON ct.id_drawer_def = r.id_wh_drawer_to
