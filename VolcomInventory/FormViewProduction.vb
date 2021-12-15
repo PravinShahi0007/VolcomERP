@@ -11,8 +11,10 @@
     Private Sub FormViewProduction_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         If is_view_only = "1" Then
             GCmark.Visible = False
+            GroupGeneralFooter.Visible = False
         Else
             GCmark.Visible = True
+            GroupGeneralFooter.Visible = True
         End If
         '
         RCIMainVendorWO.ValueChecked = Convert.ToSByte(1)
