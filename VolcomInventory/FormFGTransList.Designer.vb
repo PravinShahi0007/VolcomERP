@@ -508,6 +508,7 @@ Partial Class FormFGTransList
         Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnExportToXLSSal = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEIncludePrmUni = New DevExpress.XtraEditors.CheckEdit()
         Me.DEUntilSal = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.SLStatus7 = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -715,7 +716,7 @@ Partial Class FormFGTransList
         Me.DEFromRepair = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl35 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl36 = New DevExpress.XtraEditors.LabelControl()
-        Me.CEIncludePrmUni = New DevExpress.XtraEditors.CheckEdit()
+        Me.GridColumnreport_statusrepair = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSvcLevel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLevel.SuspendLayout()
         Me.XTPRec.SuspendLayout()
@@ -842,6 +843,7 @@ Partial Class FormFGTransList
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.CEIncludePrmUni.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilSal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilSal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLStatus7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -903,7 +905,6 @@ Partial Class FormFGTransList
         CType(Me.DEUntilRepair.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromRepair.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromRepair.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CEIncludePrmUni.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSvcLevel
@@ -5672,6 +5673,14 @@ Partial Class FormFGTransList
         Me.PanelControl1.Size = New System.Drawing.Size(1143, 120)
         Me.PanelControl1.TabIndex = 8930
         '
+        'CEIncludePrmUni
+        '
+        Me.CEIncludePrmUni.Location = New System.Drawing.Point(123, 91)
+        Me.CEIncludePrmUni.Name = "CEIncludePrmUni"
+        Me.CEIncludePrmUni.Properties.Caption = "Include Promo/Uniform"
+        Me.CEIncludePrmUni.Size = New System.Drawing.Size(131, 19)
+        Me.CEIncludePrmUni.TabIndex = 8932
+        '
         'DEUntilSal
         '
         Me.DEUntilSal.EditValue = Nothing
@@ -7249,7 +7258,7 @@ Partial Class FormFGTransList
         '
         'GVRepair
         '
-        Me.GVRepair.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_fg_repair, Me.GridColumnfg_repair_number, Me.GridColumnfg_repair_date, Me.GridColumncomp_number_from, Me.GridColumncomp_name_from, Me.GridColumncomp_number_to, Me.GridColumncomp_name_to, Me.GridColumnid_productrep, Me.GridColumncoderep, Me.GridColumnnamerep, Me.GridColumncolorrep, Me.GridColumnshtrep, Me.GridColumnsizerep, Me.GridColumnqtyrep, Me.GridColumnfg_repair_note, Me.GridColumnclassrep, Me.GridColumnrec_wh})
+        Me.GVRepair.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_fg_repair, Me.GridColumnfg_repair_number, Me.GridColumnfg_repair_date, Me.GridColumncomp_number_from, Me.GridColumncomp_name_from, Me.GridColumncomp_number_to, Me.GridColumncomp_name_to, Me.GridColumnid_productrep, Me.GridColumncoderep, Me.GridColumnnamerep, Me.GridColumncolorrep, Me.GridColumnshtrep, Me.GridColumnsizerep, Me.GridColumnqtyrep, Me.GridColumnfg_repair_note, Me.GridColumnclassrep, Me.GridColumnrec_wh, Me.GridColumnreport_statusrepair})
         Me.GVRepair.GridControl = Me.GCRepair
         Me.GVRepair.Name = "GVRepair"
         Me.GVRepair.OptionsBehavior.ReadOnly = True
@@ -7511,13 +7520,13 @@ Partial Class FormFGTransList
         Me.LabelControl36.TabIndex = 8892
         Me.LabelControl36.Text = "From"
         '
-        'CEIncludePrmUni
+        'GridColumnreport_statusrepair
         '
-        Me.CEIncludePrmUni.Location = New System.Drawing.Point(123, 91)
-        Me.CEIncludePrmUni.Name = "CEIncludePrmUni"
-        Me.CEIncludePrmUni.Properties.Caption = "Include Promo/Uniform"
-        Me.CEIncludePrmUni.Size = New System.Drawing.Size(131, 19)
-        Me.CEIncludePrmUni.TabIndex = 8932
+        Me.GridColumnreport_statusrepair.Caption = "Status"
+        Me.GridColumnreport_statusrepair.FieldName = "report_status"
+        Me.GridColumnreport_statusrepair.Name = "GridColumnreport_statusrepair"
+        Me.GridColumnreport_statusrepair.Visible = True
+        Me.GridColumnreport_statusrepair.VisibleIndex = 15
         '
         'FormFGTransList
         '
@@ -7663,6 +7672,7 @@ Partial Class FormFGTransList
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.CEIncludePrmUni.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilSal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilSal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLStatus7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -7728,7 +7738,6 @@ Partial Class FormFGTransList
         CType(Me.DEUntilRepair.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromRepair.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromRepair.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CEIncludePrmUni.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -8429,4 +8438,5 @@ Partial Class FormFGTransList
     Friend WithEvents GridColumnclassrep As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnrec_wh As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CEIncludePrmUni As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnreport_statusrepair As DevExpress.XtraGrid.Columns.GridColumn
 End Class
