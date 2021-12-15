@@ -26,14 +26,14 @@ LEFT JOIN (
 WHERE pcl.id_pre_cal_fgpo='" & id_report & "'"
         Dim dt_orign As DataTable = execute_query(qorign, -1, True, "", "", "", "")
 
-        Dim total As Decimal = 0.00
+        ' Dim total As Decimal = 0.00
 
         For i = 0 To dt_orign.Rows.Count - 1
             insert_row_bm(RowBM, dt_orign, i)
-            total += dt_orign.Rows(i)("amount")
-            If i = dt_orign.Rows.Count - 1 Then
-                insert_row_bm_total(RowBM, total)
-            End If
+            'total += dt_orign.Rows(i)("amount")
+            'If i = dt_orign.Rows.Count - 1 Then
+            '    insert_row_bm_total(RowBM, total)
+            'End If
         Next
     End Sub
 
@@ -60,21 +60,21 @@ WHERE pcl.id_pre_cal_fgpo='" & id_report & "'"
         qty_col.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         qty_col.Font = font_row_style
 
-        'price
-        Dim price As String = Decimal.Parse(dt.Rows(row_i)("price").ToString).ToString("N2")
+        ''price
+        'Dim price As String = Decimal.Parse(dt.Rows(row_i)("price").ToString).ToString("N2")
 
-        Dim price_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
-        price_col.Text = "$ " & price
-        price_col.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        price_col.Font = font_row_style
+        'Dim price_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+        'price_col.Text = "$ " & price
+        'price_col.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        'price_col.Font = font_row_style
 
-        'tot_price
-        Dim tot_price As String = Decimal.Parse(dt.Rows(row_i)("amount").ToString).ToString("N2")
+        ''tot_price
+        'Dim tot_price As String = Decimal.Parse(dt.Rows(row_i)("amount").ToString).ToString("N2")
 
-        Dim tot_price_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
-        tot_price_col.Text = "$ " & tot_price
-        tot_price_col.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        tot_price_col.Font = font_row_style
+        'Dim tot_price_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+        'tot_price_col.Text = "$ " & tot_price
+        'tot_price_col.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        'tot_price_col.Font = font_row_style
     End Sub
 
     Sub insert_row_bm_total(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal total As Decimal)
@@ -98,18 +98,18 @@ WHERE pcl.id_pre_cal_fgpo='" & id_report & "'"
         qty_col.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         qty_col.Font = font_row_style
 
-        'price
-        Dim price_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
-        price_col.Text = "Total"
-        price_col.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        price_col.Font = font_row_style
+        ''price
+        'Dim price_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+        'price_col.Text = "Total"
+        'price_col.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        'price_col.Font = font_row_style
 
-        'tot_price
-        Dim tot_price As String = Decimal.Parse(total.ToString).ToString("N2")
+        ''tot_price
+        'Dim tot_price As String = Decimal.Parse(total.ToString).ToString("N2")
 
-        Dim tot_price_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
-        tot_price_col.Text = "$ " & tot_price
-        tot_price_col.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        tot_price_col.Font = font_row_style
+        'Dim tot_price_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+        'tot_price_col.Text = "$ " & tot_price
+        'tot_price_col.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        'tot_price_col.Font = font_row_style
     End Sub
 End Class
