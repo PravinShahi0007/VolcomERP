@@ -26,6 +26,8 @@ Partial Class FormProductionAttach
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
@@ -37,12 +39,14 @@ Partial Class FormProductionAttach
         Me.BShowPO = New DevExpress.XtraEditors.SimpleButton()
         Me.XTMDI = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
         Me.BAttachPPS = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PCSubmit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCSubmit.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -51,7 +55,6 @@ Partial Class FormProductionAttach
         CType(Me.SLEFGPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTMDI, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PCSubmit
@@ -108,6 +111,25 @@ Partial Class FormProductionAttach
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1062, 72)
         Me.PanelControl2.TabIndex = 1
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(10, 15)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(79, 13)
+        Me.LabelControl2.TabIndex = 10
+        Me.LabelControl2.Text = "Propose Number"
+        '
+        'TENumber
+        '
+        Me.TENumber.Enabled = False
+        Me.TENumber.Location = New System.Drawing.Point(95, 12)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TENumber.Properties.Appearance.Options.UseFont = True
+        Me.TENumber.Size = New System.Drawing.Size(304, 20)
+        Me.TENumber.TabIndex = 11
         '
         'PanelControl4
         '
@@ -184,6 +206,7 @@ Partial Class FormProductionAttach
         '
         'SearchLookUpEdit1View
         '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -230,25 +253,27 @@ Partial Class FormProductionAttach
         Me.BAttachPPS.Size = New System.Drawing.Size(1062, 29)
         Me.BAttachPPS.TabIndex = 15
         Me.BAttachPPS.Text = "Add Attachment"
+        Me.BAttachPPS.Visible = False
         '
-        'LabelControl2
+        'GridColumn1
         '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(10, 15)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(79, 13)
-        Me.LabelControl2.TabIndex = 10
-        Me.LabelControl2.Text = "Propose Number"
+        Me.GridColumn1.Caption = "ID"
+        Me.GridColumn1.FieldName = "id_prod_order"
+        Me.GridColumn1.Name = "GridColumn1"
         '
-        'TENumber
+        'GridColumn2
         '
-        Me.TENumber.Enabled = False
-        Me.TENumber.Location = New System.Drawing.Point(95, 12)
-        Me.TENumber.Name = "TENumber"
-        Me.TENumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TENumber.Properties.Appearance.Options.UseFont = True
-        Me.TENumber.Size = New System.Drawing.Size(304, 20)
-        Me.TENumber.TabIndex = 11
+        Me.GridColumn2.Caption = "Number"
+        Me.GridColumn2.FieldName = "prod_order_number"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Design"
+        Me.GridColumn3.FieldName = "view_po"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
         '
         'FormProductionAttach
         '
@@ -270,6 +295,7 @@ Partial Class FormProductionAttach
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
@@ -279,7 +305,6 @@ Partial Class FormProductionAttach
         CType(Me.SLEFGPO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTMDI, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -302,4 +327,7 @@ Partial Class FormProductionAttach
     Friend WithEvents BAttachPPS As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

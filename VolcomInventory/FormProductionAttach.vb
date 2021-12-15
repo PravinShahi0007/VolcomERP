@@ -3,9 +3,13 @@
 
     Private Sub FormProductionAttach_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_head()
+    End Sub
+
+    Sub load_head()
+        load_fgpo()
 
         If id = "-1" Then
-            BAttachPPS.Visible = True
+            BAttachPPS.Visible = False
             BShowPO.Visible = True
             SLEFGPO.Properties.ReadOnly = False
         Else
@@ -28,10 +32,6 @@ WHERE at.id_prod_order_attach='" & id & "'"
                 PCSubmit.Visible = True
             End If
         End If
-    End Sub
-
-    Sub load_head()
-        load_fgpo()
     End Sub
 
     Sub load_fgpo()
@@ -94,6 +94,7 @@ GROUP BY po.`id_prod_order`"
     End Sub
 
     Private Sub BAttachPPS_Click(sender As Object, e As EventArgs) Handles BAttachPPS.Click
+        Cursor = Cursors.WaitCursor
         If Not SLEFGPO.EditValue = Nothing Then
             Dim q As String = "INSERT INTO tb_prod_order_attach(id_prod_order,created_by,created_date) VALUES('" & SLEFGPO.EditValue.ToString & "','" & id_user & "',NOW()); SELECT LAST_INSERT_ID();"
             id = execute_query(q, 0, True, "", "", "", "")
@@ -102,5 +103,6 @@ GROUP BY po.`id_prod_order`"
             '
             load_head()
         End If
+        Cursor = Cursors.Default
     End Sub
 End Class
