@@ -46,6 +46,7 @@
 
     Sub viewInvoiceDetail()
         Cursor = Cursors.WaitCursor
+        Dim rmt_inv As String = execute_query("SELECT GROUP_CONCAT(DISTINCT report_mark_type ORDER BY report_mark_type ASC) FROM tb_sales_pos WHERE id_report_status=6 ", 0, True, "", "", "", "")
         Dim query As String = "SELECT e.id_ar_eval_pps,e.id_comp_group, cg.description AS `group_store`, c.comp_number AS `store_acc`, c.comp_name AS `store`,
         e.id_sales_pos AS `id_inv`, e.report_number AS `inv_number`, e.report_mark_type AS `inv_rmt`,
         sp.`sales_pos_date` AS `inv_date`, sp.`sales_pos_due_date` AS `inv_due_date`, sp.`sales_pos_start_period` AS `start_period`, sp.`sales_pos_end_period` AS `end_period`,
@@ -69,7 +70,7 @@
            SUM(pyd.value) AS  `value`
            FROM tb_rec_payment_det pyd
            INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
-           WHERE py.`id_report_status`=6 AND pyd.report_mark_type IN (48, 54,66,67,116, 117, 118, 183,292)
+           WHERE py.`id_report_status`=6 AND pyd.report_mark_type IN (" + rmt_inv + ")
            GROUP BY pyd.id_report, pyd.report_mark_type
         ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
         LEFT JOIN (
@@ -89,6 +90,7 @@
 
     Sub viewSummary()
         Cursor = Cursors.WaitCursor
+        Dim rmt_inv As String = execute_query("SELECT GROUP_CONCAT(DISTINCT report_mark_type ORDER BY report_mark_type ASC) FROM tb_sales_pos WHERE id_report_status=6 ", 0, True, "", "", "", "")
         Dim query As String = "SELECT cg.description AS `store_group`, IF(SUM(CASE WHEN e.is_paid=2 THEN 1 ELSE 0 END)>0,IF(MIN(e.is_manual_release)=1,'Manual Release', 'Hold'), 'Release') AS `status`,
         SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) ) AS `inv_amount`,
         SUM(IFNULL(pyd.`value`,0.00)) AS total_rec,
@@ -103,7 +105,7 @@
           SUM(pyd.value) AS  `value`
           FROM tb_rec_payment_det pyd
           INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
-          WHERE py.`id_report_status`=6 AND pyd.report_mark_type IN (48, 54,66,67,116, 117, 118, 183,292)
+          WHERE py.`id_report_status`=6 AND pyd.report_mark_type IN (" + rmt_inv + ")
           GROUP BY pyd.id_report, pyd.report_mark_type
         ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
         WHERE e.eval_date='" + eval_date + "'
