@@ -64,6 +64,8 @@ GROUP BY po.`id_prod_order`"
                 FormViewProduction.Show()
                 FormViewProduction.WindowState = FormWindowState.Maximized
                 FormViewProduction.Focus()
+                '
+                BAttachPPS.Visible = True
             End If
         Catch ex As Exception
             errorProcess()
