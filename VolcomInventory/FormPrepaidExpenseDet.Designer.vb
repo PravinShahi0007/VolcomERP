@@ -309,7 +309,6 @@ Partial Class FormPrepaidExpenseDet
         'DEDueDate
         '
         Me.DEDueDate.EditValue = Nothing
-        Me.DEDueDate.Enabled = False
         Me.DEDueDate.Location = New System.Drawing.Point(109, 65)
         Me.DEDueDate.Name = "DEDueDate"
         Me.DEDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
