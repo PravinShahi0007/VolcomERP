@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormSOPCat
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormSOPCat
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.XTCCat = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPProsedur = New DevExpress.XtraTab.XtraTabPage()
@@ -43,12 +43,11 @@ Partial Class FormSOPCat
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BMasterCatSOP = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddProsedur = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.TextEdit7 = New DevExpress.XtraEditors.TextEdit()
+        Me.PCAddMasterProsedur = New DevExpress.XtraEditors.PanelControl()
+        Me.TEProsedur = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit8 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEKodeProsedur = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
@@ -58,11 +57,6 @@ Partial Class FormSOPCat
         Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
         Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
         Me.BAddSubProsedur = New DevExpress.XtraEditors.SimpleButton()
-        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCCat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCCat.SuspendLayout()
         Me.XTPProsedur.SuspendLayout()
@@ -75,18 +69,16 @@ Partial Class FormSOPCat
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSubProsedur, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSubProsedur, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
-        CType(Me.TextEdit7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCAddMasterProsedur, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCAddMasterProsedur.SuspendLayout()
+        CType(Me.TEProsedur.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEKodeProsedur.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCCat
@@ -103,8 +95,7 @@ Partial Class FormSOPCat
         'XTPProsedur
         '
         Me.XTPProsedur.Controls.Add(Me.GCProsedur)
-        Me.XTPProsedur.Controls.Add(Me.SimpleButton2)
-        Me.XTPProsedur.Controls.Add(Me.PanelControl4)
+        Me.XTPProsedur.Controls.Add(Me.PCAddMasterProsedur)
         Me.XTPProsedur.Controls.Add(Me.PanelControl1)
         Me.XTPProsedur.Name = "XTPProsedur"
         Me.XTPProsedur.Size = New System.Drawing.Size(1048, 491)
@@ -116,7 +107,7 @@ Partial Class FormSOPCat
         Me.GCProsedur.Location = New System.Drawing.Point(0, 52)
         Me.GCProsedur.MainView = Me.GVProsedur
         Me.GCProsedur.Name = "GCProsedur"
-        Me.GCProsedur.Size = New System.Drawing.Size(1048, 275)
+        Me.GCProsedur.Size = New System.Drawing.Size(1048, 338)
         Me.GCProsedur.TabIndex = 1
         Me.GCProsedur.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProsedur})
         '
@@ -144,6 +135,7 @@ Partial Class FormSOPCat
         Me.XTPSubProsedur.Controls.Add(Me.BMasterCatSOP)
         Me.XTPSubProsedur.Controls.Add(Me.PanelControl3)
         Me.XTPSubProsedur.Name = "XTPSubProsedur"
+        Me.XTPSubProsedur.PageVisible = False
         Me.XTPSubProsedur.Size = New System.Drawing.Size(1048, 491)
         Me.XTPSubProsedur.Text = "Master Sub Prosedur"
         '
@@ -313,70 +305,55 @@ Partial Class FormSOPCat
         Me.BAddProsedur.Appearance.Options.UseForeColor = True
         Me.BAddProsedur.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
         Me.BAddProsedur.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BAddProsedur.Location = New System.Drawing.Point(2, 88)
+        Me.BAddProsedur.Location = New System.Drawing.Point(2, 65)
         Me.BAddProsedur.Name = "BAddProsedur"
         Me.BAddProsedur.Size = New System.Drawing.Size(1044, 34)
         Me.BAddProsedur.TabIndex = 11
         Me.BAddProsedur.Text = "Add Prosedur"
         '
-        'PanelControl4
+        'PCAddMasterProsedur
         '
-        Me.PanelControl4.Controls.Add(Me.SearchLookUpEdit1)
-        Me.PanelControl4.Controls.Add(Me.LabelControl2)
-        Me.PanelControl4.Controls.Add(Me.BAddProsedur)
-        Me.PanelControl4.Controls.Add(Me.TextEdit7)
-        Me.PanelControl4.Controls.Add(Me.LabelControl6)
-        Me.PanelControl4.Controls.Add(Me.TextEdit8)
-        Me.PanelControl4.Controls.Add(Me.LabelControl7)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 367)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(1048, 124)
-        Me.PanelControl4.TabIndex = 12
+        Me.PCAddMasterProsedur.Controls.Add(Me.BAddProsedur)
+        Me.PCAddMasterProsedur.Controls.Add(Me.TEProsedur)
+        Me.PCAddMasterProsedur.Controls.Add(Me.LabelControl6)
+        Me.PCAddMasterProsedur.Controls.Add(Me.TEKodeProsedur)
+        Me.PCAddMasterProsedur.Controls.Add(Me.LabelControl7)
+        Me.PCAddMasterProsedur.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCAddMasterProsedur.Location = New System.Drawing.Point(0, 390)
+        Me.PCAddMasterProsedur.Name = "PCAddMasterProsedur"
+        Me.PCAddMasterProsedur.Size = New System.Drawing.Size(1048, 101)
+        Me.PCAddMasterProsedur.TabIndex = 12
+        Me.PCAddMasterProsedur.Visible = False
         '
-        'TextEdit7
+        'TEProsedur
         '
-        Me.TextEdit7.Location = New System.Drawing.Point(110, 61)
-        Me.TextEdit7.Name = "TextEdit7"
-        Me.TextEdit7.Size = New System.Drawing.Size(385, 20)
-        Me.TextEdit7.TabIndex = 5
+        Me.TEProsedur.Location = New System.Drawing.Point(110, 38)
+        Me.TEProsedur.Name = "TEProsedur"
+        Me.TEProsedur.Size = New System.Drawing.Size(385, 20)
+        Me.TEProsedur.TabIndex = 5
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(13, 64)
+        Me.LabelControl6.Location = New System.Drawing.Point(13, 41)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(43, 13)
         Me.LabelControl6.TabIndex = 4
         Me.LabelControl6.Text = "Prosedur"
         '
-        'TextEdit8
+        'TEKodeProsedur
         '
-        Me.TextEdit8.Location = New System.Drawing.Point(110, 35)
-        Me.TextEdit8.Name = "TextEdit8"
-        Me.TextEdit8.Size = New System.Drawing.Size(184, 20)
-        Me.TextEdit8.TabIndex = 3
+        Me.TEKodeProsedur.Location = New System.Drawing.Point(110, 12)
+        Me.TEKodeProsedur.Name = "TEKodeProsedur"
+        Me.TEKodeProsedur.Size = New System.Drawing.Size(184, 20)
+        Me.TEKodeProsedur.TabIndex = 3
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(13, 38)
+        Me.LabelControl7.Location = New System.Drawing.Point(13, 15)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(70, 13)
         Me.LabelControl7.TabIndex = 2
         Me.LabelControl7.Text = "Kode Prosedur"
-        '
-        'SimpleButton2
-        '
-        Me.SimpleButton2.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.SimpleButton2.Appearance.ForeColor = System.Drawing.Color.White
-        Me.SimpleButton2.Appearance.Options.UseBackColor = True
-        Me.SimpleButton2.Appearance.Options.UseForeColor = True
-        Me.SimpleButton2.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
-        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.SimpleButton2.Location = New System.Drawing.Point(0, 327)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(1048, 40)
-        Me.SimpleButton2.TabIndex = 13
-        Me.SimpleButton2.Text = "Refresh"
         '
         'PanelControl3
         '
@@ -462,45 +439,6 @@ Partial Class FormSOPCat
         Me.BAddSubProsedur.TabIndex = 10
         Me.BAddSubProsedur.Text = "Add Sub Prosedur"
         '
-        'SearchLookUpEdit1
-        '
-        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(110, 9)
-        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
-        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit1.Properties.View = Me.GridView1
-        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(290, 20)
-        Me.SearchLookUpEdit1.TabIndex = 19
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "ID"
-        Me.GridColumn7.FieldName = "id_departement"
-        Me.GridColumn7.Name = "GridColumn7"
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Departement"
-        Me.GridColumn8.FieldName = "departement"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 0
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(11, 12)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(63, 13)
-        Me.LabelControl2.TabIndex = 18
-        Me.LabelControl2.Text = "Departement"
-        '
         'FormSOPCat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -526,11 +464,11 @@ Partial Class FormSOPCat
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCSubProsedur, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSubProsedur, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
-        Me.PanelControl4.PerformLayout()
-        CType(Me.TextEdit7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCAddMasterProsedur, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCAddMasterProsedur.ResumeLayout(False)
+        Me.PCAddMasterProsedur.PerformLayout()
+        CType(Me.TEProsedur.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEKodeProsedur.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
@@ -538,8 +476,6 @@ Partial Class FormSOPCat
         CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -567,11 +503,10 @@ Partial Class FormSOPCat
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BMasterCatSOP As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TextEdit7 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents PCAddMasterProsedur As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TEProsedur As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit8 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEKodeProsedur As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BAddProsedur As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
@@ -583,9 +518,4 @@ Partial Class FormSOPCat
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
 End Class

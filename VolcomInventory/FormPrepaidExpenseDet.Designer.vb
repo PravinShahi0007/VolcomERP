@@ -805,7 +805,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnaccount.Name = "GridColumnaccount"
         Me.GridColumnaccount.Visible = True
         Me.GridColumnaccount.VisibleIndex = 1
-        Me.GridColumnaccount.Width = 93
+        Me.GridColumnaccount.Width = 53
         '
         'RepositoryItemSearchLookUpEdit1
         '
@@ -857,7 +857,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnDescription.Name = "GridColumnDescription"
         Me.GridColumnDescription.Visible = True
         Me.GridColumnDescription.VisibleIndex = 5
-        Me.GridColumnDescription.Width = 204
+        Me.GridColumnDescription.Width = 117
         '
         'RepositoryItemMemoEdit1
         '
@@ -873,7 +873,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GCCC.Name = "GCCC"
         Me.GCCC.Visible = True
         Me.GCCC.VisibleIndex = 2
-        Me.GCCC.Width = 45
+        Me.GCCC.Width = 25
         '
         'RISLECC
         '
@@ -926,7 +926,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnBudgetType.Name = "GridColumnBudgetType"
         Me.GridColumnBudgetType.Visible = True
         Me.GridColumnBudgetType.VisibleIndex = 3
-        Me.GridColumnBudgetType.Width = 93
+        Me.GridColumnBudgetType.Width = 53
         '
         'RISLEType
         '
@@ -965,7 +965,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnBudget.Name = "GridColumnBudget"
         Me.GridColumnBudget.Visible = True
         Me.GridColumnBudget.VisibleIndex = 4
-        Me.GridColumnBudget.Width = 93
+        Me.GridColumnBudget.Width = 53
         '
         'RISLECatExpense
         '
@@ -1019,10 +1019,11 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnQtyMonth.DisplayFormat.FormatString = "N0"
         Me.GridColumnQtyMonth.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQtyMonth.FieldName = "qty_month"
+        Me.GridColumnQtyMonth.MaxWidth = 60
         Me.GridColumnQtyMonth.Name = "GridColumnQtyMonth"
         Me.GridColumnQtyMonth.Visible = True
         Me.GridColumnQtyMonth.VisibleIndex = 10
-        Me.GridColumnQtyMonth.Width = 71
+        Me.GridColumnQtyMonth.Width = 20
         '
         'GridColumnEndPeriod
         '
@@ -1072,8 +1073,8 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnTaxValue.DisplayFormat.FormatString = "N2"
         Me.GridColumnTaxValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnTaxValue.FieldName = "tax_value"
-        Me.GridColumnTaxValue.MaxWidth = 60
-        Me.GridColumnTaxValue.MinWidth = 60
+        Me.GridColumnTaxValue.MaxWidth = 80
+        Me.GridColumnTaxValue.MinWidth = 80
         Me.GridColumnTaxValue.Name = "GridColumnTaxValue"
         Me.GridColumnTaxValue.OptionsColumn.AllowEdit = False
         Me.GridColumnTaxValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tax_value", "{0:N2}")})
@@ -1081,7 +1082,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnTaxValue.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnTaxValue.Visible = True
         Me.GridColumnTaxValue.VisibleIndex = 15
-        Me.GridColumnTaxValue.Width = 60
+        Me.GridColumnTaxValue.Width = 80
         '
         'GridColumnCurr
         '
@@ -1095,7 +1096,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnCurr.Name = "GridColumnCurr"
         Me.GridColumnCurr.Visible = True
         Me.GridColumnCurr.VisibleIndex = 6
-        Me.GridColumnCurr.Width = 55
+        Me.GridColumnCurr.Width = 31
         '
         'RISLECurrency
         '
@@ -1138,7 +1139,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnBeforeKurs.Name = "GridColumnBeforeKurs"
         Me.GridColumnBeforeKurs.Visible = True
         Me.GridColumnBeforeKurs.VisibleIndex = 7
-        Me.GridColumnBeforeKurs.Width = 69
+        Me.GridColumnBeforeKurs.Width = 39
         '
         'RepositoryItemTextEdit3
         '
@@ -1160,7 +1161,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnKurs.Name = "GridColumnKurs"
         Me.GridColumnKurs.Visible = True
         Me.GridColumnKurs.VisibleIndex = 8
-        Me.GridColumnKurs.Width = 69
+        Me.GridColumnKurs.Width = 39
         '
         'GridColumnAmount
         '
@@ -1187,7 +1188,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnPPHCOA.Name = "GridColumnPPHCOA"
         Me.GridColumnPPHCOA.Visible = True
         Me.GridColumnPPHCOA.VisibleIndex = 16
-        Me.GridColumnPPHCOA.Width = 206
+        Me.GridColumnPPHCOA.Width = 30
         '
         'RISLECOAPPH
         '
@@ -1259,8 +1260,8 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnPPH.DisplayFormat.FormatString = "N2"
         Me.GridColumnPPH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPPH.FieldName = "pph_value"
-        Me.GridColumnPPH.MaxWidth = 60
-        Me.GridColumnPPH.MinWidth = 60
+        Me.GridColumnPPH.MaxWidth = 80
+        Me.GridColumnPPH.MinWidth = 80
         Me.GridColumnPPH.Name = "GridColumnPPH"
         Me.GridColumnPPH.OptionsColumn.AllowEdit = False
         Me.GridColumnPPH.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph_value", "{0:N2}")})
@@ -1268,7 +1269,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnPPH.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnPPH.Visible = True
         Me.GridColumnPPH.VisibleIndex = 18
-        Me.GridColumnPPH.Width = 60
+        Me.GridColumnPPH.Width = 80
         '
         'GridColumnCoaBiayaCol
         '
@@ -1278,7 +1279,7 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnCoaBiayaCol.Name = "GridColumnCoaBiayaCol"
         Me.GridColumnCoaBiayaCol.Visible = True
         Me.GridColumnCoaBiayaCol.VisibleIndex = 13
-        Me.GridColumnCoaBiayaCol.Width = 156
+        Me.GridColumnCoaBiayaCol.Width = 45
         '
         'GridColumnPPHDesc
         '
