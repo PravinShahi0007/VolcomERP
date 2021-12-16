@@ -200,4 +200,8 @@ ORDER BY id_menu"
     Private Sub SBAddSchedule_Click(sender As Object, e As EventArgs) Handles SBAddSchedule.Click
         FormSOPIndexSchedule.ShowDialog()
     End Sub
+
+    Private Sub BMasterCatSOP_Click(sender As Object, e As EventArgs) Handles BMasterCatSOP.Click
+
+    End Sub
 End Class
