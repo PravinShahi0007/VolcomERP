@@ -42,8 +42,16 @@ Partial Class FormSOPIndex
         Me.RepoFileByModul = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoMenuByModul = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.XTPScheduleSOPAdmin = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCScheduleAdmin = New DevExpress.XtraGrid.GridControl()
+        Me.GVScheduleAdmin = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBAddSchedule = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPScheduleSOPGuest = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCScheduleGuest = New DevExpress.XtraGrid.GridControl()
+        Me.GVScheduleGuest = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.XTCSOPIndex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSOPIndex.SuspendLayout()
         Me.XTPBySOP.SuspendLayout()
@@ -56,8 +64,16 @@ Partial Class FormSOPIndex
         CType(Me.GVByModul, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoFileByModul, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoMenuByModul, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPScheduleSOPAdmin.SuspendLayout()
+        CType(Me.GCScheduleAdmin, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVScheduleAdmin, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        Me.XTPScheduleSOPGuest.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.GCScheduleGuest, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVScheduleGuest, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSOPIndex
@@ -69,7 +85,7 @@ Partial Class FormSOPIndex
         Me.XTCSOPIndex.SelectedTabPage = Me.XTPBySOP
         Me.XTCSOPIndex.Size = New System.Drawing.Size(1046, 520)
         Me.XTCSOPIndex.TabIndex = 0
-        Me.XTCSOPIndex.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBySOP, Me.XTPByModul})
+        Me.XTCSOPIndex.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBySOP, Me.XTPByModul, Me.XTPScheduleSOPAdmin, Me.XTPScheduleSOPGuest})
         '
         'XTPBySOP
         '
@@ -240,6 +256,57 @@ Partial Class FormSOPIndex
         Me.RepoMenuByModul.AutoHeight = False
         Me.RepoMenuByModul.Name = "RepoMenuByModul"
         '
+        'XTPScheduleSOPAdmin
+        '
+        Me.XTPScheduleSOPAdmin.Controls.Add(Me.GCScheduleAdmin)
+        Me.XTPScheduleSOPAdmin.Controls.Add(Me.PanelControl2)
+        Me.XTPScheduleSOPAdmin.Name = "XTPScheduleSOPAdmin"
+        Me.XTPScheduleSOPAdmin.Size = New System.Drawing.Size(1040, 492)
+        Me.XTPScheduleSOPAdmin.Text = "Schedule SOP"
+        '
+        'GCScheduleAdmin
+        '
+        Me.GCScheduleAdmin.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCScheduleAdmin.Location = New System.Drawing.Point(0, 48)
+        Me.GCScheduleAdmin.MainView = Me.GVScheduleAdmin
+        Me.GCScheduleAdmin.Name = "GCScheduleAdmin"
+        Me.GCScheduleAdmin.Size = New System.Drawing.Size(1040, 444)
+        Me.GCScheduleAdmin.TabIndex = 1
+        Me.GCScheduleAdmin.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScheduleAdmin})
+        '
+        'GVScheduleAdmin
+        '
+        Me.GVScheduleAdmin.GridControl = Me.GCScheduleAdmin
+        Me.GVScheduleAdmin.Name = "GVScheduleAdmin"
+        Me.GVScheduleAdmin.OptionsView.ColumnAutoWidth = False
+        Me.GVScheduleAdmin.OptionsView.ShowGroupPanel = False
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.SBAddSchedule)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1040, 48)
+        Me.PanelControl2.TabIndex = 0
+        '
+        'SBAddSchedule
+        '
+        Me.SBAddSchedule.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SBAddSchedule.Image = CType(resources.GetObject("SBAddSchedule.Image"), System.Drawing.Image)
+        Me.SBAddSchedule.Location = New System.Drawing.Point(2, 2)
+        Me.SBAddSchedule.Name = "SBAddSchedule"
+        Me.SBAddSchedule.Size = New System.Drawing.Size(80, 44)
+        Me.SBAddSchedule.TabIndex = 0
+        Me.SBAddSchedule.Text = "Add"
+        '
+        'XTPScheduleSOPGuest
+        '
+        Me.XTPScheduleSOPGuest.Controls.Add(Me.GCScheduleGuest)
+        Me.XTPScheduleSOPGuest.Name = "XTPScheduleSOPGuest"
+        Me.XTPScheduleSOPGuest.Size = New System.Drawing.Size(1040, 492)
+        Me.XTPScheduleSOPGuest.Text = "Schedule SOP"
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BRefresh)
@@ -258,6 +325,23 @@ Partial Class FormSOPIndex
         Me.BRefresh.Size = New System.Drawing.Size(116, 44)
         Me.BRefresh.TabIndex = 1
         Me.BRefresh.Text = "Refresh"
+        '
+        'GCScheduleGuest
+        '
+        Me.GCScheduleGuest.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCScheduleGuest.Location = New System.Drawing.Point(0, 0)
+        Me.GCScheduleGuest.MainView = Me.GVScheduleGuest
+        Me.GCScheduleGuest.Name = "GCScheduleGuest"
+        Me.GCScheduleGuest.Size = New System.Drawing.Size(1040, 492)
+        Me.GCScheduleGuest.TabIndex = 2
+        Me.GCScheduleGuest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScheduleGuest})
+        '
+        'GVScheduleGuest
+        '
+        Me.GVScheduleGuest.GridControl = Me.GCScheduleGuest
+        Me.GVScheduleGuest.Name = "GVScheduleGuest"
+        Me.GVScheduleGuest.OptionsView.ColumnAutoWidth = False
+        Me.GVScheduleGuest.OptionsView.ShowGroupPanel = False
         '
         'FormSOPIndex
         '
@@ -286,8 +370,16 @@ Partial Class FormSOPIndex
         CType(Me.GVByModul, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoFileByModul, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoMenuByModul, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPScheduleSOPAdmin.ResumeLayout(False)
+        CType(Me.GCScheduleAdmin, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVScheduleAdmin, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.XTPScheduleSOPGuest.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.GCScheduleGuest, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVScheduleGuest, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -316,4 +408,12 @@ Partial Class FormSOPIndex
     Friend WithEvents RepoFileByModul As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepoMenuByModul As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents XTPScheduleSOPAdmin As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCScheduleAdmin As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVScheduleAdmin As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBAddSchedule As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPScheduleSOPGuest As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCScheduleGuest As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVScheduleGuest As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

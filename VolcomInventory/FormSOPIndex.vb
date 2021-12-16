@@ -196,4 +196,8 @@ ORDER BY id_menu"
             End If
         End If
     End Sub
+
+    Private Sub SBAddSchedule_Click(sender As Object, e As EventArgs) Handles SBAddSchedule.Click
+        FormSOPIndexSchedule.ShowDialog()
+    End Sub
 End Class
