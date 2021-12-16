@@ -1040,12 +1040,12 @@ WHERE comp.id_comp = '{0}'", id_company)
             SELECT cother.id_comp_group, comp.id_comp, comp.comp_number, comp.comp_name
             FROM tb_m_comp_group_other AS cother
             LEFT JOIN tb_m_comp AS comp ON cother.id_comp = comp.id_comp
-            WHERE cother.id_comp_group = " + SLEGroup.EditValue.ToString + "
+            WHERE cother.id_comp_group = " + SLEGroup.EditValue.ToString + " AND comp.is_active = 1
             UNION ALL
             SELECT cgroup.id_comp_group, comp.id_comp, comp.comp_number, comp.comp_name
             FROM tb_m_comp_group AS cgroup
             LEFT JOIN tb_m_comp AS comp ON cgroup.id_comp = comp.id_comp
-            WHERE cgroup.id_comp_group = " + SLEGroup.EditValue.ToString + " AND cgroup.id_comp IS NOT NULL
+            WHERE cgroup.id_comp_group = " + SLEGroup.EditValue.ToString + " AND cgroup.id_comp IS NOT NULL AND comp.is_active = 1
         "
         viewSearchLookupQuery(SLEStoreCompany, query, "id_comp", "comp_name", "id_comp")
         Dim tmp_comp As String = execute_query("SELECT IFNULL(id_comp, 0) AS id_comp FROM tb_m_comp_group WHERE id_comp_group = " + SLEGroup.EditValue.ToString, 0, True, "", "", "", "")
@@ -1492,7 +1492,7 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
 
     Private Sub BResetMark_Click(sender As Object, e As EventArgs) Handles BResetMark.Click
         Cursor = Cursors.WaitCursor
-        Dim rmt_reset As String =""
+        Dim rmt_reset As String = ""
         If LECompanyCategory.EditValue.ToString <> "6" Then
             rmt_reset = "153"
         Else

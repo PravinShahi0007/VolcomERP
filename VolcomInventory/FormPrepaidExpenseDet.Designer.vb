@@ -56,6 +56,10 @@ Partial Class FormPrepaidExpenseDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEVatAcc = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TEPPH = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtTotal = New DevExpress.XtraEditors.TextEdit()
@@ -172,6 +176,8 @@ Partial Class FormPrepaidExpenseDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.SLEVatAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPPH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtVAT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -575,6 +581,7 @@ Partial Class FormPrepaidExpenseDet
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.SLEVatAcc)
         Me.PanelControl4.Controls.Add(Me.TEPPH)
         Me.PanelControl4.Controls.Add(Me.LabelControl14)
         Me.PanelControl4.Controls.Add(Me.TxtTotal)
@@ -588,6 +595,37 @@ Partial Class FormPrepaidExpenseDet
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(380, 191)
         Me.PanelControl4.TabIndex = 6
+        '
+        'SLEVatAcc
+        '
+        Me.SLEVatAcc.Location = New System.Drawing.Point(10, 75)
+        Me.SLEVatAcc.Name = "SLEVatAcc"
+        Me.SLEVatAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVatAcc.Properties.View = Me.GridView7
+        Me.SLEVatAcc.Size = New System.Drawing.Size(167, 20)
+        Me.SLEVatAcc.TabIndex = 8916
+        '
+        'GridView7
+        '
+        Me.GridView7.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn5})
+        Me.GridView7.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView7.Name = "GridView7"
+        Me.GridView7.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView7.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID Acc"
+        Me.GridColumn1.FieldName = "id_acc"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "COA"
+        Me.GridColumn5.FieldName = "acc_description"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
         '
         'TEPPH
         '
@@ -638,7 +676,7 @@ Partial Class FormPrepaidExpenseDet
         'TxtVAT
         '
         Me.TxtVAT.Enabled = False
-        Me.TxtVAT.Location = New System.Drawing.Point(10, 75)
+        Me.TxtVAT.Location = New System.Drawing.Point(183, 75)
         Me.TxtVAT.Name = "TxtVAT"
         Me.TxtVAT.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtVAT.Properties.Appearance.Options.UseFont = True
@@ -646,7 +684,7 @@ Partial Class FormPrepaidExpenseDet
         Me.TxtVAT.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TxtVAT.Properties.Mask.EditMask = "N2"
         Me.TxtVAT.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtVAT.Size = New System.Drawing.Size(356, 20)
+        Me.TxtVAT.Size = New System.Drawing.Size(183, 20)
         Me.TxtVAT.TabIndex = 149
         '
         'LabelControl11
@@ -1519,6 +1557,8 @@ Partial Class FormPrepaidExpenseDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.SLEVatAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPPH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtVAT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1684,4 +1724,8 @@ Partial Class FormPrepaidExpenseDet
     Friend WithEvents GridColumnKurs As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents GrossUpPPHToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SLEVatAcc As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView7 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
