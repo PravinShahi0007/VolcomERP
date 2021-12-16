@@ -22,9 +22,20 @@
         viewSearchLookupRepositoryQuery(RISLECurrency, q, 0, "currency", "id_currency")
     End Sub
 
+    Sub view_coa()
+        Dim query As String = "SELECT id_acc,acc_name,CONCAT(acc_name,' - ',acc_description) AS acc_description FROM tb_a_acc WHERE id_is_det='2' AND id_status='1' AND acc_name LIKE '111511%'"
+        If id_coa_tag = "1" Then
+            query += " AND id_coa_type='1' "
+        Else
+            query += " AND id_coa_type='2' "
+        End If
+        viewSearchLookupQuery(SLEVatAcc, query, "id_acc", "acc_description", "id_acc")
+    End Sub
+
     Private Sub FormPrepaidExpenseDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEDateReff.EditValue = Now()
         load_unit()
+        view_coa()
         '
         viewReportStatus()
         viewCCRepo()
@@ -154,7 +165,7 @@ WHERE reg.id_polis_reg='" & id_polis_reg & "' AND regd.vendor_dipilih='" & FormP
         Else
             GVData.OptionsCustomization.AllowSort = True
 
-            Dim query As String = "SELECT p.id_comp,p.id_coa_tag,c.comp_number,c.comp_name,p.due_date,p.date_reff,p.inv_number,p.id_report_status,p.number,p.created_date
+            Dim query As String = "SELECT p.id_acc_vat,p.id_comp,p.id_coa_tag,c.comp_number,c.comp_name,p.due_date,p.date_reff,p.inv_number,p.id_report_status,p.number,p.created_date
 ,p.note,p.id_report_status,p.sub_total,p.vat_total,p.total
 FROM tb_prepaid_expense p
 INNER JOIN tb_m_comp c ON c.`id_comp`=p.`id_comp`
@@ -169,6 +180,8 @@ WHERE p.id_prepaid_expense='" & id & "'"
             TxtCompName.Text = data.Rows(0)("comp_name").ToString
             DEDueDate.EditValue = data.Rows(0)("due_date")
             DEDateReff.EditValue = data.Rows(0)("date_reff")
+
+            SLEVatAcc.EditValue = data.Rows(0)("id_acc_vat").ToString
 
             TEInvNo.Text = data.Rows(0)("inv_number").ToString
             id_report_status = data.Rows(0)("id_report_status").ToString
@@ -764,18 +777,24 @@ WHERE c.id_comp='" + id_comp + "' "
                     newRow("no") = jum_row
                     newRow("id_acc") = GVData.GetRowCellValue(i, "id_acc").ToString
 
-                    If id = "-1" Then
-                        Try
-                            newRow("acc_name") = get_acc(GVData.GetRowCellValue(i, "id_acc").ToString, "1")
-                            newRow("acc_description") = get_acc(GVData.GetRowCellValue(i, "id_acc").ToString, "2")
-                            newRow("cc") = GVData.GetRowCellValue(i, "cc_desc").ToString
-                        Catch ex As Exception
-                        End Try
-                    Else
-                        newRow("acc_name") = GVData.GetRowCellValue(i, "acc_name").ToString
-                        newRow("acc_description") = GVData.GetRowCellValue(i, "coa_desc").ToString
-                        newRow("cc") = GVData.GetRowCellDisplayText(i, "cc").ToString
-                    End If
+                    'If id = "-1" Then
+                    '    Try
+                    '        newRow("acc_name") = get_acc(GVData.GetRowCellValue(i, "id_acc").ToString, "1")
+                    '        newRow("acc_description") = get_acc(GVData.GetRowCellValue(i, "id_acc").ToString, "2")
+                    '        newRow("cc") = GVData.GetRowCellValue(i, "cc_desc").ToString
+                    '    Catch ex As Exception
+                    '    End Try
+                    'Else
+                    '    newRow("acc_name") = GVData.GetRowCellValue(i, "acc_name").ToString
+                    '    newRow("acc_description") = GVData.GetRowCellValue(i, "coa_desc").ToString
+                    '    newRow("cc") = GVData.GetRowCellDisplayText(i, "cc").ToString
+                    'End If
+                    Try
+                        newRow("acc_name") = get_acc(GVData.GetRowCellValue(i, "id_acc").ToString, "1")
+                        newRow("acc_description") = get_acc(GVData.GetRowCellValue(i, "id_acc").ToString, "2")
+                        newRow("cc") = GVData.GetRowCellValue(i, "cc_desc").ToString
+                    Catch ex As Exception
+                    End Try
 
                     newRow("report_number") = ""
                     newRow("note") = GVData.GetRowCellValue(i, "description").ToString
@@ -845,13 +864,8 @@ WHERE c.id_comp='" + id_comp + "' "
                     jum_row += 1
                     Dim newRowvat As DataRow = (TryCast(GCDraft.DataSource, DataTable)).NewRow()
                     newRowvat("no") = jum_row
-                    If id_coa_tag = "1" Then
-                        newRowvat("acc_name") = get_acc(get_opt_purchasing_field("acc_coa_vat_in"), "1")
-                        newRowvat("acc_description") = get_acc(get_opt_purchasing_field("acc_coa_vat_in"), "2")
-                    Else
-                        newRowvat("acc_name") = get_acc(get_opt_purchasing_field("acc_coa_vat_in_cabang"), "1")
-                        newRowvat("acc_description") = get_acc(get_opt_purchasing_field("acc_coa_vat_in_cabang"), "2")
-                    End If
+                    newRowvat("acc_name") = get_acc(SLEVatAcc.EditValue.ToString, "1")
+                    newRowvat("acc_description") = get_acc(SLEVatAcc.EditValue.ToString, "2")
                     newRowvat("cc") = "000"
                     newRowvat("report_number") = ""
                     newRowvat("note") = MENote.Text
@@ -961,6 +975,7 @@ WHERE c.id_comp='" + id_comp + "' "
                         Dim date_reff As String = ""
                         Dim sub_total As String = decimalSQL(TxtSubTotal.EditValue.ToString)
                         Dim vat_total As String = decimalSQL(TxtVAT.EditValue.ToString)
+                        Dim id_acc_vat As String = SLEVatAcc.EditValue.ToString
                         Dim total As String = decimalSQL(TxtTotal.EditValue.ToString)
                         Dim is_open As String = ""
 
@@ -968,8 +983,8 @@ WHERE c.id_comp='" + id_comp + "' "
                         date_reff = "" + Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") + ""
                         is_open = "1"
 
-                        Dim qm As String = "INSERT INTO tb_prepaid_expense(id_comp,inv_number, created_date, due_date, created_by, id_report_status, note, sub_total, vat_total, total, is_open, date_reff, id_coa_tag, id_reff,report_mark_type) VALUES 
-                (" + id_comp + ",'" + inv_no + "', NOW()," + due_date + ", '" + id_user + "', 1, '" + note + "','" + sub_total + "', '" + vat_total + "', '" + total + "', '" + is_open + "', '" + date_reff + "','" & SLEUnit.EditValue.ToString & "','" & id_reff & "','" & report_mark_type & "'); SELECT LAST_INSERT_ID(); "
+                        Dim qm As String = "INSERT INTO tb_prepaid_expense(id_comp,inv_number, created_date, due_date, created_by, id_report_status, note, sub_total, vat_total, total, is_open, date_reff, id_coa_tag, id_reff,report_mark_type,id_acc_vat) VALUES 
+                (" + id_comp + ",'" + inv_no + "', NOW()," + due_date + ", '" + id_user + "', 1, '" + note + "','" + sub_total + "', '" + vat_total + "', '" + total + "', '" + is_open + "', '" + date_reff + "','" & SLEUnit.EditValue.ToString & "','" & id_reff & "','" & report_mark_type & "','" & id_acc_vat & "'); SELECT LAST_INSERT_ID(); "
                         id = execute_query(qm, 0, True, "", "", "", "")
                         execute_non_query("CALL gen_number(" + id + ",349); ", True, "", "", "", "")
 
@@ -1028,6 +1043,7 @@ WHERE c.id_comp='" + id_comp + "' "
                         Dim date_reff As String = ""
                         Dim sub_total As String = decimalSQL(TxtSubTotal.EditValue.ToString)
                         Dim vat_total As String = decimalSQL(TxtVAT.EditValue.ToString)
+                        Dim id_acc_vat As String = SLEVatAcc.EditValue.ToString
                         Dim total As String = decimalSQL(TxtTotal.EditValue.ToString)
                         Dim is_open As String = ""
 
@@ -1035,7 +1051,7 @@ WHERE c.id_comp='" + id_comp + "' "
                         date_reff = "" + Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") + ""
                         is_open = "1"
 
-                        Dim qm As String = "UPDATE tb_prepaid_expense SET id_comp=" + id_comp + ",inv_number='" + inv_no + "', created_date=NOW(), due_date=" + due_date + ", created_by='" + id_user + "', note='" + note + "', sub_total='" + sub_total + "', vat_total='" + vat_total + "', total='" + total + "', is_open='" + is_open + "', date_reff='" + date_reff + "',id_coa_tag='" & SLEUnit.EditValue.ToString & "' WHERE id_prepaid_expense='" & id & "' ; "
+                        Dim qm As String = "UPDATE tb_prepaid_expense SET id_comp=" + id_comp + ",inv_number='" + inv_no + "', created_date=NOW(), due_date=" + due_date + ", created_by='" + id_user + "', note='" + note + "', sub_total='" + sub_total + "', vat_total='" + vat_total + "', total='" + total + "', is_open='" + is_open + "', date_reff='" + date_reff + "',id_coa_tag='" & SLEUnit.EditValue.ToString & "',id_acc_vat='" & id_acc_vat & "' WHERE id_prepaid_expense='" & id & "' ; "
                         execute_non_query(qm, True, "", "", "", "")
 
                         'query det
@@ -1317,5 +1333,9 @@ WHERE c.id_comp='" + id_comp + "' "
                 warningCustom("Please check your input")
             End Try
         End If
+    End Sub
+
+    Private Sub SLEUnit_EditValueChanged(sender As Object, e As EventArgs) Handles SLEUnit.EditValueChanged
+        view_coa()
     End Sub
 End Class
