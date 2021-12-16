@@ -734,6 +734,7 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=2 " & query_where & " GROUP BY k
         viewSearchLookupQuery(SLEVendorKO, query, "id_comp", "comp_name_label", "id_comp")
         viewSearchLookupQuery(SLEVendorKP, query, "id_comp", "comp_name_label", "id_comp")
         viewSearchLookupQuery(SLEVendorCopyProto2, query, "id_comp", "comp_name_label", "id_comp")
+        viewSearchLookupQuery(SLEVendorAttachment, query, "id_comp", "comp_name_label", "id_comp")
     End Sub
 
     Sub view_ko()
@@ -857,5 +858,50 @@ GROUP BY id_prod_order_cps2_reff) AND is_purc_mat=2 " & query_where & " ORDER BY
 
     Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
         FormProductionAttach.ShowDialog()
+    End Sub
+
+    Private Sub BViewAttachFGPO_Click(sender As Object, e As EventArgs) Handles BViewAttachFGPO.Click
+        load_fgpo_attach()
+    End Sub
+
+    Sub load_fgpo_attach()
+        Dim q As String = "SELECT sts.report_status,a.`id_prod_order_attach`,po.`id_prod_order`,d.`id_design`,a.`number`,po.`prod_order_number`,emp.`employee_name`,a.`created_date`,CONCAT(cd.class,' ',d.`design_name`,' ',cd.color) AS design,d.design_code,c.`comp_name`
+FROM tb_prod_order_attach a 
+INNER JOIN tb_prod_order po ON po.id_prod_order=a.`id_prod_order`
+INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order`=po.`id_prod_order` AND wo.`is_main_vendor`=1
+INNER JOIN tb_m_ovh_price prc ON prc.`id_ovh_price`=wo.`id_ovh_price`
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=prc.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN `tb_prod_demand_design` pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+INNER JOIN tb_m_design d ON d.`id_design`=pdd.`id_design`
+INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=a.`id_report_status`
+INNER JOIN tb_m_user usr ON usr.`id_user`=a.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = d.id_design"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCFGPOPPS.DataSource = dt
+        GVFGPOPPS.BestFitColumns()
+    End Sub
+
+    Private Sub GVFGPOPPS_DoubleClick(sender As Object, e As EventArgs) Handles GVFGPOPPS.DoubleClick
+        If GVFGPOPPS.RowCount > 0 Then
+            FormProductionAttach.id = GVFGPOPPS.GetFocusedRowCellValue("id_prod_order_attach").ToString
+            FormProductionAttach.ShowDialog()
+        End If
     End Sub
 End Class

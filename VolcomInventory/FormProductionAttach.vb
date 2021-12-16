@@ -1,5 +1,6 @@
 ﻿Public Class FormProductionAttach
     Public id As String = "-1"
+    Dim is_submit As String = "2"
 
     Private Sub FormProductionAttach_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_head()
@@ -29,7 +30,16 @@ WHERE at.id_prod_order_attach='" & id & "'"
                 BAttachPPS.Visible = False
                 BShowPO.Visible = False
                 SLEFGPO.Properties.ReadOnly = True
-                PCSubmit.Visible = True
+                '
+                is_submit = dt.Rows(0)("is_submit").ToString
+
+                If is_submit = "1" Then
+                    BtnMark.Visible = True
+                    PCSubmit.Visible = False
+                Else
+                    BtnMark.Visible = False
+                    PCSubmit.Visible = True
+                End If
             End If
         End If
     End Sub
@@ -82,27 +92,54 @@ GROUP BY po.`id_prod_order`"
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
-        FormDocumentUpload.id_report = SLEFGPO.EditValue.ToString
+        FormDocumentUpload.id_report = id
         FormDocumentUpload.report_mark_type = "374"
+
+        If is_submit = "1" Then
+            FormDocumentUpload.is_view = "1"
+        End If
+
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         'check attachment first
-
+        Dim qc As String = "SELECT * FROM tb_doc WHERE report_mark_type='374' AND id_report='" & id & "'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            'sudah ada
+            Dim qu As String = "UPDATE tb_prod_order_attach SET is_submit=1 WHERE id_prod_order_attach='" & id & "'"
+            execute_non_query(qu, True, "", "", "", "")
+            load_head()
+        Else
+            warningCustom("Please attach signed FGPO")
+        End If
     End Sub
 
     Private Sub BAttachPPS_Click(sender As Object, e As EventArgs) Handles BAttachPPS.Click
         Cursor = Cursors.WaitCursor
         If Not SLEFGPO.EditValue = Nothing Then
-            Dim q As String = "INSERT INTO tb_prod_order_attach(id_prod_order,created_by,created_date) VALUES('" & SLEFGPO.EditValue.ToString & "','" & id_user & "',NOW()); SELECT LAST_INSERT_ID();"
-            id = execute_query(q, 0, True, "", "", "", "")
-            '
-            execute_non_query("CALL gen_number('" & id & "','374')", True, "", "", "", "")
-            '
-            load_head()
+            'check if already
+            Dim qc As String = "SELECT * FROM tb_prod_order_attach WHERE id_prod_order='" & SLEFGPO.EditValue.ToString & "'"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dtc.Rows.Count > 0 Then
+                warningCustom("Already proposed before")
+            Else
+                Dim q As String = "INSERT INTO tb_prod_order_attach(id_prod_order,created_by,created_date) VALUES('" & SLEFGPO.EditValue.ToString & "','" & id_user & "',NOW()); SELECT LAST_INSERT_ID();"
+                id = execute_query(q, 0, True, "", "", "", "")
+                '
+                execute_non_query("CALL gen_number('" & id & "','374')", True, "", "", "", "")
+                '
+                load_head()
+            End If
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        FormReportMark.id_report = id
+        FormReportMark.report_mark_type = "374"
+        FormReportMark.ShowDialog()
     End Sub
 End Class
