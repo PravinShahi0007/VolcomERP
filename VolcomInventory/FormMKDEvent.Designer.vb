@@ -47,6 +47,17 @@ Partial Class FormMKDEvent
         Me.SLEMKD = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnkode_lengkap = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnkode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndeskripsi = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnwarna = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndeskripsi_warna = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnharga_normal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndisc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnharga_update = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnket = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCEvent, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCEvent.SuspendLayout()
         Me.XTPList.SuspendLayout()
@@ -84,7 +95,7 @@ Partial Class FormMKDEvent
         Me.XTPList.Controls.Add(Me.PanelControlList)
         Me.XTPList.Name = "XTPList"
         Me.XTPList.Size = New System.Drawing.Size(645, 391)
-        Me.XTPList.Text = "List"
+        Me.XTPList.Text = "EOS List"
         '
         'GCList
         '
@@ -176,7 +187,7 @@ Partial Class FormMKDEvent
         '
         'BtnPrintList
         '
-        Me.BtnPrintList.Location = New System.Drawing.Point(304, 15)
+        Me.BtnPrintList.Location = New System.Drawing.Point(304, 16)
         Me.BtnPrintList.Name = "BtnPrintList"
         Me.BtnPrintList.Size = New System.Drawing.Size(75, 23)
         Me.BtnPrintList.TabIndex = 3
@@ -227,7 +238,7 @@ Partial Class FormMKDEvent
         Me.XTPDetail.Controls.Add(Me.PanelControlDetail)
         Me.XTPDetail.Name = "XTPDetail"
         Me.XTPDetail.Size = New System.Drawing.Size(645, 391)
-        Me.XTPDetail.Text = "Detail"
+        Me.XTPDetail.Text = "EOS Detail"
         '
         'GCDetail
         '
@@ -242,6 +253,7 @@ Partial Class FormMKDEvent
         '
         'GVDetail
         '
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnkode_lengkap, Me.GridColumnkode, Me.GridColumnsize, Me.GridColumnclass, Me.GridColumndeskripsi, Me.GridColumnwarna, Me.GridColumndeskripsi_warna, Me.GridColumnharga_normal, Me.GridColumndisc, Me.GridColumnharga_update, Me.GridColumnket})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.ReadOnly = True
@@ -276,7 +288,7 @@ Partial Class FormMKDEvent
         '
         'BtnViewMKD
         '
-        Me.BtnViewMKD.Location = New System.Drawing.Point(250, 16)
+        Me.BtnViewMKD.Location = New System.Drawing.Point(250, 15)
         Me.BtnViewMKD.Name = "BtnViewMKD"
         Me.BtnViewMKD.Size = New System.Drawing.Size(75, 23)
         Me.BtnViewMKD.TabIndex = 4
@@ -305,6 +317,98 @@ Partial Class FormMKDEvent
         Me.LabelControl3.Size = New System.Drawing.Size(61, 13)
         Me.LabelControl3.TabIndex = 0
         Me.LabelControl3.Text = "Proposal No."
+        '
+        'GridColumnkode_lengkap
+        '
+        Me.GridColumnkode_lengkap.Caption = "Kode Lengkap"
+        Me.GridColumnkode_lengkap.FieldName = "kode_lengkap"
+        Me.GridColumnkode_lengkap.Name = "GridColumnkode_lengkap"
+        Me.GridColumnkode_lengkap.Visible = True
+        Me.GridColumnkode_lengkap.VisibleIndex = 0
+        '
+        'GridColumnkode
+        '
+        Me.GridColumnkode.Caption = "Kode"
+        Me.GridColumnkode.FieldName = "kode"
+        Me.GridColumnkode.Name = "GridColumnkode"
+        Me.GridColumnkode.Visible = True
+        Me.GridColumnkode.VisibleIndex = 1
+        '
+        'GridColumnsize
+        '
+        Me.GridColumnsize.Caption = "Size"
+        Me.GridColumnsize.FieldName = "size"
+        Me.GridColumnsize.Name = "GridColumnsize"
+        Me.GridColumnsize.Visible = True
+        Me.GridColumnsize.VisibleIndex = 2
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 3
+        '
+        'GridColumndeskripsi
+        '
+        Me.GridColumndeskripsi.Caption = "Deskripsi"
+        Me.GridColumndeskripsi.FieldName = "deskripsi"
+        Me.GridColumndeskripsi.Name = "GridColumndeskripsi"
+        Me.GridColumndeskripsi.Visible = True
+        Me.GridColumndeskripsi.VisibleIndex = 4
+        '
+        'GridColumnwarna
+        '
+        Me.GridColumnwarna.Caption = "Warna"
+        Me.GridColumnwarna.FieldName = "warna"
+        Me.GridColumnwarna.Name = "GridColumnwarna"
+        Me.GridColumnwarna.Visible = True
+        Me.GridColumnwarna.VisibleIndex = 5
+        '
+        'GridColumndeskripsi_warna
+        '
+        Me.GridColumndeskripsi_warna.Caption = "Deskripsi Warna"
+        Me.GridColumndeskripsi_warna.FieldName = "deskripsi_warna"
+        Me.GridColumndeskripsi_warna.Name = "GridColumndeskripsi_warna"
+        Me.GridColumndeskripsi_warna.Visible = True
+        Me.GridColumndeskripsi_warna.VisibleIndex = 6
+        '
+        'GridColumnharga_normal
+        '
+        Me.GridColumnharga_normal.Caption = "Harga Normal"
+        Me.GridColumnharga_normal.DisplayFormat.FormatString = "N0"
+        Me.GridColumnharga_normal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnharga_normal.FieldName = "harga_normal"
+        Me.GridColumnharga_normal.Name = "GridColumnharga_normal"
+        Me.GridColumnharga_normal.Visible = True
+        Me.GridColumnharga_normal.VisibleIndex = 7
+        '
+        'GridColumndisc
+        '
+        Me.GridColumndisc.Caption = "Disc"
+        Me.GridColumndisc.FieldName = "disc"
+        Me.GridColumndisc.Name = "GridColumndisc"
+        Me.GridColumndisc.Visible = True
+        Me.GridColumndisc.VisibleIndex = 8
+        '
+        'GridColumnharga_update
+        '
+        Me.GridColumnharga_update.Caption = "Harga Update"
+        Me.GridColumnharga_update.DisplayFormat.FormatString = "N0"
+        Me.GridColumnharga_update.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnharga_update.FieldName = "harga_update"
+        Me.GridColumnharga_update.Name = "GridColumnharga_update"
+        Me.GridColumnharga_update.Visible = True
+        Me.GridColumnharga_update.VisibleIndex = 9
+        '
+        'GridColumnket
+        '
+        Me.GridColumnket.Caption = "Ket"
+        Me.GridColumnket.FieldName = "ket"
+        Me.GridColumnket.Name = "GridColumnket"
+        Me.GridColumnket.Visible = True
+        Me.GridColumnket.VisibleIndex = 10
         '
         'FormMKDEvent
         '
@@ -366,4 +470,15 @@ Partial Class FormMKDEvent
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnPrintMKD As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnViewMKD As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnkode_lengkap As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnkode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndeskripsi As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnwarna As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndeskripsi_warna As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnharga_normal As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndisc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnharga_update As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnket As DevExpress.XtraGrid.Columns.GridColumn
 End Class
