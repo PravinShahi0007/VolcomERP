@@ -51,6 +51,7 @@
         GridColumnPPH.UnboundExpression = "Iif([id_acc_pph] = " & get_opt_acc_field("id_acc_skbp") & ", 0, floor([pph_percent] / 100 * [amount]))"
         '
         If Not id_polis_reg = "-1" Then
+            DEDueDate.Enabled = False
 
             TEInvNo.Text = addSlashes(FormPrepaidExpensePolis.TEInvNumber.Text)
             id_comp = FormPrepaidExpensePolis.id_comp
