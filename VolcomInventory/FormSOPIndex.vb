@@ -202,6 +202,6 @@ ORDER BY id_menu"
     End Sub
 
     Private Sub BMasterCatSOP_Click(sender As Object, e As EventArgs) Handles BMasterCatSOP.Click
-
+        FormSOPCat.ShowDialog()
     End Sub
 End Class
