@@ -60,6 +60,12 @@ Partial Class FormSOPIndex
         Me.BNewSOP = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSOPIndex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSOPIndex.SuspendLayout()
         Me.XTPBySOP.SuspendLayout()
@@ -119,7 +125,7 @@ Partial Class FormSOPIndex
         '
         'GVBySOP
         '
-        Me.GVBySOP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
+        Me.GVBySOP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn17, Me.GridColumn16, Me.GridColumn2, Me.GridColumn15, Me.GridColumn3, Me.GridColumn4})
         Me.GVBySOP.GridControl = Me.GCBySOP
         Me.GVBySOP.Name = "GVBySOP"
         Me.GVBySOP.OptionsBehavior.ReadOnly = True
@@ -142,11 +148,11 @@ Partial Class FormSOPIndex
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "SOP"
+        Me.GridColumn2.Caption = "Nama SOP"
         Me.GridColumn2.FieldName = "sop_name"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.VisibleIndex = 4
         '
         'GridColumn3
         '
@@ -155,7 +161,7 @@ Partial Class FormSOPIndex
         Me.GridColumn3.FieldName = "doc_desc"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.VisibleIndex = 5
         '
         'RepoLinkFile
         '
@@ -169,7 +175,7 @@ Partial Class FormSOPIndex
         Me.GridColumn4.FieldName = "menu_caption"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.VisibleIndex = 6
         '
         'RepoLinkMenuERP
         '
@@ -210,7 +216,7 @@ Partial Class FormSOPIndex
         '
         'GVByModul
         '
-        Me.GVByModul.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10})
+        Me.GVByModul.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn7, Me.GridColumn21, Me.GridColumn20, Me.GridColumn18, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10})
         Me.GVByModul.GridControl = Me.GCByModul
         Me.GVByModul.Name = "GVByModul"
         Me.GVByModul.OptionsBehavior.ReadOnly = True
@@ -229,15 +235,15 @@ Partial Class FormSOPIndex
         Me.GridColumn7.FieldName = "departement"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 2
+        Me.GridColumn7.VisibleIndex = 1
         '
         'GridColumn8
         '
-        Me.GridColumn8.Caption = "SOP"
+        Me.GridColumn8.Caption = "Nama SOP"
         Me.GridColumn8.FieldName = "sop_name"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
+        Me.GridColumn8.VisibleIndex = 5
         '
         'GridColumn9
         '
@@ -246,7 +252,7 @@ Partial Class FormSOPIndex
         Me.GridColumn9.FieldName = "doc_desc"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 3
+        Me.GridColumn9.VisibleIndex = 6
         '
         'RepoFileByModul
         '
@@ -426,6 +432,54 @@ Partial Class FormSOPIndex
         Me.BRefresh.TabIndex = 1
         Me.BRefresh.Text = "Refresh"
         '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Nomor SOP"
+        Me.GridColumn15.FieldName = "sop_number"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 3
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Sub Prosedur"
+        Me.GridColumn16.FieldName = "sop_prosedur_sub"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 2
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Prosedur"
+        Me.GridColumn17.FieldName = "sop_prosedur"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 1
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Nomor SOP"
+        Me.GridColumn18.FieldName = "sop_number"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 4
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Sub Prosedur"
+        Me.GridColumn20.FieldName = "sop_prosedur_sub"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 3
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Prosedur"
+        Me.GridColumn21.FieldName = "sop_prosedur"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 2
+        '
         'FormSOPIndex
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -510,4 +564,10 @@ Partial Class FormSOPIndex
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
