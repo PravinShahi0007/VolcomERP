@@ -40,10 +40,9 @@ Partial Class FormSOPIndexPPS
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLESubProsedur = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
@@ -58,6 +57,10 @@ Partial Class FormSOPIndexPPS
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,7 +77,7 @@ Partial Class FormSOPIndexPPS
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLESubProsedur.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CM.SuspendLayout()
@@ -208,7 +211,7 @@ Partial Class FormSOPIndexPPS
         Me.PanelControl1.Controls.Add(Me.BAdd)
         Me.PanelControl1.Controls.Add(Me.TextEdit2)
         Me.PanelControl1.Controls.Add(Me.LabelControl6)
-        Me.PanelControl1.Controls.Add(Me.SearchLookUpEdit1)
+        Me.PanelControl1.Controls.Add(Me.SLESubProsedur)
         Me.PanelControl1.Controls.Add(Me.LabelControl5)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 97)
@@ -272,18 +275,18 @@ Partial Class FormSOPIndexPPS
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 0
         '
-        'SearchLookUpEdit1
+        'SLESubProsedur
         '
-        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(85, 15)
-        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
-        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit1.Properties.View = Me.GridView3
-        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(233, 20)
-        Me.SearchLookUpEdit1.TabIndex = 19
+        Me.SLESubProsedur.Location = New System.Drawing.Point(85, 15)
+        Me.SLESubProsedur.Name = "SLESubProsedur"
+        Me.SLESubProsedur.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLESubProsedur.Properties.View = Me.GridView3
+        Me.SLESubProsedur.Size = New System.Drawing.Size(233, 20)
+        Me.SLESubProsedur.TabIndex = 19
         '
         'GridView3
         '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13})
         Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView3.Name = "GridView3"
         Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -292,16 +295,8 @@ Partial Class FormSOPIndexPPS
         'GridColumn1
         '
         Me.GridColumn1.Caption = "ID"
-        Me.GridColumn1.FieldName = "id_departement"
+        Me.GridColumn1.FieldName = "id_sop_prosedur_sub"
         Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Departement"
-        Me.GridColumn2.FieldName = "departement"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
         '
         'LabelControl5
         '
@@ -407,6 +402,46 @@ Partial Class FormSOPIndexPPS
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 3
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.Caption = "Kode Prosedur"
+        Me.GridColumn2.FieldName = "sop_prosedur_code"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Prosedur"
+        Me.GridColumn11.FieldName = "sop_prosedur"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 1
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.Caption = "Kode Sub Prosedur"
+        Me.GridColumn12.FieldName = "sop_prosedur_sub_code"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 2
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Sub Prosedur"
+        Me.GridColumn13.FieldName = "sop_prosedur_sub"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 3
+        '
         'FormSOPIndexPPS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -440,7 +475,7 @@ Partial Class FormSOPIndexPPS
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLESubProsedur.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CM.ResumeLayout(False)
@@ -467,10 +502,9 @@ Partial Class FormSOPIndexPPS
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLESubProsedur As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
@@ -485,4 +519,8 @@ Partial Class FormSOPIndexPPS
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

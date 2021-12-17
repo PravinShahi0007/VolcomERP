@@ -14,7 +14,8 @@
     End Sub
 
     Private Sub BNewSOP_Click(sender As Object, e As EventArgs) Handles BNewSOP.Click
-        FormSOPNew.ShowDialog()
+        'FormSOPNew.ShowDialog()
+        FormSOPIndexPPS.ShowDialog()
     End Sub
 
     Private Sub GVBySOP_CellMerge(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs) Handles GVBySOP.CellMerge

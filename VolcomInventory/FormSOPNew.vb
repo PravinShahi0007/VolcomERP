@@ -12,8 +12,6 @@
     Sub load_head()
         DECreatedDate.EditValue = Now()
         TECreatedBy.Text = get_emp(id_employee_user, "2")
-        DELastUpdate.EditValue = Now()
-        TELastUpdate.Text = get_emp(id_employee_user, "2")
         '
         load_departement()
         load_modul_erp()
@@ -44,8 +42,6 @@ WHERE id_sop='" & id & "'"
                 '
                 DECreatedDate.EditValue = dt.Rows(0)("created_date")
                 TECreatedBy.Text = dt.Rows(0)("empc").ToString
-                DELastUpdate.EditValue = dt.Rows(0)("last_update")
-                TELastUpdate.Text = dt.Rows(0)("empl").ToString
                 '
                 BUploadFile.Text = dt.Rows(0)("doc_desc").ToString
                 TEFile.Text = dt.Rows(0)("filename").ToString
