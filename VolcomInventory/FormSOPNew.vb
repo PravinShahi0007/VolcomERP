@@ -104,7 +104,7 @@ GROUP BY m.`id_menu`"
         SLEModul.EditValue = Nothing
     End Sub
 
-    Private Sub BUpdate_Click(sender As Object, e As EventArgs) Handles BUpdate.Click
+    Sub save()
         If TESOPName.Text = "" Then
             warningCustom("Please put SOP name")
         Else
