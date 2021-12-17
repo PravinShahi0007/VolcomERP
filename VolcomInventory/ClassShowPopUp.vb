@@ -521,6 +521,9 @@
         ElseIf report_mark_type = "370" Then
             'eos to sale
             FormEtsDet.Close()
+        ElseIf report_mark_type = "375" Then
+            'propose index sop
+            FormSOPIndexPPS.Close()
         End If
     End Sub
     Sub show()
@@ -1680,6 +1683,11 @@ GROUP BY rec.`id_prod_order`"
             FormEtsDet.action = "upd"
             FormEtsDet.id = id_report
             FormEtsDet.ShowDialog()
+        ElseIf report_mark_type = "375" Then
+            'propose sop index
+            FormSOPIndexPPS.is_view = "1"
+            FormSOPIndexPPS.id = id_report
+            FormSOPIndexPPS.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2995,6 +3003,12 @@ GROUP BY rec.`id_prod_order`"
             'eos to sale
             table_name = "tb_ets"
             field_id = "id_ets"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "375" Then
+            'propose sop index
+            table_name = "tb_sop_pps"
+            field_id = "id_sop_pps"
             field_number = "number"
             field_date = "created_date"
         Else

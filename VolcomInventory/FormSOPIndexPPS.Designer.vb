@@ -61,6 +61,8 @@ Partial Class FormSOPIndexPPS
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CM = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.DeleteModulToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -372,6 +374,7 @@ Partial Class FormSOPIndexPPS
         '
         'GCList
         '
+        Me.GCList.ContextMenuStrip = Me.CM
         Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCList.Location = New System.Drawing.Point(0, 143)
         Me.GCList.MainView = Me.GVList
@@ -382,7 +385,7 @@ Partial Class FormSOPIndexPPS
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn8, Me.GridColumn6, Me.GridColumn7, Me.GridColumn9, Me.GridColumn10})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn8, Me.GridColumn14, Me.GridColumn6, Me.GridColumn15, Me.GridColumn7, Me.GridColumn9, Me.GridColumn10})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsView.ShowGroupPanel = False
@@ -402,6 +405,7 @@ Partial Class FormSOPIndexPPS
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Prosedur"
+        Me.GridColumn6.FieldName = "sop_prosedur"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 0
@@ -409,6 +413,7 @@ Partial Class FormSOPIndexPPS
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Sub Prosedur"
+        Me.GridColumn7.FieldName = "sop_prosedur_sub"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 1
@@ -416,31 +421,44 @@ Partial Class FormSOPIndexPPS
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Nama SOP"
+        Me.GridColumn9.FieldName = "sop_name"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 2
+        Me.GridColumn9.VisibleIndex = 3
         '
         'GridColumn10
         '
         Me.GridColumn10.Caption = "Nomor SOP"
-        Me.GridColumn10.FieldName = "nomor_sop"
+        Me.GridColumn10.FieldName = "sop_number"
         Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 3
         '
         'CM
         '
-        Me.CM.Enabled = False
         Me.CM.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteModulToolStripMenuItem})
         Me.CM.Name = "CM"
-        Me.CM.Size = New System.Drawing.Size(118, 26)
+        Me.CM.Size = New System.Drawing.Size(153, 48)
         '
         'DeleteModulToolStripMenuItem
         '
-        Me.DeleteModulToolStripMenuItem.Enabled = False
         Me.DeleteModulToolStripMenuItem.Name = "DeleteModulToolStripMenuItem"
-        Me.DeleteModulToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
+        Me.DeleteModulToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.DeleteModulToolStripMenuItem.Text = "Remove"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Kode prosedur"
+        Me.GridColumn14.FieldName = "sop_prosedur_code"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 2
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Kode Sub Prosedur"
+        Me.GridColumn15.FieldName = "sop_prosedur_sub_code"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 4
         '
         'FormSOPIndexPPS
         '
@@ -523,4 +541,6 @@ Partial Class FormSOPIndexPPS
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

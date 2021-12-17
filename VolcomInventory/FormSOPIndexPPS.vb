@@ -1,5 +1,6 @@
 ﻿Public Class FormSOPIndexPPS
     Public id As String = "-1"
+    Public is_view As String = "-1"
 
     Private Sub FormSOPIndexPPS_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
@@ -82,6 +83,64 @@ WHERE p.id_departement='" & SLEDepartement.EditValue.ToString & "'"
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        Cursor = Cursors.WaitCursor
 
+        If GVList.RowCount > 0 Then
+            If id = "-1" Then
+                'new
+                Dim q As String = "INSERT INTO `tb_sop_pps`(id_departement,created_by,created_date,id_report_status) VALUES('" & SLEDepartement.EditValue.ToString & "','" & id_user & "',NOW(),'1');SELECT LAST_INSERT_ID(); "
+                id = execute_query(q, 0, True, "", "", "", "")
+
+                execute_non_query("CALL gen_number('" & id & "','375')", True, "", "", "", "")
+
+                q = "INSERT INTO tb_sop_pps_det(`id_sop_pps`,`id_sop_prosedur_sub`,`sop_name`) VALUES"
+                For i = 0 To GVList.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id & "','" & GVList.GetRowCellValue(i, "id_sop_prosedur_sub").ToString & "','" & GVList.GetRowCellValue(i, "sop_name").ToString & "')"
+                Next
+                execute_non_query(q, True, "", "", "", "")
+
+                'submit
+                submit_who_prepared("375", id, id_user)
+
+                infoCustom("SOP index diajukan, menunggu persetujuan.")
+            Else
+                'edit.
+
+                Dim q As String = "UPDATE `tb_sop_pps` SET id_departement='" & SLEDepartement.EditValue.ToString & "',created_by='" & id_user & "',created_date=NOW() WHERE id_sop_pps='" & id & "' "
+                execute_non_query(q, True, "", "", "", "")
+
+                'delete first
+                execute_non_query("DELETE FROM tb_sop_pps_det WHERE id_sop_pps='" & id & "'", True, "", "", "", "")
+
+                'loops
+                q = "INSERT INTO tb_sop_pps_det(`id_sop_pps`,`id_sop_prosedur_sub`,`sop_name`) VALUES"
+                For i = 0 To GVList.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id & "','" & GVList.GetRowCellValue(i, "id_sop_prosedur_sub").ToString & "','" & GVList.GetRowCellValue(i, "sop_name").ToString & "')"
+                Next
+                execute_non_query(q, True, "", "", "", "")
+
+                infoCustom("SOP index diperbaharui, menunggu persetujuan.")
+            End If
+        Else
+            warningCustom("Pastikan anda memasukkan SOP yang akan didaftarkan")
+        End If
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = "375"
+        FormReportMark.id_report = id
+        FormReportMark.is_view = is_view
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

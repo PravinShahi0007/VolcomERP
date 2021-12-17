@@ -94,6 +94,7 @@ ORDER BY id_menu"
             GCByModul.DataSource = dt
             GVByModul.BestFitColumns()
         ElseIf XTCSOPIndex.SelectedTabPageIndex = 4 Then 'Index Proposal
+            Dim q As String = ""
 
         End If
     End Sub
