@@ -67,8 +67,12 @@ Partial Class FormSOPNew
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.XTPDepTerkait = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCDepartementTerkait = New DevExpress.XtraGrid.GridControl()
+        Me.GVDepartementTerkait = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
@@ -77,13 +81,10 @@ Partial Class FormSOPNew
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCDepartementTerkait = New DevExpress.XtraGrid.GridControl()
-        Me.GVDepartementTerkait = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.CMDepTerkait = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SearchLookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,14 +114,14 @@ Partial Class FormSOPNew
         CType(Me.GCMileStone, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVMileStone, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDetail.SuspendLayout()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDepTerkait.SuspendLayout()
+        CType(Me.GCDepartementTerkait, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDepartementTerkait, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.SearchLookUpEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCDepartementTerkait, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVDepartementTerkait, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CMDepTerkait.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -513,7 +514,7 @@ Partial Class FormSOPNew
         '
         'GVMileStone
         '
-        Me.GVMileStone.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10, Me.GridColumn11})
+        Me.GVMileStone.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10, Me.GridColumn18, Me.GridColumn11})
         Me.GVMileStone.GridControl = Me.GCMileStone
         Me.GVMileStone.Name = "GVMileStone"
         Me.GVMileStone.OptionsView.ShowGroupPanel = False
@@ -526,7 +527,7 @@ Partial Class FormSOPNew
         '
         'GridColumn10
         '
-        Me.GridColumn10.Caption = "Menu Name"
+        Me.GridColumn10.Caption = "Milestone"
         Me.GridColumn10.FieldName = "description_menu_name"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
@@ -535,7 +536,7 @@ Partial Class FormSOPNew
         '
         'GridColumn11
         '
-        Me.GridColumn11.Caption = "Caption"
+        Me.GridColumn11.Caption = "Status"
         Me.GridColumn11.FieldName = "menu_caption"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
@@ -551,14 +552,6 @@ Partial Class FormSOPNew
         Me.XTPDetail.Size = New System.Drawing.Size(724, 462)
         Me.XTPDetail.Text = "Upload + Menu ERP"
         '
-        'PanelControl2
-        '
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 490)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(730, 47)
-        Me.PanelControl2.TabIndex = 19
-        '
         'XTPDepTerkait
         '
         Me.XTPDepTerkait.Controls.Add(Me.GCDepartementTerkait)
@@ -566,6 +559,48 @@ Partial Class FormSOPNew
         Me.XTPDepTerkait.Name = "XTPDepTerkait"
         Me.XTPDepTerkait.Size = New System.Drawing.Size(724, 462)
         Me.XTPDepTerkait.Text = "Departement Terkait"
+        '
+        'GCDepartementTerkait
+        '
+        Me.GCDepartementTerkait.ContextMenuStrip = Me.CM
+        Me.GCDepartementTerkait.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDepartementTerkait.Location = New System.Drawing.Point(0, 45)
+        Me.GCDepartementTerkait.MainView = Me.GVDepartementTerkait
+        Me.GCDepartementTerkait.Name = "GCDepartementTerkait"
+        Me.GCDepartementTerkait.Size = New System.Drawing.Size(724, 417)
+        Me.GCDepartementTerkait.TabIndex = 15
+        Me.GCDepartementTerkait.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDepartementTerkait})
+        '
+        'GVDepartementTerkait
+        '
+        Me.GVDepartementTerkait.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17})
+        Me.GVDepartementTerkait.GridControl = Me.GCDepartementTerkait
+        Me.GVDepartementTerkait.Name = "GVDepartementTerkait"
+        Me.GVDepartementTerkait.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "ID"
+        Me.GridColumn15.FieldName = "id_menu"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Menu Name"
+        Me.GridColumn16.FieldName = "description_menu_name"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 0
+        Me.GridColumn16.Width = 816
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Caption"
+        Me.GridColumn17.FieldName = "menu_caption"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 1
+        Me.GridColumn17.Width = 816
         '
         'PanelControl3
         '
@@ -635,47 +670,13 @@ Partial Class FormSOPNew
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 1
         '
-        'GCDepartementTerkait
+        'PanelControl2
         '
-        Me.GCDepartementTerkait.ContextMenuStrip = Me.CM
-        Me.GCDepartementTerkait.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDepartementTerkait.Location = New System.Drawing.Point(0, 45)
-        Me.GCDepartementTerkait.MainView = Me.GVDepartementTerkait
-        Me.GCDepartementTerkait.Name = "GCDepartementTerkait"
-        Me.GCDepartementTerkait.Size = New System.Drawing.Size(724, 417)
-        Me.GCDepartementTerkait.TabIndex = 15
-        Me.GCDepartementTerkait.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDepartementTerkait})
-        '
-        'GVDepartementTerkait
-        '
-        Me.GVDepartementTerkait.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17})
-        Me.GVDepartementTerkait.GridControl = Me.GCDepartementTerkait
-        Me.GVDepartementTerkait.Name = "GVDepartementTerkait"
-        Me.GVDepartementTerkait.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "ID"
-        Me.GridColumn15.FieldName = "id_menu"
-        Me.GridColumn15.Name = "GridColumn15"
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Menu Name"
-        Me.GridColumn16.FieldName = "description_menu_name"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 0
-        Me.GridColumn16.Width = 816
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Caption"
-        Me.GridColumn17.FieldName = "menu_caption"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 1
-        Me.GridColumn17.Width = 816
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 490)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(730, 47)
+        Me.PanelControl2.TabIndex = 19
         '
         'CMDepTerkait
         '
@@ -690,6 +691,13 @@ Partial Class FormSOPNew
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(117, 22)
         Me.ToolStripMenuItem1.Text = "Remove"
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Datetime"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 2
         '
         'FormSOPNew
         '
@@ -736,15 +744,15 @@ Partial Class FormSOPNew
         CType(Me.GCMileStone, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVMileStone, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDetail.ResumeLayout(False)
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDepTerkait.ResumeLayout(False)
+        CType(Me.GCDepartementTerkait, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDepartementTerkait, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
         CType(Me.SearchLookUpEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCDepartementTerkait, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVDepartementTerkait, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CMDepTerkait.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -814,4 +822,5 @@ Partial Class FormSOPNew
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDepTerkait As ContextMenuStrip
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -393,7 +393,7 @@ Partial Class FormSOPIndex
         'GridColumn14
         '
         Me.GridColumn14.Caption = "Report Status"
-        Me.GridColumn14.FieldName = "Status"
+        Me.GridColumn14.FieldName = "report_status"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 2
