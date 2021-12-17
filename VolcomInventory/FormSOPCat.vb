@@ -63,7 +63,7 @@ WHERE id_departement='" & SLEDepartement.EditValue.ToString & "'"
     Sub load_prosedur_sub()
         Dim q As String = "SELECT id_sop_prosedur_sub,sop_prosedur_sub,sop_prosedur_sub_code,IF(is_active=1,'Active','Not Active') AS sts
 FROM `tb_sop_prosedur_sub`
-WHERE id_sop_prosedur='" & SLEDepartement.EditValue.ToString & "'"
+WHERE id_sop_prosedur='" & GVProsedur.GetFocusedRowCellValue("id_sop_prosedur").ToString & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCSubProsedur.DataSource = dt
         GVSubProsedur.BestFitColumns()

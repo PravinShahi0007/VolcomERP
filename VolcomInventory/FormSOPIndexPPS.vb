@@ -11,9 +11,25 @@
         If id = "-1" Then
             'new
             SLEDepartement.Properties.ReadOnly = False
+            BtnMark.Visible = False
         Else
             'edit
             SLEDepartement.Properties.ReadOnly = True
+            BtnMark.Visible = True
+
+            Dim q As String = "SELECT pps.*,sts.report_status,dep.departement,emp.employee_name FROM `tb_sop_pps` pps
+INNER JOIN tb_m_departement dep ON dep.id_departement=pps.id_departement
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
+INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE pps.id_sop_pps='" & id & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                TxtNumber.Text = dt.Rows(0)("number").ToString
+                TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
+                DECreated.EditValue = dt.Rows(0)("created_date")
+                SLEDepartement.EditValue = dt.Rows(0)("id_departement").ToString
+            End If
         End If
         load_det()
     End Sub
@@ -61,6 +77,10 @@ WHERE p.id_departement='" & SLEDepartement.EditValue.ToString & "'"
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         If Not SLESubProsedur.EditValue = Nothing And Not SLEDepartement.EditValue = Nothing Then
             Cursor = Cursors.WaitCursor
+            'check first
+            Dim qc As String = "SELECT * FROM tb_sop_pps_det ppsd
+INNER JOIN tb_sop_pps pps ON pps.id_sop_pps=ppsd.id_sop_pps
+WHERE pps.id_report_status!=5 AND ppsd.id_sop_prosedur_sub='" & SLESubProsedur.EditValue.ToString & "' AND ppsd.sop_name='" & addSlashes(TESOPName.Text) & "'"
             GVList.AddNewRow()
             GVList.FocusedRowHandle = GVList.RowCount - 1
             '
@@ -98,7 +118,7 @@ WHERE p.id_departement='" & SLEDepartement.EditValue.ToString & "'"
                     If Not i = 0 Then
                         q += ","
                     End If
-                    q += "('" & id & "','" & GVList.GetRowCellValue(i, "id_sop_prosedur_sub").ToString & "','" & GVList.GetRowCellValue(i, "sop_name").ToString & "')"
+                    q += "('" & id & "','" & GVList.GetRowCellValue(i, "id_sop_prosedur_sub").ToString & "','" & addSlashes(GVList.GetRowCellValue(i, "sop_name").ToString) & "')"
                 Next
                 execute_non_query(q, True, "", "", "", "")
 
@@ -121,7 +141,7 @@ WHERE p.id_departement='" & SLEDepartement.EditValue.ToString & "'"
                     If Not i = 0 Then
                         q += ","
                     End If
-                    q += "('" & id & "','" & GVList.GetRowCellValue(i, "id_sop_prosedur_sub").ToString & "','" & GVList.GetRowCellValue(i, "sop_name").ToString & "')"
+                    q += "('" & id & "','" & GVList.GetRowCellValue(i, "id_sop_prosedur_sub").ToString & "','" & addSlashes(GVList.GetRowCellValue(i, "sop_name").ToString) & "')"
                 Next
                 execute_non_query(q, True, "", "", "", "")
 

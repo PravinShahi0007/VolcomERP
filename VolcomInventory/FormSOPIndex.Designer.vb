@@ -32,7 +32,6 @@ Partial Class FormSOPIndex
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoLinkMenuERP = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BMasterCatSOP = New DevExpress.XtraEditors.SimpleButton()
-        Me.BNewSOP = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPByModul = New DevExpress.XtraTab.XtraTabPage()
         Me.GCByModul = New DevExpress.XtraGrid.GridControl()
         Me.GVByModul = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -51,8 +50,6 @@ Partial Class FormSOPIndex
         Me.XTPScheduleSOPGuest = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScheduleGuest = New DevExpress.XtraGrid.GridControl()
         Me.GVScheduleGuest = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPIndexPPS = New DevExpress.XtraTab.XtraTabPage()
         Me.GCIndexPPS = New DevExpress.XtraGrid.GridControl()
         Me.GVIndexPPS = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -60,6 +57,9 @@ Partial Class FormSOPIndex
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BNewSOP = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSOPIndex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSOPIndex.SuspendLayout()
         Me.XTPBySOP.SuspendLayout()
@@ -80,11 +80,11 @@ Partial Class FormSOPIndex
         Me.XTPScheduleSOPGuest.SuspendLayout()
         CType(Me.GCScheduleGuest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScheduleGuest, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
         Me.XTPIndexPPS.SuspendLayout()
         CType(Me.GCIndexPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVIndexPPS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCSOPIndex
@@ -189,20 +189,6 @@ Partial Class FormSOPIndex
         Me.BMasterCatSOP.Size = New System.Drawing.Size(1040, 40)
         Me.BMasterCatSOP.TabIndex = 8
         Me.BMasterCatSOP.Text = "Master Kategori SOP"
-        '
-        'BNewSOP
-        '
-        Me.BNewSOP.Appearance.BackColor = System.Drawing.Color.DarkBlue
-        Me.BNewSOP.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BNewSOP.Appearance.Options.UseBackColor = True
-        Me.BNewSOP.Appearance.Options.UseForeColor = True
-        Me.BNewSOP.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
-        Me.BNewSOP.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BNewSOP.Location = New System.Drawing.Point(0, 447)
-        Me.BNewSOP.Name = "BNewSOP"
-        Me.BNewSOP.Size = New System.Drawing.Size(1040, 45)
-        Me.BNewSOP.TabIndex = 7
-        Me.BNewSOP.Text = "New Proposal"
         '
         'XTPByModul
         '
@@ -349,25 +335,6 @@ Partial Class FormSOPIndex
         Me.GVScheduleGuest.OptionsView.ColumnAutoWidth = False
         Me.GVScheduleGuest.OptionsView.ShowGroupPanel = False
         '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.BRefresh)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1046, 48)
-        Me.PanelControl1.TabIndex = 1
-        '
-        'BRefresh
-        '
-        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
-        Me.BRefresh.Location = New System.Drawing.Point(928, 2)
-        Me.BRefresh.Name = "BRefresh"
-        Me.BRefresh.Size = New System.Drawing.Size(116, 44)
-        Me.BRefresh.TabIndex = 1
-        Me.BRefresh.Text = "Refresh"
-        '
         'XTPIndexPPS
         '
         Me.XTPIndexPPS.Controls.Add(Me.GCIndexPPS)
@@ -426,6 +393,39 @@ Partial Class FormSOPIndex
         Me.GridColumn14.VisibleIndex = 2
         Me.GridColumn14.Width = 247
         '
+        'BNewSOP
+        '
+        Me.BNewSOP.Appearance.BackColor = System.Drawing.Color.DarkBlue
+        Me.BNewSOP.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BNewSOP.Appearance.Options.UseBackColor = True
+        Me.BNewSOP.Appearance.Options.UseForeColor = True
+        Me.BNewSOP.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BNewSOP.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BNewSOP.Location = New System.Drawing.Point(0, 447)
+        Me.BNewSOP.Name = "BNewSOP"
+        Me.BNewSOP.Size = New System.Drawing.Size(1040, 45)
+        Me.BNewSOP.TabIndex = 7
+        Me.BNewSOP.Text = "New Proposal"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BRefresh)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1046, 48)
+        Me.PanelControl1.TabIndex = 1
+        '
+        'BRefresh
+        '
+        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
+        Me.BRefresh.Location = New System.Drawing.Point(928, 2)
+        Me.BRefresh.Name = "BRefresh"
+        Me.BRefresh.Size = New System.Drawing.Size(116, 44)
+        Me.BRefresh.TabIndex = 1
+        Me.BRefresh.Text = "Refresh"
+        '
         'FormSOPIndex
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -461,11 +461,11 @@ Partial Class FormSOPIndex
         Me.XTPScheduleSOPGuest.ResumeLayout(False)
         CType(Me.GCScheduleGuest, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVScheduleGuest, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
         Me.XTPIndexPPS.ResumeLayout(False)
         CType(Me.GCIndexPPS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVIndexPPS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

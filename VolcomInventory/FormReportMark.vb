@@ -756,6 +756,9 @@
         ElseIf report_mark_type = "365" Then
             'perpanjang eos
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_eos_change WHERE id_eos_change = '{0}'", id_report)
+        ElseIf report_mark_type = "375" Then
+            'sop index pps
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_sop_pps WHERE id_sop_pps = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -11137,6 +11140,24 @@ WHERE ppsd.id_pib_pps='" & id_report & "'"
             End If
 
             query = String.Format("UPDATE tb_ets SET id_report_status = '{0}' WHERE id_ets = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "375" Then
+            'sop pps
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'insert sop
+                Dim query_ins As String = "INSERT INTO tb_sop(sop_name,id_sop_prosedur_sub,id_departement,created_date,created_by,last_update,last_update_by)
+SELECT ppsd.sop_name,id_sop_prosedur_sub,pps.id_departement,NOW(),pps.created_by,NOW(),pps.created_by
+FROM `tb_sop_pps_det` ppsd
+INNER JOIN tb_sop_pps pps ON pps.id_sop_pps=ppsd.id_sop_pps 
+WHERE pps.id_sop_pps='" & id_report & "'"
+                execute_non_query(query_ins, True, "", "", "", "")
+            End If
+
+            query = String.Format("UPDATE tb_sop_pps SET id_report_status = '{0}' WHERE id_sop_pps = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

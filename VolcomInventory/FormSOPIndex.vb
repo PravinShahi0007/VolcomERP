@@ -94,8 +94,12 @@ ORDER BY id_menu"
             GCByModul.DataSource = dt
             GVByModul.BestFitColumns()
         ElseIf XTCSOPIndex.SelectedTabPageIndex = 4 Then 'Index Proposal
-            Dim q As String = ""
-
+            Dim q As String = "SELECT pps.*,sts.report_status,dep.departement FROM `tb_sop_pps` pps
+INNER JOIN tb_m_departement dep ON dep.id_departement=pps.id_departement
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            GCIndexPPS.DataSource = dt
+            GVIndexPPS.BestFitColumns()
         End If
     End Sub
 
@@ -207,5 +211,12 @@ ORDER BY id_menu"
 
     Private Sub BMasterCatSOP_Click(sender As Object, e As EventArgs) Handles BMasterCatSOP.Click
         FormSOPCat.ShowDialog()
+    End Sub
+
+    Private Sub GVIndexPPS_DoubleClick(sender As Object, e As EventArgs) Handles GVIndexPPS.DoubleClick
+        If GVIndexPPS.RowCount > 0 Then
+            FormSOPIndexPPS.id = GVIndexPPS.GetFocusedRowCellValue("id_sop_pps").ToString
+            FormSOPIndexPPS.ShowDialog()
+        End If
     End Sub
 End Class
