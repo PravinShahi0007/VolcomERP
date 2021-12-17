@@ -39,7 +39,7 @@ Partial Class FormSOPIndexPPS
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefreshCat = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCat = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.TESOPName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -246,7 +246,7 @@ Partial Class FormSOPIndexPPS
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BRefreshCat)
-        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl1.Controls.Add(Me.BCat)
         Me.PanelControl1.Controls.Add(Me.BAdd)
         Me.PanelControl1.Controls.Add(Me.TESOPName)
         Me.PanelControl1.Controls.Add(Me.LabelControl6)
@@ -266,15 +266,15 @@ Partial Class FormSOPIndexPPS
         Me.BRefreshCat.Size = New System.Drawing.Size(26, 23)
         Me.BRefreshCat.TabIndex = 24
         '
-        'SimpleButton1
+        'BCat
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(941, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(131, 42)
-        Me.SimpleButton1.TabIndex = 23
-        Me.SimpleButton1.Text = "Master Kategori"
+        Me.BCat.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCat.Image = CType(resources.GetObject("BCat.Image"), System.Drawing.Image)
+        Me.BCat.Location = New System.Drawing.Point(941, 2)
+        Me.BCat.Name = "BCat"
+        Me.BCat.Size = New System.Drawing.Size(131, 42)
+        Me.BCat.TabIndex = 23
+        Me.BCat.Text = "Master Kategori"
         '
         'BAdd
         '
@@ -510,7 +510,7 @@ Partial Class FormSOPIndexPPS
     Friend WithEvents TESOPName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BRefreshCat As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BCat As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents CM As ContextMenuStrip
     Friend WithEvents DeleteModulToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
