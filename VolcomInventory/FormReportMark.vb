@@ -8762,6 +8762,9 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
                     End If
                 End If
 
+                'check status pabean
+                Dim id_status_pabean As String = execute_query("SELECT id_status_pabean FROM tb_m_comp WHERE id_comp = (SELECT id_comp FROM tb_inv_mat WHERE id_inv_mat = " + id_report + ")", 0, True, "", "", "", "")
+
                 ' select user prepared
                 Dim qu As String = "SELECT rm.id_user, rm.report_number ,rm.report_mark_datetime FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
                 Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
@@ -8810,6 +8813,12 @@ WHERE invd.`id_inv_mat`='" & id_report & "'
                     execute_non_query(qjd, True, "", "", "", "")
                 Else
                     If id_type = "1" Then 'pl
+                        Dim inv_pct As String = "inv.`vat_percent`"
+
+                        If id_status_pabean = "2" Then
+                            inv_pct = "0"
+                        End If
+
                         Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc,id_vendor, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_mark_type_ref,id_report_ref,report_number_ref)
 -- penjualan
 SELECT " + id_acc_trans + " AS `id_trans`, (SELECT id_acc_jual_mat FROM tb_opt_accounting) AS `id_acc`,inv.id_comp AS id_vendor, 0 AS qty, 0 AS `debit`, CAST(SUM(invd.`value`) AS DECIMAL(15,2)) AS `credit`
@@ -8819,14 +8828,17 @@ INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
 WHERE invd.`id_inv_mat`='" & id_report & "'
 UNION ALL
 -- hutang PPN
-SELECT " + id_acc_trans + " AS `id_trans`, (SELECT id_acc_hutang_ppn_bahan FROM tb_opt_accounting) AS `id_acc`,inv.id_comp AS id_vendor, 0 AS qty, 0 AS `debit`, CAST(SUM(invd.`value`)*((inv.`vat_percent`)/(100)) AS DECIMAL(15,2)) AS `credit`
-,CONCAT('PENJUALAN SUPPLIES') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
-FROM `tb_inv_mat_det` invd
-INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
-WHERE invd.`id_inv_mat`='" & id_report & "'
+SELECT * FROM (
+    SELECT " + id_acc_trans + " AS `id_trans`, (SELECT id_acc_hutang_ppn_bahan FROM tb_opt_accounting) AS `id_acc`,inv.id_comp AS id_vendor, 0 AS qty, 0 AS `debit`, CAST(SUM(invd.`value`)*((" + inv_pct + ")/(100)) AS DECIMAL(15,2)) AS `credit`
+    ,CONCAT('PENJUALAN SUPPLIES') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
+    FROM `tb_inv_mat_det` invd
+    INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
+    WHERE invd.`id_inv_mat`='" & id_report & "'
+) AS tb
+WHERE tb.credit > 0
 UNION ALL
 -- AR
-SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_ar AS `id_acc`,inv.id_comp AS id_vendor, 0 AS qty, CAST(SUM(invd.`value`)*((100+inv.`vat_percent`)/(100)) AS DECIMAL(15,2)) AS `debit`, 0 AS `credit`
+SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_ar AS `id_acc`,inv.id_comp AS id_vendor, 0 AS qty, CAST(SUM(invd.`value`)*((100+" + inv_pct + ")/(100)) AS DECIMAL(15,2)) AS `debit`, 0 AS `credit`
 ,CONCAT('PENJUALAN SUPPLIES') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
 FROM `tb_inv_mat_det` invd
 INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
@@ -8834,6 +8846,12 @@ INNER JOIN tb_m_comp c ON c.id_comp=inv.`id_comp`
 WHERE invd.`id_inv_mat`='" & id_report & "' "
                         execute_non_query(qjd, True, "", "", "", "")
                     ElseIf id_type = "2" Then 'ret
+                        Dim inv_pct As String = "inv.`vat_percent`"
+
+                        If id_status_pabean = "2" Then
+                            inv_pct = "0"
+                        End If
+
                         Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc,id_vendor, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_mark_type_ref,id_report_ref,report_number_ref)
 -- retur
 SELECT " + id_acc_trans + " AS `id_trans`, (SELECT id_acc_retur_jual_mat FROM tb_opt_accounting) AS `id_acc`,inv.id_comp  AS id_vendor, 0 AS qty,  CAST(SUM(invd.`value`) AS DECIMAL(15,2)) AS `debit`,0 AS `credit`
@@ -8843,14 +8861,17 @@ INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
 WHERE invd.`id_inv_mat`='" & id_report & "'
 UNION ALL
 -- hutang PPN
-SELECT " + id_acc_trans + " AS `id_trans`, (SELECT id_acc_hutang_ppn_bahan FROM tb_opt_accounting) AS `id_acc`,inv.id_comp  AS id_vendor, 0 AS qty, CAST(SUM(invd.`value`)*((inv.`vat_percent`)/(100)) AS DECIMAL(15,2)) AS `debit`,0 AS `credit`
-,CONCAT('RETUR PENJUALAN SUPPLIES') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
-FROM `tb_inv_mat_det` invd
-INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
-WHERE invd.`id_inv_mat`='" & id_report & "'
+SELECT * FROM (
+    SELECT " + id_acc_trans + " AS `id_trans`, (SELECT id_acc_hutang_ppn_bahan FROM tb_opt_accounting) AS `id_acc`,inv.id_comp  AS id_vendor, 0 AS qty, CAST(SUM(invd.`value`)*((" + inv_pct + ")/(100)) AS DECIMAL(15,2)) AS `debit`,0 AS `credit`
+    ,CONCAT('RETUR PENJUALAN SUPPLIES') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
+    FROM `tb_inv_mat_det` invd
+    INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
+    WHERE invd.`id_inv_mat`='" & id_report & "'
+) AS tb
+WHERE tb.debit > 0
 UNION ALL
 -- AR
-SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_ar AS `id_acc`,inv.id_comp  AS id_vendor, 0 AS qty,0 AS `debit`, CAST(SUM(invd.`value`)*((100+inv.`vat_percent`)/(100)) AS DECIMAL(15,2)) AS `credit`
+SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_ar AS `id_acc`,inv.id_comp  AS id_vendor, 0 AS qty,0 AS `debit`, CAST(SUM(invd.`value`)*((100+" + inv_pct + ")/(100)) AS DECIMAL(15,2)) AS `credit`
 ,CONCAT('RETUR PENJUALAN SUPPLIES') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
 FROM `tb_inv_mat_det` invd
 INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
