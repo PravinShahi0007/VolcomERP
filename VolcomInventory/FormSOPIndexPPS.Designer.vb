@@ -26,60 +26,60 @@ Partial Class FormSOPIndexPPS
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlPay = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.DECreated = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.GCList = New DevExpress.XtraGrid.GridControl()
-        Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEDepartement = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.DECreated = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BRefreshCat = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.TESOPName = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.SLESubProsedur = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
-        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.CM = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.DeleteModulToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.GCList = New DevExpress.XtraGrid.GridControl()
+        Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CM = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DeleteModulToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlPay.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TESOPName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLESubProsedur.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CM.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -142,6 +142,64 @@ Partial Class FormSOPIndexPPS
         Me.PanelControl2.Size = New System.Drawing.Size(600, 93)
         Me.PanelControl2.TabIndex = 5
         '
+        'SLEDepartement
+        '
+        Me.SLEDepartement.Location = New System.Drawing.Point(105, 63)
+        Me.SLEDepartement.Name = "SLEDepartement"
+        Me.SLEDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEDepartement.Properties.View = Me.GridView2
+        Me.SLEDepartement.Size = New System.Drawing.Size(483, 20)
+        Me.SLEDepartement.TabIndex = 17
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "ID"
+        Me.GridColumn4.FieldName = "id_departement"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Departement"
+        Me.GridColumn5.FieldName = "departement"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(13, 66)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl2.TabIndex = 10
+        Me.LabelControl2.Text = "Departement"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(294, 40)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl1.TabIndex = 8
+        Me.LabelControl1.Text = "Created By"
+        '
+        'TextEdit1
+        '
+        Me.TextEdit1.Enabled = False
+        Me.TextEdit1.Location = New System.Drawing.Point(354, 37)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextEdit1.Properties.Appearance.Options.UseFont = True
+        Me.TextEdit1.Size = New System.Drawing.Size(234, 20)
+        Me.TextEdit1.TabIndex = 9
+        '
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -185,31 +243,12 @@ Partial Class FormSOPIndexPPS
         Me.TxtNumber.Size = New System.Drawing.Size(174, 20)
         Me.TxtNumber.TabIndex = 5
         '
-        'LabelControl1
-        '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(294, 40)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(54, 13)
-        Me.LabelControl1.TabIndex = 8
-        Me.LabelControl1.Text = "Created By"
-        '
-        'TextEdit1
-        '
-        Me.TextEdit1.Enabled = False
-        Me.TextEdit1.Location = New System.Drawing.Point(354, 37)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit1.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit1.Size = New System.Drawing.Size(234, 20)
-        Me.TextEdit1.TabIndex = 9
-        '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.SimpleButton2)
+        Me.PanelControl1.Controls.Add(Me.BRefreshCat)
         Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Controls.Add(Me.BAdd)
-        Me.PanelControl1.Controls.Add(Me.TextEdit2)
+        Me.PanelControl1.Controls.Add(Me.TESOPName)
         Me.PanelControl1.Controls.Add(Me.LabelControl6)
         Me.PanelControl1.Controls.Add(Me.SLESubProsedur)
         Me.PanelControl1.Controls.Add(Me.LabelControl5)
@@ -219,61 +258,46 @@ Partial Class FormSOPIndexPPS
         Me.PanelControl1.Size = New System.Drawing.Size(1074, 46)
         Me.PanelControl1.TabIndex = 21
         '
-        'GCList
+        'BRefreshCat
         '
-        Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCList.Location = New System.Drawing.Point(0, 143)
-        Me.GCList.MainView = Me.GVList
-        Me.GCList.Name = "GCList"
-        Me.GCList.Size = New System.Drawing.Size(1074, 409)
-        Me.GCList.TabIndex = 22
-        Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
+        Me.BRefreshCat.Image = CType(resources.GetObject("BRefreshCat.Image"), System.Drawing.Image)
+        Me.BRefreshCat.Location = New System.Drawing.Point(324, 13)
+        Me.BRefreshCat.Name = "BRefreshCat"
+        Me.BRefreshCat.Size = New System.Drawing.Size(26, 23)
+        Me.BRefreshCat.TabIndex = 24
         '
-        'GVList
+        'SimpleButton1
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn8, Me.GridColumn6, Me.GridColumn7, Me.GridColumn9, Me.GridColumn10})
-        Me.GVList.GridControl = Me.GCList
-        Me.GVList.Name = "GVList"
-        Me.GVList.OptionsView.ShowGroupPanel = False
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.Location = New System.Drawing.Point(941, 2)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(131, 42)
+        Me.SimpleButton1.TabIndex = 23
+        Me.SimpleButton1.Text = "Master Kategori"
         '
-        'LabelControl2
+        'BAdd
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(13, 66)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(63, 13)
-        Me.LabelControl2.TabIndex = 10
-        Me.LabelControl2.Text = "Departement"
+        Me.BAdd.Location = New System.Drawing.Point(809, 13)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(50, 23)
+        Me.BAdd.TabIndex = 22
+        Me.BAdd.Text = "add"
         '
-        'SLEDepartement
+        'TESOPName
         '
-        Me.SLEDepartement.Location = New System.Drawing.Point(105, 63)
-        Me.SLEDepartement.Name = "SLEDepartement"
-        Me.SLEDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEDepartement.Properties.View = Me.GridView2
-        Me.SLEDepartement.Size = New System.Drawing.Size(483, 20)
-        Me.SLEDepartement.TabIndex = 17
+        Me.TESOPName.Location = New System.Drawing.Point(412, 15)
+        Me.TESOPName.Name = "TESOPName"
+        Me.TESOPName.Size = New System.Drawing.Size(391, 20)
+        Me.TESOPName.TabIndex = 21
         '
-        'GridView2
+        'LabelControl6
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "ID"
-        Me.GridColumn4.FieldName = "id_departement"
-        Me.GridColumn4.Name = "GridColumn4"
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Departement"
-        Me.GridColumn5.FieldName = "departement"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 0
+        Me.LabelControl6.Location = New System.Drawing.Point(356, 18)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(50, 13)
+        Me.LabelControl6.TabIndex = 20
+        Me.LabelControl6.Text = "Nama SOP"
         '
         'SLESubProsedur
         '
@@ -297,110 +321,6 @@ Partial Class FormSOPIndexPPS
         Me.GridColumn1.Caption = "ID"
         Me.GridColumn1.FieldName = "id_sop_prosedur_sub"
         Me.GridColumn1.Name = "GridColumn1"
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Location = New System.Drawing.Point(15, 18)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(64, 13)
-        Me.LabelControl5.TabIndex = 18
-        Me.LabelControl5.Text = "Sub Prosedur"
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Location = New System.Drawing.Point(356, 18)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(50, 13)
-        Me.LabelControl6.TabIndex = 20
-        Me.LabelControl6.Text = "Nama SOP"
-        '
-        'TextEdit2
-        '
-        Me.TextEdit2.Location = New System.Drawing.Point(412, 15)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Size = New System.Drawing.Size(391, 20)
-        Me.TextEdit2.TabIndex = 21
-        '
-        'BAdd
-        '
-        Me.BAdd.Location = New System.Drawing.Point(809, 13)
-        Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(50, 23)
-        Me.BAdd.TabIndex = 22
-        Me.BAdd.Text = "add"
-        '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(941, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(131, 42)
-        Me.SimpleButton1.TabIndex = 23
-        Me.SimpleButton1.Text = "Master Kategori"
-        '
-        'SimpleButton2
-        '
-        Me.SimpleButton2.Image = CType(resources.GetObject("SimpleButton2.Image"), System.Drawing.Image)
-        Me.SimpleButton2.Location = New System.Drawing.Point(324, 13)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(26, 23)
-        Me.SimpleButton2.TabIndex = 24
-        '
-        'CM
-        '
-        Me.CM.Enabled = False
-        Me.CM.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteModulToolStripMenuItem})
-        Me.CM.Name = "CM"
-        Me.CM.Size = New System.Drawing.Size(118, 26)
-        '
-        'DeleteModulToolStripMenuItem
-        '
-        Me.DeleteModulToolStripMenuItem.Enabled = False
-        Me.DeleteModulToolStripMenuItem.Name = "DeleteModulToolStripMenuItem"
-        Me.DeleteModulToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
-        Me.DeleteModulToolStripMenuItem.Text = "Remove"
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "ID"
-        Me.GridColumn3.FieldName = "id_sop_pps_det"
-        Me.GridColumn3.Name = "GridColumn3"
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Prosedur"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Sub Prosedur"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 1
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "ID Sub Prosedur"
-        Me.GridColumn8.FieldName = "id_sop_prosedur_sub"
-        Me.GridColumn8.Name = "GridColumn8"
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Nama SOP"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 2
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Nomor SOP"
-        Me.GridColumn10.FieldName = "nomor_sop"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 3
         '
         'GridColumn2
         '
@@ -442,6 +362,86 @@ Partial Class FormSOPIndexPPS
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 3
         '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(15, 18)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(64, 13)
+        Me.LabelControl5.TabIndex = 18
+        Me.LabelControl5.Text = "Sub Prosedur"
+        '
+        'GCList
+        '
+        Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCList.Location = New System.Drawing.Point(0, 143)
+        Me.GCList.MainView = Me.GVList
+        Me.GCList.Name = "GCList"
+        Me.GCList.Size = New System.Drawing.Size(1074, 409)
+        Me.GCList.TabIndex = 22
+        Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
+        '
+        'GVList
+        '
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn8, Me.GridColumn6, Me.GridColumn7, Me.GridColumn9, Me.GridColumn10})
+        Me.GVList.GridControl = Me.GCList
+        Me.GVList.Name = "GVList"
+        Me.GVList.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "ID"
+        Me.GridColumn3.FieldName = "id_sop_pps_det"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "ID Sub Prosedur"
+        Me.GridColumn8.FieldName = "id_sop_prosedur_sub"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Prosedur"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 0
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Sub Prosedur"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 1
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Nama SOP"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 2
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Nomor SOP"
+        Me.GridColumn10.FieldName = "nomor_sop"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 3
+        '
+        'CM
+        '
+        Me.CM.Enabled = False
+        Me.CM.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteModulToolStripMenuItem})
+        Me.CM.Name = "CM"
+        Me.CM.Size = New System.Drawing.Size(118, 26)
+        '
+        'DeleteModulToolStripMenuItem
+        '
+        Me.DeleteModulToolStripMenuItem.Enabled = False
+        Me.DeleteModulToolStripMenuItem.Name = "DeleteModulToolStripMenuItem"
+        Me.DeleteModulToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
+        Me.DeleteModulToolStripMenuItem.Text = "Remove"
+        '
         'FormSOPIndexPPS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -464,20 +464,20 @@ Partial Class FormSOPIndexPPS
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TESOPName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLESubProsedur.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CM.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -507,9 +507,9 @@ Partial Class FormSOPIndexPPS
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TESOPName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BRefreshCat As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents CM As ContextMenuStrip
     Friend WithEvents DeleteModulToolStripMenuItem As ToolStripMenuItem
