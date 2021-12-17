@@ -31,6 +31,7 @@ Partial Class FormSOPIndex
         Me.RepoLinkFile = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoLinkMenuERP = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.BMasterCatSOP = New DevExpress.XtraEditors.SimpleButton()
         Me.BNewSOP = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPByModul = New DevExpress.XtraTab.XtraTabPage()
         Me.GCByModul = New DevExpress.XtraGrid.GridControl()
@@ -52,7 +53,13 @@ Partial Class FormSOPIndex
         Me.GVScheduleGuest = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
-        Me.BMasterCatSOP = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPIndexPPS = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCIndexPPS = New DevExpress.XtraGrid.GridControl()
+        Me.GVIndexPPS = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSOPIndex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSOPIndex.SuspendLayout()
         Me.XTPBySOP.SuspendLayout()
@@ -75,6 +82,9 @@ Partial Class FormSOPIndex
         CType(Me.GVScheduleGuest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        Me.XTPIndexPPS.SuspendLayout()
+        CType(Me.GCIndexPPS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVIndexPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSOPIndex
@@ -86,13 +96,12 @@ Partial Class FormSOPIndex
         Me.XTCSOPIndex.SelectedTabPage = Me.XTPBySOP
         Me.XTCSOPIndex.Size = New System.Drawing.Size(1046, 520)
         Me.XTCSOPIndex.TabIndex = 0
-        Me.XTCSOPIndex.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBySOP, Me.XTPByModul, Me.XTPScheduleSOPAdmin, Me.XTPScheduleSOPGuest})
+        Me.XTCSOPIndex.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBySOP, Me.XTPByModul, Me.XTPScheduleSOPAdmin, Me.XTPScheduleSOPGuest, Me.XTPIndexPPS})
         '
         'XTPBySOP
         '
         Me.XTPBySOP.Controls.Add(Me.GCBySOP)
         Me.XTPBySOP.Controls.Add(Me.BMasterCatSOP)
-        Me.XTPBySOP.Controls.Add(Me.BNewSOP)
         Me.XTPBySOP.Name = "XTPBySOP"
         Me.XTPBySOP.Size = New System.Drawing.Size(1040, 492)
         Me.XTPBySOP.Text = "By SOP"
@@ -104,7 +113,7 @@ Partial Class FormSOPIndex
         Me.GCBySOP.MainView = Me.GVBySOP
         Me.GCBySOP.Name = "GCBySOP"
         Me.GCBySOP.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoLinkFile, Me.RepoLinkMenuERP})
-        Me.GCBySOP.Size = New System.Drawing.Size(1040, 412)
+        Me.GCBySOP.Size = New System.Drawing.Size(1040, 452)
         Me.GCBySOP.TabIndex = 0
         Me.GCBySOP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBySOP})
         '
@@ -167,6 +176,20 @@ Partial Class FormSOPIndex
         Me.RepoLinkMenuERP.AutoHeight = False
         Me.RepoLinkMenuERP.Name = "RepoLinkMenuERP"
         '
+        'BMasterCatSOP
+        '
+        Me.BMasterCatSOP.Appearance.BackColor = System.Drawing.Color.DarkBlue
+        Me.BMasterCatSOP.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BMasterCatSOP.Appearance.Options.UseBackColor = True
+        Me.BMasterCatSOP.Appearance.Options.UseForeColor = True
+        Me.BMasterCatSOP.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BMasterCatSOP.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BMasterCatSOP.Location = New System.Drawing.Point(0, 452)
+        Me.BMasterCatSOP.Name = "BMasterCatSOP"
+        Me.BMasterCatSOP.Size = New System.Drawing.Size(1040, 40)
+        Me.BMasterCatSOP.TabIndex = 8
+        Me.BMasterCatSOP.Text = "Master Kategori SOP"
+        '
         'BNewSOP
         '
         Me.BNewSOP.Appearance.BackColor = System.Drawing.Color.DarkBlue
@@ -175,11 +198,11 @@ Partial Class FormSOPIndex
         Me.BNewSOP.Appearance.Options.UseForeColor = True
         Me.BNewSOP.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
         Me.BNewSOP.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BNewSOP.Location = New System.Drawing.Point(0, 452)
+        Me.BNewSOP.Location = New System.Drawing.Point(0, 447)
         Me.BNewSOP.Name = "BNewSOP"
-        Me.BNewSOP.Size = New System.Drawing.Size(1040, 40)
+        Me.BNewSOP.Size = New System.Drawing.Size(1040, 45)
         Me.BNewSOP.TabIndex = 7
-        Me.BNewSOP.Text = "New SOP"
+        Me.BNewSOP.Text = "New Proposal"
         '
         'XTPByModul
         '
@@ -345,19 +368,63 @@ Partial Class FormSOPIndex
         Me.BRefresh.TabIndex = 1
         Me.BRefresh.Text = "Refresh"
         '
-        'BMasterCatSOP
+        'XTPIndexPPS
         '
-        Me.BMasterCatSOP.Appearance.BackColor = System.Drawing.Color.DarkBlue
-        Me.BMasterCatSOP.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BMasterCatSOP.Appearance.Options.UseBackColor = True
-        Me.BMasterCatSOP.Appearance.Options.UseForeColor = True
-        Me.BMasterCatSOP.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
-        Me.BMasterCatSOP.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BMasterCatSOP.Location = New System.Drawing.Point(0, 412)
-        Me.BMasterCatSOP.Name = "BMasterCatSOP"
-        Me.BMasterCatSOP.Size = New System.Drawing.Size(1040, 40)
-        Me.BMasterCatSOP.TabIndex = 8
-        Me.BMasterCatSOP.Text = "Master Kategori SOP"
+        Me.XTPIndexPPS.Controls.Add(Me.GCIndexPPS)
+        Me.XTPIndexPPS.Controls.Add(Me.BNewSOP)
+        Me.XTPIndexPPS.Name = "XTPIndexPPS"
+        Me.XTPIndexPPS.Size = New System.Drawing.Size(1040, 492)
+        Me.XTPIndexPPS.Text = "Index Proposal"
+        '
+        'GCIndexPPS
+        '
+        Me.GCIndexPPS.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCIndexPPS.Location = New System.Drawing.Point(0, 0)
+        Me.GCIndexPPS.MainView = Me.GVIndexPPS
+        Me.GCIndexPPS.Name = "GCIndexPPS"
+        Me.GCIndexPPS.Size = New System.Drawing.Size(1040, 447)
+        Me.GCIndexPPS.TabIndex = 0
+        Me.GCIndexPPS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVIndexPPS})
+        '
+        'GVIndexPPS
+        '
+        Me.GVIndexPPS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
+        Me.GVIndexPPS.GridControl = Me.GCIndexPPS
+        Me.GVIndexPPS.Name = "GVIndexPPS"
+        Me.GVIndexPPS.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "ID"
+        Me.GridColumn11.FieldName = "id_sop_pps"
+        Me.GridColumn11.Name = "GridColumn11"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Proposal Number"
+        Me.GridColumn12.FieldName = "number"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 0
+        Me.GridColumn12.Width = 237
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Departement"
+        Me.GridColumn13.FieldName = "departement"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 1
+        Me.GridColumn13.Width = 538
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Report Status"
+        Me.GridColumn14.FieldName = "Status"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 2
+        Me.GridColumn14.Width = 247
         '
         'FormSOPIndex
         '
@@ -396,6 +463,9 @@ Partial Class FormSOPIndex
         CType(Me.GVScheduleGuest, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        Me.XTPIndexPPS.ResumeLayout(False)
+        CType(Me.GCIndexPPS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVIndexPPS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -433,4 +503,11 @@ Partial Class FormSOPIndex
     Friend WithEvents GCScheduleGuest As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVScheduleGuest As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents BMasterCatSOP As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPIndexPPS As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCIndexPPS As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVIndexPPS As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

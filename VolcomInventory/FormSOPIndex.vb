@@ -92,6 +92,8 @@ ORDER BY id_menu"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCByModul.DataSource = dt
             GVByModul.BestFitColumns()
+        ElseIf XTCSOPIndex.SelectedTabPageIndex = 4 Then 'Index Proposal
+
         End If
     End Sub
 
