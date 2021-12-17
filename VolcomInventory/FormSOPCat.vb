@@ -97,4 +97,8 @@ WHERE id_sop_prosedur='" & SLEDepartement.EditValue.ToString & "'"
     Private Sub GVProsedur_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVProsedur.FocusedRowChanged
         load_second_page()
     End Sub
+
+    Private Sub FormSOPCat_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
 End Class
