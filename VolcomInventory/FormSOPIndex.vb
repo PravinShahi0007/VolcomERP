@@ -13,6 +13,7 @@
             XTPScheduleSOPAdmin.Visible = False
             XTPDepartemenTerkait.Visible = True
         End If
+        XTCSOPIndex.SelectedTabPageIndex = 0
     End Sub
 
     Private Sub FormSOPIndex_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
