@@ -597,7 +597,7 @@ Partial Class FormSOPNew
         '
         'GCDepartementTerkait
         '
-        Me.GCDepartementTerkait.ContextMenuStrip = Me.CM
+        Me.GCDepartementTerkait.ContextMenuStrip = Me.CMDepTerkait
         Me.GCDepartementTerkait.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCDepartementTerkait.Location = New System.Drawing.Point(0, 45)
         Me.GCDepartementTerkait.MainView = Me.GVDepartementTerkait
@@ -724,7 +724,7 @@ Partial Class FormSOPNew
         Me.CMDepTerkait.Enabled = False
         Me.CMDepTerkait.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
         Me.CMDepTerkait.Name = "CM"
-        Me.CMDepTerkait.Size = New System.Drawing.Size(153, 48)
+        Me.CMDepTerkait.Size = New System.Drawing.Size(118, 26)
         '
         'ToolStripMenuItem1
         '
