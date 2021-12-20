@@ -527,6 +527,9 @@
         ElseIf report_mark_type = "377" Then
             'propose index sop
             FormSOPNew.Close()
+        ElseIf report_mark_type = "376" Then
+            'propose big sale product
+            FormBSP.Close()
         End If
     End Sub
     Sub show()
@@ -1696,6 +1699,12 @@ GROUP BY rec.`id_prod_order`"
             FormSOPNew.is_view = "1"
             FormSOPNew.id_pps = id_report
             FormSOPNew.ShowDialog()
+        ElseIf report_mark_type = "376" Then
+            'propose big sale product
+            FormBSPDet.is_view = "1"
+            FormBSPDet.action = "upd"
+            FormBSPDet.id = id_report
+            FormBSPDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -3023,6 +3032,12 @@ GROUP BY rec.`id_prod_order`"
             'propose sop index
             table_name = "tb_sop_dep_pps"
             field_id = "id_sop_dep_pps"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "376" Then
+            'propose big sale product
+            table_name = "tb_bsp"
+            field_id = "id_bsp"
             field_number = "number"
             field_date = "created_date"
         Else
