@@ -243,6 +243,7 @@
     <Compile Include="ClassAPIZalora.vb" />
     <Compile Include="ClassAREvaluation.vb" />
     <Compile Include="ClassBliBliApi.vb" />
+    <Compile Include="ClassBSP.vb" />
     <Compile Include="ClassBudgetExpense.Designer.vb">
       <DependentUpon>ClassBudgetExpense.vb</DependentUpon>
     </Compile>
@@ -618,6 +619,18 @@
       <DependentUpon>FormBiayaSewaPPS.vb</DependentUpon>
     </Compile>
     <Compile Include="FormBiayaSewaPPS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBSP.Designer.vb">
+      <DependentUpon>FormBSP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBSP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBSPDet.Designer.vb">
+      <DependentUpon>FormBSPDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBSPDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormBudgetProdDemand.Designer.vb">
@@ -10744,6 +10757,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBiayaSewaPPS.resx">
       <DependentUpon>FormBiayaSewaPPS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBSP.resx">
+      <DependentUpon>FormBSP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBSPDet.resx">
+      <DependentUpon>FormBSPDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetProdDemand.resx">
       <DependentUpon>FormBudgetProdDemand.vb</DependentUpon>
