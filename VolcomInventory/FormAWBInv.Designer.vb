@@ -269,12 +269,14 @@ Partial Class FormAWBInv
         '
         'CMAddStore
         '
+        Me.CMAddStore.Enabled = False
         Me.CMAddStore.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMAddVendor})
         Me.CMAddStore.Name = "CMAddVendor"
         Me.CMAddStore.Size = New System.Drawing.Size(145, 26)
         '
         'SMAddVendor
         '
+        Me.SMAddVendor.Enabled = False
         Me.SMAddVendor.Name = "SMAddVendor"
         Me.SMAddVendor.Size = New System.Drawing.Size(144, 22)
         Me.SMAddVendor.Text = "Choose Store"
@@ -452,6 +454,8 @@ Partial Class FormAWBInv
         Me.GridColumn47.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn47.FieldName = "rate_cargo"
         Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.OptionsColumn.AllowEdit = False
+        Me.GridColumn47.OptionsColumn.ReadOnly = True
         Me.GridColumn47.Visible = True
         Me.GridColumn47.VisibleIndex = 9
         Me.GridColumn47.Width = 46
@@ -586,6 +590,7 @@ Partial Class FormAWBInv
         Me.GridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn45.FieldName = "berat_final"
         Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.OptionsColumn.ReadOnly = True
         Me.GridColumn45.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "berat_final", "{0:N2}")})
         Me.GridColumn45.Visible = True
         Me.GridColumn45.VisibleIndex = 16
@@ -603,6 +608,7 @@ Partial Class FormAWBInv
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn20.FieldName = "amount_final"
         Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsColumn.ReadOnly = True
         Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_final", "{0:N2}")})
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 17
@@ -613,6 +619,7 @@ Partial Class FormAWBInv
         Me.GridColumn14.Caption = "Note"
         Me.GridColumn14.FieldName = "note_wh"
         Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.ReadOnly = True
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 18
         Me.GridColumn14.Width = 292
