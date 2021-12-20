@@ -759,6 +759,9 @@
         ElseIf report_mark_type = "375" Then
             'sop index pps
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_sop_pps WHERE id_sop_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "377" Then
+            'sop detail pps
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_sop_dep_pps WHERE id_sop_dep_pps = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -11158,6 +11161,61 @@ WHERE pps.id_sop_pps='" & id_report & "'"
             End If
 
             query = String.Format("UPDATE tb_sop_pps SET id_report_status = '{0}' WHERE id_sop_pps = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "377" Then
+            'sop dep pps
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                Dim qv As String = "SELECT id_sop FROM tb_sop_dep_pps WHERE id_sop_dep_pps='" & id_report & "'"
+                Dim dtv As DataTable = execute_query(query, -1, True, "", "", "", "")
+                Dim id_sop As String = dtv.Rows(0)("id_sop").ToString
+                'file
+                '-- clean file
+                Dim q_ins As String = "DELETE FROM tb_doc WHERE id_report='" & id_sop & "' AND report_mark_type='371'"
+                execute_non_query(q_ins, True, "", "", "", "")
+
+                Dim qfile As String = "SELECT id_doc,doc_desc,'371' AS report_mark_type,'" & id_sop & "' AS id_report,`datetime`,ext,id_user_upload,is_encrypted 
+FROM tb_doc 
+WHERE id_report='" & id_report & "' AND report_mark_type='377'"
+                Dim dtfile As DataTable = execute_query(qfile, -1, True, "", "", "", "")
+                If dtfile.Rows.Count > 0 Then
+                    '-- add file
+                    q_ins = "INSERT INTO tb_doc(doc_desc,report_mark_type,id_report,`datetime`,ext,id_user_upload,is_encrypted)
+VALUES('" & dtfile.Rows(0)("doc_desc").ToString & "','" & dtfile.Rows(0)("report_mark_type").ToString & "','" & dtfile.Rows(0)("id_report").ToString & "','" & dtfile.Rows(0)("datetime").ToString & "','" & dtfile.Rows(0)("ext").ToString & "','" & dtfile.Rows(0)("id_user_upload").ToString & "','" & dtfile.Rows(0)("is_encrypted").ToString & "'); SELECT LAST_INSERT_ID(); "
+                    Dim last_id As String = execute_query(q_ins, 0, True, "", "", "", "")
+                    '-- transfer file
+                    Dim directory_upload As String = get_setup_field("upload_dir")
+                    Dim path As String = directory_upload & "371" & "\"
+                    Dim path_dl As String = directory_upload & "377" & "\"
+                    If Not IO.Directory.Exists(path) Then
+                        IO.Directory.CreateDirectory(path)
+                    End If
+                    My.Computer.Network.UploadFile(path_dl & dtfile.Rows(0)("id_doc").ToString & "_377_" & id_report & dtfile.Rows(0)("ext").ToString, path & last_id & "_371_" & id_sop & dtfile.Rows(0)("ext").ToString, "", "", True, 100, True)
+                End If
+
+                'menu
+                q_ins = "DELETE FROM tb_sop_menu_erp WHERE id_sop='" & id_sop & "'"
+                execute_non_query(q_ins, True, "", "", "", "")
+                q_ins = "INSERT INTO tb_sop_menu_erp(id_sop,id_menu)
+SELECT '" & id_sop & "' AS id_sop,id_menu
+FROM tb_sop_dep_pps_menu
+WHERE id_sop_dep_pps='" & id_report & "'"
+                execute_non_query(q_ins, True, "", "", "", "")
+
+                'departement terkait
+                q_ins = "DELETE FROM tb_sop_dep_terkait WHERE id_sop='" & id_sop & "'"
+                execute_non_query(q_ins, True, "", "", "", "")
+                q_ins = "INSERT INTO tb_sop_dep_terkait(id_sop,id_departement)
+SELECT '" & id_sop & "' AS id_sop,id_departement
+FROM tb_sop_dep_pps_dep_terkait
+WHERE id_sop_dep_pps='" & id_report & "'"
+                execute_non_query(q_ins, True, "", "", "", "")
+            End If
+
+            query = String.Format("UPDATE tb_sop_dep_pps SET id_report_status = '{0}' WHERE id_sop_dep_pps = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 
