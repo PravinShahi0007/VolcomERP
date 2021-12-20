@@ -524,6 +524,7 @@ Partial Class FormSOPNew
         Me.GCMileStone.Size = New System.Drawing.Size(724, 243)
         Me.GCMileStone.TabIndex = 13
         Me.GCMileStone.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMileStone})
+        Me.GCMileStone.Visible = False
         '
         'GVMileStone
         '

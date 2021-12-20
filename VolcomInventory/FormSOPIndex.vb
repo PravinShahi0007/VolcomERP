@@ -13,6 +13,7 @@
             XTPScheduleSOPAdmin.Visible = False
             XTPDepartemenTerkait.Visible = True
         End If
+        XTCSOPIndex.SelectedTabPageIndex = 0
     End Sub
 
     Private Sub FormSOPIndex_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -25,6 +26,20 @@
     End Sub
 
     Private Sub GVBySOP_CellMerge(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs) Handles GVBySOP.CellMerge
+        If (e.Column.FieldName = "doc_desc" Or e.Column.FieldName = "milestone" Or e.Column.FieldName = "sop_name" Or e.Column.FieldName = "sop_number" Or e.Column.FieldName = "sop_prosedur" Or e.Column.FieldName = "sop_prosedur_sub" Or e.Column.FieldName = "departement") Then
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim val1 As String = view.GetRowCellValue(e.RowHandle1, "id_sop")
+            Dim val2 As String = view.GetRowCellValue(e.RowHandle2, "id_sop")
+
+            e.Merge = (val1.ToString = val2.ToString)
+            e.Handled = True
+        Else
+            e.Merge = False
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub GVDepartementTerkait_CellMerge(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs) Handles GVDepartementTerkait.CellMerge
         If (e.Column.FieldName = "doc_desc" Or e.Column.FieldName = "milestone" Or e.Column.FieldName = "sop_name" Or e.Column.FieldName = "sop_number" Or e.Column.FieldName = "sop_prosedur" Or e.Column.FieldName = "sop_prosedur_sub" Or e.Column.FieldName = "departement") Then
             Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
             Dim val1 As String = view.GetRowCellValue(e.RowHandle1, "id_sop")
@@ -152,6 +167,7 @@ ORDER BY pps.id_sop_dep_pps DESC"
             GVPengajuanKelengkapan.BestFitColumns()
         ElseIf XTCSOPIndex.SelectedTabPageIndex = 6 Then
             Dim q As String = "SELECT s.*,spsub.sop_prosedur_sub,sp.sop_prosedur,dep.departement,m.menu_name,m.`menu_caption`,CONCAT(d.id_doc,'_371_',s.id_sop,d.ext) AS filename,d.doc_desc
+,CONCAT(sch.milestone,' - ',sch.sts_meeting) AS milestone
 FROM `tb_sop` s
 INNER JOIN tb_m_departement dep ON dep.id_departement=s.id_departement
 INNER JOIN tb_sop_prosedur_sub spsub ON spsub.id_sop_prosedur_sub=s.id_sop_prosedur_sub
@@ -159,6 +175,18 @@ INNER JOIN tb_sop_prosedur sp ON sp.id_sop_prosedur=spsub.id_sop_prosedur
 LEFT JOIN tb_sop_menu_erp er ON er.id_sop=s.id_sop
 LEFT JOIN tb_menu m ON m.`id_menu`=er.`id_menu`
 LEFT JOIN (SELECT * FROM tb_doc WHERE report_mark_type=371) d ON d.id_report=s.id_sop AND d.report_mark_type=371 
+LEFT JOIN
+(
+    SELECT sch.*,IF(sch.is_complete=1,'Complete','Not Complete') AS sts_meeting,ml.milestone 
+    FROM tb_sop_schedule_sop sch
+    INNER JOIN tb_lookup_milestone ml ON ml.id_milestone=sch.id_milestone
+    INNER JOIN (
+	    SELECT id_sop,MAX(`datetime`) AS dt
+	    FROM `tb_sop_schedule_sop`
+	    WHERE NOT ISNULL(id_milestone) AND NOT ISNULL(is_complete)
+	    GROUP BY id_sop
+    )schm ON schm.id_sop=sch.id_sop AND sch.datetime=schm.dt
+)sch ON sch.id_sop=s.id_sop
 INNER JOIN `tb_sop_dep_terkait` sd ON sd.`id_sop`=s.`id_sop`
 WHERE sd.`id_departement`='" & id_departement_user & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
