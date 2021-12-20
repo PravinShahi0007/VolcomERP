@@ -67,6 +67,14 @@ Partial Class FormSOPIndex
         Me.XTPScheduleSOPGuest = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScheduleGuest = New DevExpress.XtraGrid.GridControl()
         Me.GVScheduleGuest = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPIndexPPS = New DevExpress.XtraTab.XtraTabPage()
         Me.GCIndexPPS = New DevExpress.XtraGrid.GridControl()
         Me.GVIndexPPS = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -77,14 +85,14 @@ Partial Class FormSOPIndex
         Me.BNewSOP = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BSOPAsset = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPPengajuanKelengkapan = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPengajuanKelengkapan = New DevExpress.XtraGrid.GridControl()
+        Me.GVPengajuanKelengkapan = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSOPIndex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSOPIndex.SuspendLayout()
         Me.XTPBySOP.SuspendLayout()
@@ -111,6 +119,9 @@ Partial Class FormSOPIndex
         CType(Me.GVIndexPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        Me.XTPPengajuanKelengkapan.SuspendLayout()
+        CType(Me.GCPengajuanKelengkapan, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPengajuanKelengkapan, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSOPIndex
@@ -122,11 +133,12 @@ Partial Class FormSOPIndex
         Me.XTCSOPIndex.SelectedTabPage = Me.XTPBySOP
         Me.XTCSOPIndex.Size = New System.Drawing.Size(1046, 520)
         Me.XTCSOPIndex.TabIndex = 0
-        Me.XTCSOPIndex.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBySOP, Me.XTPByModul, Me.XTPScheduleSOPAdmin, Me.XTPScheduleSOPGuest, Me.XTPIndexPPS})
+        Me.XTCSOPIndex.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBySOP, Me.XTPByModul, Me.XTPScheduleSOPAdmin, Me.XTPScheduleSOPGuest, Me.XTPIndexPPS, Me.XTPPengajuanKelengkapan})
         '
         'XTPBySOP
         '
         Me.XTPBySOP.Controls.Add(Me.GCBySOP)
+        Me.XTPBySOP.Controls.Add(Me.BSOPAsset)
         Me.XTPBySOP.Controls.Add(Me.BMasterCatSOP)
         Me.XTPBySOP.Name = "XTPBySOP"
         Me.XTPBySOP.Size = New System.Drawing.Size(1040, 492)
@@ -139,7 +151,7 @@ Partial Class FormSOPIndex
         Me.GCBySOP.MainView = Me.GVBySOP
         Me.GCBySOP.Name = "GCBySOP"
         Me.GCBySOP.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoLinkFile, Me.RepoLinkMenuERP})
-        Me.GCBySOP.Size = New System.Drawing.Size(1040, 452)
+        Me.GCBySOP.Size = New System.Drawing.Size(1040, 412)
         Me.GCBySOP.TabIndex = 0
         Me.GCBySOP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBySOP})
         '
@@ -503,13 +515,71 @@ Partial Class FormSOPIndex
         Me.GVScheduleGuest.OptionsView.RowAutoHeight = True
         Me.GVScheduleGuest.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Department"
+        Me.GridColumn29.FieldName = "departement"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 0
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Date"
+        Me.GridColumn30.FieldName = "date"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 1
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "Time"
+        Me.GridColumn31.FieldName = "time"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 2
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "SOP"
+        Me.GridColumn32.FieldName = "sop"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 3
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Milestone"
+        Me.GridColumn33.FieldName = "milestone"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 4
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Status"
+        Me.GridColumn34.FieldName = "status"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 5
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.FieldName = "id_sop_schedule"
+        Me.GridColumn35.Name = "GridColumn35"
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.FieldName = "id_departement"
+        Me.GridColumn36.Name = "GridColumn36"
+        '
         'XTPIndexPPS
         '
         Me.XTPIndexPPS.Controls.Add(Me.GCIndexPPS)
         Me.XTPIndexPPS.Controls.Add(Me.BNewSOP)
         Me.XTPIndexPPS.Name = "XTPIndexPPS"
         Me.XTPIndexPPS.Size = New System.Drawing.Size(1040, 492)
-        Me.XTPIndexPPS.Text = "Index Proposal"
+        Me.XTPIndexPPS.Text = "Proposal Index"
         '
         'GCIndexPPS
         '
@@ -594,63 +664,76 @@ Partial Class FormSOPIndex
         Me.BRefresh.TabIndex = 1
         Me.BRefresh.Text = "Refresh"
         '
-        'GridColumn29
+        'BSOPAsset
         '
-        Me.GridColumn29.Caption = "Department"
-        Me.GridColumn29.FieldName = "departement"
-        Me.GridColumn29.Name = "GridColumn29"
-        Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 0
+        Me.BSOPAsset.Appearance.BackColor = System.Drawing.Color.DarkBlue
+        Me.BSOPAsset.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BSOPAsset.Appearance.Options.UseBackColor = True
+        Me.BSOPAsset.Appearance.Options.UseForeColor = True
+        Me.BSOPAsset.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BSOPAsset.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BSOPAsset.Location = New System.Drawing.Point(0, 412)
+        Me.BSOPAsset.Name = "BSOPAsset"
+        Me.BSOPAsset.Size = New System.Drawing.Size(1040, 40)
+        Me.BSOPAsset.TabIndex = 9
+        Me.BSOPAsset.Text = "Pengajuan kelengkapan SOP"
         '
-        'GridColumn30
+        'XTPPengajuanKelengkapan
         '
-        Me.GridColumn30.Caption = "Date"
-        Me.GridColumn30.FieldName = "date"
-        Me.GridColumn30.Name = "GridColumn30"
-        Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 1
+        Me.XTPPengajuanKelengkapan.Controls.Add(Me.GCPengajuanKelengkapan)
+        Me.XTPPengajuanKelengkapan.Name = "XTPPengajuanKelengkapan"
+        Me.XTPPengajuanKelengkapan.Size = New System.Drawing.Size(1040, 492)
+        Me.XTPPengajuanKelengkapan.Text = "Pengajuan Kelengkapan SOP"
         '
-        'GridColumn31
+        'GCPengajuanKelengkapan
         '
-        Me.GridColumn31.Caption = "Time"
-        Me.GridColumn31.FieldName = "time"
-        Me.GridColumn31.Name = "GridColumn31"
-        Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 2
+        Me.GCPengajuanKelengkapan.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPengajuanKelengkapan.Location = New System.Drawing.Point(0, 0)
+        Me.GCPengajuanKelengkapan.MainView = Me.GVPengajuanKelengkapan
+        Me.GCPengajuanKelengkapan.Name = "GCPengajuanKelengkapan"
+        Me.GCPengajuanKelengkapan.Size = New System.Drawing.Size(1040, 492)
+        Me.GCPengajuanKelengkapan.TabIndex = 1
+        Me.GCPengajuanKelengkapan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPengajuanKelengkapan})
         '
-        'GridColumn32
+        'GVPengajuanKelengkapan
         '
-        Me.GridColumn32.Caption = "SOP"
-        Me.GridColumn32.FieldName = "sop"
-        Me.GridColumn32.Name = "GridColumn32"
-        Me.GridColumn32.Visible = True
-        Me.GridColumn32.VisibleIndex = 3
+        Me.GVPengajuanKelengkapan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40})
+        Me.GVPengajuanKelengkapan.GridControl = Me.GCPengajuanKelengkapan
+        Me.GVPengajuanKelengkapan.Name = "GVPengajuanKelengkapan"
+        Me.GVPengajuanKelengkapan.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn33
+        'GridColumn37
         '
-        Me.GridColumn33.Caption = "Milestone"
-        Me.GridColumn33.FieldName = "milestone"
-        Me.GridColumn33.Name = "GridColumn33"
-        Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 4
+        Me.GridColumn37.Caption = "ID"
+        Me.GridColumn37.FieldName = "id_sop_pps"
+        Me.GridColumn37.Name = "GridColumn37"
         '
-        'GridColumn34
+        'GridColumn38
         '
-        Me.GridColumn34.Caption = "Status"
-        Me.GridColumn34.FieldName = "status"
-        Me.GridColumn34.Name = "GridColumn34"
-        Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 5
+        Me.GridColumn38.Caption = "Nomor"
+        Me.GridColumn38.FieldName = "number"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 0
+        Me.GridColumn38.Width = 237
         '
-        'GridColumn35
+        'GridColumn39
         '
-        Me.GridColumn35.FieldName = "id_sop_schedule"
-        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn39.Caption = "Nama SOP"
+        Me.GridColumn39.FieldName = "departement"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 1
+        Me.GridColumn39.Width = 538
         '
-        'GridColumn36
+        'GridColumn40
         '
-        Me.GridColumn36.FieldName = "id_departement"
-        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn40.Caption = "Status"
+        Me.GridColumn40.FieldName = "report_status"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 2
+        Me.GridColumn40.Width = 247
         '
         'FormSOPIndex
         '
@@ -693,6 +776,9 @@ Partial Class FormSOPIndex
         CType(Me.GVIndexPPS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        Me.XTPPengajuanKelengkapan.ResumeLayout(False)
+        CType(Me.GCPengajuanKelengkapan, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPengajuanKelengkapan, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -762,4 +848,12 @@ Partial Class FormSOPIndex
     Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BSOPAsset As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPPengajuanKelengkapan As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCPengajuanKelengkapan As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPengajuanKelengkapan As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -104,17 +104,27 @@ ORDER BY id_menu"
         ElseIf XTCSOPIndex.SelectedTabPageIndex = 4 Then 'Index Proposal
             Dim q As String = "SELECT pps.*,sts.report_status,dep.departement FROM `tb_sop_pps` pps
 INNER JOIN tb_m_departement dep ON dep.id_departement=pps.id_departement
-INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status"
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
+ORDER BY pps.id_sop_pps DESC"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCIndexPPS.DataSource = dt
             GVIndexPPS.BestFitColumns()
+        ElseIf XTCSOPIndex.SelectedTabPageIndex = 5 Then 'kelengkapan SOP Proposal
+            Dim q As String = "SELECT pps.*,sts.report_status,s.sop_name 
+FROM `tb_sop_dep_pps` pps
+INNER JOIN tb_sop s ON s.id_sop=pps.id_sop
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
+ORDER BY pps.id_sop_dep_pps DESC"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            GCPengajuanKelengkapan.DataSource = dt
+            GVPengajuanKelengkapan.BestFitColumns()
         End If
     End Sub
 
     Private Sub GVBySOP_DoubleClick(sender As Object, e As EventArgs) Handles GVBySOP.DoubleClick
         If GVBySOP.RowCount > 0 Then
-            FormSOPNew.id = GVBySOP.GetFocusedRowCellValue("id_sop").ToString
-            FormSOPNew.ShowDialog()
+            'FormSOPNew.id_sop = GVBySOP.GetFocusedRowCellValue("id_sop").ToString
+            'FormSOPNew.ShowDialog()
         End If
     End Sub
 
@@ -320,6 +330,22 @@ INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_sta
             view_sop_schedule_admin()
         ElseIf XTCSOPIndex.SelectedTabPageIndex = 3 Then
             view_sop_schedule_guest()
+        End If
+    End Sub
+
+    Private Sub BSOPAsset_Click(sender As Object, e As EventArgs) Handles BSOPAsset.Click
+        If GVBySOP.RowCount > 0 Then
+            FormSOPNew.id_pps = "-1"
+            FormSOPNew.id_sop = GVBySOP.GetFocusedRowCellValue("id_sop").ToString
+            FormSOPNew.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub GVPengajuanKelengkapan_DoubleClick(sender As Object, e As EventArgs) Handles GVPengajuanKelengkapan.DoubleClick
+        If GVPengajuanKelengkapan.RowCount > 0 Then
+            FormSOPNew.id_pps = "-1"
+            FormSOPNew.id_sop = GVBySOP.GetFocusedRowCellValue("id_sop").ToString
+            FormSOPNew.ShowDialog()
         End If
     End Sub
 End Class
