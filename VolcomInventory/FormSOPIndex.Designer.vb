@@ -720,7 +720,7 @@ Partial Class FormSOPIndex
         'GridColumn39
         '
         Me.GridColumn39.Caption = "Nama SOP"
-        Me.GridColumn39.FieldName = "departement"
+        Me.GridColumn39.FieldName = "sop_name"
         Me.GridColumn39.Name = "GridColumn39"
         Me.GridColumn39.Visible = True
         Me.GridColumn39.VisibleIndex = 1

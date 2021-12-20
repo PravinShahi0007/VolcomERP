@@ -110,7 +110,7 @@ ORDER BY pps.id_sop_pps DESC"
             GCIndexPPS.DataSource = dt
             GVIndexPPS.BestFitColumns()
         ElseIf XTCSOPIndex.SelectedTabPageIndex = 5 Then 'kelengkapan SOP Proposal
-            Dim q As String = "SELECT pps.*,sts.report_status,s.sop_name 
+            Dim q As String = "SELECT pps.*,sts.report_status,s.sop_name
 FROM `tb_sop_dep_pps` pps
 INNER JOIN tb_sop s ON s.id_sop=pps.id_sop
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
@@ -343,8 +343,8 @@ ORDER BY pps.id_sop_dep_pps DESC"
 
     Private Sub GVPengajuanKelengkapan_DoubleClick(sender As Object, e As EventArgs) Handles GVPengajuanKelengkapan.DoubleClick
         If GVPengajuanKelengkapan.RowCount > 0 Then
-            FormSOPNew.id_pps = "-1"
-            FormSOPNew.id_sop = GVBySOP.GetFocusedRowCellValue("id_sop").ToString
+            FormSOPNew.id_pps = GVPengajuanKelengkapan.GetFocusedRowCellValue("id_sop_dep_pps").ToString
+            FormSOPNew.id_sop = GVPengajuanKelengkapan.GetFocusedRowCellValue("id_sop").ToString
             FormSOPNew.ShowDialog()
         End If
     End Sub

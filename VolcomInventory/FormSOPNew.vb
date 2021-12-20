@@ -451,6 +451,8 @@ WHERE id_sop='" & id_sop & "'"
         If confirm = Windows.Forms.DialogResult.Yes Then
             Dim q As String = "UPDATE tb_sop_dep_pps SET is_submit=1 WHERE id_sop_dep_pps='" & id_pps & "'"
             execute_non_query(q, True, "", "", "", "")
+            submit_who_prepared("377", id_pps, id_user)
+
             load_head()
         End If
     End Sub
@@ -463,5 +465,14 @@ WHERE id_sop='" & id_sop & "'"
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        If GVDepartementTerkait.RowCount > 0 Then
+            'GVModulERP.DeleteSelectedRows()
+            Dim q As String = "DELETE FROM tb_sop_dep_pps_dep_terkait WHERE id_sop_dep_pps='" & id_pps & "' AND id_departement='" & GVDepartementTerkait.GetFocusedRowCellValue("id_departement").ToString & "'"
+            execute_non_query(q, True, "", "", "", "")
+            load_dep_terkait()
+        End If
     End Sub
 End Class

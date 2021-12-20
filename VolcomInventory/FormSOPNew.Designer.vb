@@ -22,6 +22,8 @@ Partial Class FormSOPNew
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSOPNew))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.TESubProsedur = New DevExpress.XtraEditors.TextEdit()
+        Me.TEProsedur = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPpsNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -85,10 +87,10 @@ Partial Class FormSOPNew
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.CMDepTerkait = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TEProsedur = New DevExpress.XtraEditors.TextEdit()
-        Me.TESubProsedur = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TESubProsedur.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEProsedur.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPpsNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -123,8 +125,6 @@ Partial Class FormSOPNew
         CType(Me.PCSave, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCSave.SuspendLayout()
         Me.CMDepTerkait.SuspendLayout()
-        CType(Me.TEProsedur.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TESubProsedur.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -148,6 +148,28 @@ Partial Class FormSOPNew
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(724, 179)
         Me.PanelControl1.TabIndex = 1
+        '
+        'TESubProsedur
+        '
+        Me.TESubProsedur.Enabled = False
+        Me.TESubProsedur.Location = New System.Drawing.Point(439, 102)
+        Me.TESubProsedur.Name = "TESubProsedur"
+        Me.TESubProsedur.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TESubProsedur.Properties.Appearance.Options.UseFont = True
+        Me.TESubProsedur.Properties.ReadOnly = True
+        Me.TESubProsedur.Size = New System.Drawing.Size(257, 20)
+        Me.TESubProsedur.TabIndex = 24
+        '
+        'TEProsedur
+        '
+        Me.TEProsedur.Enabled = False
+        Me.TEProsedur.Location = New System.Drawing.Point(111, 102)
+        Me.TEProsedur.Name = "TEProsedur"
+        Me.TEProsedur.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEProsedur.Properties.Appearance.Options.UseFont = True
+        Me.TEProsedur.Properties.ReadOnly = True
+        Me.TEProsedur.Size = New System.Drawing.Size(232, 20)
+        Me.TEProsedur.TabIndex = 23
         '
         'LabelControl10
         '
@@ -702,36 +724,14 @@ Partial Class FormSOPNew
         Me.CMDepTerkait.Enabled = False
         Me.CMDepTerkait.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
         Me.CMDepTerkait.Name = "CM"
-        Me.CMDepTerkait.Size = New System.Drawing.Size(118, 26)
+        Me.CMDepTerkait.Size = New System.Drawing.Size(153, 48)
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Enabled = False
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(117, 22)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.ToolStripMenuItem1.Text = "Remove"
-        '
-        'TEProsedur
-        '
-        Me.TEProsedur.Enabled = False
-        Me.TEProsedur.Location = New System.Drawing.Point(111, 102)
-        Me.TEProsedur.Name = "TEProsedur"
-        Me.TEProsedur.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TEProsedur.Properties.Appearance.Options.UseFont = True
-        Me.TEProsedur.Properties.ReadOnly = True
-        Me.TEProsedur.Size = New System.Drawing.Size(232, 20)
-        Me.TEProsedur.TabIndex = 23
-        '
-        'TESubProsedur
-        '
-        Me.TESubProsedur.Enabled = False
-        Me.TESubProsedur.Location = New System.Drawing.Point(439, 102)
-        Me.TESubProsedur.Name = "TESubProsedur"
-        Me.TESubProsedur.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TESubProsedur.Properties.Appearance.Options.UseFont = True
-        Me.TESubProsedur.Properties.ReadOnly = True
-        Me.TESubProsedur.Size = New System.Drawing.Size(257, 20)
-        Me.TESubProsedur.TabIndex = 24
         '
         'FormSOPNew
         '
@@ -749,6 +749,8 @@ Partial Class FormSOPNew
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TESubProsedur.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEProsedur.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPpsNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -786,8 +788,6 @@ Partial Class FormSOPNew
         CType(Me.PCSave, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCSave.ResumeLayout(False)
         Me.CMDepTerkait.ResumeLayout(False)
-        CType(Me.TEProsedur.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TESubProsedur.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
