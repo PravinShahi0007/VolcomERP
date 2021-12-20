@@ -6,7 +6,7 @@
             BMasterCatSOP.Visible = True
             XTPIndexPPS.Visible = True
             XTPScheduleSOPAdmin.Visible = True
-            XTPDepartemenTerkait.Visible = False
+            XTPDepartemenTerkait.Visible = True
         Else
             BMasterCatSOP.Visible = False
             XTPIndexPPS.Visible = False
