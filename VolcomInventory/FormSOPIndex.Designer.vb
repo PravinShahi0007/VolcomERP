@@ -30,6 +30,7 @@ Partial Class FormSOPIndex
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoLinkFile = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -45,6 +46,7 @@ Partial Class FormSOPIndex
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoFileByModul = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -105,8 +107,7 @@ Partial Class FormSOPIndex
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSOPIndex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSOPIndex.SuspendLayout()
         Me.XTPBySOP.SuspendLayout()
@@ -228,6 +229,14 @@ Partial Class FormSOPIndex
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 3
+        '
+        'GridColumn48
+        '
+        Me.GridColumn48.Caption = "Milestone"
+        Me.GridColumn48.FieldName = "milestone"
+        Me.GridColumn48.Name = "GridColumn48"
+        Me.GridColumn48.Visible = True
+        Me.GridColumn48.VisibleIndex = 5
         '
         'GridColumn3
         '
@@ -357,6 +366,14 @@ Partial Class FormSOPIndex
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 5
+        '
+        'GridColumn49
+        '
+        Me.GridColumn49.Caption = "Milestone"
+        Me.GridColumn49.FieldName = "milestone"
+        Me.GridColumn49.Name = "GridColumn49"
+        Me.GridColumn49.Visible = True
+        Me.GridColumn49.VisibleIndex = 6
         '
         'GridColumn9
         '
@@ -755,7 +772,7 @@ Partial Class FormSOPIndex
         '
         'GVDepartementTerkait
         '
-        Me.GVDepartementTerkait.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47})
+        Me.GVDepartementTerkait.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn50, Me.GridColumn47})
         Me.GVDepartementTerkait.GridControl = Me.GCDepartementTerkait
         Me.GVDepartementTerkait.Name = "GVDepartementTerkait"
         Me.GVDepartementTerkait.OptionsBehavior.ReadOnly = True
@@ -815,7 +832,7 @@ Partial Class FormSOPIndex
         Me.GridColumn47.FieldName = "doc_desc"
         Me.GridColumn47.Name = "GridColumn47"
         Me.GridColumn47.Visible = True
-        Me.GridColumn47.VisibleIndex = 5
+        Me.GridColumn47.VisibleIndex = 6
         '
         'RepositoryItemHyperLinkEdit1
         '
@@ -846,21 +863,13 @@ Partial Class FormSOPIndex
         Me.BRefresh.TabIndex = 1
         Me.BRefresh.Text = "Refresh"
         '
-        'GridColumn48
+        'GridColumn50
         '
-        Me.GridColumn48.Caption = "Milestone"
-        Me.GridColumn48.FieldName = "milestone"
-        Me.GridColumn48.Name = "GridColumn48"
-        Me.GridColumn48.Visible = True
-        Me.GridColumn48.VisibleIndex = 5
-        '
-        'GridColumn49
-        '
-        Me.GridColumn49.Caption = "Milestone"
-        Me.GridColumn49.FieldName = "milestone"
-        Me.GridColumn49.Name = "GridColumn49"
-        Me.GridColumn49.Visible = True
-        Me.GridColumn49.VisibleIndex = 6
+        Me.GridColumn50.Caption = "Milestone"
+        Me.GridColumn50.FieldName = "milestone"
+        Me.GridColumn50.Name = "GridColumn50"
+        Me.GridColumn50.Visible = True
+        Me.GridColumn50.VisibleIndex = 5
         '
         'FormSOPIndex
         '
@@ -1002,4 +1011,5 @@ Partial Class FormSOPIndex
     Friend WithEvents RepositoryItemHyperLinkEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn50 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
