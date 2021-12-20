@@ -2,11 +2,17 @@
     Public is_super_admin As String = "2"
 
     Private Sub FormSOPIndex_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'If Not is_super_admin = "1" Then
-        '    BNewSOP.Visible = False
-        'Else
-        '    BNewSOP.Visible = True
-        'End If
+        If is_super_admin = "1" Then
+            BMasterCatSOP.Visible = True
+            XTPIndexPPS.Visible = True
+            XTPScheduleSOPAdmin.Visible = True
+            XTPDepartemenTerkait.Visible = False
+        Else
+            BMasterCatSOP.Visible = False
+            XTPIndexPPS.Visible = False
+            XTPScheduleSOPAdmin.Visible = False
+            XTPDepartemenTerkait.Visible = True
+        End If
     End Sub
 
     Private Sub FormSOPIndex_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -19,7 +25,7 @@
     End Sub
 
     Private Sub GVBySOP_CellMerge(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs) Handles GVBySOP.CellMerge
-        If (e.Column.FieldName = "doc_desc" Or e.Column.FieldName = "sop_name" Or e.Column.FieldName = "sop_number" Or e.Column.FieldName = "sop_prosedur" Or e.Column.FieldName = "sop_prosedur_sub" Or e.Column.FieldName = "departement") Then
+        If (e.Column.FieldName = "doc_desc" Or e.Column.FieldName = "milestone" Or e.Column.FieldName = "sop_name" Or e.Column.FieldName = "sop_number" Or e.Column.FieldName = "sop_prosedur" Or e.Column.FieldName = "sop_prosedur_sub" Or e.Column.FieldName = "departement") Then
             Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
             Dim val1 As String = view.GetRowCellValue(e.RowHandle1, "id_sop")
             Dim val2 As String = view.GetRowCellValue(e.RowHandle2, "id_sop")
@@ -49,13 +55,26 @@
     Private Sub BRefresh_Click(sender As Object, e As EventArgs) Handles BRefresh.Click
         If XTCSOPIndex.SelectedTabPageIndex = 0 Then 'by SOP
             Dim q As String = "SELECT s.*,spsub.sop_prosedur_sub,sp.sop_prosedur,dep.departement,m.menu_name,m.`menu_caption`,CONCAT(d.id_doc,'_371_',s.id_sop,d.ext) AS filename,d.doc_desc
+,CONCAT(sch.milestone,' - ',sch.sts_meeting) AS milestone
 FROM `tb_sop` s
 INNER JOIN tb_m_departement dep ON dep.id_departement=s.id_departement
 INNER JOIN tb_sop_prosedur_sub spsub ON spsub.id_sop_prosedur_sub=s.id_sop_prosedur_sub
 INNER JOIN tb_sop_prosedur sp ON sp.id_sop_prosedur=spsub.id_sop_prosedur
 LEFT JOIN tb_sop_menu_erp er ON er.id_sop=s.id_sop
 LEFT JOIN tb_menu m ON m.`id_menu`=er.`id_menu`
-LEFT JOIN (SELECT * FROM tb_doc WHERE report_mark_type=371) d ON d.id_report=s.id_sop AND d.report_mark_type=371 "
+LEFT JOIN (SELECT * FROM tb_doc WHERE report_mark_type=371) d ON d.id_report=s.id_sop AND d.report_mark_type=371
+LEFT JOIN
+(
+    SELECT sch.*,IF(sch.is_complete=1,'Complete','Not Complete') AS sts_meeting,ml.milestone 
+    FROM tb_sop_schedule_sop sch
+    INNER JOIN tb_lookup_milestone ml ON ml.id_milestone=sch.id_milestone
+    INNER JOIN (
+	    SELECT id_sop,MAX(`datetime`) AS dt
+	    FROM `tb_sop_schedule_sop`
+	    WHERE NOT ISNULL(id_milestone) AND NOT ISNULL(is_complete)
+	    GROUP BY id_sop
+    )schm ON schm.id_sop=sch.id_sop AND sch.datetime=schm.dt
+)sch ON sch.id_sop=s.id_sop "
             If Not is_super_admin = "1" Then
                 q += " WHERE s.id_departement='" & id_departement_user & "' "
             End If
@@ -73,6 +92,7 @@ LEFT JOIN (SELECT * FROM tb_doc WHERE report_mark_type=371) d ON d.id_report=s.i
             End If
 
             Dim q As String = "SELECT s.*,spsub.sop_prosedur_sub,sp.sop_prosedur,dep.departement,m.id_menu,m.menu_name,m.`menu_caption`,CONCAT(d.id_doc,'_371_',s.id_sop,d.ext) AS filename,d.doc_desc
+,CONCAT(sch.milestone,' - ',sch.sts_meeting) AS milestone
 FROM (
 	SELECT m.id_menu,m.`description_menu_name`,m.`menu_caption`,m.`menu_name`
 	FROM tb_m_user usr
@@ -87,6 +107,18 @@ FROM (
 ) m
 LEFT JOIN tb_sop_menu_erp er ON er.id_menu=m.id_menu
 LEFT JOIN `tb_sop` s ON s.`id_sop`=er.`id_sop`
+LEFT JOIN
+(
+    SELECT sch.*,IF(sch.is_complete=1,'Complete','Not Complete') AS sts_meeting,ml.milestone 
+    FROM tb_sop_schedule_sop sch
+    INNER JOIN tb_lookup_milestone ml ON ml.id_milestone=sch.id_milestone
+    INNER JOIN (
+	    SELECT id_sop,MAX(`datetime`) AS dt
+	    FROM `tb_sop_schedule_sop`
+	    WHERE NOT ISNULL(id_milestone) AND NOT ISNULL(is_complete)
+	    GROUP BY id_sop
+    )schm ON schm.id_sop=sch.id_sop AND sch.datetime=schm.dt
+)sch ON sch.id_sop=s.id_sop
 LEFT JOIN tb_sop_prosedur_sub spsub ON spsub.id_sop_prosedur_sub=s.id_sop_prosedur_sub
 LEFT JOIN tb_sop_prosedur sp ON sp.id_sop_prosedur=spsub.id_sop_prosedur
 LEFT JOIN tb_m_departement dep ON dep.id_departement=s.id_departement
