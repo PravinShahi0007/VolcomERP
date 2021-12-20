@@ -4,14 +4,14 @@
     Private Sub FormSOPIndex_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If is_super_admin = "1" Then
             BMasterCatSOP.Visible = True
-            XTPIndexPPS.Visible = True
-            XTPScheduleSOPAdmin.Visible = True
-            XTPDepartemenTerkait.Visible = True
+            XTPIndexPPS.PageVisible = True
+            XTPScheduleSOPAdmin.PageVisible = True
+            XTPDepartemenTerkait.PageVisible = True
         Else
             BMasterCatSOP.Visible = False
-            XTPIndexPPS.Visible = False
-            XTPScheduleSOPAdmin.Visible = False
-            XTPDepartemenTerkait.Visible = True
+            XTPIndexPPS.PageVisible = False
+            XTPScheduleSOPAdmin.PageVisible = False
+            XTPDepartemenTerkait.PageVisible = True
         End If
         XTCSOPIndex.SelectedTabPageIndex = 0
     End Sub
