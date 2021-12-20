@@ -1996,6 +1996,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEOSChange.createNew()
         ElseIf formName = "FormEts" Then
             FormEts.createNew()
+        ElseIf formName = "FormBSP" Then
+            FormBSP.createNew()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3363,6 +3365,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormEOSChange.viewDetail()
             ElseIf formName = "FormEts" Then
                 FormEts.viewDetail()
+            ElseIf formName = "FormBSP" Then
+                FormBSP.viewDetail()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8882,6 +8886,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEOSChange.printList()
         ElseIf formName = "FormEts" Then
             FormEts.printList()
+        ElseIf formName = "FormBSP" Then
+            FormBSP.printList()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9942,6 +9948,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormMKDEvent" Then
             FormMKDEvent.Close()
             FormMKDEvent.Dispose()
+        ElseIf formName = "FormBSP" Then
+            FormBSP.Close()
+            FormBSP.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10998,6 +11007,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEOSChange.viewData()
         ElseIf formName = "FormEts" Then
             FormEts.viewData()
+        ElseIf formName = "FormBSP" Then
+            FormBSP.viewData()
         End If
     End Sub
     'Switch
