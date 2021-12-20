@@ -11170,7 +11170,7 @@ WHERE pps.id_sop_pps='" & id_report & "'"
 
             If id_status_reportx = "6" Then
                 Dim qv As String = "SELECT id_sop FROM tb_sop_dep_pps WHERE id_sop_dep_pps='" & id_report & "'"
-                Dim dtv As DataTable = execute_query(query, -1, True, "", "", "", "")
+                Dim dtv As DataTable = execute_query(qv, -1, True, "", "", "", "")
                 Dim id_sop As String = dtv.Rows(0)("id_sop").ToString
                 'file
                 '-- clean file

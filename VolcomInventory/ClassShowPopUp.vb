@@ -524,6 +524,9 @@
         ElseIf report_mark_type = "375" Then
             'propose index sop
             FormSOPIndexPPS.Close()
+        ElseIf report_mark_type = "377" Then
+            'propose index sop
+            FormSOPNew.Close()
         End If
     End Sub
     Sub show()
@@ -1688,6 +1691,11 @@ GROUP BY rec.`id_prod_order`"
             FormSOPIndexPPS.is_view = "1"
             FormSOPIndexPPS.id = id_report
             FormSOPIndexPPS.ShowDialog()
+        ElseIf report_mark_type = "377" Then
+            'propose sop detail
+            FormSOPNew.is_view = "1"
+            FormSOPNew.id_pps = id_report
+            FormSOPNew.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -3009,6 +3017,12 @@ GROUP BY rec.`id_prod_order`"
             'propose sop index
             table_name = "tb_sop_pps"
             field_id = "id_sop_pps"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "377" Then
+            'propose sop index
+            table_name = "tb_sop_dep_pps"
+            field_id = "id_sop_dep_pps"
             field_number = "number"
             field_date = "created_date"
         Else

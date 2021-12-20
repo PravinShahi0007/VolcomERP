@@ -34,6 +34,7 @@ Partial Class FormSOPIndex
         Me.RepoLinkFile = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoLinkMenuERP = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.BSOPAsset = New DevExpress.XtraEditors.SimpleButton()
         Me.BMasterCatSOP = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPByModul = New DevExpress.XtraTab.XtraTabPage()
         Me.GCByModul = New DevExpress.XtraGrid.GridControl()
@@ -83,9 +84,6 @@ Partial Class FormSOPIndex
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BNewSOP = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
-        Me.BSOPAsset = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPengajuanKelengkapan = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPengajuanKelengkapan = New DevExpress.XtraGrid.GridControl()
         Me.GVPengajuanKelengkapan = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -93,6 +91,20 @@ Partial Class FormSOPIndex
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPDepartemenTerkait = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCDepartementTerkait = New DevExpress.XtraGrid.GridControl()
+        Me.GVDepartementTerkait = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         CType(Me.XTCSOPIndex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSOPIndex.SuspendLayout()
         Me.XTPBySOP.SuspendLayout()
@@ -117,11 +129,16 @@ Partial Class FormSOPIndex
         Me.XTPIndexPPS.SuspendLayout()
         CType(Me.GCIndexPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVIndexPPS, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
         Me.XTPPengajuanKelengkapan.SuspendLayout()
         CType(Me.GCPengajuanKelengkapan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPengajuanKelengkapan, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        Me.XTPDepartemenTerkait.SuspendLayout()
+        CType(Me.GCDepartementTerkait, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDepartementTerkait, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSOPIndex
@@ -133,7 +150,7 @@ Partial Class FormSOPIndex
         Me.XTCSOPIndex.SelectedTabPage = Me.XTPBySOP
         Me.XTCSOPIndex.Size = New System.Drawing.Size(1046, 520)
         Me.XTCSOPIndex.TabIndex = 0
-        Me.XTCSOPIndex.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBySOP, Me.XTPByModul, Me.XTPScheduleSOPAdmin, Me.XTPScheduleSOPGuest, Me.XTPIndexPPS, Me.XTPPengajuanKelengkapan})
+        Me.XTCSOPIndex.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBySOP, Me.XTPByModul, Me.XTPScheduleSOPAdmin, Me.XTPScheduleSOPGuest, Me.XTPIndexPPS, Me.XTPPengajuanKelengkapan, Me.XTPDepartemenTerkait})
         '
         'XTPBySOP
         '
@@ -237,6 +254,20 @@ Partial Class FormSOPIndex
         '
         Me.RepoLinkMenuERP.AutoHeight = False
         Me.RepoLinkMenuERP.Name = "RepoLinkMenuERP"
+        '
+        'BSOPAsset
+        '
+        Me.BSOPAsset.Appearance.BackColor = System.Drawing.Color.DarkBlue
+        Me.BSOPAsset.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BSOPAsset.Appearance.Options.UseBackColor = True
+        Me.BSOPAsset.Appearance.Options.UseForeColor = True
+        Me.BSOPAsset.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BSOPAsset.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BSOPAsset.Location = New System.Drawing.Point(0, 412)
+        Me.BSOPAsset.Name = "BSOPAsset"
+        Me.BSOPAsset.Size = New System.Drawing.Size(1040, 40)
+        Me.BSOPAsset.TabIndex = 9
+        Me.BSOPAsset.Text = "Pengajuan kelengkapan SOP"
         '
         'BMasterCatSOP
         '
@@ -645,39 +676,6 @@ Partial Class FormSOPIndex
         Me.BNewSOP.TabIndex = 7
         Me.BNewSOP.Text = "New Proposal"
         '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.BRefresh)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1046, 48)
-        Me.PanelControl1.TabIndex = 1
-        '
-        'BRefresh
-        '
-        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
-        Me.BRefresh.Location = New System.Drawing.Point(928, 2)
-        Me.BRefresh.Name = "BRefresh"
-        Me.BRefresh.Size = New System.Drawing.Size(116, 44)
-        Me.BRefresh.TabIndex = 1
-        Me.BRefresh.Text = "Refresh"
-        '
-        'BSOPAsset
-        '
-        Me.BSOPAsset.Appearance.BackColor = System.Drawing.Color.DarkBlue
-        Me.BSOPAsset.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BSOPAsset.Appearance.Options.UseBackColor = True
-        Me.BSOPAsset.Appearance.Options.UseForeColor = True
-        Me.BSOPAsset.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
-        Me.BSOPAsset.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BSOPAsset.Location = New System.Drawing.Point(0, 412)
-        Me.BSOPAsset.Name = "BSOPAsset"
-        Me.BSOPAsset.Size = New System.Drawing.Size(1040, 40)
-        Me.BSOPAsset.TabIndex = 9
-        Me.BSOPAsset.Text = "Pengajuan kelengkapan SOP"
-        '
         'XTPPengajuanKelengkapan
         '
         Me.XTPPengajuanKelengkapan.Controls.Add(Me.GCPengajuanKelengkapan)
@@ -735,6 +733,117 @@ Partial Class FormSOPIndex
         Me.GridColumn40.VisibleIndex = 2
         Me.GridColumn40.Width = 247
         '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BRefresh)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1046, 48)
+        Me.PanelControl1.TabIndex = 1
+        '
+        'BRefresh
+        '
+        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
+        Me.BRefresh.Location = New System.Drawing.Point(928, 2)
+        Me.BRefresh.Name = "BRefresh"
+        Me.BRefresh.Size = New System.Drawing.Size(116, 44)
+        Me.BRefresh.TabIndex = 1
+        Me.BRefresh.Text = "Refresh"
+        '
+        'XTPDepartemenTerkait
+        '
+        Me.XTPDepartemenTerkait.Controls.Add(Me.GCDepartementTerkait)
+        Me.XTPDepartemenTerkait.Name = "XTPDepartemenTerkait"
+        Me.XTPDepartemenTerkait.Size = New System.Drawing.Size(1040, 492)
+        Me.XTPDepartemenTerkait.Text = "SOP Terkait"
+        '
+        'GCDepartementTerkait
+        '
+        Me.GCDepartementTerkait.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDepartementTerkait.Location = New System.Drawing.Point(0, 0)
+        Me.GCDepartementTerkait.MainView = Me.GVDepartementTerkait
+        Me.GCDepartementTerkait.Name = "GCDepartementTerkait"
+        Me.GCDepartementTerkait.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemHyperLinkEdit1, Me.RepositoryItemHyperLinkEdit2})
+        Me.GCDepartementTerkait.Size = New System.Drawing.Size(1040, 492)
+        Me.GCDepartementTerkait.TabIndex = 1
+        Me.GCDepartementTerkait.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDepartementTerkait})
+        '
+        'GVDepartementTerkait
+        '
+        Me.GVDepartementTerkait.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47})
+        Me.GVDepartementTerkait.GridControl = Me.GCDepartementTerkait
+        Me.GVDepartementTerkait.Name = "GVDepartementTerkait"
+        Me.GVDepartementTerkait.OptionsBehavior.ReadOnly = True
+        Me.GVDepartementTerkait.OptionsView.AllowCellMerge = True
+        Me.GVDepartementTerkait.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn41
+        '
+        Me.GridColumn41.Caption = "ID"
+        Me.GridColumn41.FieldName = "id_sop"
+        Me.GridColumn41.Name = "GridColumn41"
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.Caption = "Milik Departement"
+        Me.GridColumn42.FieldName = "departement"
+        Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.Visible = True
+        Me.GridColumn42.VisibleIndex = 0
+        '
+        'GridColumn43
+        '
+        Me.GridColumn43.Caption = "Prosedur"
+        Me.GridColumn43.FieldName = "sop_prosedur"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 1
+        '
+        'GridColumn44
+        '
+        Me.GridColumn44.Caption = "Sub Prosedur"
+        Me.GridColumn44.FieldName = "sop_prosedur_sub"
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 2
+        '
+        'GridColumn45
+        '
+        Me.GridColumn45.Caption = "Nama SOP"
+        Me.GridColumn45.FieldName = "sop_name"
+        Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.Visible = True
+        Me.GridColumn45.VisibleIndex = 4
+        '
+        'GridColumn46
+        '
+        Me.GridColumn46.Caption = "Nomor SOP"
+        Me.GridColumn46.FieldName = "sop_number"
+        Me.GridColumn46.Name = "GridColumn46"
+        Me.GridColumn46.Visible = True
+        Me.GridColumn46.VisibleIndex = 3
+        '
+        'GridColumn47
+        '
+        Me.GridColumn47.Caption = "File SOP"
+        Me.GridColumn47.ColumnEdit = Me.RepositoryItemHyperLinkEdit1
+        Me.GridColumn47.FieldName = "doc_desc"
+        Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.Visible = True
+        Me.GridColumn47.VisibleIndex = 5
+        '
+        'RepositoryItemHyperLinkEdit1
+        '
+        Me.RepositoryItemHyperLinkEdit1.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit1.Name = "RepositoryItemHyperLinkEdit1"
+        '
+        'RepositoryItemHyperLinkEdit2
+        '
+        Me.RepositoryItemHyperLinkEdit2.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit2.Name = "RepositoryItemHyperLinkEdit2"
+        '
         'FormSOPIndex
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -774,11 +883,16 @@ Partial Class FormSOPIndex
         Me.XTPIndexPPS.ResumeLayout(False)
         CType(Me.GCIndexPPS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVIndexPPS, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
         Me.XTPPengajuanKelengkapan.ResumeLayout(False)
         CType(Me.GCPengajuanKelengkapan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPengajuanKelengkapan, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.XTPDepartemenTerkait.ResumeLayout(False)
+        CType(Me.GCDepartementTerkait, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDepartementTerkait, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -856,4 +970,16 @@ Partial Class FormSOPIndex
     Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPDepartemenTerkait As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCDepartementTerkait As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDepartementTerkait As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemHyperLinkEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents RepositoryItemHyperLinkEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
 End Class

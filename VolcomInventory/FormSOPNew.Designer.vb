@@ -72,6 +72,8 @@ Partial Class FormSOPNew
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPDepTerkait = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDepartementTerkait = New DevExpress.XtraGrid.GridControl()
+        Me.CMDepTerkait = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVDepartementTerkait = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -85,8 +87,6 @@ Partial Class FormSOPNew
         Me.PCSave = New DevExpress.XtraEditors.PanelControl()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.CMDepTerkait = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TESubProsedur.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,6 +117,7 @@ Partial Class FormSOPNew
         Me.XTPDetail.SuspendLayout()
         Me.XTPDepTerkait.SuspendLayout()
         CType(Me.GCDepartementTerkait, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMDepTerkait.SuspendLayout()
         CType(Me.GVDepartementTerkait, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -124,7 +125,6 @@ Partial Class FormSOPNew
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCSave, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCSave.SuspendLayout()
-        Me.CMDepTerkait.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -324,6 +324,7 @@ Partial Class FormSOPNew
         Me.TEFile.Properties.ReadOnly = True
         Me.TEFile.Size = New System.Drawing.Size(231, 20)
         Me.TEFile.TabIndex = 17
+        Me.TEFile.Visible = False
         '
         'BUploadFile
         '
@@ -606,6 +607,18 @@ Partial Class FormSOPNew
         Me.GCDepartementTerkait.TabIndex = 15
         Me.GCDepartementTerkait.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDepartementTerkait})
         '
+        'CMDepTerkait
+        '
+        Me.CMDepTerkait.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.CMDepTerkait.Name = "CM"
+        Me.CMDepTerkait.Size = New System.Drawing.Size(118, 26)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(117, 22)
+        Me.ToolStripMenuItem1.Text = "Remove"
+        '
         'GVDepartementTerkait
         '
         Me.GVDepartementTerkait.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16})
@@ -719,20 +732,6 @@ Partial Class FormSOPNew
         Me.BtnMark.Text = "Mark"
         Me.BtnMark.Visible = False
         '
-        'CMDepTerkait
-        '
-        Me.CMDepTerkait.Enabled = False
-        Me.CMDepTerkait.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
-        Me.CMDepTerkait.Name = "CM"
-        Me.CMDepTerkait.Size = New System.Drawing.Size(118, 26)
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Enabled = False
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
-        Me.ToolStripMenuItem1.Text = "Remove"
-        '
         'FormSOPNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -779,6 +778,7 @@ Partial Class FormSOPNew
         Me.XTPDetail.ResumeLayout(False)
         Me.XTPDepTerkait.ResumeLayout(False)
         CType(Me.GCDepartementTerkait, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMDepTerkait.ResumeLayout(False)
         CType(Me.GVDepartementTerkait, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
@@ -787,7 +787,6 @@ Partial Class FormSOPNew
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCSave, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCSave.ResumeLayout(False)
-        Me.CMDepTerkait.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

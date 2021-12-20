@@ -52,6 +52,7 @@
 
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 
+            id_sop = dt.Rows(0)("id_sop").ToString
             SLEDepartement.EditValue = dt.Rows(0)("id_departement").ToString
             TEProsedur.Text = dt.Rows(0)("sop_prosedur").ToString
             TESubProsedur.Text = dt.Rows(0)("sop_prosedur_sub").ToString
@@ -362,7 +363,7 @@ VALUES('" & addSlashes(TESOPName.Text) & "','" & SLEDepartement.EditValue.ToStri
     End Sub
 
     Private Sub BProposeSOPAsset_Click(sender As Object, e As EventArgs) Handles BProposeSOPAsset.Click
-        Dim q As String = "SELECT * FROM tb_sop_dep_pps WHERE id_sop='" & id_sop & "' AND id_report_status!=5"
+        Dim q As String = "SELECT * FROM tb_sop_dep_pps WHERE id_sop='" & id_sop & "' AND id_report_status!=5 AND id_report_status!=6"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         If dt.Rows.Count > 0 Then
             warningCustom("SOP sedang dalam proses pengajuan perubahan. Batalkan pengajuan sebelumnya untuk melanjutkan.")
