@@ -81,17 +81,35 @@ WHERE p.id_departement='" & SLEDepartement.EditValue.ToString & "'"
             Dim qc As String = "SELECT * FROM tb_sop_pps_det ppsd
 INNER JOIN tb_sop_pps pps ON pps.id_sop_pps=ppsd.id_sop_pps
 WHERE pps.id_report_status!=5 AND ppsd.id_sop_prosedur_sub='" & SLESubProsedur.EditValue.ToString & "' AND ppsd.sop_name='" & addSlashes(TESOPName.Text) & "'"
-            GVList.AddNewRow()
-            GVList.FocusedRowHandle = GVList.RowCount - 1
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
             '
-            GVList.SetRowCellValue(GVList.RowCount - 1, "id_sop_prosedur_sub", SLESubProsedur.EditValue.ToString)
-            GVList.SetRowCellValue(GVList.RowCount - 1, "sop_prosedur_sub", SLESubProsedur.Properties.View.GetFocusedRowCellValue("sop_prosedur_sub").ToString)
-            GVList.SetRowCellValue(GVList.RowCount - 1, "sop_prosedur_sub_code", SLESubProsedur.Properties.View.GetFocusedRowCellValue("sop_prosedur_sub_code").ToString)
-            GVList.SetRowCellValue(GVList.RowCount - 1, "sop_prosedur", SLESubProsedur.Properties.View.GetFocusedRowCellValue("sop_prosedur").ToString)
-            GVList.SetRowCellValue(GVList.RowCount - 1, "sop_prosedur_code", SLESubProsedur.Properties.View.GetFocusedRowCellValue("sop_prosedur_code").ToString)
-            GVList.SetRowCellValue(GVList.RowCount - 1, "sop_name", TESOPName.Text)
+            Dim dupe As Boolean = False
+            For i = 0 To GVList.RowCount - 1
+                If GVList.GetRowCellValue(i, "id_sop_prosedur_sub").ToString = SLESubProsedur.EditValue.ToString And GVList.GetRowCellValue(i, "sop_name").ToString = TESOPName.Text Then
+                    dupe = True
+                    Exit For
+                End If
+            Next
             '
-            GVList.BestFitColumns()
+            If dtc.Rows.Count > 0 Or dupe Then
+                warningCustom("Nama prosedur sudah pernah diinput.")
+            Else
+                GVList.AddNewRow()
+                GVList.FocusedRowHandle = GVList.RowCount - 1
+                '
+                GVList.SetRowCellValue(GVList.RowCount - 1, "id_sop_prosedur_sub", SLESubProsedur.EditValue.ToString)
+                GVList.SetRowCellValue(GVList.RowCount - 1, "sop_prosedur_sub", SLESubProsedur.Properties.View.GetFocusedRowCellValue("sop_prosedur_sub").ToString)
+                GVList.SetRowCellValue(GVList.RowCount - 1, "sop_prosedur_sub_code", SLESubProsedur.Properties.View.GetFocusedRowCellValue("sop_prosedur_sub_code").ToString)
+                GVList.SetRowCellValue(GVList.RowCount - 1, "sop_prosedur", SLESubProsedur.Properties.View.GetFocusedRowCellValue("sop_prosedur").ToString)
+                GVList.SetRowCellValue(GVList.RowCount - 1, "sop_prosedur_code", SLESubProsedur.Properties.View.GetFocusedRowCellValue("sop_prosedur_code").ToString)
+                GVList.SetRowCellValue(GVList.RowCount - 1, "sop_name", TESOPName.Text)
+                '
+                GVList.BestFitColumns()
+                '
+                TESOPName.Text = ""
+                TESOPName.Focus()
+            End If
+
             Cursor = Cursors.Default
         Else
             warningCustom("Pastikan anda memilih departement dan sub prosedur")
