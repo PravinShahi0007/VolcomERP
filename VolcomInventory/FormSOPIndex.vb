@@ -97,6 +97,10 @@ ORDER BY id_menu"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCByModul.DataSource = dt
             GVByModul.BestFitColumns()
+        ElseIf XTCSOPIndex.SelectedTabPageIndex = 2 Then 'schedule admin
+            view_sop_schedule_admin()
+        ElseIf XTCSOPIndex.SelectedTabPageIndex = 3 Then 'schedule guest
+            view_sop_schedule_guest()
         ElseIf XTCSOPIndex.SelectedTabPageIndex = 4 Then 'Index Proposal
             Dim q As String = "SELECT pps.*,sts.report_status,dep.departement FROM `tb_sop_pps` pps
 INNER JOIN tb_m_departement dep ON dep.id_departement=pps.id_departement
@@ -221,6 +225,101 @@ INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_sta
         If GVIndexPPS.RowCount > 0 Then
             FormSOPIndexPPS.id = GVIndexPPS.GetFocusedRowCellValue("id_sop_pps").ToString
             FormSOPIndexPPS.ShowDialog()
+        End If
+    End Sub
+
+    Sub view_sop_schedule_admin()
+        Dim query As String = "
+            SELECT s.id_sop_schedule, s.id_departement, d.departement, DATE_FORMAT(s.date, '%d %M %Y') AS `date`, CONCAT(s.time_start, ' - ', s.time_end) AS `time`, m.sop, m.milestone, m.status    
+            FROM tb_sop_schedule AS s
+            LEFT JOIN tb_m_departement AS d ON s.id_departement = d.id_departement
+            LEFT JOIN (
+                SELECT tb.id_sop_schedule, GROUP_CONCAT(tb.sop SEPARATOR '\n') AS sop, GROUP_CONCAT(tb.milestone SEPARATOR '\n') AS milestone, GROUP_CONCAT(tb.status SEPARATOR '\n') AS `status`
+                FROM (
+                    SELECT s.id_sop_schedule, CONCAT(t.sop_number, ' | ', t.sop_name) AS sop, m.milestone, IF(s.is_complete IS NULL, '-', IF(s.is_complete = 1, 'Complete', 'Not Complete')) AS `status`
+                    FROM tb_sop_schedule_sop AS s
+                    LEFT JOIN tb_sop AS t ON s.id_sop = t.id_sop
+                    LEFT JOIN tb_lookup_milestone AS m ON s.id_milestone = m.id_milestone
+                ) AS tb
+                GROUP BY tb.id_sop_schedule
+            ) AS m ON s.id_sop_schedule = m.id_sop_schedule
+            ORDER BY s.date DESC, s.time_start DESC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCScheduleAdmin.DataSource = data
+
+        GVScheduleAdmin.BestFitColumns()
+
+        schedule_check_control()
+    End Sub
+
+    Sub view_sop_schedule_guest()
+        Dim query As String = "
+            SELECT s.id_sop_schedule, s.id_departement, d.departement, DATE_FORMAT(s.date, '%d %M %Y') AS `date`, CONCAT(s.time_start, ' - ', s.time_end) AS `time`, m.sop, m.milestone, m.status    
+            FROM tb_sop_schedule AS s
+            LEFT JOIN tb_m_departement AS d ON s.id_departement = d.id_departement
+            LEFT JOIN (
+                SELECT tb.id_sop_schedule, GROUP_CONCAT(tb.sop SEPARATOR '\n') AS sop, GROUP_CONCAT(tb.milestone SEPARATOR '\n') AS milestone, GROUP_CONCAT(tb.status SEPARATOR '\n') AS `status`
+                FROM (
+                    SELECT s.id_sop_schedule, CONCAT(t.sop_number, ' | ', t.sop_name) AS sop, m.milestone, IF(s.is_complete IS NULL, '-', IF(s.is_complete = 1, 'Complete', 'Not Complete')) AS `status`
+                    FROM tb_sop_schedule_sop AS s
+                    LEFT JOIN tb_sop AS t ON s.id_sop = t.id_sop
+                    LEFT JOIN tb_lookup_milestone AS m ON s.id_milestone = m.id_milestone
+                ) AS tb
+                GROUP BY tb.id_sop_schedule
+            ) AS m ON s.id_sop_schedule = m.id_sop_schedule
+            WHERE s.id_departement = '" + id_departement_user + "'
+            ORDER BY s.date DESC, s.time_start DESC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCScheduleGuest.DataSource = data
+
+        GVScheduleGuest.BestFitColumns()
+    End Sub
+
+    Private Sub SBSetSOP_Click(sender As Object, e As EventArgs) Handles SBSetSOP.Click
+        FormSOPSelectSOP.ShowDialog()
+    End Sub
+
+    Private Sub SBSetComplete_Click(sender As Object, e As EventArgs) Handles SBSetComplete.Click
+        FormSOPSetComplete.ShowDialog()
+    End Sub
+
+    Private Sub GVScheduleAdmin_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVScheduleAdmin.FocusedRowChanged
+        schedule_check_control()
+    End Sub
+
+    Sub schedule_check_control()
+        Try
+            Dim is_complete As String = execute_query("SELECT COUNT(*) FROM tb_sop_schedule_sop WHERE id_sop_schedule = '" + GVScheduleAdmin.GetFocusedRowCellValue("id_sop_schedule").ToString + "'", 0, True, "", "", "", "")
+
+            If is_complete = "0" Then
+                SBSetSOP.Visible = True
+                SBSetComplete.Visible = False
+            Else
+                SBSetSOP.Visible = True
+                SBSetComplete.Visible = True
+            End If
+
+            If Not GVScheduleAdmin.GetFocusedRowCellValue("milestone").ToString = "" Then
+                SBSetComplete.Visible = False
+                SBSetSOP.Visible = False
+            End If
+        Catch ex As Exception
+            SBSetComplete.Visible = False
+            SBSetSOP.Visible = False
+        End Try
+    End Sub
+
+    Private Sub XTCSOPIndex_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCSOPIndex.SelectedPageChanged
+        If XTCSOPIndex.SelectedTabPageIndex = 2 Then
+            view_sop_schedule_admin()
+        ElseIf XTCSOPIndex.SelectedTabPageIndex = 3 Then
+            view_sop_schedule_guest()
         End If
     End Sub
 End Class

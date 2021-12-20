@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormSOPIndex
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormSOPIndex
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSOPIndex))
         Me.XTCSOPIndex = New DevExpress.XtraTab.XtraTabControl()
@@ -26,7 +26,10 @@ Partial Class FormSOPIndex
         Me.GVBySOP = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoLinkFile = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -37,6 +40,9 @@ Partial Class FormSOPIndex
         Me.GVByModul = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoFileByModul = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
@@ -45,7 +51,18 @@ Partial Class FormSOPIndex
         Me.XTPScheduleSOPAdmin = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScheduleAdmin = New DevExpress.XtraGrid.GridControl()
         Me.GVScheduleAdmin = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBSetComplete = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBSetSOP = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAddSchedule = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPScheduleSOPGuest = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScheduleGuest = New DevExpress.XtraGrid.GridControl()
@@ -60,12 +77,14 @@ Partial Class FormSOPIndex
         Me.BNewSOP = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSOPIndex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSOPIndex.SuspendLayout()
         Me.XTPBySOP.SuspendLayout()
@@ -81,6 +100,7 @@ Partial Class FormSOPIndex
         Me.XTPScheduleSOPAdmin.SuspendLayout()
         CType(Me.GCScheduleAdmin, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScheduleAdmin, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         Me.XTPScheduleSOPGuest.SuspendLayout()
@@ -146,6 +166,22 @@ Partial Class FormSOPIndex
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 0
         '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Prosedur"
+        Me.GridColumn17.FieldName = "sop_prosedur"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 1
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Sub Prosedur"
+        Me.GridColumn16.FieldName = "sop_prosedur_sub"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 2
+        '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Nama SOP"
@@ -153,6 +189,14 @@ Partial Class FormSOPIndex
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 4
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Nomor SOP"
+        Me.GridColumn15.FieldName = "sop_number"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 3
         '
         'GridColumn3
         '
@@ -237,6 +281,30 @@ Partial Class FormSOPIndex
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 1
         '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Prosedur"
+        Me.GridColumn21.FieldName = "sop_prosedur"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 2
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Sub Prosedur"
+        Me.GridColumn20.FieldName = "sop_prosedur_sub"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 3
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Nomor SOP"
+        Me.GridColumn18.FieldName = "sop_number"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 4
+        '
         'GridColumn8
         '
         Me.GridColumn8.Caption = "Nama SOP"
@@ -287,25 +355,116 @@ Partial Class FormSOPIndex
         Me.GCScheduleAdmin.Location = New System.Drawing.Point(0, 48)
         Me.GCScheduleAdmin.MainView = Me.GVScheduleAdmin
         Me.GCScheduleAdmin.Name = "GCScheduleAdmin"
+        Me.GCScheduleAdmin.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit})
         Me.GCScheduleAdmin.Size = New System.Drawing.Size(1040, 444)
         Me.GCScheduleAdmin.TabIndex = 1
         Me.GCScheduleAdmin.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScheduleAdmin})
         '
         'GVScheduleAdmin
         '
+        Me.GVScheduleAdmin.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28})
         Me.GVScheduleAdmin.GridControl = Me.GCScheduleAdmin
         Me.GVScheduleAdmin.Name = "GVScheduleAdmin"
+        Me.GVScheduleAdmin.OptionsBehavior.Editable = False
         Me.GVScheduleAdmin.OptionsView.ColumnAutoWidth = False
+        Me.GVScheduleAdmin.OptionsView.RowAutoHeight = True
         Me.GVScheduleAdmin.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Department"
+        Me.GridColumn19.FieldName = "departement"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 0
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Date"
+        Me.GridColumn22.FieldName = "date"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 1
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Time"
+        Me.GridColumn23.FieldName = "time"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 2
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "SOP"
+        Me.GridColumn24.ColumnEdit = Me.RepositoryItemMemoEdit
+        Me.GridColumn24.FieldName = "sop"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 3
+        '
+        'RepositoryItemMemoEdit
+        '
+        Me.RepositoryItemMemoEdit.Name = "RepositoryItemMemoEdit"
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Milestone"
+        Me.GridColumn25.ColumnEdit = Me.RepositoryItemMemoEdit
+        Me.GridColumn25.FieldName = "milestone"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 4
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Status"
+        Me.GridColumn26.ColumnEdit = Me.RepositoryItemMemoEdit
+        Me.GridColumn26.FieldName = "status"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 5
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.FieldName = "id_sop_schedule"
+        Me.GridColumn27.Name = "GridColumn27"
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.FieldName = "id_departement"
+        Me.GridColumn28.Name = "GridColumn28"
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.SBSetComplete)
+        Me.PanelControl2.Controls.Add(Me.SBSetSOP)
         Me.PanelControl2.Controls.Add(Me.SBAddSchedule)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1040, 48)
         Me.PanelControl2.TabIndex = 0
+        '
+        'SBSetComplete
+        '
+        Me.SBSetComplete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBSetComplete.Image = CType(resources.GetObject("SBSetComplete.Image"), System.Drawing.Image)
+        Me.SBSetComplete.Location = New System.Drawing.Point(810, 2)
+        Me.SBSetComplete.Name = "SBSetComplete"
+        Me.SBSetComplete.Size = New System.Drawing.Size(117, 44)
+        Me.SBSetComplete.TabIndex = 2
+        Me.SBSetComplete.Text = "Set Complete"
+        '
+        'SBSetSOP
+        '
+        Me.SBSetSOP.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBSetSOP.Image = CType(resources.GetObject("SBSetSOP.Image"), System.Drawing.Image)
+        Me.SBSetSOP.Location = New System.Drawing.Point(927, 2)
+        Me.SBSetSOP.Name = "SBSetSOP"
+        Me.SBSetSOP.Size = New System.Drawing.Size(111, 44)
+        Me.SBSetSOP.TabIndex = 1
+        Me.SBSetSOP.Text = "Select SOP"
         '
         'SBAddSchedule
         '
@@ -336,9 +495,12 @@ Partial Class FormSOPIndex
         '
         'GVScheduleGuest
         '
+        Me.GVScheduleGuest.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36})
         Me.GVScheduleGuest.GridControl = Me.GCScheduleGuest
         Me.GVScheduleGuest.Name = "GVScheduleGuest"
+        Me.GVScheduleGuest.OptionsBehavior.Editable = False
         Me.GVScheduleGuest.OptionsView.ColumnAutoWidth = False
+        Me.GVScheduleGuest.OptionsView.RowAutoHeight = True
         Me.GVScheduleGuest.OptionsView.ShowGroupPanel = False
         '
         'XTPIndexPPS
@@ -432,53 +594,63 @@ Partial Class FormSOPIndex
         Me.BRefresh.TabIndex = 1
         Me.BRefresh.Text = "Refresh"
         '
-        'GridColumn15
+        'GridColumn29
         '
-        Me.GridColumn15.Caption = "Nomor SOP"
-        Me.GridColumn15.FieldName = "sop_number"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 3
+        Me.GridColumn29.Caption = "Department"
+        Me.GridColumn29.FieldName = "departement"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 0
         '
-        'GridColumn16
+        'GridColumn30
         '
-        Me.GridColumn16.Caption = "Sub Prosedur"
-        Me.GridColumn16.FieldName = "sop_prosedur_sub"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 2
+        Me.GridColumn30.Caption = "Date"
+        Me.GridColumn30.FieldName = "date"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 1
         '
-        'GridColumn17
+        'GridColumn31
         '
-        Me.GridColumn17.Caption = "Prosedur"
-        Me.GridColumn17.FieldName = "sop_prosedur"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 1
+        Me.GridColumn31.Caption = "Time"
+        Me.GridColumn31.FieldName = "time"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 2
         '
-        'GridColumn18
+        'GridColumn32
         '
-        Me.GridColumn18.Caption = "Nomor SOP"
-        Me.GridColumn18.FieldName = "sop_number"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 4
+        Me.GridColumn32.Caption = "SOP"
+        Me.GridColumn32.FieldName = "sop"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 3
         '
-        'GridColumn20
+        'GridColumn33
         '
-        Me.GridColumn20.Caption = "Sub Prosedur"
-        Me.GridColumn20.FieldName = "sop_prosedur_sub"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 3
+        Me.GridColumn33.Caption = "Milestone"
+        Me.GridColumn33.FieldName = "milestone"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 4
         '
-        'GridColumn21
+        'GridColumn34
         '
-        Me.GridColumn21.Caption = "Prosedur"
-        Me.GridColumn21.FieldName = "sop_prosedur"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 2
+        Me.GridColumn34.Caption = "Status"
+        Me.GridColumn34.FieldName = "status"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 5
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.FieldName = "id_sop_schedule"
+        Me.GridColumn35.Name = "GridColumn35"
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.FieldName = "id_departement"
+        Me.GridColumn36.Name = "GridColumn36"
         '
         'FormSOPIndex
         '
@@ -510,6 +682,7 @@ Partial Class FormSOPIndex
         Me.XTPScheduleSOPAdmin.ResumeLayout(False)
         CType(Me.GCScheduleAdmin, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVScheduleAdmin, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.XTPScheduleSOPGuest.ResumeLayout(False)
@@ -570,4 +743,23 @@ Partial Class FormSOPIndex
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBSetSOP As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemMemoEdit As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents SBSetComplete As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

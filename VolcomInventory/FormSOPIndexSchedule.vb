@@ -37,6 +37,8 @@
 
                 infoCustom("Schedule saved.")
 
+                FormSOPIndex.view_sop_schedule_admin()
+
                 Close()
             End If
         Else
