@@ -110,7 +110,7 @@ Partial Class FormBSPDet
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(821, 159)
+        Me.GroupControlHead.Size = New System.Drawing.Size(805, 159)
         Me.GroupControlHead.TabIndex = 12
         '
         'SLEStore
@@ -188,7 +188,7 @@ Partial Class FormBSPDet
         Me.BtnCreateNew.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
         Me.BtnCreateNew.Location = New System.Drawing.Point(20, 128)
         Me.BtnCreateNew.Name = "BtnCreateNew"
-        Me.BtnCreateNew.Size = New System.Drawing.Size(538, 29)
+        Me.BtnCreateNew.Size = New System.Drawing.Size(518, 29)
         Me.BtnCreateNew.TabIndex = 8925
         Me.BtnCreateNew.Text = "Create New"
         Me.BtnCreateNew.Visible = False
@@ -235,9 +235,9 @@ Partial Class FormBSPDet
         Me.PanelControl1.Controls.Add(Me.TxtNumber)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(558, 2)
+        Me.PanelControl1.Location = New System.Drawing.Point(538, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(261, 155)
+        Me.PanelControl1.Size = New System.Drawing.Size(265, 155)
         Me.PanelControl1.TabIndex = 4
         '
         'LabelControl21
@@ -318,16 +318,16 @@ Partial Class FormBSPDet
         Me.PanelControlBottom.Controls.Add(Me.BtnSaveChanges)
         Me.PanelControlBottom.Controls.Add(Me.BtnConfirm)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 446)
+        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 454)
         Me.PanelControlBottom.Name = "PanelControlBottom"
-        Me.PanelControlBottom.Size = New System.Drawing.Size(821, 44)
+        Me.PanelControlBottom.Size = New System.Drawing.Size(805, 44)
         Me.PanelControlBottom.TabIndex = 17
         '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(161, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(145, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
         Me.BtnPrint.TabIndex = 3
@@ -337,7 +337,7 @@ Partial Class FormBSPDet
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(248, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(232, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 40)
         Me.BtnAttachment.TabIndex = 4
@@ -359,7 +359,7 @@ Partial Class FormBSPDet
         '
         Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(354, 2)
+        Me.BtnCancell.Location = New System.Drawing.Point(338, 2)
         Me.BtnCancell.Name = "BtnCancell"
         Me.BtnCancell.Size = New System.Drawing.Size(126, 40)
         Me.BtnCancell.TabIndex = 7
@@ -370,7 +370,7 @@ Partial Class FormBSPDet
         '
         Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
-        Me.BtnResetPropose.Location = New System.Drawing.Point(480, 2)
+        Me.BtnResetPropose.Location = New System.Drawing.Point(464, 2)
         Me.BtnResetPropose.Name = "BtnResetPropose"
         Me.BtnResetPropose.Size = New System.Drawing.Size(123, 40)
         Me.BtnResetPropose.TabIndex = 9
@@ -380,7 +380,7 @@ Partial Class FormBSPDet
         '
         Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
-        Me.BtnSaveChanges.Location = New System.Drawing.Point(603, 2)
+        Me.BtnSaveChanges.Location = New System.Drawing.Point(587, 2)
         Me.BtnSaveChanges.Name = "BtnSaveChanges"
         Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
         Me.BtnSaveChanges.TabIndex = 8
@@ -391,7 +391,7 @@ Partial Class FormBSPDet
         '
         Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
-        Me.BtnConfirm.Location = New System.Drawing.Point(723, 2)
+        Me.BtnConfirm.Location = New System.Drawing.Point(707, 2)
         Me.BtnConfirm.Name = "BtnConfirm"
         Me.BtnConfirm.Size = New System.Drawing.Size(96, 40)
         Me.BtnConfirm.TabIndex = 6
@@ -405,7 +405,7 @@ Partial Class FormBSPDet
         Me.XTCData.Location = New System.Drawing.Point(0, 159)
         Me.XTCData.Name = "XTCData"
         Me.XTCData.SelectedTabPage = Me.XTPDetail
-        Me.XTCData.Size = New System.Drawing.Size(821, 287)
+        Me.XTCData.Size = New System.Drawing.Size(805, 295)
         Me.XTCData.TabIndex = 20
         Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPSummary})
         '
@@ -414,7 +414,7 @@ Partial Class FormBSPDet
         Me.XTPDetail.Controls.Add(Me.GCData)
         Me.XTPDetail.Controls.Add(Me.PanelControlNav)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(815, 259)
+        Me.XTPDetail.Size = New System.Drawing.Size(799, 267)
         Me.XTPDetail.Text = "Detail"
         '
         'GCData
@@ -423,7 +423,7 @@ Partial Class FormBSPDet
         Me.GCData.Location = New System.Drawing.Point(0, 62)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(815, 197)
+        Me.GCData.Size = New System.Drawing.Size(799, 205)
         Me.GCData.TabIndex = 22
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -444,7 +444,7 @@ Partial Class FormBSPDet
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(815, 62)
+        Me.PanelControlNav.Size = New System.Drawing.Size(799, 62)
         Me.PanelControlNav.TabIndex = 19
         '
         'BtnDelete
@@ -452,7 +452,7 @@ Partial Class FormBSPDet
         Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
         Me.BtnDelete.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnDelete.Location = New System.Drawing.Point(602, 2)
+        Me.BtnDelete.Location = New System.Drawing.Point(586, 2)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(68, 58)
         Me.BtnDelete.TabIndex = 8934
@@ -463,7 +463,7 @@ Partial Class FormBSPDet
         Me.BtnImportXLS.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnImportXLS.Image = CType(resources.GetObject("BtnImportXLS.Image"), System.Drawing.Image)
         Me.BtnImportXLS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnImportXLS.Location = New System.Drawing.Point(670, 2)
+        Me.BtnImportXLS.Location = New System.Drawing.Point(654, 2)
         Me.BtnImportXLS.Name = "BtnImportXLS"
         Me.BtnImportXLS.Size = New System.Drawing.Size(68, 58)
         Me.BtnImportXLS.TabIndex = 8933
@@ -474,7 +474,7 @@ Partial Class FormBSPDet
         Me.BtnExportXLS.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnExportXLS.Image = CType(resources.GetObject("BtnExportXLS.Image"), System.Drawing.Image)
         Me.BtnExportXLS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnExportXLS.Location = New System.Drawing.Point(738, 2)
+        Me.BtnExportXLS.Location = New System.Drawing.Point(722, 2)
         Me.BtnExportXLS.Name = "BtnExportXLS"
         Me.BtnExportXLS.Size = New System.Drawing.Size(75, 58)
         Me.BtnExportXLS.TabIndex = 8935
@@ -485,7 +485,7 @@ Partial Class FormBSPDet
         Me.XTPSummary.Controls.Add(Me.GCSum)
         Me.XTPSummary.Controls.Add(Me.PanelControlNavSummary)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(815, 259)
+        Me.XTPSummary.Size = New System.Drawing.Size(799, 267)
         Me.XTPSummary.Text = "Summary"
         '
         'GCSum
@@ -495,7 +495,7 @@ Partial Class FormBSPDet
         Me.GCSum.MainView = Me.GVSum
         Me.GCSum.Name = "GCSum"
         Me.GCSum.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCSum.Size = New System.Drawing.Size(815, 199)
+        Me.GCSum.Size = New System.Drawing.Size(799, 207)
         Me.GCSum.TabIndex = 21
         Me.GCSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSum})
         '
@@ -520,7 +520,7 @@ Partial Class FormBSPDet
         Me.PanelControlNavSummary.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNavSummary.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlNavSummary.Name = "PanelControlNavSummary"
-        Me.PanelControlNavSummary.Size = New System.Drawing.Size(815, 60)
+        Me.PanelControlNavSummary.Size = New System.Drawing.Size(799, 60)
         Me.PanelControlNavSummary.TabIndex = 20
         '
         'BtnExportToXLSSummary
@@ -528,7 +528,7 @@ Partial Class FormBSPDet
         Me.BtnExportToXLSSummary.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnExportToXLSSummary.Image = CType(resources.GetObject("BtnExportToXLSSummary.Image"), System.Drawing.Image)
         Me.BtnExportToXLSSummary.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnExportToXLSSummary.Location = New System.Drawing.Point(738, 2)
+        Me.BtnExportToXLSSummary.Location = New System.Drawing.Point(722, 2)
         Me.BtnExportToXLSSummary.Name = "BtnExportToXLSSummary"
         Me.BtnExportToXLSSummary.Size = New System.Drawing.Size(75, 56)
         Me.BtnExportToXLSSummary.TabIndex = 11
@@ -538,7 +538,7 @@ Partial Class FormBSPDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(821, 490)
+        Me.ClientSize = New System.Drawing.Size(805, 498)
         Me.Controls.Add(Me.XTCData)
         Me.Controls.Add(Me.PanelControlBottom)
         Me.Controls.Add(Me.GroupControlHead)
