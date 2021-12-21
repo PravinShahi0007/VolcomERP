@@ -100,10 +100,31 @@ GROUP BY cg.`id_comp_group`"
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
         Cursor = Cursors.WaitCursor
-        GVCargoRate.FocusedRowHandle = find_row(GVCargoRate, "id_3pl_rate", SLUE3PL.EditValue.ToString)
 
-        'save("draft")
-        save("save")
+        Dim is_awb_ok As Boolean = True
+        If SLEDelType.EditValue.ToString = "1" Then
+            'WH
+            If Not TEAwb.Text = GVList.GetRowCellValue(0, "ol_number").ToString Then
+                warningCustom("Gunakan AWB dengan nomor outbound label " & GVList.GetRowCellValue(0, "ol_number").ToString)
+                is_awb_ok = False
+            End If
+        Else
+            'selain WH
+            For i = 0 To GVList.RowCount - 1
+                If TEAwb.Text = GVList.GetRowCellValue(i, "ol_number").ToString Then
+                    warningCustom("Pastikan anda tidak salah menginput AWB.")
+                    is_awb_ok = False
+                    Exit For
+                End If
+            Next
+        End If
+
+        If is_awb_ok Then
+            GVCargoRate.FocusedRowHandle = find_row(GVCargoRate, "id_3pl_rate", SLUE3PL.EditValue.ToString)
+
+            'save("draft")
+            save("save")
+        End If
 
         Cursor = Cursors.Default
     End Sub

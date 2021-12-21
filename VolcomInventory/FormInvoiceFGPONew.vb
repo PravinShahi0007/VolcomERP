@@ -733,4 +733,13 @@ WHERE pn.`type`=1 AND pnd.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "' A
         GCInvoice.DataSource = Nothing
         GCRec.DataSource = Nothing
     End Sub
+
+    Private Sub BtnInfoSrs_Click(sender As Object, e As EventArgs) Handles BtnInfoSrs.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpProd.id_pop_up = "6"
+        FormPopUpProd.BSave.Visible = False
+        FormPopUpProd.id_prod_order = SLEFGPO.EditValue.ToString
+        FormPopUpProd.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
