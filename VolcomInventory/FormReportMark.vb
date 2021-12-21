@@ -756,6 +756,15 @@
         ElseIf report_mark_type = "365" Then
             'perpanjang eos
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_eos_change WHERE id_eos_change = '{0}'", id_report)
+        ElseIf report_mark_type = "375" Then
+            'sop index pps
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_sop_pps WHERE id_sop_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "377" Then
+            'sop detail pps
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_sop_dep_pps WHERE id_sop_dep_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "376" Then
+            'propose big sale product
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_bsp WHERE id_bsp = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -8762,6 +8771,9 @@ WHERE pocd.id_prod_order_close = '" & id_report & "'"
                     End If
                 End If
 
+                'check status pabean
+                Dim id_status_pabean As String = execute_query("SELECT id_status_pabean FROM tb_m_comp WHERE id_comp = (SELECT id_comp FROM tb_inv_mat WHERE id_inv_mat = " + id_report + ")", 0, True, "", "", "", "")
+
                 ' select user prepared
                 Dim qu As String = "SELECT rm.id_user, rm.report_number ,rm.report_mark_datetime FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
                 Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
@@ -8810,6 +8822,12 @@ WHERE invd.`id_inv_mat`='" & id_report & "'
                     execute_non_query(qjd, True, "", "", "", "")
                 Else
                     If id_type = "1" Then 'pl
+                        Dim inv_pct As String = "inv.`vat_percent`"
+
+                        If id_status_pabean = "2" Then
+                            inv_pct = "0"
+                        End If
+
                         Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc,id_vendor, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_mark_type_ref,id_report_ref,report_number_ref)
 -- penjualan
 SELECT " + id_acc_trans + " AS `id_trans`, (SELECT id_acc_jual_mat FROM tb_opt_accounting) AS `id_acc`,inv.id_comp AS id_vendor, 0 AS qty, 0 AS `debit`, CAST(SUM(invd.`value`) AS DECIMAL(15,2)) AS `credit`
@@ -8819,14 +8837,17 @@ INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
 WHERE invd.`id_inv_mat`='" & id_report & "'
 UNION ALL
 -- hutang PPN
-SELECT " + id_acc_trans + " AS `id_trans`, (SELECT id_acc_hutang_ppn_bahan FROM tb_opt_accounting) AS `id_acc`,inv.id_comp AS id_vendor, 0 AS qty, 0 AS `debit`, CAST(SUM(invd.`value`)*((inv.`vat_percent`)/(100)) AS DECIMAL(15,2)) AS `credit`
-,CONCAT('PENJUALAN SUPPLIES') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
-FROM `tb_inv_mat_det` invd
-INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
-WHERE invd.`id_inv_mat`='" & id_report & "'
+SELECT * FROM (
+    SELECT " + id_acc_trans + " AS `id_trans`, (SELECT id_acc_hutang_ppn_bahan FROM tb_opt_accounting) AS `id_acc`,inv.id_comp AS id_vendor, 0 AS qty, 0 AS `debit`, CAST(SUM(invd.`value`)*((" + inv_pct + ")/(100)) AS DECIMAL(15,2)) AS `credit`
+    ,CONCAT('PENJUALAN SUPPLIES') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
+    FROM `tb_inv_mat_det` invd
+    INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
+    WHERE invd.`id_inv_mat`='" & id_report & "'
+) AS tb
+WHERE tb.credit > 0
 UNION ALL
 -- AR
-SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_ar AS `id_acc`,inv.id_comp AS id_vendor, 0 AS qty, CAST(SUM(invd.`value`)*((100+inv.`vat_percent`)/(100)) AS DECIMAL(15,2)) AS `debit`, 0 AS `credit`
+SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_ar AS `id_acc`,inv.id_comp AS id_vendor, 0 AS qty, CAST(SUM(invd.`value`)*((100+" + inv_pct + ")/(100)) AS DECIMAL(15,2)) AS `debit`, 0 AS `credit`
 ,CONCAT('PENJUALAN SUPPLIES') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
 FROM `tb_inv_mat_det` invd
 INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
@@ -8834,6 +8855,12 @@ INNER JOIN tb_m_comp c ON c.id_comp=inv.`id_comp`
 WHERE invd.`id_inv_mat`='" & id_report & "' "
                         execute_non_query(qjd, True, "", "", "", "")
                     ElseIf id_type = "2" Then 'ret
+                        Dim inv_pct As String = "inv.`vat_percent`"
+
+                        If id_status_pabean = "2" Then
+                            inv_pct = "0"
+                        End If
+
                         Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc,id_vendor, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_mark_type_ref,id_report_ref,report_number_ref)
 -- retur
 SELECT " + id_acc_trans + " AS `id_trans`, (SELECT id_acc_retur_jual_mat FROM tb_opt_accounting) AS `id_acc`,inv.id_comp  AS id_vendor, 0 AS qty,  CAST(SUM(invd.`value`) AS DECIMAL(15,2)) AS `debit`,0 AS `credit`
@@ -8843,14 +8870,17 @@ INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
 WHERE invd.`id_inv_mat`='" & id_report & "'
 UNION ALL
 -- hutang PPN
-SELECT " + id_acc_trans + " AS `id_trans`, (SELECT id_acc_hutang_ppn_bahan FROM tb_opt_accounting) AS `id_acc`,inv.id_comp  AS id_vendor, 0 AS qty, CAST(SUM(invd.`value`)*((inv.`vat_percent`)/(100)) AS DECIMAL(15,2)) AS `debit`,0 AS `credit`
-,CONCAT('RETUR PENJUALAN SUPPLIES') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
-FROM `tb_inv_mat_det` invd
-INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
-WHERE invd.`id_inv_mat`='" & id_report & "'
+SELECT * FROM (
+    SELECT " + id_acc_trans + " AS `id_trans`, (SELECT id_acc_hutang_ppn_bahan FROM tb_opt_accounting) AS `id_acc`,inv.id_comp  AS id_vendor, 0 AS qty, CAST(SUM(invd.`value`)*((" + inv_pct + ")/(100)) AS DECIMAL(15,2)) AS `debit`,0 AS `credit`
+    ,CONCAT('RETUR PENJUALAN SUPPLIES') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
+    FROM `tb_inv_mat_det` invd
+    INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
+    WHERE invd.`id_inv_mat`='" & id_report & "'
+) AS tb
+WHERE tb.debit > 0
 UNION ALL
 -- AR
-SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_ar AS `id_acc`,inv.id_comp  AS id_vendor, 0 AS qty,0 AS `debit`, CAST(SUM(invd.`value`)*((100+inv.`vat_percent`)/(100)) AS DECIMAL(15,2)) AS `credit`
+SELECT " + id_acc_trans + " AS `id_trans`, c.id_acc_ar AS `id_acc`,inv.id_comp  AS id_vendor, 0 AS qty,0 AS `debit`, CAST(SUM(invd.`value`)*((100+" + inv_pct + ")/(100)) AS DECIMAL(15,2)) AS `credit`
 ,CONCAT('RETUR PENJUALAN SUPPLIES') AS `note`, " + report_mark_type + " AS `rmt`, inv.id_inv_mat, inv.`number`, 1 AS id_comp, invd.report_mark_type AS rmt_ref, invd.id_report AS id_ref, invd.report_number AS number_ref
 FROM `tb_inv_mat_det` invd
 INNER JOIN `tb_inv_mat` inv ON inv.`id_inv_mat`=invd.`id_inv_mat`
@@ -10308,34 +10338,34 @@ WHERE pps.id_product_weight_pps='" & id_report & "'"
                 execute_non_query(qm, True, "", "", "", "")
 
                 'sending mail
-                Dim id_design_mkd_selected As String = execute_query("SELECT p.id_design_mkd FROM tb_pp_change p WHERE p.id_pp_change=" + id_report + "", 0, True, "", "", "", "")
-                If id_design_mkd_selected = "1" Then
-                    Dim qmail As String = "SELECT cg.id_comp_group, cg.comp_group, cg.description 
-                    FROM tb_mail_to_group mtg 
-                    INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = mtg.id_comp_group
-                    WHERE mtg.report_mark_type=373
-                    GROUP BY mtg.id_comp_group "
-                    Dim dmail As DataTable = execute_query(qmail, -1, True, "", "", "", "")
-                    If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
-                        FormMain.SplashScreenManager1.ShowWaitForm()
-                    End If
-                    FormMain.SplashScreenManager1.SetWaitFormDescription("Checking mail address")
-                    For d As Integer = 0 To dmail.Rows.Count - 1
-                        FormMain.SplashScreenManager1.SetWaitFormDescription("Sending mail " + (d + 1).ToString + "/" + dmail.Rows.Count.ToString)
-                        Try
-                            Dim sm As New ClassSendEmail()
-                            sm.report_mark_type = "373"
-                            sm.id_report = id_report
-                            sm.par1 = dmail.Rows(d)("id_comp_group").ToString
-                            Dim qlog As String = "INSERT INTO tb_pp_change_email_log(id_pp_change, log_note, log_date) VALUES('" + id_report + "', 'Success: Sending mail to " + addSlashes(dmail.Rows(d)("description").ToString) + "', NOW()); "
-                            execute_non_query(qlog, True, "", "", "", "")
-                        Catch ex As Exception
-                            Dim qlog As String = "INSERT INTO tb_pp_change_email_log(id_pp_change, log_note, log_date) VALUES('" + id_report + "', 'Error:" + addSlashes(ex.ToString) + "', NOW()); "
-                            execute_non_query(qlog, True, "", "", "", "")
-                        End Try
-                    Next
-                    FormMain.SplashScreenManager1.CloseWaitForm()
-                End If
+                'Dim id_design_mkd_selected As String = execute_query("SELECT p.id_design_mkd FROM tb_pp_change p WHERE p.id_pp_change=" + id_report + "", 0, True, "", "", "", "")
+                'If id_design_mkd_selected = "1" Then
+                '    Dim qmail As String = "SELECT cg.id_comp_group, cg.comp_group, cg.description 
+                '    FROM tb_mail_to_group mtg 
+                '    INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = mtg.id_comp_group
+                '    WHERE mtg.report_mark_type=373
+                '    GROUP BY mtg.id_comp_group "
+                '    Dim dmail As DataTable = execute_query(qmail, -1, True, "", "", "", "")
+                '    If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                '        FormMain.SplashScreenManager1.ShowWaitForm()
+                '    End If
+                '    FormMain.SplashScreenManager1.SetWaitFormDescription("Checking mail address")
+                '    For d As Integer = 0 To dmail.Rows.Count - 1
+                '        FormMain.SplashScreenManager1.SetWaitFormDescription("Sending mail " + (d + 1).ToString + "/" + dmail.Rows.Count.ToString)
+                '        Try
+                '            Dim sm As New ClassSendEmail()
+                '            sm.report_mark_type = "373"
+                '            sm.id_report = id_report
+                '            sm.par1 = dmail.Rows(d)("id_comp_group").ToString
+                '            Dim qlog As String = "INSERT INTO tb_pp_change_email_log(id_pp_change, log_note, log_date) VALUES('" + id_report + "', 'Success: Sending mail to " + addSlashes(dmail.Rows(d)("description").ToString) + "', NOW()); "
+                '            execute_non_query(qlog, True, "", "", "", "")
+                '        Catch ex As Exception
+                '            Dim qlog As String = "INSERT INTO tb_pp_change_email_log(id_pp_change, log_note, log_date) VALUES('" + id_report + "', 'Error:" + addSlashes(ex.ToString) + "', NOW()); "
+                '            execute_non_query(qlog, True, "", "", "", "")
+                '        End Try
+                '    Next
+                '    FormMain.SplashScreenManager1.CloseWaitForm()
+                'End If
             End If
 
             'update status
@@ -11116,6 +11146,93 @@ WHERE ppsd.id_pib_pps='" & id_report & "'"
             End If
 
             query = String.Format("UPDATE tb_ets SET id_report_status = '{0}' WHERE id_ets = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "375" Then
+            'sop pps
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'insert sop
+                Dim query_ins As String = "INSERT INTO tb_sop(sop_name,id_sop_prosedur_sub,id_departement,created_date,created_by,last_update,last_update_by)
+SELECT ppsd.sop_name,id_sop_prosedur_sub,pps.id_departement,NOW(),pps.created_by,NOW(),pps.created_by
+FROM `tb_sop_pps_det` ppsd
+INNER JOIN tb_sop_pps pps ON pps.id_sop_pps=ppsd.id_sop_pps 
+WHERE pps.id_sop_pps='" & id_report & "'"
+                execute_non_query(query_ins, True, "", "", "", "")
+            End If
+
+            query = String.Format("UPDATE tb_sop_pps SET id_report_status = '{0}' WHERE id_sop_pps = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            '
+            FormSOPIndexPPS.load_head()
+        ElseIf report_mark_type = "377" Then
+            'sop dep pps
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                Dim qv As String = "SELECT id_sop FROM tb_sop_dep_pps WHERE id_sop_dep_pps='" & id_report & "'"
+                Dim dtv As DataTable = execute_query(qv, -1, True, "", "", "", "")
+                Dim id_sop As String = dtv.Rows(0)("id_sop").ToString
+                'file
+                '-- clean file
+                Dim q_ins As String = "DELETE FROM tb_doc WHERE id_report='" & id_sop & "' AND report_mark_type='371'"
+                execute_non_query(q_ins, True, "", "", "", "")
+
+                Dim qfile As String = "SELECT id_doc,doc_desc,'371' AS report_mark_type,'" & id_sop & "' AS id_report,`datetime`,ext,id_user_upload,is_encrypted 
+FROM tb_doc 
+WHERE id_report='" & id_report & "' AND report_mark_type='377'"
+                Dim dtfile As DataTable = execute_query(qfile, -1, True, "", "", "", "")
+                If dtfile.Rows.Count > 0 Then
+                    '-- add file
+                    q_ins = "INSERT INTO tb_doc(doc_desc,report_mark_type,id_report,`datetime`,ext,id_user_upload,is_encrypted)
+VALUES('" & dtfile.Rows(0)("doc_desc").ToString & "','" & dtfile.Rows(0)("report_mark_type").ToString & "','" & dtfile.Rows(0)("id_report").ToString & "','" & dtfile.Rows(0)("datetime").ToString & "','" & dtfile.Rows(0)("ext").ToString & "','" & dtfile.Rows(0)("id_user_upload").ToString & "','" & dtfile.Rows(0)("is_encrypted").ToString & "'); SELECT LAST_INSERT_ID(); "
+                    Dim last_id As String = execute_query(q_ins, 0, True, "", "", "", "")
+                    '-- transfer file
+                    Dim directory_upload As String = get_setup_field("upload_dir")
+                    Dim path As String = directory_upload & "371" & "\"
+                    Dim path_dl As String = directory_upload & "377" & "\"
+                    If Not IO.Directory.Exists(path) Then
+                        IO.Directory.CreateDirectory(path)
+                    End If
+                    My.Computer.Network.UploadFile(path_dl & dtfile.Rows(0)("id_doc").ToString & "_377_" & id_report & dtfile.Rows(0)("ext").ToString, path & last_id & "_371_" & id_sop & dtfile.Rows(0)("ext").ToString, "", "", True, 100, True)
+                End If
+
+                'menu
+                q_ins = "DELETE FROM tb_sop_menu_erp WHERE id_sop='" & id_sop & "'"
+                execute_non_query(q_ins, True, "", "", "", "")
+                q_ins = "INSERT INTO tb_sop_menu_erp(id_sop,id_menu)
+SELECT '" & id_sop & "' AS id_sop,id_menu
+FROM tb_sop_dep_pps_menu
+WHERE id_sop_dep_pps='" & id_report & "'"
+                execute_non_query(q_ins, True, "", "", "", "")
+
+                'departement terkait
+                q_ins = "DELETE FROM tb_sop_dep_terkait WHERE id_sop='" & id_sop & "'"
+                execute_non_query(q_ins, True, "", "", "", "")
+                q_ins = "INSERT INTO tb_sop_dep_terkait(id_sop,id_departement)
+SELECT '" & id_sop & "' AS id_sop,id_departement
+FROM tb_sop_dep_pps_dep_terkait
+WHERE id_sop_dep_pps='" & id_report & "'"
+                execute_non_query(q_ins, True, "", "", "", "")
+            End If
+
+            query = String.Format("UPDATE tb_sop_dep_pps SET id_report_status = '{0}' WHERE id_sop_dep_pps = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "376" Then
+            'propose big sale product
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+
+            End If
+
+            query = String.Format("UPDATE tb_bsp SET id_report_status = '{0}' WHERE id_bsp = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

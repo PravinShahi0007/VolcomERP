@@ -512,7 +512,7 @@ Partial Public Class ReportPreCalReport
         Me.XrTableCell37.StylePriority.UseBorders = False
         Me.XrTableCell37.StylePriority.UseBorderWidth = False
         Me.XrTableCell37.StylePriority.UseTextAlignment = False
-        Me.XrTableCell37.Text = "Royalty Penjualan ([sales_percent]% sales)"
+        Me.XrTableCell37.Text = "Deposit ([sales_percent]% sales)"
         Me.XrTableCell37.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell37.Weight = 0.88942262753262813R
         '

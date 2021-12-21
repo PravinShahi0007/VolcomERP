@@ -243,6 +243,7 @@
     <Compile Include="ClassAPIZalora.vb" />
     <Compile Include="ClassAREvaluation.vb" />
     <Compile Include="ClassBliBliApi.vb" />
+    <Compile Include="ClassBSP.vb" />
     <Compile Include="ClassBudgetExpense.Designer.vb">
       <DependentUpon>ClassBudgetExpense.vb</DependentUpon>
     </Compile>
@@ -618,6 +619,18 @@
       <DependentUpon>FormBiayaSewaPPS.vb</DependentUpon>
     </Compile>
     <Compile Include="FormBiayaSewaPPS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBSP.Designer.vb">
+      <DependentUpon>FormBSP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBSP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBSPDet.Designer.vb">
+      <DependentUpon>FormBSPDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBSPDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormBudgetProdDemand.Designer.vb">
@@ -7595,16 +7608,46 @@
     <Compile Include="FormSOHSum.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSOPCat.Designer.vb">
+      <DependentUpon>FormSOPCat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSOPCat.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSOPIndex.Designer.vb">
       <DependentUpon>FormSOPIndex.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSOPIndex.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSOPIndexPPS.Designer.vb">
+      <DependentUpon>FormSOPIndexPPS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSOPIndexPPS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSOPIndexSchedule.Designer.vb">
+      <DependentUpon>FormSOPIndexSchedule.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSOPIndexSchedule.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSOPNew.Designer.vb">
       <DependentUpon>FormSOPNew.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSOPNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSOPSelectSOP.Designer.vb">
+      <DependentUpon>FormSOPSelectSOP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSOPSelectSOP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSOPSetComplete.Designer.vb">
+      <DependentUpon>FormSOPSetComplete.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSOPSetComplete.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormStockCardDepDet.Designer.vb">
@@ -10714,6 +10757,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBiayaSewaPPS.resx">
       <DependentUpon>FormBiayaSewaPPS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBSP.resx">
+      <DependentUpon>FormBSP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBSPDet.resx">
+      <DependentUpon>FormBSPDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetProdDemand.resx">
       <DependentUpon>FormBudgetProdDemand.vb</DependentUpon>
@@ -14593,11 +14642,26 @@
       <DependentUpon>FormSOHSum.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSOPCat.resx">
+      <DependentUpon>FormSOPCat.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSOPIndex.resx">
       <DependentUpon>FormSOPIndex.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSOPIndexPPS.resx">
+      <DependentUpon>FormSOPIndexPPS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSOPIndexSchedule.resx">
+      <DependentUpon>FormSOPIndexSchedule.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSOPNew.resx">
       <DependentUpon>FormSOPNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSOPSelectSOP.resx">
+      <DependentUpon>FormSOPSelectSOP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSOPSetComplete.resx">
+      <DependentUpon>FormSOPSetComplete.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockCardDepDet.resx">
       <DependentUpon>FormStockCardDepDet.vb</DependentUpon>
