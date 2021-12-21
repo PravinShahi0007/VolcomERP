@@ -45,4 +45,10 @@
             infoCustom("Please choose another date or time.")
         End If
     End Sub
+
+    Private Sub DETimeStart_EditValueChanged(sender As Object, e As EventArgs) Handles DETimeStart.EditValueChanged
+        Dim start_time As DateTime = DETimeStart.EditValue
+
+        DETimeEnd.EditValue = start_time.AddHours(2)
+    End Sub
 End Class
