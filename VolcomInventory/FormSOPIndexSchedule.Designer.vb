@@ -35,13 +35,15 @@ Partial Class FormSOPIndexSchedule
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.GCSchedule = New DevExpress.XtraGrid.GridControl()
-        Me.GVSchedule = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CM = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.DeleteModulToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GVSchedule = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEDepartment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,8 +55,8 @@ Partial Class FormSOPIndexSchedule
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CM.SuspendLayout()
+        CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DEDate
@@ -84,6 +86,7 @@ Partial Class FormSOPIndexSchedule
         '
         'SearchLookUpEdit1View
         '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -201,21 +204,24 @@ Partial Class FormSOPIndexSchedule
         Me.GCSchedule.TabIndex = 0
         Me.GCSchedule.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSchedule})
         '
+        'CM
+        '
+        Me.CM.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteModulToolStripMenuItem})
+        Me.CM.Name = "CM"
+        Me.CM.Size = New System.Drawing.Size(118, 26)
+        '
+        'DeleteModulToolStripMenuItem
+        '
+        Me.DeleteModulToolStripMenuItem.Name = "DeleteModulToolStripMenuItem"
+        Me.DeleteModulToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
+        Me.DeleteModulToolStripMenuItem.Text = "Remove"
+        '
         'GVSchedule
         '
         Me.GVSchedule.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn1})
         Me.GVSchedule.GridControl = Me.GCSchedule
         Me.GVSchedule.Name = "GVSchedule"
         Me.GVSchedule.OptionsView.ShowGroupPanel = False
-        '
-        'BAdd
-        '
-        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BAdd.Location = New System.Drawing.Point(0, 104)
-        Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(345, 30)
-        Me.BAdd.TabIndex = 14
-        Me.BAdd.Text = "Add"
         '
         'GridColumn2
         '
@@ -237,18 +243,6 @@ Partial Class FormSOPIndexSchedule
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
         '
-        'CM
-        '
-        Me.CM.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteModulToolStripMenuItem})
-        Me.CM.Name = "CM"
-        Me.CM.Size = New System.Drawing.Size(118, 26)
-        '
-        'DeleteModulToolStripMenuItem
-        '
-        Me.DeleteModulToolStripMenuItem.Name = "DeleteModulToolStripMenuItem"
-        Me.DeleteModulToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.DeleteModulToolStripMenuItem.Text = "Remove"
-        '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Until"
@@ -258,6 +252,28 @@ Partial Class FormSOPIndexSchedule
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 2
+        '
+        'BAdd
+        '
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BAdd.Location = New System.Drawing.Point(0, 104)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(345, 30)
+        Me.BAdd.TabIndex = 14
+        Me.BAdd.Text = "Add"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.FieldName = "id_departement"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Department"
+        Me.GridColumn5.FieldName = "departement"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
         '
         'FormSOPIndexSchedule
         '
@@ -291,8 +307,8 @@ Partial Class FormSOPIndexSchedule
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CM.ResumeLayout(False)
+        CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -319,4 +335,6 @@ Partial Class FormSOPIndexSchedule
     Friend WithEvents CM As ContextMenuStrip
     Friend WithEvents DeleteModulToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
