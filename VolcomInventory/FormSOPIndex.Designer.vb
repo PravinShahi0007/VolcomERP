@@ -102,12 +102,12 @@ Partial Class FormSOPIndex
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSOPIndex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSOPIndex.SuspendLayout()
         Me.XTPBySOP.SuspendLayout()
@@ -516,7 +516,7 @@ Partial Class FormSOPIndex
         Me.SBSetComplete.Name = "SBSetComplete"
         Me.SBSetComplete.Size = New System.Drawing.Size(117, 44)
         Me.SBSetComplete.TabIndex = 2
-        Me.SBSetComplete.Text = "Set Complete"
+        Me.SBSetComplete.Text = "Set Status"
         '
         'SBSetSOP
         '
@@ -646,6 +646,8 @@ Partial Class FormSOPIndex
         Me.GVIndexPPS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
         Me.GVIndexPPS.GridControl = Me.GCIndexPPS
         Me.GVIndexPPS.Name = "GVIndexPPS"
+        Me.GVIndexPPS.OptionsBehavior.Editable = False
+        Me.GVIndexPPS.OptionsBehavior.ReadOnly = True
         Me.GVIndexPPS.OptionsView.ShowGroupPanel = False
         '
         'GridColumn11
@@ -717,6 +719,8 @@ Partial Class FormSOPIndex
         Me.GVPengajuanKelengkapan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40})
         Me.GVPengajuanKelengkapan.GridControl = Me.GCPengajuanKelengkapan
         Me.GVPengajuanKelengkapan.Name = "GVPengajuanKelengkapan"
+        Me.GVPengajuanKelengkapan.OptionsBehavior.Editable = False
+        Me.GVPengajuanKelengkapan.OptionsBehavior.ReadOnly = True
         Me.GVPengajuanKelengkapan.OptionsView.ShowGroupPanel = False
         '
         'GridColumn37
@@ -825,6 +829,14 @@ Partial Class FormSOPIndex
         Me.GridColumn46.Visible = True
         Me.GridColumn46.VisibleIndex = 3
         '
+        'GridColumn50
+        '
+        Me.GridColumn50.Caption = "Milestone"
+        Me.GridColumn50.FieldName = "milestone"
+        Me.GridColumn50.Name = "GridColumn50"
+        Me.GridColumn50.Visible = True
+        Me.GridColumn50.VisibleIndex = 5
+        '
         'GridColumn47
         '
         Me.GridColumn47.Caption = "File SOP"
@@ -862,14 +874,6 @@ Partial Class FormSOPIndex
         Me.BRefresh.Size = New System.Drawing.Size(116, 44)
         Me.BRefresh.TabIndex = 1
         Me.BRefresh.Text = "Refresh"
-        '
-        'GridColumn50
-        '
-        Me.GridColumn50.Caption = "Milestone"
-        Me.GridColumn50.FieldName = "milestone"
-        Me.GridColumn50.Name = "GridColumn50"
-        Me.GridColumn50.Visible = True
-        Me.GridColumn50.VisibleIndex = 5
         '
         'FormSOPIndex
         '

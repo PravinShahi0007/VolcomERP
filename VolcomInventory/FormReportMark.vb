@@ -11165,6 +11165,8 @@ WHERE pps.id_sop_pps='" & id_report & "'"
 
             query = String.Format("UPDATE tb_sop_pps SET id_report_status = '{0}' WHERE id_sop_pps = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+            '
+            FormSOPIndexPPS.load_head()
         ElseIf report_mark_type = "377" Then
             'sop dep pps
             If id_status_reportx = "3" Then
