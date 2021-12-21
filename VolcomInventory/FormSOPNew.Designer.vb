@@ -523,7 +523,6 @@ Partial Class FormSOPNew
         Me.GCMileStone.Size = New System.Drawing.Size(724, 243)
         Me.GCMileStone.TabIndex = 13
         Me.GCMileStone.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMileStone})
-        Me.GCMileStone.Visible = False
         '
         'GVMileStone
         '
@@ -552,6 +551,7 @@ Partial Class FormSOPNew
         Me.GridColumn18.Caption = "Datetime"
         Me.GridColumn18.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn18.FieldName = "dt"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 0
