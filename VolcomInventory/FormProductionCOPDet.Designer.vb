@@ -275,7 +275,6 @@ Partial Class FormProductionCOPDet
         Me.BPickOVH.Size = New System.Drawing.Size(28, 23)
         Me.BPickOVH.TabIndex = 8920
         Me.BPickOVH.Text = "..."
-        Me.BPickOVH.Visible = False
         '
         'LabelControl6
         '
