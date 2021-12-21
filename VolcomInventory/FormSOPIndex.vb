@@ -320,7 +320,7 @@ WHERE sd.`id_departement`='" & id_departement_user & "'"
             LEFT JOIN (
                 SELECT tb.id_sop_schedule, GROUP_CONCAT(tb.sop SEPARATOR '\n') AS sop, GROUP_CONCAT(tb.milestone SEPARATOR '\n') AS milestone, GROUP_CONCAT(tb.status SEPARATOR '\n') AS `status`
                 FROM (
-                    SELECT s.id_sop_schedule, CONCAT(t.sop_number, ' | ', t.sop_name) AS sop, m.milestone, IF(s.is_complete IS NULL, '-', IF(s.is_complete = 1, 'Complete', 'Not Complete')) AS `status`
+                    SELECT s.id_sop_schedule, CONCAT(t.sop_number, ' | ', t.sop_name) AS sop, m.milestone, IF(s.is_complete IS NULL, '', IF(s.is_complete = 1, 'Complete', 'Not Complete')) AS `status`
                     FROM tb_sop_schedule_sop AS s
                     LEFT JOIN tb_sop AS t ON s.id_sop = t.id_sop
                     LEFT JOIN tb_lookup_milestone AS m ON s.id_milestone = m.id_milestone
@@ -389,7 +389,7 @@ WHERE sd.`id_departement`='" & id_departement_user & "'"
                 SBSetComplete.Visible = True
             End If
 
-            If Not GVScheduleAdmin.GetFocusedRowCellValue("milestone").ToString = "" Then
+            If Not GVScheduleAdmin.GetFocusedRowCellValue("status").ToString = "" Then
                 SBSetComplete.Visible = False
                 SBSetSOP.Visible = False
             End If
