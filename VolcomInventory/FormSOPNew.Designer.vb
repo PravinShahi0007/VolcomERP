@@ -516,7 +516,6 @@ Partial Class FormSOPNew
         '
         'GCMileStone
         '
-        Me.GCMileStone.ContextMenuStrip = Me.CM
         Me.GCMileStone.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCMileStone.Location = New System.Drawing.Point(0, 179)
         Me.GCMileStone.MainView = Me.GVMileStone
@@ -542,28 +541,30 @@ Partial Class FormSOPNew
         'GridColumn10
         '
         Me.GridColumn10.Caption = "Milestone"
-        Me.GridColumn10.FieldName = "description_menu_name"
+        Me.GridColumn10.FieldName = "milestone"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 0
-        Me.GridColumn10.Width = 291
+        Me.GridColumn10.VisibleIndex = 1
+        Me.GridColumn10.Width = 285
         '
         'GridColumn18
         '
         Me.GridColumn18.Caption = "Datetime"
+        Me.GridColumn18.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 1
+        Me.GridColumn18.VisibleIndex = 0
         Me.GridColumn18.Width = 246
         '
         'GridColumn11
         '
         Me.GridColumn11.Caption = "Status"
-        Me.GridColumn11.FieldName = "menu_caption"
+        Me.GridColumn11.FieldName = "sts_meeting"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 2
-        Me.GridColumn11.Width = 169
+        Me.GridColumn11.Width = 175
         '
         'BProposeSOPAsset
         '
@@ -577,7 +578,7 @@ Partial Class FormSOPNew
         Me.BProposeSOPAsset.Name = "BProposeSOPAsset"
         Me.BProposeSOPAsset.Size = New System.Drawing.Size(724, 40)
         Me.BProposeSOPAsset.TabIndex = 14
-        Me.BProposeSOPAsset.Text = "Ajukan Perubahan"
+        Me.BProposeSOPAsset.Text = "Ajukan Kelengkapan SOP"
         Me.BProposeSOPAsset.Visible = False
         '
         'XTPDetail
