@@ -646,6 +646,8 @@ Partial Class FormSOPIndex
         Me.GVIndexPPS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
         Me.GVIndexPPS.GridControl = Me.GCIndexPPS
         Me.GVIndexPPS.Name = "GVIndexPPS"
+        Me.GVIndexPPS.OptionsBehavior.Editable = False
+        Me.GVIndexPPS.OptionsBehavior.ReadOnly = True
         Me.GVIndexPPS.OptionsView.ShowGroupPanel = False
         '
         'GridColumn11
@@ -717,6 +719,8 @@ Partial Class FormSOPIndex
         Me.GVPengajuanKelengkapan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40})
         Me.GVPengajuanKelengkapan.GridControl = Me.GCPengajuanKelengkapan
         Me.GVPengajuanKelengkapan.Name = "GVPengajuanKelengkapan"
+        Me.GVPengajuanKelengkapan.OptionsBehavior.Editable = False
+        Me.GVPengajuanKelengkapan.OptionsBehavior.ReadOnly = True
         Me.GVPengajuanKelengkapan.OptionsView.ShowGroupPanel = False
         '
         'GridColumn37
