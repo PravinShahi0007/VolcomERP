@@ -20,6 +20,8 @@ Partial Class FormBSPDet
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBSPDet))
+        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue1 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
         Me.SLEStore = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -61,6 +63,24 @@ Partial Class FormBSPDet
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControlNavSummary = New DevExpress.XtraEditors.PanelControl()
         Me.BtnExportToXLSSummary = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnid_bsp_det = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_bsp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_wh = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_wh_drawer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnwh_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnwh_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_design_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnamount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnote_stock = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.SLEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -429,11 +449,26 @@ Partial Class FormBSPDet
         '
         'GVData
         '
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_bsp_det, Me.GridColumnid_bsp, Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnclass, Me.GridColumnname, Me.GridColumncolor, Me.GridColumnsht, Me.GridColumnsize, Me.GridColumnid_wh, Me.GridColumnid_wh_drawer, Me.GridColumnwh_number, Me.GridColumnwh_name, Me.GridColumnqty, Me.GridColumnid_design_price, Me.GridColumndesign_price, Me.GridColumnamount, Me.GridColumnnote_stock})
+        GridFormatRule1.ApplyToRow = True
+        GridFormatRule1.Name = "Format0"
+        FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        FormatConditionRuleValue1.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Expression
+        FormatConditionRuleValue1.Expression = "Iif([note_stock] = 'OK', False, True)"
+        GridFormatRule1.Rule = FormatConditionRuleValue1
+        Me.GVData.FormatRules.Add(GridFormatRule1)
         Me.GVData.GridControl = Me.GCData
+        Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnqty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnamount, "{0:N0}")})
+        Me.GVData.LevelIndent = 1
         Me.GVData.Name = "GVData"
+        Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsBehavior.ReadOnly = True
         Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVData.OptionsView.ShowFooter = True
+        Me.GVData.OptionsView.ShowGroupedColumns = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'PanelControlNav
@@ -534,6 +569,146 @@ Partial Class FormBSPDet
         Me.BtnExportToXLSSummary.TabIndex = 11
         Me.BtnExportToXLSSummary.Text = "Export XLS"
         '
+        'GridColumnid_bsp_det
+        '
+        Me.GridColumnid_bsp_det.Caption = "id_bsp_det"
+        Me.GridColumnid_bsp_det.FieldName = "id_bsp_det"
+        Me.GridColumnid_bsp_det.Name = "GridColumnid_bsp_det"
+        '
+        'GridColumnid_bsp
+        '
+        Me.GridColumnid_bsp.Caption = "id_bsp"
+        Me.GridColumnid_bsp.FieldName = "id_bsp"
+        Me.GridColumnid_bsp.Name = "GridColumnid_bsp"
+        '
+        'GridColumnid_product
+        '
+        Me.GridColumnid_product.Caption = "id_product"
+        Me.GridColumnid_product.FieldName = "id_product"
+        Me.GridColumnid_product.Name = "GridColumnid_product"
+        '
+        'GridColumncode
+        '
+        Me.GridColumncode.Caption = "Code"
+        Me.GridColumncode.FieldName = "code"
+        Me.GridColumncode.Name = "GridColumncode"
+        Me.GridColumncode.Visible = True
+        Me.GridColumncode.VisibleIndex = 0
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 1
+        '
+        'GridColumnname
+        '
+        Me.GridColumnname.Caption = "Description"
+        Me.GridColumnname.FieldName = "name"
+        Me.GridColumnname.Name = "GridColumnname"
+        Me.GridColumnname.Visible = True
+        Me.GridColumnname.VisibleIndex = 2
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 3
+        '
+        'GridColumnsht
+        '
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        '
+        'GridColumnsize
+        '
+        Me.GridColumnsize.Caption = "Size"
+        Me.GridColumnsize.FieldName = "size"
+        Me.GridColumnsize.Name = "GridColumnsize"
+        Me.GridColumnsize.Visible = True
+        Me.GridColumnsize.VisibleIndex = 4
+        '
+        'GridColumnid_wh
+        '
+        Me.GridColumnid_wh.Caption = "id_wh"
+        Me.GridColumnid_wh.FieldName = "id_wh"
+        Me.GridColumnid_wh.Name = "GridColumnid_wh"
+        '
+        'GridColumnid_wh_drawer
+        '
+        Me.GridColumnid_wh_drawer.Caption = "id_wh_drawer"
+        Me.GridColumnid_wh_drawer.FieldName = "id_wh_drawer"
+        Me.GridColumnid_wh_drawer.Name = "GridColumnid_wh_drawer"
+        '
+        'GridColumnwh_number
+        '
+        Me.GridColumnwh_number.Caption = "WH Acc."
+        Me.GridColumnwh_number.FieldName = "wh_number"
+        Me.GridColumnwh_number.Name = "GridColumnwh_number"
+        Me.GridColumnwh_number.Visible = True
+        Me.GridColumnwh_number.VisibleIndex = 5
+        '
+        'GridColumnwh_name
+        '
+        Me.GridColumnwh_name.Caption = "WH"
+        Me.GridColumnwh_name.FieldName = "wh_name"
+        Me.GridColumnwh_name.Name = "GridColumnwh_name"
+        Me.GridColumnwh_name.Visible = True
+        Me.GridColumnwh_name.VisibleIndex = 6
+        '
+        'GridColumnqty
+        '
+        Me.GridColumnqty.Caption = "Qty"
+        Me.GridColumnqty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty.FieldName = "qty"
+        Me.GridColumnqty.Name = "GridColumnqty"
+        Me.GridColumnqty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumnqty.Visible = True
+        Me.GridColumnqty.VisibleIndex = 7
+        '
+        'GridColumnid_design_price
+        '
+        Me.GridColumnid_design_price.Caption = "id_design_price"
+        Me.GridColumnid_design_price.FieldName = "id_design_price"
+        Me.GridColumnid_design_price.Name = "GridColumnid_design_price"
+        '
+        'GridColumndesign_price
+        '
+        Me.GridColumndesign_price.Caption = "Unit Price"
+        Me.GridColumndesign_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumndesign_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndesign_price.FieldName = "design_price"
+        Me.GridColumndesign_price.Name = "GridColumndesign_price"
+        Me.GridColumndesign_price.Visible = True
+        Me.GridColumndesign_price.VisibleIndex = 8
+        '
+        'GridColumnamount
+        '
+        Me.GridColumnamount.Caption = "Amount"
+        Me.GridColumnamount.DisplayFormat.FormatString = "N0"
+        Me.GridColumnamount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnamount.FieldName = "amount"
+        Me.GridColumnamount.Name = "GridColumnamount"
+        Me.GridColumnamount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N0}")})
+        Me.GridColumnamount.UnboundExpression = "[qty] * [design_price]"
+        Me.GridColumnamount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnamount.Visible = True
+        Me.GridColumnamount.VisibleIndex = 9
+        '
+        'GridColumnnote_stock
+        '
+        Me.GridColumnnote_stock.Caption = "Check Stock"
+        Me.GridColumnnote_stock.FieldName = "note_stock"
+        Me.GridColumnnote_stock.Name = "GridColumnnote_stock"
+        Me.GridColumnnote_stock.Visible = True
+        Me.GridColumnnote_stock.VisibleIndex = 10
+        '
         'FormBSPDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -624,4 +799,22 @@ Partial Class FormBSPDet
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents PanelControlNavSummary As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnExportToXLSSummary As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnid_bsp_det As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_bsp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_product As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnname As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_wh As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_wh_drawer As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnwh_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnwh_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_design_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndesign_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnamount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnote_stock As DevExpress.XtraGrid.Columns.GridColumn
 End Class
