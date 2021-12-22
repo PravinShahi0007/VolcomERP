@@ -11227,7 +11227,7 @@ WHERE id_sop_dep_pps='" & id_report & "'"
             End If
 
             If id_status_reportx = "6" Then
-
+                'complete
             End If
 
             query = String.Format("UPDATE tb_bsp SET id_report_status = '{0}' WHERE id_bsp = '{1}'", id_status_reportx, id_report)
