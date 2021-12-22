@@ -34,7 +34,7 @@
         a.id_so_type,prep.id_user, prep.prepared_date, 
         IFNULL(crt.created, 0) AS created_process, 
         gen.id_sales_order_gen, IFNULL(gen.sales_order_gen_reff, '-') AS `sales_order_gen_reff`, a.final_comment, a.final_date, fe.employee_name AS `final_by_name`, eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name, 
-        lp.printed_date, IFNULL(lp.printed_by,'-') AS `printed_by`, IFNULL(pri.indeks_order,0) AS `indeks_order`
+        lp.printed_date, IFNULL(lp.printed_by,'-') AS `printed_by`, IFNULL(pri.indeks_order,0) AS `indeks_order`, a.sales_order_note
         FROM tb_sales_order a 
         INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to 
         INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
