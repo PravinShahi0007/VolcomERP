@@ -131,7 +131,84 @@
     End Sub
 
     Sub viewSum()
+        Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading summary")
 
+        GVSum.Columns.Clear()
+
+        'get wh
+        Dim qwh As String = "SELECT c.id_comp, c.comp_number, c.comp_name 
+        FROM tb_bsp_det bd
+        INNER JOIN tb_m_comp c ON c.id_comp = bd.id_wh
+        WHERE bd.id_bsp=" + id + "
+        GROUP BY bd.id_wh
+        ORDER BY c.comp_number ASC "
+        Dim dwh As DataTable = execute_query(qwh, -1, True, "", "", "", "")
+
+        'build query 
+        Dim query As String = "SELECT bd.id_product, 
+        p.product_full_code AS `Code`, cd.class,p.product_display_name AS `Description`, cd.color AS `Color`, sz.display_name AS `Size`, "
+        For i As Integer = 0 To dwh.Rows.Count - 1
+            query += "IFNULL(SUM(CASE WHEN bd.id_wh=" + dwh.Rows(i)("id_comp").ToString + " THEN bd.qty END),0) AS `" + dwh.Rows(i)("comp_number").ToString + "`, "
+        Next
+        query += "SUM(bd.qty) AS `Total Qty` , bd.design_price AS `Unit Price`,  (IFNULL(bd.design_price,0) * SUM(bd.qty)) AS `Amount`,GROUP_CONCAT(DISTINCT bd.note_stock SEPARATOR ';') AS `Check Stock`
+        FROM tb_bsp_det bd
+        INNER JOIN tb_m_product p ON p.id_product = bd.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail sz ON sz.id_code_detail = pc.id_code_detail
+        LEFT JOIN (
+          SELECT dc.id_design, 
+          MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+          MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+          MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+          MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+          MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+          MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+          MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+          MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+          MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+          FROM tb_m_design_code dc
+          INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+          AND cd.id_code IN (32,30,14, 43)
+          GROUP BY dc.id_design
+        ) cd ON cd.id_design = p.id_design
+        WHERE bd.id_bsp=" + id + "
+        GROUP BY bd.id_product
+        ORDER BY `Class` ASC, `Description` ASC , `Code` ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSum.DataSource = data
+
+        'setup format
+        For j As Integer = 0 To dwh.Rows.Count - 1
+            Dim col As String = dwh.Rows(j)("comp_number").ToString
+
+            'display
+            GVSum.Columns(col).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVSum.Columns(col).DisplayFormat.FormatString = "{0:n0}"
+
+            'summary
+            GVSum.Columns(col).SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVSum.Columns(col).SummaryItem.DisplayFormat = "{0:n0}"
+        Next
+        'setup 
+        GVSum.Columns("Total Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        GVSum.Columns("Total Qty").DisplayFormat.FormatString = "{0:n0}"
+        GVSum.Columns("Total Qty").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+        GVSum.Columns("Total Qty").SummaryItem.DisplayFormat = "{0:n0}"
+        GVSum.Columns("id_product").Visible = False
+        GVSum.Columns("Unit Price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        GVSum.Columns("Unit Price").DisplayFormat.FormatString = "{0:n0}"
+        GVSum.Columns("Amount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        GVSum.Columns("Amount").DisplayFormat.FormatString = "{0:n0}"
+        GVSum.Columns("Amount").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+        GVSum.Columns("Amount").SummaryItem.DisplayFormat = "{0:n0}"
+        GVSum.BestFitColumns()
+
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
     End Sub
 
     Sub allowStatus()

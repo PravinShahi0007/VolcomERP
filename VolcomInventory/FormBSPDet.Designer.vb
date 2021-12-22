@@ -680,6 +680,7 @@ Partial Class FormBSPDet
         Me.GVSum.Name = "GVSum"
         Me.GVSum.OptionsFind.AlwaysVisible = True
         Me.GVSum.OptionsView.ColumnAutoWidth = False
+        Me.GVSum.OptionsView.ShowFooter = True
         Me.GVSum.OptionsView.ShowGroupPanel = False
         '
         'RepositoryItemCheckEdit1
