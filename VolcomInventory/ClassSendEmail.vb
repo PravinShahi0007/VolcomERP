@@ -4987,6 +4987,350 @@ WHERE sop.id_sop_schedule='" & id_report & "';"
     </tbody>
 </table>"
             client.Send(mail)
+        ElseIf report_mark_type = "380" Then
+            'send email index sop
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Index SOP + Nomor SOP - Volcom ERP")
+            Dim mail As MailMessage = New MailMessage()
+            mail.From = from_mail
+
+            Dim id_dep As String = execute_query("SELECT d.id_departement FROM tb_sop_pps pps INNER JOIN tb_m_departement d ON d.id_departement=pps.id_departement WHERE pps.id_sop_pps='" & id_report & "'", 0, True, "", "", "", "")
+            Dim nama_dep As String = execute_query("SELECT d.departement FROM tb_sop_pps pps INNER JOIN tb_m_departement d ON d.id_departement=pps.id_departement WHERE pps.id_sop_pps='" & id_report & "'", 0, True, "", "", "", "")
+
+            Dim query_send_mail As String = ""
+
+            'Send to
+            If id_dep = "1" Or id_dep = "12" Or id_dep = "19" Then
+                'jika design man/ woman/ sample
+                query_send_mail = "SELECT emp.`email_external` AS email_external, emp.`employee_name` AS employee_name
+FROM tb_m_departement md
+INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user_head
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+WHERE md.id_user_head!='' AND md.id_departement IN (1,12,19)"
+            Else
+                'jika tidak
+                query_send_mail = "SELECT emp.`email_external` AS email_external, emp.`employee_name` AS employee_name
+FROM tb_m_departement md
+INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user_head
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+WHERE md.id_user_head!='' AND md.id_departement = '" & id_dep & "'"
+            End If
+
+            Dim data_send_mail As DataTable = execute_query(query_send_mail, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_mail.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_external").ToString, data_send_mail.Rows(i)("employee_name").ToString)
+                mail.To.Add(to_mail)
+            Next
+
+            'Send CC
+            Dim query_send_cc As String = "SELECT IF(md.id_user=0,SUBSTRING_INDEX(external_recipient,';',-1),emp.`email_external`) AS email_external, IF(md.id_user=0,SUBSTRING_INDEX(external_recipient,';',1),emp.`employee_name`) AS employee_name
+            FROM tb_mail_to md
+            LEFT JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            LEFT JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE md.report_mark_type='" + report_mark_type + "' AND is_to='2' AND IF(ISNULL(md.id_user),TRUE,IF(IFNULL(emp.id_employee_active,1)=1,TRUE,FALSE))"
+            Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                mail.CC.Add(to_mail)
+            Next
+
+            Dim qbody As String = "SELECT s.sop_name,s.sop_number,spsub.sop_prosedur_sub,sp.sop_prosedur
+FROM `tb_sop_pps_det` ppsd
+INNER JOIN tb_sop_pps pps ON pps.id_sop_pps=ppsd.id_sop_pps 
+INNER JOIN tb_sop s ON pps.id_departement=pps.id_departement AND ppsd.sop_name=s.sop_name AND ppsd.id_sop_prosedur_sub=s.id_sop_prosedur_sub
+INNER JOIN tb_sop_prosedur_sub spsub ON spsub.id_sop_prosedur_sub=s.id_sop_prosedur_sub
+INNER JOIN tb_sop_prosedur sp ON sp.id_sop_prosedur=spsub.id_sop_prosedur
+WHERE pps.id_sop_pps='" & id_report & "'"
+            Dim dtbody As DataTable = execute_query(qbody, -1, True, "", "", "", "")
+
+            mail.Subject = "Index SOP + Nomor SOP"
+            mail.IsBodyHtml = True
+            mail.Body = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
+    <tbody><tr>
+      <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+      <div align='center'>
+
+      <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+       <tbody><tr>
+        <td style='padding:0in 0in 0in 0in'></td>
+       </tr>
+       <tr>
+        <td style='padding:0in 0in 0in 0in'>
+        <p class='MsoNormal' align='center' style='text-align:center'><a href='http://www.volcom.co.id/' title='Volcom' target='_blank' data-saferedirecturl='https://www.google.com/url?hl=en&amp;q=http://www.volcom.co.id/&amp;source=gmail&amp;ust=1480121870771000&amp;usg=AFQjCNEjXvEZWgDdR-Wlke7nn0fmc1ZUuA'><span style='text-decoration:none'><img border='0' width='180' id='m_1811720018273078822_x0000_i1025' src='https://d3k81ch9hvuctc.cloudfront.net/company/VFgA3P/images/de2b6f13-9275-426d-ae31-640f3dcfc744.jpeg' alt='Volcom' class='CToWUd'></span></a><u></u><u></u></p>
+        </td>
+       </tr>
+       <tr>
+        <td style='padding:0in 0in 0in 0in'></td>
+       </tr>
+       <tr>
+        <td style='padding:0in 0in 0in 0in'>
+        <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+         <tbody><tr>
+          <td style='padding:0in 0in 0in 0in'>
+
+          </td>
+         </tr>
+        </tbody></table>
+
+
+                <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;background-color:#eff0f1;height: 5px;'><u></u>&nbsp;<u></u></span></p>
+                <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+                
+
+                <!-- start body -->
+                <table width='100%' class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+                 <tbody>
+                 <tr>
+                  <td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
+                  <div>
+                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Dear Team " + nama_dep + ", </span><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+                  </div>
+                  </td>
+
+                 </tr>
+                 <tr>
+                  <td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
+                  <div>
+                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Telah didaftarkan SOP index dengan detail sebagai berikut : </span><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+                  </div>
+                  </td>
+                 </tr>
+                 <tr>
+                  <td style='padding:1.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+                  <table width='100%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='background:white; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#000000'>
+                  <tr style='background-color:black; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#ffffff'>
+                    <th style='text-align: left;width: 150pt'>Nomor SOP</th>
+                    <th style='text-align: left;'>Prosedur</th>
+                    <th style='text-align: left;'>Sub Prosedur</th>
+                    <th style='text-align: left;'>Nama SOP</th>
+                  </tr> 
+                <!-- row data --> "
+            For d As Integer = 0 To dtbody.Rows.Count - 1
+                mail.Body += "
+      <td style='text-align: left;'> " + dtbody.Rows(d)("sop_number").ToString() + "</td>
+      <td style='text-align: left;'>" + dtbody.Rows(d)("sop_prosedur").ToString() + "</td>
+      <td style='text-align: left;'>" + dtbody.Rows(d)("sop_prosedur_sub").ToString() + "</td>
+      <td style='text-align: left;'>" + dtbody.Rows(d)("sop_name").ToString() + "</td>
+      </tr>"
+            Next
+            mail.Body += "</table>
+                  </td>
+                 </tr>
+                  <tr>
+                    <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+                    <div>
+                    <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Thank you<br /><b>Volcom ERP</b><u></u><u></u></span></p>
+
+                    </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- end body -->
+                <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;height: 10px;'><u></u>&nbsp;<u></u></span></p>
+                <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+                <div align='center'>
+                <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+         <tbody><tr>
+          <td style='padding:6.0pt 6.0pt 6.0pt 6.0pt;text-align:center;'>
+            <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'>This email send directly from Volcom ERP. Do not reply.</b><u></u><u></u></span>
+          <p class='MsoNormal' align='center' style='margin-bottom:12.0pt;text-align:center;padding-top:0px;'><br></p>
+          </td>
+         </tr>
+        </tbody></table>
+        </div>
+        </td>
+       </tr>
+      </tbody></table>  
+      </div>
+      </td>
+     </tr>
+    </tbody>
+</table>"
+            client.Send(mail)
+        ElseIf report_mark_type = "381" Then
+            'send email index sop
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Status SOP - Volcom ERP")
+            Dim mail As MailMessage = New MailMessage()
+            mail.From = from_mail
+
+            Dim id_dep As String = execute_query("SELECT d.id_departement FROM tb_sop_schedule sch INNER JOIN tb_m_departement d ON d.id_departement=sch.id_departement WHERE sch.id_sop_schedule='" & id_report & "'", 0, True, "", "", "", "")
+            Dim nama_dep As String = execute_query("SELECT d.departement FROM tb_sop_schedule sch INNER JOIN tb_m_departement d ON d.id_departement=sch.id_departement WHERE sch.id_sop_schedule='" & id_report & "'", 0, True, "", "", "", "")
+
+            Dim query_send_mail As String = ""
+
+            'Send to
+            If id_dep = "1" Or id_dep = "12" Or id_dep = "19" Then
+                'jika design man/ woman/ sample
+                query_send_mail = "SELECT emp.`email_external` AS email_external, emp.`employee_name` AS employee_name
+FROM tb_m_departement md
+INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user_head
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+WHERE md.id_user_head!='' AND md.id_departement IN (1,12,19)"
+            Else
+                'jika tidak
+                query_send_mail = "SELECT emp.`email_external` AS email_external, emp.`employee_name` AS employee_name
+FROM tb_m_departement md
+INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user_head
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+WHERE md.id_user_head!='' AND md.id_departement = '" & id_dep & "'"
+            End If
+
+            Dim data_send_mail As DataTable = execute_query(query_send_mail, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_mail.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_external").ToString, data_send_mail.Rows(i)("employee_name").ToString)
+                mail.To.Add(to_mail)
+            Next
+
+            'Send CC
+            Dim query_send_cc As String = "SELECT IF(md.id_user=0,SUBSTRING_INDEX(external_recipient,';',-1),emp.`email_external`) AS email_external, IF(md.id_user=0,SUBSTRING_INDEX(external_recipient,';',1),emp.`employee_name`) AS employee_name
+            FROM tb_mail_to md
+            LEFT JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            LEFT JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE md.report_mark_type='" + report_mark_type + "' AND is_to='2' AND IF(ISNULL(md.id_user),TRUE,IF(IFNULL(emp.id_employee_active,1)=1,TRUE,FALSE))"
+            Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                mail.CC.Add(to_mail)
+            Next
+
+            Dim qbody As String = "SET lc_time_names = 'id_ID';
+SELECT DATE_FORMAT(ss.date,'%W, %d %M %Y') AS dt, DATE_FORMAT(ss.time_start,'%H:%i') AS time_start,DATE_FORMAT(ss.time_end,'%H:%i') AS time_end,s.`sop_name`,s.`sop_number`,m.`milestone`,IF(is_complete=1,'Complete','Not Complete') AS sts
+FROM tb_sop_schedule_sop sop
+INNER JOIN tb_sop s ON s.`id_sop`=sop.id_sop
+INNER JOIN `tb_sop_schedule` ss ON ss.id_sop_schedule=sop.id_sop_schedule
+INNER JOIN tb_lookup_milestone m ON m.`id_milestone`=sop.`id_milestone`
+WHERE sop.id_sop_schedule='" & id_report & "';"
+            Dim dtbody As DataTable = execute_query(qbody, -1, True, "", "", "", "")
+
+            mail.Subject = "Status SOP"
+            mail.IsBodyHtml = True
+            mail.Body = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
+    <tbody><tr>
+      <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+      <div align='center'>
+
+      <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+       <tbody><tr>
+        <td style='padding:0in 0in 0in 0in'></td>
+       </tr>
+       <tr>
+        <td style='padding:0in 0in 0in 0in'>
+        <p class='MsoNormal' align='center' style='text-align:center'><a href='http://www.volcom.co.id/' title='Volcom' target='_blank' data-saferedirecturl='https://www.google.com/url?hl=en&amp;q=http://www.volcom.co.id/&amp;source=gmail&amp;ust=1480121870771000&amp;usg=AFQjCNEjXvEZWgDdR-Wlke7nn0fmc1ZUuA'><span style='text-decoration:none'><img border='0' width='180' id='m_1811720018273078822_x0000_i1025' src='https://d3k81ch9hvuctc.cloudfront.net/company/VFgA3P/images/de2b6f13-9275-426d-ae31-640f3dcfc744.jpeg' alt='Volcom' class='CToWUd'></span></a><u></u><u></u></p>
+        </td>
+       </tr>
+       <tr>
+        <td style='padding:0in 0in 0in 0in'></td>
+       </tr>
+       <tr>
+        <td style='padding:0in 0in 0in 0in'>
+        <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+         <tbody><tr>
+          <td style='padding:0in 0in 0in 0in'>
+
+          </td>
+         </tr>
+        </tbody></table>
+
+
+                <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;background-color:#eff0f1;height: 5px;'><u></u>&nbsp;<u></u></span></p>
+                <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+                
+
+                <!-- start body -->
+                <table width='100%' class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+                 <tbody>
+                 <tr>
+                  <td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
+                  <div>
+                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Dear Team " + nama_dep + ", </span><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+                  </div>
+                  </td>
+                 </tr>
+                 <tr>
+                  <td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
+                  <div>
+                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Diinformasikan, telah dilakukan presentasi SOP pada hari dan jam berikut : </span><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+                  </div>
+                  </td>
+                 </tr>
+                 <tr>
+                  <td style='padding:1.0pt 30.0pt 15.0pt 15.0pt'>
+                    <table width='100%' class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='3' style='background:white; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
+                      <tr>
+                        <td style='width: 15pt'></td>
+                        <td style='width: 30pt'>Hari</td>
+                        <td style='width: 10pt'>:</td>
+                        <td>" + dtbody.Rows(0)("dt").ToString + "</td>
+                      </tr>
+                      <tr>
+                        <td style='width: 15pt'></td>
+                        <td style='width: 30pt'>Jam</td>
+                        <td style='width: 10pt'>:</td>
+                        <td>" + dtbody.Rows(0)("time_start").ToString + " - " + dtbody.Rows(0)("time_end").ToString + "</td>
+                      </tr>
+                    </table>
+                  </td>
+                 </tr>
+                 <tr>
+                  <td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
+                  <div>
+                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Dengan hasil sebagai berikut : </span><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+                  </div>
+                  </td>
+                 </tr>
+                 <tr>
+                  <td style='padding:1.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+                  <table width='100%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='background:white; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#000000'>
+                  <tr style='background-color:black; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#ffffff'>
+                    <th style='text-align: left;width: 150pt'>Nomor SOP</th>
+                    <th style='text-align: left;'>Nama SOP</th>
+                    <th style='text-align: left;'>Milestone</th>
+                    <th style='text-align: left;'>Status</th>
+                  </tr> 
+                <!-- row data --> "
+            For d As Integer = 0 To dtbody.Rows.Count - 1
+                mail.Body += "
+      <td style='text-align: left;'> " + dtbody.Rows(d)("sop_number").ToString() + "</td>
+      <td style='text-align: left;'>" + dtbody.Rows(d)("sop_name").ToString() + "</td>
+      <td style='text-align: left;'>" + dtbody.Rows(d)("milestone").ToString() + "</td>
+      <td style='text-align: left;'>" + dtbody.Rows(d)("sts").ToString() + "</td>
+      </tr>"
+            Next
+            mail.Body += "</table>
+                  </td>
+                 </tr>
+                  <tr>
+                    <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+                    <div>
+                    <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Thank you<br /><b>Volcom ERP</b><u></u><u></u></span></p>
+
+                    </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- end body -->
+                <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;height: 10px;'><u></u>&nbsp;<u></u></span></p>
+                <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+                <div align='center'>
+                <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+         <tbody><tr>
+          <td style='padding:6.0pt 6.0pt 6.0pt 6.0pt;text-align:center;'>
+            <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'>This email send directly from Volcom ERP. Do not reply.</b><u></u><u></u></span>
+          <p class='MsoNormal' align='center' style='margin-bottom:12.0pt;text-align:center;padding-top:0px;'><br></p>
+          </td>
+         </tr>
+        </tbody></table>
+        </div>
+        </td>
+       </tr>
+      </tbody></table>  
+      </div>
+      </td>
+     </tr>
+    </tbody>
+</table>"
+            client.Send(mail)
         End If
     End Sub
 
