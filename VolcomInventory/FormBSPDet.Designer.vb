@@ -42,27 +42,17 @@ Partial Class FormBSPDet
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnMailSetup = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnResetPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnImportXLS = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnExportXLS = New DevExpress.XtraEditors.SimpleButton()
-        Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCSum = New DevExpress.XtraGrid.GridControl()
-        Me.GVSum = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.PanelControlNavSummary = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnExportToXLSSummary = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnid_bsp_det = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_bsp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -81,6 +71,16 @@ Partial Class FormBSPDet
         Me.GridColumndesign_price = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnamount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote_stock = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnImportXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSum = New DevExpress.XtraGrid.GridControl()
+        Me.GVSum = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PanelControlNavSummary = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExportToXLSSummary = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.SLEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -330,11 +330,11 @@ Partial Class FormBSPDet
         '
         'PanelControlBottom
         '
+        Me.PanelControlBottom.Controls.Add(Me.BtnMailSetup)
         Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
         Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnMark)
         Me.PanelControlBottom.Controls.Add(Me.BtnCancell)
-        Me.PanelControlBottom.Controls.Add(Me.BtnResetPropose)
         Me.PanelControlBottom.Controls.Add(Me.BtnSaveChanges)
         Me.PanelControlBottom.Controls.Add(Me.BtnConfirm)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -343,11 +343,21 @@ Partial Class FormBSPDet
         Me.PanelControlBottom.Size = New System.Drawing.Size(805, 44)
         Me.PanelControlBottom.TabIndex = 17
         '
+        'BtnMailSetup
+        '
+        Me.BtnMailSetup.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnMailSetup.Image = CType(resources.GetObject("BtnMailSetup.Image"), System.Drawing.Image)
+        Me.BtnMailSetup.Location = New System.Drawing.Point(167, 2)
+        Me.BtnMailSetup.Name = "BtnMailSetup"
+        Me.BtnMailSetup.Size = New System.Drawing.Size(101, 40)
+        Me.BtnMailSetup.TabIndex = 11
+        Me.BtnMailSetup.Text = "Mail Setup"
+        '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(145, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(268, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
         Me.BtnPrint.TabIndex = 3
@@ -357,7 +367,7 @@ Partial Class FormBSPDet
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(232, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(355, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 40)
         Me.BtnAttachment.TabIndex = 4
@@ -379,22 +389,12 @@ Partial Class FormBSPDet
         '
         Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(338, 2)
+        Me.BtnCancell.Location = New System.Drawing.Point(461, 2)
         Me.BtnCancell.Name = "BtnCancell"
         Me.BtnCancell.Size = New System.Drawing.Size(126, 40)
         Me.BtnCancell.TabIndex = 7
         Me.BtnCancell.Text = "Cancell Propose"
         Me.BtnCancell.Visible = False
-        '
-        'BtnResetPropose
-        '
-        Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
-        Me.BtnResetPropose.Location = New System.Drawing.Point(464, 2)
-        Me.BtnResetPropose.Name = "BtnResetPropose"
-        Me.BtnResetPropose.Size = New System.Drawing.Size(123, 40)
-        Me.BtnResetPropose.TabIndex = 9
-        Me.BtnResetPropose.Text = "Reset Propose"
         '
         'BtnSaveChanges
         '
@@ -470,104 +470,6 @@ Partial Class FormBSPDet
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupedColumns = True
         Me.GVData.OptionsView.ShowGroupPanel = False
-        '
-        'PanelControlNav
-        '
-        Me.PanelControlNav.Controls.Add(Me.BtnDelete)
-        Me.PanelControlNav.Controls.Add(Me.BtnImportXLS)
-        Me.PanelControlNav.Controls.Add(Me.BtnExportXLS)
-        Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNav.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(799, 62)
-        Me.PanelControlNav.TabIndex = 19
-        '
-        'BtnDelete
-        '
-        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnDelete.Location = New System.Drawing.Point(586, 2)
-        Me.BtnDelete.Name = "BtnDelete"
-        Me.BtnDelete.Size = New System.Drawing.Size(68, 58)
-        Me.BtnDelete.TabIndex = 8934
-        Me.BtnDelete.Text = "Delete"
-        '
-        'BtnImportXLS
-        '
-        Me.BtnImportXLS.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnImportXLS.Image = CType(resources.GetObject("BtnImportXLS.Image"), System.Drawing.Image)
-        Me.BtnImportXLS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnImportXLS.Location = New System.Drawing.Point(654, 2)
-        Me.BtnImportXLS.Name = "BtnImportXLS"
-        Me.BtnImportXLS.Size = New System.Drawing.Size(68, 58)
-        Me.BtnImportXLS.TabIndex = 8933
-        Me.BtnImportXLS.Text = "Import XLS"
-        '
-        'BtnExportXLS
-        '
-        Me.BtnExportXLS.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnExportXLS.Image = CType(resources.GetObject("BtnExportXLS.Image"), System.Drawing.Image)
-        Me.BtnExportXLS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnExportXLS.Location = New System.Drawing.Point(722, 2)
-        Me.BtnExportXLS.Name = "BtnExportXLS"
-        Me.BtnExportXLS.Size = New System.Drawing.Size(75, 58)
-        Me.BtnExportXLS.TabIndex = 8935
-        Me.BtnExportXLS.Text = "Export XLS"
-        '
-        'XTPSummary
-        '
-        Me.XTPSummary.Controls.Add(Me.GCSum)
-        Me.XTPSummary.Controls.Add(Me.PanelControlNavSummary)
-        Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(799, 267)
-        Me.XTPSummary.Text = "Summary"
-        '
-        'GCSum
-        '
-        Me.GCSum.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSum.Location = New System.Drawing.Point(0, 60)
-        Me.GCSum.MainView = Me.GVSum
-        Me.GCSum.Name = "GCSum"
-        Me.GCSum.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCSum.Size = New System.Drawing.Size(799, 207)
-        Me.GCSum.TabIndex = 21
-        Me.GCSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSum})
-        '
-        'GVSum
-        '
-        Me.GVSum.GridControl = Me.GCSum
-        Me.GVSum.Name = "GVSum"
-        Me.GVSum.OptionsFind.AlwaysVisible = True
-        Me.GVSum.OptionsView.ColumnAutoWidth = False
-        Me.GVSum.OptionsView.ShowGroupPanel = False
-        '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
-        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
-        '
-        'PanelControlNavSummary
-        '
-        Me.PanelControlNavSummary.Controls.Add(Me.BtnExportToXLSSummary)
-        Me.PanelControlNavSummary.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNavSummary.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControlNavSummary.Name = "PanelControlNavSummary"
-        Me.PanelControlNavSummary.Size = New System.Drawing.Size(799, 60)
-        Me.PanelControlNavSummary.TabIndex = 20
-        '
-        'BtnExportToXLSSummary
-        '
-        Me.BtnExportToXLSSummary.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnExportToXLSSummary.Image = CType(resources.GetObject("BtnExportToXLSSummary.Image"), System.Drawing.Image)
-        Me.BtnExportToXLSSummary.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnExportToXLSSummary.Location = New System.Drawing.Point(722, 2)
-        Me.BtnExportToXLSSummary.Name = "BtnExportToXLSSummary"
-        Me.BtnExportToXLSSummary.Size = New System.Drawing.Size(75, 56)
-        Me.BtnExportToXLSSummary.TabIndex = 11
-        Me.BtnExportToXLSSummary.Text = "Export XLS"
         '
         'GridColumnid_bsp_det
         '
@@ -709,6 +611,104 @@ Partial Class FormBSPDet
         Me.GridColumnnote_stock.Visible = True
         Me.GridColumnnote_stock.VisibleIndex = 10
         '
+        'PanelControlNav
+        '
+        Me.PanelControlNav.Controls.Add(Me.BtnDelete)
+        Me.PanelControlNav.Controls.Add(Me.BtnImportXLS)
+        Me.PanelControlNav.Controls.Add(Me.BtnExportXLS)
+        Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlNav.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlNav.Name = "PanelControlNav"
+        Me.PanelControlNav.Size = New System.Drawing.Size(799, 62)
+        Me.PanelControlNav.TabIndex = 19
+        '
+        'BtnDelete
+        '
+        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
+        Me.BtnDelete.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnDelete.Location = New System.Drawing.Point(586, 2)
+        Me.BtnDelete.Name = "BtnDelete"
+        Me.BtnDelete.Size = New System.Drawing.Size(68, 58)
+        Me.BtnDelete.TabIndex = 8934
+        Me.BtnDelete.Text = "Delete"
+        '
+        'BtnImportXLS
+        '
+        Me.BtnImportXLS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnImportXLS.Image = CType(resources.GetObject("BtnImportXLS.Image"), System.Drawing.Image)
+        Me.BtnImportXLS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnImportXLS.Location = New System.Drawing.Point(654, 2)
+        Me.BtnImportXLS.Name = "BtnImportXLS"
+        Me.BtnImportXLS.Size = New System.Drawing.Size(68, 58)
+        Me.BtnImportXLS.TabIndex = 8933
+        Me.BtnImportXLS.Text = "Import XLS"
+        '
+        'BtnExportXLS
+        '
+        Me.BtnExportXLS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportXLS.Image = CType(resources.GetObject("BtnExportXLS.Image"), System.Drawing.Image)
+        Me.BtnExportXLS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnExportXLS.Location = New System.Drawing.Point(722, 2)
+        Me.BtnExportXLS.Name = "BtnExportXLS"
+        Me.BtnExportXLS.Size = New System.Drawing.Size(75, 58)
+        Me.BtnExportXLS.TabIndex = 8935
+        Me.BtnExportXLS.Text = "Export XLS"
+        '
+        'XTPSummary
+        '
+        Me.XTPSummary.Controls.Add(Me.GCSum)
+        Me.XTPSummary.Controls.Add(Me.PanelControlNavSummary)
+        Me.XTPSummary.Name = "XTPSummary"
+        Me.XTPSummary.Size = New System.Drawing.Size(799, 267)
+        Me.XTPSummary.Text = "Summary"
+        '
+        'GCSum
+        '
+        Me.GCSum.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSum.Location = New System.Drawing.Point(0, 60)
+        Me.GCSum.MainView = Me.GVSum
+        Me.GCSum.Name = "GCSum"
+        Me.GCSum.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCSum.Size = New System.Drawing.Size(799, 207)
+        Me.GCSum.TabIndex = 21
+        Me.GCSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSum})
+        '
+        'GVSum
+        '
+        Me.GVSum.GridControl = Me.GCSum
+        Me.GVSum.Name = "GVSum"
+        Me.GVSum.OptionsFind.AlwaysVisible = True
+        Me.GVSum.OptionsView.ColumnAutoWidth = False
+        Me.GVSum.OptionsView.ShowGroupPanel = False
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
+        '
+        'PanelControlNavSummary
+        '
+        Me.PanelControlNavSummary.Controls.Add(Me.BtnExportToXLSSummary)
+        Me.PanelControlNavSummary.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlNavSummary.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlNavSummary.Name = "PanelControlNavSummary"
+        Me.PanelControlNavSummary.Size = New System.Drawing.Size(799, 60)
+        Me.PanelControlNavSummary.TabIndex = 20
+        '
+        'BtnExportToXLSSummary
+        '
+        Me.BtnExportToXLSSummary.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportToXLSSummary.Image = CType(resources.GetObject("BtnExportToXLSSummary.Image"), System.Drawing.Image)
+        Me.BtnExportToXLSSummary.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnExportToXLSSummary.Location = New System.Drawing.Point(722, 2)
+        Me.BtnExportToXLSSummary.Name = "BtnExportToXLSSummary"
+        Me.BtnExportToXLSSummary.Size = New System.Drawing.Size(75, 56)
+        Me.BtnExportToXLSSummary.TabIndex = 11
+        Me.BtnExportToXLSSummary.Text = "Export XLS"
+        '
         'FormBSPDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -782,7 +782,6 @@ Partial Class FormBSPDet
     Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCancell As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnResetPropose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSaveChanges As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnConfirm As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTCData As DevExpress.XtraTab.XtraTabControl
@@ -817,4 +816,5 @@ Partial Class FormBSPDet
     Friend WithEvents GridColumndesign_price As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnamount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnote_stock As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnMailSetup As DevExpress.XtraEditors.SimpleButton
 End Class

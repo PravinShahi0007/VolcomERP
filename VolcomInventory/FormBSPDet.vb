@@ -7,6 +7,7 @@
     Dim is_load_break_size As Boolean = False
     Dim rmt As String = "376"
     Dim dvs As System.IO.Stream
+    Dim id_comp_group As String = "-1"
 
     Private Sub FormBSPDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -76,6 +77,7 @@
             id_report_status = data.Rows(0)("id_report_status").ToString
             DECreated.EditValue = data.Rows(0)("created_date")
             is_confirm = data.Rows(0)("is_confirm").ToString
+            id_comp_group = data.Rows(0)("id_comp_group").ToString
             If is_confirm = "1" Then
                 XTCData.SelectedTabPageIndex = 1
             End If
@@ -167,19 +169,10 @@
             BtnDelete.Visible = False
         End If
 
-        'reset propose
-        If is_view = "-1" And is_confirm = "1" Then
-            BtnResetPropose.Visible = True
-        Else
-            BtnResetPropose.Visible = False
-        End If
-
         If id_report_status = "6" Then
             BtnCancell.Visible = False
-            BtnResetPropose.Visible = False
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
-            BtnResetPropose.Visible = False
             BtnConfirm.Visible = False
             MENote.Enabled = False
             BtnPrint.Visible = False
@@ -244,16 +237,37 @@
         End If
     End Sub
 
+    Sub mailSetup()
+        Cursor = Cursors.WaitCursor
+        FormProposePriceMKDMail.id_comp_group = id_comp_group
+        FormProposePriceMKDMail.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
         GVData.ActiveFilterString = ""
+
         If GVData.RowCount <= 0 Or Not checkHead() Then
             stopCustom("Please input all data")
+        ElseIf Not checkMail() Then
+            stopCustom("Please input all email for store")
+            mailSetup()
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
                 'check stock here
-
+                Dim qver As String = "CALL view_bsp_ver_stock(" + id + ")"
+                execute_non_query(qver, True, "", "", "", "")
+                Dim qcek As String = "SELECT * FROM tb_bsp_det bd WHERE bd.id_bsp=4 AND bd.note_stock!='OK'; "
+                Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+                If dcek.Rows.Count > 0 Then
+                    Cursor = Cursors.Default
+                    warningCustom("Beberapa produk stoknya tidak mencukupi.")
+                    viewDetail()
+                    viewSum()
+                    Exit Sub
+                End If
 
                 'update 
                 saveHead()
@@ -294,7 +308,7 @@
         End If
     End Sub
 
-    Private Sub BtnResetPropose_Click(sender As Object, e As EventArgs) Handles BtnResetPropose.Click
+    Private Sub BtnResetPropose_Click(sender As Object, e As EventArgs)
         Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=" + rmt + " AND rm.id_report_status=2 
         AND rm.is_requisite=2 AND rm.id_mark=2 AND rm.id_report=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -456,5 +470,25 @@
         FormImportExcel.id_pop_up = "63"
         FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Function checkMail()
+        Dim query As String = "SELECT cg.id_comp_group, cg.comp_group, cg.description, COUNT(mtg.id_comp_group) AS `jum`
+        FROM tb_m_comp c 
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        LEFT JOIN tb_mail_to_group mtg ON mtg.id_comp_group = cg.id_comp_group AND mtg.report_mark_type IN (373)
+        WHERE c.id_comp_cat=6 AND c.is_active=1 AND c.id_store_type=1 AND c.id_commerce_type=1 AND c.id_comp_group=" + id_comp_group + "
+        GROUP BY c.id_comp_group
+        HAVING jum=0 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
+
+    Private Sub BtnMailSetup_Click(sender As Object, e As EventArgs) Handles BtnMailSetup.Click
+        mailSetup()
     End Sub
 End Class
