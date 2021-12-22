@@ -24,6 +24,8 @@ Partial Class FormSOPIndexSchedule
         Me.DEDate = New DevExpress.XtraEditors.DateEdit()
         Me.SLUEDepartment = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -42,8 +44,6 @@ Partial Class FormSOPIndexSchedule
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEDepartment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,6 +92,19 @@ Partial Class FormSOPIndexSchedule
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn4
+        '
+        Me.GridColumn4.FieldName = "id_departement"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Department"
+        Me.GridColumn5.FieldName = "departement"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        '
         'LabelControl1
         '
         Me.LabelControl1.Location = New System.Drawing.Point(22, 22)
@@ -128,17 +141,17 @@ Partial Class FormSOPIndexSchedule
         '
         Me.SBSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBSave.Image = CType(resources.GetObject("SBSave.Image"), System.Drawing.Image)
-        Me.SBSave.Location = New System.Drawing.Point(258, 2)
+        Me.SBSave.Location = New System.Drawing.Point(210, 2)
         Me.SBSave.Name = "SBSave"
-        Me.SBSave.Size = New System.Drawing.Size(85, 40)
+        Me.SBSave.Size = New System.Drawing.Size(133, 40)
         Me.SBSave.TabIndex = 8
-        Me.SBSave.Text = "Save"
+        Me.SBSave.Text = "Save and Submit"
         '
         'SBClose
         '
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(173, 2)
+        Me.SBClose.Location = New System.Drawing.Point(125, 2)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(85, 40)
         Me.SBClose.TabIndex = 9
@@ -261,19 +274,6 @@ Partial Class FormSOPIndexSchedule
         Me.BAdd.Size = New System.Drawing.Size(345, 30)
         Me.BAdd.TabIndex = 14
         Me.BAdd.Text = "Add"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.FieldName = "id_departement"
-        Me.GridColumn4.Name = "GridColumn4"
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Department"
-        Me.GridColumn5.FieldName = "departement"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 0
         '
         'FormSOPIndexSchedule
         '

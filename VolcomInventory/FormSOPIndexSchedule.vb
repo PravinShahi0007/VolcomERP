@@ -88,8 +88,24 @@ WHERE ISNULL(tb.dt)"
                     execute_non_query(query_store, True, "", "", "", "")
                 Next
 
+                Dim qbody As String = "SELECT DATE_FORMAT(sch.date,'%d %M %Y') AS dt, DATE_FORMAT(sch.time_start,'%H:%i') AS time_start,DATE_FORMAT(sch.time_end,'%H:%i') AS time_end
+FROM `tb_sop_schedule` sch
+WHERE sch.id_departement='" & SLUEDepartment.EditValue.ToString & "'
+AND sch.date>=DATE(NOW())
+ORDER BY sch.date ASC,sch.time_start ASC"
+                Dim dtbody As DataTable = execute_query(qbody, -1, True, "", "", "", "")
+                If dtbody.Rows.Count > 0 Then
+                    'email notifikasi
+                    Dim mail As ClassSendEmail = New ClassSendEmail()
+                    mail.report_mark_type = "378"
+                    mail.par1 = SLUEDepartment.EditValue.ToString
+                    mail.par2 = SLUEDepartment.Text.ToString
+                    mail.send_email()
+                End If
+
                 infoCustom("Schedule saved.")
                 FormSOPIndex.view_sop_schedule_admin()
+
                 Close()
             End If
         End If
