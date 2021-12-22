@@ -110,11 +110,11 @@ Partial Class FormSOPSelectSOP
         '
         Me.SBPick.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBPick.Image = CType(resources.GetObject("SBPick.Image"), System.Drawing.Image)
-        Me.SBPick.Location = New System.Drawing.Point(682, 2)
+        Me.SBPick.Location = New System.Drawing.Point(641, 2)
         Me.SBPick.Name = "SBPick"
-        Me.SBPick.Size = New System.Drawing.Size(100, 41)
+        Me.SBPick.Size = New System.Drawing.Size(141, 41)
         Me.SBPick.TabIndex = 0
-        Me.SBPick.Text = "Select"
+        Me.SBPick.Text = "Select and Submit"
         '
         'FormSOPSelectSOP
         '

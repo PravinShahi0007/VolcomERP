@@ -69,6 +69,20 @@
                             FROM tb_sop_schedule_sop
                             WHERE id_sop_schedule_sop IN (" + String.Join(",", not_complete_list) + ")
                         ", True, "", "", "", "")
+                        'notif jadwal nextnya
+                        Dim qbody As String = "SELECT DATE_FORMAT(ss.date,'%W, %d %M %Y') AS dt, DATE_FORMAT(ss.time_start,'%H:%i') AS time_start,DATE_FORMAT(ss.time_end,'%H:%i') AS time_end,s.`sop_name`,s.`sop_number` 
+FROM tb_sop_schedule_sop sop
+INNER JOIN tb_sop s ON s.`id_sop`=sop.id_sop
+INNER JOIN `tb_sop_schedule` ss ON ss.id_sop_schedule=sop.id_sop_schedule
+WHERE sop.id_sop_schedule='" & id_sop_schedule & "'"
+                        Dim dtbody As DataTable = execute_query(qbody, -1, True, "", "", "", "")
+                        If dtbody.Rows.Count > 0 Then
+                            'email notifikasi
+                            Dim mail As ClassSendEmail = New ClassSendEmail()
+                            mail.report_mark_type = "379"
+                            mail.id_report = id_sop_schedule
+                            mail.send_email()
+                        End If
                     End If
                 End If
 
@@ -88,6 +102,20 @@
                             FROM tb_sop_schedule_sop
                             WHERE id_sop_schedule_sop IN (" + String.Join(",", complete_flowchart) + ")
                         ", True, "", "", "", "")
+                        'notif jadwal nextnya
+                        Dim qbody As String = "SELECT DATE_FORMAT(ss.date,'%W, %d %M %Y') AS dt, DATE_FORMAT(ss.time_start,'%H:%i') AS time_start,DATE_FORMAT(ss.time_end,'%H:%i') AS time_end,s.`sop_name`,s.`sop_number` 
+FROM tb_sop_schedule_sop sop
+INNER JOIN tb_sop s ON s.`id_sop`=sop.id_sop
+INNER JOIN `tb_sop_schedule` ss ON ss.id_sop_schedule=sop.id_sop_schedule
+WHERE sop.id_sop_schedule='" & id_sop_schedule & "'"
+                        Dim dtbody As DataTable = execute_query(qbody, -1, True, "", "", "", "")
+                        If dtbody.Rows.Count > 0 Then
+                            'email notifikasi
+                            Dim mail As ClassSendEmail = New ClassSendEmail()
+                            mail.report_mark_type = "379"
+                            mail.id_report = id_sop_schedule
+                            mail.send_email()
+                        End If
                     End If
                 End If
 

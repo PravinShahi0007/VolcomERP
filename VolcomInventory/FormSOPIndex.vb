@@ -7,11 +7,13 @@
             XTPIndexPPS.PageVisible = True
             XTPScheduleSOPAdmin.PageVisible = True
             XTPDepartemenTerkait.PageVisible = True
+            XTPReqMenuERP.PageVisible = True
         Else
             BMasterCatSOP.Visible = False
             XTPIndexPPS.PageVisible = False
             XTPScheduleSOPAdmin.PageVisible = False
             XTPDepartemenTerkait.PageVisible = True
+            XTPReqMenuERP.PageVisible = False
         End If
         XTCSOPIndex.SelectedTabPageIndex = 0
     End Sub
@@ -193,6 +195,18 @@ GROUP BY s.`id_sop`"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCDepartementTerkait.DataSource = dt
             GVDepartementTerkait.BestFitColumns()
+        ElseIf XTCSOPIndex.SelectedTabPageIndex = 7 Then
+            Dim q As String = "SELECT s.*,pps.`created_date`,dep.departement,pps.req_menu_erp
+,d.doc_desc
+,CONCAT(d.id_doc,'_371_',s.id_sop,d.ext) AS filename
+FROM `tb_sop_dep_pps` pps
+INNER JOIN `tb_sop` s ON s.`id_sop`=pps.`id_sop` AND pps.`id_report_status`=6
+INNER JOIN tb_m_departement dep ON dep.id_departement=s.id_departement
+LEFT JOIN (SELECT * FROM tb_doc WHERE report_mark_type=371) d ON d.id_report=s.id_sop AND d.report_mark_type=371 
+WHERE req_menu_erp != ''"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            GCReqMenuERP.DataSource = dt
+            GVReqMenuERP.BestFitColumns()
         End If
     End Sub
 
@@ -258,6 +272,16 @@ GROUP BY s.`id_sop`"
         If XTCSOPIndex.SelectedTabPageIndex = 6 Then
             If Not GVDepartementTerkait.GetFocusedRowCellValue("doc_desc").ToString = "" Then
                 download_doc(GVDepartementTerkait.GetFocusedRowCellValue("filename").ToString, GVDepartementTerkait.GetFocusedRowCellValue("doc_desc").ToString)
+            End If
+        End If
+    End Sub
+
+    Private Sub RepoReqMenu_Click(sender As Object, e As EventArgs) Handles RepoReqMenu.Click
+        'download file
+        'merge gk bisa
+        If XTCSOPIndex.SelectedTabPageIndex = 7 Then
+            If Not GVReqMenuERP.GetFocusedRowCellValue("doc_desc").ToString = "" Then
+                download_doc(GVReqMenuERP.GetFocusedRowCellValue("filename").ToString, GVReqMenuERP.GetFocusedRowCellValue("doc_desc").ToString)
             End If
         End If
     End Sub

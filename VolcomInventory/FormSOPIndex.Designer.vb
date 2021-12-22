@@ -106,6 +106,17 @@ Partial Class FormSOPIndex
         Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoLinkFileDepTerkait = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.XTPReqMenuERP = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCReqMenuERP = New DevExpress.XtraGrid.GridControl()
+        Me.GVReqMenuERP = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn55 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn58 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoReqMenu = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.GridColumn59 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemHyperLinkEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSOPIndex, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -140,6 +151,11 @@ Partial Class FormSOPIndex
         CType(Me.GVDepartementTerkait, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkFileDepTerkait, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPReqMenuERP.SuspendLayout()
+        CType(Me.GCReqMenuERP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVReqMenuERP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoReqMenu, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemHyperLinkEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
@@ -153,7 +169,7 @@ Partial Class FormSOPIndex
         Me.XTCSOPIndex.SelectedTabPage = Me.XTPBySOP
         Me.XTCSOPIndex.Size = New System.Drawing.Size(1046, 520)
         Me.XTCSOPIndex.TabIndex = 0
-        Me.XTCSOPIndex.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBySOP, Me.XTPByModul, Me.XTPScheduleSOPAdmin, Me.XTPScheduleSOPGuest, Me.XTPIndexPPS, Me.XTPPengajuanKelengkapan, Me.XTPDepartemenTerkait})
+        Me.XTCSOPIndex.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBySOP, Me.XTPByModul, Me.XTPScheduleSOPAdmin, Me.XTPScheduleSOPGuest, Me.XTPIndexPPS, Me.XTPPengajuanKelengkapan, Me.XTPDepartemenTerkait, Me.XTPReqMenuERP})
         '
         'XTPBySOP
         '
@@ -855,6 +871,96 @@ Partial Class FormSOPIndex
         Me.RepositoryItemHyperLinkEdit2.AutoHeight = False
         Me.RepositoryItemHyperLinkEdit2.Name = "RepositoryItemHyperLinkEdit2"
         '
+        'XTPReqMenuERP
+        '
+        Me.XTPReqMenuERP.Controls.Add(Me.GCReqMenuERP)
+        Me.XTPReqMenuERP.Name = "XTPReqMenuERP"
+        Me.XTPReqMenuERP.Size = New System.Drawing.Size(1040, 492)
+        Me.XTPReqMenuERP.Text = "Request Menu ERP"
+        '
+        'GCReqMenuERP
+        '
+        Me.GCReqMenuERP.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCReqMenuERP.Location = New System.Drawing.Point(0, 0)
+        Me.GCReqMenuERP.MainView = Me.GVReqMenuERP
+        Me.GCReqMenuERP.Name = "GCReqMenuERP"
+        Me.GCReqMenuERP.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoReqMenu, Me.RepositoryItemHyperLinkEdit3})
+        Me.GCReqMenuERP.Size = New System.Drawing.Size(1040, 492)
+        Me.GCReqMenuERP.TabIndex = 2
+        Me.GCReqMenuERP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReqMenuERP})
+        '
+        'GVReqMenuERP
+        '
+        Me.GVReqMenuERP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn51, Me.GridColumn53, Me.GridColumn52, Me.GridColumn55, Me.GridColumn58, Me.GridColumn59})
+        Me.GVReqMenuERP.GridControl = Me.GCReqMenuERP
+        Me.GVReqMenuERP.Name = "GVReqMenuERP"
+        Me.GVReqMenuERP.OptionsBehavior.ReadOnly = True
+        Me.GVReqMenuERP.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn51
+        '
+        Me.GridColumn51.Caption = "ID"
+        Me.GridColumn51.FieldName = "id_sop_dep_pps"
+        Me.GridColumn51.Name = "GridColumn51"
+        '
+        'GridColumn53
+        '
+        Me.GridColumn53.Caption = "Date Proposal"
+        Me.GridColumn53.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn53.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn53.FieldName = "created_date"
+        Me.GridColumn53.Name = "GridColumn53"
+        Me.GridColumn53.Visible = True
+        Me.GridColumn53.VisibleIndex = 0
+        Me.GridColumn53.Width = 153
+        '
+        'GridColumn52
+        '
+        Me.GridColumn52.Caption = "Milik Departement"
+        Me.GridColumn52.FieldName = "departement"
+        Me.GridColumn52.Name = "GridColumn52"
+        Me.GridColumn52.Visible = True
+        Me.GridColumn52.VisibleIndex = 1
+        Me.GridColumn52.Width = 215
+        '
+        'GridColumn55
+        '
+        Me.GridColumn55.Caption = "Nama SOP"
+        Me.GridColumn55.FieldName = "sop_name"
+        Me.GridColumn55.Name = "GridColumn55"
+        Me.GridColumn55.Visible = True
+        Me.GridColumn55.VisibleIndex = 2
+        Me.GridColumn55.Width = 215
+        '
+        'GridColumn58
+        '
+        Me.GridColumn58.Caption = "File SOP"
+        Me.GridColumn58.ColumnEdit = Me.RepoReqMenu
+        Me.GridColumn58.FieldName = "doc_desc"
+        Me.GridColumn58.Name = "GridColumn58"
+        Me.GridColumn58.Visible = True
+        Me.GridColumn58.VisibleIndex = 3
+        Me.GridColumn58.Width = 215
+        '
+        'RepoReqMenu
+        '
+        Me.RepoReqMenu.AutoHeight = False
+        Me.RepoReqMenu.Name = "RepoReqMenu"
+        '
+        'GridColumn59
+        '
+        Me.GridColumn59.Caption = "Request"
+        Me.GridColumn59.FieldName = "req_menu_erp"
+        Me.GridColumn59.Name = "GridColumn59"
+        Me.GridColumn59.Visible = True
+        Me.GridColumn59.VisibleIndex = 4
+        Me.GridColumn59.Width = 224
+        '
+        'RepositoryItemHyperLinkEdit3
+        '
+        Me.RepositoryItemHyperLinkEdit3.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit3.Name = "RepositoryItemHyperLinkEdit3"
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BRefresh)
@@ -921,6 +1027,11 @@ Partial Class FormSOPIndex
         CType(Me.GVDepartementTerkait, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkFileDepTerkait, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPReqMenuERP.ResumeLayout(False)
+        CType(Me.GCReqMenuERP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVReqMenuERP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoReqMenu, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemHyperLinkEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -1015,4 +1126,15 @@ Partial Class FormSOPIndex
     Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn50 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPReqMenuERP As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCReqMenuERP As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVReqMenuERP As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn51 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn55 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn58 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepoReqMenu As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents GridColumn59 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemHyperLinkEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
 End Class
