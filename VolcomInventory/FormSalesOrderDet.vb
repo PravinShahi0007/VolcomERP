@@ -992,7 +992,7 @@ Public Class FormSalesOrderDet
     Private Sub TxtCodeCompTo_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeCompTo.KeyDown
         If e.KeyCode = Keys.Enter Then
             Dim id_so_type As String = LETypeSO.EditValue.ToString
-            Dim query_cond As String = "AND comp.id_comp<>'" + get_setup_field("wh_temp") + "' "
+            Dim query_cond As String = "AND comp.id_comp<>'" + get_setup_field("wh_temp") + "' AND comp.id_store_type!=3 "
             If is_transfer_data = "2" Then
                 query_cond += "AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 AND comp.is_only_for_alloc=2 "
             Else
