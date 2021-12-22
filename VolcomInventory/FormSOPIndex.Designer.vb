@@ -104,7 +104,7 @@ Partial Class FormSOPIndex
         Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.RepoLinkFileDepTerkait = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
@@ -138,7 +138,7 @@ Partial Class FormSOPIndex
         Me.XTPDepartemenTerkait.SuspendLayout()
         CType(Me.GCDepartementTerkait, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDepartementTerkait, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkFileDepTerkait, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -278,7 +278,7 @@ Partial Class FormSOPIndex
         Me.BSOPAsset.Name = "BSOPAsset"
         Me.BSOPAsset.Size = New System.Drawing.Size(1040, 40)
         Me.BSOPAsset.TabIndex = 9
-        Me.BSOPAsset.Text = "Pengajuan kelengkapan SOP"
+        Me.BSOPAsset.Text = "Upload SOP"
         '
         'BMasterCatSOP
         '
@@ -702,7 +702,7 @@ Partial Class FormSOPIndex
         Me.XTPPengajuanKelengkapan.Controls.Add(Me.GCPengajuanKelengkapan)
         Me.XTPPengajuanKelengkapan.Name = "XTPPengajuanKelengkapan"
         Me.XTPPengajuanKelengkapan.Size = New System.Drawing.Size(1040, 492)
-        Me.XTPPengajuanKelengkapan.Text = "Pengajuan Kelengkapan SOP"
+        Me.XTPPengajuanKelengkapan.Text = "Upload SOP"
         '
         'GCPengajuanKelengkapan
         '
@@ -769,7 +769,7 @@ Partial Class FormSOPIndex
         Me.GCDepartementTerkait.Location = New System.Drawing.Point(0, 0)
         Me.GCDepartementTerkait.MainView = Me.GVDepartementTerkait
         Me.GCDepartementTerkait.Name = "GCDepartementTerkait"
-        Me.GCDepartementTerkait.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemHyperLinkEdit1, Me.RepositoryItemHyperLinkEdit2})
+        Me.GCDepartementTerkait.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoLinkFileDepTerkait, Me.RepositoryItemHyperLinkEdit2})
         Me.GCDepartementTerkait.Size = New System.Drawing.Size(1040, 492)
         Me.GCDepartementTerkait.TabIndex = 1
         Me.GCDepartementTerkait.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDepartementTerkait})
@@ -780,7 +780,6 @@ Partial Class FormSOPIndex
         Me.GVDepartementTerkait.GridControl = Me.GCDepartementTerkait
         Me.GVDepartementTerkait.Name = "GVDepartementTerkait"
         Me.GVDepartementTerkait.OptionsBehavior.ReadOnly = True
-        Me.GVDepartementTerkait.OptionsView.AllowCellMerge = True
         Me.GVDepartementTerkait.OptionsView.ShowGroupPanel = False
         '
         'GridColumn41
@@ -840,16 +839,16 @@ Partial Class FormSOPIndex
         'GridColumn47
         '
         Me.GridColumn47.Caption = "File SOP"
-        Me.GridColumn47.ColumnEdit = Me.RepositoryItemHyperLinkEdit1
+        Me.GridColumn47.ColumnEdit = Me.RepoLinkFileDepTerkait
         Me.GridColumn47.FieldName = "doc_desc"
         Me.GridColumn47.Name = "GridColumn47"
         Me.GridColumn47.Visible = True
         Me.GridColumn47.VisibleIndex = 6
         '
-        'RepositoryItemHyperLinkEdit1
+        'RepoLinkFileDepTerkait
         '
-        Me.RepositoryItemHyperLinkEdit1.AutoHeight = False
-        Me.RepositoryItemHyperLinkEdit1.Name = "RepositoryItemHyperLinkEdit1"
+        Me.RepoLinkFileDepTerkait.AutoHeight = False
+        Me.RepoLinkFileDepTerkait.Name = "RepoLinkFileDepTerkait"
         '
         'RepositoryItemHyperLinkEdit2
         '
@@ -920,7 +919,7 @@ Partial Class FormSOPIndex
         Me.XTPDepartemenTerkait.ResumeLayout(False)
         CType(Me.GCDepartementTerkait, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDepartementTerkait, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkFileDepTerkait, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
@@ -1011,7 +1010,7 @@ Partial Class FormSOPIndex
     Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemHyperLinkEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents RepoLinkFileDepTerkait As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents RepositoryItemHyperLinkEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn

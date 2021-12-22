@@ -166,18 +166,18 @@ ORDER BY pps.id_sop_dep_pps DESC"
             GCPengajuanKelengkapan.DataSource = dt
             GVPengajuanKelengkapan.BestFitColumns()
         ElseIf XTCSOPIndex.SelectedTabPageIndex = 6 Then
-            Dim q As String = "SELECT s.*,spsub.sop_prosedur_sub,sp.sop_prosedur,dep.departement,m.menu_name,m.`menu_caption`,CONCAT(d.id_doc,'_371_',s.id_sop,d.ext) AS filename,d.doc_desc
-,CONCAT(sch.milestone,' - ',sch.sts_meeting) AS milestone
+            Dim q As String = "SELECT s.*,spsub.sop_prosedur_sub,sp.sop_prosedur,dep.departement
+,d.doc_desc
+,CONCAT(d.id_doc,'_371_',s.id_sop,d.ext) AS filename
+,sch.sts_milestone AS milestone
 FROM `tb_sop` s
 INNER JOIN tb_m_departement dep ON dep.id_departement=s.id_departement
 INNER JOIN tb_sop_prosedur_sub spsub ON spsub.id_sop_prosedur_sub=s.id_sop_prosedur_sub
 INNER JOIN tb_sop_prosedur sp ON sp.id_sop_prosedur=spsub.id_sop_prosedur
-LEFT JOIN tb_sop_menu_erp er ON er.id_sop=s.id_sop
-LEFT JOIN tb_menu m ON m.`id_menu`=er.`id_menu`
 LEFT JOIN (SELECT * FROM tb_doc WHERE report_mark_type=371) d ON d.id_report=s.id_sop AND d.report_mark_type=371 
 LEFT JOIN
 (
-    SELECT sch.*,IF(sch.is_complete=1,'Complete','Not Complete') AS sts_meeting,ml.milestone 
+    SELECT sch.*,IF(sch.is_complete=1,'Complete','Not Complete') AS sts_meeting,ml.milestone ,CONCAT(ml.milestone,' - ',IF(sch.is_complete=1,'Complete','Not Complete')) AS sts_milestone
     FROM tb_sop_schedule_sop sch
     INNER JOIN tb_lookup_milestone ml ON ml.id_milestone=sch.id_milestone
     INNER JOIN (
@@ -188,7 +188,8 @@ LEFT JOIN
     )schm ON schm.id_sop=sch.id_sop AND sch.datetime=schm.dt
 )sch ON sch.id_sop=s.id_sop
 INNER JOIN `tb_sop_dep_terkait` sd ON sd.`id_sop`=s.`id_sop`
-WHERE sd.`id_departement`='" & id_departement_user & "'"
+WHERE sd.`id_departement`='" & id_departement_user & "'
+GROUP BY s.`id_sop`"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             GCDepartementTerkait.DataSource = dt
             GVDepartementTerkait.BestFitColumns()
@@ -247,6 +248,16 @@ WHERE sd.`id_departement`='" & id_departement_user & "'"
         If XTCSOPIndex.SelectedTabPageIndex = 0 Then
             If Not GVBySOP.GetFocusedRowCellValue("doc_desc").ToString = "" Then
                 download_doc(GVBySOP.GetFocusedRowCellValue("filename").ToString, GVBySOP.GetFocusedRowCellValue("doc_desc").ToString)
+            End If
+        End If
+    End Sub
+
+    Private Sub RepoLinkFileDepTerkait_Click(sender As Object, e As EventArgs) Handles RepoLinkFileDepTerkait.Click
+        'download file
+        'merge gk bisa
+        If XTCSOPIndex.SelectedTabPageIndex = 6 Then
+            If Not GVDepartementTerkait.GetFocusedRowCellValue("doc_desc").ToString = "" Then
+                download_doc(GVDepartementTerkait.GetFocusedRowCellValue("filename").ToString, GVDepartementTerkait.GetFocusedRowCellValue("doc_desc").ToString)
             End If
         End If
     End Sub

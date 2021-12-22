@@ -23,7 +23,7 @@ Public Class ClassSendEmail
     Public subj As String = ""
     Public titl As String = ""
     Public head As String = ""
-
+    Public dt_temp As DataTable
 
     Sub send_email()
         'get param

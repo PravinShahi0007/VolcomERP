@@ -578,7 +578,7 @@ Partial Class FormSOPNew
         Me.BProposeSOPAsset.Name = "BProposeSOPAsset"
         Me.BProposeSOPAsset.Size = New System.Drawing.Size(724, 40)
         Me.BProposeSOPAsset.TabIndex = 14
-        Me.BProposeSOPAsset.Text = "Ajukan Kelengkapan SOP"
+        Me.BProposeSOPAsset.Text = "Upload SOP"
         Me.BProposeSOPAsset.Visible = False
         '
         'XTPDetail
