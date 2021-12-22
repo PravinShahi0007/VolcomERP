@@ -57,7 +57,7 @@
                     Dim id_sop_schedule As String = execute_query("
                         SELECT IFNULL((SELECT IFNULL(id_sop_schedule, 0) AS id_sop_schedule
                         FROM tb_sop_schedule
-                        WHERE id_sop_schedule NOT IN (SELECT id_sop_schedule FROM tb_sop_schedule_sop) AND id_departement = '" + FormSOPIndex.GVScheduleAdmin.GetFocusedRowCellValue("id_departement").ToString + "'
+                        WHERE id_sop_schedule NOT IN (SELECT id_sop_schedule FROM tb_sop_schedule_sop) AND id_departement = '" + FormSOPIndex.GVScheduleAdmin.GetFocusedRowCellValue("id_departement").ToString + "' AND `date` >= '" + Date.Parse(FormSOPIndex.GVScheduleAdmin.GetFocusedRowCellValue("date").ToString).ToString("yyyy-MM-dd") + "'
                         ORDER BY `date` ASC, time_start ASC
                         LIMIT 1), 0)
                     ", 0, True, "", "", "", "")
@@ -90,7 +90,7 @@ WHERE sop.id_sop_schedule='" & id_sop_schedule & "'"
                     Dim id_sop_schedule As String = execute_query("
                         SELECT IFNULL((SELECT IFNULL(id_sop_schedule, 0) AS id_sop_schedule
                         FROM tb_sop_schedule
-                        WHERE id_sop_schedule NOT IN (SELECT id_sop_schedule FROM tb_sop_schedule_sop) AND id_departement = '" + FormSOPIndex.GVScheduleAdmin.GetFocusedRowCellValue("id_departement").ToString + "'
+                        WHERE id_sop_schedule NOT IN (SELECT id_sop_schedule FROM tb_sop_schedule_sop) AND id_departement = '" + FormSOPIndex.GVScheduleAdmin.GetFocusedRowCellValue("id_departement").ToString + "' AND `date` >= '" + Date.Parse(FormSOPIndex.GVScheduleAdmin.GetFocusedRowCellValue("date").ToString).ToString("yyyy-MM-dd") + "'
                         ORDER BY `date` ASC, time_start ASC
                         LIMIT 1), 0)
                     ", 0, True, "", "", "", "")
