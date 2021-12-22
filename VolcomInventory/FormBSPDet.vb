@@ -272,6 +272,18 @@
                 'update 
                 saveHead()
 
+                'reserved stock
+                Dim query_rsv As String = "-- reset book stock
+                DELETE FROM tb_storage_fg WHERE report_mark_type=" + rmt + " AND id_report=" + id + " AND storage_product_notes='rsv';
+                -- book stock
+                INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
+                SELECT bd.id_wh_drawer, 2, bd.id_product, d.design_cop, " + rmt + ", bd.id_bsp, bd.qty, NOW(), 'rsv',2
+                FROM tb_bsp_det bd
+                INNER JOIN tb_m_product p ON p.id_product = bd.id_product
+                INNER JOIN tb_m_design d ON d.id_design = p.id_design
+                WHERE bd.id_bsp=" + id + "; "
+                execute_non_query_long(query_rsv, True, "", "", "", "")
+
                 'update confirm
                 Dim query As String = "UPDATE tb_bsp SET is_confirm=1 WHERE id_bsp='" + id + "'"
                 execute_non_query(query, True, "", "", "", "")
@@ -335,6 +347,19 @@
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancelled this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
+            'cancel reserved stock
+            Dim query_rsv As String = "-- reset book stock
+            DELETE FROM tb_storage_fg WHERE report_mark_type=" + rmt + " AND id_report=" + id + " AND storage_product_notes='cancel_rsv';
+            -- book stock
+            INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
+            SELECT bd.id_wh_drawer, 1, bd.id_product, d.design_cop, " + rmt + ", bd.id_bsp, bd.qty, NOW(), 'cancel_rsv',2
+            FROM tb_bsp_det bd
+            INNER JOIN tb_m_product p ON p.id_product = bd.id_product
+            INNER JOIN tb_m_design d ON d.id_design = p.id_design
+            WHERE bd.id_bsp=" + id + "; "
+            execute_non_query_long(query_rsv, True, "", "", "", "")
+
+            'cancel trans
             Dim query As String = "UPDATE tb_bsp SET id_report_status=5 WHERE id_bsp='" + id + "'"
             execute_non_query(query, True, "", "", "", "")
 
@@ -396,7 +421,7 @@
         Cursor = Cursors.WaitCursor
         FormReportMark.report_mark_type = rmt
         FormReportMark.id_report = id
-        FormReportMark.is_view = is_view
+        FormReportMark.is_view = "1"
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
