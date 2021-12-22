@@ -18,6 +18,7 @@
     End Sub
 
     Private Sub SBPick_Click(sender As Object, e As EventArgs) Handles SBPick.Click
+        Cursor = Cursors.WaitCursor
         GVSOP.ClearColumnsFilter()
         GVSOP.FindFilterText = ""
 
@@ -52,5 +53,6 @@ WHERE sop.id_sop_schedule='" & FormSOPIndex.GVScheduleAdmin.GetFocusedRowCellVal
         Else
             stopCustom("No SOP Selected.")
         End If
+        Cursor = Cursors.Default
     End Sub
 End Class
