@@ -117,7 +117,7 @@ GROUP BY pdp.id_product
 ORDER BY pdp.id_prod_demand_design DESC"
         Else
             'normal
-            query = "SELECT 'no' AS is_check,'' AS note,pdd.id_prod_demand_design,'' AS id_prod_demand_product,pdd.id_design,pdd.qty,dsg.design_display_name,dsg.design_code,pdd.prod_demand_number,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdd.qty) AS qty_order 
+            query = "SELECT 'no' AS is_check,'' AS note,pdd.id_prod_demand_design,'' AS id_prod_demand_product,pdd.id_design,pdd.qty,CONCAT(IFNULL(cd.class,'-'),' ',dsg.`design_name`,' ',IFNULL(cd.color,'-')) AS design_display_name,dsg.design_code,pdd.prod_demand_number,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*pdd.qty) AS qty_order 
 FROM (
 	SELECT pd_dsg.id_prod_demand_design, pd_dsg.id_prod_demand, pd.prod_demand_number, pd_dsg.id_design, 
 	pd_dsg.prod_demand_design_propose_price, pd_dsg.prod_demand_design_total_cost, pd_dsg.msrp,
@@ -135,6 +135,22 @@ LEFT JOIN
 	SELECT id_prod_demand_design FROM `tb_mat_purc_list_pd` plp
 	INNER JOIN tb_mat_purc_list pl ON pl.`id_mat_purc_list`=plp.`id_mat_purc_list` AND pl.`is_cancel`=2 AND pl.id_mat_det='" & SLEMaterial.EditValue.ToString & "'
 ) pl ON pl.id_prod_demand_design=pdd.id_prod_demand_design
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
 WHERE ISNULL(pl.id_prod_demand_design)
 GROUP BY pdd.id_design
 ORDER BY pdd.id_prod_demand_design DESC"
@@ -164,11 +180,27 @@ WHERE lp.id_mat_purc_list='" & id_list & "'
 ORDER BY pdd.id_prod_demand_design DESC"
         Else
             'normal
-            query = "SELECT 'yes' AS is_check,lp.note AS note,lp.id_prod_demand_design,'' AS id_prod_demand_product,pdd.id_design,lp.total_qty_pd AS qty,dsg.design_display_name,dsg.design_code,pd.prod_demand_number,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*lp.total_qty_pd) AS qty_order 
+            query = "SELECT 'yes' AS is_check,lp.note AS note,lp.id_prod_demand_design,'' AS id_prod_demand_product,pdd.id_design,lp.total_qty_pd AS qty,CONCAT(IFNULL(cd.class,'-'),' ',dsg.`design_name`,' ',IFNULL(cd.color,'-')) AS design_display_name,dsg.design_code,pd.prod_demand_number,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*lp.total_qty_pd) AS qty_order 
 FROM tb_mat_purc_list_pd lp
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=lp.id_prod_demand_design
 INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
 WHERE lp.id_mat_purc_list='" & id_list & "'
 ORDER BY pdd.id_prod_demand_design DESC"
         End If
@@ -225,7 +257,7 @@ GROUP BY pdp.id_product
 ORDER BY is_check DESC,id_prod_demand_design DESC"
         Else
             'normal
-            query = "SELECT 'yes' AS is_check,lp.note AS note,lp.id_prod_demand_design,'' AS id_prod_demand_product,pdd.id_design,lp.total_qty_pd AS qty,dsg.design_display_name,dsg.design_code,pd.prod_demand_number,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*lp.total_qty_pd) AS qty_order 
+            query = "SELECT 'yes' AS is_check,lp.note AS note,lp.id_prod_demand_design,'' AS id_prod_demand_product,pdd.id_design,lp.total_qty_pd AS qty,CONCAT(IFNULL(cd.class,'-'),' ',dsg.`design_name`,' ',IFNULL(cd.color,'-')) AS design_display_name,dsg.design_code,pd.prod_demand_number,(" & decimalSQL(TEConsumption.EditValue.ToString) & "*lp.total_qty_pd) AS qty_order 
 FROM tb_mat_purc_list_pd lp
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=lp.id_prod_demand_design
 INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand
@@ -245,6 +277,22 @@ FROM (
 	ORDER BY pd_dsg.id_prod_demand_design DESC
 ) pdd
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
 LEFT JOIN
 (
 	SELECT id_prod_demand_design FROM `tb_mat_purc_list_pd` plp
