@@ -112,8 +112,8 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        FormBSP.is_test = "1"
-        FormBSP.ShowDialog()
+        'FormBSP.is_test = "1"
+        'FormBSP.ShowDialog()
         'split kacamata
         'MsgBox(TextEdit1.Text.Split("/")(0).ToString().TrimEnd)
         'MsgBox(TextEdit1.Text.Split("/")(1).ToString().TrimStart)

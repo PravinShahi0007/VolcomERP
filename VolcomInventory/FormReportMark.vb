@@ -11257,11 +11257,11 @@ WHERE id_sop_dep_pps='" & id_report & "'"
                 Dim dwh As DataTable = execute_query(qwh, -1, True, "", "", "", "")
                 For d As Integer = 0 To dwh.Rows.Count - 1
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Create TOO " + (d + 1).ToString + "/" + dwh.Rows.Count.ToString)
-                    'Try
-                    execute_non_query_long("CALL gen_bsp_order(" + id_report + ", " + dwh.Rows(d)("id_comp").ToString + ")", True, "", "", "", "")
-                    'Catch ex As Exception
-                    'execute_non_query("INSERT INTO tb_bsp_so_log(id_bsp, id_wh, log_date, log_note) VALUES('" + id_report + "', '" + dwh.Rows(d)("id_comp") + "', NOW(), '" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
-                    'End Try
+                    Try
+                        execute_non_query_long("CALL gen_bsp_order(" + id_report + ", " + dwh.Rows(d)("id_comp").ToString + ")", True, "", "", "", "")
+                    Catch ex As Exception
+                        execute_non_query("INSERT INTO tb_bsp_so_log(id_bsp, id_wh, log_date, log_note) VALUES('" + id_report + "', '" + dwh.Rows(d)("id_comp") + "', NOW(), '" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
+                    End Try
                 Next
 
                 FormMain.SplashScreenManager1.CloseWaitForm()
