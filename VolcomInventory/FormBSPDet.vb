@@ -427,17 +427,22 @@
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancelled this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
-            'cancel reserved stock
-            Dim query_rsv As String = "-- reset book stock
-            DELETE FROM tb_storage_fg WHERE report_mark_type=" + rmt + " AND id_report=" + id + " AND storage_product_notes='cancel_rsv';
-            -- book stock
-            INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
-            SELECT bd.id_wh_drawer, 1, bd.id_product, d.design_cop, " + rmt + ", bd.id_bsp, bd.qty, NOW(), 'cancel_rsv',2
-            FROM tb_bsp_det bd
-            INNER JOIN tb_m_product p ON p.id_product = bd.id_product
-            INNER JOIN tb_m_design d ON d.id_design = p.id_design
-            WHERE bd.id_bsp=" + id + "; "
-            execute_non_query_long(query_rsv, True, "", "", "", "")
+
+            Dim is_confirm_check As String = execute_query("SELECT b.is_confirm FROM tb_bsp b WHERE b.id_bsp=" + id + "", 0, True, "", "", "", "")
+            If is_confirm_check = "1" Then
+                'cancel reserved stock
+                Dim query_rsv As String = "-- reset book stock
+                DELETE FROM tb_storage_fg WHERE report_mark_type=" + rmt + " AND id_report=" + id + " AND storage_product_notes='cancel_rsv';
+                -- book stock
+                INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
+                SELECT bd.id_wh_drawer, 1, bd.id_product, d.design_cop, " + rmt + ", bd.id_bsp, bd.qty, NOW(), 'cancel_rsv',2
+                FROM tb_bsp_det bd
+                INNER JOIN tb_m_product p ON p.id_product = bd.id_product
+                INNER JOIN tb_m_design d ON d.id_design = p.id_design
+                WHERE bd.id_bsp=" + id + "; "
+                execute_non_query_long(query_rsv, True, "", "", "", "")
+            End If
+
 
             'cancel trans
             Dim query As String = "UPDATE tb_bsp SET id_report_status=5 WHERE id_bsp='" + id + "'"
