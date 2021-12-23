@@ -3048,6 +3048,12 @@
     <Compile Include="FormMailManageReturnPendingInvoice.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMailTo.Designer.vb">
+      <DependentUpon>FormMailTo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMailTo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormManualSyncCNROR.Designer.vb">
       <DependentUpon>FormManualSyncCNROR.vb</DependentUpon>
     </Compile>
@@ -12033,6 +12039,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMailManageReturnPendingInvoice.resx">
       <DependentUpon>FormMailManageReturnPendingInvoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMailTo.resx">
+      <DependentUpon>FormMailTo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManualSyncCNROR.resx">
       <DependentUpon>FormManualSyncCNROR.vb</DependentUpon>
