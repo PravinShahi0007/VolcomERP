@@ -529,7 +529,7 @@
             FormSOPNew.Close()
         ElseIf report_mark_type = "376" Then
             'propose big sale product
-            FormBSP.Close()
+            FormBSPDet.Close()
         End If
     End Sub
     Sub show()

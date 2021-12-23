@@ -484,7 +484,7 @@ WHERE id_sop='" & id_sop & "'"
             Dim confirm As DialogResult
             confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Anda yakin ingin mengunci data untuk SOP ini ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
-                Dim q As String = "UPDATE tb_sop_dep_pps SET is_submit=1 WHERE id_sop_dep_pps='" & id_pps & "'"
+                Dim q As String = "UPDATE tb_sop_dep_pps SET is_submit=1,req_menu_erp='" & addSlashes(MERequestMenuERP.Text) & "' WHERE id_sop_dep_pps='" & id_pps & "'"
                 execute_non_query(q, True, "", "", "", "")
                 submit_who_prepared("377", id_pps, id_user)
 
