@@ -228,6 +228,7 @@ Partial Class FormProductionDet
         Me.BEditMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPProdOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPageProduction, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -393,7 +394,7 @@ Partial Class FormProductionDet
         '
         'GVListProduct
         '
-        Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPurcDet, Me.ColIdMat, Me.ColNo, Me.ColCode, Me.GridColumnUPC, Me.ColName, Me.ColPrice, Me.ColQty, Me.ColSubtotal, Me.ColNote, Me.ColColor, Me.ColSize, Me.GridColumnBOM, Me.GridColumn3, Me.GridColumn4})
+        Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPurcDet, Me.ColIdMat, Me.ColNo, Me.ColCode, Me.GridColumnUPC, Me.GridColumn42, Me.ColName, Me.ColPrice, Me.ColQty, Me.ColSubtotal, Me.ColNote, Me.ColColor, Me.ColSize, Me.GridColumnBOM, Me.GridColumn3, Me.GridColumn4})
         Me.GVListProduct.CustomizationFormBounds = New System.Drawing.Rectangle(804, 409, 216, 178)
         Me.GVListProduct.GridControl = Me.GCListProduct
         Me.GVListProduct.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never
@@ -445,16 +446,16 @@ Partial Class FormProductionDet
         Me.GridColumnUPC.FieldName = "ean_code"
         Me.GridColumnUPC.Name = "GridColumnUPC"
         Me.GridColumnUPC.Visible = True
-        Me.GridColumnUPC.VisibleIndex = 4
+        Me.GridColumnUPC.VisibleIndex = 5
         '
         'ColName
         '
         Me.ColName.Caption = "Description"
-        Me.ColName.FieldName = "name"
+        Me.ColName.FieldName = "design_display_name"
         Me.ColName.Name = "ColName"
         Me.ColName.OptionsColumn.AllowEdit = False
         Me.ColName.Visible = True
-        Me.ColName.VisibleIndex = 2
+        Me.ColName.VisibleIndex = 3
         Me.ColName.Width = 235
         '
         'ColPrice
@@ -485,7 +486,7 @@ Partial Class FormProductionDet
         Me.ColQty.OptionsColumn.AllowEdit = False
         Me.ColQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_qty", "{0:N2}")})
         Me.ColQty.Visible = True
-        Me.ColQty.VisibleIndex = 6
+        Me.ColQty.VisibleIndex = 7
         Me.ColQty.Width = 68
         '
         'ColSubtotal
@@ -509,7 +510,7 @@ Partial Class FormProductionDet
         Me.ColNote.FieldName = "note"
         Me.ColNote.Name = "ColNote"
         Me.ColNote.Visible = True
-        Me.ColNote.VisibleIndex = 7
+        Me.ColNote.VisibleIndex = 8
         '
         'ColColor
         '
@@ -522,7 +523,7 @@ Partial Class FormProductionDet
         Me.ColColor.Name = "ColColor"
         Me.ColColor.OptionsColumn.AllowEdit = False
         Me.ColColor.Visible = True
-        Me.ColColor.VisibleIndex = 3
+        Me.ColColor.VisibleIndex = 4
         '
         'ColSize
         '
@@ -535,7 +536,7 @@ Partial Class FormProductionDet
         Me.ColSize.Name = "ColSize"
         Me.ColSize.OptionsColumn.AllowEdit = False
         Me.ColSize.Visible = True
-        Me.ColSize.VisibleIndex = 5
+        Me.ColSize.VisibleIndex = 6
         '
         'GridColumnBOM
         '
@@ -2392,6 +2393,14 @@ Partial Class FormProductionDet
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
+        'GridColumn42
+        '
+        Me.GridColumn42.Caption = "Class"
+        Me.GridColumn42.FieldName = "class"
+        Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.Visible = True
+        Me.GridColumn42.VisibleIndex = 2
+        '
         'FormProductionDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2713,4 +2722,5 @@ Partial Class FormProductionDet
     Friend WithEvents TEReff As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BCancelFGPO As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
