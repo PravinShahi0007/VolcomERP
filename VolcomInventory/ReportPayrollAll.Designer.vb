@@ -19,37 +19,31 @@ Partial Public Class ReportPayrollAll
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportPayrollAll))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.WinControlContainer2 = New DevExpress.XtraReports.UI.WinControlContainer()
         Me.GCPayrollStore = New DevExpress.XtraGrid.GridControl()
         Me.GVPayrollStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GBEmployeeStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCNoStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCNIPStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCNameStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCDepartementStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCPositionStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCStatusStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBWorkingDaysStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCWorkingDaysStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCActualWorkingDaysStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCOvertimeHoursStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBDWStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCActualWorkingDaysDWStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCBasicSalaryDWStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalSalaryDWStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBTHRStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCActualJoinDateTHRStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCLastDateTHRStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCLengthOfWorkTHRStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalSalaryTHRStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBSalaryStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCTotalTHPStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalAdjustmentStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalPaymentOvertimeStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalDeductionStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBGrandTotalStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCGrandTotalStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCSubDepartementStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCActualWorkingHoursStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -67,33 +61,27 @@ Partial Public Class ReportPayrollAll
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
         Me.GCPayrollOffice = New DevExpress.XtraGrid.GridControl()
         Me.GVPayrollOffice = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GBEmployee = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCNo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCNIP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCPosition = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBWorkingDays = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCWorkingDays = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCActualWorkingDays = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCActualWorkingHours = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCOvertimeHours = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBDW = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCActualWorkingDaysDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCBasicSalaryDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalSalaryDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBTHR = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCActualJoinDateTHR = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCLastDateTHR = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCLengthOfWorkTHR = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalSalaryTHR = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBSalary = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCTotalTHP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalAdjustment = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalPaymentOvertime = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCTotalDeduction = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GBGrandTotal = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCGrandTotal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCSubDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RICEPending = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -108,7 +96,7 @@ Partial Public Class ReportPayrollAll
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
-        Me.SqlDataSource1 = New DevExpress.DataAccess.Sql.SqlDataSource(Me.components)
+        Me.SqlDataSource1 = New DevExpress.DataAccess.Sql.SqlDataSource()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
@@ -144,7 +132,20 @@ Partial Public Class ReportPayrollAll
         Me.DetailOffice = New DevExpress.XtraReports.UI.DetailBand()
         Me.DetailReportStore = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.DetailStore = New DevExpress.XtraReports.UI.DetailBand()
-        Me.GCLastDateTHRStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCTotalSalaryBonus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBEmployee = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GBWorkingDays = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GBDW = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GBTHR = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GBSalary = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GBGrandTotal = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GCTotalSalaryBonusStore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBEmployeeStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GBWorkingDaysStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GBDWStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GBTHRStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GBSalaryStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GBGrandTotalStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GCPayrollStore, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPayrollStore, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -229,11 +230,11 @@ Partial Public Class ReportPayrollAll
         Me.GVPayrollStore.BandPanelRowHeight = 16
         Me.GVPayrollStore.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBEmployeeStore, Me.GBWorkingDaysStore, Me.GBDWStore, Me.GBTHRStore, Me.GBSalaryStore, Me.GBGrandTotalStore})
         Me.GVPayrollStore.ColumnPanelRowHeight = 32
-        Me.GVPayrollStore.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCDepartementStore, Me.GCSubDepartementStore, Me.GCNIPStore, Me.GCNameStore, Me.GCPositionStore, Me.GCStatusStore, Me.GCWorkingDaysStore, Me.GCActualWorkingDaysStore, Me.GCActualWorkingHoursStore, Me.GCOvertimeHoursStore, Me.GCTotalTHPStore, Me.GCTotalAdjustmentStore, Me.GCTotalPaymentOvertimeStore, Me.GCTotalDeductionStore, Me.GCActualWorkingDaysDWStore, Me.GCBasicSalaryDWStore, Me.GCTotalSalaryDWStore, Me.GCActualJoinDateTHRStore, Me.GCLastDateTHRStore, Me.GCLengthOfWorkTHRStore, Me.GCTotalSalaryTHRStore, Me.GCGrandTotalStore, Me.GCNoStore})
+        Me.GVPayrollStore.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCDepartementStore, Me.GCSubDepartementStore, Me.GCNIPStore, Me.GCNameStore, Me.GCPositionStore, Me.GCStatusStore, Me.GCWorkingDaysStore, Me.GCActualWorkingDaysStore, Me.GCActualWorkingHoursStore, Me.GCOvertimeHoursStore, Me.GCTotalTHPStore, Me.GCTotalAdjustmentStore, Me.GCTotalPaymentOvertimeStore, Me.GCTotalDeductionStore, Me.GCActualWorkingDaysDWStore, Me.GCBasicSalaryDWStore, Me.GCTotalSalaryDWStore, Me.GCActualJoinDateTHRStore, Me.GCLastDateTHRStore, Me.GCLengthOfWorkTHRStore, Me.GCTotalSalaryTHRStore, Me.GCGrandTotalStore, Me.GCNoStore, Me.GCTotalSalaryBonusStore})
         Me.GVPayrollStore.GridControl = Me.GCPayrollStore
         Me.GVPayrollStore.GroupCount = 2
         Me.GVPayrollStore.GroupFormat = "{1} {2}"
-        Me.GVPayrollStore.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "tot_thp", Me.GCTotalTHPStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_adjustment", Me.GCTotalAdjustmentStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_deduction", Me.GCTotalDeductionStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_ot_wages", Me.GCTotalPaymentOvertimeStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "grand_total", Me.GCGrandTotalStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_salary_dw", Me.GCTotalSalaryDWStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "employee_name", Me.GCNameStore, "", ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_salary_thr", Me.GCTotalSalaryTHRStore, "{0:N0}")})
+        Me.GVPayrollStore.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "tot_thp", Me.GCTotalTHPStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_adjustment", Me.GCTotalAdjustmentStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_deduction", Me.GCTotalDeductionStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_ot_wages", Me.GCTotalPaymentOvertimeStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "grand_total", Me.GCGrandTotalStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_salary_dw", Me.GCTotalSalaryDWStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "employee_name", Me.GCNameStore, "", ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_salary_thr", Me.GCTotalSalaryTHRStore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_salary_bonus", Me.GCTotalSalaryBonusStore, "{0:N0}")})
         Me.GVPayrollStore.LevelIndent = 0
         Me.GVPayrollStore.Name = "GVPayrollStore"
         Me.GVPayrollStore.OptionsBehavior.AutoExpandAllGroups = True
@@ -243,20 +244,6 @@ Partial Public Class ReportPayrollAll
         Me.GVPayrollStore.OptionsView.ShowFooter = True
         Me.GVPayrollStore.OptionsView.ShowGroupPanel = False
         Me.GVPayrollStore.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartementStore, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCSubDepartementStore, DevExpress.Data.ColumnSortOrder.Ascending)})
-        '
-        'GBEmployeeStore
-        '
-        Me.GBEmployeeStore.Caption = "Employee"
-        Me.GBEmployeeStore.Columns.Add(Me.GCNoStore)
-        Me.GBEmployeeStore.Columns.Add(Me.GCNIPStore)
-        Me.GBEmployeeStore.Columns.Add(Me.GCNameStore)
-        Me.GBEmployeeStore.Columns.Add(Me.GCDepartementStore)
-        Me.GBEmployeeStore.Columns.Add(Me.GCPositionStore)
-        Me.GBEmployeeStore.Columns.Add(Me.GCStatusStore)
-        Me.GBEmployeeStore.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.GBEmployeeStore.Name = "GBEmployeeStore"
-        Me.GBEmployeeStore.VisibleIndex = 0
-        Me.GBEmployeeStore.Width = 587
         '
         'GCNoStore
         '
@@ -318,18 +305,6 @@ Partial Public Class ReportPayrollAll
         Me.GCStatusStore.Visible = True
         Me.GCStatusStore.Width = 60
         '
-        'GBWorkingDaysStore
-        '
-        Me.GBWorkingDaysStore.AppearanceHeader.Options.UseTextOptions = True
-        Me.GBWorkingDaysStore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GBWorkingDaysStore.Caption = "Working Days (WD)"
-        Me.GBWorkingDaysStore.Columns.Add(Me.GCWorkingDaysStore)
-        Me.GBWorkingDaysStore.Columns.Add(Me.GCActualWorkingDaysStore)
-        Me.GBWorkingDaysStore.Columns.Add(Me.GCOvertimeHoursStore)
-        Me.GBWorkingDaysStore.Name = "GBWorkingDaysStore"
-        Me.GBWorkingDaysStore.VisibleIndex = 1
-        Me.GBWorkingDaysStore.Width = 95
-        '
         'GCWorkingDaysStore
         '
         Me.GCWorkingDaysStore.AppearanceCell.Options.UseTextOptions = True
@@ -368,15 +343,6 @@ Partial Public Class ReportPayrollAll
         Me.GCOvertimeHoursStore.Visible = True
         Me.GCOvertimeHoursStore.Width = 54
         '
-        'GBDWStore
-        '
-        Me.GBDWStore.Columns.Add(Me.GCActualWorkingDaysDWStore)
-        Me.GBDWStore.Columns.Add(Me.GCBasicSalaryDWStore)
-        Me.GBDWStore.Columns.Add(Me.GCTotalSalaryDWStore)
-        Me.GBDWStore.Name = "GBDWStore"
-        Me.GBDWStore.VisibleIndex = 2
-        Me.GBDWStore.Width = 247
-        '
         'GCActualWorkingDaysDWStore
         '
         Me.GCActualWorkingDaysDWStore.AppearanceCell.Options.UseTextOptions = True
@@ -414,16 +380,6 @@ Partial Public Class ReportPayrollAll
         Me.GCTotalSalaryDWStore.Visible = True
         Me.GCTotalSalaryDWStore.Width = 89
         '
-        'GBTHRStore
-        '
-        Me.GBTHRStore.Columns.Add(Me.GCActualJoinDateTHRStore)
-        Me.GBTHRStore.Columns.Add(Me.GCLastDateTHRStore)
-        Me.GBTHRStore.Columns.Add(Me.GCLengthOfWorkTHRStore)
-        Me.GBTHRStore.Columns.Add(Me.GCTotalSalaryTHRStore)
-        Me.GBTHRStore.Name = "GBTHRStore"
-        Me.GBTHRStore.VisibleIndex = 3
-        Me.GBTHRStore.Width = 364
-        '
         'GCActualJoinDateTHRStore
         '
         Me.GCActualJoinDateTHRStore.Caption = "Actual Join Date"
@@ -431,6 +387,15 @@ Partial Public Class ReportPayrollAll
         Me.GCActualJoinDateTHRStore.Name = "GCActualJoinDateTHRStore"
         Me.GCActualJoinDateTHRStore.Visible = True
         Me.GCActualJoinDateTHRStore.Width = 88
+        '
+        'GCLastDateTHRStore
+        '
+        Me.GCLastDateTHRStore.Caption = "Last Working Date"
+        Me.GCLastDateTHRStore.FieldName = "employee_last_date"
+        Me.GCLastDateTHRStore.Name = "GCLastDateTHRStore"
+        Me.GCLastDateTHRStore.OptionsColumn.AllowEdit = False
+        Me.GCLastDateTHRStore.Visible = True
+        Me.GCLastDateTHRStore.Width = 98
         '
         'GCLengthOfWorkTHRStore
         '
@@ -453,18 +418,6 @@ Partial Public Class ReportPayrollAll
         Me.GCTotalSalaryTHRStore.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_thr", "{0:N0}")})
         Me.GCTotalSalaryTHRStore.Visible = True
         Me.GCTotalSalaryTHRStore.Width = 90
-        '
-        'GBSalaryStore
-        '
-        Me.GBSalaryStore.AppearanceHeader.Options.UseTextOptions = True
-        Me.GBSalaryStore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GBSalaryStore.Columns.Add(Me.GCTotalTHPStore)
-        Me.GBSalaryStore.Columns.Add(Me.GCTotalAdjustmentStore)
-        Me.GBSalaryStore.Columns.Add(Me.GCTotalPaymentOvertimeStore)
-        Me.GBSalaryStore.Columns.Add(Me.GCTotalDeductionStore)
-        Me.GBSalaryStore.Name = "GBSalaryStore"
-        Me.GBSalaryStore.VisibleIndex = 4
-        Me.GBSalaryStore.Width = 266
         '
         'GCTotalTHPStore
         '
@@ -521,13 +474,6 @@ Partial Public Class ReportPayrollAll
         Me.GCTotalDeductionStore.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_deduction", "{0:N0}")})
         Me.GCTotalDeductionStore.Visible = True
         Me.GCTotalDeductionStore.Width = 71
-        '
-        'GBGrandTotalStore
-        '
-        Me.GBGrandTotalStore.Columns.Add(Me.GCGrandTotalStore)
-        Me.GBGrandTotalStore.Name = "GBGrandTotalStore"
-        Me.GBGrandTotalStore.VisibleIndex = 5
-        Me.GBGrandTotalStore.Width = 71
         '
         'GCGrandTotalStore
         '
@@ -730,11 +676,11 @@ Partial Public Class ReportPayrollAll
         Me.GVPayrollOffice.BandPanelRowHeight = 16
         Me.GVPayrollOffice.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBEmployee, Me.GBWorkingDays, Me.GBDW, Me.GBTHR, Me.GBSalary, Me.GBGrandTotal})
         Me.GVPayrollOffice.ColumnPanelRowHeight = 32
-        Me.GVPayrollOffice.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCDepartement, Me.GCSubDepartement, Me.GCNIP, Me.GCName, Me.GCPosition, Me.GCStatus, Me.GCWorkingDays, Me.GCActualWorkingDays, Me.GCActualWorkingHours, Me.GCOvertimeHours, Me.GCTotalTHP, Me.GCTotalAdjustment, Me.GCTotalPaymentOvertime, Me.GCTotalDeduction, Me.GCActualWorkingDaysDW, Me.GCBasicSalaryDW, Me.GCTotalSalaryDW, Me.GCActualJoinDateTHR, Me.GCLastDateTHR, Me.GCLengthOfWorkTHR, Me.GCTotalSalaryTHR, Me.GCGrandTotal, Me.GCNo})
+        Me.GVPayrollOffice.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCDepartement, Me.GCSubDepartement, Me.GCNIP, Me.GCName, Me.GCPosition, Me.GCStatus, Me.GCWorkingDays, Me.GCActualWorkingDays, Me.GCActualWorkingHours, Me.GCOvertimeHours, Me.GCTotalTHP, Me.GCTotalAdjustment, Me.GCTotalPaymentOvertime, Me.GCTotalDeduction, Me.GCActualWorkingDaysDW, Me.GCBasicSalaryDW, Me.GCTotalSalaryDW, Me.GCActualJoinDateTHR, Me.GCLastDateTHR, Me.GCLengthOfWorkTHR, Me.GCTotalSalaryTHR, Me.GCGrandTotal, Me.GCNo, Me.GCTotalSalaryBonus})
         Me.GVPayrollOffice.GridControl = Me.GCPayrollOffice
         Me.GVPayrollOffice.GroupCount = 2
         Me.GVPayrollOffice.GroupFormat = "{1} {2}"
-        Me.GVPayrollOffice.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "tot_thp", Me.GCTotalTHP, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_adjustment", Me.GCTotalAdjustment, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_deduction", Me.GCTotalDeduction, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_ot_wages", Me.GCTotalPaymentOvertime, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "grand_total", Me.GCGrandTotal, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_salary_dw", Me.GCTotalSalaryDW, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "employee_name", Me.GCName, "", ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_salary_thr", Me.GCTotalSalaryTHR, "{0:N0}")})
+        Me.GVPayrollOffice.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "tot_thp", Me.GCTotalTHP, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_adjustment", Me.GCTotalAdjustment, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_deduction", Me.GCTotalDeduction, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_ot_wages", Me.GCTotalPaymentOvertime, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "grand_total", Me.GCGrandTotal, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_salary_dw", Me.GCTotalSalaryDW, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "employee_name", Me.GCName, "", ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_salary_thr", Me.GCTotalSalaryTHR, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "total_salary_bonus", Me.GCTotalSalaryBonus, "{0:N0}")})
         Me.GVPayrollOffice.LevelIndent = 0
         Me.GVPayrollOffice.Name = "GVPayrollOffice"
         Me.GVPayrollOffice.OptionsBehavior.AutoExpandAllGroups = True
@@ -744,20 +690,6 @@ Partial Public Class ReportPayrollAll
         Me.GVPayrollOffice.OptionsView.ShowFooter = True
         Me.GVPayrollOffice.OptionsView.ShowGroupPanel = False
         Me.GVPayrollOffice.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCSubDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
-        '
-        'GBEmployee
-        '
-        Me.GBEmployee.Caption = "Employee"
-        Me.GBEmployee.Columns.Add(Me.GCNo)
-        Me.GBEmployee.Columns.Add(Me.GCNIP)
-        Me.GBEmployee.Columns.Add(Me.GCName)
-        Me.GBEmployee.Columns.Add(Me.GCDepartement)
-        Me.GBEmployee.Columns.Add(Me.GCPosition)
-        Me.GBEmployee.Columns.Add(Me.GCStatus)
-        Me.GBEmployee.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.GBEmployee.Name = "GBEmployee"
-        Me.GBEmployee.VisibleIndex = 0
-        Me.GBEmployee.Width = 587
         '
         'GCNo
         '
@@ -819,19 +751,6 @@ Partial Public Class ReportPayrollAll
         Me.GCStatus.Visible = True
         Me.GCStatus.Width = 60
         '
-        'GBWorkingDays
-        '
-        Me.GBWorkingDays.AppearanceHeader.Options.UseTextOptions = True
-        Me.GBWorkingDays.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GBWorkingDays.Caption = "Working Days (WD)"
-        Me.GBWorkingDays.Columns.Add(Me.GCWorkingDays)
-        Me.GBWorkingDays.Columns.Add(Me.GCActualWorkingDays)
-        Me.GBWorkingDays.Columns.Add(Me.GCActualWorkingHours)
-        Me.GBWorkingDays.Columns.Add(Me.GCOvertimeHours)
-        Me.GBWorkingDays.Name = "GBWorkingDays"
-        Me.GBWorkingDays.VisibleIndex = 1
-        Me.GBWorkingDays.Width = 81
-        '
         'GCWorkingDays
         '
         Me.GCWorkingDays.AppearanceCell.Options.UseTextOptions = True
@@ -882,15 +801,6 @@ Partial Public Class ReportPayrollAll
         Me.GCOvertimeHours.Visible = True
         Me.GCOvertimeHours.Width = 46
         '
-        'GBDW
-        '
-        Me.GBDW.Columns.Add(Me.GCActualWorkingDaysDW)
-        Me.GBDW.Columns.Add(Me.GCBasicSalaryDW)
-        Me.GBDW.Columns.Add(Me.GCTotalSalaryDW)
-        Me.GBDW.Name = "GBDW"
-        Me.GBDW.VisibleIndex = 2
-        Me.GBDW.Width = 209
-        '
         'GCActualWorkingDaysDW
         '
         Me.GCActualWorkingDaysDW.AppearanceCell.Options.UseTextOptions = True
@@ -926,16 +836,6 @@ Partial Public Class ReportPayrollAll
         Me.GCTotalSalaryDW.OptionsColumn.AllowEdit = False
         Me.GCTotalSalaryDW.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_dw", "{0:N0}")})
         Me.GCTotalSalaryDW.Visible = True
-        '
-        'GBTHR
-        '
-        Me.GBTHR.Columns.Add(Me.GCActualJoinDateTHR)
-        Me.GBTHR.Columns.Add(Me.GCLastDateTHR)
-        Me.GBTHR.Columns.Add(Me.GCLengthOfWorkTHR)
-        Me.GBTHR.Columns.Add(Me.GCTotalSalaryTHR)
-        Me.GBTHR.Name = "GBTHR"
-        Me.GBTHR.VisibleIndex = 3
-        Me.GBTHR.Width = 300
         '
         'GCActualJoinDateTHR
         '
@@ -973,18 +873,6 @@ Partial Public Class ReportPayrollAll
         Me.GCTotalSalaryTHR.OptionsColumn.AllowEdit = False
         Me.GCTotalSalaryTHR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_thr", "{0:N0}")})
         Me.GCTotalSalaryTHR.Visible = True
-        '
-        'GBSalary
-        '
-        Me.GBSalary.AppearanceHeader.Options.UseTextOptions = True
-        Me.GBSalary.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GBSalary.Columns.Add(Me.GCTotalTHP)
-        Me.GBSalary.Columns.Add(Me.GCTotalAdjustment)
-        Me.GBSalary.Columns.Add(Me.GCTotalPaymentOvertime)
-        Me.GBSalary.Columns.Add(Me.GCTotalDeduction)
-        Me.GBSalary.Name = "GBSalary"
-        Me.GBSalary.VisibleIndex = 4
-        Me.GBSalary.Width = 232
         '
         'GCTotalTHP
         '
@@ -1041,13 +929,6 @@ Partial Public Class ReportPayrollAll
         Me.GCTotalDeduction.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_deduction", "{0:N0}")})
         Me.GCTotalDeduction.Visible = True
         Me.GCTotalDeduction.Width = 61
-        '
-        'GBGrandTotal
-        '
-        Me.GBGrandTotal.Columns.Add(Me.GCGrandTotal)
-        Me.GBGrandTotal.Name = "GBGrandTotal"
-        Me.GBGrandTotal.VisibleIndex = 5
-        Me.GBGrandTotal.Width = 60
         '
         'GCGrandTotal
         '
@@ -1588,14 +1469,159 @@ Partial Public Class ReportPayrollAll
         Me.DetailStore.HeightF = 152.0!
         Me.DetailStore.Name = "DetailStore"
         '
-        'GCLastDateTHRStore
+        'GCTotalSalaryBonus
         '
-        Me.GCLastDateTHRStore.Caption = "Last Working Date"
-        Me.GCLastDateTHRStore.FieldName = "employee_last_date"
-        Me.GCLastDateTHRStore.Name = "GCLastDateTHRStore"
-        Me.GCLastDateTHRStore.OptionsColumn.AllowEdit = False
-        Me.GCLastDateTHRStore.Visible = True
-        Me.GCLastDateTHRStore.Width = 98
+        Me.GCTotalSalaryBonus.Caption = "Total Bonus"
+        Me.GCTotalSalaryBonus.DisplayFormat.FormatString = "N0"
+        Me.GCTotalSalaryBonus.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCTotalSalaryBonus.FieldName = "total_salary_bonus"
+        Me.GCTotalSalaryBonus.Name = "GCTotalSalaryBonus"
+        Me.GCTotalSalaryBonus.OptionsColumn.AllowEdit = False
+        Me.GCTotalSalaryBonus.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_bonus", "{0:N0}")})
+        Me.GCTotalSalaryBonus.Visible = True
+        '
+        'GBEmployee
+        '
+        Me.GBEmployee.Caption = "Employee"
+        Me.GBEmployee.Columns.Add(Me.GCNo)
+        Me.GBEmployee.Columns.Add(Me.GCNIP)
+        Me.GBEmployee.Columns.Add(Me.GCName)
+        Me.GBEmployee.Columns.Add(Me.GCDepartement)
+        Me.GBEmployee.Columns.Add(Me.GCPosition)
+        Me.GBEmployee.Columns.Add(Me.GCStatus)
+        Me.GBEmployee.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GBEmployee.Name = "GBEmployee"
+        Me.GBEmployee.VisibleIndex = 0
+        Me.GBEmployee.Width = 587
+        '
+        'GBWorkingDays
+        '
+        Me.GBWorkingDays.AppearanceHeader.Options.UseTextOptions = True
+        Me.GBWorkingDays.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GBWorkingDays.Caption = "Working Days (WD)"
+        Me.GBWorkingDays.Columns.Add(Me.GCWorkingDays)
+        Me.GBWorkingDays.Columns.Add(Me.GCActualWorkingDays)
+        Me.GBWorkingDays.Columns.Add(Me.GCActualWorkingHours)
+        Me.GBWorkingDays.Columns.Add(Me.GCOvertimeHours)
+        Me.GBWorkingDays.Name = "GBWorkingDays"
+        Me.GBWorkingDays.VisibleIndex = 1
+        Me.GBWorkingDays.Width = 81
+        '
+        'GBDW
+        '
+        Me.GBDW.Columns.Add(Me.GCActualWorkingDaysDW)
+        Me.GBDW.Columns.Add(Me.GCBasicSalaryDW)
+        Me.GBDW.Columns.Add(Me.GCTotalSalaryDW)
+        Me.GBDW.Name = "GBDW"
+        Me.GBDW.VisibleIndex = 2
+        Me.GBDW.Width = 209
+        '
+        'GBTHR
+        '
+        Me.GBTHR.Columns.Add(Me.GCActualJoinDateTHR)
+        Me.GBTHR.Columns.Add(Me.GCLastDateTHR)
+        Me.GBTHR.Columns.Add(Me.GCLengthOfWorkTHR)
+        Me.GBTHR.Columns.Add(Me.GCTotalSalaryTHR)
+        Me.GBTHR.Name = "GBTHR"
+        Me.GBTHR.VisibleIndex = 3
+        Me.GBTHR.Width = 300
+        '
+        'GBSalary
+        '
+        Me.GBSalary.AppearanceHeader.Options.UseTextOptions = True
+        Me.GBSalary.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GBSalary.Columns.Add(Me.GCTotalTHP)
+        Me.GBSalary.Columns.Add(Me.GCTotalSalaryBonus)
+        Me.GBSalary.Columns.Add(Me.GCTotalAdjustment)
+        Me.GBSalary.Columns.Add(Me.GCTotalPaymentOvertime)
+        Me.GBSalary.Columns.Add(Me.GCTotalDeduction)
+        Me.GBSalary.Name = "GBSalary"
+        Me.GBSalary.VisibleIndex = 4
+        Me.GBSalary.Width = 307
+        '
+        'GBGrandTotal
+        '
+        Me.GBGrandTotal.Columns.Add(Me.GCGrandTotal)
+        Me.GBGrandTotal.Name = "GBGrandTotal"
+        Me.GBGrandTotal.VisibleIndex = 5
+        Me.GBGrandTotal.Width = 60
+        '
+        'GCTotalSalaryBonusStore
+        '
+        Me.GCTotalSalaryBonusStore.Caption = "Total Bonus"
+        Me.GCTotalSalaryBonusStore.DisplayFormat.FormatString = "N0"
+        Me.GCTotalSalaryBonusStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCTotalSalaryBonusStore.FieldName = "total_salary_bonus"
+        Me.GCTotalSalaryBonusStore.Name = "GCTotalSalaryBonusStore"
+        Me.GCTotalSalaryBonusStore.OptionsColumn.AllowEdit = False
+        Me.GCTotalSalaryBonusStore.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_bonus", "{0:N0}")})
+        Me.GCTotalSalaryBonusStore.Visible = True
+        Me.GCTotalSalaryBonusStore.Width = 90
+        '
+        'GBEmployeeStore
+        '
+        Me.GBEmployeeStore.Caption = "Employee"
+        Me.GBEmployeeStore.Columns.Add(Me.GCNoStore)
+        Me.GBEmployeeStore.Columns.Add(Me.GCNIPStore)
+        Me.GBEmployeeStore.Columns.Add(Me.GCNameStore)
+        Me.GBEmployeeStore.Columns.Add(Me.GCDepartementStore)
+        Me.GBEmployeeStore.Columns.Add(Me.GCPositionStore)
+        Me.GBEmployeeStore.Columns.Add(Me.GCStatusStore)
+        Me.GBEmployeeStore.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GBEmployeeStore.Name = "GBEmployeeStore"
+        Me.GBEmployeeStore.VisibleIndex = 0
+        Me.GBEmployeeStore.Width = 587
+        '
+        'GBWorkingDaysStore
+        '
+        Me.GBWorkingDaysStore.AppearanceHeader.Options.UseTextOptions = True
+        Me.GBWorkingDaysStore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GBWorkingDaysStore.Caption = "Working Days (WD)"
+        Me.GBWorkingDaysStore.Columns.Add(Me.GCWorkingDaysStore)
+        Me.GBWorkingDaysStore.Columns.Add(Me.GCActualWorkingDaysStore)
+        Me.GBWorkingDaysStore.Columns.Add(Me.GCOvertimeHoursStore)
+        Me.GBWorkingDaysStore.Name = "GBWorkingDaysStore"
+        Me.GBWorkingDaysStore.VisibleIndex = 1
+        Me.GBWorkingDaysStore.Width = 95
+        '
+        'GBDWStore
+        '
+        Me.GBDWStore.Columns.Add(Me.GCActualWorkingDaysDWStore)
+        Me.GBDWStore.Columns.Add(Me.GCBasicSalaryDWStore)
+        Me.GBDWStore.Columns.Add(Me.GCTotalSalaryDWStore)
+        Me.GBDWStore.Name = "GBDWStore"
+        Me.GBDWStore.VisibleIndex = 2
+        Me.GBDWStore.Width = 247
+        '
+        'GBTHRStore
+        '
+        Me.GBTHRStore.Columns.Add(Me.GCActualJoinDateTHRStore)
+        Me.GBTHRStore.Columns.Add(Me.GCLastDateTHRStore)
+        Me.GBTHRStore.Columns.Add(Me.GCLengthOfWorkTHRStore)
+        Me.GBTHRStore.Columns.Add(Me.GCTotalSalaryTHRStore)
+        Me.GBTHRStore.Name = "GBTHRStore"
+        Me.GBTHRStore.VisibleIndex = 3
+        Me.GBTHRStore.Width = 364
+        '
+        'GBSalaryStore
+        '
+        Me.GBSalaryStore.AppearanceHeader.Options.UseTextOptions = True
+        Me.GBSalaryStore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GBSalaryStore.Columns.Add(Me.GCTotalTHPStore)
+        Me.GBSalaryStore.Columns.Add(Me.GCTotalSalaryBonusStore)
+        Me.GBSalaryStore.Columns.Add(Me.GCTotalAdjustmentStore)
+        Me.GBSalaryStore.Columns.Add(Me.GCTotalPaymentOvertimeStore)
+        Me.GBSalaryStore.Columns.Add(Me.GCTotalDeductionStore)
+        Me.GBSalaryStore.Name = "GBSalaryStore"
+        Me.GBSalaryStore.VisibleIndex = 4
+        Me.GBSalaryStore.Width = 356
+        '
+        'GBGrandTotalStore
+        '
+        Me.GBGrandTotalStore.Columns.Add(Me.GCGrandTotalStore)
+        Me.GBGrandTotalStore.Name = "GBGrandTotalStore"
+        Me.GBGrandTotalStore.VisibleIndex = 5
+        Me.GBGrandTotalStore.Width = 71
         '
         'ReportPayrollAll
         '
@@ -1734,21 +1760,23 @@ Partial Public Class ReportPayrollAll
     Friend WithEvents GCLengthOfWorkTHRStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCTotalSalaryTHRStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCNo As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GBEmployeeStore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GCNoStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCActualWorkingHours As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCActualWorkingHoursStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCLastDateTHR As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCLastDateTHRStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GBEmployeeStore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBWorkingDaysStore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBDWStore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBTHRStore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GCTotalSalaryBonusStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GBSalaryStore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBGrandTotalStore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBEmployee As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBWorkingDays As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GCActualWorkingHours As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GBDW As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBTHR As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GCTotalSalaryBonus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GBSalary As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBGrandTotal As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GCActualWorkingHoursStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCLastDateTHR As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GCLastDateTHRStore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
