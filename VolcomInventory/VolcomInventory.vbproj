@@ -4926,6 +4926,12 @@
     <Compile Include="FormSalesInv.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesOrderBSP.Designer.vb">
+      <DependentUpon>FormSalesOrderBSP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesOrderBSP.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesOrderCat.Designer.vb">
       <DependentUpon>FormSalesOrderCat.vb</DependentUpon>
     </Compile>
@@ -12963,6 +12969,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesInv.resx">
       <DependentUpon>FormSalesInv.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesOrderBSP.resx">
+      <DependentUpon>FormSalesOrderBSP.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderCat.resx">
       <DependentUpon>FormSalesOrderCat.vb</DependentUpon>

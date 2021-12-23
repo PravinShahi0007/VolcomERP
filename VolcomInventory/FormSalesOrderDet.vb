@@ -24,6 +24,7 @@ Public Class FormSalesOrderDet
     Dim is_block_same_nw As String = get_setup_field("is_block_same_nw")
     Public is_transfer_data As String = "2"
     Public id_ol_promo As String = "-1"
+    Public id_bsp As String = "-1"
 
     Private Sub FormSalesOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         id_type = FormSalesOrder.id_type
@@ -94,6 +95,25 @@ Public Class FormSalesOrderDet
                 BtnDel.Visible = False
                 GridColumnCode.OptionsColumn.AllowEdit = False
                 GridColumnQty.OptionsColumn.AllowEdit = False
+            End If
+            'replace big sale
+            If id_bsp <> "-1" Then
+                TxtCodeCompTo.Enabled = False
+                BtnBrowseContactTo.Enabled = False
+
+                'get store
+                Dim qs As String = "SELECT c.id_comp,c.comp_number 
+                FROM tb_bsp bsp 
+                INNER JOIN tb_m_comp c ON c.id_comp = bsp.id_comp
+                WHERE bsp.id_bsp=" + id_bsp + " "
+                Dim ds As DataTable = execute_query(qs, -1, True, "", "", "", "")
+                TxtCodeCompTo.Text = ds.Rows(0)("comp_number").ToString
+                getStore()
+
+                LEOrderType.ItemIndex = LEOrderType.Properties.GetDataSourceRowIndex("id_order_type", "3")
+                LEOrderType.Enabled = False
+                LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", "2")
+                LEStatusSO.Enabled = False
             End If
         ElseIf action = "upd" Then
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
@@ -613,6 +633,9 @@ Public Class FormSalesOrderDet
                 customer_name = "'" + addSlashes(TxtCustName.EditValue.ToString) + "'"
             End If
             Dim is_sync_stock As String = If(CESync.Checked, "1", "2")
+            If id_bsp = "-1" Then
+                id_bsp = "NULL"
+            End If
 
             If action = "ins" Then
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -620,8 +643,8 @@ Public Class FormSalesOrderDet
                     Cursor = Cursors.WaitCursor
                     sales_order_number = ""
                     'Main tbale
-                    Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_period, id_uni_type, sales_order_ol_shop_number, sales_order_ol_shop_date, is_transfer_data, is_sync_stock, customer_name) "
-                    query += "VALUES('" + id_store_contact_to + "', '" + id_comp_contact_par + "', '" + sales_order_number + "', NOW(), '" + sales_order_note + "', '" + id_so_type + "', '" + id_report_status + "', '" + id_so_status + "', '" + id_user + "'," + id_emp_uni_period + ", " + id_uni_type + ",'" + sales_order_ol_shop_number + "', " + sales_order_ol_shop_date + ", '" + is_transfer_data + "', '" + is_sync_stock + "', " + customer_name + "); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_period, id_uni_type, sales_order_ol_shop_number, sales_order_ol_shop_date, is_transfer_data, is_sync_stock, customer_name, id_bsp) "
+                    query += "VALUES('" + id_store_contact_to + "', '" + id_comp_contact_par + "', '" + sales_order_number + "', NOW(), '" + sales_order_note + "', '" + id_so_type + "', '" + id_report_status + "', '" + id_so_status + "', '" + id_user + "'," + id_emp_uni_period + ", " + id_uni_type + ",'" + sales_order_ol_shop_number + "', " + sales_order_ol_shop_date + ", '" + is_transfer_data + "', '" + is_sync_stock + "', " + customer_name + ", " + id_bsp + "); SELECT LAST_INSERT_ID(); "
                     id_sales_order = execute_query(query, 0, True, "", "", "", "")
 
                     'insert who prepared
@@ -989,69 +1012,78 @@ Public Class FormSalesOrderDet
         End If
     End Sub
 
+    Sub getStore()
+        Dim id_so_type As String = LETypeSO.EditValue.ToString
+        Dim query_cond As String = "AND comp.id_comp<>'" + get_setup_field("wh_temp") + "' "
+        If id_bsp = "-1" Then
+            query_cond += "AND comp.id_store_type!=3 "
+        Else
+            query_cond += "AND comp.id_store_type=3 "
+        End If
+        If is_transfer_data = "2" Then
+            query_cond += "AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 AND comp.is_only_for_alloc=2 "
+        Else
+            Dim id_wh_parent As String = SLEAccount.EditValue.ToString
+            query_cond += "AND comp.is_active=1 AND comp.id_wh_group='" + id_wh_parent + "' "
+        End If
+        Dim data As DataTable = get_company_by_code(TxtCodeCompTo.Text, query_cond)
+        If data.Rows.Count = 0 Then
+            stopCustom("Account not found!")
+            resetStore()
+            TxtCodeCompTo.Text = ""
+            TxtCodeCompTo.Focus()
+        Else
+            Cursor = Cursors.WaitCursor
+            If data.Rows.Count > 1 Then
+                'jika ada 2 akun yang sama
+                FormPopUpContact.id_pop_up = "38"
+                FormPopUpContact.id_so_type = id_so_type
+                FormPopUpContact.comp_number = TxtCodeCompTo.Text
+                FormPopUpContact.ShowDialog()
+                If id_store = "-1" Then
+                    TxtCodeCompTo.Text = ""
+                    resetStore()
+                    TxtCodeCompTo.Focus()
+                    Exit Sub
+                Else
+                    TxtWHCodeTo.Focus()
+                End If
+            Else
+                viewDetail("-1")
+                noEdit()
+                id_store = data.Rows(0)("id_comp").ToString
+                id_commerce_type = data.Rows(0)("id_commerce_type").ToString
+                checkCommerceType()
+                id_store_cat = data.Rows(0)("id_comp_cat").ToString
+                id_store_type = data.Rows(0)("id_store_type").ToString
+                id_wh_type = data.Rows(0)("id_wh_type").ToString
+
+                'tentukan akun type
+                If data.Rows(0)("id_comp_cat").ToString = "5" Then
+                    'wh
+                    id_account_type = id_wh_type
+                Else
+                    'store
+                    id_account_type = id_store_type
+                    If id_account_type = "3" Then
+                        id_account_type = "2"
+                    End If
+                End If
+
+                id_store_contact_to = data.Rows(0)("id_comp_contact").ToString
+                TxtNameCompTo.Text = data.Rows(0)("comp_name").ToString
+                MEAdrressCompTo.Text = data.Rows(0)("address_primary").ToString
+                TxtWHCodeTo.Focus()
+                'check sync
+                check_sync()
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
     Private Sub TxtCodeCompTo_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeCompTo.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim id_so_type As String = LETypeSO.EditValue.ToString
-            Dim query_cond As String = "AND comp.id_comp<>'" + get_setup_field("wh_temp") + "' AND comp.id_store_type!=3 "
-            If is_transfer_data = "2" Then
-                query_cond += "AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 AND comp.is_only_for_alloc=2 "
-            Else
-                Dim id_wh_parent As String = SLEAccount.EditValue.ToString
-                query_cond += "AND comp.is_active=1 AND comp.id_wh_group='" + id_wh_parent + "' "
-            End If
-            Dim data As DataTable = get_company_by_code(TxtCodeCompTo.Text, query_cond)
-            If data.Rows.Count = 0 Then
-                stopCustom("Account not found!")
-                resetStore()
-                TxtCodeCompTo.Text = ""
-                TxtCodeCompTo.Focus()
-            Else
-                Cursor = Cursors.WaitCursor
-                If data.Rows.Count > 1 Then
-                    'jika ada 2 akun yang sama
-                    FormPopUpContact.id_pop_up = "38"
-                    FormPopUpContact.id_so_type = id_so_type
-                    FormPopUpContact.comp_number = TxtCodeCompTo.Text
-                    FormPopUpContact.ShowDialog()
-                    If id_store = "-1" Then
-                        TxtCodeCompTo.Text = ""
-                        resetStore()
-                        TxtCodeCompTo.Focus()
-                        Exit Sub
-                    Else
-                        TxtWHCodeTo.Focus()
-                    End If
-                Else
-                    viewDetail("-1")
-                    noEdit()
-                    id_store = data.Rows(0)("id_comp").ToString
-                    id_commerce_type = data.Rows(0)("id_commerce_type").ToString
-                    checkCommerceType()
-                    id_store_cat = data.Rows(0)("id_comp_cat").ToString
-                    id_store_type = data.Rows(0)("id_store_type").ToString
-                    id_wh_type = data.Rows(0)("id_wh_type").ToString
-
-                    'tentukan akun type
-                    If data.Rows(0)("id_comp_cat").ToString = "5" Then
-                        'wh
-                        id_account_type = id_wh_type
-                    Else
-                        'store
-                        id_account_type = id_store_type
-                        If id_account_type = "3" Then
-                            id_account_type = "2"
-                        End If
-                    End If
-
-                    id_store_contact_to = data.Rows(0)("id_comp_contact").ToString
-                    TxtNameCompTo.Text = data.Rows(0)("comp_name").ToString
-                    MEAdrressCompTo.Text = data.Rows(0)("address_primary").ToString
-                    TxtWHCodeTo.Focus()
-                    'check sync
-                    check_sync()
-                End If
-                Cursor = Cursors.Default
-            End If
+            getStore()
         Else
             'selain enter informasi store di reset
             resetStore()
