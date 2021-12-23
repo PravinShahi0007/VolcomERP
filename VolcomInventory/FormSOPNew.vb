@@ -79,6 +79,8 @@
                 BUploadFile.Enabled = False
                 BUploadFile2.Enabled = False
                 BAddDepTerkait.Enabled = False
+                '
+                BSaveDraft.Visible = False
             Else
                 BtnMark.Visible = False
                 BtnSave.Visible = True
@@ -90,6 +92,8 @@
                 BUploadFile.Enabled = True
                 BUploadFile2.Enabled = True
                 BAddDepTerkait.Enabled = True
+                '
+                BSaveDraft.Visible = True
             End If
 
             '            Dim q As String = "SELECT s.*,empl.employee_name AS empl,empc.employee_name AS empc 
@@ -130,7 +134,14 @@
     End Sub
 
     Sub load_milestone()
-
+        Dim q As String = "SELECT sch.id_sop,sch.`datetime` AS dt,IF(sch.is_complete=1,'Complete','Not Complete') AS sts_meeting,ml.milestone 
+FROM `tb_sop_schedule_sop` sch
+LEFT JOIN tb_lookup_milestone ml ON ml.id_milestone=sch.id_milestone
+WHERE sch.`id_sop`='" & id_sop & "'  AND NOT ISNULL(sch.datetime)
+ORDER BY sch.`datetime` DESC"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCMileStone.DataSource = dt
+        GVMileStone.BestFitColumns()
     End Sub
 
     Sub load_dep_terkait()
@@ -363,59 +374,78 @@ VALUES('" & addSlashes(TESOPName.Text) & "','" & SLEDepartement.EditValue.ToStri
     End Sub
 
     Private Sub BProposeSOPAsset_Click(sender As Object, e As EventArgs) Handles BProposeSOPAsset.Click
-        Dim q As String = "SELECT * FROM tb_sop_dep_pps WHERE id_sop='" & id_sop & "' AND id_report_status!=5 AND id_report_status!=6"
-        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
-        If dt.Rows.Count > 0 Then
-            warningCustom("SOP sedang dalam proses pengajuan perubahan. Batalkan pengajuan sebelumnya untuk melanjutkan.")
-        Else
-            q = "INSERT INTO tb_sop_dep_pps(id_sop,created_by,created_date,id_report_status,is_submit) VALUES('" & id_sop & "','" & id_user & "',NOW(),1,2); SELECT LAST_INSERT_ID(); "
-            id_pps = execute_query(q, 0, True, "", "", "", "")
+        Dim qc As String = "SELECT sch.*,IF(sch.is_complete=1,'Complete','Not Complete') AS sts_meeting,ml.milestone
+FROM tb_sop_schedule_sop sch
+INNER JOIN tb_lookup_milestone ml ON ml.id_milestone=sch.id_milestone
+INNER JOIN (
+    SELECT id_sop,MAX(`datetime`) AS dt
+    FROM `tb_sop_schedule_sop`
+    WHERE NOT ISNULL(id_milestone) AND NOT ISNULL(is_complete)
+    GROUP BY id_sop
+)schm ON schm.id_sop=sch.id_sop AND sch.datetime=schm.dt
+WHERE sch.`id_sop`='" & id_sop & "'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            If dtc.Rows(0)("sts_meeting").ToString = "Complete" And dtc.Rows(0)("milestone").ToString = "Approval" Then
+                Dim q As String = "SELECT * FROM tb_sop_dep_pps WHERE id_sop='" & id_sop & "' AND id_report_status!=5 AND id_report_status!=6"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    warningCustom("SOP sedang dalam proses pengajuan perubahan. Batalkan pengajuan sebelumnya untuk melanjutkan.")
+                Else
+                    q = "INSERT INTO tb_sop_dep_pps(id_sop,created_by,created_date,id_report_status,is_submit) VALUES('" & id_sop & "','" & id_user & "',NOW(),1,2); SELECT LAST_INSERT_ID(); "
+                    id_pps = execute_query(q, 0, True, "", "", "", "")
 
-            execute_non_query("CALL gen_number('" & id_pps & "','377')", True, "", "", "", "")
+                    execute_non_query("CALL gen_number('" & id_pps & "','377')", True, "", "", "", "")
 
-            'upload dokumen lama, kopi nama menu existing, copy dep terkait existing jika ada
-            '-- clean file
-            Dim q_ins As String = "DELETE FROM tb_doc WHERE id_report='" & id_pps & "' AND report_mark_type='377'"
-            execute_non_query(q_ins, True, "", "", "", "")
+                    'upload dokumen lama, kopi nama menu existing, copy dep terkait existing jika ada
+                    '-- clean file
+                    Dim q_ins As String = "DELETE FROM tb_doc WHERE id_report='" & id_pps & "' AND report_mark_type='377'"
+                    execute_non_query(q_ins, True, "", "", "", "")
 
-            Dim qfile As String = "SELECT id_doc,doc_desc,'377' AS report_mark_type,'" & id_pps & "' AS id_report,`datetime`,ext,id_user_upload,is_encrypted 
+                    Dim qfile As String = "SELECT id_doc,doc_desc,'377' AS report_mark_type,'" & id_pps & "' AS id_report,`datetime`,ext,id_user_upload,is_encrypted 
 FROM tb_doc 
 WHERE id_report='" & id_sop & "' AND report_mark_type='371'"
-            Dim dtfile As DataTable = execute_query(qfile, -1, True, "", "", "", "")
-            If dtfile.Rows.Count > 0 Then
-                '-- add file
-                q_ins = "INSERT INTO tb_doc(doc_desc,report_mark_type,id_report,`datetime`,ext,id_user_upload,is_encrypted)
+                    Dim dtfile As DataTable = execute_query(qfile, -1, True, "", "", "", "")
+                    If dtfile.Rows.Count > 0 Then
+                        '-- add file
+                        q_ins = "INSERT INTO tb_doc(doc_desc,report_mark_type,id_report,`datetime`,ext,id_user_upload,is_encrypted)
 VALUES('" & dtfile.Rows(0)("doc_desc").ToString & "','" & dtfile.Rows(0)("report_mark_type").ToString & "','" & dtfile.Rows(0)("id_report").ToString & "','" & dtfile.Rows(0)("datetime").ToString & "','" & dtfile.Rows(0)("ext").ToString & "','" & dtfile.Rows(0)("id_user_upload").ToString & "','" & dtfile.Rows(0)("is_encrypted").ToString & "'); SELECT LAST_INSERT_ID(); "
-                Dim last_id As String = execute_query(q_ins, 0, True, "", "", "", "")
-                '-- transfer file
-                Dim directory_upload As String = get_setup_field("upload_dir")
-                Dim path As String = directory_upload & "377" & "\"
-                Dim path_dl As String = directory_upload & "371" & "\"
-                If Not IO.Directory.Exists(path) Then
-                    IO.Directory.CreateDirectory(path)
-                End If
-                My.Computer.Network.UploadFile(path_dl & dtfile.Rows(0)("id_doc").ToString & "_371_" & id_sop & dtfile.Rows(0)("ext").ToString, path & last_id & "_377_" & id_pps & dtfile.Rows(0)("ext").ToString, "", "", True, 100, True)
-            End If
+                        Dim last_id As String = execute_query(q_ins, 0, True, "", "", "", "")
+                        '-- transfer file
+                        Dim directory_upload As String = get_setup_field("upload_dir")
+                        Dim path As String = directory_upload & "377" & "\"
+                        Dim path_dl As String = directory_upload & "371" & "\"
+                        If Not IO.Directory.Exists(path) Then
+                            IO.Directory.CreateDirectory(path)
+                        End If
+                        My.Computer.Network.UploadFile(path_dl & dtfile.Rows(0)("id_doc").ToString & "_371_" & id_sop & dtfile.Rows(0)("ext").ToString, path & last_id & "_377_" & id_pps & dtfile.Rows(0)("ext").ToString, "", "", True, 100, True)
+                    End If
 
-            'menu
-            q_ins = "DELETE FROM tb_sop_dep_pps_menu WHERE id_sop_dep_pps='" & id_pps & "'"
-            execute_non_query(q_ins, True, "", "", "", "")
-            q_ins = "INSERT INTO tb_sop_dep_pps_menu(id_sop_dep_pps,id_menu)
+                    'menu
+                    q_ins = "DELETE FROM tb_sop_dep_pps_menu WHERE id_sop_dep_pps='" & id_pps & "'"
+                    execute_non_query(q_ins, True, "", "", "", "")
+                    q_ins = "INSERT INTO tb_sop_dep_pps_menu(id_sop_dep_pps,id_menu)
 SELECT '" & id_pps & "' AS id_sop_dep_pps,id_menu
 FROM tb_sop_menu_erp
 WHERE id_sop='" & id_sop & "'"
-            execute_non_query(q_ins, True, "", "", "", "")
+                    execute_non_query(q_ins, True, "", "", "", "")
 
-            'departement terkait
-            q_ins = "DELETE FROM tb_sop_dep_pps_dep_terkait WHERE id_sop_dep_pps='" & id_pps & "'"
-            execute_non_query(q_ins, True, "", "", "", "")
-            q_ins = "INSERT INTO tb_sop_dep_pps_dep_terkait(id_sop_dep_pps,id_departement)
+                    'departement terkait
+                    q_ins = "DELETE FROM tb_sop_dep_pps_dep_terkait WHERE id_sop_dep_pps='" & id_pps & "'"
+                    execute_non_query(q_ins, True, "", "", "", "")
+                    q_ins = "INSERT INTO tb_sop_dep_pps_dep_terkait(id_sop_dep_pps,id_departement)
 SELECT '" & id_pps & "' AS id_sop_dep_pps,id_departement
 FROM tb_sop_dep_terkait
 WHERE id_sop='" & id_sop & "'"
-            execute_non_query(q_ins, True, "", "", "", "")
+                    execute_non_query(q_ins, True, "", "", "", "")
 
-            load_head()
+                    load_head()
+                End If
+            Else
+                warningCustom("Selesaikan tahap approval untuk SOP ini.")
+            End If
+        Else
+            warningCustom("Selesaikan tahap approval untuk SOP ini.")
         End If
     End Sub
 
@@ -447,14 +477,21 @@ WHERE id_sop='" & id_sop & "'"
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        Dim confirm As DialogResult
-        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Anda yakin ingin mengunci data untuk SOP ini ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Dim q As String = "UPDATE tb_sop_dep_pps SET is_submit=1 WHERE id_sop_dep_pps='" & id_pps & "'"
-            execute_non_query(q, True, "", "", "", "")
-            submit_who_prepared("377", id_pps, id_user)
+        'check
+        Dim qc As String = "SELECT * FROM tb_doc WHERE id_report='" & id_pps & "' AND report_mark_type='377'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            Dim confirm As DialogResult
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Anda yakin ingin mengunci data untuk SOP ini ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim q As String = "UPDATE tb_sop_dep_pps SET is_submit=1 WHERE id_sop_dep_pps='" & id_pps & "'"
+                execute_non_query(q, True, "", "", "", "")
+                submit_who_prepared("377", id_pps, id_user)
 
-            load_head()
+                load_head()
+            End If
+        Else
+            warningCustom("Pastikan file SOP sudah terupload")
         End If
     End Sub
 
@@ -475,5 +512,11 @@ WHERE id_sop='" & id_sop & "'"
             execute_non_query(q, True, "", "", "", "")
             load_dep_terkait()
         End If
+    End Sub
+
+    Private Sub BSaveDraft_Click(sender As Object, e As EventArgs) Handles BSaveDraft.Click
+        Dim q As String = "UPDATE tb_sop_dep_pps SET req_menu_erp='" & addSlashes(MERequestMenuERP.Text) & "' WHERE id_sop_dep_pps='" & id_pps & "'"
+        execute_non_query(q, True, "", "", "", "")
+        infoCustom("Draft tersimpan")
     End Sub
 End Class

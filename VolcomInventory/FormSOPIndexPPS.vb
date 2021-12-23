@@ -1,12 +1,16 @@
 ﻿Public Class FormSOPIndexPPS
     Public id As String = "-1"
     Public is_view As String = "-1"
-
+    Public id_sts As String = "-1"
     Private Sub FormSOPIndexPPS_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
 
     Private Sub FormSOPIndexPPS_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_head()
+    End Sub
+
+    Sub load_head()
         load_departement()
         If id = "-1" Then
             'new
@@ -29,6 +33,16 @@ WHERE pps.id_sop_pps='" & id & "'"
                 TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
                 DECreated.EditValue = dt.Rows(0)("created_date")
                 SLEDepartement.EditValue = dt.Rows(0)("id_departement").ToString
+
+                id_sts = dt.Rows(0)("id_report_status").ToString
+            End If
+            '
+            If is_view = "1" Or id_sts = "5" Or id_sts = "6" Then
+                BtnSave.Visible = False
+                PCEdit.Visible = False
+            Else
+                BtnSave.Visible = True
+                PCEdit.Visible = True
             End If
         End If
         load_det()
@@ -144,6 +158,8 @@ WHERE pps.id_report_status!=5 AND ppsd.id_sop_prosedur_sub='" & SLESubProsedur.E
                 submit_who_prepared("375", id, id_user)
 
                 infoCustom("SOP index diajukan, menunggu persetujuan.")
+
+                load_head()
             Else
                 'edit.
 
@@ -164,6 +180,8 @@ WHERE pps.id_report_status!=5 AND ppsd.id_sop_prosedur_sub='" & SLESubProsedur.E
                 execute_non_query(q, True, "", "", "", "")
 
                 infoCustom("SOP index diperbaharui, menunggu persetujuan.")
+
+                load_head()
             End If
         Else
             warningCustom("Pastikan anda memasukkan SOP yang akan didaftarkan")

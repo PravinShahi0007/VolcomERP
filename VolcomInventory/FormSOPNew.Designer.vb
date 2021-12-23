@@ -70,6 +70,9 @@ Partial Class FormSOPNew
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BProposeSOPAsset = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.MERequestMenuERP = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPDepTerkait = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDepartementTerkait = New DevExpress.XtraGrid.GridControl()
         Me.CMDepTerkait = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -87,6 +90,7 @@ Partial Class FormSOPNew
         Me.PCSave = New DevExpress.XtraEditors.PanelControl()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSaveDraft = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TESubProsedur.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,6 +119,9 @@ Partial Class FormSOPNew
         CType(Me.GCMileStone, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVMileStone, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDetail.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.MERequestMenuERP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDepTerkait.SuspendLayout()
         CType(Me.GCDepartementTerkait, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CMDepTerkait.SuspendLayout()
@@ -379,7 +386,7 @@ Partial Class FormSOPNew
         Me.GCModulERP.Location = New System.Drawing.Point(0, 86)
         Me.GCModulERP.MainView = Me.GVModulERP
         Me.GCModulERP.Name = "GCModulERP"
-        Me.GCModulERP.Size = New System.Drawing.Size(724, 376)
+        Me.GCModulERP.Size = New System.Drawing.Size(724, 299)
         Me.GCModulERP.TabIndex = 12
         Me.GCModulERP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVModulERP})
         '
@@ -516,7 +523,6 @@ Partial Class FormSOPNew
         '
         'GCMileStone
         '
-        Me.GCMileStone.ContextMenuStrip = Me.CM
         Me.GCMileStone.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCMileStone.Location = New System.Drawing.Point(0, 179)
         Me.GCMileStone.MainView = Me.GVMileStone
@@ -524,7 +530,6 @@ Partial Class FormSOPNew
         Me.GCMileStone.Size = New System.Drawing.Size(724, 243)
         Me.GCMileStone.TabIndex = 13
         Me.GCMileStone.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMileStone})
-        Me.GCMileStone.Visible = False
         '
         'GVMileStone
         '
@@ -542,28 +547,31 @@ Partial Class FormSOPNew
         'GridColumn10
         '
         Me.GridColumn10.Caption = "Milestone"
-        Me.GridColumn10.FieldName = "description_menu_name"
+        Me.GridColumn10.FieldName = "milestone"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 0
-        Me.GridColumn10.Width = 291
+        Me.GridColumn10.VisibleIndex = 1
+        Me.GridColumn10.Width = 285
         '
         'GridColumn18
         '
         Me.GridColumn18.Caption = "Datetime"
+        Me.GridColumn18.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn18.FieldName = "dt"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 1
+        Me.GridColumn18.VisibleIndex = 0
         Me.GridColumn18.Width = 246
         '
         'GridColumn11
         '
         Me.GridColumn11.Caption = "Status"
-        Me.GridColumn11.FieldName = "menu_caption"
+        Me.GridColumn11.FieldName = "sts_meeting"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 2
-        Me.GridColumn11.Width = 169
+        Me.GridColumn11.Width = 175
         '
         'BProposeSOPAsset
         '
@@ -577,17 +585,44 @@ Partial Class FormSOPNew
         Me.BProposeSOPAsset.Name = "BProposeSOPAsset"
         Me.BProposeSOPAsset.Size = New System.Drawing.Size(724, 40)
         Me.BProposeSOPAsset.TabIndex = 14
-        Me.BProposeSOPAsset.Text = "Ajukan Perubahan"
+        Me.BProposeSOPAsset.Text = "Upload SOP"
         Me.BProposeSOPAsset.Visible = False
         '
         'XTPDetail
         '
         Me.XTPDetail.Controls.Add(Me.GCModulERP)
+        Me.XTPDetail.Controls.Add(Me.PanelControl2)
         Me.XTPDetail.Controls.Add(Me.PCModul)
         Me.XTPDetail.Controls.Add(Me.PCUpload)
         Me.XTPDetail.Name = "XTPDetail"
         Me.XTPDetail.Size = New System.Drawing.Size(724, 462)
         Me.XTPDetail.Text = "Upload + Menu ERP"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.MERequestMenuERP)
+        Me.PanelControl2.Controls.Add(Me.LabelControl11)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 385)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(724, 77)
+        Me.PanelControl2.TabIndex = 14
+        '
+        'MERequestMenuERP
+        '
+        Me.MERequestMenuERP.Location = New System.Drawing.Point(118, 12)
+        Me.MERequestMenuERP.Name = "MERequestMenuERP"
+        Me.MERequestMenuERP.Size = New System.Drawing.Size(589, 52)
+        Me.MERequestMenuERP.TabIndex = 10
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(11, 14)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(93, 13)
+        Me.LabelControl11.TabIndex = 9
+        Me.LabelControl11.Text = "Request Modul ERP"
         '
         'XTPDepTerkait
         '
@@ -704,6 +739,7 @@ Partial Class FormSOPNew
         'PCSave
         '
         Me.PCSave.Controls.Add(Me.BtnSave)
+        Me.PCSave.Controls.Add(Me.BSaveDraft)
         Me.PCSave.Controls.Add(Me.BtnMark)
         Me.PCSave.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PCSave.Location = New System.Drawing.Point(0, 490)
@@ -716,7 +752,7 @@ Partial Class FormSOPNew
         '
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
-        Me.BtnSave.Location = New System.Drawing.Point(595, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(486, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(133, 43)
         Me.BtnSave.TabIndex = 7
@@ -732,6 +768,16 @@ Partial Class FormSOPNew
         Me.BtnMark.TabIndex = 6
         Me.BtnMark.Text = "Mark"
         Me.BtnMark.Visible = False
+        '
+        'BSaveDraft
+        '
+        Me.BSaveDraft.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BSaveDraft.Image = CType(resources.GetObject("BSaveDraft.Image"), System.Drawing.Image)
+        Me.BSaveDraft.Location = New System.Drawing.Point(619, 2)
+        Me.BSaveDraft.Name = "BSaveDraft"
+        Me.BSaveDraft.Size = New System.Drawing.Size(109, 43)
+        Me.BSaveDraft.TabIndex = 8
+        Me.BSaveDraft.Text = "Save Draft"
         '
         'FormSOPNew
         '
@@ -777,6 +823,10 @@ Partial Class FormSOPNew
         CType(Me.GCMileStone, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVMileStone, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDetail.ResumeLayout(False)
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.MERequestMenuERP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDepTerkait.ResumeLayout(False)
         CType(Me.GCDepartementTerkait, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CMDepTerkait.ResumeLayout(False)
@@ -858,4 +908,8 @@ Partial Class FormSOPNew
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TESubProsedur As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TEProsedur As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents MERequestMenuERP As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents BSaveDraft As DevExpress.XtraEditors.SimpleButton
 End Class

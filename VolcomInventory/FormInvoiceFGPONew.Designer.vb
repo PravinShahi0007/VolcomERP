@@ -103,6 +103,7 @@ Partial Class FormInvoiceFGPONew
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BLoadHistory = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnInfoSrs = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.SLETypeInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEFGPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -325,6 +326,7 @@ Partial Class FormInvoiceFGPONew
         '
         'PCSummary
         '
+        Me.PCSummary.Controls.Add(Me.BtnInfoSrs)
         Me.PCSummary.Controls.Add(Me.DEYearBudget)
         Me.PCSummary.Controls.Add(Me.SLEFGPO)
         Me.PCSummary.Controls.Add(Me.LabelControl2)
@@ -1012,6 +1014,20 @@ Partial Class FormInvoiceFGPONew
         Me.BLoadHistory.TabIndex = 23
         Me.BLoadHistory.Text = "Load"
         '
+        'BtnInfoSrs
+        '
+        Me.BtnInfoSrs.Appearance.Font = New System.Drawing.Font("Monotype Corsiva", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnInfoSrs.Appearance.Options.UseFont = True
+        Me.BtnInfoSrs.Enabled = False
+        Me.BtnInfoSrs.Location = New System.Drawing.Point(442, 12)
+        Me.BtnInfoSrs.Name = "BtnInfoSrs"
+        Me.BtnInfoSrs.Size = New System.Drawing.Size(23, 20)
+        Me.BtnInfoSrs.TabIndex = 8907
+        Me.BtnInfoSrs.Text = "i"
+        Me.BtnInfoSrs.ToolTip = "Click this button to see qty allowed."
+        Me.BtnInfoSrs.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
+        Me.BtnInfoSrs.ToolTipTitle = "SRS Info"
+        '
         'FormInvoiceFGPONew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1147,4 +1163,5 @@ Partial Class FormInvoiceFGPONew
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents DEYearBudget As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents BtnInfoSrs As DevExpress.XtraEditors.SimpleButton
 End Class
