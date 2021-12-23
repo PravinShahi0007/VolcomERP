@@ -391,4 +391,10 @@
 
         Return out
     End Function
+
+    Private Sub BtnReplaceBigSale_Click(sender As Object, e As EventArgs) Handles BtnReplaceBigSale.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesOrderBSP.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

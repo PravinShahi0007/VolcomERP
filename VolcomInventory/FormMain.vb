@@ -74,7 +74,7 @@ Public Class FormMain
     Sub sop_index()
         '    Select Case id_user_head As id_user,2 As is_super_admin FROM tb_m_departement
         'UNION ALL
-        Dim q As String = "SELECT * FROM(
+        Dim q As String = "SELECT id_user,MIN(is_super_admin) AS is_super_admin FROM(
  Select id_user_head As id_user,2 As is_super_admin FROM tb_m_departement
         UNION ALL
 		SELECT id_user,is_super_admin FROM tb_sop_user

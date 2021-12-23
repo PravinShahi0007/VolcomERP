@@ -79,6 +79,8 @@
                 BUploadFile.Enabled = False
                 BUploadFile2.Enabled = False
                 BAddDepTerkait.Enabled = False
+                '
+                BSaveDraft.Visible = False
             Else
                 BtnMark.Visible = False
                 BtnSave.Visible = True
@@ -90,6 +92,8 @@
                 BUploadFile.Enabled = True
                 BUploadFile2.Enabled = True
                 BAddDepTerkait.Enabled = True
+                '
+                BSaveDraft.Visible = True
             End If
 
             '            Dim q As String = "SELECT s.*,empl.employee_name AS empl,empc.employee_name AS empc 
@@ -480,7 +484,7 @@ WHERE id_sop='" & id_sop & "'"
             Dim confirm As DialogResult
             confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Anda yakin ingin mengunci data untuk SOP ini ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
-                Dim q As String = "UPDATE tb_sop_dep_pps SET is_submit=1 WHERE id_sop_dep_pps='" & id_pps & "'"
+                Dim q As String = "UPDATE tb_sop_dep_pps SET is_submit=1,req_menu_erp='" & addSlashes(MERequestMenuERP.Text) & "' WHERE id_sop_dep_pps='" & id_pps & "'"
                 execute_non_query(q, True, "", "", "", "")
                 submit_who_prepared("377", id_pps, id_user)
 
@@ -508,5 +512,11 @@ WHERE id_sop='" & id_sop & "'"
             execute_non_query(q, True, "", "", "", "")
             load_dep_terkait()
         End If
+    End Sub
+
+    Private Sub BSaveDraft_Click(sender As Object, e As EventArgs) Handles BSaveDraft.Click
+        Dim q As String = "UPDATE tb_sop_dep_pps SET req_menu_erp='" & addSlashes(MERequestMenuERP.Text) & "' WHERE id_sop_dep_pps='" & id_pps & "'"
+        execute_non_query(q, True, "", "", "", "")
+        infoCustom("Draft tersimpan")
     End Sub
 End Class

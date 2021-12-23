@@ -11161,6 +11161,20 @@ FROM `tb_sop_pps_det` ppsd
 INNER JOIN tb_sop_pps pps ON pps.id_sop_pps=ppsd.id_sop_pps 
 WHERE pps.id_sop_pps='" & id_report & "'"
                 execute_non_query(query_ins, True, "", "", "", "")
+                '
+                Dim qbody As String = "SELECT s.sop_name,s.sop_number
+FROM `tb_sop_pps_det` ppsd
+INNER JOIN tb_sop_pps pps ON pps.id_sop_pps=ppsd.id_sop_pps 
+INNER JOIN tb_sop s ON pps.id_departement=pps.id_departement AND ppsd.sop_name=s.sop_name AND ppsd.id_sop_prosedur_sub=s.id_sop_prosedur_sub
+WHERE pps.id_sop_pps='" & id_report & "'"
+                Dim dtbody As DataTable = execute_query(qbody, -1, True, "", "", "", "")
+                If dtbody.Rows.Count > 0 Then
+                    'email notifikasi
+                    Dim mail As ClassSendEmail = New ClassSendEmail()
+                    mail.report_mark_type = "380"
+                    mail.id_report = id_report
+                    mail.send_email()
+                End If
             End If
 
             query = String.Format("UPDATE tb_sop_pps SET id_report_status = '{0}' WHERE id_sop_pps = '{1}'", id_status_reportx, id_report)
@@ -11229,7 +11243,28 @@ WHERE id_sop_dep_pps='" & id_report & "'"
             End If
 
             If id_status_reportx = "6" Then
+                'complete
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+                'get wh
+                Dim qwh As String = "SELECT c.id_comp, c.comp_number, c.comp_name 
+                FROM tb_bsp_det bd
+                INNER JOIN tb_m_comp c ON c.id_comp = bd.id_wh
+                WHERE bd.id_bsp=" + id_report + "
+                GROUP BY bd.id_wh
+                ORDER BY c.comp_number ASC "
+                Dim dwh As DataTable = execute_query(qwh, -1, True, "", "", "", "")
+                For d As Integer = 0 To dwh.Rows.Count - 1
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Create TOO " + (d + 1).ToString + "/" + dwh.Rows.Count.ToString)
+                    Try
+                        execute_non_query_long("CALL gen_bsp_order(" + id_report + ", " + dwh.Rows(d)("id_comp").ToString + ")", True, "", "", "", "")
+                    Catch ex As Exception
+                        execute_non_query("INSERT INTO tb_bsp_so_log(id_bsp, id_wh, log_date, log_note) VALUES('" + id_report + "', '" + dwh.Rows(d)("id_comp") + "', NOW(), '" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
+                    End Try
+                Next
 
+                FormMain.SplashScreenManager1.CloseWaitForm()
             End If
 
             query = String.Format("UPDATE tb_bsp SET id_report_status = '{0}' WHERE id_bsp = '{1}'", id_status_reportx, id_report)
