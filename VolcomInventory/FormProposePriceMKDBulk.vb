@@ -7,7 +7,7 @@
         If id_mkd_type = "1" Then
             cond = "AND d.value>=30 "
         Else
-            cond = "AND d.value>30 "
+            cond = "AND d.value>=30 "
         End If
         Dim query As String = "SELECT CAST(d.value AS DECIMAL(5,0)) AS `propose_disc`, CONCAT((SELECT propose_disc),'%') AS `propose_disc_display`
         FROM tb_lookup_disc_type d WHERE d.value>0 " + cond
@@ -90,7 +90,7 @@
 
                 Dim propose_disc_selected As Decimal
                 If CENoPropose.EditValue = False Then
-                    If propose_disc > curr_disc Then
+                    If propose_disc >= curr_disc Then
                         'isi
                         propose_disc_selected = propose_disc
                         Dim propose_price As Decimal = normal_price * ((100 - propose_disc) / 100)

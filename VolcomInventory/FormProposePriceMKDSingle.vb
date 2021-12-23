@@ -6,7 +6,7 @@
         If id_mkd_type = "1" Then
             cond = "AND d.value>=30 "
         Else
-            cond = "AND d.value>30 "
+            cond = "AND d.value>=30 "
         End If
         Dim query As String = "SELECT CAST(d.value AS DECIMAL(5,0)) AS `propose_disc`, CONCAT((SELECT propose_disc),'%') AS `propose_disc_display`
         FROM tb_lookup_disc_type d WHERE d.value>0 " + cond
@@ -85,7 +85,7 @@
         End If
 
         'cek valid diskon
-        If CENoPropose.EditValue = False And SLEProposeDisc.EditValue <= TxtCurrDisc.EditValue Then
+        If CENoPropose.EditValue = False And SLEProposeDisc.EditValue < TxtCurrDisc.EditValue Then
             warningCustom("Discount is not valid")
             Exit Sub
         End If
