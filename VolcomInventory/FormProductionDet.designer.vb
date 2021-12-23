@@ -35,6 +35,7 @@ Partial Class FormProductionDet
         Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUPC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -228,7 +229,6 @@ Partial Class FormProductionDet
         Me.BEditMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
-        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPProdOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPageProduction, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -447,6 +447,18 @@ Partial Class FormProductionDet
         Me.GridColumnUPC.Name = "GridColumnUPC"
         Me.GridColumnUPC.Visible = True
         Me.GridColumnUPC.VisibleIndex = 5
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn42.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn42.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn42.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn42.Caption = "Class"
+        Me.GridColumn42.FieldName = "class"
+        Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.Visible = True
+        Me.GridColumn42.VisibleIndex = 2
         '
         'ColName
         '
@@ -2392,14 +2404,6 @@ Partial Class FormProductionDet
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'GridColumn42
-        '
-        Me.GridColumn42.Caption = "Class"
-        Me.GridColumn42.FieldName = "class"
-        Me.GridColumn42.Name = "GridColumn42"
-        Me.GridColumn42.Visible = True
-        Me.GridColumn42.VisibleIndex = 2
         '
         'FormProductionDet
         '
