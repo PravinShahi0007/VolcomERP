@@ -151,6 +151,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] WHERE ([Acquiring Bank]='" + bank + "') AND [Installment Term]='" + installment_term + "' AND [Payment Type]='Credit Card' AND [Transaction status]='settlement' ", oledbconn)
         ElseIf id_pop_up = "62" Then
             MyCommand = New OleDbDataAdapter("select `Seller SKU` from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Seller SKU]='') GROUP BY `Seller SKU` ", oledbconn)
+        ElseIf id_pop_up = "63" Then
+            MyCommand = New OleDbDataAdapter("select Code, Account, SUM(Qty) AS Qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Code]='') GROUP BY Code,Account", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -4706,6 +4708,32 @@ GROUP BY ol.checkout_id
             GVData.Columns("price").DisplayFormat.FormatString = "N0"
             GVData.Columns("qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("qty").DisplayFormat.FormatString = "N0"
+        ElseIf id_pop_up = "63" Then
+            'data_temp
+            Dim qry As String = "DELETE FROM tb_bsp_temp WHERE id_user='" + id_user + "'; 
+            INSERT INTO tb_bsp_temp(id_bsp, id_user, code, wh, qty) VALUES "
+            Dim id_bsp As String = FormBSPDet.id
+            For i As Integer = 0 To data_temp.Rows.Count - 1
+                Dim code As String = addSlashes(data_temp.Rows(i)("Code").ToString.Trim)
+                Dim wh As String = addSlashes(data_temp.Rows(i)("Account").ToString.Trim)
+                Dim qty As String = decimalSQL(data_temp.Rows(i)("Qty").ToString.Trim)
+                If i > 0 Then
+                    qry += ","
+                End If
+                qry += "('" + id_bsp + "', '" + id_user + "', '" + code + "', '" + wh + "', '" + qty + "') "
+            Next
+            If data_temp.Rows.Count > 0 Then
+                execute_non_query(qry, True, "", "", "", "")
+                Dim drs As DataTable = execute_query("CALL view_bsp_temp(" + id_bsp + ", " + id_user + ");", -1, True, "", "", "", "")
+                GCData.DataSource = drs
+                GVData.BestFitColumns()
+                GVData.OptionsView.ColumnAutoWidth = False
+                GVData.Columns("id_product").Visible = False
+                GVData.Columns("id_comp").Visible = False
+                GVData.Columns("id_drawer_def").Visible = False
+                GVData.Columns("id_design_price").Visible = False
+                '
+            End If
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -4777,7 +4805,7 @@ GROUP BY ol.checkout_id
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Or id_pop_up = "56" Or id_pop_up = "57" Or id_pop_up = "62" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Or id_pop_up = "56" Or id_pop_up = "57" Or id_pop_up = "62" Or id_pop_up = "63" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -7762,6 +7790,58 @@ GROUP BY ol.checkout_id
                         'refresh
                         FormPromoZaloraDet.refreshMainview()
                         FormPromoZaloraDet.viewDetail()
+                        infoCustom("Import Success")
+                        Close()
+                    End If
+                Else
+                    stopCustom("There is no data for import process, please make sure your input !")
+                    makeSafeGV(GVData)
+                End If
+            ElseIf id_pop_up = "63" Then
+                makeSafeGV(GVData)
+                GVData.ActiveFilterString = "[Status] = 'OK' "
+                If GVData.RowCount > 0 Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Only status 'OK' will imported, continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+
+
+                        'detail data
+                        Dim id_bsp As String = FormBSPDet.id
+                        Dim q As String = "DELETE FROM tb_bsp_temp WHERE id_user='" + id_user + "';
+                        DELETE FROM tb_bsp_det WHERE id_bsp='" + id_bsp + "';
+                        INSERT INTO tb_bsp_det(id_bsp, id_product, id_wh, id_wh_drawer, qty, id_design_price, design_price, note_stock) VALUES "
+                        For i As Integer = 0 To GVData.RowCount - 1
+                            Dim id_product As String = GVData.GetRowCellValue(i, "id_product").ToString
+                            Dim id_wh As String = GVData.GetRowCellValue(i, "id_comp").ToString
+                            Dim id_wh_drawer As String = GVData.GetRowCellValue(i, "id_drawer_def").ToString
+                            Dim qty As String = decimalSQL(GVData.GetRowCellValue(i, "qty").ToString)
+                            Dim id_design_price As String = GVData.GetRowCellValue(i, "id_design_price").ToString
+                            Dim design_price As String = decimalSQL(GVData.GetRowCellValue(i, "design_price").ToString)
+                            Dim note_stock As String = addSlashes(GVData.GetRowCellValue(i, "Status").ToString)
+
+                            If Not i = 0 Then
+                                q += ","
+                            End If
+                            '
+                            q += "('" + id_bsp + "', '" + id_product + "', '" + id_wh + "', '" + id_wh_drawer + "', '" + qty + "', '" + id_design_price + "', '" + design_price + "', '" + note_stock + "') "
+
+                            '
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        'detail 
+                        If GVData.RowCount > 0 Then
+                            execute_non_query(q, True, "", "", "", "")
+                        End If
+
+
+                        'refresh
+                        FormBSPDet.viewDetail()
+                        FormBSPDet.viewSum()
                         infoCustom("Import Success")
                         Close()
                     End If

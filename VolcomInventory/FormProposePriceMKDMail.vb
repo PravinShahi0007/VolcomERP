@@ -1,4 +1,6 @@
 ﻿Public Class FormProposePriceMKDMail
+    Public id_comp_group As String = "-1"
+
     Private Sub FormProposePriceMKDMail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         checkMail()
         listMailStore()
@@ -15,8 +17,11 @@
         FROM tb_m_comp c 
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
         LEFT JOIN tb_mail_to_group mtg ON mtg.id_comp_group = cg.id_comp_group AND mtg.report_mark_type IN (373)
-        WHERE c.id_comp_cat=6 AND c.is_active=1 AND c.id_store_type=1 AND c.id_commerce_type=1 AND c.id_comp_group!=59
-        GROUP BY c.id_comp_group "
+        WHERE c.id_comp_cat=6 AND c.is_active=1 AND c.id_store_type=1 AND c.id_commerce_type=1 AND c.id_comp_group!=59 "
+        If id_comp_group <> "-1" Then
+            query += "AND c.id_comp_group='" + id_comp_group + "' "
+        End If
+        query += "GROUP BY c.id_comp_group "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCheck.DataSource = data
         GVCheck.BestFitColumns()
@@ -29,6 +34,9 @@
         FROM tb_mail_to_group mtg
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = mtg.id_comp_group
         WHERE mtg.report_mark_type=373 "
+        If id_comp_group <> "-1" Then
+            query += "AND mtg.id_comp_group='" + id_comp_group + "' "
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCStoreEmail.DataSource = data
         GVStoreEmail.BestFitColumns()

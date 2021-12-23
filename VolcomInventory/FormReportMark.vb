@@ -11243,7 +11243,28 @@ WHERE id_sop_dep_pps='" & id_report & "'"
             End If
 
             If id_status_reportx = "6" Then
+                'complete
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+                'get wh
+                Dim qwh As String = "SELECT c.id_comp, c.comp_number, c.comp_name 
+                FROM tb_bsp_det bd
+                INNER JOIN tb_m_comp c ON c.id_comp = bd.id_wh
+                WHERE bd.id_bsp=" + id_report + "
+                GROUP BY bd.id_wh
+                ORDER BY c.comp_number ASC "
+                Dim dwh As DataTable = execute_query(qwh, -1, True, "", "", "", "")
+                For d As Integer = 0 To dwh.Rows.Count - 1
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Create TOO " + (d + 1).ToString + "/" + dwh.Rows.Count.ToString)
+                    Try
+                        execute_non_query_long("CALL gen_bsp_order(" + id_report + ", " + dwh.Rows(d)("id_comp").ToString + ")", True, "", "", "", "")
+                    Catch ex As Exception
+                        execute_non_query("INSERT INTO tb_bsp_so_log(id_bsp, id_wh, log_date, log_note) VALUES('" + id_report + "', '" + dwh.Rows(d)("id_comp") + "', NOW(), '" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
+                    End Try
+                Next
 
+                FormMain.SplashScreenManager1.CloseWaitForm()
             End If
 
             query = String.Format("UPDATE tb_bsp SET id_report_status = '{0}' WHERE id_bsp = '{1}'", id_status_reportx, id_report)
