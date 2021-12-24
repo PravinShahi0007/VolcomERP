@@ -19,6 +19,7 @@ Partial Class FormEmpPayroll
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayroll))
         Me.XTCPayroll = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPeriode = New DevExpress.XtraTab.XtraTabPage()
@@ -28,7 +29,7 @@ Partial Class FormEmpPayroll
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BarManager1 = New DevExpress.XtraBars.BarManager()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -74,10 +75,10 @@ Partial Class FormEmpPayroll
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.SBExportExcel = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.XTPSalaryFormat = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPayroll = New DevExpress.XtraGrid.GridControl()
-        Me.ViewPopWorksheet = New System.Windows.Forms.ContextMenuStrip()
+        Me.ViewPopWorksheet = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CMDelEmp = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPayroll = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -113,13 +114,13 @@ Partial Class FormEmpPayroll
         Me.BandedGridColumnLengthTHR = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnTotalSalaryTHR = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITETotalSalaryTHR = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.BandedGridColumnTotalSalaryBonus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RITETotalSalaryBonus = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GBDW = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnActWorkdaysDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RITEActWorkdaysDW = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnBasicSalaryDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnTotalSalaryDW = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnTotalSalaryBonus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RITETotalSalaryBonus = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GBBonusAdjustment = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnTotalAdjustment = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GBOvertime = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -151,12 +152,12 @@ Partial Class FormEmpPayroll
         Me.GridColumnDepartementSub = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewJournal = New DevExpress.XtraEditors.DropDownButton()
-        Me.PopupMenu2 = New DevExpress.XtraBars.PopupMenu()
+        Me.PopupMenu2 = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditViewSend = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BReport = New DevExpress.XtraEditors.DropDownButton()
-        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu()
+        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.SBSendSlip = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrintSlip = New DevExpress.XtraEditors.SimpleButton()
         Me.PCSelAll = New DevExpress.XtraEditors.PanelControl()
@@ -167,6 +168,7 @@ Partial Class FormEmpPayroll
         Me.BReset = New DevExpress.XtraEditors.SimpleButton()
         Me.BSubmit = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBRegenerate = New DevExpress.XtraEditors.SimpleButton()
         Me.LCTitle = New DevExpress.XtraEditors.LabelControl()
         Me.BUpdateActualWorkingDays = New DevExpress.XtraEditors.SimpleButton()
         Me.BBonusAdjustment = New DevExpress.XtraEditors.SimpleButton()
@@ -195,8 +197,8 @@ Partial Class FormEmpPayroll
         CType(Me.RICESent, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEActWorkdays, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITETotalSalaryTHR, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RITEActWorkdaysDW, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITETotalSalaryBonus, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEActWorkdaysDW, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEPending, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -1076,6 +1078,30 @@ Partial Class FormEmpPayroll
         Me.RITETotalSalaryTHR.Mask.UseMaskAsDisplayFormat = True
         Me.RITETotalSalaryTHR.Name = "RITETotalSalaryTHR"
         '
+        'BandedGridColumnTotalSalaryBonus
+        '
+        Me.BandedGridColumnTotalSalaryBonus.Caption = "Total Bonus"
+        Me.BandedGridColumnTotalSalaryBonus.ColumnEdit = Me.RITETotalSalaryBonus
+        Me.BandedGridColumnTotalSalaryBonus.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnTotalSalaryBonus.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnTotalSalaryBonus.FieldName = "total_salary_bonus"
+        Me.BandedGridColumnTotalSalaryBonus.Name = "BandedGridColumnTotalSalaryBonus"
+        Me.BandedGridColumnTotalSalaryBonus.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnTotalSalaryBonus.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_bonus", "{0:N0}")})
+        Me.BandedGridColumnTotalSalaryBonus.Visible = True
+        '
+        'RITETotalSalaryBonus
+        '
+        Me.RITETotalSalaryBonus.AutoHeight = False
+        Me.RITETotalSalaryBonus.DisplayFormat.FormatString = "N0"
+        Me.RITETotalSalaryBonus.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITETotalSalaryBonus.EditFormat.FormatString = "N0"
+        Me.RITETotalSalaryBonus.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITETotalSalaryBonus.Mask.EditMask = "N0"
+        Me.RITETotalSalaryBonus.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RITETotalSalaryBonus.Mask.UseMaskAsDisplayFormat = True
+        Me.RITETotalSalaryBonus.Name = "RITETotalSalaryBonus"
+        '
         'GBDW
         '
         Me.GBDW.Columns.Add(Me.BandedGridColumnActWorkdaysDW)
@@ -1126,30 +1152,6 @@ Partial Class FormEmpPayroll
         Me.GridColumnTotalSalaryDW.OptionsColumn.AllowEdit = False
         Me.GridColumnTotalSalaryDW.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_dw", "{0:N0}")})
         Me.GridColumnTotalSalaryDW.Visible = True
-        '
-        'BandedGridColumnTotalSalaryBonus
-        '
-        Me.BandedGridColumnTotalSalaryBonus.Caption = "Total Bonus"
-        Me.BandedGridColumnTotalSalaryBonus.ColumnEdit = Me.RITETotalSalaryBonus
-        Me.BandedGridColumnTotalSalaryBonus.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumnTotalSalaryBonus.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnTotalSalaryBonus.FieldName = "total_salary_bonus"
-        Me.BandedGridColumnTotalSalaryBonus.Name = "BandedGridColumnTotalSalaryBonus"
-        Me.BandedGridColumnTotalSalaryBonus.OptionsColumn.AllowEdit = False
-        Me.BandedGridColumnTotalSalaryBonus.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_salary_bonus", "{0:N0}")})
-        Me.BandedGridColumnTotalSalaryBonus.Visible = True
-        '
-        'RITETotalSalaryBonus
-        '
-        Me.RITETotalSalaryBonus.AutoHeight = False
-        Me.RITETotalSalaryBonus.DisplayFormat.FormatString = "N0"
-        Me.RITETotalSalaryBonus.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RITETotalSalaryBonus.EditFormat.FormatString = "N0"
-        Me.RITETotalSalaryBonus.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RITETotalSalaryBonus.Mask.EditMask = "N0"
-        Me.RITETotalSalaryBonus.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RITETotalSalaryBonus.Mask.UseMaskAsDisplayFormat = True
-        Me.RITETotalSalaryBonus.Name = "RITETotalSalaryBonus"
         '
         'GBBonusAdjustment
         '
@@ -1697,6 +1699,7 @@ Partial Class FormEmpPayroll
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SBRegenerate)
         Me.PanelControl1.Controls.Add(Me.LCTitle)
         Me.PanelControl1.Controls.Add(Me.BUpdateActualWorkingDays)
         Me.PanelControl1.Controls.Add(Me.BBonusAdjustment)
@@ -1710,6 +1713,18 @@ Partial Class FormEmpPayroll
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1338, 39)
         Me.PanelControl1.TabIndex = 0
+        '
+        'SBRegenerate
+        '
+        Me.SBRegenerate.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SBRegenerate.ImageIndex = 3
+        Me.SBRegenerate.ImageList = Me.LargeImageCollection
+        Me.SBRegenerate.Location = New System.Drawing.Point(452, 2)
+        Me.SBRegenerate.Name = "SBRegenerate"
+        Me.SBRegenerate.Size = New System.Drawing.Size(121, 35)
+        Me.SBRegenerate.TabIndex = 8
+        Me.SBRegenerate.Text = "Regenerate"
+        Me.SBRegenerate.Visible = False
         '
         'LCTitle
         '
@@ -1834,8 +1849,8 @@ Partial Class FormEmpPayroll
         CType(Me.RICESent, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEActWorkdays, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITETotalSalaryTHR, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RITEActWorkdaysDW, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITETotalSalaryBonus, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEActWorkdaysDW, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEPending, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -2011,4 +2026,5 @@ Partial Class FormEmpPayroll
     Friend WithEvents BandedGridColumnTotalSalaryBonus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RITETotalSalaryBonus As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents BandedGridColumnTotalSalaryTHR As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents SBRegenerate As DevExpress.XtraEditors.SimpleButton
 End Class
