@@ -318,7 +318,7 @@ Public Class FormProductionPLToWHDet
             If is_use_qc_report = "1" Then
                 'berdasarkan QC Report
                 query = "SELECT 0.00 AS ovh_price,u.uom, pod.id_prod_order,pod.id_prod_order_det,pod.id_prod_demand_product,
-                p.id_product,p.product_full_code AS `code`, p.product_ean_code as ean_code,p.product_name as name, cd.id_code_detail AS `id_size`, cd.code_detail_name AS `size`,'' AS `color`,
+                p.id_product,p.product_full_code AS `code`, p.product_ean_code as ean_code,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color) as name, cd.id_code_detail AS `id_size`, cd.code_detail_name AS `size`,'' AS `color`,
                 del.delivery, (ss.season) AS season, (ss.season_printed_name) AS season_display,
                 '' AS `Product Division`, '' AS category,
                 pdd.prod_demand_design_propose_price,
@@ -338,6 +338,25 @@ Public Class FormProductionPLToWHDet
                 INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
                 INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
                 INNER JOIN tb_m_design d ON d.id_design = p.id_design
+                INNER JOIN tb_season s ON s.id_season=dsg.id_season
+                INNER JOIN tb_range r ON r.id_range=s.id_range
+                LEFT JOIN (
+	                SELECT dc.id_design, 
+	                MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	                MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	                MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	                MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	                MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	                MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	                MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	                MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	                MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	                MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	                FROM tb_m_design_code dc
+	                INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	                AND cd.id_code IN (32,30,14, 43, 34)
+	                GROUP BY dc.id_design
+                ) cd ON cd.id_design = d.id_design
                 INNER JOIN tb_m_uom u ON u.id_uom = d.id_uom
                 INNER JOIN tb_season_delivery del ON del.id_delivery = po.id_delivery
                 INNER JOIN tb_season ss ON ss.id_season = del.id_season
