@@ -1082,8 +1082,9 @@
 
     Sub insert_jurnal(ByVal id_payroll As String)
         Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
+        Dim is_bonus As String = execute_query("SELECT is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
 
-        If is_thr = "2" Then
+        If is_thr = "2" And is_bonus = "2" Then
             Dim payroll_det As DataTable = execute_query("SELECT DATE_FORMAT(periode_end, '%M %Y') AS periode, report_number FROM tb_emp_payroll WHERE id_payroll = " + id_payroll, -1, True, "", "", "", "")
 
             Dim data_gaji_map As DataTable = execute_query("SELECT id_acc, id_departement, id_departement_sub, id_comp, (SELECT comp_number FROM tb_m_comp WHERE id_comp = tb_coa_map_departement.id_comp) AS comp_number FROM tb_coa_map_departement WHERE type = 1", -1, True, "", "", "", "")
@@ -1280,6 +1281,16 @@
                 WHERE type = 4
             ", -1, True, "", "", "", "")
 
+            If is_bonus = "1" Then
+                data_map = execute_query("
+                    SELECT map.id_departement, map.id_departement_sub, map.id_acc, acc.acc_name, acc.acc_description, comp.comp_name AS vendor, map.id_comp, comp.comp_number
+                    FROM tb_coa_map_departement AS map
+                    LEFT JOIN tb_a_acc AS acc ON map.id_acc = acc.id_acc
+                    LEFT JOIN tb_m_comp AS comp ON map.id_comp = comp.id_comp
+                    WHERE type = 9
+                ", -1, True, "", "", "", "")
+            End If
+
             Dim query As String = "CALL view_payroll_sum(" + id_payroll + ")"
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -1347,6 +1358,7 @@
 
     Sub insert_jurnal_toko(ByVal id_payroll As String)
         Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
+        Dim is_bonus As String = execute_query("SELECT is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
 
         Dim payroll_type As String = execute_query("SELECT payroll_type FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
 
@@ -1361,7 +1373,7 @@
         'description
         Dim desc As String = ""
 
-        If is_thr = "1" Then
+        If is_thr = "1" Or is_bonus = "1" Then
             desc = payroll_type + " " + payroll_det.Rows(0)("periode").ToString
         Else
             desc = "Gaji staff toko " + payroll_det.Rows(0)("periode").ToString
@@ -1390,7 +1402,7 @@
 
                 insert_detail = insert_detail + "('" + id_acc_trans + "', '3809', '" + data_comp.Rows(0)("id_comp").ToString + "', '" + data_comp.Rows(0)("comp_number").ToString + "', 0, " + decimalSQL(salary) + ", '" + desc + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "', '" + id_coa_tag + "'), "
 
-                If is_thr = "2" Then
+                If is_thr = "2" And is_bonus = "2" Then
                     insert_detail = insert_detail + "('" + id_acc_trans + "', '3669', '" + data_comp.Rows(0)("id_comp").ToString + "', '" + data_comp.Rows(0)("comp_number").ToString + "', " + decimalSQL(bpjskes) + ", 0, 'Gaji staff toko " + payroll_det.Rows(0)("periode").ToString + " - pot. BPJS', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "', '" + id_coa_tag + "'), "
 
                     insert_detail = insert_detail + "('" + id_acc_trans + "', '3669', '" + data_comp.Rows(0)("id_comp").ToString + "', '" + data_comp.Rows(0)("comp_number").ToString + "', " + decimalSQL(jp) + ", 0, 'Gaji staff toko " + payroll_det.Rows(0)("periode").ToString + " - pot. JP', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "', '" + id_coa_tag + "'), "
@@ -1409,8 +1421,9 @@
 
     Sub insert_expense(ByVal id_payroll As String)
         Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
+        Dim is_bonus As String = execute_query("SELECT is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
 
-        If is_thr = "2" Then
+        If is_thr = "2" And is_bonus = "2" Then
             Dim payroll_det As DataTable = execute_query("SELECT DATE_FORMAT(periode_end, '%Y') AS year FROM tb_emp_payroll WHERE id_payroll = " + id_payroll, -1, True, "", "", "", "")
 
             Dim data_sum As DataTable = execute_query("CALL view_payroll_sum(" + id_payroll + ")", -1, True, "", "", "", "")
