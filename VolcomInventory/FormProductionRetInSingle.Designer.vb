@@ -706,7 +706,7 @@ Partial Class FormProductionRetInSingle
         'GridColumnName
         '
         Me.GridColumnName.Caption = "Name"
-        Me.GridColumnName.FieldName = "design_display_name"
+        Me.GridColumnName.FieldName = "display_name"
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.AllowEdit = False
         Me.GridColumnName.Visible = True
