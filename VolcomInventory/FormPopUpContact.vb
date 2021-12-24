@@ -136,7 +136,7 @@
         End If
 
         If id_pop_up = "38" Then
-            query += "AND tb_m_comp.id_comp<>'" + get_setup_field("wh_temp") + "' AND tb_m_comp.id_store_type!=3 "
+            query += "AND tb_m_comp.id_comp<>'" + get_setup_field("wh_temp") + "' AND (tb_m_comp.id_store_type!=3 OR ISNULL(tb_m_comp.id_store_type)) "
             If FormSalesOrderDet.is_transfer_data = "2" Then
                 query += "AND (tb_m_comp.id_comp_cat = '5' OR tb_m_comp.id_comp_cat = '6') AND tb_m_comp.is_active=1 AND tb_m_comp.is_only_for_alloc=2 "
             Else
