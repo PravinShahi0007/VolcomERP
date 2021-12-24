@@ -361,7 +361,10 @@ FROM
 GROUP BY bpl.`id_acc_pph`,bpl.id_acc_trans,bpl.report_mark_type
 UNION ALL
 -- OG
-SELECT 'no' AS is_check,rpt.sorting,rpt.tax_report,148 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,rec.`id_purc_rec` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`purc_order_number` AS number,atx.`date_reference`,CONCAT(IF(atx.id_bill_type=0,'Cancellation ',''),rd.item_detail) AS description,ie.`pph_account`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ie.`vat_percent` AS pph_percent,SUM(recd.qty*(ied.`value`-(ied.discount_for_pph/ied.qty))) AS dpp,IF(atx.id_bill_type=0,-1,1) * SUM((recd.qty*(ied.`value`-(ied.discount_for_pph/ied.qty)))*(ie.`vat_percent`/100)) AS pph 
+SELECT 'no' AS is_check,rpt.sorting,rpt.tax_report,148 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,rec.`id_purc_rec` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`purc_order_number` AS number,atx.`date_reference`,CONCAT(IF(atx.id_bill_type=0,'Cancellation ',''),rd.item_detail) AS description,ie.`pph_account`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`
+,ie.`vat_percent` AS pph_percent
+,SUM(recd.qty*(ied.`value`-ied.`value`*(IFNULL((disc.disc_value)/disc.val_tot,1)))) AS dpp
+,IF(atx.id_bill_type=0,-1,1) * SUM((recd.qty*(ied.`value`-ied.`value`*IFNULL((disc.disc_value)/disc.val_tot,1)))*(ie.`vat_percent`/100)) AS pph 
 FROM tb_purc_rec_det recd
 INNER JOIN tb_purc_rec rec ON rec.id_purc_rec=recd.id_purc_rec
 INNER JOIN tb_purc_order_det ied ON ied.id_purc_order_det=recd.id_purc_order_det
@@ -381,6 +384,13 @@ LEFT JOIN
     WHERE atd.`report_mark_type`='148'
     GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
 ) atx ON atx.id_report=recd.`id_purc_rec`
+LEFT JOIN
+(
+	SELECT po.id_purc_order,po.`disc_value`,SUM(pod.`value`*pod.`qty`) AS val_tot
+	FROM tb_purc_order_det pod
+	INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
+	GROUP BY po.`id_purc_order`
+)disc ON disc.id_purc_order=rec.id_purc_order
 WHERE ISNULL(atx.`date_tax_report`) AND DATE(atx.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(atx.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 -- per jurnal kata bu mar
 -- GROUP BY ied.id_purc_order_det
@@ -972,7 +982,9 @@ FROM
 GROUP BY bpl.`id_acc_pph`,bpl.id_acc_trans,bpl.report_mark_type
 UNION ALL
 -- OG
-SELECT 'no' AS is_check,rpt.sorting,rpt.tax_report,148 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,rec.`id_purc_rec` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`purc_order_number` AS number,atx.`date_reference`,CONCAT(IF(atx.id_bill_type=0,'Cancellation ',''),rd.item_detail) AS description,ie.`pph_account`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ie.`vat_percent` AS pph_percent,SUM(recd.qty*(ied.`value`-(ied.discount_for_pph/ied.qty))) AS dpp,IF(atx.id_bill_type=0,-1,1) * SUM((recd.qty*(ied.`value`-(ied.discount_for_pph/ied.qty)))*(ie.`vat_percent`/100)) AS pph 
+SELECT 'no' AS is_check,rpt.sorting,rpt.tax_report,148 AS report_mark_type,atx.id_acc_trans,ie.inv_number AS inv_number,atx.acc_trans_number AS jurnal_no,rec.`id_purc_rec` AS id_report,c.`comp_number`,c.`comp_name`,c.`npwp_name`,c.`npwp`,c.`npwp_address`,ie.`purc_order_number` AS number,atx.`date_reference`,CONCAT(IF(atx.id_bill_type=0,'Cancellation ',''),rd.item_detail) AS description,ie.`pph_account`,ie.`due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,ie.`vat_percent` AS pph_percent
+,SUM(recd.qty*(ied.`value`-ied.`value`*(IFNULL((disc.disc_value)/disc.val_tot,1)))) AS dpp
+,IF(atx.id_bill_type=0,-1,1) * SUM((recd.qty*(ied.`value`-ied.`value`*IFNULL((disc.disc_value)/disc.val_tot,1)))*(ie.`vat_percent`/100)) AS pph 
 FROM tb_purc_rec_det recd
 INNER JOIN tb_purc_rec rec ON rec.id_purc_rec=recd.id_purc_rec
 INNER JOIN tb_purc_order_det ied ON ied.id_purc_order_det=recd.id_purc_order_det
@@ -992,6 +1004,13 @@ LEFT JOIN
     WHERE atd.`report_mark_type`='148'
     GROUP BY atd.`id_report`,atd.`id_acc_trans`,atd.id_coa_tag
 ) atx ON atx.id_report=recd.`id_purc_rec`
+LEFT JOIN
+(
+	SELECT po.id_purc_order,po.`disc_value`,SUM(pod.`value`*pod.`qty`) AS val_tot
+	FROM tb_purc_order_det pod
+	INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
+	GROUP BY po.`id_purc_order`
+)disc ON disc.id_purc_order=rec.id_purc_order
 WHERE DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(atx.`date_tax_report`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(atx.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 -- per jurnal kata bu mar
 -- GROUP BY ied.id_purc_order_det

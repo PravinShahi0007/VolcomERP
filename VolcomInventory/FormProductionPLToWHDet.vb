@@ -1427,10 +1427,30 @@ Public Class FormProductionPLToWHDet
             GVRetDetail.BestFitColumns()
             If GVQC.RowCount > 0 Then
                 Dim query_sum As String = "SELECT '' AS `no`, 0 AS `id_pl_prod_order_det`, fd.id_prod_order_det,
-                p.product_full_code AS `code`, p.product_ean_code AS `ean_code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
+                p.product_full_code AS `code`, p.product_ean_code AS `ean_code`, CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS `name`, cd.code_detail_name AS `size`,
                 SUM(fd.prod_fc_det_qty) AS `pl_prod_order_det_qty`, SUM(fd.prod_fc_det_qty) AS `limit_qty`, 0 AS `jum_alloc_allow`, '' AS `pl_prod_order_det_note`, 0 AS `range_qty`
                 FROM tb_prod_fc_det fd
                 INNER JOIN tb_m_product p ON p.id_product = fd.id_product
+                INNER JOIN tb_m_design dsg ON p.id_design=dsg.id_design
+                INNER JOIN tb_season s ON s.id_season=dsg.id_season
+                INNER JOIN tb_range r ON r.id_range=s.id_range
+                LEFT JOIN (
+	                SELECT dc.id_design, 
+	                MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	                MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	                MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	                MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	                MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	                MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	                MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	                MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	                MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	                MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	                FROM tb_m_design_code dc
+	                INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	                AND cd.id_code IN (32,30,14, 43, 34)
+	                GROUP BY dc.id_design
+                ) cd ON cd.id_design = dsg.id_design
                 INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
                 INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
                 WHERE fd.id_prod_fc IN (" + id_coll + ")
