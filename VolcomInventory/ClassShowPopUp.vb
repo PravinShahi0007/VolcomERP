@@ -98,7 +98,7 @@
             FormViewProductionMRS.Close()
         ElseIf report_mark_type = "30" Then
             'production pl MRS
-            FormViewMatPLSingle.ShowDialog()
+            FormViewMatPLSingle.Close()
         ElseIf report_mark_type = "31" Then
             'return out production
             FormViewProductionRetOut.Close()
