@@ -117,17 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="ViewPopWorksheet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>178, 15</value>
-  </metadata>
   <metadata name="BarManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>452, 12</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>48</value>
-  </metadata>
-  <metadata name="LargeImageCollection.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 14</value>
   </metadata>
   <metadata name="LargeImageCollection.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 14</value>
@@ -525,6 +519,9 @@
         kZG7CXsIHz0HdkdERLyvUCjW/wf0Ug1cRxguuwAAAABJRU5ErkJgggs=
 </value>
   </data>
+  <metadata name="ViewPopWorksheet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>178, 15</value>
+  </metadata>
   <metadata name="PopupMenu2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>577, 12</value>
   </metadata>
@@ -567,12 +564,6 @@
         NyM2wB/wwyl/ifeE9IL6/8JzMTw3a7DWcwakiz/8KRm/AEz6D1HqNoxHF4jMAAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="PopupMenu2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>577, 12</value>
-  </metadata>
-  <metadata name="PopupMenu1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>327, 12</value>
-  </metadata>
   <metadata name="PopupMenu1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>327, 12</value>
   </metadata>

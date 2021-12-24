@@ -100,6 +100,11 @@
                         FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price_final", propose_price_final)
                         FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_disc_group", "Up to " + Decimal.Parse(propose_disc.ToString).ToString("N0") + "%")
                         FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_status", "Turun")
+                        If propose_disc > curr_disc Then
+                            FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_status", "Turun")
+                        Else
+                            FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_status", "Tetap")
+                        End If
                     Else
                         'no propose
                         propose_disc_selected = -1
