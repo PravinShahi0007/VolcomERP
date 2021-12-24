@@ -169,7 +169,7 @@ LEFT JOIN (
     MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
 	FROM tb_m_design_code dc
 	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
-	AND cd.id_code IN (32,30,14, 43)
+	AND cd.id_code IN (32,30,14,43,34)
 	GROUP BY dc.id_design
 ) cd ON cd.id_design = dsg.id_design
 LEFT JOIN(

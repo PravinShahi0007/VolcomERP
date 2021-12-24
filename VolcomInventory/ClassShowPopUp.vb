@@ -3056,10 +3056,12 @@ GROUP BY rec.`id_prod_order`"
                 'info col
                 If report_mark_type = "22" Then
                     'po production
-                    query = "SELECT desg.design_code,CONCAT(cd.class,' ',desg.design_name,' ',cd.color) AS design_display_name, pot.po_type 
+                    query = "SELECT desg.design_code,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name, pot.po_type 
                         FROM tb_prod_order po
                         INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
                         INNER JOIN tb_m_design desg ON desg.id_design=pdd.id_design
+                        INNER JOIN tb_season s ON s.id_season=dsg.id_season
+                        INNER JOIN tb_range r ON r.id_range=s.id_range
                         INNER JOIN tb_lookup_po_type pot ON pot.id_po_type=po.id_po_type
                         LEFT JOIN (
 	                        SELECT dc.id_design, 
@@ -3071,10 +3073,11 @@ GROUP BY rec.`id_prod_order`"
 	                        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
 	                        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
 	                        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
-	                        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	                        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	                        MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
 	                        FROM tb_m_design_code dc
 	                        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
-	                        AND cd.id_code IN (32,30,14, 43)
+	                        AND cd.id_code IN (32,30,14,43,34)
 	                        GROUP BY dc.id_design
                         ) cd ON cd.id_design = desg.id_design 
                         WHERE po.id_prod_order='" & id_report & "'"
@@ -3087,10 +3090,12 @@ GROUP BY rec.`id_prod_order`"
                     End If
                 ElseIf report_mark_type = "23" Then
                     'wo production
-                    query = "SELECT desg.design_code,CONCAT(cd.class,' ',desg.design_name,' ',cd.color) AS design_display_name,pot.po_type,po.prod_order_number FROM tb_prod_order_wo wo
+                    query = "SELECT desg.design_code,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name,pot.po_type,po.prod_order_number FROM tb_prod_order_wo wo
                         INNER JOIN tb_prod_order po ON po.id_prod_order=wo.id_prod_order
                         INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
                         INNER JOIN tb_m_design desg ON desg.id_design=pdd.id_design
+                        INNER JOIN tb_season s ON s.id_season=dsg.id_season
+                        INNER JOIN tb_range r ON r.id_range=s.id_range
                         INNER JOIN tb_lookup_po_type pot ON pot.id_po_type=po.id_po_type 
                         LEFT JOIN (
 	                        SELECT dc.id_design, 
@@ -3102,10 +3107,11 @@ GROUP BY rec.`id_prod_order`"
 	                        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
 	                        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
 	                        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
-	                        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	                        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	                        MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
 	                        FROM tb_m_design_code dc
 	                        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
-	                        AND cd.id_code IN (32,30,14, 43)
+	                        AND cd.id_code IN (32,30,14,43,34)
 	                        GROUP BY dc.id_design
                         ) cd ON cd.id_design = desg.id_design 
                         WHERE wo.id_prod_order_wo='" & id_report & "'"
@@ -3142,10 +3148,11 @@ GROUP BY rec.`id_prod_order`"
 	                        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
 	                        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
 	                        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
-	                        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	                        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	                        MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
 	                        FROM tb_m_design_code dc
 	                        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
-	                        AND cd.id_code IN (32,30,14, 43)
+	                        AND cd.id_code IN (32,30,14,43,34)
 	                        GROUP BY dc.id_design
                         ) cd ON cd.id_design = dsg.id_design  "
                     query += "INNER JOIN tb_lookup_po_type po_type ON po_type.id_po_type = b.id_po_type "
@@ -3175,10 +3182,11 @@ GROUP BY rec.`id_prod_order`"
 	                            MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
 	                            MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
 	                            MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
-	                            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	                            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	                            MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
 	                            FROM tb_m_design_code dc
 	                            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
-	                            AND cd.id_code IN (32,30,14, 43)
+	                            AND cd.id_code IN (32,30,14,43,34)
 	                            GROUP BY dc.id_design
                             ) cd ON cd.id_design = desg.id_design 
                             WHERE mrs.`id_prod_order_mrs`='" & id_report & "'"
@@ -3206,10 +3214,11 @@ GROUP BY rec.`id_prod_order`"
 	                        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
 	                        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
 	                        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
-	                        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	                        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	                        MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
 	                        FROM tb_m_design_code dc
 	                        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
-	                        AND cd.id_code IN (32,30,14, 43)
+	                        AND cd.id_code IN (32,30,14,43,34)
 	                        GROUP BY dc.id_design
                         ) cd ON cd.id_design = desg.id_design 
                         WHERE plm.id_pl_mrs='" & id_report & "'"
@@ -3240,10 +3249,11 @@ GROUP BY rec.`id_prod_order`"
 	                            MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
 	                            MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
 	                            MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
-	                            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	                            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	                            MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
 	                            FROM tb_m_design_code dc
 	                            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
-	                            AND cd.id_code IN (32,30,14, 43)
+	                            AND cd.id_code IN (32,30,14,43,34)
 	                            GROUP BY dc.id_design
                             ) cd ON cd.id_design = dsg.id_design  "
                     query += "WHERE a.id_prod_order_ret_out=" + id_report + " "
@@ -3273,10 +3283,11 @@ GROUP BY rec.`id_prod_order`"
 	                            MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
 	                            MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
 	                            MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
-	                            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	                            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	                            MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
 	                            FROM tb_m_design_code dc
 	                            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
-	                            AND cd.id_code IN (32,30,14, 43)
+	                            AND cd.id_code IN (32,30,14,43,34)
 	                            GROUP BY dc.id_design
                             ) cd ON cd.id_design = dsg.id_design  "
                     query += "INNER JOIN tb_lookup_po_type po_type ON po_type.id_po_type = b.id_po_type "
@@ -3307,10 +3318,11 @@ GROUP BY rec.`id_prod_order`"
 	                            MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
 	                            MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
 	                            MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
-	                            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	                            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	                            MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
 	                            FROM tb_m_design_code dc
 	                            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
-	                            AND cd.id_code IN (32,30,14, 43)
+	                            AND cd.id_code IN (32,30,14,43,34)
 	                            GROUP BY dc.id_design
                             ) cd ON cd.id_design = dsg.id_design  "
                     query += "INNER JOIN tb_lookup_po_type po_type ON po_type.id_po_type = b.id_po_type "
@@ -3349,10 +3361,11 @@ LEFT JOIN (
 	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
 	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
 	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
-	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
 	FROM tb_m_design_code dc
 	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
-	AND cd.id_code IN (32,30,14, 43)
+	AND cd.id_code IN (32,30,14,43,34)
 	GROUP BY dc.id_design
 ) cd ON cd.id_design = d.id_design
 WHERE rec.id_pl_prod_order_rec=" + id_report + "
@@ -3407,7 +3420,9 @@ LIMIT 1 "
                     query += "FROM tb_mat_prod_ret_in a  "
                     query += "INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order "
                     query += "INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = b.id_prod_demand_design "
-                    query += "INNER JOIN tb_m_design dsg ON dsg.id_design = pd_dsg.id_design "
+                    query += "INNER JOIN tb_m_design dsg ON dsg.id_design = pd_dsg.id_design 
+INNER JOIN tb_season s ON s.id_season=dsg.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range "
                     query += "LEFT JOIN (
 	                            SELECT dc.id_design, 
 	                            MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
@@ -3418,10 +3433,11 @@ LIMIT 1 "
 	                            MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
 	                            MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
 	                            MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
-	                            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	                            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	                            MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
 	                            FROM tb_m_design_code dc
 	                            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
-	                            AND cd.id_code IN (32,30,14, 43)
+	                            AND cd.id_code IN (32,30,14,43,34)
 	                            GROUP BY dc.id_design
                             ) cd ON cd.id_design = dsg.id_design  "
                     query += "INNER JOIN tb_lookup_po_type po_type ON po_type.id_po_type = b.id_po_type "
