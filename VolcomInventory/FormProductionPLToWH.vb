@@ -63,7 +63,7 @@
         Catch ex As Exception
         End Try
 
-        Dim query As String = "SELECT ssd.id_season, ssd.season, k.pl_category, i.prod_order_number, CONCAT(comp.comp_number, ' - ', comp.comp_name) AS `vendor`, dsg.design_code AS `code`, dsg.design_display_name AS `name`, a.id_pl_prod_order ,a.id_comp_contact_from , a.id_comp_contact_to, a.pl_prod_order_note, a.pl_prod_order_number, "
+        Dim query As String = "SELECT ssd.id_season, ssd.season, k.pl_category, i.prod_order_number, CONCAT(comp.comp_number, ' - ', comp.comp_name) AS `vendor`, dsg.design_code AS `code`, CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS `name`, a.id_pl_prod_order ,a.id_comp_contact_from , a.id_comp_contact_to, a.pl_prod_order_note, a.pl_prod_order_number, "
         query += "CONCAT(d.comp_number,' - ',d.comp_name) AS comp_name_from, CONCAT(f.comp_number,' - ',f.comp_name) AS comp_name_to, h.report_status, a.id_report_status, "
         query += "pl_prod_order_date, a.id_pd_alloc, pd_alloc.pd_alloc, det.total "
         query += "FROM tb_pl_prod_order a "
@@ -75,6 +75,25 @@
         query += "INNER JOIN tb_prod_order i ON a.id_prod_order = i.id_prod_order 
         INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = i.id_prod_demand_design
         INNER JOIN tb_m_design dsg ON dsg.id_design = pd_dsg.id_design 
+        INNER JOIN tb_season s ON s.id_season=dsg.id_season
+        INNER JOIN tb_range r ON r.id_range=s.id_range
+        LEFT JOIN (
+	        SELECT dc.id_design, 
+	        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	        MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	        FROM tb_m_design_code dc
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        AND cd.id_code IN (32,30,14, 43, 34)
+	        GROUP BY dc.id_design
+        ) cd ON cd.id_design = dsg.id_design
         INNER JOIN tb_prod_order_wo wo On wo.id_prod_order = i.id_prod_order AND wo.is_main_vendor='1' AND wo.id_report_status!=5
         INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price = wo.id_ovh_price
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact 
