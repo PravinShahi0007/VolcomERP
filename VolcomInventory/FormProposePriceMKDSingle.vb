@@ -107,6 +107,7 @@
             warningCustom("Please input note")
             Exit Sub
         End If
+        Dim curr_disc As Decimal = TxtCurrDisc.EditValue
 
         'cek final price dibawah 70%
         If CENoPropose.EditValue = False And (TxtProposeFinal.EditValue > TxtProposePrice.EditValue) Then
@@ -152,7 +153,11 @@
         End If
         If propose_disc > 0 Then
             gv.SetFocusedRowCellValue("propose_disc_group", "Up to " + Decimal.Parse(propose_disc.ToString).ToString("N0") + "%")
-            gv.SetFocusedRowCellValue("propose_status", "Turun")
+            If propose_disc > curr_disc Then
+                gv.SetFocusedRowCellValue("propose_status", "Turun")
+            Else
+                gv.SetFocusedRowCellValue("propose_status", "Tetap")
+            End If
         Else
             gv.SetFocusedRowCellValue("propose_disc_group", "")
             gv.SetFocusedRowCellValue("propose_status", "")
