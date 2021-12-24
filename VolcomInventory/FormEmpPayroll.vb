@@ -6,6 +6,8 @@
     '
     Public no_column As String = 16
     '
+    Private regenerate_bonus As Boolean = False
+
     Private Sub FormEmpPayroll_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_payroll()
     End Sub
@@ -71,6 +73,9 @@
     Sub load_payroll_detail()
         Cursor = Cursors.WaitCursor
 
+        Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = '" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + "'", 0, True, "", "", "", "")
+        Dim is_bonus As String = execute_query("SELECT is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
+
         If GVPayrollPeriode.RowCount > 0 Then
             Dim query As String = "CALL view_payroll('" & GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString & "')"
 
@@ -106,13 +111,9 @@
             GVPayroll.BestFitColumns()
 
             'controls
-            Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = '" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + "'", 0, True, "", "", "", "")
-
             Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
 
             Dim is_dw As String = execute_query("SELECT is_dw FROM tb_emp_payroll_type WHERE id_payroll_type = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
-
-            Dim is_bonus As String = execute_query("SELECT is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
 
             If id_report_status = "0" Then
                 BGetEmployee.Enabled = True
@@ -283,10 +284,22 @@
             BSubmit.Visible = False
             SBSendSlip.Visible = False
             CheckEditViewSend.Visible = False
+            SBRegenerate.Visible = False
         End If
 
         BGetEmployee.Visible = False
         BRemoveEmployee.Visible = False
+        SBRegenerate.Visible = False
+
+        If is_bonus = "1" Then
+            BRemoveEmployee.Visible = True
+            SBRegenerate.Visible = True
+        End If
+
+        If Not id_report_status = "0" Or is_view = "1" Then
+            BRemoveEmployee.Visible = False
+            SBRegenerate.Visible = False
+        End If
 
         Cursor = Cursors.Default
     End Sub
@@ -1683,15 +1696,17 @@
                 End If
             Next
 
-            If Not already Then
-                If Not data.Rows(i)("id_salary").ToString = "" Then
-                    messages += "- " + data.Rows(i)("employee_name").ToString + " Will Inserted." + Environment.NewLine
+            If is_bonus = "2" Or regenerate_bonus Then
+                If Not already Then
+                    If Not data.Rows(i)("id_salary").ToString = "" Then
+                        messages += "- " + data.Rows(i)("employee_name").ToString + " Will Inserted." + Environment.NewLine
 
-                    Dim q_insert As String = "
+                        Dim q_insert As String = "
                         INSERT INTO tb_emp_payroll_det (id_payroll, id_employee, id_salary, workdays, actual_workdays) VALUES (" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + ", " + data.Rows(i)("id_employee").ToString + ", " + data.Rows(i)("id_salary").ToString + ", " + data.Rows(i)("workdays").ToString + ", " + decimalSQL(data.Rows(i)("actual_workdays").ToString) + ")
                     "
 
-                    execute_non_query(q_insert, True, "", "", "", "")
+                        execute_non_query(q_insert, True, "", "", "", "")
+                    End If
                 End If
             End If
         Next
@@ -1707,23 +1722,25 @@
                     End If
                 Next
 
-                If Not already Then
-                    messages += "- " + GVPayroll.GetRowCellValue(i, "employee_name").ToString + " Will Deleted." + Environment.NewLine
+                If is_bonus = "2" Or regenerate_bonus Then
+                    If Not already Then
+                        messages += "- " + GVPayroll.GetRowCellValue(i, "employee_name").ToString + " Will Deleted." + Environment.NewLine
 
-                    'delete adjustment
-                    Dim q_delete_adj As String = "DELETE FROM tb_emp_payroll_adj WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString
+                        'delete adjustment
+                        Dim q_delete_adj As String = "DELETE FROM tb_emp_payroll_adj WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString
 
-                    execute_non_query(q_delete_adj, True, "", "", "", "")
+                        execute_non_query(q_delete_adj, True, "", "", "", "")
 
-                    'delete deduction
-                    Dim q_delete_ded As String = "DELETE FROM tb_emp_payroll_deduction WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString
+                        'delete deduction
+                        Dim q_delete_ded As String = "DELETE FROM tb_emp_payroll_deduction WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString
 
-                    execute_non_query(q_delete_ded, True, "", "", "", "")
+                        execute_non_query(q_delete_ded, True, "", "", "", "")
 
-                    'delete detail
-                    Dim q_delete_det As String = "DELETE FROM tb_emp_payroll_det WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString
+                        'delete detail
+                        Dim q_delete_det As String = "DELETE FROM tb_emp_payroll_det WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString
 
-                    execute_non_query(q_delete_det, True, "", "", "", "")
+                        execute_non_query(q_delete_det, True, "", "", "", "")
+                    End If
                 End If
             End If
         Next
@@ -1842,6 +1859,10 @@
     Sub autoadjustment()
         'thr
         If GVPayrollPeriode.GetFocusedRowCellValue("is_thr").ToString = "1" Or GVPayrollPeriode.GetFocusedRowCellValue("is_bonus").ToString = "1" Then
+            execute_non_query("
+                DELETE FROM tb_emp_payroll_adj WHERE id_salary_adj = 2 AND id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + ";
+            ", True, "", "", "", "")
+
             For i = 0 To GVPayroll.RowCount - 1
                 If GVPayroll.IsValidRowHandle(i) Then
                     If GVPayroll.GetRowCellValue(i, "actual_workdays") < 1 Then
@@ -1856,7 +1877,6 @@
                         End If
 
                         Dim query As String = "
-                            DELETE FROM tb_emp_payroll_adj WHERE id_salary_adj = 2 AND id_employee = " + id_employee + " AND id_payroll = " + id_payroll + ";
                             INSERT INTO tb_emp_payroll_adj (id_payroll, id_salary_adj, id_employee, total_days, increase, `value`) VALUES (" + id_payroll + ", 2, " + id_employee + ", '-" + decimalSQL(total_days) + "', '" + increase + "', '-" + value + "');
                         "
 
@@ -2001,5 +2021,36 @@
             warningCustom("Auto journal not found.")
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBRegenerate_Click(sender As Object, e As EventArgs) Handles SBRegenerate.Click
+        Dim confirm As DialogResult
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to regenerate payroll ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            regenerate_bonus = True
+
+            Dim query_l As String = "CALL view_payroll('" & GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString & "')"
+
+            'autogenerate
+            autogenerate()
+
+            GCPayroll.DataSource = execute_query(query_l, -1, True, "", "", "", "")
+
+            adjustment_deduction_column("adjustment")
+            adjustment_deduction_column("deduction")
+
+            'autoadjustment
+            autoadjustment()
+
+            GCPayroll.DataSource = execute_query(query_l, -1, True, "", "", "", "")
+
+            adjustment_deduction_column("adjustment")
+            adjustment_deduction_column("deduction")
+
+            'check salary
+            checksalary()
+
+            regenerate_bonus = False
+        End If
     End Sub
 End Class
