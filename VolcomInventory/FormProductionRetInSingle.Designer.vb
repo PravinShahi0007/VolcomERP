@@ -36,6 +36,7 @@ Partial Class FormProductionRetInSingle
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.TERetOutNo = New DevExpress.XtraEditors.TextEdit()
         Me.LERetType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
@@ -97,7 +98,8 @@ Partial Class FormProductionRetInSingle
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.TERetOutNo = New DevExpress.XtraEditors.TextEdit()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -108,6 +110,7 @@ Partial Class FormProductionRetInSingle
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.TERetOutNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LERetType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,7 +140,6 @@ Partial Class FormProductionRetInSingle
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
-        CType(Me.TERetOutNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPRet
@@ -329,6 +331,17 @@ Partial Class FormProductionRetInSingle
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(873, 125)
         Me.GroupGeneralHeader.TabIndex = 181
+        '
+        'TERetOutNo
+        '
+        Me.TERetOutNo.EditValue = ""
+        Me.TERetOutNo.Location = New System.Drawing.Point(226, 35)
+        Me.TERetOutNo.Name = "TERetOutNo"
+        Me.TERetOutNo.Properties.EditValueChangedDelay = 1
+        Me.TERetOutNo.Properties.ReadOnly = True
+        Me.TERetOutNo.Size = New System.Drawing.Size(113, 20)
+        Me.TERetOutNo.TabIndex = 10009
+        Me.TERetOutNo.TabStop = False
         '
         'LERetType
         '
@@ -643,7 +656,7 @@ Partial Class FormProductionRetInSingle
         '
         'GVRetDetail
         '
-        Me.GVRetDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRet, Me.GridColumnIdSamplePurcDet, Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnEanCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnRemark, Me.GridColumnNox, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo})
+        Me.GVRetDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRet, Me.GridColumnIdSamplePurcDet, Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnEanCode, Me.GridColumn3, Me.GridColumn2, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnRemark, Me.GridColumnNox, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo})
         Me.GVRetDetail.GridControl = Me.GCRetDetail
         Me.GVRetDetail.Name = "GVRetDetail"
         Me.GVRetDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -693,11 +706,11 @@ Partial Class FormProductionRetInSingle
         'GridColumnName
         '
         Me.GridColumnName.Caption = "Name"
-        Me.GridColumnName.FieldName = "name"
+        Me.GridColumnName.FieldName = "display_name"
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.AllowEdit = False
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 3
+        Me.GridColumnName.VisibleIndex = 4
         Me.GridColumnName.Width = 200
         '
         'GridColumnSize
@@ -711,7 +724,7 @@ Partial Class FormProductionRetInSingle
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.AllowEdit = False
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 4
+        Me.GridColumnSize.VisibleIndex = 6
         Me.GridColumnSize.Width = 60
         '
         'GridColumnUOM
@@ -725,7 +738,7 @@ Partial Class FormProductionRetInSingle
         Me.GridColumnUOM.Name = "GridColumnUOM"
         Me.GridColumnUOM.OptionsColumn.AllowEdit = False
         Me.GridColumnUOM.Visible = True
-        Me.GridColumnUOM.VisibleIndex = 5
+        Me.GridColumnUOM.VisibleIndex = 7
         Me.GridColumnUOM.Width = 100
         '
         'GridColumnQty
@@ -743,7 +756,7 @@ Partial Class FormProductionRetInSingle
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_ret_in_det_qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 6
+        Me.GridColumnQty.VisibleIndex = 8
         Me.GridColumnQty.Width = 120
         '
         'RepositoryItemSpinEdit1
@@ -760,7 +773,7 @@ Partial Class FormProductionRetInSingle
         Me.GridColumnRemark.FieldName = "prod_order_ret_in_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 7
+        Me.GridColumnRemark.VisibleIndex = 9
         Me.GridColumnRemark.Width = 216
         '
         'GridColumnNox
@@ -979,16 +992,29 @@ Partial Class FormProductionRetInSingle
         Me.BScan.TabIndex = 4
         Me.BScan.Text = "Start Scan"
         '
-        'TERetOutNo
+        'GridColumn2
         '
-        Me.TERetOutNo.EditValue = ""
-        Me.TERetOutNo.Location = New System.Drawing.Point(226, 35)
-        Me.TERetOutNo.Name = "TERetOutNo"
-        Me.TERetOutNo.Properties.EditValueChangedDelay = 1
-        Me.TERetOutNo.Properties.ReadOnly = True
-        Me.TERetOutNo.Size = New System.Drawing.Size(113, 20)
-        Me.TERetOutNo.TabIndex = 10009
-        Me.TERetOutNo.TabStop = False
+        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.Caption = "Color"
+        Me.GridColumn2.FieldName = "color"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 5
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn3.Caption = "Class"
+        Me.GridColumn3.FieldName = "class"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 3
         '
         'FormProductionRetInSingle
         '
@@ -1018,6 +1044,7 @@ Partial Class FormProductionRetInSingle
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.TERetOutNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LERetType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1047,7 +1074,6 @@ Partial Class FormProductionRetInSingle
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavBarcode.ResumeLayout(False)
-        CType(Me.TERetOutNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1128,4 +1154,6 @@ Partial Class FormProductionRetInSingle
     Friend WithEvents LERetType As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TERetOutNo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
