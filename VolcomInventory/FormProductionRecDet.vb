@@ -244,11 +244,11 @@ Public Class FormProductionRecDet
 
     Sub view_list_rec()
         If id_receive = "-1" Then
-            Dim query = "CALL view_prod_order_rec_det('" + id_receive + "', '0')"
+            Dim query = "CALL view_prod_order_rec_det('" + id_receive + "', '1')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCListPurchase.DataSource = data
         Else
-            Dim query = "CALL view_prod_order_rec_det('" + id_receive + "', '0')"
+            Dim query = "CALL view_prod_order_rec_det('" + id_receive + "', '1')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCListPurchase.DataSource = data
             If data.Rows.Count > 0 Then
