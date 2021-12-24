@@ -31,9 +31,9 @@
         INNER JOIN tb_m_employee e ON e.id_employee = us.id_employee
         WHERE m.report_mark_type=" + rmt + " AND m.id_user>0
         UNION ALL
-        SELECT m.id_mail, SUBSTRING_INDEX(m.external_recipient, ";", 1), SUBSTRING_INDEX(m.external_recipient, ";", -1) AS `email`, IF(m.is_to=1,'To', 'CC') AS `type`
+        SELECT m.id_mail, SUBSTRING_INDEX(m.external_recipient, ';', 1), SUBSTRING_INDEX(m.external_recipient, ';', -1) AS `email`, IF(m.is_to=1,'To', 'CC') AS `type`
         FROM tb_mail_to m
-        WHERE m.report_mark_type="+rmt+" AND m.id_user=0 "
+        WHERE m.report_mark_type=" +rmt+" AND m.id_user=0 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()

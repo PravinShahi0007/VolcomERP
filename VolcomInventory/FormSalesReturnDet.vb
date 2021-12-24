@@ -232,6 +232,16 @@ Public Class FormSalesReturnDet
                 BtnCreateNonStock.Visible = False
                 XTCReturnMain.SelectedTabPageIndex = 2
             End If
+
+            'cek kalo tidak ada unique
+            If id_ret_type <> "2" Then
+                If Not checkUnik() Then
+                    Cursor = Cursors.Default
+                    stopCustom("Return ini tidak bisa diproses lebih lanjut, karena kode unik tidak tersimpan. Mohon hubungi Administrator")
+                    Close()
+                End If
+            End If
+
         End If
 
         'ret type
@@ -264,6 +274,21 @@ Public Class FormSalesReturnDet
             LookAndFeel.SkinName = "Office 2007 Pink"
         End If
     End Sub
+
+    Function checkUnik()
+        Dim qcek As String = "SELECT COUNT(rc.id_sales_return_det_counting) AS `jum`
+                FROM tb_sales_return r
+                LEFT JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return
+                LEFT JOIN tb_sales_return_det_counting rc ON rc.id_sales_return_det = rd.id_sales_return_det
+                WHERE r.id_sales_return=" + id_sales_return + " "
+        Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+        If dcek.Rows(0)("jum") <= 0 Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
+
     Sub viewSalesReturnOrder()
         Dim query As String = "SELECT a.id_sales_return_order, a.id_store_contact_to, a.id_wh_contact_to, d.is_use_unique_code, d.id_commerce_type, d.id_store_type,(d.comp_name) AS store_name_to, (d.id_drawer_def) AS `id_wh_drawer_store`, d.id_comp_group AS `id_store_group`, IFNULL(rck.id_wh_rack,-1) AS `id_wh_rack_store`, IFNULL(rck.id_wh_locator,-1) AS `id_wh_locator_store`,a.id_report_status, f.report_status, "
         query += "a.sales_return_order_note, a.sales_return_order_note, a.sales_return_order_number, "
