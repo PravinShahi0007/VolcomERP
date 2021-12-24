@@ -33,6 +33,7 @@
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         If formIsValid(ErrorProvider) Then
             Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + LEPayrollType.EditValue.ToString, 0, True, "", "", "", "")
+            Dim is_bonus As String = execute_query("SELECT is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = " + LEPayrollType.EditValue.ToString, 0, True, "", "", "", "")
 
             Dim date_start As String = "NULL"
             Dim date_end As String = "NULL"
@@ -76,19 +77,26 @@
             Dim note As String = addSlashes(MEPayrollNote.Text)
             Dim id_payroll_type As String = LEPayrollType.EditValue.ToString
 
-            If is_thr = "1" Then
+            If is_thr = "1" Or is_bonus = "1" Then
                 store_date_end = date_end
             End If
 
+            Dim bonus_percent As String = "0"
+
+            Try
+                bonus_percent = TEPercent.EditValue
+            Catch ex As Exception
+            End Try
+
             If id_payroll = "-1" Then
-                Dim query As String = "INSERT INTO tb_emp_payroll(periode_start,periode_end,ot_periode_start,ot_periode_end,store_periode_start,store_periode_end,note,last_upd,id_user_upd,id_payroll_type) VALUES(" & date_start & "," & date_end & "," & ot_date_start & "," & ot_date_end & "," & store_date_start & "," & store_date_end & ",'" & addSlashes(note) & "',NOW(),'" & id_user & "','" & id_payroll_type & "'); SELECT LAST_INSERT_ID();"
+                Dim query As String = "INSERT INTO tb_emp_payroll(periode_start,periode_end,ot_periode_start,ot_periode_end,store_periode_start,store_periode_end,note,last_upd,id_user_upd,id_payroll_type, bonus_percent) VALUES(" & date_start & "," & date_end & "," & ot_date_start & "," & ot_date_end & "," & store_date_start & "," & store_date_end & ",'" & addSlashes(note) & "',NOW(),'" & id_user & "','" & id_payroll_type & "', " + bonus_percent + "); SELECT LAST_INSERT_ID();"
                 id_payroll = execute_query(query, 0, True, "", "", "", "")
                 '
                 FormEmpPayroll.load_payroll()
                 FormEmpPayroll.GVPayrollPeriode.FocusedRowHandle = find_row(FormEmpPayroll.GVPayrollPeriode, "id_payroll", id_payroll)
                 Close()
             Else 'edit
-                Dim query As String = "UPDATE tb_emp_payroll SET periode_start=" & date_start & ",periode_end=" & date_end & ",ot_periode_start=" & ot_date_start & ",ot_periode_end=" & ot_date_end & ",store_periode_start=" & store_date_start & ",store_periode_end=" & store_date_end & ",note='" & addSlashes(note) & "',last_upd=NOW(),id_user_upd='" & id_user & "',id_payroll_type='" & id_payroll_type & "' WHERE id_payroll='" & id_payroll & "'"
+                Dim query As String = "UPDATE tb_emp_payroll SET periode_start=" & date_start & ",periode_end=" & date_end & ",ot_periode_start=" & ot_date_start & ",ot_periode_end=" & ot_date_end & ",store_periode_start=" & store_date_start & ",store_periode_end=" & store_date_end & ",note='" & addSlashes(note) & "',last_upd=NOW(),id_user_upd='" & id_user & "',id_payroll_type='" & id_payroll_type & "',bonus_percent=" + bonus_percent + " WHERE id_payroll='" & id_payroll & "'"
                 execute_non_query(query, True, "", "", "", "")
                 '
                 FormEmpPayroll.load_payroll()
@@ -126,7 +134,9 @@
     Private Sub LEPayrollType_EditValueChanged(sender As Object, e As EventArgs) Handles LEPayrollType.EditValueChanged
         Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + LEPayrollType.EditValue.ToString, 0, True, "", "", "", "")
 
-        If is_thr = "1" Then
+        Dim is_bonus As String = execute_query("SELECT is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = " + LEPayrollType.EditValue.ToString, 0, True, "", "", "", "")
+
+        If is_thr = "1" Or is_bonus = "1" Then
             LCEnd.Text = "Date"
 
             PCStart.Visible = False
@@ -135,8 +145,15 @@
             PCEndOt.Visible = False
             PCStartStore.Visible = False
             PCEndStore.Visible = False
+            PCPercent.Visible = False
 
             Size = New Size(445, 230)
+
+            If is_bonus = "1" Then
+                PCPercent.Visible = True
+
+                Size = New Size(445, 260)
+            End If
         Else
             LCEnd.Text = "Period End"
 
@@ -146,6 +163,7 @@
             PCEndOt.Visible = True
             PCStartStore.Visible = True
             PCEndStore.Visible = True
+            PCPercent.Visible = False
 
             Size = New Size(445, 383)
         End If

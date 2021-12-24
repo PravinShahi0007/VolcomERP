@@ -98,8 +98,9 @@
         End If
 
         Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + type, 0, True, "", "", "", "")
+        Dim is_bonus As String = execute_query("SELECT is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = " + type, 0, True, "", "", "", "")
 
-        If is_thr = "1" Then
+        If is_thr = "1" Or is_bonus = "1" Then
             'office
             GCTotalAdjustment.Caption = "Total" + Environment.NewLine + "Adjustment"
             GCGrandTotal.Caption = "Grand" + Environment.NewLine + "Total"
@@ -127,6 +128,7 @@
             GCPosition.Width = 100
             GCStatus.Width = 70
             GCTotalSalaryTHR.Width = 70
+            GCTotalSalaryBonus.Width = 70
             GCTotalAdjustment.Width = 70
             GCGrandTotal.Width = 70
             GCLengthOfWorkTHR.Width = 60
@@ -158,9 +160,29 @@
             GCPositionStore.Width = 100
             GCStatusStore.Width = 60
             GCTotalSalaryTHRStore.Width = 70
+            GCTotalSalaryBonusStore.Width = 70
             GCTotalAdjustmentStore.Width = 70
             GCGrandTotalStore.Width = 70
             GCLengthOfWorkTHRStore.Width = 60
+
+            If is_bonus = "1" Then
+                GCTotalTHP.Visible = True
+                GCTotalTHPStore.Visible = True
+                GCTotalSalaryBonus.Visible = True
+                GCTotalSalaryBonusStore.Visible = True
+
+                GCTotalSalaryTHR.Visible = False
+                GCTotalSalaryTHRStore.Visible = False
+
+                GCLastDateTHR.Visible = False
+            End If
+
+            If is_thr = "1" Then
+                GCTotalSalaryTHR.Visible = True
+                GCTotalSalaryTHRStore.Visible = True
+                GCTotalSalaryBonus.Visible = False
+                GCTotalSalaryBonusStore.Visible = False
+            End If
         End If
 
         GCName.SummaryItem.DisplayFormat = "Grand Total: " + XLLocationOffice.Text.ToUpper
@@ -221,6 +243,7 @@
     Dim sum_tot_dw_office As Double = 0
     Dim sum_tot_office As Double = 0
     Dim sum_tot_thr_office As Double = 0
+    Dim sum_tot_bonus_office As Double = 0
 
     Dim sum_tot_thp_store As Double = 0
     Dim sum_tot_adj_store As Double = 0
@@ -229,6 +252,7 @@
     Dim sum_tot_dw_store As Double = 0
     Dim sum_tot_store As Double = 0
     Dim sum_tot_thr_store As Double = 0
+    Dim sum_tot_bonus_store As Double = 0
 
     Private Sub GVPayrollOffice_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVPayrollOffice.CustomSummaryCalculate
         Dim item As DevExpress.XtraGrid.GridSummaryItem = TryCast(e.Item, DevExpress.XtraGrid.GridSummaryItem)
@@ -468,6 +492,39 @@
                                 e.TotalValue = sum_tot_thr_office
                             Else
                                 e.TotalValue = sum_tot_thr_store
+                            End If
+                        End If
+                    End If
+            End Select
+        End If
+
+        If item.FieldName.ToString = "total_salary_bonus" Then
+            Select Case e.SummaryProcess
+                Case DevExpress.Data.CustomSummaryProcess.Start
+                    If gridView.Name = "GVPayrollOffice" Then
+                        sum_tot_bonus_office = 0
+                    Else
+                        sum_tot_bonus_store = 0
+                    End If
+                Case DevExpress.Data.CustomSummaryProcess.Calculate
+                    If gridView.Name = "GVPayrollOffice" Then
+                        sum_tot_bonus_office += e.FieldValue
+                    Else
+                        sum_tot_bonus_store += e.FieldValue
+                    End If
+                Case DevExpress.Data.CustomSummaryProcess.Finalize
+                    If gridView.GetRowCellValue(e.RowHandle, "departement_sub").ToString.Contains("SOGO") Then
+                        If gridView.Name = "GVPayrollOffice" Then
+                            e.TotalValue = sum_tot_bonus_office
+                        Else
+                            e.TotalValue = sum_tot_bonus_store
+                        End If
+                    Else
+                        If e.GroupLevel = 0 Then
+                            If gridView.Name = "GVPayrollOffice" Then
+                                e.TotalValue = sum_tot_bonus_office
+                            Else
+                                e.TotalValue = sum_tot_bonus_store
                             End If
                         End If
                     End If

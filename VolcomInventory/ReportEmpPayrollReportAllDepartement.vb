@@ -47,8 +47,9 @@
 
         'column
         Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + type, 0, True, "", "", "", "")
+        Dim is_bonus As String = execute_query("SELECT is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = " + type, 0, True, "", "", "", "")
 
-        If is_thr = "1" Then
+        If is_thr = "1" Or is_bonus = "1" Then
             GVSummaryOffice.Columns("salary").Visible = False
             GVSummaryOffice.Columns("event_overtime").Visible = False
             GVSummaryOffice.Columns("d_cooperative_loan").Visible = False
@@ -62,6 +63,10 @@
 
             GVSummaryOffice.Columns("balance").Caption = "Total THR"
 
+            If is_bonus = "1" Then
+                GVSummaryOffice.Columns("balance").Caption = "Total Bonus"
+            End If
+
             GVSummaryStore.Columns("salary").Visible = False
             GVSummaryStore.Columns("event_overtime").Visible = False
             GVSummaryStore.Columns("d_cooperative_loan").Visible = False
@@ -74,6 +79,10 @@
             GVSummaryStore.Columns("d_other").Visible = False
 
             GVSummaryStore.Columns("balance").Caption = "Total THR"
+
+            If is_bonus = "1" Then
+                GVSummaryStore.Columns("balance").Caption = "Total Bonus"
+            End If
         End If
 
         GVSummaryOffice.AppearancePrint.Row.BorderColor = Color.Black
