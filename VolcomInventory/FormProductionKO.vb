@@ -131,7 +131,7 @@ WHERE kod.id_prod_order_ko='" & id_ko & "'
 -- GROUP BY po.id_mat_purc
 ORDER BY po.`id_mat_purc` ASC"
         Else
-            query = "SELECT kod.revision,kod.id_prod_order_ko_det,'' AS `no`,po.`prod_order_number`,CONCAT(cd.class,' ',dsg.design_name) AS class_dsg,cd.color AS color
+            query = "SELECT kod.revision,kod.id_prod_order_ko_det,'' AS `no`,po.`prod_order_number`,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name) AS class_dsg,cd.color AS color
 ,wo_price.qty_po AS qty_order,wo_price.prod_order_wo_det_price AS bom_unit,wo_price.price_amount AS po_amount_rp
 ,kod.lead_time_prod AS lead_time,kod.lead_time_payment,wo_price.prod_order_wo_del_date,DATE_ADD(wo_price.prod_order_wo_del_date,INTERVAL kod.lead_time_prod DAY) AS esti_del_date
 ,IFNULL(revtimes.revision_times,0) AS revision_times
@@ -139,6 +139,8 @@ FROM `tb_prod_order_ko_det` kod
 INNER JOIN tb_prod_order po ON po.id_prod_order=kod.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON po.`id_prod_demand_design`=pdd.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+INNER JOIN tb_season s ON s.id_season=dsg.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
 LEFT JOIN (
 	SELECT wo.id_prod_order, wo.id_ovh_price, wo.prod_order_wo_kurs, cur.currency,wo.prod_order_wo_vat,wod.prod_order_wo_det_price
 	,(SUM(wod.prod_order_wo_det_price * pod.prod_order_qty) * wo.prod_order_wo_kurs * (100 + wo.prod_order_wo_vat)/100) AS `wo_price`
@@ -163,7 +165,8 @@ LEFT JOIN (
 	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
 	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
 	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
-	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+    MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
 	FROM tb_m_design_code dc
 	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
 	AND cd.id_code IN (32,30,14, 43)

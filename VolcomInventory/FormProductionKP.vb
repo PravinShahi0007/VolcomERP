@@ -110,7 +110,7 @@ WHERE kpd.id_prod_order_kp='" & id_kp & "'
 GROUP BY po.id_mat_purc
 ORDER BY po.`id_mat_purc` ASC"
         Else
-            query = "SELECT kpd.sample_proto_2,kpd.revision,kpd.id_prod_order_kp_det,'' AS `no`,po.`prod_order_number`,CONCAT(cd.class,' ',dsg.design_name) AS class_dsg,cd.color AS color
+            query = "SELECT kpd.sample_proto_2,kpd.revision,kpd.id_prod_order_kp_det,'' AS `no`,po.`prod_order_number`,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name) AS class_dsg,cd.color AS color
 ,wo_price.qty_po AS qty_order,wo_price.prod_order_wo_det_price AS bom_unit,wo_price.price_amount AS po_amount_rp
 ,kpd.lead_time_prod AS lead_time,wo_price.prod_order_wo_del_date,DATE_ADD(wo_price.prod_order_wo_del_date,INTERVAL kpd.lead_time_prod DAY) AS esti_del_date
 ,IFNULL(revtimes.revision_times,0) AS revision_times
@@ -142,7 +142,8 @@ LEFT JOIN (
 	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
 	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
 	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
-	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
 	FROM tb_m_design_code dc
 	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
 	AND cd.id_code IN (32,30,14, 43)
