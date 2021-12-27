@@ -1,5 +1,6 @@
 ﻿Public Class FormProductionAttach
     Public id As String = "-1"
+    Public is_view As String = "-1"
     Dim is_submit As String = "2"
 
     Private Sub FormProductionAttach_Load(sender As Object, e As EventArgs) Handles MyBase.Load

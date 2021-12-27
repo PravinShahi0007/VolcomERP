@@ -524,6 +524,9 @@
         ElseIf report_mark_type = "370" Then
             'eos to sale
             FormEtsDet.Close()
+        ElseIf report_mark_type = "374" Then
+            'fgpo attachment
+            FormProductionAttach.Close()
         ElseIf report_mark_type = "375" Then
             'propose index sop
             FormSOPIndexPPS.Close()
@@ -1696,6 +1699,11 @@ GROUP BY rec.`id_prod_order`"
             FormEtsDet.action = "upd"
             FormEtsDet.id = id_report
             FormEtsDet.ShowDialog()
+        ElseIf report_mark_type = "374" Then
+            'fgpo attachment
+            FormProductionAttach.is_view = "1"
+            FormProductionAttach.id = id_report
+            FormProductionAttach.ShowDialog()
         ElseIf report_mark_type = "375" Then
             'propose sop index
             FormSOPIndexPPS.is_view = "1"
@@ -3033,6 +3041,12 @@ GROUP BY rec.`id_prod_order`"
             'eos to sale
             table_name = "tb_ets"
             field_id = "id_ets"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "374" Then
+            'fgpo attachment
+            table_name = "tb_prod_order_attach"
+            field_id = "id_prod_order_attach"
             field_number = "number"
             field_date = "created_date"
         ElseIf report_mark_type = "375" Then

@@ -73,6 +73,9 @@ Partial Class FormMasterCompanySingle
         Me.MEAddress = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControlDesc = New DevExpress.XtraEditors.GroupControl()
+        Me.SLUEStatusPabean = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView12 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LCStatusPabean = New DevExpress.XtraEditors.LabelControl()
         Me.TENPWPAddress = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl39 = New DevExpress.XtraEditors.LabelControl()
         Me.TENPWPName = New DevExpress.XtraEditors.TextEdit()
@@ -247,9 +250,20 @@ Partial Class FormMasterCompanySingle
         Me.BClearAR = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtARCode = New DevExpress.XtraEditors.TextEdit()
         Me.BCreateCOA = New DevExpress.XtraEditors.SimpleButton()
-        Me.LCStatusPabean = New DevExpress.XtraEditors.LabelControl()
-        Me.SLUEStatusPabean = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView12 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GroupControlDC = New DevExpress.XtraEditors.GroupControl()
+        Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.XTCDC = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCDCHist = New DevExpress.XtraGrid.GridControl()
+        Me.GVDCHist = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnclass_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_active = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumninput_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumninput_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCCP.SuspendLayout()
@@ -280,6 +294,8 @@ Partial Class FormMasterCompanySingle
         CType(Me.MEAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlDesc, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlDesc.SuspendLayout()
+        CType(Me.SLUEStatusPabean.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENPWPAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENPWPName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEBankAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -362,8 +378,16 @@ Partial Class FormMasterCompanySingle
         CType(Me.SLEAR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtARCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLUEStatusPabean.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView12, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControlDC, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControlDC.SuspendLayout()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCDC, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCDC.SuspendLayout()
+        Me.XtraTabPage1.SuspendLayout()
+        Me.XtraTabPage2.SuspendLayout()
+        CType(Me.GCDCHist, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDCHist, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPCompany
@@ -943,6 +967,31 @@ Partial Class FormMasterCompanySingle
         Me.GroupControlDesc.Size = New System.Drawing.Size(639, 295)
         Me.GroupControlDesc.TabIndex = 12
         Me.GroupControlDesc.Text = "Description"
+        '
+        'SLUEStatusPabean
+        '
+        Me.SLUEStatusPabean.Location = New System.Drawing.Point(93, 264)
+        Me.SLUEStatusPabean.Name = "SLUEStatusPabean"
+        Me.SLUEStatusPabean.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEStatusPabean.Properties.View = Me.GridView12
+        Me.SLUEStatusPabean.Size = New System.Drawing.Size(230, 20)
+        Me.SLUEStatusPabean.TabIndex = 8922
+        '
+        'GridView12
+        '
+        Me.GridView12.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView12.Name = "GridView12"
+        Me.GridView12.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView12.OptionsView.ShowGroupPanel = False
+        '
+        'LCStatusPabean
+        '
+        Me.LCStatusPabean.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LCStatusPabean.Location = New System.Drawing.Point(11, 267)
+        Me.LCStatusPabean.Name = "LCStatusPabean"
+        Me.LCStatusPabean.Size = New System.Drawing.Size(70, 13)
+        Me.LCStatusPabean.TabIndex = 8921
+        Me.LCStatusPabean.Text = "Status Pabean"
         '
         'TENPWPAddress
         '
@@ -1888,7 +1937,7 @@ Partial Class FormMasterCompanySingle
         '
         Me.XTPLegal.Controls.Add(Me.GroupControl8)
         Me.XTPLegal.Name = "XTPLegal"
-        Me.XTPLegal.Size = New System.Drawing.Size(639, 628)
+        Me.XTPLegal.Size = New System.Drawing.Size(639, 654)
         Me.XTPLegal.Text = "Legal"
         '
         'GroupControl8
@@ -1899,7 +1948,7 @@ Partial Class FormMasterCompanySingle
         Me.GroupControl8.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl8.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl8.Name = "GroupControl8"
-        Me.GroupControl8.Size = New System.Drawing.Size(639, 628)
+        Me.GroupControl8.Size = New System.Drawing.Size(639, 654)
         Me.GroupControl8.TabIndex = 17
         Me.GroupControl8.Text = "Detail"
         '
@@ -1910,7 +1959,7 @@ Partial Class FormMasterCompanySingle
         Me.GCLegal.MainView = Me.GVLegal
         Me.GCLegal.Name = "GCLegal"
         Me.GCLegal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEDownload, Me.RICEDocView})
-        Me.GCLegal.Size = New System.Drawing.Size(635, 528)
+        Me.GCLegal.Size = New System.Drawing.Size(635, 554)
         Me.GCLegal.TabIndex = 1
         Me.GCLegal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVLegal})
         '
@@ -2028,7 +2077,7 @@ Partial Class FormMasterCompanySingle
         Me.PCVendorLegal.Controls.Add(Me.LEContractTemplate)
         Me.PCVendorLegal.Controls.Add(Me.LabelControl37)
         Me.PCVendorLegal.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCVendorLegal.Location = New System.Drawing.Point(2, 587)
+        Me.PCVendorLegal.Location = New System.Drawing.Point(2, 613)
         Me.PCVendorLegal.Name = "PCVendorLegal"
         Me.PCVendorLegal.Size = New System.Drawing.Size(635, 39)
         Me.PCVendorLegal.TabIndex = 2
@@ -2167,16 +2216,17 @@ Partial Class FormMasterCompanySingle
         '
         'XTPSetup
         '
+        Me.XTPSetup.Controls.Add(Me.GroupControlDC)
         Me.XTPSetup.Controls.Add(Me.GroupControl4)
         Me.XTPSetup.Name = "XTPSetup"
-        Me.XTPSetup.Size = New System.Drawing.Size(639, 628)
+        Me.XTPSetup.Size = New System.Drawing.Size(639, 654)
         Me.XTPSetup.Text = "Advanced Setup"
         '
         'XTPCOA
         '
         Me.XTPCOA.Controls.Add(Me.PanelControl3)
         Me.XTPCOA.Name = "XTPCOA"
-        Me.XTPCOA.Size = New System.Drawing.Size(639, 628)
+        Me.XTPCOA.Size = New System.Drawing.Size(639, 654)
         Me.XTPCOA.Text = "COA Setup"
         '
         'PanelControl3
@@ -2187,7 +2237,7 @@ Partial Class FormMasterCompanySingle
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(639, 628)
+        Me.PanelControl3.Size = New System.Drawing.Size(639, 654)
         Me.PanelControl3.TabIndex = 0
         '
         'GroupControl9
@@ -2646,30 +2696,135 @@ Partial Class FormMasterCompanySingle
         Me.BCreateCOA.Text = "Manage COA"
         Me.BCreateCOA.Visible = False
         '
-        'LCStatusPabean
+        'GroupControlDC
         '
-        Me.LCStatusPabean.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LCStatusPabean.Location = New System.Drawing.Point(11, 267)
-        Me.LCStatusPabean.Name = "LCStatusPabean"
-        Me.LCStatusPabean.Size = New System.Drawing.Size(70, 13)
-        Me.LCStatusPabean.TabIndex = 8921
-        Me.LCStatusPabean.Text = "Status Pabean"
+        Me.GroupControlDC.Controls.Add(Me.XTCDC)
+        Me.GroupControlDC.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControlDC.Location = New System.Drawing.Point(0, 177)
+        Me.GroupControlDC.Name = "GroupControlDC"
+        Me.GroupControlDC.Size = New System.Drawing.Size(639, 477)
+        Me.GroupControlDC.TabIndex = 16
+        Me.GroupControlDC.Text = "Display Capacity"
         '
-        'SLUEStatusPabean
+        'GCData
         '
-        Me.SLUEStatusPabean.Location = New System.Drawing.Point(93, 264)
-        Me.SLUEStatusPabean.Name = "SLUEStatusPabean"
-        Me.SLUEStatusPabean.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUEStatusPabean.Properties.View = Me.GridView12
-        Me.SLUEStatusPabean.Size = New System.Drawing.Size(230, 20)
-        Me.SLUEStatusPabean.TabIndex = 8922
+        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCData.Location = New System.Drawing.Point(0, 0)
+        Me.GCData.MainView = Me.GVData
+        Me.GCData.Name = "GCData"
+        Me.GCData.Size = New System.Drawing.Size(606, 449)
+        Me.GCData.TabIndex = 0
+        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
-        'GridView12
+        'GVData
         '
-        Me.GridView12.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView12.Name = "GridView12"
-        Me.GridView12.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView12.OptionsView.ShowGroupPanel = False
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVData.OptionsFind.AlwaysVisible = True
+        Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ShowFooter = True
+        Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'XTCDC
+        '
+        Me.XTCDC.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCDC.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XTCDC.Location = New System.Drawing.Point(2, 20)
+        Me.XTCDC.Name = "XTCDC"
+        Me.XTCDC.SelectedTabPage = Me.XtraTabPage1
+        Me.XTCDC.Size = New System.Drawing.Size(635, 455)
+        Me.XTCDC.TabIndex = 1
+        Me.XTCDC.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Controls.Add(Me.GCData)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(606, 449)
+        Me.XtraTabPage1.Text = "Current"
+        '
+        'XtraTabPage2
+        '
+        Me.XtraTabPage2.Controls.Add(Me.GCDCHist)
+        Me.XtraTabPage2.Name = "XtraTabPage2"
+        Me.XtraTabPage2.Size = New System.Drawing.Size(606, 449)
+        Me.XtraTabPage2.Text = "Change Log"
+        '
+        'GCDCHist
+        '
+        Me.GCDCHist.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDCHist.Location = New System.Drawing.Point(0, 0)
+        Me.GCDCHist.MainView = Me.GVDCHist
+        Me.GCDCHist.Name = "GCDCHist"
+        Me.GCDCHist.Size = New System.Drawing.Size(606, 449)
+        Me.GCDCHist.TabIndex = 0
+        Me.GCDCHist.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDCHist})
+        '
+        'GVDCHist
+        '
+        Me.GVDCHist.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnclass_group, Me.GridColumnqty, Me.GridColumnis_active, Me.GridColumnstt, Me.GridColumninput_date, Me.GridColumninput_by_name})
+        Me.GVDCHist.GridControl = Me.GCDCHist
+        Me.GVDCHist.Name = "GVDCHist"
+        Me.GVDCHist.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVDCHist.OptionsBehavior.Editable = False
+        Me.GVDCHist.OptionsFind.AlwaysVisible = True
+        Me.GVDCHist.OptionsView.ColumnAutoWidth = False
+        Me.GVDCHist.OptionsView.ShowFooter = True
+        Me.GVDCHist.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnclass_group
+        '
+        Me.GridColumnclass_group.Caption = "Class Group"
+        Me.GridColumnclass_group.FieldName = "class_group"
+        Me.GridColumnclass_group.Name = "GridColumnclass_group"
+        Me.GridColumnclass_group.Visible = True
+        Me.GridColumnclass_group.VisibleIndex = 1
+        '
+        'GridColumnqty
+        '
+        Me.GridColumnqty.Caption = "Qty"
+        Me.GridColumnqty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty.FieldName = "qty"
+        Me.GridColumnqty.Name = "GridColumnqty"
+        Me.GridColumnqty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumnqty.Visible = True
+        Me.GridColumnqty.VisibleIndex = 2
+        '
+        'GridColumnis_active
+        '
+        Me.GridColumnis_active.Caption = "is_active"
+        Me.GridColumnis_active.FieldName = "is_active"
+        Me.GridColumnis_active.Name = "GridColumnis_active"
+        '
+        'GridColumnstt
+        '
+        Me.GridColumnstt.Caption = "Status"
+        Me.GridColumnstt.FieldName = "stt"
+        Me.GridColumnstt.Name = "GridColumnstt"
+        Me.GridColumnstt.UnboundExpression = "Iif([is_active] = 1, 'Active', 'Not Active')"
+        Me.GridColumnstt.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumnstt.Visible = True
+        Me.GridColumnstt.VisibleIndex = 0
+        '
+        'GridColumninput_date
+        '
+        Me.GridColumninput_date.Caption = "Entry Date"
+        Me.GridColumninput_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumninput_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumninput_date.FieldName = "input_date"
+        Me.GridColumninput_date.Name = "GridColumninput_date"
+        Me.GridColumninput_date.Visible = True
+        Me.GridColumninput_date.VisibleIndex = 3
+        '
+        'GridColumninput_by_name
+        '
+        Me.GridColumninput_by_name.Caption = "Entry By"
+        Me.GridColumninput_by_name.FieldName = "input_by_name"
+        Me.GridColumninput_by_name.Name = "GridColumninput_by_name"
+        Me.GridColumninput_by_name.Visible = True
+        Me.GridColumninput_by_name.VisibleIndex = 4
         '
         'FormMasterCompanySingle
         '
@@ -2718,6 +2873,8 @@ Partial Class FormMasterCompanySingle
         CType(Me.GroupControlDesc, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlDesc.ResumeLayout(False)
         Me.GroupControlDesc.PerformLayout()
+        CType(Me.SLUEStatusPabean.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENPWPAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENPWPName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEBankAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2807,8 +2964,16 @@ Partial Class FormMasterCompanySingle
         CType(Me.SLEAR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtARCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLUEStatusPabean.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControlDC, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControlDC.ResumeLayout(False)
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCDC, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCDC.ResumeLayout(False)
+        Me.XtraTabPage1.ResumeLayout(False)
+        Me.XtraTabPage2.ResumeLayout(False)
+        CType(Me.GCDCHist, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDCHist, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3041,4 +3206,18 @@ Partial Class FormMasterCompanySingle
     Friend WithEvents SLUEStatusPabean As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView12 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LCStatusPabean As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GroupControlDC As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents XTCDC As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCDCHist As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDCHist As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnclass_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_active As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumninput_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumninput_by_name As DevExpress.XtraGrid.Columns.GridColumn
 End Class
