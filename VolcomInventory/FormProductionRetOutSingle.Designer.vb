@@ -111,6 +111,8 @@ Partial Class FormProductionRetOutSingle
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -812,7 +814,7 @@ Partial Class FormProductionRetOutSingle
         '
         'GVRetDetail
         '
-        Me.GVRetDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRet, Me.GridColumnIdSamplePurcDet, Me.GridColumnCode, Me.GridColumnEanCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnRemark, Me.GridColumnPriceOVH, Me.GridColumnAmount, Me.GridColumnNox, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo})
+        Me.GVRetDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRet, Me.GridColumnIdSamplePurcDet, Me.GridColumnCode, Me.GridColumnEanCode, Me.GridColumn7, Me.GridColumn6, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnRemark, Me.GridColumnPriceOVH, Me.GridColumnAmount, Me.GridColumnNox, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo})
         Me.GVRetDetail.GridControl = Me.GCRetDetail
         Me.GVRetDetail.Name = "GVRetDetail"
         Me.GVRetDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -860,11 +862,11 @@ Partial Class FormProductionRetOutSingle
         'GridColumnName
         '
         Me.GridColumnName.Caption = "Name"
-        Me.GridColumnName.FieldName = "name"
+        Me.GridColumnName.FieldName = "display_name"
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 3
+        Me.GridColumnName.VisibleIndex = 4
         Me.GridColumnName.Width = 206
         '
         'GridColumnSize
@@ -878,7 +880,7 @@ Partial Class FormProductionRetOutSingle
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 4
+        Me.GridColumnSize.VisibleIndex = 6
         Me.GridColumnSize.Width = 55
         '
         'GridColumnUOM
@@ -909,7 +911,7 @@ Partial Class FormProductionRetOutSingle
         Me.GridColumnQty.OptionsColumn.ReadOnly = True
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_ret_out_det_qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
+        Me.GridColumnQty.VisibleIndex = 7
         Me.GridColumnQty.Width = 76
         '
         'RepositoryItemSpinEdit1
@@ -926,7 +928,7 @@ Partial Class FormProductionRetOutSingle
         Me.GridColumnRemark.FieldName = "prod_order_ret_out_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 8
+        Me.GridColumnRemark.VisibleIndex = 10
         Me.GridColumnRemark.Width = 278
         '
         'GridColumnPriceOVH
@@ -942,7 +944,7 @@ Partial Class FormProductionRetOutSingle
         Me.GridColumnPriceOVH.Name = "GridColumnPriceOVH"
         Me.GridColumnPriceOVH.OptionsColumn.AllowEdit = False
         Me.GridColumnPriceOVH.Visible = True
-        Me.GridColumnPriceOVH.VisibleIndex = 6
+        Me.GridColumnPriceOVH.VisibleIndex = 8
         '
         'GridColumnAmount
         '
@@ -955,7 +957,7 @@ Partial Class FormProductionRetOutSingle
         Me.GridColumnAmount.UnboundExpression = "[prod_order_ret_out_det_qty] * [ovh_price]"
         Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 7
+        Me.GridColumnAmount.VisibleIndex = 9
         '
         'GridColumnNox
         '
@@ -1177,6 +1179,30 @@ Partial Class FormProductionRetOutSingle
         Me.BScan.TabIndex = 5
         Me.BScan.Text = "Start Scan"
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn6.Caption = "Color"
+        Me.GridColumn6.FieldName = "color"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 5
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn7.Caption = "Class"
+        Me.GridColumn7.FieldName = "class"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 3
+        '
         'FormProductionRetOutSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1339,4 +1365,6 @@ Partial Class FormProductionRetOutSingle
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TERecNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

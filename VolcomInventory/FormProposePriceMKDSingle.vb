@@ -6,7 +6,7 @@
         If id_mkd_type = "1" Then
             cond = "AND d.value>=30 "
         Else
-            cond = "AND d.value>30 "
+            cond = "AND d.value>=30 "
         End If
         Dim query As String = "SELECT CAST(d.value AS DECIMAL(5,0)) AS `propose_disc`, CONCAT((SELECT propose_disc),'%') AS `propose_disc_display`
         FROM tb_lookup_disc_type d WHERE d.value>0 " + cond
@@ -85,7 +85,7 @@
         End If
 
         'cek valid diskon
-        If CENoPropose.EditValue = False And SLEProposeDisc.EditValue <= TxtCurrDisc.EditValue Then
+        If CENoPropose.EditValue = False And SLEProposeDisc.EditValue < TxtCurrDisc.EditValue Then
             warningCustom("Discount is not valid")
             Exit Sub
         End If
@@ -107,6 +107,7 @@
             warningCustom("Please input note")
             Exit Sub
         End If
+        Dim curr_disc As Decimal = TxtCurrDisc.EditValue
 
         'cek final price dibawah 70%
         If CENoPropose.EditValue = False And (TxtProposeFinal.EditValue > TxtProposePrice.EditValue) Then
@@ -152,7 +153,11 @@
         End If
         If propose_disc > 0 Then
             gv.SetFocusedRowCellValue("propose_disc_group", "Up to " + Decimal.Parse(propose_disc.ToString).ToString("N0") + "%")
-            gv.SetFocusedRowCellValue("propose_status", "Turun")
+            If propose_disc > curr_disc Then
+                gv.SetFocusedRowCellValue("propose_status", "Turun")
+            Else
+                gv.SetFocusedRowCellValue("propose_status", "Tetap")
+            End If
         Else
             gv.SetFocusedRowCellValue("propose_disc_group", "")
             gv.SetFocusedRowCellValue("propose_status", "")

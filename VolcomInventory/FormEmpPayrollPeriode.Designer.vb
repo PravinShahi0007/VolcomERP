@@ -51,6 +51,9 @@ Partial Class FormEmpPayrollPeriode
         Me.PCStartStore = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.DEStartStore = New DevExpress.XtraEditors.DateEdit()
+        Me.PCPercent = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPercent = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,6 +89,9 @@ Partial Class FormEmpPayrollPeriode
         Me.PCStartStore.SuspendLayout()
         CType(Me.DEStartStore.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCPercent, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCPercent.SuspendLayout()
+        CType(Me.TEPercent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -93,7 +99,7 @@ Partial Class FormEmpPayrollPeriode
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 306)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 335)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(429, 38)
         Me.PanelControl1.TabIndex = 1
@@ -330,9 +336,9 @@ Partial Class FormEmpPayrollPeriode
         Me.PCPayrollNote.Controls.Add(Me.LCPayrollNote)
         Me.PCPayrollNote.Controls.Add(Me.MEPayrollNote)
         Me.PCPayrollNote.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PCPayrollNote.Location = New System.Drawing.Point(0, 220)
+        Me.PCPayrollNote.Location = New System.Drawing.Point(0, 250)
         Me.PCPayrollNote.Name = "PCPayrollNote"
-        Me.PCPayrollNote.Size = New System.Drawing.Size(429, 86)
+        Me.PCPayrollNote.Size = New System.Drawing.Size(429, 85)
         Me.PCPayrollNote.TabIndex = 8946
         '
         'PanelControl2
@@ -410,12 +416,47 @@ Partial Class FormEmpPayrollPeriode
         Me.DEStartStore.Size = New System.Drawing.Size(290, 20)
         Me.DEStartStore.TabIndex = 8934
         '
+        'PCPercent
+        '
+        Me.PCPercent.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCPercent.Controls.Add(Me.TEPercent)
+        Me.PCPercent.Controls.Add(Me.LabelControl3)
+        Me.PCPercent.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCPercent.Location = New System.Drawing.Point(0, 220)
+        Me.PCPercent.Name = "PCPercent"
+        Me.PCPercent.Size = New System.Drawing.Size(429, 30)
+        Me.PCPercent.TabIndex = 8950
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(15, 8)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl3.TabIndex = 8937
+        Me.LabelControl3.Text = "Percent"
+        '
+        'TEPercent
+        '
+        Me.TEPercent.Location = New System.Drawing.Point(125, 6)
+        Me.TEPercent.Name = "TEPercent"
+        Me.TEPercent.Properties.DisplayFormat.FormatString = "N0"
+        Me.TEPercent.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEPercent.Properties.EditFormat.FormatString = "N0"
+        Me.TEPercent.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEPercent.Properties.Mask.EditMask = "N0"
+        Me.TEPercent.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEPercent.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEPercent.Size = New System.Drawing.Size(290, 20)
+        Me.TEPercent.TabIndex = 8938
+        '
         'FormEmpPayrollPeriode
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(429, 344)
+        Me.ClientSize = New System.Drawing.Size(429, 373)
         Me.Controls.Add(Me.PCPayrollNote)
+        Me.Controls.Add(Me.PCPercent)
         Me.Controls.Add(Me.PCEndStore)
         Me.Controls.Add(Me.PCStartStore)
         Me.Controls.Add(Me.PCEndOt)
@@ -474,6 +515,10 @@ Partial Class FormEmpPayrollPeriode
         Me.PCStartStore.PerformLayout()
         CType(Me.DEStartStore.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCPercent, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCPercent.ResumeLayout(False)
+        Me.PCPercent.PerformLayout()
+        CType(Me.TEPercent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -508,4 +553,7 @@ Partial Class FormEmpPayrollPeriode
     Friend WithEvents PCStartStore As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEStartStore As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents PCPercent As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEPercent As DevExpress.XtraEditors.TextEdit
 End Class

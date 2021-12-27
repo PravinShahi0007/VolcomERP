@@ -3485,8 +3485,10 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
         Try
             If opt = "1" Then
-                query = "SELECT CONCAT(cd.class,' ',dsg.design_name,' ',cd.color) AS  design_display_name
+                query = "SELECT CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS  design_display_name
 FROM tb_m_design dsg 
+INNER JOIN tb_season s ON s.id_season=dsg.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
 LEFT JOIN (
 	SELECT dc.id_design, 
 	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
@@ -3497,10 +3499,11 @@ LEFT JOIN (
 	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
 	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
 	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
-	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+    MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
 	FROM tb_m_design_code dc
 	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
-	AND cd.id_code IN (32,30,14, 43)
+	AND cd.id_code IN (32,30,14, 43,34)
 	GROUP BY dc.id_design
 ) cd ON cd.id_design = dsg.id_design
 WHERE dsg.id_design='" & id_design & "'"

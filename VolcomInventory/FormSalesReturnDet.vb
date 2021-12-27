@@ -232,6 +232,16 @@ Public Class FormSalesReturnDet
                 BtnCreateNonStock.Visible = False
                 XTCReturnMain.SelectedTabPageIndex = 2
             End If
+
+            'cek kalo tidak ada unique
+            If id_ret_type <> "2" Then
+                If Not checkUnik() Then
+                    Cursor = Cursors.Default
+                    stopCustom("Return ini tidak bisa diproses lebih lanjut, karena kode unik tidak tersimpan. Mohon hubungi Administrator")
+                    Close()
+                End If
+            End If
+
         End If
 
         'ret type
@@ -264,6 +274,21 @@ Public Class FormSalesReturnDet
             LookAndFeel.SkinName = "Office 2007 Pink"
         End If
     End Sub
+
+    Function checkUnik()
+        Dim qcek As String = "SELECT COUNT(rc.id_sales_return_det_counting) AS `jum`
+                FROM tb_sales_return r
+                LEFT JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return
+                LEFT JOIN tb_sales_return_det_counting rc ON rc.id_sales_return_det = rd.id_sales_return_det
+                WHERE r.id_sales_return=" + id_sales_return + " "
+        Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+        If dcek.Rows(0)("jum") <= 0 Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
+
     Sub viewSalesReturnOrder()
         Dim query As String = "SELECT a.id_sales_return_order, a.id_store_contact_to, a.id_wh_contact_to, d.is_use_unique_code, d.id_commerce_type, d.id_store_type,(d.comp_name) AS store_name_to, (d.id_drawer_def) AS `id_wh_drawer_store`, d.id_comp_group AS `id_store_group`, IFNULL(rck.id_wh_rack,-1) AS `id_wh_rack_store`, IFNULL(rck.id_wh_locator,-1) AS `id_wh_locator_store`,a.id_report_status, f.report_status, "
         query += "a.sales_return_order_note, a.sales_return_order_note, a.sales_return_order_number, "
@@ -1301,12 +1326,19 @@ Public Class FormSalesReturnDet
                     'get all detail id
                     Try
                         Dim query_get_detail_id As String = ""
-                        If id_ret_type = "4" Then
-                            'online store
+                        If id_ret_type = "4" And id_store_group = "76" Then
+                            'online store VIOS
                             query_get_detail_id += "SELECT a.id_sales_return_det, a.id_product, a.id_design_price, a.design_price, sod.ol_store_id, sod.item_id "
                             query_get_detail_id += "FROM tb_sales_return_det a "
                             query_get_detail_id += "INNER JOIN tb_sales_return_order_det rod ON rod.id_sales_return_order_det = a.id_sales_return_order_det 
-                        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = rod.id_sales_order_det "
+                            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = rod.id_sales_order_det "
+                            query_get_detail_id += "WHERE a.id_sales_return = '" + id_sales_return + "' "
+                        ElseIf id_ret_type = "4" And id_store_group <> "76" Then
+                            'online store non vios
+                            query_get_detail_id += "SELECT a.id_sales_return_det, a.id_product, a.id_design_price, a.design_price, sod.ol_store_id, sod.item_id , '2' AS `is_used` "
+                            query_get_detail_id += "FROM tb_sales_return_det a "
+                            query_get_detail_id += "INNER JOIN tb_sales_return_order_det rod ON rod.id_sales_return_order_det = a.id_sales_return_order_det 
+                            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = rod.id_sales_order_det "
                             query_get_detail_id += "WHERE a.id_sales_return = '" + id_sales_return + "' "
                         Else
                             'offline store
@@ -1333,13 +1365,27 @@ Public Class FormSalesReturnDet
                             Dim ol_store_id_counting As String = GVBarcode.GetRowCellValue(p, "ol_store_id").ToString
                             Dim item_id_counting As String = GVBarcode.GetRowCellValue(p, "item_id").ToString
                             For p1 As Integer = 0 To (data_get_detail_id.Rows.Count - 1)
-                                If id_product_counting = data_get_detail_id.Rows(p1)("id_product").ToString And ol_store_id_counting = data_get_detail_id.Rows(p1)("ol_store_id").ToString And item_id_counting = data_get_detail_id.Rows(p1)("item_id").ToString Then
-                                    If jum_ins_p > 0 Then
-                                        query_counting += ", "
+                                If id_ret_type = "4" And id_store_group <> "76" Then
+                                    'online non vios
+                                    If id_product_counting = data_get_detail_id.Rows(p1)("id_product").ToString And data_get_detail_id.Rows(p1)("is_used").ToString = "2" Then
+                                        If jum_ins_p > 0 Then
+                                            query_counting += ", "
+                                        End If
+                                        query_counting += "('" + data_get_detail_id.Rows(p1)("id_sales_return_det").ToString + "', " + id_pl_prod_order_rec_det_unique + ", '" + sales_return_det_counting + "', '" + is_unique_report + "') "
+                                        jum_ins_p = jum_ins_p + 1
+                                        data_get_detail_id.Rows(p1)("is_used") = "1"
+                                        Exit For
                                     End If
-                                    query_counting += "('" + data_get_detail_id.Rows(p1)("id_sales_return_det").ToString + "', " + id_pl_prod_order_rec_det_unique + ", '" + sales_return_det_counting + "', '" + is_unique_report + "') "
-                                    jum_ins_p = jum_ins_p + 1
-                                    Exit For
+                                Else
+                                    'offline dan online vios
+                                    If id_product_counting = data_get_detail_id.Rows(p1)("id_product").ToString And ol_store_id_counting = data_get_detail_id.Rows(p1)("ol_store_id").ToString And item_id_counting = data_get_detail_id.Rows(p1)("item_id").ToString Then
+                                        If jum_ins_p > 0 Then
+                                            query_counting += ", "
+                                        End If
+                                        query_counting += "('" + data_get_detail_id.Rows(p1)("id_sales_return_det").ToString + "', " + id_pl_prod_order_rec_det_unique + ", '" + sales_return_det_counting + "', '" + is_unique_report + "') "
+                                        jum_ins_p = jum_ins_p + 1
+                                        Exit For
+                                    End If
                                 End If
                             Next
                         Next

@@ -110,7 +110,7 @@
         If Not SLEVendor.EditValue.ToString = "0" Then
             q_where = " AND wo.id_comp='" & SLEVendor.EditValue.ToString & "'"
         End If
-        Dim query = "SELECT a.is_need_cps2_verify,a.cps2_verify,wo.comp_number,wo.comp_name,wo.id_comp,
+        Dim query = "SELECT a.is_need_cps2_verify,a.cps2_verify,wo.comp_number,wo.comp_name,wo.id_comp,IFNULL(cd.color,'-') AS color,IFNULL(cd.class,'-') AS class,
 NOW() AS date_now,b.id_design,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name,d.design_name , d.design_code, h.term_production, g.po_type, 
 DATE_FORMAT(a.prod_order_date,'%d %M %Y') AS prod_order_date,a.id_report_status,c.report_status, 
 b.id_delivery, e.delivery, f.season, e.id_season, 
@@ -146,6 +146,25 @@ LEFT JOIN (
 INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 
 INNER JOIN tb_lookup_report_status c ON a.id_report_status = c.id_report_status 
 INNER JOIN tb_m_design d ON b.id_design = d.id_design 
+INNER JOIN tb_season s ON s.id_season=d.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43, 34)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = d.id_design
 INNER JOIN tb_season_delivery e ON b.id_delivery=e.id_delivery 
 INNER JOIN tb_season f ON f.id_season=e.id_season 
 INNER JOIN tb_lookup_po_type g ON g.id_po_type=a.id_po_type 
@@ -350,7 +369,9 @@ WHERE (a.id_report_status = '6') AND is_closing_rec=2 " & q_where & " ORDER BY a
         '
         Dim query = "SELECT a.id_report_status,h.report_status, g.id_season,g.season,a.id_prod_order_rec,a.prod_order_rec_number, "
         query += "(a.delivery_order_date) AS delivery_order_date,a.delivery_order_number, a.arrive_date,b.prod_order_number, "
-        query += "(a.prod_order_rec_date) AS prod_order_rec_date, CONCAT(f.comp_number,' - ',f.comp_name) AS comp_from, CONCAT(d.comp_number,' - ',d.comp_name) AS comp_to, dsg.design_code AS `code`,(dsg.design_display_name) AS name, SUM(ad.prod_order_rec_det_qty) AS `qty`, po_type.po_type "
+        query += "(a.prod_order_rec_date) AS prod_order_rec_date, CONCAT(f.comp_number,' - ',f.comp_name) AS comp_from, CONCAT(d.comp_number,' - ',d.comp_name) AS comp_to, dsg.design_code AS `code`
+, CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS name
+, SUM(ad.prod_order_rec_det_qty) AS `qty`, po_type.po_type "
         query += ",DATE_ADD(IFNULL(wo.prod_order_wo_del_date,b.prod_order_date), INTERVAL IF(ISNULL(ko.lead_time_prod),IFNULL(wo.prod_order_wo_lead_time,0),ko.lead_time_prod) DAY) AS est_qc_date
 ,DATEDIFF(DATE_ADD(IFNULL(wo.prod_order_wo_del_date,b.prod_order_date), INTERVAL IF(ISNULL(ko.lead_time_prod),IFNULL(wo.prod_order_wo_lead_time,0),ko.lead_time_prod) DAY), a.arrive_date) AS diff_day "
         query += "FROM tb_prod_order_rec a  "
@@ -365,6 +386,27 @@ WHERE (a.id_report_status = '6') AND is_closing_rec=2 " & q_where & " ORDER BY a
         query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status "
         query += "INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = b.id_prod_demand_design "
         query += "INNER JOIN tb_m_design dsg ON dsg.id_design = pd_dsg.id_design "
+        query += "
+INNER JOIN tb_season s ON s.id_season=dsg.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43, 34)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
+"
         query += "INNER JOIN tb_lookup_po_type po_type ON po_type.id_po_type = b.id_po_type "
         query += "LEFT JOIN 
 ( 

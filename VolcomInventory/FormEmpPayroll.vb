@@ -6,12 +6,14 @@
     '
     Public no_column As String = 16
     '
+    Private regenerate_bonus As Boolean = False
+
     Private Sub FormEmpPayroll_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_payroll()
     End Sub
     '
     Sub load_payroll()
-        Dim query As String = "SELECT 'no' AS is_check, pr.*,emp.`employee_name`,type.payroll_type as payroll_type_name,DATE_FORMAT(pr.periode_end,'%M %Y') AS payroll_name, IFNULL((SELECT report_status FROM tb_lookup_report_status WHERE id_report_status = pr.id_report_status), 'Not Submitted') AS report_status, type.is_thr, type.is_dw FROM tb_emp_payroll pr
+        Dim query As String = "SELECT 'no' AS is_check, pr.*,emp.`employee_name`,type.payroll_type as payroll_type_name,DATE_FORMAT(pr.periode_end,'%M %Y') AS payroll_name, IFNULL((SELECT report_status FROM tb_lookup_report_status WHERE id_report_status = pr.id_report_status), 'Not Submitted') AS report_status, type.is_thr, type.is_dw, type.is_bonus FROM tb_emp_payroll pr
                                 INNER JOIn tb_emp_payroll_type type ON type.id_payroll_type=pr.id_payroll_type
                                 INNER JOIN tb_m_user usr ON usr.id_user=pr.id_user_upd
                                 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.id_employee
@@ -71,6 +73,9 @@
     Sub load_payroll_detail()
         Cursor = Cursors.WaitCursor
 
+        Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = '" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + "'", 0, True, "", "", "", "")
+        Dim is_bonus As String = execute_query("SELECT is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
+
         If GVPayrollPeriode.RowCount > 0 Then
             Dim query As String = "CALL view_payroll('" & GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString & "')"
 
@@ -106,8 +111,6 @@
             GVPayroll.BestFitColumns()
 
             'controls
-            Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = '" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + "'", 0, True, "", "", "", "")
-
             Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
 
             Dim is_dw As String = execute_query("SELECT is_dw FROM tb_emp_payroll_type WHERE id_payroll_type = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
@@ -158,7 +161,7 @@
             End If
 
             'grid
-            If is_thr = "2" Then
+            If is_thr = "2" And is_bonus = "2" Then
                 If GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString = "1" Then
                     GBWorkingDays.Visible = True
                     GBSalary.Visible = True
@@ -216,6 +219,20 @@
                     GBSalary.Visible = False
                 End If
 
+                If is_bonus = "1" Then
+                    BandedGridColumnTotalSalaryTHR.Visible = False
+                    BandedGridColumnTotalSalaryBonus.Visible = True
+                    BandedGridColumnTotFixedSalary.Visible = False
+                    GridColumnHousingAllowance.Visible = True
+                    GridColumnVehicleAttndAllowance.Visible = True
+                    GridColumnTotTHP.Visible = True
+                End If
+
+                If is_thr = "1" Then
+                    BandedGridColumnTotalSalaryTHR.Visible = True
+                    BandedGridColumnTotalSalaryBonus.Visible = False
+                End If
+
                 BBIBPJSKesehatan.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
                 BBIBPJSTK.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
                 'BBIPajak.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
@@ -267,10 +284,22 @@
             BSubmit.Visible = False
             SBSendSlip.Visible = False
             CheckEditViewSend.Visible = False
+            SBRegenerate.Visible = False
         End If
 
         BGetEmployee.Visible = False
         BRemoveEmployee.Visible = False
+        SBRegenerate.Visible = False
+
+        If is_bonus = "1" Then
+            BRemoveEmployee.Visible = True
+            SBRegenerate.Visible = True
+        End If
+
+        If Not id_report_status = "0" Or is_view = "1" Then
+            BRemoveEmployee.Visible = False
+            SBRegenerate.Visible = False
+        End If
 
         Cursor = Cursors.Default
     End Sub
@@ -549,6 +578,7 @@
         Next
 
         Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
+        Dim is_bonus As String = execute_query("SELECT is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, 0, True, "", "", "", "")
 
         Dim report As ReportPayrollAll = New ReportPayrollAll
 
@@ -563,6 +593,11 @@
 
         If is_thr = "1" Then
             report.XLTitle.Text = "Detail THR"
+            report.XLPeriod.Text = "Period " + Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy")
+        End If
+
+        If is_bonus = "1" Then
+            report.XLTitle.Text = "Detail Bonus"
             report.XLPeriod.Text = "Period " + Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy")
         End If
 
@@ -670,12 +705,12 @@
 
     Sub adjustment_deduction_column(type As String)
         'type
-        Dim payroll_type As DataTable = execute_query("SELECT is_dw, is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, -1, True, "", "", "", "")
+        Dim payroll_type As DataTable = execute_query("SELECT is_dw, is_thr, is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString, -1, True, "", "", "", "")
 
         'column
         Dim where_adj_c As String = ""
 
-        Dim query_adj_c As String = "SELECT cat.salary_" + type + "_cat, (SELECT MIN(use_dw) FROM tb_lookup_salary_" + type + " WHERE id_salary_" + type + "_cat = cat.id_salary_" + type + "_cat) AS use_dw, (SELECT MIN(use_thr) FROM tb_lookup_salary_" + type + " WHERE id_salary_" + type + "_cat = cat.id_salary_" + type + "_cat) AS use_thr FROM tb_lookup_salary_" + type + "_cat AS cat"
+        Dim query_adj_c As String = "SELECT cat.salary_" + type + "_cat, (SELECT MIN(use_dw) FROM tb_lookup_salary_" + type + " WHERE id_salary_" + type + "_cat = cat.id_salary_" + type + "_cat) AS use_dw, (SELECT MIN(use_thr) FROM tb_lookup_salary_" + type + " WHERE id_salary_" + type + "_cat = cat.id_salary_" + type + "_cat) AS use_thr, (SELECT MIN(use_bonus) FROM tb_lookup_salary_" + type + " WHERE id_salary_" + type + "_cat = cat.id_salary_" + type + "_cat) AS use_bonus FROM tb_lookup_salary_" + type + "_cat AS cat"
 
         Dim data_adj_c As DataTable = execute_query(query_adj_c, -1, True, "", "", "", "")
 
@@ -692,6 +727,11 @@
 
             'thr column
             If payroll_type.Rows(0)("is_thr") = "1" And data_adj_c.Rows(i)("use_thr").ToString = "2" Then
+                Continue For
+            End If
+
+            'bonus column
+            If payroll_type.Rows(0)("is_bonus") = "1" And data_adj_c.Rows(i)("use_bonus").ToString = "2" Then
                 Continue For
             End If
 
@@ -1055,8 +1095,9 @@
 
     Sub insert_jurnal(ByVal id_payroll As String)
         Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
+        Dim is_bonus As String = execute_query("SELECT is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
 
-        If is_thr = "2" Then
+        If is_thr = "2" And is_bonus = "2" Then
             Dim payroll_det As DataTable = execute_query("SELECT DATE_FORMAT(periode_end, '%M %Y') AS periode, report_number FROM tb_emp_payroll WHERE id_payroll = " + id_payroll, -1, True, "", "", "", "")
 
             Dim data_gaji_map As DataTable = execute_query("SELECT id_acc, id_departement, id_departement_sub, id_comp, (SELECT comp_number FROM tb_m_comp WHERE id_comp = tb_coa_map_departement.id_comp) AS comp_number FROM tb_coa_map_departement WHERE type = 1", -1, True, "", "", "", "")
@@ -1253,6 +1294,16 @@
                 WHERE type = 4
             ", -1, True, "", "", "", "")
 
+            If is_bonus = "1" Then
+                data_map = execute_query("
+                    SELECT map.id_departement, map.id_departement_sub, map.id_acc, acc.acc_name, acc.acc_description, comp.comp_name AS vendor, map.id_comp, comp.comp_number
+                    FROM tb_coa_map_departement AS map
+                    LEFT JOIN tb_a_acc AS acc ON map.id_acc = acc.id_acc
+                    LEFT JOIN tb_m_comp AS comp ON map.id_comp = comp.id_comp
+                    WHERE type = 9
+                ", -1, True, "", "", "", "")
+            End If
+
             Dim query As String = "CALL view_payroll_sum(" + id_payroll + ")"
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -1320,6 +1371,7 @@
 
     Sub insert_jurnal_toko(ByVal id_payroll As String)
         Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
+        Dim is_bonus As String = execute_query("SELECT is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
 
         Dim payroll_type As String = execute_query("SELECT payroll_type FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
 
@@ -1334,7 +1386,7 @@
         'description
         Dim desc As String = ""
 
-        If is_thr = "1" Then
+        If is_thr = "1" Or is_bonus = "1" Then
             desc = payroll_type + " " + payroll_det.Rows(0)("periode").ToString
         Else
             desc = "Gaji staff toko " + payroll_det.Rows(0)("periode").ToString
@@ -1363,7 +1415,7 @@
 
                 insert_detail = insert_detail + "('" + id_acc_trans + "', '3809', '" + data_comp.Rows(0)("id_comp").ToString + "', '" + data_comp.Rows(0)("comp_number").ToString + "', 0, " + decimalSQL(salary) + ", '" + desc + "', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "', '" + id_coa_tag + "'), "
 
-                If is_thr = "2" Then
+                If is_thr = "2" And is_bonus = "2" Then
                     insert_detail = insert_detail + "('" + id_acc_trans + "', '3669', '" + data_comp.Rows(0)("id_comp").ToString + "', '" + data_comp.Rows(0)("comp_number").ToString + "', " + decimalSQL(bpjskes) + ", 0, 'Gaji staff toko " + payroll_det.Rows(0)("periode").ToString + " - pot. BPJS', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "', '" + id_coa_tag + "'), "
 
                     insert_detail = insert_detail + "('" + id_acc_trans + "', '3669', '" + data_comp.Rows(0)("id_comp").ToString + "', '" + data_comp.Rows(0)("comp_number").ToString + "', " + decimalSQL(jp) + ", 0, 'Gaji staff toko " + payroll_det.Rows(0)("periode").ToString + " - pot. JP', 192, '" + id_payroll + "', '" + payroll_det.Rows(0)("report_number").ToString + "', '" + id_coa_tag + "'), "
@@ -1382,8 +1434,9 @@
 
     Sub insert_expense(ByVal id_payroll As String)
         Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
+        Dim is_bonus As String = execute_query("SELECT is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
 
-        If is_thr = "2" Then
+        If is_thr = "2" And is_bonus = "2" Then
             Dim payroll_det As DataTable = execute_query("SELECT DATE_FORMAT(periode_end, '%Y') AS year FROM tb_emp_payroll WHERE id_payroll = " + id_payroll, -1, True, "", "", "", "")
 
             Dim data_sum As DataTable = execute_query("CALL view_payroll_sum(" + id_payroll + ")", -1, True, "", "", "", "")
@@ -1451,6 +1504,7 @@
         Dim id_payroll_type As String = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
         Dim is_thr As String = GVPayrollPeriode.GetFocusedRowCellValue("is_thr").ToString
         Dim is_dw As String = GVPayrollPeriode.GetFocusedRowCellValue("is_dw").ToString
+        Dim is_bonus As String = GVPayrollPeriode.GetFocusedRowCellValue("is_bonus").ToString
 
         Dim where_dw As String = If(is_dw = "1", "=", "<>")
 
@@ -1521,7 +1575,7 @@
             GROUP BY s.id_employee
         "
 
-        If is_thr = "1" Then
+        If is_thr = "1" Or is_bonus = "1" Then
             where_actual_workdays = "
                 -- actual workdays
                 SELECT id_employee, ROUND(DATEDIFF(IFNULL(employee_last_date, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")), employee_actual_join_date) / 365, 2) AS actual_workdays
@@ -1534,6 +1588,10 @@
 
         If is_thr = "1" Then
             where_min_month = "AND TIMESTAMPDIFF(MONTH, e.employee_actual_join_date, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) >= (SELECT min_month_thr FROM tb_opt_emp LIMIT 1)"
+        End If
+
+        If is_bonus = "1" Then
+            where_min_month = "AND TIMESTAMPDIFF(MONTH, e.employee_actual_join_date, (SELECT periode_end FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")) >= (SELECT min_month_bonus FROM tb_opt_emp LIMIT 1)"
         End If
 
         'query
@@ -1638,15 +1696,17 @@
                 End If
             Next
 
-            If Not already Then
-                If Not data.Rows(i)("id_salary").ToString = "" Then
-                    messages += "- " + data.Rows(i)("employee_name").ToString + " Will Inserted." + Environment.NewLine
+            If is_bonus = "2" Or regenerate_bonus Then
+                If Not already Then
+                    If Not data.Rows(i)("id_salary").ToString = "" Then
+                        messages += "- " + data.Rows(i)("employee_name").ToString + " Will Inserted." + Environment.NewLine
 
-                    Dim q_insert As String = "
+                        Dim q_insert As String = "
                         INSERT INTO tb_emp_payroll_det (id_payroll, id_employee, id_salary, workdays, actual_workdays) VALUES (" + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + ", " + data.Rows(i)("id_employee").ToString + ", " + data.Rows(i)("id_salary").ToString + ", " + data.Rows(i)("workdays").ToString + ", " + decimalSQL(data.Rows(i)("actual_workdays").ToString) + ")
                     "
 
-                    execute_non_query(q_insert, True, "", "", "", "")
+                        execute_non_query(q_insert, True, "", "", "", "")
+                    End If
                 End If
             End If
         Next
@@ -1662,23 +1722,25 @@
                     End If
                 Next
 
-                If Not already Then
-                    messages += "- " + GVPayroll.GetRowCellValue(i, "employee_name").ToString + " Will Deleted." + Environment.NewLine
+                If is_bonus = "2" Or regenerate_bonus Then
+                    If Not already Then
+                        messages += "- " + GVPayroll.GetRowCellValue(i, "employee_name").ToString + " Will Deleted." + Environment.NewLine
 
-                    'delete adjustment
-                    Dim q_delete_adj As String = "DELETE FROM tb_emp_payroll_adj WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString
+                        'delete adjustment
+                        Dim q_delete_adj As String = "DELETE FROM tb_emp_payroll_adj WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString
 
-                    execute_non_query(q_delete_adj, True, "", "", "", "")
+                        execute_non_query(q_delete_adj, True, "", "", "", "")
 
-                    'delete deduction
-                    Dim q_delete_ded As String = "DELETE FROM tb_emp_payroll_deduction WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString
+                        'delete deduction
+                        Dim q_delete_ded As String = "DELETE FROM tb_emp_payroll_deduction WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString
 
-                    execute_non_query(q_delete_ded, True, "", "", "", "")
+                        execute_non_query(q_delete_ded, True, "", "", "", "")
 
-                    'delete detail
-                    Dim q_delete_det As String = "DELETE FROM tb_emp_payroll_det WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString
+                        'delete detail
+                        Dim q_delete_det As String = "DELETE FROM tb_emp_payroll_det WHERE id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + " AND id_employee = " + GVPayroll.GetRowCellValue(i, "id_employee").ToString
 
-                    execute_non_query(q_delete_det, True, "", "", "", "")
+                        execute_non_query(q_delete_det, True, "", "", "", "")
+                    End If
                 End If
             End If
         Next
@@ -1796,7 +1858,11 @@
 
     Sub autoadjustment()
         'thr
-        If GVPayrollPeriode.GetFocusedRowCellValue("is_thr").ToString = "1" Then
+        If GVPayrollPeriode.GetFocusedRowCellValue("is_thr").ToString = "1" Or GVPayrollPeriode.GetFocusedRowCellValue("is_bonus").ToString = "1" Then
+            execute_non_query("
+                DELETE FROM tb_emp_payroll_adj WHERE id_salary_adj = 2 AND id_payroll = " + GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString + ";
+            ", True, "", "", "", "")
+
             For i = 0 To GVPayroll.RowCount - 1
                 If GVPayroll.IsValidRowHandle(i) Then
                     If GVPayroll.GetRowCellValue(i, "actual_workdays") < 1 Then
@@ -1806,8 +1872,11 @@
                         Dim increase As String = GVPayroll.GetRowCellValue(i, "total_salary_thr").ToString
                         Dim value As String = (GVPayroll.GetRowCellValue(i, "total_salary_thr") * (1 - GVPayroll.GetRowCellValue(i, "actual_workdays")))
 
+                        If GVPayrollPeriode.GetFocusedRowCellValue("is_bonus").ToString = "1" Then
+                            value = (GVPayroll.GetRowCellValue(i, "total_salary_bonus") * (1 - GVPayroll.GetRowCellValue(i, "actual_workdays")))
+                        End If
+
                         Dim query As String = "
-                            DELETE FROM tb_emp_payroll_adj WHERE id_salary_adj = 2 AND id_employee = " + id_employee + " AND id_payroll = " + id_payroll + ";
                             INSERT INTO tb_emp_payroll_adj (id_payroll, id_salary_adj, id_employee, total_days, increase, `value`) VALUES (" + id_payroll + ", 2, " + id_employee + ", '-" + decimalSQL(total_days) + "', '" + increase + "', '-" + value + "');
                         "
 
@@ -1952,5 +2021,36 @@
             warningCustom("Auto journal not found.")
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBRegenerate_Click(sender As Object, e As EventArgs) Handles SBRegenerate.Click
+        Dim confirm As DialogResult
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to regenerate payroll ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            regenerate_bonus = True
+
+            Dim query_l As String = "CALL view_payroll('" & GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString & "')"
+
+            'autogenerate
+            autogenerate()
+
+            GCPayroll.DataSource = execute_query(query_l, -1, True, "", "", "", "")
+
+            adjustment_deduction_column("adjustment")
+            adjustment_deduction_column("deduction")
+
+            'autoadjustment
+            autoadjustment()
+
+            GCPayroll.DataSource = execute_query(query_l, -1, True, "", "", "", "")
+
+            adjustment_deduction_column("adjustment")
+            adjustment_deduction_column("deduction")
+
+            'check salary
+            checksalary()
+
+            regenerate_bonus = False
+        End If
     End Sub
 End Class

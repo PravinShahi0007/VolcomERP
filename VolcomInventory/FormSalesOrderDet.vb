@@ -1016,7 +1016,7 @@ Public Class FormSalesOrderDet
         Dim id_so_type As String = LETypeSO.EditValue.ToString
         Dim query_cond As String = "AND comp.id_comp<>'" + get_setup_field("wh_temp") + "' "
         If id_bsp = "-1" Then
-            query_cond += "AND comp.id_store_type!=3 "
+            query_cond += "AND (comp.id_store_type!=3 OR ISNULL(comp.id_store_type)) "
         Else
             query_cond += "AND comp.id_store_type=3 "
         End If

@@ -47,8 +47,9 @@
         End If
 
         Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + data_payroll.Rows(0)("id_payroll_type").ToString, 0, True, "", "", "", "")
+        Dim is_bonus As String = execute_query("SELECT is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = " + data_payroll.Rows(0)("id_payroll_type").ToString, 0, True, "", "", "", "")
 
-        If is_thr = "1" Then
+        If is_thr = "1" Or is_bonus = "1" Then
             GVSummary.Columns("salary").Visible = False
             GVSummary.Columns("event_overtime").Visible = False
             GVSummary.Columns("d_cooperative_loan").Visible = False
@@ -61,6 +62,10 @@
             GVSummary.Columns("d_other").Visible = False
 
             GVSummary.Columns("balance").Caption = "Total THR"
+
+            If is_bonus = "1" Then
+                GVSummary.Columns("balance").Caption = "Total Bonus"
+            End If
         End If
     End Sub
 
@@ -192,6 +197,7 @@
         Next
 
         Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = " + data_payroll.Rows(0)("id_payroll_type").ToString, 0, True, "", "", "", "")
+        Dim is_bonus As String = execute_query("SELECT is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = " + data_payroll.Rows(0)("id_payroll_type").ToString, 0, True, "", "", "", "")
 
         Dim report As ReportEmpPayrollReportAllDepartement = New ReportEmpPayrollReportAllDepartement
 
@@ -221,6 +227,11 @@
 
         If is_thr = "1" Then
             report.XLTitle.Text = "Summary THR"
+            report.XLPeriod.Text = "Period " + Date.Parse(data_payroll.Rows(0)("periode_end").ToString).ToString("yyyy")
+        End If
+
+        If is_bonus = "1" Then
+            report.XLTitle.Text = "Summary Bonus"
             report.XLPeriod.Text = "Period " + Date.Parse(data_payroll.Rows(0)("periode_end").ToString).ToString("yyyy")
         End If
 

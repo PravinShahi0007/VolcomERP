@@ -144,6 +144,7 @@ Partial Class FormViewProduction
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColIdPOType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColPOType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GConListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GConListPurchase.SuspendLayout()
         CType(Me.XTCDetailPO, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -249,7 +250,7 @@ Partial Class FormViewProduction
         '
         'GVListProduct
         '
-        Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPurcDet, Me.ColIdMat, Me.ColNo, Me.ColCode, Me.ColName, Me.ColPrice, Me.ColQty, Me.ColSubtotal, Me.ColNote, Me.ColColor, Me.ColSize})
+        Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPurcDet, Me.ColIdMat, Me.ColNo, Me.ColCode, Me.GridColumn4, Me.ColName, Me.ColPrice, Me.ColQty, Me.ColSubtotal, Me.ColNote, Me.ColColor, Me.ColSize})
         Me.GVListProduct.GridControl = Me.GCListProduct
         Me.GVListProduct.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never
         Me.GVListProduct.Name = "GVListProduct"
@@ -280,7 +281,7 @@ Partial Class FormViewProduction
         Me.ColNo.OptionsColumn.AllowEdit = False
         Me.ColNo.Visible = True
         Me.ColNo.VisibleIndex = 0
-        Me.ColNo.Width = 30
+        Me.ColNo.Width = 63
         '
         'ColCode
         '
@@ -290,17 +291,17 @@ Partial Class FormViewProduction
         Me.ColCode.OptionsColumn.AllowEdit = False
         Me.ColCode.Visible = True
         Me.ColCode.VisibleIndex = 1
-        Me.ColCode.Width = 140
+        Me.ColCode.Width = 295
         '
         'ColName
         '
         Me.ColName.Caption = "Name"
-        Me.ColName.FieldName = "name"
+        Me.ColName.FieldName = "design_display_name"
         Me.ColName.Name = "ColName"
         Me.ColName.OptionsColumn.AllowEdit = False
         Me.ColName.Visible = True
-        Me.ColName.VisibleIndex = 2
-        Me.ColName.Width = 235
+        Me.ColName.VisibleIndex = 3
+        Me.ColName.Width = 508
         '
         'ColPrice
         '
@@ -330,8 +331,8 @@ Partial Class FormViewProduction
         Me.ColQty.OptionsColumn.AllowEdit = False
         Me.ColQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_qty", "{0:N2}")})
         Me.ColQty.Visible = True
-        Me.ColQty.VisibleIndex = 5
-        Me.ColQty.Width = 68
+        Me.ColQty.VisibleIndex = 6
+        Me.ColQty.Width = 146
         '
         'ColSubtotal
         '
@@ -354,7 +355,8 @@ Partial Class FormViewProduction
         Me.ColNote.FieldName = "note"
         Me.ColNote.Name = "ColNote"
         Me.ColNote.Visible = True
-        Me.ColNote.VisibleIndex = 6
+        Me.ColNote.VisibleIndex = 7
+        Me.ColNote.Width = 167
         '
         'ColColor
         '
@@ -367,7 +369,8 @@ Partial Class FormViewProduction
         Me.ColColor.Name = "ColColor"
         Me.ColColor.OptionsColumn.AllowEdit = False
         Me.ColColor.Visible = True
-        Me.ColColor.VisibleIndex = 3
+        Me.ColColor.VisibleIndex = 4
+        Me.ColColor.Width = 162
         '
         'ColSize
         '
@@ -380,7 +383,8 @@ Partial Class FormViewProduction
         Me.ColSize.Name = "ColSize"
         Me.ColSize.OptionsColumn.AllowEdit = False
         Me.ColSize.Visible = True
-        Me.ColSize.VisibleIndex = 4
+        Me.ColSize.VisibleIndex = 5
+        Me.ColSize.Width = 162
         '
         'XTPBOM
         '
@@ -1560,6 +1564,19 @@ Partial Class FormViewProduction
         Me.ColPOType.Visible = True
         Me.ColPOType.VisibleIndex = 0
         '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn4.Caption = "Class"
+        Me.GridColumn4.FieldName = "class"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.Width = 129
+        '
         'FormViewProduction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1773,4 +1790,5 @@ Partial Class FormViewProduction
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TEVendorName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
