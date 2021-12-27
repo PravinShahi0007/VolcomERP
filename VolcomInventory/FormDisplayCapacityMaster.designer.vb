@@ -31,6 +31,10 @@ Partial Class FormDisplayCapacityMaster
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtQty = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtCapacity = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtTotalCapacity = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEClassGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -38,6 +42,8 @@ Partial Class FormDisplayCapacityMaster
         CType(Me.SLEDisplayType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCapacity.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtTotalCapacity.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -45,7 +51,7 @@ Partial Class FormDisplayCapacityMaster
         Me.PanelControl1.Controls.Add(Me.BtnDiscard)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 183)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 292)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(372, 38)
         Me.PanelControl1.TabIndex = 0
@@ -126,7 +132,7 @@ Partial Class FormDisplayCapacityMaster
         '
         'TxtQty
         '
-        Me.TxtQty.Location = New System.Drawing.Point(12, 133)
+        Me.TxtQty.Location = New System.Drawing.Point(12, 186)
         Me.TxtQty.Name = "TxtQty"
         Me.TxtQty.Properties.DisplayFormat.FormatString = "N2"
         Me.TxtQty.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -137,17 +143,64 @@ Partial Class FormDisplayCapacityMaster
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 114)
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 167)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(56, 13)
         Me.LabelControl3.TabIndex = 6
         Me.LabelControl3.Text = "Update Qty"
         '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(12, 116)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(42, 13)
+        Me.LabelControl4.TabIndex = 8
+        Me.LabelControl4.Text = "Capacity"
+        '
+        'TxtCapacity
+        '
+        Me.TxtCapacity.Enabled = False
+        Me.TxtCapacity.Location = New System.Drawing.Point(12, 135)
+        Me.TxtCapacity.Name = "TxtCapacity"
+        Me.TxtCapacity.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtCapacity.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtCapacity.Properties.Mask.EditMask = "N2"
+        Me.TxtCapacity.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtCapacity.Size = New System.Drawing.Size(336, 20)
+        Me.TxtCapacity.TabIndex = 7
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(12, 221)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(81, 13)
+        Me.LabelControl5.TabIndex = 10
+        Me.LabelControl5.Text = "Total Capacity"
+        '
+        'TxtTotalCapacity
+        '
+        Me.TxtTotalCapacity.Enabled = False
+        Me.TxtTotalCapacity.Location = New System.Drawing.Point(12, 240)
+        Me.TxtTotalCapacity.Name = "TxtTotalCapacity"
+        Me.TxtTotalCapacity.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtTotalCapacity.Properties.Appearance.Options.UseFont = True
+        Me.TxtTotalCapacity.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtTotalCapacity.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtTotalCapacity.Properties.Mask.EditMask = "N2"
+        Me.TxtTotalCapacity.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtTotalCapacity.Size = New System.Drawing.Size(336, 20)
+        Me.TxtTotalCapacity.TabIndex = 9
+        '
         'FormDisplayCapacityMaster
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(372, 221)
+        Me.ClientSize = New System.Drawing.Size(372, 330)
+        Me.Controls.Add(Me.LabelControl5)
+        Me.Controls.Add(Me.TxtTotalCapacity)
+        Me.Controls.Add(Me.LabelControl4)
+        Me.Controls.Add(Me.TxtCapacity)
         Me.Controls.Add(Me.LabelControl3)
         Me.Controls.Add(Me.LabelControl2)
         Me.Controls.Add(Me.TxtQty)
@@ -168,6 +221,8 @@ Partial Class FormDisplayCapacityMaster
         CType(Me.SLEDisplayType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCapacity.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtTotalCapacity.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -184,4 +239,8 @@ Partial Class FormDisplayCapacityMaster
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtQty As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtCapacity As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtTotalCapacity As DevExpress.XtraEditors.TextEdit
 End Class

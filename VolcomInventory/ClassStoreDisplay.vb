@@ -31,16 +31,16 @@
         Return query
     End Function
 
-    Function queryStockByClassGroup(ByVal date_par As String, ByVal id_comp_par As String) As String
+    Function queryStockByClassGroup(ByVal date_par As String, ByVal cond_par As String) As String
         Dim query As String = "SELECT ds.id_class_group, SUM(ds.qty) AS `qty`
         FROM (
 	        SELECT ds.id_class_group,ds.id_design,ds.qty 
 	        FROM tb_display_stock ds
-	        WHERE ds.is_active=1 AND ds.id_comp=" + id_comp_par + " AND ds.in_store_date<='" + date_par + "'
+	        WHERE ds.is_active=1 AND ds.in_store_date<='" + date_par + "'
 	        UNION ALL
 	        SELECT ds.id_class_group,ds.id_design,(ds.qty*-1)
 	        FROM tb_display_stock ds
-	        WHERE ds.is_active=1 AND ds.id_comp=" + id_comp_par + " AND ds.return_date<='" + date_par + "'
+	        WHERE ds.is_active=1 AND ds.return_date<='" + date_par + "'
         ) ds
         GROUP BY ds.id_class_group "
         Return query

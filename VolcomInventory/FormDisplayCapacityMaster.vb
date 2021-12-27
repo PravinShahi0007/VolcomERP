@@ -41,12 +41,23 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        'cek ocupied
+        'cek capacity
+        Dim qtc As String = "SELECT SUM(da.capacity * dm.qty) AS `total_cap`
+        FROM tb_display_master dm 
+        INNER JOIN tb_display_alloc da ON da.id_display_type= dm.id_display_type AND da.id_class_group = dm.id_class_group
+        WHERE dm.id_comp=" + id_comp + " AND dm.is_active=1 AND dm.id_class_group='" + SLEClassGroup.EditValue.ToString + "' 
+        AND dm.id_display_type!=" + SLEDisplayType.EditValue.ToString + " "
+        Dim dtc As DataTable = execute_query(qtc, -1, True, "", "", "", "")
+        Dim total_cap As Decimal = TxtTotalCapacity.EditValue + dtc.Rows(0)("total_cap")
+        'cek ocuupied
         Dim qmd As String = "SELECT DATE_SUB(MAX(ds.return_date),INTERVAL 1 DAY) AS `max_date` FROM tb_display_stock ds WHERE ds.is_active=1 AND ds.id_comp=" + id_comp + "  "
         Dim dmd As DataTable = execute_query(qmd, -1, True, "", "", "", "")
         Dim max_date As String = DateTime.Parse(dmd.Rows(0)("max_date").ToString).ToString("yyyy-MM-dd")
         Dim csd As New ClassStoreDisplay()
-        Dim qcek As String = "" 'sampai sini
+        'din c
+        Dim qstock As String = csd.queryStockByClassGroup(max_date, id_comp)
+        Dim dstock As DataTable = execute_query(qstock, -1, True, "", "", "", "")
+
 
         If SLEClassGroup.EditValue = Nothing Or SLEDisplayType.EditValue = Nothing Or TxtQty.EditValue <= 0 Then
             warningCustom("Please input all data")
@@ -84,6 +95,43 @@
             Else
                 TxtQty.EditValue = 0.00
             End If
+            getCapacity
         End If
+    End Sub
+
+    Private Sub SLEClassGroup_EditValueChanged(sender As Object, e As EventArgs) Handles SLEClassGroup.EditValueChanged
+        getCapacity
+    End Sub
+
+    Sub getCapacity()
+        Dim id_class_group As String = "-1"
+        Try
+            id_class_group = SLEClassGroup.EditValue.ToString
+        Catch ex As Exception
+        End Try
+        Dim id_display_type As String = "-1"
+        Try
+            id_display_type = SLEDisplayType.EditValue.ToString
+        Catch ex As Exception
+        End Try
+        Dim capacity As Decimal = 0.00
+        Dim query As String = "SELECT da.capacity FROM tb_display_alloc da WHERE da.id_display_type=" + id_display_type + " AND da.id_class_group=" + id_class_group + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count <= 0 Then
+            capacity = 0.00
+        Else
+            capacity = data.Rows(0)("capacity").ToString
+        End If
+        TxtCapacity.EditValue = capacity
+        Dim qty As Decimal = 0.0
+        Try
+            qty = TxtQty.EditValue
+        Catch ex As Exception
+        End Try
+        TxtTotalCapacity.EditValue = capacity * qty
+    End Sub
+
+    Private Sub TxtQty_EditValueChanged(sender As Object, e As EventArgs) Handles TxtQty.EditValueChanged
+        getCapacity()
     End Sub
 End Class
