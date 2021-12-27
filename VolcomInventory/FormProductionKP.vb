@@ -118,6 +118,8 @@ FROM `tb_prod_order_kp_det` kpd
 INNER JOIN tb_prod_order po ON po.id_prod_order=kpd.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON po.`id_prod_demand_design`=pdd.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+INNER JOIN tb_season s ON s.id_season=dsg.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
 LEFT JOIN (
 	SELECT wo.id_prod_order, wo.id_ovh_price, wo.prod_order_wo_kurs, cur.currency,wo.prod_order_wo_vat,wod.prod_order_wo_det_price
 	,(SUM(wod.prod_order_wo_det_price * pod.prod_order_qty) * wo.prod_order_wo_kurs * (100 + wo.prod_order_wo_vat)/100) AS `wo_price`
