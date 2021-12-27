@@ -4,7 +4,7 @@
 
     Sub viewClassGroup()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT cg.id_class_group, cg.class_group FROM tb_class_group cg"
+        Dim query As String = "SELECT cg.id_class_group, cg.class_group FROM tb_class_group cg WHERE cg.is_active=1 "
         viewSearchLookupQuery(SLEClassGroup, query, "id_class_group", "class_group", "id_class_group")
         Cursor = Cursors.Default
     End Sub
@@ -41,6 +41,13 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        'cek ocupied
+        Dim qmd As String = "SELECT DATE_SUB(MAX(ds.return_date),INTERVAL 1 DAY) AS `max_date` FROM tb_display_stock ds WHERE ds.is_active=1 AND ds.id_comp=" + id_comp + "  "
+        Dim dmd As DataTable = execute_query(qmd, -1, True, "", "", "", "")
+        Dim max_date As String = DateTime.Parse(dmd.Rows(0)("max_date").ToString).ToString("yyyy-MM-dd")
+        Dim csd As New ClassStoreDisplay()
+        Dim qcek As String = "" 'sampai sini
+
         If SLEClassGroup.EditValue = Nothing Or SLEDisplayType.EditValue = Nothing Or TxtQty.EditValue <= 0 Then
             warningCustom("Please input all data")
         Else
@@ -55,7 +62,6 @@
 
                 'FormMasterCompanySingle.viewDisplayCapacity()
                 'FormMasterCompanySingle.viewDCHist()
-                'FormMasterCompanySingle.viewBookedDisplay()
                 resetView()
                 SLEDisplayType.Focus()
             End If
