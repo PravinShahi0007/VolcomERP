@@ -1454,6 +1454,10 @@
     <Compile Include="FormDisplayAllocLog.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDisplayCapacityMaster.designer.vb">
+      <DependentUpon>FormDisplayCapacityMaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDisplayCapacityMaster.vb" />
     <Compile Include="FormDocTracking.Designer.vb">
       <DependentUpon>FormDocTracking.vb</DependentUpon>
     </Compile>
@@ -11245,6 +11249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDisplayAllocLog.resx">
       <DependentUpon>FormDisplayAllocLog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDisplayCapacityMaster.resx">
+      <DependentUpon>FormDisplayCapacityMaster.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDocTracking.resx">
       <DependentUpon>FormDocTracking.vb</DependentUpon>
