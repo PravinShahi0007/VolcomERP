@@ -344,6 +344,7 @@
     <Compile Include="ClassSampleReturnPL.vb" />
     <Compile Include="ClassSendEmail.vb" />
     <Compile Include="ClassShipInvoice.vb" />
+    <Compile Include="ClassStoreDisplay.vb" />
     <Compile Include="ClassVMStoreDisplay.vb" />
     <Compile Include="ClassZaloraApi.vb" />
     <Compile Include="ClassShopifyApi.vb" />
@@ -1451,6 +1452,12 @@
       <DependentUpon>FormDisplayAllocLog.vb</DependentUpon>
     </Compile>
     <Compile Include="FormDisplayAllocLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDisplayCapacityMaster.designer.vb">
+      <DependentUpon>FormDisplayCapacityMaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDisplayCapacityMaster.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDocTracking.Designer.vb">
@@ -7806,6 +7813,18 @@
     <Compile Include="FormStockValas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStoreDisplay.designer.vb">
+      <DependentUpon>FormStoreDisplay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStoreDisplay.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStoreDisplayDet.designer.vb">
+      <DependentUpon>FormStoreDisplayDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStoreDisplayDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStoreStatus.Designer.vb">
       <DependentUpon>FormStoreStatus.vb</DependentUpon>
     </Compile>
@@ -11232,6 +11251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDisplayAllocLog.resx">
       <DependentUpon>FormDisplayAllocLog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDisplayCapacityMaster.resx">
+      <DependentUpon>FormDisplayCapacityMaster.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDocTracking.resx">
       <DependentUpon>FormDocTracking.vb</DependentUpon>
@@ -14764,6 +14786,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockValas.resx">
       <DependentUpon>FormStockValas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStoreDisplay.resx">
+      <DependentUpon>FormStoreDisplay.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStoreDisplayDet.resx">
+      <DependentUpon>FormStoreDisplayDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStoreStatus.resx">
       <DependentUpon>FormStoreStatus.vb</DependentUpon>

@@ -521,6 +521,9 @@
         ElseIf report_mark_type = "370" Then
             'eos to sale
             FormEtsDet.Close()
+        ElseIf report_mark_type = "374" Then
+            'fgpo attachment
+            FormProductionAttach.Close()
         ElseIf report_mark_type = "375" Then
             'propose index sop
             FormSOPIndexPPS.Close()
@@ -1689,6 +1692,11 @@ GROUP BY rec.`id_prod_order`"
             FormEtsDet.action = "upd"
             FormEtsDet.id = id_report
             FormEtsDet.ShowDialog()
+        ElseIf report_mark_type = "374" Then
+            'fgpo attachment
+            FormProductionAttach.is_view = "1"
+            FormProductionAttach.id = id_report
+            FormProductionAttach.ShowDialog()
         ElseIf report_mark_type = "375" Then
             'propose sop index
             FormSOPIndexPPS.is_view = "1"
@@ -3022,6 +3030,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_ets"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "374" Then
+            'fgpo attachment
+            table_name = "tb_prod_order_attach"
+            field_id = "id_prod_order_attach"
+            field_number = "number"
+            field_date = "created_date"
         ElseIf report_mark_type = "375" Then
             'propose sop index
             table_name = "tb_sop_pps"
@@ -3135,7 +3149,7 @@ GROUP BY rec.`id_prod_order`"
                     query += "INNER JOIN tb_m_comp f ON f.id_comp = e.id_comp "
                     query += "INNER JOIN tb_season_delivery i ON b.id_delivery = i.id_delivery "
                     query += "INNER JOIN tb_season g ON g.id_season = i.id_season "
-                    query += "INNER JOIN tb_season r ON g.id_range = r.id_range "
+                    query += "INNER JOIN tb_range r ON g.id_range = r.id_range "
                     query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status "
                     query += "INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = b.id_prod_demand_design "
                     query += "INNER JOIN tb_m_design dsg ON dsg.id_design = pd_dsg.id_design "
