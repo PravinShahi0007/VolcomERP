@@ -35,10 +35,12 @@ WHERE at.id_prod_order_attach='" & id & "'"
 
                 If is_submit = "1" Then
                     BtnMark.Visible = True
-                    PCSubmit.Visible = False
+                    PCSubmit.Visible = True
+                    BtnSave.Visible = False
                 Else
                     BtnMark.Visible = False
                     PCSubmit.Visible = True
+                    BtnSave.Visible = True
                 End If
             End If
         End If
@@ -111,6 +113,9 @@ GROUP BY po.`id_prod_order`"
             'sudah ada
             Dim qu As String = "UPDATE tb_prod_order_attach SET is_submit=1 WHERE id_prod_order_attach='" & id & "'"
             execute_non_query(qu, True, "", "", "", "")
+            '
+            submit_who_prepared("374", id, id_user)
+            '
             load_head()
         Else
             warningCustom("Please attach signed FGPO")

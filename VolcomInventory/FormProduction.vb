@@ -865,7 +865,7 @@ GROUP BY id_prod_order_cps2_reff) AND is_purc_mat=2 " & query_where & " ORDER BY
     End Sub
 
     Sub load_fgpo_attach()
-        Dim q As String = "SELECT sts.report_status,a.`id_prod_order_attach`,po.`id_prod_order`,d.`id_design`,a.`number`,po.`prod_order_number`,emp.`employee_name`,a.`created_date`,CONCAT(cd.class,' ',d.`design_name`,' ',cd.color) AS design,d.design_code,c.`comp_name`
+        Dim q As String = "SELECT IF(a.is_submit=1,sts.report_status,'Not Submitted') AS report_status,a.`id_prod_order_attach`,po.`id_prod_order`,d.`id_design`,a.`number`,po.`prod_order_number`,emp.`employee_name`,a.`created_date`,CONCAT(cd.class,' ',d.`design_name`,' ',cd.color) AS design,d.design_code,c.`comp_name`
 FROM tb_prod_order_attach a 
 INNER JOIN tb_prod_order po ON po.id_prod_order=a.`id_prod_order`
 INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order`=po.`id_prod_order` AND wo.`is_main_vendor`=1
