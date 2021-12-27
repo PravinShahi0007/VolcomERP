@@ -7806,6 +7806,18 @@
     <Compile Include="FormStockValas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStoreDisplay.designer.vb">
+      <DependentUpon>FormStoreDisplay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStoreDisplay.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStoreDisplayDet.designer.vb">
+      <DependentUpon>FormStoreDisplayDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStoreDisplayDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStoreStatus.Designer.vb">
       <DependentUpon>FormStoreStatus.vb</DependentUpon>
     </Compile>
@@ -14764,6 +14776,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockValas.resx">
       <DependentUpon>FormStockValas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStoreDisplay.resx">
+      <DependentUpon>FormStoreDisplay.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStoreDisplayDet.resx">
+      <DependentUpon>FormStoreDisplayDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStoreStatus.resx">
       <DependentUpon>FormStoreStatus.vb</DependentUpon>
