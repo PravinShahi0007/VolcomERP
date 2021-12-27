@@ -1764,6 +1764,10 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
                     If bandName = "CHECK QTY" Then
                         band.Visible = False
                     End If
+
+                    If bandName = "GROUP INFO" Then
+                        band.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+                    End If
                 End If
             Next
         Next
@@ -1773,7 +1777,7 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
 
     Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
         If LEStatus.EditValue.ToString <> "3" Then
-            warningCustom("Klik 'Reset' jika ingin melakukan perubahan")
+            warningCustom("Klik 'Reset' jika ingin melakukan perubahan master kapasitas toko")
             Exit Sub
         End If
 

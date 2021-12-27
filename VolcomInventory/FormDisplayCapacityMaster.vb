@@ -42,7 +42,7 @@
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         'cek capacity
-        Dim qtc As String = "SELECT SUM(da.capacity * dm.qty) AS `total_cap`
+        Dim qtc As String = "SELECT IFNULL(SUM(da.capacity * dm.qty),0.00) AS `total_cap`
         FROM tb_display_master dm 
         INNER JOIN tb_display_alloc da ON da.id_display_type= dm.id_display_type AND da.id_class_group = dm.id_class_group
         WHERE dm.id_comp=" + id_comp + " AND dm.is_active=1 AND dm.id_class_group='" + SLEClassGroup.EditValue.ToString + "' 
@@ -50,17 +50,28 @@
         Dim dtc As DataTable = execute_query(qtc, -1, True, "", "", "", "")
         Dim total_cap As Decimal = TxtTotalCapacity.EditValue + dtc.Rows(0)("total_cap")
         'cek ocuupied
-        Dim qmd As String = "SELECT DATE_SUB(MAX(ds.return_date),INTERVAL 1 DAY) AS `max_date` FROM tb_display_stock ds WHERE ds.is_active=1 AND ds.id_comp=" + id_comp + "  "
+        Dim qmd As String = "SELECT DATE_SUB(MAX(ds.return_date),INTERVAL 1 DAY) AS `max_date` FROM tb_display_stock ds 
+        WHERE ds.is_active=1 AND ds.id_comp=" + id_comp + " AND ds.id_class_group='" + SLEClassGroup.EditValue.ToString + "'  
+        HAVING !ISNULL(max_date) "
         Dim dmd As DataTable = execute_query(qmd, -1, True, "", "", "", "")
-        Dim max_date As String = DateTime.Parse(dmd.Rows(0)("max_date").ToString).ToString("yyyy-MM-dd")
-        Dim csd As New ClassStoreDisplay()
-        'din c
-        Dim qstock As String = csd.queryStockByClassGroup(max_date, id_comp)
-        Dim dstock As DataTable = execute_query(qstock, -1, True, "", "", "", "")
-
+        Dim err_stock As String = ""
+        If dmd.Rows.Count > 0 Then
+            Dim max_date As String = DateTime.Parse(dmd.Rows(0)("max_date").ToString).ToString("yyyy-MM-dd")
+            Dim max_date_display As String = DateTime.Parse(dmd.Rows(0)("max_date").ToString).ToString("dd MMMM yyyy")
+            Dim csd As New ClassStoreDisplay()
+            'cek ocuppiced
+            Dim cond_par As String = "AND ds.id_comp=" + id_comp + " AND ds.id_class_group='" + SLEClassGroup.EditValue.ToString + "' "
+            Dim qstock As String = csd.queryStockByClassGroup(max_date, cond_par)
+            Dim dstock As DataTable = execute_query(qstock, -1, True, "", "", "", "")
+            If dstock.Rows(0)("qty") > total_cap Then
+                err_stock = "Qty tidak dapat diubah karena kapasitas tidak mencukupi " + System.Environment.NewLine + "(occupied until " + max_date_display + " : " + dstock.Rows(0)("qty").ToString + " pcs) "
+            End If
+        End If
 
         If SLEClassGroup.EditValue = Nothing Or SLEDisplayType.EditValue = Nothing Or TxtQty.EditValue <= 0 Then
             warningCustom("Please input all data")
+        ElseIf err_stock <> "" Then
+            warningCustom(err_stock)
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to update qty for this class?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -71,8 +82,8 @@
                 VALUES('" + id_comp + "', '" + id_display_type + "', '" + id_class_group + "', '" + qty + "', 1, NOW(), '" + id_user + "'); "
                 execute_non_query(query, True, "", "", "", "")
 
-                'FormMasterCompanySingle.viewDisplayCapacity()
-                'FormMasterCompanySingle.viewDCHist()
+                FormMasterCompanySingle.viewDisplayCapacity()
+                FormMasterCompanySingle.viewDCHist()
                 resetView()
                 SLEDisplayType.Focus()
             End If
