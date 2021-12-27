@@ -1457,7 +1457,9 @@
     <Compile Include="FormDisplayCapacityMaster.designer.vb">
       <DependentUpon>FormDisplayCapacityMaster.vb</DependentUpon>
     </Compile>
-    <Compile Include="FormDisplayCapacityMaster.vb" />
+    <Compile Include="FormDisplayCapacityMaster.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDocTracking.Designer.vb">
       <DependentUpon>FormDocTracking.vb</DependentUpon>
     </Compile>

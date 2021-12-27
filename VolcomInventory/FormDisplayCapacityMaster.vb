@@ -53,9 +53,9 @@
                 VALUES('" + id_comp + "', '" + id_display_type + "', '" + id_class_group + "', '" + qty + "', 1, NOW(), '" + id_user + "'); "
                 execute_non_query(query, True, "", "", "", "")
 
-                FormMasterCompanySingle.viewDisplayCapacity()
-                FormMasterCompanySingle.viewDCHist()
-                FormMasterCompanySingle.viewBookedDisplay()
+                'FormMasterCompanySingle.viewDisplayCapacity()
+                'FormMasterCompanySingle.viewDCHist()
+                'FormMasterCompanySingle.viewBookedDisplay()
                 resetView()
                 SLEDisplayType.Focus()
             End If

@@ -418,6 +418,12 @@ WHERE comp.id_comp = '{0}'", id_company)
                 BAddLegal.Visible = False
                 BDeleteLegal.Visible = False
             End If
+
+            'store display capacity
+            Dim is_show_display_capacity = get_setup_field("is_show_display_capacity")
+            If is_show_display_capacity = "2" Then
+                GroupControlDC.Visible = False
+            End If
         End If
     End Sub
 
