@@ -420,7 +420,9 @@ WHERE comp.id_comp = '{0}'", id_company)
             End If
 
             'store display capacity
-            Dim is_show_display_capacity = get_setup_field("is_show_display_capacity")
+            viewDisplayCapacity()
+            viewDCHist()
+            Dim is_show_display_capacity As String = "2"
             If is_show_display_capacity = "2" Then
                 GroupControlDC.Visible = False
             End If
@@ -1660,5 +1662,140 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
         "
 
         viewSearchLookupQuery(SLUEStatusPabean, query, "id_status_pabean", "status_pabean", "id_status_pabean")
+    End Sub
+
+    Sub viewDisplayCapacity()
+        Cursor = Cursors.WaitCursor
+
+        'build kolom
+        Dim qt As String = "SELECT dt.id_display_type, UPPER(dt.display_type) AS `display_type` FROM tb_display_type dt WHERE dt.is_display_alloc=1 "
+        Dim dt As DataTable = execute_query(qt, -1, True, "", "", "", "")
+        Dim col_type1 As String = ""
+        Dim col_type2 As String = ""
+        For i As Integer = 0 To dt.Rows.Count - 1
+            If i > 0 Then
+                col_type1 += ","
+                col_type2 += ","
+            End If
+            col_type1 += "(CASE WHEN a.id_display_type=" + dt.Rows(i)("id_display_type").ToString + " THEN dm.qty END) AS `" + dt.Rows(i)("display_type").ToString + "|QTY`, 
+            (CASE WHEN a.id_display_type=" + dt.Rows(i)("id_display_type").ToString + " THEN dm.qty END) * (CASE WHEN a.id_display_type=" + dt.Rows(i)("id_display_type").ToString + " THEN a.capacity END)  AS `" + dt.Rows(i)("display_type").ToString + "|CAPACITY`"
+            col_type2 += "IFNULL(a.`" + dt.Rows(i)("display_type").ToString + "|QTY`,0) AS `" + dt.Rows(i)("display_type").ToString + "|QTY`, 
+            IFNULL(a.`" + dt.Rows(i)("display_type").ToString + "|CAPACITY`,0) AS `" + dt.Rows(i)("display_type").ToString + "|CAPACITY` "
+        Next
+
+        Dim query As String = "SELECT cg.id_class_group AS `GROUP INFO|id_class_group`,dv.display_name AS `GROUP INFO|DIVISION`, 
+        ct.class_type AS `GROUP INFO|TYP`, UPPER(cat.class_cat) AS `GROUP INFO|CATEGORY`, cg.class_group AS `GROUP INFO|CLASS`,
+        " + col_type2 + ",
+        0 AS `CHECK QTY|BOOKED QTY`, '' AS `CHECK QTY|NOTE`
+        FROM tb_class_group cg
+        INNER JOIN tb_m_code_detail dv ON dv.id_code_detail = cg.id_division
+        INNER JOIN tb_class_type ct ON ct.id_class_type = cg.id_class_type
+        INNER JOIN tb_class_cat cat ON cat.id_class_cat = cg.id_class_cat
+        LEFT JOIN (
+	        SELECT dm.id_class_group, 
+            " + col_type1 + "
+            FROM tb_display_master dm
+            LEFT JOIN tb_display_alloc a ON a.id_display_type = dm.id_display_type AND a.id_class_group=dm.id_class_group
+            WHERE dm.id_comp=" + id_company + " AND dm.is_active=1
+            GROUP BY a.id_class_group
+        ) a ON a.id_class_group = cg.id_class_group  "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+
+
+        'clear band
+        GVData.Bands.Clear()
+        GVData.Columns.Clear()
+
+        'array kolom
+        Dim column As List(Of String) = New List(Of String)
+        For i = 0 To data.Columns.Count - 1
+            Dim bandName As String = data.Columns(i).Caption.Split("|")(0)
+
+            If Not column.Contains(bandName) Then
+                column.Add(bandName)
+            End If
+        Next
+
+        'setu band
+        For i = 0 To column.Count - 1
+            Dim band As DevExpress.XtraGrid.Views.BandedGrid.GridBand = New DevExpress.XtraGrid.Views.BandedGrid.GridBand
+
+            band.Caption = column(i)
+
+            GVData.Bands.Add(band)
+
+            For j = 0 To data.Columns.Count - 1
+                Dim bandName As String = data.Columns(j).Caption.Split("|")(0)
+                Dim coluName As String = data.Columns(j).Caption.Split("|")(1)
+
+                If bandName = column(i) Then
+                    Dim col As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+
+                    col.Caption = coluName
+                    col.VisibleIndex = j
+                    col.FieldName = data.Columns(j).Caption
+
+                    band.Columns.Add(col)
+
+                    If data.Columns(j).Caption = "GROUP INFO|DIVISION" Or data.Columns(j).Caption = "GROUP INFO|CATEGORY" Then
+                        col.Group()
+                    End If
+
+                    If Not bandName.Contains("INFO") Then
+                        'display format
+                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        col.DisplayFormat.FormatString = "{0:n2}"
+
+                        'summary
+                        col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        col.SummaryItem.DisplayFormat = "{0:n2}"
+
+
+                        'group summary
+                        Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
+                        summary.DisplayFormat = "{0:N2}"
+                        summary.FieldName = data.Columns(j).Caption
+                        summary.ShowInGroupColumnFooter = col
+                        summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        GVData.GroupSummary.Add(summary)
+                    End If
+
+                    If bandName = "CHECK QTY" Then
+                        band.Visible = False
+                    End If
+                End If
+            Next
+        Next
+        GVData.Columns("GROUP INFO|id_class_group").Visible = False
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        If LEStatus.EditValue.ToString <> "3" Then
+            warningCustom("Klik 'Reset' jika ingin melakukan perubahan")
+            Exit Sub
+        End If
+
+        Cursor = Cursors.WaitCursor
+        FormDisplayCapacityMaster.id_comp = id_company
+        FormDisplayCapacityMaster.id_class_group = GVData.GetFocusedRowCellValue("GROUP INFO|id_class_group").ToString
+        FormDisplayCapacityMaster.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewDCHist()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT dm.id_display_master, dm.id_comp, dm.id_display_type, dm.id_class_group, cg.class_group, dm.qty, dm.is_active, dm.input_date, dm.input_by, e.employee_name AS `input_by_name`
+        FROM tb_display_master dm
+        INNER JOIN tb_display_type typ ON typ.id_display_type = dm.id_display_type
+        INNER JOIN tb_class_group cg ON cg.id_class_group = dm.id_class_group
+        INNER JOIN tb_m_user us ON us.id_user = dm.input_by
+        INNER JOIN tb_m_employee e ON e.id_employee = us.id_employee
+        WHERE dm.id_comp=" + id_company + " ORDER BY dm.input_date DESC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDCHist.DataSource = data
+        GVDCHist.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 End Class
