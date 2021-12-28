@@ -6953,6 +6953,9 @@ WHERE id_sales_branch ='" & dtv.Rows(0)("id_sales_branch").ToString & "' "
                                                 INNER JOIN tb_pn_det pyd ON pyd.`id_report`=e.`id_prepaid_expense` AND pyd.balance_due=pyd.`value` AND pyd.`id_pn`=" & id_report & "
                                                 SET e.is_open='2'"
                         execute_non_query(qc, True, "", "", "", "")
+                    ElseIf data_payment.Rows(0)("report_mark_type").ToString = "284" Then
+                        'close pph
+                        execute_non_query("UPDATE tb_tax_pph_summary_det SET is_close_pay = 1 WHERE id_summary_det IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
                     End If
 
                     'check compen rmt 117 183 then close
