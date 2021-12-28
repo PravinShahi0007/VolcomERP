@@ -526,6 +526,19 @@ Partial Class FormBankWithdrawal
         Me.GridView22 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn219 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn220 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPSummaryPPH = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSummaryPPH = New DevExpress.XtraGrid.GridControl()
+        Me.GVSummaryPPH = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn218 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit16 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn215 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn251 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn216 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn217 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn248 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn252 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SBPaymentSummaryPPH = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPSummaryPPN = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPWaitingList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCwaitingList = New DevExpress.XtraGrid.GridControl()
         Me.GVWaitingList = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -545,6 +558,7 @@ Partial Class FormBankWithdrawal
         Me.BloadWaiting = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewBPL = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.VDItemList = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn265 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPayment.SuspendLayout()
@@ -713,6 +727,10 @@ Partial Class FormBankWithdrawal
         CType(Me.GridView19, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEVendorPrepaidEx.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView22, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPSummaryPPH.SuspendLayout()
+        CType(Me.GCSummaryPPH, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSummaryPPH, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit16, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPWaitingList.SuspendLayout()
         CType(Me.GCwaitingList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVWaitingList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -730,7 +748,7 @@ Partial Class FormBankWithdrawal
         Me.XTCPO.SelectedTabPage = Me.XTPPayment
         Me.XTCPO.Size = New System.Drawing.Size(1358, 541)
         Me.XTCPO.TabIndex = 2
-        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPayment, Me.XTPPO, Me.XTPExpense, Me.XTPFGPO, Me.XTPBPJSKesehatan, Me.XTPJamsostek, Me.XTPTHR, Me.XTPRefund, Me.XTPCashAdvance, Me.XTPDPKhusus, Me.XTPVS, Me.XTPPrepaidExpense, Me.XTPWaitingList})
+        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPayment, Me.XTPPO, Me.XTPExpense, Me.XTPFGPO, Me.XTPBPJSKesehatan, Me.XTPJamsostek, Me.XTPTHR, Me.XTPRefund, Me.XTPCashAdvance, Me.XTPDPKhusus, Me.XTPVS, Me.XTPPrepaidExpense, Me.XTPSummaryPPH, Me.XTPSummaryPPN, Me.XTPWaitingList})
         '
         'XTPPayment
         '
@@ -5754,6 +5772,123 @@ Partial Class FormBankWithdrawal
         Me.GridColumn220.Visible = True
         Me.GridColumn220.VisibleIndex = 0
         '
+        'XTPSummaryPPH
+        '
+        Me.XTPSummaryPPH.Controls.Add(Me.GCSummaryPPH)
+        Me.XTPSummaryPPH.Controls.Add(Me.SBPaymentSummaryPPH)
+        Me.XTPSummaryPPH.Name = "XTPSummaryPPH"
+        Me.XTPSummaryPPH.Size = New System.Drawing.Size(1352, 513)
+        Me.XTPSummaryPPH.Text = "Summary PPH"
+        '
+        'GCSummaryPPH
+        '
+        Me.GCSummaryPPH.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSummaryPPH.Location = New System.Drawing.Point(0, 0)
+        Me.GCSummaryPPH.MainView = Me.GVSummaryPPH
+        Me.GCSummaryPPH.Name = "GCSummaryPPH"
+        Me.GCSummaryPPH.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit16})
+        Me.GCSummaryPPH.Size = New System.Drawing.Size(1352, 481)
+        Me.GCSummaryPPH.TabIndex = 0
+        Me.GCSummaryPPH.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummaryPPH})
+        '
+        'GVSummaryPPH
+        '
+        Me.GVSummaryPPH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn218, Me.GridColumn265, Me.GridColumn215, Me.GridColumn251, Me.GridColumn216, Me.GridColumn217, Me.GridColumn248, Me.GridColumn252})
+        Me.GVSummaryPPH.GridControl = Me.GCSummaryPPH
+        Me.GVSummaryPPH.Name = "GVSummaryPPH"
+        Me.GVSummaryPPH.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn218
+        '
+        Me.GridColumn218.Caption = "*"
+        Me.GridColumn218.ColumnEdit = Me.RepositoryItemCheckEdit16
+        Me.GridColumn218.FieldName = "is_checked"
+        Me.GridColumn218.Name = "GridColumn218"
+        Me.GridColumn218.Visible = True
+        Me.GridColumn218.VisibleIndex = 0
+        '
+        'RepositoryItemCheckEdit16
+        '
+        Me.RepositoryItemCheckEdit16.AutoHeight = False
+        Me.RepositoryItemCheckEdit16.Name = "RepositoryItemCheckEdit16"
+        Me.RepositoryItemCheckEdit16.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit16.ValueUnchecked = "no"
+        '
+        'GridColumn215
+        '
+        Me.GridColumn215.Caption = "Number"
+        Me.GridColumn215.FieldName = "no"
+        Me.GridColumn215.Name = "GridColumn215"
+        Me.GridColumn215.OptionsColumn.AllowEdit = False
+        Me.GridColumn215.Visible = True
+        Me.GridColumn215.VisibleIndex = 2
+        '
+        'GridColumn251
+        '
+        Me.GridColumn251.Caption = "Tag"
+        Me.GridColumn251.FieldName = "tag"
+        Me.GridColumn251.Name = "GridColumn251"
+        Me.GridColumn251.OptionsColumn.AllowEdit = False
+        Me.GridColumn251.Visible = True
+        Me.GridColumn251.VisibleIndex = 3
+        '
+        'GridColumn216
+        '
+        Me.GridColumn216.Caption = "Keterangan"
+        Me.GridColumn216.FieldName = "keterangan"
+        Me.GridColumn216.Name = "GridColumn216"
+        Me.GridColumn216.OptionsColumn.AllowEdit = False
+        Me.GridColumn216.Visible = True
+        Me.GridColumn216.VisibleIndex = 4
+        '
+        'GridColumn217
+        '
+        Me.GridColumn217.Caption = "Jumlah"
+        Me.GridColumn217.DisplayFormat.FormatString = "N2"
+        Me.GridColumn217.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn217.FieldName = "jumlah"
+        Me.GridColumn217.Name = "GridColumn217"
+        Me.GridColumn217.OptionsColumn.AllowEdit = False
+        Me.GridColumn217.Visible = True
+        Me.GridColumn217.VisibleIndex = 5
+        '
+        'GridColumn248
+        '
+        Me.GridColumn248.FieldName = "is_tax_report"
+        Me.GridColumn248.Name = "GridColumn248"
+        Me.GridColumn248.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn252
+        '
+        Me.GridColumn252.FieldName = "id_coa_tag"
+        Me.GridColumn252.Name = "GridColumn252"
+        Me.GridColumn252.OptionsColumn.AllowEdit = False
+        '
+        'SBPaymentSummaryPPH
+        '
+        Me.SBPaymentSummaryPPH.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.SBPaymentSummaryPPH.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.SBPaymentSummaryPPH.Appearance.ForeColor = System.Drawing.Color.White
+        Me.SBPaymentSummaryPPH.Appearance.Options.UseBackColor = True
+        Me.SBPaymentSummaryPPH.Appearance.Options.UseFont = True
+        Me.SBPaymentSummaryPPH.Appearance.Options.UseForeColor = True
+        Me.SBPaymentSummaryPPH.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.SBPaymentSummaryPPH.Location = New System.Drawing.Point(0, 481)
+        Me.SBPaymentSummaryPPH.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.SBPaymentSummaryPPH.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.SBPaymentSummaryPPH.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.SBPaymentSummaryPPH.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SBPaymentSummaryPPH.Name = "SBPaymentSummaryPPH"
+        Me.SBPaymentSummaryPPH.Size = New System.Drawing.Size(1352, 32)
+        Me.SBPaymentSummaryPPH.TabIndex = 24
+        Me.SBPaymentSummaryPPH.Text = "Create Payment"
+        '
+        'XTPSummaryPPN
+        '
+        Me.XTPSummaryPPN.Name = "XTPSummaryPPN"
+        Me.XTPSummaryPPN.Size = New System.Drawing.Size(1352, 513)
+        Me.XTPSummaryPPN.Text = "Summary PPN"
+        '
         'XTPWaitingList
         '
         Me.XTPWaitingList.Controls.Add(Me.GCwaitingList)
@@ -5911,6 +6046,14 @@ Partial Class FormBankWithdrawal
         Me.VDItemList.Name = "VDItemList"
         Me.VDItemList.Size = New System.Drawing.Size(112, 22)
         Me.VDItemList.Text = "History"
+        '
+        'GridColumn265
+        '
+        Me.GridColumn265.Caption = "Period"
+        Me.GridColumn265.FieldName = "period"
+        Me.GridColumn265.Name = "GridColumn265"
+        Me.GridColumn265.Visible = True
+        Me.GridColumn265.VisibleIndex = 1
         '
         'FormBankWithdrawal
         '
@@ -6102,6 +6245,10 @@ Partial Class FormBankWithdrawal
         CType(Me.GridView19, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEVendorPrepaidEx.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView22, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPSummaryPPH.ResumeLayout(False)
+        CType(Me.GCSummaryPPH, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSummaryPPH, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit16, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPWaitingList.ResumeLayout(False)
         CType(Me.GCwaitingList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVWaitingList, System.ComponentModel.ISupportInitialize).EndInit()
@@ -6636,4 +6783,18 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridView22 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn219 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn220 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPSummaryPPH As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCSummaryPPH As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSummaryPPH As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents XTPSummaryPPN As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GridColumn218 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit16 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn215 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn216 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn217 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn251 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn248 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBPaymentSummaryPPH As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn252 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn265 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -1329,6 +1329,32 @@ GROUP BY dn.`id_debit_note`"
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                 Next
                 calculate_amount()
+            ElseIf report_mark_type = "284" Then 'summary pph
+                For i As Integer = 0 To FormBankWithdrawal.GVSummaryPPH.RowCount - 1
+                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = FormBankWithdrawal.GVSummaryPPH.GetRowCellValue(i, "id_report").ToString
+                    newRow("report_mark_type") = "284"
+                    newRow("id_acc") = FormBankWithdrawal.GVSummaryPPH.GetRowCellValue(i, "id_acc").ToString
+                    newRow("acc_name") = FormBankWithdrawal.GVSummaryPPH.GetRowCellValue(i, "acc_name").ToString
+                    newRow("acc_description") = FormBankWithdrawal.GVSummaryPPH.GetRowCellValue(i, "acc_description").ToString
+                    newRow("vendor") = "000"
+                    newRow("id_dc") = "1"
+                    newRow("dc_code") = "D"
+                    newRow("id_comp") = "1"
+                    newRow("comp_number") = "000"
+                    newRow("number") = FormBankWithdrawal.GVSummaryPPH.GetRowCellValue(i, "no").ToString
+                    newRow("total_pay") = FormBankWithdrawal.GVSummaryPPH.GetRowCellValue(i, "jumlah")
+                    newRow("kurs") = 1
+                    newRow("id_currency") = "1"
+                    newRow("currency") = "Rp"
+                    newRow("val_bef_kurs") = FormBankWithdrawal.GVSummaryPPH.GetRowCellValue(i, "jumlah")
+                    newRow("value") = FormBankWithdrawal.GVSummaryPPH.GetRowCellValue(i, "jumlah")
+                    newRow("value_view") = FormBankWithdrawal.GVSummaryPPH.GetRowCellValue(i, "jumlah")
+                    newRow("balance_due") = FormBankWithdrawal.GVSummaryPPH.GetRowCellValue(i, "jumlah")
+                    newRow("note") = FormBankWithdrawal.GVSummaryPPH.GetRowCellValue(i, "period").ToString
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                Next
+                calculate_amount()
             End If
 
             If is_buy_valas Then

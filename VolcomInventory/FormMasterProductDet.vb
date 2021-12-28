@@ -314,6 +314,16 @@
     End Sub
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
+        Dim is_import As Boolean = False
+        Dim q As String = "SELECT * FROM tb_m_design_code_detail cd 
+WHERE cd.id_design='" & id_design & "' AND cd.id_code_detail='206'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            is_import = True
+        Else
+            is_import = False
+        End If
+
         Dim id_product_tersimpan, query, namex, display_name, full_code, code, inv_method, min_stock, max_stock, min_order, max_order, product_ean_code As String
         namex = addSlashes(TEName.Text)
         display_name = addSlashes(TEDisplayName.Text)
@@ -340,6 +350,8 @@
         Dim jum_check As String = execute_query(query_check, 0, True, "", "", "", "")
         If jum_check > 0 Then
             stopCustom("Code invalid/duplicate, please check your input!")
+        ElseIf product_ean_code = "" And Not is_import Then
+            stopCustom("Vendor code/UPC cannot be blank for local product")
         Else
             If id_product <> "-1" Then
                 If dupe <> "-1" Then
