@@ -68,7 +68,7 @@
             End If
         End If
 
-        If SLEClassGroup.EditValue = Nothing Or SLEDisplayType.EditValue = Nothing Or TxtQty.EditValue <= 0 Then
+        If SLEClassGroup.EditValue = Nothing Or SLEDisplayType.EditValue = Nothing Or TxtQty.EditValue < 0 Then
             warningCustom("Please input all data")
         ElseIf err_stock <> "" Then
             warningCustom(err_stock)
