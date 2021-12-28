@@ -329,6 +329,7 @@ SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`
     End Sub
 
     Private Sub BLock_Click(sender As Object, e As EventArgs) Handles BLock.Click
+        Dim is_attach_ok As Boolean = True
         'cek attachment
         Dim qc As String = "SELECT * FROM tb_prod_order_ko_det kod
 LEFT JOIN
@@ -337,9 +338,20 @@ LEFT JOIN
 )att ON att.id_prod_order=kod.`id_prod_order`
 WHERE kod.`id_prod_order_ko`='" & id_ko & "'
 AND ISNULL(att.id_prod_order)"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            is_attach_ok = False
+        End If
+
+        qc = "SELECT * FROM tb_doc WHERE id_report='" & id_ko & "' AND report_mark_type='252'"
+        dtc = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count <= 0 Then
+            is_attach_ok = False
+        End If
+
         'cek ko template
         Dim id_ko_template As String = execute_query("SELECT id_ko_template FROM tb_prod_order_ko WHERE id_prod_order_ko = " & id_ko, 0, True, "", "", "", "")
-        If Not id_ko_template = "0" Then
+        If Not id_ko_template = "0" And is_attach_ok Then
             Dim query As String = "UPDATE tb_prod_order_ko SET is_submit='1' WHERE id_prod_order_ko='" & id_ko & "'"
             execute_non_query(query, True, "", "", "", "")
             'submit
@@ -348,7 +360,7 @@ AND ISNULL(att.id_prod_order)"
             infoCustom("KO Submitted")
             load_head()
         Else
-            stopCustom("Please make sure template contract selected and all FGPO have attachment")
+            stopCustom("Please make sure template contract selected, all FGPO have attachment, and KO have attached signed copy")
         End If
 
         'If Not id_ko_template = "0" Then

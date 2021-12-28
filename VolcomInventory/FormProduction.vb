@@ -285,8 +285,9 @@ GROUP BY recd.id_prod_order_det
                     ) qty_claim ON qty_claim.id_prod_order_det=pod.id_prod_order_det "
         query += "LEFT JOIN (
 	                    SELECT * FROM (
-		                    SELECT * FROM tb_prod_order_ko_det
-		                    ORDER BY id_prod_order_ko_det DESC
+		                    SELECT kod.* FROM tb_prod_order_ko_det kod
+                            INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order)
+		                    ORDER BY kod.id_prod_order_ko_det DESC
 	                    )ko GROUP BY ko.id_prod_order
                     ) ko ON ko.id_prod_order=a.id_prod_order "
         query += "LEFT JOIN (
@@ -705,7 +706,7 @@ GROUP BY recd.id_prod_order_det
             query_where += " AND c.id_comp='" & SLEVendorKO.EditValue.ToString & "'"
         End If
         '
-        Dim query As String = "SELECT ko.*,IF(ko.is_void='1','Void','-') AS status,c.`comp_name` ,GROUP_CONCAT(dsg.design_code,' - ',dsg.design_display_name SEPARATOR '\n') AS design_list
+        Dim query As String = "SELECT ko.*,IF(ko.is_void='1','Void',IF(ko.is_locked=1,'Completed',IF(ko.is_submit=2,'Not Submitted',sts.report_status))) AS status,c.`comp_name` ,GROUP_CONCAT(dsg.design_code,' - ',dsg.design_display_name SEPARATOR '\n') AS design_list
 FROM tb_prod_order_ko ko
 INNER JOIN tb_prod_order_ko_det kod ON kod.id_prod_order_ko=ko.id_prod_order_ko
 INNER JOIN tb_prod_order po ON po.id_prod_order=kod.id_prod_order
@@ -713,6 +714,7 @@ INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_dem
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ko.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=ko.id_report_status
 WHERE ko.id_prod_order_ko 
 IN (SELECT MAX(id_prod_order_ko) AS id FROM `tb_prod_order_ko`
 GROUP BY id_prod_order_ko_reff) AND is_purc_mat=2 " & query_where & " GROUP BY ko.id_prod_order_ko ORDER BY ko.id_prod_order_ko DESC"

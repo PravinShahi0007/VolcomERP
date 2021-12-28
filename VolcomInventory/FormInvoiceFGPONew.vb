@@ -20,7 +20,15 @@ INNER JOIN tb_prod_order_det pod ON pod.`id_prod_order_det`=recd.`id_prod_order_
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=pod.`id_prod_order` AND YEAR(po.prod_order_date)=YEAR('" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy-MM-dd") & "')
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-WHERE po.`id_report_status`='6'
+LEFT JOIN
+(
+    SELECT * FROM (
+		SELECT kod.* FROM tb_prod_order_ko_det kod
+        INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order)
+		ORDER BY kod.id_prod_order_ko_det DESC
+	)ko GROUP BY ko.id_prod_order
+)ko ON ko.id_prod_order=po.id_prod_order
+WHERE po.`id_report_status`='6' AND NOT ISNULL(ko.id_prod_order_ko)
 GROUP BY po.`id_prod_order`"
         viewSearchLookupQuery(SLEFGPO, query, "id_prod_order", "view_po", "id_prod_order")
     End Sub

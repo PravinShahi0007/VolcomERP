@@ -212,7 +212,7 @@ INNER JOIN (
 		(
 		    SELECT MAX(id_prod_order_ko) AS id_prod_order_ko
 		    FROM tb_prod_order_ko
-		    WHERE `is_void`!=1
+		    WHERE `is_void`!=1 AND is_locked=1 AND id_report_status!=5
 		    GROUP BY id_prod_order_ko_reff
 		)komax ON komax.id_prod_order_ko=ko.id_prod_order_ko
 	)ko GROUP BY ko.id_prod_order
