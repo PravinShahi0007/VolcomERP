@@ -6956,6 +6956,11 @@ WHERE id_sales_branch ='" & dtv.Rows(0)("id_sales_branch").ToString & "' "
                     ElseIf data_payment.Rows(0)("report_mark_type").ToString = "284" Then
                         'close pph
                         execute_non_query("UPDATE tb_tax_pph_summary_det SET is_close_pay = 1 WHERE id_summary_det IN (SELECT id_report FROM tb_pn_det WHERE id_pn = " + id_report + ")", True, "", "", "", "")
+                    ElseIf data_payment.Rows(0)("report_mark_type").ToString = "293" Then
+                        'close ppn
+                        execute_non_query("UPDATE tb_tax_ppn_summary_det SET is_close_pay_vi = 1 WHERE id_summary_det IN (SELECT tb_pn_det.id_report FROM tb_pn_det LEFT JOIN tb_pn ON tb_pn_det.id_pn = tb_pn.id_pn WHERE tb_pn_det.id_pn = " + id_report + " AND tb_pn.id_coa_tag = 1)", True, "", "", "", "")
+                        execute_non_query("UPDATE tb_tax_ppn_summary_det SET is_close_pay_bc = 1 WHERE id_summary_det IN (SELECT tb_pn_det.id_report FROM tb_pn_det LEFT JOIN tb_pn ON tb_pn_det.id_pn = tb_pn.id_pn WHERE tb_pn_det.id_pn = " + id_report + " AND tb_pn.id_coa_tag = 3)", True, "", "", "", "")
+                        execute_non_query("UPDATE tb_tax_ppn_summary_det SET is_close_pay_sm = 1 WHERE id_summary_det IN (SELECT tb_pn_det.id_report FROM tb_pn_det LEFT JOIN tb_pn ON tb_pn_det.id_pn = tb_pn.id_pn WHERE tb_pn_det.id_pn = " + id_report + " AND tb_pn.id_coa_tag = 4)", True, "", "", "", "")
                     End If
 
                     'check compen rmt 117 183 then close
