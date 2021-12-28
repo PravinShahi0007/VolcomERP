@@ -73,7 +73,7 @@ WHERE id_prod_order_ko='" & id_ko & "'"
             BUpdate.Visible = True
             BRevise.Visible = False
             PCDel.Visible = True
-            '
+            'ttp true karena harus bisa nyetak
             BPrintKO.Visible = True
             '
             BMark.Visible = False
@@ -143,11 +143,13 @@ LEFT JOIN(
 WHERE kod.id_prod_order_ko='" & id_ko & "'
 -- GROUP BY po.id_mat_purc
 ORDER BY po.`id_mat_purc` ASC"
+            GCAttachment.Visible = False
         Else
             query = "SELECT kod.revision,kod.id_prod_order_ko_det,'' AS `no`,po.`prod_order_number`,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name) AS class_dsg,cd.color AS color
 ,wo_price.qty_po AS qty_order,wo_price.prod_order_wo_det_price AS bom_unit,wo_price.price_amount AS po_amount_rp
 ,kod.lead_time_prod AS lead_time,kod.lead_time_payment,wo_price.prod_order_wo_del_date,DATE_ADD(wo_price.prod_order_wo_del_date,INTERVAL kod.lead_time_prod DAY) AS esti_del_date
 ,IFNULL(revtimes.revision_times,0) AS revision_times
+,IF(ISNULL(att.id_prod_order),'Not Complete','Complete') AS att_sts
 FROM `tb_prod_order_ko_det` kod
 INNER JOIN tb_prod_order po ON po.id_prod_order=kod.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON po.`id_prod_demand_design`=pdd.`id_prod_demand_design`
@@ -194,8 +196,16 @@ LEFT JOIN(
 	    GROUP BY kod.id_prod_order,kod.revision
     ) revtimes GROUP BY revtimes.id_prod_order
 )revtimes ON revtimes.id_prod_order=po.id_prod_order
+LEFT JOIN
+(
+    SELECT id_prod_order
+    FROM `tb_prod_order_attach`
+    WHERE id_report_status=6
+    GROUP BY id_prod_order    
+)att ON att.id_prod_order=po.id_prod_order
 WHERE kod.id_prod_order_ko='" & id_ko & "'
 ORDER BY po.`id_prod_order` ASC"
+            GCAttachment.Visible = True
         End If
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
@@ -319,6 +329,15 @@ SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`
     End Sub
 
     Private Sub BLock_Click(sender As Object, e As EventArgs) Handles BLock.Click
+        'cek attachment
+        Dim qc As String = "SELECT * FROM tb_prod_order_ko_det kod
+LEFT JOIN
+(
+    SELECT id_prod_order FROM `tb_prod_order_attach` WHERE id_report_status=6 GROUP BY id_prod_order
+)att ON att.id_prod_order=kod.`id_prod_order`
+WHERE kod.`id_prod_order_ko`='" & id_ko & "'
+AND ISNULL(att.id_prod_order)"
+        'cek ko template
         Dim id_ko_template As String = execute_query("SELECT id_ko_template FROM tb_prod_order_ko WHERE id_prod_order_ko = " & id_ko, 0, True, "", "", "", "")
         If Not id_ko_template = "0" Then
             Dim query As String = "UPDATE tb_prod_order_ko SET is_submit='1' WHERE id_prod_order_ko='" & id_ko & "'"
@@ -329,7 +348,7 @@ SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`
             infoCustom("KO Submitted")
             load_head()
         Else
-            stopCustom("Please select Contract Template and Update")
+            stopCustom("Please make sure template contract selected and all FGPO have attachment")
         End If
 
         'If Not id_ko_template = "0" Then
@@ -368,6 +387,8 @@ SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
-
+        FormReportMark.id_report = id_ko
+        FormReportMark.report_mark_type = "252"
+        FormReportMark.ShowDialog()
     End Sub
 End Class

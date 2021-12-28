@@ -288,6 +288,7 @@ Partial Class FormProduction
         Me.GridColumn96 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn97 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn98 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn101 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn99 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn100 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -301,7 +302,6 @@ Partial Class FormProduction
         Me.GridColumn93 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewAttachFGPO = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn101 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -2926,6 +2926,14 @@ Partial Class FormProduction
         Me.GridColumn98.Visible = True
         Me.GridColumn98.VisibleIndex = 4
         '
+        'GridColumn101
+        '
+        Me.GridColumn101.Caption = "Dsign Code"
+        Me.GridColumn101.FieldName = "design_code"
+        Me.GridColumn101.Name = "GridColumn101"
+        Me.GridColumn101.Visible = True
+        Me.GridColumn101.VisibleIndex = 5
+        '
         'GridColumn99
         '
         Me.GridColumn99.Caption = "Design"
@@ -3052,14 +3060,6 @@ Partial Class FormProduction
         Me.BViewAttachFGPO.Size = New System.Drawing.Size(59, 23)
         Me.BViewAttachFGPO.TabIndex = 8903
         Me.BViewAttachFGPO.Text = "Search"
-        '
-        'GridColumn101
-        '
-        Me.GridColumn101.Caption = "Dsign Code"
-        Me.GridColumn101.FieldName = "design_code"
-        Me.GridColumn101.Name = "GridColumn101"
-        Me.GridColumn101.Visible = True
-        Me.GridColumn101.VisibleIndex = 5
         '
         'FormProduction
         '

@@ -109,6 +109,7 @@ Partial Class FormProductionKO
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.PCDel = New DevExpress.XtraEditors.PanelControl()
         Me.Bdel = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCAttachment = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -609,7 +610,7 @@ Partial Class FormProductionKO
         Me.GVProd.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVProd.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVProd.ColumnPanelRowHeight = 50
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumnNo, Me.GridColumnPOType, Me.GridColumnCompName, Me.GridColumn1, Me.GridColumnProdNo, Me.GridColumnTerm, Me.GridColumn10, Me.GridColumn9, Me.GridColumnDesign, Me.GridColumnDescription, Me.GridColumnColor, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnRange, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn17, Me.GridColumnLeadTime, Me.GridColumn2, Me.GridColumn11, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn12, Me.GridColumnPOCurr, Me.GridColumnPOAmount, Me.GridColumnPOKurs, Me.GridColumn13})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumnNo, Me.GridColumnPOType, Me.GridColumnCompName, Me.GridColumn1, Me.GridColumnProdNo, Me.GridColumnTerm, Me.GridColumn10, Me.GridColumn9, Me.GridColumnDesign, Me.GridColumnDescription, Me.GridColumnColor, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnRange, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn17, Me.GridColumnLeadTime, Me.GridColumn2, Me.GridColumn11, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn12, Me.GridColumnPOCurr, Me.GridColumnPOAmount, Me.GridColumnPOKurs, Me.GridColumn13, Me.GCAttachment})
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.Name = "GVProd"
         Me.GVProd.OptionsSelection.EnableAppearanceFocusedRow = False
@@ -667,7 +668,7 @@ Partial Class FormProductionKO
         Me.GridColumnProdNo.OptionsColumn.AllowEdit = False
         Me.GridColumnProdNo.Visible = True
         Me.GridColumnProdNo.VisibleIndex = 0
-        Me.GridColumnProdNo.Width = 100
+        Me.GridColumnProdNo.Width = 142
         '
         'GridColumnTerm
         '
@@ -707,7 +708,7 @@ Partial Class FormProductionKO
         Me.GridColumnDescription.OptionsColumn.AllowEdit = False
         Me.GridColumnDescription.Visible = True
         Me.GridColumnDescription.VisibleIndex = 1
-        Me.GridColumnDescription.Width = 269
+        Me.GridColumnDescription.Width = 384
         '
         'GridColumnColor
         '
@@ -738,7 +739,7 @@ Partial Class FormProductionKO
         Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N0}")})
         Me.GridColumnOrderQty.Visible = True
         Me.GridColumnOrderQty.VisibleIndex = 3
-        Me.GridColumnOrderQty.Width = 92
+        Me.GridColumnOrderQty.Width = 135
         '
         'GridColumnRecQty
         '
@@ -793,6 +794,7 @@ Partial Class FormProductionKO
         Me.GridColumn17.OptionsColumn.AllowEdit = False
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 6
+        Me.GridColumn17.Width = 109
         '
         'GridColumnLeadTime
         '
@@ -803,6 +805,7 @@ Partial Class FormProductionKO
         Me.GridColumnLeadTime.Name = "GridColumnLeadTime"
         Me.GridColumnLeadTime.Visible = True
         Me.GridColumnLeadTime.VisibleIndex = 7
+        Me.GridColumnLeadTime.Width = 109
         '
         'GridColumn2
         '
@@ -816,7 +819,7 @@ Partial Class FormProductionKO
         Me.GridColumn2.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 8
-        Me.GridColumn2.Width = 60
+        Me.GridColumn2.Width = 87
         '
         'GridColumn11
         '
@@ -859,7 +862,7 @@ Partial Class FormProductionKO
         Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 4
-        Me.GridColumn7.Width = 136
+        Me.GridColumn7.Width = 199
         '
         'GridColumn12
         '
@@ -912,7 +915,7 @@ Partial Class FormProductionKO
         Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_amount_rp", "{0:N2}")})
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 5
-        Me.GridColumn13.Width = 171
+        Me.GridColumn13.Width = 252
         '
         'RIPictureEdit
         '
@@ -1067,6 +1070,19 @@ Partial Class FormProductionKO
         Me.Bdel.TabIndex = 17
         Me.Bdel.Text = "Delete"
         '
+        'GCAttachment
+        '
+        Me.GCAttachment.AppearanceCell.Options.UseTextOptions = True
+        Me.GCAttachment.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCAttachment.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCAttachment.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCAttachment.Caption = "Attachment Status"
+        Me.GCAttachment.FieldName = "att_sts"
+        Me.GCAttachment.Name = "GCAttachment"
+        Me.GCAttachment.Visible = True
+        Me.GCAttachment.VisibleIndex = 9
+        Me.GCAttachment.Width = 126
+        '
         'FormProductionKO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1216,4 +1232,5 @@ Partial Class FormProductionKO
     Friend WithEvents Bdel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCAttachment As DevExpress.XtraGrid.Columns.GridColumn
 End Class
