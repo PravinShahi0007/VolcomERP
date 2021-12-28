@@ -20,6 +20,7 @@ Partial Class FormStoreDisplayDet
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStoreDisplayDet))
+        Dim RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtUpdatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -51,16 +52,7 @@ Partial Class FormStoreDisplayDet
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCDetail = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPSeason = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCSeason = New DevExpress.XtraGrid.GridControl()
-        Me.GVSeason = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnid_display_pps_season = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_season = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_delivery = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnseason_desc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnkoef_sold_out = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Repokoefsoldout = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GridColumnis_extra_sku = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPMasterDisplay = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPOrderDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCProduct = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPItemList = New DevExpress.XtraTab.XtraTabPage()
@@ -77,7 +69,6 @@ Partial Class FormStoreDisplayDet
         Me.BandedGridColumnpps_ref_number = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnis_selected_view = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RepoSelectDesign = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BandedGridColumnis_selected_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_display_pps_det = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_season = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -88,13 +79,24 @@ Partial Class FormStoreDisplayDet
         Me.BandedGridColumnid_display_pps_ref = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnis_selected = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnis_selected_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.XTPOrderSummary = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCSum = New DevExpress.XtraGrid.GridControl()
-        Me.GVSum = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.BtnXLSSum = New DevExpress.XtraEditors.SimpleButton()
-        Me.XTPDisplayAllocation = New DevExpress.XtraTab.XtraTabPage()
-        Me.GroupControlRemark = New DevExpress.XtraEditors.GroupControl()
         Me.BtnXLSDet = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPExisting = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCPropose = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
+        Me.BtnConfirmOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCSummary = New DevExpress.XtraGrid.GridControl()
+        Me.GVSummary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnSelectProduct = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnKoefSoldOut = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPKoefSoldOut = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCKalkulasiKS = New DevExpress.XtraGrid.GridControl()
+        Me.GVKalkulasiKS = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BtnApplyKS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSetupKS = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.TxtUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUpdated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUpdated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,22 +118,26 @@ Partial Class FormStoreDisplayDet
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDetail.SuspendLayout()
-        Me.XTPSeason.SuspendLayout()
-        CType(Me.GCSeason, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVSeason, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Repokoefsoldout, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPOrderDetail.SuspendLayout()
         CType(Me.XTCProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCProduct.SuspendLayout()
         Me.XTPItemList.SuspendLayout()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepoSelectDesign, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTPOrderSummary.SuspendLayout()
-        CType(Me.GCSum, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVSum, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GroupControlRemark, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControlRemark.SuspendLayout()
+        CType(RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCPropose, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCPropose.SuspendLayout()
+        Me.XTPSummary.SuspendLayout()
+        Me.XTPDetail.SuspendLayout()
+        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        Me.XTPKoefSoldOut.SuspendLayout()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl2.SuspendLayout()
+        CType(Me.GCKalkulasiKS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVKalkulasiKS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl6
@@ -153,7 +159,7 @@ Partial Class FormStoreDisplayDet
         Me.TxtUpdatedBy.Properties.Appearance.Options.UseFont = True
         Me.TxtUpdatedBy.Properties.ReadOnly = True
         Me.TxtUpdatedBy.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TxtUpdatedBy.Size = New System.Drawing.Size(203, 20)
+        Me.TxtUpdatedBy.Size = New System.Drawing.Size(180, 20)
         Me.TxtUpdatedBy.TabIndex = 8937
         '
         'LabelControl5
@@ -179,7 +185,7 @@ Partial Class FormStoreDisplayDet
         Me.DEUpdated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEUpdated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEUpdated.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.DEUpdated.Size = New System.Drawing.Size(203, 20)
+        Me.DEUpdated.Size = New System.Drawing.Size(180, 20)
         Me.DEUpdated.TabIndex = 8935
         '
         'LabelControl3
@@ -201,7 +207,7 @@ Partial Class FormStoreDisplayDet
         Me.TxtCreatedBy.Properties.Appearance.Options.UseFont = True
         Me.TxtCreatedBy.Properties.ReadOnly = True
         Me.TxtCreatedBy.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TxtCreatedBy.Size = New System.Drawing.Size(203, 20)
+        Me.TxtCreatedBy.Size = New System.Drawing.Size(180, 20)
         Me.TxtCreatedBy.TabIndex = 8933
         '
         'LabelControl4
@@ -226,7 +232,7 @@ Partial Class FormStoreDisplayDet
         Me.DECreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DECreated.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.DECreated.Size = New System.Drawing.Size(203, 20)
+        Me.DECreated.Size = New System.Drawing.Size(180, 20)
         Me.DECreated.TabIndex = 8931
         '
         'TxtNumber
@@ -239,7 +245,7 @@ Partial Class FormStoreDisplayDet
         Me.TxtNumber.Properties.Appearance.Options.UseFont = True
         Me.TxtNumber.Properties.ReadOnly = True
         Me.TxtNumber.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TxtNumber.Size = New System.Drawing.Size(203, 20)
+        Me.TxtNumber.Size = New System.Drawing.Size(180, 20)
         Me.TxtNumber.TabIndex = 147
         '
         'LabelControl21
@@ -274,7 +280,7 @@ Partial Class FormStoreDisplayDet
         Me.LEReportStatus.Properties.NullText = ""
         Me.LEReportStatus.Properties.ShowFooter = False
         Me.LEReportStatus.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.LEReportStatus.Size = New System.Drawing.Size(203, 20)
+        Me.LEReportStatus.Size = New System.Drawing.Size(180, 20)
         Me.LEReportStatus.TabIndex = 8929
         '
         'PanelControlTitle
@@ -285,9 +291,9 @@ Partial Class FormStoreDisplayDet
         Me.PanelControlTitle.Controls.Add(Me.LabelControl7)
         Me.PanelControlTitle.Controls.Add(Me.LabelControl1)
         Me.PanelControlTitle.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlTitle.Location = New System.Drawing.Point(230, 0)
+        Me.PanelControlTitle.Location = New System.Drawing.Point(208, 0)
         Me.PanelControlTitle.Name = "PanelControlTitle"
-        Me.PanelControlTitle.Size = New System.Drawing.Size(778, 74)
+        Me.PanelControlTitle.Size = New System.Drawing.Size(800, 74)
         Me.PanelControlTitle.TabIndex = 8940
         '
         'SLESeason
@@ -318,7 +324,7 @@ Partial Class FormStoreDisplayDet
         Me.SLEComp.Properties.Appearance.Options.UseFont = True
         Me.SLEComp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEComp.Properties.View = Me.GridView1
-        Me.SLEComp.Size = New System.Drawing.Size(473, 24)
+        Me.SLEComp.Size = New System.Drawing.Size(495, 24)
         Me.SLEComp.TabIndex = 8933
         '
         'GridView1
@@ -336,7 +342,7 @@ Partial Class FormStoreDisplayDet
         Me.BtnCreateNew.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
         Me.BtnCreateNew.Location = New System.Drawing.Point(2, 49)
         Me.BtnCreateNew.Name = "BtnCreateNew"
-        Me.BtnCreateNew.Size = New System.Drawing.Size(774, 23)
+        Me.BtnCreateNew.Size = New System.Drawing.Size(796, 23)
         Me.BtnCreateNew.TabIndex = 8926
         Me.BtnCreateNew.Text = "Create New"
         Me.BtnCreateNew.Visible = False
@@ -361,6 +367,8 @@ Partial Class FormStoreDisplayDet
         '
         'PanelControlNo
         '
+        Me.PanelControlNo.Controls.Add(Me.LabelControl8)
+        Me.PanelControlNo.Controls.Add(Me.MENote)
         Me.PanelControlNo.Controls.Add(Me.LabelControl6)
         Me.PanelControlNo.Controls.Add(Me.TxtUpdatedBy)
         Me.PanelControlNo.Controls.Add(Me.LabelControl2)
@@ -376,16 +384,16 @@ Partial Class FormStoreDisplayDet
         Me.PanelControlNo.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControlNo.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlNo.Name = "PanelControlNo"
-        Me.PanelControlNo.Size = New System.Drawing.Size(230, 561)
+        Me.PanelControlNo.Size = New System.Drawing.Size(208, 561)
         Me.PanelControlNo.TabIndex = 8941
         '
         'MENote
         '
         Me.MENote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MENote.Location = New System.Drawing.Point(13, 29)
+        Me.MENote.Location = New System.Drawing.Point(12, 317)
         Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(744, 48)
+        Me.MENote.Size = New System.Drawing.Size(180, 78)
         Me.MENote.TabIndex = 8942
         '
         'PanelControlBottom
@@ -398,9 +406,9 @@ Partial Class FormStoreDisplayDet
         Me.PanelControlBottom.Controls.Add(Me.BtnSaveChanges)
         Me.PanelControlBottom.Controls.Add(Me.BtnConfirm)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlBottom.Location = New System.Drawing.Point(230, 502)
+        Me.PanelControlBottom.Location = New System.Drawing.Point(208, 502)
         Me.PanelControlBottom.Name = "PanelControlBottom"
-        Me.PanelControlBottom.Size = New System.Drawing.Size(778, 59)
+        Me.PanelControlBottom.Size = New System.Drawing.Size(800, 59)
         Me.PanelControlBottom.TabIndex = 8942
         '
         'BtnPrint
@@ -408,7 +416,7 @@ Partial Class FormStoreDisplayDet
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
         Me.BtnPrint.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnPrint.Location = New System.Drawing.Point(243, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(265, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(84, 55)
         Me.BtnPrint.TabIndex = 3
@@ -419,7 +427,7 @@ Partial Class FormStoreDisplayDet
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
         Me.BtnAttachment.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnAttachment.Location = New System.Drawing.Point(327, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(349, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(86, 55)
         Me.BtnAttachment.TabIndex = 4
@@ -443,7 +451,7 @@ Partial Class FormStoreDisplayDet
         Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
         Me.BtnCancell.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnCancell.Location = New System.Drawing.Point(413, 2)
+        Me.BtnCancell.Location = New System.Drawing.Point(435, 2)
         Me.BtnCancell.Name = "BtnCancell"
         Me.BtnCancell.Size = New System.Drawing.Size(97, 55)
         Me.BtnCancell.TabIndex = 7
@@ -455,7 +463,7 @@ Partial Class FormStoreDisplayDet
         Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
         Me.BtnResetPropose.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnResetPropose.Location = New System.Drawing.Point(510, 2)
+        Me.BtnResetPropose.Location = New System.Drawing.Point(532, 2)
         Me.BtnResetPropose.Name = "BtnResetPropose"
         Me.BtnResetPropose.Size = New System.Drawing.Size(95, 55)
         Me.BtnResetPropose.TabIndex = 9
@@ -466,7 +474,7 @@ Partial Class FormStoreDisplayDet
         Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
         Me.BtnSaveChanges.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnSaveChanges.Location = New System.Drawing.Point(605, 2)
+        Me.BtnSaveChanges.Location = New System.Drawing.Point(627, 2)
         Me.BtnSaveChanges.Name = "BtnSaveChanges"
         Me.BtnSaveChanges.Size = New System.Drawing.Size(90, 55)
         Me.BtnSaveChanges.TabIndex = 8
@@ -478,7 +486,7 @@ Partial Class FormStoreDisplayDet
         Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
         Me.BtnConfirm.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnConfirm.Location = New System.Drawing.Point(695, 2)
+        Me.BtnConfirm.Location = New System.Drawing.Point(717, 2)
         Me.BtnConfirm.Name = "BtnConfirm"
         Me.BtnConfirm.Size = New System.Drawing.Size(81, 55)
         Me.BtnConfirm.TabIndex = 6
@@ -500,107 +508,27 @@ Partial Class FormStoreDisplayDet
         Me.XTCDetail.AppearancePage.HeaderDisabled.Options.UseFont = True
         Me.XTCDetail.AppearancePage.HeaderDisabled.Options.UseForeColor = True
         Me.XTCDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCDetail.Location = New System.Drawing.Point(230, 74)
+        Me.XTCDetail.Location = New System.Drawing.Point(208, 74)
         Me.XTCDetail.Name = "XTCDetail"
-        Me.XTCDetail.SelectedTabPage = Me.XTPSeason
-        Me.XTCDetail.Size = New System.Drawing.Size(778, 333)
+        Me.XTCDetail.SelectedTabPage = Me.XTPMasterDisplay
+        Me.XTCDetail.Size = New System.Drawing.Size(800, 428)
         Me.XTCDetail.TabIndex = 8943
-        Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSeason, Me.XTPOrderDetail, Me.XTPOrderSummary, Me.XTPDisplayAllocation})
+        Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMasterDisplay, Me.XTPExisting, Me.XTPOrderDetail})
         '
-        'XTPSeason
+        'XTPMasterDisplay
         '
-        Me.XTPSeason.Controls.Add(Me.GCSeason)
-        Me.XTPSeason.Image = CType(resources.GetObject("XTPSeason.Image"), System.Drawing.Image)
-        Me.XTPSeason.Name = "XTPSeason"
-        Me.XTPSeason.Size = New System.Drawing.Size(772, 302)
-        Me.XTPSeason.Text = "Season Setup"
-        '
-        'GCSeason
-        '
-        Me.GCSeason.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSeason.Location = New System.Drawing.Point(0, 0)
-        Me.GCSeason.MainView = Me.GVSeason
-        Me.GCSeason.Name = "GCSeason"
-        Me.GCSeason.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.Repokoefsoldout})
-        Me.GCSeason.Size = New System.Drawing.Size(772, 302)
-        Me.GCSeason.TabIndex = 26
-        Me.GCSeason.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSeason})
-        '
-        'GVSeason
-        '
-        Me.GVSeason.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_display_pps_season, Me.GridColumnid_season, Me.GridColumnid_delivery, Me.GridColumnseason_desc, Me.GridColumnkoef_sold_out, Me.GridColumnis_extra_sku})
-        Me.GVSeason.GridControl = Me.GCSeason
-        Me.GVSeason.Name = "GVSeason"
-        Me.GVSeason.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVSeason.OptionsFind.AlwaysVisible = True
-        Me.GVSeason.OptionsView.ColumnAutoWidth = False
-        Me.GVSeason.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumnid_display_pps_season
-        '
-        Me.GridColumnid_display_pps_season.Caption = "id_display_pps_season"
-        Me.GridColumnid_display_pps_season.FieldName = "id_display_pps_season"
-        Me.GridColumnid_display_pps_season.Name = "GridColumnid_display_pps_season"
-        Me.GridColumnid_display_pps_season.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnid_season
-        '
-        Me.GridColumnid_season.Caption = "id_season"
-        Me.GridColumnid_season.FieldName = "id_season"
-        Me.GridColumnid_season.Name = "GridColumnid_season"
-        Me.GridColumnid_season.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnid_delivery
-        '
-        Me.GridColumnid_delivery.Caption = "id_delivery"
-        Me.GridColumnid_delivery.FieldName = "id_delivery"
-        Me.GridColumnid_delivery.Name = "GridColumnid_delivery"
-        Me.GridColumnid_delivery.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnseason_desc
-        '
-        Me.GridColumnseason_desc.Caption = "Season"
-        Me.GridColumnseason_desc.FieldName = "season_desc"
-        Me.GridColumnseason_desc.Name = "GridColumnseason_desc"
-        Me.GridColumnseason_desc.OptionsColumn.AllowEdit = False
-        Me.GridColumnseason_desc.Visible = True
-        Me.GridColumnseason_desc.VisibleIndex = 0
-        '
-        'GridColumnkoef_sold_out
-        '
-        Me.GridColumnkoef_sold_out.Caption = "Koefisien Sold Out"
-        Me.GridColumnkoef_sold_out.ColumnEdit = Me.Repokoefsoldout
-        Me.GridColumnkoef_sold_out.DisplayFormat.FormatString = "{0:n0} %"
-        Me.GridColumnkoef_sold_out.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnkoef_sold_out.FieldName = "koef_sold_out"
-        Me.GridColumnkoef_sold_out.Name = "GridColumnkoef_sold_out"
-        Me.GridColumnkoef_sold_out.Visible = True
-        Me.GridColumnkoef_sold_out.VisibleIndex = 1
-        Me.GridColumnkoef_sold_out.Width = 178
-        '
-        'Repokoefsoldout
-        '
-        Me.Repokoefsoldout.AutoHeight = False
-        Me.Repokoefsoldout.DisplayFormat.FormatString = "{0:n0} %"
-        Me.Repokoefsoldout.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.Repokoefsoldout.Mask.EditMask = "N0"
-        Me.Repokoefsoldout.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.Repokoefsoldout.Name = "Repokoefsoldout"
-        '
-        'GridColumnis_extra_sku
-        '
-        Me.GridColumnis_extra_sku.Caption = "is_extra_sku"
-        Me.GridColumnis_extra_sku.FieldName = "is_extra_sku"
-        Me.GridColumnis_extra_sku.Name = "GridColumnis_extra_sku"
-        Me.GridColumnis_extra_sku.OptionsColumn.AllowEdit = False
+        Me.XTPMasterDisplay.Image = CType(resources.GetObject("XTPMasterDisplay.Image"), System.Drawing.Image)
+        Me.XTPMasterDisplay.Name = "XTPMasterDisplay"
+        Me.XTPMasterDisplay.Size = New System.Drawing.Size(794, 397)
+        Me.XTPMasterDisplay.Text = "Master Display"
         '
         'XTPOrderDetail
         '
         Me.XTPOrderDetail.Controls.Add(Me.XTCProduct)
         Me.XTPOrderDetail.Image = CType(resources.GetObject("XTPOrderDetail.Image"), System.Drawing.Image)
         Me.XTPOrderDetail.Name = "XTPOrderDetail"
-        Me.XTPOrderDetail.Size = New System.Drawing.Size(772, 302)
-        Me.XTPOrderDetail.Text = "Order Detail"
+        Me.XTPOrderDetail.Size = New System.Drawing.Size(794, 397)
+        Me.XTPOrderDetail.Text = "Propose"
         '
         'XTCProduct
         '
@@ -610,16 +538,15 @@ Partial Class FormStoreDisplayDet
         Me.XTCProduct.Name = "XTCProduct"
         Me.XTCProduct.SelectedTabPage = Me.XTPItemList
         Me.XTCProduct.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[False]
-        Me.XTCProduct.Size = New System.Drawing.Size(772, 302)
+        Me.XTCProduct.Size = New System.Drawing.Size(794, 397)
         Me.XTCProduct.TabIndex = 18
         Me.XTCProduct.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPItemList})
         '
         'XTPItemList
         '
-        Me.XTPItemList.Controls.Add(Me.GCDetail)
-        Me.XTPItemList.Controls.Add(Me.BtnXLSDet)
+        Me.XTPItemList.Controls.Add(Me.XTCPropose)
         Me.XTPItemList.Name = "XTPItemList"
-        Me.XTPItemList.Size = New System.Drawing.Size(766, 296)
+        Me.XTPItemList.Size = New System.Drawing.Size(788, 391)
         Me.XTPItemList.Text = "Item List"
         '
         'GCDetail
@@ -628,8 +555,7 @@ Partial Class FormStoreDisplayDet
         Me.GCDetail.Location = New System.Drawing.Point(0, 0)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
-        Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoSelectDesign})
-        Me.GCDetail.Size = New System.Drawing.Size(766, 273)
+        Me.GCDetail.Size = New System.Drawing.Size(759, 324)
         Me.GCDetail.TabIndex = 0
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
@@ -735,17 +661,14 @@ Partial Class FormStoreDisplayDet
         'BandedGridColumnis_selected_view
         '
         Me.BandedGridColumnis_selected_view.Caption = "Select"
-        Me.BandedGridColumnis_selected_view.ColumnEdit = Me.RepoSelectDesign
+        RepositoryItemCheckEdit1.AutoHeight = False
+        RepositoryItemCheckEdit1.Name = "RepoSelectDesign"
+        RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        RepositoryItemCheckEdit1.ValueUnchecked = "No"
+        Me.BandedGridColumnis_selected_view.ColumnEdit = RepositoryItemCheckEdit1
         Me.BandedGridColumnis_selected_view.FieldName = "is_selected_view"
         Me.BandedGridColumnis_selected_view.Name = "BandedGridColumnis_selected_view"
         Me.BandedGridColumnis_selected_view.Visible = True
-        '
-        'RepoSelectDesign
-        '
-        Me.RepoSelectDesign.AutoHeight = False
-        Me.RepoSelectDesign.Name = "RepoSelectDesign"
-        Me.RepoSelectDesign.ValueChecked = "Yes"
-        Me.RepoSelectDesign.ValueUnchecked = "No"
         '
         'BandedGridColumnis_selected_status
         '
@@ -824,92 +747,221 @@ Partial Class FormStoreDisplayDet
         Me.BandedGridColumnis_selected_new.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.BandedGridColumnis_selected_new.Visible = True
         '
-        'XTPOrderSummary
-        '
-        Me.XTPOrderSummary.Controls.Add(Me.GCSum)
-        Me.XTPOrderSummary.Controls.Add(Me.BtnXLSSum)
-        Me.XTPOrderSummary.Image = CType(resources.GetObject("XTPOrderSummary.Image"), System.Drawing.Image)
-        Me.XTPOrderSummary.Name = "XTPOrderSummary"
-        Me.XTPOrderSummary.Size = New System.Drawing.Size(772, 302)
-        Me.XTPOrderSummary.Text = "Order Summary"
-        '
-        'GCSum
-        '
-        Me.GCSum.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSum.Location = New System.Drawing.Point(0, 0)
-        Me.GCSum.MainView = Me.GVSum
-        Me.GCSum.Name = "GCSum"
-        Me.GCSum.Size = New System.Drawing.Size(772, 279)
-        Me.GCSum.TabIndex = 25
-        Me.GCSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSum})
-        '
-        'GVSum
-        '
-        Me.GVSum.GridControl = Me.GCSum
-        Me.GVSum.Name = "GVSum"
-        Me.GVSum.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVSum.OptionsFind.AlwaysVisible = True
-        Me.GVSum.OptionsView.ColumnAutoWidth = False
-        Me.GVSum.OptionsView.ShowGroupPanel = False
-        '
-        'BtnXLSSum
-        '
-        Me.BtnXLSSum.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.BtnXLSSum.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnXLSSum.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BtnXLSSum.Appearance.Image = CType(resources.GetObject("BtnXLSSum.Appearance.Image"), System.Drawing.Image)
-        Me.BtnXLSSum.Appearance.Options.UseBackColor = True
-        Me.BtnXLSSum.Appearance.Options.UseFont = True
-        Me.BtnXLSSum.Appearance.Options.UseForeColor = True
-        Me.BtnXLSSum.Appearance.Options.UseImage = True
-        Me.BtnXLSSum.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnXLSSum.Location = New System.Drawing.Point(0, 279)
-        Me.BtnXLSSum.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BtnXLSSum.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BtnXLSSum.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BtnXLSSum.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnXLSSum.Name = "BtnXLSSum"
-        Me.BtnXLSSum.Size = New System.Drawing.Size(772, 23)
-        Me.BtnXLSSum.TabIndex = 24
-        Me.BtnXLSSum.Text = "Export to XLS"
-        '
-        'XTPDisplayAllocation
-        '
-        Me.XTPDisplayAllocation.Image = CType(resources.GetObject("XTPDisplayAllocation.Image"), System.Drawing.Image)
-        Me.XTPDisplayAllocation.Name = "XTPDisplayAllocation"
-        Me.XTPDisplayAllocation.Size = New System.Drawing.Size(772, 302)
-        Me.XTPDisplayAllocation.Text = "Display Allocation"
-        '
-        'GroupControlRemark
-        '
-        Me.GroupControlRemark.Controls.Add(Me.MENote)
-        Me.GroupControlRemark.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControlRemark.Location = New System.Drawing.Point(230, 407)
-        Me.GroupControlRemark.Name = "GroupControlRemark"
-        Me.GroupControlRemark.Size = New System.Drawing.Size(778, 95)
-        Me.GroupControlRemark.TabIndex = 8944
-        Me.GroupControlRemark.Text = "Remark"
-        '
         'BtnXLSDet
         '
         Me.BtnXLSDet.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.BtnXLSDet.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnXLSDet.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BtnXLSDet.Appearance.Image = CType(resources.GetObject("SimpleButton1.Appearance.Image"), System.Drawing.Image)
+        Me.BtnXLSDet.Appearance.Image = CType(resources.GetObject("BtnXLSDet.Appearance.Image"), System.Drawing.Image)
         Me.BtnXLSDet.Appearance.Options.UseBackColor = True
         Me.BtnXLSDet.Appearance.Options.UseFont = True
         Me.BtnXLSDet.Appearance.Options.UseForeColor = True
         Me.BtnXLSDet.Appearance.Options.UseImage = True
         Me.BtnXLSDet.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnXLSDet.Location = New System.Drawing.Point(0, 273)
+        Me.BtnXLSDet.Location = New System.Drawing.Point(0, 356)
         Me.BtnXLSDet.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnXLSDet.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BtnXLSDet.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnXLSDet.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnXLSDet.Name = "BtnXLSDet"
-        Me.BtnXLSDet.Size = New System.Drawing.Size(766, 23)
+        Me.BtnXLSDet.Size = New System.Drawing.Size(759, 29)
         Me.BtnXLSDet.TabIndex = 25
         Me.BtnXLSDet.Text = "Export to XLS"
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl8.Location = New System.Drawing.Point(12, 298)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl8.TabIndex = 8943
+        Me.LabelControl8.Text = "Remark"
+        '
+        'XTPExisting
+        '
+        Me.XTPExisting.Image = CType(resources.GetObject("XTPExisting.Image"), System.Drawing.Image)
+        Me.XTPExisting.Name = "XTPExisting"
+        Me.XTPExisting.Size = New System.Drawing.Size(794, 397)
+        Me.XTPExisting.Text = "Existing Product"
+        '
+        'XTCPropose
+        '
+        Me.XTCPropose.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCPropose.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XTCPropose.Location = New System.Drawing.Point(0, 0)
+        Me.XTCPropose.Name = "XTCPropose"
+        Me.XTCPropose.SelectedTabPage = Me.XTPSummary
+        Me.XTCPropose.Size = New System.Drawing.Size(788, 391)
+        Me.XTCPropose.TabIndex = 26
+        Me.XTCPropose.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPDetail, Me.XTPKoefSoldOut})
+        '
+        'XTPSummary
+        '
+        Me.XTPSummary.Controls.Add(Me.GCSummary)
+        Me.XTPSummary.Controls.Add(Me.PanelControl1)
+        Me.XTPSummary.Name = "XTPSummary"
+        Me.XTPSummary.Size = New System.Drawing.Size(759, 385)
+        Me.XTPSummary.Text = "Summary"
+        '
+        'XTPDetail
+        '
+        Me.XTPDetail.Controls.Add(Me.GCDetail)
+        Me.XTPDetail.Controls.Add(Me.BtnConfirmOrder)
+        Me.XTPDetail.Controls.Add(Me.BtnXLSDet)
+        Me.XTPDetail.Name = "XTPDetail"
+        Me.XTPDetail.PageEnabled = False
+        Me.XTPDetail.Size = New System.Drawing.Size(759, 385)
+        Me.XTPDetail.Text = "Select Product"
+        '
+        'BtnConfirmOrder
+        '
+        Me.BtnConfirmOrder.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnConfirmOrder.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnConfirmOrder.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnConfirmOrder.Appearance.Image = CType(resources.GetObject("SimpleButton1.Appearance.Image"), System.Drawing.Image)
+        Me.BtnConfirmOrder.Appearance.Options.UseBackColor = True
+        Me.BtnConfirmOrder.Appearance.Options.UseFont = True
+        Me.BtnConfirmOrder.Appearance.Options.UseForeColor = True
+        Me.BtnConfirmOrder.Appearance.Options.UseImage = True
+        Me.BtnConfirmOrder.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnConfirmOrder.Location = New System.Drawing.Point(0, 324)
+        Me.BtnConfirmOrder.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnConfirmOrder.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnConfirmOrder.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnConfirmOrder.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnConfirmOrder.Name = "BtnConfirmOrder"
+        Me.BtnConfirmOrder.Size = New System.Drawing.Size(759, 32)
+        Me.BtnConfirmOrder.TabIndex = 26
+        Me.BtnConfirmOrder.Text = "Confirm Order"
+        '
+        'GCSummary
+        '
+        Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSummary.Location = New System.Drawing.Point(0, 47)
+        Me.GCSummary.MainView = Me.GVSummary
+        Me.GCSummary.Name = "GCSummary"
+        Me.GCSummary.Size = New System.Drawing.Size(759, 338)
+        Me.GCSummary.TabIndex = 0
+        Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
+        '
+        'GVSummary
+        '
+        Me.GVSummary.GridControl = Me.GCSummary
+        Me.GVSummary.Name = "GVSummary"
+        Me.GVSummary.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVSummary.OptionsBehavior.Editable = False
+        Me.GVSummary.OptionsView.ColumnAutoWidth = False
+        Me.GVSummary.OptionsView.ShowFooter = True
+        Me.GVSummary.OptionsView.ShowGroupPanel = False
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BtnKoefSoldOut)
+        Me.PanelControl1.Controls.Add(Me.BtnSelectProduct)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(759, 47)
+        Me.PanelControl1.TabIndex = 1
+        '
+        'BtnSelectProduct
+        '
+        Me.BtnSelectProduct.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSelectProduct.Image = CType(resources.GetObject("BtnSelectProduct.Image"), System.Drawing.Image)
+        Me.BtnSelectProduct.Location = New System.Drawing.Point(640, 2)
+        Me.BtnSelectProduct.Name = "BtnSelectProduct"
+        Me.BtnSelectProduct.Size = New System.Drawing.Size(117, 43)
+        Me.BtnSelectProduct.TabIndex = 0
+        Me.BtnSelectProduct.Text = "Select Product"
+        '
+        'BtnKoefSoldOut
+        '
+        Me.BtnKoefSoldOut.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnKoefSoldOut.Image = CType(resources.GetObject("BtnKoefSoldOut.Image"), System.Drawing.Image)
+        Me.BtnKoefSoldOut.Location = New System.Drawing.Point(504, 2)
+        Me.BtnKoefSoldOut.Name = "BtnKoefSoldOut"
+        Me.BtnKoefSoldOut.Size = New System.Drawing.Size(136, 43)
+        Me.BtnKoefSoldOut.TabIndex = 1
+        Me.BtnKoefSoldOut.Text = "Koefisien Sold Out"
+        '
+        'XTPKoefSoldOut
+        '
+        Me.XTPKoefSoldOut.Controls.Add(Me.GroupControl2)
+        Me.XTPKoefSoldOut.Name = "XTPKoefSoldOut"
+        Me.XTPKoefSoldOut.PageEnabled = False
+        Me.XTPKoefSoldOut.Size = New System.Drawing.Size(759, 385)
+        Me.XTPKoefSoldOut.Text = "Koefisien Sold Out"
+        '
+        'GroupControl2
+        '
+        Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.GCKalkulasiKS)
+        Me.GroupControl2.Controls.Add(Me.BtnSetupKS)
+        Me.GroupControl2.Controls.Add(Me.BtnApplyKS)
+        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl2.Name = "GroupControl2"
+        Me.GroupControl2.Size = New System.Drawing.Size(759, 385)
+        Me.GroupControl2.TabIndex = 1
+        Me.GroupControl2.Text = "Kalkulasi Koefisien Sold Out "
+        '
+        'GCKalkulasiKS
+        '
+        Me.GCKalkulasiKS.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCKalkulasiKS.Location = New System.Drawing.Point(20, 2)
+        Me.GCKalkulasiKS.MainView = Me.GVKalkulasiKS
+        Me.GCKalkulasiKS.Name = "GCKalkulasiKS"
+        Me.GCKalkulasiKS.Size = New System.Drawing.Size(737, 317)
+        Me.GCKalkulasiKS.TabIndex = 1
+        Me.GCKalkulasiKS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVKalkulasiKS})
+        '
+        'GVKalkulasiKS
+        '
+        Me.GVKalkulasiKS.GridControl = Me.GCKalkulasiKS
+        Me.GVKalkulasiKS.Name = "GVKalkulasiKS"
+        Me.GVKalkulasiKS.OptionsView.ShowGroupPanel = False
+        '
+        'BtnApplyKS
+        '
+        Me.BtnApplyKS.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnApplyKS.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnApplyKS.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnApplyKS.Appearance.Image = CType(resources.GetObject("SimpleButton1.Appearance.Image1"), System.Drawing.Image)
+        Me.BtnApplyKS.Appearance.Options.UseBackColor = True
+        Me.BtnApplyKS.Appearance.Options.UseFont = True
+        Me.BtnApplyKS.Appearance.Options.UseForeColor = True
+        Me.BtnApplyKS.Appearance.Options.UseImage = True
+        Me.BtnApplyKS.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnApplyKS.Location = New System.Drawing.Point(20, 351)
+        Me.BtnApplyKS.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnApplyKS.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnApplyKS.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnApplyKS.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnApplyKS.Name = "BtnApplyKS"
+        Me.BtnApplyKS.Size = New System.Drawing.Size(737, 32)
+        Me.BtnApplyKS.TabIndex = 27
+        Me.BtnApplyKS.Text = "Apply"
+        '
+        'BtnSetupKS
+        '
+        Me.BtnSetupKS.Appearance.BackColor = System.Drawing.Color.Orange
+        Me.BtnSetupKS.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnSetupKS.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnSetupKS.Appearance.Image = CType(resources.GetObject("SimpleButton2.Appearance.Image"), System.Drawing.Image)
+        Me.BtnSetupKS.Appearance.Options.UseBackColor = True
+        Me.BtnSetupKS.Appearance.Options.UseFont = True
+        Me.BtnSetupKS.Appearance.Options.UseForeColor = True
+        Me.BtnSetupKS.Appearance.Options.UseImage = True
+        Me.BtnSetupKS.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnSetupKS.Location = New System.Drawing.Point(20, 319)
+        Me.BtnSetupKS.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnSetupKS.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnSetupKS.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnSetupKS.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnSetupKS.Name = "BtnSetupKS"
+        Me.BtnSetupKS.Size = New System.Drawing.Size(737, 32)
+        Me.BtnSetupKS.TabIndex = 28
+        Me.BtnSetupKS.Text = "Setup Koefisien Sold Out"
         '
         'FormStoreDisplayDet
         '
@@ -917,7 +969,6 @@ Partial Class FormStoreDisplayDet
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1008, 561)
         Me.Controls.Add(Me.XTCDetail)
-        Me.Controls.Add(Me.GroupControlRemark)
         Me.Controls.Add(Me.PanelControlBottom)
         Me.Controls.Add(Me.PanelControlTitle)
         Me.Controls.Add(Me.PanelControlNo)
@@ -948,22 +999,26 @@ Partial Class FormStoreDisplayDet
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCDetail.ResumeLayout(False)
-        Me.XTPSeason.ResumeLayout(False)
-        CType(Me.GCSeason, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVSeason, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Repokoefsoldout, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPOrderDetail.ResumeLayout(False)
         CType(Me.XTCProduct, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCProduct.ResumeLayout(False)
         Me.XTPItemList.ResumeLayout(False)
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepoSelectDesign, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTPOrderSummary.ResumeLayout(False)
-        CType(Me.GCSum, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVSum, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GroupControlRemark, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControlRemark.ResumeLayout(False)
+        CType(RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCPropose, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCPropose.ResumeLayout(False)
+        Me.XTPSummary.ResumeLayout(False)
+        Me.XTPDetail.ResumeLayout(False)
+        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.XTPKoefSoldOut.ResumeLayout(False)
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl2.ResumeLayout(False)
+        CType(Me.GCKalkulasiKS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVKalkulasiKS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1000,14 +1055,8 @@ Partial Class FormStoreDisplayDet
     Friend WithEvents XTPOrderDetail As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTCProduct As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPItemList As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XTPOrderSummary As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XTPDisplayAllocation As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCDetail As DevExpress.XtraGrid.GridControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
-    Friend WithEvents GroupControlRemark As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents BtnXLSSum As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GCSum As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVSum As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GVDetail As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents BandedGridColumnseason_del As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumncode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -1026,20 +1075,27 @@ Partial Class FormStoreDisplayDet
     Friend WithEvents BandedGridColumnpps_ref_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnis_selected_view As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents RepoSelectDesign As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BandedGridColumnis_selected_status As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnid_display_pps_ref As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnis_selected As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnis_selected_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents XTPSeason As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GCSeason As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVSeason As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnid_display_pps_season As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnid_season As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnid_delivery As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnseason_desc As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnkoef_sold_out As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents Repokoefsoldout As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents GridColumnis_extra_sku As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPMasterDisplay As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents BtnXLSDet As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTPExisting As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTCPropose As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPSummary As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPDetail As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents BtnConfirmOrder As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCSummary As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSummary As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnSelectProduct As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnKoefSoldOut As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPKoefSoldOut As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GCKalkulasiKS As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVKalkulasiKS As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents BtnSetupKS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnApplyKS As DevExpress.XtraEditors.SimpleButton
 End Class

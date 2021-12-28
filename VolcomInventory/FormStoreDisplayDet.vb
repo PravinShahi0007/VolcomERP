@@ -55,7 +55,6 @@
             MaximizeBox = False
             'FormBorderStyle = FormBorderStyle.FixedDialog
             StartPosition = FormStartPosition.CenterScreen
-            GroupControlRemark.Visible = False
             PanelControlBottom.Visible = False
             PanelControlNo.Visible = False
             'location form
@@ -89,7 +88,6 @@
             is_confirm = data.Rows(0)("is_confirm").ToString
 
             'detail
-            viewDetailSeason()
             viewDetail()
             allow_status()
 
@@ -220,24 +218,24 @@
         FormStoreDisplay.GVPPS.FocusedRowHandle = find_row(FormStoreDisplay.GVPPS, "id_display_pps", id)
     End Sub
 
-    Sub viewDetailSeason()
-        Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT ps.id_display_pps_season, IFNULL(ps.id_season,0) AS `id_season`, IFNULL(ps.id_delivery,0) AS `id_delivery`,
-        'EXTRA SKU' AS `season_desc`, ps.koef_sold_out, ps.is_extra_sku, ps.is_add
-        FROM tb_display_pps_season ps 
-        WHERE ps.is_extra_sku=1 AND ps.id_display_pps=" + id + "
-        UNION ALL
-        SELECT ps.id_display_pps_season, ps.id_season, ps.id_delivery,
-        CONCAT(ss.season,' D',sd.delivery) AS `season_desc`, ps.koef_sold_out, ps.is_extra_sku, ps.is_add
-        FROM tb_display_pps_season ps 
-        INNER JOIN tb_season ss ON ss.id_season = ps.id_season
-        INNER JOIN tb_season_delivery sd ON sd.id_delivery = ps.id_delivery
-        WHERE ps.is_extra_sku=2 AND ps.id_display_pps=" + id + " "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCSeason.DataSource = data
-        GVSeason.BestFitColumns()
-        Cursor = Cursors.Default
-    End Sub
+    'Sub viewDetailSeason()
+    '    Cursor = Cursors.WaitCursor
+    '    Dim query As String = "SELECT ps.id_display_pps_season, IFNULL(ps.id_season,0) AS `id_season`, IFNULL(ps.id_delivery,0) AS `id_delivery`,
+    '    'EXTRA SKU' AS `season_desc`, ps.koef_sold_out, ps.is_extra_sku, ps.is_add
+    '    FROM tb_display_pps_season ps 
+    '    WHERE ps.is_extra_sku=1 AND ps.id_display_pps=" + id + "
+    '    UNION ALL
+    '    SELECT ps.id_display_pps_season, ps.id_season, ps.id_delivery,
+    '    CONCAT(ss.season,' D',sd.delivery) AS `season_desc`, ps.koef_sold_out, ps.is_extra_sku, ps.is_add
+    '    FROM tb_display_pps_season ps 
+    '    INNER JOIN tb_season ss ON ss.id_season = ps.id_season
+    '    INNER JOIN tb_season_delivery sd ON sd.id_delivery = ps.id_delivery
+    '    WHERE ps.is_extra_sku=2 AND ps.id_display_pps=" + id + " "
+    '    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+    '    GCSeason.DataSource = data
+    '    GVSeason.BestFitColumns()
+    '    Cursor = Cursors.Default
+    'End Sub
 
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
@@ -262,7 +260,6 @@
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
         BtnXLSDet.Visible = True
-        BtnXLSSum.Visible = True
         SLESeason.Enabled = False
         SLEComp.Enabled = False
         If is_confirm = "2" And is_view = "-1" Then
@@ -336,7 +333,6 @@
         saveHead()
 
         'detail
-        saveDetailSeason()
         saveDetail()
 
         'view
@@ -530,17 +526,17 @@
         End If
     End Sub
 
-    Sub saveDetailSeason()
-        If action = "upd" And is_confirm = "2" Then
-            Cursor = Cursors.WaitCursor
-            makeSafeGV(GVSeason)
-            For i As Integer = 0 To GVSeason.RowCount - 1
-                Dim id_display_pps_season As String = GVSeason.GetRowCellValue(i, "id_display_pps_season").ToString
-                Dim koef_sold_out As String = decimalSQL(GVSeason.GetRowCellValue(i, "koef_sold_out").ToString)
-                Dim query As String = "UPDATE tb_display_pps_season SET koef_sold_out='" + koef_sold_out + "' WHERE id_display_pps_season='" + id_display_pps_season + "' "
-                execute_non_query(query, True, "", "", "", "")
-            Next
-            Cursor = Cursors.Default
-        End If
-    End Sub
+    'Sub saveDetailSeason()
+    '    If action = "upd" And is_confirm = "2" Then
+    '        Cursor = Cursors.WaitCursor
+    '        makeSafeGV(GVSeason)
+    '        For i As Integer = 0 To GVSeason.RowCount - 1
+    '            Dim id_display_pps_season As String = GVSeason.GetRowCellValue(i, "id_display_pps_season").ToString
+    '            Dim koef_sold_out As String = decimalSQL(GVSeason.GetRowCellValue(i, "koef_sold_out").ToString)
+    '            Dim query As String = "UPDATE tb_display_pps_season SET koef_sold_out='" + koef_sold_out + "' WHERE id_display_pps_season='" + id_display_pps_season + "' "
+    '            execute_non_query(query, True, "", "", "", "")
+    '        Next
+    '        Cursor = Cursors.Default
+    '    End If
+    'End Sub
 End Class
