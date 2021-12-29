@@ -197,10 +197,11 @@
             execute_non_query(qss, True, "", "", "", "")
 
             'default master display
-            Dim qmd As String = "INSERT INTO tb_display_pps_store(id_display_pps, id_display_master, id_class_group, id_display_type, qty, capacity)
-            SELECT " + id + ", dm.id_display_master, dm.id_class_group, dm.id_display_type, dm.qty, da.capacity
+            Dim qmd As String = "INSERT INTO tb_display_pps_store(id_display_pps, id_display_master, id_class_group, id_display_type, qty, capacity,estimasi_sku)
+            SELECT " + id + ", dm.id_display_master, dm.id_class_group, dm.id_display_type, dm.qty, da.capacity, cg.estimasi_sku
             FROM tb_display_master dm 
             INNER JOIN tb_display_alloc da ON da.id_display_type = dm.id_display_type AND da.id_class_group = dm.id_class_group
+            INNER JOIN tb_class_group cg ON cg.id_class_group = dm.id_class_group
             WHERE dm.is_active=1 AND dm.id_comp=" + id_comp + " AND dm.qty>0 "
             execute_non_query(qmd, True, "", "", "", "")
 
@@ -270,7 +271,7 @@
         Next
         Dim query As String = "SELECT dps.id_class_group AS `GROUP INFO|id_class_group`, cg.class_group AS `GROUP INFO|CLASS`, dv.display_name AS `GROUP INFO|DIVISION`, cc.class_cat AS `GROUP INFO|CATEGORY`,
         " + coldt + ",
-        (" + col_tot_capacity + ") AS `TOTAL|TOTAL DISPLAY`,  (" + col_tot_capacity + ")/2 AS `TOTAL|ESTIMASI SKU (@2 size)`
+        (" + col_tot_capacity + ") AS `TOTAL|TOTAL DISPLAY`,  (" + col_tot_capacity + ")/dps.estimasi_sku AS `TOTAL|ESTIMASI SKU`
         FROM tb_display_pps_store dps
         INNER JOIN tb_class_group cg ON cg.id_class_group = dps.id_class_group
         INNER JOIN tb_class_cat cc ON cc.id_class_cat = cg.id_class_cat
