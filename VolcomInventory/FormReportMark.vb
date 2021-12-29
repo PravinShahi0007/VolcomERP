@@ -9420,6 +9420,20 @@ WHERE (pnsd.id_pn_summary_type=1 OR pnsd.id_pn_summary_type=3) AND pnsd.id_pn_su
             'update status
             query = String.Format("UPDATE tb_pn_summary SET id_report_status='{0}' WHERE id_pn_summary ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "252" Then
+            'KO
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'complete 
+                execute_non_query("UPDATE tb_prod_order_ko SET is_locked=1 WHERE id_prod_order_ko='" & id_report & "'", True, "", "", "", "")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_prod_order_ko SET id_report_status='{0}' WHERE id_prod_order_ko ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         ElseIf report_mark_type = "254" Then
             'volcom store sales
             'auto completed
@@ -11154,6 +11168,44 @@ WHERE ppsd.id_pib_pps='" & id_report & "'"
             End If
 
             query = String.Format("UPDATE tb_ets SET id_report_status = '{0}' WHERE id_ets = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "374" Then
+            'fgpo attach
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'id_fgpo
+                Dim q As String = "SELECT id_prod_order FROM tb_prod_order_attach WHERE id_prod_order_attach='" & id_report & "'"
+                Dim id_fgpo As String = execute_query(q, 0, True, "", "", "", "")
+
+                '-- clean file
+                Dim q_ins As String = "DELETE FROM tb_doc WHERE id_report='" & id_fgpo & "' AND report_mark_type='382'"
+                execute_non_query(q_ins, True, "", "", "", "")
+
+                'upload file
+                Dim qfile As String = "SELECT id_doc,doc_desc,'382' AS report_mark_type,'" & id_fgpo & "' AS id_report,`datetime`,ext,id_user_upload,is_encrypted 
+FROM tb_doc 
+WHERE id_report='" & id_report & "' AND report_mark_type='374'"
+                Dim dtfile As DataTable = execute_query(qfile, -1, True, "", "", "", "")
+                If dtfile.Rows.Count > 0 Then
+                    '-- add file
+                    q_ins = "INSERT INTO tb_doc(doc_desc,report_mark_type,id_report,`datetime`,ext,id_user_upload,is_encrypted)
+VALUES('" & dtfile.Rows(0)("doc_desc").ToString & "','" & dtfile.Rows(0)("report_mark_type").ToString & "','" & dtfile.Rows(0)("id_report").ToString & "','" & dtfile.Rows(0)("datetime").ToString & "','" & dtfile.Rows(0)("ext").ToString & "','" & dtfile.Rows(0)("id_user_upload").ToString & "','" & dtfile.Rows(0)("is_encrypted").ToString & "'); SELECT LAST_INSERT_ID(); "
+                    Dim last_id As String = execute_query(q_ins, 0, True, "", "", "", "")
+                    '-- transfer file
+                    Dim directory_upload As String = get_setup_field("upload_dir")
+                    Dim path As String = directory_upload & "382" & "\"
+                    Dim path_dl As String = directory_upload & "374" & "\"
+                    If Not IO.Directory.Exists(path) Then
+                        IO.Directory.CreateDirectory(path)
+                    End If
+                    My.Computer.Network.UploadFile(path_dl & dtfile.Rows(0)("id_doc").ToString & "_374_" & id_report & dtfile.Rows(0)("ext").ToString, path & last_id & "_382_" & id_fgpo & dtfile.Rows(0)("ext").ToString, "", "", True, 100, True)
+                End If
+            End If
+
+            query = String.Format("UPDATE tb_prod_order_attach SET id_report_status = '{0}' WHERE id_prod_order_attach = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         ElseIf report_mark_type = "375" Then
             'sop pps
