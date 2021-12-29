@@ -1355,6 +1355,32 @@ GROUP BY dn.`id_debit_note`"
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                 Next
                 calculate_amount()
+            ElseIf report_mark_type = "293" Then 'summary ppn
+                For i As Integer = 0 To FormBankWithdrawal.GVSummaryPPN.RowCount - 1
+                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "id_report").ToString
+                    newRow("report_mark_type") = "293"
+                    newRow("id_acc") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "id_acc").ToString
+                    newRow("acc_name") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "acc_name").ToString
+                    newRow("acc_description") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "acc_description").ToString
+                    newRow("vendor") = "000"
+                    newRow("id_dc") = If(FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "dc").ToString = "D", "1", "2")
+                    newRow("dc_code") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "dc").ToString
+                    newRow("id_comp") = "1"
+                    newRow("comp_number") = "000"
+                    newRow("number") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "no").ToString
+                    newRow("total_pay") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "jumlah")
+                    newRow("kurs") = 1
+                    newRow("id_currency") = "1"
+                    newRow("currency") = "Rp"
+                    newRow("val_bef_kurs") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "jumlah")
+                    newRow("value") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "jumlah")
+                    newRow("value_view") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "jumlah")
+                    newRow("balance_due") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "jumlah")
+                    newRow("note") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "period").ToString
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                Next
+                calculate_amount()
             End If
 
             If is_buy_valas Then

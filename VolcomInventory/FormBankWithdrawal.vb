@@ -891,6 +891,8 @@ WHERE c.id_comp='" & SLEVendorExpense.EditValue & "'"
             view_vs()
         ElseIf XTCPO.SelectedTabPage.Name = "XTPSummaryPPH" Then
             view_summary_pph()
+        ElseIf XTCPO.SelectedTabPage.Name = "XTPSummaryPPN" Then
+            view_summary_ppn()
         End If
     End Sub
 
@@ -1723,5 +1725,29 @@ GROUP BY ed.id_prepaid_expense ORDER BY e.id_prepaid_expense DESC "
         End If
 
         GVSummaryPPH.ActiveFilterString = ""
+    End Sub
+
+    Sub view_summary_ppn()
+        Dim query As String = "CALL view_summary_ppn_bbk()"
+
+        GCSummaryPPN.DataSource = execute_query(query, -1, True, "", "", "", "")
+
+        GVSummaryPPN.BestFitColumns()
+    End Sub
+
+    Private Sub SBPaymentSummaryPPN_Click(sender As Object, e As EventArgs) Handles SBPaymentSummaryPPN.Click
+        GVSummaryPPN.ActiveFilterString = ""
+        GVSummaryPPN.ActiveFilterString = "[is_checked]='yes'"
+
+        If GVSummaryPPN.RowCount > 0 Then
+            FormBankWithdrawalDet.id_pay_type = "2"
+            FormBankWithdrawalDet.report_mark_type = "293"
+            FormBankWithdrawalDet.id_coa_tag = GVSummaryPPN.GetRowCellValue(0, "id_coa_tag").ToString
+            FormBankWithdrawalDet.ShowDialog()
+        Else
+            warningCustom("Please select item first.")
+        End If
+
+        GVSummaryPPN.ActiveFilterString = ""
     End Sub
 End Class
