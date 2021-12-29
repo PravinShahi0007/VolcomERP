@@ -88,6 +88,7 @@
             is_confirm = data.Rows(0)("is_confirm").ToString
 
             'detail
+            viewDisplayPlanning
             viewDetail()
             allow_status()
 
@@ -195,6 +196,14 @@
             ORDER BY id_season ASC "
             execute_non_query(qss, True, "", "", "", "")
 
+            'default master display
+            Dim qmd As String = "INSERT INTO tb_display_pps_store(id_display_pps, id_display_master, id_class_group, id_display_type, qty, capacity)
+            SELECT " + id + ", dm.id_display_master, dm.id_class_group, dm.id_display_type, dm.qty, da.capacity
+            FROM tb_display_master dm 
+            INNER JOIN tb_display_alloc da ON da.id_display_type = dm.id_display_type AND da.id_class_group = dm.id_class_group
+            WHERE dm.is_active=1 AND dm.id_comp=" + id_comp + " AND dm.qty>0 "
+            execute_non_query(qmd, True, "", "", "", "")
+
             'gen number
             execute_non_query("CALL gen_number(" + id + ", " + rmt + ")", True, "", "", "", "")
 
@@ -236,6 +245,107 @@
     '    GVSeason.BestFitColumns()
     '    Cursor = Cursors.Default
     'End Sub
+
+    Sub viewDisplayPlanning()
+        Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading display planning")
+        Dim qdt As String = "SELECT dt.id_display_type, dt.display_type 
+        FROM tb_display_type dt
+        WHERE dt.is_display_alloc=1
+        ORDER BY dt.display_type ASC "
+        Dim ddt As DataTable = execute_query(qdt, -1, True, "", "", "", "")
+        Dim coldt As String = ""
+        Dim col_tot_capacity = ""
+        For i As Integer = 0 To ddt.Rows.Count - 1
+            If i > 0 Then
+                coldt += ","
+                col_tot_capacity += "+"
+            End If
+            coldt += "IFNULL(SUM(CASE WHEN dps.id_display_type=" + ddt.Rows(i)("id_display_type").ToString + " THEN dps.qty END),0)  AS `" + ddt.Rows(i)("display_type").ToString + "|QTY`,
+            IFNULL(SUM(CASE WHEN dps.id_display_type=" + ddt.Rows(i)("id_display_type").ToString + " THEN dps.qty END),0) * IFNULL(MAX(CASE WHEN dps.id_display_type=" + ddt.Rows(i)("id_display_type").ToString + " THEN dps.capacity END),0) AS `" + ddt.Rows(i)("display_type").ToString + "|CAPACITY` "
+            col_tot_capacity += "IFNULL(SUM(CASE WHEN dps.id_display_type=" + ddt.Rows(i)("id_display_type").ToString + " THEN dps.qty END),0) * IFNULL(MAX(CASE WHEN dps.id_display_type=" + ddt.Rows(i)("id_display_type").ToString + " THEN dps.capacity END),0) "
+        Next
+        Dim query As String = "SELECT dps.id_class_group AS `GROUP INFO|id_class_group`, cg.class_group AS `GROUP INFO|CLASS`, dv.display_name AS `GROUP INFO|DIVISION`, cc.class_cat AS `GROUP INFO|CATEGORY`,
+        " + coldt + ",
+        (" + col_tot_capacity + ") AS `TOTAL|TOTAL DISPLAY`,  (" + col_tot_capacity + ")/2 AS `TOTAL|ESTIMASI SKU (@2 size)`
+        FROM tb_display_pps_store dps
+        INNER JOIN tb_class_group cg ON cg.id_class_group = dps.id_class_group
+        INNER JOIN tb_class_cat cc ON cc.id_class_cat = cg.id_class_cat
+        INNER JOIN tb_m_code_detail dv ON dv.id_code_detail = cg.id_division
+        WHERE dps.id_display_pps=" + id + "
+        GROUP BY dps.id_class_group
+        ORDER BY dv.display_name ASC,cc.class_cat, cg.class_group "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDisplayPlanning.DataSource = data
+
+        'clear band
+        GVDisplayPlanning.Bands.Clear()
+        GVDisplayPlanning.Columns.Clear()
+
+        'array kolom
+        Dim column As List(Of String) = New List(Of String)
+        For i = 0 To data.Columns.Count - 1
+            Dim bandName As String = data.Columns(i).Caption.Split("|")(0)
+
+            If Not column.Contains(bandName) Then
+                column.Add(bandName)
+            End If
+        Next
+
+        'setu band
+        For i = 0 To column.Count - 1
+            Dim band As DevExpress.XtraGrid.Views.BandedGrid.GridBand = New DevExpress.XtraGrid.Views.BandedGrid.GridBand
+
+            band.Caption = column(i)
+
+            GVDisplayPlanning.Bands.Add(band)
+
+            For j = 0 To data.Columns.Count - 1
+                Dim bandName As String = data.Columns(j).Caption.Split("|")(0)
+                Dim coluName As String = data.Columns(j).Caption.Split("|")(1)
+
+                If bandName = column(i) Then
+                    Dim col As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+
+                    col.Caption = coluName
+                    col.VisibleIndex = j
+                    col.FieldName = data.Columns(j).Caption
+
+                    band.Columns.Add(col)
+
+                    If data.Columns(j).Caption = "GROUP INFO|DIVISION" Or data.Columns(j).Caption = "GROUP INFO|CATEGORY" Then
+                        col.Group()
+                    End If
+
+                    If Not bandName.Contains("INFO") Then
+                        'display format
+                        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        col.DisplayFormat.FormatString = "{0:n2}"
+
+                        'summary
+                        col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        col.SummaryItem.DisplayFormat = "{0:n2}"
+
+
+                        'group summary
+                        Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
+                        summary.DisplayFormat = "{0:N2}"
+                        summary.FieldName = data.Columns(j).Caption
+                        summary.ShowInGroupColumnFooter = col
+                        summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        GVDisplayPlanning.GroupSummary.Add(summary)
+                    End If
+                End If
+            Next
+        Next
+        GVDisplayPlanning.Columns("GROUP INFO|id_class_group").Visible = False
+        GVDisplayPlanning.BestFitColumns()
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
+    End Sub
 
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
