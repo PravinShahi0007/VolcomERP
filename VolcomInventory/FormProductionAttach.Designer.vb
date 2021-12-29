@@ -42,6 +42,7 @@ Partial Class FormProductionAttach
         Me.BShowPO = New DevExpress.XtraEditors.SimpleButton()
         Me.XTMDI = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
         Me.BAttachPPS = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PCSubmit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCSubmit.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -206,7 +207,7 @@ Partial Class FormProductionAttach
         '
         'SearchLookUpEdit1View
         '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -231,6 +232,7 @@ Partial Class FormProductionAttach
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0
+        Me.GridColumn3.Width = 1263
         '
         'BShowPO
         '
@@ -274,6 +276,15 @@ Partial Class FormProductionAttach
         Me.BAttachPPS.TabIndex = 15
         Me.BAttachPPS.Text = "Add Attachment"
         Me.BAttachPPS.Visible = False
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Design Code"
+        Me.GridColumn4.FieldName = "design_code"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 1
+        Me.GridColumn4.Width = 369
         '
         'FormProductionAttach
         '
@@ -330,4 +341,5 @@ Partial Class FormProductionAttach
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

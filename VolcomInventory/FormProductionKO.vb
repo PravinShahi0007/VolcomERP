@@ -5,7 +5,6 @@
     Dim is_void As String = "2"
     Public is_view As String = "-1"
     Public is_purc_mat As String = "2"
-    Public is_view As String = "-1"
 
     Private Sub FormProductionKO_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
