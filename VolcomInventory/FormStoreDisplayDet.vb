@@ -88,13 +88,21 @@
             MENote.Text = data.Rows(0)("note").ToString
             is_confirm = data.Rows(0)("is_confirm").ToString
 
-            'cek class mapping - aktifkan saat live
-            'checkClassGroup()
-
             'detail
             viewDetailSeason()
             viewDetail()
             allow_status()
+
+            'cek class mapping - aktifkan saat live
+            'checkClassGroup()
+
+            'cek status toko
+            Dim store_stt As String = execute_query("SELECT IFNULL(c.is_active,0) AS `is_active` FROM tb_m_comp c WHERE c.id_comp='" + SLEComp.EditValue.ToString + "'", 0, True, "", "", "", "")
+            If store_stt <> "1" Then
+                warningCustom("Display toko tidak bisa diproses karena status toko tidak aktif")
+                Cursor = Cursors.Default
+                Close()
+            End If
         End If
         Cursor = Cursors.Default
     End Sub

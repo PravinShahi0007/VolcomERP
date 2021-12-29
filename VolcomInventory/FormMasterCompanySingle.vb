@@ -422,7 +422,7 @@ WHERE comp.id_comp = '{0}'", id_company)
             'store display capacity
             viewDisplayCapacity()
             viewDCHist()
-            Dim is_show_display_capacity As String = "2"
+            Dim is_show_display_capacity As String = get_setup_field("is_show_display_capacity")
             If is_show_display_capacity = "2" Then
                 GroupControlDC.Visible = False
             End If
@@ -1672,19 +1672,23 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
         Dim dt As DataTable = execute_query(qt, -1, True, "", "", "", "")
         Dim col_type1 As String = ""
         Dim col_type2 As String = ""
+        Dim col_tot_capacity As String = ""
         For i As Integer = 0 To dt.Rows.Count - 1
             If i > 0 Then
                 col_type1 += ","
                 col_type2 += ","
+                col_tot_capacity += "+"
             End If
-            col_type1 += "(CASE WHEN a.id_display_type=" + dt.Rows(i)("id_display_type").ToString + " THEN dm.qty END) AS `" + dt.Rows(i)("display_type").ToString + "|QTY`, 
-            (CASE WHEN a.id_display_type=" + dt.Rows(i)("id_display_type").ToString + " THEN dm.qty END) * (CASE WHEN a.id_display_type=" + dt.Rows(i)("id_display_type").ToString + " THEN a.capacity END)  AS `" + dt.Rows(i)("display_type").ToString + "|CAPACITY`"
+            col_type1 += "SUM(CASE WHEN a.id_display_type=" + dt.Rows(i)("id_display_type").ToString + " THEN dm.qty END) AS `" + dt.Rows(i)("display_type").ToString + "|QTY`, 
+            SUM((CASE WHEN a.id_display_type=" + dt.Rows(i)("id_display_type").ToString + " THEN dm.qty END) * (CASE WHEN a.id_display_type=" + dt.Rows(i)("id_display_type").ToString + " THEN a.capacity END))  AS `" + dt.Rows(i)("display_type").ToString + "|CAPACITY`"
             col_type2 += "IFNULL(a.`" + dt.Rows(i)("display_type").ToString + "|QTY`,0) AS `" + dt.Rows(i)("display_type").ToString + "|QTY`, 
             IFNULL(a.`" + dt.Rows(i)("display_type").ToString + "|CAPACITY`,0) AS `" + dt.Rows(i)("display_type").ToString + "|CAPACITY` "
+            col_tot_capacity += "IFNULL(a.`" + dt.Rows(i)("display_type").ToString + "|CAPACITY`,0) "
         Next
 
         Dim query As String = "SELECT cg.id_class_group AS `GROUP INFO|id_class_group`,dv.display_name AS `GROUP INFO|DIVISION`, 
         ct.class_type AS `GROUP INFO|TYP`, UPPER(cat.class_cat) AS `GROUP INFO|CATEGORY`, cg.class_group AS `GROUP INFO|CLASS`,
+        (" + col_tot_capacity + ") AS `TOTAL|CAPACITY`,
         " + col_type2 + ",
         0 AS `CHECK QTY|BOOKED QTY`, '' AS `CHECK QTY|NOTE`
         FROM tb_class_group cg
@@ -1773,7 +1777,7 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
 
     Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
         If LEStatus.EditValue.ToString <> "3" Then
-            warningCustom("Klik 'Reset' jika ingin melakukan perubahan")
+            warningCustom("Klik 'Reset' jika ingin melakukan perubahan master kapasitas toko")
             Exit Sub
         End If
 
