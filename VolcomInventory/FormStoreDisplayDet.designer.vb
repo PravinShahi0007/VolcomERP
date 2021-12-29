@@ -99,6 +99,8 @@ Partial Class FormStoreDisplayDet
         Me.GVKalkulasiKS = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.BtnSetupKS = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnApplyKS = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEInStoreDate = New DevExpress.XtraEditors.DateEdit()
         CType(Me.RepoSelectDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUpdated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,6 +145,8 @@ Partial Class FormStoreDisplayDet
         Me.GroupControl2.SuspendLayout()
         CType(Me.GCKalkulasiKS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVKalkulasiKS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEInStoreDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEInStoreDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepoSelectDesign
@@ -297,6 +301,8 @@ Partial Class FormStoreDisplayDet
         '
         'PanelControlTitle
         '
+        Me.PanelControlTitle.Controls.Add(Me.DEInStoreDate)
+        Me.PanelControlTitle.Controls.Add(Me.LabelControl9)
         Me.PanelControlTitle.Controls.Add(Me.SLESeason)
         Me.PanelControlTitle.Controls.Add(Me.SLEComp)
         Me.PanelControlTitle.Controls.Add(Me.BtnCreateNew)
@@ -305,7 +311,7 @@ Partial Class FormStoreDisplayDet
         Me.PanelControlTitle.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlTitle.Location = New System.Drawing.Point(208, 0)
         Me.PanelControlTitle.Name = "PanelControlTitle"
-        Me.PanelControlTitle.Size = New System.Drawing.Size(800, 74)
+        Me.PanelControlTitle.Size = New System.Drawing.Size(800, 110)
         Me.PanelControlTitle.TabIndex = 8940
         '
         'SLESeason
@@ -316,7 +322,7 @@ Partial Class FormStoreDisplayDet
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
         Me.SLESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLESeason.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLESeason.Size = New System.Drawing.Size(175, 24)
+        Me.SLESeason.Size = New System.Drawing.Size(311, 24)
         Me.SLESeason.TabIndex = 8928
         '
         'SearchLookUpEdit1View
@@ -330,13 +336,13 @@ Partial Class FormStoreDisplayDet
         '
         Me.SLEComp.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SLEComp.Location = New System.Drawing.Point(284, 12)
+        Me.SLEComp.Location = New System.Drawing.Point(63, 42)
         Me.SLEComp.Name = "SLEComp"
         Me.SLEComp.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEComp.Properties.Appearance.Options.UseFont = True
         Me.SLEComp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEComp.Properties.View = Me.GridView1
-        Me.SLEComp.Size = New System.Drawing.Size(495, 24)
+        Me.SLEComp.Size = New System.Drawing.Size(714, 24)
         Me.SLEComp.TabIndex = 8933
         '
         'GridView1
@@ -352,7 +358,7 @@ Partial Class FormStoreDisplayDet
         Me.BtnCreateNew.Image = CType(resources.GetObject("BtnCreateNew.Image"), System.Drawing.Image)
         Me.BtnCreateNew.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
         Me.BtnCreateNew.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
-        Me.BtnCreateNew.Location = New System.Drawing.Point(2, 49)
+        Me.BtnCreateNew.Location = New System.Drawing.Point(2, 85)
         Me.BtnCreateNew.Name = "BtnCreateNew"
         Me.BtnCreateNew.Size = New System.Drawing.Size(796, 23)
         Me.BtnCreateNew.TabIndex = 8926
@@ -362,7 +368,7 @@ Partial Class FormStoreDisplayDet
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(245, 15)
+        Me.LabelControl7.Location = New System.Drawing.Point(13, 45)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(34, 18)
         Me.LabelControl7.TabIndex = 8932
@@ -529,10 +535,10 @@ Partial Class FormStoreDisplayDet
         Me.XTCDetail.AppearancePage.HeaderDisabled.Options.UseFont = True
         Me.XTCDetail.AppearancePage.HeaderDisabled.Options.UseForeColor = True
         Me.XTCDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCDetail.Location = New System.Drawing.Point(208, 74)
+        Me.XTCDetail.Location = New System.Drawing.Point(208, 110)
         Me.XTCDetail.Name = "XTCDetail"
         Me.XTCDetail.SelectedTabPage = Me.XTPMasterDisplay
-        Me.XTCDetail.Size = New System.Drawing.Size(800, 428)
+        Me.XTCDetail.Size = New System.Drawing.Size(800, 392)
         Me.XTCDetail.TabIndex = 8943
         Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMasterDisplay, Me.XTPExisting, Me.XTPOrderDetail})
         '
@@ -541,7 +547,7 @@ Partial Class FormStoreDisplayDet
         Me.XTPMasterDisplay.Controls.Add(Me.GCDisplayPlanning)
         Me.XTPMasterDisplay.Image = CType(resources.GetObject("XTPMasterDisplay.Image"), System.Drawing.Image)
         Me.XTPMasterDisplay.Name = "XTPMasterDisplay"
-        Me.XTPMasterDisplay.Size = New System.Drawing.Size(794, 397)
+        Me.XTPMasterDisplay.Size = New System.Drawing.Size(794, 361)
         Me.XTPMasterDisplay.Text = "Display Planning"
         '
         'GCDisplayPlanning
@@ -550,7 +556,7 @@ Partial Class FormStoreDisplayDet
         Me.GCDisplayPlanning.Location = New System.Drawing.Point(0, 0)
         Me.GCDisplayPlanning.MainView = Me.GVDisplayPlanning
         Me.GCDisplayPlanning.Name = "GCDisplayPlanning"
-        Me.GCDisplayPlanning.Size = New System.Drawing.Size(794, 397)
+        Me.GCDisplayPlanning.Size = New System.Drawing.Size(794, 361)
         Me.GCDisplayPlanning.TabIndex = 0
         Me.GCDisplayPlanning.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDisplayPlanning})
         '
@@ -994,6 +1000,32 @@ Partial Class FormStoreDisplayDet
         Me.BtnApplyKS.TabIndex = 27
         Me.BtnApplyKS.Text = "Apply"
         '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(380, 15)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(89, 18)
+        Me.LabelControl9.TabIndex = 8934
+        Me.LabelControl9.Text = "In Store Date"
+        '
+        'DEInStoreDate
+        '
+        Me.DEInStoreDate.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DEInStoreDate.EditValue = Nothing
+        Me.DEInStoreDate.Enabled = False
+        Me.DEInStoreDate.Location = New System.Drawing.Point(475, 12)
+        Me.DEInStoreDate.Name = "DEInStoreDate"
+        Me.DEInStoreDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DEInStoreDate.Properties.Appearance.Options.UseFont = True
+        Me.DEInStoreDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEInStoreDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEInStoreDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEInStoreDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEInStoreDate.Size = New System.Drawing.Size(302, 24)
+        Me.DEInStoreDate.TabIndex = 8935
+        '
         'FormStoreDisplayDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1053,6 +1085,8 @@ Partial Class FormStoreDisplayDet
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.GCKalkulasiKS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVKalkulasiKS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEInStoreDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEInStoreDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1135,4 +1169,6 @@ Partial Class FormStoreDisplayDet
     Friend WithEvents RepoSelectDesign As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GCDisplayPlanning As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVDisplayPlanning As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents DEInStoreDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
 End Class

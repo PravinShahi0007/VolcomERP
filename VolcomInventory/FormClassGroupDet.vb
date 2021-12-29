@@ -6,13 +6,15 @@
         viewType()
         viewCat()
         viewClass()
+        TxtEstimasiSKU.EditValue = 2
         If id_class_group <> "-1" Then
-            Dim query As String = "SELECT class_group, id_division, id_class_type, id_class_cat FROM tb_class_group cg WHERE cg.id_class_group=" + id_class_group + ""
+            Dim query As String = "SELECT class_group, id_division, id_class_type, id_class_cat, estimasi_sku FROM tb_class_group cg WHERE cg.id_class_group=" + id_class_group + ""
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             TxtGroupName.Text = data.Rows(0)("class_group").ToString
             SLEDivision.EditValue = data.Rows(0)("id_division").ToString
             SLEType.EditValue = data.Rows(0)("id_class_type").ToString
             SLECat.EditValue = data.Rows(0)("id_class_cat").ToString
+            TxtEstimasiSKU.EditValue = data.Rows(0)("estimasi_sku")
             GVData.ActiveFilterString = "[is_select]='Yes'"
             For i As Integer = 0 To GVData.RowCount - 1
                 Dim is_select As String = GVData.GetRowCellValue(i, "is_select").ToString
@@ -70,19 +72,33 @@ FROM tb_m_code_detail cd WHERE cd.id_code IN (SELECT o.id_code_fg_division FROM 
         makeSafeGV(GVData)
         GVData.ActiveFilterString = ""
         GVData.ActiveFilterString = "[is_select]='Yes'"
+
+        'pengecekan bole update ato tidak
+        Dim cond_exist As Boolean = False
+        Dim qcek As String = "SELECT * FROM tb_display_stock dst WHERE dst.id_class_group=" + id_class_group + " "
+        Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+        If dcek.Rows.Count > 0 Then
+            cond_exist = True
+        End If
+
         If GVData.RowCount <= 0 Then
             warningCustom("No item selected")
         ElseIf TxtGroupName.Text = "" Then
             warningCustom("Group name can't blank")
+        ElseIf TxtEstimasiSKU.EditValue <= 0 Then
+            warningCustom("Silahkan isi estimasi SKU")
+        ElseIf cond_exist Then
+            warningCustom("Can't update, because already used")
         Else
             Cursor = Cursors.WaitCursor
             Dim id_division As String = SLEDivision.EditValue.ToString
             Dim id_class_type As String = SLEType.EditValue.ToString
             Dim id_class_cat As String = SLECat.EditValue.ToString
+            Dim estimasi_sku As String = decimalSQL(TxtEstimasiSKU.EditValue.ToString)
 
             If id_class_group = "-1" Then 'new
                 'head
-                Dim query As String = "INSERT INTO tb_class_group(class_group, id_division, id_class_type, id_class_cat) VALUES('" + addSlashes(TxtGroupName.Text) + "', '" + id_division + "', '" + id_class_type + "', '" + id_class_cat + "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_class_group(class_group, id_division, id_class_type, id_class_cat, estimasi_sku) VALUES('" + addSlashes(TxtGroupName.Text) + "', '" + id_division + "', '" + id_class_type + "', '" + id_class_cat + "', '" + estimasi_sku + "'); SELECT LAST_INSERT_ID(); "
                 Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
 
                 'det
@@ -99,7 +115,7 @@ FROM tb_m_code_detail cd WHERE cd.id_code IN (SELECT o.id_code_fg_division FROM 
                 End If
             Else 'update
                 'head 
-                Dim query As String = "UPDATE tb_class_group SET class_group='" + addSlashes(TxtGroupName.Text) + "',id_division='" + id_division + "', id_class_type='" + id_class_type + "', id_class_cat='" + id_class_cat + "' WHERE id_class_group='" + id_class_group + "' "
+                Dim query As String = "UPDATE tb_class_group SET class_group='" + addSlashes(TxtGroupName.Text) + "',id_division='" + id_division + "', id_class_type='" + id_class_type + "', id_class_cat='" + id_class_cat + "', estimasi_sku='" + estimasi_sku + "' WHERE id_class_group='" + id_class_group + "' "
                 execute_non_query(query, True, "", "", "", "")
 
                 'detail

@@ -16,7 +16,7 @@
         p.created_date, p.created_by, ce.employee_name AS `created_by_name`,
         p.updated_date, p.updated_by, ue.employee_name AS `updated_by_name`,
         p.id_comp, c.comp_number, c.comp_name, CONCAT(c.comp_number, ' - ', c.comp_name) AS `comp`, 
-        p.id_season, ss.season, p.id_report_status, stt.report_status, p.note, p.is_confirm
+        p.id_season, ss.season, p.id_report_status, stt.report_status, p.note, p.is_confirm, p.in_store_date
         FROM tb_display_pps p
         INNER JOIN tb_m_user cu ON cu.id_user = p.created_by
         INNER JOIN tb_m_employee ce ON ce.id_employee = cu.id_employee

@@ -28,7 +28,7 @@
         ct.class_type AS `TYP`, UPPER(cat.class_cat) AS `CATEGORY`, cg.class_group AS `CLASS`,
         " + col_type2 + ",
         IFNULL(a.`TOTAL DISPLAY`,0) AS `TOTAL DISPLAY`, 
-        IFNULL(a.`ESTIMASI SKU`,0) AS `ESTIMASI SKU`, l.log_date AS `LAST UPDATED`,l.last_updated_by AS `LAST UPDATED BY`
+        ROUND(IFNULL(a.`TOTAL DISPLAY`,0)/cg.estimasi_sku) AS `ESTIMASI SKU`, l.log_date AS `LAST UPDATED`,l.last_updated_by AS `LAST UPDATED BY`
         FROM tb_class_group cg
         INNER JOIN tb_m_code_detail dv ON dv.id_code_detail = cg.id_division
         INNER JOIN tb_class_type ct ON ct.id_class_type = cg.id_class_type

@@ -13,11 +13,13 @@
 
     Sub viewSeason()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT ss.id_season, rg.`range`, ss.season 
+        Dim query As String = "SELECT ss.id_season, rg.`range`, ss.season, MIN(sd.delivery_date) AS `in_store_date`
         FROM tb_season ss 
         INNER JOIN tb_range rg ON rg.id_range = ss.id_range
+        INNER JOIN tb_season_delivery sd ON sd.id_season = ss.id_season
         WHERE rg.is_md=1
-        ORDER BY `range` DESC "
+        GROUP BY ss.id_season
+        ORDER BY `range` DESC  "
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
         Cursor = Cursors.Default
     End Sub
@@ -48,9 +50,10 @@
         Cursor = Cursors.WaitCursor
         If action = "ins" Then
             'option
+            SLESeason.EditValue = Nothing
             BtnCreateNew.Visible = True
-            Width = 785
-            Height = 110
+            Width = 790
+            Height = 150
             WindowState = FormWindowState.Normal
             MaximizeBox = False
             'FormBorderStyle = FormBorderStyle.FixedDialog
@@ -69,7 +72,7 @@
             Location = New Point(x, y)
         ElseIf action = "upd" Then
             WindowState = FormWindowState.Maximized
-            PanelControlTitle.Height = 58
+            PanelControlTitle.Height = 80
 
             Dim sd As New ClassStoreDisplay()
             Dim query As String = sd.queryMain("AND  p.id_display_pps='" + id + "' ", "1")
@@ -83,12 +86,13 @@
             DEUpdated.EditValue = data.Rows(0)("updated_date")
             TxtUpdatedBy.EditValue = data.Rows(0)("updated_by_name").ToString
             SLESeason.EditValue = data.Rows(0)("id_season").ToString
+            DEInStoreDate.EditValue = data.Rows(0)("in_store_date")
             SLEComp.EditValue = data.Rows(0)("id_comp").ToString
             MENote.Text = data.Rows(0)("note").ToString
             is_confirm = data.Rows(0)("is_confirm").ToString
 
             'detail
-            viewDisplayPlanning
+            viewDisplayPlanning()
             viewDetail()
             allow_status()
 
@@ -160,9 +164,16 @@
 
     Sub saveHead()
         Cursor = Cursors.WaitCursor
+        If SLESeason.EditValue = Nothing Then
+            Cursor = Cursors.Default
+            warningCustom("Please select season first")
+            Exit Sub
+        End If
+
         Dim id_comp As String = SLEComp.EditValue.ToString
         Dim id_season As String = SLESeason.EditValue.ToString
         Dim note As String = addSlashes(MENote.Text)
+        Dim in_store_date As String = DateTime.Parse(DEInStoreDate.EditValue.ToString).ToString("yyyy-MM-dd")
         If action = "ins" Then
             'get old propose
             Dim qget As String = "SELECT p.id_display_pps 
@@ -176,8 +187,8 @@
                 id_display_pps_ref = "NULL"
             End If
 
-            Dim query As String = "INSERT INTO tb_display_pps(number,id_display_pps_ref, created_date, created_by, updated_date, updated_by, id_comp, id_season, id_report_status, is_confirm)
-            VALUES (''," + id_display_pps_ref + ", NOW(), '" + id_user + "', NOW(), '" + id_user + "', '" + id_comp + "', '" + id_season + "',1,2); SELECT LAST_INSERT_ID(); "
+            Dim query As String = "INSERT INTO tb_display_pps(number,id_display_pps_ref, created_date, created_by, updated_date, updated_by, id_comp, id_season, id_report_status, is_confirm, in_store_date)
+            VALUES (''," + id_display_pps_ref + ", NOW(), '" + id_user + "', NOW(), '" + id_user + "', '" + id_comp + "', '" + id_season + "',1,2, '" + in_store_date + "'); SELECT LAST_INSERT_ID(); "
             id = execute_query(query, 0, True, "", "", "", "")
 
             'default season
@@ -271,7 +282,7 @@
         Next
         Dim query As String = "SELECT dps.id_class_group AS `GROUP INFO|id_class_group`, cg.class_group AS `GROUP INFO|CLASS`, dv.display_name AS `GROUP INFO|DIVISION`, cc.class_cat AS `GROUP INFO|CATEGORY`,
         " + coldt + ",
-        (" + col_tot_capacity + ") AS `TOTAL|TOTAL DISPLAY`,  (" + col_tot_capacity + ")/dps.estimasi_sku AS `TOTAL|ESTIMASI SKU`
+        (" + col_tot_capacity + ") AS `TOTAL|TOTAL DISPLAY`,  ROUND((" + col_tot_capacity + ")/dps.estimasi_sku) AS `TOTAL|ESTIMASI SKU`
         FROM tb_display_pps_store dps
         INNER JOIN tb_class_group cg ON cg.id_class_group = dps.id_class_group
         INNER JOIN tb_class_cat cc ON cc.id_class_cat = cg.id_class_cat
@@ -634,6 +645,16 @@
             End If
             GVDetail.ActiveFilterString = ""
             FormMain.SplashScreenManager1.CloseWaitForm()
+        End If
+    End Sub
+
+    Private Sub SLESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLESeason.EditValueChanged
+        If action = "ins" Then
+            Try
+                DEInStoreDate.EditValue = SLESeason.Properties.View.GetFocusedRowCellValue("in_store_date")
+            Catch ex As Exception
+
+            End Try
         End If
     End Sub
 
