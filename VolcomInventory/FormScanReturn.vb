@@ -83,7 +83,7 @@ LEFT JOIN tb_return_note_store st ON st.`id_return_note`=rn.`id_return_note`
 LEFT JOIN tb_m_comp cst ON cst.`id_comp`=st.`id_comp`
 LEFT JOIN 
 (
-	SELECT bapd.`id_return_note`,SUM(bapd.`qty`*IF(bapd.`id_type`=1,1,-1)) AS qty_bap ,GROUP_CONCAT(DISTINCT(bap.`bap_number`) ORDER BY bap.`bap_number` SEPARATOR '\n') AS bap_number
+	SELECT bapd.`id_return_note`,SUM(bapd.`qty`*IF(bapd.`id_type`=1,-1,1)) AS qty_bap ,GROUP_CONCAT(DISTINCT(bap.`bap_number`) ORDER BY bap.`bap_number` SEPARATOR '\n') AS bap_number
 	FROM tb_scan_return_bap_det bapd 
 	INNER JOIN tb_scan_return_bap bap ON bap.`id_scan_return_bap`=bapd.`id_scan_return_bap`
 	GROUP BY bapd.`id_return_note`
