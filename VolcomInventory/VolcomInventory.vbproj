@@ -2905,6 +2905,12 @@
     <Compile Include="FormItemExpenseSNI.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemPps.Designer.vb">
+      <DependentUpon>FormItemPps.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemPps.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemReq.Designer.vb">
       <DependentUpon>FormItemReq.vb</DependentUpon>
     </Compile>
@@ -11992,6 +11998,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemExpenseSNI.resx">
       <DependentUpon>FormItemExpenseSNI.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemPps.resx">
+      <DependentUpon>FormItemPps.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemReq.resx">
       <DependentUpon>FormItemReq.vb</DependentUpon>
