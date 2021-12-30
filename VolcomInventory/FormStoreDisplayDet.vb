@@ -149,6 +149,11 @@
     End Sub
 
     Private Sub BtnCreateNew_Click(sender As Object, e As EventArgs) Handles BtnCreateNew.Click
+        If SLESeason.EditValue = Nothing Or SLEComp.EditValue = Nothing Or DEInStoreDate.EditValue = Nothing Then
+            warningCustom("Please input all data")
+            Exit Sub
+        End If
+
         Dim qcek As String = "SELECT * FROM tb_display_pps p WHERE p.id_comp='" + SLEComp.EditValue.ToString + "' AND p.id_season='" + SLESeason.EditValue.ToString + "'  AND p.id_report_status!=5 "
         Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
 
@@ -216,6 +221,21 @@
             WHERE dm.is_active=1 AND dm.id_comp=" + id_comp + " AND dm.qty>0 "
             execute_non_query(qmd, True, "", "", "", "")
 
+            'default existing product
+            Dim qep As String = "INSERT INTO tb_display_pps_res(id_display_pps, id_season, id_delivery, id_class_group, id_design, qty_curr, qty_pps)
+            SELECT '" + id + "', ds.id_season, ds.id_delivery, ds.id_class_group, ds.id_design, SUM(ds.qty) AS `qty_curr`, SUM(ds.qty) AS `qty_pps`
+            FROM (
+              SELECT ds.id_class_group, ds.id_season, ds.id_delivery,ds.id_design,ds.qty 
+              FROM tb_display_stock ds
+              WHERE ds.is_active=1 AND ds.in_store_date<='" + in_store_date + "' AND ds.id_comp=" + id_comp + "
+              UNION ALL
+              SELECT ds.id_class_group, ds.id_season, ds.id_delivery,ds.id_design,(ds.qty*-1)
+              FROM tb_display_stock ds
+              WHERE ds.is_active=1 AND ds.return_date<='" + in_store_date + "' AND ds.id_comp=" + id_comp + "
+            ) ds
+            GROUP BY ds.id_design "
+            execute_non_query(qep, True, "", "", "", "")
+
             'gen number
             execute_non_query("CALL gen_number(" + id + ", " + rmt + ")", True, "", "", "", "")
 
@@ -265,8 +285,10 @@
         End If
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading display planning")
         Dim qdt As String = "SELECT dt.id_display_type, dt.display_type 
-        FROM tb_display_type dt
-        WHERE dt.is_display_alloc=1
+        FROM tb_display_pps_store dps
+        INNER JOIN tb_display_type dt ON dt.id_display_type = dps.id_display_type
+        WHERE dps.id_display_pps=" + id + "
+        GROUP BY dt.id_display_type
         ORDER BY dt.display_type ASC "
         Dim ddt As DataTable = execute_query(qdt, -1, True, "", "", "", "")
         Dim coldt As String = ""
