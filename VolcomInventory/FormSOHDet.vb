@@ -45,8 +45,18 @@
         End If
     End Sub
     Private Sub BImport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BImport.Click
-        FormImportExcel.id_pop_up = "3"
-        FormImportExcel.ShowDialog()
+        Dim confirm As DialogResult
+
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you suere want to import SOH from erp?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            execute_non_query("CALL import_soh_compare(" + id_soh + ")", True, "", "", "", "")
+
+            action_load()
+        End If
+
+        'FormImportExcel.id_pop_up = "3"
+        'FormImportExcel.ShowDialog()
     End Sub
     Sub load_sum()
         Dim query As String = "CALL view_soh_load_sum('" + id_soh + "') "
