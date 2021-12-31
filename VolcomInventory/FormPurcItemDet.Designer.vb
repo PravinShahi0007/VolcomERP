@@ -23,6 +23,11 @@ Partial Class FormPurcItemDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcItemDet))
         Me.XTCDetail = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.SLEVMItems = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_display_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndisplay_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.MEDefDesc = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
@@ -113,14 +118,11 @@ Partial Class FormPurcItemDet
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEVMItems = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnid_display_type = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumndisplay_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDetail.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
+        CType(Me.SLEVMItems.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEDefDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEConvertion.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEUOMStock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -162,8 +164,6 @@ Partial Class FormPurcItemDet
         CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEVMItems.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCDetail
@@ -207,6 +207,48 @@ Partial Class FormPurcItemDet
         Me.XtraTabPage1.Name = "XtraTabPage1"
         Me.XtraTabPage1.Size = New System.Drawing.Size(506, 379)
         Me.XtraTabPage1.Text = "Detail"
+        '
+        'SLEVMItems
+        '
+        Me.SLEVMItems.Location = New System.Drawing.Point(317, 278)
+        Me.SLEVMItems.Name = "SLEVMItems"
+        Me.SLEVMItems.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVMItems.Properties.View = Me.GridView8
+        Me.SLEVMItems.Size = New System.Drawing.Size(159, 20)
+        Me.SLEVMItems.TabIndex = 8919
+        Me.SLEVMItems.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
+        Me.SLEVMItems.ToolTipTitle = "Untuk kebutuhan setup display toko"
+        '
+        'GridView8
+        '
+        Me.GridView8.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_display_type, Me.GridColumndisplay_type})
+        Me.GridView8.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView8.Name = "GridView8"
+        Me.GridView8.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView8.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_display_type
+        '
+        Me.GridColumnid_display_type.Caption = "id"
+        Me.GridColumnid_display_type.FieldName = "id_display_type"
+        Me.GridColumnid_display_type.Name = "GridColumnid_display_type"
+        '
+        'GridColumndisplay_type
+        '
+        Me.GridColumndisplay_type.Caption = "Type"
+        Me.GridColumndisplay_type.FieldName = "display_type"
+        Me.GridColumndisplay_type.Name = "GridColumndisplay_type"
+        Me.GridColumndisplay_type.Visible = True
+        Me.GridColumndisplay_type.VisibleIndex = 0
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl12.Location = New System.Drawing.Point(274, 281)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(39, 13)
+        Me.LabelControl12.TabIndex = 8918
+        Me.LabelControl12.Text = "VM Item"
         '
         'LabelControl8
         '
@@ -1040,48 +1082,6 @@ Partial Class FormPurcItemDet
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 5
         '
-        'LabelControl12
-        '
-        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl12.Location = New System.Drawing.Point(274, 281)
-        Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(39, 13)
-        Me.LabelControl12.TabIndex = 8918
-        Me.LabelControl12.Text = "VM Item"
-        '
-        'SLEVMItems
-        '
-        Me.SLEVMItems.Location = New System.Drawing.Point(317, 278)
-        Me.SLEVMItems.Name = "SLEVMItems"
-        Me.SLEVMItems.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEVMItems.Properties.View = Me.GridView8
-        Me.SLEVMItems.Size = New System.Drawing.Size(159, 20)
-        Me.SLEVMItems.TabIndex = 8919
-        Me.SLEVMItems.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
-        Me.SLEVMItems.ToolTipTitle = "Untuk kebutuhan setup display toko"
-        '
-        'GridView8
-        '
-        Me.GridView8.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_display_type, Me.GridColumndisplay_type})
-        Me.GridView8.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView8.Name = "GridView8"
-        Me.GridView8.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView8.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumnid_display_type
-        '
-        Me.GridColumnid_display_type.Caption = "id"
-        Me.GridColumnid_display_type.FieldName = "id_display_type"
-        Me.GridColumnid_display_type.Name = "GridColumnid_display_type"
-        '
-        'GridColumndisplay_type
-        '
-        Me.GridColumndisplay_type.Caption = "Type"
-        Me.GridColumndisplay_type.FieldName = "display_type"
-        Me.GridColumndisplay_type.Name = "GridColumndisplay_type"
-        Me.GridColumndisplay_type.Visible = True
-        Me.GridColumndisplay_type.VisibleIndex = 0
-        '
         'FormPurcItemDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1098,6 +1098,8 @@ Partial Class FormPurcItemDet
         Me.XTCDetail.ResumeLayout(False)
         Me.XtraTabPage1.ResumeLayout(False)
         Me.XtraTabPage1.PerformLayout()
+        CType(Me.SLEVMItems.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEDefDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEConvertion.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEUOMStock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1140,8 +1142,6 @@ Partial Class FormPurcItemDet
         CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEVMItems.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

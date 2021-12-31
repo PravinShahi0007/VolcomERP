@@ -1,5 +1,6 @@
 ﻿Public Class FormItemPps
     Public id_pps As String = "-1"
+    Public is_view As String = "-1"
 
     Private Sub FormItemPps_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_form()
@@ -8,6 +9,14 @@
     Sub load_vm_items()
         Dim query As String = "SELECT d.id_display_type, d.display_type FROM tb_display_type d"
         viewSearchLookupQuery(SLEVMItems, query, "id_display_type", "display_type", "id_display_type")
+    End Sub
+
+    Private Sub SLEPurchaseCategory_EditValueChanged(sender As Object, e As EventArgs) Handles SLEPurchaseCategory.EditValueChanged
+        Try
+            SLECat.EditValue = SLEPurchaseCategory.Properties.View.GetFocusedRowCellValue("id_item_cat").ToString
+            SLEVendorType.EditValue = SLEPurchaseCategory.Properties.View.GetFocusedRowCellValue("id_vendor_type").ToString
+        Catch ex As Exception
+        End Try
     End Sub
 
     Sub load_vendor_type()
@@ -55,9 +64,11 @@ WHERE id_status='2'"
 
         '
         If Not id_pps = "-1" Then 'edit
-            Dim query As String = "SELECT it.*,icd.`id_vendor_type` FROM tb_item it
+            Dim query As String = "SELECT it.*,icd.`id_vendor_type`,emp.employee_name FROM tb_item_pps it
 INNER JOIN tb_item_cat_detail icd ON icd.id_item_cat_detail=it.id_item_cat_detail 
-WHERE it.id_item='" & id_pps & "'"
+INNER JOIN tb_m_user usr ON usr.id_user=it.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE it.id_item_pps='" & id_pps & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             TEDesc.Text = data.Rows(0)("item_desc").ToString
@@ -73,19 +84,18 @@ WHERE it.id_item='" & id_pps & "'"
             SLECat.EditValue = data.Rows(0)("id_item_cat").ToString
             SLEVendorType.EditValue = data.Rows(0)("id_vendor_type").ToString
             '
-            'check if item already PR
-            query = "SELECT * FROM tb_purc_req_det prd 
-INNER JOIN tb_purc_req pr ON pr.id_purc_req=prd.id_purc_req
-WHERE pr.id_report_status!=5"
-            data = execute_query(query, -1, True, "", "", "", "")
-            If data.Rows.Count > 0 Then
-                BSave.Visible = False
-            Else
-                BSave.Visible = True
-            End If
+            TEPPSNumber.Text = data.Rows(0)("number").ToString
+            TECreatedBy.Text = data.Rows(0)("employee_name").ToString
+            DEDate.EditValue = data.Rows(0)("created_date")
         Else
             TEPPSNumber.Text = "[auto]"
             SLEPurchaseCategory.EditValue = Nothing
+            TECreatedBy.Text = get_user_identify(id_user, "1")
+            DEDate.EditValue = Now
+        End If
+        '
+        If is_view = "1" Then
+            BSave.Visible = False
         End If
     End Sub
 
@@ -121,5 +131,13 @@ WHERE pr.id_report_status!=5"
 
     Private Sub FormItemPps_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "383"
+        FormReportMark.id_report = id_pps
+        FormReportMark.is_view = is_view
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
     End Sub
 End Class

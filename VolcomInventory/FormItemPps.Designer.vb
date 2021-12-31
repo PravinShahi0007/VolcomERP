@@ -52,12 +52,12 @@ Partial Class FormItemPps
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.TEPPSNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.DEDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEDate = New DevExpress.XtraEditors.DateEdit()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.GridColumnid_display_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndisplay_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -96,13 +96,13 @@ Partial Class FormItemPps
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEPPSNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
         CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         Me.SuspendLayout()
         '
         'SLEVMItems
@@ -417,23 +417,23 @@ Partial Class FormItemPps
         Me.LabelControl3.TabIndex = 8943
         Me.LabelControl3.Text = "Propose Number"
         '
-        'TextEdit1
+        'TECreatedBy
         '
-        Me.TextEdit1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.TECreatedBy.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextEdit1.EditValue = ""
-        Me.TextEdit1.Enabled = False
-        Me.TextEdit1.Location = New System.Drawing.Point(116, 40)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit1.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit1.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
-        Me.TextEdit1.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.TextEdit1.Properties.EditValueChangedDelay = 1
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(367, 20)
-        Me.TextEdit1.TabIndex = 8946
-        Me.TextEdit1.TabStop = False
+        Me.TECreatedBy.EditValue = ""
+        Me.TECreatedBy.Enabled = False
+        Me.TECreatedBy.Location = New System.Drawing.Point(116, 40)
+        Me.TECreatedBy.Name = "TECreatedBy"
+        Me.TECreatedBy.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECreatedBy.Properties.Appearance.Options.UseFont = True
+        Me.TECreatedBy.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.TECreatedBy.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TECreatedBy.Properties.EditValueChangedDelay = 1
+        Me.TECreatedBy.Properties.ReadOnly = True
+        Me.TECreatedBy.Size = New System.Drawing.Size(367, 20)
+        Me.TECreatedBy.TabIndex = 8946
+        Me.TECreatedBy.TabStop = False
         '
         'LabelControl11
         '
@@ -449,7 +449,7 @@ Partial Class FormItemPps
         Me.PanelControl2.Controls.Add(Me.LabelControl13)
         Me.PanelControl2.Controls.Add(Me.DEDate)
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
-        Me.PanelControl2.Controls.Add(Me.TextEdit1)
+        Me.PanelControl2.Controls.Add(Me.TECreatedBy)
         Me.PanelControl2.Controls.Add(Me.TEPPSNumber)
         Me.PanelControl2.Controls.Add(Me.LabelControl11)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
@@ -457,6 +457,30 @@ Partial Class FormItemPps
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(495, 102)
         Me.PanelControl2.TabIndex = 8947
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl13.Location = New System.Drawing.Point(18, 69)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl13.TabIndex = 8948
+        Me.LabelControl13.Text = "Created Date"
+        '
+        'DEDate
+        '
+        Me.DEDate.EditValue = Nothing
+        Me.DEDate.Enabled = False
+        Me.DEDate.Location = New System.Drawing.Point(116, 66)
+        Me.DEDate.Name = "DEDate"
+        Me.DEDate.Properties.Appearance.Options.UseTextOptions = True
+        Me.DEDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.DEDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDate.Size = New System.Drawing.Size(262, 20)
+        Me.DEDate.TabIndex = 8947
         '
         'PanelControl3
         '
@@ -485,30 +509,6 @@ Partial Class FormItemPps
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(495, 285)
         Me.PanelControl3.TabIndex = 8947
-        '
-        'DEDate
-        '
-        Me.DEDate.EditValue = Nothing
-        Me.DEDate.Enabled = False
-        Me.DEDate.Location = New System.Drawing.Point(116, 66)
-        Me.DEDate.Name = "DEDate"
-        Me.DEDate.Properties.Appearance.Options.UseTextOptions = True
-        Me.DEDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.DEDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEDate.Size = New System.Drawing.Size(262, 20)
-        Me.DEDate.TabIndex = 8947
-        '
-        'LabelControl13
-        '
-        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl13.Location = New System.Drawing.Point(18, 69)
-        Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(65, 13)
-        Me.LabelControl13.TabIndex = 8948
-        Me.LabelControl13.Text = "Created Date"
         '
         'GridColumnid_display_type
         '
@@ -670,15 +670,15 @@ Partial Class FormItemPps
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.TEPPSNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
-        CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -733,7 +733,7 @@ Partial Class FormItemPps
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEPPSNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
