@@ -193,6 +193,8 @@ WHERE a.id_acc_trans='" & id_trans & "'"
             stopCustom("Please input debit/credit value.")
         ElseIf Not GVJournalDet.Columns("debit").SummaryText = GVJournalDet.Columns("credit").SummaryText Then
             stopCustom("Debit and credit must balance.")
+        ElseIf LEBilling.EditValue.ToString = "0" Then
+            stopCustom("Pilih jenis voucher terlebih dahulu.")
         Else
             Dim err As String = ""
 
