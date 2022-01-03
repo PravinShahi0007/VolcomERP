@@ -198,18 +198,32 @@
 
             'default season
             Dim qss As String = "INSERT INTO tb_display_pps_season(id_display_pps, id_season, id_delivery, is_extra_sku)
+            -- old season
             SELECT " + id + " AS `idx`,NULL AS `id_season`, NULL AS `id_delivery`, 1 AS `is_extra_sku`
             UNION ALL
+            -- prev season
             SELECT " + id + " AS `idx`,ss.id_season, sd.id_delivery, 2 AS `is_extra_sku`
             FROM (
 	            SELECT ss.id_season, ss.season
 	            FROM tb_season ss
 	            INNER JOIN tb_range rg ON rg.id_range = ss.id_range
-	            WHERE rg.is_md=1 AND ss.id_season<" + id_season + "
-	            ORDER BY ss.id_season DESC LIMIT 4
+	            INNER JOIN tb_season_delivery sd ON sd.id_season = ss.id_season
+                WHERE rg.is_md=1 AND sd.delivery_date<'" + in_store_date + "'
+                GROUP BY ss.id_season
+	            ORDER BY ss.id_season DESC LIMIT 3
             ) ss
             INNER JOIN tb_season_delivery sd ON sd.id_season = ss.id_season
-            ORDER BY id_season ASC "
+            UNION ALL 
+            -- current season
+            SELECT " + id + " AS `idx`,ss.id_season, sd.id_delivery, 2 AS `is_extra_sku`
+            FROM tb_season ss
+            INNER JOIN tb_season_delivery sd ON sd.id_season = ss.id_season
+            WHERE ss.id_season=" + id_season + "
+            -- plan season            
+            SELECT " + id + " AS `idx`,ss.id_season, sd.id_delivery, 2 AS `is_extra_sku`
+            FROM tb_season ss
+            INNER JOIN tb_season_delivery sd ON sd.id_season = ss.id_season
+            WHERE ss.id_season!=" + id_season + " AND sd.delivery_date>'" + in_store_date + "' "
             execute_non_query(qss, True, "", "", "", "")
 
             'default master display
@@ -227,10 +241,22 @@
             FROM (
               SELECT ds.id_class_group, ds.id_season, ds.id_delivery,ds.id_design,ds.qty 
               FROM tb_display_stock ds
+              INNER JOIN (
+                SELECT MAX(ds.id_display_stock) AS `id_display_stock`, ds.id_design
+                FROM tb_display_stock ds
+                WHERE ds.is_active=1 AND ds.effective_date<='" + in_store_date + "'
+                GROUP BY ds.id_design
+              ) da ON da.id_display_stock = ds.id_display_stock
               WHERE ds.is_active=1 AND ds.in_store_date<='" + in_store_date + "' AND ds.id_comp=" + id_comp + "
               UNION ALL
               SELECT ds.id_class_group, ds.id_season, ds.id_delivery,ds.id_design,(ds.qty*-1)
               FROM tb_display_stock ds
+              INNER JOIN (
+                SELECT MAX(ds.id_display_stock) AS `id_display_stock`, ds.id_design
+                FROM tb_display_stock ds
+                WHERE ds.is_active=1 AND ds.effective_date<='" + in_store_date + "'
+                GROUP BY ds.id_design
+              ) da ON da.id_display_stock = ds.id_display_stock
               WHERE ds.is_active=1 AND ds.return_date<='" + in_store_date + "' AND ds.id_comp=" + id_comp + "
             ) ds
             GROUP BY ds.id_design "
