@@ -57,19 +57,27 @@ SELECT id_coa_tag,tag_code,tag_description FROM `tb_coa_tag`"
     End Sub
 
     Sub check_menu()
-        If GVData.RowCount < 1 Then
-            'hide all except new
-            bnew_active = "1"
+        If XTCExpense.SelectedTabPageIndex = 0 Then
+            If GVData.RowCount < 1 Then
+                'hide all except new
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+            Else
+                'show all
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "0"
+                noManipulating()
+            End If
+        Else
+            bnew_active = "0"
             bedit_active = "0"
             bdel_active = "0"
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
-        Else
-            'show all
-            bnew_active = "1"
-            bedit_active = "1"
-            bdel_active = "0"
-            noManipulating()
         End If
     End Sub
 
@@ -200,6 +208,10 @@ WHERE pps.id_report_status=6 AND ISNULL(sr.id_sni_realisasi) "
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCListSNI.DataSource = dt
         GVListSNI.BestFitColumns()
+    End Sub
+
+    Private Sub XTCExpense_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCExpense.SelectedPageChanged
+
     End Sub
 
     'Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BImport.Click
