@@ -59,7 +59,15 @@
                     Dim msg As String = "OK"
 
                     Try
-                        cls.add_product(location_id, data.Rows(i)("inventory_item_id").ToString, Decimal.Round(data.Rows(i)("qty"), 0).ToString)
+                        Dim qty As String = Decimal.Round(data.Rows(i)("qty"), 0).ToString
+
+                        Dim is_vsol_from As String = execute_query("SELECT IF(COUNT(*) = 0, 2, 1) AS is_vsol_from FROM tb_m_comp_volcom_ol WHERE id_comp = (SELECT id_comp FROM tb_m_comp_contact WHERE id_comp_contact = (SELECT id_warehouse_contact_to FROM tb_sales_order WHERE id_sales_order = " + FormSalesOrderDet.id_sales_order + "))", 0, True, "", "", "", "")
+
+                        If is_vsol_from = "1" Then
+                            qty = "-" + qty
+                        End If
+
+                        cls.add_product(location_id, data.Rows(i)("inventory_item_id").ToString, qty)
                     Catch ex As Exception
                         msg = ex.ToString
                     End Try
