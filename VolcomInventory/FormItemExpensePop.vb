@@ -5,17 +5,37 @@
     End Sub
 
     Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BImport.Click
-        FormItemExpenseDet.action = "ins"
-        FormItemExpenseDet.id_awb_inv_sum = id_awb_inv_sum
-        FormItemExpenseDet.ShowDialog()
-        Close()
+        If Not SLEBudget.EditValue = Nothing Then
+            FormItemExpenseDet.action = "ins"
+            FormItemExpenseDet.id_awb_inv_sum = id_awb_inv_sum
+            FormItemExpenseDet.ShowDialog()
+            Close()
+        End If
     End Sub
 
     Private Sub FormItemExpensePop_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TEPPH3PLInv.EditValue = 0.00
         TEPPN3PLInv.EditValue = 0.00
         '
+        DEDateReff.EditValue = Now()
+        '
         load_pph_account()
+        load_budget()
+    End Sub
+
+    Sub load_budget()
+        Dim q As String = "SELECT bo.`id_b_expense_opex` AS id_b_expense,icm.`id_item_cat_main`,icm.`item_cat_main`,icm.`id_expense_type`
+FROM tb_b_expense_opex bo
+INNER JOIN tb_item_cat_main icm ON icm.`id_item_cat_main`=bo.`id_item_cat_main`
+WHERE bo.`year`=YEAR('" & Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND bo.is_active='1'
+UNION ALL
+SELECT bo.`id_b_expense` AS id_b_expense,icm.`id_item_cat_main`,CONCAT('[',dep.departement,']',icm.`item_cat_main`) AS item_cat_main,icm.`id_expense_type`
+FROM tb_b_expense bo
+INNER JOIN tb_item_cat_main icm ON icm.`id_item_cat_main`=bo.`id_item_cat_main`
+INNER JOIN tb_m_departement dep ON dep.id_departement=bo.id_departement
+WHERE bo.`year`=YEAR('" & Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND bo.is_active='1'"
+        viewSearchLookupQuery(SLEBudget, q, "id_b_expense", "item_cat_main", "id_b_expense")
+        SLEBudget.EditValue = Nothing
     End Sub
 
     Sub load_pph_account()
@@ -25,5 +45,13 @@
 INNER JOIN `tb_lookup_tax_report` tr ON tr.id_tax_report=a.id_tax_report AND tr.id_type=1
 WHERE a.id_status=1 AND a.id_is_det=2 AND a.id_coa_type='1'"
         viewSearchLookupQuery(SLEPPH3PLInv, query, "id_acc", "acc_description", "id_acc")
+    End Sub
+
+    Private Sub DEDateReff_EditValueChanged(sender As Object, e As EventArgs) Handles DEDateReff.EditValueChanged
+        Try
+            load_budget()
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class
