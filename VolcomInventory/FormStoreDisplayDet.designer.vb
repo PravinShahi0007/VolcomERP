@@ -94,14 +94,26 @@ Partial Class FormStoreDisplayDet
         Me.GCRencanaSKU = New DevExpress.XtraGrid.GridControl()
         Me.GVRencanaSKU = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDisplayPlan = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefreshRencanaSKU = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPlanlRencanaSKU = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.TxtSeasonRencanaSKUPlan = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnSummaryRencanaSKU = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDeletePlan = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddPlan = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCPlan = New DevExpress.XtraGrid.GridControl()
+        Me.GVPlan = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_display_pps_plan = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_display_pps = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_season = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_delivery = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnseason_del = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_class_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass_group = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndivision = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass_cat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty_sku = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepoSelectDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUpdated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,7 +161,8 @@ Partial Class FormStoreDisplayDet
         Me.XTPPlanlRencanaSKU.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.TxtSeasonRencanaSKUPlan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCPlan, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPlan, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepoSelectDesign
@@ -935,12 +948,23 @@ Partial Class FormStoreDisplayDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnDisplayPlan)
         Me.PanelControl1.Controls.Add(Me.BtnRefreshRencanaSKU)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(765, 42)
         Me.PanelControl1.TabIndex = 1
+        '
+        'BtnDisplayPlan
+        '
+        Me.BtnDisplayPlan.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDisplayPlan.Image = CType(resources.GetObject("BtnDisplayPlan.Image"), System.Drawing.Image)
+        Me.BtnDisplayPlan.Location = New System.Drawing.Point(563, 2)
+        Me.BtnDisplayPlan.Name = "BtnDisplayPlan"
+        Me.BtnDisplayPlan.Size = New System.Drawing.Size(105, 38)
+        Me.BtnDisplayPlan.TabIndex = 1
+        Me.BtnDisplayPlan.Text = "Plan Display"
         '
         'BtnRefreshRencanaSKU
         '
@@ -954,6 +978,7 @@ Partial Class FormStoreDisplayDet
         '
         'XTPPlanlRencanaSKU
         '
+        Me.XTPPlanlRencanaSKU.Controls.Add(Me.GCPlan)
         Me.XTPPlanlRencanaSKU.Controls.Add(Me.PanelControl2)
         Me.XTPPlanlRencanaSKU.Name = "XTPPlanlRencanaSKU"
         Me.XTPPlanlRencanaSKU.PageEnabled = False
@@ -962,8 +987,6 @@ Partial Class FormStoreDisplayDet
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.TxtSeasonRencanaSKUPlan)
-        Me.PanelControl2.Controls.Add(Me.LabelControl10)
         Me.PanelControl2.Controls.Add(Me.BtnSummaryRencanaSKU)
         Me.PanelControl2.Controls.Add(Me.BtnDeletePlan)
         Me.PanelControl2.Controls.Add(Me.BtnAddPlan)
@@ -972,26 +995,6 @@ Partial Class FormStoreDisplayDet
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(765, 42)
         Me.PanelControl2.TabIndex = 2
-        '
-        'TxtSeasonRencanaSKUPlan
-        '
-        Me.TxtSeasonRencanaSKUPlan.EditValue = "S2 22 D1"
-        Me.TxtSeasonRencanaSKUPlan.Enabled = False
-        Me.TxtSeasonRencanaSKUPlan.Location = New System.Drawing.Point(71, 9)
-        Me.TxtSeasonRencanaSKUPlan.Name = "TxtSeasonRencanaSKUPlan"
-        Me.TxtSeasonRencanaSKUPlan.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtSeasonRencanaSKUPlan.Properties.Appearance.Options.UseFont = True
-        Me.TxtSeasonRencanaSKUPlan.Size = New System.Drawing.Size(124, 24)
-        Me.TxtSeasonRencanaSKUPlan.TabIndex = 2
-        '
-        'LabelControl10
-        '
-        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Location = New System.Drawing.Point(11, 11)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(54, 18)
-        Me.LabelControl10.TabIndex = 1
-        Me.LabelControl10.Text = "Season"
         '
         'BtnSummaryRencanaSKU
         '
@@ -1022,6 +1025,110 @@ Partial Class FormStoreDisplayDet
         Me.BtnAddPlan.Size = New System.Drawing.Size(72, 38)
         Me.BtnAddPlan.TabIndex = 3
         Me.BtnAddPlan.Text = "Add"
+        '
+        'GCPlan
+        '
+        Me.GCPlan.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPlan.Location = New System.Drawing.Point(0, 42)
+        Me.GCPlan.MainView = Me.GVPlan
+        Me.GCPlan.Name = "GCPlan"
+        Me.GCPlan.Size = New System.Drawing.Size(765, 313)
+        Me.GCPlan.TabIndex = 3
+        Me.GCPlan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPlan})
+        '
+        'GVPlan
+        '
+        Me.GVPlan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_display_pps_plan, Me.GridColumnid_display_pps, Me.GridColumnid_season, Me.GridColumnid_delivery, Me.GridColumnseason_del, Me.GridColumnid_class_group, Me.GridColumnclass_group, Me.GridColumndivision, Me.GridColumnclass_type, Me.GridColumnclass_cat, Me.GridColumnqty_sku})
+        Me.GVPlan.GridControl = Me.GCPlan
+        Me.GVPlan.GroupCount = 2
+        Me.GVPlan.Name = "GVPlan"
+        Me.GVPlan.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVPlan.OptionsBehavior.Editable = False
+        Me.GVPlan.OptionsFind.AlwaysVisible = True
+        Me.GVPlan.OptionsView.ColumnAutoWidth = False
+        Me.GVPlan.OptionsView.ShowFooter = True
+        Me.GVPlan.OptionsView.ShowGroupedColumns = True
+        Me.GVPlan.OptionsView.ShowGroupPanel = False
+        Me.GVPlan.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumndivision, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnclass_cat, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumnid_display_pps_plan
+        '
+        Me.GridColumnid_display_pps_plan.Caption = "id_display_pps_plan"
+        Me.GridColumnid_display_pps_plan.FieldName = "id_display_pps_plan"
+        Me.GridColumnid_display_pps_plan.Name = "GridColumnid_display_pps_plan"
+        '
+        'GridColumnid_display_pps
+        '
+        Me.GridColumnid_display_pps.Caption = "id_display_pps"
+        Me.GridColumnid_display_pps.FieldName = "id_display_pps"
+        Me.GridColumnid_display_pps.Name = "GridColumnid_display_pps"
+        '
+        'GridColumnid_season
+        '
+        Me.GridColumnid_season.Caption = "id_season"
+        Me.GridColumnid_season.FieldName = "id_season"
+        Me.GridColumnid_season.Name = "GridColumnid_season"
+        '
+        'GridColumnid_delivery
+        '
+        Me.GridColumnid_delivery.Caption = "id_delivery"
+        Me.GridColumnid_delivery.FieldName = "id_delivery"
+        Me.GridColumnid_delivery.Name = "GridColumnid_delivery"
+        '
+        'GridColumnseason_del
+        '
+        Me.GridColumnseason_del.Caption = "Season"
+        Me.GridColumnseason_del.FieldName = "season_del"
+        Me.GridColumnseason_del.Name = "GridColumnseason_del"
+        Me.GridColumnseason_del.Visible = True
+        Me.GridColumnseason_del.VisibleIndex = 0
+        '
+        'GridColumnid_class_group
+        '
+        Me.GridColumnid_class_group.Caption = "id_class_group"
+        Me.GridColumnid_class_group.FieldName = "id_class_group"
+        Me.GridColumnid_class_group.Name = "GridColumnid_class_group"
+        '
+        'GridColumnclass_group
+        '
+        Me.GridColumnclass_group.Caption = "Class"
+        Me.GridColumnclass_group.FieldName = "class_group"
+        Me.GridColumnclass_group.Name = "GridColumnclass_group"
+        Me.GridColumnclass_group.Visible = True
+        Me.GridColumnclass_group.VisibleIndex = 3
+        '
+        'GridColumndivision
+        '
+        Me.GridColumndivision.Caption = "Division"
+        Me.GridColumndivision.FieldName = "division"
+        Me.GridColumndivision.Name = "GridColumndivision"
+        Me.GridColumndivision.Visible = True
+        Me.GridColumndivision.VisibleIndex = 1
+        '
+        'GridColumnclass_type
+        '
+        Me.GridColumnclass_type.Caption = "Type"
+        Me.GridColumnclass_type.FieldName = "class_type"
+        Me.GridColumnclass_type.Name = "GridColumnclass_type"
+        '
+        'GridColumnclass_cat
+        '
+        Me.GridColumnclass_cat.Caption = "Category"
+        Me.GridColumnclass_cat.FieldName = "class_cat"
+        Me.GridColumnclass_cat.Name = "GridColumnclass_cat"
+        Me.GridColumnclass_cat.Visible = True
+        Me.GridColumnclass_cat.VisibleIndex = 2
+        '
+        'GridColumnqty_sku
+        '
+        Me.GridColumnqty_sku.Caption = "Rencana SKU"
+        Me.GridColumnqty_sku.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty_sku.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty_sku.FieldName = "qty_sku"
+        Me.GridColumnqty_sku.Name = "GridColumnqty_sku"
+        Me.GridColumnqty_sku.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_sku", "{0:N0}")})
+        Me.GridColumnqty_sku.Visible = True
+        Me.GridColumnqty_sku.VisibleIndex = 4
         '
         'FormStoreDisplayDet
         '
@@ -1085,8 +1192,8 @@ Partial Class FormStoreDisplayDet
         Me.XTPPlanlRencanaSKU.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        Me.PanelControl2.PerformLayout()
-        CType(Me.TxtSeasonRencanaSKUPlan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCPlan, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPlan, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1167,9 +1274,21 @@ Partial Class FormStoreDisplayDet
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnRefreshRencanaSKU As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TxtSeasonRencanaSKUPlan As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnSummaryRencanaSKU As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnDeletePlan As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAddPlan As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnDisplayPlan As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCPlan As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPlan As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_display_pps_plan As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_display_pps As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_season As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_delivery As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnseason_del As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_class_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass_group As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndivision As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass_cat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty_sku As DevExpress.XtraGrid.Columns.GridColumn
 End Class

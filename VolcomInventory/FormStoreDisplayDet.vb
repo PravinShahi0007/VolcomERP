@@ -182,7 +182,7 @@
         If action = "ins" Then
             'get old propose
             Dim qget As String = "SELECT p.id_display_pps 
-            FROM tb_display_pps p WHERE p.id_comp=580 AND p.id_season=55 AND p.id_report_status=6
+            FROM tb_display_pps p WHERE p.id_comp=" + id_comp + " AND p.id_season=" + id_season + " AND p.id_report_status=6
             ORDER BY p.id_display_pps DESC LIMIT 1 "
             Dim dget As DataTable = execute_query(qget, -1, True, "", "", "", "")
             Dim id_display_pps_ref As String = ""
@@ -706,6 +706,23 @@
         End If
     End Sub
 
+    Private Sub BtnDisplayPlan_Click(sender As Object, e As EventArgs) Handles BtnDisplayPlan.Click
+        Cursor = Cursors.WaitCursor
+        GVPlan.ActiveFilterString = ""
+        GVPlan.ApplyFindFilter("")
+        XTPPlanlRencanaSKU.PageEnabled = True
+        XTCRencanaSKU.SelectedTabPageIndex = 1
+        XTPSummaryRencanaSKU.PageEnabled = False
+        viewPlan()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSummaryRencanaSKU_Click(sender As Object, e As EventArgs) Handles BtnSummaryRencanaSKU.Click
+        XTPSummaryRencanaSKU.PageEnabled = True
+        XTCRencanaSKU.SelectedTabPageIndex = 0
+        XTPPlanlRencanaSKU.PageEnabled = False
+    End Sub
+
     'Sub saveDetailSeason()
     '    If action = "upd" And is_confirm = "2" Then
     '        Cursor = Cursors.WaitCursor
@@ -719,4 +736,23 @@
     '        Cursor = Cursors.Default
     '    End If
     'End Sub
+
+    Sub viewPlan()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT dpp.id_display_pps_plan, dpp.id_display_pps, dpp.id_season, dpp.id_delivery, CONCAT(ss.season, ' ', 'D',sd.delivery) AS `season_del`, 
+        dpp.id_class_group, cg.class_group, dv.display_name AS `division`, ct.class_type, cc.class_cat, dpp.qty_sku 
+        FROM tb_display_pps_plan dpp
+        INNER JOIN tb_season ss ON ss.id_season = dpp.id_season
+        INNER JOIN tb_season_delivery sd ON sd.id_delivery = dpp.id_delivery
+        INNER JOIN tb_class_group cg ON cg.id_class_group = dpp.id_class_group AND cg.is_active=1
+        INNER JOIN tb_m_code_detail dv ON dv.id_code_detail = cg.id_division
+        INNER JOIN tb_class_type ct ON ct.id_class_type = cg.id_class_type
+        INNER JOIN tb_class_cat cc ON cc.id_class_cat = cg.id_class_cat
+        WHERE dpp.id_display_pps=" + id + "
+        ORDER BY season ASC, division ASC, class_cat ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPlan.DataSource = data
+        GVPlan.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
 End Class
