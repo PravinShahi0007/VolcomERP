@@ -404,7 +404,7 @@ SELECT 'no' AS is_check,t.sorting,t.tax_report,36 AS report_mark_type,tr.id_acc_
 ,IF(a.`id_dc`=1,(atx.`debit`-atx.`credit`),(atx.`credit`-atx.`debit`)) AS dpp,IF(a.`id_dc`=1,(atx.`debit`-atx.`credit`),(atx.`credit`-atx.`debit`)) AS pph 
 FROM tb_a_acc_trans_det atx
 INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atx.`id_acc_trans` AND tr.id_report_status=6
-INNER JOIN tb_a_acc a ON a.id_acc=atx.id_acc AND a.is_tax_report=1 AND (tr.`id_bill_type`=25 OR tr.`id_bill_type`=7 OR tr.`id_bill_type`=8 OR tr.id_bill_type=0)
+INNER JOIN tb_a_acc a ON a.id_acc=atx.id_acc AND a.is_tax_report=1 AND (tr.`id_bill_type`=25 OR tr.`id_bill_type`=7 OR tr.`id_bill_type`=8)
 INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=a.id_acc
 INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
 WHERE ISNULL(tr.`date_tax_report`) AND DATE(tr.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(tr.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
@@ -599,7 +599,7 @@ SELECT 'no' AS is_check,rpt.sorting,rpt.tax_report,36 AS report_mark_type,tr.id_
 ,tr.acc_trans_number AS `number`,tr.`date_reference`,atx.`acc_trans_det_note` AS description,atx.`id_acc`,tr.`date_reference` AS `due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,100 AS pph_percent,(-atx.`debit`+atx.`credit`) AS dpp,(-atx.`debit`+atx.`credit`) AS pph 
 FROM tb_a_acc_trans_det atx
 INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atx.`id_acc_trans` AND tr.id_report_status=6
-INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=atx.id_acc AND acc_pph.is_tax_report=1 AND (tr.`id_bill_type`=25 OR tr.`id_bill_type`=7 OR tr.`id_bill_type`=8  OR tr.id_bill_type=0)
+INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=atx.id_acc AND acc_pph.is_tax_report=1 AND (tr.`id_bill_type`=25 OR tr.`id_bill_type`=7 OR tr.`id_bill_type`=8)
 INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1
 WHERE ISNULL(tr.`date_tax_report`) AND DATE(tr.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(tr.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 UNION ALL
@@ -737,7 +737,7 @@ SELECT rpt.tax_report,rpt.sorting,36 AS report_mark_type,ie.`report_number_ref` 
 ,ieh.acc_trans_number AS `number`,ieh.`date_reference`,ie.`acc_trans_det_note` AS description,ie.`id_acc`,ieh.`date_reference` AS `due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,100 AS pph_percent,IF(acc_pph.`id_dc`=1,ie.`debit`,ie.`credit`) AS dpp,IF(acc_pph.`id_dc`=1,ie.`debit`,ie.`credit`) AS pph 
 FROM tb_a_acc_trans_det ie
 INNER JOIN tb_a_acc_trans ieh ON ieh.`id_acc_trans`=ie.`id_acc_trans` AND ieh.id_report_status!=5 AND ieh.id_report_status!=6  " + where_coa_tag + "
-INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=ie.id_acc AND acc_pph.is_tax_report=1 AND (ieh.`id_bill_type`=25 OR ieh.`id_bill_type`=7 OR ieh.`id_bill_type`=8 OR tr.id_bill_type=0)
+INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=ie.id_acc AND acc_pph.is_tax_report=1 AND (ieh.`id_bill_type`=25 OR ieh.`id_bill_type`=7 OR ieh.`id_bill_type`=8)
 INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=2
 WHERE DATE(ieh.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(ieh.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 UNION ALL
@@ -834,7 +834,7 @@ SELECT rpt.tax_report,rpt.sorting,36 AS report_mark_type,ie.`report_number_ref` 
 ,ieh.acc_trans_number AS `number`,ieh.`date_reference`,ie.`acc_trans_det_note` AS description,ie.`id_acc`,ieh.`date_reference` AS `due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,100 AS pph_percent,IF(acc_pph.`id_dc`=1,ie.`debit`,ie.`credit`) AS dpp,IF(acc_pph.`id_dc`=1,ie.`debit`,ie.`credit`) AS pph 
 FROM tb_a_acc_trans_det ie
 INNER JOIN tb_a_acc_trans ieh ON ieh.`id_acc_trans`=ie.`id_acc_trans` AND ieh.`id_report_status`!=6 AND ieh.`id_report_status`!=5 " + where_coa_tag + "
-INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=ie.id_acc AND acc_pph.is_tax_report=1 AND (ieh.`id_bill_type`=25 OR ieh.`id_bill_type`=7 OR ieh.`id_bill_type`=8 OR tr.id_bill_type=0)
+INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=ie.id_acc AND acc_pph.is_tax_report=1 AND (ieh.`id_bill_type`=25 OR ieh.`id_bill_type`=7 OR ieh.`id_bill_type`=8)
 INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1
 WHERE DATE(ieh.`date_reference`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(ieh.`date_reference`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 UNION ALL
@@ -1026,7 +1026,7 @@ SELECT 'no' AS is_check,t.sorting,t.tax_report,36 AS report_mark_type,tr.id_acc_
 ,IF(a.`id_dc`=1,IF(atx.`credit`>0,-atx.`credit`,atx.`debit`),IF(atx.`credit`>0,atx.`credit`,-atx.`debit`)) AS pph 
 FROM tb_a_acc_trans_det atx
 INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atx.`id_acc_trans` AND tr.id_report_status=6
-INNER JOIN tb_a_acc a ON a.id_acc=atx.id_acc AND a.is_tax_report=1 AND (tr.`id_bill_type`=25 OR tr.`id_bill_type`=7 OR tr.`id_bill_type`=8 OR tr.id_bill_type=0)
+INNER JOIN tb_a_acc a ON a.id_acc=atx.id_acc AND a.is_tax_report=1 AND (tr.`id_bill_type`=25 OR tr.`id_bill_type`=7 OR tr.`id_bill_type`=8)
 INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=a.id_acc
 INNER JOIN tb_lookup_tax_report t ON t.id_tax_report=a.id_tax_report AND t.id_type=2 " & q_where_atx & "
 WHERE DATE(tr.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(tr.`date_tax_report`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
@@ -1221,7 +1221,7 @@ SELECT 'no' AS is_check,rpt.sorting,rpt.tax_report,36 AS report_mark_type,tr.id_
 ,tr.acc_trans_number AS `number`,tr.`date_reference`,atx.`acc_trans_det_note` AS description,atx.`id_acc`,tr.`date_reference` AS `due_date`,acc_pph.`acc_name`,acc_pph.`acc_description`,100 AS pph_percent,(-atx.`debit`+atx.`credit`) AS dpp,(-atx.`debit`+atx.`credit`) AS pph 
 FROM tb_a_acc_trans_det atx
 INNER JOIN tb_a_acc_trans tr ON tr.`id_acc_trans`=atx.`id_acc_trans` AND tr.id_report_status=6
-INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=atx.id_acc AND acc_pph.is_tax_report=1 AND (tr.`id_bill_type`=25 OR tr.`id_bill_type`=7 OR tr.`id_bill_type`=8 OR tr.id_bill_type=0)
+INNER JOIN tb_a_acc acc_pph ON acc_pph.id_acc=atx.id_acc AND acc_pph.is_tax_report=1 AND (tr.`id_bill_type`=25 OR tr.`id_bill_type`=7 OR tr.`id_bill_type`=8)
 INNER JOIN tb_lookup_tax_report rpt ON rpt.id_tax_report=acc_pph.id_tax_report AND rpt.id_type=1
 WHERE DATE(tr.`date_tax_report`)>='" + Date.Parse(DETaxFrom.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND DATE(tr.`date_tax_report`)<='" + Date.Parse(DETaxUntil.EditValue.ToString).ToString("yyyy-MM-dd") + "' " + q_where + "
 UNION ALL
