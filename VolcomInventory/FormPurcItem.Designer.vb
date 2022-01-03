@@ -59,7 +59,7 @@ Partial Class FormPurcItem
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTCItemList = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPItemList = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPPS = New DevExpress.XtraTab.XtraTabPage()
         Me.GCItemPPs = New DevExpress.XtraGrid.GridControl()
@@ -75,11 +75,11 @@ Partial Class FormPurcItem
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BNewPPS = New DevExpress.XtraEditors.SimpleButton()
         Me.BRefreshPPS = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCItem, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVItem, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,8 +92,8 @@ Partial Class FormPurcItem
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraTabControl1.SuspendLayout()
+        CType(Me.XTCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCItemList.SuspendLayout()
         Me.XTPItemList.SuspendLayout()
         Me.XTPPS.SuspendLayout()
         CType(Me.GCItemPPs, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -424,16 +424,16 @@ Partial Class FormPurcItem
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Category"
         '
-        'XtraTabControl1
+        'XTCItemList
         '
-        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XTPItemList
-        Me.XtraTabControl1.Size = New System.Drawing.Size(881, 536)
-        Me.XtraTabControl1.TabIndex = 10
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPItemList, Me.XTPPS})
+        Me.XTCItemList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCItemList.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCItemList.Location = New System.Drawing.Point(0, 0)
+        Me.XTCItemList.Name = "XTCItemList"
+        Me.XTCItemList.SelectedTabPage = Me.XTPItemList
+        Me.XTCItemList.Size = New System.Drawing.Size(881, 536)
+        Me.XTCItemList.TabIndex = 10
+        Me.XTCItemList.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPItemList, Me.XTPPS})
         '
         'XTPItemList
         '
@@ -569,6 +569,14 @@ Partial Class FormPurcItem
         Me.GridColumn33.VisibleIndex = 7
         Me.GridColumn33.Width = 95
         '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Status"
+        Me.GridColumn20.FieldName = "report_status"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 8
+        '
         'RepositoryItemCheckEdit1
         '
         Me.RepositoryItemCheckEdit1.AutoHeight = False
@@ -606,20 +614,12 @@ Partial Class FormPurcItem
         Me.BRefreshPPS.TabIndex = 8906
         Me.BRefreshPPS.Text = "Refresh"
         '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "Status"
-        Me.GridColumn20.FieldName = "report_status"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 8
-        '
         'FormPurcItem
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(881, 536)
-        Me.Controls.Add(Me.XtraTabControl1)
+        Me.Controls.Add(Me.XTCItemList)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPurcItem"
@@ -639,8 +639,8 @@ Partial Class FormPurcItem
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraTabControl1.ResumeLayout(False)
+        CType(Me.XTCItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCItemList.ResumeLayout(False)
         Me.XTPItemList.ResumeLayout(False)
         Me.XTPPS.ResumeLayout(False)
         CType(Me.GCItemPPs, System.ComponentModel.ISupportInitialize).EndInit()
@@ -690,7 +690,7 @@ Partial Class FormPurcItem
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndisplay_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTCItemList As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPItemList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPPS As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
