@@ -537,7 +537,7 @@
             Case 4
                 where_param = "AND prc.id_design_cat=" + id_sub_filter + " "
             Case 5
-                where_param = "AND d.id_season=" + id_sub_filter + " "
+                where_param = "AND dsg.id_season=" + id_sub_filter + " "
             Case Else
                 where_param = ""
         End Select
