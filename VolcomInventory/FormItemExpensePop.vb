@@ -10,6 +10,8 @@
             FormItemExpenseDet.id_awb_inv_sum = id_awb_inv_sum
             FormItemExpenseDet.ShowDialog()
             Close()
+        Else
+            warningCustom("Choose budget first")
         End If
     End Sub
 
