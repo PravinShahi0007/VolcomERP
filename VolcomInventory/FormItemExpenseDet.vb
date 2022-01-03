@@ -175,6 +175,8 @@ GROUP BY id.`id_departement`"
 
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Generating from invoice..")
 
+                DEDateReff.EditValue = FormItemExpensePop.DEDateReff.EditValue
+
                 For i = 0 To dtg.Rows.Count - 1
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Processing expense " & i + 1 & " of " & (dtg.Rows.Count) & "  ")
 
@@ -192,7 +194,7 @@ GROUP BY id.`id_departement`"
                     'End If
 
                     GVData.SetRowCellValue(GVData.RowCount - 1, "id_expense_type", "1")
-                    GVData.SetRowCellValue(GVData.RowCount - 1, "id_b_expense", "54")
+                    GVData.SetRowCellValue(GVData.RowCount - 1, "id_b_expense", FormItemExpensePop.SLEBudget.EditValue.ToString)
                     GVData.SetRowCellValue(GVData.RowCount - 1, "cc", dtg.Rows(i)("id_store").ToString)
                     '
                     GVData.SetRowCellValue(GVData.RowCount - 1, "description", FormItemExpensePop.TEDesc3PLInv.Text)

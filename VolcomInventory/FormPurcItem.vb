@@ -89,22 +89,30 @@
     End Sub
 
     Sub check_menu()
-        If GVItem.RowCount < 1 Then
-            'hide all except new
-            bnew_active = "1"
+        If XTCItemList.SelectedTabPageIndex = 0 Then
+            If GVItem.RowCount < 1 Then
+                'hide all except new
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+                'noManipulating()
+            Else
+                'show all
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "1"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+                'noManipulating()
+            End If
+        ElseIf XTCItemList.SelectedTabPageIndex = 1 Then
+            bnew_active = "0"
             bedit_active = "0"
             bdel_active = "0"
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
-            'noManipulating()
-        Else
-            'show all
-            bnew_active = "1"
-            bedit_active = "1"
-            bdel_active = "1"
-            checkFormAccess(Name)
-            button_main(bnew_active, bedit_active, bdel_active)
-            'noManipulating()
         End If
     End Sub
 
@@ -173,5 +181,9 @@ ORDER BY item.id_item_pps DESC"
             FormItemPps.id_pps = GVItemPps.GetFocusedRowCellValue("id_item_pps").ToString
             FormItemPps.ShowDialog()
         End If
+    End Sub
+
+    Private Sub XTCItemList_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCItemList.SelectedPageChanged
+        check_menu()
     End Sub
 End Class
