@@ -27,6 +27,10 @@
             MEPayrollNote.Text = data.Rows(0)("note").ToString
 
             LEPayrollType.ItemIndex = LEPayrollType.Properties.GetDataSourceRowIndex("id_payroll_type", data.Rows(0)("id_payroll_type").ToString)
+
+            TEPercent.EditValue = data.Rows(0)("bonus_percent")
+        Else
+            TEPercent.EditValue = "0"
         End If
     End Sub
 
@@ -78,6 +82,7 @@
             Dim id_payroll_type As String = LEPayrollType.EditValue.ToString
 
             If is_thr = "1" Or is_bonus = "1" Then
+                date_start = "NULL"
                 store_date_end = date_end
             End If
 

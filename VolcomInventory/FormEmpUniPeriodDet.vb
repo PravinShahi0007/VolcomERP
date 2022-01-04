@@ -519,118 +519,45 @@
             id_dept = "AND e.id_departement=" + LEDeptSizeProfile.EditValue.ToString + " "
         End If
 
-        'caption column
+        Dim query_select As String = ""
+        Dim query_join As String = ""
+
+        'remove old column
         For i As Integer = 0 To dtz.Rows.Count - 1
-            GVSizeProfile.Columns(dtz.Rows(i)("id_emp_uni_size_template").ToString).Caption = dtz.Rows(i)("template_name").ToString
+            GVSizeProfile.Columns.Remove(GVSizeProfile.Columns(dtz.Rows(i)("id_emp_uni_size_template").ToString))
         Next
 
+        'caption column
+        For i As Integer = 0 To dtz.Rows.Count - 1
+            Dim column As DevExpress.XtraGrid.Columns.GridColumn = New DevExpress.XtraGrid.Columns.GridColumn
+
+            column.Caption = dtz.Rows(i)("template_name").ToString
+            column.FieldName = dtz.Rows(i)("id_emp_uni_size_template").ToString
+            column.Visible = True
+
+            GVSizeProfile.Columns.Add(column)
+
+            Dim id_number As String = dtz.Rows(i)("id_emp_uni_size_template").ToString
+
+            query_select += "IFNULL(sz" + id_number + "." + id_number + ",'-') AS `" + id_number + "`,"
+            query_join += "
+                LEFT JOIN (
+	                SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `" + id_number + "`
+	                FROM tb_emp_uni_size s
+	                INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	                WHERE s.id_emp_uni_size_template=" + id_number + "
+	                GROUP BY s.id_employee
+                ) sz" + id_number + " ON sz" + id_number + ".id_employee = e.id_employee
+            "
+        Next
+
+        query_select = query_select.Substring(0, query_select.Length - 1)
+
         Dim query As String = "SELECT d.id_departement, d.departement,e.id_employee, e.employee_code,e.employee_name, e.id_sex,
-        IFNULL(sz1.1,'-') AS `1`,
-        IFNULL(sz2.2,'-') AS `2`,
-        IFNULL(sz3.3,'-') AS `3`,
-        IFNULL(sz4.4,'-') AS `4`,
-        IFNULL(sz5.5,'-') AS `5`,
-        IFNULL(sz6.6,'-') AS `6`,
-        IFNULL(sz7.7,'-') AS `7`,
-        IFNULL(sz8.8,'-') AS `8`,
-        IFNULL(sz9.9,'-') AS `9`,
-        IFNULL(sz10.10,'-') AS `10`,
-        IFNULL(sz11.11,'-') AS `11`,
-        IFNULL(sz12.12,'-') AS `12`,
-        IFNULL(sz13.13,'-') AS `13`
+        " + query_select + "
         FROM tb_m_employee e 
         INNER JOIN tb_m_departement d ON d.id_departement = e.id_departement
-        LEFT JOIN (
-	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `1`
-	        FROM tb_emp_uni_size s
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
-	        WHERE s.id_emp_uni_size_template=1
-	        GROUP BY s.id_employee
-        ) sz1 ON sz1.id_employee = e.id_employee
-        LEFT JOIN (
-	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `2`
-	        FROM tb_emp_uni_size s
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
-	        WHERE s.id_emp_uni_size_template=2
-	        GROUP BY s.id_employee
-        ) sz2 ON sz2.id_employee = e.id_employee
-        LEFT JOIN (
-	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `3`
-	        FROM tb_emp_uni_size s
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
-	        WHERE s.id_emp_uni_size_template=3
-	        GROUP BY s.id_employee
-        ) sz3 ON sz3.id_employee = e.id_employee
-        LEFT JOIN (
-	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `4`
-	        FROM tb_emp_uni_size s
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
-	        WHERE s.id_emp_uni_size_template=4
-	        GROUP BY s.id_employee
-        ) sz4 ON sz4.id_employee = e.id_employee
-        LEFT JOIN (
-	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `5`
-	        FROM tb_emp_uni_size s
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
-	        WHERE s.id_emp_uni_size_template=5
-	        GROUP BY s.id_employee
-        ) sz5 ON sz5.id_employee = e.id_employee
-        LEFT JOIN (
-	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `6`
-	        FROM tb_emp_uni_size s
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
-	        WHERE s.id_emp_uni_size_template=6
-	        GROUP BY s.id_employee
-        ) sz6 ON sz6.id_employee = e.id_employee
-        LEFT JOIN (
-	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `7`
-	        FROM tb_emp_uni_size s
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
-	        WHERE s.id_emp_uni_size_template=7
-	        GROUP BY s.id_employee
-        ) sz7 ON sz7.id_employee = e.id_employee
-        LEFT JOIN (
-	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `8`
-	        FROM tb_emp_uni_size s
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
-	        WHERE s.id_emp_uni_size_template=8
-	        GROUP BY s.id_employee
-        ) sz8 ON sz8.id_employee = e.id_employee
-        LEFT JOIN (
-	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `9`
-	        FROM tb_emp_uni_size s
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
-	        WHERE s.id_emp_uni_size_template=9
-	        GROUP BY s.id_employee
-        ) sz9 ON sz9.id_employee = e.id_employee
-        LEFT JOIN (
-	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `10`
-	        FROM tb_emp_uni_size s
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
-	        WHERE s.id_emp_uni_size_template=10
-	        GROUP BY s.id_employee
-        ) sz10 ON sz10.id_employee = e.id_employee
-        LEFT JOIN (
-	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `11`
-	        FROM tb_emp_uni_size s
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
-	        WHERE s.id_emp_uni_size_template=11
-	        GROUP BY s.id_employee
-        ) sz11 ON sz11.id_employee = e.id_employee
-        LEFT JOIN (
-	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `12`
-	        FROM tb_emp_uni_size s
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
-	        WHERE s.id_emp_uni_size_template=12
-	        GROUP BY s.id_employee
-        ) sz12 ON sz12.id_employee = e.id_employee
-        LEFT JOIN (
-	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `13`
-	        FROM tb_emp_uni_size s
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
-	        WHERE s.id_emp_uni_size_template=13
-	        GROUP BY s.id_employee
-        ) sz13 ON sz13.id_employee = e.id_employee
+        " + query_join + "
         WHERE e.id_employee_active=1
         " + id_dept + "
         ORDER BY  d.departement ASC,e.id_employee_level ASC "
