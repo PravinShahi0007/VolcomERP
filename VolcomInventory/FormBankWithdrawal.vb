@@ -334,8 +334,7 @@ LEFT JOIN tb_a_acc coa ON coa.id_acc=po.pph_account
 INNER JOIN tb_m_comp cf ON cf.id_comp=1
 INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
 INNER JOIN tb_purc_req_det prd ON pod.id_purc_req_det = prd.id_purc_req_det
-INNER JOIN tb_m_comp c_tag ON IF(prd.ship_to=0,1,prd.ship_to) = c_tag.id_comp
-INNER JOIN tb_coa_tag tag ON c_tag.id_coa_tag = tag.id_coa_tag
+INNER JOIN tb_coa_tag tag ON po.id_coa_tag = tag.id_coa_tag
 INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
 INNER JOIN tb_m_employee emp_cre ON emp_cre.id_employee=usr_cre.id_employee
 INNER JOIN tb_m_user usr_upd ON usr_upd.id_user=po.last_update_by
@@ -368,7 +367,7 @@ LEFT JOIN
 	GROUP BY pyd.id_report, py.id_coa_tag
 )payment_pending ON payment_pending.id_report=po.id_purc_order AND payment_pending.id_coa_tag = tag.id_coa_tag
 LEFT JOIN tb_lookup_payment_purchasing AS payment_purc ON po.id_payment_purchasing = payment_purc.id_payment_purchasing
-WHERE po.is_cash_purchase=2 " & where_string & " {query_active} GROUP BY c_tag.id_coa_tag, po.id_purc_order " & having_string
+WHERE po.is_cash_purchase=2 " & where_string & " {query_active} GROUP BY po.id_purc_order " & having_string
         If XTPPOList.SelectedTabPageIndex = 0 Then
             'active
             If SLEPayType.EditValue.ToString = "1" Then 'DP
@@ -382,7 +381,7 @@ WHERE po.is_cash_purchase=2 " & where_string & " {query_active} GROUP BY c_tag.i
             GVPOList.BestFitColumns()
         Else
             'non active
-            query = query.Replace("{query_active}", "AND po.is_active_payment = 2").Replace("c_tag.id_coa_tag,", "")
+            query = query.Replace("{query_active}", "AND po.is_active_payment = 2")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCPOListNonActive.DataSource = data
             GVPOListNonActive.BestFitColumns()
