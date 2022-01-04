@@ -98,16 +98,30 @@
     End Sub
 
     Sub viewDetailList()
-        Dim query As String = "SELECT dd.`no`, dd.`point`, d.design_code AS `code`, d.design_display_name AS `name`,
-        GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.id_code_detail ASC SEPARATOR ',') AS `size_chart`
-        FROM tb_emp_uni_design_det dd
-        INNER JOIN tb_m_design d ON d.id_design = dd.id_design
-        INNER JOIN tb_m_product p ON p.id_design = d.id_design
-        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
-        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
-        WHERE dd.id_emp_uni_design=" + id_emp_uni_design + "
-        GROUP BY dd.id_design
-        ORDER BY dd.`no` ASC "
+        Dim query As String = "SELECT tb.no, tb.point, tb.code, tb.name, REPLACE(GROUP_CONCAT(DISTINCT tb.size ORDER BY tb.id_code_detail SEPARATOR ','), ',,', ',') AS `size_chart`
+            FROM (
+		            SELECT dd.`no`, dd.id_design, dd.`point`, d.design_code AS `code`, d.design_display_name AS `name`, IF(cd.code_detail_name IN (
+			            SELECT d.code_detail_name
+			            FROM tb_emp_uni_size_template_class AS c
+			            LEFT JOIN tb_emp_uni_size_template_det AS s ON c.id_emp_uni_size_template = s.id_emp_uni_size_template
+			            LEFT JOIN tb_m_code_detail AS d ON s.id_size = d.id_code_detail
+			            WHERE c.id_class = cls.id_code_detail
+		            ), cd.code_detail_name, '') AS size, pc.id_code_detail
+		            FROM tb_emp_uni_design_det dd
+		            INNER JOIN tb_m_design d ON d.id_design = dd.id_design
+		            INNER JOIN tb_m_product p ON p.id_design = d.id_design
+		            INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+		            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+		            INNER JOIN (
+			            SELECT c.id_code_detail, c.id_design
+			            FROM tb_m_design_code AS c
+			            INNER JOIN tb_m_code_detail AS d ON c.id_code_detail = d.id_code_detail
+			            WHERE d.id_code = 30
+		            ) cls ON dd.id_design = cls.id_design
+		            WHERE dd.id_emp_uni_design = " + id_emp_uni_design + "
+		            ORDER BY dd.`no` ASC, pc.id_code_detail ASC
+            ) AS tb
+            GROUP BY tb.id_design"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
     End Sub
