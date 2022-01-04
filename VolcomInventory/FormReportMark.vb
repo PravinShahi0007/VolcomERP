@@ -2677,6 +2677,52 @@ INNER JOIN
                     Exit Sub
                 End If
 
+                'check sku shopify hanya untuk yg sync stock
+                Dim is_sync_stock_cek As String = execute_query("SELECT so.is_sync_stock FROM tb_sales_order so WHERE so.id_sales_order='" + id_report + "' ", 0, True, "", "", "", "")
+                If is_sync_stock_cek = "1" Then
+                    'get shopify product
+                    Dim dtweb As DataTable = Nothing
+                    Try
+                        Dim s As New ClassShopifyApi()
+                        dtweb = s.get_product()
+                    Catch ex As Exception
+                        stopCustom("Failed get shopify product : " + ex.ToString)
+                        Exit Sub
+                    End Try
+
+                    'get erp order
+                    Dim qorder As String = "SELECT sod.id_product,p.product_full_code
+                    FROM tb_sales_order_det sod 
+                    INNER JOIN tb_m_product p ON p.id_product = sod.id_product
+                    WHERE sod.id_sales_order='" + id_report + "' "
+                    Dim dtorder As DataTable = execute_query(qorder, -1, True, "", "", "", "")
+                    Dim qi As String = "INSERT INTO tb_temp_check_sku_order(id_sales_order, id_product, sku, inventory_item_id) VALUES "
+                    For d As Integer = 0 To dtorder.Rows.Count - 1
+                        Dim dtwebfilter As DataRow() = dtweb.Select("[sku]='" + dtorder.Rows(d)("product_full_code").ToString + "'")
+                        Dim inventory_item_id_cek As String = ""
+                        If dtwebfilter.Length > 0 Then
+                            inventory_item_id_cek = dtwebfilter(0)("inventory_item_id").ToString
+                        End If
+
+                        If d > 0 Then
+                            qi += ","
+                        End If
+                        qi += "('" + id_report + "', '" + dtorder.Rows(d)("id_product").ToString + "', '" + dtorder.Rows(d)("product_full_code").ToString + "', '" + inventory_item_id_cek + "') "
+                    Next
+                    If dtorder.Rows.Count > 0 Then
+                        execute_non_query(qi, True, "", "", "", "", "")
+                    End If
+                    'cek compare 
+                    Dim qcompare As String = ""
+                    Dim dcompare As DataTable = execute_query(qcompare, -1, True, "", "", "", "")
+                    If dcompare.Rows.Count > 0 Then
+                        stopCustom("There is invalid ID on shopify, click OK to see details. Please sync product first")
+                        FormValidateStock.dt = dcompare
+                        FormValidateStock.ShowDialog()
+                        Exit Sub
+                    End If
+                End If
+
                 'created transfer
                 'AND c.id_comp IN (SELECT id_comp FROM tb_wh_auto_trf) AND cf.id_comp IN (SELECT id_comp FROM tb_wh_auto_trf)
                 Dim qv As String = "SELECT so.id_warehouse_contact_to, so.id_store_contact_to, so.id_sales_order, c.id_drawer_def
