@@ -8316,6 +8316,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 Else
                     print(FormFGTransList.GCSOMain, "PREPARE ORDER (" + FormFGTransList.DEFromSO.Text + " - " + FormFGTransList.DEUntilSO.Text + ")")
                 End If
+            ElseIf page = "repair" Then
+                print(FormFGTransList.GCRepair, "Repair (" + FormFGTransList.DEFromRepair.Text + " - " + FormFGTransList.DEUntilRepair.Text + ")")
             End If
         ElseIf formName = "FormProdClosing" Then
             print_raw(FormProdClosing.GCProd, "")
