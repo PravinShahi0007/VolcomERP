@@ -153,7 +153,11 @@
 
             execute_non_query(query, True, "", "", "", "")
 
-            Dim q_price As String = "INSERT INTO tb_m_price_shopify (sku, compare_price, design_price, date) VALUES ('" + product.Rows(i)("sku").ToString + "', '" + product.Rows(i)("compare_price").ToString + "', '" + product.Rows(i)("design_price").ToString + "', NOW())"
+            Dim compare_price As String = product.Rows(i)("compare_price").ToString
+            If compare_price = "" Then
+                compare_price = "0"
+            End If
+            Dim q_price As String = "INSERT INTO tb_m_price_shopify (sku, compare_price, design_price, date) VALUES ('" + product.Rows(i)("sku").ToString + "', '" + compare_price + "', '" + product.Rows(i)("design_price").ToString + "', NOW())"
 
             execute_non_query(q_price, True, "", "", "", "")
         Next
