@@ -98,6 +98,13 @@ Partial Class FormStoreDisplayDet
         Me.XTPExisting = New DevExpress.XtraTab.XtraTabPage()
         Me.GCExisting = New DevExpress.XtraGrid.GridControl()
         Me.GVExisting = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnseason_delex = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass_groupex = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclassex = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnameex = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolorex = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnExistingBackToSummary = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPlanlRencanaSKU = New DevExpress.XtraTab.XtraTabPage()
@@ -984,14 +991,75 @@ Partial Class FormStoreDisplayDet
         '
         'GVExisting
         '
+        Me.GVExisting.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnseason_delex, Me.GridColumnclass_groupex, Me.GridColumncode, Me.GridColumnclassex, Me.GridColumnnameex, Me.GridColumnsht, Me.GridColumncolorex})
         Me.GVExisting.GridControl = Me.GCExisting
+        Me.GVExisting.GroupCount = 2
+        Me.GVExisting.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "name", Me.GridColumnnameex, "(Description: Count={0})")})
         Me.GVExisting.Name = "GVExisting"
         Me.GVExisting.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVExisting.OptionsBehavior.Editable = False
         Me.GVExisting.OptionsFind.AlwaysVisible = True
         Me.GVExisting.OptionsView.ColumnAutoWidth = False
         Me.GVExisting.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVExisting.OptionsView.ShowFooter = True
+        Me.GVExisting.OptionsView.ShowGroupedColumns = True
         Me.GVExisting.OptionsView.ShowGroupPanel = False
+        Me.GVExisting.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnseason_delex, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnclass_groupex, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumnseason_delex
+        '
+        Me.GridColumnseason_delex.Caption = "Season"
+        Me.GridColumnseason_delex.FieldName = "season_del"
+        Me.GridColumnseason_delex.Name = "GridColumnseason_delex"
+        Me.GridColumnseason_delex.Visible = True
+        Me.GridColumnseason_delex.VisibleIndex = 0
+        '
+        'GridColumnclass_groupex
+        '
+        Me.GridColumnclass_groupex.Caption = "Class Group"
+        Me.GridColumnclass_groupex.FieldName = "class_group"
+        Me.GridColumnclass_groupex.Name = "GridColumnclass_groupex"
+        Me.GridColumnclass_groupex.Visible = True
+        Me.GridColumnclass_groupex.VisibleIndex = 1
+        '
+        'GridColumncode
+        '
+        Me.GridColumncode.Caption = "Code"
+        Me.GridColumncode.FieldName = "code"
+        Me.GridColumncode.Name = "GridColumncode"
+        Me.GridColumncode.Visible = True
+        Me.GridColumncode.VisibleIndex = 2
+        '
+        'GridColumnclassex
+        '
+        Me.GridColumnclassex.Caption = "Class"
+        Me.GridColumnclassex.FieldName = "class"
+        Me.GridColumnclassex.Name = "GridColumnclassex"
+        Me.GridColumnclassex.Visible = True
+        Me.GridColumnclassex.VisibleIndex = 3
+        '
+        'GridColumnnameex
+        '
+        Me.GridColumnnameex.Caption = "Description"
+        Me.GridColumnnameex.FieldName = "name"
+        Me.GridColumnnameex.Name = "GridColumnnameex"
+        Me.GridColumnnameex.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "name", "{0}")})
+        Me.GridColumnnameex.Visible = True
+        Me.GridColumnnameex.VisibleIndex = 4
+        '
+        'GridColumnsht
+        '
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        '
+        'GridColumncolorex
+        '
+        Me.GridColumncolorex.Caption = "Color"
+        Me.GridColumncolorex.FieldName = "color"
+        Me.GridColumncolorex.Name = "GridColumncolorex"
+        Me.GridColumncolorex.Visible = True
+        Me.GridColumncolorex.VisibleIndex = 5
         '
         'PanelControl4
         '
@@ -1035,7 +1103,7 @@ Partial Class FormStoreDisplayDet
         '
         Me.GVPlan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_display_pps_plan, Me.GridColumnid_display_pps, Me.GridColumnid_season, Me.GridColumnid_delivery, Me.GridColumnseason_del, Me.GridColumnid_class_group, Me.GridColumnclass_group, Me.GridColumndivision, Me.GridColumnclass_type, Me.GridColumnclass_cat, Me.GridColumnqty_sku})
         Me.GVPlan.GridControl = Me.GCPlan
-        Me.GVPlan.GroupCount = 2
+        Me.GVPlan.GroupCount = 1
         Me.GVPlan.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_sku", Me.GridColumnqty_sku, "{0:N0}")})
         Me.GVPlan.Name = "GVPlan"
         Me.GVPlan.OptionsBehavior.AutoExpandAllGroups = True
@@ -1046,7 +1114,7 @@ Partial Class FormStoreDisplayDet
         Me.GVPlan.OptionsView.ShowFooter = True
         Me.GVPlan.OptionsView.ShowGroupedColumns = True
         Me.GVPlan.OptionsView.ShowGroupPanel = False
-        Me.GVPlan.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnseason_del, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumndivision, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnclass_cat, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVPlan.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnseason_del, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnclass_cat, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnid_display_pps_plan
         '
@@ -1334,4 +1402,11 @@ Partial Class FormStoreDisplayDet
     Friend WithEvents BtnExistingBackToSummary As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCExisting As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVExisting As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnseason_delex As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass_groupex As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclassex As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnameex As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolorex As DevExpress.XtraGrid.Columns.GridColumn
 End Class
