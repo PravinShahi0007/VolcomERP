@@ -222,9 +222,16 @@
             -- plan season  
             UNION ALL          
             SELECT " + id + " AS `idx`,ss.id_season, sd.id_delivery, 2 AS `is_extra_sku`
-            FROM tb_season ss
-            INNER JOIN tb_season_delivery sd ON sd.id_season = ss.id_season
-            WHERE ss.id_season!=" + id_season + " AND sd.delivery_date>'" + in_store_date + "' "
+            FROM (
+	            SELECT ss.id_season, ss.season
+	            FROM tb_season ss
+	            INNER JOIN tb_range rg ON rg.id_range = ss.id_range
+	            INNER JOIN tb_season_delivery sd ON sd.id_season = ss.id_season
+                WHERE rg.is_md=1 AND sd.delivery_date>'" + in_store_date + "' AND ss.id_season!=" + id_season + "
+                GROUP BY ss.id_season
+	            ORDER BY ss.id_season ASC LIMIT 1
+            ) ss
+            INNER JOIN tb_season_delivery sd ON sd.id_season = ss.id_season "
             execute_non_query(qss, True, "", "", "", "")
 
             'default master display
@@ -758,14 +765,16 @@
     End Sub
 
     Private Sub BtnDeletePlan_Click(sender As Object, e As EventArgs) Handles BtnDeletePlan.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to create New propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
-            Dim id_display_pps_plan As String = GVPlan.GetFocusedRowCellValue("id_display_pps_plan").ToString
-            Dim query As String = "DELETE FROM tb_display_pps_plan WHERE id_display_pps_plan='" + id_display_pps_plan + "' "
-            execute_non_query(query, True, "", "", "", "")
-            viewPlan()
-            Cursor = Cursors.Default
+        If GVPlan.RowCount > 0 And GVPlan.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to create New propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Dim id_display_pps_plan As String = GVPlan.GetFocusedRowCellValue("id_display_pps_plan").ToString
+                Dim query As String = "DELETE FROM tb_display_pps_plan WHERE id_display_pps_plan='" + id_display_pps_plan + "' "
+                execute_non_query(query, True, "", "", "", "")
+                viewPlan()
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 

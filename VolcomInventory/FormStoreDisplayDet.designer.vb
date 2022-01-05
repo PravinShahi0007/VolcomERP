@@ -1008,7 +1008,7 @@ Partial Class FormStoreDisplayDet
         Me.GVPlan.OptionsView.ShowFooter = True
         Me.GVPlan.OptionsView.ShowGroupedColumns = True
         Me.GVPlan.OptionsView.ShowGroupPanel = False
-        Me.GVPlan.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumndivision, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnclass_cat, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVPlan.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnseason_del, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumndivision, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnclass_cat, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnid_display_pps_plan
         '
