@@ -7825,6 +7825,12 @@
     <Compile Include="FormStoreDisplay.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStoreDisplayAddPlan.Designer.vb">
+      <DependentUpon>FormStoreDisplayAddPlan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStoreDisplayAddPlan.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStoreDisplayDet.designer.vb">
       <DependentUpon>FormStoreDisplayDet.vb</DependentUpon>
     </Compile>
@@ -14798,6 +14804,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStoreDisplay.resx">
       <DependentUpon>FormStoreDisplay.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStoreDisplayAddPlan.resx">
+      <DependentUpon>FormStoreDisplayAddPlan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStoreDisplayDet.resx">
       <DependentUpon>FormStoreDisplayDet.vb</DependentUpon>

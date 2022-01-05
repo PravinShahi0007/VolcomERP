@@ -219,7 +219,8 @@
             FROM tb_season ss
             INNER JOIN tb_season_delivery sd ON sd.id_season = ss.id_season
             WHERE ss.id_season=" + id_season + "
-            -- plan season            
+            -- plan season  
+            UNION ALL          
             SELECT " + id + " AS `idx`,ss.id_season, sd.id_delivery, 2 AS `is_extra_sku`
             FROM tb_season ss
             INNER JOIN tb_season_delivery sd ON sd.id_season = ss.id_season
@@ -753,6 +754,25 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPlan.DataSource = data
         GVPlan.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDeletePlan_Click(sender As Object, e As EventArgs) Handles BtnDeletePlan.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to create New propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim id_display_pps_plan As String = GVPlan.GetFocusedRowCellValue("id_display_pps_plan").ToString
+            Dim query As String = "DELETE FROM tb_display_pps_plan WHERE id_display_pps_plan='" + id_display_pps_plan + "' "
+            execute_non_query(query, True, "", "", "", "")
+            viewPlan()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnAddPlan_Click(sender As Object, e As EventArgs) Handles BtnAddPlan.Click
+        Cursor = Cursors.WaitCursor
+        FormStoreDisplayAddPlan.id_trans = id
+        FormStoreDisplayAddPlan.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

@@ -97,10 +97,6 @@ Partial Class FormStoreDisplayDet
         Me.BtnDisplayPlan = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefreshRencanaSKU = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPlanlRencanaSKU = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnSummaryRencanaSKU = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnDeletePlan = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAddPlan = New DevExpress.XtraEditors.SimpleButton()
         Me.GCPlan = New DevExpress.XtraGrid.GridControl()
         Me.GVPlan = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_display_pps_plan = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -114,6 +110,10 @@ Partial Class FormStoreDisplayDet
         Me.GridColumnclass_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnclass_cat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnqty_sku = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnSummaryRencanaSKU = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDeletePlan = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddPlan = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.RepoSelectDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUpdated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,10 +159,10 @@ Partial Class FormStoreDisplayDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.XTPPlanlRencanaSKU.SuspendLayout()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
         CType(Me.GCPlan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPlan, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         Me.SuspendLayout()
         '
         'RepoSelectDesign
@@ -985,47 +985,6 @@ Partial Class FormStoreDisplayDet
         Me.XTPPlanlRencanaSKU.Size = New System.Drawing.Size(765, 355)
         Me.XTPPlanlRencanaSKU.Text = "Plan Display"
         '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.BtnSummaryRencanaSKU)
-        Me.PanelControl2.Controls.Add(Me.BtnDeletePlan)
-        Me.PanelControl2.Controls.Add(Me.BtnAddPlan)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(765, 42)
-        Me.PanelControl2.TabIndex = 2
-        '
-        'BtnSummaryRencanaSKU
-        '
-        Me.BtnSummaryRencanaSKU.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSummaryRencanaSKU.Image = CType(resources.GetObject("BtnSummaryRencanaSKU.Image"), System.Drawing.Image)
-        Me.BtnSummaryRencanaSKU.Location = New System.Drawing.Point(490, 2)
-        Me.BtnSummaryRencanaSKU.Name = "BtnSummaryRencanaSKU"
-        Me.BtnSummaryRencanaSKU.Size = New System.Drawing.Size(119, 38)
-        Me.BtnSummaryRencanaSKU.TabIndex = 0
-        Me.BtnSummaryRencanaSKU.Text = "View Summary"
-        '
-        'BtnDeletePlan
-        '
-        Me.BtnDeletePlan.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDeletePlan.Image = CType(resources.GetObject("BtnDeletePlan.Image"), System.Drawing.Image)
-        Me.BtnDeletePlan.Location = New System.Drawing.Point(609, 2)
-        Me.BtnDeletePlan.Name = "BtnDeletePlan"
-        Me.BtnDeletePlan.Size = New System.Drawing.Size(82, 38)
-        Me.BtnDeletePlan.TabIndex = 4
-        Me.BtnDeletePlan.Text = "Delete"
-        '
-        'BtnAddPlan
-        '
-        Me.BtnAddPlan.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAddPlan.Image = CType(resources.GetObject("BtnAddPlan.Image"), System.Drawing.Image)
-        Me.BtnAddPlan.Location = New System.Drawing.Point(691, 2)
-        Me.BtnAddPlan.Name = "BtnAddPlan"
-        Me.BtnAddPlan.Size = New System.Drawing.Size(72, 38)
-        Me.BtnAddPlan.TabIndex = 3
-        Me.BtnAddPlan.Text = "Add"
-        '
         'GCPlan
         '
         Me.GCPlan.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1130,6 +1089,47 @@ Partial Class FormStoreDisplayDet
         Me.GridColumnqty_sku.Visible = True
         Me.GridColumnqty_sku.VisibleIndex = 4
         '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.BtnSummaryRencanaSKU)
+        Me.PanelControl2.Controls.Add(Me.BtnDeletePlan)
+        Me.PanelControl2.Controls.Add(Me.BtnAddPlan)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(765, 42)
+        Me.PanelControl2.TabIndex = 2
+        '
+        'BtnSummaryRencanaSKU
+        '
+        Me.BtnSummaryRencanaSKU.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSummaryRencanaSKU.Image = CType(resources.GetObject("BtnSummaryRencanaSKU.Image"), System.Drawing.Image)
+        Me.BtnSummaryRencanaSKU.Location = New System.Drawing.Point(490, 2)
+        Me.BtnSummaryRencanaSKU.Name = "BtnSummaryRencanaSKU"
+        Me.BtnSummaryRencanaSKU.Size = New System.Drawing.Size(119, 38)
+        Me.BtnSummaryRencanaSKU.TabIndex = 0
+        Me.BtnSummaryRencanaSKU.Text = "View Summary"
+        '
+        'BtnDeletePlan
+        '
+        Me.BtnDeletePlan.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDeletePlan.Image = CType(resources.GetObject("BtnDeletePlan.Image"), System.Drawing.Image)
+        Me.BtnDeletePlan.Location = New System.Drawing.Point(609, 2)
+        Me.BtnDeletePlan.Name = "BtnDeletePlan"
+        Me.BtnDeletePlan.Size = New System.Drawing.Size(82, 38)
+        Me.BtnDeletePlan.TabIndex = 4
+        Me.BtnDeletePlan.Text = "Delete"
+        '
+        'BtnAddPlan
+        '
+        Me.BtnAddPlan.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddPlan.Image = CType(resources.GetObject("BtnAddPlan.Image"), System.Drawing.Image)
+        Me.BtnAddPlan.Location = New System.Drawing.Point(691, 2)
+        Me.BtnAddPlan.Name = "BtnAddPlan"
+        Me.BtnAddPlan.Size = New System.Drawing.Size(72, 38)
+        Me.BtnAddPlan.TabIndex = 3
+        Me.BtnAddPlan.Text = "Add"
+        '
         'FormStoreDisplayDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1190,10 +1190,10 @@ Partial Class FormStoreDisplayDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.XTPPlanlRencanaSKU.ResumeLayout(False)
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
         CType(Me.GCPlan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPlan, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
