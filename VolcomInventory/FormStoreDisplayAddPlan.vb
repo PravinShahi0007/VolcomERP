@@ -1,8 +1,11 @@
 ﻿Public Class FormStoreDisplayAddPlan
     Public id_trans As String = "-1"
+    Dim id_comp As String = "-1"
 
     Private Sub FormStoreDisplayAddPlan_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        viewSeason
+        id_comp = execute_query("SELECT id_comp FROM tb_display_pps WHERE id_display_pps='" + id_trans + "' ", 0, True, "", "", "", "")
+
+        viewSeason()
         actionLoad()
     End Sub
 
@@ -45,10 +48,10 @@
         Else
             Dim id_delivery As String = SLESeason.EditValue.ToString
             Dim id_season As String = SLESeason.Properties.View.GetFocusedRowCellValue("id_season").ToString
-            Dim query As String = "INSERT INTO tb_display_pps_plan(id_display_pps, id_season, id_delivery, id_class_group, qty_sku) "
+            Dim query As String = "INSERT INTO tb_display_pps_plan(id_display_pps, id_season, id_delivery, id_class_group, qty_sku) VALUES "
             For i As Integer = 0 To GVData.RowCount - 1
                 Dim id_class_group As String = GVData.GetRowCellValue(i, "id_class_group").ToString
-                Dim qty_sku As String = decimalSQL(GVData.GetRowCellValue(i, "qty_sku").ToString)
+                Dim qty_sku As String = decimalSQL(TxtQtySKU.EditValue.ToString)
                 If i > 0 Then
                     query += ","
                 End If
@@ -57,6 +60,7 @@
             If GVData.RowCount > 0 Then
                 execute_non_query(query, True, "", "", "", "")
             End If
+            FormStoreDisplayDet.viewPlan()
             actionLoad()
             viewClassGroup()
         End If
@@ -88,6 +92,12 @@
 
         Dim query As String = "SELECT cg.id_class_group, cg.class_group, 'No' AS `is_select` 
         FROM tb_class_group cg 
+        INNER JOIN (
+            SELECT dm.id_class_group 
+            FROM tb_display_master dm
+            WHERE dm.id_comp=" + id_comp + " AND dm.is_active=1 AND dm.qty>0
+            GROUP BY dm.id_class_group
+        ) dm ON dm.id_class_group = cg.id_class_group
         LEFT JOIN tb_display_pps_plan dpp ON dpp.id_class_group = cg.id_class_group AND dpp.id_display_pps='" + id_trans + "' AND dpp.id_delivery='" + id_del + "'
         WHERE cg.is_active=1 AND ISNULL(dpp.id_class_group)
         ORDER BY cg.class_group ASC "

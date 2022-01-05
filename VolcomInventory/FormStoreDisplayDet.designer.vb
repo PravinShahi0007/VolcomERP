@@ -58,11 +58,17 @@ Partial Class FormStoreDisplayDet
         Me.XTPMasterDisplay = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDisplayPlanning = New DevExpress.XtraGrid.GridControl()
         Me.GVDisplayPlanning = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.XTPOrderDetail = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTCProduct = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPItemList = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTCPropose = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPRencanaSKU = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCRencanaSKU = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPSummaryRencanaSKU = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCRencanaSKU = New DevExpress.XtraGrid.GridControl()
+        Me.GVRencanaSKU = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDisplayPlan = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExistingDisplay = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnRefreshRencanaSKU = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCurrSeasonOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPCurrSeasonOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVDetail = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -86,16 +92,14 @@ Partial Class FormStoreDisplayDet
         Me.BandedGridColumnid_display_pps_ref = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnis_selected = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnis_selected_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnSOBackToSummary = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirmOrder = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnXLSDet = New DevExpress.XtraEditors.SimpleButton()
-        Me.XTPRencanaSKU = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTCRencanaSKU = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPSummaryRencanaSKU = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCRencanaSKU = New DevExpress.XtraGrid.GridControl()
-        Me.GVRencanaSKU = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnDisplayPlan = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnRefreshRencanaSKU = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPExisting = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCExisting = New DevExpress.XtraGrid.GridControl()
+        Me.GVExisting = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExistingBackToSummary = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPlanlRencanaSKU = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPlan = New DevExpress.XtraGrid.GridControl()
         Me.GVPlan = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -141,15 +145,6 @@ Partial Class FormStoreDisplayDet
         Me.XTPMasterDisplay.SuspendLayout()
         CType(Me.GCDisplayPlanning, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDisplayPlanning, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTPOrderDetail.SuspendLayout()
-        CType(Me.XTCProduct, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTCProduct.SuspendLayout()
-        Me.XTPItemList.SuspendLayout()
-        CType(Me.XTCPropose, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTCPropose.SuspendLayout()
-        Me.XTPDetail.SuspendLayout()
-        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPRencanaSKU.SuspendLayout()
         CType(Me.XTCRencanaSKU, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCRencanaSKU.SuspendLayout()
@@ -158,6 +153,16 @@ Partial Class FormStoreDisplayDet
         CType(Me.GVRencanaSKU, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        Me.XTPCurrSeasonOrder.SuspendLayout()
+        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        Me.XTPExisting.SuspendLayout()
+        CType(Me.GCExisting, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVExisting, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         Me.XTPPlanlRencanaSKU.SuspendLayout()
         CType(Me.GCPlan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPlan, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -583,7 +588,7 @@ Partial Class FormStoreDisplayDet
         Me.XTCDetail.SelectedTabPage = Me.XTPMasterDisplay
         Me.XTCDetail.Size = New System.Drawing.Size(800, 392)
         Me.XTCDetail.TabIndex = 8943
-        Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMasterDisplay, Me.XTPOrderDetail, Me.XTPRencanaSKU})
+        Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMasterDisplay, Me.XTPRencanaSKU})
         '
         'XTPMasterDisplay
         '
@@ -615,61 +620,122 @@ Partial Class FormStoreDisplayDet
         Me.GVDisplayPlanning.OptionsView.ShowFooter = True
         Me.GVDisplayPlanning.OptionsView.ShowGroupPanel = False
         '
-        'XTPOrderDetail
+        'XTPRencanaSKU
         '
-        Me.XTPOrderDetail.Controls.Add(Me.XTCProduct)
-        Me.XTPOrderDetail.Image = CType(resources.GetObject("XTPOrderDetail.Image"), System.Drawing.Image)
-        Me.XTPOrderDetail.Name = "XTPOrderDetail"
-        Me.XTPOrderDetail.Size = New System.Drawing.Size(794, 361)
-        Me.XTPOrderDetail.Text = "Season Order"
+        Me.XTPRencanaSKU.Controls.Add(Me.XTCRencanaSKU)
+        Me.XTPRencanaSKU.Image = CType(resources.GetObject("XTPRencanaSKU.Image"), System.Drawing.Image)
+        Me.XTPRencanaSKU.Name = "XTPRencanaSKU"
+        Me.XTPRencanaSKU.Size = New System.Drawing.Size(794, 361)
+        Me.XTPRencanaSKU.Text = "Rencana Jumlah SKU"
         '
-        'XTCProduct
+        'XTCRencanaSKU
         '
-        Me.XTCProduct.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCProduct.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
-        Me.XTCProduct.Location = New System.Drawing.Point(0, 0)
-        Me.XTCProduct.Name = "XTCProduct"
-        Me.XTCProduct.SelectedTabPage = Me.XTPItemList
-        Me.XTCProduct.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[False]
-        Me.XTCProduct.Size = New System.Drawing.Size(794, 361)
-        Me.XTCProduct.TabIndex = 18
-        Me.XTCProduct.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPItemList})
+        Me.XTCRencanaSKU.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCRencanaSKU.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XTCRencanaSKU.Location = New System.Drawing.Point(0, 0)
+        Me.XTCRencanaSKU.Name = "XTCRencanaSKU"
+        Me.XTCRencanaSKU.SelectedTabPage = Me.XTPSummaryRencanaSKU
+        Me.XTCRencanaSKU.Size = New System.Drawing.Size(794, 361)
+        Me.XTCRencanaSKU.TabIndex = 0
+        Me.XTCRencanaSKU.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummaryRencanaSKU, Me.XTPCurrSeasonOrder, Me.XTPExisting, Me.XTPPlanlRencanaSKU})
         '
-        'XTPItemList
+        'XTPSummaryRencanaSKU
         '
-        Me.XTPItemList.Controls.Add(Me.XTCPropose)
-        Me.XTPItemList.Name = "XTPItemList"
-        Me.XTPItemList.Size = New System.Drawing.Size(788, 355)
-        Me.XTPItemList.Text = "Item List"
+        Me.XTPSummaryRencanaSKU.Controls.Add(Me.GCRencanaSKU)
+        Me.XTPSummaryRencanaSKU.Controls.Add(Me.PanelControl1)
+        Me.XTPSummaryRencanaSKU.Name = "XTPSummaryRencanaSKU"
+        Me.XTPSummaryRencanaSKU.Size = New System.Drawing.Size(765, 355)
+        Me.XTPSummaryRencanaSKU.Text = "Summary"
         '
-        'XTCPropose
+        'GCRencanaSKU
         '
-        Me.XTCPropose.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCPropose.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
-        Me.XTCPropose.Location = New System.Drawing.Point(0, 0)
-        Me.XTCPropose.Name = "XTCPropose"
-        Me.XTCPropose.SelectedTabPage = Me.XTPDetail
-        Me.XTCPropose.Size = New System.Drawing.Size(788, 355)
-        Me.XTCPropose.TabIndex = 26
-        Me.XTCPropose.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail})
+        Me.GCRencanaSKU.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCRencanaSKU.Location = New System.Drawing.Point(0, 42)
+        Me.GCRencanaSKU.MainView = Me.GVRencanaSKU
+        Me.GCRencanaSKU.Name = "GCRencanaSKU"
+        Me.GCRencanaSKU.Size = New System.Drawing.Size(765, 313)
+        Me.GCRencanaSKU.TabIndex = 0
+        Me.GCRencanaSKU.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRencanaSKU})
         '
-        'XTPDetail
+        'GVRencanaSKU
         '
-        Me.XTPDetail.Controls.Add(Me.GCDetail)
-        Me.XTPDetail.Controls.Add(Me.BtnConfirmOrder)
-        Me.XTPDetail.Controls.Add(Me.BtnXLSDet)
-        Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.PageEnabled = False
-        Me.XTPDetail.Size = New System.Drawing.Size(759, 349)
-        Me.XTPDetail.Text = "Select Product"
+        Me.GVRencanaSKU.GridControl = Me.GCRencanaSKU
+        Me.GVRencanaSKU.Name = "GVRencanaSKU"
+        Me.GVRencanaSKU.OptionsBehavior.Editable = False
+        Me.GVRencanaSKU.OptionsFind.AlwaysVisible = True
+        Me.GVRencanaSKU.OptionsView.ColumnAutoWidth = False
+        Me.GVRencanaSKU.OptionsView.ShowFooter = True
+        Me.GVRencanaSKU.OptionsView.ShowGroupPanel = False
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BtnDisplayPlan)
+        Me.PanelControl1.Controls.Add(Me.BtnExistingDisplay)
+        Me.PanelControl1.Controls.Add(Me.BtnRefreshRencanaSKU)
+        Me.PanelControl1.Controls.Add(Me.BtnCurrSeasonOrder)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(765, 42)
+        Me.PanelControl1.TabIndex = 1
+        '
+        'BtnDisplayPlan
+        '
+        Me.BtnDisplayPlan.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnDisplayPlan.Image = CType(resources.GetObject("BtnDisplayPlan.Image"), System.Drawing.Image)
+        Me.BtnDisplayPlan.Location = New System.Drawing.Point(170, 2)
+        Me.BtnDisplayPlan.Name = "BtnDisplayPlan"
+        Me.BtnDisplayPlan.Size = New System.Drawing.Size(74, 38)
+        Me.BtnDisplayPlan.TabIndex = 1
+        Me.BtnDisplayPlan.Text = "Plan"
+        '
+        'BtnExistingDisplay
+        '
+        Me.BtnExistingDisplay.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnExistingDisplay.Image = CType(resources.GetObject("BtnExistingDisplay.Image"), System.Drawing.Image)
+        Me.BtnExistingDisplay.Location = New System.Drawing.Point(82, 2)
+        Me.BtnExistingDisplay.Name = "BtnExistingDisplay"
+        Me.BtnExistingDisplay.Size = New System.Drawing.Size(88, 38)
+        Me.BtnExistingDisplay.TabIndex = 3
+        Me.BtnExistingDisplay.Text = "Existing"
+        '
+        'BtnRefreshRencanaSKU
+        '
+        Me.BtnRefreshRencanaSKU.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRefreshRencanaSKU.Image = CType(resources.GetObject("BtnRefreshRencanaSKU.Image"), System.Drawing.Image)
+        Me.BtnRefreshRencanaSKU.Location = New System.Drawing.Point(672, 2)
+        Me.BtnRefreshRencanaSKU.Name = "BtnRefreshRencanaSKU"
+        Me.BtnRefreshRencanaSKU.Size = New System.Drawing.Size(91, 38)
+        Me.BtnRefreshRencanaSKU.TabIndex = 0
+        Me.BtnRefreshRencanaSKU.Text = "Refresh"
+        '
+        'BtnCurrSeasonOrder
+        '
+        Me.BtnCurrSeasonOrder.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnCurrSeasonOrder.Image = CType(resources.GetObject("BtnCurrSeasonOrder.Image"), System.Drawing.Image)
+        Me.BtnCurrSeasonOrder.Location = New System.Drawing.Point(2, 2)
+        Me.BtnCurrSeasonOrder.Name = "BtnCurrSeasonOrder"
+        Me.BtnCurrSeasonOrder.Size = New System.Drawing.Size(80, 38)
+        Me.BtnCurrSeasonOrder.TabIndex = 2
+        Me.BtnCurrSeasonOrder.Text = "SX YY"
+        '
+        'XTPCurrSeasonOrder
+        '
+        Me.XTPCurrSeasonOrder.Controls.Add(Me.GCDetail)
+        Me.XTPCurrSeasonOrder.Controls.Add(Me.PanelControl3)
+        Me.XTPCurrSeasonOrder.Controls.Add(Me.BtnConfirmOrder)
+        Me.XTPCurrSeasonOrder.Name = "XTPCurrSeasonOrder"
+        Me.XTPCurrSeasonOrder.PageEnabled = False
+        Me.XTPCurrSeasonOrder.Size = New System.Drawing.Size(765, 355)
+        Me.XTPCurrSeasonOrder.Text = "Season Order"
         '
         'GCDetail
         '
         Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDetail.Location = New System.Drawing.Point(0, 0)
+        Me.GCDetail.Location = New System.Drawing.Point(0, 42)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
-        Me.GCDetail.Size = New System.Drawing.Size(759, 288)
+        Me.GCDetail.Size = New System.Drawing.Size(765, 281)
         Me.GCDetail.TabIndex = 0
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
@@ -857,6 +923,25 @@ Partial Class FormStoreDisplayDet
         Me.BandedGridColumnis_selected_new.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.BandedGridColumnis_selected_new.Visible = True
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.BtnSOBackToSummary)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(765, 42)
+        Me.PanelControl3.TabIndex = 27
+        '
+        'BtnSOBackToSummary
+        '
+        Me.BtnSOBackToSummary.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSOBackToSummary.Image = CType(resources.GetObject("BtnSOBackToSummary.Image"), System.Drawing.Image)
+        Me.BtnSOBackToSummary.Location = New System.Drawing.Point(644, 2)
+        Me.BtnSOBackToSummary.Name = "BtnSOBackToSummary"
+        Me.BtnSOBackToSummary.Size = New System.Drawing.Size(119, 38)
+        Me.BtnSOBackToSummary.TabIndex = 0
+        Me.BtnSOBackToSummary.Text = "View Summary"
+        '
         'BtnConfirmOrder
         '
         Me.BtnConfirmOrder.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
@@ -868,113 +953,64 @@ Partial Class FormStoreDisplayDet
         Me.BtnConfirmOrder.Appearance.Options.UseForeColor = True
         Me.BtnConfirmOrder.Appearance.Options.UseImage = True
         Me.BtnConfirmOrder.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnConfirmOrder.Location = New System.Drawing.Point(0, 288)
+        Me.BtnConfirmOrder.Location = New System.Drawing.Point(0, 323)
         Me.BtnConfirmOrder.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnConfirmOrder.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BtnConfirmOrder.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnConfirmOrder.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnConfirmOrder.Name = "BtnConfirmOrder"
-        Me.BtnConfirmOrder.Size = New System.Drawing.Size(759, 32)
+        Me.BtnConfirmOrder.Size = New System.Drawing.Size(765, 32)
         Me.BtnConfirmOrder.TabIndex = 26
         Me.BtnConfirmOrder.Text = "Confirm Order"
         '
-        'BtnXLSDet
+        'XTPExisting
         '
-        Me.BtnXLSDet.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.BtnXLSDet.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnXLSDet.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BtnXLSDet.Appearance.Image = CType(resources.GetObject("BtnXLSDet.Appearance.Image"), System.Drawing.Image)
-        Me.BtnXLSDet.Appearance.Options.UseBackColor = True
-        Me.BtnXLSDet.Appearance.Options.UseFont = True
-        Me.BtnXLSDet.Appearance.Options.UseForeColor = True
-        Me.BtnXLSDet.Appearance.Options.UseImage = True
-        Me.BtnXLSDet.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnXLSDet.Location = New System.Drawing.Point(0, 320)
-        Me.BtnXLSDet.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BtnXLSDet.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BtnXLSDet.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BtnXLSDet.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnXLSDet.Name = "BtnXLSDet"
-        Me.BtnXLSDet.Size = New System.Drawing.Size(759, 29)
-        Me.BtnXLSDet.TabIndex = 25
-        Me.BtnXLSDet.Text = "Export to XLS"
+        Me.XTPExisting.Controls.Add(Me.GCExisting)
+        Me.XTPExisting.Controls.Add(Me.PanelControl4)
+        Me.XTPExisting.Name = "XTPExisting"
+        Me.XTPExisting.PageEnabled = False
+        Me.XTPExisting.Size = New System.Drawing.Size(765, 355)
+        Me.XTPExisting.Text = "Existing"
         '
-        'XTPRencanaSKU
+        'GCExisting
         '
-        Me.XTPRencanaSKU.Controls.Add(Me.XTCRencanaSKU)
-        Me.XTPRencanaSKU.Image = CType(resources.GetObject("XTPRencanaSKU.Image"), System.Drawing.Image)
-        Me.XTPRencanaSKU.Name = "XTPRencanaSKU"
-        Me.XTPRencanaSKU.Size = New System.Drawing.Size(794, 361)
-        Me.XTPRencanaSKU.Text = "Rencana Jumlah SKU"
+        Me.GCExisting.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCExisting.Location = New System.Drawing.Point(0, 42)
+        Me.GCExisting.MainView = Me.GVExisting
+        Me.GCExisting.Name = "GCExisting"
+        Me.GCExisting.Size = New System.Drawing.Size(765, 313)
+        Me.GCExisting.TabIndex = 29
+        Me.GCExisting.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVExisting})
         '
-        'XTCRencanaSKU
+        'GVExisting
         '
-        Me.XTCRencanaSKU.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCRencanaSKU.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
-        Me.XTCRencanaSKU.Location = New System.Drawing.Point(0, 0)
-        Me.XTCRencanaSKU.Name = "XTCRencanaSKU"
-        Me.XTCRencanaSKU.SelectedTabPage = Me.XTPSummaryRencanaSKU
-        Me.XTCRencanaSKU.Size = New System.Drawing.Size(794, 361)
-        Me.XTCRencanaSKU.TabIndex = 0
-        Me.XTCRencanaSKU.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummaryRencanaSKU, Me.XTPPlanlRencanaSKU})
+        Me.GVExisting.GridControl = Me.GCExisting
+        Me.GVExisting.Name = "GVExisting"
+        Me.GVExisting.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVExisting.OptionsBehavior.Editable = False
+        Me.GVExisting.OptionsFind.AlwaysVisible = True
+        Me.GVExisting.OptionsView.ColumnAutoWidth = False
+        Me.GVExisting.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVExisting.OptionsView.ShowGroupPanel = False
         '
-        'XTPSummaryRencanaSKU
+        'PanelControl4
         '
-        Me.XTPSummaryRencanaSKU.Controls.Add(Me.GCRencanaSKU)
-        Me.XTPSummaryRencanaSKU.Controls.Add(Me.PanelControl1)
-        Me.XTPSummaryRencanaSKU.Name = "XTPSummaryRencanaSKU"
-        Me.XTPSummaryRencanaSKU.Size = New System.Drawing.Size(765, 355)
-        Me.XTPSummaryRencanaSKU.Text = "Summary"
+        Me.PanelControl4.Controls.Add(Me.BtnExistingBackToSummary)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(765, 42)
+        Me.PanelControl4.TabIndex = 28
         '
-        'GCRencanaSKU
+        'BtnExistingBackToSummary
         '
-        Me.GCRencanaSKU.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCRencanaSKU.Location = New System.Drawing.Point(0, 42)
-        Me.GCRencanaSKU.MainView = Me.GVRencanaSKU
-        Me.GCRencanaSKU.Name = "GCRencanaSKU"
-        Me.GCRencanaSKU.Size = New System.Drawing.Size(765, 313)
-        Me.GCRencanaSKU.TabIndex = 0
-        Me.GCRencanaSKU.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRencanaSKU})
-        '
-        'GVRencanaSKU
-        '
-        Me.GVRencanaSKU.GridControl = Me.GCRencanaSKU
-        Me.GVRencanaSKU.Name = "GVRencanaSKU"
-        Me.GVRencanaSKU.OptionsBehavior.Editable = False
-        Me.GVRencanaSKU.OptionsFind.AlwaysVisible = True
-        Me.GVRencanaSKU.OptionsView.ColumnAutoWidth = False
-        Me.GVRencanaSKU.OptionsView.ShowFooter = True
-        Me.GVRencanaSKU.OptionsView.ShowGroupPanel = False
-        '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.BtnDisplayPlan)
-        Me.PanelControl1.Controls.Add(Me.BtnRefreshRencanaSKU)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(765, 42)
-        Me.PanelControl1.TabIndex = 1
-        '
-        'BtnDisplayPlan
-        '
-        Me.BtnDisplayPlan.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDisplayPlan.Image = CType(resources.GetObject("BtnDisplayPlan.Image"), System.Drawing.Image)
-        Me.BtnDisplayPlan.Location = New System.Drawing.Point(563, 2)
-        Me.BtnDisplayPlan.Name = "BtnDisplayPlan"
-        Me.BtnDisplayPlan.Size = New System.Drawing.Size(105, 38)
-        Me.BtnDisplayPlan.TabIndex = 1
-        Me.BtnDisplayPlan.Text = "Plan Display"
-        '
-        'BtnRefreshRencanaSKU
-        '
-        Me.BtnRefreshRencanaSKU.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnRefreshRencanaSKU.Image = CType(resources.GetObject("BtnRefreshRencanaSKU.Image"), System.Drawing.Image)
-        Me.BtnRefreshRencanaSKU.Location = New System.Drawing.Point(668, 2)
-        Me.BtnRefreshRencanaSKU.Name = "BtnRefreshRencanaSKU"
-        Me.BtnRefreshRencanaSKU.Size = New System.Drawing.Size(95, 38)
-        Me.BtnRefreshRencanaSKU.TabIndex = 0
-        Me.BtnRefreshRencanaSKU.Text = "Refresh"
+        Me.BtnExistingBackToSummary.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExistingBackToSummary.Image = CType(resources.GetObject("BtnExistingBackToSummary.Image"), System.Drawing.Image)
+        Me.BtnExistingBackToSummary.Location = New System.Drawing.Point(644, 2)
+        Me.BtnExistingBackToSummary.Name = "BtnExistingBackToSummary"
+        Me.BtnExistingBackToSummary.Size = New System.Drawing.Size(119, 38)
+        Me.BtnExistingBackToSummary.TabIndex = 0
+        Me.BtnExistingBackToSummary.Text = "View Summary"
         '
         'XTPPlanlRencanaSKU
         '
@@ -1000,11 +1036,13 @@ Partial Class FormStoreDisplayDet
         Me.GVPlan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_display_pps_plan, Me.GridColumnid_display_pps, Me.GridColumnid_season, Me.GridColumnid_delivery, Me.GridColumnseason_del, Me.GridColumnid_class_group, Me.GridColumnclass_group, Me.GridColumndivision, Me.GridColumnclass_type, Me.GridColumnclass_cat, Me.GridColumnqty_sku})
         Me.GVPlan.GridControl = Me.GCPlan
         Me.GVPlan.GroupCount = 2
+        Me.GVPlan.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_sku", Me.GridColumnqty_sku, "{0:N0}")})
         Me.GVPlan.Name = "GVPlan"
         Me.GVPlan.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVPlan.OptionsBehavior.Editable = False
         Me.GVPlan.OptionsFind.AlwaysVisible = True
         Me.GVPlan.OptionsView.ColumnAutoWidth = False
+        Me.GVPlan.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVPlan.OptionsView.ShowFooter = True
         Me.GVPlan.OptionsView.ShowGroupedColumns = True
         Me.GVPlan.OptionsView.ShowGroupPanel = False
@@ -1172,15 +1210,6 @@ Partial Class FormStoreDisplayDet
         Me.XTPMasterDisplay.ResumeLayout(False)
         CType(Me.GCDisplayPlanning, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDisplayPlanning, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTPOrderDetail.ResumeLayout(False)
-        CType(Me.XTCProduct, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTCProduct.ResumeLayout(False)
-        Me.XTPItemList.ResumeLayout(False)
-        CType(Me.XTCPropose, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTCPropose.ResumeLayout(False)
-        Me.XTPDetail.ResumeLayout(False)
-        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPRencanaSKU.ResumeLayout(False)
         CType(Me.XTCRencanaSKU, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCRencanaSKU.ResumeLayout(False)
@@ -1189,6 +1218,16 @@ Partial Class FormStoreDisplayDet
         CType(Me.GVRencanaSKU, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        Me.XTPCurrSeasonOrder.ResumeLayout(False)
+        CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.XTPExisting.ResumeLayout(False)
+        CType(Me.GCExisting, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVExisting, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
         Me.XTPPlanlRencanaSKU.ResumeLayout(False)
         CType(Me.GCPlan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPlan, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1227,9 +1266,6 @@ Partial Class FormStoreDisplayDet
     Friend WithEvents BtnSaveChanges As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnConfirm As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTCDetail As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XTPOrderDetail As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XTCProduct As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XTPItemList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCDetail As DevExpress.XtraGrid.GridControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents GVDetail As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
@@ -1255,11 +1291,8 @@ Partial Class FormStoreDisplayDet
     Friend WithEvents BandedGridColumnis_selected As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnis_selected_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents XTPMasterDisplay As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents BtnXLSDet As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents XTPRencanaSKU As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XTCPropose As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XTPDetail As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents BtnConfirmOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents RepoSelectDesign As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GCDisplayPlanning As DevExpress.XtraGrid.GridControl
@@ -1291,4 +1324,14 @@ Partial Class FormStoreDisplayDet
     Friend WithEvents GridColumnclass_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnclass_cat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnqty_sku As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPCurrSeasonOrder As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnSOBackToSummary As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnExistingDisplay As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnCurrSeasonOrder As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPExisting As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnExistingBackToSummary As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCExisting As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVExisting As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

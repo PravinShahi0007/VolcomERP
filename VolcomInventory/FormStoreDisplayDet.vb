@@ -91,10 +91,14 @@
             MENote.Text = data.Rows(0)("note").ToString
             is_confirm = data.Rows(0)("is_confirm").ToString
 
+            'set title
+            BtnCurrSeasonOrder.Text = SLESeason.Text
+            XTPCurrSeasonOrder.Text = SLESeason.Text + " Order"
+
             'detail
             viewDisplayPlanning()
-            viewDetail()
             allow_status()
+
 
             'cek class mapping - aktifkan saat live
             'checkClassGroup()
@@ -437,7 +441,6 @@
     Sub allow_status()
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
-        BtnXLSDet.Visible = True
         SLESeason.Enabled = False
         SLEComp.Enabled = False
         If is_confirm = "2" And is_view = "-1" Then
@@ -719,7 +722,7 @@
         GVPlan.ActiveFilterString = ""
         GVPlan.ApplyFindFilter("")
         XTPPlanlRencanaSKU.PageEnabled = True
-        XTCRencanaSKU.SelectedTabPageIndex = 1
+        XTCRencanaSKU.SelectedTabPageIndex = 3
         XTPSummaryRencanaSKU.PageEnabled = False
         viewPlan()
         Cursor = Cursors.Default
@@ -783,5 +786,45 @@
         FormStoreDisplayAddPlan.id_trans = id
         FormStoreDisplayAddPlan.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCurrSeasonOrder_Click(sender As Object, e As EventArgs) Handles BtnCurrSeasonOrder.Click
+        Cursor = Cursors.WaitCursor
+        GVDetail.ActiveFilterString = ""
+        GVDetail.ApplyFindFilter("")
+        XTPCurrSeasonOrder.PageEnabled = True
+        XTCRencanaSKU.SelectedTabPageIndex = 1
+        XTPSummaryRencanaSKU.PageEnabled = False
+        viewDetail()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSOBackToSummary_Click(sender As Object, e As EventArgs) Handles BtnSOBackToSummary.Click
+        XTPSummaryRencanaSKU.PageEnabled = True
+        XTCRencanaSKU.SelectedTabPageIndex = 0
+        XTPCurrSeasonOrder.PageEnabled = False
+    End Sub
+
+    Sub viewExisting()
+        Cursor = Cursors.WaitCursor
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnExistingDisplay_Click(sender As Object, e As EventArgs) Handles BtnExistingDisplay.Click
+        Cursor = Cursors.WaitCursor
+        GVExisting.ActiveFilterString = ""
+        GVExisting.ApplyFindFilter("")
+        XTPExisting.PageEnabled = True
+        XTCRencanaSKU.SelectedTabPageIndex = 2
+        XTPSummaryRencanaSKU.PageEnabled = False
+        viewExisting()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnExistingBackToSummary_Click(sender As Object, e As EventArgs) Handles BtnExistingBackToSummary.Click
+        XTPSummaryRencanaSKU.PageEnabled = True
+        XTCRencanaSKU.SelectedTabPageIndex = 0
+        XTPExisting.PageEnabled = False
     End Sub
 End Class
