@@ -315,7 +315,7 @@
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         Dim is_import As Boolean = False
-        Dim q As String = "SELECT * FROM tb_m_design_code_detail cd 
+        Dim q As String = "SELECT * FROM tb_m_design_code cd 
 WHERE cd.id_design='" & id_design & "' AND cd.id_code_detail='206'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         If dt.Rows.Count > 0 Then
