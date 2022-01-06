@@ -805,6 +805,7 @@
                 saveDetail()
             Else
                 warningCustom(res)
+                Exit Sub
             End If
         End If
 
@@ -870,6 +871,7 @@
         Dim res As String = isValidDetail()
         If res = "valid" Then
             saveDetail()
+            viewDetail()
         Else
             warningCustom(res)
         End If
@@ -878,7 +880,7 @@
     Function isValidDetail() As String
         'cek drop
         Dim cond_no_drop As Boolean = False
-        GVDetail.ActiveFilterString = "[is_selected]='1' AND [id_lookup_status_order]='2' "
+        GVDetail.ActiveFilterString = "[is_selected_view]='Yes' AND [id_lookup_status_order]='2' "
         If GVDetail.RowCount <= 0 Then
             cond_no_drop = True
         Else
@@ -888,7 +890,7 @@
 
         'cek class group
         Dim cond_no_class_group = False
-        GVDetail.ActiveFilterString = "[id_class_group]='0' "
+        GVDetail.ActiveFilterString = "[is_selected_view]='Yes' AND [id_class_group]='0' "
         If GVDetail.RowCount <= 0 Then
             cond_no_class_group = True
         Else
@@ -897,7 +899,7 @@
         GVDetail.ActiveFilterString = ""
 
         'res
-        If cond_no_drop Then
+        If cond_no_drop And cond_no_class_group Then
             Return "valid"
         ElseIf Not cond_no_drop Then
             Return "Produk dengan status 'Drop' tidak bisa diproses."
