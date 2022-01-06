@@ -97,6 +97,7 @@
 
             'detail
             viewDisplayPlanning()
+            viewRencanaSKU()
             allow_status()
 
 
@@ -415,6 +416,70 @@
         Next
         GVDisplayPlanning.Columns("GROUP INFO|id_class_group").Visible = False
         GVDisplayPlanning.BestFitColumns()
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewRencanaSKU()
+        Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        Dim query As String = "SELECT cg.class_group AS `CLASS`,SUM(total_sku) AS `TOTAL SKU` 
+        FROM (
+	        -- exist
+	        SELECT dpr.id_class_group, dpr.id_season, dpr.id_delivery, COUNT(dpr.id_class_group) AS `total_sku`
+	        FROM tb_display_pps_res dpr
+	        WHERE dpr.id_display_pps=" + id + "
+	        GROUP BY dpr.id_class_group, dpr.id_delivery
+	        UNION ALL
+	        -- current
+	        SELECT dpd.id_class_group, d.id_season, d.id_delivery, COUNT(dpd.id_class_group) AS `total_sku`
+	        FROM tb_display_pps_det dpd
+	        INNER JOIN tb_m_design d ON d.id_design = dpd.id_design
+	        WHERE dpd.id_display_pps=" + id + "
+	        GROUP BY dpd.id_class_group, d.id_delivery
+	        -- plan
+	        UNION ALL
+	        SELECT dpp.id_class_group, dpp.id_season, dpp.id_delivery, dpp.qty_sku AS `total_sku`
+	        FROM tb_display_pps_plan dpp
+	        WHERE dpp.id_display_pps=" + id + "
+        ) a
+        INNER JOIN tb_class_group cg ON cg.id_class_group = a.id_class_group
+        GROUP BY a.id_class_group
+        ORDER BY class_group ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRencanaSKU.DataSource = data
+
+
+        For j = 0 To data.Columns.Count - 1
+            Dim coluName As String = data.Columns(j).Caption
+            Dim col As DevExpress.XtraGrid.Columns.GridColumn = New DevExpress.XtraGrid.Columns.GridColumn
+            col.Caption = coluName
+            col.VisibleIndex = j
+            col.FieldName = data.Columns(j).Caption
+
+            If Not coluName.Contains("INFO") Then
+                'display format
+                col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                col.DisplayFormat.FormatString = "{0:n0}"
+
+                'summary
+                col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                col.SummaryItem.DisplayFormat = "{0:n0}"
+
+
+                'group summary
+                Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
+                summary.DisplayFormat = "{0:N0}"
+                summary.FieldName = data.Columns(j).Caption
+                summary.ShowInGroupColumnFooter = col
+                summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                GVDisplayPlanning.GroupSummary.Add(summary)
+            End If
+        Next
+
+        GVRencanaSKU.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
     End Sub
