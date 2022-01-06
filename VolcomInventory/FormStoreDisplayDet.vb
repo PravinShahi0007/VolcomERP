@@ -678,7 +678,7 @@
                 FormMain.SplashScreenManager1.ShowWaitForm()
             End If
             GVDetail.ActiveFilterString = "[id_display_pps_det]=0 AND [is_selected_new]=1 "
-            Dim qins As String = "INSERT INTO tb_display_pps_det(id_display_pps, id_design, is_selected, id_display_pps_ref, pps_ref_number) VALUES "
+            Dim qins As String = "INSERT INTO tb_display_pps_det(id_display_pps, id_design, is_selected, id_display_pps_ref, pps_ref_number, id_class_group) VALUES "
             For i As Integer = 0 To (GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail)
                 Cursor = Cursors.WaitCursor
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Processing new detail " + (i + 1).ToString + "/" + GVDetail.RowCount.ToString)
@@ -689,10 +689,11 @@
                     id_display_pps_ref = "NULL"
                 End If
                 Dim pps_ref_number As String = GVDetail.GetRowCellValue(i, "pps_ref_number").ToString
+                Dim id_class_group As String = GVDetail.GetRowCellValue(i, "id_class_group").ToString
                 If i > 0 Then
                     qins += ","
                 End If
-                qins += "('" + id + "', '" + id_design + "', '" + is_selected + "', " + id_display_pps_ref + ", '" + pps_ref_number + "') "
+                qins += "('" + id + "', '" + id_design + "', '" + is_selected + "', " + id_display_pps_ref + ", '" + pps_ref_number + "', '" + id_class_group + "') "
                 Cursor = Cursors.Default
             Next
             If GVDetail.RowCount > 0 Then
@@ -798,8 +799,13 @@
 
     Private Sub BtnSOBackToSummary_Click(sender As Object, e As EventArgs) Handles BtnSOBackToSummary.Click
         'save changes detail
-        If isValidDetail() And is_confirm = 2 Then
-            saveDetail()
+        If is_confirm = "2" Then
+            Dim res As String = isValidDetail()
+            If res = "valid" Then
+                saveDetail()
+            Else
+                warningCustom(res)
+            End If
         End If
 
         'back to summary
@@ -861,12 +867,15 @@
     End Sub
 
     Private Sub BtnConfirmOrder_Click(sender As Object, e As EventArgs) Handles BtnConfirmOrder.Click
-        If isValidDetail() Then
+        Dim res As String = isValidDetail()
+        If res = "valid" Then
             saveDetail()
+        Else
+            warningCustom(res)
         End If
     End Sub
 
-    Function isValidDetail() As Boolean
+    Function isValidDetail() As String
         'cek drop
         Dim cond_no_drop As Boolean = False
         GVDetail.ActiveFilterString = "[is_selected]='1' AND [id_lookup_status_order]='2' "
@@ -877,11 +886,27 @@
         End If
         GVDetail.ActiveFilterString = ""
 
+        'cek class group
+        Dim cond_no_class_group = False
+        GVDetail.ActiveFilterString = "[id_class_group]='0' "
+        If GVDetail.RowCount <= 0 Then
+            cond_no_class_group = True
+        Else
+            cond_no_class_group = False
+        End If
+        GVDetail.ActiveFilterString = ""
+
         'res
         If cond_no_drop Then
-            Return True
+            Return "valid"
+        ElseIf Not cond_no_drop Then
+            Return "Produk dengan status 'Drop' tidak bisa diproses."
+        ElseIf Not cond_no_class_group Then
+            Return "Beberapa class tidak ditemukan, pastikan master toko sudah di setup untuk semua class produk yang dipilih."
         Else
-            Return False
+            Return "Not valid"
         End If
     End Function
+
+
 End Class
