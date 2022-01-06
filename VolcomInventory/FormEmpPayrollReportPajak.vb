@@ -10,10 +10,19 @@
             GBSalary.Visible = False
             gridBand3.Visible = False
             gridBand2.Visible = False
+            GBBonus.Visible = False
 
             BandedGridColumnTHR.Caption = "Total" + Environment.NewLine + "THR " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy")
+        ElseIf data.Rows(0)("is_bonus").ToString = "1" Then
+            GBSalary.Visible = False
+            gridBand3.Visible = False
+            gridBand2.Visible = False
+            GBTHR.Visible = False
+
+            BandedGridColumnBonus.Caption = "Total" + Environment.NewLine + "Bonus " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy")
         Else
             GBTHR.Visible = False
+            GBBonus.Visible = False
 
             BandedGridColumnTotal1.Caption = "Total I Gaji" + Environment.NewLine + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM") + Environment.NewLine + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy")
         End If
@@ -75,6 +84,8 @@
         Report.id_payroll = id_payroll
 
         If data.Rows(0)("is_thr").ToString = "1" Then
+            Report.XLPeriod.Text = data.Rows(0)("payroll_type").ToString.ToUpper + " " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy").ToUpper
+        ElseIf data.Rows(0)("is_bonus").ToString = "1" Then
             Report.XLPeriod.Text = data.Rows(0)("payroll_type").ToString.ToUpper + " " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy").ToUpper
         Else
             Report.XLPeriod.Text = "GAJI BULAN " + Date.Parse(FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy").ToUpper
