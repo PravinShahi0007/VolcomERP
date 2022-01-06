@@ -513,9 +513,6 @@
         'head
         saveHead()
 
-        'detail
-        saveDetail()
-
         'view
         refreshMainview()
         actionLoad()
@@ -800,6 +797,12 @@
     End Sub
 
     Private Sub BtnSOBackToSummary_Click(sender As Object, e As EventArgs) Handles BtnSOBackToSummary.Click
+        'save changes detail
+        If isValidDetail() And is_confirm = 2 Then
+            saveDetail()
+        End If
+
+        'back to summary
         XTPSummaryRencanaSKU.PageEnabled = True
         XTCRencanaSKU.SelectedTabPageIndex = 0
         XTPCurrSeasonOrder.PageEnabled = False
@@ -856,4 +859,29 @@
         XTCRencanaSKU.SelectedTabPageIndex = 0
         XTPExisting.PageEnabled = False
     End Sub
+
+    Private Sub BtnConfirmOrder_Click(sender As Object, e As EventArgs) Handles BtnConfirmOrder.Click
+        If isValidDetail() Then
+            saveDetail()
+        End If
+    End Sub
+
+    Function isValidDetail() As Boolean
+        'cek drop
+        Dim cond_no_drop As Boolean = False
+        GVDetail.ActiveFilterString = "[is_selected]='1' AND [id_lookup_status_order]='2' "
+        If GVDetail.RowCount <= 0 Then
+            cond_no_drop = True
+        Else
+            cond_no_drop = False
+        End If
+        GVDetail.ActiveFilterString = ""
+
+        'res
+        If cond_no_drop Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 End Class

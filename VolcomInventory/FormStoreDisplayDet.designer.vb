@@ -824,7 +824,8 @@ Partial Class FormStoreDisplayDet
         Me.gridBand3.Caption = "LAST PROPOSED"
         Me.gridBand3.Columns.Add(Me.BandedGridColumnpps_ref_number)
         Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 1
+        Me.gridBand3.Visible = False
+        Me.gridBand3.VisibleIndex = -1
         Me.gridBand3.Width = 144
         '
         'BandedGridColumnpps_ref_number
@@ -838,11 +839,11 @@ Partial Class FormStoreDisplayDet
         '
         'gridBand2
         '
-        Me.gridBand2.Caption = "NEW PROPOSE"
+        Me.gridBand2.Caption = "ORDER"
         Me.gridBand2.Columns.Add(Me.BandedGridColumnis_selected_view)
         Me.gridBand2.Columns.Add(Me.BandedGridColumnis_selected_status)
         Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 2
+        Me.gridBand2.VisibleIndex = 1
         Me.gridBand2.Width = 150
         '
         'BandedGridColumnis_selected_view
@@ -1349,10 +1350,7 @@ Partial Class FormStoreDisplayDet
     Friend WithEvents BandedGridColumnseason_type As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnid_design As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnsht As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnpps_ref_number As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnis_selected_view As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnis_selected_status As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnid_display_pps_ref As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -1409,4 +1407,7 @@ Partial Class FormStoreDisplayDet
     Friend WithEvents GridColumnnameex As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsht As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncolorex As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class
