@@ -170,6 +170,7 @@ Public Class FormSalesPOSDet
         viewPrintOpt()
 
         If action = "ins" Then
+            TxtPotGWP.EditValue = 0.0
             TxtDiscount.EditValue = 0.0
             TxtNetto.EditValue = 0.0
             TxtVatTot.EditValue = 0.0
@@ -362,7 +363,7 @@ Public Class FormSalesPOSDet
             query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
             IFNULL(a.id_comp_contact_bill,'-1') AS `id_comp_contact_bill`,(cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
-            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_st_date, a.sales_pos_discount, a.sales_pos_potongan, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number,so.customer_name,a.kurs_trans, a.report_mark_type, IFNULL(a.id_return_refuse,0) AS `id_return_refuse` "
+            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_st_date, a.sales_pos_discount, a.potongan_gwp, a.sales_pos_potongan, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number,so.customer_name,a.kurs_trans, a.report_mark_type, IFNULL(a.id_return_refuse,0) AS `id_return_refuse` "
             If id_menu = "5" Then
                 query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref`, sor.customer_name AS `customer_name_ref` "
             End If
@@ -442,6 +443,7 @@ Public Class FormSalesPOSDet
             SPDiscount.EditValue = data.Rows(0)("sales_pos_discount")
             TxtPotPenjualan.EditValue = data.Rows(0)("sales_pos_potongan")
             SPVat.EditValue = data.Rows(0)("sales_pos_vat")
+            TxtPotGWP.EditValue = data.Rows(0)("potongan_gwp")
 
             'update feb 2019-deteksi laporarn jual unuik
             is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
@@ -743,6 +745,8 @@ Public Class FormSalesPOSDet
             Dim sales_pos_end_period As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
             Dim sales_pos_discount As String = decimalSQL(SPDiscount.EditValue.ToString)
             Dim sales_pos_potongan As String = decimalSQL(TxtPotPenjualan.EditValue.ToString)
+            Dim potongan_gwp As String = decimalSQL(TxtPotGWP.EditValue.ToString)
+            Dim netto As String = decimalSQL(TxtNetto.EditValue.ToString)
             Dim sales_pos_vat As String = decimalSQL(SPVat.EditValue.ToString)
             total_amount = Double.Parse(GVItemList.Columns("sales_pos_det_amount").SummaryItem.SummaryValue.ToString)
             Dim kurs_trans As String = decimalSQL(TEKurs.EditValue.ToString)
@@ -925,8 +929,8 @@ Public Class FormSalesPOSDet
 
                     'Main tbale
                     BtnSave.Enabled = False
-                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return, bof_number, bof_date, kurs_trans, sales_pos_st_date,id_return_refuse,id_st_store_bap) "
-                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + ", '" + report_mark_type + "', '" + is_use_unique_code + "', " + id_acc_ar + ", " + id_acc_sales + ", " + id_acc_sales_return + ", '" + bof_number + "'," + bof_date + ", '" + kurs_trans + "'," + sales_pos_st_date + ", " + id_return_refuse + ", " + id_st_store_bap_save + "); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return, bof_number, bof_date, kurs_trans, sales_pos_st_date,id_return_refuse,id_st_store_bap, potongan_gwp, netto) "
+                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + ", '" + report_mark_type + "', '" + is_use_unique_code + "', " + id_acc_ar + ", " + id_acc_sales + ", " + id_acc_sales_return + ", '" + bof_number + "'," + bof_date + ", '" + kurs_trans + "'," + sales_pos_st_date + ", " + id_return_refuse + ", " + id_st_store_bap_save + ", '" + potongan_gwp + "', '" + netto + "'); SELECT LAST_INSERT_ID(); "
                     id_sales_pos = execute_query(query, 0, True, "", "", "", "")
                     'gen number
                     execute_non_query("CALL gen_number(" + id_sales_pos + ", " + report_mark_type + ");", True, "", "", "", "")
@@ -1319,18 +1323,26 @@ Public Class FormSalesPOSDet
     End Sub
 
     Sub getNetto()
-        Dim gross_total As Double = 0.0
-        Try
-            gross_total = Double.Parse(GVItemList.Columns("sales_pos_det_amount").SummaryItem.SummaryValue.ToString)
-        Catch ex As Exception
-        End Try
+        If action = "ins" Then
+            Dim gross_total As Double = 0.0
+            Try
+                gross_total = Double.Parse(GVItemList.Columns("sales_pos_det_amount").SummaryItem.SummaryValue.ToString)
+            Catch ex As Exception
+            End Try
+            Dim pot_gwp As Double = TxtPotGWP.EditValue
+            Dim pot_penjualan As Double = TxtPotPenjualan.EditValue
 
-        Dim pot_penjualan As Double = TxtPotPenjualan.EditValue
 
-
-        Dim netto As Double = gross_total - Decimal.Parse(TxtDiscount.EditValue.ToString) - pot_penjualan
-        TxtNetto.EditValue = netto
-        METotSay.Text = ConvertCurrencyToEnglish(netto, currency)
+            Dim netto As Double = gross_total - pot_gwp - Decimal.Parse(TxtDiscount.EditValue.ToString) - pot_penjualan
+            TxtNetto.EditValue = netto
+            METotSay.Text = ConvertCurrencyToEnglish(netto, currency)
+        Else
+            Dim query As String = "SELECT sp.netto FROM tb_sales_pos sp WHERE sp.id_sales_pos=" + id_sales_pos + " "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            Dim netto As Double = data.Rows(0)("netto")
+            TxtNetto.EditValue = netto
+            METotSay.Text = ConvertCurrencyToEnglish(netto, currency)
+        End If
     End Sub
 
     Sub getVat()
@@ -1350,8 +1362,9 @@ Public Class FormSalesPOSDet
             gross_total = Double.Parse(GVItemList.Columns("sales_pos_det_amount").SummaryItem.SummaryValue.ToString)
         Catch ex As Exception
         End Try
+        Dim pot_gwp As Double = TxtPotGWP.EditValue
 
-        Dim discount As Double = (Decimal.Parse(SPDiscount.EditValue.ToString) / 100) * gross_total
+        Dim discount As Double = (Decimal.Parse(SPDiscount.EditValue.ToString) / 100) * (gross_total - pot_gwp)
         TxtDiscount.EditValue = discount
     End Sub
 

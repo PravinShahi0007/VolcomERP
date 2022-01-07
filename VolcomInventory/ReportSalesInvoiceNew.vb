@@ -5,7 +5,7 @@
 
 
     Private Sub ReportSalesInvoiceNew_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
-        Dim query As String = "CALL view_sales_pos_head_report(" + id_sales_pos + ", " + id_user + "); "
+        Dim query As String = "CALL view_sales_pos_head_report_v2(" + id_sales_pos + ", " + id_user + "); "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         DataSource = data
 
