@@ -258,7 +258,7 @@ Public Class ClassSalesOrder
         'hide column
         GVNewPrepare.Columns("id_design").Visible = False
         GVNewPrepare.Columns("DESIGN").Visible = False
-        GVNewPrepare.Columns("NO").Visible = False
+        'GVNewPrepare.Columns("NO").Visible = False
 
         'order BAND
         GVNewPrepare.Bands.MoveTo(1, band_desc)
