@@ -13,4 +13,13 @@
 
 
     End Sub
+
+    Private Sub GVNewPrepare_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVNewPrepare.CustomColumnDisplayText
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        If e.Column.FieldName <> "NO" Then Return
+        If view.GroupedColumns.Count <> 0 AndAlso Not e.IsForGroupRow Then
+            Dim rowHandle As Integer = view.GetRowHandle(e.ListSourceRowIndex)
+            e.DisplayText = (view.GetRowGroupIndexByRowHandle(rowHandle) + 1).ToString()
+        End If
+    End Sub
 End Class
