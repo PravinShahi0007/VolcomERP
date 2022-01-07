@@ -35,6 +35,8 @@ Partial Class FormScanReturn
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -75,9 +77,12 @@ Partial Class FormScanReturn
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BPrintScan = New DevExpress.XtraEditors.SimpleButton()
         Me.BViewScan = New DevExpress.XtraEditors.SimpleButton()
@@ -85,7 +90,6 @@ Partial Class FormScanReturn
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.DEStartScan = New DevExpress.XtraEditors.DateEdit()
-        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -131,7 +135,7 @@ Partial Class FormScanReturn
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(897, 45)
+        Me.PanelControl1.Size = New System.Drawing.Size(1279, 45)
         Me.PanelControl1.TabIndex = 0
         '
         'BPrintSummary
@@ -203,13 +207,13 @@ Partial Class FormScanReturn
         Me.GCAwb.MainView = Me.GVAwb
         Me.GCAwb.Name = "GCAwb"
         Me.GCAwb.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1})
-        Me.GCAwb.Size = New System.Drawing.Size(897, 440)
+        Me.GCAwb.Size = New System.Drawing.Size(1279, 579)
         Me.GCAwb.TabIndex = 2
         Me.GCAwb.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAwb})
         '
         'GVAwb
         '
-        Me.GVAwb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn18, Me.GridColumn2, Me.GridColumn6, Me.GridColumn17, Me.GridColumn22, Me.GridColumn3, Me.GridColumn7, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8, Me.GridColumn21, Me.GridColumn9, Me.GridColumn10, Me.GridColumn33})
+        Me.GVAwb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn18, Me.GridColumn2, Me.GridColumn6, Me.GridColumn17, Me.GridColumn22, Me.GridColumn3, Me.GridColumn36, Me.GridColumn35, Me.GridColumn7, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8, Me.GridColumn21, Me.GridColumn9, Me.GridColumn10, Me.GridColumn33})
         Me.GVAwb.GridControl = Me.GCAwb
         Me.GVAwb.Name = "GVAwb"
         Me.GVAwb.OptionsBehavior.Editable = False
@@ -265,7 +269,7 @@ Partial Class FormScanReturn
         Me.GridColumn22.FieldName = "date_return_note"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 5
+        Me.GridColumn22.VisibleIndex = 7
         Me.GridColumn22.Width = 127
         '
         'GridColumn3
@@ -277,6 +281,30 @@ Partial Class FormScanReturn
         Me.GridColumn3.VisibleIndex = 3
         Me.GridColumn3.Width = 186
         '
+        'GridColumn36
+        '
+        Me.GridColumn36.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn36.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn36.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn36.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn36.Caption = "Group Store Code"
+        Me.GridColumn36.FieldName = "list_group_code"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 4
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn35.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn35.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn35.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn35.Caption = "Group Store"
+        Me.GridColumn35.FieldName = "list_group"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 5
+        '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Store"
@@ -284,7 +312,7 @@ Partial Class FormScanReturn
         Me.GridColumn7.FieldName = "list_store"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 4
+        Me.GridColumn7.VisibleIndex = 6
         Me.GridColumn7.Width = 176
         '
         'RepositoryItemMemoEdit1
@@ -304,7 +332,7 @@ Partial Class FormScanReturn
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_scan", "{0:N0}")})
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 6
+        Me.GridColumn4.VisibleIndex = 8
         Me.GridColumn4.Width = 119
         '
         'GridColumn5
@@ -320,7 +348,7 @@ Partial Class FormScanReturn
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_return_note", "{0:N0}")})
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 7
+        Me.GridColumn5.VisibleIndex = 9
         Me.GridColumn5.Width = 119
         '
         'GridColumn8
@@ -336,7 +364,7 @@ Partial Class FormScanReturn
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_bap", "{0:N0}")})
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 8
+        Me.GridColumn8.VisibleIndex = 10
         Me.GridColumn8.Width = 119
         '
         'GridColumn21
@@ -345,7 +373,7 @@ Partial Class FormScanReturn
         Me.GridColumn21.FieldName = "bap_number"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 9
+        Me.GridColumn21.VisibleIndex = 11
         Me.GridColumn21.Width = 145
         '
         'GridColumn9
@@ -362,7 +390,7 @@ Partial Class FormScanReturn
         Me.GridColumn9.UnboundExpression = "[qty_return_note] - [qty_bap] - [qty_scan]"
         Me.GridColumn9.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 10
+        Me.GridColumn9.VisibleIndex = 12
         Me.GridColumn9.Width = 119
         '
         'GridColumn10
@@ -373,7 +401,7 @@ Partial Class FormScanReturn
         Me.GridColumn10.FieldName = "created_date"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 11
+        Me.GridColumn10.VisibleIndex = 13
         Me.GridColumn10.Width = 125
         '
         'GridColumn33
@@ -386,7 +414,7 @@ Partial Class FormScanReturn
         Me.GridColumn33.FieldName = "sts_void"
         Me.GridColumn33.Name = "GridColumn33"
         Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 12
+        Me.GridColumn33.VisibleIndex = 14
         '
         'XTCScanReturn
         '
@@ -395,7 +423,7 @@ Partial Class FormScanReturn
         Me.XTCScanReturn.Location = New System.Drawing.Point(0, 0)
         Me.XTCScanReturn.Name = "XTCScanReturn"
         Me.XTCScanReturn.SelectedTabPage = Me.XTPScanReturn
-        Me.XTCScanReturn.Size = New System.Drawing.Size(903, 513)
+        Me.XTCScanReturn.Size = New System.Drawing.Size(1285, 652)
         Me.XTCScanReturn.TabIndex = 3
         Me.XTCScanReturn.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScanReturn, Me.XTPBAP, Me.XTPAllScan})
         '
@@ -404,7 +432,7 @@ Partial Class FormScanReturn
         Me.XTPScanReturn.Controls.Add(Me.GCAwb)
         Me.XTPScanReturn.Controls.Add(Me.PanelControl1)
         Me.XTPScanReturn.Name = "XTPScanReturn"
-        Me.XTPScanReturn.Size = New System.Drawing.Size(897, 485)
+        Me.XTPScanReturn.Size = New System.Drawing.Size(1279, 624)
         Me.XTPScanReturn.Text = "Scan Return"
         '
         'XTPBAP
@@ -412,7 +440,7 @@ Partial Class FormScanReturn
         Me.XTPBAP.Controls.Add(Me.GCBAP)
         Me.XTPBAP.Controls.Add(Me.PanelControl2)
         Me.XTPBAP.Name = "XTPBAP"
-        Me.XTPBAP.Size = New System.Drawing.Size(897, 485)
+        Me.XTPBAP.Size = New System.Drawing.Size(1279, 624)
         Me.XTPBAP.Text = "BAP"
         '
         'GCBAP
@@ -422,7 +450,7 @@ Partial Class FormScanReturn
         Me.GCBAP.MainView = Me.GVBAP
         Me.GCBAP.Name = "GCBAP"
         Me.GCBAP.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit2})
-        Me.GCBAP.Size = New System.Drawing.Size(897, 440)
+        Me.GCBAP.Size = New System.Drawing.Size(1279, 579)
         Me.GCBAP.TabIndex = 3
         Me.GCBAP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBAP})
         '
@@ -518,7 +546,7 @@ Partial Class FormScanReturn
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(897, 45)
+        Me.PanelControl2.Size = New System.Drawing.Size(1279, 45)
         Me.PanelControl2.TabIndex = 1
         '
         'BViewBAP
@@ -580,7 +608,7 @@ Partial Class FormScanReturn
         Me.XTPAllScan.Controls.Add(Me.GCListProduct)
         Me.XTPAllScan.Controls.Add(Me.PanelControl3)
         Me.XTPAllScan.Name = "XTPAllScan"
-        Me.XTPAllScan.Size = New System.Drawing.Size(897, 485)
+        Me.XTPAllScan.Size = New System.Drawing.Size(1279, 624)
         Me.XTPAllScan.Text = "All Scan"
         '
         'GCListProduct
@@ -590,7 +618,7 @@ Partial Class FormScanReturn
         Me.GCListProduct.MainView = Me.GVListProduct
         Me.GCListProduct.Name = "GCListProduct"
         Me.GCListProduct.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit3})
-        Me.GCListProduct.Size = New System.Drawing.Size(897, 440)
+        Me.GCListProduct.Size = New System.Drawing.Size(1279, 579)
         Me.GCListProduct.TabIndex = 4
         Me.GCListProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProduct})
         '
@@ -598,10 +626,9 @@ Partial Class FormScanReturn
         '
         Me.GVListProduct.Appearance.FooterPanel.Font = New System.Drawing.Font("Tahoma", 11.0!)
         Me.GVListProduct.Appearance.FooterPanel.Options.UseFont = True
-        Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn26, Me.GridColumn34, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29})
+        Me.GVListProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn26, Me.GridColumn34, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn37, Me.GridColumn38})
         Me.GVListProduct.GridControl = Me.GCListProduct
         Me.GVListProduct.Name = "GVListProduct"
-        Me.GVListProduct.OptionsBehavior.Editable = False
         Me.GVListProduct.OptionsBehavior.ReadOnly = True
         Me.GVListProduct.OptionsView.ColumnAutoWidth = False
         Me.GVListProduct.OptionsView.RowAutoHeight = True
@@ -633,7 +660,7 @@ Partial Class FormScanReturn
         Me.GridColumn30.FieldName = "list_store"
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 0
+        Me.GridColumn30.VisibleIndex = 2
         Me.GridColumn30.Width = 180
         '
         'RepositoryItemMemoEdit3
@@ -646,7 +673,7 @@ Partial Class FormScanReturn
         Me.GridColumn31.FieldName = "number_return_note"
         Me.GridColumn31.Name = "GridColumn31"
         Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 1
+        Me.GridColumn31.VisibleIndex = 3
         '
         'GridColumn32
         '
@@ -654,7 +681,7 @@ Partial Class FormScanReturn
         Me.GridColumn32.FieldName = "label_number"
         Me.GridColumn32.Name = "GridColumn32"
         Me.GridColumn32.Visible = True
-        Me.GridColumn32.VisibleIndex = 2
+        Me.GridColumn32.VisibleIndex = 4
         '
         'GridColumn26
         '
@@ -662,8 +689,17 @@ Partial Class FormScanReturn
         Me.GridColumn26.FieldName = "product_full_code"
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 3
+        Me.GridColumn26.VisibleIndex = 5
         Me.GridColumn26.Width = 173
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Scanned Code"
+        Me.GridColumn34.FieldName = "scanned_code"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 6
+        Me.GridColumn34.Width = 136
         '
         'GridColumn27
         '
@@ -672,7 +708,7 @@ Partial Class FormScanReturn
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "product_display_name", "Total Qty Scan")})
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 5
+        Me.GridColumn27.VisibleIndex = 7
         Me.GridColumn27.Width = 241
         '
         'GridColumn28
@@ -686,7 +722,7 @@ Partial Class FormScanReturn
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "size", "{0}")})
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 6
+        Me.GridColumn28.VisibleIndex = 8
         Me.GridColumn28.Width = 59
         '
         'GridColumn29
@@ -695,8 +731,24 @@ Partial Class FormScanReturn
         Me.GridColumn29.FieldName = "notes"
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 7
+        Me.GridColumn29.VisibleIndex = 9
         Me.GridColumn29.Width = 226
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Group Code"
+        Me.GridColumn37.FieldName = "list_group_code"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 0
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "Group"
+        Me.GridColumn38.FieldName = "list_group"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 1
         '
         'PanelControl3
         '
@@ -709,7 +761,7 @@ Partial Class FormScanReturn
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(897, 45)
+        Me.PanelControl3.Size = New System.Drawing.Size(1279, 45)
         Me.PanelControl3.TabIndex = 1
         '
         'BPrintScan
@@ -774,20 +826,11 @@ Partial Class FormScanReturn
         Me.DEStartScan.Size = New System.Drawing.Size(136, 20)
         Me.DEStartScan.TabIndex = 8920
         '
-        'GridColumn34
-        '
-        Me.GridColumn34.Caption = "Scanned Code"
-        Me.GridColumn34.FieldName = "scanned_code"
-        Me.GridColumn34.Name = "GridColumn34"
-        Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 4
-        Me.GridColumn34.Width = 136
-        '
         'FormScanReturn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(903, 513)
+        Me.ClientSize = New System.Drawing.Size(1285, 652)
         Me.Controls.Add(Me.XTCScanReturn)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -901,4 +944,8 @@ Partial Class FormScanReturn
     Friend WithEvents BPrintScan As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

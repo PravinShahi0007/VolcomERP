@@ -69,6 +69,8 @@
         Dim date_until As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim q As String = "SELECT sr.created_date,rn.date_return_note,sr.`id_scan_return`,rn.`id_return_note`,rn.`label_number`,rn.`number_return_note`,IFNULL(awb.`awb_number`,'Warehouse') AS awb_number,IFNULL(c.`comp_name`,'Warehouse') AS comp_name
 ,GROUP_CONCAT(DISTINCT(CONCAT(cst.`comp_number`,' - ',cst.comp_name)) ORDER BY cst.`comp_number` SEPARATOR '\n') AS list_store
+,GROUP_CONCAT(DISTINCT(cstg.description) ORDER BY cstg.`comp_group` SEPARATOR '\n') AS list_group
+,GROUP_CONCAT(DISTINCT(cstg.comp_group) ORDER BY cstg.`comp_group` SEPARATOR '\n') AS list_group_code
 ,rn.`qty` AS qty_return_note
 ,COUNT(DISTINCT srd.`id_scan_return_det`) AS qty_scan
 ,IFNULL(bap.qty_bap,0) AS qty_bap
@@ -81,6 +83,7 @@ LEFT JOIN tb_inbound_awb awb ON rn.`id_inbound_awb`=awb.`id_inbound_awb`
 LEFT JOIN tb_m_comp c ON c.`id_comp`=awb.`id_comp`
 LEFT JOIN tb_return_note_store st ON st.`id_return_note`=rn.`id_return_note`
 LEFT JOIN tb_m_comp cst ON cst.`id_comp`=st.`id_comp`
+LEFT JOIN tb_m_comp_group cstg ON cstg.`id_comp_group`=cst.`id_comp_group`
 LEFT JOIN 
 (
 	SELECT bapd.`id_return_note`,SUM(bapd.`qty`*IF(bapd.`id_type`=1,-1,1)) AS qty_bap ,GROUP_CONCAT(DISTINCT(bap.`bap_number`) ORDER BY bap.`bap_number` SEPARATOR '\n') AS bap_number
@@ -132,7 +135,7 @@ WHERE DATE(bap.`created_date`)>='" & date_start & "' AND DATE(bap.`created_date`
     Private Sub BViewScan_Click(sender As Object, e As EventArgs) Handles BViewScan.Click
         Dim date_start As String = Date.Parse(DEStartScan.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim date_until As String = Date.Parse(DEUntilScan.EditValue.ToString).ToString("yyyy-MM-dd")
-        Dim q As String = "SELECT st_list.store AS list_store,rn.`number_return_note`,rn.`label_number`,scd.id_scan_return_det,scd.id_product,IFNULL(prd.product_full_code,scd.scanned_code) AS product_full_code,scd.scanned_code AS scanned_code,IFNULL(prd.product_display_name,scd.description) AS product_display_name,pc.size,scd.`type`,IF(scd.`type`=1,'Ok',IF(scd.`type`=2,'No Tag','Unique Duplicate')) AS notes 
+        Dim q As String = "SELECT st_list.store AS list_store,st_list.list_group,st_list.list_group_code,rn.`number_return_note`,rn.`label_number`,scd.id_scan_return_det,scd.id_product,IFNULL(prd.product_full_code,scd.scanned_code) AS product_full_code,scd.scanned_code AS scanned_code,IFNULL(prd.product_display_name,scd.description) AS product_display_name,pc.size,scd.`type`,IF(scd.`type`=1,'Ok',IF(scd.`type`=2,'No Tag','Unique Duplicate')) AS notes 
 FROM `tb_scan_return_det` scd
 LEFT JOIN tb_m_product prd ON prd.id_product=scd.id_product
 LEFT JOIN 
@@ -146,9 +149,13 @@ INNER JOIN tb_scan_return sc ON sc.`id_scan_return`=scd.`id_scan_return`
 INNER JOIN tb_return_note rn ON rn.`id_return_note`=sc.`id_return_note`
 LEFT JOIN
 (
-    SELECT st.`id_return_note`,GROUP_CONCAT(DISTINCT CONCAT(c.comp_number,' - ',c.comp_name) ORDER BY c.`comp_number` ASC SEPARATOR '\n') AS store
+    SELECT st.`id_return_note`
+    ,GROUP_CONCAT(DISTINCT CONCAT(c.comp_number,' - ',c.comp_name) ORDER BY c.`comp_number` ASC SEPARATOR '\n') AS store
+    ,GROUP_CONCAT(DISTINCT(cstg.description) ORDER BY cstg.`comp_group` SEPARATOR '\n') AS list_group
+    ,GROUP_CONCAT(DISTINCT(cstg.comp_group) ORDER BY cstg.`comp_group` SEPARATOR '\n') AS list_group_code
     FROM `tb_return_note_store` st
     INNER JOIN tb_m_comp c ON c.id_comp=st.id_comp
+    INNER JOIN tb_m_comp_group cstg ON cstg.`id_comp_group`=c.`id_comp_group`
     GROUP BY st.`id_return_note`
 )st_list ON st_list.id_return_note=rn.id_return_note
 WHERE DATE(rn.`date_created`)>='" & date_start & "' AND DATE(rn.`date_created`)<='" & date_until & "'"
