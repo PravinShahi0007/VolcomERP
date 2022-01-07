@@ -135,6 +135,10 @@ INNER JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
 INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=wo.id_ovh_price
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovhp.id_comp_contact
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+INNER JOIN tb_m_city ct ON ct.`id_city`=c.`id_city`
+INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country`
 INNER JOIN tb_prod_order po ON po.id_prod_order=wo.`id_prod_order` AND po.id_report_status='6'
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.`id_prod_demand_design` 
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
@@ -157,7 +161,22 @@ LEFT JOIN
 		GROUP BY wo.`id_prod_order_wo`
 	)
 )oldest_price ON oldest_price.id_wo=wo.`id_prod_order_wo`
-WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' " & query_where & "
+LEFT JOIN
+(
+    SELECT * FROM (
+		SELECT kod.* FROM tb_prod_order_ko_det kod
+        INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order)
+		ORDER BY kod.id_prod_order_ko_det DESC
+	)ko GROUP BY ko.id_prod_order
+)ko ON ko.id_prod_order=po.id_prod_order
+LEFT JOIN
+(
+    SELECT id_prod_order
+    FROM `tb_prod_order_attach`
+    WHERE id_report_status=6
+    GROUP BY id_prod_order
+)att ON att.id_prod_order=po.id_prod_order
+WHERE IF(co.id_country=5,NOT ISNULL(ko.id_prod_order_ko),NOT ISNULL(att.id_prod_order)) AND wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' " & query_where & "
 -- AND ISNULL(dp_paid.id_prod_order) 
 GROUP BY wo.`id_prod_order_wo`
 HAVING dp_amount_bef_kurs-val_dp>0"

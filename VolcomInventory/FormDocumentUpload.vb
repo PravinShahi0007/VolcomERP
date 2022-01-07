@@ -52,6 +52,15 @@
                                LEFT JOIN tb_m_user usr ON usr.id_user=doc.id_user_upload
                                LEFT JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
                                WHERE report_mark_type='" & report_mark_type & "' AND id_report='" & id_report & "' " + cond
+        If report_mark_type = "22" And is_view = "1" Then
+            'add fgpo attachment
+            query = "UNION ALL
+                    SELECT doc.id_doc,doc.doc_desc,doc.datetime,'yes' as is_download,CONCAT(doc.id_doc,'_" & report_mark_type & "_" & id_report & "',doc.ext) AS filename,emp.employee_name,doc.is_encrypted
+                               FROM tb_doc doc
+                               LEFT JOIN tb_m_user usr ON usr.id_user=doc.id_user_upload
+                               LEFT JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+                               WHERE report_mark_type='382' AND id_report='" & id_report & "'"
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCFileList.DataSource = data
 

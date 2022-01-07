@@ -366,6 +366,7 @@
         ElseIf report_mark_type = "251" Or report_mark_type = "285" Then
             FormBankWithdrawalSum.Close()
         ElseIf report_mark_type = "252" Then
+            'ko
             FormProductionKO.Close()
         ElseIf report_mark_type = "254" Or report_mark_type = "256" Then
             FormSalesBranchDet.Close()
@@ -535,6 +536,9 @@
         ElseIf report_mark_type = "376" Then
             'propose big sale product
             FormBSPDet.Close()
+        ElseIf report_mark_type = "383" Then
+            'propose item list
+            FormItemPps.Close()
         End If
     End Sub
     Sub show()
@@ -1719,6 +1723,11 @@ GROUP BY rec.`id_prod_order`"
             FormBSPDet.action = "upd"
             FormBSPDet.id = id_report
             FormBSPDet.ShowDialog()
+        ElseIf report_mark_type = "383" Then
+            'propose item list
+            FormItemPps.is_view = "1"
+            FormItemPps.id_pps = id_report
+            FormItemPps.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -3064,6 +3073,12 @@ GROUP BY rec.`id_prod_order`"
             'propose big sale product
             table_name = "tb_bsp"
             field_id = "id_bsp"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "383" Then
+            'propose item list
+            table_name = "tb_item_pps"
+            field_id = "id_item_pps"
             field_number = "number"
             field_date = "created_date"
         Else

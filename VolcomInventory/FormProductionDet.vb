@@ -811,6 +811,9 @@ WHERE ovhp.`id_ovh_price`='" & id_ovh_price & "'"
 
     Private Sub BtnAttachment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
+        If id_report_status_g = "6" Or id_report_status_g = "5" Then
+            FormDocumentUpload.is_view = "1"
+        End If
         FormDocumentUpload.id_report = id_prod_order
         FormDocumentUpload.report_mark_type = "22"
         FormDocumentUpload.ShowDialog()
