@@ -443,7 +443,7 @@ Public Class FormSalesPOSDet
             SPDiscount.EditValue = data.Rows(0)("sales_pos_discount")
             TxtPotPenjualan.EditValue = data.Rows(0)("sales_pos_potongan")
             SPVat.EditValue = data.Rows(0)("sales_pos_vat")
-            TxtPotGWP.EditValue = data.Rows(0)("potongan_gwp")
+
 
             'update feb 2019-deteksi laporarn jual unuik
             is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
@@ -1320,6 +1320,16 @@ Public Class FormSalesPOSDet
             BtnPrint.Enabled = False
         End If
         TxtVirtualPosNumber.Focus()
+    End Sub
+
+    Sub getPotonganGWP()
+        If action = "ins" Then
+            'code here
+        Else
+            Dim query As String = "SELECT sp.potongan_gwp FROM tb_sales_pos sp WHERE sp.id_sales_pos=" + id_sales_pos + " "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            TxtPotGWP.EditValue = Data.Rows(0)("potongan_gwp")
+        End If
     End Sub
 
     Sub getNetto()
@@ -2376,6 +2386,7 @@ Public Class FormSalesPOSDet
     End Sub
 
     Sub calculate()
+        getPotonganGWP()
         getDiscount()
         getNetto()
         getVat()

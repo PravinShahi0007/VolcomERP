@@ -1327,6 +1327,8 @@ Partial Class FormSalesPOSDet
         Me.TxtPotGWP.Enabled = False
         Me.TxtPotGWP.Location = New System.Drawing.Point(118, 8)
         Me.TxtPotGWP.Name = "TxtPotGWP"
+        Me.TxtPotGWP.Properties.Appearance.Options.UseTextOptions = True
+        Me.TxtPotGWP.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TxtPotGWP.Properties.DisplayFormat.FormatString = "N2"
         Me.TxtPotGWP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TxtPotGWP.Properties.Mask.EditMask = "n2"
@@ -1356,6 +1358,8 @@ Partial Class FormSalesPOSDet
         '
         Me.TxtPotPenjualan.Location = New System.Drawing.Point(119, 61)
         Me.TxtPotPenjualan.Name = "TxtPotPenjualan"
+        Me.TxtPotPenjualan.Properties.Appearance.Options.UseTextOptions = True
+        Me.TxtPotPenjualan.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TxtPotPenjualan.Properties.DisplayFormat.FormatString = "N2"
         Me.TxtPotPenjualan.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TxtPotPenjualan.Properties.Mask.EditMask = "n2"
@@ -2075,7 +2079,7 @@ Partial Class FormSalesPOSDet
         Me.XTPNeedVerify.Controls.Add(Me.GCProbList)
         Me.XTPNeedVerify.Controls.Add(Me.PanelControl2)
         Me.XTPNeedVerify.Name = "XTPNeedVerify"
-        Me.XTPNeedVerify.Size = New System.Drawing.Size(1182, 189)
+        Me.XTPNeedVerify.Size = New System.Drawing.Size(1182, 278)
         Me.XTPNeedVerify.Text = "Problem List"
         '
         'GCProbList
@@ -2084,7 +2088,7 @@ Partial Class FormSalesPOSDet
         Me.GCProbList.Location = New System.Drawing.Point(0, 0)
         Me.GCProbList.MainView = Me.GVProbList
         Me.GCProbList.Name = "GCProbList"
-        Me.GCProbList.Size = New System.Drawing.Size(1182, 151)
+        Me.GCProbList.Size = New System.Drawing.Size(1182, 240)
         Me.GCProbList.TabIndex = 0
         Me.GCProbList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProbList})
         '
@@ -2319,7 +2323,7 @@ Partial Class FormSalesPOSDet
         '
         Me.PanelControl2.Controls.Add(Me.SBPrintPL)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 151)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 240)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1182, 38)
         Me.PanelControl2.TabIndex = 1
@@ -2340,7 +2344,7 @@ Partial Class FormSalesPOSDet
         '
         Me.XTPDetail.Controls.Add(Me.GCCode)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(1182, 189)
+        Me.XTPDetail.Size = New System.Drawing.Size(1182, 278)
         Me.XTPDetail.Text = "Detail Unique Code"
         '
         'GCCode
@@ -2349,7 +2353,7 @@ Partial Class FormSalesPOSDet
         Me.GCCode.Location = New System.Drawing.Point(0, 0)
         Me.GCCode.MainView = Me.GVCode
         Me.GCCode.Name = "GCCode"
-        Me.GCCode.Size = New System.Drawing.Size(1182, 189)
+        Me.GCCode.Size = New System.Drawing.Size(1182, 278)
         Me.GCCode.TabIndex = 0
         Me.GCCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCode})
         '

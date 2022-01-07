@@ -64,6 +64,8 @@ Partial Class FormViewSalesPOS
         Me.BtnDraft = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtPotGWP = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtPotPenjualan = New DevExpress.XtraEditors.TextEdit()
         Me.SPDiscount = New DevExpress.XtraEditors.SpinEdit()
@@ -152,8 +154,6 @@ Partial Class FormViewSalesPOS
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TxtPotGWP = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.DEStocktake.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -186,6 +186,7 @@ Partial Class FormViewSalesPOS
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.TxtPotGWP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPotPenjualan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SPDiscount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDiscount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -212,7 +213,6 @@ Partial Class FormViewSalesPOS
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtPotGWP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -755,6 +755,28 @@ Partial Class FormViewSalesPOS
         Me.GroupControl1.Size = New System.Drawing.Size(954, 168)
         Me.GroupControl1.TabIndex = 188
         '
+        'LabelControl20
+        '
+        Me.LabelControl20.Location = New System.Drawing.Point(682, 15)
+        Me.LabelControl20.Name = "LabelControl20"
+        Me.LabelControl20.Size = New System.Drawing.Size(70, 13)
+        Me.LabelControl20.TabIndex = 185
+        Me.LabelControl20.Text = "Pot. Penjualan"
+        '
+        'TxtPotGWP
+        '
+        Me.TxtPotGWP.Location = New System.Drawing.Point(780, 12)
+        Me.TxtPotGWP.Name = "TxtPotGWP"
+        Me.TxtPotGWP.Properties.Appearance.Options.UseTextOptions = True
+        Me.TxtPotGWP.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TxtPotGWP.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtPotGWP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtPotGWP.Properties.Mask.EditMask = "n2"
+        Me.TxtPotGWP.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtPotGWP.Properties.ReadOnly = True
+        Me.TxtPotGWP.Size = New System.Drawing.Size(160, 20)
+        Me.TxtPotGWP.TabIndex = 184
+        '
         'LabelControl12
         '
         Me.LabelControl12.Location = New System.Drawing.Point(682, 65)
@@ -767,6 +789,8 @@ Partial Class FormViewSalesPOS
         '
         Me.TxtPotPenjualan.Location = New System.Drawing.Point(780, 62)
         Me.TxtPotPenjualan.Name = "TxtPotPenjualan"
+        Me.TxtPotPenjualan.Properties.Appearance.Options.UseTextOptions = True
+        Me.TxtPotPenjualan.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TxtPotPenjualan.Properties.DisplayFormat.FormatString = "N2"
         Me.TxtPotPenjualan.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TxtPotPenjualan.Properties.Mask.EditMask = "n2"
@@ -1266,7 +1290,7 @@ Partial Class FormViewSalesPOS
         '
         Me.XTPProbList.Controls.Add(Me.GCProbList)
         Me.XTPProbList.Name = "XTPProbList"
-        Me.XTPProbList.Size = New System.Drawing.Size(948, 198)
+        Me.XTPProbList.Size = New System.Drawing.Size(948, 226)
         Me.XTPProbList.Text = "Problem List"
         '
         'GCProbList
@@ -1275,7 +1299,7 @@ Partial Class FormViewSalesPOS
         Me.GCProbList.Location = New System.Drawing.Point(0, 0)
         Me.GCProbList.MainView = Me.GVProbList
         Me.GCProbList.Name = "GCProbList"
-        Me.GCProbList.Size = New System.Drawing.Size(948, 198)
+        Me.GCProbList.Size = New System.Drawing.Size(948, 226)
         Me.GCProbList.TabIndex = 1
         Me.GCProbList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProbList})
         '
@@ -1467,7 +1491,7 @@ Partial Class FormViewSalesPOS
         '
         Me.XTPDetail.Controls.Add(Me.GCCode)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(948, 198)
+        Me.XTPDetail.Size = New System.Drawing.Size(948, 226)
         Me.XTPDetail.Text = "Detail Unique Code"
         '
         'GCCode
@@ -1476,7 +1500,7 @@ Partial Class FormViewSalesPOS
         Me.GCCode.Location = New System.Drawing.Point(0, 0)
         Me.GCCode.MainView = Me.GVCode
         Me.GCCode.Name = "GCCode"
-        Me.GCCode.Size = New System.Drawing.Size(948, 198)
+        Me.GCCode.Size = New System.Drawing.Size(948, 226)
         Me.GCCode.TabIndex = 1
         Me.GCCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCode})
         '
@@ -1575,26 +1599,6 @@ Partial Class FormViewSalesPOS
         Me.GridColumnPriceCode.Name = "GridColumnPriceCode"
         Me.GridColumnPriceCode.OptionsColumn.AllowEdit = False
         '
-        'TxtPotGWP
-        '
-        Me.TxtPotGWP.Location = New System.Drawing.Point(780, 12)
-        Me.TxtPotGWP.Name = "TxtPotGWP"
-        Me.TxtPotGWP.Properties.DisplayFormat.FormatString = "N2"
-        Me.TxtPotGWP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtPotGWP.Properties.Mask.EditMask = "n2"
-        Me.TxtPotGWP.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtPotGWP.Properties.ReadOnly = True
-        Me.TxtPotGWP.Size = New System.Drawing.Size(160, 20)
-        Me.TxtPotGWP.TabIndex = 184
-        '
-        'LabelControl20
-        '
-        Me.LabelControl20.Location = New System.Drawing.Point(682, 15)
-        Me.LabelControl20.Name = "LabelControl20"
-        Me.LabelControl20.Size = New System.Drawing.Size(70, 13)
-        Me.LabelControl20.TabIndex = 185
-        Me.LabelControl20.Text = "Pot. Penjualan"
-        '
         'FormViewSalesPOS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1647,6 +1651,7 @@ Partial Class FormViewSalesPOS
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.TxtPotGWP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPotPenjualan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SPDiscount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDiscount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1673,7 +1678,6 @@ Partial Class FormViewSalesPOS
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtPotGWP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

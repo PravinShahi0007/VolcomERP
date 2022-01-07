@@ -171,7 +171,6 @@
         SPDiscount.EditValue = data.Rows(0)("sales_pos_discount")
         TxtPotPenjualan.EditValue = data.Rows(0)("sales_pos_potongan")
         SPVat.EditValue = data.Rows(0)("sales_pos_vat")
-        TxtPotGWP.EditValue = data.Rows(0)("potongan_gwp")
 
         'updated 04 ocktobertr 2017
         id_memo_type = data.Rows(0)("id_memo_type").ToString
@@ -240,6 +239,7 @@
     End Sub
 
     Sub calculate()
+        getPotonganGWP()
         getDiscount()
         getNetto()
         getVat()
@@ -328,6 +328,12 @@
 
         BtnAttachment.Enabled = True
         TxtVirtualPosNumber.Focus()
+    End Sub
+
+    Sub getPotonganGWP()
+        Dim query As String = "SELECT sp.potongan_gwp FROM tb_sales_pos sp WHERE sp.id_sales_pos=" + id_sales_pos + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        TxtPotGWP.EditValue = data.Rows(0)("potongan_gwp")
     End Sub
 
     Sub getNetto()
