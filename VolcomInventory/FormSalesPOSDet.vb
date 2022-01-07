@@ -954,7 +954,7 @@ Public Class FormSalesPOSDet
                     Dim jum_ins_i As Integer = 0
                     Dim query_detail As String = ""
                     If GVItemList.RowCount > 0 Then
-                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary, id_ol_store_ret_list, id_sales_pos_prob, id_sales_pos_prob_price,id_sales_pos_oos_recon_det, id_cn_det, id_return_refuse_det) VALUES "
+                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary, id_ol_store_ret_list, id_sales_pos_prob, id_sales_pos_prob_price,id_sales_pos_oos_recon_det, id_cn_det, id_return_refuse_det, is_gwp) VALUES "
                     End If
                     For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
                         Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
@@ -1019,11 +1019,12 @@ Public Class FormSalesPOSDet
                         If id_return_refuse_det = "0" Or id_return_refuse_det = "" Then
                             id_return_refuse_det = "NULL"
                         End If
+                        Dim is_gwp As String = GVItemList.GetRowCellValue(i, "is_gwp").ToString
 
                         If jum_ins_i > 0 Then
                             query_detail += ", "
                         End If
-                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "'," + id_sales_pos_det_ref + "," + id_pl_sales_order_del_det + ", " + id_pos_combine_summary + ", " + id_ol_store_ret_list + "," + id_sales_pos_prob + "," + id_sales_pos_prob_price + "," + id_sales_pos_oos_recon_det + ", " + id_cn_det + "," + id_return_refuse_det + ") "
+                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "'," + id_sales_pos_det_ref + "," + id_pl_sales_order_del_det + ", " + id_pos_combine_summary + ", " + id_ol_store_ret_list + "," + id_sales_pos_prob + "," + id_sales_pos_prob_price + "," + id_sales_pos_oos_recon_det + ", " + id_cn_det + "," + id_return_refuse_det + ", '" + is_gwp + "') "
                         jum_ins_i = jum_ins_i + 1
                     Next
                     If jum_ins_i > 0 Then
@@ -1325,10 +1326,18 @@ Public Class FormSalesPOSDet
     Sub getPotonganGWP()
         If action = "ins" Then
             'code here
+            GVItemList.ActiveFilterString = "[is_gwp]=1"
+            Dim potongan_gwp As Double = 0.0
+            Try
+                potongan_gwp = Double.Parse(GVItemList.Columns("sales_pos_det_amount").SummaryItem.SummaryValue.ToString)
+            Catch ex As Exception
+            End Try
+            TxtPotGWP.EditValue = potongan_gwp
+            GVItemList.ActiveFilterString = ""
         Else
             Dim query As String = "SELECT sp.potongan_gwp FROM tb_sales_pos sp WHERE sp.id_sales_pos=" + id_sales_pos + " "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            TxtPotGWP.EditValue = Data.Rows(0)("potongan_gwp")
+            TxtPotGWP.EditValue = data.Rows(0)("potongan_gwp")
         End If
     End Sub
 
@@ -1721,7 +1730,8 @@ Public Class FormSalesPOSDet
                             .id_sales_pos_prob_price = "0",
                             .id_sales_pos_oos_recon_det = "0",
                             .id_cn_det = "0",
-                            .id_return_refuse_det = "0"
+                            .id_return_refuse_det = "0",
+                            .is_gwp = isGWPProduct(If(rp Is Nothing, "0", rp("id_design").ToString), table1("code").ToString)
                         }
 
             GCItemList.DataSource = Nothing
@@ -3122,6 +3132,7 @@ Public Class FormSalesPOSDet
                     newRow("id_sales_pos_prob") = "0"
                     newRow("id_sales_pos_prob_price") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_sales_pos_prob").ToString
                     newRow("id_sales_pos_oos_recon_det") = "0"
+                    newRow("is_gwp") = isGWPProduct(FormSalesPOS.GVProbList.GetRowCellValue(i, "id_design").ToString, FormSalesPOS.GVProbList.GetRowCellValue(i, "code").ToString)
                     TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
                     GCItemList.RefreshDataSource()
                     GVItemList.RefreshData()
@@ -3183,6 +3194,7 @@ Public Class FormSalesPOSDet
                     newRow("id_sales_pos_prob") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_sales_pos_prob").ToString
                     newRow("id_sales_pos_prob_price") = "0"
                     newRow("id_sales_pos_oos_recon_det") = "0"
+                    newRow("is_gwp") = isGWPProduct(FormSalesPOS.GVProbList.GetRowCellValue(i, "id_design").ToString, FormSalesPOS.GVProbList.GetRowCellValue(i, "code").ToString)
                     TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
                     GCItemList.RefreshDataSource()
                     GVItemList.RefreshData()
@@ -3216,6 +3228,7 @@ Public Class FormSalesPOSDet
                 newRow("id_sales_pos_prob") = "0"
                 newRow("id_sales_pos_prob_price") = "0"
                 newRow("id_sales_pos_oos_recon_det") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "id_sales_pos_oos_recon_det").ToString
+                newRow("is_gwp") = isGWPProduct(FormSalesPOS.GVNewItem.GetRowCellValue(i, "id_design_valid").ToString, FormSalesPOS.GVNewItem.GetRowCellValue(i, "code_valid").ToString)
                 TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
                 GCItemList.RefreshDataSource()
                 GVItemList.RefreshData()
@@ -3361,6 +3374,7 @@ GROUP BY r.id_sales_pos_recon "
                 newRow("id_sales_pos_oos_recon_det") = "0"
                 newRow("id_cn_det") = data.Rows(i)("id_sales_pos_det_cn").ToString
                 newRow("id_return_refuse_det") = data.Rows(i)("id_return_refuse_det").ToString
+                newRow("is_gwp") = isGWPProduct(data.Rows(i)("id_design").ToString, data.Rows(i)("code").ToString)
                 TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
                 GCItemList.RefreshDataSource()
                 GVItemList.RefreshData()
@@ -3404,6 +3418,7 @@ GROUP BY r.id_sales_pos_recon "
                     newRow("id_sales_pos_oos_recon_det") = "0"
                     newRow("id_cn_det") = "0"
                     newRow("id_return_refuse_det") = "0"
+                    newRow("is_gwp") = isGWPProduct(formBAP.BGVData.GetRowCellValue(i, "id_design").ToString, formBAP.BGVData.GetRowCellValue(i, "full_code").ToString)
                     TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
                     GCItemList.RefreshDataSource()
                     GVItemList.RefreshData()
