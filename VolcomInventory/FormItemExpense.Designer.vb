@@ -46,7 +46,7 @@ Partial Class FormItemExpense
         Me.DEBBKFrom = New DevExpress.XtraEditors.DateEdit()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBankWithdrawal = New DevExpress.XtraEditors.SimpleButton()
-        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTCExpense = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPExpense = New DevExpress.XtraTab.XtraTabPage()
         Me.XTP3PLInv = New DevExpress.XtraTab.XtraTabPage()
         Me.GCInvoice = New DevExpress.XtraGrid.GridControl()
@@ -98,8 +98,8 @@ Partial Class FormItemExpense
         CType(Me.DEBBKTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEBBKFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEBBKFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraTabControl1.SuspendLayout()
+        CType(Me.XTCExpense, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCExpense.SuspendLayout()
         Me.XTPExpense.SuspendLayout()
         Me.XTP3PLInv.SuspendLayout()
         CType(Me.GCInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -367,16 +367,16 @@ Partial Class FormItemExpense
         Me.BtnBankWithdrawal.TabIndex = 0
         Me.BtnBankWithdrawal.Text = "Bank Withdrawal"
         '
-        'XtraTabControl1
+        'XTCExpense
         '
-        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XTPExpense
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1012, 556)
-        Me.XtraTabControl1.TabIndex = 2
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPExpense, Me.XTP3PLInv, Me.XTPSNI})
+        Me.XTCExpense.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCExpense.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCExpense.Location = New System.Drawing.Point(0, 0)
+        Me.XTCExpense.Name = "XTCExpense"
+        Me.XTCExpense.SelectedTabPage = Me.XTPExpense
+        Me.XTCExpense.Size = New System.Drawing.Size(1012, 556)
+        Me.XTCExpense.TabIndex = 2
+        Me.XTCExpense.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPExpense, Me.XTP3PLInv, Me.XTPSNI})
         '
         'XTPExpense
         '
@@ -762,7 +762,7 @@ Partial Class FormItemExpense
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1012, 556)
-        Me.Controls.Add(Me.XtraTabControl1)
+        Me.Controls.Add(Me.XTCExpense)
         Me.Name = "FormItemExpense"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Expense"
@@ -778,8 +778,8 @@ Partial Class FormItemExpense
         CType(Me.DEBBKTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEBBKFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEBBKFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraTabControl1.ResumeLayout(False)
+        CType(Me.XTCExpense, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCExpense.ResumeLayout(False)
         Me.XTPExpense.ResumeLayout(False)
         Me.XTP3PLInv.ResumeLayout(False)
         CType(Me.GCInvoice, System.ComponentModel.ISupportInitialize).EndInit()
@@ -829,7 +829,7 @@ Partial Class FormItemExpense
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTCExpense As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPExpense As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTP3PLInv As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl

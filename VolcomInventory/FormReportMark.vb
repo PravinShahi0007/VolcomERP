@@ -2677,6 +2677,75 @@ INNER JOIN
                     Exit Sub
                 End If
 
+                'check sku shopify hanya untuk yg sync stock
+                Dim is_sync_stock_cek As String = execute_query("SELECT so.is_sync_stock FROM tb_sales_order so WHERE so.id_sales_order='" + id_report + "' ", 0, True, "", "", "", "")
+                If is_sync_stock_cek = "1" Then
+                    'get shopify product
+                    If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                        FormMain.SplashScreenManager1.ShowWaitForm()
+                    End If
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Get shopify product")
+                    Dim dtweb As DataTable = Nothing
+                    Try
+                        Dim s As New ClassShopifyApi()
+                        dtweb = s.get_product()
+                    Catch ex As Exception
+                        stopCustom("Failed get shopify product : " + ex.ToString)
+                        Exit Sub
+                    End Try
+
+                    'get erp order
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Get ERP product")
+                    Dim qorder As String = "SELECT sod.id_product,p.product_full_code
+                    FROM tb_sales_order_det sod 
+                    INNER JOIN tb_m_product p ON p.id_product = sod.id_product
+                    WHERE sod.id_sales_order='" + id_report + "' "
+                    Dim dtorder As DataTable = execute_query(qorder, -1, True, "", "", "", "")
+                    Dim qi As String = "DELETE FROM tb_temp_check_sku_order WHERE id_sales_order='" + id_report + "'; INSERT INTO tb_temp_check_sku_order(id_sales_order, id_product, sku, inventory_item_id) VALUES "
+                    For d As Integer = 0 To dtorder.Rows.Count - 1
+                        Dim dtwebfilter As DataRow() = dtweb.Select("[sku]='" + dtorder.Rows(d)("product_full_code").ToString + "'")
+                        Dim inventory_item_id_cek As String = ""
+                        If dtwebfilter.Length > 0 Then
+                            inventory_item_id_cek = dtwebfilter(0)("inventory_item_id").ToString
+                        End If
+
+                        If d > 0 Then
+                            qi += ","
+                        End If
+                        qi += "('" + id_report + "', '" + dtorder.Rows(d)("id_product").ToString + "', '" + dtorder.Rows(d)("product_full_code").ToString + "', '" + inventory_item_id_cek + "') "
+                    Next
+                    If dtorder.Rows.Count > 0 Then
+                        execute_non_query(qi, True, "", "", "", "")
+                    End If
+
+                    'cek compare 
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Compare product")
+                    Dim qcompare As String = "SELECT t.sku, p.product_display_name AS `description`, 
+                    t.inventory_item_id AS `inventory_item_id_shopify`, IFNULL(s.inventory_item_id,'') AS `inventory_item_id_erp`
+                    FROM tb_temp_check_sku_order t
+                    INNER JOIN tb_m_product p ON p.id_product = t.id_product
+                    LEFT JOIN (
+	                    SELECT s.sku, GROUP_CONCAT(s.inventory_item_id) AS `inventory_item_id` 
+	                    FROM tb_m_product_shopify s
+	                    GROUP BY s.sku 
+                    ) s ON s.sku = t.sku
+                    WHERE t.id_sales_order='" + id_report + "'
+                    HAVING inventory_item_id_shopify<>inventory_item_id_erp "
+                    Dim dcompare As DataTable = execute_query(qcompare, -1, True, "", "", "", "")
+                    If dcompare.Rows.Count > 0 Then
+                        stopCustom("ID produk tidak sesuai, mohon periksa kembali master produk di website dan lakukan sync product. Klik OK untuk melihat detail ")
+                        FormValidateStock.dt = dcompare
+                        FormValidateStock.ShowDialog()
+                        execute_non_query("DELETE FROM tb_temp_check_sku_order WHERE id_sales_order='" + id_report + "' ", True, "", "", "", "")
+                        FormMain.SplashScreenManager1.CloseWaitForm()
+                        Exit Sub
+                    Else
+                        execute_non_query("DELETE FROM tb_temp_check_sku_order WHERE id_sales_order='" + id_report + "' ", True, "", "", "", "")
+                    End If
+
+                    FormMain.SplashScreenManager1.CloseWaitForm()
+                End If
+
                 'created transfer
                 'AND c.id_comp IN (SELECT id_comp FROM tb_wh_auto_trf) AND cf.id_comp IN (SELECT id_comp FROM tb_wh_auto_trf)
                 Dim qv As String = "SELECT so.id_warehouse_contact_to, so.id_store_contact_to, so.id_sales_order, c.id_drawer_def
@@ -11328,6 +11397,31 @@ WHERE id_sop_dep_pps='" & id_report & "'"
             End If
 
             query = String.Format("UPDATE tb_bsp SET id_report_status = '{0}' WHERE id_bsp = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "382" Then
+            'propose item
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'complete
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+                'get item
+
+                Dim qu As String = "INSERT INTO tb_item(`item_desc`,`def_desc`,`id_item_cat_detail`,`id_item_cat`,`id_uom`,`id_uom_stock`,`stock_convertion`,`id_item_type`,`id_display_type`,`date_created`,`id_user_created`,`date_updated`,`id_user_updated`)
+SELECT `item_desc`,`def_desc`,`id_item_cat_detail`,`id_item_cat`,`id_uom`,`id_uom_stock`,`stock_convertion`,`id_item_type`,`id_display_type`,NOW() AS date_created,created_by AS id_user_created,NOW() AS date_updated,created_by AS last_upd
+FROM tb_item_pps
+WHERE id_item_pps='" & id_report & "'"
+
+                execute_non_query(qu, True, "", "", "", "")
+
+                FormMain.SplashScreenManager1.CloseWaitForm()
+            End If
+
+            query = String.Format("UPDATE tb_item_pps SET id_report_status = '{0}' WHERE id_item_pps = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

@@ -89,22 +89,30 @@
     End Sub
 
     Sub check_menu()
-        If GVItem.RowCount < 1 Then
-            'hide all except new
-            bnew_active = "1"
+        If XTCItemList.SelectedTabPageIndex = 0 Then
+            If GVItem.RowCount < 1 Then
+                'hide all except new
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+                'noManipulating()
+            Else
+                'show all
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "1"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+                'noManipulating()
+            End If
+        ElseIf XTCItemList.SelectedTabPageIndex = 1 Then
+            bnew_active = "0"
             bedit_active = "0"
             bdel_active = "0"
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
-            'noManipulating()
-        Else
-            'show all
-            bnew_active = "1"
-            bedit_active = "1"
-            bdel_active = "1"
-            checkFormAccess(Name)
-            button_main(bnew_active, bedit_active, bdel_active)
-            'noManipulating()
         End If
     End Sub
 
@@ -137,5 +145,45 @@
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
         print(GCItem, "Item List")
+    End Sub
+
+    Private Sub BNewPPS_Click(sender As Object, e As EventArgs) Handles BNewPPS.Click
+        FormItemPps.id_pps = "-1"
+        FormItemPps.ShowDialog()
+    End Sub
+
+    Sub load_pps()
+        Dim q As String = "SELECT id_item_pps,item.`number`,uom_stock.uom AS uom_stock,catd.item_cat_detail,CONCAT('1:',item.stock_convertion) AS stock_convertion,item.item_desc,type.expense_type,cat.`item_cat`,uom.uom,empc.`employee_name` AS emp_created,item_type.`item_type`
+,item.`created_date` , dt.display_type, sts.`report_status`
+FROM tb_item_pps item
+INNER JOIN `tb_item_cat_detail` catd ON catd.`id_item_cat_detail`=item.`id_item_cat_detail`
+INNER JOIN tb_item_cat cat ON cat.`id_item_cat`=item.`id_item_cat`
+INNER JOIN tb_m_uom uom ON uom.`id_uom`=item.`id_uom`
+INNER JOIN tb_m_user usrc ON usrc.`id_user`=item.`created_by`
+INNER JOIN tb_m_employee empc ON empc.`id_employee`=usrc.`id_employee`
+INNER JOIN tb_lookup_expense_type `type` ON type.id_expense_type=cat.id_expense_type
+INNER JOIN tb_lookup_purc_item_type item_type ON item_type.`id_item_type`=item.`id_item_type`
+INNER JOIN tb_display_type dt ON dt.id_display_type = item.id_display_type
+INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=item.`id_report_status`
+LEFT JOIN tb_m_uom uom_stock ON uom_stock.`id_uom`=item.`id_uom_stock`
+ORDER BY item.id_item_pps DESC"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCItemPPs.DataSource = dt
+        GVItemPps.BestFitColumns()
+    End Sub
+
+    Private Sub BRefreshPPS_Click(sender As Object, e As EventArgs) Handles BRefreshPPS.Click
+        load_pps()
+    End Sub
+
+    Private Sub GVItemPps_DoubleClick(sender As Object, e As EventArgs) Handles GVItemPps.DoubleClick
+        If GVItemPps.RowCount > 0 Then
+            FormItemPps.id_pps = GVItemPps.GetFocusedRowCellValue("id_item_pps").ToString
+            FormItemPps.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub XTCItemList_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCItemList.SelectedPageChanged
+        check_menu()
     End Sub
 End Class

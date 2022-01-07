@@ -441,6 +441,9 @@
         ElseIf tab_index = 7 Then
             page_active = "order"
             ActiveControl = DEFromSO
+        ElseIf tab_index = 10 Then
+            page_active = "repair"
+            ActiveControl = DEFromRepair
         End If
     End Sub
 

@@ -143,6 +143,15 @@
     Private Sub PrintToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PrintToolStripMenuItem.Click
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
+            'cek sudah semua ke proses ato blm
+            Dim qcek As String = "SELECT * FROM tb_ol_store_order od WHERE od.id_comp_group='" + GVData.GetFocusedRowCellValue("id_comp_group").ToString + "' AND od.sales_order_ol_shop_number='" + GVData.GetFocusedRowCellValue("sales_order_ol_shop_number").ToString + "' AND od.is_process=2 "
+            Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+            If dcek.Rows.Count > 0 Then
+                Cursor = Cursors.Default
+                stopCustom("Proses tidak bisa dilanjutkan karena masi proses sinkronisai order. Coba lagi beberapa saat")
+                Exit Sub
+            End If
+
             id_sor_selected = ""
             Dim list As List(Of DevExpress.XtraPrinting.Page) = New List(Of DevExpress.XtraPrinting.Page)
             Dim rpt As New ReportSalesOrderNew()

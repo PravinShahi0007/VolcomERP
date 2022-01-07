@@ -180,7 +180,7 @@ WHERE id_status='2'"
                 FormPurcItem.GVItem.FocusedRowHandle = find_row(FormPurcItem.GVItem, "id_item", id_item)
                 Close()
             Else 'edit
-                Dim query As String = "UPDATE tb_item SET item_desc='" & TEDesc.Text & "',id_item_cat='" & SLECat.EditValue.ToString & "',id_item_type='" & SLEItemType.EditValue.ToString & "',id_uom='" & SLEUOM.EditValue.ToString & "',id_uom_stock='" & SLEUOMStock.EditValue.ToString & "',stock_convertion='" & decimalSQL(TEConvertion.EditValue.ToString) & "',is_active='1',date_updated=NOW(),id_user_updated='" & id_user & "',def_desc='" & addSlashes(MEDefDesc.Text) & "' WHERE id_item='" & id_item & "'"
+                Dim query As String = "UPDATE tb_item SET item_desc='" & TEDesc.Text & "',id_item_cat_detail='" & SLEPurchaseCategory.EditValue.ToString & "',id_item_cat='" & SLECat.EditValue.ToString & "',id_item_type='" & SLEItemType.EditValue.ToString & "',id_uom='" & SLEUOM.EditValue.ToString & "',id_uom_stock='" & SLEUOMStock.EditValue.ToString & "',stock_convertion='" & decimalSQL(TEConvertion.EditValue.ToString) & "',is_active='1',date_updated=NOW(),id_user_updated='" & id_user & "',def_desc='" & addSlashes(MEDefDesc.Text) & "' WHERE id_item='" & id_item & "'"
                 execute_non_query(query, True, "", "", "", "")
                 FormPurcItem.load_item()
                 FormPurcItem.GVItem.FocusedRowHandle = find_row(FormPurcItem.GVItem, "id_item", id_item)

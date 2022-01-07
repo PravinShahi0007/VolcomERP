@@ -86,6 +86,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnPrintedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOLStoreDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnOnlineOrderList = New DevExpress.XtraEditors.SimpleButton()
@@ -108,7 +109,6 @@ Partial Class FormSalesDelOrder
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
         Me.ServiceController1 = New System.ServiceProcess.ServiceController()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
         Me.XTPListDel.SuspendLayout()
@@ -739,6 +739,15 @@ Partial Class FormSalesDelOrder
         Me.GridColumnorder_type.Visible = True
         Me.GridColumnorder_type.VisibleIndex = 1
         '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Note"
+        Me.GridColumn7.FieldName = "sales_order_note"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 14
+        '
         'GridView2
         '
         Me.GridView2.GridControl = Me.GCSalesOrder
@@ -965,15 +974,6 @@ Partial Class FormSalesDelOrder
         '
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Note"
-        Me.GridColumn7.FieldName = "sales_order_note"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.OptionsColumn.AllowEdit = False
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 14
         '
         'FormSalesDelOrder
         '

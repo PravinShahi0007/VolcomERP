@@ -29,8 +29,15 @@
             GBSalary.Visible = False
             gridBand3.Visible = False
             gridBand2.Visible = False
+            GBBonus.Visible = False
+        ElseIf data.Rows(0)("is_bonus").ToString = "1" Then
+            GBSalary.Visible = False
+            gridBand3.Visible = False
+            gridBand2.Visible = False
+            GBTHR.Visible = False
         Else
             GBTHR.Visible = False
+            GBBonus.Visible = False
         End If
 
         'mark
