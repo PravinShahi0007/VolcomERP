@@ -600,6 +600,9 @@
         ElseIf report_mark_type = "251" Or report_mark_type = "285" Then
             'bbk summary
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_pn_summary WHERE id_pn_summary = '{0}'", id_report)
+        ElseIf report_mark_type = "252" Then
+            'SKO
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_prod_order_ko WHERE id_prod_order_ko = '{0}'", id_report)
         ElseIf report_mark_type = "254" Or report_mark_type = "256" Then
             ' sales volcom store
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_sales_branch WHERE id_sales_branch = '{0}'", id_report)
@@ -765,6 +768,9 @@
         ElseIf report_mark_type = "376" Then
             'propose big sale product
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_bsp WHERE id_bsp = '{0}'", id_report)
+        ElseIf report_mark_type = "383" Then
+            'propose item list
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_item_pps WHERE id_item_pps = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -11398,7 +11404,7 @@ WHERE id_sop_dep_pps='" & id_report & "'"
 
             query = String.Format("UPDATE tb_bsp SET id_report_status = '{0}' WHERE id_bsp = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-        ElseIf report_mark_type = "382" Then
+        ElseIf report_mark_type = "383" Then
             'propose item
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
