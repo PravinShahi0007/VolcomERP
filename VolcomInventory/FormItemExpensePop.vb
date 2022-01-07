@@ -16,6 +16,8 @@
     End Sub
 
     Private Sub FormItemExpensePop_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DEDateReff.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='1'", 0, True, "", "", "", "")
+
         TEPPH3PLInv.EditValue = 0.00
         TEPPN3PLInv.EditValue = 0.00
         '
