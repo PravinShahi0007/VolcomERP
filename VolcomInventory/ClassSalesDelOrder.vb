@@ -330,14 +330,12 @@
                 -- update total qty
                 UPDATE tb_sales_pos main
                 INNER JOIN (
-                    SELECT pd.id_sales_pos,ABS(SUM(pd.sales_pos_det_qty)) AS `total`, ABS(SUM(pd.sales_pos_det_qty * pd.design_price_retail)) AS `total_amount`,
-                    ABS(IFNULL(SUM(CASE WHEN pd.is_gwp=1 THEN pd.design_price_retail * pd.sales_pos_det_qty END),0)) AS `potongan_gwp`
+                    SELECT pd.id_sales_pos,ABS(SUM(pd.sales_pos_det_qty)) AS `total`, ABS(SUM(pd.sales_pos_det_qty * pd.design_price_retail)) AS `total_amount`
                     FROM tb_sales_pos_det pd
                     WHERE pd.id_sales_pos=" + id_sales_pos + "
                     GROUP BY pd.id_sales_pos
                 ) src ON src.id_sales_pos = main.id_sales_pos
-                SET main.sales_pos_total_qty = src.total, main.sales_pos_total=src.total_amount,
-                main.potongan_gwp = src.potongan_gwp; "
+                SET main.sales_pos_total_qty = src.total, main.sales_pos_total=src.total_amount; "
                 execute_non_query(query_detail_inv, True, "", "", "", "")
                 'get total
                 Dim dst As DataTable = execute_query("SELECT sales_pos_total FROM tb_sales_pos WHERE id_sales_pos='" + id_sales_pos + "' ", -1, True, "", "", "", "")
