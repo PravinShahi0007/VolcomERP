@@ -1330,6 +1330,8 @@ GROUP BY dn.`id_debit_note`"
                 Next
                 calculate_amount()
             ElseIf report_mark_type = "284" Then 'summary pph
+                SLEPayType.EditValue = id_pay_type
+
                 For i As Integer = 0 To FormBankWithdrawal.GVSummaryPPH.RowCount - 1
                     Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                     newRow("id_report") = FormBankWithdrawal.GVSummaryPPH.GetRowCellValue(i, "id_report").ToString
@@ -1356,6 +1358,8 @@ GROUP BY dn.`id_debit_note`"
                 Next
                 calculate_amount()
             ElseIf report_mark_type = "293" Then 'summary ppn
+                SLEPayType.EditValue = id_pay_type
+
                 For i As Integer = 0 To FormBankWithdrawal.GVSummaryPPN.RowCount - 1
                     Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                     newRow("id_report") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "id_report").ToString
