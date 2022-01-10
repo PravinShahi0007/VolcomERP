@@ -321,20 +321,23 @@
                 'increase_inc_sales("6")
                 'detail
                 Dim query_detail_inv As String = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary) 
-                SELECT " + id_sales_pos + ", id_product, id_design_price, design_price, dd.pl_sales_order_del_det_qty AS sales_pos_det_qty, 
+                SELECT " + id_sales_pos + ", dd.id_product, id_design_price, design_price, dd.pl_sales_order_del_det_qty AS sales_pos_det_qty, 
                 dd.id_design_price AS id_design_price_retail, dd.design_price AS design_price_retail, '' AS note, NULL AS id_sales_pos_det_ref, 
-                dd.id_pl_sales_order_del_det AS id_pl_sales_order_del_det, NULL AS id_pos_combine_summary 
+                dd.id_pl_sales_order_del_det AS id_pl_sales_order_del_det, NULL AS id_pos_combine_summary, IF(LEFT(p.product_full_code,4)='8888','1','2') AS `is_gwp`
                 FROM tb_pl_sales_order_del_det dd
+                INNER JOIN tb_m_product p ON p.id_product = dd.id_product
                 WHERE dd.id_pl_sales_order_del=" + id_report_par + "; 
                 -- update total qty
                 UPDATE tb_sales_pos main
                 INNER JOIN (
-                    SELECT pd.id_sales_pos,ABS(SUM(pd.sales_pos_det_qty)) AS `total`, ABS(SUM(pd.sales_pos_det_qty * pd.design_price_retail)) AS `total_amount`
+                    SELECT pd.id_sales_pos,ABS(SUM(pd.sales_pos_det_qty)) AS `total`, ABS(SUM(pd.sales_pos_det_qty * pd.design_price_retail)) AS `total_amount`,
+                    ABS(IFNULL(SUM(CASE WHEN pd.is_gwp=1 THEN pd.design_price_retail * pd.sales_pos_det_qty END),0)) AS `potongan_gwp`
                     FROM tb_sales_pos_det pd
                     WHERE pd.id_sales_pos=" + id_sales_pos + "
                     GROUP BY pd.id_sales_pos
                 ) src ON src.id_sales_pos = main.id_sales_pos
-                SET main.sales_pos_total_qty = src.total, main.sales_pos_total=src.total_amount; "
+                SET main.sales_pos_total_qty = src.total, main.sales_pos_total=src.total_amount,
+                main.potongan_gwp = src.potongan_gwp; "
                 execute_non_query(query_detail_inv, True, "", "", "", "")
                 'get total
                 Dim dst As DataTable = execute_query("SELECT sales_pos_total FROM tb_sales_pos WHERE id_sales_pos='" + id_sales_pos + "' ", -1, True, "", "", "", "")
