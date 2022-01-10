@@ -17006,4 +17006,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBDeviden_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDeviden.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormDeviden.MdiParent = Me
+            FormDeviden.Show()
+            FormDeviden.WindowState = FormWindowState.Maximized
+            FormDeviden.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class

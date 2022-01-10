@@ -371,7 +371,7 @@ Partial Class FormDeviden
         Me.XTP3PLInv.Controls.Add(Me.BImport)
         Me.XTP3PLInv.Controls.Add(Me.PanelControl3)
         Me.XTP3PLInv.Name = "XTP3PLInv"
-        Me.XTP3PLInv.Size = New System.Drawing.Size(1006, 528)
+        Me.XTP3PLInv.Size = New System.Drawing.Size(941, 467)
         Me.XTP3PLInv.Text = "-"
         '
         'GCInvoice
@@ -380,7 +380,7 @@ Partial Class FormDeviden
         Me.GCInvoice.Location = New System.Drawing.Point(0, 48)
         Me.GCInvoice.MainView = Me.GVInvoice
         Me.GCInvoice.Name = "GCInvoice"
-        Me.GCInvoice.Size = New System.Drawing.Size(1006, 403)
+        Me.GCInvoice.Size = New System.Drawing.Size(941, 342)
         Me.GCInvoice.TabIndex = 4
         Me.GCInvoice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVInvoice})
         '
@@ -489,9 +489,9 @@ Partial Class FormDeviden
         Me.PanelControl2.Controls.Add(Me.TEPPN3PLInv)
         Me.PanelControl2.Controls.Add(Me.SLEPPH3PLInv)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 451)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 390)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1006, 43)
+        Me.PanelControl2.Size = New System.Drawing.Size(941, 43)
         Me.PanelControl2.TabIndex = 92
         Me.PanelControl2.Visible = False
         '
@@ -604,11 +604,11 @@ Partial Class FormDeviden
         Me.BImport.Appearance.Options.UseFont = True
         Me.BImport.Appearance.Options.UseForeColor = True
         Me.BImport.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BImport.Location = New System.Drawing.Point(0, 494)
+        Me.BImport.Location = New System.Drawing.Point(0, 433)
         Me.BImport.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
         Me.BImport.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BImport.Name = "BImport"
-        Me.BImport.Size = New System.Drawing.Size(1006, 34)
+        Me.BImport.Size = New System.Drawing.Size(941, 34)
         Me.BImport.TabIndex = 91
         Me.BImport.Text = "Generate Expense"
         Me.BImport.Visible = False
@@ -619,14 +619,14 @@ Partial Class FormDeviden
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1006, 48)
+        Me.PanelControl3.Size = New System.Drawing.Size(941, 48)
         Me.PanelControl3.TabIndex = 0
         '
         'BRefresh
         '
         Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Right
         Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
-        Me.BRefresh.Location = New System.Drawing.Point(890, 2)
+        Me.BRefresh.Location = New System.Drawing.Point(825, 2)
         Me.BRefresh.Name = "BRefresh"
         Me.BRefresh.Size = New System.Drawing.Size(114, 44)
         Me.BRefresh.TabIndex = 2
@@ -636,7 +636,7 @@ Partial Class FormDeviden
         '
         Me.XTPReport.Controls.Add(Me.PanelControl4)
         Me.XTPReport.Name = "XTPReport"
-        Me.XTPReport.Size = New System.Drawing.Size(941, 421)
+        Me.XTPReport.Size = New System.Drawing.Size(941, 467)
         Me.XTPReport.Text = "Report"
         '
         'PanelControl4
