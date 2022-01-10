@@ -1999,6 +1999,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEts.createNew()
         ElseIf formName = "FormBSP" Then
             FormBSP.createNew()
+        ElseIf formName = "FormDeviden" Then
+            FormDevidenDet.id = "-1"
+            FormDevidenDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3368,6 +3371,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormEts.viewDetail()
             ElseIf formName = "FormBSP" Then
                 FormBSP.viewDetail()
+            ElseIf formName = "FormDeviden" Then
+                FormDevidenDet.id = FormDeviden.GVData.GetFocusedRowCellValue("id_deviden").ToString
+                FormDevidenDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -9954,6 +9960,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormBSP" Then
             FormBSP.Close()
             FormBSP.Dispose()
+        ElseIf formName = "FormDeviden" Then
+            FormDeviden.Close()
+            FormDeviden.Dispose()
         Else
             RPSubMenu.Visible = False
         End If

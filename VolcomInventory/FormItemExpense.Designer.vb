@@ -366,6 +366,7 @@ Partial Class FormItemExpense
         Me.BtnBankWithdrawal.Size = New System.Drawing.Size(130, 42)
         Me.BtnBankWithdrawal.TabIndex = 0
         Me.BtnBankWithdrawal.Text = "Bank Withdrawal"
+        Me.BtnBankWithdrawal.Visible = False
         '
         'XTCExpense
         '
