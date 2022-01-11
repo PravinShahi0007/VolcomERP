@@ -33,6 +33,9 @@ Public Class FormFGRepairDet
         If FormFGRepair.is_to_vendor = True Then
             bof_xls_repair = get_setup_field("bof_xls_repair_to_vendor")
             rmt = "140"
+            GridColumn6.Visible = False
+            GridColumnAmount.Visible = False
+            GridColumndesign_first_rec_wh_year.Visible = False
         Else
             rmt = "91"
         End If

@@ -1999,6 +1999,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEts.createNew()
         ElseIf formName = "FormBSP" Then
             FormBSP.createNew()
+        ElseIf formName = "FormDeviden" Then
+            FormDevidenDet.id = "-1"
+            FormDevidenDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3368,6 +3371,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormEts.viewDetail()
             ElseIf formName = "FormBSP" Then
                 FormBSP.viewDetail()
+            ElseIf formName = "FormDeviden" Then
+                FormDevidenDet.id = FormDeviden.GVData.GetFocusedRowCellValue("id_deviden").ToString
+                FormDevidenDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -9954,6 +9960,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormBSP" Then
             FormBSP.Close()
             FormBSP.Dispose()
+        ElseIf formName = "FormDeviden" Then
+            FormDeviden.Close()
+            FormDeviden.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -16992,6 +17001,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormBSP.Show()
             FormBSP.WindowState = FormWindowState.Maximized
             FormBSP.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBDeviden_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDeviden.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormDeviden.MdiParent = Me
+            FormDeviden.Show()
+            FormDeviden.WindowState = FormWindowState.Maximized
+            FormDeviden.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

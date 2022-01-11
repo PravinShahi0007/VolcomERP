@@ -1418,6 +1418,18 @@
     <Compile Include="FormDesignInfo.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDeviden.Designer.vb">
+      <DependentUpon>FormDeviden.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDeviden.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDevidenDet.Designer.vb">
+      <DependentUpon>FormDevidenDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDevidenDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDisableExos.Designer.vb">
       <DependentUpon>FormDisableExos.vb</DependentUpon>
     </Compile>
@@ -11239,6 +11251,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDesignInfo.resx">
       <DependentUpon>FormDesignInfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDeviden.resx">
+      <DependentUpon>FormDeviden.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDevidenDet.resx">
+      <DependentUpon>FormDevidenDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDisableExos.resx">
       <DependentUpon>FormDisableExos.vb</DependentUpon>
