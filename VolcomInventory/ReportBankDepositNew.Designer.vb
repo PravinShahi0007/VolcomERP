@@ -50,7 +50,6 @@ Partial Public Class ReportBankDepositNew
         Me.LabelTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelTitleNumber = New DevExpress.XtraReports.UI.XRLabel()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-        Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrLabel26 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel27 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
@@ -58,6 +57,7 @@ Partial Public Class ReportBankDepositNew
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LabelSay = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
+        Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         CType(Me.XTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -438,21 +438,16 @@ Partial Public Class ReportBankDepositNew
         '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 24.66669!
+        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel26, Me.XrLabel27, Me.XrPageInfo1})
+        Me.BottomMargin.HeightF = 48.08337!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'PageFooter
-        '
-        Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel26, Me.XrLabel27, Me.XrTable1, Me.LabelSay, Me.XrPageInfo1})
-        Me.PageFooter.HeightF = 66.99998!
-        Me.PageFooter.Name = "PageFooter"
-        '
         'XrLabel26
         '
         Me.XrLabel26.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(0!, 51.99998!)
+        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel26.Name = "XrLabel26"
         Me.XrLabel26.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel26.SizeF = New System.Drawing.SizeF(192.4166!, 15.0!)
@@ -464,7 +459,7 @@ Partial Public Class ReportBankDepositNew
         'XrLabel27
         '
         Me.XrLabel27.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(192.4166!, 51.99998!)
+        Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(192.4166!, 0!)
         Me.XrLabel27.Name = "XrLabel27"
         Me.XrLabel27.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel27.SizeF = New System.Drawing.SizeF(176.1667!, 15.0!)
@@ -478,7 +473,7 @@ Partial Public Class ReportBankDepositNew
         Me.XrTable1.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Dash
         Me.XrTable1.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrTable1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 27.0!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(1.000023!, 27.00001!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
         Me.XrTable1.SizeF = New System.Drawing.SizeF(772.0!, 24.99999!)
@@ -506,7 +501,7 @@ Partial Public Class ReportBankDepositNew
         Me.LabelSay.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
         Me.LabelSay.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LabelSay.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSay.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.LabelSay.LocationFloat = New DevExpress.Utils.PointFloat(0.0001271566!, 0!)
         Me.LabelSay.Name = "LabelSay"
         Me.LabelSay.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelSay.SizeF = New System.Drawing.SizeF(772.9999!, 27.0!)
@@ -522,7 +517,7 @@ Partial Public Class ReportBankDepositNew
         Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrPageInfo1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(646.9998!, 51.99998!)
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(646.9999!, 0!)
         Me.XrPageInfo1.Name = "XrPageInfo1"
         Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(125.0001!, 15.0!)
@@ -531,10 +526,17 @@ Partial Public Class ReportBankDepositNew
         Me.XrPageInfo1.StylePriority.UseTextAlignment = False
         Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
+        'ReportFooter
+        '
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelSay, Me.XrTable1})
+        Me.ReportFooter.HeightF = 52.0!
+        Me.ReportFooter.KeepTogether = True
+        Me.ReportFooter.Name = "ReportFooter"
+        '
         'ReportBankDepositNew
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(30, 47, 126, 25)
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter})
+        Me.Margins = New System.Drawing.Printing.Margins(30, 47, 126, 48)
         Me.PageHeight = 550
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
@@ -567,7 +569,6 @@ Partial Public Class ReportBankDepositNew
     Friend WithEvents XrTableCell5 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell9 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents PageFooter As DevExpress.XtraReports.UI.PageFooterBand
     Friend WithEvents LabelSay As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
@@ -583,4 +584,5 @@ Partial Public Class ReportBankDepositNew
     Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrTableCell16 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
 End Class
