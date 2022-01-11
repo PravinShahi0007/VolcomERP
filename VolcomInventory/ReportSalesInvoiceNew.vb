@@ -16,10 +16,10 @@
         'set invocie value info
         LabelDiscountValue.Text = Decimal.Parse(data.Rows(0)("discount_value").ToString).ToString("N0")
         LabelPotPenjualan.Text = Decimal.Parse(data.Rows(0)("pot_penjualan").ToString).ToString("N0")
-        LabelNetto.Text = Decimal.Parse(data.Rows(0)("netto").ToString).ToString("N0")
+        LabelNetto.Text = Decimal.Parse(data.Rows(0)("netto_trans").ToString).ToString("N0")
         LabelDasarPPN.Text = Decimal.Parse(data.Rows(0)("dasar_ppn").ToString).ToString("N0")
         LabelPPN.Text = Decimal.Parse(data.Rows(0)("ppn").ToString).ToString("N0")
-        LabelSay.Text = "Say : " + ConvertCurrencyToEnglish(data.Rows(0)("netto"), get_setup_field("id_currency_default"))
+        LabelSay.Text = "Say : " + ConvertCurrencyToEnglish(data.Rows(0)("netto_trans"), get_setup_field("id_currency_default"))
 
         'detail
         Dim inv As New ClassSalesPOS()
