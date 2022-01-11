@@ -50,8 +50,6 @@ Partial Class FormDevidenDet
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
@@ -69,7 +67,7 @@ Partial Class FormDevidenDet
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCRecalculate = New DevExpress.XtraEditors.PanelControl()
         Me.BImport = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.BVerify = New DevExpress.XtraEditors.SimpleButton()
@@ -119,8 +117,8 @@ Partial Class FormDevidenDet
         CType(Me.GCShareHolder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVShareHolder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        CType(Me.PCRecalculate, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCRecalculate.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -427,8 +425,6 @@ Partial Class FormDevidenDet
         'PanelControlBottom
         '
         Me.PanelControlBottom.Controls.Add(Me.BtnViewJournal)
-        Me.PanelControlBottom.Controls.Add(Me.BtnCancell)
-        Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnMark)
         Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
         Me.PanelControlBottom.Controls.Add(Me.BtnSave)
@@ -442,34 +438,12 @@ Partial Class FormDevidenDet
         '
         Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
-        Me.BtnViewJournal.Location = New System.Drawing.Point(571, 2)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(674, 2)
         Me.BtnViewJournal.Name = "BtnViewJournal"
         Me.BtnViewJournal.Size = New System.Drawing.Size(105, 37)
         Me.BtnViewJournal.TabIndex = 11
         Me.BtnViewJournal.Text = "View Journal"
         Me.BtnViewJournal.Visible = False
-        '
-        'BtnCancell
-        '
-        Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(91, 2)
-        Me.BtnCancell.Name = "BtnCancell"
-        Me.BtnCancell.Size = New System.Drawing.Size(144, 37)
-        Me.BtnCancell.TabIndex = 10
-        Me.BtnCancell.Text = "Cancell Transaction"
-        Me.BtnCancell.Visible = False
-        '
-        'BtnAttachment
-        '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(676, 2)
-        Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(103, 37)
-        Me.BtnAttachment.TabIndex = 4
-        Me.BtnAttachment.Text = "Attachment"
-        Me.BtnAttachment.Visible = False
         '
         'BtnMark
         '
@@ -644,15 +618,15 @@ Partial Class FormDevidenDet
         Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         Me.RepositoryItemTextEdit1.NullText = "-"
         '
-        'PanelControl3
+        'PCRecalculate
         '
-        Me.PanelControl3.Controls.Add(Me.BImport)
-        Me.PanelControl3.Controls.Add(Me.PanelControl4)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 496)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(953, 45)
-        Me.PanelControl3.TabIndex = 21
+        Me.PCRecalculate.Controls.Add(Me.BImport)
+        Me.PCRecalculate.Controls.Add(Me.PanelControl4)
+        Me.PCRecalculate.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCRecalculate.Location = New System.Drawing.Point(0, 496)
+        Me.PCRecalculate.Name = "PCRecalculate"
+        Me.PCRecalculate.Size = New System.Drawing.Size(953, 45)
+        Me.PCRecalculate.TabIndex = 21
         '
         'BImport
         '
@@ -871,7 +845,7 @@ Partial Class FormDevidenDet
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(953, 582)
         Me.Controls.Add(Me.XtraTabControl2)
-        Me.Controls.Add(Me.PanelControl3)
+        Me.Controls.Add(Me.PCRecalculate)
         Me.Controls.Add(Me.PanelControlBottom)
         Me.Controls.Add(Me.PanelControlPay)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -912,8 +886,8 @@ Partial Class FormDevidenDet
         CType(Me.GCShareHolder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVShareHolder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PCRecalculate, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCRecalculate.ResumeLayout(False)
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -937,8 +911,6 @@ Partial Class FormDevidenDet
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControlBottom As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnViewJournal As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnCancell As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
@@ -951,7 +923,7 @@ Partial Class FormDevidenDet
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCRecalculate As DevExpress.XtraEditors.PanelControl
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCShareHolder As DevExpress.XtraGrid.GridControl

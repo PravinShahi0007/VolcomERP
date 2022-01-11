@@ -1,11 +1,14 @@
 ﻿Public Class FormDevidenDet
     Public id As String = "-1"
+    Public is_view As String = "-1"
+    Dim is_load As Boolean = False
 
     Private Sub FormDevidenDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_head()
     End Sub
 
     Sub load_head()
+        is_load = True
         TEProfit.EditValue = 0
         TEDeviden.EditValue = 0
         TEDevidenPercent.EditValue = 0
@@ -21,7 +24,12 @@
             SLEYear.Properties.ReadOnly = True
             TEDevidenPercent.Properties.ReadOnly = True
             TEDeviden.Properties.ReadOnly = True
-
+            PCRecalculate.Visible = False
+            '
+            BtnSave.Visible = False
+            BtnMark.Visible = True
+            BtnPrint.Visible = True
+            '
             'edit
             Dim q As String = "SELECT * FROM tb_deviden WHERE id_deviden='" & id & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -34,8 +42,13 @@
                 '
                 load_compare()
                 load_share()
+                '
+                If dt.Rows(0)("id_report_status").ToString = "6" Then
+                    BtnViewJournal.Visible = True
+                End If
             End If
         End If
+        is_load = False
     End Sub
 
     Sub load_year()
@@ -116,6 +129,7 @@ SELECT '" & SLEYear.EditValue.ToString & "' AS profit_year,sh.`id_comp`,c.`comp_
 FROM tb_deviden_share sh
 INNER JOIN tb_m_comp c ON c.`id_comp`=sh.`id_comp`
 LEFT JOIN tb_a_acc acc ON sh.`pph_account`=acc.`id_acc`
+WHERE sh.id_deviden='" & id & "'
 UNION ALL
 SELECT tb.profit_year,0 AS id_comp,'' AS comp_number,'' AS `pph_account`,'' AS pph_desc,'TOTAL' AS `comp_name`,0 AS `pph_percent`,0 AS deviden_percent,SUM(tb.deviden_amount) AS deviden_amount,SUM(tb.pph_amount) AS pph_amount
 FROM
@@ -134,6 +148,7 @@ FROM
 	FROM tb_deviden_share sh
 	INNER JOIN tb_m_comp c ON c.`id_comp`=sh.`id_comp`
 	LEFT JOIN tb_a_acc acc ON sh.`pph_account`=acc.`id_acc`
+    WHERE sh.id_deviden='" & id & "'
 ) tb
 GROUP BY tb.profit_year
 ORDER BY id_comp DESC,profit_year ASC"
@@ -178,7 +193,9 @@ WHERE profit_year=(SELECT MAX(profit_year) FROM tb_deviden WHERE profit_year<'20
 
     Private Sub TEDevidenPercent_EditValueChanged(sender As Object, e As EventArgs) Handles TEDevidenPercent.EditValueChanged
         Try
-            TEDeviden.EditValue = TEProfit.EditValue * (TEDevidenPercent.EditValue / 100)
+            If Not is_load Then
+                TEDeviden.EditValue = TEProfit.EditValue * (TEDevidenPercent.EditValue / 100)
+            End If
         Catch ex As Exception
 
         End Try
@@ -186,7 +203,9 @@ WHERE profit_year=(SELECT MAX(profit_year) FROM tb_deviden WHERE profit_year<'20
 
     Private Sub TEDeviden_EditValueChanged(sender As Object, e As EventArgs) Handles TEDeviden.EditValueChanged
         Try
-            TEDevidenPercent.EditValue = (TEDeviden.EditValue / TEProfit.EditValue) * 100
+            If Not is_load Then
+                TEDevidenPercent.EditValue = (TEDeviden.EditValue / TEProfit.EditValue) * 100
+            End If
         Catch ex As Exception
 
         End Try
@@ -241,10 +260,47 @@ VALUES('" & SLEYear.EditValue.ToString & "'," & decimalSQL(Decimal.Parse(TEProfi
                 Next
                 execute_non_query(q, True, "", "", "", "")
 
+                submit_who_prepared("384", id, id_user)
+
                 load_head()
             Else
 
             End If
         End If
+    End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        Cursor = Cursors.WaitCursor
+
+        FormReportMark.report_mark_type = "384"
+        FormReportMark.id_report = id
+        FormReportMark.is_view = is_view
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            WHERE ad.report_mark_type=384 AND ad.id_report=" + id + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
+
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -11021,6 +11021,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEts.viewData()
         ElseIf formName = "FormBSP" Then
             FormBSP.viewData()
+        ElseIf formName = "FormDeviden" Then
+            FormDeviden.load_deviden()
         End If
     End Sub
     'Switch
