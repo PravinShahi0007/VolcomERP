@@ -910,7 +910,7 @@ Public Class FormSalesPOSDet
                                     qs += "('" + id_user + "','" + GVItemList.GetRowCellValue(s, "code").ToString + "','" + addSlashes(GVItemList.GetRowCellValue(s, "name").ToString) + "', '" + GVItemList.GetRowCellValue(s, "size").ToString + "', '" + GVItemList.GetRowCellValue(s, "id_product").ToString + "', '" + decimalSQL(GVItemList.GetRowCellValue(s, "sales_pos_det_qty").ToString) + "') "
                                     id_prod += GVItemList.GetRowCellValue(s, "id_product").ToString
                                 Next
-                                qs += "; CALL view_validate_stock(" + id_user + ", " + id_comp + ", '" + id_prod + "',1); "
+                                qs += "; CALL view_validate_stock(" + id_user + ", " + id_comp + ", '0',1); "
                                 Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
                                 If dts.Rows.Count > 0 Then
                                     Cursor = Cursors.Default
