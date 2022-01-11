@@ -43,6 +43,10 @@ Partial Class FormDevidenDet
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCComparation = New DevExpress.XtraGrid.GridControl()
         Me.GVComparation = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
@@ -56,25 +60,35 @@ Partial Class FormDevidenDet
         Me.GCShareHolder = New DevExpress.XtraGrid.GridControl()
         Me.GVShareHolder = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCreatedByName = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnReortStt = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPaidStt = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnBal = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumntotal = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnBeneficiary = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BImport = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.BVerify = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XtraTabControl2 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPComparation = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCHistory = New DevExpress.XtraGrid.GridControl()
+        Me.GVHistory = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPThisYear = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlPay.SuspendLayout()
         CType(Me.SLEYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,6 +123,12 @@ Partial Class FormDevidenDet
         Me.PanelControl3.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl2.SuspendLayout()
+        Me.XTPComparation.SuspendLayout()
+        CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPThisYear.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControlPay
@@ -303,10 +323,11 @@ Partial Class FormDevidenDet
         '
         Me.PanelControl1.Controls.Add(Me.XtraTabControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 98)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(953, 199)
+        Me.PanelControl1.Size = New System.Drawing.Size(947, 193)
         Me.PanelControl1.TabIndex = 18
+        Me.PanelControl1.Visible = False
         '
         'XtraTabControl1
         '
@@ -314,7 +335,7 @@ Partial Class FormDevidenDet
         Me.XtraTabControl1.Location = New System.Drawing.Point(2, 2)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
-        Me.XtraTabControl1.Size = New System.Drawing.Size(949, 195)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(943, 189)
         Me.XtraTabControl1.TabIndex = 21
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
         '
@@ -322,7 +343,7 @@ Partial Class FormDevidenDet
         '
         Me.XtraTabPage1.Controls.Add(Me.GCComparation)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(943, 167)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(937, 161)
         Me.XtraTabPage1.Text = "Comparation"
         '
         'GCComparation
@@ -332,7 +353,7 @@ Partial Class FormDevidenDet
         Me.GCComparation.MainView = Me.GVComparation
         Me.GCComparation.Name = "GCComparation"
         Me.GCComparation.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2})
-        Me.GCComparation.Size = New System.Drawing.Size(943, 167)
+        Me.GCComparation.Size = New System.Drawing.Size(937, 161)
         Me.GCComparation.TabIndex = 2
         Me.GCComparation.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVComparation})
         '
@@ -344,6 +365,58 @@ Partial Class FormDevidenDet
         Me.GVComparation.OptionsBehavior.Editable = False
         Me.GVComparation.OptionsView.ShowFooter = True
         Me.GVComparation.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Year"
+        Me.GridColumn3.DisplayFormat.FormatString = "YYYY"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn3.FieldName = "Year"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn4.Caption = "Net Profit"
+        Me.GridColumn4.DisplayFormat.FormatString = "N2"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4.FieldName = "Net Profit"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 1
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn5.Caption = "Deviden"
+        Me.GridColumn5.DisplayFormat.FormatString = "N2"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn5.FieldName = "Deviden"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 2
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn6.Caption = "% From Profit"
+        Me.GridColumn6.DisplayFormat.FormatString = "{0:N0} %"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn6.FieldName = "% From Profit"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 3
         '
         'RepositoryItemTextEdit2
         '
@@ -433,10 +506,10 @@ Partial Class FormDevidenDet
         'XTPDraftJournal
         '
         Me.XTPDraftJournal.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTPDraftJournal.Location = New System.Drawing.Point(0, 297)
+        Me.XTPDraftJournal.Location = New System.Drawing.Point(0, 193)
         Me.XTPDraftJournal.Name = "XTPDraftJournal"
         Me.XTPDraftJournal.SelectedTabPage = Me.XTPDetail
-        Me.XTPDraftJournal.Size = New System.Drawing.Size(953, 199)
+        Me.XTPDraftJournal.Size = New System.Drawing.Size(947, 177)
         Me.XTPDraftJournal.TabIndex = 20
         Me.XTPDraftJournal.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail})
         '
@@ -444,7 +517,7 @@ Partial Class FormDevidenDet
         '
         Me.XTPDetail.Controls.Add(Me.GCShareHolder)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(947, 171)
+        Me.XTPDetail.Size = New System.Drawing.Size(941, 149)
         Me.XTPDetail.Text = "SHAREHOLDERS"
         '
         'GCShareHolder
@@ -454,121 +527,116 @@ Partial Class FormDevidenDet
         Me.GCShareHolder.MainView = Me.GVShareHolder
         Me.GCShareHolder.Name = "GCShareHolder"
         Me.GCShareHolder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
-        Me.GCShareHolder.Size = New System.Drawing.Size(947, 171)
+        Me.GCShareHolder.Size = New System.Drawing.Size(941, 149)
         Me.GCShareHolder.TabIndex = 1
         Me.GCShareHolder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVShareHolder})
         '
         'GVShareHolder
         '
-        Me.GVShareHolder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnId, Me.GridColumnNumber, Me.GridColumnCreatedDate, Me.GridColumnCreatedByName, Me.GridColumnReortStt, Me.GridColumnPaidStt, Me.GridColumnBal, Me.GridColumntotal, Me.GridColumnIdComp, Me.GridColumnBeneficiary})
+        Me.GVShareHolder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn13, Me.GridColumn12, Me.GridColumn10, Me.GridColumn11, Me.GridColumn14})
         Me.GVShareHolder.GridControl = Me.GCShareHolder
         Me.GVShareHolder.Name = "GVShareHolder"
         Me.GVShareHolder.OptionsBehavior.Editable = False
-        Me.GVShareHolder.OptionsFind.AlwaysVisible = True
         Me.GVShareHolder.OptionsView.ShowFooter = True
         Me.GVShareHolder.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "Unit"
-        Me.GridColumn1.FieldName = "tag_description"
+        Me.GridColumn1.Caption = "ID"
+        Me.GridColumn1.FieldName = "id_shareholder_share"
         Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 96
         '
-        'GridColumnId
+        'GridColumn7
         '
-        Me.GridColumnId.Caption = "Id"
-        Me.GridColumnId.FieldName = "id_item_expense"
-        Me.GridColumnId.Name = "GridColumnId"
+        Me.GridColumn7.Caption = "ID COmp"
+        Me.GridColumn7.FieldName = "id_comp"
+        Me.GridColumn7.Name = "GridColumn7"
         '
-        'GridColumnNumber
+        'GridColumn8
         '
-        Me.GridColumnNumber.Caption = "Number"
-        Me.GridColumnNumber.FieldName = "number"
-        Me.GridColumnNumber.Name = "GridColumnNumber"
-        Me.GridColumnNumber.Visible = True
-        Me.GridColumnNumber.VisibleIndex = 1
-        Me.GridColumnNumber.Width = 83
+        Me.GridColumn8.Caption = "PPH Account"
+        Me.GridColumn8.FieldName = "pph_account"
+        Me.GridColumn8.Name = "GridColumn8"
         '
-        'GridColumnCreatedDate
+        'GridColumn9
         '
-        Me.GridColumnCreatedDate.Caption = "Created Date"
-        Me.GridColumnCreatedDate.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
-        Me.GridColumnCreatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnCreatedDate.FieldName = "created_date"
-        Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
-        Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 3
-        Me.GridColumnCreatedDate.Width = 83
+        Me.GridColumn9.Caption = "Shareholder"
+        Me.GridColumn9.FieldName = "comp_name"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 0
         '
-        'GridColumnCreatedByName
+        'GridColumn13
         '
-        Me.GridColumnCreatedByName.Caption = "Created by"
-        Me.GridColumnCreatedByName.FieldName = "created_by_name"
-        Me.GridColumnCreatedByName.Name = "GridColumnCreatedByName"
-        Me.GridColumnCreatedByName.Visible = True
-        Me.GridColumnCreatedByName.VisibleIndex = 4
-        Me.GridColumnCreatedByName.Width = 83
+        Me.GridColumn13.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn13.Caption = "Share (%)"
+        Me.GridColumn13.DisplayFormat.FormatString = "{0:N0} %"
+        Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn13.FieldName = "deviden_percent"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 1
         '
-        'GridColumnReortStt
+        'GridColumn12
         '
-        Me.GridColumnReortStt.Caption = "Approval Status"
-        Me.GridColumnReortStt.FieldName = "report_status"
-        Me.GridColumnReortStt.Name = "GridColumnReortStt"
-        Me.GridColumnReortStt.Visible = True
-        Me.GridColumnReortStt.VisibleIndex = 5
-        Me.GridColumnReortStt.Width = 83
+        Me.GridColumn12.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn12.Caption = "Deviden Amount"
+        Me.GridColumn12.DisplayFormat.FormatString = "N2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn12.FieldName = "deviden_amount"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "deviden_amount", "{0:N2}")})
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 2
         '
-        'GridColumnPaidStt
+        'GridColumn10
         '
-        Me.GridColumnPaidStt.Caption = "Payment Status"
-        Me.GridColumnPaidStt.FieldName = "paid_status"
-        Me.GridColumnPaidStt.Name = "GridColumnPaidStt"
-        Me.GridColumnPaidStt.Visible = True
-        Me.GridColumnPaidStt.VisibleIndex = 6
-        Me.GridColumnPaidStt.Width = 83
+        Me.GridColumn10.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn10.Caption = "PPH COA"
+        Me.GridColumn10.DisplayFormat.FormatString = "N2"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn10.FieldName = "pph_desc"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 3
         '
-        'GridColumnBal
+        'GridColumn11
         '
-        Me.GridColumnBal.Caption = "Balance Due"
-        Me.GridColumnBal.DisplayFormat.FormatString = "N2"
-        Me.GridColumnBal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnBal.FieldName = "balance"
-        Me.GridColumnBal.Name = "GridColumnBal"
-        Me.GridColumnBal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N2}")})
-        Me.GridColumnBal.Visible = True
-        Me.GridColumnBal.VisibleIndex = 7
-        Me.GridColumnBal.Width = 83
+        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn11.Caption = "PPH (%)"
+        Me.GridColumn11.DisplayFormat.FormatString = "{0:N0} %"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn11.FieldName = "pph_percent"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 4
         '
-        'GridColumntotal
+        'GridColumn14
         '
-        Me.GridColumntotal.Caption = "Total"
-        Me.GridColumntotal.DisplayFormat.FormatString = "N2"
-        Me.GridColumntotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumntotal.FieldName = "total"
-        Me.GridColumntotal.Name = "GridColumntotal"
-        Me.GridColumntotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
-        Me.GridColumntotal.Visible = True
-        Me.GridColumntotal.VisibleIndex = 8
-        Me.GridColumntotal.Width = 88
-        '
-        'GridColumnIdComp
-        '
-        Me.GridColumnIdComp.Caption = "Id Comp"
-        Me.GridColumnIdComp.FieldName = "id_comp"
-        Me.GridColumnIdComp.Name = "GridColumnIdComp"
-        '
-        'GridColumnBeneficiary
-        '
-        Me.GridColumnBeneficiary.Caption = "Vendor"
-        Me.GridColumnBeneficiary.ColumnEdit = Me.RepositoryItemTextEdit1
-        Me.GridColumnBeneficiary.FieldName = "comp"
-        Me.GridColumnBeneficiary.Name = "GridColumnBeneficiary"
-        Me.GridColumnBeneficiary.Visible = True
-        Me.GridColumnBeneficiary.VisibleIndex = 2
-        Me.GridColumnBeneficiary.Width = 83
+        Me.GridColumn14.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn14.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn14.Caption = "PPH Amount"
+        Me.GridColumn14.DisplayFormat.FormatString = "N2"
+        Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn14.FieldName = "pph_amount"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph_amount", "{0:N2}")})
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 5
         '
         'RepositoryItemTextEdit1
         '
@@ -629,69 +697,182 @@ Partial Class FormDevidenDet
         Me.BVerify.Size = New System.Drawing.Size(161, 41)
         Me.BVerify.TabIndex = 92
         Me.BVerify.Text = "Shareholder Setup"
-        Me.BVerify.Visible = False
         '
-        'GridColumn3
+        'XtraTabControl2
         '
-        Me.GridColumn3.Caption = "Year"
-        Me.GridColumn3.DisplayFormat.FormatString = "YYYY"
-        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn3.FieldName = "Year"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 0
+        Me.XtraTabControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl2.Location = New System.Drawing.Point(0, 98)
+        Me.XtraTabControl2.Name = "XtraTabControl2"
+        Me.XtraTabControl2.SelectedTabPage = Me.XTPComparation
+        Me.XtraTabControl2.Size = New System.Drawing.Size(953, 398)
+        Me.XtraTabControl2.TabIndex = 22
+        Me.XtraTabControl2.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPComparation, Me.XTPThisYear})
         '
-        'GridColumn4
+        'XTPComparation
         '
-        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn4.Caption = "Net Profit"
-        Me.GridColumn4.DisplayFormat.FormatString = "N2"
-        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn4.FieldName = "Net Profit"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 1
+        Me.XTPComparation.Controls.Add(Me.GCHistory)
+        Me.XTPComparation.Name = "XTPComparation"
+        Me.XTPComparation.Size = New System.Drawing.Size(947, 370)
+        Me.XTPComparation.Text = "Comparation"
         '
-        'GridColumn5
+        'GCHistory
         '
-        Me.GridColumn5.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn5.Caption = "Deviden"
-        Me.GridColumn5.DisplayFormat.FormatString = "N2"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn5.FieldName = "Deviden"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 2
+        Me.GCHistory.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCHistory.Location = New System.Drawing.Point(0, 0)
+        Me.GCHistory.MainView = Me.GVHistory
+        Me.GCHistory.Name = "GCHistory"
+        Me.GCHistory.Size = New System.Drawing.Size(947, 370)
+        Me.GCHistory.TabIndex = 2
+        Me.GCHistory.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVHistory})
         '
-        'GridColumn6
+        'GVHistory
         '
-        Me.GridColumn6.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn6.Caption = "% From Profit"
-        Me.GridColumn6.DisplayFormat.FormatString = "{0:N0} %"
-        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn6.FieldName = "% From Profit"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 3
+        Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn24, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn25})
+        Me.GVHistory.GridControl = Me.GCHistory
+        Me.GVHistory.GroupCount = 1
+        Me.GVHistory.Name = "GVHistory"
+        Me.GVHistory.OptionsBehavior.Editable = False
+        Me.GVHistory.OptionsView.ShowFooter = True
+        Me.GVHistory.OptionsView.ShowGroupPanel = False
+        Me.GVHistory.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn18, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn24, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "ID"
+        Me.GridColumn15.FieldName = "id_shareholder_share"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "ID COmp"
+        Me.GridColumn16.FieldName = "id_comp"
+        Me.GridColumn16.Name = "GridColumn16"
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "PPH Account"
+        Me.GridColumn17.FieldName = "pph_account"
+        Me.GridColumn17.Name = "GridColumn17"
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Profit Year"
+        Me.GridColumn24.FieldName = "profit_year"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 0
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Shareholder"
+        Me.GridColumn18.FieldName = "comp_name"
+        Me.GridColumn18.FieldNameSortGroup = "id_comp"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 0
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn19.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn19.Caption = "Share (%)"
+        Me.GridColumn19.DisplayFormat.FormatString = "{0:N0} %"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn19.FieldName = "deviden_percent"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 1
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.Caption = "Net Deviden"
+        Me.GridColumn20.DisplayFormat.FormatString = "N2"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn20.FieldName = "deviden_amount"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "deviden_amount", "{0:N2}")})
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 5
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.Caption = "PPH COA"
+        Me.GridColumn21.DisplayFormat.FormatString = "N2"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn21.FieldName = "pph_desc"
+        Me.GridColumn21.Name = "GridColumn21"
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn22.Caption = "PPH (%)"
+        Me.GridColumn22.DisplayFormat.FormatString = "{0:N0} %"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn22.FieldName = "pph_percent"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 3
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn23.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn23.Caption = "PPH Amount"
+        Me.GridColumn23.DisplayFormat.FormatString = "N2"
+        Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn23.FieldName = "pph_amount"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pph_amount", "{0:N2}")})
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 4
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn25.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn25.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn25.Caption = "Deviden"
+        Me.GridColumn25.DisplayFormat.FormatString = "N2"
+        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn25.FieldName = "deviden"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.UnboundExpression = "[pph_amount] + [deviden_amount]"
+        Me.GridColumn25.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 2
+        '
+        'XTPThisYear
+        '
+        Me.XTPThisYear.Controls.Add(Me.XTPDraftJournal)
+        Me.XTPThisYear.Controls.Add(Me.PanelControl1)
+        Me.XTPThisYear.Name = "XTPThisYear"
+        Me.XTPThisYear.Size = New System.Drawing.Size(947, 370)
+        Me.XTPThisYear.Text = "This Year"
         '
         'FormDevidenDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(953, 582)
-        Me.Controls.Add(Me.XTPDraftJournal)
+        Me.Controls.Add(Me.XtraTabControl2)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControlBottom)
-        Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControlPay)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MinimizeBox = False
@@ -735,6 +916,12 @@ Partial Class FormDevidenDet
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
+        CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl2.ResumeLayout(False)
+        Me.XTPComparation.ResumeLayout(False)
+        CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPThisYear.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -769,17 +956,6 @@ Partial Class FormDevidenDet
     Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCShareHolder As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVShareHolder As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnId As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnCreatedDate As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnCreatedByName As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnReortStt As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnPaidStt As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnBal As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumntotal As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdComp As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnBeneficiary As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GCComparation As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVComparation As DevExpress.XtraGrid.Views.Grid.GridView
@@ -794,4 +970,29 @@ Partial Class FormDevidenDet
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XtraTabControl2 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPComparation As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPThisYear As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCHistory As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVHistory As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
