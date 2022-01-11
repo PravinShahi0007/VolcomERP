@@ -601,7 +601,7 @@ Public Class FormSalesPOSDet
                 end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
             Catch ex As Exception
             End Try
-            Dim query As String = "CALL view_stock_fg_for_invoice('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', NOW()) "
+            Dim query As String = "CALL view_stock_fg_for_invoice_v2('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', NOW()) "
             dt_stock_store = execute_query(query, -1, True, "", "", "", "")
             FormMain.SplashScreenManager1.CloseWaitForm()
         End If
