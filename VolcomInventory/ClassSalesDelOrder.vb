@@ -306,7 +306,7 @@
                 so.sales_order_ol_shop_date AS sales_pos_start_period,so.sales_order_ol_shop_date AS sales_pos_end_period,
                 c.comp_commission AS sales_pos_discount, SUM(sod.discount) AS sales_pos_potongan, o.vat_inv_default AS sales_pos_vat, del.id_pl_sales_order_del, 1 AS id_memo_type,0 AS id_inv_type, NULL AS id_sales_pos_ref, 48 AS report_mark_type,o.is_use_unique_code_all AS is_use_unique_code, 
                 c.id_acc_ar, c.id_acc_sales, c.id_acc_sales_return, '" + kurs_trans + "',
-                SUM(CASE WHEN LEFT(prod.product_full_code,4)='8888' THEN sod.design_price * sod.sales_order_det_qty END) AS `potongan_gwp`
+                IFNULL(SUM(CASE WHEN LEFT(prod.product_full_code,4)='8888' THEN sod.design_price * sod.sales_order_det_qty END),0) AS `potongan_gwp`
                 FROM tb_pl_sales_order_del del 
                 INNER JOIN tb_sales_order so ON so.id_sales_order = del.id_sales_order
                 INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
@@ -322,7 +322,7 @@
                 'increase number
                 'increase_inc_sales("6")
                 'detail
-                Dim query_detail_inv As String = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary) 
+                Dim query_detail_inv As String = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det, id_pos_combine_summary, is_gwp) 
                 SELECT " + id_sales_pos + ", dd.id_product, id_design_price, design_price, dd.pl_sales_order_del_det_qty AS sales_pos_det_qty, 
                 dd.id_design_price AS id_design_price_retail, dd.design_price AS design_price_retail, '' AS note, NULL AS id_sales_pos_det_ref, 
                 dd.id_pl_sales_order_del_det AS id_pl_sales_order_del_det, NULL AS id_pos_combine_summary, IF(LEFT(p.product_full_code,4)='8888','1','2') AS `is_gwp`
@@ -339,7 +339,8 @@
                     WHERE pd.id_sales_pos=" + id_sales_pos + "
                     GROUP BY pd.id_sales_pos
                 ) src ON src.id_sales_pos = main.id_sales_pos
-                SET main.sales_pos_total_qty = src.total, main.sales_pos_total=src.total_amount; "
+                SET main.sales_pos_total_qty = src.total, main.sales_pos_total=src.total_amount,
+                main.netto = src.total_netto; "
                 execute_non_query(query_detail_inv, True, "", "", "", "")
                 'get total
                 Dim dst As DataTable = execute_query("SELECT sales_pos_total FROM tb_sales_pos WHERE id_sales_pos='" + id_sales_pos + "' ", -1, True, "", "", "", "")
