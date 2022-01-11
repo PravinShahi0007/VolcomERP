@@ -247,8 +247,8 @@ WHERE sh.id_deviden='" & id & "'"
         Else
             If id = "-1" Then
                 'new
-                Dim q As String = "INSERT INTO `tb_deviden`(profit_year,`profit_value`,`deviden_value`,`profit_percent`,`created_date`,`created_by`,`id_report_status`)
-VALUES('" & SLEYear.EditValue.ToString & "'," & decimalSQL(Decimal.Parse(TEProfit.EditValue.ToString)) & "," & decimalSQL(Decimal.Parse(TEDeviden.EditValue.ToString)) & "," & decimalSQL(Decimal.Parse(TEDevidenPercent.EditValue.ToString)) & ",NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID(); "
+                Dim q As String = "INSERT INTO `tb_deviden`(date_reff,profit_year,`profit_value`,`deviden_value`,`profit_percent`,`created_date`,`created_by`,`id_report_status`)
+VALUES('" & Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & SLEYear.EditValue.ToString & "'," & decimalSQL(Decimal.Parse(TEProfit.EditValue.ToString)) & "," & decimalSQL(Decimal.Parse(TEDeviden.EditValue.ToString)) & "," & decimalSQL(Decimal.Parse(TEDevidenPercent.EditValue.ToString)) & ",NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID(); "
                 id = execute_query(q, 0, True, "", "", "", "")
                 '
                 q = "INSERT INTO `tb_deviden_share`(`id_deviden`,`id_comp`,`pph_account`,`pph_percent`,`deviden_percent`,`deviden_amount`,`pph_amount`) VALUES"
