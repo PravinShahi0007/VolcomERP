@@ -299,16 +299,18 @@
                 End If
 
                 'main
-                Dim query_inv As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return, kurs_trans) 
+                Dim query_inv As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return, kurs_trans, potongan_gwp) 
                 SELECT del.id_store_contact_to AS id_store_contact_from,NULL AS id_comp_contact_bill , '" + header_number_sales("6") + "' AS sales_pos_number, 
                 DATE(NOW()) AS sales_pos_date, 
                 '' AS sales_pos_note, 6 AS id_report_status, 0 AS id_so_type, 0 AS sales_pos_total, DATE_ADD(DATE(so.sales_order_ol_shop_date),INTERVAL IFNULL(sd.due,0) DAY) AS sales_pos_due_date, 
                 so.sales_order_ol_shop_date AS sales_pos_start_period,so.sales_order_ol_shop_date AS sales_pos_end_period,
                 c.comp_commission AS sales_pos_discount, SUM(sod.discount) AS sales_pos_potongan, o.vat_inv_default AS sales_pos_vat, del.id_pl_sales_order_del, 1 AS id_memo_type,0 AS id_inv_type, NULL AS id_sales_pos_ref, 48 AS report_mark_type,o.is_use_unique_code_all AS is_use_unique_code, 
-                c.id_acc_ar, c.id_acc_sales, c.id_acc_sales_return, '" + kurs_trans + "'
+                c.id_acc_ar, c.id_acc_sales, c.id_acc_sales_return, '" + kurs_trans + "',
+                SUM(CASE WHEN LEFT(prod.product_full_code,4)='8888' THEN sod.design_price * sod.sales_order_det_qty END) AS `potongan_gwp`
                 FROM tb_pl_sales_order_del del 
                 INNER JOIN tb_sales_order so ON so.id_sales_order = del.id_sales_order
                 INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+                INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
                 JOIN tb_opt o
                 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = del.id_store_contact_to
                 INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
@@ -330,8 +332,10 @@
                 -- update total qty
                 UPDATE tb_sales_pos main
                 INNER JOIN (
-                    SELECT pd.id_sales_pos,ABS(SUM(pd.sales_pos_det_qty)) AS `total`, ABS(SUM(pd.sales_pos_det_qty * pd.design_price_retail)) AS `total_amount`
+                    SELECT pd.id_sales_pos,ABS(SUM(pd.sales_pos_det_qty)) AS `total`, ABS(SUM(pd.sales_pos_det_qty * pd.design_price_retail)) AS `total_amount`,
+                    (ABS(SUM(pd.sales_pos_det_qty * pd.design_price_retail)) - p.potongan_gwp-((p.sales_pos_discount/100)*(ABS(SUM(pd.sales_pos_det_qty * pd.design_price_retail)) - p.potongan_gwp)) - p.sales_pos_potongan) AS `total_netto`
                     FROM tb_sales_pos_det pd
+                    INNER JOIN tb_sales_pos p ON p.id_sales_pos = pd.id_sales_pos
                     WHERE pd.id_sales_pos=" + id_sales_pos + "
                     GROUP BY pd.id_sales_pos
                 ) src ON src.id_sales_pos = main.id_sales_pos
