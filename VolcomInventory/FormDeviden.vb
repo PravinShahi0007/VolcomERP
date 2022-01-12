@@ -85,7 +85,7 @@ ORDER BY id_comp DESC,profit_year ASC"
     End Sub
 
     Private Sub GVHistory_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVHistory.ColumnFilterChanged
-        If GVHistory.RowCount > 0 Then
+        If GVHistory.RowCount > 0 And GVHistory.FocusedRowHandle >= 0 Then
             show_list_bbk(GVHistory.GetFocusedRowCellValue("profit_year").ToString, GVHistory.GetFocusedRowCellValue("id_comp").ToString, "1")
         End If
     End Sub
@@ -103,7 +103,7 @@ ORDER BY id_comp DESC,profit_year ASC"
             qw_year = " AND d.profit_year='" & profit_year & "'"
         End If
 
-        Dim q As String = "SELECT pn.`id_pn`,pn.`number`,c.`comp_name`,pn.`date_created`,pn.`date_payment`,sts.`report_status`,pnd.`value`,d.`profit_year`
+        Dim q As String = "SELECT pn.`id_pn`,pn.`number`,c.`comp_name`,pn.`date_created`,pn.`date_payment`,sts.`report_status`,pnd.`value` AS paid_amount,d.`profit_year`
 FROM tb_pn_det pnd
 INNER JOIN tb_pn pn ON pn.`id_pn`=pnd.`id_pn` AND pnd.`report_mark_type`='384'
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=pn.`id_comp_contact`
@@ -120,6 +120,8 @@ INNER JOIN tb_deviden d ON d.`id_deviden`=ds.`id_deviden` " & qw_year
     End Sub
 
     Private Sub GVHistory_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVHistory.FocusedRowChanged
-        show_list_bbk(GVHistory.GetFocusedRowCellValue("profit_year").ToString, GVHistory.GetFocusedRowCellValue("id_comp").ToString, "1")
+        If GVHistory.RowCount > 0 And GVHistory.FocusedRowHandle >= 0 Then
+            show_list_bbk(GVHistory.GetFocusedRowCellValue("profit_year").ToString, GVHistory.GetFocusedRowCellValue("id_comp").ToString, "1")
+        End If
     End Sub
 End Class
