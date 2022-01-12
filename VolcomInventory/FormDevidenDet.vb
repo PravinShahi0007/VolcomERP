@@ -330,10 +330,13 @@ VALUES('" & Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") & "
         'Grid Detail
         ReportStyleGridview(Report.GVHistory)
 
-        'Report.LInvNo.Text = TEInvNo.Text
-        'Report.LPayFrom.Text = SLEPayFrom.Text
-        'Report.LabelTotalPayment.Text = TxtTotal.Text
-        'Report.LSay.Text = ConvertCurrencyToIndonesian(Decimal.Parse(TxtTotal.EditValue.ToString))
+        Report.LProfitAmount.Text = Decimal.Parse(TEProfit.EditValue.ToString).ToString("N2")
+        Report.LDevidenAmount.Text = Decimal.Parse(TEDeviden.EditValue.ToString).ToString("N2")
+        Report.LDevidenPercent.Text = Decimal.Parse(TEDevidenPercent.EditValue.ToString).ToString("N0") & " %"
+        Report.LprofitYear.Text = SLEYear.EditValue.ToString
+
+        Report.LabelCreatedDate.Text = Date.Parse(DECreated.EditValue.ToString).ToString("dd MMMM yyyy")
+        Report.LabelReffDate.Text = Date.Parse(DEDateReff.EditValue.ToString).ToString("dd MMMM yyyy")
 
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
