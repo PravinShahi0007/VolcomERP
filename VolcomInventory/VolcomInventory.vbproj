@@ -8974,6 +8974,12 @@
     <Compile Include="ReportDesignInfo.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportDeviden.Designer.vb">
+      <DependentUpon>ReportDeviden.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDeviden.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDisableExos.Designer.vb">
       <DependentUpon>ReportDisableExos.vb</DependentUpon>
     </Compile>
@@ -15465,6 +15471,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDesignInfo.resx">
       <DependentUpon>ReportDesignInfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportDeviden.resx">
+      <DependentUpon>ReportDeviden.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDisableExos.resx">
       <DependentUpon>ReportDisableExos.vb</DependentUpon>

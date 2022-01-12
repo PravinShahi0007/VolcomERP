@@ -303,4 +303,8 @@ VALUES('" & Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") & "
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
+    End Sub
 End Class
