@@ -603,7 +603,7 @@ Public Class FormSalesPOSDet
                 end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
             Catch ex As Exception
             End Try
-            Dim query As String = "CALL view_stock_fg_for_invoice('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', NOW()) "
+            Dim query As String = "CALL view_stock_fg_for_invoice_v2('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', NOW()) "
             dt_stock_store = execute_query(query, -1, True, "", "", "", "")
             FormMain.SplashScreenManager1.CloseWaitForm()
         End If
@@ -914,7 +914,7 @@ Public Class FormSalesPOSDet
                                     qs += "('" + id_user + "','" + GVItemList.GetRowCellValue(s, "code").ToString + "','" + addSlashes(GVItemList.GetRowCellValue(s, "name").ToString) + "', '" + GVItemList.GetRowCellValue(s, "size").ToString + "', '" + GVItemList.GetRowCellValue(s, "id_product").ToString + "', '" + decimalSQL(GVItemList.GetRowCellValue(s, "sales_pos_det_qty").ToString) + "') "
                                     id_prod += GVItemList.GetRowCellValue(s, "id_product").ToString
                                 Next
-                                qs += "; CALL view_validate_stock(" + id_user + ", " + id_comp + ", '" + id_prod + "',1); "
+                                qs += "; CALL view_validate_stock(" + id_user + ", " + id_comp + ", '0',1); "
                                 Dim dts As DataTable = execute_query(qs, -1, True, "", "", "", "")
                                 If dts.Rows.Count > 0 Then
                                     Cursor = Cursors.Default
