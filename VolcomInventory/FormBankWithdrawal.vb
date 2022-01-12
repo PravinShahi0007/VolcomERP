@@ -54,7 +54,7 @@
         load_vendor_refund()
         load_group_store_cn()
         load_vendor_dpkhusus()
-
+        load_vendor_deviden()
 
         'VS sales
         viewCoaTag()
@@ -259,6 +259,15 @@ WHERE py.id_coa_tag='" & SLEUnitBBKList.EditValue.ToString & "' AND DATE(py.date
                                 FROM tb_m_comp c
                                 WHERE c.id_comp_cat='1' OR c.id_comp_cat='8' AND c.is_active=1"
         viewSearchLookupQuery(SLEDPKhususVendor, query, "id_comp", "comp_name", "id_comp")
+    End Sub
+
+    Sub load_vendor_deviden()
+        Dim query As String = "SELECT ds.id_comp,c.`comp_name`
+FROM tb_deviden_share ds
+INNER JOIN tb_deviden d ON d.`id_deviden`=ds.`id_deviden` AND d.id_report_status=6
+INNER JOIN tb_m_comp c ON c.`id_comp`=ds.`id_comp`
+GROUP BY ds.`id_comp`"
+        viewSearchLookupQuery(SLEVendorDeviden, query, "id_comp", "comp_name", "id_comp")
     End Sub
     '
     Sub load_po()
@@ -1748,5 +1757,42 @@ GROUP BY ed.id_prepaid_expense ORDER BY e.id_prepaid_expense DESC "
         End If
 
         GVSummaryPPN.ActiveFilterString = ""
+    End Sub
+
+    Private Sub BCreateDeviden_Click(sender As Object, e As EventArgs) Handles BCreateDeviden.Click
+        If GVShareHolder.RowCount > 0 Then
+            FormBankWithdrawalDet.id_pay_type = "2"
+            FormBankWithdrawalDet.report_mark_type = "384"
+            FormBankWithdrawalDet.id_coa_tag = "1"
+            FormBankWithdrawalDet.ShowDialog()
+        Else
+            warningCustom("No data found.")
+        End If
+    End Sub
+
+    Private Sub BViewDeviden_Click(sender As Object, e As EventArgs) Handles BViewDeviden.Click
+        Dim q As String = "SELECT ds.`id_deviden`,c.`id_acc_ap` AS id_acc,ds.id_comp,c.`comp_name`,d.`profit_year`,ds.`deviden_amount`,IFNULL(payment_pending.jml,0) AS jml_pending,IFNULL(payment.value,0) AS paid_amount,ds.`deviden_amount`-IFNULL(payment.value,0) AS balance
+,acc.`acc_name`,acc.`acc_description`
+FROM tb_deviden_share ds
+INNER JOIN tb_deviden d ON d.`id_deviden`=ds.`id_deviden`
+INNER JOIN tb_m_comp c ON c.`id_comp`=ds.`id_comp` AND c.id_comp='" & SLEVendorDeviden.EditValue.ToString & "'
+INNER JOIN tb_a_acc acc ON acc.`id_acc`=c.`id_acc_ap`
+LEFT JOIN
+(
+	SELECT cc.`id_comp`,COUNT(pyd.id_report) AS jml,pyd.id_report FROM `tb_pn_det` pyd
+	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=6 AND py.id_report_status!=5 AND py.report_mark_type='384'
+	INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=py.id_comp_contact
+	GROUP BY pyd.id_report,cc.`id_comp`
+)payment_pending ON payment_pending.id_report=ds.id_deviden AND ds.`id_comp`=payment_pending.id_comp
+LEFT JOIN
+(
+	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_pn_det` pyd
+	INNER JOIN tb_pn py ON py.id_pn=pyd.id_pn AND py.id_report_status!=5 AND pyd.report_mark_type='384' AND py.is_tolakan=2
+	GROUP BY pyd.id_report
+)payment ON payment.id_report=ds.id_deviden AND ds.`id_comp`=payment_pending.id_comp
+HAVING balance>0"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCShareHolder.DataSource = dt
+        GVShareHolder.BestFitColumns()
     End Sub
 End Class
