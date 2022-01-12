@@ -101,7 +101,8 @@
 	        AND cd.id_code IN (32,30,14, 43)
 	        GROUP BY dc.id_design
         ) cd ON cd.id_design = dsg.id_design
-        WHERE d.id_pp_change=" + id_pp + " AND d.id_extended_eos=1
+        WHERE d.id_pp_change=" + id_pp + " AND d.id_extended_eos=2
+        AND (d.propose_price_final>0 AND !ISNULL(d.propose_price_final))
         ORDER BY `class` ASC, `name` ASC "
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
         GCItemList.DataSource = data

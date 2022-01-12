@@ -7,6 +7,18 @@
 
     End Sub
 
+    Sub load_deviden()
+        Dim q As String = "SELECT d.*,emp.employee_name,sts.report_status 
+FROM tb_deviden d
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=d.id_report_status
+INNER JOIN tb_m_user usr ON usr.id_user=d.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+ORDER BY id_deviden DESC"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCData.DataSource = dt
+        GVData.BestFitColumns()
+    End Sub
+
     Private Sub FormItemExpense_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
