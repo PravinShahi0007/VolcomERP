@@ -83,7 +83,7 @@ ORDER BY `Year`"
         If id = "-1" Then
             q = "SELECT d.profit_year,ds.id_comp,c.`comp_number`,ds.`pph_account`,IF(ds.pph_account=0,'No PPH',CONCAT(acc.acc_name ,' - ',acc.`acc_description`)) AS pph_desc,c.`comp_name`,ds.`pph_percent`,ds.`deviden_percent`,ds.deviden_amount,ds.pph_amount
 FROM `tb_deviden_share` ds
-INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden
+INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden AND d.id_report_status!=5
 INNER JOIN 
 (
 	SELECT profit_year FROM `tb_deviden` WHERE profit_year<'" & SLEYear.EditValue.ToString & "' AND id_report_status=6 ORDER BY profit_year DESC LIMIT 4
@@ -101,7 +101,7 @@ FROM
 (
 	SELECT d.profit_year,ds.id_comp,c.`comp_number`,ds.`pph_account`,IF(ds.pph_account=0,'No PPH',CONCAT(acc.acc_name ,' - ',acc.`acc_description`)) AS pph_desc,c.`comp_name`,ds.`pph_percent`,ds.`deviden_percent`,ds.deviden_amount,ds.pph_amount
 	FROM `tb_deviden_share` ds
-	INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden
+	INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden AND d.id_report_status!=5
 	INNER JOIN 
 	(
 		SELECT profit_year FROM `tb_deviden` WHERE profit_year<'" & SLEYear.EditValue.ToString & "' AND id_report_status=6 ORDER BY profit_year DESC LIMIT 4
@@ -119,7 +119,7 @@ ORDER BY id_comp DESC,profit_year ASC"
         Else
             q = "SELECT d.profit_year,ds.id_comp,c.`comp_number`,ds.`pph_account`,IF(ds.pph_account=0,'No PPH',CONCAT(acc.acc_name ,' - ',acc.`acc_description`)) AS pph_desc,c.`comp_name`,ds.`pph_percent`,ds.`deviden_percent`,ds.deviden_amount,ds.pph_amount
 FROM `tb_deviden_share` ds
-INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden
+INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden AND d.id_report_status!=5
 INNER JOIN 
 (
 	SELECT profit_year FROM `tb_deviden` WHERE profit_year<'" & SLEYear.EditValue.ToString & "' AND id_report_status=6 ORDER BY profit_year DESC LIMIT 4
@@ -138,7 +138,7 @@ FROM
 (
 	SELECT d.profit_year,ds.id_comp,c.`comp_number`,ds.`pph_account`,IF(ds.pph_account=0,'No PPH',CONCAT(acc.acc_name ,' - ',acc.`acc_description`)) AS pph_desc,c.`comp_name`,ds.`pph_percent`,ds.`deviden_percent`,ds.deviden_amount,ds.pph_amount
 	FROM `tb_deviden_share` ds
-	INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden
+	INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden AND d.id_report_status!=5
 	INNER JOIN 
 	(
 		SELECT profit_year FROM `tb_deviden` WHERE profit_year<'" & SLEYear.EditValue.ToString & "' AND id_report_status=6 ORDER BY profit_year DESC LIMIT 4

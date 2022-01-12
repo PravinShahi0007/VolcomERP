@@ -2,7 +2,8 @@
     Sub createCN()
         Dim report_mark_type As String = "118"
         Dim qcn As String = "SELECT spd.id_sales_pos, so.sales_order_ol_shop_number AS `order_number`,
-        sp.id_store_contact_from, sp.sales_pos_discount, sp.sales_pos_vat, sp.id_acc_ar, sp.id_acc_sales, sp.id_acc_sales_return, SUM(sod.discount) AS `discount`
+        sp.id_store_contact_from, sp.sales_pos_discount, sp.sales_pos_vat, sp.id_acc_ar, sp.id_acc_sales, sp.id_acc_sales_return, SUM(sod.discount) AS `discount`,
+        IFNULL(SUM(CASE WHEN LEFT(prod.product_full_code,4)='8888' THEN sod.design_price * sod.sales_order_det_qty END),0) AS `potongan_gwp`
         FROM tb_ol_store_ret_list l
         INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = l.id_ol_store_ret_det
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = rd.id_sales_order_det
@@ -10,6 +11,7 @@
         INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_sales_pos_det spd ON spd.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+        INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
         WHERE l.id_ol_store_ret_stt=6
         GROUP BY spd.id_sales_pos,so.sales_order_ol_shop_number "
         Dim dcn As DataTable = execute_query(qcn, -1, True, "", "", "", "")
@@ -31,15 +33,16 @@
                 Dim id_so_type As String = "0"
                 Dim id_inv_type As String = "0"
                 Dim id_memo_type As String = "2"
-                Dim qm As String = "INSERT INTO tb_sales_pos(id_store_contact_from, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_vat, id_memo_type, id_inv_type, id_sales_pos_ref, report_mark_type, id_acc_ar, id_acc_sales, id_acc_sales_return, sales_pos_potongan, kurs_trans) 
-                VALUES('" + dcn.Rows(c)("id_store_contact_from").ToString + "', NOW(), '', 1, '" + id_so_type + "',0, NOW(), NOW(), NOW(), '" + decimalSQL(dcn.Rows(c)("sales_pos_discount").ToString) + "', '" + dcn.Rows(c)("sales_pos_vat").ToString + "', '" + id_memo_type + "', '" + id_inv_type + "', '" + dcn.Rows(c)("id_sales_pos").ToString + "', '118', '" + dcn.Rows(c)("id_acc_ar").ToString + "', '" + dcn.Rows(c)("id_acc_sales").ToString + "', '" + dcn.Rows(c)("id_acc_sales_return").ToString + "','" + decimalSQL(dcn.Rows(c)("discount").ToString) + "','" + kurs_trans + "'); SELECT LAST_INSERT_ID(); "
+                Dim qm As String = "INSERT INTO tb_sales_pos(id_store_contact_from, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_vat, id_memo_type, id_inv_type, id_sales_pos_ref, report_mark_type, id_acc_ar, id_acc_sales, id_acc_sales_return, sales_pos_potongan, kurs_trans,potongan_gwp) 
+                VALUES('" + dcn.Rows(c)("id_store_contact_from").ToString + "', NOW(), '', 1, '" + id_so_type + "',0, NOW(), NOW(), NOW(), '" + decimalSQL(dcn.Rows(c)("sales_pos_discount").ToString) + "', '" + dcn.Rows(c)("sales_pos_vat").ToString + "', '" + id_memo_type + "', '" + id_inv_type + "', '" + dcn.Rows(c)("id_sales_pos").ToString + "', '118', '" + dcn.Rows(c)("id_acc_ar").ToString + "', '" + dcn.Rows(c)("id_acc_sales").ToString + "', '" + dcn.Rows(c)("id_acc_sales_return").ToString + "','" + decimalSQL(dcn.Rows(c)("discount").ToString) + "','" + kurs_trans + "', '" + decimalSQL(dcn.Rows(c)("potongan_gwp").ToString) + "'); SELECT LAST_INSERT_ID(); "
                 Dim id_cn As String = execute_query(qm, 0, True, "", "", "", "")
                 'gen number
                 execute_non_query("CALL gen_number(" + id_cn + ", " + report_mark_type + ");", True, "", "", "", "")
                 'detail
-                Dim qd As String = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_ol_store_ret_list) 
+                Dim qd As String = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_ol_store_ret_list, is_gwp) 
                 SELECT '" + id_cn + "', p.id_product, id.id_design_price, id.design_price, IF((SUM(id.sales_pos_det_qty)-IFNULL(cn.jum_cn,0))<=0,0,-1)  AS qty,
-                id.id_design_price_retail, id.design_price_retail, 'OK' AS `note`, id.id_sales_pos_det AS `id_sales_pos_det_ref`, l.id_ol_store_ret_list
+                id.id_design_price_retail, id.design_price_retail, 'OK' AS `note`, id.id_sales_pos_det AS `id_sales_pos_det_ref`, l.id_ol_store_ret_list,
+                IF(LEFT(p.product_full_code,4)='8888','1','2') AS `is_gwp`
                 FROM tb_ol_store_ret_list l
                 INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = l.id_ol_store_ret_det
                 INNER JOIN tb_ol_store_ret r ON r.id_ol_store_ret = rd.id_ol_store_ret
@@ -67,12 +70,15 @@
                 -- update total qty
                 UPDATE tb_sales_pos main
                 INNER JOIN (
-                    SELECT pd.id_sales_pos,ABS(SUM(pd.sales_pos_det_qty)) AS `total`, ABS(SUM(pd.sales_pos_det_qty * pd.design_price_retail)) AS `total_amount`
+                    SELECT pd.id_sales_pos,ABS(SUM(pd.sales_pos_det_qty)) AS `total`, ABS(SUM(pd.sales_pos_det_qty * pd.design_price_retail)) AS `total_amount`,
+                    (ABS(SUM(pd.sales_pos_det_qty * pd.design_price_retail)) - p.potongan_gwp-((p.sales_pos_discount/100)*(ABS(SUM(pd.sales_pos_det_qty * pd.design_price_retail)) - p.potongan_gwp)) - p.sales_pos_potongan) AS `total_netto`
                     FROM tb_sales_pos_det pd
+                    INNER JOIN tb_sales_pos p ON p.id_sales_pos = pd.id_sales_pos
                     WHERE pd.id_sales_pos=" + id_cn + "
                     GROUP BY pd.id_sales_pos
                 ) src ON src.id_sales_pos = main.id_sales_pos
-                SET main.sales_pos_total_qty = src.total, main.sales_pos_total=src.total_amount; "
+                SET main.sales_pos_total_qty = src.total, main.sales_pos_total=src.total_amount,
+                main.netto = src.total_netto; "
                 execute_non_query(qd, True, "", "", "", "")
                 'submit prepared
                 Dim id_user_prepared_inv As String = get_opt_acc_field("invoice_prepared_by")

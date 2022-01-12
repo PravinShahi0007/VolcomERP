@@ -1385,6 +1385,37 @@ GROUP BY dn.`id_debit_note`"
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                 Next
                 calculate_amount()
+            ElseIf report_mark_type = "384" Then 'deviden
+                Dim id_comp As String = FormBankWithdrawal.SLEVendorDeviden.EditValue
+                Dim id_comp_contact As String = get_company_x(id_comp, 6)
+                SLEVendor.EditValue = id_comp_contact
+                SLEPayType.EditValue = id_pay_type
+                SLEReportType.EditValue = report_mark_type
+
+                Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                newRow("id_report") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("id_deviden").ToString
+                newRow("report_mark_type") = "384"
+                newRow("id_acc") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("id_acc").ToString
+                newRow("acc_name") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("acc_name").ToString
+                newRow("acc_description") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("acc_description").ToString
+                newRow("vendor") = "000"
+                newRow("id_dc") = "1"
+                newRow("dc_code") = "D"
+                newRow("id_comp") = "1"
+                newRow("comp_number") = "000"
+                newRow("number") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("profit_year").ToString
+                newRow("total_pay") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("paid_amount")
+                newRow("kurs") = 1
+                newRow("id_currency") = "1"
+                newRow("currency") = "Rp"
+                newRow("val_bef_kurs") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("balance")
+                newRow("value") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("balance")
+                newRow("value_view") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("balance")
+                newRow("balance_due") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("balance")
+                newRow("note") = "Pembagian Deviden"
+                TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+
+                calculate_amount()
             End If
 
             If is_buy_valas Then
