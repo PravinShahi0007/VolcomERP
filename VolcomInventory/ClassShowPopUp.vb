@@ -539,6 +539,9 @@
         ElseIf report_mark_type = "383" Then
             'propose item list
             FormItemPps.Close()
+        ElseIf report_mark_type = "384" Then
+            'propose item list
+            FormItemPps.Close()
         End If
     End Sub
     Sub show()
@@ -1728,6 +1731,11 @@ GROUP BY rec.`id_prod_order`"
             FormItemPps.is_view = "1"
             FormItemPps.id_pps = id_report
             FormItemPps.ShowDialog()
+        ElseIf report_mark_type = "384" Then
+            'deviden
+            FormDevidenDet.is_view = "1"
+            FormDevidenDet.id = id_report
+            FormDevidenDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -3080,6 +3088,12 @@ GROUP BY rec.`id_prod_order`"
             table_name = "tb_item_pps"
             field_id = "id_item_pps"
             field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "384" Then
+            'propose item list
+            table_name = "tb_deviden"
+            field_id = "id_deviden"
+            field_number = "profit_year"
             field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
