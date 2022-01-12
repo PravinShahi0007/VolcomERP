@@ -5,7 +5,7 @@
 
 
     Private Sub ReportSalesInvoiceNew_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
-        Dim query As String = "CALL view_sales_pos_head_report(" + id_sales_pos + ", " + id_user + "); "
+        Dim query As String = "CALL view_sales_pos_head_report_v2(" + id_sales_pos + ", " + id_user + "); "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         DataSource = data
 
@@ -14,6 +14,7 @@
         RowTotalAmount.Text = Decimal.Parse(data.Rows(0)("total_amo").ToString).ToString("N0")
 
         'set invocie value info
+        LabelPotGWP.Text = Decimal.Parse(data.Rows(0)("potongan_gwp").ToString).ToString("N0")
         LabelDiscountValue.Text = Decimal.Parse(data.Rows(0)("discount_value").ToString).ToString("N0")
         LabelPotPenjualan.Text = Decimal.Parse(data.Rows(0)("pot_penjualan").ToString).ToString("N0")
         LabelNetto.Text = Decimal.Parse(data.Rows(0)("netto_trans").ToString).ToString("N0")

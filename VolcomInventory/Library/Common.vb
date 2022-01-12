@@ -7739,4 +7739,13 @@ INNER JOIN tb_sales_return_qc awb ON awb.`id_sales_return_qc`='" & id_report & "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
+
+    Function isGWPProduct(ByVal id_design_par As String, ByVal code_par As String) As String
+        Dim code_gwp As String = Microsoft.VisualBasic.Left(code_par, 4)
+        If code_gwp = "8888" Then
+            Return "1"
+        Else
+            Return "2"
+        End If
+    End Function
 End Module

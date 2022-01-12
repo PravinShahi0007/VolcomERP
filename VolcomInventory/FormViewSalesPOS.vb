@@ -104,7 +104,7 @@
         query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
             IFNULL(a.id_comp_contact_bill,'-1') AS `id_comp_contact_bill`,(cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
-        query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_st_date, a.sales_pos_discount, a.sales_pos_potongan, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number "
+        query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_st_date, a.sales_pos_discount, a.sales_pos_potongan, a.potongan_gwp, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number "
         If id_menu = "5" Then
             query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref`"
         End If
@@ -239,6 +239,7 @@
     End Sub
 
     Sub calculate()
+        getPotonganGWP()
         getDiscount()
         getNetto()
         getVat()
@@ -329,16 +330,16 @@
         TxtVirtualPosNumber.Focus()
     End Sub
 
+    Sub getPotonganGWP()
+        Dim query As String = "SELECT sp.potongan_gwp FROM tb_sales_pos sp WHERE sp.id_sales_pos=" + id_sales_pos + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        TxtPotGWP.EditValue = data.Rows(0)("potongan_gwp")
+    End Sub
+
     Sub getNetto()
-        Dim gross_total As Double = 0.0
-        Try
-            gross_total = Double.Parse(GVItemList.Columns("sales_pos_det_amount").SummaryItem.SummaryValue.ToString)
-        Catch ex As Exception
-        End Try
-
-        Dim pot_penjualan As Double = TxtPotPenjualan.EditValue
-
-        Dim netto As Double = gross_total - Decimal.Parse(TxtDiscount.EditValue.ToString) - pot_penjualan
+        Dim query As String = "SELECT sp.netto FROM tb_sales_pos sp WHERE sp.id_sales_pos=" + id_sales_pos + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Dim netto As Double = data.Rows(0)("netto")
         TxtNetto.EditValue = netto
         METotSay.Text = ConvertCurrencyToEnglish(netto, currency)
     End Sub
@@ -360,8 +361,9 @@
             gross_total = Double.Parse(GVItemList.Columns("sales_pos_det_amount").SummaryItem.SummaryValue.ToString)
         Catch ex As Exception
         End Try
+        Dim pot_gwp As Double = TxtPotGWP.EditValue
 
-        Dim discount As Double = (Decimal.Parse(SPDiscount.EditValue.ToString) / 100) * gross_total
+        Dim discount As Double = (Decimal.Parse(SPDiscount.EditValue.ToString) / 100) * (gross_total - pot_gwp)
         TxtDiscount.EditValue = discount
     End Sub
 
