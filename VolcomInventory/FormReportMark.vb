@@ -771,6 +771,9 @@
         ElseIf report_mark_type = "383" Then
             'propose item list
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_item_pps WHERE id_item_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "384" Then
+            'Perhitungan Deviden
+            query = String.Format("SELECT id_report_status, profit_year as report_number FROM tb_deviden WHERE id_deviden = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -11428,6 +11431,65 @@ WHERE id_item_pps='" & id_report & "'"
             End If
 
             query = String.Format("UPDATE tb_item_pps SET id_report_status = '{0}' WHERE id_item_pps = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "384" Then
+            'deviden
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'complete
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+
+                'jurnal
+                Dim qu As String = "SELECT created_by,profit_year,date_reff FROM tb_deviden WHERE id_report='" & id_report & "'"
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("created_by").ToString
+                Dim report_number As String = du.Rows(0)("profit_year").ToString
+
+                Dim date_reff As String = Date.Parse(du.Rows(0)("date_reff").ToString).ToString("yyyy-MM-dd")
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
+                VALUES('','" + report_number + "','22','" + id_user_prepared + "', NOW(), '" & date_reff & "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
+
+                'det journal
+                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_vendor, id_comp, qty, debit, credit, id_currency, kurs, debit_valas, credit_valas, acc_trans_det_note, report_mark_type, id_report, report_number,report_mark_type_ref, id_report_ref, report_number_ref, vendor, id_coa_tag)
+                                    SELECT * FROM
+                                    (
+	                                    /* hutang ke shareholder kredit */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,c.id_acc_ap AS `id_acc`,1  AS id_vendor,1 AS id_comp,  1 AS `qty`,0 AS `debit`, ds.deviden_amount AS `credit`, 1 AS id_currency, 0 AS kurs,0  AS debit_valas, 0 AS credit_valas,CONCAT('Pembagian Deviden ',d.profit_year) AS `note`,384 AS report_mark_type,ds.id_deviden AS id_report, d.profit_year AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor,1 AS id_coa_tag
+                                        FROM `tb_deviden_share` ds
+                                        INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden
+                                        INNER JOIN tb_m_comp c ON ds.id_comp=c.id_comp
+                                        WHERE ds.id_deviden='" & id_report & "' 
+                                        UNION ALL
+                                        /* pph shareholder kredit */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,c.id_acc_ap AS `id_acc`,1  AS id_vendor,1 AS id_comp,  1 AS `qty`,0 AS `debit`, ds.pph_amount AS `credit`, 1 AS id_currency, 0 AS kurs,0  AS debit_valas, 0 AS credit_valas,CONCAT('Pembagian Deviden ',d.profit_year) AS `note`,384 AS report_mark_type,ds.id_deviden AS id_report, d.profit_year AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor,1 AS id_coa_tag
+                                        FROM `tb_deviden_share` ds
+                                        INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden
+                                        INNER JOIN tb_m_comp c ON ds.id_comp=c.id_comp
+                                        WHERE ds.id_deviden='" & id_report & "'  AND ds.pph_amount >0 
+                                        UNION ALL
+                                        /* lawan laba ditahan debit */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,c.id_acc_ap AS `id_acc`,1  AS id_vendor,1 AS id_comp,  1 AS `qty`,SUM(ds.deviden_amount+ds.pph_amount) AS `debit`,0 AS `credit`, 1 AS id_currency, 0 AS kurs,0  AS debit_valas, 0 AS credit_valas,CONCAT('Pembagian Deviden ',d.profit_year) AS `note`,384 AS report_mark_type,ds.id_deviden AS id_report, d.profit_year AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor,1 AS id_coa_tag
+                                        FROM `tb_deviden_share` ds
+                                        INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden
+                                        INNER JOIN tb_m_comp c ON ds.id_comp=c.id_comp
+                                        WHERE ds.id_deviden='" & id_report & "'               
+                                    )trx WHERE trx.debit != 0 OR trx.credit != 0"
+                execute_non_query(qjd, True, "", "", "", "")
+                '
+
+                FormMain.SplashScreenManager1.CloseWaitForm()
+            End If
+
+            query = String.Format("UPDATE tb_deviden SET id_report_status = '{0}' WHERE id_deviden = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

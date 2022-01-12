@@ -2,7 +2,7 @@
     Public id As String = "-1"
     Public is_view As String = "-1"
     Dim is_load As Boolean = False
-
+    Dim id_report_status As String = "-1"
     Private Sub FormDevidenDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_head()
     End Sub
@@ -43,7 +43,9 @@
                 load_compare()
                 load_share()
                 '
-                If dt.Rows(0)("id_report_status").ToString = "6" Then
+                id_report_status = dt.Rows(0)("id_report_status").ToString
+
+                If id_report_status = "6" Then
                     BtnViewJournal.Visible = True
                 End If
             End If
@@ -301,6 +303,42 @@ VALUES('" & Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") & "
         Else
             warningCustom("Auto journal not found.")
         End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        'If id_report_status = "6" Then
+
+        If id_report_status = "6" Then
+            ReportDeviden.is_pre = False
+        Else
+            ReportDeviden.is_pre = True
+        End If
+
+        ReportDeviden.id = id
+        ReportDeviden.dt = GCHistory.DataSource
+        Dim Report As New ReportDeviden()
+
+        'creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVHistory.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVHistory.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        'Grid Detail
+        ReportStyleGridview(Report.GVHistory)
+
+        Report.LInvNo.Text = TEInvNo.Text
+        Report.LPayFrom.Text = SLEPayFrom.Text
+        Report.LabelTotalPayment.Text = TxtTotal.Text
+        Report.LSay.Text = ConvertCurrencyToIndonesian(Decimal.Parse(TxtTotal.EditValue.ToString))
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+
         Cursor = Cursors.Default
     End Sub
 End Class
