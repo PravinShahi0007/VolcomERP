@@ -36,9 +36,7 @@ Partial Class FormDeviden
         Me.XTPReport = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCDevidenReport = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPComparation = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPBBKHistory = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.Brefresh = New DevExpress.XtraEditors.SimpleButton()
+        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GCHistory = New DevExpress.XtraGrid.GridControl()
         Me.GVHistory = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -52,7 +50,6 @@ Partial Class FormDeviden
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GCBBKList = New DevExpress.XtraGrid.GridControl()
         Me.GVBBKList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -60,9 +57,10 @@ Partial Class FormDeviden
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPBBKHistory = New DevExpress.XtraTab.XtraTabPage()
         Me.GCBBK = New DevExpress.XtraGrid.GridControl()
         Me.GVBBK = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -73,6 +71,9 @@ Partial Class FormDeviden
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.Brefresh = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCExpense, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCExpense.SuspendLayout()
         Me.XTPDeviden.SuspendLayout()
@@ -83,17 +84,17 @@ Partial Class FormDeviden
         CType(Me.XTCDevidenReport, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDevidenReport.SuspendLayout()
         Me.XTPComparation.SuspendLayout()
-        Me.XTPBBKHistory.SuspendLayout()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
-        CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
+        CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCBBKList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBBKList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPBBKHistory.SuspendLayout()
         CType(Me.GCBBK, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBBK, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCExpense
@@ -255,31 +256,20 @@ Partial Class FormDeviden
         Me.XTPComparation.Size = New System.Drawing.Size(935, 391)
         Me.XTPComparation.Text = "Comparation"
         '
-        'XTPBBKHistory
+        'SplitContainerControl1
         '
-        Me.XTPBBKHistory.Controls.Add(Me.GCBBK)
-        Me.XTPBBKHistory.Name = "XTPBBKHistory"
-        Me.XTPBBKHistory.Size = New System.Drawing.Size(935, 391)
-        Me.XTPBBKHistory.Text = "BBK History"
-        '
-        'PanelControl4
-        '
-        Me.PanelControl4.Controls.Add(Me.Brefresh)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(941, 48)
-        Me.PanelControl4.TabIndex = 1
-        '
-        'Brefresh
-        '
-        Me.Brefresh.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Brefresh.Image = CType(resources.GetObject("Brefresh.Image"), System.Drawing.Image)
-        Me.Brefresh.Location = New System.Drawing.Point(825, 2)
-        Me.Brefresh.Name = "Brefresh"
-        Me.Brefresh.Size = New System.Drawing.Size(114, 44)
-        Me.Brefresh.TabIndex = 2
-        Me.Brefresh.Text = "Refresh"
+        Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainerControl1.Horizontal = False
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainerControl1.Name = "SplitContainerControl1"
+        Me.SplitContainerControl1.Panel1.Controls.Add(Me.GCHistory)
+        Me.SplitContainerControl1.Panel1.Text = "Panel1"
+        Me.SplitContainerControl1.Panel2.Controls.Add(Me.GCBBKList)
+        Me.SplitContainerControl1.Panel2.Text = "Panel2"
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(935, 391)
+        Me.SplitContainerControl1.SplitterPosition = 251
+        Me.SplitContainerControl1.TabIndex = 4
+        Me.SplitContainerControl1.Text = "SplitContainerControl1"
         '
         'GCHistory
         '
@@ -293,7 +283,7 @@ Partial Class FormDeviden
         '
         'GVHistory
         '
-        Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn24, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn25})
+        Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn24, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn25, Me.GridColumn30})
         Me.GVHistory.GridControl = Me.GCHistory
         Me.GVHistory.GroupCount = 1
         Me.GVHistory.Name = "GVHistory"
@@ -423,21 +413,6 @@ Partial Class FormDeviden
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 2
         '
-        'SplitContainerControl1
-        '
-        Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainerControl1.Horizontal = False
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainerControl1.Name = "SplitContainerControl1"
-        Me.SplitContainerControl1.Panel1.Controls.Add(Me.GCHistory)
-        Me.SplitContainerControl1.Panel1.Text = "Panel1"
-        Me.SplitContainerControl1.Panel2.Controls.Add(Me.GCBBKList)
-        Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(935, 391)
-        Me.SplitContainerControl1.SplitterPosition = 251
-        Me.SplitContainerControl1.TabIndex = 4
-        Me.SplitContainerControl1.Text = "SplitContainerControl1"
-        '
         'GCBBKList
         '
         Me.GCBBKList.Dock = System.Windows.Forms.DockStyle.Fill
@@ -497,14 +472,6 @@ Partial Class FormDeviden
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 3
         '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Report Status"
-        Me.GridColumn8.FieldName = "report_status"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
-        '
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Payment Date"
@@ -525,6 +492,21 @@ Partial Class FormDeviden
         Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "paid_amount", "{0:N2}")})
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 5
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Report Status"
+        Me.GridColumn8.FieldName = "report_status"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 6
+        '
+        'XTPBBKHistory
+        '
+        Me.XTPBBKHistory.Controls.Add(Me.GCBBK)
+        Me.XTPBBKHistory.Name = "XTPBBKHistory"
+        Me.XTPBBKHistory.Size = New System.Drawing.Size(935, 391)
+        Me.XTPBBKHistory.Text = "BBK History"
         '
         'GCBBK
         '
@@ -614,6 +596,39 @@ Partial Class FormDeviden
         Me.GridColumn29.Visible = True
         Me.GridColumn29.VisibleIndex = 6
         '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.Brefresh)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(941, 48)
+        Me.PanelControl4.TabIndex = 1
+        '
+        'Brefresh
+        '
+        Me.Brefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Brefresh.Image = CType(resources.GetObject("Brefresh.Image"), System.Drawing.Image)
+        Me.Brefresh.Location = New System.Drawing.Point(825, 2)
+        Me.Brefresh.Name = "Brefresh"
+        Me.Brefresh.Size = New System.Drawing.Size(114, 44)
+        Me.Brefresh.TabIndex = 2
+        Me.Brefresh.Text = "Refresh"
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn30.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn30.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn30.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn30.Caption = "Paid Amount"
+        Me.GridColumn30.DisplayFormat.FormatString = "N2"
+        Me.GridColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn30.FieldName = "paid_amount"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 6
+        '
         'FormDeviden
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -636,17 +651,17 @@ Partial Class FormDeviden
         CType(Me.XTCDevidenReport, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCDevidenReport.ResumeLayout(False)
         Me.XTPComparation.ResumeLayout(False)
-        Me.XTPBBKHistory.ResumeLayout(False)
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
-        CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerControl1.ResumeLayout(False)
+        CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCBBKList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBBKList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPBBKHistory.ResumeLayout(False)
         CType(Me.GCBBK, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBBK, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -703,4 +718,5 @@ Partial Class FormDeviden
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
