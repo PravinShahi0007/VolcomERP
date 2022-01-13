@@ -6158,7 +6158,7 @@ INNER JOIN tb_prod_fc_sum fcs ON fcs.`id_prod_fc_sum`='" & id_report & "' AND nu
 FROM tb_notif_user nu
 INNER JOIN tb_purc_req fcs ON fcs.`id_purc_req`='" & id_report & "' AND nu.`report_mark_type`='201'"
         ElseIf rmt = "304" Then 'Scan Fisik delivery
-            q = "SELECT 'Scan cek fisik delivery' AS title,'FormOutboundList' AS form_name,'Scan cek fisik delviery tidak balance' AS description, nu.id_user , awb.`ol_number` AS report_number
+            q = "SELECT 'Scan cek fisik delivery' AS title,'FormOutboundList' AS form_name,'Scan cek fisik delivery tidak balance' AS description, nu.id_user , awb.`ol_number` AS report_number
 FROM tb_notif_user nu
 INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`='" & id_report & "' AND nu.`report_mark_type`='304'"
         ElseIf rmt = "305" Then 'Scan Fisik WH
