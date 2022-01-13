@@ -54,9 +54,20 @@
     End Sub
 
     Sub load_year()
-        Dim q As String = "SELECT YEAR(date_until) AS yr FROM `tb_closing_log`
+        Dim q As String = ""
+
+        If id = "-1" Then
+            q = "SELECT YEAR(cl.date_until) AS yr ,d.`id_deviden`
+FROM `tb_closing_log` cl
+LEFT JOIN tb_deviden d ON d.`profit_year`=YEAR(cl.date_until)
+WHERE MONTH(cl.date_until) = 12
+GROUP BY YEAR(cl.date_until)
+HAVING ISNULL(`id_deviden`)"
+        Else
+            q = "SELECT YEAR(date_until) AS yr FROM `tb_closing_log`
 WHERE MONTH(date_until) = 12
 GROUP BY YEAR(date_until)"
+        End If
         viewSearchLookupQuery(SLEYear, q, "yr", "yr", "yr")
         SLEYear.EditValue = Nothing
 
@@ -214,8 +225,22 @@ WHERE profit_year=(SELECT MAX(profit_year) FROM tb_deviden WHERE profit_year<'20
     End Sub
 
     Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BImport.Click
-        load_compare()
-        load_share()
+        'check sle
+        If SLEYear.EditValue = Nothing Then
+            warningCustom("Year profit not selected.")
+        Else
+            'check AP
+            Dim q As String = "SELECT * FROM `tb_shareholder` s
+INNER JOIN tb_m_comp c ON c.id_comp=s.id_comp
+WHERE ISNULL(c.id_acc_ap)"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                warningCustom("Please set AP for all shareholder")
+            Else
+                load_compare()
+                load_share()
+            End If
+        End If
     End Sub
 
     Sub load_share()
@@ -343,5 +368,9 @@ VALUES('" & Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") & "
         Tool.ShowPreviewDialog()
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FormDevidenDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class

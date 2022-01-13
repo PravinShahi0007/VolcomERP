@@ -5,6 +5,7 @@
     Public id_report As String = "-1"
     Public id_cek_fisik As String = "-1"
     Public is_able_reopen As Boolean = False
+    Public id_user_cancel As String = "-1"
 
     Sub load_form()
         If report_mark_type = "return_transfer" Then
@@ -266,7 +267,7 @@ WHERE `id_wh_cek_fisik`='" & id_cek_fisik & "'"
                 If is_able_reopen Then
                     're open
                     Dim q As String = ""
-                    q = "UPDATE tb_wh_cek_fisik SET id_report_status=5,cancel_date=NOW(),cancel_by='' WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_report_status!=5"
+                    q = "UPDATE tb_wh_cek_fisik SET id_report_status=5,cancel_date=NOW(),cancel_by='" & id_user_cancel & "' WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_report_status!=5"
                     execute_non_query(q, True, "", "", "", "")
                     '
                     If report_mark_type = "return_transfer" Then

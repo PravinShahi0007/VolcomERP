@@ -95,8 +95,10 @@
                 FormFGTransSummary.is_view_cost = True
                 FormFGTransSummary.viewAmoType()
             ElseIf type = "17" Then 'able reopen cek fisik delivery
+                FormOutboundCheckFisik.id_user_cancel = data.Rows(0)("id_user").ToString
                 FormOutboundCheckFisik.is_able_reopen = True
             ElseIf type = "18" Then 'able reopen cek fisik
+                FormWHCekFisik.id_user_cancel = data.Rows(0)("id_user").ToString
                 FormWHCekFisik.is_able_reopen = True
             ElseIf type = "19" Then 'able get asuransi lama
                 FormODM.is_able_download_asuransi_3pl = True
