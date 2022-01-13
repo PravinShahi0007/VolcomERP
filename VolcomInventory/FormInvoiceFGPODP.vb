@@ -831,6 +831,9 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type='199'"
             End If
 
             newRow("report_number") = FormInvoiceFGPO.GVSummary.GetFocusedRowCellValue("wo_number").ToString
+            newRow("info_design") = FormInvoiceFGPO.SLEBPLImport.Text
+        Else
+            newRow("info_design") = ""
         End If
 
         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
