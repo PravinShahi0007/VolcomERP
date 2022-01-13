@@ -3,6 +3,8 @@
     Public id_awbill As String = "-1"
     Public id_cek_fisik As String = "-1"
     Public is_able_reopen As Boolean = False
+    Public id_user_cancel As String = "-1"
+
     Sub load_form()
         If Not id_awbill = "-1" Then
             Dim q_item As String = "SELECT p.`id_product`,CONCAT(p.`product_full_code`,delc.pl_sales_order_del_det_counting) AS full_code,COUNT(CONCAT(p.`product_full_code`,delc.pl_sales_order_del_det_counting)) AS qty
@@ -260,7 +262,7 @@ WHERE `id_cek_fisik_del`='" & id_cek_fisik & "'"
                 If is_able_reopen Then
                     're open
                     Dim q As String = ""
-                    q = "UPDATE tb_cek_fisik_del SET id_report_status=5,cancel_date=NOW(),cancel_by='' WHERE id_awbill='" & id_awbill & "' AND id_report_status!=5"
+                    q = "UPDATE tb_cek_fisik_del SET id_report_status=5,cancel_date=NOW(),cancel_by='" & id_user_cancel & "' WHERE id_awbill='" & id_awbill & "' AND id_report_status!=5"
                     execute_non_query(q, True, "", "", "", "")
                     '
                     q = "UPDATE tb_wh_awbill SET status_check_fisik=1 WHERE id_awbill='" & id_awbill & "'"

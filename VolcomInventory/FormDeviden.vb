@@ -59,12 +59,26 @@ ORDER BY id_deviden DESC"
     Private Sub Brefresh_Click(sender As Object, e As EventArgs) Handles Brefresh.Click
         If XTCDevidenReport.SelectedTabPageIndex = 0 Then
             Dim q As String = "SELECT d.profit_year,ds.id_comp,c.`comp_number`,ds.`pph_account`,IF(ds.pph_account=0,'No PPH',CONCAT(acc.acc_name ,' - ',acc.`acc_description`)) AS pph_desc,c.`comp_name`,ds.`pph_percent`,ds.`deviden_percent`,ds.deviden_amount,ds.pph_amount
+,IFNULL(pn.paid_amount,0) AS paid_amount
 FROM `tb_deviden_share` ds
 INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden AND d.id_report_status!=5
 INNER JOIN tb_m_comp c ON c.`id_comp`=ds.`id_comp`
 LEFT JOIN tb_a_acc acc ON ds.`pph_account`=acc.`id_acc`
+LEFT JOIN
+(
+	SELECT d.`id_deviden`,c.`id_comp`,pn.`id_pn`,pn.`number`,c.`comp_name`,pn.`date_created`,pn.`date_payment`,sts.`report_status`,SUM(pnd.`value`) AS paid_amount,d.`profit_year`
+	FROM tb_pn_det pnd
+	INNER JOIN tb_pn pn ON pn.`id_pn`=pnd.`id_pn` AND pnd.`report_mark_type`='384'
+	INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=pn.`id_comp_contact`
+	INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+	INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=pn.`id_report_status`
+	INNER JOIN tb_deviden_share ds ON ds.`id_deviden`=pnd.id_report AND ds.`id_comp`=c.`id_comp`
+	INNER JOIN tb_deviden d ON d.`id_deviden`=ds.`id_deviden`
+	GROUP BY d.`id_deviden`,c.`id_comp`
+)pn ON pn.id_deviden=ds.`id_deviden` AND pn.`id_comp`=ds.`id_comp`
 UNION ALL
 SELECT tb.profit_year,0 AS id_comp,'' AS comp_number,'' AS `pph_account`,'' AS pph_desc,'TOTAL' AS `comp_name`,0 AS `pph_percent`,0 AS deviden_percent,SUM(tb.deviden_amount) AS deviden_amount,SUM(tb.pph_amount) AS pph_amount
+,IFNULL(pn.paid_amount,0) AS paid_amount
 FROM
 (
 	SELECT d.id_deviden,d.profit_year,ds.id_comp,c.`comp_number`,ds.`pph_account`,IF(ds.pph_account=0,'No PPH',CONCAT(acc.acc_name ,' - ',acc.`acc_description`)) AS pph_desc,c.`comp_name`,ds.`pph_percent`,ds.`deviden_percent`,ds.deviden_amount,ds.pph_amount
@@ -73,6 +87,18 @@ FROM
 	INNER JOIN tb_m_comp c ON c.`id_comp`=ds.`id_comp`
 	LEFT JOIN tb_a_acc acc ON ds.`pph_account`=acc.`id_acc`
 ) tb
+LEFT JOIN
+(
+	SELECT pn.`id_pn`,pn.`number`,c.`comp_name`,pn.`date_created`,pn.`date_payment`,sts.`report_status`,SUM(pnd.`value`) AS paid_amount,d.`profit_year`
+	FROM tb_pn_det pnd
+	INNER JOIN tb_pn pn ON pn.`id_pn`=pnd.`id_pn` AND pnd.`report_mark_type`='384'
+	INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=pn.`id_comp_contact`
+	INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+	INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=pn.`id_report_status`
+	INNER JOIN tb_deviden_share ds ON ds.`id_deviden`=pnd.id_report AND ds.`id_comp`=c.`id_comp`
+	INNER JOIN tb_deviden d ON d.`id_deviden`=ds.`id_deviden`
+	GROUP BY d.`profit_year`
+)pn ON pn.profit_year=tb.`profit_year` 
 GROUP BY tb.profit_year
 ORDER BY id_comp DESC,profit_year ASC"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
