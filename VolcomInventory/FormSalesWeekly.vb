@@ -1013,11 +1013,11 @@
     End Sub
 
     Private Sub TxtYear_EditValueChanged(sender As Object, e As EventArgs) Handles TxtYear.EditValueChanged
-        'fillWeeklyPeriod()
+        fillWeeklyPeriod()
     End Sub
 
     Private Sub TxtWeek_EditValueChanged(sender As Object, e As EventArgs) Handles TxtWeek.EditValueChanged
-        'fillWeeklyPeriod()
+        fillWeeklyPeriod()
     End Sub
 
     Private Sub TxtYear_KeyDown_1(sender As Object, e As KeyEventArgs) Handles TxtYear.KeyDown
