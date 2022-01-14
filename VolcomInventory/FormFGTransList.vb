@@ -774,14 +774,11 @@
             col_date_uni = "sp.emp_uni_ex_date"
         End If
         'filter gwp (invoice nol/pendapatan lain dari missing)
-        Dim cond_promo As String = ""
-        Dim cond_promo_trans As String = ""
+        Dim cond_promo As String = "AND sp.report_mark_type!=116 "
         If CEPromo.EditValue = True Then
-            cond_promo = ""
-            cond_promo_trans = ""
+            cond_promo += ""
         Else
-            cond_promo = "AND sp.sales_pos_total>0 "
-            cond_promo_trans = "AND sp.report_mark_type!=116 "
+            cond_promo += "AND sp.sales_pos_total>0 "
         End If
         'date paramater
         Dim date_from_selected As String = "0000-01-01"
@@ -825,7 +822,7 @@
 	        WHERE dsg.id_lookup_status_order!=2
         ) prod ON prod.id_product = spd.id_product
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = sp.id_report_status
-        WHERE 1=1 AND (" + col_date + ">='" + date_from_selected + "' AND " + col_date + "<='" + date_until_selected + "') " + cond_promo + cond_promo_trans + w_status
+        WHERE 1=1 AND (" + col_date + ">='" + date_from_selected + "' AND " + col_date + "<='" + date_until_selected + "') " + cond_promo + w_status
         If CEIncludePrmUni.EditValue = True Then
             query += " UNION ALL SELECT spd.id_emp_uni_ex_det AS id_sales_pos_det, spd.id_emp_uni_ex AS id_sales_pos, sp.emp_uni_ex_number AS sales_pos_number, rmt.report_mark_type_name, 
             c.comp_number, c.comp_name, cg.comp_group, cg.description AS `comp_group_name`, lct.commerce_type,
@@ -878,14 +875,11 @@
             col_date_uni = "sp.emp_uni_ex_date"
         End If
         'filter promo
-        Dim cond_promo As String = ""
-        Dim cond_promo_trans As String = ""
+        Dim cond_promo As String = "AND sp.report_mark_type!=116 "
         If CEPromo.EditValue = True Then
-            cond_promo = ""
-            cond_promo_trans = ""
+            cond_promo += ""
         Else
-            cond_promo = "AND sp.sales_pos_total>0 "
-            cond_promo_trans = "AND sp.report_mark_type!=116 "
+            cond_promo += "AND sp.sales_pos_total>0 "
         End If
         'date paramater
         Dim date_from_selected As String = "0000-01-01"
@@ -941,7 +935,7 @@
 	        WHERE dsg.id_lookup_status_order!=2
         ) prod ON prod.id_product = spd.id_product
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = sp.id_report_status
-        WHERE 1=1 AND (" + col_date + ">='" + date_from_selected + "' AND " + col_date + "<='" + date_until_selected + "') " + cond_promo + cond_promo_trans + w_status
+        WHERE 1=1 AND (" + col_date + ">='" + date_from_selected + "' AND " + col_date + "<='" + date_until_selected + "') " + cond_promo + w_status
         query += " GROUP BY sp.id_sales_pos, prod.id_design, SUBSTRING(prod.product_full_code, 10, 1) "
         If CEIncludePrmUni.EditValue = True Then
             query += " UNION ALL SELECT spd.id_emp_uni_ex_det AS id_sales_pos_det, spd.id_emp_uni_ex AS id_sales_pos, sp.emp_uni_ex_number AS sales_pos_number, rmt.report_mark_type_name, 
