@@ -25,8 +25,8 @@ Partial Class FormQCReport1
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.GCFinalClear = New DevExpress.XtraGrid.GridControl()
-        Me.GVFinalClear = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCQCReport = New DevExpress.XtraGrid.GridControl()
+        Me.GVQCReport = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -47,8 +47,8 @@ Partial Class FormQCReport1
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCFinalClear, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVFinalClear, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCQCReport, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVQCReport, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCFilter
@@ -116,28 +116,28 @@ Partial Class FormQCReport1
         Me.LabelControl3.TabIndex = 8892
         Me.LabelControl3.Text = "From"
         '
-        'GCFinalClear
+        'GCQCReport
         '
-        Me.GCFinalClear.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCFinalClear.Location = New System.Drawing.Point(0, 39)
-        Me.GCFinalClear.MainView = Me.GVFinalClear
-        Me.GCFinalClear.Name = "GCFinalClear"
-        Me.GCFinalClear.Size = New System.Drawing.Size(1025, 499)
-        Me.GCFinalClear.TabIndex = 5
-        Me.GCFinalClear.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFinalClear})
+        Me.GCQCReport.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCQCReport.Location = New System.Drawing.Point(0, 39)
+        Me.GCQCReport.MainView = Me.GVQCReport
+        Me.GCQCReport.Name = "GCQCReport"
+        Me.GCQCReport.Size = New System.Drawing.Size(1025, 499)
+        Me.GCQCReport.TabIndex = 5
+        Me.GCQCReport.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVQCReport})
         '
-        'GVFinalClear
+        'GVQCReport
         '
-        Me.GVFinalClear.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn13, Me.GridColumn11, Me.GridColumn3, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn12, Me.GridColumnClaim})
-        Me.GVFinalClear.GridControl = Me.GCFinalClear
-        Me.GVFinalClear.GroupCount = 1
-        Me.GVFinalClear.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn6, "{0:N0}")})
-        Me.GVFinalClear.Name = "GVFinalClear"
-        Me.GVFinalClear.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVFinalClear.OptionsBehavior.Editable = False
-        Me.GVFinalClear.OptionsView.ShowFooter = True
-        Me.GVFinalClear.OptionsView.ShowGroupPanel = False
-        Me.GVFinalClear.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn9, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn12, DevExpress.Data.ColumnSortOrder.Descending)})
+        Me.GVQCReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn13, Me.GridColumn11, Me.GridColumn3, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn12, Me.GridColumnClaim})
+        Me.GVQCReport.GridControl = Me.GCQCReport
+        Me.GVQCReport.GroupCount = 1
+        Me.GVQCReport.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn6, "{0:N0}")})
+        Me.GVQCReport.Name = "GVQCReport"
+        Me.GVQCReport.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVQCReport.OptionsBehavior.Editable = False
+        Me.GVQCReport.OptionsView.ShowFooter = True
+        Me.GVQCReport.OptionsView.ShowGroupPanel = False
+        Me.GVQCReport.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn9, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn12, DevExpress.Data.ColumnSortOrder.Descending)})
         '
         'GridColumn1
         '
@@ -270,7 +270,7 @@ Partial Class FormQCReport1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1025, 538)
-        Me.Controls.Add(Me.GCFinalClear)
+        Me.Controls.Add(Me.GCQCReport)
         Me.Controls.Add(Me.GCFilter)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -285,8 +285,8 @@ Partial Class FormQCReport1
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCFinalClear, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVFinalClear, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCQCReport, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVQCReport, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -297,8 +297,8 @@ Partial Class FormQCReport1
     Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents GCFinalClear As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVFinalClear As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCQCReport As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVQCReport As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
