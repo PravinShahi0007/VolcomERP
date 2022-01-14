@@ -43,7 +43,7 @@ LEFT JOIN
     WHERE id_report_status=6
     GROUP BY id_prod_order
 )att ON att.id_prod_order=po.id_prod_order
-WHERE po.`id_report_status`='6' AND IF(co.id_country=5,NOT ISNULL(ko.id_prod_order_ko),NOT ISNULL(att.id_prod_order))
+WHERE po.`id_report_status`='6' AND IF(co.id_country=5,NOT ISNULL(ko.id_prod_order_ko),IF(po.prod_order_date>='2021-12-31',NOT ISNULL(att.id_prod_order),TRUE))
 GROUP BY po.`id_prod_order`"
         viewSearchLookupQuery(SLEFGPO, query, "id_prod_order", "view_po", "id_prod_order")
     End Sub
@@ -759,10 +759,12 @@ WHERE pn.`type`=1 AND pnd.`id_prod_order`='" & SLEFGPO.EditValue.ToString & "' A
 
     Private Sub BtnInfoSrs_Click(sender As Object, e As EventArgs) Handles BtnInfoSrs.Click
         Cursor = Cursors.WaitCursor
-        FormPopUpProd.id_pop_up = "6"
-        FormPopUpProd.BSave.Visible = False
-        FormPopUpProd.id_prod_order = SLEFGPO.EditValue.ToString
-        FormPopUpProd.ShowDialog()
+        If Not SLEFGPO.EditValue = Nothing Then
+            FormPopUpProd.id_pop_up = "6"
+            FormPopUpProd.BSave.Visible = False
+            FormPopUpProd.id_prod_order = SLEFGPO.EditValue.ToString
+            FormPopUpProd.ShowDialog()
+        End If
         Cursor = Cursors.Default
     End Sub
 End Class

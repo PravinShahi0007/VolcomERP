@@ -41,6 +41,7 @@ Partial Class FormInvoiceFGPONew
         Me.BPick = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.PCSummary = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnInfoSrs = New DevExpress.XtraEditors.SimpleButton()
         Me.DEYearBudget = New DevExpress.XtraEditors.DateEdit()
         Me.GCInvoice = New DevExpress.XtraGrid.GridControl()
         Me.GVInvoice = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -103,7 +104,6 @@ Partial Class FormInvoiceFGPONew
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BLoadHistory = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnInfoSrs = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.SLETypeInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEFGPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -335,6 +335,19 @@ Partial Class FormInvoiceFGPONew
         Me.PCSummary.Name = "PCSummary"
         Me.PCSummary.Size = New System.Drawing.Size(857, 46)
         Me.PCSummary.TabIndex = 5
+        '
+        'BtnInfoSrs
+        '
+        Me.BtnInfoSrs.Appearance.Font = New System.Drawing.Font("Monotype Corsiva", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnInfoSrs.Appearance.Options.UseFont = True
+        Me.BtnInfoSrs.Location = New System.Drawing.Point(442, 12)
+        Me.BtnInfoSrs.Name = "BtnInfoSrs"
+        Me.BtnInfoSrs.Size = New System.Drawing.Size(23, 20)
+        Me.BtnInfoSrs.TabIndex = 8907
+        Me.BtnInfoSrs.Text = "i"
+        Me.BtnInfoSrs.ToolTip = "Click this button to see qty allowed."
+        Me.BtnInfoSrs.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
+        Me.BtnInfoSrs.ToolTipTitle = "SRS Info"
         '
         'DEYearBudget
         '
@@ -1013,20 +1026,6 @@ Partial Class FormInvoiceFGPONew
         Me.BLoadHistory.Size = New System.Drawing.Size(822, 34)
         Me.BLoadHistory.TabIndex = 23
         Me.BLoadHistory.Text = "Load"
-        '
-        'BtnInfoSrs
-        '
-        Me.BtnInfoSrs.Appearance.Font = New System.Drawing.Font("Monotype Corsiva", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnInfoSrs.Appearance.Options.UseFont = True
-        Me.BtnInfoSrs.Enabled = False
-        Me.BtnInfoSrs.Location = New System.Drawing.Point(442, 12)
-        Me.BtnInfoSrs.Name = "BtnInfoSrs"
-        Me.BtnInfoSrs.Size = New System.Drawing.Size(23, 20)
-        Me.BtnInfoSrs.TabIndex = 8907
-        Me.BtnInfoSrs.Text = "i"
-        Me.BtnInfoSrs.ToolTip = "Click this button to see qty allowed."
-        Me.BtnInfoSrs.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
-        Me.BtnInfoSrs.ToolTipTitle = "SRS Info"
         '
         'FormInvoiceFGPONew
         '

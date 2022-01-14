@@ -176,7 +176,7 @@ LEFT JOIN
     WHERE id_report_status=6
     GROUP BY id_prod_order
 )att ON att.id_prod_order=po.id_prod_order
-WHERE IF(co.id_country=5,NOT ISNULL(ko.id_prod_order_ko),NOT ISNULL(att.id_prod_order)) AND wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' " & query_where & "
+WHERE IF(co.id_country=5,NOT ISNULL(ko.id_prod_order_ko),IF(po.prod_order_date>='2021-12-31',NOT ISNULL(att.id_prod_order),TRUE)) AND wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' " & query_where & "
 -- AND ISNULL(dp_paid.id_prod_order) 
 GROUP BY wo.`id_prod_order_wo`
 HAVING dp_amount_bef_kurs-val_dp>0"
