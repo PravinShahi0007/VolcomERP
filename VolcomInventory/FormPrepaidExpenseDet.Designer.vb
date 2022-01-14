@@ -1020,10 +1020,11 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnQtyMonth.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQtyMonth.FieldName = "qty_month"
         Me.GridColumnQtyMonth.MaxWidth = 60
+        Me.GridColumnQtyMonth.MinWidth = 60
         Me.GridColumnQtyMonth.Name = "GridColumnQtyMonth"
         Me.GridColumnQtyMonth.Visible = True
         Me.GridColumnQtyMonth.VisibleIndex = 10
-        Me.GridColumnQtyMonth.Width = 20
+        Me.GridColumnQtyMonth.Width = 60
         '
         'GridColumnEndPeriod
         '
@@ -1136,10 +1137,12 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnBeforeKurs.Caption = "Amount Before Kurs"
         Me.GridColumnBeforeKurs.ColumnEdit = Me.RepositoryItemTextEdit3
         Me.GridColumnBeforeKurs.FieldName = "amount_before"
+        Me.GridColumnBeforeKurs.MaxWidth = 80
+        Me.GridColumnBeforeKurs.MinWidth = 80
         Me.GridColumnBeforeKurs.Name = "GridColumnBeforeKurs"
         Me.GridColumnBeforeKurs.Visible = True
         Me.GridColumnBeforeKurs.VisibleIndex = 7
-        Me.GridColumnBeforeKurs.Width = 39
+        Me.GridColumnBeforeKurs.Width = 80
         '
         'RepositoryItemTextEdit3
         '
@@ -1158,10 +1161,12 @@ Partial Class FormPrepaidExpenseDet
         Me.GridColumnKurs.Caption = "Kurs"
         Me.GridColumnKurs.ColumnEdit = Me.RepositoryItemTextEdit3
         Me.GridColumnKurs.FieldName = "kurs"
+        Me.GridColumnKurs.MaxWidth = 50
+        Me.GridColumnKurs.MinWidth = 50
         Me.GridColumnKurs.Name = "GridColumnKurs"
         Me.GridColumnKurs.Visible = True
         Me.GridColumnKurs.VisibleIndex = 8
-        Me.GridColumnKurs.Width = 39
+        Me.GridColumnKurs.Width = 50
         '
         'GridColumnAmount
         '

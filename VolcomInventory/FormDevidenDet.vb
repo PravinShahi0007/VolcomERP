@@ -59,7 +59,7 @@
         If id = "-1" Then
             q = "SELECT YEAR(cl.date_until) AS yr ,d.`id_deviden`
 FROM `tb_closing_log` cl
-LEFT JOIN tb_deviden d ON d.`profit_year`=YEAR(cl.date_until)
+LEFT JOIN tb_deviden d ON d.`profit_year`=YEAR(cl.date_until) AND d.id_report_status!=5
 WHERE MONTH(cl.date_until) = 12
 GROUP BY YEAR(cl.date_until)
 HAVING ISNULL(`id_deviden`)"
@@ -228,6 +228,8 @@ WHERE profit_year=(SELECT MAX(profit_year) FROM tb_deviden WHERE profit_year<'20
         'check sle
         If SLEYear.EditValue = Nothing Then
             warningCustom("Year profit not selected.")
+        ElseIf TEDeviden.EditValue > TEProfit.EditValue Then
+            warningCustom("Deviden more than profit.")
         Else
             'check AP
             Dim q As String = "SELECT * FROM `tb_shareholder` s
