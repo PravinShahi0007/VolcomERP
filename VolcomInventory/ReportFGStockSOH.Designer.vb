@@ -33,6 +33,7 @@ Partial Public Class ReportFGStockSOH
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelDesign = New DevExpress.XtraReports.UI.XRLabel()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.DetailReportSize = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.Detail1 = New DevExpress.XtraReports.UI.DetailBand()
@@ -126,7 +127,6 @@ Partial Public Class ReportFGStockSOH
         Me.BandedGridColumnamount_cost = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.DetailReportCode = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.Detail3 = New DevExpress.XtraReports.UI.DetailBand()
-        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         CType(Me.GCSOH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSOH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSOHCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,7 +143,7 @@ Partial Public Class ReportFGStockSOH
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel2, Me.XrLabel6, Me.LabelUnit, Me.XrLabel5, Me.LabelAccount, Me.XrLabel8, Me.XrLabel7, Me.XrLabeltitle, Me.XrLabel4, Me.XrLabel3, Me.LabelDesign})
-        Me.TopMargin.HeightF = 108.4155!
+        Me.TopMargin.HeightF = 108.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -187,7 +187,7 @@ Partial Public Class ReportFGStockSOH
         'XrLabel5
         '
         Me.XrLabel5.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(748.2499!, 16.85475!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(716.2499!, 14.7714!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel5.SizeF = New System.Drawing.SizeF(368.7501!, 22.99999!)
@@ -283,10 +283,24 @@ Partial Public Class ReportFGStockSOH
         'BottomMargin
         '
         Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
-        Me.BottomMargin.HeightF = 20.00001!
+        Me.BottomMargin.HeightF = 48.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrPageInfo1
+        '
+        Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrPageInfo1.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrPageInfo1.Format = "Page {0} of {1}"
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(935.0!, 0!)
+        Me.XrPageInfo1.Name = "XrPageInfo1"
+        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
+        Me.XrPageInfo1.StylePriority.UseBorders = False
+        Me.XrPageInfo1.StylePriority.UseFont = False
+        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
+        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
         'DetailReportSize
         '
@@ -304,7 +318,7 @@ Partial Public Class ReportFGStockSOH
         '
         Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1117.0!, 156.0!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1085.0!, 156.0!)
         Me.WinControlContainer1.WinControl = Me.GCSOH
         '
         'GCSOH
@@ -312,7 +326,7 @@ Partial Public Class ReportFGStockSOH
         Me.GCSOH.Location = New System.Drawing.Point(0, 0)
         Me.GCSOH.MainView = Me.GVSOH
         Me.GCSOH.Name = "GCSOH"
-        Me.GCSOH.Size = New System.Drawing.Size(1072, 150)
+        Me.GCSOH.Size = New System.Drawing.Size(1042, 150)
         Me.GCSOH.TabIndex = 0
         Me.GCSOH.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSOH})
         '
@@ -539,9 +553,9 @@ Partial Public Class ReportFGStockSOH
         '
         'WinControlContainer2
         '
-        Me.WinControlContainer2.LocationFloat = New DevExpress.Utils.PointFloat(0.00003973643!, 0!)
+        Me.WinControlContainer2.LocationFloat = New DevExpress.Utils.PointFloat(0.00003178914!, 0!)
         Me.WinControlContainer2.Name = "WinControlContainer2"
-        Me.WinControlContainer2.SizeF = New System.Drawing.SizeF(1117.0!, 156.0!)
+        Me.WinControlContainer2.SizeF = New System.Drawing.SizeF(1085.0!, 156.0!)
         Me.WinControlContainer2.WinControl = Me.GCSOHCode
         '
         'GCSOHCode
@@ -549,7 +563,7 @@ Partial Public Class ReportFGStockSOH
         Me.GCSOHCode.Location = New System.Drawing.Point(0, 0)
         Me.GCSOHCode.MainView = Me.GVSOHCode
         Me.GCSOHCode.Name = "GCSOHCode"
-        Me.GCSOHCode.Size = New System.Drawing.Size(1072, 150)
+        Me.GCSOHCode.Size = New System.Drawing.Size(1042, 150)
         Me.GCSOHCode.TabIndex = 0
         Me.GCSOHCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSOHCode})
         '
@@ -1142,25 +1156,11 @@ Partial Public Class ReportFGStockSOH
         Me.Detail3.HeightF = 156.0!
         Me.Detail3.Name = "Detail3"
         '
-        'XrPageInfo1
-        '
-        Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrPageInfo1.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(966.9999!, 0!)
-        Me.XrPageInfo1.Name = "XrPageInfo1"
-        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
-        Me.XrPageInfo1.StylePriority.UseBorders = False
-        Me.XrPageInfo1.StylePriority.UseFont = False
-        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
-        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        '
         'ReportFGStockSOH
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.DetailReportSize, Me.DetailReportCode})
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(26, 26, 108, 20)
+        Me.Margins = New System.Drawing.Printing.Margins(26, 58, 108, 48)
         Me.PageHeight = 827
         Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4

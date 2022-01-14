@@ -2038,4 +2038,16 @@
     Private Sub BtnViewImgCloud_Click(sender As Object, e As EventArgs) Handles BtnViewImgCloud.Click
         Process.Start(get_setup_field("cloud_image_url").ToString + "/TH_" + TxtCodeDsgSC.Text + "_1.jpg")
     End Sub
+
+    Private Sub GVSOH_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVSOH.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVSOHCode_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVSOHCode.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
 End Class
