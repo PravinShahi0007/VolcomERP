@@ -50,6 +50,7 @@ Partial Class FormDeviden
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCBBKList = New DevExpress.XtraGrid.GridControl()
         Me.GVBBKList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -73,7 +74,6 @@ Partial Class FormDeviden
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.Brefresh = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCExpense, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCExpense.SuspendLayout()
         Me.XTPDeviden.SuspendLayout()
@@ -113,7 +113,7 @@ Partial Class FormDeviden
         Me.XTPDeviden.Controls.Add(Me.GCData)
         Me.XTPDeviden.Name = "XTPDeviden"
         Me.XTPDeviden.Size = New System.Drawing.Size(941, 467)
-        Me.XTPDeviden.Text = "Deviden List"
+        Me.XTPDeviden.Text = "Dividen List"
         '
         'GCData
         '
@@ -214,7 +214,7 @@ Partial Class FormDeviden
         Me.GridColumntotal.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumntotal.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumntotal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumntotal.Caption = "Deviden Amount"
+        Me.GridColumntotal.Caption = "Dividen Amount"
         Me.GridColumntotal.DisplayFormat.FormatString = "N2"
         Me.GridColumntotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumntotal.FieldName = "deviden_value"
@@ -403,7 +403,7 @@ Partial Class FormDeviden
         Me.GridColumn25.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn25.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn25.Caption = "Deviden"
+        Me.GridColumn25.Caption = "Dividen"
         Me.GridColumn25.DisplayFormat.FormatString = "N2"
         Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn25.FieldName = "deviden"
@@ -412,6 +412,20 @@ Partial Class FormDeviden
         Me.GridColumn25.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 2
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn30.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn30.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn30.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn30.Caption = "Paid Amount"
+        Me.GridColumn30.DisplayFormat.FormatString = "N2"
+        Me.GridColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn30.FieldName = "paid_amount"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 6
         '
         'GCBBKList
         '
@@ -615,20 +629,6 @@ Partial Class FormDeviden
         Me.Brefresh.TabIndex = 2
         Me.Brefresh.Text = "Refresh"
         '
-        'GridColumn30
-        '
-        Me.GridColumn30.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn30.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn30.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn30.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn30.Caption = "Paid Amount"
-        Me.GridColumn30.DisplayFormat.FormatString = "N2"
-        Me.GridColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn30.FieldName = "paid_amount"
-        Me.GridColumn30.Name = "GridColumn30"
-        Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 6
-        '
         'FormDeviden
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -640,7 +640,7 @@ Partial Class FormDeviden
         Me.MinimizeBox = False
         Me.Name = "FormDeviden"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Deviden"
+        Me.Text = "Dividen"
         CType(Me.XTCExpense, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCExpense.ResumeLayout(False)
         Me.XTPDeviden.ResumeLayout(False)

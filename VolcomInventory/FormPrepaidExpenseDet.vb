@@ -1207,7 +1207,7 @@ WHERE c.id_comp='" + id_comp + "' "
         '
         GVData.BestFitColumns()
         '
-        GridColumnBudgetDesc.MinWidth = 100
+        GridColumnBudgetDesc.MinWidth = 50
         GridColumnNo.MaxWidth = 30
         GridColumnCurrView.MaxWidth = 30
         GridColumnBeforeKurs.MaxWidth = 70

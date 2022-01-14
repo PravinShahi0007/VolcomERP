@@ -20,6 +20,8 @@ Partial Class FormDevidenDet
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDevidenDet))
+        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleExpression1 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
         Me.PanelControlPay = New DevExpress.XtraEditors.PanelControl()
         Me.SLEYear = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -64,10 +66,11 @@ Partial Class FormDevidenDet
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PCRecalculate = New DevExpress.XtraEditors.PanelControl()
         Me.BImport = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCShareholdersetup = New DevExpress.XtraEditors.PanelControl()
         Me.BVerify = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabControl2 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPComparation = New DevExpress.XtraTab.XtraTabPage()
@@ -85,6 +88,7 @@ Partial Class FormDevidenDet
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPThisYear = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlPay.SuspendLayout()
         CType(Me.SLEYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,8 +120,8 @@ Partial Class FormDevidenDet
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCRecalculate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCRecalculate.SuspendLayout()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
+        CType(Me.PCShareholdersetup, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCShareholdersetup.SuspendLayout()
         CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl2.SuspendLayout()
         Me.XTPComparation.SuspendLayout()
@@ -205,9 +209,9 @@ Partial Class FormDevidenDet
         '
         Me.LabelControl6.Location = New System.Drawing.Point(12, 68)
         Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl6.Size = New System.Drawing.Size(64, 13)
         Me.LabelControl6.TabIndex = 8920
-        Me.LabelControl6.Text = "Deviden Value"
+        Me.LabelControl6.Text = "Dividen Value"
         '
         'LabelControl5
         '
@@ -483,7 +487,7 @@ Partial Class FormDevidenDet
         '
         'GVShareHolder
         '
-        Me.GVShareHolder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn13, Me.GridColumn12, Me.GridColumn10, Me.GridColumn11, Me.GridColumn14})
+        Me.GVShareHolder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn13, Me.GridColumn12, Me.GridColumn10, Me.GridColumn11, Me.GridColumn14, Me.GridColumn26})
         Me.GVShareHolder.GridControl = Me.GCShareHolder
         Me.GVShareHolder.Name = "GVShareHolder"
         Me.GVShareHolder.OptionsBehavior.Editable = False
@@ -536,14 +540,14 @@ Partial Class FormDevidenDet
         Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn12.Caption = "Deviden Amount"
+        Me.GridColumn12.Caption = "Nett Dividen"
         Me.GridColumn12.DisplayFormat.FormatString = "N2"
         Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn12.FieldName = "deviden_amount"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "deviden_amount", "{0:N2}")})
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 2
+        Me.GridColumn12.VisibleIndex = 6
         '
         'GridColumn10
         '
@@ -588,6 +592,22 @@ Partial Class FormDevidenDet
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 5
         '
+        'GridColumn26
+        '
+        Me.GridColumn26.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn26.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn26.Caption = "Deviden AMount"
+        Me.GridColumn26.DisplayFormat.FormatString = "N2"
+        Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn26.FieldName = "deviden_amo"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.UnboundExpression = "[pph_amount] + [deviden_amount]"
+        Me.GridColumn26.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 2
+        '
         'RepositoryItemTextEdit1
         '
         Me.RepositoryItemTextEdit1.AutoHeight = False
@@ -597,7 +617,7 @@ Partial Class FormDevidenDet
         'PCRecalculate
         '
         Me.PCRecalculate.Controls.Add(Me.BImport)
-        Me.PCRecalculate.Controls.Add(Me.PanelControl4)
+        Me.PCRecalculate.Controls.Add(Me.PCShareholdersetup)
         Me.PCRecalculate.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PCRecalculate.Location = New System.Drawing.Point(0, 496)
         Me.PCRecalculate.Name = "PCRecalculate"
@@ -621,15 +641,16 @@ Partial Class FormDevidenDet
         Me.BImport.TabIndex = 91
         Me.BImport.Text = "Recalculate"
         '
-        'PanelControl4
+        'PCShareholdersetup
         '
-        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl4.Controls.Add(Me.BVerify)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl4.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(161, 41)
-        Me.PanelControl4.TabIndex = 0
+        Me.PCShareholdersetup.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCShareholdersetup.Controls.Add(Me.BVerify)
+        Me.PCShareholdersetup.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCShareholdersetup.Location = New System.Drawing.Point(2, 2)
+        Me.PCShareholdersetup.Name = "PCShareholdersetup"
+        Me.PCShareholdersetup.Size = New System.Drawing.Size(161, 41)
+        Me.PCShareholdersetup.TabIndex = 0
+        Me.PCShareholdersetup.Visible = False
         '
         'BVerify
         '
@@ -677,12 +698,18 @@ Partial Class FormDevidenDet
         '
         'GVHistory
         '
-        Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn24, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn25})
+        Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn24, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn25, Me.GridColumn27})
+        GridFormatRule1.ApplyToRow = True
+        GridFormatRule1.Name = "Format0"
+        FormatConditionRuleExpression1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        FormatConditionRuleExpression1.Appearance.Options.UseBackColor = True
+        FormatConditionRuleExpression1.Expression = "Iif([profit_year] = [div_year], True, False)"
+        GridFormatRule1.Rule = FormatConditionRuleExpression1
+        Me.GVHistory.FormatRules.Add(GridFormatRule1)
         Me.GVHistory.GridControl = Me.GCHistory
         Me.GVHistory.GroupCount = 1
         Me.GVHistory.Name = "GVHistory"
         Me.GVHistory.OptionsBehavior.Editable = False
-        Me.GVHistory.OptionsView.ShowFooter = True
         Me.GVHistory.OptionsView.ShowGroupPanel = False
         Me.GVHistory.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn18, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn24, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
@@ -741,7 +768,7 @@ Partial Class FormDevidenDet
         Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn20.Caption = "Net Deviden"
+        Me.GridColumn20.Caption = "Net Dividen"
         Me.GridColumn20.DisplayFormat.FormatString = "N2"
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn20.FieldName = "deviden_amount"
@@ -797,7 +824,7 @@ Partial Class FormDevidenDet
         Me.GridColumn25.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn25.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn25.Caption = "Deviden"
+        Me.GridColumn25.Caption = "Dividen"
         Me.GridColumn25.DisplayFormat.FormatString = "N2"
         Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn25.FieldName = "deviden"
@@ -815,6 +842,12 @@ Partial Class FormDevidenDet
         Me.XTPThisYear.Size = New System.Drawing.Size(947, 370)
         Me.XTPThisYear.Text = "This Year"
         '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "CurrentYear"
+        Me.GridColumn27.FieldName = "div_year"
+        Me.GridColumn27.Name = "GridColumn27"
+        '
         'FormDevidenDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -828,7 +861,7 @@ Partial Class FormDevidenDet
         Me.MinimizeBox = False
         Me.Name = "FormDevidenDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Deviden"
+        Me.Text = "Dividen"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlPay.ResumeLayout(False)
@@ -863,8 +896,8 @@ Partial Class FormDevidenDet
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCRecalculate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCRecalculate.ResumeLayout(False)
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
+        CType(Me.PCShareholdersetup, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCShareholdersetup.ResumeLayout(False)
         CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl2.ResumeLayout(False)
         Me.XTPComparation.ResumeLayout(False)
@@ -905,7 +938,7 @@ Partial Class FormDevidenDet
     Friend WithEvents GCComparation As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVComparation As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCShareholdersetup As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BVerify As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BImport As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SLEYear As DevExpress.XtraEditors.SearchLookUpEdit
@@ -940,4 +973,6 @@ Partial Class FormDevidenDet
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

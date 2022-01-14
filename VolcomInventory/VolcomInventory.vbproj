@@ -4717,6 +4717,18 @@
     <Compile Include="FormPurcReturn.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormQCReport1.Designer.vb">
+      <DependentUpon>FormQCReport1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormQCReport1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormQCReport1Det.Designer.vb">
+      <DependentUpon>FormQCReport1Det.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormQCReport1Det.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormRefundOLStore.Designer.vb">
       <DependentUpon>FormRefundOLStore.vb</DependentUpon>
     </Compile>
@@ -12923,6 +12935,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcReturn.resx">
       <DependentUpon>FormPurcReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormQCReport1.resx">
+      <DependentUpon>FormQCReport1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormQCReport1Det.resx">
+      <DependentUpon>FormQCReport1Det.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRefundOLStore.resx">
       <DependentUpon>FormRefundOLStore.vb</DependentUpon>

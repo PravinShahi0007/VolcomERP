@@ -157,6 +157,8 @@
                 ElseIf FormInvoiceFGPO.SLEBPLImport.EditValue.ToString = "367" Then 'asuransi
                     SLEVendor.Properties.ReadOnly = False
                 End If
+
+                MENote.Text = FormInvoiceFGPO.SLEBPLImport.Text
             Else
                 TEDocType.Text = "FGPO"
 
@@ -831,7 +833,7 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type='199'"
             End If
 
             newRow("report_number") = FormInvoiceFGPO.GVSummary.GetFocusedRowCellValue("wo_number").ToString
-            newRow("info_design") = FormInvoiceFGPO.SLEBPLImport.Text
+            newRow("info_design") = ""
         Else
             newRow("info_design") = ""
         End If
