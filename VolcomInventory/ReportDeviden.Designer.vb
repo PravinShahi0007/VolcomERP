@@ -157,7 +157,7 @@ Partial Public Class ReportDeviden
         Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn20.Caption = "Net Deviden"
+        Me.GridColumn20.Caption = "Net Dividen"
         Me.GridColumn20.DisplayFormat.FormatString = "N2"
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn20.FieldName = "deviden_amount"
@@ -213,7 +213,7 @@ Partial Public Class ReportDeviden
         Me.GridColumn25.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn25.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn25.Caption = "Deviden"
+        Me.GridColumn25.Caption = "Dividen"
         Me.GridColumn25.DisplayFormat.FormatString = "N2"
         Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn25.FieldName = "deviden"
@@ -329,7 +329,7 @@ Partial Public Class ReportDeviden
         Me.XrLabel5.SizeF = New System.Drawing.SizeF(123.6111!, 16.18693!)
         Me.XrLabel5.StylePriority.UseFont = False
         Me.XrLabel5.StylePriority.UseTextAlignment = False
-        Me.XrLabel5.Text = "DEVIDEN AMOUNT"
+        Me.XrLabel5.Text = "DIVIDEN AMOUNT"
         Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'LDevidenAmount
@@ -500,7 +500,7 @@ Partial Public Class ReportDeviden
         Me.LabelTitle.SizeF = New System.Drawing.SizeF(221.006!, 20.0!)
         Me.LabelTitle.StylePriority.UseFont = False
         Me.LabelTitle.StylePriority.UseTextAlignment = False
-        Me.LabelTitle.Text = "PERHITUNGAN DEVIDEN"
+        Me.LabelTitle.Text = "PERHITUNGAN DIVIDEN"
         Me.LabelTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomRight
         '
         'ReportDeviden
