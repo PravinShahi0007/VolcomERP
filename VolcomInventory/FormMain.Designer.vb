@@ -526,6 +526,7 @@ Partial Class FormMain
         Me.NBPolis = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBBiayaSewa = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBPrepaidExpense = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBDeviden = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBABGRoyaltyZone = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBQC = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBEstQtyToQC = New DevExpress.XtraNavBar.NavBarItem()
@@ -563,7 +564,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBDeviden = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -4036,6 +4036,12 @@ Partial Class FormMain
         Me.NBPrepaidExpense.Name = "NBPrepaidExpense"
         Me.NBPrepaidExpense.SmallImage = CType(resources.GetObject("NBPrepaidExpense.SmallImage"), System.Drawing.Image)
         '
+        'NBDeviden
+        '
+        Me.NBDeviden.Caption = "Dividen"
+        Me.NBDeviden.Name = "NBDeviden"
+        Me.NBDeviden.SmallImage = CType(resources.GetObject("NBDeviden.SmallImage"), System.Drawing.Image)
+        '
         'NBABGRoyaltyZone
         '
         Me.NBABGRoyaltyZone.Caption = "ABG Royalty Zone"
@@ -4331,12 +4337,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBDeviden
-        '
-        Me.NBDeviden.Caption = "Deviden"
-        Me.NBDeviden.Name = "NBDeviden"
-        Me.NBDeviden.SmallImage = CType(resources.GetObject("NBDeviden.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '

@@ -1774,7 +1774,7 @@ GROUP BY ed.id_prepaid_expense ORDER BY e.id_prepaid_expense DESC "
         Dim q As String = "SELECT ds.`id_deviden`,c.`id_acc_ap` AS id_acc,ds.id_comp,c.`comp_name`,d.`profit_year`,ds.`deviden_amount`,IFNULL(payment_pending.jml,0) AS jml_pending,IFNULL(payment.value,0) AS paid_amount,ds.`deviden_amount`-IFNULL(payment.value,0) AS balance
 ,acc.`acc_name`,acc.`acc_description`
 FROM tb_deviden_share ds
-INNER JOIN tb_deviden d ON d.`id_deviden`=ds.`id_deviden`
+INNER JOIN tb_deviden d ON d.`id_deviden`=ds.`id_deviden` AND d.id_report_status=6 AND ds.is_close=2
 INNER JOIN tb_m_comp c ON c.`id_comp`=ds.`id_comp` AND c.id_comp='" & SLEVendorDeviden.EditValue.ToString & "'
 INNER JOIN tb_a_acc acc ON acc.`id_acc`=c.`id_acc_ap`
 LEFT JOIN

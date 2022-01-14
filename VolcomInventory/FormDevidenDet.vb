@@ -92,7 +92,7 @@ ORDER BY `Year`"
         GVComparation.BestFitColumns()
         'compare
         If id = "-1" Then
-            q = "SELECT d.profit_year,ds.id_comp,c.`comp_number`,ds.`pph_account`,IF(ds.pph_account=0,'No PPH',CONCAT(acc.acc_name ,' - ',acc.`acc_description`)) AS pph_desc,c.`comp_name`,ds.`pph_percent`,ds.`deviden_percent`,ds.deviden_amount,ds.pph_amount
+            q = "SELECT '" & SLEYear.EditValue.ToString & "' AS div_year,d.profit_year,ds.id_comp,c.`comp_number`,ds.`pph_account`,IF(ds.pph_account=0,'No PPH',CONCAT(acc.acc_name ,' - ',acc.`acc_description`)) AS pph_desc,c.`comp_name`,ds.`pph_percent`,ds.`deviden_percent`,ds.deviden_amount,ds.pph_amount
 FROM `tb_deviden_share` ds
 INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden AND d.id_report_status!=5
 INNER JOIN 
@@ -102,12 +102,12 @@ INNER JOIN
 INNER JOIN tb_m_comp c ON c.`id_comp`=ds.`id_comp`
 LEFT JOIN tb_a_acc acc ON ds.`pph_account`=acc.`id_acc`
 UNION ALL
-SELECT '" & SLEYear.EditValue.ToString & "' AS profit_year,sh.`id_comp`,c.`comp_number`,sh.`pph_account`,IF(sh.pph_account=0,'No PPH',CONCAT(acc.acc_name ,' - ',acc.`acc_description`)) AS pph_desc,c.`comp_name`,sh.`pph_percent`,sh.`deviden_percent`,((100-sh.`pph_percent`)/100)*((sh.`deviden_percent`/100)*" & decimalSQL(Decimal.Parse(TEDeviden.EditValue.ToString)) & ") AS deviden_amount,(sh.`pph_percent`/100)*((sh.`deviden_percent`/100)*" & decimalSQL(Decimal.Parse(TEDeviden.EditValue.ToString)) & ") AS pph_amount
+SELECT '" & SLEYear.EditValue.ToString & "' AS div_year,'" & SLEYear.EditValue.ToString & "' AS profit_year,sh.`id_comp`,c.`comp_number`,sh.`pph_account`,IF(sh.pph_account=0,'No PPH',CONCAT(acc.acc_name ,' - ',acc.`acc_description`)) AS pph_desc,c.`comp_name`,sh.`pph_percent`,sh.`deviden_percent`,((100-sh.`pph_percent`)/100)*((sh.`deviden_percent`/100)*" & decimalSQL(Decimal.Parse(TEDeviden.EditValue.ToString)) & ") AS deviden_amount,(sh.`pph_percent`/100)*((sh.`deviden_percent`/100)*" & decimalSQL(Decimal.Parse(TEDeviden.EditValue.ToString)) & ") AS pph_amount
 FROM tb_shareholder sh
 INNER JOIN tb_m_comp c ON c.`id_comp`=sh.`id_comp`
 LEFT JOIN tb_a_acc acc ON sh.`pph_account`=acc.`id_acc`
 UNION ALL
-SELECT tb.profit_year,0 AS id_comp,'' AS comp_number,'' AS `pph_account`,'' AS pph_desc,'TOTAL' AS `comp_name`,0 AS `pph_percent`,0 AS deviden_percent,SUM(tb.deviden_amount) AS deviden_amount,SUM(tb.pph_amount) AS pph_amount
+SELECT '" & SLEYear.EditValue.ToString & "' AS div_year,tb.profit_year,0 AS id_comp,'' AS comp_number,'' AS `pph_account`,'' AS pph_desc,'TOTAL' AS `comp_name`,0 AS `pph_percent`,0 AS deviden_percent,SUM(tb.deviden_amount) AS deviden_amount,SUM(tb.pph_amount) AS pph_amount
 FROM
 (
 	SELECT d.profit_year,ds.id_comp,c.`comp_number`,ds.`pph_account`,IF(ds.pph_account=0,'No PPH',CONCAT(acc.acc_name ,' - ',acc.`acc_description`)) AS pph_desc,c.`comp_name`,ds.`pph_percent`,ds.`deviden_percent`,ds.deviden_amount,ds.pph_amount
@@ -128,7 +128,7 @@ FROM
 GROUP BY tb.profit_year
 ORDER BY id_comp DESC,profit_year ASC"
         Else
-            q = "SELECT d.profit_year,ds.id_comp,c.`comp_number`,ds.`pph_account`,IF(ds.pph_account=0,'No PPH',CONCAT(acc.acc_name ,' - ',acc.`acc_description`)) AS pph_desc,c.`comp_name`,ds.`pph_percent`,ds.`deviden_percent`,ds.deviden_amount,ds.pph_amount
+            q = "SELECT '" & SLEYear.EditValue.ToString & "' AS div_year,d.profit_year,ds.id_comp,c.`comp_number`,ds.`pph_account`,IF(ds.pph_account=0,'No PPH',CONCAT(acc.acc_name ,' - ',acc.`acc_description`)) AS pph_desc,c.`comp_name`,ds.`pph_percent`,ds.`deviden_percent`,ds.deviden_amount,ds.pph_amount
 FROM `tb_deviden_share` ds
 INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden AND d.id_report_status!=5
 INNER JOIN 
@@ -138,13 +138,13 @@ INNER JOIN
 INNER JOIN tb_m_comp c ON c.`id_comp`=ds.`id_comp`
 LEFT JOIN tb_a_acc acc ON ds.`pph_account`=acc.`id_acc`
 UNION ALL
-SELECT '" & SLEYear.EditValue.ToString & "' AS profit_year,sh.`id_comp`,c.`comp_number`,sh.`pph_account`,IF(sh.pph_account=0,'No PPH',CONCAT(acc.acc_name ,' - ',acc.`acc_description`)) AS pph_desc,c.`comp_name`,sh.`pph_percent`,sh.`deviden_percent`,sh.deviden_amount,sh.pph_amount
+SELECT '" & SLEYear.EditValue.ToString & "' AS div_year,'" & SLEYear.EditValue.ToString & "' AS profit_year,sh.`id_comp`,c.`comp_number`,sh.`pph_account`,IF(sh.pph_account=0,'No PPH',CONCAT(acc.acc_name ,' - ',acc.`acc_description`)) AS pph_desc,c.`comp_name`,sh.`pph_percent`,sh.`deviden_percent`,sh.deviden_amount,sh.pph_amount
 FROM tb_deviden_share sh
 INNER JOIN tb_m_comp c ON c.`id_comp`=sh.`id_comp`
 LEFT JOIN tb_a_acc acc ON sh.`pph_account`=acc.`id_acc`
 WHERE sh.id_deviden='" & id & "'
 UNION ALL
-SELECT tb.profit_year,0 AS id_comp,'' AS comp_number,'' AS `pph_account`,'' AS pph_desc,'TOTAL' AS `comp_name`,0 AS `pph_percent`,0 AS deviden_percent,SUM(tb.deviden_amount) AS deviden_amount,SUM(tb.pph_amount) AS pph_amount
+SELECT '" & SLEYear.EditValue.ToString & "' AS div_year,tb.profit_year,0 AS id_comp,'' AS comp_number,'' AS `pph_account`,'' AS pph_desc,'TOTAL' AS `comp_name`,0 AS `pph_percent`,0 AS deviden_percent,SUM(tb.deviden_amount) AS deviden_amount,SUM(tb.pph_amount) AS pph_amount
 FROM
 (
 	SELECT d.profit_year,ds.id_comp,c.`comp_number`,ds.`pph_account`,IF(ds.pph_account=0,'No PPH',CONCAT(acc.acc_name ,' - ',acc.`acc_description`)) AS pph_desc,c.`comp_name`,ds.`pph_percent`,ds.`deviden_percent`,ds.deviden_amount,ds.pph_amount

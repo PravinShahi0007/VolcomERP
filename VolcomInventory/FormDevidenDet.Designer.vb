@@ -20,6 +20,8 @@ Partial Class FormDevidenDet
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDevidenDet))
+        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleExpression1 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
         Me.PanelControlPay = New DevExpress.XtraEditors.PanelControl()
         Me.SLEYear = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -64,6 +66,7 @@ Partial Class FormDevidenDet
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PCRecalculate = New DevExpress.XtraEditors.PanelControl()
         Me.BImport = New DevExpress.XtraEditors.SimpleButton()
@@ -85,7 +88,7 @@ Partial Class FormDevidenDet
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPThisYear = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlPay.SuspendLayout()
         CType(Me.SLEYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -589,6 +592,22 @@ Partial Class FormDevidenDet
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 5
         '
+        'GridColumn26
+        '
+        Me.GridColumn26.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn26.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn26.Caption = "Deviden AMount"
+        Me.GridColumn26.DisplayFormat.FormatString = "N2"
+        Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn26.FieldName = "deviden_amo"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.UnboundExpression = "[pph_amount] + [deviden_amount]"
+        Me.GridColumn26.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 2
+        '
         'RepositoryItemTextEdit1
         '
         Me.RepositoryItemTextEdit1.AutoHeight = False
@@ -679,12 +698,18 @@ Partial Class FormDevidenDet
         '
         'GVHistory
         '
-        Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn24, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn25})
+        Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn24, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn25, Me.GridColumn27})
+        GridFormatRule1.ApplyToRow = True
+        GridFormatRule1.Name = "Format0"
+        FormatConditionRuleExpression1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        FormatConditionRuleExpression1.Appearance.Options.UseBackColor = True
+        FormatConditionRuleExpression1.Expression = "Iif([profit_year] = [div_year], True, False)"
+        GridFormatRule1.Rule = FormatConditionRuleExpression1
+        Me.GVHistory.FormatRules.Add(GridFormatRule1)
         Me.GVHistory.GridControl = Me.GCHistory
         Me.GVHistory.GroupCount = 1
         Me.GVHistory.Name = "GVHistory"
         Me.GVHistory.OptionsBehavior.Editable = False
-        Me.GVHistory.OptionsView.ShowFooter = True
         Me.GVHistory.OptionsView.ShowGroupPanel = False
         Me.GVHistory.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn18, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn24, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
@@ -817,21 +842,11 @@ Partial Class FormDevidenDet
         Me.XTPThisYear.Size = New System.Drawing.Size(947, 370)
         Me.XTPThisYear.Text = "This Year"
         '
-        'GridColumn26
+        'GridColumn27
         '
-        Me.GridColumn26.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn26.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn26.Caption = "Deviden AMount"
-        Me.GridColumn26.DisplayFormat.FormatString = "N2"
-        Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn26.FieldName = "deviden_amo"
-        Me.GridColumn26.Name = "GridColumn26"
-        Me.GridColumn26.UnboundExpression = "[pph_amount] + [deviden_amount]"
-        Me.GridColumn26.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 2
+        Me.GridColumn27.Caption = "CurrentYear"
+        Me.GridColumn27.FieldName = "div_year"
+        Me.GridColumn27.Name = "GridColumn27"
         '
         'FormDevidenDet
         '
@@ -959,4 +974,5 @@ Partial Class FormDevidenDet
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
