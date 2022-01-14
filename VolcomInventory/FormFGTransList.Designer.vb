@@ -230,6 +230,8 @@ Partial Class FormFGTransList
         Me.RepoCENonList = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumncolorrts = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_grouprts = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_group_descrts = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPReturnMainCode = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSalesReturnMain = New DevExpress.XtraGrid.GridControl()
         Me.GVSalesReturnMain = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -268,6 +270,8 @@ Partial Class FormFGTransList
         Me.GridColumnqty0_ret = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncolorrtsmain = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnshtrts = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_grouprtscode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_group_desctrscode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.SLStatus3 = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -718,10 +722,6 @@ Partial Class FormFGTransList
         Me.DEFromRepair = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl35 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl36 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumncomp_grouprts = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncomp_group_descrts = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncomp_grouprtscode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncomp_group_desctrscode = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSvcLevel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLevel.SuspendLayout()
         Me.XTPRec.SuspendLayout()
@@ -2966,6 +2966,23 @@ Partial Class FormFGTransList
         Me.GridColumnsht.Visible = True
         Me.GridColumnsht.VisibleIndex = 13
         '
+        'GridColumncomp_grouprts
+        '
+        Me.GridColumncomp_grouprts.Caption = "Store Group"
+        Me.GridColumncomp_grouprts.FieldName = "comp_group"
+        Me.GridColumncomp_grouprts.Name = "GridColumncomp_grouprts"
+        Me.GridColumncomp_grouprts.Visible = True
+        Me.GridColumncomp_grouprts.VisibleIndex = 6
+        '
+        'GridColumncomp_group_descrts
+        '
+        Me.GridColumncomp_group_descrts.Caption = "Store Group Desc"
+        Me.GridColumncomp_group_descrts.FieldName = "comp_group_desc"
+        Me.GridColumncomp_group_descrts.Name = "GridColumncomp_group_descrts"
+        Me.GridColumncomp_group_descrts.Visible = True
+        Me.GridColumncomp_group_descrts.VisibleIndex = 7
+        Me.GridColumncomp_group_descrts.Width = 148
+        '
         'XTPReturnMainCode
         '
         Me.XTPReturnMainCode.Controls.Add(Me.GCSalesReturnMain)
@@ -3356,6 +3373,23 @@ Partial Class FormFGTransList
         Me.GridColumnshtrts.Name = "GridColumnshtrts"
         Me.GridColumnshtrts.Visible = True
         Me.GridColumnshtrts.VisibleIndex = 16
+        '
+        'GridColumncomp_grouprtscode
+        '
+        Me.GridColumncomp_grouprtscode.Caption = "Store Group"
+        Me.GridColumncomp_grouprtscode.FieldName = "comp_group"
+        Me.GridColumncomp_grouprtscode.Name = "GridColumncomp_grouprtscode"
+        Me.GridColumncomp_grouprtscode.Visible = True
+        Me.GridColumncomp_grouprtscode.VisibleIndex = 6
+        '
+        'GridColumncomp_group_desctrscode
+        '
+        Me.GridColumncomp_group_desctrscode.Caption = "Store Group Desc"
+        Me.GridColumncomp_group_desctrscode.FieldName = "comp_group_desc"
+        Me.GridColumncomp_group_desctrscode.Name = "GridColumncomp_group_desctrscode"
+        Me.GridColumncomp_group_desctrscode.Visible = True
+        Me.GridColumncomp_group_desctrscode.VisibleIndex = 7
+        Me.GridColumncomp_group_desctrscode.Width = 135
         '
         'GroupControl2
         '
@@ -4987,10 +5021,10 @@ Partial Class FormFGTransList
         '
         Me.XTCSales.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCSales.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
-        Me.XTCSales.Location = New System.Drawing.Point(0, 166)
+        Me.XTCSales.Location = New System.Drawing.Point(0, 149)
         Me.XTCSales.Name = "XTCSales"
         Me.XTCSales.SelectedTabPage = Me.XTPSalesBarcode
-        Me.XTCSales.Size = New System.Drawing.Size(1165, 328)
+        Me.XTCSales.Size = New System.Drawing.Size(1165, 345)
         Me.XTCSales.TabIndex = 10
         Me.XTCSales.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSalesBarcode, Me.XTPSalesMainCode})
         '
@@ -4998,7 +5032,7 @@ Partial Class FormFGTransList
         '
         Me.XTPSalesBarcode.Controls.Add(Me.GCSales)
         Me.XTPSalesBarcode.Name = "XTPSalesBarcode"
-        Me.XTPSalesBarcode.Size = New System.Drawing.Size(1136, 322)
+        Me.XTPSalesBarcode.Size = New System.Drawing.Size(1136, 339)
         Me.XTPSalesBarcode.Text = "By Barcode"
         '
         'GCSales
@@ -5007,7 +5041,7 @@ Partial Class FormFGTransList
         Me.GCSales.Location = New System.Drawing.Point(0, 0)
         Me.GCSales.MainView = Me.GVSales
         Me.GCSales.Name = "GCSales"
-        Me.GCSales.Size = New System.Drawing.Size(1136, 322)
+        Me.GCSales.Size = New System.Drawing.Size(1136, 339)
         Me.GCSales.TabIndex = 9
         Me.GCSales.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSales})
         '
@@ -5258,7 +5292,7 @@ Partial Class FormFGTransList
         '
         Me.XTPSalesMainCode.Controls.Add(Me.GCSalesMain)
         Me.XTPSalesMainCode.Name = "XTPSalesMainCode"
-        Me.XTPSalesMainCode.Size = New System.Drawing.Size(1136, 322)
+        Me.XTPSalesMainCode.Size = New System.Drawing.Size(1136, 339)
         Me.XTPSalesMainCode.Text = "By Main Code"
         '
         'GCSalesMain
@@ -5267,7 +5301,7 @@ Partial Class FormFGTransList
         Me.GCSalesMain.Location = New System.Drawing.Point(0, 0)
         Me.GCSalesMain.MainView = Me.GVSalesMain
         Me.GCSalesMain.Name = "GCSalesMain"
-        Me.GCSalesMain.Size = New System.Drawing.Size(1136, 322)
+        Me.GCSalesMain.Size = New System.Drawing.Size(1136, 339)
         Me.GCSalesMain.TabIndex = 10
         Me.GCSalesMain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesMain})
         '
@@ -5627,7 +5661,7 @@ Partial Class FormFGTransList
         Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl6.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl6.Name = "GroupControl6"
-        Me.GroupControl6.Size = New System.Drawing.Size(1165, 166)
+        Me.GroupControl6.Size = New System.Drawing.Size(1165, 149)
         Me.GroupControl6.TabIndex = 8
         '
         'PanelControl2
@@ -5636,7 +5670,7 @@ Partial Class FormFGTransList
         Me.PanelControl2.Controls.Add(Me.LabelControl32)
         Me.PanelControl2.Controls.Add(Me.BtnExportToXLSSal)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(20, 122)
+        Me.PanelControl2.Location = New System.Drawing.Point(20, 106)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1143, 42)
         Me.PanelControl2.TabIndex = 8931
@@ -5684,12 +5718,12 @@ Partial Class FormFGTransList
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1143, 120)
+        Me.PanelControl1.Size = New System.Drawing.Size(1143, 104)
         Me.PanelControl1.TabIndex = 8930
         '
         'CEIncludePrmUni
         '
-        Me.CEIncludePrmUni.Location = New System.Drawing.Point(123, 91)
+        Me.CEIncludePrmUni.Location = New System.Drawing.Point(123, 124)
         Me.CEIncludePrmUni.Name = "CEIncludePrmUni"
         Me.CEIncludePrmUni.Properties.Caption = "Include Promo/Uniform"
         Me.CEIncludePrmUni.Size = New System.Drawing.Size(131, 19)
@@ -5780,7 +5814,8 @@ Partial Class FormFGTransList
         '
         'CEPromo
         '
-        Me.CEPromo.Location = New System.Drawing.Point(259, 91)
+        Me.CEPromo.EditValue = True
+        Me.CEPromo.Location = New System.Drawing.Point(259, 124)
         Me.CEPromo.Name = "CEPromo"
         Me.CEPromo.Properties.Caption = "Include GWP"
         Me.CEPromo.Size = New System.Drawing.Size(81, 19)
@@ -7541,40 +7576,6 @@ Partial Class FormFGTransList
         Me.LabelControl36.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl36.TabIndex = 8892
         Me.LabelControl36.Text = "From"
-        '
-        'GridColumncomp_grouprts
-        '
-        Me.GridColumncomp_grouprts.Caption = "Store Group"
-        Me.GridColumncomp_grouprts.FieldName = "comp_group"
-        Me.GridColumncomp_grouprts.Name = "GridColumncomp_grouprts"
-        Me.GridColumncomp_grouprts.Visible = True
-        Me.GridColumncomp_grouprts.VisibleIndex = 6
-        '
-        'GridColumncomp_group_descrts
-        '
-        Me.GridColumncomp_group_descrts.Caption = "Store Group Desc"
-        Me.GridColumncomp_group_descrts.FieldName = "comp_group_desc"
-        Me.GridColumncomp_group_descrts.Name = "GridColumncomp_group_descrts"
-        Me.GridColumncomp_group_descrts.Visible = True
-        Me.GridColumncomp_group_descrts.VisibleIndex = 7
-        Me.GridColumncomp_group_descrts.Width = 148
-        '
-        'GridColumncomp_grouprtscode
-        '
-        Me.GridColumncomp_grouprtscode.Caption = "Store Group"
-        Me.GridColumncomp_grouprtscode.FieldName = "comp_group"
-        Me.GridColumncomp_grouprtscode.Name = "GridColumncomp_grouprtscode"
-        Me.GridColumncomp_grouprtscode.Visible = True
-        Me.GridColumncomp_grouprtscode.VisibleIndex = 6
-        '
-        'GridColumncomp_group_desctrscode
-        '
-        Me.GridColumncomp_group_desctrscode.Caption = "Store Group Desc"
-        Me.GridColumncomp_group_desctrscode.FieldName = "comp_group_desc"
-        Me.GridColumncomp_group_desctrscode.Name = "GridColumncomp_group_desctrscode"
-        Me.GridColumncomp_group_desctrscode.Visible = True
-        Me.GridColumncomp_group_desctrscode.VisibleIndex = 7
-        Me.GridColumncomp_group_desctrscode.Width = 135
         '
         'FormFGTransList
         '

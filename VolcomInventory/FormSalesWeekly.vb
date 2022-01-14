@@ -162,14 +162,12 @@
         End If
 
         'filter promo
-        Dim cond_promo As String = ""
-        Dim cond_promo_trans As String = ""
+        Dim cond_promo As String = "AND a.report_mark_type!=116 "
         If CEPromo.EditValue = True Then
-            cond_promo = ""
-            cond_promo_trans = ""
+            cond_promo += ""
         Else
-            cond_promo = "AND a.sales_pos_total>0 "
-            cond_promo_trans = "AND a.report_mark_type!=116"
+            cond_promo += "AND a.sales_pos_total>0 "
+            ' cond_promo_trans = "AND a.report_mark_type!=116" => tidak terpakai karena bukan penjualan melainkan pendapatan
         End If
 
         'all unit include volcom shop 100%
@@ -189,7 +187,7 @@
         End If
 
         Dim query_c As ClassSalesInv = New ClassSalesInv()
-        Dim query As String = query_c.queryMainReport("AND a.id_report_status=6 " + cond_group + " " + cond_store + " " + cond_promo + " " + cond_promo_trans + " AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "1", is_all_unit_param, is_promo_uni)
+        Dim query As String = query_c.queryMainReport("AND a.id_report_status=6 " + cond_group + " " + cond_store + " " + cond_promo + " " + " AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "1", is_all_unit_param, is_promo_uni)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesPOS.DataSource = data
         dt = data
@@ -370,7 +368,7 @@
             Dim band_desc As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVSalesPOSWeekly.Bands.AddBand("DESCRIPTION")
             band_desc.AppearanceHeader.Font = New Font(BGVSalesPOSWeekly.Appearance.Row.Font.FontFamily, BGVSalesPOSWeekly.Appearance.Row.Font.Size, FontStyle.Bold)
 
-            'cond gwp
+            'cond gwp invouice nol
             Dim include_promo As String = ""
             If CEPromoWeekly.EditValue = True Then
                 include_promo = "1"
@@ -1089,7 +1087,7 @@
         Dim band_desc As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVSalesWeeklyByDate.Bands.AddBand("DESCRIPTION")
         band_desc.AppearanceHeader.Font = New Font(BGVSalesWeeklyByDate.Appearance.Row.Font.FontFamily, BGVSalesWeeklyByDate.Appearance.Row.Font.Size, FontStyle.Bold)
 
-        'cond gwp
+        'cond gwp invoice nol
         Dim include_promo As String = ""
         If CEPromoWeeklyByDate.EditValue = True Then
             include_promo = "1"

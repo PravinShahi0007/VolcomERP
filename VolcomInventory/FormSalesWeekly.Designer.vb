@@ -64,6 +64,7 @@ Partial Class FormSalesWeekly
         Me.GridColumnsales_pos_potongan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnstore_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_pos_tax = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpotongan_gwp_value = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolTipControllerNew = New DevExpress.Utils.ToolTipController(Me.components)
         Me.XTCPOS = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDailySales = New DevExpress.XtraTab.XtraTabPage()
@@ -189,7 +190,6 @@ Partial Class FormSalesWeekly
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnpotongan_gwp_value = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -724,6 +724,17 @@ Partial Class FormSalesWeekly
         Me.GridColumnsales_pos_tax.Visible = True
         Me.GridColumnsales_pos_tax.VisibleIndex = 15
         '
+        'GridColumnpotongan_gwp_value
+        '
+        Me.GridColumnpotongan_gwp_value.Caption = "POT. PENJUALAN"
+        Me.GridColumnpotongan_gwp_value.DisplayFormat.FormatString = "N2"
+        Me.GridColumnpotongan_gwp_value.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnpotongan_gwp_value.FieldName = "potongan_gwp_value"
+        Me.GridColumnpotongan_gwp_value.Name = "GridColumnpotongan_gwp_value"
+        Me.GridColumnpotongan_gwp_value.Visible = True
+        Me.GridColumnpotongan_gwp_value.VisibleIndex = 10
+        Me.GridColumnpotongan_gwp_value.Width = 121
+        '
         'ToolTipControllerNew
         '
         '
@@ -861,10 +872,10 @@ Partial Class FormSalesWeekly
         '
         'CEPromo
         '
-        Me.CEPromo.Location = New System.Drawing.Point(366, 64)
+        Me.CEPromo.Location = New System.Drawing.Point(368, 64)
         Me.CEPromo.Name = "CEPromo"
-        Me.CEPromo.Properties.Caption = "Include GWP"
-        Me.CEPromo.Size = New System.Drawing.Size(80, 19)
+        Me.CEPromo.Properties.Caption = "Invoice Nol"
+        Me.CEPromo.Size = New System.Drawing.Size(83, 19)
         Me.CEPromo.TabIndex = 8926
         '
         'LabelControl8
@@ -1096,7 +1107,7 @@ Partial Class FormSalesWeekly
         '
         'CEIncludePrmUniWeekly
         '
-        Me.CEIncludePrmUniWeekly.Location = New System.Drawing.Point(307, 41)
+        Me.CEIncludePrmUniWeekly.Location = New System.Drawing.Point(316, 41)
         Me.CEIncludePrmUniWeekly.Name = "CEIncludePrmUniWeekly"
         Me.CEIncludePrmUniWeekly.Properties.Caption = "Include Promo/Uniform"
         Me.CEIncludePrmUniWeekly.Size = New System.Drawing.Size(131, 19)
@@ -1188,10 +1199,10 @@ Partial Class FormSalesWeekly
         '
         'CEPromoWeeklyByDate
         '
-        Me.CEPromoWeeklyByDate.Location = New System.Drawing.Point(444, 41)
+        Me.CEPromoWeeklyByDate.Location = New System.Drawing.Point(451, 41)
         Me.CEPromoWeeklyByDate.Name = "CEPromoWeeklyByDate"
-        Me.CEPromoWeeklyByDate.Properties.Caption = "Include GWP"
-        Me.CEPromoWeeklyByDate.Size = New System.Drawing.Size(89, 19)
+        Me.CEPromoWeeklyByDate.Properties.Caption = "Invoice Nol"
+        Me.CEPromoWeeklyByDate.Size = New System.Drawing.Size(82, 19)
         Me.CEPromoWeeklyByDate.TabIndex = 8927
         '
         'BtnViewDateWeekly
@@ -1320,7 +1331,7 @@ Partial Class FormSalesWeekly
         '
         'CEIncPromoUni
         '
-        Me.CEIncPromoUni.Location = New System.Drawing.Point(256, 40)
+        Me.CEIncPromoUni.Location = New System.Drawing.Point(264, 40)
         Me.CEIncPromoUni.Name = "CEIncPromoUni"
         Me.CEIncPromoUni.Properties.Caption = "Include Promo/Uniform"
         Me.CEIncPromoUni.Size = New System.Drawing.Size(131, 19)
@@ -1387,10 +1398,10 @@ Partial Class FormSalesWeekly
         '
         'CEPromoWeekly
         '
-        Me.CEPromoWeekly.Location = New System.Drawing.Point(388, 40)
+        Me.CEPromoWeekly.Location = New System.Drawing.Point(401, 40)
         Me.CEPromoWeekly.Name = "CEPromoWeekly"
-        Me.CEPromoWeekly.Properties.Caption = "Include GWP"
-        Me.CEPromoWeekly.Size = New System.Drawing.Size(89, 19)
+        Me.CEPromoWeekly.Properties.Caption = "Invoice Nol"
+        Me.CEPromoWeekly.Size = New System.Drawing.Size(76, 19)
         Me.CEPromoWeekly.TabIndex = 8927
         '
         'CheckShowRevBefTaxWS
@@ -1930,17 +1941,6 @@ Partial Class FormSalesWeekly
         Me.SimpleButton2.Size = New System.Drawing.Size(75, 20)
         Me.SimpleButton2.TabIndex = 8896
         Me.SimpleButton2.Text = "View"
-        '
-        'GridColumnpotongan_gwp_value
-        '
-        Me.GridColumnpotongan_gwp_value.Caption = "POT. PENJUALAN"
-        Me.GridColumnpotongan_gwp_value.DisplayFormat.FormatString = "N2"
-        Me.GridColumnpotongan_gwp_value.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnpotongan_gwp_value.FieldName = "potongan_gwp_value"
-        Me.GridColumnpotongan_gwp_value.Name = "GridColumnpotongan_gwp_value"
-        Me.GridColumnpotongan_gwp_value.Visible = True
-        Me.GridColumnpotongan_gwp_value.VisibleIndex = 10
-        Me.GridColumnpotongan_gwp_value.Width = 121
         '
         'FormSalesWeekly
         '
