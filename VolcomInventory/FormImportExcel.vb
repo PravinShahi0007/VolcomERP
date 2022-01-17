@@ -3210,7 +3210,7 @@ WHERE awbill_no != '' AND awbill_type='2' AND is_lock='2' AND is_old_ways=1
         ElseIf id_pop_up = "50" Then
             Dim id_vios As String = get_setup_field("shopify_comp_group")
             Dim queryx As String = "(SELECT ol.id_list_payout, ol.id AS `id_order`, ol.checkout_id,ol.sales_order_ol_shop_number, ol.payment AS curr_payout,
-            ol.trans_fee AS curr_fee,ol.pay_type AS curr_pay_type,SUM(((pos.`sales_pos_total`*((100-pos.sales_pos_discount)/100))-pos.`sales_pos_potongan`))+IFNULL(sh.ship_amo,0)+IFNULL(v.value,0.00) AS amount,IFNULL(v.value,0.00) AS `other_price`,
+            ol.trans_fee AS curr_fee,ol.pay_type AS curr_pay_type,SUM(pos.netto)+IFNULL(sh.ship_amo,0)+IFNULL(v.value,0.00) AS amount,IFNULL(v.value,0.00) AS `other_price`,
             GROUP_CONCAT(DISTINCT(pos.`sales_pos_number`)) AS inv_number, sh.ship_number AS `ship_inv_number`, v.number AS `ver_number`,
             GROUP_CONCAT(DISTINCT(pos.`id_sales_pos`)) AS id_sales_pos, IFNULL(sh.id_invoice_ship,0) AS `id_invoice_ship`, IFNULL(v.id_list_payout_ver,0) AS `id_list_payout_ver`
             FROM
