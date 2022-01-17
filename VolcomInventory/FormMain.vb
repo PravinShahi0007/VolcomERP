@@ -2002,6 +2002,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormDeviden" Then
             FormDevidenDet.id = "-1"
             FormDevidenDet.ShowDialog()
+        ElseIf formName = "FormQCReport1" Then
+            FormQCReport1Det.id = "-1"
+            FormQCReport1Det.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -3374,6 +3377,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             ElseIf formName = "FormDeviden" Then
                 FormDevidenDet.id = FormDeviden.GVData.GetFocusedRowCellValue("id_deviden").ToString
                 FormDevidenDet.ShowDialog()
+            ElseIf formName = "FormQCReport1" Then
+                FormQCReport1Det.id = FormQCReport1.GVQCReport.GetFocusedRowCellValue("id_qc_report1").ToString
+                FormQCReport1Det.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -8897,6 +8903,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormEts.printList()
         ElseIf formName = "FormBSP" Then
             FormBSP.printList()
+        ElseIf formName = "FormQCReport1" Then
+            print(FormQCReport1.GCQCReport, "List QC Report 1")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9963,6 +9971,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormDeviden" Then
             FormDeviden.Close()
             FormDeviden.Dispose()
+        ElseIf formName = "FormQCReport1" Then
+            FormQCReport1.Close()
+            FormQCReport1.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11023,6 +11034,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormBSP.viewData()
         ElseIf formName = "FormDeviden" Then
             FormDeviden.load_deviden()
+        ElseIf formName = "FormQCReport1" Then
+            FormQCReport1.load_qc_report1()
         End If
     End Sub
     'Switch
@@ -17016,6 +17029,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDeviden.Show()
             FormDeviden.WindowState = FormWindowState.Maximized
             FormDeviden.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBQCReport1_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBQCReport1.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormQCReport1.MdiParent = Me
+            FormQCReport1.Show()
+            FormQCReport1.WindowState = FormWindowState.Maximized
+            FormQCReport1.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
