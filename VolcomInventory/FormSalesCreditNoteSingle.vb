@@ -359,7 +359,7 @@
                         newRow("id_sales_pos_prob") = "0"
                         newRow("id_sales_pos_prob_price") = "0"
                         newRow("id_sales_pos_oos_recon_det") = "0"
-                        newRow("is_gwp") = isGWPProduct(GVItemList.GetRowCellValue(ls, "id_design").ToString, GVItemList.GetRowCellValue(ls, "code").ToString)
+                        newRow("is_gwp") = isGWPProduct(GVItemList.GetRowCellValue(ls, "id_design").ToString, GVItemList.GetRowCellValue(ls, "is_md").ToString)
 
                         TryCast(FormSalesPOSDet.GCItemList.DataSource, DataTable).Rows.Add(newRow)
                         FormSalesPOSDet.GCItemList.RefreshDataSource()

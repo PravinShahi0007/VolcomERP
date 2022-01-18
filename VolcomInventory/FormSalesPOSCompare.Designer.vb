@@ -51,6 +51,7 @@ Partial Class FormSalesPOSCompare
         Me.GridColumnnote_price = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_design_price_retail = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_product = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnis_md = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,7 +112,7 @@ Partial Class FormSalesPOSCompare
         'GVData
         '
         Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandSummary, Me.GridBand1, Me.gridBandStore, Me.gridBandERP, Me.gridBandCheck})
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnno, Me.GridColumncode, Me.GridColumndescription, Me.GridColumnsize, Me.GridColumninput_price, Me.GridColumndesign_price_retail, Me.GridColumnlimit_qty, Me.GridColumnsales_pos_det_qty, Me.GridColumnno_stock_qty, Me.GridColumnsales_qty, Me.GridColumnamount, Me.GridColumnamount_erp, Me.GridColumnnote, Me.GridColumnnote_price, Me.BandedGridColumnstt, Me.BandedGridColumntotal_qty_erp, Me.BandedGridColumnno_stock_amount_erp, Me.BandedGridColumntotal_amount_erp, Me.BandedGridColumnid_design_price_retail, Me.BandedGridColumnid_product})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnno, Me.GridColumncode, Me.GridColumndescription, Me.GridColumnsize, Me.GridColumninput_price, Me.GridColumndesign_price_retail, Me.GridColumnlimit_qty, Me.GridColumnsales_pos_det_qty, Me.GridColumnno_stock_qty, Me.GridColumnsales_qty, Me.GridColumnamount, Me.GridColumnamount_erp, Me.GridColumnnote, Me.GridColumnnote_price, Me.BandedGridColumnstt, Me.BandedGridColumntotal_qty_erp, Me.BandedGridColumnno_stock_amount_erp, Me.BandedGridColumntotal_amount_erp, Me.BandedGridColumnid_design_price_retail, Me.BandedGridColumnid_product, Me.BandedGridColumnis_md})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -356,6 +357,14 @@ Partial Class FormSalesPOSCompare
         Me.BandedGridColumnid_product.FieldName = "id_product"
         Me.BandedGridColumnid_product.Name = "BandedGridColumnid_product"
         '
+        'BandedGridColumnis_md
+        '
+        Me.BandedGridColumnis_md.Caption = "is_md"
+        Me.BandedGridColumnis_md.FieldName = "is_md"
+        Me.BandedGridColumnis_md.Name = "BandedGridColumnis_md"
+        Me.BandedGridColumnis_md.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnis_md.Visible = True
+        '
         'FormSalesPOSCompare
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -406,4 +415,5 @@ Partial Class FormSalesPOSCompare
     Friend WithEvents gridBandCheck As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnid_design_price_retail As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnid_product As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnis_md As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

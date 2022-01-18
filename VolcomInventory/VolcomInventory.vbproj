@@ -580,6 +580,12 @@
     <Compile Include="FormBankWithdrawalLogPaymentDate.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBankWithdrawalPPNTag.Designer.vb">
+      <DependentUpon>FormBankWithdrawalPPNTag.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBankWithdrawalPPNTag.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBankWithdrawalSum.Designer.vb">
       <DependentUpon>FormBankWithdrawalSum.vb</DependentUpon>
     </Compile>
@@ -10827,6 +10833,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBankWithdrawalLogPaymentDate.resx">
       <DependentUpon>FormBankWithdrawalLogPaymentDate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBankWithdrawalPPNTag.resx">
+      <DependentUpon>FormBankWithdrawalPPNTag.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBankWithdrawalSum.resx">
       <DependentUpon>FormBankWithdrawalSum.vb</DependentUpon>
