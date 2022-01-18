@@ -33,10 +33,15 @@ Partial Class FormQCReport1Det
         Me.TxtDesign = New DevExpress.XtraEditors.TextEdit()
         Me.TxtSeason = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.DECreated = New DevExpress.XtraEditors.DateEdit()
+        Me.SLEQCReport = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.DERet = New DevExpress.XtraEditors.TextEdit()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
@@ -63,16 +68,9 @@ Partial Class FormQCReport1Det
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPriceOVH = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNox = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControlListBarcode = New DevExpress.XtraEditors.GroupControl()
         Me.GCBarcode = New DevExpress.XtraGrid.GridControl()
         Me.GVBarcode = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -96,8 +94,11 @@ Partial Class FormQCReport1Det
         CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEQCReport.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DERet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -239,7 +240,7 @@ Partial Class FormQCReport1Det
         Me.TxtDesign.Name = "TxtDesign"
         Me.TxtDesign.Properties.EditValueChangedDelay = 1
         Me.TxtDesign.Properties.ReadOnly = True
-        Me.TxtDesign.Size = New System.Drawing.Size(228, 20)
+        Me.TxtDesign.Size = New System.Drawing.Size(268, 20)
         Me.TxtDesign.TabIndex = 10000
         Me.TxtDesign.TabStop = False
         '
@@ -252,22 +253,80 @@ Partial Class FormQCReport1Det
         Me.TxtSeason.Name = "TxtSeason"
         Me.TxtSeason.Properties.EditValueChangedDelay = 1
         Me.TxtSeason.Properties.ReadOnly = True
-        Me.TxtSeason.Size = New System.Drawing.Size(228, 20)
+        Me.TxtSeason.Size = New System.Drawing.Size(268, 20)
         Me.TxtSeason.TabIndex = 10001
         Me.TxtSeason.TabStop = False
         '
         'PanelControlTopRight
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopRight.Controls.Add(Me.DECreated)
+        Me.PanelControlTopRight.Controls.Add(Me.SLEQCReport)
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl2)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl5)
         Me.PanelControlTopRight.Controls.Add(Me.TENumber)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
-        Me.PanelControlTopRight.Controls.Add(Me.DERet)
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopRight.Location = New System.Drawing.Point(578, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(332, 93)
         Me.PanelControlTopRight.TabIndex = 10001
+        '
+        'DECreated
+        '
+        Me.DECreated.EditValue = Nothing
+        Me.DECreated.Enabled = False
+        Me.DECreated.Location = New System.Drawing.Point(125, 34)
+        Me.DECreated.Name = "DECreated"
+        Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DECreated.Properties.Appearance.Options.UseFont = True
+        Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECreated.Properties.ReadOnly = True
+        Me.DECreated.Size = New System.Drawing.Size(186, 20)
+        Me.DECreated.TabIndex = 10011
+        '
+        'SLEQCReport
+        '
+        Me.SLEQCReport.Location = New System.Drawing.Point(125, 60)
+        Me.SLEQCReport.Name = "SLEQCReport"
+        Me.SLEQCReport.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEQCReport.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEQCReport.Size = New System.Drawing.Size(186, 20)
+        Me.SLEQCReport.TabIndex = 10010
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "ID"
+        Me.GridColumn2.FieldName = "id_pl_category"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "PL Category"
+        Me.GridColumn3.FieldName = "pl_category"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(19, 63)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(99, 13)
+        Me.LabelControl2.TabIndex = 10009
+        Me.LabelControl2.Text = "QC Report Category"
         '
         'LabelControl5
         '
@@ -283,11 +342,11 @@ Partial Class FormQCReport1Det
         Me.TENumber.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TENumber.EditValue = ""
-        Me.TENumber.Location = New System.Drawing.Point(83, 8)
+        Me.TENumber.Location = New System.Drawing.Point(124, 8)
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Properties.EditValueChangedDelay = 1
         Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(228, 20)
+        Me.TENumber.Size = New System.Drawing.Size(187, 20)
         Me.TENumber.TabIndex = 10004
         Me.TENumber.TabStop = False
         '
@@ -299,17 +358,6 @@ Partial Class FormQCReport1Det
         Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl7.TabIndex = 159
         Me.LabelControl7.Text = "Date"
-        '
-        'DERet
-        '
-        Me.DERet.EditValue = ""
-        Me.DERet.Location = New System.Drawing.Point(84, 34)
-        Me.DERet.Name = "DERet"
-        Me.DERet.Properties.EditValueChangedDelay = 1
-        Me.DERet.Properties.ReadOnly = True
-        Me.DERet.Size = New System.Drawing.Size(227, 20)
-        Me.DERet.TabIndex = 162
-        Me.DERet.TabStop = False
         '
         'LargeImageCollection
         '
@@ -515,7 +563,7 @@ Partial Class FormQCReport1Det
         '
         'GVRetDetail
         '
-        Me.GVRetDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRet, Me.GridColumnIdSamplePurcDet, Me.GridColumnCode, Me.GridColumnEanCode, Me.GridColumn7, Me.GridColumn6, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnRemark, Me.GridColumnPriceOVH, Me.GridColumnAmount, Me.GridColumnNox, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo})
+        Me.GVRetDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRet, Me.GridColumnIdSamplePurcDet, Me.GridColumnCode, Me.GridColumnEanCode, Me.GridColumn7, Me.GridColumn6, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnNox})
         Me.GVRetDetail.GridControl = Me.GCRetDetail
         Me.GVRetDetail.Name = "GVRetDetail"
         Me.GVRetDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -527,7 +575,7 @@ Partial Class FormQCReport1Det
         'GridColumnIdRet
         '
         Me.GridColumnIdRet.Caption = "ID Ret"
-        Me.GridColumnIdRet.FieldName = "id_prod_order_ret_out_det"
+        Me.GridColumnIdRet.FieldName = "id_qc_report1_det"
         Me.GridColumnIdRet.Name = "GridColumnIdRet"
         Me.GridColumnIdRet.OptionsColumn.AllowEdit = False
         Me.GridColumnIdRet.OptionsColumn.ShowInCustomizationForm = False
@@ -608,18 +656,6 @@ Partial Class FormQCReport1Det
         Me.GridColumnSize.VisibleIndex = 6
         Me.GridColumnSize.Width = 55
         '
-        'GridColumnUOM
-        '
-        Me.GridColumnUOM.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnUOM.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnUOM.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnUOM.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnUOM.Caption = "UOM"
-        Me.GridColumnUOM.FieldName = "uom"
-        Me.GridColumnUOM.Name = "GridColumnUOM"
-        Me.GridColumnUOM.OptionsColumn.ReadOnly = True
-        Me.GridColumnUOM.Width = 100
-        '
         'GridColumnQty
         '
         Me.GridColumnQty.AppearanceCell.Options.UseTextOptions = True
@@ -630,7 +666,7 @@ Partial Class FormQCReport1Det
         Me.GridColumnQty.ColumnEdit = Me.RepositoryItemSpinEdit1
         Me.GridColumnQty.DisplayFormat.FormatString = "N0"
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQty.FieldName = "prod_order_ret_out_det_qty"
+        Me.GridColumnQty.FieldName = "qc_report1_det_qty"
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.OptionsColumn.ReadOnly = True
@@ -647,43 +683,6 @@ Partial Class FormQCReport1Det
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
-        'GridColumnRemark
-        '
-        Me.GridColumnRemark.Caption = "Remark"
-        Me.GridColumnRemark.FieldName = "prod_order_ret_out_det_note"
-        Me.GridColumnRemark.Name = "GridColumnRemark"
-        Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 10
-        Me.GridColumnRemark.Width = 278
-        '
-        'GridColumnPriceOVH
-        '
-        Me.GridColumnPriceOVH.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnPriceOVH.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnPriceOVH.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnPriceOVH.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnPriceOVH.Caption = "Price"
-        Me.GridColumnPriceOVH.DisplayFormat.FormatString = "N2"
-        Me.GridColumnPriceOVH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnPriceOVH.FieldName = "ovh_price"
-        Me.GridColumnPriceOVH.Name = "GridColumnPriceOVH"
-        Me.GridColumnPriceOVH.OptionsColumn.AllowEdit = False
-        Me.GridColumnPriceOVH.Visible = True
-        Me.GridColumnPriceOVH.VisibleIndex = 8
-        '
-        'GridColumnAmount
-        '
-        Me.GridColumnAmount.Caption = "Amount"
-        Me.GridColumnAmount.DisplayFormat.FormatString = "N2"
-        Me.GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnAmount.FieldName = "amount"
-        Me.GridColumnAmount.Name = "GridColumnAmount"
-        Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
-        Me.GridColumnAmount.UnboundExpression = "[prod_order_ret_out_det_qty] * [ovh_price]"
-        Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 9
-        '
         'GridColumnNox
         '
         Me.GridColumnNox.Caption = "No"
@@ -693,27 +692,6 @@ Partial Class FormQCReport1Det
         Me.GridColumnNox.Visible = True
         Me.GridColumnNox.VisibleIndex = 0
         Me.GridColumnNox.Width = 77
-        '
-        'GridColumnNumber
-        '
-        Me.GridColumnNumber.Caption = "number"
-        Me.GridColumnNumber.FieldName = "number"
-        Me.GridColumnNumber.Name = "GridColumnNumber"
-        Me.GridColumnNumber.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        '
-        'GridColumnFrom
-        '
-        Me.GridColumnFrom.Caption = "from"
-        Me.GridColumnFrom.FieldName = "from"
-        Me.GridColumnFrom.Name = "GridColumnFrom"
-        Me.GridColumnFrom.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        '
-        'GridColumnTo
-        '
-        Me.GridColumnTo.Caption = "to"
-        Me.GridColumnTo.FieldName = "to"
-        Me.GridColumnTo.Name = "GridColumnTo"
-        Me.GridColumnTo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         '
         'GroupControlListBarcode
         '
@@ -757,6 +735,7 @@ Partial Class FormQCReport1Det
         Me.GridColumn1.Caption = "No"
         Me.GridColumn1.FieldName = "no"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowFocus = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
         Me.GridColumn1.Width = 53
@@ -879,8 +858,11 @@ Partial Class FormQCReport1Det
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEQCReport.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DERet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
@@ -922,7 +904,6 @@ Partial Class FormQCReport1Det
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DERet As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtSeason As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtDesign As DevExpress.XtraEditors.TextEdit
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
@@ -951,16 +932,9 @@ Partial Class FormQCReport1Det
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnUOM As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnPriceOVH As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNox As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnFrom As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnTo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GroupControlListBarcode As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GCBarcode As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVBarcode As DevExpress.XtraGrid.Views.Grid.GridView
@@ -976,4 +950,10 @@ Partial Class FormQCReport1Det
     Friend WithEvents BScan As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEQCReport As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
 End Class
