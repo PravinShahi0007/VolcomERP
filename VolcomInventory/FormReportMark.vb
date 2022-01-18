@@ -6669,8 +6669,8 @@ HAVING amo>0"
                 Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
                 '
-                Dim q_balik = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor)
-SELECT id_acc_trans, id_acc, credit, debit, CONCAT('Cancel Form - ',acc_trans_det_note) AS acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor
+                Dim q_balik = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor,id_coa_tag)
+SELECT '" & id_acc_trans & "' AS id_acc_trans, id_acc, credit, debit, CONCAT('Cancel Form - ',acc_trans_det_note) AS acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor, id_coa_tag
 FROM tb_a_acc_trans_det
 WHERE id_acc_trans='" & old_id_acc_trans & "'"
                 execute_non_query(q_balik, True, "", "", "", "")

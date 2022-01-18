@@ -16,7 +16,13 @@
     Private Sub FormQCReport1Det_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         BtnBrowsePO.Focus()
         viewReportStatus() 'get report status
+        view_pl_category()
         actionLoad()
+    End Sub
+
+    Sub view_pl_category()
+        Dim q As String = "SELECT id_pl_category,pl_category FROM tb_lookup_pl_category WHERE is_only_rec=2"
+        viewSearchLookupQuery(SLEQCReport, q, "id_pl_category", "pl_category", "id_pl_category")
     End Sub
 
     Private Sub GVRetDetail_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVRetDetail.CustomColumnDisplayText
@@ -50,7 +56,7 @@
             BtnPrint.Enabled = False
             BMark.Enabled = False
             BtnAttachment.Enabled = False
-            DERet.Text = view_date(0)
+            DECreated.EditValue = Now
 
             'own source
             Dim id_qc As String = execute_query("SELECT id_qc_dept FROM tb_opt", 0, True, "", "", "", "")
@@ -69,15 +75,44 @@
             GroupControlListBarcode.Enabled = True
             BtnInfoSrs.Enabled = True
 
-
             'View data
-            Dim query As String = ""
-            query += "WHERE a.id_qc_report1='" + id + "' "
+            Dim query As String = "SELECT qr.`number`,qr.id_pl_category,qr.`created_date`,qr.note
+,qr.id_report_status,qr.id_prod_order,qr.`id_prod_order_rec`,pdd.`id_design`,d.`design_name`
+,ss.`season`,cd.class,cd.color,CONCAT(cd.class,' ',d.`design_name`,' ',cd.color) AS design_display_name 
+,po.prod_order_number,rec.prod_order_rec_number
+FROM `tb_qc_report1` qr
+INNER JOIN tb_prod_order po ON qr.id_prod_order = po.id_prod_order
+INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order_rec=qr.id_prod_order_rec
+INNER JOIN tb_season_delivery del ON del.id_delivery = po.id_delivery
+INNER JOIN tb_season ss ON ss.id_season = del.id_season
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+INNER JOIN tb_m_design d ON d.`id_design`=pdd.`id_design`
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14,43,34)
+	GROUP BY dc.id_design
+)cd ON cd.id_design = d.id_design
+WHERE qr.id_qc_report1='" + id + "' "
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             TxtOrderNumber.Text = data.Rows(0)("prod_order_number").ToString
-            DERet.Text = view_date_from(data.Rows(0)("prod_order_ret_out_datex").ToString, 0)
-            MENote.Text = data.Rows(0)("prod_order_ret_out_note").ToString
+            TERecNumber.Text = data.Rows(0)("prod_order_rec_number").ToString
+            TENumber.Text = data.Rows(0)("number").ToString
+            '
+            DECreated.EditValue = data.Rows(0)("created_date")
+            MENote.Text = data.Rows(0)("note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             id_report_status = data.Rows(0)("id_report_status").ToString
             id_prod_order = data.Rows(0)("id_prod_order").ToString
@@ -85,6 +120,8 @@
             id_design = data.Rows(0)("id_design").ToString
             TxtDesign.Text = data.Rows(0)("design_display_name").ToString
             TxtSeason.Text = data.Rows(0)("season").ToString
+            '
+            SLEQCReport.EditValue = data.Rows(0)("id_pl_category").ToString
             '
             view_barcode_list()
             viewDetailReturn()
@@ -104,7 +141,7 @@
         Else
             GVRetDetail.OptionsBehavior.Editable = False
             MENote.Properties.ReadOnly = True
-            DERet.Properties.ReadOnly = True
+            DECreated.Properties.ReadOnly = True
             BtnSave.Enabled = False
             BScan.Enabled = False
             BDelete.Enabled = False
@@ -132,12 +169,9 @@
                 id_prod_order_det_list.Add(data.Rows(i)("id_prod_order_det").ToString)
             Next
             GCRetDetail.DataSource = data
-
-            GridColumnPriceOVH.VisibleIndex = "-1"
-            GridColumnAmount.VisibleIndex = "-1"
         Else
             'Dim query As String = "CALL view_return_out_prod('" + id + "', '1')"
-            Dim query As String = ""
+            Dim query As String = "CALL view_qc_report1('" + id + "')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             For i As Integer = 0 To (data.Rows.Count - 1)
                 id_prod_order_det_list.Add(data.Rows(i)("id_prod_order_det").ToString)
@@ -313,8 +347,8 @@
         'cek dengan requisition di DB
         For i As Integer = 0 To ((GVRetDetail.RowCount - 1) - GetGroupRowCount(GVRetDetail))
             Dim id_prod_order_det_cekya As String = GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString
-            Dim qty_plya As String = GVRetDetail.GetRowCellValue(i, "qc_report1_qty").ToString
-            Dim sample_checkya As String = GVRetDetail.GetRowCellValue(i, "name").ToString + " / Size : " + GVRetDetail.GetRowCellValue(i, "size").ToString
+            Dim qty_plya As String = GVRetDetail.GetRowCellValue(i, "qc_report1_det_qty").ToString
+            Dim sample_checkya As String = GVRetDetail.GetRowCellValue(i, "display_name").ToString + " / Size : " + GVRetDetail.GetRowCellValue(i, "size").ToString
             isAllowRequisition(sample_checkya, id_prod_order_det_cekya, qty_plya)
             If Not cond_check Then
                 Exit For
@@ -342,8 +376,8 @@
                         BtnSave.Enabled = False
 
                         'Main tbale
-                        query = "INSERT INTO tb_qc_report1(id_prod_order,id_prod_order_rec, created_date, created_by, id_report_status) "
-                        query += "VALUES('" + id_prod_order + "','" + id_prod_order_rec + "', NOW(),  '" + id_user + "', '" + id_report_status + "') ; SELECT LAST_INSERT_ID(); "
+                        query = "INSERT INTO tb_qc_report1(id_prod_order,id_prod_order_rec,id_pl_category, created_date, created_by, id_report_status) "
+                        query += "VALUES('" + id_prod_order + "','" + id_prod_order_rec + "','" + SLEQCReport.EditValue.ToString + "', NOW(),  '" + id_user + "', '" + id_report_status + "') ; SELECT LAST_INSERT_ID(); "
                         id = execute_query(query, 0, True, "", "", "", "")
 
                         execute_non_query("CALL gen_number('" & id & "','385')", True, "", "", "", "")
@@ -352,9 +386,9 @@
                         For j As Integer = 0 To ((GVRetDetail.RowCount - 1) - GetGroupRowCount(GVRetDetail))
                             Try
                                 id_prod_order_det = GVRetDetail.GetRowCellValue(j, "id_prod_order_det").ToString
-                                qc_report1_qty = decimalSQL(GVRetDetail.GetRowCellValue(j, "qc_report1_qty").ToString)
+                                qc_report1_qty = decimalSQL(GVRetDetail.GetRowCellValue(j, "qc_report1_det_qty").ToString)
 
-                                query = "INSERT tb_qc_report1_det(id_qc_report1, id_prod_order_det, qc_report1_qty) "
+                                query = "INSERT tb_qc_report1_det(id_qc_report1, id_prod_order_det, qc_report1_det_qty) "
                                 query += "VALUES('" + id + "', '" + id_prod_order_det + "', '" + qc_report1_qty + "') "
                                 execute_non_query(query, True, "", "", "", "")
                             Catch ex As Exception
@@ -382,7 +416,7 @@
                     Try
 
                         'edit main table
-                        query = "UPDATE tb_qc_report1_det SET id_prod_order = '" + id_prod_order + "',id_prod_order_rec = '" + id_prod_order_rec + "' WHERE id_qc_report1 = '" + id + "' "
+                        query = "UPDATE tb_qc_report1_det SET id_prod_order = '" + id_prod_order + "',id_prod_order_rec = '" + id_prod_order_rec + "',id_pl_category='" + SLEQCReport.EditValue.ToString + "' WHERE id_qc_report1 = '" + id + "' "
                         execute_non_query(query, True, "", "", "", "")
 
                         'edit detail table
@@ -390,14 +424,14 @@
                             Try
                                 id_qc_report1_det = GVRetDetail.GetRowCellValue(j, "id_qc_report1").ToString
                                 id_prod_order_det = GVRetDetail.GetRowCellValue(j, "id_prod_order_det").ToString
-                                qc_report1_qty = decimalSQL(GVRetDetail.GetRowCellValue(j, "qc_report1_qty").ToString)
+                                qc_report1_qty = decimalSQL(GVRetDetail.GetRowCellValue(j, "qc_report1_det_qty").ToString)
 
                                 If id_qc_report1_det = "0" Then
-                                    query = "INSERT tb_qc_report1_det(id_qc_report1, id_prod_order_det, qc_report1_qty) "
+                                    query = "INSERT tb_qc_report1_det(id_qc_report1, id_prod_order_det, qc_report1_det_qty) "
                                     query += "VALUES('" + id + "', '" + id_prod_order_det + "', '" + qc_report1_qty + "') "
                                     execute_non_query(query, True, "", "", "", "")
                                 Else
-                                    query = "UPDATE tb_qc_report1_det SET id_prod_order_det = '" + id_prod_order_det + "', qc_report1_qty = '" + qc_report1_qty + "' WHERE id_qc_report1_det = '" + id_qc_report1_det + "'"
+                                    query = "UPDATE tb_qc_report1_det SET id_prod_order_det = '" + id_prod_order_det + "', qc_report1_det_qty = '" + qc_report1_qty + "' WHERE id_qc_report1_det = '" + id_qc_report1_det + "'"
                                     execute_non_query(query, True, "", "", "", "")
                                     id_qc_report1_det_list.Remove(id_qc_report1_det)
                                 End If
