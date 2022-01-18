@@ -1748,10 +1748,7 @@ GROUP BY ed.id_prepaid_expense ORDER BY e.id_prepaid_expense DESC "
         GVSummaryPPN.ActiveFilterString = "[is_checked]='yes'"
 
         If GVSummaryPPN.RowCount > 0 Then
-            FormBankWithdrawalDet.id_pay_type = "2"
-            FormBankWithdrawalDet.report_mark_type = "293"
-            FormBankWithdrawalDet.id_coa_tag = GVSummaryPPN.GetRowCellValue(0, "id_coa_tag").ToString
-            FormBankWithdrawalDet.ShowDialog()
+            FormBankWithdrawalPPNTag.ShowDialog()
         Else
             warningCustom("Please select item first.")
         End If
