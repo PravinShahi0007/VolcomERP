@@ -175,7 +175,7 @@ WHERE p.id_odm_print='" & id_print & "'"
             'If dtc.Rows(0)("id_3pl").ToString = "1215" Then
 
             'End If
-            Dim q As String = "SELECT del.awbill_no,SUM(pld.`pl_sales_order_del_det_qty` * pld.design_price) AS total_harga,dt.is_send_isurance
+            Dim q As String = "SELECT del.awbill_no,SUM(pld.`pl_sales_order_del_det_qty` * pld.design_price) AS total_harga,dt.is_send_insurance
 FROM tb_odm_print_det odmp
 INNER JOIN tb_odm_print odmph ON odmph.id_odm_print=odmp.id_odm_print AND odmph.id_3pl='" & dtc.Rows(0)("id_3pl").ToString & "' -- vendor
 INNER JOIN tb_odm_sc odm ON odm.id_odm_sc=odmp.id_odm_sc AND odmp.id_odm_print='" & id_print & "'
@@ -209,7 +209,7 @@ GROUP BY del.awbill_no"
                         mail.par2 = dtc.Rows(0)("comp_name").ToString
                         mail.par3 = dtc.Rows(0)("id_3pl").ToString
 
-                        If dt.Rows(0)("is_send_isurance").ToString = "1" Then
+                        If dt.Rows(0)("is_send_insurance").ToString = "1" Then
 
                         End If
 
