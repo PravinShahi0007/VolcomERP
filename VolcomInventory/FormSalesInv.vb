@@ -564,7 +564,12 @@
         'excecute
         'old query
         'Dim query As String = "CALL view_sales_inv_per_account('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "','" + id_design_per_outlet + "', '" + id_period_type + "', '" + opt_display_param + "', '" + where_param + "')"
-        Dim query As String = "CALL view_sales_inv_per_acc_by_sal_v3('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "','" + id_design_per_outlet + "', '" + id_period_type + "', '" + opt_display_param + "', '" + where_param + "', '" + is_soh_sal_period + "', '" + include_prm_uni + "')"
+        Dim query As String = ""
+        If Not CENewReport.EditValue = True Then
+            query = "CALL view_sales_inv_per_acc_by_sal_v3('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "','" + id_design_per_outlet + "', '" + id_period_type + "', '" + opt_display_param + "', '" + where_param + "', '" + is_soh_sal_period + "', '" + include_prm_uni + "')"
+        Else
+            query = "CALL view_sales_inv_per_acc_by_sal_v4('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "','" + id_design_per_outlet + "', '" + id_period_type + "', '" + opt_display_param + "', '" + where_param + "', '" + is_soh_sal_period + "', '" + include_prm_uni + "')"
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCByAccount.DataSource = data
         FormMain.SplashScreenManager1.CloseWaitForm()
