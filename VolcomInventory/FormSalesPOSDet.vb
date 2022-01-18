@@ -1731,7 +1731,7 @@ Public Class FormSalesPOSDet
                             .id_sales_pos_oos_recon_det = "0",
                             .id_cn_det = "0",
                             .id_return_refuse_det = "0",
-                            .is_gwp = isGWPProduct(If(rp Is Nothing, "0", rp("id_design").ToString), table1("code").ToString)
+                            .is_gwp = isGWPProduct(If(rp Is Nothing, "0", rp("id_design").ToString), If(rp Is Nothing, "1", rp("is_md").ToString))
                         }
 
             GCItemList.DataSource = Nothing
@@ -3132,7 +3132,7 @@ Public Class FormSalesPOSDet
                     newRow("id_sales_pos_prob") = "0"
                     newRow("id_sales_pos_prob_price") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_sales_pos_prob").ToString
                     newRow("id_sales_pos_oos_recon_det") = "0"
-                    newRow("is_gwp") = isGWPProduct(FormSalesPOS.GVProbList.GetRowCellValue(i, "id_design").ToString, FormSalesPOS.GVProbList.GetRowCellValue(i, "code").ToString)
+                    newRow("is_gwp") = isGWPProduct(FormSalesPOS.GVProbList.GetRowCellValue(i, "id_design").ToString, FormSalesPOS.GVProbList.GetRowCellValue(i, "is_md").ToString)
                     TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
                     GCItemList.RefreshDataSource()
                     GVItemList.RefreshData()
@@ -3194,7 +3194,7 @@ Public Class FormSalesPOSDet
                     newRow("id_sales_pos_prob") = FormSalesPOS.GVProbList.GetRowCellValue(i, "id_sales_pos_prob").ToString
                     newRow("id_sales_pos_prob_price") = "0"
                     newRow("id_sales_pos_oos_recon_det") = "0"
-                    newRow("is_gwp") = isGWPProduct(FormSalesPOS.GVProbList.GetRowCellValue(i, "id_design").ToString, FormSalesPOS.GVProbList.GetRowCellValue(i, "code").ToString)
+                    newRow("is_gwp") = isGWPProduct(FormSalesPOS.GVProbList.GetRowCellValue(i, "id_design").ToString, FormSalesPOS.GVProbList.GetRowCellValue(i, "is_md").ToString)
                     TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
                     GCItemList.RefreshDataSource()
                     GVItemList.RefreshData()
@@ -3228,7 +3228,7 @@ Public Class FormSalesPOSDet
                 newRow("id_sales_pos_prob") = "0"
                 newRow("id_sales_pos_prob_price") = "0"
                 newRow("id_sales_pos_oos_recon_det") = FormSalesPOS.GVNewItem.GetRowCellValue(i, "id_sales_pos_oos_recon_det").ToString
-                newRow("is_gwp") = isGWPProduct(FormSalesPOS.GVNewItem.GetRowCellValue(i, "id_design_valid").ToString, FormSalesPOS.GVNewItem.GetRowCellValue(i, "code_valid").ToString)
+                newRow("is_gwp") = isGWPProduct(FormSalesPOS.GVNewItem.GetRowCellValue(i, "id_design_valid").ToString, FormSalesPOS.GVNewItem.GetRowCellValue(i, "is_md").ToString)
                 TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
                 GCItemList.RefreshDataSource()
                 GVItemList.RefreshData()
@@ -3340,12 +3340,15 @@ GROUP BY r.id_sales_pos_recon "
         If is_from_cancel_cn Then
             viewDetail()
             Dim query As String = "SELECT p.id_product, p.id_design,p.product_full_code AS `code`, p.product_display_name AS `name`, cd.display_name AS `size`, d.qty,
-            d.id_design_price, d.design_price, pt.design_price_type,d.id_sales_pos_det_cn, d.id_return_refuse_det
+            d.id_design_price, d.design_price, pt.design_price_type,d.id_sales_pos_det_cn, d.id_return_refuse_det, rg.is_md
             FROM tb_ol_store_return_refuse_det d
             INNER JOIN tb_m_product p ON p.id_product = d.id_product
             INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
             INNER JOIN tb_m_design_price prc ON prc.id_design_price = d.id_design_price
+             INNER JOIN tb_m_design dsg ON dsg.id_design = p.id_design
+            INNER JOIN tb_season ss ON ss.id_season = dsg.id_season
+            INNER JOIN tb_range rg ON rg.id_range = ss.id_range
             INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
             WHERE d.id_return_refuse='" + id_return_refuse + "' AND !ISNULL(d.id_sales_pos_det_cn) "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -3374,7 +3377,7 @@ GROUP BY r.id_sales_pos_recon "
                 newRow("id_sales_pos_oos_recon_det") = "0"
                 newRow("id_cn_det") = data.Rows(i)("id_sales_pos_det_cn").ToString
                 newRow("id_return_refuse_det") = data.Rows(i)("id_return_refuse_det").ToString
-                newRow("is_gwp") = isGWPProduct(data.Rows(i)("id_design").ToString, data.Rows(i)("code").ToString)
+                newRow("is_gwp") = isGWPProduct(data.Rows(i)("id_design").ToString, data.Rows(i)("is_md").ToString)
                 TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
                 GCItemList.RefreshDataSource()
                 GVItemList.RefreshData()
@@ -3418,7 +3421,7 @@ GROUP BY r.id_sales_pos_recon "
                     newRow("id_sales_pos_oos_recon_det") = "0"
                     newRow("id_cn_det") = "0"
                     newRow("id_return_refuse_det") = "0"
-                    newRow("is_gwp") = isGWPProduct(formBAP.BGVData.GetRowCellValue(i, "id_design").ToString, formBAP.BGVData.GetRowCellValue(i, "full_code").ToString)
+                    newRow("is_gwp") = isGWPProduct(formBAP.BGVData.GetRowCellValue(i, "id_design").ToString, formBAP.BGVData.GetRowCellValue(i, "is_md").ToString)
                     TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
                     GCItemList.RefreshDataSource()
                     GVItemList.RefreshData()

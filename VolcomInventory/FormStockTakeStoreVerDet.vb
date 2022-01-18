@@ -37,11 +37,14 @@
 
         'detail
         Dim query_detail As String = "
-            SELECT CONCAT(c.comp_number, ' - ', c.comp_name) AS account, p.id_design, d.id_product, p.full_code, p.name, p.size, d.price, (d.soh_qty - d.scan_qty) AS qty_awal, d.wh_qty AS qty_wh, 0 AS qty_ver, d.note AS note, '' AS id_report, '' AS report_number, '' AS report_mark_type, '' AS report_mark_type_name, d.id_price, d.soh_qty AS qty_volcom, d.scan_qty AS qty_store, d.is_edited_price, d.is_added_product, p.unit_cost, t.design_price_type AS price_type
+            SELECT CONCAT(c.comp_number, ' - ', c.comp_name) AS account, p.id_design, d.id_product, p.full_code, p.name, p.size, d.price, (d.soh_qty - d.scan_qty) AS qty_awal, d.wh_qty AS qty_wh, 0 AS qty_ver, d.note AS note, '' AS id_report, '' AS report_number, '' AS report_mark_type, '' AS report_mark_type_name, d.id_price, d.soh_qty AS qty_volcom, d.scan_qty AS qty_store, d.is_edited_price, d.is_added_product, p.unit_cost, t.design_price_type AS price_type, rg.is_md
             FROM tb_st_store_bap_det AS d
             LEFT JOIN tb_st_store_bap AS b ON d.id_st_store_bap = b.id_st_store_bap
             LEFT JOIN tb_m_comp AS c ON b.id_comp = c.id_comp
             LEFT JOIN tb_m_product_store AS p ON d.id_product = p.id_product
+            INNER JOIN tb_m_design dsg ON dsg.id_design = p.id_design
+            INNER JOIN tb_season ss ON ss.id_season = dsg.id_season
+            INNER JOIN tb_range rg ON rg.id_range = ss.id_range
             LEFT JOIN tb_m_design_price AS r ON d.id_price = r.id_design_price
             LEFT JOIN tb_lookup_design_price_type AS t ON r.id_design_price_type = t.id_design_price_type
             WHERE d.id_st_store_bap = " + id_st_store_bap + "

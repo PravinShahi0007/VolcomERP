@@ -390,6 +390,8 @@ Partial Class FormSalesPOS
         Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.BandedGridColumnis_md = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnis_mdnewitem = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1463,7 +1465,7 @@ Partial Class FormSalesPOS
         'GVProbList
         '
         Me.GVProbList.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandSelect, Me.gridBand4, Me.gridBand2, Me.gridBandPrice, Me.gridBandNoStock})
-        Me.GVProbList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnid_sales_pos_prob, Me.BandedGridColumnid_sales_pos, Me.BandedGridColumnsales_pos_number, Me.BandedGridColumnsales_pos_start_period, Me.BandedGridColumnsales_pos_end_period, Me.BandedGridColumnsales_pos_due_date, Me.BandedGridColumnid_comp, Me.BandedGridColumnid_comp_contact, Me.BandedGridColumncomp_number, Me.BandedGridColumncomp_name, Me.BandedGridColumnid_comp_group, Me.BandedGridColumncomp_group, Me.BandedGridColumncomp_group_desc, Me.BandedGridColumnis_invalid_price, Me.BandedGridColumnis_no_stock, Me.BandedGridColumnid_product, Me.BandedGridColumnproduct_full_code, Me.BandedGridColumnname, Me.BandedGridColumnsize, Me.BandedGridColumnid_design_price_retail, Me.BandedGridColumndesign_price_retail, Me.BandedGridColumndesign_price_store, Me.BandedGridColumnid_design_price_valid, Me.BandedGridColumndesign_price_valid, Me.BandedGridColumnno_stock_qty, Me.BandedGridColumnstore_qty, Me.BandedGridColumninvoice_qty, Me.BandedGridColumntotal_qty, Me.BandedGridColumnis_open_invoice, Me.BandedGridColumnis_open_invoice_view, Me.BandedGridColumnis_select, Me.BandedGridColumnqty_on_process, Me.BandedGridColumnno_stock_diff, Me.BandedGridColumnqty_proceed, Me.BandedGridColumnqty_new, Me.BandedGridColumnqty_on_process_price, Me.BandedGridColumnqty_proceed_price, Me.BandedGridColumnid_design, Me.BandedGridColumndesign_price_type_valid, Me.BandedGridColumnbtn_trans_history, Me.BandedGridColumnrmt_inv, Me.BandedGridColumnqty_on_process_cancel, Me.BandedGridColumnqty_proceed_cancel_sales_recon_price})
+        Me.GVProbList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnid_sales_pos_prob, Me.BandedGridColumnid_sales_pos, Me.BandedGridColumnsales_pos_number, Me.BandedGridColumnsales_pos_start_period, Me.BandedGridColumnsales_pos_end_period, Me.BandedGridColumnsales_pos_due_date, Me.BandedGridColumnid_comp, Me.BandedGridColumnid_comp_contact, Me.BandedGridColumncomp_number, Me.BandedGridColumncomp_name, Me.BandedGridColumnid_comp_group, Me.BandedGridColumncomp_group, Me.BandedGridColumncomp_group_desc, Me.BandedGridColumnis_invalid_price, Me.BandedGridColumnis_no_stock, Me.BandedGridColumnid_product, Me.BandedGridColumnproduct_full_code, Me.BandedGridColumnname, Me.BandedGridColumnsize, Me.BandedGridColumnid_design_price_retail, Me.BandedGridColumndesign_price_retail, Me.BandedGridColumndesign_price_store, Me.BandedGridColumnid_design_price_valid, Me.BandedGridColumndesign_price_valid, Me.BandedGridColumnno_stock_qty, Me.BandedGridColumnstore_qty, Me.BandedGridColumninvoice_qty, Me.BandedGridColumntotal_qty, Me.BandedGridColumnis_open_invoice, Me.BandedGridColumnis_open_invoice_view, Me.BandedGridColumnis_select, Me.BandedGridColumnqty_on_process, Me.BandedGridColumnno_stock_diff, Me.BandedGridColumnqty_proceed, Me.BandedGridColumnqty_new, Me.BandedGridColumnqty_on_process_price, Me.BandedGridColumnqty_proceed_price, Me.BandedGridColumnid_design, Me.BandedGridColumndesign_price_type_valid, Me.BandedGridColumnbtn_trans_history, Me.BandedGridColumnrmt_inv, Me.BandedGridColumnqty_on_process_cancel, Me.BandedGridColumnqty_proceed_cancel_sales_recon_price, Me.BandedGridColumnis_md})
         Me.GVProbList.GridControl = Me.GCProbList
         Me.GVProbList.Name = "GVProbList"
         Me.GVProbList.OptionsFind.AlwaysVisible = True
@@ -3037,7 +3039,7 @@ Partial Class FormSalesPOS
         'GVNewItem
         '
         Me.GVNewItem.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand10, Me.gridBand9, Me.gridBand11, Me.gridBand12, Me.GridBand8, Me.gridBand13})
-        Me.GVNewItem.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnis_select_new, Me.BandedGridColumnid_sales_pos_oos_recon_det, Me.BandedGridColumnid_sales_pos_oos_recon, Me.BandedGridColumnclosing_number, Me.BandedGridColumnclosing_date, Me.BandedGridColumnid_product_valid, Me.BandedGridColumncode_valid, Me.BandedGridColumnname_valid, Me.BandedGridColumnsize_valid, Me.BandedGridColumnqty_valid, Me.BandedGridColumnid_design_price_valid_new, Me.BandedGridColumndesign_price_valid_new, Me.BandedGridColumnid_sales_pos_new, Me.BandedGridColumnsales_pos_number_new, Me.BandedGridColumnsales_pos_start_periodnew, Me.BandedGridColumnsales_pos_end_periodnew, Me.BandedGridColumncomp_numbernew, Me.BandedGridColumncomp_namenew, Me.BandedGridColumnid_comp_groupnew, Me.BandedGridColumncomp_groupnew, Me.BandedGridColumncomp_group_descnew, Me.BandedGridColumnid_productnew, Me.BandedGridColumncode, Me.BandedGridColumnnamenew, Me.BandedGridColumnsizenew, Me.BandedGridColumnno_stock_qtynew, Me.BandedGridColumnqty_on_processnew, Me.BandedGridColumnqty_proceednew, Me.BandedGridColumnid_sales_pos_proc, Me.BandedGridColumnsales_pos_number_proc})
+        Me.GVNewItem.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnis_select_new, Me.BandedGridColumnid_sales_pos_oos_recon_det, Me.BandedGridColumnid_sales_pos_oos_recon, Me.BandedGridColumnclosing_number, Me.BandedGridColumnclosing_date, Me.BandedGridColumnid_product_valid, Me.BandedGridColumncode_valid, Me.BandedGridColumnname_valid, Me.BandedGridColumnsize_valid, Me.BandedGridColumnqty_valid, Me.BandedGridColumnid_design_price_valid_new, Me.BandedGridColumndesign_price_valid_new, Me.BandedGridColumnid_sales_pos_new, Me.BandedGridColumnsales_pos_number_new, Me.BandedGridColumnsales_pos_start_periodnew, Me.BandedGridColumnsales_pos_end_periodnew, Me.BandedGridColumncomp_numbernew, Me.BandedGridColumncomp_namenew, Me.BandedGridColumnid_comp_groupnew, Me.BandedGridColumncomp_groupnew, Me.BandedGridColumncomp_group_descnew, Me.BandedGridColumnid_productnew, Me.BandedGridColumncode, Me.BandedGridColumnnamenew, Me.BandedGridColumnsizenew, Me.BandedGridColumnno_stock_qtynew, Me.BandedGridColumnqty_on_processnew, Me.BandedGridColumnqty_proceednew, Me.BandedGridColumnid_sales_pos_proc, Me.BandedGridColumnsales_pos_number_proc, Me.BandedGridColumnis_mdnewitem})
         Me.GVNewItem.GridControl = Me.GCNewItem
         Me.GVNewItem.Name = "GVNewItem"
         Me.GVNewItem.OptionsFind.AlwaysVisible = True
@@ -3933,6 +3935,20 @@ Partial Class FormSalesPOS
         Me.LabelControl10.TabIndex = 8892
         Me.LabelControl10.Text = "From"
         '
+        'BandedGridColumnis_md
+        '
+        Me.BandedGridColumnis_md.Caption = "is_md"
+        Me.BandedGridColumnis_md.FieldName = "is_md"
+        Me.BandedGridColumnis_md.Name = "BandedGridColumnis_md"
+        Me.BandedGridColumnis_md.OptionsColumn.AllowEdit = False
+        '
+        'BandedGridColumnis_mdnewitem
+        '
+        Me.BandedGridColumnis_mdnewitem.Caption = "is_md"
+        Me.BandedGridColumnis_mdnewitem.FieldName = "is_md"
+        Me.BandedGridColumnis_mdnewitem.Name = "BandedGridColumnis_mdnewitem"
+        Me.BandedGridColumnis_mdnewitem.OptionsColumn.AllowEdit = False
+        '
         'FormSalesPOS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4457,4 +4473,6 @@ Partial Class FormSalesPOS
     Friend WithEvents BandedGridColumnqty_proceed_cancel_sales_recon_price As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnqty_on_process_cancel As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandNoStock As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnis_md As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnis_mdnewitem As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
