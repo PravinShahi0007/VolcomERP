@@ -468,9 +468,9 @@ WHERE qr.id_qc_report1='" + id + "' "
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
         GVRetDetail.BestFitColumns()
-        ReportProductionRetOut.dt = GCRetDetail.DataSource
-        ReportProductionRetOut.id_prod_order_ret_out = id
-        Dim Report As New ReportProductionRetOut()
+        ReportQCReport1.dt = GCRetDetail.DataSource
+        ReportQCReport1.id_report = id
+        Dim Report As New ReportQCReport1()
 
         ' '... 
         ' ' creating and saving the view's layout to a new memory stream 
@@ -485,6 +485,8 @@ WHERE qr.id_qc_report1='" + id + "' "
         ReportStyleGridview(Report.GVRetDetail)
 
         'Parse val
+        Report.LRecNo.Text = TERecNumber.Text
+        Report.LQCType.Text = SLEQCReport.Text
         Report.LabelPO.Text = TxtOrderNumber.Text
         Report.LabelNo.Text = TENumber.Text
         Report.LabelDate.Text = DECreated.Text
