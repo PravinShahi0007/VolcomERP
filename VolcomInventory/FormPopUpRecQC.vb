@@ -31,7 +31,7 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
                     delivery_order_date,a.arrive_date,a.delivery_order_number,b.prod_order_number, rec_qty.sum_qty,wo.price_pc,dsg.id_design,
                     prod_order_rec_date, f.comp_name AS comp_from,f.comp_number AS comp_from_code,d.comp_name AS comp_to,dsg.design_code,CONCAT(LEFT(dsg.design_display_name,3),' ',dsg.design_name) AS design_display_name, RIGHT(dsg.design_display_name,3) AS color 
                     FROM tb_prod_order_rec a  
-                    INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order 
+                    INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order AND a.id_report_status=6
                     LEFT JOIN 
                     (
                         SELECT wo.*,wod.prod_order_wo_det_price AS price_pc FROM tb_prod_order_wo wo 

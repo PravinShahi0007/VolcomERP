@@ -484,7 +484,7 @@
         p.no_stock_qty, 0 AS `qty_on_process`, 0 AS `qty_proceed`,
         (p.invoice_qty+p.no_stock_qty) AS `total_qty`,
         'No' AS `is_select`, 0 AS `qty_new`,
-        IF(p.invoice_qty=IFNULL(proc_prc.qty_proceed,0)+IFNULL(proc_cs.qty_proceed,0),'Close','Open') AS `is_open_invoice_view`
+        IF(p.invoice_qty=IFNULL(proc_prc.qty_proceed,0)+IFNULL(proc_cs.qty_proceed,0),'Close','Open') AS `is_open_invoice_view`, rg.is_md
         From tb_sales_pos_prob p
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = p.id_sales_pos
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
@@ -493,6 +493,9 @@
         INNER JOIN tb_m_product prod ON prod.id_product = p.id_product
         INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+        INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
+        INNER JOIN tb_season ss ON ss.id_season = dsg.id_season
+        INNER JOIN tb_range rg ON rg.id_range = ss.id_range
         LEFT JOIN tb_m_design_price dp ON dp.id_design_price = p.id_design_price_valid
         LEFT JOIN tb_lookup_design_price_type dpt ON dpt.id_design_price_type = dp.id_design_price_type
         LEFT JOIN (
@@ -1078,7 +1081,7 @@
         nd.id_design_price_valid, nd.design_price_valid, pt.design_price_type AS `design_price_type_valid`,
         nd.id_sales_pos, sp.sales_pos_number, sp.sales_pos_start_period, sp.sales_pos_end_period, c.comp_number, c.comp_name, cg.id_comp_group, cg.comp_group, cg.description AS `comp_group_desc`,
         nd.id_product, oos_prod.product_full_code AS `code`,oos_prod.product_name AS `name`, oos_cd.code_detail_name AS `size`, nd.qty AS `no_stock_qty`, IFNULL(proc.qty_on_process,0) AS `qty_on_process`,  IFNULL(proc.qty_proceed,0) AS `qty_proceed`,
-        proc.id_sales_pos AS `id_sales_pos_proc`, proc.sales_pos_number AS `sales_pos_number_proc`
+        proc.id_sales_pos AS `id_sales_pos_proc`, proc.sales_pos_number AS `sales_pos_number_proc`, rg.is_md
         FROM tb_sales_pos_oos_recon_det nd
         INNER JOIN tb_sales_pos_oos_recon n ON n.id_sales_pos_oos_recon = nd.id_sales_pos_oos_recon
         INNER JOIN tb_m_product prod ON prod.id_product = nd.id_product_valid
@@ -1089,6 +1092,9 @@
         INNER JOIN tb_m_product oos_prod ON oos_prod.id_product = nd.id_product
         INNER JOIN tb_m_product_code oos_prod_code ON oos_prod_code.id_product = oos_prod.id_product
         INNER JOIN tb_m_code_detail oos_cd ON oos_cd.id_code_detail = oos_prod_code.id_code_detail
+        INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
+        INNER JOIN tb_season ss ON ss.id_season = dsg.id_season
+        INNER JOIN tb_range rg ON rg.id_range = ss.id_range
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = nd.id_sales_pos
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
         INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`

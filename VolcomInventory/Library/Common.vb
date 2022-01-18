@@ -7741,8 +7741,9 @@ INNER JOIN tb_sales_return_qc awb ON awb.`id_sales_return_qc`='" & id_report & "
     End Function
 
     Function isGWPProduct(ByVal id_design_par As String, ByVal code_par As String) As String
+        ' is_md
         Dim code_gwp As String = Microsoft.VisualBasic.Left(code_par, 4)
-        If code_gwp = "8888" Then
+        If code_gwp = "2" Then
             Return "1"
         Else
             Return "2"

@@ -20,6 +20,7 @@ Partial Class FormSalesCreditNoteSingle
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.PanelControlChoose = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.CheckEditSelectAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnChoose = New DevExpress.XtraEditors.SimpleButton()
@@ -48,16 +49,16 @@ Partial Class FormSalesCreditNoteSingle
         Me.GridColumnIsSelect = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CheckItemList = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.GridColumnis_md = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlChoose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlChoose.SuspendLayout()
+        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditSelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SPQtyCreditNote, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlChoose
@@ -73,6 +74,14 @@ Partial Class FormSalesCreditNoteSingle
         Me.PanelControlChoose.Name = "PanelControlChoose"
         Me.PanelControlChoose.Size = New System.Drawing.Size(884, 38)
         Me.PanelControlChoose.TabIndex = 1
+        '
+        'CESelAll
+        '
+        Me.CESelAll.Location = New System.Drawing.Point(12, 9)
+        Me.CESelAll.Name = "CESelAll"
+        Me.CESelAll.Properties.Caption = "Select All"
+        Me.CESelAll.Size = New System.Drawing.Size(75, 19)
+        Me.CESelAll.TabIndex = 4
         '
         'CheckEditSelectAll
         '
@@ -114,7 +123,7 @@ Partial Class FormSalesCreditNoteSingle
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn1, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumnIsSelect})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn1, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumnIsSelect, Me.GridColumnis_md})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -380,13 +389,12 @@ Partial Class FormSalesCreditNoteSingle
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
-        'CESelAll
+        'GridColumnis_md
         '
-        Me.CESelAll.Location = New System.Drawing.Point(12, 9)
-        Me.CESelAll.Name = "CESelAll"
-        Me.CESelAll.Properties.Caption = "Select All"
-        Me.CESelAll.Size = New System.Drawing.Size(75, 19)
-        Me.CESelAll.TabIndex = 4
+        Me.GridColumnis_md.Caption = "is_md"
+        Me.GridColumnis_md.FieldName = "is_md"
+        Me.GridColumnis_md.Name = "GridColumnis_md"
+        Me.GridColumnis_md.OptionsColumn.AllowEdit = False
         '
         'FormSalesCreditNoteSingle
         '
@@ -403,13 +411,13 @@ Partial Class FormSalesCreditNoteSingle
         Me.Text = "Item List"
         CType(Me.PanelControlChoose, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlChoose.ResumeLayout(False)
+        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditSelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SPQtyCreditNote, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -443,4 +451,5 @@ Partial Class FormSalesCreditNoteSingle
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SPQtyCreditNote As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents CESelAll As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnis_md As DevExpress.XtraGrid.Columns.GridColumn
 End Class
