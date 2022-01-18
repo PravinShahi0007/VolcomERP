@@ -465,6 +465,39 @@ WHERE qr.id_qc_report1='" + id + "' "
         End If
     End Sub
 
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        GVRetDetail.BestFitColumns()
+        ReportProductionRetOut.dt = GCRetDetail.DataSource
+        ReportProductionRetOut.id_prod_order_ret_out = id
+        Dim Report As New ReportProductionRetOut()
+
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVRetDetail.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVRetDetail.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVRetDetail)
+
+        'Parse val
+        Report.LabelPO.Text = TxtOrderNumber.Text
+        Report.LabelNo.Text = TENumber.Text
+        Report.LabelDate.Text = DECreated.Text
+        Report.LabelDesign.Text = TxtDesign.Text.ToString
+        Report.LabelSeason.Text = TxtSeason.Text.ToString
+        Report.LabelNote.Text = MENote.Text
+        '
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub FormQCReport1Det_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
