@@ -206,14 +206,17 @@ GROUP BY del.awbill_no"
                         Dim mail As ClassSendEmail = New ClassSendEmail()
                         mail.id_report = id_print
                         mail.par1 = dtc.Rows(0)("number").ToString
-                        mail.par2 = dtc.Rows(0)("comp_name").ToString
+
                         mail.par3 = dtc.Rows(0)("id_3pl").ToString
 
-                        If dt.Rows(0)("is_send_insurance").ToString = "1" Then
-
+                        If Not dt.Rows(0)("is_send_insurance").ToString = "1" Then
+                            mail.par2 = "Team"
+                            mail.report_mark_type = "386"
+                        Else
+                            mail.par2 = dtc.Rows(0)("comp_name").ToString
+                            mail.report_mark_type = dtc.Rows(0)("report_mark_type").ToString
                         End If
 
-                        mail.report_mark_type = dtc.Rows(0)("report_mark_type").ToString
                         mail.is_odm_asuransi = True
                         mail.send_email()
                         'log
