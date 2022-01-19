@@ -387,7 +387,7 @@ Partial Class FormScanReturn
         Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn9.FieldName = "qty_diff"
         Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.UnboundExpression = "[qty_return_note] - [qty_bap] - [qty_scan]"
+        Me.GridColumn9.UnboundExpression = "[qty_scan] - [qty_return_note] - [qty_bap]"
         Me.GridColumn9.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 12
