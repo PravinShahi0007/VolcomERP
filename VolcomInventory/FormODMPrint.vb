@@ -175,7 +175,7 @@ WHERE p.id_odm_print='" & id_print & "'"
             'If dtc.Rows(0)("id_3pl").ToString = "1215" Then
 
             'End If
-            Dim q As String = "SELECT del.awbill_no,SUM(pld.`pl_sales_order_del_det_qty` * pld.design_price) AS total_harga
+            Dim q As String = "SELECT del.awbill_no,SUM(pld.`pl_sales_order_del_det_qty` * pld.design_price) AS total_harga,dt.is_send_insurance
 FROM tb_odm_print_det odmp
 INNER JOIN tb_odm_print odmph ON odmph.id_odm_print=odmp.id_odm_print AND odmph.id_3pl='" & dtc.Rows(0)("id_3pl").ToString & "' -- vendor
 INNER JOIN tb_odm_sc odm ON odm.id_odm_sc=odmp.id_odm_sc AND odmp.id_odm_print='" & id_print & "'
@@ -183,6 +183,7 @@ INNER JOIN tb_odm_sc_det odmd ON odmd.id_odm_sc=odm.id_odm_sc
 INNER JOIN `tb_del_manifest_det` deld ON deld.id_del_manifest=odmd.id_del_manifest
 INNER JOIN `tb_del_manifest` del ON deld.id_del_manifest=del.id_del_manifest
 INNER JOIN tb_wh_awbill_det awbd ON awbd.id_wh_awb_det=deld.id_wh_awb_det
+INNER JOIN tb_lookup_del_type dt ON dt.id_del_type=del.id_del_type
 INNER JOIN `tb_pl_sales_order_del_det` pld ON pld.`id_pl_sales_order_del`=awbd.id_pl_sales_order_del
 INNER JOIN tb_pl_sales_order_del pl ON pl.id_pl_sales_order_del=pld.`id_pl_sales_order_del`
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=pl.id_store_contact_to
@@ -205,9 +206,17 @@ GROUP BY del.awbill_no"
                         Dim mail As ClassSendEmail = New ClassSendEmail()
                         mail.id_report = id_print
                         mail.par1 = dtc.Rows(0)("number").ToString
-                        mail.par2 = dtc.Rows(0)("comp_name").ToString
+
                         mail.par3 = dtc.Rows(0)("id_3pl").ToString
-                        mail.report_mark_type = dtc.Rows(0)("report_mark_type").ToString
+
+                        If Not dt.Rows(0)("is_send_insurance").ToString = "1" Then
+                            mail.par2 = "Team"
+                            mail.report_mark_type = "386"
+                        Else
+                            mail.par2 = dtc.Rows(0)("comp_name").ToString
+                            mail.report_mark_type = dtc.Rows(0)("report_mark_type").ToString
+                        End If
+
                         mail.is_odm_asuransi = True
                         mail.send_email()
                         'log

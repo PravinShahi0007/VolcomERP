@@ -38,7 +38,8 @@
                         .note = If(rs Is Nothing, "Product not found", If(table1("qty") > If(rs Is Nothing, 0, rs("qty_all_product")), "+" + (table1("qty") - If(rs Is Nothing, 0, rs("qty_all_product"))).ToString, "OK")),
                         .note_price = If(If(rp Is Nothing, 0, rp("design_price")) = table1("price"), "OK", "Not Valid"),
                         .stt = If(If(If(rp Is Nothing, 0, rp("design_price")) = table1("price"), "OK", "Not Valid") = "OK", If(table1("qty") = If(table1("qty") <= If(rs Is Nothing, 0, rs("qty_all_product")), table1("qty"), If(rs Is Nothing, 0, rs("qty_all_product"))), "OK", "No Stock"), If((table1("qty") - If(table1("qty") <= If(rs Is Nothing, 0, rs("qty_all_product")), table1("qty"), If(rs Is Nothing, 0, rs("qty_all_product")))) <= 0, "Price not valid", "Price not valid & no stock")),
-                        .id_sales_pos_det = "0"
+                        .id_sales_pos_det = "0",
+                        .is_md = If(rp Is Nothing, "1", rp("is_md").ToString)
                     }
         GCData.DataSource = Nothing
         GCData.DataSource = query.ToList()
@@ -139,7 +140,7 @@
         newRow("id_sales_pos_prob") = "0"
         newRow("id_sales_pos_prob_price") = "0"
         newRow("id_sales_pos_oos_recon_det") = "0"
-        newRow("is_gwp") = isGWPProduct(GVData.GetRowCellValue(rh, "id_design").ToString, GVData.GetRowCellValue(rh, "code").ToString)
+        newRow("is_gwp") = isGWPProduct(GVData.GetRowCellValue(rh, "id_design").ToString, GVData.GetRowCellValue(rh, "is_md").ToString)
         TryCast(FormSalesPOSDet.GCItemList.DataSource, DataTable).Rows.Add(newRow)
         FormSalesPOSDet.GCItemList.RefreshDataSource()
         FormSalesPOSDet.GVItemList.RefreshData()

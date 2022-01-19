@@ -31,7 +31,7 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
                     delivery_order_date,a.arrive_date,a.delivery_order_number,b.prod_order_number, rec_qty.sum_qty,wo.price_pc,dsg.id_design,
                     prod_order_rec_date, f.comp_name AS comp_from,f.comp_number AS comp_from_code,d.comp_name AS comp_to,dsg.design_code,CONCAT(LEFT(dsg.design_display_name,3),' ',dsg.design_name) AS design_display_name, RIGHT(dsg.design_display_name,3) AS color 
                     FROM tb_prod_order_rec a  
-                    INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order 
+                    INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order AND a.id_report_status=6
                     LEFT JOIN 
                     (
                         SELECT wo.*,wod.prod_order_wo_det_price AS price_pc FROM tb_prod_order_wo wo 
@@ -273,8 +273,36 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
                     'pre_viewImages("2", FormProductionFinalClearDet.PEView, FormProductionFinalClearDet.id_design, False)
 
                     'Close()
+
                 Else
                     warningCustom("No data selected.")
+                End If
+            ElseIf id_pop_up = "6" Then 'qc report 1
+                Dim query As String = String.Format("SELECT id_report_status,id_delivery,prod_order_number,id_po_type,DATE_FORMAT(prod_order_date,'%Y-%m-%d') as prod_order_datex,prod_order_lead_time,prod_order_note FROM tb_prod_order WHERE id_prod_order = '{0}'", GVProdRec.GetFocusedRowCellValue("id_prod_order").ToString)
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                Dim date_created As String = ""
+
+                If data.Rows.Count > 0 Then
+                    FormQCReport1Det.TxtOrderNumber.Text = data.Rows(0)("prod_order_number").ToString
+                    FormQCReport1Det.GroupControlRet.Enabled = True
+                    FormQCReport1Det.GroupControlListBarcode.Enabled = True
+                    FormQCReport1Det.id_qc_report1_det_list.Clear()
+                    FormQCReport1Det.BtnInfoSrs.Enabled = True
+
+                    'updated 21 Desember 2015
+                    FormQCReport1Det.id_design = GVProdRec.GetFocusedRowCellValue("id_design").ToString
+                    FormQCReport1Det.id_prod_order_rec = GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString
+                    FormQCReport1Det.TERecNumber.Text = GVProdRec.GetFocusedRowCellValue("prod_order_rec_number").ToString
+                    FormQCReport1Det.id_prod_order = GVProdRec.GetFocusedRowCellValue("id_prod_order").ToString
+                    FormQCReport1Det.TxtDesign.Text = GVProdRec.GetFocusedRowCellValue("design_display_name").ToString
+                    FormQCReport1Det.TxtSeason.Text = GVProdRec.GetFocusedRowCellValue("season").ToString
+
+                    'FormProductionRetOutSingle
+                    FormQCReport1Det.viewDetailReturn()
+                    FormQCReport1Det.view_barcode_list()
+                    Close()
+                Else
+                    stopCustom("Data is empty.")
                 End If
             End If
 

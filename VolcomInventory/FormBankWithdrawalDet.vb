@@ -1361,12 +1361,24 @@ GROUP BY dn.`id_debit_note`"
                 SLEPayType.EditValue = id_pay_type
 
                 For i As Integer = 0 To FormBankWithdrawal.GVSummaryPPN.RowCount - 1
+                    Dim id_acc As String = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "id_acc").ToString
+                    Dim acc_name As String = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "acc_name").ToString
+                    Dim acc_description As String = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "acc_description").ToString
+
+                    If id_acc = "3610" And id_coa_tag <> FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "id_coa_tag").ToString Then
+                        Dim new_coa As DataTable = execute_query("SELECT id_acc, acc_name, acc_description FROM tb_a_acc WHERE id_acc = 3674", -1, True, "", "", "", "")
+
+                        id_acc = new_coa.Rows(0)("id_acc").ToString
+                        acc_name = new_coa.Rows(0)("acc_name").ToString
+                        acc_description = new_coa.Rows(0)("acc_description").ToString
+                    End If
+
                     Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                     newRow("id_report") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "id_report").ToString
                     newRow("report_mark_type") = "293"
-                    newRow("id_acc") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "id_acc").ToString
-                    newRow("acc_name") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "acc_name").ToString
-                    newRow("acc_description") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "acc_description").ToString
+                    newRow("id_acc") = id_acc
+                    newRow("acc_name") = acc_name
+                    newRow("acc_description") = acc_description
                     newRow("vendor") = "000"
                     newRow("id_dc") = If(FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "dc").ToString = "D", "1", "2")
                     newRow("dc_code") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "dc").ToString

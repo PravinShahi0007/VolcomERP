@@ -774,6 +774,9 @@
         ElseIf report_mark_type = "384" Then
             'Perhitungan Deviden
             query = String.Format("SELECT id_report_status, profit_year as report_number FROM tb_deviden WHERE id_deviden = '{0}'", id_report)
+        ElseIf report_mark_type = "385" Then
+            'QC Report 1
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_qc_report1 WHERE id_qc_report1 = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -2699,6 +2702,7 @@ INNER JOIN
                         Dim s As New ClassShopifyApi()
                         dtweb = s.get_product()
                     Catch ex As Exception
+                        FormMain.SplashScreenManager1.CloseWaitForm()
                         stopCustom("Failed get shopify product : " + ex.ToString)
                         Exit Sub
                     End Try
@@ -6669,8 +6673,8 @@ HAVING amo>0"
                 Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
                 '
-                Dim q_balik = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor)
-SELECT id_acc_trans, id_acc, credit, debit, CONCAT('Cancel Form - ',acc_trans_det_note) AS acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor
+                Dim q_balik = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor,id_coa_tag)
+SELECT '" & id_acc_trans & "' AS id_acc_trans, id_acc, credit, debit, CONCAT('Cancel Form - ',acc_trans_det_note) AS acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor, id_coa_tag
 FROM tb_a_acc_trans_det
 WHERE id_acc_trans='" & old_id_acc_trans & "'"
                 execute_non_query(q_balik, True, "", "", "", "")
@@ -11487,6 +11491,19 @@ WHERE id_item_pps='" & id_report & "'"
                 '
 
                 FormMain.SplashScreenManager1.CloseWaitForm()
+            ElseIf report_mark_type = "385" Then
+                'qc report 1
+                If id_status_reportx = "3" Then
+                    id_status_reportx = "6"
+                End If
+
+                If id_status_reportx = "6" Then
+                    'complete
+
+                End If
+
+                query = String.Format("UPDATE tb_qc_report1 SET id_report_status = '{0}' WHERE id_qc_report1 = '{1}'", id_status_reportx, id_report)
+                execute_non_query(query, True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_deviden SET id_report_status = '{0}' WHERE id_deviden = '{1}'", id_status_reportx, id_report)
