@@ -43,6 +43,8 @@
             query = "CALL view_limit_prod_rec('" + id_prod_order_rec + "','" + id_prod_order + "', '0', '" + id_ret_out + "', '" + id_ret_in + "', '" + id_pl + "','0', '" + id_pd_alloc_par + "')"
         ElseIf id_pop_up = "7" Then
             query = "CALL view_limit_qc_report1('" + id_prod_order_rec + "','" + id_prod_order + "','0', '" + id + "')"
+        ElseIf id_pop_up = "8" Then
+            query = "CALL view_limit_ret_out_from_rec('" + id_prod_order_rec + "','" + id_prod_order + "','0', '" + id_ret_out + "')"
         End If
 
         'Console.WriteLine(query)

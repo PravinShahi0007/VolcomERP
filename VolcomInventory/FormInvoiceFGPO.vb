@@ -250,10 +250,11 @@ WHERE 1=1  " & query_where & " ORDER BY pn.created_date DESC"
                 GVInvoiceLain.BestFitColumns()
             ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 5 Then
                 'Import payment
-                Dim query As String = "SELECT 'no' AS is_check,c.comp_name,f.number AS pre_cal_fgpo_number,f.id_pre_cal_fgpo,GROUP_CONCAT(CONCAT(po.prod_order_number,' - ',cd.class,' ',dsg.design_name,' ',cd.color) SEPARATOR '\n') AS list_fgpo
+                Dim query As String = "SELECT 'no' AS is_check,v.comp_name AS vendor_name,c.comp_name,f.number AS pre_cal_fgpo_number,f.id_pre_cal_fgpo,GROUP_CONCAT(CONCAT(po.prod_order_number,' - ',cd.class,' ',dsg.design_name,' ',cd.color) SEPARATOR '\n') AS list_fgpo
 ,CONCAT((SELECT iwo_code_head FROM tb_opt_prod LIMIT 1),LPAD(f.id_pre_cal_fgpo,(SELECT iwo_code_digit FROM tb_opt_prod LIMIT 1),'0')) as wo_number,c.id_comp
 FROM tb_pre_cal_fgpo_list fl
 INNER JOIN tb_pre_cal_fgpo f ON f.id_pre_cal_fgpo=fl.id_pre_cal_fgpo
+INNER JOIN tb_m_comp v ON v.id_comp=f.id_comp
 INNER JOIN tb_m_comp c ON c.id_comp=f.choosen_id_comp
 INNER JOIN tb_prod_order po ON po.id_prod_order=fl.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
