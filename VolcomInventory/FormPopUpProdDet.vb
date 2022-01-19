@@ -9,6 +9,7 @@
     Public id_ret_in As String = "0"
     Public is_info_form As Boolean = False
     Public id_pd_alloc_par As String = "0"
+    Public id As String = "0"
     Public action As String
     Private Sub FormPopUpPurchaseMatDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim query As String = "SELECT * FROM tb_prod_order WHERE id_prod_order = '" + id_prod_order + "' "
@@ -40,7 +41,10 @@
         ElseIf id_pop_up = "6" Then
             'query = "CALL view_stock_prod_rec('" + id_prod_order + "', '0', '" + id_ret_out + "', '" + id_ret_in + "', '" + id_pl + "','0', '" + id_pd_alloc_par + "')"
             query = "CALL view_limit_prod_rec('" + id_prod_order_rec + "','" + id_prod_order + "', '0', '" + id_ret_out + "', '" + id_ret_in + "', '" + id_pl + "','0', '" + id_pd_alloc_par + "')"
+        ElseIf id_pop_up = "7" Then
+            query = "CALL view_limit_qc_report1('" + id_prod_order_rec + "','" + id_prod_order + "','0', '" + id + "')"
         End If
+
         'Console.WriteLine(query)
         If id_pop_up = "3" Or id_pop_up = "6" Then
             GCQtyQCReport.Visible = True

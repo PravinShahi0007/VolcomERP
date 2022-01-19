@@ -332,7 +332,7 @@ WHERE qr.id_qc_report1='" + id + "' "
         'Dim query_check As String = "CALL view_stock_prod_rec('" + id_prod_order + "', '" + id_prod_order_det_cek + "', '" + id_prod_order_ret_out + "', '0','0', '0', '0') "
         'Dim data As DataTable = execute_query(query_check, -1, True, "", "", "", "")
 
-        Dim q_check As String = "CALL view_limit_qc_report1('" + id_prod_order_rec + "', '" + id_prod_order_det_cek + "', '" + id + "')"
+        Dim q_check As String = "CALL view_limit_qc_report1('" + id_prod_order_rec + "','" + id_prod_order + "', '" + id_prod_order_det_cek + "', '" + id + "')"
         Dim data As DataTable = execute_query(q_check, -1, True, "", "", "", "")
         allow_sum = Decimal.Parse(data.Rows(0)("qty"))
         If qty_pl > allow_sum Then
@@ -359,7 +359,7 @@ WHERE qr.id_qc_report1='" + id + "' "
             errorCustom("Qty can't blank or zero value !")
         ElseIf Not cond_check Then
             errorCustom("Product : '" + sample_check + "' cannot exceed " + allow_sum.ToString("F2") + ", please check in Info Qty ! ")
-            'infoQty()
+            infoQty()
         Else
             Dim query As String
             Dim prod_order_ret_out_note As String = addSlashes(MENote.Text)
@@ -498,6 +498,21 @@ WHERE qr.id_qc_report1='" + id + "' "
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnInfoSrs_Click(sender As Object, e As EventArgs) Handles BtnInfoSrs.Click
+        infoQty()
+    End Sub
+
+    Sub infoQty()
+        FormPopUpProdDet.id_pop_up = "7"
+        FormPopUpProdDet.action = "ins"
+        FormPopUpProdDet.id_prod_order_rec = id_prod_order_rec
+        FormPopUpProdDet.id_prod_order = id_prod_order
+        FormPopUpProdDet.id = id
+        FormPopUpProdDet.BtnSave.Visible = False
+        FormPopUpProdDet.is_info_form = True
+        FormPopUpProdDet.ShowDialog()
     End Sub
 
     Private Sub FormQCReport1Det_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
