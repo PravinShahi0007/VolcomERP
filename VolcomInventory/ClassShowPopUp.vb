@@ -542,6 +542,9 @@
         ElseIf report_mark_type = "384" Then
             'propose item list
             FormItemPps.Close()
+        ElseIf report_mark_type = "385" Then
+            'qc report 1
+            FormQCReport1.Close()
         End If
     End Sub
     Sub show()
@@ -1736,6 +1739,11 @@ GROUP BY rec.`id_prod_order`"
             FormDevidenDet.is_view = "1"
             FormDevidenDet.id = id_report
             FormDevidenDet.ShowDialog()
+        ElseIf report_mark_type = "385" Then
+            'deviden
+            FormQCReport1Det.is_view = "1"
+            FormQCReport1Det.id = id_report
+            FormQCReport1Det.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -3094,6 +3102,12 @@ GROUP BY rec.`id_prod_order`"
             table_name = "tb_deviden"
             field_id = "id_deviden"
             field_number = "profit_year"
+            field_date = "created_date"
+        ElseIf report_mark_type = "385" Then
+            'qc report 1
+            table_name = "tb_qc_report1"
+            field_id = "id_qc_report1"
+            field_number = "number"
             field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
