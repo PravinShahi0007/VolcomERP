@@ -2699,6 +2699,7 @@ INNER JOIN
                         Dim s As New ClassShopifyApi()
                         dtweb = s.get_product()
                     Catch ex As Exception
+                        FormMain.SplashScreenManager1.CloseWaitForm()
                         stopCustom("Failed get shopify product : " + ex.ToString)
                         Exit Sub
                     End Try
