@@ -3187,6 +3187,14 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 id_status_reportx = "6"
             End If
 
+            'cancel form
+            Dim id_report_now As String = execute_query("SELECT id_report_status FROM tb_sales_pos WHERE id_sales_pos='" & id_report & "'", 0, True, "", "", "", "")
+            If id_status_reportx = "5" And id_report_now = "6" Then
+                'balik jurnal & stok
+                Dim csi As New ClassSalesInv()
+                csi.cancelFormInvoice(id_report, report_mark_type)
+            End If
+
             If id_status_reportx = "5" Then
                 Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
 
