@@ -126,14 +126,13 @@ Partial Class FormQCReport1
         '
         Me.GVQCReport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn13, Me.GridColumn11, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn12})
         Me.GVQCReport.GridControl = Me.GCQCReport
-        Me.GVQCReport.GroupCount = 1
         Me.GVQCReport.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn6, "{0:N0}")})
         Me.GVQCReport.Name = "GVQCReport"
         Me.GVQCReport.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVQCReport.OptionsBehavior.Editable = False
         Me.GVQCReport.OptionsView.ShowFooter = True
         Me.GVQCReport.OptionsView.ShowGroupPanel = False
-        Me.GVQCReport.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn9, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn12, DevExpress.Data.ColumnSortOrder.Descending)})
+        Me.GVQCReport.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn12, DevExpress.Data.ColumnSortOrder.Descending)})
         '
         'GridColumn1
         '
@@ -150,7 +149,7 @@ Partial Class FormQCReport1
         Me.GridColumn2.FieldName = "prod_order_number"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.VisibleIndex = 2
         Me.GridColumn2.Width = 106
         '
         'GridColumn13
@@ -159,15 +158,15 @@ Partial Class FormQCReport1
         Me.GridColumn13.FieldName = "prod_order_rec_number"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 2
+        Me.GridColumn13.VisibleIndex = 3
         '
         'GridColumn11
         '
         Me.GridColumn11.Caption = "Style"
-        Me.GridColumn11.FieldName = "display name"
+        Me.GridColumn11.FieldName = "design_display name"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 3
+        Me.GridColumn11.VisibleIndex = 4
         '
         'GridColumn5
         '
@@ -175,7 +174,7 @@ Partial Class FormQCReport1
         Me.GridColumn5.FieldName = "pl_category"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.VisibleIndex = 5
         Me.GridColumn5.Width = 112
         '
         'GridColumn6
@@ -187,7 +186,7 @@ Partial Class FormQCReport1
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N0}")})
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumn6.VisibleIndex = 6
         Me.GridColumn6.Width = 112
         '
         'GridColumn7
@@ -198,7 +197,7 @@ Partial Class FormQCReport1
         Me.GridColumn7.FieldName = "created_date"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 6
+        Me.GridColumn7.VisibleIndex = 7
         Me.GridColumn7.Width = 112
         '
         'GridColumn8
@@ -207,7 +206,7 @@ Partial Class FormQCReport1
         Me.GridColumn8.FieldName = "report_status"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 7
+        Me.GridColumn8.VisibleIndex = 8
         Me.GridColumn8.Width = 119
         '
         'GridColumn9
@@ -217,7 +216,7 @@ Partial Class FormQCReport1
         Me.GridColumn9.FieldNameSortGroup = "id_season"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 2
+        Me.GridColumn9.VisibleIndex = 1
         Me.GridColumn9.Width = 106
         '
         'GridColumn12

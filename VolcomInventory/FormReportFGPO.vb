@@ -56,6 +56,11 @@ IFNULL(qr.qty_normal,0) AS qty_normal,
 IFNULL(qr.qty_minor,0) AS qty_minor, 
 IFNULL(qr.qty_major,0) AS qty_major, 
 IFNULL(qr.qty_afkir,0) AS qty_afkir,
+IFNULL(qr1.qty_qr,0) AS qc_report_1, 
+IFNULL(qr1.qty_normal,0) AS qc_report_1_normal, 
+IFNULL(qr1.qty_minor,0) AS qc_report_1_minor, 
+IFNULL(qr1.qty_major,0) AS qc_report_1_major, 
+IFNULL(qr1.qty_afkir,0) AS qc_report_1_afkir,
 IFNULL(sni.qty,0) AS qty_sni
 FROM tb_prod_order a 
 INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order AND a.`id_report_status`=6
@@ -131,6 +136,13 @@ LEFT JOIN
     INNER JOIN tb_prod_fc fc ON fc.`id_prod_fc`=fcd.`id_prod_fc` AND fc.`id_report_status`!=5
     GROUP BY fc.`id_prod_order`
 )qr ON qr.id_prod_order=a.id_prod_order 
+LEFT JOIN
+(
+    SELECT fc.`id_prod_order`,SUM(fcd.`qc_report1_det_qty`) AS qty_qr,SUM(IF(fc.`id_pl_category`=1,fcd.`qc_report1_det_qty`,0)) AS qty_normal,SUM(IF(fc.`id_pl_category`=2,fcd.`qc_report1_det_qty`,0)) AS qty_minor,SUM(IF(fc.`id_pl_category`=3,fcd.`qc_report1_det_qty`,0)) AS qty_major,SUM(IF(fc.`id_pl_category`=4,fcd.`qc_report1_det_qty`,0)) AS qty_afkir
+    FROM tb_qc_report1_det fcd
+    INNER JOIN tb_qc_report1 fc ON fc.`id_qc_report1`=fcd.`id_qc_report1` AND fc.`id_report_status`!=5
+    GROUP BY fc.`id_prod_order`
+)qr1 ON qr1.id_prod_order=a.id_prod_order 
 LEFT JOIN
 (
     SELECT rec.id_prod_order,IF((SELECT is_enable_sni FROM tb_opt_prod)=1,SUM(io.`qty`)*-1,0) AS qty

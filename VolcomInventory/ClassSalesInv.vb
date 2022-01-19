@@ -253,4 +253,45 @@
         execute_non_query(query, True, "", "", "", "")
     End Sub
 
+    Sub cancelFormInvoice(ByVal id_report_par As String, ByVal rmt_par As String)
+        'balik stok
+        Dim qstok As String = "INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status)
+                SELECT getCompByContact(p.id_store_contact_from, 4), 1, pd.id_product, IFNULL(dsg.design_cop,0), " + rmt_par + ", " + id_report_par + ", pd.sales_pos_det_qty, NOW(), 'cancel form', 1
+                FROM tb_sales_pos p
+                INNER JOIN tb_sales_pos_det pd ON pd.id_sales_pos = p.id_sales_pos
+                INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
+                INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
+                WHERE p.id_sales_pos=" + id_report_par + " AND pd.sales_pos_det_qty>0 "
+        execute_non_query(qstok, True, "", "", "", "")
+
+        'balik jurnal
+        Dim id_bill_type As String = "31"
+        'select user prepared 
+        Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + rmt_par + " AND rm.id_report='" + id_report_par + "' AND rm.id_report_status=1 "
+        Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+        Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+        Dim report_number As String = du.Rows(0)("report_number").ToString
+
+        'select created date
+        Dim qry_inv As String = "SELECT DATE_FORMAT(p.sales_pos_date,'%Y-%m-%d') AS `trans_date`,
+        DATE_FORMAT(p.sales_pos_end_period,'%Y-%m-%d') AS `period_date`
+        FROM tb_sales_pos p 
+        WHERE p.id_sales_pos='" + id_report_par + "' AND p.report_mark_type='" + rmt_par + "' "
+        Dim dt_inv As DataTable = execute_query(qry_inv, -1, True, "", "", "", "")
+        Dim trans_date As String = dt_inv.Rows(0)("trans_date").ToString
+        Dim reff_date As String = dt_inv.Rows(0)("period_date").ToString
+
+        'main journal
+        Dim query As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status) 
+        VALUES ('','" + report_number + "'," + id_bill_type + ",'" + id_user_prepared + "', '" + trans_date + "','" + reff_date + "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+        Dim id As String = execute_query(query, 0, True, "", "", "", "")
+        execute_non_query("CALL gen_number(" + id + ",36)", True, "", "", "", "")
+
+        'det journal
+        Dim qd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_status_open) 
+        SELECT '" + id + "', d.id_acc, d.id_comp, d.qty, d.credit, d.debit, CONCAT(d.acc_trans_det_note ,' (Cancel Form)'), d.report_mark_type, d.id_report, d.report_number, 1
+        FROM tb_a_acc_trans_det d
+        WHERE d.report_mark_type=" + rmt_par + " AND d.id_report=" + id_report_par + " "
+        execute_non_query(qd, True, "", "", "", "")
+    End Sub
 End Class

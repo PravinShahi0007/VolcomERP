@@ -332,7 +332,7 @@ WHERE qr.id_qc_report1='" + id + "' "
         'Dim query_check As String = "CALL view_stock_prod_rec('" + id_prod_order + "', '" + id_prod_order_det_cek + "', '" + id_prod_order_ret_out + "', '0','0', '0', '0') "
         'Dim data As DataTable = execute_query(query_check, -1, True, "", "", "", "")
 
-        Dim q_check As String = "CALL view_limit_qc_report1('" + id_prod_order_rec + "', '" + id_prod_order_det_cek + "', '" + id + "')"
+        Dim q_check As String = "CALL view_limit_qc_report1('" + id_prod_order_rec + "','" + id_prod_order + "', '" + id_prod_order_det_cek + "', '" + id + "')"
         Dim data As DataTable = execute_query(q_check, -1, True, "", "", "", "")
         allow_sum = Decimal.Parse(data.Rows(0)("qty"))
         If qty_pl > allow_sum Then
@@ -359,7 +359,7 @@ WHERE qr.id_qc_report1='" + id + "' "
             errorCustom("Qty can't blank or zero value !")
         ElseIf Not cond_check Then
             errorCustom("Product : '" + sample_check + "' cannot exceed " + allow_sum.ToString("F2") + ", please check in Info Qty ! ")
-            'infoQty()
+            infoQty()
         Else
             Dim query As String
             Dim prod_order_ret_out_note As String = addSlashes(MENote.Text)
@@ -463,6 +463,56 @@ WHERE qr.id_qc_report1='" + id + "' "
                 End If
             End If
         End If
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        GVRetDetail.BestFitColumns()
+        ReportQCReport1.dt = GCRetDetail.DataSource
+        ReportQCReport1.id_report = id
+        Dim Report As New ReportQCReport1()
+
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVRetDetail.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVRetDetail.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVRetDetail)
+
+        'Parse val
+        Report.LRecNo.Text = TERecNumber.Text
+        Report.LQCType.Text = SLEQCReport.Text
+        Report.LabelPO.Text = TxtOrderNumber.Text
+        Report.LabelNo.Text = TENumber.Text
+        Report.LabelDate.Text = DECreated.Text
+        Report.LabelDesign.Text = TxtDesign.Text.ToString
+        Report.LabelSeason.Text = TxtSeason.Text.ToString
+        Report.LabelNote.Text = MENote.Text
+        '
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnInfoSrs_Click(sender As Object, e As EventArgs) Handles BtnInfoSrs.Click
+        infoQty()
+    End Sub
+
+    Sub infoQty()
+        FormPopUpProdDet.id_pop_up = "7"
+        FormPopUpProdDet.action = "ins"
+        FormPopUpProdDet.id_prod_order_rec = id_prod_order_rec
+        FormPopUpProdDet.id_prod_order = id_prod_order
+        FormPopUpProdDet.id = id
+        FormPopUpProdDet.BtnSave.Visible = False
+        FormPopUpProdDet.is_info_form = True
+        FormPopUpProdDet.ShowDialog()
     End Sub
 
     Private Sub FormQCReport1Det_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
