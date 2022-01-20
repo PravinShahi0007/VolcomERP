@@ -57,7 +57,11 @@ Partial Class FormQCReport1Sum
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPE = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
+        Me.BRefreshImg = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.BUploadImg = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
         Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
         Me.GCProd = New DevExpress.XtraGrid.GridControl()
         Me.GVProd = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -80,9 +84,6 @@ Partial Class FormQCReport1Sum
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.BUploadImg = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -109,12 +110,12 @@ Partial Class FormQCReport1Sum
         CType(Me.GVImage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIPE, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabPage2.SuspendLayout()
+        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -424,9 +425,9 @@ Partial Class FormQCReport1Sum
         '
         Me.PanelControl1.Controls.Add(Me.XTCImage)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 276)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 236)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1067, 262)
+        Me.PanelControl1.Size = New System.Drawing.Size(1067, 302)
         Me.PanelControl1.TabIndex = 181
         '
         'XTCImage
@@ -435,15 +436,16 @@ Partial Class FormQCReport1Sum
         Me.XTCImage.Location = New System.Drawing.Point(2, 2)
         Me.XTCImage.Name = "XTCImage"
         Me.XTCImage.SelectedTabPage = Me.XtraTabPage1
-        Me.XTCImage.Size = New System.Drawing.Size(1063, 258)
+        Me.XTCImage.Size = New System.Drawing.Size(1063, 298)
         Me.XTCImage.TabIndex = 1
         Me.XTCImage.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
         '
         'XtraTabPage1
         '
         Me.XtraTabPage1.Controls.Add(Me.GCImage)
+        Me.XtraTabPage1.Controls.Add(Me.BRefreshImg)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(1057, 230)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1057, 270)
         Me.XtraTabPage1.Text = "Image List"
         '
         'GCImage
@@ -453,7 +455,7 @@ Partial Class FormQCReport1Sum
         Me.GCImage.MainView = Me.GVImage
         Me.GCImage.Name = "GCImage"
         Me.GCImage.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPE})
-        Me.GCImage.Size = New System.Drawing.Size(1057, 230)
+        Me.GCImage.Size = New System.Drawing.Size(1057, 236)
         Me.GCImage.TabIndex = 0
         Me.GCImage.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVImage})
         '
@@ -463,6 +465,7 @@ Partial Class FormQCReport1Sum
         Me.GVImage.GridControl = Me.GCImage
         Me.GVImage.Name = "GVImage"
         Me.GVImage.OptionsView.ShowGroupPanel = False
+        Me.GVImage.RowHeight = 100
         '
         'GridColumn5
         '
@@ -483,18 +486,34 @@ Partial Class FormQCReport1Sum
         '
         Me.GridColumn7.Caption = "Image"
         Me.GridColumn7.ColumnEdit = Me.RIPE
-        Me.GridColumn7.FieldName = "GridColumn7"
+        Me.GridColumn7.FieldName = "img"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.UnboundType = DevExpress.Data.UnboundColumnType.[Object]
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 0
-        Me.GridColumn7.Width = 280
+        Me.GridColumn7.Width = 96
         '
         'RIPE
         '
         Me.RIPE.Name = "RIPE"
         Me.RIPE.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
-        Me.RIPE.ZoomPercent = 50.0R
+        '
+        'BRefreshImg
+        '
+        Me.BRefreshImg.Appearance.BackColor = System.Drawing.Color.Blue
+        Me.BRefreshImg.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BRefreshImg.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BRefreshImg.Appearance.Options.UseBackColor = True
+        Me.BRefreshImg.Appearance.Options.UseFont = True
+        Me.BRefreshImg.Appearance.Options.UseForeColor = True
+        Me.BRefreshImg.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BRefreshImg.Location = New System.Drawing.Point(0, 236)
+        Me.BRefreshImg.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.BRefreshImg.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BRefreshImg.Name = "BRefreshImg"
+        Me.BRefreshImg.Size = New System.Drawing.Size(1057, 34)
+        Me.BRefreshImg.TabIndex = 181
+        Me.BRefreshImg.Text = "Refresh"
         '
         'XtraTabPage2
         '
@@ -503,12 +522,36 @@ Partial Class FormQCReport1Sum
         Me.XtraTabPage2.Controls.Add(Me.MemoEdit1)
         Me.XtraTabPage2.Controls.Add(Me.PictureEdit1)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1057, 230)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1057, 270)
         Me.XtraTabPage2.Text = "Input Image"
+        '
+        'BUploadImg
+        '
+        Me.BUploadImg.Location = New System.Drawing.Point(952, 137)
+        Me.BUploadImg.Name = "BUploadImg"
+        Me.BUploadImg.Size = New System.Drawing.Size(75, 23)
+        Me.BUploadImg.TabIndex = 10004
+        Me.BUploadImg.Text = "Upload"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(275, 37)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl1.TabIndex = 10003
+        Me.LabelControl1.Text = "Note"
+        '
+        'MemoEdit1
+        '
+        Me.MemoEdit1.Location = New System.Drawing.Point(319, 35)
+        Me.MemoEdit1.Name = "MemoEdit1"
+        Me.MemoEdit1.Size = New System.Drawing.Size(708, 96)
+        Me.MemoEdit1.TabIndex = 97
         '
         'PictureEdit1
         '
-        Me.PictureEdit1.Location = New System.Drawing.Point(7, 9)
+        Me.PictureEdit1.Location = New System.Drawing.Point(21, 27)
         Me.PictureEdit1.Name = "PictureEdit1"
         Me.PictureEdit1.Properties.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.Image
         Me.PictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
@@ -522,7 +565,7 @@ Partial Class FormQCReport1Sum
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
         Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit, Me.RepositoryItemCheckEdit1})
-        Me.GCProd.Size = New System.Drawing.Size(1067, 145)
+        Me.GCProd.Size = New System.Drawing.Size(1067, 105)
         Me.GCProd.TabIndex = 182
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
         '
@@ -769,30 +812,6 @@ Partial Class FormQCReport1Sum
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
         '
-        'MemoEdit1
-        '
-        Me.MemoEdit1.Location = New System.Drawing.Point(285, 14)
-        Me.MemoEdit1.Name = "MemoEdit1"
-        Me.MemoEdit1.Size = New System.Drawing.Size(756, 96)
-        Me.MemoEdit1.TabIndex = 97
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(250, 16)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl1.TabIndex = 10003
-        Me.LabelControl1.Text = "Note"
-        '
-        'BUploadImg
-        '
-        Me.BUploadImg.Location = New System.Drawing.Point(966, 116)
-        Me.BUploadImg.Name = "BUploadImg"
-        Me.BUploadImg.Size = New System.Drawing.Size(75, 23)
-        Me.BUploadImg.TabIndex = 10004
-        Me.BUploadImg.Text = "Upload"
-        '
         'FormQCReport1Sum
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -808,7 +827,6 @@ Partial Class FormQCReport1Sum
         Me.Name = "FormQCReport1Sum"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Summary QC Report 1"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
@@ -838,12 +856,12 @@ Partial Class FormQCReport1Sum
         CType(Me.RIPE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabPage2.ResumeLayout(False)
         Me.XtraTabPage2.PerformLayout()
+        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -910,4 +928,5 @@ Partial Class FormQCReport1Sum
     Friend WithEvents BUploadImg As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents BRefreshImg As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -1,36 +1,6 @@
 ﻿Public Class FormQCReport1Sum
-    Dim imagedir As String = get_setup_field("pic_path_design") & "\"
+    Dim imagedir As String = get_opt_prod_field("pic_path_qc_report1") & "\"
     Public id As String = "-1"
-
-    Private Sub GVData_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles GVImage.CustomUnboundColumnData
-        If e.Column.FieldName = "img" AndAlso e.IsGetData Then
-            Dim images As Hashtable = New Hashtable()
-
-            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
-            Dim id As String = CStr(view.GetListSourceRowCellValue(e.ListSourceRowIndex, "id_qc_report1_img"))
-
-            Dim fileName As String = id & ".jpg".ToLower
-
-            If (Not images.ContainsKey(fileName)) Then
-                Dim img As Image = Nothing
-                Dim resizeImg As Image = Nothing
-
-                Try
-                    Dim filePath As String = DevExpress.Utils.FilesHelper.FindingFileName(imageDir, fileName, False)
-
-                    img = Image.FromFile(filePath)
-
-                    resizeImg = img.GetThumbnailImage(100, 100, Nothing, Nothing)
-                Catch
-                End Try
-
-                images.Add(fileName, resizeImg)
-            End If
-
-            e.Value = images(fileName)
-        End If
-    End Sub
-
     Private Sub FormQCReport1Sum_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_head()
     End Sub
@@ -44,6 +14,8 @@
         Else
             BGenerate.Visible = False
             XTCImage.Enabled = True
+            '
+            load_img()
         End If
     End Sub
 
@@ -88,5 +60,60 @@ GROUP BY po.`id_prod_order`"
         id = execute_query(q, 0, True, "", "", "", "")
         '
         load_head()
+    End Sub
+
+    Sub load_img()
+        Dim q As String = "SELECT id_qc_report1_img,note FROM tb_qc_report1_img WHERE id_qc_report1_sum ='" & id & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCImage.DataSource = dt
+    End Sub
+
+    Private Sub BUploadImg_Click(sender As Object, e As EventArgs) Handles BUploadImg.Click
+        If Not PictureEdit1.EditValue Is Nothing And Not MemoEdit1.Text = "" Then
+            Dim q As String = "INSERT INTO tb_qc_report1_img(id_qc_report1_sum,note) VALUES('" & id & "','" & addSlashes(MemoEdit1.Text) & "'); SELECT LAST_INSERT_ID()"
+            Dim id_img As String = execute_query(q, 0, True, "", "", "", "")
+            save_image_ori(PictureEdit1, imagedir, id_img & ".jpg")
+            '
+            PictureEdit1.EditValue = Nothing
+            MemoEdit1.Text = ""
+            '
+            load_img()
+            XTCImage.SelectedTabPageIndex = 0
+        Else
+            warningCustom("Please upload image and fill note")
+        End If
+    End Sub
+
+    Private Sub BRefreshImg_Click(sender As Object, e As EventArgs) Handles BRefreshImg.Click
+        load_img()
+    End Sub
+
+    Private Sub GVImage_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles GVImage.CustomUnboundColumnData
+        If e.Column.FieldName = "img" Then
+            Dim images As Hashtable = New Hashtable()
+
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim id As String = CStr(view.GetListSourceRowCellValue(e.ListSourceRowIndex, "id_qc_report1_img"))
+
+            Dim fileName As String = id & ".jpg".ToLower
+
+            If (Not images.ContainsKey(fileName)) Then
+                Dim img As Image = Nothing
+                Dim resizeImg As Image = Nothing
+
+                Try
+                    Dim filePath As String = DevExpress.Utils.FilesHelper.FindingFileName(imagedir, fileName, False)
+
+                    img = Image.FromFile(filePath)
+
+                    resizeImg = img.GetThumbnailImage(100, 100, Nothing, Nothing)
+                Catch
+                End Try
+
+                images.Add(fileName, resizeImg)
+            End If
+
+            e.Value = images(fileName)
+        End If
     End Sub
 End Class
