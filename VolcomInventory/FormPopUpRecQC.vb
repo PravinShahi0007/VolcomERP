@@ -3,10 +3,25 @@
     Public id_prod_order As String = "-1"
     Public id_rec As String = "-1"
     Public id_contact_vendor As String = "-1"
+
+    Public is_show_qc_report1 As Boolean = False
+
     Private Sub FormPopUpRecQC_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewDesign()
         viewSeason()
         'view_prod_order_rec()
+
+        If is_show_qc_report1 Then
+            GridColumnOutstandingRetOut.Visible = True
+            GridColumnQtyReject.Visible = True
+            GridColumnQtyRetOut.Visible = True
+            GridColumnQCReport.Visible = True
+        Else
+            GridColumnOutstandingRetOut.Visible = False
+            GridColumnQtyReject.Visible = False
+            GridColumnQtyRetOut.Visible = False
+            GridColumnQCReport.Visible = False
+        End If
     End Sub
 
     Sub viewDesign()

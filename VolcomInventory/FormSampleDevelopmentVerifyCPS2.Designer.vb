@@ -34,6 +34,7 @@ Partial Class FormSampleDevelopmentVerifyCPS2
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DEVerifyDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.BAttach = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.TEDesignName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -47,6 +48,7 @@ Partial Class FormSampleDevelopmentVerifyCPS2
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BAttach)
         Me.PanelControl2.Controls.Add(Me.SimpleButton1)
         Me.PanelControl2.Controls.Add(Me.BUpdate)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -168,6 +170,17 @@ Partial Class FormSampleDevelopmentVerifyCPS2
         Me.LabelControl5.TabIndex = 14
         Me.LabelControl5.Text = "Verify Date"
         '
+        'BAttach
+        '
+        Me.BAttach.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BAttach.Image = CType(resources.GetObject("BAttach.Image"), System.Drawing.Image)
+        Me.BAttach.ImageIndex = 7
+        Me.BAttach.Location = New System.Drawing.Point(2, 2)
+        Me.BAttach.Name = "BAttach"
+        Me.BAttach.Size = New System.Drawing.Size(111, 36)
+        Me.BAttach.TabIndex = 8913
+        Me.BAttach.Text = "Attachment"
+        '
         'FormSampleDevelopmentVerifyCPS2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -218,4 +231,5 @@ Partial Class FormSampleDevelopmentVerifyCPS2
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEVerifyDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BAttach As DevExpress.XtraEditors.SimpleButton
 End Class
