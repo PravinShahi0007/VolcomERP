@@ -163,7 +163,7 @@ Partial Class FormQCReport1
         'GridColumn11
         '
         Me.GridColumn11.Caption = "Style"
-        Me.GridColumn11.FieldName = "design_display name"
+        Me.GridColumn11.FieldName = "design_display_name"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 4

@@ -40,6 +40,7 @@ LEFT JOIN (
 	AND cd.id_code IN (32,30,14,43,34)
 	GROUP BY dc.id_design
 )cd ON cd.id_design = d.id_design
+WHERE DATE(qr.created_date)>='" & Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(qr.created_date)<='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "'
 GROUP BY qrd.`id_qc_report1`
 ORDER BY qr.id_qc_report1 DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
