@@ -85,4 +85,20 @@ ORDER BY qr.id_qc_report1 DESC"
         FormQCReport1Det.id = GVQCReport.GetFocusedRowCellValue("id_qc_report1").ToString
         FormQCReport1Det.ShowDialog()
     End Sub
+
+    Private Sub BViewSummary_Click(sender As Object, e As EventArgs) Handles BViewSummary.Click
+        load_summary()
+    End Sub
+
+    Sub load_summary()
+        Dim q As String = "SELECT * FROM tb_qc_report1_sum"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCSummary.DataSource = dt
+        GVSummary.BestFitColumns()
+    End Sub
+
+    Private Sub GVSummary_DoubleClick(sender As Object, e As EventArgs) Handles GVSummary.DoubleClick
+        FormQCReport1Sum.id = GVSummary.GetFocusedRowCellValue("id_qc_report1_sum").ToString
+        FormQCReport1Sum.ShowDialog()
+    End Sub
 End Class
