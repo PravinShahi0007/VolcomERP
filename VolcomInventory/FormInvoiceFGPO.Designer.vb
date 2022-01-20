@@ -234,6 +234,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn87 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCInvoiceFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInvoiceFGPO.SuspendLayout()
         Me.XTPBPL.SuspendLayout()
@@ -1761,7 +1762,7 @@ Partial Class FormInvoiceFGPO
         '
         'GVSummary
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn80, Me.GridColumn83, Me.GridColumn81, Me.GridColumn85, Me.GridColumn82})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn80, Me.GridColumn83, Me.GridColumn81, Me.GridColumn85, Me.GridColumn87, Me.GridColumn82})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.Name = "GVSummary"
         Me.GVSummary.OptionsBehavior.Editable = False
@@ -1783,7 +1784,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn83.Name = "GridColumn83"
         Me.GridColumn83.Visible = True
         Me.GridColumn83.VisibleIndex = 0
-        Me.GridColumn83.Width = 190
+        Me.GridColumn83.Width = 130
         '
         'GridColumn81
         '
@@ -1792,7 +1793,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn81.Name = "GridColumn81"
         Me.GridColumn81.Visible = True
         Me.GridColumn81.VisibleIndex = 1
-        Me.GridColumn81.Width = 199
+        Me.GridColumn81.Width = 136
         '
         'GridColumn85
         '
@@ -1801,7 +1802,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn85.Name = "GridColumn85"
         Me.GridColumn85.Visible = True
         Me.GridColumn85.VisibleIndex = 2
-        Me.GridColumn85.Width = 282
+        Me.GridColumn85.Width = 157
         '
         'GridColumn82
         '
@@ -1810,8 +1811,8 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn82.FieldName = "list_fgpo"
         Me.GridColumn82.Name = "GridColumn82"
         Me.GridColumn82.Visible = True
-        Me.GridColumn82.VisibleIndex = 3
-        Me.GridColumn82.Width = 909
+        Me.GridColumn82.VisibleIndex = 4
+        Me.GridColumn82.Width = 530
         '
         'RepositoryItemMemoEdit1
         '
@@ -2500,6 +2501,15 @@ Partial Class FormInvoiceFGPO
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
         '
+        'GridColumn87
+        '
+        Me.GridColumn87.Caption = "Vendor FGPO"
+        Me.GridColumn87.FieldName = "vendor_name"
+        Me.GridColumn87.Name = "GridColumn87"
+        Me.GridColumn87.Visible = True
+        Me.GridColumn87.VisibleIndex = 3
+        Me.GridColumn87.Width = 184
+        '
         'FormInvoiceFGPO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2801,4 +2811,5 @@ Partial Class FormInvoiceFGPO
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn84 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn86 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn87 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
