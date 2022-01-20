@@ -531,7 +531,7 @@ Partial Class FormQCReport1Det
         Me.SCCReturn.Panel2.Controls.Add(Me.GroupControlListBarcode)
         Me.SCCReturn.Panel2.Text = "Panel2"
         Me.SCCReturn.Size = New System.Drawing.Size(912, 389)
-        Me.SCCReturn.SplitterPosition = 171
+        Me.SCCReturn.SplitterPosition = 186
         Me.SCCReturn.TabIndex = 180
         Me.SCCReturn.Text = "SplitContainerControl1"
         '
@@ -545,7 +545,7 @@ Partial Class FormQCReport1Det
         Me.GroupControlRet.Enabled = False
         Me.GroupControlRet.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlRet.Name = "GroupControlRet"
-        Me.GroupControlRet.Size = New System.Drawing.Size(912, 171)
+        Me.GroupControlRet.Size = New System.Drawing.Size(912, 186)
         Me.GroupControlRet.TabIndex = 180
         Me.GroupControlRet.Text = "Return List"
         '
@@ -557,7 +557,7 @@ Partial Class FormQCReport1Det
         Me.GCRetDetail.MainView = Me.GVRetDetail
         Me.GCRetDetail.Name = "GCRetDetail"
         Me.GCRetDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCRetDetail.Size = New System.Drawing.Size(890, 167)
+        Me.GCRetDetail.Size = New System.Drawing.Size(890, 182)
         Me.GCRetDetail.TabIndex = 1
         Me.GCRetDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRetDetail})
         '
@@ -702,7 +702,7 @@ Partial Class FormQCReport1Det
         Me.GroupControlListBarcode.Enabled = False
         Me.GroupControlListBarcode.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlListBarcode.Name = "GroupControlListBarcode"
-        Me.GroupControlListBarcode.Size = New System.Drawing.Size(912, 213)
+        Me.GroupControlListBarcode.Size = New System.Drawing.Size(912, 198)
         Me.GroupControlListBarcode.TabIndex = 1
         Me.GroupControlListBarcode.Text = "List Barcode"
         '
@@ -713,7 +713,7 @@ Partial Class FormQCReport1Det
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
         Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
-        Me.GCBarcode.Size = New System.Drawing.Size(890, 176)
+        Me.GCBarcode.Size = New System.Drawing.Size(890, 161)
         Me.GCBarcode.TabIndex = 4
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
         '
