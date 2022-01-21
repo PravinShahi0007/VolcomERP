@@ -777,6 +777,9 @@
         ElseIf report_mark_type = "385" Then
             'QC Report 1
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_qc_report1 WHERE id_qc_report1 = '{0}'", id_report)
+        ElseIf report_mark_type = "388" Then
+            'QC Report 1 Sumary
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_qc_report1_sum WHERE id_qc_report1_sum = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -11498,22 +11501,36 @@ WHERE id_item_pps='" & id_report & "'"
                 '
 
                 FormMain.SplashScreenManager1.CloseWaitForm()
-            ElseIf report_mark_type = "385" Then
-                'qc report 1
-                If id_status_reportx = "3" Then
-                    id_status_reportx = "6"
-                End If
 
-                If id_status_reportx = "6" Then
-                    'complete
-
-                End If
-
-                query = String.Format("UPDATE tb_qc_report1 SET id_report_status = '{0}' WHERE id_qc_report1 = '{1}'", id_status_reportx, id_report)
-                execute_non_query(query, True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_deviden SET id_report_status = '{0}' WHERE id_deviden = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "385" Then
+            'qc report 1
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'complete
+
+            End If
+
+            query = String.Format("UPDATE tb_qc_report1 SET id_report_status = '{0}' WHERE id_qc_report1 = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "388" Then
+            'qc report 1 summary
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'complete mail blast
+
+            End If
+
+            query = String.Format("UPDATE tb_qc_report1_sum SET id_report_status = '{0}' WHERE id_qc_report1_sum = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

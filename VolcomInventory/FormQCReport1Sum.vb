@@ -1,6 +1,7 @@
 ﻿Public Class FormQCReport1Sum
     Dim imagedir As String = get_opt_prod_field("pic_path_qc_report1") & "\"
     Public id As String = "-1"
+    Public is_view As String = "-1"
     '
     Dim id_po As String = "-1"
     Private Sub FormQCReport1Sum_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -22,6 +23,10 @@
                 id_po = dt.Rows(0)("id_prod_order").ToString
                 '
                 TENumber.Text = dt.Rows(0)("number").ToString
+                '
+                If dt.Rows(0)("id_report_status").ToString = "6" Or dt.Rows(0)("id_report_status").ToString = "5" Or is_view = "1" Then
+                    XTPInputImage.PageVisible = False
+                End If
             End If
             BGenerate.Visible = False
             XTCImage.Enabled = True
@@ -33,12 +38,20 @@
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT pod.qty AS qty_po,SUM(qrd.qc_report1_det_qty) AS qty_normal,SUM(IF(qr.`id_pl_category`=1,qrd.qc_report1_det_qty,0)) AS qty_normal,SUM(IF(qr.`id_pl_category`=1,0,qrd.`qc_report1_det_qty`)) AS qty_reject,recd.qty AS qty_rec 
+        Dim q As String = "SELECT po.prod_order_number,qrs.created_date,qrs.number
+,pod.qty AS qty_po
+,SUM(qrd.qc_report1_det_qty) AS qty_qc_report1
+,SUM(IF(qr.`id_pl_category`=1,qrd.qc_report1_det_qty,0)) AS qty_normal
+,SUM(IF(qr.`id_pl_category`=2,qrd.`qc_report1_det_qty`,0)) AS qty_reject_minor
+,SUM(IF(qr.`id_pl_category`=3,qrd.`qc_report1_det_qty`,0)) AS qty_reject_major
+,SUM(IF(qr.`id_pl_category`!=1,qrd.`qc_report1_det_qty`,0)) AS qty_reject
+,recd.qty AS qty_rec 
 ,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color) AS  design_display_name
 ,s.season,d.design_code
 FROM `tb_qc_report1_det` qrd
 INNER JOIN tb_qc_report1 qr ON qr.`id_qc_report1`=qrd.`id_qc_report1` AND qr.`id_report_status`=6
 INNER JOIN tb_prod_order po ON po.id_prod_order=qr.id_prod_order
+INNER JOIN tb_qc_report1_sum qrs ON qrs.id_prod_order=po.id_prod_order AND qr.created_date<=qrs.created_date AND qrs.id_qc_report1_sum='" & id & "'
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
 INNER JOIN tb_m_design d ON d.id_design=pdd.id_design
 INNER JOIN tb_season s ON s.id_season=d.id_season
@@ -61,17 +74,18 @@ LEFT JOIN (
 	GROUP BY dc.id_design
 ) cd ON cd.id_design = d.id_design
 INNER JOIN (
-	SELECT r.id_prod_order_rec , SUM(rd.`prod_order_rec_det_qty`) AS qty
+	SELECT r.id_prod_order , SUM(rd.`prod_order_rec_det_qty`) AS qty
 	FROM tb_prod_order_rec_det rd 
 	INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND r.`id_report_status`=6
-	GROUP BY r.`id_prod_order_rec`
-) recd ON recd.id_prod_order_rec=qr.`id_prod_order_rec`
+    INNER JOIN tb_qc_report1_sum s ON s.id_prod_order=r.id_prod_order AND s.id_qc_report1_sum='" & id & "'
+	GROUP BY r.`id_prod_order`
+) recd ON recd.id_prod_order=po.`id_prod_order`
 INNER JOIN (
 	SELECT pod.id_prod_order,SUM(pod.prod_order_qty) AS qty
 	FROM tb_prod_order_det pod
+    INNER JOIN tb_qc_report1_sum s ON s.id_prod_order=pod.id_prod_order AND s.id_qc_report1_sum='" & id & "'
 	GROUP BY pod.`id_prod_order`
-) pod ON pod.id_prod_order=qr.`id_prod_order`
-WHERE qr.`id_prod_order`='" & id_po & "'"
+) pod ON pod.id_prod_order=qr.`id_prod_order`"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         If dt.Rows.Count > 0 Then
             TESeason.Text = dt.Rows(0)("season").ToString
@@ -86,9 +100,10 @@ WHERE qr.`id_prod_order`='" & id_po & "'"
         Dim q As String = "SELECT rec.`prod_order_rec_number`,rec.`prod_order_rec_date`,rec.`complete_date`,SUM(recd.`prod_order_rec_det_qty`) AS qty_rec,pl.`pl_category`
 FROM tb_prod_order_rec_det recd
 INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` 
+INNER JOIN tb_qc_report1_sum s ON s.id_prod_order=rec.id_prod_order AND s.id_qc_report1_sum='" & id & "' AND rec.complete_date<=s.created_date
 INNER JOIN tb_lookup_pl_category pl ON pl.`id_pl_category`=rec.`id_pl_category`
-WHERE rec.id_report_status=6 AND rec.`id_prod_order`='" & id_po & "' AND rec.complete_date<='" & Date.Parse(DECreated.EditValue.ToString).ToString("yyyy-MM-dd") & "'
-GROU BY rec.id_prod_order_rec"
+WHERE rec.id_report_status=6 
+GROUP BY rec.id_prod_order_rec"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCRec.DataSource = dt
         GVRec.BestFitColumns()
@@ -133,6 +148,8 @@ GROUP BY po.`id_prod_order`"
     Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BGenerate.Click
         Dim q As String = "INSERT INTO tb_qc_report1_sum(`id_prod_order`,`created_date`,`created_by`,`id_report_status`) VALUES('" & SLEFGPO.EditValue.ToString & "',NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID();"
         id = execute_query(q, 0, True, "", "", "", "")
+        '
+        submit_who_prepared("388", id, id_user)
         '
         load_head()
     End Sub
@@ -193,11 +210,22 @@ GROUP BY po.`id_prod_order`"
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
-
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = "388"
+        FormReportMark.id_report = id
+        FormReportMark.is_view = is_view
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Dim Report As New ReportQCReport1Sum()
 
+        Report.id = id
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
     End Sub
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click

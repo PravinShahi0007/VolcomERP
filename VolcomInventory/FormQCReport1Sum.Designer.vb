@@ -57,7 +57,7 @@ Partial Class FormQCReport1Sum
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPE = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.BRefreshImg = New DevExpress.XtraEditors.SimpleButton()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPInputImage = New DevExpress.XtraTab.XtraTabPage()
         Me.BUploadImg = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
@@ -118,7 +118,7 @@ Partial Class FormQCReport1Sum
         CType(Me.GCImage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVImage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIPE, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraTabPage2.SuspendLayout()
+        Me.XTPInputImage.SuspendLayout()
         CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -441,7 +441,7 @@ Partial Class FormQCReport1Sum
         Me.XTCImage.SelectedTabPage = Me.XtraTabPage1
         Me.XTCImage.Size = New System.Drawing.Size(1063, 298)
         Me.XTCImage.TabIndex = 1
-        Me.XTCImage.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        Me.XTCImage.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XTPInputImage})
         '
         'XtraTabPage1
         '
@@ -518,15 +518,15 @@ Partial Class FormQCReport1Sum
         Me.BRefreshImg.TabIndex = 181
         Me.BRefreshImg.Text = "Refresh"
         '
-        'XtraTabPage2
+        'XTPInputImage
         '
-        Me.XtraTabPage2.Controls.Add(Me.BUploadImg)
-        Me.XtraTabPage2.Controls.Add(Me.LabelControl1)
-        Me.XtraTabPage2.Controls.Add(Me.MemoEdit1)
-        Me.XtraTabPage2.Controls.Add(Me.PictureEdit1)
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1057, 270)
-        Me.XtraTabPage2.Text = "Input Image"
+        Me.XTPInputImage.Controls.Add(Me.BUploadImg)
+        Me.XTPInputImage.Controls.Add(Me.LabelControl1)
+        Me.XTPInputImage.Controls.Add(Me.MemoEdit1)
+        Me.XTPInputImage.Controls.Add(Me.PictureEdit1)
+        Me.XTPInputImage.Name = "XTPInputImage"
+        Me.XTPInputImage.Size = New System.Drawing.Size(1057, 270)
+        Me.XTPInputImage.Text = "Input Image"
         '
         'BUploadImg
         '
@@ -679,7 +679,7 @@ Partial Class FormQCReport1Sum
         Me.GridColumnOrderQty.Caption = "Order Qty"
         Me.GridColumnOrderQty.DisplayFormat.FormatString = "N0"
         Me.GridColumnOrderQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnOrderQty.FieldName = "qty_order"
+        Me.GridColumnOrderQty.FieldName = "qty_po"
         Me.GridColumnOrderQty.Name = "GridColumnOrderQty"
         Me.GridColumnOrderQty.OptionsColumn.AllowEdit = False
         Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N0}")})
@@ -713,7 +713,7 @@ Partial Class FormQCReport1Sum
         Me.GridColumn20.Caption = "Qty QC Report 1"
         Me.GridColumn20.DisplayFormat.FormatString = "N0"
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn20.FieldName = "qc_report_1"
+        Me.GridColumn20.FieldName = "qty_qc_report1"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_report_1", "{0:N0}")})
         Me.GridColumn20.Visible = True
@@ -729,7 +729,7 @@ Partial Class FormQCReport1Sum
         Me.GridColumn19.Caption = "Normal"
         Me.GridColumn19.DisplayFormat.FormatString = "N0"
         Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn19.FieldName = "qc_report_1_normal"
+        Me.GridColumn19.FieldName = "qty_normal"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_report_1_normal", "{0:N0}")})
         Me.GridColumn19.Visible = True
@@ -745,7 +745,7 @@ Partial Class FormQCReport1Sum
         Me.GridColumn18.Caption = "Minor"
         Me.GridColumn18.DisplayFormat.FormatString = "N0"
         Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn18.FieldName = "qc_report_1_minor"
+        Me.GridColumn18.FieldName = "qty_reject_minor"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_report_1_minor", "{0:N0}")})
         Me.GridColumn18.Visible = True
@@ -761,7 +761,7 @@ Partial Class FormQCReport1Sum
         Me.GridColumn17.Caption = "Major"
         Me.GridColumn17.DisplayFormat.FormatString = "N0"
         Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn17.FieldName = "qc_report_1_major"
+        Me.GridColumn17.FieldName = "qty_reject_major"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_report_1_major", "{0:N0}")})
         Me.GridColumn17.Visible = True
@@ -851,6 +851,8 @@ Partial Class FormQCReport1Sum
         'GridColumn8
         '
         Me.GridColumn8.Caption = "Date Created"
+        Me.GridColumn8.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn8.FieldName = "prod_order_rec_date"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
@@ -945,8 +947,8 @@ Partial Class FormQCReport1Sum
         CType(Me.GCImage, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVImage, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIPE, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraTabPage2.ResumeLayout(False)
-        Me.XtraTabPage2.PerformLayout()
+        Me.XTPInputImage.ResumeLayout(False)
+        Me.XTPInputImage.PerformLayout()
         CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1020,7 +1022,7 @@ Partial Class FormQCReport1Sum
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTCImage As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPInputImage As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PictureEdit1 As DevExpress.XtraEditors.PictureEdit
     Friend WithEvents RIPE As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit
     Friend WithEvents BUploadImg As DevExpress.XtraEditors.SimpleButton
