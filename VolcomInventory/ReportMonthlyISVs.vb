@@ -82,7 +82,7 @@
                     tot_sub_t += dt.Rows(i)("this_month")
                     tot_sub_p += dt.Rows(i)("prev_month")
 
-                    Dim percentage As Decimal = ((tot_sub_t - tot_sub_p) / tot_sub_t) * 100 * dt.Rows(i)("factored")
+                    Dim percentage As Decimal = ((tot_sub_t - tot_sub_p) / tot_sub_p) * 100
 
                     If dt.Rows(i)("sub_name").ToString = "8" Or dt.Rows(i)("sub_name").ToString = "6" Then
                         'other income + cogs skip
@@ -102,7 +102,7 @@
                     tot_head_t += dt.Rows(i)("this_month")
                     tot_head_p += dt.Rows(i)("prev_month")
 
-                    Dim percentage As Decimal = ((tot_head_t - tot_head_p) / tot_head_t) * 100
+                    Dim percentage As Decimal = ((tot_head_t - tot_head_p) / tot_head_p) * 100
 
                     If dt.Rows(i)("head_name").ToString = "4" Then
                         'biaya skip
@@ -122,7 +122,7 @@
                     tot_report_sub_t += dt.Rows(i)("this_month")
                     tot_report_sub_p += dt.Rows(i)("prev_month")
 
-                    Dim percentage As Decimal = ((tot_report_sub_t - tot_report_sub_p) / tot_report_sub_t) * 100
+                    Dim percentage As Decimal = ((tot_report_sub_t - tot_report_sub_p) / tot_report_sub_p) * 100
 
                     If dt.Rows(i)("id_consolidation_report_sub").ToString = "1" Then 'operasional
                         If languange = "ind" Then
@@ -150,7 +150,7 @@
                     tot_report_head_t += dt.Rows(i)("this_month")
                     tot_report_head_p += dt.Rows(i)("prev_month")
 
-                    Dim percentage As Decimal = ((tot_report_head_t - tot_report_head_p) / tot_report_head_t) * 100
+                    Dim percentage As Decimal = ((tot_report_head_t - tot_report_head_p) / tot_report_head_p) * 100
 
                     If languange = "ind" Then
                         add_head("Keuntungan Bersih Sebelum Pajak", Decimal.Parse(tot_report_head_p.ToString).ToString("N2"), Decimal.Parse(tot_report_head_t.ToString).ToString("N2"), Decimal.Parse(percentage.ToString).ToString("N0"))
@@ -166,7 +166,7 @@
                 End If
             ElseIf i = dt.Rows.Count - 1 Then
                 'end footer net profit after tax
-                Dim percentage As Decimal = ((total_t - total_p) / total_t) * 100
+                Dim percentage As Decimal = ((total_t - total_p) / total_p) * 100
 
                 If languange = "ind" Then
                     add_head("Keuntungan Bersih Setelah Pajak", Decimal.Parse(total_p.ToString).ToString("N2"), Decimal.Parse(total_t.ToString).ToString("N2"), Decimal.Parse(percentage.ToString).ToString("N0"))
