@@ -13,11 +13,16 @@ WHERE rec.id_report_status=6
 GROUP BY rec.id_prod_order_rec"
         Dim dt_rec As DataTable = execute_query(q, -1, True, "", "", "", "")
 
+        Dim tot As Decimal = 0.0
+
         For i = 0 To dt_rec.Rows.Count - 1
             insert_row_bm(RowBM, dt_rec, i)
+            tot += dt_rec.Rows(i)("qty_rec")
         Next
+
+        insert_row_total(RowBM, tot)
         '
-        Dim q2 As String = "SELECT po.prod_order_number,DATE_FORMAT(qrs.created_date,'%d %M %Y') AS created_date,qrs.number
+        Dim q2 As String = "SELECT d.id_design,po.prod_order_number,DATE_FORMAT(qrs.created_date,'%d %M %Y') AS created_date,qrs.number
 ,FORMAT(pod.qty,0,'id_ID') AS qty_po
 ,FORMAT(SUM(qrd.qc_report1_det_qty),0,'id_ID') AS qty_qc_report1
 ,FORMAT(SUM(IF(qr.`id_pl_category`=1,qrd.qc_report1_det_qty,0)),0,'id_ID') AS qty_normal
@@ -68,6 +73,16 @@ INNER JOIN (
         Dim dt As DataTable = execute_query(q2, -1, True, "", "", "", "")
         DataSource = dt
 
+        'get images
+        Dim images As Hashtable = New Hashtable()
+        Dim id_design As String = dt.Rows(0)("id_design").ToString
+        Dim fileName As String = id_design & ".jpg".ToLower
+
+        If (Not images.ContainsKey(fileName)) Then
+            Dim filePath As String = DevExpress.Utils.FilesHelper.FindingFileName(product_image_path, fileName, False)
+            XRPDesign.ImageUrl = filePath
+        End If
+
         load_img()
     End Sub
 
@@ -115,6 +130,42 @@ INNER JOIN (
         tot_qtyc.Text = tot_qty
         tot_qtyc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         tot_qtyc.Font = font_row_style
+    End Sub
+
+    Sub insert_row_total(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal tot As Decimal)
+        'total
+        Dim font_row_style_tot As New Font(XTBM.Font.FontFamily, XTBM.Font.Size - 2, FontStyle.Regular)
+
+        row = XTBM.InsertRowBelow(row)
+
+        row.HeightF = 20
+        row.Font = font_row_style_tot
+
+        'rec#
+        Dim rec_tot As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
+        rec_tot.Text = "Total"
+        rec_tot.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        rec_tot.Font = font_row_style_tot
+
+        'created date
+        Dim cd_c_tot As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
+        cd_c_tot.Text = ""
+        cd_c_tot.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        cd_c_tot.Font = font_row_style_tot
+
+        'type
+        Dim separator_tot As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+        separator_tot.Text = ""
+        separator_tot.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        separator_tot.Font = font_row_style_tot
+
+        'qty
+        Dim tot_qty_tot As String = Decimal.Parse(tot.ToString).ToString("N0")
+
+        Dim tot_qtyc_tot As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+        tot_qtyc_tot.Text = tot_qty_tot
+        tot_qtyc_tot.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        tot_qtyc_tot.Font = font_row_style_tot
     End Sub
 
     Sub insert_row_image(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)
