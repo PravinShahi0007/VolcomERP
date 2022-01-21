@@ -1,6 +1,8 @@
 ﻿Public Class FormQCReport1Sum
     Dim imagedir As String = get_opt_prod_field("pic_path_qc_report1") & "\"
     Public id As String = "-1"
+    '
+    Dim id_po As String = "-1"
     Private Sub FormQCReport1Sum_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_head()
     End Sub
@@ -12,11 +14,84 @@
             BGenerate.Visible = True
             XTCImage.Enabled = False
         Else
+            Dim q As String = "SELECT * FROM tb_qc_report1_sum WHERE id_qc_report1_sum='" & id & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                DECreated.EditValue = dt.Rows(0)("created_date")
+                SLEFGPO.EditValue = dt.Rows(0)("id_prod_order").ToString
+                id_po = dt.Rows(0)("id_prod_order").ToString
+                '
+                TENumber.Text = dt.Rows(0)("number").ToString
+            End If
             BGenerate.Visible = False
             XTCImage.Enabled = True
             '
+            load_rec()
+            load_det()
             load_img()
         End If
+    End Sub
+
+    Sub load_det()
+        Dim q As String = "SELECT pod.qty AS qty_po,SUM(qrd.qc_report1_det_qty) AS qty_normal,SUM(IF(qr.`id_pl_category`=1,qrd.qc_report1_det_qty,0)) AS qty_normal,SUM(IF(qr.`id_pl_category`=1,0,qrd.`qc_report1_det_qty`)) AS qty_reject,recd.qty AS qty_rec 
+,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color) AS  design_display_name
+,s.season,d.design_code
+FROM `tb_qc_report1_det` qrd
+INNER JOIN tb_qc_report1 qr ON qr.`id_qc_report1`=qrd.`id_qc_report1` AND qr.`id_report_status`=6
+INNER JOIN tb_prod_order po ON po.id_prod_order=qr.id_prod_order
+INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
+INNER JOIN tb_m_design d ON d.id_design=pdd.id_design
+INNER JOIN tb_season s ON s.id_season=d.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43, 34)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = d.id_design
+INNER JOIN (
+	SELECT r.id_prod_order_rec , SUM(rd.`prod_order_rec_det_qty`) AS qty
+	FROM tb_prod_order_rec_det rd 
+	INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND r.`id_report_status`=6
+	GROUP BY r.`id_prod_order_rec`
+) recd ON recd.id_prod_order_rec=qr.`id_prod_order_rec`
+INNER JOIN (
+	SELECT pod.id_prod_order,SUM(pod.prod_order_qty) AS qty
+	FROM tb_prod_order_det pod
+	GROUP BY pod.`id_prod_order`
+) pod ON pod.id_prod_order=qr.`id_prod_order`
+WHERE qr.`id_prod_order`='" & id_po & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            TESeason.Text = dt.Rows(0)("season").ToString
+            TEDesignCode.Text = dt.Rows(0)("design_code").ToString
+            TEDesign.Text = dt.Rows(0)("design_display_name").ToString
+        End If
+        GCProd.DataSource = dt
+        GVProd.BestFitColumns()
+    End Sub
+
+    Sub load_rec()
+        Dim q As String = "SELECT rec.`prod_order_rec_number`,rec.`prod_order_rec_date`,rec.`complete_date`,SUM(recd.`prod_order_rec_det_qty`) AS qty_rec,pl.`pl_category`
+FROM tb_prod_order_rec_det recd
+INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec` 
+INNER JOIN tb_lookup_pl_category pl ON pl.`id_pl_category`=rec.`id_pl_category`
+WHERE rec.id_report_status=6 AND rec.`id_prod_order`='" & id_po & "' AND rec.complete_date<='" & Date.Parse(DECreated.EditValue.ToString).ToString("yyyy-MM-dd") & "'
+GROU BY rec.id_prod_order_rec"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCRec.DataSource = dt
+        GVRec.BestFitColumns()
     End Sub
 
     Sub view_fgpo()
@@ -115,5 +190,21 @@ GROUP BY po.`id_prod_order`"
 
             e.Value = images(fileName)
         End If
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
+    End Sub
+
+    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+        Close()
+    End Sub
+
+    Private Sub FormQCReport1Sum_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class
