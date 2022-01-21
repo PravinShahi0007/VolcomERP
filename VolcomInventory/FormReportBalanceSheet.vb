@@ -2107,7 +2107,7 @@ WHERE `year`=YEAR('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("
                 Case 1 'group
                     Dim tot_group As Decimal = 0.00
                     Try
-                        tot_group = ((bs_vpm_t_group - bs_vpm_p_group) / bs_vpm_t_group) * 100
+                        tot_group = ((bs_vpm_t_group - bs_vpm_p_group) / bs_vpm_p_group) * 100
                     Catch ex As Exception
 
                     End Try
@@ -2115,7 +2115,7 @@ WHERE `year`=YEAR('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("
                 Case 2 'sum
                     Dim tot_sum As Decimal = 0.00
                     Try
-                        tot_sum = ((bs_vpm_t_sum - bs_vpm_p_sum) / bs_vpm_t_sum) * 100
+                        tot_sum = ((bs_vpm_t_sum - bs_vpm_p_sum) / bs_vpm_p_sum) * 100
                     Catch ex As Exception
 
                     End Try
@@ -2160,7 +2160,7 @@ WHERE `year`=YEAR('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("
                 Case 1
                     Dim tot_group As Decimal = 0.00
                     Try
-                        tot_group = ((plvsp_this_month_group - plvsp_prev_month_group) / plvsp_this_month_group) * 100
+                        tot_group = ((plvsp_this_month_group - plvsp_prev_month_group) / plvsp_prev_month_group) * 100
                     Catch ex As Exception
 
                     End Try
@@ -2168,7 +2168,7 @@ WHERE `year`=YEAR('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("
                 Case 2
                     Dim tot_footer As Decimal = 0.00
                     Try
-                        tot_footer = ((plvsp_this_month_footer - plvsp_prev_month_footer) / plvsp_this_month_footer) * 100
+                        tot_footer = ((plvsp_this_month_footer - plvsp_prev_month_footer) / plvsp_prev_month_footer) * 100
                     Catch ex As Exception
 
                     End Try
@@ -2231,7 +2231,7 @@ WHERE `year`=YEAR('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("
                 Case 1
                     Dim tot_group As Decimal = 0.00
                     Try
-                        tot_group = ((plvsy_tm_tot_group - plvsy_py_tot_group) / plvsy_tm_tot_group) * 100
+                        tot_group = ((plvsy_tm_tot_group - plvsy_py_tot_group) / plvsy_py_tot_group) * 100
                     Catch ex As Exception
 
                     End Try
@@ -2239,7 +2239,7 @@ WHERE `year`=YEAR('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("
                 Case 2
                     Dim tot_footer As Decimal = 0.00
                     Try
-                        tot_footer = ((plvsy_tm_tot_footer - plvsy_py_tot_footer) / plvsy_tm_tot_footer) * 100
+                        tot_footer = ((plvsy_tm_tot_footer - plvsy_py_tot_footer) / plvsy_py_tot_footer) * 100
                     Catch ex As Exception
 
                     End Try
@@ -2334,7 +2334,7 @@ WHERE `year`=YEAR('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("
                 Case 1
                     Dim tot_group As Decimal = 0.00
                     Try
-                        tot_group = ((plvsytd_tm_tot_group - plvsytd_py_tot_group) / plvsytd_tm_tot_group) * 100
+                        tot_group = ((plvsytd_tm_tot_group - plvsytd_py_tot_group) / plvsytd_py_tot_group) * 100
                     Catch ex As Exception
 
                     End Try
@@ -2342,7 +2342,7 @@ WHERE `year`=YEAR('" & Date.Parse(DEMonthlyReport.EditValue.ToString).ToString("
                 Case 2
                     Dim tot_footer As Decimal = 0.00
                     Try
-                        tot_footer = ((plvsytd_tm_tot_footer - plvsytd_py_tot_footer) / plvsytd_tm_tot_footer) * 100
+                        tot_footer = ((plvsytd_tm_tot_footer - plvsytd_py_tot_footer) / plvsytd_py_tot_footer) * 100
                     Catch ex As Exception
 
                     End Try

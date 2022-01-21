@@ -578,7 +578,7 @@ Public Class FormSalesOrderDet
             End If
         Next
 
-        Dim block_stocktake As Boolean = block_stocktake_eos(all_product)
+        Dim block_stocktake As Boolean = If(LEStatusSO.EditValue.ToString = "5", True, block_stocktake_eos(all_product))
 
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMain) Then
             errorInput()

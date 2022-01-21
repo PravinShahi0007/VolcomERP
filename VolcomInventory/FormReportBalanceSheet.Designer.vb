@@ -4028,7 +4028,7 @@ Partial Class FormReportBalanceSheet
         Me.GroupControl9.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl9.Location = New System.Drawing.Point(0, 1520)
         Me.GroupControl9.Name = "GroupControl9"
-        Me.GroupControl9.Size = New System.Drawing.Size(1009, 380)
+        Me.GroupControl9.Size = New System.Drawing.Size(992, 380)
         Me.GroupControl9.TabIndex = 4
         Me.GroupControl9.Text = "INCREASE (DECREASE) LAST YEAR"
         '
@@ -4038,7 +4038,7 @@ Partial Class FormReportBalanceSheet
         Me.GCSalVsLastYear.Location = New System.Drawing.Point(2, 20)
         Me.GCSalVsLastYear.MainView = Me.GVSalVsLastYear
         Me.GCSalVsLastYear.Name = "GCSalVsLastYear"
-        Me.GCSalVsLastYear.Size = New System.Drawing.Size(1005, 358)
+        Me.GCSalVsLastYear.Size = New System.Drawing.Size(988, 358)
         Me.GCSalVsLastYear.TabIndex = 4
         Me.GCSalVsLastYear.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalVsLastYear})
         '
@@ -4117,7 +4117,7 @@ Partial Class FormReportBalanceSheet
         Me.GroupControl8.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl8.Location = New System.Drawing.Point(0, 1140)
         Me.GroupControl8.Name = "GroupControl8"
-        Me.GroupControl8.Size = New System.Drawing.Size(1009, 380)
+        Me.GroupControl8.Size = New System.Drawing.Size(992, 380)
         Me.GroupControl8.TabIndex = 3
         Me.GroupControl8.Text = "SALES REALIZATION LAST YEAR"
         '
@@ -4127,7 +4127,7 @@ Partial Class FormReportBalanceSheet
         Me.GCSalLastYear.Location = New System.Drawing.Point(2, 20)
         Me.GCSalLastYear.MainView = Me.GVSalLastYear
         Me.GCSalLastYear.Name = "GCSalLastYear"
-        Me.GCSalLastYear.Size = New System.Drawing.Size(1005, 358)
+        Me.GCSalLastYear.Size = New System.Drawing.Size(988, 358)
         Me.GCSalLastYear.TabIndex = 3
         Me.GCSalLastYear.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalLastYear})
         '
@@ -4206,7 +4206,7 @@ Partial Class FormReportBalanceSheet
         Me.GroupControl7.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl7.Location = New System.Drawing.Point(0, 760)
         Me.GroupControl7.Name = "GroupControl7"
-        Me.GroupControl7.Size = New System.Drawing.Size(1009, 380)
+        Me.GroupControl7.Size = New System.Drawing.Size(992, 380)
         Me.GroupControl7.TabIndex = 2
         Me.GroupControl7.Text = "OVER (UNDER) ON TARGET"
         '
@@ -4216,7 +4216,7 @@ Partial Class FormReportBalanceSheet
         Me.GCOverUnderTarget.Location = New System.Drawing.Point(2, 20)
         Me.GCOverUnderTarget.MainView = Me.GVOverUnderTarget
         Me.GCOverUnderTarget.Name = "GCOverUnderTarget"
-        Me.GCOverUnderTarget.Size = New System.Drawing.Size(1005, 358)
+        Me.GCOverUnderTarget.Size = New System.Drawing.Size(988, 358)
         Me.GCOverUnderTarget.TabIndex = 2
         Me.GCOverUnderTarget.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOverUnderTarget})
         '
@@ -4295,7 +4295,7 @@ Partial Class FormReportBalanceSheet
         Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl6.Location = New System.Drawing.Point(0, 380)
         Me.GroupControl6.Name = "GroupControl6"
-        Me.GroupControl6.Size = New System.Drawing.Size(1009, 380)
+        Me.GroupControl6.Size = New System.Drawing.Size(992, 380)
         Me.GroupControl6.TabIndex = 1
         Me.GroupControl6.Text = "SALES REALIZATION"
         '
@@ -4305,7 +4305,7 @@ Partial Class FormReportBalanceSheet
         Me.GCSalesRealization.Location = New System.Drawing.Point(2, 20)
         Me.GCSalesRealization.MainView = Me.GVSalesRealization
         Me.GCSalesRealization.Name = "GCSalesRealization"
-        Me.GCSalesRealization.Size = New System.Drawing.Size(1005, 358)
+        Me.GCSalesRealization.Size = New System.Drawing.Size(988, 358)
         Me.GCSalesRealization.TabIndex = 1
         Me.GCSalesRealization.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesRealization})
         '
@@ -4384,7 +4384,7 @@ Partial Class FormReportBalanceSheet
         Me.GroupControl5.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl5.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl5.Name = "GroupControl5"
-        Me.GroupControl5.Size = New System.Drawing.Size(1009, 380)
+        Me.GroupControl5.Size = New System.Drawing.Size(992, 380)
         Me.GroupControl5.TabIndex = 0
         Me.GroupControl5.Text = "MINIMUM SALES TARGET USA"
         '
@@ -4394,7 +4394,7 @@ Partial Class FormReportBalanceSheet
         Me.GCMTargetUSA.Location = New System.Drawing.Point(2, 20)
         Me.GCMTargetUSA.MainView = Me.GVMTargetUSA
         Me.GCMTargetUSA.Name = "GCMTargetUSA"
-        Me.GCMTargetUSA.Size = New System.Drawing.Size(1005, 358)
+        Me.GCMTargetUSA.Size = New System.Drawing.Size(988, 358)
         Me.GCMTargetUSA.TabIndex = 0
         Me.GCMTargetUSA.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMTargetUSA})
         '
