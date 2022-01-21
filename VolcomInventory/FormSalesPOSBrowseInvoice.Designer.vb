@@ -38,10 +38,11 @@ Partial Class FormSalesPOSBrowseInvoice
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SBPick = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEProductCode = New DevExpress.XtraEditors.TextEdit()
-        Me.SBView = New DevExpress.XtraEditors.SimpleButton()
         Me.SBViewAll = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBView = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEProductCode = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnsales_pos_potongan = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip.SuspendLayout()
         CType(Me.GVInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,7 +78,7 @@ Partial Class FormSalesPOSBrowseInvoice
         '
         'GVInvoice
         '
-        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10})
+        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumnsales_pos_potongan})
         Me.GVInvoice.GridControl = Me.GCInvoice
         Me.GVInvoice.Name = "GVInvoice"
         Me.GVInvoice.OptionsBehavior.ReadOnly = True
@@ -154,7 +155,7 @@ Partial Class FormSalesPOSBrowseInvoice
         Me.GridColumn8.FieldName = "rev_before"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
+        Me.GridColumn8.VisibleIndex = 7
         '
         'GridColumn9
         '
@@ -164,7 +165,7 @@ Partial Class FormSalesPOSBrowseInvoice
         Me.GridColumn9.FieldName = "rev_after"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 7
+        Me.GridColumn9.VisibleIndex = 8
         '
         'GridColumn10
         '
@@ -202,20 +203,13 @@ Partial Class FormSalesPOSBrowseInvoice
         Me.PanelControl2.Size = New System.Drawing.Size(784, 52)
         Me.PanelControl2.TabIndex = 2
         '
-        'LabelControl1
+        'SBViewAll
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(14, 19)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(65, 13)
-        Me.LabelControl1.TabIndex = 0
-        Me.LabelControl1.Text = "Product Code"
-        '
-        'TEProductCode
-        '
-        Me.TEProductCode.Location = New System.Drawing.Point(89, 16)
-        Me.TEProductCode.Name = "TEProductCode"
-        Me.TEProductCode.Size = New System.Drawing.Size(210, 20)
-        Me.TEProductCode.TabIndex = 1
+        Me.SBViewAll.Location = New System.Drawing.Point(386, 14)
+        Me.SBViewAll.Name = "SBViewAll"
+        Me.SBViewAll.Size = New System.Drawing.Size(75, 23)
+        Me.SBViewAll.TabIndex = 3
+        Me.SBViewAll.Text = "View All"
         '
         'SBView
         '
@@ -225,13 +219,30 @@ Partial Class FormSalesPOSBrowseInvoice
         Me.SBView.TabIndex = 2
         Me.SBView.Text = "View"
         '
-        'SBViewAll
+        'TEProductCode
         '
-        Me.SBViewAll.Location = New System.Drawing.Point(386, 14)
-        Me.SBViewAll.Name = "SBViewAll"
-        Me.SBViewAll.Size = New System.Drawing.Size(75, 23)
-        Me.SBViewAll.TabIndex = 3
-        Me.SBViewAll.Text = "View All"
+        Me.TEProductCode.Location = New System.Drawing.Point(89, 16)
+        Me.TEProductCode.Name = "TEProductCode"
+        Me.TEProductCode.Size = New System.Drawing.Size(210, 20)
+        Me.TEProductCode.TabIndex = 1
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(14, 19)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "Product Code"
+        '
+        'GridColumnsales_pos_potongan
+        '
+        Me.GridColumnsales_pos_potongan.Caption = "Pot. Penjualan Lain"
+        Me.GridColumnsales_pos_potongan.DisplayFormat.FormatString = "N2"
+        Me.GridColumnsales_pos_potongan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnsales_pos_potongan.FieldName = "sales_pos_potongan"
+        Me.GridColumnsales_pos_potongan.Name = "GridColumnsales_pos_potongan"
+        Me.GridColumnsales_pos_potongan.Visible = True
+        Me.GridColumnsales_pos_potongan.VisibleIndex = 6
         '
         'FormSalesPOSBrowseInvoice
         '
@@ -279,4 +290,5 @@ Partial Class FormSalesPOSBrowseInvoice
     Friend WithEvents SBView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEProductCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnsales_pos_potongan As DevExpress.XtraGrid.Columns.GridColumn
 End Class

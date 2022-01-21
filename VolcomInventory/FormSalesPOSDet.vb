@@ -1031,6 +1031,18 @@ Public Class FormSalesPOSDet
                         execute_non_query(query_detail, True, "", "", "", "")
                     End If
 
+                    'jika ad pot penjualan lain
+                    If TxtPotPenjualan.EditValue > 0 Then
+                        If id_menu = "1" Or id_menu = "4" Or id_menu = "6" Then
+                            'invoice
+                            execute_non_query("CALL get_pot_penjualan_detail(" + id_sales_pos + ")", True, "", "", "", "")
+                        ElseIf id_menu = "2" Or id_menu = "5" Then
+                            'cn
+
+                        End If
+                    End If
+
+
                     'update total qty
                     Dim queryt As String = "UPDATE tb_sales_pos main
                     INNER JOIN (
