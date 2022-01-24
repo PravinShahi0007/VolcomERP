@@ -1038,7 +1038,7 @@ Public Class FormSalesPOSDet
                             execute_non_query("CALL get_pot_penjualan_detail(" + id_sales_pos + ")", True, "", "", "", "")
                         ElseIf id_menu = "2" Or id_menu = "5" Then
                             'cn
-
+                            execute_non_query("CALL get_pot_penjualan_detail_cn(" + id_sales_pos + ")", True, "", "", "", "")
                         End If
                     End If
 
