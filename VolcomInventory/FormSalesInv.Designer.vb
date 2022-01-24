@@ -168,10 +168,10 @@ Partial Class FormSalesInv
         Me.BtnShowFilterAcc = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlViewByAcc = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEIncludePrmUniByAcc = New DevExpress.XtraEditors.CheckEdit()
         Me.CESOHBySalPeriod = New DevExpress.XtraEditors.CheckEdit()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.CEIncludePrmUniByAcc = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnViewAcc = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLSAcc = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnHideFilterAcc = New DevExpress.XtraEditors.SimpleButton()
@@ -201,7 +201,8 @@ Partial Class FormSalesInv
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.LEFilterOptAcc = New DevExpress.XtraEditors.LookUpEdit()
-        Me.CENewReport = New DevExpress.XtraEditors.CheckEdit()
+        Me.SLETypeDate = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.XTCSalesInv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesInv.SuspendLayout()
         Me.XTPProduct.SuspendLayout()
@@ -235,10 +236,10 @@ Partial Class FormSalesInv
         Me.PanelControlViewByAcc.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.CEIncludePrmUniByAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CESOHBySalPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
-        CType(Me.CEIncludePrmUniByAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEFindAllProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLESubFilterAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -253,7 +254,8 @@ Partial Class FormSalesInv
         CType(Me.SLEAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEFilterOptAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CENewReport.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLETypeDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSalesInv
@@ -1098,10 +1100,10 @@ Partial Class FormSalesInv
         'GCByAccount
         '
         Me.GCByAccount.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCByAccount.Location = New System.Drawing.Point(0, 218)
+        Me.GCByAccount.Location = New System.Drawing.Point(0, 242)
         Me.GCByAccount.MainView = Me.GVByAccount
         Me.GCByAccount.Name = "GCByAccount"
-        Me.GCByAccount.Size = New System.Drawing.Size(781, 323)
+        Me.GCByAccount.Size = New System.Drawing.Size(781, 299)
         Me.GCByAccount.TabIndex = 8929
         Me.GCByAccount.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVByAccount})
         '
@@ -1656,7 +1658,7 @@ Partial Class FormSalesInv
         Me.BtnShowFilterAcc.Image = CType(resources.GetObject("BtnShowFilterAcc.Image"), System.Drawing.Image)
         Me.BtnShowFilterAcc.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
         Me.BtnShowFilterAcc.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftTop
-        Me.BtnShowFilterAcc.Location = New System.Drawing.Point(0, 198)
+        Me.BtnShowFilterAcc.Location = New System.Drawing.Point(0, 222)
         Me.BtnShowFilterAcc.LookAndFeel.SkinName = "Blue"
         Me.BtnShowFilterAcc.Name = "BtnShowFilterAcc"
         Me.BtnShowFilterAcc.Size = New System.Drawing.Size(781, 20)
@@ -1670,14 +1672,14 @@ Partial Class FormSalesInv
         Me.PanelControlViewByAcc.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlViewByAcc.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlViewByAcc.Name = "PanelControlViewByAcc"
-        Me.PanelControlViewByAcc.Size = New System.Drawing.Size(781, 198)
+        Me.PanelControlViewByAcc.Size = New System.Drawing.Size(781, 222)
         Me.PanelControlViewByAcc.TabIndex = 1
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.SLETypeDate)
         Me.PanelControl3.Controls.Add(Me.CEIncludePrmUniByAcc)
         Me.PanelControl3.Controls.Add(Me.CESOHBySalPeriod)
-        Me.PanelControl3.Controls.Add(Me.LabelControl15)
         Me.PanelControl3.Controls.Add(Me.PanelControl4)
         Me.PanelControl3.Controls.Add(Me.BtnBrowseProduct)
         Me.PanelControl3.Controls.Add(Me.CEFindAllProduct)
@@ -1699,38 +1701,8 @@ Partial Class FormSalesInv
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(514, 194)
+        Me.PanelControl3.Size = New System.Drawing.Size(514, 218)
         Me.PanelControl3.TabIndex = 8926
-        '
-        'CESOHBySalPeriod
-        '
-        Me.CESOHBySalPeriod.Location = New System.Drawing.Point(212, 116)
-        Me.CESOHBySalPeriod.Name = "CESOHBySalPeriod"
-        Me.CESOHBySalPeriod.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.CESOHBySalPeriod.Properties.Appearance.Options.UseForeColor = True
-        Me.CESOHBySalPeriod.Properties.Caption = "SOH by Sales Period"
-        Me.CESOHBySalPeriod.Size = New System.Drawing.Size(125, 19)
-        Me.CESOHBySalPeriod.TabIndex = 8927
-        '
-        'LabelControl15
-        '
-        Me.LabelControl15.Location = New System.Drawing.Point(371, 119)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(126, 13)
-        Me.LabelControl15.TabIndex = 8930
-        Me.LabelControl15.Text = "Press F7 to show unit cost"
-        '
-        'PanelControl4
-        '
-        Me.PanelControl4.Controls.Add(Me.CENewReport)
-        Me.PanelControl4.Controls.Add(Me.BtnViewAcc)
-        Me.PanelControl4.Controls.Add(Me.BtnExportToXLSAcc)
-        Me.PanelControl4.Controls.Add(Me.BtnHideFilterAcc)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(2, 155)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(510, 37)
-        Me.PanelControl4.TabIndex = 8925
         '
         'CEIncludePrmUniByAcc
         '
@@ -1742,6 +1714,36 @@ Partial Class FormSalesInv
         Me.CEIncludePrmUniByAcc.Size = New System.Drawing.Size(138, 19)
         Me.CEIncludePrmUniByAcc.TabIndex = 8931
         Me.CEIncludePrmUniByAcc.Visible = False
+        '
+        'CESOHBySalPeriod
+        '
+        Me.CESOHBySalPeriod.Location = New System.Drawing.Point(208, 142)
+        Me.CESOHBySalPeriod.Name = "CESOHBySalPeriod"
+        Me.CESOHBySalPeriod.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.CESOHBySalPeriod.Properties.Appearance.Options.UseForeColor = True
+        Me.CESOHBySalPeriod.Properties.Caption = "SOH by Sales Period"
+        Me.CESOHBySalPeriod.Size = New System.Drawing.Size(125, 19)
+        Me.CESOHBySalPeriod.TabIndex = 8927
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Location = New System.Drawing.Point(7, 11)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(126, 13)
+        Me.LabelControl15.TabIndex = 8930
+        Me.LabelControl15.Text = "Press F7 to show unit cost"
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.BtnViewAcc)
+        Me.PanelControl4.Controls.Add(Me.BtnExportToXLSAcc)
+        Me.PanelControl4.Controls.Add(Me.BtnHideFilterAcc)
+        Me.PanelControl4.Controls.Add(Me.LabelControl15)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl4.Location = New System.Drawing.Point(2, 179)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(510, 37)
+        Me.PanelControl4.TabIndex = 8925
         '
         'BtnViewAcc
         '
@@ -1777,7 +1779,7 @@ Partial Class FormSalesInv
         '
         Me.BtnBrowseProduct.Enabled = False
         Me.BtnBrowseProduct.Image = CType(resources.GetObject("BtnBrowseProduct.Image"), System.Drawing.Image)
-        Me.BtnBrowseProduct.Location = New System.Drawing.Point(471, 38)
+        Me.BtnBrowseProduct.Location = New System.Drawing.Point(467, 38)
         Me.BtnBrowseProduct.LookAndFeel.SkinName = "Blue"
         Me.BtnBrowseProduct.Name = "BtnBrowseProduct"
         Me.BtnBrowseProduct.Size = New System.Drawing.Size(26, 20)
@@ -1787,7 +1789,7 @@ Partial Class FormSalesInv
         'CEFindAllProduct
         '
         Me.CEFindAllProduct.EditValue = True
-        Me.CEFindAllProduct.Location = New System.Drawing.Point(8, 38)
+        Me.CEFindAllProduct.Location = New System.Drawing.Point(13, 38)
         Me.CEFindAllProduct.Name = "CEFindAllProduct"
         Me.CEFindAllProduct.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CEFindAllProduct.Properties.Appearance.Options.UseFont = True
@@ -1800,14 +1802,14 @@ Partial Class FormSalesInv
         '
         Me.TxtProduct.EditValue = ""
         Me.TxtProduct.Enabled = False
-        Me.TxtProduct.Location = New System.Drawing.Point(96, 38)
+        Me.TxtProduct.Location = New System.Drawing.Point(92, 38)
         Me.TxtProduct.Name = "TxtProduct"
         Me.TxtProduct.Size = New System.Drawing.Size(369, 20)
         Me.TxtProduct.TabIndex = 8906
         '
         'SLESubFilterAcc
         '
-        Me.SLESubFilterAcc.Location = New System.Drawing.Point(243, 64)
+        Me.SLESubFilterAcc.Location = New System.Drawing.Point(239, 64)
         Me.SLESubFilterAcc.Name = "SLESubFilterAcc"
         Me.SLESubFilterAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLESubFilterAcc.Properties.NullText = "- Select Account -"
@@ -1848,7 +1850,7 @@ Partial Class FormSalesInv
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(212, 93)
+        Me.LabelControl8.Location = New System.Drawing.Point(14, 119)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl8.TabIndex = 8902
@@ -1856,7 +1858,7 @@ Partial Class FormSalesInv
         '
         'LEDisplayAcc
         '
-        Me.LEDisplayAcc.Location = New System.Drawing.Point(96, 116)
+        Me.LEDisplayAcc.Location = New System.Drawing.Point(92, 142)
         Me.LEDisplayAcc.Name = "LEDisplayAcc"
         Me.LEDisplayAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEDisplayAcc.Size = New System.Drawing.Size(110, 20)
@@ -1864,7 +1866,7 @@ Partial Class FormSalesInv
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(359, 93)
+        Me.LabelControl9.Location = New System.Drawing.Point(273, 119)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl9.TabIndex = 8903
@@ -1872,7 +1874,7 @@ Partial Class FormSalesInv
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(9, 119)
+        Me.LabelControl10.Location = New System.Drawing.Point(14, 145)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl10.TabIndex = 8923
@@ -1881,7 +1883,7 @@ Partial Class FormSalesInv
         'DEFromAcc
         '
         Me.DEFromAcc.EditValue = Nothing
-        Me.DEFromAcc.Location = New System.Drawing.Point(242, 90)
+        Me.DEFromAcc.Location = New System.Drawing.Point(92, 116)
         Me.DEFromAcc.Name = "DEFromAcc"
         Me.DEFromAcc.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEFromAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1889,17 +1891,18 @@ Partial Class FormSalesInv
         Me.DEFromAcc.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEFromAcc.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEFromAcc.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEFromAcc.Size = New System.Drawing.Size(111, 20)
+        Me.DEFromAcc.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearView
+        Me.DEFromAcc.Size = New System.Drawing.Size(175, 20)
         Me.DEFromAcc.TabIndex = 8904
         '
         'SLEPeriodTypeAcc
         '
-        Me.SLEPeriodTypeAcc.Location = New System.Drawing.Point(96, 90)
+        Me.SLEPeriodTypeAcc.Location = New System.Drawing.Point(92, 90)
         Me.SLEPeriodTypeAcc.Name = "SLEPeriodTypeAcc"
         Me.SLEPeriodTypeAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEPeriodTypeAcc.Properties.ShowClearButton = False
         Me.SLEPeriodTypeAcc.Properties.View = Me.GridView4
-        Me.SLEPeriodTypeAcc.Size = New System.Drawing.Size(110, 20)
+        Me.SLEPeriodTypeAcc.Size = New System.Drawing.Size(145, 20)
         Me.SLEPeriodTypeAcc.TabIndex = 8922
         '
         'GridView4
@@ -1912,7 +1915,7 @@ Partial Class FormSalesInv
         'DEUntilAcc
         '
         Me.DEUntilAcc.EditValue = Nothing
-        Me.DEUntilAcc.Location = New System.Drawing.Point(386, 90)
+        Me.DEUntilAcc.Location = New System.Drawing.Point(300, 116)
         Me.DEUntilAcc.Name = "DEUntilAcc"
         Me.DEUntilAcc.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEUntilAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1920,12 +1923,12 @@ Partial Class FormSalesInv
         Me.DEUntilAcc.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEUntilAcc.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEUntilAcc.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEUntilAcc.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntilAcc.Size = New System.Drawing.Size(193, 20)
         Me.DEUntilAcc.TabIndex = 8905
         '
         'LabelControl11
         '
-        Me.LabelControl11.Location = New System.Drawing.Point(9, 93)
+        Me.LabelControl11.Location = New System.Drawing.Point(14, 93)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl11.TabIndex = 8921
@@ -1933,7 +1936,7 @@ Partial Class FormSalesInv
         '
         'SLEAccount
         '
-        Me.SLEAccount.Location = New System.Drawing.Point(96, 12)
+        Me.SLEAccount.Location = New System.Drawing.Point(92, 12)
         Me.SLEAccount.Name = "SLEAccount"
         Me.SLEAccount.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEAccount.Properties.NullText = "- Select Account -"
@@ -1971,14 +1974,14 @@ Partial Class FormSalesInv
         '
         'LabelControl12
         '
-        Me.LabelControl12.Location = New System.Drawing.Point(24, 51)
+        Me.LabelControl12.Location = New System.Drawing.Point(29, 51)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(0, 13)
         Me.LabelControl12.TabIndex = 8920
         '
         'LabelControl13
         '
-        Me.LabelControl13.Location = New System.Drawing.Point(9, 15)
+        Me.LabelControl13.Location = New System.Drawing.Point(14, 15)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl13.TabIndex = 8915
@@ -1986,7 +1989,7 @@ Partial Class FormSalesInv
         '
         'LabelControl14
         '
-        Me.LabelControl14.Location = New System.Drawing.Point(9, 67)
+        Me.LabelControl14.Location = New System.Drawing.Point(14, 67)
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(59, 13)
         Me.LabelControl14.TabIndex = 8917
@@ -1994,21 +1997,28 @@ Partial Class FormSalesInv
         '
         'LEFilterOptAcc
         '
-        Me.LEFilterOptAcc.Location = New System.Drawing.Point(96, 64)
+        Me.LEFilterOptAcc.Location = New System.Drawing.Point(92, 64)
         Me.LEFilterOptAcc.Name = "LEFilterOptAcc"
         Me.LEFilterOptAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEFilterOptAcc.Size = New System.Drawing.Size(145, 20)
         Me.LEFilterOptAcc.TabIndex = 8918
         '
-        'CENewReport
+        'SLETypeDate
         '
-        Me.CENewReport.Location = New System.Drawing.Point(7, 8)
-        Me.CENewReport.Name = "CENewReport"
-        Me.CENewReport.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.CENewReport.Properties.Appearance.Options.UseForeColor = True
-        Me.CENewReport.Properties.Caption = "New Report (Trial)"
-        Me.CENewReport.Size = New System.Drawing.Size(116, 19)
-        Me.CENewReport.TabIndex = 8932
+        Me.SLETypeDate.Location = New System.Drawing.Point(241, 90)
+        Me.SLETypeDate.Name = "SLETypeDate"
+        Me.SLETypeDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLETypeDate.Properties.ShowClearButton = False
+        Me.SLETypeDate.Properties.View = Me.GridView6
+        Me.SLETypeDate.Size = New System.Drawing.Size(252, 20)
+        Me.SLETypeDate.TabIndex = 8932
+        '
+        'GridView6
+        '
+        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ShowGroupPanel = False
         '
         'FormSalesInv
         '
@@ -2054,10 +2064,11 @@ Partial Class FormSalesInv
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.CEIncludePrmUniByAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CESOHBySalPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
-        CType(Me.CEIncludePrmUniByAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.PerformLayout()
         CType(Me.CEFindAllProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLESubFilterAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2072,7 +2083,8 @@ Partial Class FormSalesInv
         CType(Me.SLEAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEFilterOptAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CENewReport.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLETypeDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2258,5 +2270,6 @@ Partial Class FormSalesInv
     Friend WithEvents BandedGridColumnseason As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBandSOHAcc As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents CENewReport As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents SLETypeDate As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

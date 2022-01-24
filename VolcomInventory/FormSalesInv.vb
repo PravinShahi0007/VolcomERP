@@ -16,6 +16,7 @@
         viewPeriodType()
         viewDisplay()
         showCaptionSize()
+        viewTypeDate()
         LEFilterOptAcc.EditValue = "0"
     End Sub
 
@@ -26,6 +27,13 @@
 
     Private Sub FormSalesInv_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
+    End Sub
+
+    Sub viewTypeDate()
+        Dim query As String = "SELECT 1 AS `id_type_date`, 'Daily' AS `type_date`
+        UNION ALL
+        SELECT 2 AS `id_type_date`, 'Monthly' AS `type_date` "
+        viewSearchLookupQuery(SLETypeDate, query, "id_type_date", "type_date", "id_type_date")
     End Sub
 
     Sub showCaptionSize()
@@ -443,6 +451,7 @@
 
     Private Sub DEFromAcc_EditValueChanged(sender As Object, e As EventArgs) Handles DEFromAcc.EditValueChanged
         resetViewByAccount()
+        DEUntilAcc.Properties.MinValue = DEFromAcc.EditValue
     End Sub
 
     Private Sub DEUntilAcc_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntilAcc.EditValueChanged
@@ -565,7 +574,7 @@
         'old query
         'Dim query As String = "CALL view_sales_inv_per_account('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "','" + id_design_per_outlet + "', '" + id_period_type + "', '" + opt_display_param + "', '" + where_param + "')"
         Dim query As String = ""
-        If Not CENewReport.EditValue = True Then
+        If SLETypeDate.EditValue.ToString = "1" Then
             query = "CALL view_sales_inv_per_acc_by_sal_v3('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "','" + id_design_per_outlet + "', '" + id_period_type + "', '" + opt_display_param + "', '" + where_param + "', '" + is_soh_sal_period + "', '" + include_prm_uni + "')"
         Else
             query = "CALL view_sales_inv_per_acc_by_sal_v4('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "','" + id_design_per_outlet + "', '" + id_period_type + "', '" + opt_display_param + "', '" + where_param + "', '" + is_soh_sal_period + "', '" + include_prm_uni + "')"
@@ -621,5 +630,28 @@
 
     Private Sub CESOHBySalPeriodByProduct_EditValueChanged(sender As Object, e As EventArgs) Handles CESOHBySalPeriodByProduct.EditValueChanged
         GCByProduct.DataSource = Nothing
+    End Sub
+
+    Private Sub SLETypeDate_EditValueChanged(sender As Object, e As EventArgs) Handles SLETypeDate.EditValueChanged
+        If SLETypeDate.EditValue.ToString = "1" Then
+            'daily
+            DEFromAcc.Properties.Mask.EditMask = "dd \/ MM \/ yyyy"
+            DEFromAcc.Properties.Mask.UseMaskAsDisplayFormat = False
+            DEFromAcc.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.MonthView
+            DEUntilAcc.Properties.Mask.EditMask = "dd \/ MM \/ yyyy"
+            DEUntilAcc.Properties.Mask.UseMaskAsDisplayFormat = False
+            DEUntilAcc.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.MonthView
+            CESOHBySalPeriod.Enabled = True
+        Else
+            'monthly
+            DEFromAcc.Properties.Mask.EditMask = "Y"
+            DEFromAcc.Properties.Mask.UseMaskAsDisplayFormat = True
+            DEFromAcc.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearView
+            DEUntilAcc.Properties.Mask.EditMask = "Y"
+            DEUntilAcc.Properties.Mask.UseMaskAsDisplayFormat = True
+            DEUntilAcc.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearView
+            CESOHBySalPeriod.EditValue = True
+            CESOHBySalPeriod.Enabled = False
+        End If
     End Sub
 End Class
