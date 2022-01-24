@@ -12,6 +12,8 @@
             FormSalesPOSDet.id_sales_pos_ref = GVInvoice.GetFocusedRowCellValue("id_sales_pos").ToString
             FormSalesPOSDet.TxtInvoice.Text = GVInvoice.GetFocusedRowCellValue("sales_pos_number").ToString
             FormSalesPOSDet.SPDiscount.EditValue = GVInvoice.GetFocusedRowCellValue("sales_pos_discount").ToString
+            FormSalesPOSDet.TxtPotPenjualan.EditValue = GVInvoice.GetFocusedRowCellValue("sales_pos_potongan")
+            FormSalesPOSDet.TxtPotPenjualan.Enabled = False
             FormSalesPOSDet.SPVat.EditValue = GVInvoice.GetFocusedRowCellValue("sales_pos_vat").ToString
             FormSalesPOSDet.calculate()
             FormSalesPOSDet.viewDetail()
@@ -47,7 +49,8 @@
         End If
 
         Dim query As String = "
-            SELECT inv.id_sales_pos, inv.sales_pos_number, CONCAT(DATE_FORMAT(inv.sales_pos_start_period, '%d %M %Y'), ' - ', DATE_FORMAT(inv.sales_pos_end_period, '%d %M %Y')) AS sales_pos_period, SUM(ind.sales_pos_det_qty) AS sales_pos_det_qty, inv.sales_pos_discount, inv.sales_pos_vat, inv.sales_pos_total, (inv.sales_pos_total - (inv.sales_pos_total * (inv.sales_pos_discount / 100))) AS rev_before, ((100 / (100 + inv.sales_pos_vat)) * (SELECT rev_before)) AS rev_after, inv.report_mark_type
+            SELECT inv.id_sales_pos, inv.sales_pos_number, CONCAT(DATE_FORMAT(inv.sales_pos_start_period, '%d %M %Y'), ' - ', DATE_FORMAT(inv.sales_pos_end_period, '%d %M %Y')) AS sales_pos_period, SUM(ind.sales_pos_det_qty) AS sales_pos_det_qty, inv.sales_pos_discount, inv.sales_pos_vat, inv.sales_pos_total, (inv.sales_pos_total - (inv.sales_pos_total * (inv.sales_pos_discount / 100))) AS rev_before, ((100 / (100 + inv.sales_pos_vat)) * (SELECT rev_before)) AS rev_after, inv.report_mark_type,
+            inv.sales_pos_potongan
             FROM tb_sales_pos_det ind
             INNER JOIN tb_sales_pos inv ON inv.id_sales_pos = ind.id_sales_pos
             INNER JOIN tb_lookup_memo_type AS mt ON inv.id_memo_type = mt.id_memo_type

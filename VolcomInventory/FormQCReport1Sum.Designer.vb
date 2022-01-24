@@ -22,14 +22,13 @@ Partial Class FormQCReport1Sum
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormQCReport1Sum))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
+        Me.PCControl = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopMiddle = New DevExpress.XtraEditors.PanelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEDesignCode = New DevExpress.XtraEditors.TextEdit()
         Me.SLEFGPO = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -40,8 +39,8 @@ Partial Class FormQCReport1Sum
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtDesign = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtSeason = New DevExpress.XtraEditors.TextEdit()
+        Me.TEDesign = New DevExpress.XtraEditors.TextEdit()
+        Me.TESeason = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -58,7 +57,7 @@ Partial Class FormQCReport1Sum
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPE = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.BRefreshImg = New DevExpress.XtraEditors.SimpleButton()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPInputImage = New DevExpress.XtraTab.XtraTabPage()
         Me.BUploadImg = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
@@ -84,18 +83,28 @@ Partial Class FormQCReport1Sum
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.GCRec = New DevExpress.XtraGrid.GridControl()
+        Me.GVRec = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemPictureEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        CType(Me.PCControl, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCControl.SuspendLayout()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopMiddle.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEFGPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,13 +118,21 @@ Partial Class FormQCReport1Sum
         CType(Me.GCImage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVImage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIPE, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraTabPage2.SuspendLayout()
+        Me.XTPInputImage.SuspendLayout()
         CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.GCRec, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVRec, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -134,32 +151,18 @@ Partial Class FormQCReport1Sum
         Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
         Me.LargeImageCollection.Images.SetKeyName(10, "attachment-icon.png")
         '
-        'PanelControl3
+        'PCControl
         '
-        Me.PanelControl3.Controls.Add(Me.BtnXlsBOF)
-        Me.PanelControl3.Controls.Add(Me.BtnPrint)
-        Me.PanelControl3.Controls.Add(Me.BMark)
-        Me.PanelControl3.Controls.Add(Me.BtnCancel)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 538)
-        Me.PanelControl3.LookAndFeel.SkinName = "Blue"
-        Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1067, 38)
-        Me.PanelControl3.TabIndex = 178
-        '
-        'BtnXlsBOF
-        '
-        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
-        Me.BtnXlsBOF.ImageIndex = 11
-        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
-        Me.BtnXlsBOF.Location = New System.Drawing.Point(800, 2)
-        Me.BtnXlsBOF.Name = "BtnXlsBOF"
-        Me.BtnXlsBOF.Size = New System.Drawing.Size(115, 34)
-        Me.BtnXlsBOF.TabIndex = 17
-        Me.BtnXlsBOF.Text = "Generate XLS"
-        Me.BtnXlsBOF.Visible = False
+        Me.PCControl.Controls.Add(Me.BtnPrint)
+        Me.PCControl.Controls.Add(Me.BMark)
+        Me.PCControl.Controls.Add(Me.BtnCancel)
+        Me.PCControl.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCControl.Location = New System.Drawing.Point(0, 619)
+        Me.PCControl.LookAndFeel.SkinName = "Blue"
+        Me.PCControl.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.PCControl.Name = "PCControl"
+        Me.PCControl.Size = New System.Drawing.Size(1067, 38)
+        Me.PCControl.TabIndex = 178
         '
         'BtnPrint
         '
@@ -192,7 +195,7 @@ Partial Class FormQCReport1Sum
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 34)
         Me.BtnCancel.TabIndex = 9
-        Me.BtnCancel.Text = "Cancel"
+        Me.BtnCancel.Text = "Close"
         '
         'GroupGeneralHeader
         '
@@ -208,31 +211,31 @@ Partial Class FormQCReport1Sum
         'PanelControlTopMiddle
         '
         Me.PanelControlTopMiddle.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlTopMiddle.Controls.Add(Me.TextEdit1)
+        Me.PanelControlTopMiddle.Controls.Add(Me.TEDesignCode)
         Me.PanelControlTopMiddle.Controls.Add(Me.SLEFGPO)
         Me.PanelControlTopMiddle.Controls.Add(Me.LabelControl9)
         Me.PanelControlTopMiddle.Controls.Add(Me.LabelControl8)
         Me.PanelControlTopMiddle.Controls.Add(Me.LabelControl4)
-        Me.PanelControlTopMiddle.Controls.Add(Me.TxtDesign)
-        Me.PanelControlTopMiddle.Controls.Add(Me.TxtSeason)
+        Me.PanelControlTopMiddle.Controls.Add(Me.TEDesign)
+        Me.PanelControlTopMiddle.Controls.Add(Me.TESeason)
         Me.PanelControlTopMiddle.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlTopMiddle.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlTopMiddle.Name = "PanelControlTopMiddle"
         Me.PanelControlTopMiddle.Size = New System.Drawing.Size(713, 93)
         Me.PanelControlTopMiddle.TabIndex = 10003
         '
-        'TextEdit1
+        'TEDesignCode
         '
-        Me.TextEdit1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.TEDesignCode.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextEdit1.EditValue = ""
-        Me.TextEdit1.Location = New System.Drawing.Point(79, 34)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.EditValueChangedDelay = 1
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(136, 20)
-        Me.TextEdit1.TabIndex = 10005
-        Me.TextEdit1.TabStop = False
+        Me.TEDesignCode.EditValue = ""
+        Me.TEDesignCode.Location = New System.Drawing.Point(79, 34)
+        Me.TEDesignCode.Name = "TEDesignCode"
+        Me.TEDesignCode.Properties.EditValueChangedDelay = 1
+        Me.TEDesignCode.Properties.ReadOnly = True
+        Me.TEDesignCode.Size = New System.Drawing.Size(136, 20)
+        Me.TEDesignCode.TabIndex = 10005
+        Me.TEDesignCode.TabStop = False
         '
         'SLEFGPO
         '
@@ -317,31 +320,31 @@ Partial Class FormQCReport1Sum
         Me.LabelControl4.TabIndex = 88
         Me.LabelControl4.Text = "FGPO"
         '
-        'TxtDesign
+        'TEDesign
         '
-        Me.TxtDesign.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.TEDesign.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtDesign.EditValue = ""
-        Me.TxtDesign.Location = New System.Drawing.Point(221, 34)
-        Me.TxtDesign.Name = "TxtDesign"
-        Me.TxtDesign.Properties.EditValueChangedDelay = 1
-        Me.TxtDesign.Properties.ReadOnly = True
-        Me.TxtDesign.Size = New System.Drawing.Size(281, 20)
-        Me.TxtDesign.TabIndex = 10000
-        Me.TxtDesign.TabStop = False
+        Me.TEDesign.EditValue = ""
+        Me.TEDesign.Location = New System.Drawing.Point(221, 34)
+        Me.TEDesign.Name = "TEDesign"
+        Me.TEDesign.Properties.EditValueChangedDelay = 1
+        Me.TEDesign.Properties.ReadOnly = True
+        Me.TEDesign.Size = New System.Drawing.Size(281, 20)
+        Me.TEDesign.TabIndex = 10000
+        Me.TEDesign.TabStop = False
         '
-        'TxtSeason
+        'TESeason
         '
-        Me.TxtSeason.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.TESeason.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtSeason.EditValue = ""
-        Me.TxtSeason.Location = New System.Drawing.Point(79, 60)
-        Me.TxtSeason.Name = "TxtSeason"
-        Me.TxtSeason.Properties.EditValueChangedDelay = 1
-        Me.TxtSeason.Properties.ReadOnly = True
-        Me.TxtSeason.Size = New System.Drawing.Size(423, 20)
-        Me.TxtSeason.TabIndex = 10001
-        Me.TxtSeason.TabStop = False
+        Me.TESeason.EditValue = ""
+        Me.TESeason.Location = New System.Drawing.Point(79, 60)
+        Me.TESeason.Name = "TESeason"
+        Me.TESeason.Properties.EditValueChangedDelay = 1
+        Me.TESeason.Properties.ReadOnly = True
+        Me.TESeason.Size = New System.Drawing.Size(423, 20)
+        Me.TESeason.TabIndex = 10001
+        Me.TESeason.TabStop = False
         '
         'PanelControlTopRight
         '
@@ -425,7 +428,7 @@ Partial Class FormQCReport1Sum
         '
         Me.PanelControl1.Controls.Add(Me.XTCImage)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 236)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 317)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1067, 302)
         Me.PanelControl1.TabIndex = 181
@@ -438,7 +441,7 @@ Partial Class FormQCReport1Sum
         Me.XTCImage.SelectedTabPage = Me.XtraTabPage1
         Me.XTCImage.Size = New System.Drawing.Size(1063, 298)
         Me.XTCImage.TabIndex = 1
-        Me.XTCImage.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        Me.XTCImage.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XTPInputImage})
         '
         'XtraTabPage1
         '
@@ -515,15 +518,15 @@ Partial Class FormQCReport1Sum
         Me.BRefreshImg.TabIndex = 181
         Me.BRefreshImg.Text = "Refresh"
         '
-        'XtraTabPage2
+        'XTPInputImage
         '
-        Me.XtraTabPage2.Controls.Add(Me.BUploadImg)
-        Me.XtraTabPage2.Controls.Add(Me.LabelControl1)
-        Me.XtraTabPage2.Controls.Add(Me.MemoEdit1)
-        Me.XtraTabPage2.Controls.Add(Me.PictureEdit1)
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1057, 270)
-        Me.XtraTabPage2.Text = "Input Image"
+        Me.XTPInputImage.Controls.Add(Me.BUploadImg)
+        Me.XTPInputImage.Controls.Add(Me.LabelControl1)
+        Me.XTPInputImage.Controls.Add(Me.MemoEdit1)
+        Me.XTPInputImage.Controls.Add(Me.PictureEdit1)
+        Me.XTPInputImage.Name = "XTPInputImage"
+        Me.XTPInputImage.Size = New System.Drawing.Size(1057, 270)
+        Me.XTPInputImage.Text = "Input Image"
         '
         'BUploadImg
         '
@@ -561,11 +564,11 @@ Partial Class FormQCReport1Sum
         'GCProd
         '
         Me.GCProd.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCProd.Location = New System.Drawing.Point(0, 131)
+        Me.GCProd.Location = New System.Drawing.Point(2, 2)
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
         Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit, Me.RepositoryItemCheckEdit1})
-        Me.GCProd.Size = New System.Drawing.Size(1067, 105)
+        Me.GCProd.Size = New System.Drawing.Size(672, 182)
         Me.GCProd.TabIndex = 182
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
         '
@@ -610,8 +613,6 @@ Partial Class FormQCReport1Sum
         Me.GridColumn65.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn65.FieldName = "est_del_date_ko"
         Me.GridColumn65.Name = "GridColumn65"
-        Me.GridColumn65.Visible = True
-        Me.GridColumn65.VisibleIndex = 5
         Me.GridColumn65.Width = 85
         '
         'GridColumn63
@@ -621,8 +622,6 @@ Partial Class FormQCReport1Sum
         Me.GridColumn63.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn63.FieldName = "prod_order_rec_date"
         Me.GridColumn63.Name = "GridColumn63"
-        Me.GridColumn63.Visible = True
-        Me.GridColumn63.VisibleIndex = 6
         Me.GridColumn63.Width = 86
         '
         'GridColumnProdDate
@@ -633,8 +632,6 @@ Partial Class FormQCReport1Sum
         Me.GridColumnProdDate.FieldName = "prod_order_date"
         Me.GridColumnProdDate.Name = "GridColumnProdDate"
         Me.GridColumnProdDate.OptionsColumn.AllowEdit = False
-        Me.GridColumnProdDate.Visible = True
-        Me.GridColumnProdDate.VisibleIndex = 4
         Me.GridColumnProdDate.Width = 86
         '
         'GridColumn53
@@ -645,8 +642,6 @@ Partial Class FormQCReport1Sum
         Me.GridColumn53.FieldName = "delivery_date"
         Me.GridColumn53.Name = "GridColumn53"
         Me.GridColumn53.OptionsColumn.AllowEdit = False
-        Me.GridColumn53.Visible = True
-        Me.GridColumn53.VisibleIndex = 3
         Me.GridColumn53.Width = 66
         '
         'GridColumn52
@@ -657,8 +652,6 @@ Partial Class FormQCReport1Sum
         Me.GridColumn52.FieldName = "est_wh_date"
         Me.GridColumn52.Name = "GridColumn52"
         Me.GridColumn52.OptionsColumn.AllowEdit = False
-        Me.GridColumn52.Visible = True
-        Me.GridColumn52.VisibleIndex = 2
         Me.GridColumn52.Width = 72
         '
         'GridColumnDesign
@@ -667,8 +660,6 @@ Partial Class FormQCReport1Sum
         Me.GridColumnDesign.FieldName = "design_display_name"
         Me.GridColumnDesign.Name = "GridColumnDesign"
         Me.GridColumnDesign.OptionsColumn.AllowEdit = False
-        Me.GridColumnDesign.Visible = True
-        Me.GridColumnDesign.VisibleIndex = 1
         Me.GridColumnDesign.Width = 85
         '
         'GridColumnCode
@@ -677,8 +668,6 @@ Partial Class FormQCReport1Sum
         Me.GridColumnCode.FieldName = "design_code"
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.OptionsColumn.AllowEdit = False
-        Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 0
         Me.GridColumnCode.Width = 54
         '
         'GridColumnOrderQty
@@ -690,12 +679,12 @@ Partial Class FormQCReport1Sum
         Me.GridColumnOrderQty.Caption = "Order Qty"
         Me.GridColumnOrderQty.DisplayFormat.FormatString = "N0"
         Me.GridColumnOrderQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnOrderQty.FieldName = "qty_order"
+        Me.GridColumnOrderQty.FieldName = "qty_po"
         Me.GridColumnOrderQty.Name = "GridColumnOrderQty"
         Me.GridColumnOrderQty.OptionsColumn.AllowEdit = False
         Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N0}")})
         Me.GridColumnOrderQty.Visible = True
-        Me.GridColumnOrderQty.VisibleIndex = 7
+        Me.GridColumnOrderQty.VisibleIndex = 0
         Me.GridColumnOrderQty.Width = 62
         '
         'GridColumnRecQty
@@ -712,7 +701,7 @@ Partial Class FormQCReport1Sum
         Me.GridColumnRecQty.OptionsColumn.AllowEdit = False
         Me.GridColumnRecQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", "{0:N0}")})
         Me.GridColumnRecQty.Visible = True
-        Me.GridColumnRecQty.VisibleIndex = 8
+        Me.GridColumnRecQty.VisibleIndex = 1
         Me.GridColumnRecQty.Width = 72
         '
         'GridColumn20
@@ -724,9 +713,11 @@ Partial Class FormQCReport1Sum
         Me.GridColumn20.Caption = "Qty QC Report 1"
         Me.GridColumn20.DisplayFormat.FormatString = "N0"
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn20.FieldName = "qc_report_1"
+        Me.GridColumn20.FieldName = "qty_qc_report1"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_report_1", "{0:N0}")})
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 2
         Me.GridColumn20.Width = 66
         '
         'GridColumn19
@@ -738,11 +729,11 @@ Partial Class FormQCReport1Sum
         Me.GridColumn19.Caption = "Normal"
         Me.GridColumn19.DisplayFormat.FormatString = "N0"
         Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn19.FieldName = "qc_report_1_normal"
+        Me.GridColumn19.FieldName = "qty_normal"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_report_1_normal", "{0:N0}")})
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 9
+        Me.GridColumn19.VisibleIndex = 3
         Me.GridColumn19.Width = 48
         '
         'GridColumn18
@@ -754,11 +745,11 @@ Partial Class FormQCReport1Sum
         Me.GridColumn18.Caption = "Minor"
         Me.GridColumn18.DisplayFormat.FormatString = "N0"
         Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn18.FieldName = "qc_report_1_minor"
+        Me.GridColumn18.FieldName = "qty_reject_minor"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_report_1_minor", "{0:N0}")})
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 10
+        Me.GridColumn18.VisibleIndex = 4
         Me.GridColumn18.Width = 48
         '
         'GridColumn17
@@ -770,11 +761,11 @@ Partial Class FormQCReport1Sum
         Me.GridColumn17.Caption = "Major"
         Me.GridColumn17.DisplayFormat.FormatString = "N0"
         Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn17.FieldName = "qc_report_1_major"
+        Me.GridColumn17.FieldName = "qty_reject_major"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qc_report_1_major", "{0:N0}")})
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 11
+        Me.GridColumn17.VisibleIndex = 5
         Me.GridColumn17.Width = 48
         '
         'GridColumn21
@@ -812,34 +803,136 @@ Partial Class FormQCReport1Sum
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
         '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.GCRec)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 131)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(391, 186)
+        Me.PanelControl2.TabIndex = 183
+        '
+        'GCRec
+        '
+        Me.GCRec.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCRec.Location = New System.Drawing.Point(2, 2)
+        Me.GCRec.MainView = Me.GVRec
+        Me.GCRec.Name = "GCRec"
+        Me.GCRec.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemPictureEdit1, Me.RepositoryItemCheckEdit2})
+        Me.GCRec.Size = New System.Drawing.Size(387, 182)
+        Me.GCRec.TabIndex = 183
+        Me.GCRec.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRec})
+        '
+        'GVRec
+        '
+        Me.GVRec.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GVRec.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVRec.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.GVRec.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn8, Me.GridColumn10, Me.GridColumn24})
+        Me.GVRec.GridControl = Me.GCRec
+        Me.GVRec.Name = "GVRec"
+        Me.GVRec.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVRec.OptionsSelection.EnableAppearanceFocusedRow = False
+        Me.GVRec.OptionsView.ShowFooter = True
+        Me.GVRec.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Rec. No"
+        Me.GridColumn9.FieldName = "prod_order_rec_number"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
+        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "prod_order_number", "Total Rec : {0}")})
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 0
+        Me.GridColumn9.Width = 74
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Date Created"
+        Me.GridColumn8.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn8.FieldName = "prod_order_rec_date"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 2
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Type"
+        Me.GridColumn10.FieldName = "pl_category"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 1
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn24.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn24.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn24.Caption = "Received Qty"
+        Me.GridColumn24.DisplayFormat.FormatString = "N0"
+        Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn24.FieldName = "qty_rec"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.OptionsColumn.AllowEdit = False
+        Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", "{0:N0}")})
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 3
+        Me.GridColumn24.Width = 72
+        '
+        'RepositoryItemPictureEdit1
+        '
+        Me.RepositoryItemPictureEdit1.Name = "RepositoryItemPictureEdit1"
+        Me.RepositoryItemPictureEdit1.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
+        '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        Me.RepositoryItemCheckEdit2.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit2.ValueUnchecked = "no"
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.GCProd)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl4.Location = New System.Drawing.Point(391, 131)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(676, 186)
+        Me.PanelControl4.TabIndex = 184
+        '
         'FormQCReport1Sum
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1067, 576)
-        Me.Controls.Add(Me.GCProd)
+        Me.ClientSize = New System.Drawing.Size(1067, 657)
+        Me.Controls.Add(Me.PanelControl4)
+        Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.BGenerate)
         Me.Controls.Add(Me.GroupGeneralHeader)
-        Me.Controls.Add(Me.PanelControl3)
+        Me.Controls.Add(Me.PCControl)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MinimizeBox = False
         Me.Name = "FormQCReport1Sum"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Summary QC Report 1"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PCControl, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCControl.ResumeLayout(False)
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopMiddle.ResumeLayout(False)
         Me.PanelControlTopMiddle.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEFGPO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
@@ -854,21 +947,28 @@ Partial Class FormQCReport1Sum
         CType(Me.GCImage, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVImage, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIPE, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraTabPage2.ResumeLayout(False)
-        Me.XtraTabPage2.PerformLayout()
+        Me.XTPInputImage.ResumeLayout(False)
+        Me.XTPInputImage.PerformLayout()
         CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        CType(Me.GCRec, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVRec, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PCControl As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
@@ -877,8 +977,8 @@ Partial Class FormQCReport1Sum
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TxtDesign As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TxtSeason As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEDesign As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TESeason As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PanelControlTopRight As DevExpress.XtraEditors.PanelControl
     Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
@@ -914,7 +1014,7 @@ Partial Class FormQCReport1Sum
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RIPictureEdit As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEDesignCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GCImage As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVImage As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
@@ -922,11 +1022,21 @@ Partial Class FormQCReport1Sum
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTCImage As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPInputImage As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PictureEdit1 As DevExpress.XtraEditors.PictureEdit
     Friend WithEvents RIPE As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit
     Friend WithEvents BUploadImg As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents BRefreshImg As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GCRec As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVRec As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemPictureEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit
+    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
