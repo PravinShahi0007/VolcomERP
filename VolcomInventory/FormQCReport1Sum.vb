@@ -26,6 +26,7 @@
                 '
                 If dt.Rows(0)("id_report_status").ToString = "6" Or dt.Rows(0)("id_report_status").ToString = "5" Or is_view = "1" Then
                     XTPInputImage.PageVisible = False
+                    ContextMenuStrip1.Visible = False
                 End If
             End If
             BGenerate.Visible = False
@@ -235,5 +236,12 @@ GROUP BY po.`id_prod_order`"
 
     Private Sub FormQCReport1Sum_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+        If GVImage.RowCount > 0 Then
+            execute_non_query("DELETE FROM tb_qc_report1_img WHERE id_qc_report1_img='" & GVImage.GetFocusedRowCellValue("id_qc_report1_img").ToString & "'", True, "", "", "", "")
+            load_img()
+        End If
     End Sub
 End Class

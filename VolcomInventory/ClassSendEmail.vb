@@ -5446,7 +5446,7 @@ WHERE qcs.id_qc_report1_sum='" + id_report + " '"
                 <table width='100%' class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='3' style='background:white; font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
                       <tr>
                         <td style='width: 15pt'></td>
-                        <td style='width: 60pt'>Summary No</td>
+                        <td style='width: 60pt'>No#</td>
                         <td style='width: 10pt'>:</td>
                         <td>" & data.Rows(0)("number") & "</td>
                       </tr>
