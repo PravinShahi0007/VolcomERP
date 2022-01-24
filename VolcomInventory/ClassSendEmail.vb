@@ -5333,7 +5333,7 @@ WHERE sop.id_sop_schedule='" & id_report & "';"
             client.Send(mail)
         ElseIf report_mark_type = "388" Then
             'send email qc sumamry report 1
-            Dim query As String = "SELECT CONCAT('QC Report Summary 1 - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color) AS  design_display_name,qcs.`number`
+            Dim query As String = "SELECT CONCAT(d.design_code, ' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color) AS  design_display_name,qcs.`number`
 ,DATE_FORMAT(qcs.created_date,'%d %M %Y') AS `created_date`
 FROM `tb_qc_report1_sum` qcs
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=qcs.`id_prod_order`
@@ -5360,7 +5360,7 @@ LEFT JOIN (
 )cd ON cd.id_design = d.id_design
 WHERE qcs.id_qc_report1_sum='" + id_report + " '"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            Dim subj As String = data.Rows(0)("design_display_name").ToString
+            Dim subj As String = "QC Report Summary 1 - " & data.Rows(0)("design_display_name").ToString
 
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", subj)
             Dim mail As MailMessage = New MailMessage()
@@ -5369,14 +5369,12 @@ WHERE qcs.id_qc_report1_sum='" + id_report + " '"
             'attach
             Dim Report As New ReportQCReport1Sum()
             Report.id = id_report
-            ' Create a new memory stream and export the report into it as XLS.
+
             Dim Mem As New MemoryStream()
-            Dim opt As DevExpress.XtraPrinting.XlsExportOptions = New DevExpress.XtraPrinting.XlsExportOptions()
-            opt.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Value
-            Report.ExportToXls(Mem, opt)
-            ' Create a new attachment and put the XLS report into it.
-            Mem.Seek(0, SeekOrigin.Begin)
-            Dim Att = New Attachment(Mem, subj + ".pdf", "application/pdf")
+            Report.ExportToPdf(Mem)
+            ' Create a new attachment and put the PDF report into it.
+            Mem.Seek(0, System.IO.SeekOrigin.Begin)
+            Dim Att = New Attachment(Mem, subj, "application/pdf")
             mail.Attachments.Add(Att)
 
             'Send to
@@ -5444,8 +5442,29 @@ WHERE qcs.id_qc_report1_sum='" + id_report + " '"
          <tr>
             <td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
                 <p style='font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Dear Team,</p>
-                <p style='margin-bottom:5pt; line-height:20.25pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Bersama ini terlampir Summary QC Report 1 untuk artikel " & data.Rows(0)("design_display_name").ToString & ", dengan pengajuan nomor " & data.Rows(0)("number") & " , diajukan pada tanggal " & data.Rows(0)("created_date").ToString & ".
-                Untuk detail lebih lanjut silahkan cek attachment.
+                <p style='margin-bottom:5pt; line-height:20.25pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Bersama ini terlampir Summary QC Report 1 : 
+                <table width='100%' class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='3' style='background:white; font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
+                      <tr>
+                        <td style='width: 15pt'></td>
+                        <td style='width: 60pt'>No#</td>
+                        <td style='width: 10pt'>:</td>
+                        <td>" & data.Rows(0)("number") & "</td>
+                      </tr>
+                       <tr>
+                        <td style='width: 15pt'></td>
+                        <td style='width: 60pt'>Tanggal</td>
+                        <td style='width: 10pt'>:</td>
+                        <td>" & data.Rows(0)("created_date").ToString & "</td>
+                      </tr>
+                      <tr>
+                        <td style='width: 15pt'></td>
+                        <td style='width: 60pt'>Artikel</td>
+                        <td style='width: 10pt'>:</td>
+                        <td>" & data.Rows(0)("design_display_name").ToString & "</td>
+                      </tr>
+                    </table>
+
+                Untuk lebih jelasnya silahkan cek attachment.
                 <br><br>
                 Terima kasih atas perhatian dan kerjasamanya. 
 </p>
