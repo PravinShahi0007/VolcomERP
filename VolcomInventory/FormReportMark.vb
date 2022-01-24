@@ -11527,11 +11527,16 @@ WHERE id_item_pps='" & id_report & "'"
 
             If id_status_reportx = "6" Then
                 'complete mail blast
-
+                Dim mail As ClassSendEmail = New ClassSendEmail()
+                mail.report_mark_type = "388"
+                mail.id_report = id_report
+                mail.send_email()
             End If
 
             query = String.Format("UPDATE tb_qc_report1_sum SET id_report_status = '{0}' WHERE id_qc_report1_sum = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+
+            FormQCReport1Sum.load_head()
         End If
 
         'adding lead time

@@ -149,6 +149,7 @@ GROUP BY po.`id_prod_order`"
         Dim q As String = "INSERT INTO tb_qc_report1_sum(`id_prod_order`,`created_date`,`created_by`,`id_report_status`) VALUES('" & SLEFGPO.EditValue.ToString & "',NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID();"
         id = execute_query(q, 0, True, "", "", "", "")
         '
+        execute_non_query("CALL gen_number('" & id & "','388')", True, "", "", "", "")
         submit_who_prepared("388", id, id_user)
         '
         load_head()
