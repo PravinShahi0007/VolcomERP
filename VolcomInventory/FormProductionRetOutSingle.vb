@@ -492,6 +492,7 @@ WHERE ovhp.id_ovh_price='" & SLEOvh.EditValue.ToString & "'"
             'FormPopUpProd.id_pop_up = "2"
             'FormPopUpProd.ShowDialog()
             FormPopUpRecQC.id_pop_up = "3"
+            FormPopUpRecQC.is_show_qc_report1 = True
             FormPopUpRecQC.ShowDialog()
         End If
     End Sub

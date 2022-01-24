@@ -2003,8 +2003,15 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDevidenDet.id = "-1"
             FormDevidenDet.ShowDialog()
         ElseIf formName = "FormQCReport1" Then
-            FormQCReport1Det.id = "-1"
-            FormQCReport1Det.ShowDialog()
+            If FormQCReport1.XTCQCR1.SelectedTabPageIndex = 0 Then
+                'list
+                FormQCReport1Det.id = "-1"
+                FormQCReport1Det.ShowDialog()
+            ElseIf FormQCReport1.XTCQCR1.SelectedTabPageIndex = 1 Then
+                '
+                FormQCReport1Sum.id = "-1"
+                FormQCReport1Sum.ShowDialog()
+            End If
         Else
             RPSubMenu.Visible = False
         End If

@@ -19,6 +19,7 @@ Partial Class FormItemExpense
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormItemExpense))
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -87,6 +88,8 @@ Partial Class FormItemExpense
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BrefreshSNI = New DevExpress.XtraEditors.SimpleButton()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DuplicateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,10 +121,12 @@ Partial Class FormItemExpense
         CType(Me.GVListSNI, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCData
         '
+        Me.GCData.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCData.Location = New System.Drawing.Point(0, 46)
         Me.GCData.MainView = Me.GVData
@@ -758,6 +763,18 @@ Partial Class FormItemExpense
         Me.BrefreshSNI.TabIndex = 2
         Me.BrefreshSNI.Text = "Refresh"
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DuplicateToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+        '
+        'DuplicateToolStripMenuItem
+        '
+        Me.DuplicateToolStripMenuItem.Name = "DuplicateToolStripMenuItem"
+        Me.DuplicateToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DuplicateToolStripMenuItem.Text = "Duplicate"
+        '
         'FormItemExpense
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -800,6 +817,7 @@ Partial Class FormItemExpense
         CType(Me.GVListSNI, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -871,4 +889,6 @@ Partial Class FormItemExpense
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents DuplicateToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -18,6 +18,8 @@
 
             GBTHR.Visible = False
 
+            GCTotalSalaryBonus.Visible = False
+
             GCTotalPaymentOvertime.Visible = True
             GCTotalDeduction.Visible = True
 
@@ -39,6 +41,8 @@
             GBDWStore.Visible = False
 
             GBTHRStore.Visible = False
+
+            GCTotalSalaryBonusStore.Visible = False
 
             GCTotalPaymentOvertimeStore.Visible = True
             GCTotalDeductionStore.Visible = True
@@ -71,6 +75,8 @@
 
             GBTHR.Visible = False
 
+            GCTotalSalaryBonus.Visible = False
+
             GCTotalPaymentOvertime.Visible = True
             GCTotalDeduction.Visible = True
 
@@ -90,6 +96,8 @@
             GBDWStore.Visible = True
 
             GBTHRStore.Visible = False
+
+            GCTotalSalaryBonusStore.Visible = False
 
             GCTotalPaymentOvertimeStore.Visible = True
             GCTotalDeductionStore.Visible = True

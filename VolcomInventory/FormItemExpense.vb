@@ -214,6 +214,17 @@ WHERE pps.id_report_status=6 AND ISNULL(sr.id_sni_realisasi) "
 
     End Sub
 
+    Private Sub DuplicateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DuplicateToolStripMenuItem.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 And GVData.GetFocusedRowCellValue("id_report_status").ToString = "5" Then
+            Cursor = Cursors.WaitCursor
+            FormItemExpenseDet.is_duplicate = True
+            FormMain.but_edit()
+            Cursor = Cursors.Default
+        Else
+            warningCustom("Only cancelled document")
+        End If
+    End Sub
+
     'Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BImport.Click
     '    If GVInvoice.RowCount > 0 Then
     '        FormItemExpenseDet.action = "ins"

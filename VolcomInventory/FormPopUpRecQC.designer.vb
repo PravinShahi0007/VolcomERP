@@ -62,6 +62,7 @@ Partial Class FormPopUpRecQC
         Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColIdRecDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColIdPurcDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEANCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -70,12 +71,15 @@ Partial Class FormPopUpRecQC
         Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColQtyRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridColumnQCReport = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyReject = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyRetOut = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOutstandingRetOut = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -447,7 +451,7 @@ Partial Class FormPopUpRecQC
         '
         'GVListPurchase
         '
-        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.GridColumn13, Me.ColNo, Me.ColCode, Me.GridColumnEANCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyRec, Me.ColNote})
+        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.GridColumn13, Me.ColNo, Me.ColCode, Me.GridColumnEANCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyRec, Me.GridColumnQCReport, Me.GridColumnQtyReject, Me.GridColumnQtyRetOut, Me.GridColumnOutstandingRetOut, Me.ColNote})
         Me.GVListPurchase.GridControl = Me.GCListPurchase
         Me.GVListPurchase.Name = "GVListPurchase"
         Me.GVListPurchase.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -466,6 +470,12 @@ Partial Class FormPopUpRecQC
         Me.ColIdPurcDet.FieldName = "id_prod_order_det"
         Me.ColIdPurcDet.Name = "ColIdPurcDet"
         '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "ID Product"
+        Me.GridColumn13.FieldName = "id_product"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
         'ColNo
         '
         Me.ColNo.AppearanceCell.Options.UseTextOptions = True
@@ -476,7 +486,7 @@ Partial Class FormPopUpRecQC
         Me.ColNo.OptionsColumn.AllowEdit = False
         Me.ColNo.Visible = True
         Me.ColNo.VisibleIndex = 0
-        Me.ColNo.Width = 37
+        Me.ColNo.Width = 61
         '
         'ColCode
         '
@@ -486,7 +496,7 @@ Partial Class FormPopUpRecQC
         Me.ColCode.OptionsColumn.AllowEdit = False
         Me.ColCode.Visible = True
         Me.ColCode.VisibleIndex = 1
-        Me.ColCode.Width = 100
+        Me.ColCode.Width = 169
         '
         'GridColumnEANCode
         '
@@ -496,6 +506,7 @@ Partial Class FormPopUpRecQC
         Me.GridColumnEANCode.OptionsColumn.AllowEdit = False
         Me.GridColumnEANCode.Visible = True
         Me.GridColumnEANCode.VisibleIndex = 2
+        Me.GridColumnEANCode.Width = 126
         '
         'ColName
         '
@@ -505,7 +516,7 @@ Partial Class FormPopUpRecQC
         Me.ColName.OptionsColumn.AllowEdit = False
         Me.ColName.Visible = True
         Me.ColName.VisibleIndex = 3
-        Me.ColName.Width = 250
+        Me.ColName.Width = 381
         '
         'ColSize
         '
@@ -519,7 +530,7 @@ Partial Class FormPopUpRecQC
         Me.ColSize.OptionsColumn.AllowEdit = False
         Me.ColSize.Visible = True
         Me.ColSize.VisibleIndex = 4
-        Me.ColSize.Width = 80
+        Me.ColSize.Width = 141
         '
         'ColQty
         '
@@ -547,7 +558,7 @@ Partial Class FormPopUpRecQC
         Me.ColQtyRec.Name = "ColQtyRec"
         Me.ColQtyRec.Visible = True
         Me.ColQtyRec.VisibleIndex = 5
-        Me.ColQtyRec.Width = 134
+        Me.ColQtyRec.Width = 160
         '
         'RepositoryItemSpinEdit1
         '
@@ -561,14 +572,74 @@ Partial Class FormPopUpRecQC
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-469762049, -590869294, 5421010, 131072})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
+        'GridColumnQCReport
+        '
+        Me.GridColumnQCReport.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnQCReport.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQCReport.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnQCReport.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQCReport.Caption = "Qty QC Report 1"
+        Me.GridColumnQCReport.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQCReport.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQCReport.FieldName = "tot_qc_report1"
+        Me.GridColumnQCReport.Name = "GridColumnQCReport"
+        Me.GridColumnQCReport.Visible = True
+        Me.GridColumnQCReport.VisibleIndex = 6
+        Me.GridColumnQCReport.Width = 110
+        '
+        'GridColumnQtyReject
+        '
+        Me.GridColumnQtyReject.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnQtyReject.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyReject.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnQtyReject.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyReject.Caption = "Qty Reject (QCR 1)"
+        Me.GridColumnQtyReject.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQtyReject.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyReject.FieldName = "tot_qc_report1_reject"
+        Me.GridColumnQtyReject.Name = "GridColumnQtyReject"
+        Me.GridColumnQtyReject.Visible = True
+        Me.GridColumnQtyReject.VisibleIndex = 7
+        Me.GridColumnQtyReject.Width = 134
+        '
+        'GridColumnQtyRetOut
+        '
+        Me.GridColumnQtyRetOut.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnQtyRetOut.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyRetOut.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnQtyRetOut.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnQtyRetOut.Caption = "Qty Ret Out"
+        Me.GridColumnQtyRetOut.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQtyRetOut.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyRetOut.FieldName = "tot_ret_out"
+        Me.GridColumnQtyRetOut.Name = "GridColumnQtyRetOut"
+        Me.GridColumnQtyRetOut.Visible = True
+        Me.GridColumnQtyRetOut.VisibleIndex = 8
+        Me.GridColumnQtyRetOut.Width = 141
+        '
+        'GridColumnOutstandingRetOut
+        '
+        Me.GridColumnOutstandingRetOut.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnOutstandingRetOut.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnOutstandingRetOut.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnOutstandingRetOut.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnOutstandingRetOut.Caption = "Outstanding Ret Out"
+        Me.GridColumnOutstandingRetOut.DisplayFormat.FormatString = "N0"
+        Me.GridColumnOutstandingRetOut.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnOutstandingRetOut.FieldName = "outstanding_ret_out"
+        Me.GridColumnOutstandingRetOut.Name = "GridColumnOutstandingRetOut"
+        Me.GridColumnOutstandingRetOut.UnboundExpression = "[tot_qc_report1_reject] - [tot_ret_out]"
+        Me.GridColumnOutstandingRetOut.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GridColumnOutstandingRetOut.Visible = True
+        Me.GridColumnOutstandingRetOut.VisibleIndex = 9
+        Me.GridColumnOutstandingRetOut.Width = 209
+        '
         'ColNote
         '
         Me.ColNote.Caption = "Note"
         Me.ColNote.FieldName = "prod_order_rec_det_note"
         Me.ColNote.Name = "ColNote"
-        Me.ColNote.Visible = True
-        Me.ColNote.VisibleIndex = 6
-        Me.ColNote.Width = 145
+        Me.ColNote.Width = 154
         '
         'RepositoryItemCheckEdit1
         '
@@ -604,12 +675,6 @@ Partial Class FormPopUpRecQC
         Me.BtnSave.Size = New System.Drawing.Size(70, 37)
         Me.BtnSave.TabIndex = 3
         Me.BtnSave.Text = "Choose"
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "ID Product"
-        Me.GridColumn13.FieldName = "id_product"
-        Me.GridColumn13.Name = "GridColumn13"
         '
         'FormPopUpRecQC
         '
@@ -705,4 +770,8 @@ Partial Class FormPopUpRecQC
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtyReject As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtyRetOut As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOutstandingRetOut As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQCReport As DevExpress.XtraGrid.Columns.GridColumn
 End Class

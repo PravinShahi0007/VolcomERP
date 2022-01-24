@@ -4735,6 +4735,12 @@
     <Compile Include="FormQCReport1Det.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormQCReport1Sum.Designer.vb">
+      <DependentUpon>FormQCReport1Sum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormQCReport1Sum.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormRefundOLStore.Designer.vb">
       <DependentUpon>FormRefundOLStore.vb</DependentUpon>
     </Compile>
@@ -10144,6 +10150,12 @@
     <Compile Include="ReportQCReport1.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportQCReport1Sum.Designer.vb">
+      <DependentUpon>ReportQCReport1Sum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportQCReport1Sum.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportRequestRetOLStore.Designer.vb">
       <DependentUpon>ReportRequestRetOLStore.vb</DependentUpon>
     </Compile>
@@ -12956,6 +12968,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormQCReport1Det.resx">
       <DependentUpon>FormQCReport1Det.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormQCReport1Sum.resx">
+      <DependentUpon>FormQCReport1Sum.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRefundOLStore.resx">
       <DependentUpon>FormRefundOLStore.vb</DependentUpon>
@@ -16131,6 +16146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportQCReport1.resx">
       <DependentUpon>ReportQCReport1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportQCReport1Sum.resx">
+      <DependentUpon>ReportQCReport1Sum.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportRequestRetOLStore.resx">
       <DependentUpon>ReportRequestRetOLStore.vb</DependentUpon>

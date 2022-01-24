@@ -13,16 +13,21 @@
     Public allow_sum As Decimal
     Public id_design As String = "-1"
 
+    Dim is_first_load As Boolean = False
+
     Private Sub FormQCReport1Det_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        is_first_load = True
         BtnBrowsePO.Focus()
         viewReportStatus() 'get report status
         view_pl_category()
         actionLoad()
+        is_first_load = False
     End Sub
 
     Sub view_pl_category()
         Dim q As String = "SELECT id_pl_category,pl_category FROM tb_lookup_pl_category WHERE is_only_rec=2"
         viewSearchLookupQuery(SLEQCReport, q, "id_pl_category", "pl_category", "id_pl_category")
+        SLEQCReport.EditValue = Nothing
     End Sub
 
     Private Sub GVRetDetail_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVRetDetail.CustomColumnDisplayText
@@ -158,6 +163,7 @@ WHERE qr.id_qc_report1='" + id + "' "
 
     Private Sub BtnBrowsePO_Click(sender As Object, e As EventArgs) Handles BtnBrowsePO.Click
         FormPopUpRecQC.id_pop_up = "6"
+        FormPopUpRecQC.is_show_qc_report1 = True
         FormPopUpRecQC.ShowDialog()
     End Sub
 
@@ -513,6 +519,59 @@ WHERE qr.id_qc_report1='" + id + "' "
         FormPopUpProdDet.BtnSave.Visible = False
         FormPopUpProdDet.is_info_form = True
         FormPopUpProdDet.ShowDialog()
+    End Sub
+
+    Private Sub SLEQCReport_EditValueChanged(sender As Object, e As EventArgs) Handles SLEQCReport.EditValueChanged
+        load_type_exec()
+    End Sub
+
+    Sub load_type_exec()
+        If Not is_first_load Then
+            If GVRetDetail.RowCount > 0 Then
+                If SLEQCReport.EditValue.ToString = "1" Then
+                    'normal
+                    If id_prod_order_rec = "-1" Then
+                        warningCustom("Please select receiving")
+                        SLEQCReport.EditValue = Nothing
+                    Else
+                        view_barcode_list()
+                        'generate all remaining
+
+                        For i = 0 To GVRetDetail.RowCount - 1
+                            Dim q_check As String = "CALL view_limit_qc_report1('" + id_prod_order_rec + "','" + id_prod_order + "', '" + GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString + "', '" + id + "')"
+                            Dim data As DataTable = execute_query(q_check, -1, True, "", "", "", "")
+                            allow_sum = Decimal.Parse(data.Rows(0)("qty"))
+
+                            For j As Integer = 0 To allow_sum - 1
+                                GVBarcode.AddNewRow()
+                                GVBarcode.SetFocusedRowCellValue("ean_code", GVRetDetail.GetRowCellValue(i, "ean_code").ToString)
+                                GVBarcode.SetFocusedRowCellValue("id_prod_order_det", GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString)
+                                GVBarcode.SetFocusedRowCellValue("is_fix", "2")
+                            Next
+                        Next
+
+                        GVBarcode.RefreshData()
+
+                        For i = 0 To GVRetDetail.RowCount - 1
+                            countQty(GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString)
+                        Next
+
+                        PanelNavBarcode.Visible = False
+                    End If
+                Else
+                    view_barcode_list()
+                    For i = 0 To GVRetDetail.RowCount - 1
+                        countQty(GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString)
+                    Next
+
+                    PanelNavBarcode.Visible = True
+                End If
+            Else
+                warningCustom("Please select receiving")
+                SLEQCReport.EditValue = Nothing
+            End If
+            '
+        End If
     End Sub
 
     Private Sub FormQCReport1Det_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed

@@ -39,10 +39,10 @@
                 'gen number
                 execute_non_query("CALL gen_number(" + id_cn + ", " + report_mark_type + ");", True, "", "", "", "")
                 'detail
-                Dim qd As String = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_ol_store_ret_list, is_gwp) 
+                Dim qd As String = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_ol_store_ret_list, is_gwp, pot_penjualan_detail) 
                 SELECT '" + id_cn + "', p.id_product, id.id_design_price, id.design_price, IF((SUM(id.sales_pos_det_qty)-IFNULL(cn.jum_cn,0))<=0,0,-1)  AS qty,
                 id.id_design_price_retail, id.design_price_retail, 'OK' AS `note`, id.id_sales_pos_det AS `id_sales_pos_det_ref`, l.id_ol_store_ret_list,
-                IF(LEFT(p.product_full_code,4)='8888','1','2') AS `is_gwp`
+                IF(rg.is_md=1,'2','1') AS `is_gwp`, id.pot_penjualan_detail
                 FROM tb_ol_store_ret_list l
                 INNER JOIN tb_ol_store_ret_det rd ON rd.id_ol_store_ret_det = l.id_ol_store_ret_det
                 INNER JOIN tb_ol_store_ret r ON r.id_ol_store_ret = rd.id_ol_store_ret
@@ -53,6 +53,9 @@
                 INNER JOIN tb_sales_pos_det id ON id.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
                 INNER JOIN tb_sales_pos i ON i.id_sales_pos = id.id_sales_pos
                 INNER JOIN tb_m_product p ON p.id_product = id.id_product
+                INNER JOIN tb_m_design dsg ON dsg.id_design = p.id_design
+                INNER JOIN tb_season ss ON ss.id_season = dsg.id_season
+                INNER JOIN tb_range rg ON rg.id_range = ss.id_range
                 INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
                 INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
                 INNER JOIN tb_m_design_price prc ON prc.id_design_price = id.id_design_price_retail

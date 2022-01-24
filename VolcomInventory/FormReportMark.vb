@@ -777,6 +777,9 @@
         ElseIf report_mark_type = "385" Then
             'QC Report 1
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_qc_report1 WHERE id_qc_report1 = '{0}'", id_report)
+        ElseIf report_mark_type = "388" Then
+            'QC Report 1 Sumary
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_qc_report1_sum WHERE id_qc_report1_sum = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -3187,25 +3190,24 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 id_status_reportx = "6"
             End If
 
-            'cancel form
-            Dim id_report_now As String = execute_query("SELECT id_report_status FROM tb_sales_pos WHERE id_sales_pos='" & id_report & "'", 0, True, "", "", "", "")
-            If id_status_reportx = "5" And id_report_now = "6" Then
-                'balik jurnal & stok
-                Dim csi As New ClassSalesInv()
-                csi.cancelFormInvoice(id_report, report_mark_type)
-            End If
-
             If id_status_reportx = "5" Then
-                Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
+                'cancel form
+                Dim id_report_now As String = execute_query("SELECT id_report_status FROM tb_sales_pos WHERE id_sales_pos='" & id_report & "'", 0, True, "", "", "", "")
+                If id_report_now = "6" Then
+                    'balik jurnal & stok
+                    Dim csi As New ClassSalesInv()
+                    csi.cancelFormInvoice(id_report, report_mark_type)
+                Else
+                    Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
 
-                If FormSalesPOSDet.is_use_unique_code = "1" Then
-                    'cancelled unique
-                    cancel_rsv_stock.cancellUnique(id_report, report_mark_type)
+                    If FormSalesPOSDet.is_use_unique_code = "1" Then
+                        'cancelled unique
+                        cancel_rsv_stock.cancellUnique(id_report, report_mark_type)
+                    End If
+
+                    'cancelled
+                    cancel_rsv_stock.cancelReservedStock(id_report, "48")
                 End If
-
-
-                'cancelled
-                cancel_rsv_stock.cancelReservedStock(id_report, "48")
             ElseIf id_status_reportx = "6" Then
                 'completed
                 Dim complete_rsv_stock As ClassSalesInv = New ClassSalesInv()
@@ -11499,23 +11501,42 @@ WHERE id_item_pps='" & id_report & "'"
                 '
 
                 FormMain.SplashScreenManager1.CloseWaitForm()
-            ElseIf report_mark_type = "385" Then
-                'qc report 1
-                If id_status_reportx = "3" Then
-                    id_status_reportx = "6"
-                End If
 
-                If id_status_reportx = "6" Then
-                    'complete
-
-                End If
-
-                query = String.Format("UPDATE tb_qc_report1 SET id_report_status = '{0}' WHERE id_qc_report1 = '{1}'", id_status_reportx, id_report)
-                execute_non_query(query, True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_deviden SET id_report_status = '{0}' WHERE id_deviden = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "385" Then
+            'qc report 1
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'complete
+
+            End If
+
+            query = String.Format("UPDATE tb_qc_report1 SET id_report_status = '{0}' WHERE id_qc_report1 = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "388" Then
+            'qc report 1 summary
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'complete mail blast
+                Dim mail As ClassSendEmail = New ClassSendEmail()
+                mail.report_mark_type = "388"
+                mail.id_report = id_report
+                mail.send_email()
+            End If
+
+            query = String.Format("UPDATE tb_qc_report1_sum SET id_report_status = '{0}' WHERE id_qc_report1_sum = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            FormQCReport1Sum.load_head()
         End If
 
         'adding lead time

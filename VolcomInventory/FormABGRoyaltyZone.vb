@@ -39,7 +39,7 @@
             cond = "AND a.quarter=''" + SLEQuarter.Text.ToString + "'' "
         End If
         Dim query As String = "CALL view_abg_royalty_zone_v2('" + year + "', '" + cond + "') "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         'GVData.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()

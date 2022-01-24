@@ -534,4 +534,17 @@ WHERE fd.`id_report`='" & GVSummary.GetFocusedRowCellValue("id_pre_cal_fgpo").To
             FormInvoiceFGPODP.ShowDialog()
         End If
     End Sub
+
+    Private Sub DuplicateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DuplicateToolStripMenuItem.Click
+        If GVBPL.RowCount > 0 Then
+            If GVBPL.GetFocusedRowCellValue("id_report_status") = "5" And Not GVBPL.GetFocusedRowCellValue("doc_type").ToString = "2" Then
+                FormInvoiceFGPODP.is_duplicate = True
+                FormInvoiceFGPODP.id_invoice = GVBPL.GetFocusedRowCellValue("id_pn_fgpo").ToString
+                FormInvoiceFGPODP.doc_type = GVBPL.GetFocusedRowCellValue("doc_type").ToString
+                FormInvoiceFGPODP.ShowDialog()
+            Else
+                warningCustom("Only cancelled document and not FGPO payment")
+            End If
+        End If
+    End Sub
 End Class

@@ -15,6 +15,11 @@
                 GVItemList.ActiveFilterString = "[ol_store_order]='" + FormSalesPOSDet.TxtOLStoreNumber.Text + "'"
             End If
             GVItemList.FocusedColumn = GridColumn1
+
+            If FormSalesPOSDet.TxtPotPenjualan.EditValue > 0 Then
+                CESelAll.EditValue = True
+                CESelAll.Enabled = False
+            End If
         End If
 
         'inisialisasi jika blm ada

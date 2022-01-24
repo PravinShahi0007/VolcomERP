@@ -168,6 +168,7 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn83 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn81 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn85 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn87 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn82 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.RICEWO = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -234,7 +235,8 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn87 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DuplicateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCInvoiceFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInvoiceFGPO.SuspendLayout()
         Me.XTPBPL.SuspendLayout()
@@ -299,6 +301,7 @@ Partial Class FormInvoiceFGPO
         Me.PCVendor.SuspendLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCInvoiceFGPO
@@ -322,6 +325,7 @@ Partial Class FormInvoiceFGPO
         '
         'GCBPL
         '
+        Me.GCBPL.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCBPL.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCBPL.Location = New System.Drawing.Point(0, 45)
         Me.GCBPL.MainView = Me.GVBPL
@@ -1804,6 +1808,15 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn85.VisibleIndex = 2
         Me.GridColumn85.Width = 157
         '
+        'GridColumn87
+        '
+        Me.GridColumn87.Caption = "Vendor FGPO"
+        Me.GridColumn87.FieldName = "vendor_name"
+        Me.GridColumn87.Name = "GridColumn87"
+        Me.GridColumn87.Visible = True
+        Me.GridColumn87.VisibleIndex = 3
+        Me.GridColumn87.Width = 184
+        '
         'GridColumn82
         '
         Me.GridColumn82.Caption = "FGPO List"
@@ -2501,14 +2514,17 @@ Partial Class FormInvoiceFGPO
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
         '
-        'GridColumn87
+        'ContextMenuStrip1
         '
-        Me.GridColumn87.Caption = "Vendor FGPO"
-        Me.GridColumn87.FieldName = "vendor_name"
-        Me.GridColumn87.Name = "GridColumn87"
-        Me.GridColumn87.Visible = True
-        Me.GridColumn87.VisibleIndex = 3
-        Me.GridColumn87.Width = 184
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DuplicateToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+        '
+        'DuplicateToolStripMenuItem
+        '
+        Me.DuplicateToolStripMenuItem.Name = "DuplicateToolStripMenuItem"
+        Me.DuplicateToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DuplicateToolStripMenuItem.Text = "Duplicate"
         '
         'FormInvoiceFGPO
         '
@@ -2593,6 +2609,7 @@ Partial Class FormInvoiceFGPO
         Me.PCVendor.PerformLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2812,4 +2829,6 @@ Partial Class FormInvoiceFGPO
     Friend WithEvents GridColumn84 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn86 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn87 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents DuplicateToolStripMenuItem As ToolStripMenuItem
 End Class
