@@ -290,6 +290,7 @@ Partial Class FormMain
         Me.NBItemDel = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBItemTrf = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBOGTransfer = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBVMStock = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBPurcPayment = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGProduction = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBHandoverReportPublic = New DevExpress.XtraNavBar.NavBarItem()
@@ -565,7 +566,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBVMStock = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2581,6 +2581,12 @@ Partial Class FormMain
         Me.NBOGTransfer.Name = "NBOGTransfer"
         Me.NBOGTransfer.SmallImage = CType(resources.GetObject("NBOGTransfer.SmallImage"), System.Drawing.Image)
         '
+        'NBVMStock
+        '
+        Me.NBVMStock.Caption = "Stock VM"
+        Me.NBVMStock.Name = "NBVMStock"
+        Me.NBVMStock.SmallImage = CType(resources.GetObject("NBVMStock.SmallImage"), System.Drawing.Image)
+        '
         'NBPurcPayment
         '
         Me.NBPurcPayment.Caption = "Payment Purchase"
@@ -4345,11 +4351,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBVMStock
-        '
-        Me.NBVMStock.Caption = "Stock VM"
-        Me.NBVMStock.Name = "NBVMStock"
         '
         'FormMain
         '
