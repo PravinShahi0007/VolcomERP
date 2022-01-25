@@ -343,6 +343,18 @@ Public Class FormSalesPOSDet
                 DEStocktake.EditValue = Date.Parse(date_stocktake)
                 MENote.EditValue = execute_query("SELECT number FROM tb_st_store_bap WHERE id_st_store_bap = " + id_st_store_bap, 0, True, "", "", "", "")
             End If
+
+            'from whole sale list
+            If id_menu = "1" And Not id_do = "-1" Then
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Loading items")
+                TEDO.Text = FormSalesPOS.GVDel.GetFocusedRowCellValue("pl_sales_order_del_number").ToString
+                TEDO.Enabled = False
+                checkDO()
+                FormMain.SplashScreenManager1.CloseWaitForm()
+            End If
         ElseIf action = "upd" Then
             GroupControlList.Enabled = True
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
@@ -1189,6 +1201,13 @@ Public Class FormSalesPOSDet
                     End If
 
                     FormSalesPOS.view_bap()
+                    'refresh wholesale list
+                    If Not id_do = "-1" Then
+                        Try
+                            FormSalesPOS.viewWholesale()
+                        Catch ex As Exception
+                        End Try
+                    End If
 
                     Cursor = Cursors.Default
                 End If
@@ -2244,87 +2263,94 @@ Public Class FormSalesPOSDet
             Return False
         End If
     End Function
-    Private Sub TEDO_KeyDown(sender As Object, e As KeyEventArgs) Handles TEDO.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            Dim so_cat As String = ""
-            Dim typ As String = LEInvType.EditValue.ToString
-            If typ = "4" Then
-                so_cat = "AND so.id_so_status=3 "
-            Else
-                'And so.id_so_status!=3 
-                so_cat = "AND so.id_so_status!=7 AND so.id_so_status!=9 "
-            End If
 
-            Dim query As String = "SELECT pldel.id_pl_sales_order_del, so.sales_order_ol_shop_number, pldel.id_store_contact_to, comp.id_comp, comp.comp_name, comp.comp_number, comp.address_primary, comp.npwp, comp.id_drawer_def, comp.comp_commission, rck.id_wh_rack, loc.id_wh_locator, sp.id_sales_pos,
+    Sub checkDO()
+        BtnBrowseContactFrom.Enabled = False
+        TxtCodeCompFrom.Enabled = False
+        Dim so_cat As String = ""
+        Dim typ As String = LEInvType.EditValue.ToString
+        If typ = "4" Then
+            so_cat = "AND so.id_so_status=3 "
+        Else
+            'And so.id_so_status!=3 
+            so_cat = "AND so.id_so_status!=7 AND so.id_so_status!=9 "
+        End If
+
+        Dim query As String = "SELECT pldel.id_pl_sales_order_del, so.sales_order_ol_shop_number, pldel.id_store_contact_to, comp.id_comp, comp.comp_name, comp.comp_number, comp.address_primary, comp.npwp, comp.id_drawer_def, comp.comp_commission, rck.id_wh_rack, loc.id_wh_locator, sp.id_sales_pos,
             IFNULL(comp.id_acc_sales,0) AS `id_acc_sales`, IFNULL(comp.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(comp.id_acc_ar,0) AS `id_acc_ar`
             FROM tb_pl_sales_order_del pldel 
             INNER JOIN tb_sales_order so ON so.id_sales_order = pldel.id_sales_order "
-            query += " INNER JOIN tb_m_comp_contact cc On cc.id_comp_contact=pldel.id_store_contact_to"
-            query += " INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
+        query += " INNER JOIN tb_m_comp_contact cc On cc.id_comp_contact=pldel.id_store_contact_to"
+        query += " INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
             INNER JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = comp.id_drawer_def 
             INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack 
             INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator "
-            query += " LEFT JOIN tb_sales_pos sp ON sp.id_pl_sales_order_del=pldel.id_pl_sales_order_del AND sp.id_report_status !=5 "
-            query += " WHERE pldel.id_report_status='6' AND pldel.pl_sales_order_del_number='" + addSlashes(TEDO.Text) + "' " + so_cat + " "
-            Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
+        query += " LEFT JOIN tb_sales_pos sp ON sp.id_pl_sales_order_del=pldel.id_pl_sales_order_del AND sp.id_report_status !=5 "
+        query += " WHERE pldel.id_report_status='6' AND pldel.pl_sales_order_del_number='" + addSlashes(TEDO.Text) + "' " + so_cat + " "
+        Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
 
-            If data.Rows.Count <= 0 Then
-                stopCustom("Delivery order is not found for this store.")
-                TxtOLStoreNumber.Text = ""
-                defaultReset()
-                TEDO.Focus()
-            ElseIf Not data.Rows(0)("id_sales_pos").ToString = "" Then
-                stopCustom("Invoice is already created.")
-                TxtOLStoreNumber.Text = ""
-                defaultReset()
-                TEDO.Focus()
-            Else
-                'id DO
-                id_do = data.Rows(0)("id_pl_sales_order_del").ToString
-                id_store_contact_from = data.Rows(0)("id_store_contact_to").ToString
-                id_comp = data.Rows(0)("id_comp").ToString
-                id_wh_locator = data.Rows(0)("id_wh_locator").ToString
-                id_wh_rack = data.Rows(0)("id_wh_rack").ToString
-                id_wh_drawer = data.Rows(0)("id_drawer_def").ToString
-                TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
-                TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
-                TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
-                MEAdrressCompFrom.Text = data.Rows(0)("address_primary").ToString
-                TENPWP.Text = data.Rows(0)("npwp").ToString
-                SPDiscount.EditValue = data.Rows(0)("comp_commission")
-                PanelControlNav.Visible = False
+        If data.Rows.Count <= 0 Then
+            stopCustom("Delivery order is not found for this store.")
+            TxtOLStoreNumber.Text = ""
+            defaultReset()
+            TEDO.Focus()
+        ElseIf Not data.Rows(0)("id_sales_pos").ToString = "" Then
+            stopCustom("Invoice is already created.")
+            TxtOLStoreNumber.Text = ""
+            defaultReset()
+            TEDO.Focus()
+        Else
+            'id DO
+            id_do = data.Rows(0)("id_pl_sales_order_del").ToString
+            id_store_contact_from = data.Rows(0)("id_store_contact_to").ToString
+            id_comp = data.Rows(0)("id_comp").ToString
+            id_wh_locator = data.Rows(0)("id_wh_locator").ToString
+            id_wh_rack = data.Rows(0)("id_wh_rack").ToString
+            id_wh_drawer = data.Rows(0)("id_drawer_def").ToString
+            TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
+            TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
+            TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
+            MEAdrressCompFrom.Text = data.Rows(0)("address_primary").ToString
+            TENPWP.Text = data.Rows(0)("npwp").ToString
+            SPDiscount.EditValue = data.Rows(0)("comp_commission")
+            PanelControlNav.Visible = False
 
-                'isi coa
-                If id_menu <> "3" And id_menu <> "4" Then
-                    id_acc_sales = data.Rows(0)("id_acc_sales").ToString
-                    id_acc_sales_return = data.Rows(0)("id_acc_sales_return").ToString
-                    id_acc_ar = data.Rows(0)("id_acc_ar").ToString
+            'isi coa
+            If id_menu <> "3" And id_menu <> "4" Then
+                id_acc_sales = data.Rows(0)("id_acc_sales").ToString
+                id_acc_sales_return = data.Rows(0)("id_acc_sales_return").ToString
+                id_acc_ar = data.Rows(0)("id_acc_ar").ToString
 
-                    'prm
-                    If typ = "4" Then
-                        If id_acc_ar = "0" Then
-                            id_acc_ar = "52"
-                        End If
-                        If id_acc_sales_return = "0" Then
-                            id_acc_sales_return = "1554"
-                        End If
+                'prm
+                If typ = "4" Then
+                    If id_acc_ar = "0" Then
+                        id_acc_ar = "52"
                     End If
-
-                    viewCheckCOA(data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString)
-                    If cond_coa = False Then
-                        Cursor = Cursors.Default
-                        is_valid_from = False
-                        Exit Sub
+                    If id_acc_sales_return = "0" Then
+                        id_acc_sales_return = "1554"
                     End If
                 End If
 
-                ' fill GV
-                view_do()
-                '
-                calculate()
-                '
-                DEDueDate.Focus()
+                viewCheckCOA(data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString)
+                If cond_coa = False Then
+                    Cursor = Cursors.Default
+                    is_valid_from = False
+                    Exit Sub
+                End If
             End If
+
+            ' fill GV
+            view_do()
+            '
+            calculate()
+            '
+            DEDueDate.Focus()
+        End If
+    End Sub
+
+    Private Sub TEDO_KeyDown(sender As Object, e As KeyEventArgs) Handles TEDO.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            checkDO()
         Else
             TxtCodeCompFrom.Text = ""
             defaultReset()
