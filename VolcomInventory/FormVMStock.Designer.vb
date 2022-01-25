@@ -46,12 +46,12 @@ Partial Class FormVMStock
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BMoveAsset = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BRefreshMove = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BMoveAsset = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BRefreshMove = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DESOHUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -289,6 +289,7 @@ Partial Class FormVMStock
         'GridColumn10
         '
         Me.GridColumn10.Caption = "Number"
+        Me.GridColumn10.FieldName = "number"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 0
@@ -300,6 +301,30 @@ Partial Class FormVMStock
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 1
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "From"
+        Me.GridColumn12.FieldName = "comp_from"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 2
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Status"
+        Me.GridColumn13.FieldName = "report_status"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 4
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "To"
+        Me.GridColumn14.FieldName = "comp_to"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 3
         '
         'BMoveAsset
         '
@@ -338,30 +363,6 @@ Partial Class FormVMStock
         Me.BRefreshMove.Size = New System.Drawing.Size(104, 37)
         Me.BRefreshMove.TabIndex = 0
         Me.BRefreshMove.Text = "Refresh"
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "From"
-        Me.GridColumn12.FieldName = "comp_from"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 2
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "Status"
-        Me.GridColumn13.FieldName = "report_status"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 4
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "To"
-        Me.GridColumn14.FieldName = "comp_to"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 3
         '
         'FormVMStock
         '

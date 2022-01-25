@@ -62,7 +62,7 @@ HAVING qty>0 " & qw & ")"
     End Sub
 
     Private Sub BRefreshMove_Click(sender As Object, e As EventArgs) Handles BRefreshMove.Click
-        Dim q As String = "SELECT IFNULL(cf.comp_name,'-') AS comp_from,IFNULL(ct.comp_name,'-') AS comp_to,h.id_vm_item_move,h.number,h.note,h.created_date,sts.report_status,emp.employee_name,h.id_report_status,h.id_comp_from,h.id_comp_to,h.id_type FROM tb_vm_item_move h
+        Dim q As String = "SELECT IF(h.id_type=1,'Transfer',IF(h.id_type=2,'Add Asset','Remove Asset')) AS type,IFNULL(cf.comp_name,'-') AS comp_from,IFNULL(ct.comp_name,'-') AS comp_to,h.id_vm_item_move,h.number,h.note,h.created_date,sts.report_status,emp.employee_name,h.id_report_status,h.id_comp_from,h.id_comp_to,h.id_type FROM tb_vm_item_move h
 INNER JOIN tb_m_user usr ON usr.id_user=h.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=h.id_report_status

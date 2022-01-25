@@ -780,6 +780,9 @@
         ElseIf report_mark_type = "388" Then
             'QC Report 1 Sumary
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_qc_report1_sum WHERE id_qc_report1_sum = '{0}'", id_report)
+        ElseIf report_mark_type = "389" Then
+            'vm asset move
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_vm_item_move WHERE id_vm_item_move = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -11541,6 +11544,47 @@ WHERE id_item_pps='" & id_report & "'"
             execute_non_query(query, True, "", "", "", "")
 
             FormQCReport1Sum.load_head()
+        ElseIf report_mark_type = "389" Then
+            'qc report 1
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'complete
+                Dim q As String = "SELECT id_type FROM tb_vm_item_move WHERE id_vm_item_move='" & id_report & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows(0)("id_type").ToString = "1" Then
+                    'trf
+                    q = "INSERT INTO `tb_stock_vm`(`id_comp`,`id_item`,`qty`,`id_report`,`report_mark_type`,`report_date`,`stock_date`,`id_departement`)
+SELECT m.`id_comp_from` AS id_comp,d.id_item,-d.qty AS qty,m.id_vm_item_move,'389' AS rmt,m.created_date,NOW() AS stock_date,'18' AS id_departement
+FROM `tb_vm_item_move_det` d
+INNER JOIN tb_vm_item_move m ON m.id_vm_item_move=d.id_vm_item_move AND m.id_vm_item_move='" & id_report & "'
+UNION ALL
+SELECT m.`id_comp_to` AS id_comp,d.id_item,d.qty AS qty,m.id_vm_item_move,'389' AS rmt,m.created_date,NOW() AS stock_date,'18' AS id_departement
+FROM `tb_vm_item_move_det` d
+INNER JOIN tb_vm_item_move m ON m.id_vm_item_move=d.id_vm_item_move AND m.id_vm_item_move='" & id_report & "'"
+                    execute_non_query(q, True, "", "", "", "")
+                ElseIf dt.Rows(0)("id_type").ToString = "2" Then
+                    'add
+                    q = "INSERT INTO `tb_stock_vm`(`id_comp`,`id_item`,`qty`,`id_report`,`report_mark_type`,`report_date`,`stock_date`,`id_departement`)
+SELECT m.`id_comp_from` AS id_comp,d.id_item,d.qty AS qty,m.id_vm_item_move,'389' AS rmt,m.created_date,NOW() AS stock_date,'18' AS id_departement
+FROM `tb_vm_item_move_det` d
+INNER JOIN tb_vm_item_move m ON m.id_vm_item_move=d.id_vm_item_move AND m.id_vm_item_move='" & id_report & "'"
+                    execute_non_query(q, True, "", "", "", "")
+                ElseIf dt.Rows(0)("id_type").ToString = "2" Then
+                    'remove
+                    q = "INSERT INTO `tb_stock_vm`(`id_comp`,`id_item`,`qty`,`id_report`,`report_mark_type`,`report_date`,`stock_date`,`id_departement`)
+SELECT m.`id_comp_from` AS id_comp,d.id_item,-d.qty AS qty,m.id_vm_item_move,'389' AS rmt,m.created_date,NOW() AS stock_date,'18' AS id_departement
+FROM `tb_vm_item_move_det` d
+INNER JOIN tb_vm_item_move m ON m.id_vm_item_move=d.id_vm_item_move AND m.id_vm_item_move='" & id_report & "'"
+                    execute_non_query(q, True, "", "", "", "")
+                End If
+            End If
+
+            query = String.Format("UPDATE tb_vm_item_move SET id_report_status = '{0}' WHERE id_vm_item_move = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            FormVMMove.load_head()
         End If
 
         'adding lead time

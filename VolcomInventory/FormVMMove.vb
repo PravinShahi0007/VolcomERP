@@ -26,16 +26,23 @@
     End Sub
 
     Sub load_head()
-        load_store()
         load_type()
+        load_store()
         '
         If id = "-1" Then
             'new
+            BMark.Visible = False
+            BtnAttachment.Visible = False
         Else
+            BMark.Visible = True
+            BtnAttachment.Visible = True
+            BtnSave.Visible = False
+            PanelControlNavDetail.Visible = False
+
             Dim q As String = "SELECT h.number,h.note,h.created_date,emp.employee_name,h.id_report_status,h.id_comp_from,h.id_comp_to,h.id_type FROM tb_vm_item_move h
 INNER JOIN tb_m_user usr ON usr.id_user=h.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
-WHERE h.id_vm.item_move='" & id & "'"
+WHERE h.id_vm_item_move='" & id & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
                 DECreated.EditValue = dt.Rows(0)("created_date")
@@ -60,9 +67,9 @@ WHERE h.id_vm.item_move='" & id & "'"
     Sub load_type()
         Dim q As String = "SELECT '1' AS id_type,'Transfer' AS type
 UNION ALL
-SELECT '2' AS id_type,'Add' AS type
+SELECT '2' AS id_type,'Add Asset' AS type
 UNION ALL
-SELECT '3' AS id_type,'Remove' AS type"
+SELECT '3' AS id_type,'Remove Asset' AS type"
         viewSearchLookupQuery(SLEType, q, "id_type", "type", "id_type")
     End Sub
 
@@ -83,9 +90,17 @@ WHERE id_comp_cat='6'"
     End Sub
 
     Sub load_item()
-        Dim q As String = "SELECT s.`id_item`,i.`item_desc` ,SUM(s.`qty`) AS qty
+        Dim q As String = "SELECT s.`id_item`,i.`item_desc` ,SUM(s.`qty`)-IFNULL(pps.qty,0) AS qty,uom.`uom`
 FROM tb_stock_vm s
 INNER JOIN tb_item i ON i.`id_item`=s.`id_item`
+INNER JOIN tb_m_uom uom ON uom.`id_uom`=i.`id_uom`
+LEFT JOIN 
+(
+    SELECT d.id_item,SUM(d.qty) AS qty
+    FROM `tb_vm_item_move_det` d
+    INNER JOIN tb_vm_item_move m ON m.id_vm_item_move=d.id_vm_item_move AND m.id_report_status !=6 AND m.id_report_status !=5 
+    GROUP BY d.id_item
+)pps ON pps.id_item=i.id_item
 WHERE s.`id_comp`='" & SLEFrom.EditValue.ToString & "'
 GROUP BY s.`id_item`"
         viewSearchLookupQuery(SLEItem, q, "id_item", "item_desc", "id_item")
@@ -93,8 +108,9 @@ GROUP BY s.`id_item`"
     End Sub
 
     Sub load_item_add()
-        Dim q As String = "SELECT i.`id_item`,i.`item_desc`,0 AS qty
+        Dim q As String = "SELECT i.`id_item`,i.`item_desc`,0 AS qty,uom.`uom`
 FROM tb_item i 
+INNER JOIN tb_m_uom uom ON uom.`id_uom`=i.`id_uom`
 WHERE i.is_active=1"
         viewSearchLookupQuery(SLEItem, q, "id_item", "item_desc", "id_item")
         SLEItem.EditValue = Nothing
@@ -102,7 +118,15 @@ WHERE i.is_active=1"
 
     Private Sub SLEToko_EditValueChanged(sender As Object, e As EventArgs) Handles SLEFrom.EditValueChanged
         clear_row()
-        load_item()
+        Try
+            If SLEType.EditValue.ToString = "2" Then
+                load_item_add()
+            Else
+                load_item()
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Sub load_det()
@@ -136,7 +160,7 @@ WHERE d.`id_vm_item_move`='" & id & "'"
                 newRow("uom") = SLEItem.Properties.View.GetFocusedRowCellValue("uom").ToString
                 newRow("qty") = 1
                 newRow("remark") = ""
-                TryCast(FormItemReqDet.GCDetail.DataSource, DataTable).Rows.Add(newRow)
+                TryCast(GCData.DataSource, DataTable).Rows.Add(newRow)
                 GCData.RefreshDataSource()
                 GVData.RefreshData()
             End If
@@ -150,45 +174,73 @@ WHERE d.`id_vm_item_move`='" & id & "'"
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         If GVData.RowCount = 0 Then
             warningCustom("Please add item")
-        ElseIf SLEFrom.EditValue.ToString = SLETo.EditValue.ToString Then
+        ElseIf SLEType.EditValue.ToString = "1" And SLEFrom.EditValue.ToString = SLETo.EditValue.ToString Then
             warningCustom("Please pick location to move properly")
         Else
             Dim is_ok_limit As Boolean = True
 
-            Dim from_c As String = "NULL"
-            Dim to_c As String = "NULL"
-
-            If SLEType.EditValue.ToString = "1" Then
-                from_c = "'" & SLEFrom.EditValue.ToString & "'"
-                to_c = "'" & SLETo.EditValue.ToString & "'"
-            Else
-                from_c = "'" & SLEFrom.EditValue.ToString & "'"
+            If SLEType.EditValue.ToString = "1" Or SLEType.EditValue.ToString = "3" Then
+                'trf or remove
+                For i = 0 To GVData.RowCount - 1
+                    Dim q As String = "SELECT s.`id_item`,i.`item_desc` ,SUM(s.`qty`)-IFNULL(pps.qty,0)-(" & decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "qty").ToString).ToString) & ") AS qty,uom.`uom`
+FROM tb_stock_vm s
+INNER JOIN tb_item i ON i.`id_item`=s.`id_item`
+INNER JOIN tb_m_uom uom ON uom.`id_uom`=i.`id_uom`
+LEFT JOIN 
+(
+    SELECT d.id_item,SUM(d.qty) AS qty
+    FROM `tb_vm_item_move_det` d
+    INNER JOIN tb_vm_item_move m ON m.id_vm_item_move=d.id_vm_item_move AND m.id_report_status !=6 AND m.id_report_status !=5 AND m.id_vm_item_move != '" & id & "'
+    GROUP BY d.id_item
+)pps ON pps.id_item=i.id_item
+WHERE s.`id_comp`='" & SLEFrom.EditValue.ToString & "' AND i.id_item='" & GVData.GetRowCellValue(i, "id_item").ToString & "'
+GROUP BY s.`id_item`
+HAVING qty>=0"
+                    Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                    If Not dt.Rows.Count > 0 Then
+                        warningCustom(GVData.GetRowCellValue(i, "item_desc").ToString & " melebihi qty limit.")
+                        is_ok_limit = False
+                        Exit For
+                    End If
+                Next
             End If
 
-            If id = "-1" Then
-                'new
-                Dim q As String = "INSERT INTO tb_vm_item_move(id_type,id_comp_from,id_comp_to,created_date,created_by,note) VALUES('" & SLEType.EditValue.ToString & "'," & from_c & "," & to_c & ",NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "'); SELECT LAST_INSERT_ID();"
-                id = execute_query(q, 0, True, "", "", "", "")
-                '
-                execute_non_query("CALL gen_number('" & id & "','389')", True, "", "", "", "")
-                'detail
-                q = "DELETE FROM tb_vm_item_move_det WHERE id_vm_item_move='" & id & "'"
-                execute_non_query(q, True, "", "", "", "")
-                '
-                q = "INSERT INTO tb_vm_item_move(id_item_vm_move,id_item,qty,remark) VALUES"
-                For i = 0 To GVData.RowCount - 1
-                    If Not i = 0 Then
-                        q += ","
-                    End If
-                    q += "('" & id & "','" & GVData.GetRowCellValue(i, "id_item").ToString & "','" & decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "qty").ToString).ToString) & "','" & addSlashes(GVData.GetRowCellValue(i, "remark").ToString) & "')"
-                Next
-                execute_non_query(q, True, "", "", "", "")
-                '
-                submit_who_prepared("389", id, id_user)
+            If is_ok_limit Then
+                Dim from_c As String = "NULL"
+                Dim to_c As String = "NULL"
 
-                load_head()
-            Else
-                'edit
+                If SLEType.EditValue.ToString = "1" Then
+                    from_c = "'" & SLEFrom.EditValue.ToString & "'"
+                    to_c = "'" & SLETo.EditValue.ToString & "'"
+                Else
+                    from_c = "'" & SLEFrom.EditValue.ToString & "'"
+                End If
+
+                If id = "-1" Then
+                    'new
+                    Dim q As String = "INSERT INTO tb_vm_item_move(id_type,id_comp_from,id_comp_to,created_date,created_by,note) VALUES('" & SLEType.EditValue.ToString & "'," & from_c & "," & to_c & ",NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "'); SELECT LAST_INSERT_ID();"
+                    id = execute_query(q, 0, True, "", "", "", "")
+                    '
+                    execute_non_query("CALL gen_number('" & id & "','389')", True, "", "", "", "")
+                    'detail
+                    q = "DELETE FROM tb_vm_item_move_det WHERE id_vm_item_move='" & id & "'"
+                    execute_non_query(q, True, "", "", "", "")
+                    '
+                    q = "INSERT INTO tb_vm_item_move_det(id_vm_item_move,id_item,qty,remark) VALUES"
+                    For i = 0 To GVData.RowCount - 1
+                        If Not i = 0 Then
+                            q += ","
+                        End If
+                        q += "('" & id & "','" & GVData.GetRowCellValue(i, "id_item").ToString & "','" & decimalSQL(Decimal.Parse(GVData.GetRowCellValue(i, "qty").ToString).ToString) & "','" & addSlashes(GVData.GetRowCellValue(i, "remark").ToString) & "')"
+                    Next
+                    execute_non_query(q, True, "", "", "", "")
+                    '
+                    submit_who_prepared("389", id, id_user)
+
+                    load_head()
+                Else
+                    'edit
+                End If
             End If
         End If
     End Sub
@@ -196,28 +248,32 @@ WHERE d.`id_vm_item_move`='" & id & "'"
     Private Sub SLEType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEType.EditValueChanged
         clear_row()
 
-        If SLEType.EditValue.ToString = "1" Then
-            'pindah asset
-            SLEFrom.Visible = True
-            LFrom.Visible = True
-            SLETo.Visible = True
-            LTo.Visible = True
-            load_item()
-        ElseIf SLEType.EditValue.ToString = "2" Then
-            'add asset
-            SLEFrom.Visible = True
-            LFrom.Visible = True
-            SLETo.Visible = False
-            LTo.Visible = False
-            load_item_add()
-        ElseIf SLEType.EditValue.ToString = "3" Then
-            'remove asset
-            SLEFrom.Visible = True
-            LFrom.Visible = True
-            SLETo.Visible = False
-            LTo.Visible = False
-            load_item()
-        End If
+        Try
+            If SLEType.EditValue.ToString = "1" Then
+                'pindah asset
+                SLEFrom.Visible = True
+                LFrom.Visible = True
+                SLETo.Visible = True
+                LTo.Visible = True
+                load_item()
+            ElseIf SLEType.EditValue.ToString = "2" Then
+                'add asset
+                SLEFrom.Visible = True
+                LFrom.Visible = True
+                SLETo.Visible = False
+                LTo.Visible = False
+                load_item_add()
+            ElseIf SLEType.EditValue.ToString = "3" Then
+                'remove asset
+                SLEFrom.Visible = True
+                LFrom.Visible = True
+                SLETo.Visible = False
+                LTo.Visible = False
+                load_item()
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
