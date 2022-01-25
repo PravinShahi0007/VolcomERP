@@ -61,6 +61,8 @@
         viewNoStockStt()
         viewReturnRefuseStt()
         viewStoreProb()
+        viewStoreWholesale()
+        viewStatus()
 
         'pending online store return
         If id_menu = "5" Then
@@ -74,6 +76,7 @@
             XTPProblemList.PageVisible = True
             XTPOLReturnRefuse.PageVisible = False
             XTPBAP.PageVisible = True
+            XTPListWholesale.PageVisible = True
         ElseIf id_menu = "6" Then
             XTPCNOnlineStore.PageVisible = False
             XTPProblemList.PageVisible = False
@@ -83,10 +86,28 @@
             XTPCNOnlineStore.PageVisible = False
             XTPProblemList.PageVisible = False
             XTPBAP.PageVisible = False
+            XTPListWholesale.PageVisible = False
         End If
 
         'now time
         tgl_sekarang = getTimeDB()
+    End Sub
+
+    Sub viewStoreWholesale()
+        Dim query As String = "SELECT 0 AS `id_comp`, 'All' AS `comp`
+        UNION ALL
+        SELECT c.id_comp, CONCAT(c.comp_number,' - ', c.comp_name) AS `comp`
+        FROM tb_m_comp c 
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        WHERE cg.is_wholesale=1 "
+        viewSearchLookupQuery(SLEStoreWholesale, query, "id_comp", "comp", "id_comp")
+    End Sub
+
+    Sub viewStatus()
+        Dim query As String = "SELECT '1' AS `id_status`, 'Open' AS `status`
+        UNION ALL
+        SELECT '2' AS `id_status`, 'Closed' AS `status` "
+        viewSearchLookupQuery(SLEStatus, query, "id_status", "status", "id_status")
     End Sub
 
     Sub viewTypeProb()
@@ -1399,5 +1420,65 @@
         FormSalesPOSDet.id_menu = id_menu
         FormSalesPOSDet.id_st_store_bap = GVInvBAP.GetFocusedRowCellValue("id_st_store_bap").ToString
         FormSalesPOSDet.ShowDialog()
+    End Sub
+
+    Private Sub BViewWholesale_Click(sender As Object, e As EventArgs) Handles BViewWholesale.Click
+        viewWholesale()
+    End Sub
+
+    Sub viewWholesale()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT d.id_pl_sales_order_del, d.pl_sales_order_del_number, c.comp_number, c.comp_name, SUM(dd.pl_sales_order_del_det_qty) AS `total_qty`,
+        sp.id_sales_pos, sp.sales_pos_number, stt.report_status AS `status_invoice`
+        FROM tb_pl_sales_order_del d 
+        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = d.id_store_contact_to
+        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        LEFT JOIN tb_sales_pos sp ON sp.id_pl_sales_order_del =d.id_pl_sales_order_del AND sp.id_report_status!=5
+        LEFT JOIN tb_lookup_report_status stt ON stt.id_report_status = sp.id_report_status
+        WHERE d.id_report_status=6 AND cg.is_wholesale=1 AND d.is_combine=2 AND YEAR(d.pl_sales_order_del_date)>=2020 "
+        If SLEStatus.EditValue = "1" Then
+            query += "AND ISNULL(sp.id_sales_pos) "
+        Else
+            query += "AND !ISNULL(sp.id_sales_pos) "
+        End If
+        If Not SLEStoreWholesale.EditValue.ToString = "0" Then
+            query += "AND c.id_comp='" + SLEStoreWholesale.EditValue.ToString + "' "
+        End If
+        query += "GROUP BY d.id_pl_sales_order_del
+        ORDER BY d.id_pl_sales_order_del DESC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDel.DataSource = data
+        GVDel.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCreateInvoiceWholesale_Click(sender As Object, e As EventArgs) Handles BtnCreateInvoiceWholesale.Click
+        If GVDel.RowCount > 0 And GVDel.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_del As String = GVDel.GetFocusedRowCellValue("id_pl_sales_order_del").ToString
+            'cek
+            Dim qcek As String = "SELECT * FROM tb_sales_pos sp WHERE sp.id_pl_sales_order_del='" + id_del + "' AND sp.id_report_status!=5 "
+            Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+            If dcek.Rows.Count > 0 Then
+                warningCustom("Invoice already created")
+                viewWholesale()
+            Else
+                FormSalesPOSDet.action = "ins"
+                FormSalesPOSDet.id_menu = id_menu
+                FormSalesPOSDet.id_do = id_del
+                FormSalesPOSDet.ShowDialog()
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub SLEStoreWholesale_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreWholesale.EditValueChanged
+        GCDel.DataSource = Nothing
+    End Sub
+
+    Private Sub SLEStatus_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStatus.EditValueChanged
+        GCDel.DataSource = Nothing
     End Sub
 End Class

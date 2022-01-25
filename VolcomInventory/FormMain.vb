@@ -1245,12 +1245,14 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 FormSalesPOSDet.id_menu = FormSalesPOS.id_menu
                 FormSalesPOSDet.ShowDialog()
             ElseIf FormSalesPOS.XTCInvoice.SelectedTabPageIndex = 2 Then
-                FormSalesPOSDet.action = "ins"
-                FormSalesPOSDet.id_menu = FormSalesPOS.id_menu
-                FormSalesPOSDet.comp_number = FormSalesPOS.GVPendingCN.GetFocusedRowCellValue("comp_number").ToString
-                FormSalesPOSDet.order_number = FormSalesPOS.GVPendingCN.GetFocusedRowCellValue("order_number").ToString
-                FormSalesPOSDet.cust_name = FormSalesPOS.GVPendingCN.GetFocusedRowCellValue("customer_name").ToString
-                FormSalesPOSDet.ShowDialog()
+                'FormSalesPOSDet.action = "ins"
+                'FormSalesPOSDet.id_menu = FormSalesPOS.id_menu
+                'FormSalesPOSDet.comp_number = FormSalesPOS.GVPendingCN.GetFocusedRowCellValue("comp_number").ToString
+                'FormSalesPOSDet.order_number = FormSalesPOS.GVPendingCN.GetFocusedRowCellValue("order_number").ToString
+                'FormSalesPOSDet.cust_name = FormSalesPOS.GVPendingCN.GetFocusedRowCellValue("customer_name").ToString
+                'FormSalesPOSDet.ShowDialog()
+            Else
+                stopCustom("This feature is not available for this time")
             End If
         ElseIf formName = "FormSalesReturnQC" Then
             'SALES RETURN QC
@@ -7248,7 +7250,13 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             End If
         ElseIf formName = "FormSalesPOS" Then
             'SALES VRTUAL POS
-            print(FormSalesPOS.GCSalesPOS, "Sales Invoice")
+            If FormSalesPOS.XTCInvoice.SelectedTabPageIndex = 0 Then
+                print(FormSalesPOS.GCSalesPOS, "Sales Invoice")
+            ElseIf FormSalesPOS.XTCInvoice.SelectedTabPageIndex = 1 Then
+                print(FormSalesPOS.GCDel, "Wholesale List")
+            Else
+
+            End If
         ElseIf formName = "FormSalesReturnQC" Then
             'SALES RETURN QC
             print(FormSalesReturnQC.GCSalesReturnQC, "List Quality Control Return Product")
