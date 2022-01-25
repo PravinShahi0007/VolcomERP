@@ -6550,6 +6550,9 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 CALL update_item_reqdel_stt(" + id_report + "); "
                 execute_non_query(query_completed_stock, True, "", "", "", "")
 
+                'stock VM
+                execute_non_query("CALL insert_item_stock_vm('" + id_report + "')", True, "", "", "", "")
+
                 ' select user prepared
                 Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
                 Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
@@ -6645,6 +6648,7 @@ HAVING amo>0"
                         execute_non_query(qjd, True, "", "", "", "")
                     End If
                 End If
+
             End If
 
             'refresh view
