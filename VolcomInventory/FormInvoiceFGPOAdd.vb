@@ -286,19 +286,12 @@ GROUP BY wo.`id_prod_order_wo`"
         ElseIf SLEReportType.EditValue.ToString = "1" Then 'purchase sample
             If is_dp Then
                 query = "SELECT sp.`id_sample_purc` AS id_report,0 AS id_prod_order,sp.`sample_purc_number` AS report_number,'Purchase Sample' AS description,c.comp_name AS info
-,sp.id_currency,sp.sample_purc_kurs AS kurs,sp.sample_purc_vat AS vat,SUM(spd.sample_purc_det_price*spd.sample_purc_det_qty) AS po_val,SUM(spd.sample_purc_det_qty) AS po_qty,IFNULL(rec.amount_rec,0) AS amount_rec,IFNULL(rec.qty_rec,0) AS qty_rec
+,sp.id_currency,sp.sample_purc_kurs AS kurs,sp.sample_purc_vat AS vat,SUM(spd.sample_purc_det_price*spd.sample_purc_det_qty) AS po_val,SUM(spd.sample_purc_det_qty) AS po_qty,(py.`dp_amount`/100)*SUM(spd.sample_purc_det_price*spd.sample_purc_det_qty) AS amount_rec,SUM(spd.sample_purc_det_qty) AS qty_rec
 FROM `tb_sample_purc` sp
 INNER JOIN tb_sample_purc_det spd ON spd.`id_sample_purc`=sp.`id_sample_purc`
-INNER JOIN tb_lookup_payment py ON py.id_payment=sp.id_payment
+INNER JOIN tb_lookup_payment py ON py.id_payment=sp.id_payment AND py.`dp_amount`>0
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=sp.`id_comp_contact_to`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` AND c.id_comp='" & FormInvoiceFGPODP.SLEVendor.EditValue.ToString & "'
-LEFT JOIN (
-	SELECT pod.id_sample_purc,SUM(recd.sample_purc_rec_det_qty*recd.fob_price_update) AS amount_rec,SUM(recd.sample_purc_rec_det_qty) AS qty_rec
-	FROM `tb_sample_purc_rec_det` recd
-	INNER JOIN tb_sample_purc_det pod ON pod.id_sample_purc_det=recd.id_sample_purc_det
-	INNER JOIN tb_sample_purc_rec rec ON rec.id_sample_purc_rec=recd.id_sample_purc_rec AND rec.id_report_status=6
-	GROUP BY pod.id_sample_purc
-)rec ON rec.id_sample_purc=sp.`id_sample_purc`
 LEFT JOIN 
 (
     SELECT pn.id_pn_fgpo,pnd.id_report,SUM(pnd.value_bef_kurs) AS dp_amount
@@ -307,7 +300,7 @@ LEFT JOIN
     WHERE pn.id_report_status!=5 AND pnd.report_mark_type=1 AND pn.type=2
     GROUP BY pnd.id_report,pnd.report_mark_type
 )pn ON pn.id_report=sp.id_sample_purc
-WHERE sp.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) AND pn.dp_amount>0
+WHERE sp.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo)
 GROUP BY sp.`id_sample_purc`"
             Else
                 query = "SELECT sp.`id_sample_purc` AS id_report,0 AS id_prod_order,sp.`sample_purc_number` AS report_number,'Purchase Sample' AS description,c.comp_name AS info
@@ -382,16 +375,29 @@ HAVING qty_rec>=po_qty"
                 TEAfterKurs.EditValue = aft_kurs
                 disable_input()
             ElseIf SLEReportType.EditValue.ToString = "1" Then 'sample
-                Dim aft_kurs As Decimal = 0.00
+                If is_dp Then
+                    Dim aft_kurs As Decimal = 0.00
 
-                LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", SLEReport.Properties.View.GetFocusedRowCellValue("id_currency").ToString)
-                TEBeforeKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("amount_rec")
-                TEKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("kurs")
-                TEQty.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("qty_rec")
-                TEVATPercent.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("vat")
-                aft_kurs = TEBeforeKurs.EditValue * TEKurs.EditValue
-                TEAfterKurs.EditValue = aft_kurs
-                disable_input()
+                    LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", SLEReport.Properties.View.GetFocusedRowCellValue("id_currency").ToString)
+                    TEBeforeKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("amount_rec")
+                    TEKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("kurs")
+                    TEQty.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("qty_rec")
+                    TEVATPercent.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("vat")
+                    aft_kurs = TEBeforeKurs.EditValue * TEKurs.EditValue
+                    TEAfterKurs.EditValue = aft_kurs
+                    disable_input()
+                Else
+                    Dim aft_kurs As Decimal = 0.00
+
+                    LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", SLEReport.Properties.View.GetFocusedRowCellValue("id_currency").ToString)
+                    TEBeforeKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("amount_rec")
+                    TEKurs.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("kurs")
+                    TEQty.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("qty_rec")
+                    TEVATPercent.EditValue = SLEReport.Properties.View.GetFocusedRowCellValue("vat")
+                    aft_kurs = TEBeforeKurs.EditValue * TEKurs.EditValue
+                    TEAfterKurs.EditValue = aft_kurs
+                    disable_input()
+                End If
             Else
                 enable_input()
             End If

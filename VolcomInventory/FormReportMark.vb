@@ -11572,7 +11572,7 @@ SELECT m.`id_comp_from` AS id_comp,d.id_item,d.qty AS qty,m.id_vm_item_move,'389
 FROM `tb_vm_item_move_det` d
 INNER JOIN tb_vm_item_move m ON m.id_vm_item_move=d.id_vm_item_move AND m.id_vm_item_move='" & id_report & "'"
                     execute_non_query(q, True, "", "", "", "")
-                ElseIf dt.Rows(0)("id_type").ToString = "2" Then
+                ElseIf dt.Rows(0)("id_type").ToString = "3" Then
                     'remove
                     q = "INSERT INTO `tb_stock_vm`(`id_comp`,`id_item`,`qty`,`id_report`,`report_mark_type`,`report_date`,`stock_date`,`id_departement`)
 SELECT m.`id_comp_from` AS id_comp,d.id_item,-d.qty AS qty,m.id_vm_item_move,'389' AS rmt,m.created_date,NOW() AS stock_date,'18' AS id_departement
