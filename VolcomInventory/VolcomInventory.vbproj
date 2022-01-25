@@ -8557,6 +8557,12 @@
     <Compile Include="FormVIOSExpiredOrderDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormVMMove.Designer.vb">
+      <DependentUpon>FormVMMove.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVMMove.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormVMStock.Designer.vb">
       <DependentUpon>FormVMStock.vb</DependentUpon>
     </Compile>
@@ -15300,6 +15306,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormVIOSExpiredOrderDetail.resx">
       <DependentUpon>FormVIOSExpiredOrderDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVMMove.resx">
+      <DependentUpon>FormVMMove.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVMStock.resx">
       <DependentUpon>FormVMStock.vb</DependentUpon>

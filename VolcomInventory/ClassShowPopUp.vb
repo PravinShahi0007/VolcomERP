@@ -545,6 +545,12 @@
         ElseIf report_mark_type = "385" Then
             'qc report 1
             FormQCReport1.Close()
+        ElseIf report_mark_type = "388" Then
+            'qc report 1 sum
+            FormQCReport1Sum.Close()
+        ElseIf report_mark_type = "389" Then
+            'vm asset manage
+            FormVMMove.Close()
         End If
     End Sub
     Sub show()
@@ -1740,10 +1746,20 @@ GROUP BY rec.`id_prod_order`"
             FormDevidenDet.id = id_report
             FormDevidenDet.ShowDialog()
         ElseIf report_mark_type = "385" Then
-            'deviden
+            'qc report 1
             FormQCReport1Det.is_view = "1"
             FormQCReport1Det.id = id_report
             FormQCReport1Det.ShowDialog()
+        ElseIf report_mark_type = "388" Then
+            'qc report 1
+            FormQCReport1Sum.is_view = "1"
+            FormQCReport1Sum.id = id_report
+            FormQCReport1Sum.ShowDialog()
+        ElseIf report_mark_type = "389" Then
+            'deviden
+            FormVMMove.is_view = "1"
+            FormVMMove.id = id_report
+            FormVMMove.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -3107,6 +3123,18 @@ GROUP BY rec.`id_prod_order`"
             'qc report 1
             table_name = "tb_qc_report1"
             field_id = "id_qc_report1"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "388" Then
+            'qc report 1 sum
+            table_name = "tb_qc_report1_sum"
+            field_id = "id_qc_report1_sum"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "389" Then
+            'vm move
+            table_name = "tb_vm_item_move"
+            field_id = "id_vm_item_move"
             field_number = "number"
             field_date = "created_date"
         Else
