@@ -79,6 +79,7 @@ Partial Class FormInboundAWB
         Me.BPrintAWB = New DevExpress.XtraEditors.SimpleButton()
         Me.BNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BSubmitAwb = New DevExpress.XtraEditors.SimpleButton()
+        Me.BExportXLS = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PCHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCHeader.SuspendLayout()
         CType(Me.SLERate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -563,6 +564,7 @@ Partial Class FormInboundAWB
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BExportXLS)
         Me.PanelControl2.Controls.Add(Me.BDelKoli)
         Me.PanelControl2.Controls.Add(Me.BAddKoli)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
@@ -639,6 +641,16 @@ Partial Class FormInboundAWB
         Me.BSubmitAwb.Size = New System.Drawing.Size(64, 23)
         Me.BSubmitAwb.TabIndex = 3
         Me.BSubmitAwb.Text = "Submit"
+        '
+        'BExportXLS
+        '
+        Me.BExportXLS.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BExportXLS.Image = CType(resources.GetObject("BExportXLS.Image"), System.Drawing.Image)
+        Me.BExportXLS.Location = New System.Drawing.Point(2, 2)
+        Me.BExportXLS.Name = "BExportXLS"
+        Me.BExportXLS.Size = New System.Drawing.Size(111, 38)
+        Me.BExportXLS.TabIndex = 3
+        Me.BExportXLS.Text = "Export XLS"
         '
         'FormInboundAWB
         '
@@ -744,4 +756,5 @@ Partial Class FormInboundAWB
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BPrintAWB As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BEditAWB As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BExportXLS As DevExpress.XtraEditors.SimpleButton
 End Class

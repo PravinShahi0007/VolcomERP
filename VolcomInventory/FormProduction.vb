@@ -191,6 +191,7 @@ Public Class FormProduction
         query += "IFNULL(SUM(qty_retin.qty),0) As qty_ret_in, "
         query += "IFNULL(SUM(qty_retout.qty),0) As qty_ret_out, "
         query += "IFNULL(SUM(qty_claim.qty),0) As qty_ret_claim, "
+        query += "IFNULL(wo_price.fob_price,0) AS fob_price, "
         query += "a.id_term_production ,comp.id_comp,cc.id_comp_contact,comp.comp_name,comp.comp_number,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code,d.design_code_import, h.term_production, g.po_type,d.design_cop, "
         query += "a.prod_order_date,a.id_report_status,c.report_status,season_del_dsg.est_wh_date,season_del_dsg.delivery_date,MIN(qty_plwh.pl_prod_order_date) AS pl_prod_order_date,MIN(rec.prod_order_rec_date) AS prod_order_rec_date, "
         query += "b.id_design,b.id_delivery, e.delivery, f.season, e.id_season,`range`.range "
@@ -238,6 +239,7 @@ Public Class FormProduction
 	                SELECT wo.id_prod_order, wo.id_ovh_price, wo.prod_order_wo_kurs, cur.currency,wo.prod_order_wo_vat,
 	                (SUM(CAST(wod.prod_order_wo_det_price * pod.prod_order_qty AS DECIMAL(13,2))) * wo.prod_order_wo_kurs * (100 + wo.prod_order_wo_vat)/100) AS `wo_price`
                     ,(SUM(CAST(wod.prod_order_wo_det_price * pod.prod_order_qty AS DECIMAL(13,2))) * (100 + wo.prod_order_wo_vat)/100) AS `wo_price_no_kurs`
+                    ,wod.prod_order_wo_det_price AS fob_price
 	                FROM tb_prod_order_wo wo
 	                INNER JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo = wo.id_prod_order_wo
 	                INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det = wod.id_prod_order_det

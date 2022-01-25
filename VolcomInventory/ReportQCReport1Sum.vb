@@ -22,7 +22,7 @@ GROUP BY rec.id_prod_order_rec"
 
         insert_row_total(RowBM, tot)
         '
-        Dim q2 As String = "SELECT d.id_design,po.prod_order_number,DATE_FORMAT(qrs.created_date,'%d %M %Y') AS created_date,qrs.number
+        Dim q2 As String = "SELECT d.id_design,vendor.comp_name AS vendor_name,po.prod_order_number,DATE_FORMAT(qrs.created_date,'%d %M %Y') AS created_date,qrs.number
 ,FORMAT(pod.qty,0,'id_ID') AS qty_po
 ,FORMAT(SUM(qrd.qc_report1_det_qty),0,'id_ID') AS qty_qc_report1
 ,FORMAT(SUM(IF(qr.`id_pl_category`=1,qrd.qc_report1_det_qty,0)),0,'id_ID') AS qty_normal
@@ -40,6 +40,16 @@ INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_dem
 INNER JOIN tb_m_design d ON d.id_design=pdd.id_design
 INNER JOIN tb_season s ON s.id_season=d.id_season
 INNER JOIN tb_range r ON r.id_range=s.id_range
+INNER JOIN 
+(
+    SELECT wo.`id_prod_order`,c.`comp_name`
+    FROM tb_prod_order_wo wo
+    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
+    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
+    INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+    WHERE wo.is_main_vendor=1 AND wo.`id_report_status`=6
+    GROUP BY wo.id_prod_order
+)vendor ON vendor.id_prod_order=po.id_prod_order
 LEFT JOIN (
 	SELECT dc.id_design, 
 	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
