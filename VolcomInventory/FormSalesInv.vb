@@ -1,14 +1,22 @@
 ﻿Public Class FormSalesInv
     Public id_design_per_outlet As String = "-1"
+    Dim last_date As DateTime
+    Dim last_date_closing As DateTime
 
     Private Sub FormSalesInv_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`, LAST_DAY(DATE(NOW())) AS `last_date` ", -1, True, "", "", "", "")
+        last_date = data_dt.Rows(0)("last_date")
         DEFrom.EditValue = data_dt.Rows(0)("dt")
         DEUntil.EditValue = data_dt.Rows(0)("dt")
         DEUntil.Properties.MaxValue = data_dt.Rows(0)("last_date")
         DEFromAcc.EditValue = data_dt.Rows(0)("dt")
         DEUntilAcc.EditValue = data_dt.Rows(0)("dt")
+        DEFromAcc.Properties.MaxValue = data_dt.Rows(0)("last_date")
         DEUntilAcc.Properties.MaxValue = data_dt.Rows(0)("last_date")
+
+        'last date closing
+        Dim data_dt_closing = execute_query("SELECT MAX(l.soh_date) AS `max_date` FROM tb_soh_sal_period l ", -1, True, "", "", "", "")
+        last_date_closing = data_dt_closing.Rows(0)("max_date")
 
         loadComp()
         loadFilterOpt()
@@ -506,6 +514,13 @@
 
     Sub viewByAccount()
         Cursor = Cursors.WaitCursor
+
+        If SLETypeDate.EditValue.ToString = "2" Then
+            Dim y As String = DateTime.Parse(DEFromAcc.EditValue.ToString).ToString("yyyy") + "," + DateTime.Parse(DEUntilAcc.EditValue.ToString).ToString("yyyy")
+            Dim m As String = DateTime.Parse(DEFromAcc.EditValue.ToString).ToString("MM") + "," + DateTime.Parse(DEUntilAcc.EditValue.ToString).ToString("MM")
+            checkClosingSOHSalPeriod(m, y)
+        End If
+
         FormMain.SplashScreenManager1.ShowWaitForm()
 
         'Prepare paramater date
@@ -577,7 +592,7 @@
         If SLETypeDate.EditValue.ToString = "1" Then
             query = "CALL view_sales_inv_per_acc_by_sal_v3('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "','" + id_design_per_outlet + "', '" + id_period_type + "', '" + opt_display_param + "', '" + where_param + "', '" + is_soh_sal_period + "', '" + include_prm_uni + "')"
         Else
-            query = "CALL view_sales_inv_per_acc_by_sal_v4('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "','" + id_design_per_outlet + "', '" + id_period_type + "', '" + opt_display_param + "', '" + where_param + "', '" + is_soh_sal_period + "', '" + include_prm_uni + "')"
+            query = "CALL view_sales_inv_per_acc_by_sal_monthly('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp + "','" + id_design_per_outlet + "', '" + id_period_type + "', '" + opt_display_param + "', '" + where_param + "', '" + is_soh_sal_period + "', '" + include_prm_uni + "')"
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCByAccount.DataSource = data
@@ -642,6 +657,8 @@
             DEUntilAcc.Properties.Mask.UseMaskAsDisplayFormat = False
             DEUntilAcc.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.MonthView
             CESOHBySalPeriod.Enabled = True
+            DEFrom.Properties.MaxValue = last_date
+            DEUntilAcc.Properties.MaxValue = last_date
         Else
             'monthly
             DEFromAcc.Properties.Mask.EditMask = "Y"
@@ -652,6 +669,8 @@
             DEUntilAcc.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearView
             CESOHBySalPeriod.EditValue = True
             CESOHBySalPeriod.Enabled = False
+            DEFromAcc.Properties.MaxValue = last_date_closing
+            DEUntilAcc.Properties.MaxValue = last_date_closing
         End If
     End Sub
 End Class
