@@ -22,7 +22,7 @@ GROUP BY rec.id_prod_order_rec"
 
         insert_row_total(RowBM, tot)
         '
-        Dim q2 As String = "SELECT d.id_design,vendor.comp_name AS vendor_name,po.prod_order_number,DATE_FORMAT(qrs.created_date,'%d %M %Y') AS created_date,qrs.number
+        Dim q2 As String = "SELECT d.id_design,vendor.comp_name AS vendor_name,po.id_prod_order,po.prod_order_number,DATE_FORMAT(qrs.created_date,'%d %M %Y') AS created_date,qrs.number
 ,FORMAT(pod.qty,0,'id_ID') AS qty_po
 ,FORMAT(SUM(qrd.qc_report1_det_qty),0,'id_ID') AS qty_qc_report1
 ,FORMAT(SUM(IF(qr.`id_pl_category`=1,qrd.qc_report1_det_qty,0)),0,'id_ID') AS qty_normal
@@ -93,11 +93,14 @@ INNER JOIN (
             XRPDesign.ImageUrl = filePath
         End If
 
-        load_img()
+        load_img(dt.Rows(0)("id_prod_order").ToString)
     End Sub
 
-    Sub load_img()
-        Dim q As String = "SELECT id_qc_report1_img,note FROM tb_qc_report1_img WHERE id_qc_report1_sum ='" & id & "'"
+    Sub load_img(ByVal id_po As String)
+        Dim q As String = "SELECT img.id_qc_report1_img,img.note 
+FROM tb_qc_report1_img img
+INNER JOIN tb_qc_report1_sum qrs ON qrs.`id_qc_report1_sum`=img.`id_qc_report1_sum`
+WHERE qrs.`id_prod_order`='" & id_po & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         'GCImage.DataSource = dt
         For i = 0 To dt.Rows.Count - 1
