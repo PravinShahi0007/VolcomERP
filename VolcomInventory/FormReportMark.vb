@@ -4406,9 +4406,9 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 cancel.cancelReservedStock(id_report)
                 '
                 Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique` ,`id_fg_repair_det`,`id_type`,`unique_code`,
-                        `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
+                        `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`, id_report, report_mark_type, id_report_status) 
                         SELECT c.id_comp, t.`id_wh_drawer_from`, td.id_product, td.id_pl_prod_order_rec_det_unique,  td.id_fg_repair_det, '8', 
-                        CONCAT(p.product_full_code,td.fg_repair_det_counting), sod.id_design_price, sod.design_price, 1, 1, NOW() 
+                        CONCAT(p.product_full_code,td.fg_repair_det_counting), sod.id_design_price, sod.design_price, 1, 1, NOW(),  t.id_fg_repair, '" + report_mark_type + "', '5'
                         FROM tb_fg_repair_det td
                         INNER JOIN tb_fg_repair t ON t.id_fg_repair = td.id_fg_repair
                         INNER JOIN tb_m_wh_drawer drw_frm ON drw_frm.id_wh_drawer = t.id_wh_drawer_from  
@@ -4430,7 +4430,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                             ) a 
                             GROUP BY a.id_design 
                         ) sod ON sod.id_design = d.id_design 
-                                                WHERE t.id_fg_repair=" & id_report & " AND d.is_old_design=2  AND t.is_use_unique_code=1 "
+                                                WHERE t.id_fg_repair=" & id_report & " AND d.is_old_design=2  AND t.is_use_unique_code=1 AND t.is_to_vendor=2 "
                 execute_non_query(quniq, True, "", "", "", "")
             ElseIf id_status_reportx = "6" Then
                 Dim compl As New ClassFGRepair()
@@ -4597,7 +4597,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                             ) a 
                             GROUP BY a.id_design 
                         ) sod ON sod.id_design = d.id_design 
-                        WHERE t.id_fg_repair_return=" & id_report & " AND d.is_old_design=2 AND t.is_use_unique_code=1 "
+                        WHERE t.id_fg_repair_return=" & id_report & " AND d.is_old_design=2 AND t.is_use_unique_code=1 AND t.is_from_vendor=2 "
                 execute_non_query(quniq, True, "", "", "", "")
                 '
 

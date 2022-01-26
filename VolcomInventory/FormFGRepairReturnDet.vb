@@ -292,13 +292,13 @@ Public Class FormFGRepairReturnDet
                 query = "CALL view_stock_fg_unique_repair() "
             End If
         Else
-            query = "SELECT rd.`id_pl_prod_order_rec_det_unique`,rd.id_product, prod.product_full_code AS `product_code`, u.pl_prod_order_det_counting AS `counting_code`, u.pl_prod_order_det_counting AS `product_counting_code`, 
-            CONCAT(prod.product_full_code, u.pl_prod_order_det_counting) AS `product_full_code`, (SELECT product_full_code) AS `code`,
+            query = "SELECT rd.id_fg_repair_det,rd.`id_pl_prod_order_rec_det_unique`,rd.id_product, prod.product_full_code AS `product_code`, u.pl_prod_order_rec_det_counting AS `counting_code`, u.pl_prod_order_rec_det_counting AS `product_counting_code`, rd.fg_repair_det_counting, 
+            CONCAT(prod.product_full_code, u.pl_prod_order_rec_det_counting) AS `product_full_code`, (SELECT product_full_code) AS `code`,
             d.design_display_name AS `name`, cd.code_detail_name AS `size`, d.design_cop AS `bom_unit_price`,
             0 AS qty, 2 AS `is_rec`, d.is_old_design,
             prc.id_design_price, prc.design_price, prc.id_design_price_type, prc.design_price_type, prc.id_design_cat, prc.design_cat 
             FROM tb_fg_repair_det rd
-            INNER JOIN tb_pl_prod_order_det_counting u ON u.id_pl_prod_order_det_unique = rd.id_pl_prod_order_rec_det_unique
+            INNER JOIN tb_pl_prod_order_rec_det_counting u ON u.id_pl_prod_order_rec_det_unique = rd.id_pl_prod_order_rec_det_unique
             INNER JOIN tb_m_product prod ON prod.id_product = rd.id_product
             INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
@@ -316,7 +316,15 @@ Public Class FormFGRepairReturnDet
              ) a 
              GROUP BY a.id_design 
             ) prc ON prc.id_design = prod.id_design 
-            WHERE rd.id_fg_repair=" + id_fg_repair + " AND d.is_old_design=2 "
+            LEFT JOIN (
+                SELECT rd.id_pl_prod_order_rec_det_unique
+                FROM tb_fg_repair_return_det rd
+                INNER JOIN tb_fg_repair_return r ON r.id_fg_repair_return = rd.id_fg_repair_return
+                INNER JOIN tb_m_product p ON p.id_product = rd.id_product
+                INNER JOIN tb_m_design d ON d.id_design = p.id_design
+                WHERE r.id_fg_repair=" + id_fg_repair + " AND d.is_old_design=2 AND r.id_report_status!=5
+            ) a ON a.id_pl_prod_order_rec_det_unique = rd.id_pl_prod_order_rec_det_unique
+            WHERE rd.id_fg_repair=" + id_fg_repair + " AND d.is_old_design=2 AND ISNULL(a.id_pl_prod_order_rec_det_unique) "
         End If
         dt = execute_query(query, -1, True, "", "", "", "")
 
@@ -347,7 +355,7 @@ Public Class FormFGRepairReturnDet
              ) a 
              GROUP BY a.id_design 
             ) prc ON prc.id_design = prod.id_design 
-            WHERE d.is_old_design=1 AND jm.is_to_vendor=1 AND jm.id_wh_drawer_to=" + id_wh_drawer_from + "
+            WHERE d.is_old_design=1 AND jm.is_to_vendor=1 AND jm.id_wh_drawer_to=" + id_wh_drawer_from + " 
             GROUP BY j.id_product "
         Else
             Dim query_c As ClassDesign = New ClassDesign()
@@ -746,6 +754,7 @@ Public Class FormFGRepairReturnDet
             GVScanSum.ActiveFilterString = ""
         End If
 
+
         If id_wh_drawer_from = "-1" Or id_wh_drawer_to = "-1" Then
             stopCustom("Account can't blank!")
         ElseIf GVScan.RowCount <= 0 Then
@@ -828,7 +837,7 @@ Public Class FormFGRepairReturnDet
                             ) a 
                             GROUP BY a.id_design 
                         ) sod ON sod.id_design = d.id_design 
-                        WHERE t.id_fg_repair_return=" & id_fg_repair_return & " AND d.is_old_design=2 AND t.is_use_unique_code=1 "
+                        WHERE t.id_fg_repair_return=" & id_fg_repair_return & " AND d.is_old_design=2 AND t.is_use_unique_code=1 AND t.is_from_vendor=2 "
                         execute_non_query(quniq, True, "", "", "", "")
                     End If
 
