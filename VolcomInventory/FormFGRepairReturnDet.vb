@@ -292,13 +292,13 @@ Public Class FormFGRepairReturnDet
                 query = "CALL view_stock_fg_unique_repair() "
             End If
         Else
-            query = "SELECT rd.`id_pl_prod_order_rec_det_unique`,rd.id_product, prod.product_full_code AS `product_code`, u.pl_prod_order_det_counting AS `counting_code`, u.pl_prod_order_det_counting AS `product_counting_code`, 
-            CONCAT(prod.product_full_code, u.pl_prod_order_det_counting) AS `product_full_code`, (SELECT product_full_code) AS `code`,
+            query = "SELECT rd.id_fg_repair_det,rd.`id_pl_prod_order_rec_det_unique`,rd.id_product, prod.product_full_code AS `product_code`, u.pl_prod_order_rec_det_counting AS `counting_code`, u.pl_prod_order_rec_det_counting AS `product_counting_code`, rd.fg_repair_det_counting, 
+            CONCAT(prod.product_full_code, u.pl_prod_order_rec_det_counting) AS `product_full_code`, (SELECT product_full_code) AS `code`,
             d.design_display_name AS `name`, cd.code_detail_name AS `size`, d.design_cop AS `bom_unit_price`,
             0 AS qty, 2 AS `is_rec`, d.is_old_design,
             prc.id_design_price, prc.design_price, prc.id_design_price_type, prc.design_price_type, prc.id_design_cat, prc.design_cat 
             FROM tb_fg_repair_det rd
-            INNER JOIN tb_pl_prod_order_det_counting u ON u.id_pl_prod_order_det_unique = rd.id_pl_prod_order_rec_det_unique
+            INNER JOIN tb_pl_prod_order_rec_det_counting u ON u.id_pl_prod_order_rec_det_unique = rd.id_pl_prod_order_rec_det_unique
             INNER JOIN tb_m_product prod ON prod.id_product = rd.id_product
             INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail

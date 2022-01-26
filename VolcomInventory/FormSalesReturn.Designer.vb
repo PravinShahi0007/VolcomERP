@@ -75,38 +75,10 @@ Partial Class FormSalesReturn
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnSyncROROnline = New DevExpress.XtraEditors.SimpleButton()
-        Me.GroupControlSalesReturnOrderDetail = New DevExpress.XtraEditors.GroupControl()
-        Me.GCSalesReturnOrderDetail = New DevExpress.XtraGrid.GridControl()
-        Me.GVSalesReturnOrderDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdSalesTarget = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.GridColumnQtyReturn = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnReturnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdDesign = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdSalesOrderDet = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnProductName = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdReturnCat = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdDesignPrice = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPriceType = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnPrintDetail = New DevExpress.XtraEditors.SimpleButton()
-        Me.BAccept = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         CType(Me.XTCSalesReturn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesReturn.SuspendLayout()
         Me.XTPSalesReturnList.SuspendLayout()
@@ -130,13 +102,6 @@ Partial Class FormSalesReturn
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.GroupControlSalesReturnOrderDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControlSalesReturnOrderDetail.SuspendLayout()
-        CType(Me.GCSalesReturnOrderDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVSalesReturnOrderDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
         Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -444,10 +409,10 @@ Partial Class FormSalesReturn
         Me.SCCWaitingReturn.Panel1.Controls.Add(Me.GroupControlSalesReturnOrder)
         Me.SCCWaitingReturn.Panel1.Controls.Add(Me.PanelControl2)
         Me.SCCWaitingReturn.Panel1.Text = "Panel1"
-        Me.SCCWaitingReturn.Panel2.Controls.Add(Me.GroupControlSalesReturnOrderDetail)
         Me.SCCWaitingReturn.Panel2.Text = "Panel2"
+        Me.SCCWaitingReturn.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
         Me.SCCWaitingReturn.Size = New System.Drawing.Size(729, 477)
-        Me.SCCWaitingReturn.SplitterPosition = 239
+        Me.SCCWaitingReturn.SplitterPosition = 308
         Me.SCCWaitingReturn.TabIndex = 0
         Me.SCCWaitingReturn.Text = "SplitContainerControl1"
         '
@@ -457,7 +422,7 @@ Partial Class FormSalesReturn
         Me.GroupControlSalesReturnOrder.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlSalesReturnOrder.Location = New System.Drawing.Point(0, 31)
         Me.GroupControlSalesReturnOrder.Name = "GroupControlSalesReturnOrder"
-        Me.GroupControlSalesReturnOrder.Size = New System.Drawing.Size(729, 208)
+        Me.GroupControlSalesReturnOrder.Size = New System.Drawing.Size(729, 446)
         Me.GroupControlSalesReturnOrder.TabIndex = 0
         Me.GroupControlSalesReturnOrder.Text = "Order"
         '
@@ -468,7 +433,7 @@ Partial Class FormSalesReturn
         Me.GCSalesReturnOrder.MainView = Me.GVSalesReturnOrder
         Me.GCSalesReturnOrder.Name = "GCSalesReturnOrder"
         Me.GCSalesReturnOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1})
-        Me.GCSalesReturnOrder.Size = New System.Drawing.Size(725, 186)
+        Me.GCSalesReturnOrder.Size = New System.Drawing.Size(725, 424)
         Me.GCSalesReturnOrder.TabIndex = 3
         Me.GCSalesReturnOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesReturnOrder, Me.GridView2})
         '
@@ -639,317 +604,6 @@ Partial Class FormSalesReturn
         Me.BtnSyncROROnline.TabIndex = 1
         Me.BtnSyncROROnline.Text = "Sync ROR Online Marketplace"
         '
-        'GroupControlSalesReturnOrderDetail
-        '
-        Me.GroupControlSalesReturnOrderDetail.Controls.Add(Me.GCSalesReturnOrderDetail)
-        Me.GroupControlSalesReturnOrderDetail.Controls.Add(Me.PanelControl1)
-        Me.GroupControlSalesReturnOrderDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlSalesReturnOrderDetail.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControlSalesReturnOrderDetail.Name = "GroupControlSalesReturnOrderDetail"
-        Me.GroupControlSalesReturnOrderDetail.Size = New System.Drawing.Size(729, 233)
-        Me.GroupControlSalesReturnOrderDetail.TabIndex = 0
-        Me.GroupControlSalesReturnOrderDetail.Text = "Item Detail"
-        '
-        'GCSalesReturnOrderDetail
-        '
-        Me.GCSalesReturnOrderDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSalesReturnOrderDetail.Location = New System.Drawing.Point(2, 52)
-        Me.GCSalesReturnOrderDetail.LookAndFeel.SkinName = "Office 2010 Silver"
-        Me.GCSalesReturnOrderDetail.MainView = Me.GVSalesReturnOrderDetail
-        Me.GCSalesReturnOrderDetail.Name = "GCSalesReturnOrderDetail"
-        Me.GCSalesReturnOrderDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCSalesReturnOrderDetail.Size = New System.Drawing.Size(725, 179)
-        Me.GCSalesReturnOrderDetail.TabIndex = 3
-        Me.GCSalesReturnOrderDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesReturnOrderDetail})
-        '
-        'GVSalesReturnOrderDetail
-        '
-        Me.GVSalesReturnOrderDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdSalesTarget, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnQtyReturn, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnReturnCategory, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnProductName, Me.GridColumnIdReturnCat, Me.GridColumnIdDesignPrice, Me.GridColumnPriceType, Me.GridColumn2, Me.GridColumnRemaining})
-        Me.GVSalesReturnOrderDetail.CustomizationFormBounds = New System.Drawing.Rectangle(739, 187, 216, 178)
-        Me.GVSalesReturnOrderDetail.GridControl = Me.GCSalesReturnOrderDetail
-        Me.GVSalesReturnOrderDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_order_det_qty", Me.GridColumnQty, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty", Me.GridColumnQtyReturn, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "remaining", Me.GridColumnRemaining, "{0:N0}")})
-        Me.GVSalesReturnOrderDetail.Name = "GVSalesReturnOrderDetail"
-        Me.GVSalesReturnOrderDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GVSalesReturnOrderDetail.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GVSalesReturnOrderDetail.OptionsBehavior.ReadOnly = True
-        Me.GVSalesReturnOrderDetail.OptionsCustomization.AllowQuickHideColumns = False
-        Me.GVSalesReturnOrderDetail.OptionsView.ShowFooter = True
-        Me.GVSalesReturnOrderDetail.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumnNo
-        '
-        Me.GridColumnNo.Caption = "No"
-        Me.GridColumnNo.FieldName = "no"
-        Me.GridColumnNo.Name = "GridColumnNo"
-        Me.GridColumnNo.OptionsColumn.AllowEdit = False
-        Me.GridColumnNo.Visible = True
-        Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 41
-        '
-        'GridColumnIdSalesTarget
-        '
-        Me.GridColumnIdSalesTarget.Caption = "ID Sales Target"
-        Me.GridColumnIdSalesTarget.FieldName = "id_sales_return_order"
-        Me.GridColumnIdSalesTarget.Name = "GridColumnIdSalesTarget"
-        Me.GridColumnIdSalesTarget.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnCode
-        '
-        Me.GridColumnCode.Caption = "Code"
-        Me.GridColumnCode.FieldName = "code"
-        Me.GridColumnCode.Name = "GridColumnCode"
-        Me.GridColumnCode.OptionsColumn.AllowEdit = False
-        Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 48
-        '
-        'GridColumnName
-        '
-        Me.GridColumnName.Caption = "Name"
-        Me.GridColumnName.FieldName = "name"
-        Me.GridColumnName.FieldNameSortGroup = "id_design"
-        Me.GridColumnName.Name = "GridColumnName"
-        Me.GridColumnName.OptionsColumn.AllowEdit = False
-        Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 2
-        Me.GridColumnName.Width = 103
-        '
-        'GridColumnSize
-        '
-        Me.GridColumnSize.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnSize.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnSize.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnSize.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnSize.Caption = "Size"
-        Me.GridColumnSize.FieldName = "size"
-        Me.GridColumnSize.Name = "GridColumnSize"
-        Me.GridColumnSize.OptionsColumn.AllowEdit = False
-        Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 3
-        Me.GridColumnSize.Width = 38
-        '
-        'GridColumnUOM
-        '
-        Me.GridColumnUOM.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnUOM.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnUOM.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnUOM.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnUOM.Caption = "UOM"
-        Me.GridColumnUOM.FieldName = "uom"
-        Me.GridColumnUOM.Name = "GridColumnUOM"
-        Me.GridColumnUOM.OptionsColumn.AllowEdit = False
-        Me.GridColumnUOM.Width = 71
-        '
-        'GridColumnQty
-        '
-        Me.GridColumnQty.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnQty.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnQty.Caption = "Ordered Qty"
-        Me.GridColumnQty.ColumnEdit = Me.RepositoryItemSpinEdit1
-        Me.GridColumnQty.DisplayFormat.FormatString = "N0"
-        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQty.FieldName = "sales_return_order_det_qty"
-        Me.GridColumnQty.Name = "GridColumnQty"
-        Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_order_det_qty", "{0:n0}")})
-        Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 4
-        Me.GridColumnQty.Width = 65
-        '
-        'RepositoryItemSpinEdit1
-        '
-        Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
-        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
-        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
-        'GridColumnQtyReturn
-        '
-        Me.GridColumnQtyReturn.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnQtyReturn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnQtyReturn.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnQtyReturn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnQtyReturn.Caption = "Returned Qty"
-        Me.GridColumnQtyReturn.DisplayFormat.FormatString = "N0"
-        Me.GridColumnQtyReturn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQtyReturn.FieldName = "sales_return_det_qty_view"
-        Me.GridColumnQtyReturn.Name = "GridColumnQtyReturn"
-        Me.GridColumnQtyReturn.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty_view", "{0:n0}")})
-        Me.GridColumnQtyReturn.Visible = True
-        Me.GridColumnQtyReturn.VisibleIndex = 5
-        Me.GridColumnQtyReturn.Width = 84
-        '
-        'GridColumnPrice
-        '
-        Me.GridColumnPrice.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnPrice.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnPrice.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnPrice.Caption = "Price"
-        Me.GridColumnPrice.DisplayFormat.FormatString = "{0:n2}"
-        Me.GridColumnPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnPrice.FieldName = "design_price"
-        Me.GridColumnPrice.Name = "GridColumnPrice"
-        Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 7
-        Me.GridColumnPrice.Width = 73
-        '
-        'GridColumnAmount
-        '
-        Me.GridColumnAmount.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnAmount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnAmount.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnAmount.Caption = "Amount"
-        Me.GridColumnAmount.DisplayFormat.FormatString = "{0:n2}"
-        Me.GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnAmount.FieldName = "amount"
-        Me.GridColumnAmount.Name = "GridColumnAmount"
-        Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n2}")})
-        Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 8
-        Me.GridColumnAmount.Width = 86
-        '
-        'GridColumnRemark
-        '
-        Me.GridColumnRemark.Caption = "Remark"
-        Me.GridColumnRemark.FieldName = "sales_return_order_det_note"
-        Me.GridColumnRemark.Name = "GridColumnRemark"
-        Me.GridColumnRemark.Width = 134
-        '
-        'GridColumnReturnCategory
-        '
-        Me.GridColumnReturnCategory.Caption = "Return Category"
-        Me.GridColumnReturnCategory.FieldName = "return_cat"
-        Me.GridColumnReturnCategory.Name = "GridColumnReturnCategory"
-        Me.GridColumnReturnCategory.Width = 74
-        '
-        'GridColumnIdDesign
-        '
-        Me.GridColumnIdDesign.Caption = "id design"
-        Me.GridColumnIdDesign.FieldName = "id_design"
-        Me.GridColumnIdDesign.Name = "GridColumnIdDesign"
-        Me.GridColumnIdDesign.OptionsColumn.ShowInCustomizationForm = False
-        '
-        'GridColumnIdProduct
-        '
-        Me.GridColumnIdProduct.Caption = "Id Product"
-        Me.GridColumnIdProduct.FieldName = "id_product"
-        Me.GridColumnIdProduct.Name = "GridColumnIdProduct"
-        Me.GridColumnIdProduct.OptionsColumn.ShowInCustomizationForm = False
-        '
-        'GridColumnIdSample
-        '
-        Me.GridColumnIdSample.Caption = "Id Sample"
-        Me.GridColumnIdSample.FieldName = "id_sample"
-        Me.GridColumnIdSample.Name = "GridColumnIdSample"
-        Me.GridColumnIdSample.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnIdSample.OptionsColumn.ShowInCustomizationForm = False
-        '
-        'GridColumnIdSalesOrderDet
-        '
-        Me.GridColumnIdSalesOrderDet.Caption = "Id Sales Order Det"
-        Me.GridColumnIdSalesOrderDet.FieldName = "id_sales_return_order_det"
-        Me.GridColumnIdSalesOrderDet.Name = "GridColumnIdSalesOrderDet"
-        Me.GridColumnIdSalesOrderDet.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnIdSalesOrderDet.OptionsColumn.ShowInCustomizationForm = False
-        '
-        'GridColumnProductName
-        '
-        Me.GridColumnProductName.Caption = "Product Name"
-        Me.GridColumnProductName.FieldName = "product_name"
-        Me.GridColumnProductName.Name = "GridColumnProductName"
-        '
-        'GridColumnIdReturnCat
-        '
-        Me.GridColumnIdReturnCat.Caption = "GridColumnIdReturnCat"
-        Me.GridColumnIdReturnCat.FieldName = "id_return_cat"
-        Me.GridColumnIdReturnCat.Name = "GridColumnIdReturnCat"
-        '
-        'GridColumnIdDesignPrice
-        '
-        Me.GridColumnIdDesignPrice.Caption = "Id Design Price"
-        Me.GridColumnIdDesignPrice.FieldName = "id_design_price"
-        Me.GridColumnIdDesignPrice.Name = "GridColumnIdDesignPrice"
-        '
-        'GridColumnPriceType
-        '
-        Me.GridColumnPriceType.Caption = "Price Type"
-        Me.GridColumnPriceType.FieldName = "design_price_type"
-        Me.GridColumnPriceType.Name = "GridColumnPriceType"
-        Me.GridColumnPriceType.Width = 66
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn2.Caption = "SOH"
-        Me.GridColumn2.DisplayFormat.FormatString = "N0"
-        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn2.FieldName = "soh"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh", "{0:N0}")})
-        '
-        'GridColumnRemaining
-        '
-        Me.GridColumnRemaining.Caption = "Remaining"
-        Me.GridColumnRemaining.DisplayFormat.FormatString = "{0:N0}"
-        Me.GridColumnRemaining.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnRemaining.FieldName = "remaining"
-        Me.GridColumnRemaining.Name = "GridColumnRemaining"
-        Me.GridColumnRemaining.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "remaining", "{0:N0}")})
-        Me.GridColumnRemaining.UnboundExpression = "[sales_return_order_det_qty] - [sales_return_det_qty_view]"
-        Me.GridColumnRemaining.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
-        Me.GridColumnRemaining.Visible = True
-        Me.GridColumnRemaining.VisibleIndex = 6
-        '
-        'PanelControl1
-        '
-        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl1.Controls.Add(Me.BtnPrintDetail)
-        Me.PanelControl1.Controls.Add(Me.BAccept)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(2, 20)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(725, 32)
-        Me.PanelControl1.TabIndex = 140
-        '
-        'BtnPrintDetail
-        '
-        Me.BtnPrintDetail.Appearance.BackColor = System.Drawing.Color.Teal
-        Me.BtnPrintDetail.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnPrintDetail.Appearance.Options.UseBackColor = True
-        Me.BtnPrintDetail.Appearance.Options.UseFont = True
-        Me.BtnPrintDetail.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrintDetail.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.BtnPrintDetail.Location = New System.Drawing.Point(541, 0)
-        Me.BtnPrintDetail.LookAndFeel.SkinName = "Metropolis"
-        Me.BtnPrintDetail.Name = "BtnPrintDetail"
-        Me.BtnPrintDetail.Size = New System.Drawing.Size(92, 32)
-        Me.BtnPrintDetail.TabIndex = 140
-        Me.BtnPrintDetail.Text = "Print Detail"
-        Me.BtnPrintDetail.Visible = False
-        '
-        'BAccept
-        '
-        Me.BAccept.Appearance.BackColor = System.Drawing.SystemColors.Highlight
-        Me.BAccept.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BAccept.Appearance.Options.UseBackColor = True
-        Me.BAccept.Appearance.Options.UseFont = True
-        Me.BAccept.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAccept.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.BAccept.Location = New System.Drawing.Point(633, 0)
-        Me.BAccept.LookAndFeel.SkinName = "Metropolis"
-        Me.BAccept.Name = "BAccept"
-        Me.BAccept.Size = New System.Drawing.Size(92, 32)
-        Me.BAccept.TabIndex = 139
-        Me.BAccept.Text = "View Detail"
-        '
         'ViewMenu
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMPrePrint, Me.SMPrint})
@@ -967,6 +621,11 @@ Partial Class FormSalesReturn
         Me.SMPrint.Name = "SMPrint"
         Me.SMPrint.Size = New System.Drawing.Size(136, 22)
         Me.SMPrint.Text = "Print"
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 26)
         '
         'FormSalesReturn
         '
@@ -1005,13 +664,6 @@ Partial Class FormSalesReturn
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.GroupControlSalesReturnOrderDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControlSalesReturnOrderDetail.ResumeLayout(False)
-        CType(Me.GCSalesReturnOrderDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVSalesReturnOrderDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
         Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -1030,7 +682,6 @@ Partial Class FormSalesReturn
     Friend WithEvents GridColumnReturnOrderNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SCCWaitingReturn As DevExpress.XtraEditors.SplitContainerControl
     Friend WithEvents GroupControlSalesReturnOrder As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents GroupControlSalesReturnOrderDetail As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GCSalesReturnOrder As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVSalesReturnOrder As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnSalesTargetNumb As DevExpress.XtraGrid.Columns.GridColumn
@@ -1040,29 +691,6 @@ Partial Class FormSalesReturn
     Friend WithEvents GridColumnDSalesTargetNote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnReportStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GCSalesReturnOrderDetail As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVSalesReturnOrderDetail As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdSalesTarget As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnUOM As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents GridColumnPrice As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnReturnCategory As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdDesign As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdProduct As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdSample As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdSalesOrderDet As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnProductName As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdReturnCat As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdDesignPrice As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQtyReturn As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnPriceType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTimeRemaining As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnReturnQty As DevExpress.XtraGrid.Columns.GridColumn
@@ -1074,12 +702,8 @@ Partial Class FormSalesReturn
     Friend WithEvents GridColumnPrepareStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSvcLevel As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemProgressBar1 As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnLastUpdate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnLastUser As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BAccept As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnPrintDetail As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCFilter As DevExpress.XtraEditors.GroupControl
     Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BHide As DevExpress.XtraEditors.SimpleButton
@@ -1089,7 +713,6 @@ Partial Class FormSalesReturn
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnTotal As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnRemaining As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotalNonStock As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOLStoreOrder As DevExpress.XtraGrid.Columns.GridColumn
@@ -1102,4 +725,5 @@ Partial Class FormSalesReturn
     Friend WithEvents GridColumnorder_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnSyncROROnline As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
 End Class
