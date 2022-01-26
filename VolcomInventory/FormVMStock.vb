@@ -5,7 +5,20 @@
 
     Private Sub FormVMStock_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DESOHUntil.EditValue = Now()
+        DEFromSC.EditValue = Now()
+        DEUntilSC.EditValue = Now()
+        '
         load_store()
+        load_item()
+    End Sub
+
+    Sub load_item()
+        Dim q As String = "SELECT i.`id_item`,i.`item_desc`,0 AS qty,uom.`uom`
+FROM tb_item i 
+INNER JOIN tb_m_uom uom ON uom.`id_uom`=i.`id_uom`
+WHERE i.is_active=1"
+        viewSearchLookupQuery(SLEItem, q, "id_item", "item_desc", "id_item")
+        SLEItem.EditValue = Nothing
     End Sub
 
     Sub load_store()
@@ -76,6 +89,82 @@ ORDER BY h.id_vm_item_move DESC"
     End Sub
 
     Private Sub BSearchCard_Click(sender As Object, e As EventArgs) Handles BSearchCard.Click
+        Dim qw As String = ""
 
+        If SLECardToko.EditValue.ToString = "office" Then
+            qw = " HAVING id_comp='0' "
+        ElseIf SLECardToko.EditValue.ToString = "ALL" Then
+            qw = ""
+        Else
+            qw = " HAVING id_comp='" & SLECardToko.EditValue.ToString & "' "
+        End If
+
+        Dim q As String = "SELECT a.*, CAST(@bal:=@bal+a.qty AS DECIMAL(15,2)) AS `bal_qty`
+FROM (
+	SELECT 'beg' AS id_comp,'Begining' AS comp_name,beg.`id_item`,beg.`item_desc`,beg.stock_date,'Begining' AS `report_mark_type`,'Begining' AS `report_mark_type_name`
+		,'' AS report_number
+		,SUM(beg.`qty`) AS qty,SUM(beg.`qty`) AS qty_v,'Begining' AS movement,beg.uom
+	FROM
+	(
+		SELECT 0 AS id_comp,'Office (storage)' AS comp_name,im.`id_item`,im.`item_desc`,i.`storage_item_datetime` AS stock_date,i.`report_mark_type`,rmt.`report_mark_type_name`
+		,IF(i.report_mark_type='148',r.`purc_rec_number`,IF(i.report_mark_type='154' OR i.report_mark_type='163',req.`number`,del.`number`)) AS report_number
+		,IF(i.id_storage_category=2, -i.storage_item_qty, i.storage_item_qty) AS `qty`,i.`storage_item_qty` AS qty_v,IF(i.id_storage_category=2,'Out','In') AS movement,uom.uom
+		FROM tb_storage_item i
+		INNER JOIN tb_item im ON im.id_item = i.id_item
+		INNER JOIN tb_m_uom uom ON uom.id_uom=im.id_uom
+		INNER JOIN tb_lookup_report_mark_type rmt ON rmt.`report_mark_type`=i.`report_mark_type`
+		LEFT JOIN tb_purc_rec r ON r.`id_purc_rec`=i.`id_report` AND i.`report_mark_type`='148'
+		LEFT JOIN tb_item_req req ON req.`id_item_req`=i.`id_report` AND (i.`report_mark_type`='154' OR i.`report_mark_type`='163')
+		LEFT JOIN tb_item_del del ON del.`id_item_del`=i.`id_report` AND (i.`report_mark_type`='156' OR i.`report_mark_type`='166')
+		WHERE i.id_departement='18' AND DATE(i.`storage_item_datetime`)<'" & Date.Parse(DEFromSC.EditValue.ToString).ToString("yyyy-MM-dd") & "' 
+		AND i.id_item='396'
+		UNION ALL
+		SELECT s.id_comp,IF(s.id_comp=0,'Office',CONCAT(c.comp_number,' - ',c.comp_name)) AS comp_name,im.`id_item`,im.`item_desc`,s.stock_date,s.report_mark_type,rmt.report_mark_type_name
+		,IF(s.report_mark_type='389',m.`number`,d.`number`) AS report_number
+		,s.`qty`,IF(s.`qty`<0,-1*s.`qty`,s.`qty`) AS qty_v,IF(s.`qty`<0,'Out','In') AS movement,uom.`uom`
+		FROM tb_stock_vm s
+		LEFT JOIN tb_m_comp c ON c.id_comp=s.id_comp
+		INNER JOIN tb_item im ON im.id_item = s.id_item
+		INNER JOIN tb_m_uom uom ON uom.id_uom=im.id_uom
+		INNER JOIN tb_lookup_report_mark_type rmt ON rmt.`report_mark_type`=s.`report_mark_type`
+		LEFT JOIN `tb_vm_item_move` m ON m.`id_vm_item_move`=s.`id_report` AND s.`report_mark_type`='389'
+		LEFT JOIN tb_item_del d ON d.`id_item_del`=s.`id_report` AND s.`report_mark_type`='166'
+		WHERE s.id_item='396' AND DATE(s.`stock_date`)<'" & Date.Parse(DEFromSC.EditValue.ToString).ToString("yyyy-MM-dd") & "'
+		" & qw & "
+	)beg 
+	GROUP BY beg.id_item
+	UNION ALL
+	SELECT 0 AS id_comp,'Office (storage)' AS comp_name,im.`id_item`,im.`item_desc`,i.`storage_item_datetime` AS stock_date,i.`report_mark_type`,rmt.`report_mark_type_name`
+	,IF(i.report_mark_type='148',r.`purc_rec_number`,IF(i.report_mark_type='154' OR i.report_mark_type='163',req.`number`,del.`number`)) AS report_number
+	,IF(i.id_storage_category=2, -i.storage_item_qty, i.storage_item_qty) AS `qty`,i.`storage_item_qty` AS qty_v,IF(i.id_storage_category=2,'Out','In') AS movement,uom.uom
+	FROM tb_storage_item i
+	INNER JOIN tb_item im ON im.id_item = i.id_item
+	INNER JOIN tb_m_uom uom ON uom.id_uom=im.id_uom
+	INNER JOIN tb_lookup_report_mark_type rmt ON rmt.`report_mark_type`=i.`report_mark_type`
+	LEFT JOIN tb_purc_rec r ON r.`id_purc_rec`=i.`id_report` AND i.`report_mark_type`='148'
+	LEFT JOIN tb_item_req req ON req.`id_item_req`=i.`id_report` AND (i.`report_mark_type`='154' OR i.`report_mark_type`='163')
+	LEFT JOIN tb_item_del del ON del.`id_item_del`=i.`id_report` AND (i.`report_mark_type`='156' OR i.`report_mark_type`='166')
+	WHERE i.id_departement='18' AND DATE(i.`storage_item_datetime`)>='" & Date.Parse(DEFromSC.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(i.`storage_item_datetime`)<='" & Date.Parse(DEUntilSC.EditValue.ToString).ToString("yyyy-MM-dd") & "'
+	AND i.id_item='396'
+	UNION ALL
+	SELECT s.id_comp,IF(s.id_comp=0,'Office',CONCAT(c.comp_number,' - ',c.comp_name)) AS comp_name,im.`id_item`,im.`item_desc`,s.stock_date,s.report_mark_type,rmt.report_mark_type_name
+	,IF(s.report_mark_type='389',m.`number`,d.`number`) AS report_number
+	,s.`qty`,IF(s.`qty`<0,-1*s.`qty`,s.`qty`) AS qty_v,IF(s.`qty`<0,'Out','In') AS movement,uom.`uom`
+	FROM tb_stock_vm s
+	LEFT JOIN tb_m_comp c ON c.id_comp=s.id_comp
+	INNER JOIN tb_item im ON im.id_item = s.id_item
+	INNER JOIN tb_m_uom uom ON uom.id_uom=im.id_uom
+	INNER JOIN tb_lookup_report_mark_type rmt ON rmt.`report_mark_type`=s.`report_mark_type`
+	LEFT JOIN `tb_vm_item_move` m ON m.`id_vm_item_move`=s.`id_report` AND s.`report_mark_type`='389'
+	LEFT JOIN tb_item_del d ON d.`id_item_del`=s.`id_report` AND s.`report_mark_type`='166'
+	WHERE s.id_item='396' AND DATE(s.`stock_date`)>='" & Date.Parse(DEFromSC.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(s.`stock_date`)<='" & Date.Parse(DEUntilSC.EditValue.ToString).ToString("yyyy-MM-dd") & "'
+	" & qw & "
+) a
+JOIN (SELECT @bal:=0.00) b
+WHERE a.qty_v>0
+ORDER BY a.stock_date ASC"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCSC.DataSource = dt
+        GVSC.BestFitColumns()
     End Sub
 End Class

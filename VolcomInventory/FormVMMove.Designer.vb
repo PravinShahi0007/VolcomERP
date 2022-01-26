@@ -474,7 +474,7 @@ Partial Class FormVMMove
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 0
-        Me.GridColumn8.Width = 318
+        Me.GridColumn8.Width = 367
         '
         'GridColumn9
         '
@@ -483,7 +483,7 @@ Partial Class FormVMMove
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 1
-        Me.GridColumn9.Width = 1020
+        Me.GridColumn9.Width = 905
         '
         'GridColumn10
         '
@@ -498,6 +498,7 @@ Partial Class FormVMMove
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 2
+        Me.GridColumn10.Width = 360
         '
         'LabelControl2
         '
