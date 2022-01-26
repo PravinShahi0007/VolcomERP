@@ -4597,7 +4597,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                             ) a 
                             GROUP BY a.id_design 
                         ) sod ON sod.id_design = d.id_design 
-                        WHERE t.id_fg_repair_return=" & id_report & " AND d.is_old_design=2 AND t.is_use_unique_code=1 "
+                        WHERE t.id_fg_repair_return=" & id_report & " AND d.is_old_design=2 AND t.is_use_unique_code=1 AND t.is_from_vendor=2 "
                 execute_non_query(quniq, True, "", "", "", "")
                 '
 
