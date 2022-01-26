@@ -157,7 +157,10 @@ GROUP BY po.`id_prod_order`"
     End Sub
 
     Sub load_img()
-        Dim q As String = "SELECT id_qc_report1_img,note FROM tb_qc_report1_img WHERE id_qc_report1_sum ='" & id & "'"
+        Dim q As String = "SELECT img.id_qc_report1_img,img.note 
+FROM tb_qc_report1_img img
+INNER JOIN tb_qc_report1_sum qrs ON qrs.`id_qc_report1_sum`=img.`id_qc_report1_sum`
+WHERE qrs.`id_prod_order`='" & id_po & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCImage.DataSource = dt
     End Sub
