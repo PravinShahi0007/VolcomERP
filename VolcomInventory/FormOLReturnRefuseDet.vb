@@ -97,7 +97,7 @@
         End Try
         Dim query As String = "SELECT a.*, (a.qty-IFNULL(s.qty_save,0)) AS `qty_limit`, '2' AS is_used
         FROM (
-         SELECT sod.id_sales_order_det, dc.id_pl_sales_order_del_det_counting, dc.id_pl_prod_order_rec_det_unique,
+         SELECT sod.id_sales_order_det, dc.id_pl_sales_order_del_det_counting, IFNULL(dc.id_pl_prod_order_rec_det_unique,0) AS `id_pl_prod_order_rec_det_unique`,
          sod.id_product,CONCAT(p.product_full_code, dc.pl_sales_order_del_det_counting) AS `code_list`, 
          p.product_display_name AS `name`, cd.code_detail_name AS `size`, sod.item_id, sod.ol_store_id, 
          COUNT(CONCAT(p.product_full_code, dc.pl_sales_order_del_det_counting)) AS `qty`, dd.id_design_price, dd.design_price
