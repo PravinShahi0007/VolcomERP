@@ -519,7 +519,7 @@
         ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             'overtime
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_ot WHERE id_ot = '{0}'", id_report)
-        ElseIf report_mark_type = "185" Then
+        ElseIf report_mark_type = "182" Then
             'sample purchase close
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_sample_purc_close WHERE id_sample_purc_close = '{0}'", id_report)
         ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
@@ -8013,7 +8013,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             'update
             query = String.Format("UPDATE tb_ot SET id_report_status='{0}' WHERE id_ot ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-        ElseIf report_mark_type = "185" Then
+        ElseIf report_mark_type = "182" Then
             'sample purchase close
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"

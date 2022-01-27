@@ -117,10 +117,10 @@ WHERE spcd.id_sample_purc_close='" & id_close & "'"
             Next
             execute_non_query(query, True, "", "", "", "")
 
-            query = "CALL gen_number('" & id_close & "','185')"
+            query = "CALL gen_number('" & id_close & "','182')"
             execute_non_query(query, True, "", "", "", "")
 
-            submit_who_prepared("185", id_close, id_user)
+            submit_who_prepared("182", id_close, id_user)
 
             infoCustom("Closing Sample Purchase submitted.")
 
@@ -130,7 +130,7 @@ WHERE spcd.id_sample_purc_close='" & id_close & "'"
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         FormReportMark.id_report = id_close
-        FormReportMark.report_mark_type = "185"
+        FormReportMark.report_mark_type = "182"
         If is_view = "1" Then
             FormReportMark.is_view = "1"
         End If
