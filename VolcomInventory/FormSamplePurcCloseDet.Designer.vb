@@ -251,6 +251,7 @@ Partial Class FormSamplePurcCloseDet
         Me.BtnPrint.TabIndex = 18
         Me.BtnPrint.TabStop = False
         Me.BtnPrint.Text = "Print"
+        Me.BtnPrint.Visible = False
         '
         'BtnCancel
         '
