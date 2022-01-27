@@ -227,6 +227,7 @@
 
     Sub printOrder()
         Cursor = Cursors.WaitCursor
+        GVItemList.BestFitColumns()
         ReportSalesReturnOrder.id_sales_return_order = id_sales_return_order
         ReportSalesReturnOrder.dt = GCItemList.DataSource
         Dim Report As New ReportSalesReturnOrder()
@@ -249,7 +250,7 @@
         Report.LabelTo.Text = TxtStoreCode.Text + " - " + TxtStoreName.Text
         Report.LabelWH.Text = TxtWHCode.Text + " - " + TxtWHName.Text
         Report.LabelOLStoreOrder.Text = TxtOLStoreNumber.Text
-        Report.LabelAddress.Text = store_address
+        'Report.LabelAddress.Text = store_address
         Report.LabelEstReturn.Text = DERetDueDate.Text
         Report.LabelNote.Text = MENote.Text
 

@@ -24,6 +24,9 @@ Partial Class FormSalesReturn
         Me.XTCSalesReturn = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSalesReturnList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSalesReturn = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PrintToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSalesReturn = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnSalesReturnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReturnOrderNumber = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -78,11 +81,11 @@ Partial Class FormSalesReturn
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         CType(Me.XTCSalesReturn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesReturn.SuspendLayout()
         Me.XTPSalesReturnList.SuspendLayout()
         CType(Me.GCSalesReturn, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVSalesReturn, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoCENonList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,6 +129,7 @@ Partial Class FormSalesReturn
         '
         'GCSalesReturn
         '
+        Me.GCSalesReturn.ContextMenuStrip = Me.ViewMenu
         Me.GCSalesReturn.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCSalesReturn.Location = New System.Drawing.Point(0, 39)
         Me.GCSalesReturn.MainView = Me.GVSalesReturn
@@ -134,6 +138,24 @@ Partial Class FormSalesReturn
         Me.GCSalesReturn.Size = New System.Drawing.Size(729, 438)
         Me.GCSalesReturn.TabIndex = 0
         Me.GCSalesReturn.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesReturn})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailOrderToolStripMenuItem, Me.PrintToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(133, 48)
+        '
+        'ViewDetailOrderToolStripMenuItem
+        '
+        Me.ViewDetailOrderToolStripMenuItem.Name = "ViewDetailOrderToolStripMenuItem"
+        Me.ViewDetailOrderToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
+        Me.ViewDetailOrderToolStripMenuItem.Text = "View Detail"
+        '
+        'PrintToolStripMenuItem
+        '
+        Me.PrintToolStripMenuItem.Name = "PrintToolStripMenuItem"
+        Me.PrintToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
+        Me.PrintToolStripMenuItem.Text = "Print"
         '
         'GVSalesReturn
         '
@@ -428,6 +450,7 @@ Partial Class FormSalesReturn
         '
         'GCSalesReturnOrder
         '
+        Me.GCSalesReturnOrder.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCSalesReturnOrder.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCSalesReturnOrder.Location = New System.Drawing.Point(2, 20)
         Me.GCSalesReturnOrder.MainView = Me.GVSalesReturnOrder
@@ -622,11 +645,6 @@ Partial Class FormSalesReturn
         Me.SMPrint.Size = New System.Drawing.Size(136, 22)
         Me.SMPrint.Text = "Print"
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 26)
-        '
         'FormSalesReturn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -644,6 +662,7 @@ Partial Class FormSalesReturn
         Me.XTCSalesReturn.ResumeLayout(False)
         Me.XTPSalesReturnList.ResumeLayout(False)
         CType(Me.GCSalesReturn, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVSalesReturn, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoCENonList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
@@ -726,4 +745,6 @@ Partial Class FormSalesReturn
     Friend WithEvents BtnSyncROROnline As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewDetailOrderToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PrintToolStripMenuItem As ToolStripMenuItem
 End Class
