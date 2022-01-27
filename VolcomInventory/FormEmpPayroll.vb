@@ -888,6 +888,10 @@
                                     period = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString.Replace(" Daily Worker", "") + " " + Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("yyyy")
                                 End If
 
+                                If GVPayrollPeriode.GetFocusedRowCellValue("is_bonus").ToString = "1" Then
+                                    period = GVPayrollPeriode.GetFocusedRowCellValue("payroll_type_name").ToString + " " + Date.Parse(GVPayrollPeriode.GetFocusedRowCellValue("periode_end").ToString).ToString("MMMM yyyy")
+                                End If
+
                                 Dim mem As New IO.MemoryStream()
 
                                 Dim report As ReportSalarySlip = New ReportSalarySlip
