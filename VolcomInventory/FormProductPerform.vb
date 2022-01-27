@@ -248,22 +248,10 @@ ORDER BY area ASC"
             Exit Sub
         End If
         GVStore.ActiveFilterString = ""
-        'jika blm closing (from)
-        Dim qfrom As String = "SELECT * FROM tb_log_closing_stock_sal_period c WHERE c.year_stock='" + year_from.ToString + "' AND c.month_stock='" + month_from.ToString.PadLeft(2, "0") + "' "
-        Dim dfrom As DataTable = execute_query(qfrom, -1, True, "", "", "", "")
-        If dfrom.Rows.Count <= 0 Then
-            stopCustom("Period from belum closing")
-            Cursor = Cursors.Default
-            Exit Sub
-        End If
-        'jika blm closing (to)
-        Dim qto As String = "SELECT * FROM tb_log_closing_stock_sal_period c WHERE c.year_stock='" + year_to.ToString + "' AND c.month_stock='" + month_to.ToString.PadLeft(2, "0") + "' "
-        Dim dto As DataTable = execute_query(qto, -1, True, "", "", "", "")
-        If dto.Rows.Count <= 0 Then
-            stopCustom("Period until belum closing")
-            Cursor = Cursors.Default
-            Exit Sub
-        End If
+        'jika blm clsing
+        Dim yp As String = year_from.ToString + "," + year_to.ToString
+        Dim mp As String = month_from.ToString + "," + month_to.ToString
+        checkClosingSOHSalPeriod(mp, yp)
 
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
             FormMain.SplashScreenManager1.ShowWaitForm()
