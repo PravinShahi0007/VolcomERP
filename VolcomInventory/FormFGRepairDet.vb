@@ -33,6 +33,9 @@ Public Class FormFGRepairDet
         If FormFGRepair.is_to_vendor = True Then
             bof_xls_repair = get_setup_field("bof_xls_repair_to_vendor")
             rmt = "140"
+            GridColumn6.Visible = False
+            GridColumnAmount.Visible = False
+            GridColumndesign_first_rec_wh_year.Visible = False
         Else
             rmt = "91"
         End If
@@ -706,9 +709,9 @@ Public Class FormFGRepairDet
                     Try
                         If is_use_unique_code_wh = "1" Then
                             Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`,`id_pl_prod_order_rec_det_unique`, `id_fg_repair_det`,`id_type`,`unique_code`,
-                            `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
+                            `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`, id_report, report_mark_type, id_report_status) 
                             SELECT c.id_comp, t.`id_wh_drawer_from`, td.id_product, td.id_pl_prod_order_rec_det_unique,  td.id_fg_repair_det, '8', 
-                            CONCAT(p.product_full_code,td.fg_repair_det_counting), sod.id_design_price, sod.design_price, -1, 1, NOW() 
+                            CONCAT(p.product_full_code,td.fg_repair_det_counting), sod.id_design_price, sod.design_price, -1, 1, NOW(), t.id_fg_repair, '" + rmt + "', '1'
                             FROM tb_fg_repair_det td
                             INNER JOIN tb_fg_repair t ON t.id_fg_repair = td.id_fg_repair
                             INNER JOIN tb_m_wh_drawer drw_frm ON drw_frm.id_wh_drawer = t.id_wh_drawer_from  
@@ -730,7 +733,7 @@ Public Class FormFGRepairDet
                                 ) a 
                                 GROUP BY a.id_design 
                             ) sod ON sod.id_design = d.id_design 
-                            WHERE t.id_fg_repair=" & id_fg_repair & " AND d.is_old_design=2  AND t.is_use_unique_code=1 "
+                            WHERE t.id_fg_repair=" & id_fg_repair & " AND d.is_old_design=2  AND t.is_use_unique_code=1 AND t.is_to_vendor=2 "
                             execute_non_query(quniq, True, "", "", "", "")
                         End If
                     Catch ex As Exception

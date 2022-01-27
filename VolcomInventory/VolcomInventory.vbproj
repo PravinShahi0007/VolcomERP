@@ -580,6 +580,12 @@
     <Compile Include="FormBankWithdrawalLogPaymentDate.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBankWithdrawalPPNTag.Designer.vb">
+      <DependentUpon>FormBankWithdrawalPPNTag.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBankWithdrawalPPNTag.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBankWithdrawalSum.Designer.vb">
       <DependentUpon>FormBankWithdrawalSum.vb</DependentUpon>
     </Compile>
@@ -1416,6 +1422,18 @@
       <DependentUpon>FormDesignInfo.vb</DependentUpon>
     </Compile>
     <Compile Include="FormDesignInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDeviden.Designer.vb">
+      <DependentUpon>FormDeviden.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDeviden.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDevidenDet.Designer.vb">
+      <DependentUpon>FormDevidenDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDevidenDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDisableExos.Designer.vb">
@@ -4705,6 +4723,24 @@
     <Compile Include="FormPurcReturn.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormQCReport1.Designer.vb">
+      <DependentUpon>FormQCReport1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormQCReport1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormQCReport1Det.Designer.vb">
+      <DependentUpon>FormQCReport1Det.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormQCReport1Det.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormQCReport1Sum.Designer.vb">
+      <DependentUpon>FormQCReport1Sum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormQCReport1Sum.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormRefundOLStore.Designer.vb">
       <DependentUpon>FormRefundOLStore.vb</DependentUpon>
     </Compile>
@@ -7507,6 +7543,12 @@
     <Compile Include="FormSetupRawMatCodeSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormShareholder.Designer.vb">
+      <DependentUpon>FormShareholder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormShareholder.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormShipInvoiceDet.Designer.vb">
       <DependentUpon>FormShipInvoiceDet.vb</DependentUpon>
     </Compile>
@@ -8521,6 +8563,18 @@
     <Compile Include="FormVIOSExpiredOrderDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormVMMove.Designer.vb">
+      <DependentUpon>FormVMMove.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVMMove.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVMStock.Designer.vb">
+      <DependentUpon>FormVMStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVMStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormVMStoreDisplay.Designer.vb">
       <DependentUpon>FormVMStoreDisplay.vb</DependentUpon>
     </Compile>
@@ -8960,6 +9014,12 @@
       <DependentUpon>ReportDesignInfo.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportDesignInfo.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportDeviden.Designer.vb">
+      <DependentUpon>ReportDeviden.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDeviden.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportDisableExos.Designer.vb">
@@ -10102,6 +10162,18 @@
     <Compile Include="ReportPurcReturn.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportQCReport1.Designer.vb">
+      <DependentUpon>ReportQCReport1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportQCReport1.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportQCReport1Sum.Designer.vb">
+      <DependentUpon>ReportQCReport1Sum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportQCReport1Sum.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportRequestRetOLStore.Designer.vb">
       <DependentUpon>ReportRequestRetOLStore.vb</DependentUpon>
     </Compile>
@@ -10792,6 +10864,9 @@
     <EmbeddedResource Include="FormBankWithdrawalLogPaymentDate.resx">
       <DependentUpon>FormBankWithdrawalLogPaymentDate.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormBankWithdrawalPPNTag.resx">
+      <DependentUpon>FormBankWithdrawalPPNTag.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormBankWithdrawalSum.resx">
       <DependentUpon>FormBankWithdrawalSum.vb</DependentUpon>
     </EmbeddedResource>
@@ -11245,6 +11320,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDesignInfo.resx">
       <DependentUpon>FormDesignInfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDeviden.resx">
+      <DependentUpon>FormDeviden.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDevidenDet.resx">
+      <DependentUpon>FormDevidenDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDisableExos.resx">
       <DependentUpon>FormDisableExos.vb</DependentUpon>
@@ -12899,6 +12980,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcReturn.resx">
       <DependentUpon>FormPurcReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormQCReport1.resx">
+      <DependentUpon>FormQCReport1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormQCReport1Det.resx">
+      <DependentUpon>FormQCReport1Det.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormQCReport1Sum.resx">
+      <DependentUpon>FormQCReport1Sum.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRefundOLStore.resx">
       <DependentUpon>FormRefundOLStore.vb</DependentUpon>
@@ -14638,6 +14728,9 @@
       <DependentUpon>FormSetupRawMatCodeSingle.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormShareholder.resx">
+      <DependentUpon>FormShareholder.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormShipInvoiceDet.resx">
       <DependentUpon>FormShipInvoiceDet.vb</DependentUpon>
     </EmbeddedResource>
@@ -15223,6 +15316,12 @@
     <EmbeddedResource Include="FormVIOSExpiredOrderDetail.resx">
       <DependentUpon>FormVIOSExpiredOrderDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormVMMove.resx">
+      <DependentUpon>FormVMMove.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVMStock.resx">
+      <DependentUpon>FormVMStock.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormVMStoreDisplay.resx">
       <DependentUpon>FormVMStoreDisplay.vb</DependentUpon>
     </EmbeddedResource>
@@ -15447,6 +15546,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDesignInfo.resx">
       <DependentUpon>ReportDesignInfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportDeviden.resx">
+      <DependentUpon>ReportDeviden.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDisableExos.resx">
       <DependentUpon>ReportDisableExos.vb</DependentUpon>
@@ -16068,6 +16170,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcReturn.resx">
       <DependentUpon>ReportPurcReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportQCReport1.resx">
+      <DependentUpon>ReportQCReport1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportQCReport1Sum.resx">
+      <DependentUpon>ReportQCReport1Sum.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportRequestRetOLStore.resx">
       <DependentUpon>ReportRequestRetOLStore.vb</DependentUpon>

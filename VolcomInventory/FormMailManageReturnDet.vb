@@ -516,7 +516,7 @@
             Report.LRecNumber.Text = GVDetail.GetRowCellValue(i, "sales_return_order_number").ToString
             Report.LRecDate.Text = GVDetail.GetRowCellValue(i, "sales_return_order_date").ToString
             Report.LabelTo.Text = GVDetail.GetRowCellValue(i, "store_name_to").ToString
-            Report.LabelAddress.Text = GVDetail.GetRowCellValue(i, "store_address_to").ToString
+            'Report.LabelAddress.Text = GVDetail.GetRowCellValue(i, "store_address_to").ToString
             Report.LabelEstReturn.Text = GVDetail.GetRowCellValue(i, "sales_return_order_est_date").ToString
             Report.LabelNote.Text = GVDetail.GetRowCellValue(i, "sales_return_order_note").ToString
             Report.PrintingSystem.ContinuousPageNumbering = False
@@ -592,7 +592,7 @@
                 Report.LRecNumber.Text = GVDetail.GetRowCellValue(i, "sales_return_order_number").ToString
                 Report.LRecDate.Text = GVDetail.GetRowCellValue(i, "sales_return_order_date").ToString
                 Report.LabelTo.Text = GVDetail.GetRowCellValue(i, "store_name_to").ToString
-                Report.LabelAddress.Text = GVDetail.GetRowCellValue(i, "store_address_to").ToString
+                'Report.LabelAddress.Text = GVDetail.GetRowCellValue(i, "store_address_to").ToString
                 Report.LabelEstReturn.Text = GVDetail.GetRowCellValue(i, "sales_return_order_est_date").ToString
                 Report.LabelNote.Text = GVDetail.GetRowCellValue(i, "sales_return_order_note").ToString
                 Report.PrintingSystem.ContinuousPageNumbering = False

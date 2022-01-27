@@ -102,6 +102,8 @@ Partial Class FormSalesPOSDet
         Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlBottomRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtPotGWP = New DevExpress.XtraEditors.TextEdit()
         Me.BtnSelectDiscount = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtPotPenjualan = New DevExpress.XtraEditors.TextEdit()
@@ -221,6 +223,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.GridColumnis_gwp = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -276,6 +279,7 @@ Partial Class FormSalesPOSDet
         CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottomRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottomRight.SuspendLayout()
+        CType(Me.TxtPotGWP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPotPenjualan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTaxBase.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtVatTot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -315,7 +319,7 @@ Partial Class FormSalesPOSDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(1188, 209)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(1188, 203)
         Me.GroupGeneralHeader.TabIndex = 184
         '
         'PanelControlTopLeft
@@ -345,7 +349,7 @@ Partial Class FormSalesPOSDet
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
-        Me.PanelControlTopLeft.Size = New System.Drawing.Size(624, 205)
+        Me.PanelControlTopLeft.Size = New System.Drawing.Size(624, 199)
         Me.PanelControlTopLeft.TabIndex = 8933
         '
         'BtnLoadFromReturnCentre
@@ -405,7 +409,7 @@ Partial Class FormSalesPOSDet
         Me.TXTName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TXTName.EditValue = ""
-        Me.TXTName.Location = New System.Drawing.Point(78, 166)
+        Me.TXTName.Location = New System.Drawing.Point(78, 161)
         Me.TXTName.Name = "TXTName"
         Me.TXTName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTName.Properties.Appearance.Options.UseFont = True
@@ -420,7 +424,7 @@ Partial Class FormSalesPOSDet
         'LabelName
         '
         Me.LabelName.AutoSize = True
-        Me.LabelName.Location = New System.Drawing.Point(6, 169)
+        Me.LabelName.Location = New System.Drawing.Point(6, 164)
         Me.LabelName.Name = "LabelName"
         Me.LabelName.Size = New System.Drawing.Size(63, 13)
         Me.LabelName.TabIndex = 8959
@@ -429,7 +433,7 @@ Partial Class FormSalesPOSDet
         'LabelBillTo
         '
         Me.LabelBillTo.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelBillTo.Location = New System.Drawing.Point(9, 143)
+        Me.LabelBillTo.Location = New System.Drawing.Point(9, 138)
         Me.LabelBillTo.Name = "LabelBillTo"
         Me.LabelBillTo.Size = New System.Drawing.Size(25, 13)
         Me.LabelBillTo.TabIndex = 8898
@@ -453,7 +457,7 @@ Partial Class FormSalesPOSDet
         Me.BtnBrowseBillTo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnBrowseBillTo.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBrowseBillTo.Appearance.Options.UseFont = True
-        Me.BtnBrowseBillTo.Location = New System.Drawing.Point(578, 140)
+        Me.BtnBrowseBillTo.Location = New System.Drawing.Point(578, 135)
         Me.BtnBrowseBillTo.Name = "BtnBrowseBillTo"
         Me.BtnBrowseBillTo.Size = New System.Drawing.Size(23, 20)
         Me.BtnBrowseBillTo.TabIndex = 8897
@@ -466,7 +470,7 @@ Partial Class FormSalesPOSDet
         Me.TxtNameBillTo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtNameBillTo.EditValue = ""
-        Me.TxtNameBillTo.Location = New System.Drawing.Point(163, 140)
+        Me.TxtNameBillTo.Location = New System.Drawing.Point(163, 135)
         Me.TxtNameBillTo.Name = "TxtNameBillTo"
         Me.TxtNameBillTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNameBillTo.Properties.Appearance.Options.UseFont = True
@@ -484,7 +488,7 @@ Partial Class FormSalesPOSDet
         'TxtCodeBillTo
         '
         Me.TxtCodeBillTo.EditValue = ""
-        Me.TxtCodeBillTo.Location = New System.Drawing.Point(78, 140)
+        Me.TxtCodeBillTo.Location = New System.Drawing.Point(78, 135)
         Me.TxtCodeBillTo.Name = "TxtCodeBillTo"
         Me.TxtCodeBillTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtCodeBillTo.Properties.Appearance.Options.UseFont = True
@@ -521,7 +525,7 @@ Partial Class FormSalesPOSDet
         'LabelControl11
         '
         Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(9, 117)
+        Me.LabelControl11.Location = New System.Drawing.Point(9, 112)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(29, 13)
         Me.LabelControl11.TabIndex = 8889
@@ -532,7 +536,7 @@ Partial Class FormSalesPOSDet
         Me.TENPWP.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TENPWP.EditValue = ""
-        Me.TENPWP.Location = New System.Drawing.Point(78, 114)
+        Me.TENPWP.Location = New System.Drawing.Point(78, 109)
         Me.TENPWP.Name = "TENPWP"
         Me.TENPWP.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TENPWP.Properties.Appearance.Options.UseFont = True
@@ -555,7 +559,7 @@ Partial Class FormSalesPOSDet
         Me.MEAdrressCompFrom.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.MEAdrressCompFrom.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.MEAdrressCompFrom.Properties.ReadOnly = True
-        Me.MEAdrressCompFrom.Size = New System.Drawing.Size(523, 46)
+        Me.MEAdrressCompFrom.Size = New System.Drawing.Size(523, 40)
         Me.MEAdrressCompFrom.TabIndex = 4444
         Me.MEAdrressCompFrom.TabStop = False
         '
@@ -650,7 +654,7 @@ Partial Class FormSalesPOSDet
         Me.PanelControlTopMiddle.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopMiddle.Location = New System.Drawing.Point(644, 2)
         Me.PanelControlTopMiddle.Name = "PanelControlTopMiddle"
-        Me.PanelControlTopMiddle.Size = New System.Drawing.Size(330, 205)
+        Me.PanelControlTopMiddle.Size = New System.Drawing.Size(330, 199)
         Me.PanelControlTopMiddle.TabIndex = 8934
         '
         'LabelControl23
@@ -825,7 +829,7 @@ Partial Class FormSalesPOSDet
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopRight.Location = New System.Drawing.Point(974, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(212, 205)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(212, 199)
         Me.PanelControlTopRight.TabIndex = 8935
         '
         'LabelControl16
@@ -988,7 +992,7 @@ Partial Class FormSalesPOSDet
         Me.MENote.Location = New System.Drawing.Point(57, 34)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
-        Me.MENote.Size = New System.Drawing.Size(502, 60)
+        Me.MENote.Size = New System.Drawing.Size(277, 118)
         Me.MENote.TabIndex = 6
         '
         'LabelControl18
@@ -1015,7 +1019,7 @@ Partial Class FormSalesPOSDet
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
         Me.PanelControl3.Controls.Add(Me.BtnSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 599)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 682)
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
@@ -1214,9 +1218,9 @@ Partial Class FormSalesPOSDet
         Me.GroupControl3.Controls.Add(Me.PanelControlBottomMiddle)
         Me.GroupControl3.Controls.Add(Me.PanelControlBottomRight)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 454)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 509)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(1188, 145)
+        Me.GroupControl3.Size = New System.Drawing.Size(1188, 173)
         Me.GroupControl3.TabIndex = 186
         '
         'PanelControlBottomLeft
@@ -1229,7 +1233,7 @@ Partial Class FormSalesPOSDet
         Me.PanelControlBottomLeft.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlBottomLeft.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlBottomLeft.Name = "PanelControlBottomLeft"
-        Me.PanelControlBottomLeft.Size = New System.Drawing.Size(579, 141)
+        Me.PanelControlBottomLeft.Size = New System.Drawing.Size(353, 169)
         Me.PanelControlBottomLeft.TabIndex = 170
         '
         'LabelControl21
@@ -1253,7 +1257,7 @@ Partial Class FormSalesPOSDet
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
         Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(502, 20)
+        Me.LEReportStatus.Size = New System.Drawing.Size(277, 20)
         Me.LEReportStatus.TabIndex = 7
         '
         'PanelControlBottomMiddle
@@ -1262,24 +1266,24 @@ Partial Class FormSalesPOSDet
         Me.PanelControlBottomMiddle.Controls.Add(Me.METotSay)
         Me.PanelControlBottomMiddle.Controls.Add(Me.LabelControl19)
         Me.PanelControlBottomMiddle.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlBottomMiddle.Location = New System.Drawing.Point(599, 2)
+        Me.PanelControlBottomMiddle.Location = New System.Drawing.Point(373, 2)
         Me.PanelControlBottomMiddle.Name = "PanelControlBottomMiddle"
-        Me.PanelControlBottomMiddle.Size = New System.Drawing.Size(329, 141)
+        Me.PanelControlBottomMiddle.Size = New System.Drawing.Size(520, 169)
         Me.PanelControlBottomMiddle.TabIndex = 171
         '
         'METotSay
         '
-        Me.METotSay.Location = New System.Drawing.Point(29, 7)
+        Me.METotSay.Location = New System.Drawing.Point(51, 7)
         Me.METotSay.Name = "METotSay"
         Me.METotSay.Properties.MaxLength = 100
         Me.METotSay.Properties.ReadOnly = True
-        Me.METotSay.Size = New System.Drawing.Size(280, 87)
+        Me.METotSay.Size = New System.Drawing.Size(439, 145)
         Me.METotSay.TabIndex = 145
         Me.METotSay.TabStop = False
         '
         'LabelControl19
         '
-        Me.LabelControl19.Location = New System.Drawing.Point(5, 10)
+        Me.LabelControl19.Location = New System.Drawing.Point(12, 10)
         Me.LabelControl19.Name = "LabelControl19"
         Me.LabelControl19.Size = New System.Drawing.Size(18, 13)
         Me.LabelControl19.TabIndex = 146
@@ -1288,6 +1292,8 @@ Partial Class FormSalesPOSDet
         'PanelControlBottomRight
         '
         Me.PanelControlBottomRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlBottomRight.Controls.Add(Me.LabelControl24)
+        Me.PanelControlBottomRight.Controls.Add(Me.TxtPotGWP)
         Me.PanelControlBottomRight.Controls.Add(Me.BtnSelectDiscount)
         Me.PanelControlBottomRight.Controls.Add(Me.LabelControl1)
         Me.PanelControlBottomRight.Controls.Add(Me.TxtPotPenjualan)
@@ -1304,15 +1310,37 @@ Partial Class FormSalesPOSDet
         Me.PanelControlBottomRight.Controls.Add(Me.SPVat)
         Me.PanelControlBottomRight.Controls.Add(Me.LabelControl22)
         Me.PanelControlBottomRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlBottomRight.Location = New System.Drawing.Point(928, 2)
+        Me.PanelControlBottomRight.Location = New System.Drawing.Point(893, 2)
         Me.PanelControlBottomRight.Name = "PanelControlBottomRight"
-        Me.PanelControlBottomRight.Size = New System.Drawing.Size(258, 141)
+        Me.PanelControlBottomRight.Size = New System.Drawing.Size(293, 169)
         Me.PanelControlBottomRight.TabIndex = 172
+        '
+        'LabelControl24
+        '
+        Me.LabelControl24.Location = New System.Drawing.Point(11, 11)
+        Me.LabelControl24.Name = "LabelControl24"
+        Me.LabelControl24.Size = New System.Drawing.Size(70, 13)
+        Me.LabelControl24.TabIndex = 171
+        Me.LabelControl24.Text = "Pot. Penjualan"
+        '
+        'TxtPotGWP
+        '
+        Me.TxtPotGWP.Enabled = False
+        Me.TxtPotGWP.Location = New System.Drawing.Point(118, 8)
+        Me.TxtPotGWP.Name = "TxtPotGWP"
+        Me.TxtPotGWP.Properties.Appearance.Options.UseTextOptions = True
+        Me.TxtPotGWP.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TxtPotGWP.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtPotGWP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtPotGWP.Properties.Mask.EditMask = "n2"
+        Me.TxtPotGWP.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtPotGWP.Size = New System.Drawing.Size(160, 20)
+        Me.TxtPotGWP.TabIndex = 171
         '
         'BtnSelectDiscount
         '
         Me.BtnSelectDiscount.Image = CType(resources.GetObject("BtnSelectDiscount.Image"), System.Drawing.Image)
-        Me.BtnSelectDiscount.Location = New System.Drawing.Point(49, 5)
+        Me.BtnSelectDiscount.Location = New System.Drawing.Point(54, 33)
         Me.BtnSelectDiscount.Name = "BtnSelectDiscount"
         Me.BtnSelectDiscount.Size = New System.Drawing.Size(27, 20)
         Me.BtnSelectDiscount.TabIndex = 147
@@ -1321,16 +1349,18 @@ Partial Class FormSalesPOSDet
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(6, 36)
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 64)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(70, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(92, 13)
         Me.LabelControl1.TabIndex = 170
-        Me.LabelControl1.Text = "Pot. Penjualan"
+        Me.LabelControl1.Text = "Pot. Penjualan Lain"
         '
         'TxtPotPenjualan
         '
-        Me.TxtPotPenjualan.Location = New System.Drawing.Point(80, 33)
+        Me.TxtPotPenjualan.Location = New System.Drawing.Point(119, 61)
         Me.TxtPotPenjualan.Name = "TxtPotPenjualan"
+        Me.TxtPotPenjualan.Properties.Appearance.Options.UseTextOptions = True
+        Me.TxtPotPenjualan.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TxtPotPenjualan.Properties.DisplayFormat.FormatString = "N2"
         Me.TxtPotPenjualan.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TxtPotPenjualan.Properties.Mask.EditMask = "n2"
@@ -1340,7 +1370,7 @@ Partial Class FormSalesPOSDet
         '
         'TxtTaxBase
         '
-        Me.TxtTaxBase.Location = New System.Drawing.Point(80, 110)
+        Me.TxtTaxBase.Location = New System.Drawing.Point(119, 138)
         Me.TxtTaxBase.Name = "TxtTaxBase"
         Me.TxtTaxBase.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtTaxBase.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -1356,7 +1386,7 @@ Partial Class FormSalesPOSDet
         '
         'TxtVatTot
         '
-        Me.TxtVatTot.Location = New System.Drawing.Point(156, 85)
+        Me.TxtVatTot.Location = New System.Drawing.Point(195, 113)
         Me.TxtVatTot.Name = "TxtVatTot"
         Me.TxtVatTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtVatTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -1372,7 +1402,7 @@ Partial Class FormSalesPOSDet
         '
         'TxtNetto
         '
-        Me.TxtNetto.Location = New System.Drawing.Point(80, 59)
+        Me.TxtNetto.Location = New System.Drawing.Point(119, 87)
         Me.TxtNetto.Name = "TxtNetto"
         Me.TxtNetto.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtNetto.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -1389,7 +1419,7 @@ Partial Class FormSalesPOSDet
         'SPDiscount
         '
         Me.SPDiscount.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.SPDiscount.Location = New System.Drawing.Point(80, 5)
+        Me.SPDiscount.Location = New System.Drawing.Point(119, 33)
         Me.SPDiscount.Name = "SPDiscount"
         Me.SPDiscount.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SPDiscount.Properties.Appearance.Options.UseFont = True
@@ -1404,7 +1434,7 @@ Partial Class FormSalesPOSDet
         '
         'LabelControl14
         '
-        Me.LabelControl14.Location = New System.Drawing.Point(6, 92)
+        Me.LabelControl14.Location = New System.Drawing.Point(11, 114)
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(16, 13)
         Me.LabelControl14.TabIndex = 160
@@ -1412,7 +1442,7 @@ Partial Class FormSalesPOSDet
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(137, 6)
+        Me.LabelControl9.Location = New System.Drawing.Point(176, 34)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(11, 13)
         Me.LabelControl9.TabIndex = 168
@@ -1420,7 +1450,7 @@ Partial Class FormSalesPOSDet
         '
         'LabelControl15
         '
-        Me.LabelControl15.Location = New System.Drawing.Point(6, 62)
+        Me.LabelControl15.Location = New System.Drawing.Point(11, 90)
         Me.LabelControl15.Name = "LabelControl15"
         Me.LabelControl15.Size = New System.Drawing.Size(27, 13)
         Me.LabelControl15.TabIndex = 161
@@ -1428,7 +1458,7 @@ Partial Class FormSalesPOSDet
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(5, 8)
+        Me.LabelControl10.Location = New System.Drawing.Point(10, 36)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(41, 13)
         Me.LabelControl10.TabIndex = 167
@@ -1436,7 +1466,7 @@ Partial Class FormSalesPOSDet
         '
         'LabelControl17
         '
-        Me.LabelControl17.Location = New System.Drawing.Point(6, 111)
+        Me.LabelControl17.Location = New System.Drawing.Point(11, 139)
         Me.LabelControl17.Name = "LabelControl17"
         Me.LabelControl17.Size = New System.Drawing.Size(44, 13)
         Me.LabelControl17.TabIndex = 163
@@ -1444,7 +1474,7 @@ Partial Class FormSalesPOSDet
         '
         'TxtDiscount
         '
-        Me.TxtDiscount.Location = New System.Drawing.Point(156, 5)
+        Me.TxtDiscount.Location = New System.Drawing.Point(195, 33)
         Me.TxtDiscount.Name = "TxtDiscount"
         Me.TxtDiscount.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtDiscount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -1462,7 +1492,7 @@ Partial Class FormSalesPOSDet
         '
         Me.SPVat.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.SPVat.Enabled = False
-        Me.SPVat.Location = New System.Drawing.Point(80, 85)
+        Me.SPVat.Location = New System.Drawing.Point(119, 113)
         Me.SPVat.Name = "SPVat"
         Me.SPVat.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SPVat.Properties.Appearance.Options.UseFont = True
@@ -1477,7 +1507,7 @@ Partial Class FormSalesPOSDet
         '
         'LabelControl22
         '
-        Me.LabelControl22.Location = New System.Drawing.Point(137, 86)
+        Me.LabelControl22.Location = New System.Drawing.Point(176, 114)
         Me.LabelControl22.Name = "LabelControl22"
         Me.LabelControl22.Size = New System.Drawing.Size(11, 13)
         Me.LabelControl22.TabIndex = 165
@@ -1491,7 +1521,7 @@ Partial Class FormSalesPOSDet
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlList.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(1182, 217)
+        Me.GroupControlList.Size = New System.Drawing.Size(1182, 278)
         Me.GroupControlList.TabIndex = 187
         Me.GroupControlList.Text = "Item List"
         '
@@ -1504,7 +1534,7 @@ Partial Class FormSalesPOSDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemCheckEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(1160, 177)
+        Me.GCItemList.Size = New System.Drawing.Size(1160, 238)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -1549,7 +1579,7 @@ Partial Class FormSalesPOSDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnDesignPriceRetail, Me.GridColumnColor, Me.GridColumnDesignPriceType, Me.GridColumnUOM, Me.GridColumnPrice, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnIdDesignPriceRetail, Me.GridColumnMin, Me.GridColumnNote, Me.GridColumnIdref, Me.GridColumnDel, Me.GridColumnOrder, Me.GridColumnIdDelDet, Me.GridColumnNumber, Me.GridColumnAcc, Me.GridColumnStart, Me.GridColumnEnd, Me.GridColumnDueDate, Me.GridColumnType, Me.GridColumnIsSelect, Me.GridColumnid_pos_combine_summary, Me.GridColumnLimit, Me.GridColumnid_ol_store_ret_list, Me.GridColumnid_sales_pos_prob_inv, Me.GridColumnid_sales_pos_prob_price_inv, Me.GridColumnid_sales_pos_oos_recon_det, Me.GridColumnid_cn_det, Me.GridColumnid_return_refuse_det})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnDesignPriceRetail, Me.GridColumnColor, Me.GridColumnDesignPriceType, Me.GridColumnUOM, Me.GridColumnPrice, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnIdDesignPriceRetail, Me.GridColumnMin, Me.GridColumnNote, Me.GridColumnIdref, Me.GridColumnDel, Me.GridColumnOrder, Me.GridColumnIdDelDet, Me.GridColumnNumber, Me.GridColumnAcc, Me.GridColumnStart, Me.GridColumnEnd, Me.GridColumnDueDate, Me.GridColumnType, Me.GridColumnIsSelect, Me.GridColumnid_pos_combine_summary, Me.GridColumnLimit, Me.GridColumnid_ol_store_ret_list, Me.GridColumnid_sales_pos_prob_inv, Me.GridColumnid_sales_pos_prob_price_inv, Me.GridColumnid_sales_pos_oos_recon_det, Me.GridColumnid_cn_det, Me.GridColumnid_return_refuse_det, Me.GridColumnis_gwp})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -2031,10 +2061,10 @@ Partial Class FormSalesPOSDet
         'XTCInvoice
         '
         Me.XTCInvoice.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCInvoice.Location = New System.Drawing.Point(0, 209)
+        Me.XTCInvoice.Location = New System.Drawing.Point(0, 203)
         Me.XTCInvoice.Name = "XTCInvoice"
         Me.XTCInvoice.SelectedTabPage = Me.XTPSummary
-        Me.XTCInvoice.Size = New System.Drawing.Size(1188, 245)
+        Me.XTCInvoice.Size = New System.Drawing.Size(1188, 306)
         Me.XTCInvoice.TabIndex = 188
         Me.XTCInvoice.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPNeedVerify, Me.XTPDetail})
         '
@@ -2042,7 +2072,7 @@ Partial Class FormSalesPOSDet
         '
         Me.XTPSummary.Controls.Add(Me.GroupControlList)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(1182, 217)
+        Me.XTPSummary.Size = New System.Drawing.Size(1182, 278)
         Me.XTPSummary.Text = "Invoice List"
         '
         'XTPNeedVerify
@@ -2050,7 +2080,7 @@ Partial Class FormSalesPOSDet
         Me.XTPNeedVerify.Controls.Add(Me.GCProbList)
         Me.XTPNeedVerify.Controls.Add(Me.PanelControl2)
         Me.XTPNeedVerify.Name = "XTPNeedVerify"
-        Me.XTPNeedVerify.Size = New System.Drawing.Size(1182, 217)
+        Me.XTPNeedVerify.Size = New System.Drawing.Size(1182, 278)
         Me.XTPNeedVerify.Text = "Problem List"
         '
         'GCProbList
@@ -2059,7 +2089,7 @@ Partial Class FormSalesPOSDet
         Me.GCProbList.Location = New System.Drawing.Point(0, 0)
         Me.GCProbList.MainView = Me.GVProbList
         Me.GCProbList.Name = "GCProbList"
-        Me.GCProbList.Size = New System.Drawing.Size(1182, 179)
+        Me.GCProbList.Size = New System.Drawing.Size(1182, 240)
         Me.GCProbList.TabIndex = 0
         Me.GCProbList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProbList})
         '
@@ -2294,7 +2324,7 @@ Partial Class FormSalesPOSDet
         '
         Me.PanelControl2.Controls.Add(Me.SBPrintPL)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 179)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 240)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1182, 38)
         Me.PanelControl2.TabIndex = 1
@@ -2315,7 +2345,7 @@ Partial Class FormSalesPOSDet
         '
         Me.XTPDetail.Controls.Add(Me.GCCode)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(1182, 217)
+        Me.XTPDetail.Size = New System.Drawing.Size(1182, 278)
         Me.XTPDetail.Text = "Detail Unique Code"
         '
         'GCCode
@@ -2324,7 +2354,7 @@ Partial Class FormSalesPOSDet
         Me.GCCode.Location = New System.Drawing.Point(0, 0)
         Me.GCCode.MainView = Me.GVCode
         Me.GCCode.Name = "GCCode"
-        Me.GCCode.Size = New System.Drawing.Size(1182, 217)
+        Me.GCCode.Size = New System.Drawing.Size(1182, 278)
         Me.GCCode.TabIndex = 0
         Me.GCCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCode})
         '
@@ -2423,11 +2453,18 @@ Partial Class FormSalesPOSDet
         Me.GridColumnPriceCode.Name = "GridColumnPriceCode"
         Me.GridColumnPriceCode.OptionsColumn.AllowEdit = False
         '
+        'GridColumnis_gwp
+        '
+        Me.GridColumnis_gwp.Caption = "is_gwp"
+        Me.GridColumnis_gwp.FieldName = "is_gwp"
+        Me.GridColumnis_gwp.Name = "GridColumnis_gwp"
+        Me.GridColumnis_gwp.OptionsColumn.AllowEdit = False
+        '
         'FormSalesPOSDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1188, 637)
+        Me.ClientSize = New System.Drawing.Size(1188, 720)
         Me.Controls.Add(Me.XTCInvoice)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
@@ -2501,6 +2538,7 @@ Partial Class FormSalesPOSDet
         CType(Me.PanelControlBottomRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottomRight.ResumeLayout(False)
         Me.PanelControlBottomRight.PerformLayout()
+        CType(Me.TxtPotGWP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPotPenjualan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTaxBase.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtVatTot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2732,4 +2770,7 @@ Partial Class FormSalesPOSDet
     Friend WithEvents ViewClosingNoStockToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GridColumnid_cn_det As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_return_refuse_det As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtPotGWP As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumnis_gwp As DevExpress.XtraGrid.Columns.GridColumn
 End Class

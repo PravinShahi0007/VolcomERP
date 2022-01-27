@@ -20,8 +20,8 @@ Partial Class FormSalesPOS
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesPOS))
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.GVSalesPOSDet = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -85,26 +85,22 @@ Partial Class FormSalesPOS
         Me.XTPListInv = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPListWholesale = New DevExpress.XtraTab.XtraTabPage()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.GCDelWholesale = New DevExpress.XtraGrid.GridControl()
-        Me.GVDelWholesale = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdSalesDelOrder = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnWHName = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnLastUpdate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnUpdBy = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCDel = New DevExpress.XtraGrid.GridControl()
+        Me.GVDel = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_pl_sales_order_del = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpl_sales_order_del_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_numberwh = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_namewho = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumid_sales_pos = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_pos_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstatus_invoice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnCreateInvoiceWholesale = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-        Me.BViewWholesale = New DevExpress.XtraEditors.SimpleButton()
-        Me.DEUntilWholesale = New DevExpress.XtraEditors.DateEdit()
-        Me.DEFromWholesale = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEStatus = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BViewWholesale = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEStoreWholesale = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -173,6 +169,7 @@ Partial Class FormSalesPOS
         Me.BandedGridColumnid_design = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndesign_price_type_valid = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnrmt_inv = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnis_md = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
@@ -324,6 +321,7 @@ Partial Class FormSalesPOS
         Me.BandedGridColumnid_comp_groupnew = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_productnew = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_sales_pos_proc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnis_mdnewitem = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControlNewItem = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
         Me.CESelAllNewItem = New DevExpress.XtraEditors.CheckEdit()
@@ -413,15 +411,12 @@ Partial Class FormSalesPOS
         Me.XTPListWholesale.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
-        CType(Me.GCDelWholesale, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVDelWholesale, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCDel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
-        CType(Me.DEUntilWholesale.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntilWholesale.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEFromWholesale.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEFromWholesale.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStoreWholesale.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPCNOnlineStore.SuspendLayout()
@@ -1136,140 +1131,121 @@ Partial Class FormSalesPOS
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl1.Controls.Add(Me.GCDelWholesale)
+        Me.GroupControl1.Controls.Add(Me.GCDel)
+        Me.GroupControl1.Controls.Add(Me.BtnCreateInvoiceWholesale)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 50)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(1234, 455)
         Me.GroupControl1.TabIndex = 4
         '
-        'GCDelWholesale
+        'GCDel
         '
-        Me.GCDelWholesale.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDelWholesale.Location = New System.Drawing.Point(20, 2)
-        Me.GCDelWholesale.MainView = Me.GVDelWholesale
-        Me.GCDelWholesale.Name = "GCDelWholesale"
-        Me.GCDelWholesale.Size = New System.Drawing.Size(1212, 451)
-        Me.GCDelWholesale.TabIndex = 3
-        Me.GCDelWholesale.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDelWholesale, Me.GridView1})
+        Me.GCDel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDel.Location = New System.Drawing.Point(20, 2)
+        Me.GCDel.MainView = Me.GVDel
+        Me.GCDel.Name = "GCDel"
+        Me.GCDel.Size = New System.Drawing.Size(1212, 410)
+        Me.GCDel.TabIndex = 13
+        Me.GCDel.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDel})
         '
-        'GVDelWholesale
+        'GVDel
         '
-        Me.GVDelWholesale.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumnLastUpdate, Me.GridColumnUpdBy})
-        Me.GVDelWholesale.GridControl = Me.GCDelWholesale
-        Me.GVDelWholesale.Name = "GVDelWholesale"
-        Me.GVDelWholesale.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVDelWholesale.OptionsBehavior.Editable = False
-        Me.GVDelWholesale.OptionsBehavior.ReadOnly = True
-        Me.GVDelWholesale.OptionsView.ShowGroupPanel = False
-        Me.GVDelWholesale.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdSalesDelOrder, DevExpress.Data.ColumnSortOrder.Descending)})
+        Me.GVDel.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pl_sales_order_del, Me.GridColumnpl_sales_order_del_number, Me.GridColumncomp_numberwh, Me.GridColumncomp_namewho, Me.GridColumntotal_qty, Me.GridColumid_sales_pos, Me.GridColumnsales_pos_number, Me.GridColumnstatus_invoice})
+        Me.GVDel.GridControl = Me.GCDel
+        Me.GVDel.Name = "GVDel"
+        Me.GVDel.OptionsBehavior.Editable = False
+        Me.GVDel.OptionsFind.AlwaysVisible = True
+        Me.GVDel.OptionsView.ColumnAutoWidth = False
+        Me.GVDel.OptionsView.ShowFooter = True
+        Me.GVDel.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn4
+        'GridColumnid_pl_sales_order_del
         '
-        Me.GridColumn4.Caption = "Number"
-        Me.GridColumn4.FieldName = "pl_sales_order_del_number"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
-        Me.GridColumn4.Width = 83
+        Me.GridColumnid_pl_sales_order_del.Caption = "id_pl_sales_order_del"
+        Me.GridColumnid_pl_sales_order_del.FieldName = "id_pl_sales_order_del"
+        Me.GridColumnid_pl_sales_order_del.Name = "GridColumnid_pl_sales_order_del"
         '
-        'GridColumn5
+        'GridColumnpl_sales_order_del_number
         '
-        Me.GridColumn5.Caption = "Store"
-        Me.GridColumn5.FieldName = "store_name_to"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 2
+        Me.GridColumnpl_sales_order_del_number.Caption = "Delivery No."
+        Me.GridColumnpl_sales_order_del_number.FieldName = "pl_sales_order_del_number"
+        Me.GridColumnpl_sales_order_del_number.Name = "GridColumnpl_sales_order_del_number"
+        Me.GridColumnpl_sales_order_del_number.Visible = True
+        Me.GridColumnpl_sales_order_del_number.VisibleIndex = 0
         '
-        'GridColumn6
+        'GridColumncomp_numberwh
         '
-        Me.GridColumn6.Caption = "Created Date"
-        Me.GridColumn6.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn6.FieldName = "pl_sales_order_del_date"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumncomp_numberwh.Caption = "Account"
+        Me.GridColumncomp_numberwh.FieldName = "comp_number"
+        Me.GridColumncomp_numberwh.Name = "GridColumncomp_numberwh"
+        Me.GridColumncomp_numberwh.Visible = True
+        Me.GridColumncomp_numberwh.VisibleIndex = 2
         '
-        'GridColumn7
+        'GridColumncomp_namewho
         '
-        Me.GridColumn7.Caption = "Note"
-        Me.GridColumn7.FieldName = "pl_sales_order_del_note"
-        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumncomp_namewho.Caption = "Account Description"
+        Me.GridColumncomp_namewho.FieldName = "comp_name"
+        Me.GridColumncomp_namewho.Name = "GridColumncomp_namewho"
+        Me.GridColumncomp_namewho.Visible = True
+        Me.GridColumncomp_namewho.VisibleIndex = 3
+        Me.GridColumncomp_namewho.Width = 119
         '
-        'GridColumn8
+        'GridColumntotal_qty
         '
-        Me.GridColumn8.Caption = "Status"
-        Me.GridColumn8.FieldName = "report_status"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 8
+        Me.GridColumntotal_qty.Caption = "Total Qty"
+        Me.GridColumntotal_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_qty.FieldName = "total_qty"
+        Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
+        Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
+        Me.GridColumntotal_qty.Visible = True
+        Me.GridColumntotal_qty.VisibleIndex = 1
         '
-        'GridColumn9
+        'GridColumid_sales_pos
         '
-        Me.GridColumn9.Caption = "Prepare Order"
-        Me.GridColumn9.FieldName = "sales_order_number"
-        Me.GridColumn9.FieldNameSortGroup = "id_pl_sales_order_del"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 3
+        Me.GridColumid_sales_pos.Caption = "id_sales_pos"
+        Me.GridColumid_sales_pos.FieldName = "id_sales_pos"
+        Me.GridColumid_sales_pos.Name = "GridColumid_sales_pos"
         '
-        'GridColumnIdSalesDelOrder
+        'GridColumnsales_pos_number
         '
-        Me.GridColumnIdSalesDelOrder.Caption = "Id Sales Del Order"
-        Me.GridColumnIdSalesDelOrder.FieldName = "id_pl_sales_order_del"
-        Me.GridColumnIdSalesDelOrder.Name = "GridColumnIdSalesDelOrder"
-        Me.GridColumnIdSalesDelOrder.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumnsales_pos_number.Caption = "Invoice No."
+        Me.GridColumnsales_pos_number.FieldName = "sales_pos_number"
+        Me.GridColumnsales_pos_number.Name = "GridColumnsales_pos_number"
+        Me.GridColumnsales_pos_number.Visible = True
+        Me.GridColumnsales_pos_number.VisibleIndex = 4
         '
-        'GridColumnWHName
+        'GridColumnstatus_invoice
         '
-        Me.GridColumnWHName.Caption = "Warehouse"
-        Me.GridColumnWHName.FieldName = "wh_name"
-        Me.GridColumnWHName.FieldNameSortGroup = "id_wh"
-        Me.GridColumnWHName.Name = "GridColumnWHName"
-        Me.GridColumnWHName.Visible = True
-        Me.GridColumnWHName.VisibleIndex = 1
+        Me.GridColumnstatus_invoice.Caption = "Invoice Status"
+        Me.GridColumnstatus_invoice.FieldName = "status_invoice"
+        Me.GridColumnstatus_invoice.Name = "GridColumnstatus_invoice"
+        Me.GridColumnstatus_invoice.Visible = True
+        Me.GridColumnstatus_invoice.VisibleIndex = 5
+        Me.GridColumnstatus_invoice.Width = 161
         '
-        'GridColumnCategory
+        'BtnCreateInvoiceWholesale
         '
-        Me.GridColumnCategory.Caption = "Category"
-        Me.GridColumnCategory.FieldName = "so_status"
-        Me.GridColumnCategory.FieldNameSortGroup = "id_so_status"
-        Me.GridColumnCategory.Name = "GridColumnCategory"
-        Me.GridColumnCategory.Visible = True
-        Me.GridColumnCategory.VisibleIndex = 4
-        '
-        'GridColumnLastUpdate
-        '
-        Me.GridColumnLastUpdate.Caption = "Last Updated"
-        Me.GridColumnLastUpdate.DisplayFormat.FormatString = "dd MMMM yyyy'/'hh:mm tt"
-        Me.GridColumnLastUpdate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnLastUpdate.FieldName = "last_update"
-        Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
-        Me.GridColumnLastUpdate.Visible = True
-        Me.GridColumnLastUpdate.VisibleIndex = 6
-        '
-        'GridColumnUpdBy
-        '
-        Me.GridColumnUpdBy.Caption = "Updated By"
-        Me.GridColumnUpdBy.FieldName = "last_user"
-        Me.GridColumnUpdBy.Name = "GridColumnUpdBy"
-        Me.GridColumnUpdBy.Visible = True
-        Me.GridColumnUpdBy.VisibleIndex = 7
-        '
-        'GridView1
-        '
-        Me.GridView1.GridControl = Me.GCDelWholesale
-        Me.GridView1.Name = "GridView1"
+        Me.BtnCreateInvoiceWholesale.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnCreateInvoiceWholesale.Appearance.Options.UseFont = True
+        Me.BtnCreateInvoiceWholesale.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnCreateInvoiceWholesale.Image = CType(resources.GetObject("BtnCreateInvoiceWholesale.Image"), System.Drawing.Image)
+        Me.BtnCreateInvoiceWholesale.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
+        Me.BtnCreateInvoiceWholesale.Location = New System.Drawing.Point(20, 412)
+        Me.BtnCreateInvoiceWholesale.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.BtnCreateInvoiceWholesale.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnCreateInvoiceWholesale.Name = "BtnCreateInvoiceWholesale"
+        Me.BtnCreateInvoiceWholesale.Size = New System.Drawing.Size(1212, 41)
+        Me.BtnCreateInvoiceWholesale.TabIndex = 12
+        Me.BtnCreateInvoiceWholesale.Text = "Create Invoice"
         '
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl2.Controls.Add(Me.BViewWholesale)
-        Me.GroupControl2.Controls.Add(Me.DEUntilWholesale)
-        Me.GroupControl2.Controls.Add(Me.DEFromWholesale)
         Me.GroupControl2.Controls.Add(Me.LabelControl6)
-        Me.GroupControl2.Controls.Add(Me.LabelControl7)
+        Me.GroupControl2.Controls.Add(Me.SLEStatus)
+        Me.GroupControl2.Controls.Add(Me.BViewWholesale)
         Me.GroupControl2.Controls.Add(Me.SLEStoreWholesale)
         Me.GroupControl2.Controls.Add(Me.LabelControl11)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Top
@@ -1278,54 +1254,38 @@ Partial Class FormSalesPOS
         Me.GroupControl2.Size = New System.Drawing.Size(1234, 50)
         Me.GroupControl2.TabIndex = 3
         '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(300, 18)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl6.TabIndex = 8898
+        Me.LabelControl6.Text = "Status"
+        '
+        'SLEStatus
+        '
+        Me.SLEStatus.Location = New System.Drawing.Point(337, 15)
+        Me.SLEStatus.Name = "SLEStatus"
+        Me.SLEStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStatus.Properties.View = Me.GridView7
+        Me.SLEStatus.Size = New System.Drawing.Size(183, 20)
+        Me.SLEStatus.TabIndex = 8897
+        '
+        'GridView7
+        '
+        Me.GridView7.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView7.Name = "GridView7"
+        Me.GridView7.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView7.OptionsView.ShowGroupPanel = False
+        '
         'BViewWholesale
         '
-        Me.BViewWholesale.Location = New System.Drawing.Point(557, 15)
+        Me.BViewWholesale.Location = New System.Drawing.Point(526, 15)
         Me.BViewWholesale.LookAndFeel.SkinName = "Blue"
         Me.BViewWholesale.Name = "BViewWholesale"
         Me.BViewWholesale.Size = New System.Drawing.Size(75, 20)
         Me.BViewWholesale.TabIndex = 8896
         Me.BViewWholesale.Text = "View"
-        '
-        'DEUntilWholesale
-        '
-        Me.DEUntilWholesale.EditValue = Nothing
-        Me.DEUntilWholesale.Location = New System.Drawing.Point(440, 14)
-        Me.DEUntilWholesale.Name = "DEUntilWholesale"
-        Me.DEUntilWholesale.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilWholesale.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEUntilWholesale.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEUntilWholesale.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntilWholesale.Size = New System.Drawing.Size(111, 20)
-        Me.DEUntilWholesale.TabIndex = 8895
-        '
-        'DEFromWholesale
-        '
-        Me.DEFromWholesale.EditValue = Nothing
-        Me.DEFromWholesale.Location = New System.Drawing.Point(286, 14)
-        Me.DEFromWholesale.Name = "DEFromWholesale"
-        Me.DEFromWholesale.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEFromWholesale.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEFromWholesale.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEFromWholesale.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEFromWholesale.Size = New System.Drawing.Size(121, 20)
-        Me.DEFromWholesale.TabIndex = 8894
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Location = New System.Drawing.Point(413, 17)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(21, 13)
-        Me.LabelControl6.TabIndex = 8893
-        Me.LabelControl6.Text = "Until"
-        '
-        'LabelControl7
-        '
-        Me.LabelControl7.Location = New System.Drawing.Point(256, 17)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl7.TabIndex = 8892
-        Me.LabelControl7.Text = "From"
         '
         'SLEStoreWholesale
         '
@@ -1333,7 +1293,7 @@ Partial Class FormSalesPOS
         Me.SLEStoreWholesale.Name = "SLEStoreWholesale"
         Me.SLEStoreWholesale.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEStoreWholesale.Properties.View = Me.GridView3
-        Me.SLEStoreWholesale.Size = New System.Drawing.Size(186, 20)
+        Me.SLEStoreWholesale.Size = New System.Drawing.Size(230, 20)
         Me.SLEStoreWholesale.TabIndex = 1
         '
         'GridView3
@@ -1347,7 +1307,7 @@ Partial Class FormSalesPOS
         'GridColumn37
         '
         Me.GridColumn37.Caption = "Store"
-        Me.GridColumn37.FieldName = "comp_name_label"
+        Me.GridColumn37.FieldName = "comp"
         Me.GridColumn37.Name = "GridColumn37"
         Me.GridColumn37.Visible = True
         Me.GridColumn37.VisibleIndex = 0
@@ -1463,7 +1423,7 @@ Partial Class FormSalesPOS
         'GVProbList
         '
         Me.GVProbList.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandSelect, Me.gridBand4, Me.gridBand2, Me.gridBandPrice, Me.gridBandNoStock})
-        Me.GVProbList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnid_sales_pos_prob, Me.BandedGridColumnid_sales_pos, Me.BandedGridColumnsales_pos_number, Me.BandedGridColumnsales_pos_start_period, Me.BandedGridColumnsales_pos_end_period, Me.BandedGridColumnsales_pos_due_date, Me.BandedGridColumnid_comp, Me.BandedGridColumnid_comp_contact, Me.BandedGridColumncomp_number, Me.BandedGridColumncomp_name, Me.BandedGridColumnid_comp_group, Me.BandedGridColumncomp_group, Me.BandedGridColumncomp_group_desc, Me.BandedGridColumnis_invalid_price, Me.BandedGridColumnis_no_stock, Me.BandedGridColumnid_product, Me.BandedGridColumnproduct_full_code, Me.BandedGridColumnname, Me.BandedGridColumnsize, Me.BandedGridColumnid_design_price_retail, Me.BandedGridColumndesign_price_retail, Me.BandedGridColumndesign_price_store, Me.BandedGridColumnid_design_price_valid, Me.BandedGridColumndesign_price_valid, Me.BandedGridColumnno_stock_qty, Me.BandedGridColumnstore_qty, Me.BandedGridColumninvoice_qty, Me.BandedGridColumntotal_qty, Me.BandedGridColumnis_open_invoice, Me.BandedGridColumnis_open_invoice_view, Me.BandedGridColumnis_select, Me.BandedGridColumnqty_on_process, Me.BandedGridColumnno_stock_diff, Me.BandedGridColumnqty_proceed, Me.BandedGridColumnqty_new, Me.BandedGridColumnqty_on_process_price, Me.BandedGridColumnqty_proceed_price, Me.BandedGridColumnid_design, Me.BandedGridColumndesign_price_type_valid, Me.BandedGridColumnbtn_trans_history, Me.BandedGridColumnrmt_inv, Me.BandedGridColumnqty_on_process_cancel, Me.BandedGridColumnqty_proceed_cancel_sales_recon_price})
+        Me.GVProbList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnid_sales_pos_prob, Me.BandedGridColumnid_sales_pos, Me.BandedGridColumnsales_pos_number, Me.BandedGridColumnsales_pos_start_period, Me.BandedGridColumnsales_pos_end_period, Me.BandedGridColumnsales_pos_due_date, Me.BandedGridColumnid_comp, Me.BandedGridColumnid_comp_contact, Me.BandedGridColumncomp_number, Me.BandedGridColumncomp_name, Me.BandedGridColumnid_comp_group, Me.BandedGridColumncomp_group, Me.BandedGridColumncomp_group_desc, Me.BandedGridColumnis_invalid_price, Me.BandedGridColumnis_no_stock, Me.BandedGridColumnid_product, Me.BandedGridColumnproduct_full_code, Me.BandedGridColumnname, Me.BandedGridColumnsize, Me.BandedGridColumnid_design_price_retail, Me.BandedGridColumndesign_price_retail, Me.BandedGridColumndesign_price_store, Me.BandedGridColumnid_design_price_valid, Me.BandedGridColumndesign_price_valid, Me.BandedGridColumnno_stock_qty, Me.BandedGridColumnstore_qty, Me.BandedGridColumninvoice_qty, Me.BandedGridColumntotal_qty, Me.BandedGridColumnis_open_invoice, Me.BandedGridColumnis_open_invoice_view, Me.BandedGridColumnis_select, Me.BandedGridColumnqty_on_process, Me.BandedGridColumnno_stock_diff, Me.BandedGridColumnqty_proceed, Me.BandedGridColumnqty_new, Me.BandedGridColumnqty_on_process_price, Me.BandedGridColumnqty_proceed_price, Me.BandedGridColumnid_design, Me.BandedGridColumndesign_price_type_valid, Me.BandedGridColumnbtn_trans_history, Me.BandedGridColumnrmt_inv, Me.BandedGridColumnqty_on_process_cancel, Me.BandedGridColumnqty_proceed_cancel_sales_recon_price, Me.BandedGridColumnis_md})
         Me.GVProbList.GridControl = Me.GCProbList
         Me.GVProbList.Name = "GVProbList"
         Me.GVProbList.OptionsFind.AlwaysVisible = True
@@ -1953,6 +1913,13 @@ Partial Class FormSalesPOS
         Me.BandedGridColumnrmt_inv.Caption = "rmt_inv"
         Me.BandedGridColumnrmt_inv.FieldName = "rmt_inv"
         Me.BandedGridColumnrmt_inv.Name = "BandedGridColumnrmt_inv"
+        '
+        'BandedGridColumnis_md
+        '
+        Me.BandedGridColumnis_md.Caption = "is_md"
+        Me.BandedGridColumnis_md.FieldName = "is_md"
+        Me.BandedGridColumnis_md.Name = "BandedGridColumnis_md"
+        Me.BandedGridColumnis_md.OptionsColumn.AllowEdit = False
         '
         'RepositoryItemTextEdit1
         '
@@ -3037,7 +3004,7 @@ Partial Class FormSalesPOS
         'GVNewItem
         '
         Me.GVNewItem.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand10, Me.gridBand9, Me.gridBand11, Me.gridBand12, Me.GridBand8, Me.gridBand13})
-        Me.GVNewItem.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnis_select_new, Me.BandedGridColumnid_sales_pos_oos_recon_det, Me.BandedGridColumnid_sales_pos_oos_recon, Me.BandedGridColumnclosing_number, Me.BandedGridColumnclosing_date, Me.BandedGridColumnid_product_valid, Me.BandedGridColumncode_valid, Me.BandedGridColumnname_valid, Me.BandedGridColumnsize_valid, Me.BandedGridColumnqty_valid, Me.BandedGridColumnid_design_price_valid_new, Me.BandedGridColumndesign_price_valid_new, Me.BandedGridColumnid_sales_pos_new, Me.BandedGridColumnsales_pos_number_new, Me.BandedGridColumnsales_pos_start_periodnew, Me.BandedGridColumnsales_pos_end_periodnew, Me.BandedGridColumncomp_numbernew, Me.BandedGridColumncomp_namenew, Me.BandedGridColumnid_comp_groupnew, Me.BandedGridColumncomp_groupnew, Me.BandedGridColumncomp_group_descnew, Me.BandedGridColumnid_productnew, Me.BandedGridColumncode, Me.BandedGridColumnnamenew, Me.BandedGridColumnsizenew, Me.BandedGridColumnno_stock_qtynew, Me.BandedGridColumnqty_on_processnew, Me.BandedGridColumnqty_proceednew, Me.BandedGridColumnid_sales_pos_proc, Me.BandedGridColumnsales_pos_number_proc})
+        Me.GVNewItem.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnis_select_new, Me.BandedGridColumnid_sales_pos_oos_recon_det, Me.BandedGridColumnid_sales_pos_oos_recon, Me.BandedGridColumnclosing_number, Me.BandedGridColumnclosing_date, Me.BandedGridColumnid_product_valid, Me.BandedGridColumncode_valid, Me.BandedGridColumnname_valid, Me.BandedGridColumnsize_valid, Me.BandedGridColumnqty_valid, Me.BandedGridColumnid_design_price_valid_new, Me.BandedGridColumndesign_price_valid_new, Me.BandedGridColumnid_sales_pos_new, Me.BandedGridColumnsales_pos_number_new, Me.BandedGridColumnsales_pos_start_periodnew, Me.BandedGridColumnsales_pos_end_periodnew, Me.BandedGridColumncomp_numbernew, Me.BandedGridColumncomp_namenew, Me.BandedGridColumnid_comp_groupnew, Me.BandedGridColumncomp_groupnew, Me.BandedGridColumncomp_group_descnew, Me.BandedGridColumnid_productnew, Me.BandedGridColumncode, Me.BandedGridColumnnamenew, Me.BandedGridColumnsizenew, Me.BandedGridColumnno_stock_qtynew, Me.BandedGridColumnqty_on_processnew, Me.BandedGridColumnqty_proceednew, Me.BandedGridColumnid_sales_pos_proc, Me.BandedGridColumnsales_pos_number_proc, Me.BandedGridColumnis_mdnewitem})
         Me.GVNewItem.GridControl = Me.GCNewItem
         Me.GVNewItem.Name = "GVNewItem"
         Me.GVNewItem.OptionsFind.AlwaysVisible = True
@@ -3342,6 +3309,13 @@ Partial Class FormSalesPOS
         Me.BandedGridColumnid_sales_pos_proc.Caption = "id_sales_pos_proc"
         Me.BandedGridColumnid_sales_pos_proc.FieldName = "id_sales_pos_proc"
         Me.BandedGridColumnid_sales_pos_proc.Name = "BandedGridColumnid_sales_pos_proc"
+        '
+        'BandedGridColumnis_mdnewitem
+        '
+        Me.BandedGridColumnis_mdnewitem.Caption = "is_md"
+        Me.BandedGridColumnis_mdnewitem.FieldName = "is_md"
+        Me.BandedGridColumnis_mdnewitem.Name = "BandedGridColumnis_mdnewitem"
+        Me.BandedGridColumnis_mdnewitem.OptionsColumn.AllowEdit = False
         '
         'PanelControlNewItem
         '
@@ -3970,16 +3944,13 @@ Partial Class FormSalesPOS
         Me.XTPListWholesale.ResumeLayout(False)
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
-        CType(Me.GCDelWholesale, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVDelWholesale, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCDel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDel, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
-        CType(Me.DEUntilWholesale.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntilWholesale.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEFromWholesale.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEFromWholesale.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStoreWholesale.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPCNOnlineStore.ResumeLayout(False)
@@ -4157,28 +4128,10 @@ Partial Class FormSalesPOS
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents BViewWholesale As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents DEUntilWholesale As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents DEFromWholesale As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SLEStoreWholesale As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents GCDelWholesale As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVDelWholesale As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdSalesDelOrder As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnWHName As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnCategory As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnLastUpdate As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnUpdBy As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnLastMark As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIsSubmit As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnNoStock As DevExpress.XtraEditors.SimpleButton
@@ -4457,4 +4410,20 @@ Partial Class FormSalesPOS
     Friend WithEvents BandedGridColumnqty_proceed_cancel_sales_recon_price As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnqty_on_process_cancel As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandNoStock As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnis_md As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnis_mdnewitem As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEStatus As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView7 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents BtnCreateInvoiceWholesale As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCDel As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDel As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_pl_sales_order_del As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpl_sales_order_del_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_numberwh As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_namewho As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotal_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumid_sales_pos As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_pos_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstatus_invoice As DevExpress.XtraGrid.Columns.GridColumn
 End Class

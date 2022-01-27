@@ -1330,6 +1330,8 @@ GROUP BY dn.`id_debit_note`"
                 Next
                 calculate_amount()
             ElseIf report_mark_type = "284" Then 'summary pph
+                SLEPayType.EditValue = id_pay_type
+
                 For i As Integer = 0 To FormBankWithdrawal.GVSummaryPPH.RowCount - 1
                     Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                     newRow("id_report") = FormBankWithdrawal.GVSummaryPPH.GetRowCellValue(i, "id_report").ToString
@@ -1356,13 +1358,27 @@ GROUP BY dn.`id_debit_note`"
                 Next
                 calculate_amount()
             ElseIf report_mark_type = "293" Then 'summary ppn
+                SLEPayType.EditValue = id_pay_type
+
                 For i As Integer = 0 To FormBankWithdrawal.GVSummaryPPN.RowCount - 1
+                    Dim id_acc As String = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "id_acc").ToString
+                    Dim acc_name As String = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "acc_name").ToString
+                    Dim acc_description As String = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "acc_description").ToString
+
+                    If id_acc = "3610" And id_coa_tag <> FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "id_coa_tag").ToString Then
+                        Dim new_coa As DataTable = execute_query("SELECT id_acc, acc_name, acc_description FROM tb_a_acc WHERE id_acc = 3674", -1, True, "", "", "", "")
+
+                        id_acc = new_coa.Rows(0)("id_acc").ToString
+                        acc_name = new_coa.Rows(0)("acc_name").ToString
+                        acc_description = new_coa.Rows(0)("acc_description").ToString
+                    End If
+
                     Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                     newRow("id_report") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "id_report").ToString
                     newRow("report_mark_type") = "293"
-                    newRow("id_acc") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "id_acc").ToString
-                    newRow("acc_name") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "acc_name").ToString
-                    newRow("acc_description") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "acc_description").ToString
+                    newRow("id_acc") = id_acc
+                    newRow("acc_name") = acc_name
+                    newRow("acc_description") = acc_description
                     newRow("vendor") = "000"
                     newRow("id_dc") = If(FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "dc").ToString = "D", "1", "2")
                     newRow("dc_code") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "dc").ToString
@@ -1380,6 +1396,37 @@ GROUP BY dn.`id_debit_note`"
                     newRow("note") = FormBankWithdrawal.GVSummaryPPN.GetRowCellValue(i, "period").ToString
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                 Next
+                calculate_amount()
+            ElseIf report_mark_type = "384" Then 'deviden
+                Dim id_comp As String = FormBankWithdrawal.SLEVendorDeviden.EditValue
+                Dim id_comp_contact As String = get_company_x(id_comp, 6)
+                SLEVendor.EditValue = id_comp_contact
+                SLEPayType.EditValue = id_pay_type
+                SLEReportType.EditValue = report_mark_type
+
+                Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                newRow("id_report") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("id_deviden").ToString
+                newRow("report_mark_type") = "384"
+                newRow("id_acc") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("id_acc").ToString
+                newRow("acc_name") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("acc_name").ToString
+                newRow("acc_description") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("acc_description").ToString
+                newRow("vendor") = "000"
+                newRow("id_dc") = "1"
+                newRow("dc_code") = "D"
+                newRow("id_comp") = "1"
+                newRow("comp_number") = "000"
+                newRow("number") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("profit_year").ToString
+                newRow("total_pay") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("paid_amount")
+                newRow("kurs") = 1
+                newRow("id_currency") = "1"
+                newRow("currency") = "Rp"
+                newRow("val_bef_kurs") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("balance")
+                newRow("value") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("balance")
+                newRow("value_view") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("balance")
+                newRow("balance_due") = FormBankWithdrawal.GVShareHolder.GetFocusedRowCellValue("balance")
+                newRow("note") = "Pembagian Deviden"
+                TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+
                 calculate_amount()
             End If
 

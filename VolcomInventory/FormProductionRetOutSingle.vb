@@ -492,6 +492,7 @@ WHERE ovhp.id_ovh_price='" & SLEOvh.EditValue.ToString & "'"
             'FormPopUpProd.id_pop_up = "2"
             'FormPopUpProd.ShowDialog()
             FormPopUpRecQC.id_pop_up = "3"
+            FormPopUpRecQC.is_show_qc_report1 = True
             FormPopUpRecQC.ShowDialog()
         End If
     End Sub
@@ -825,7 +826,14 @@ WHERE ovhp.id_ovh_price='" & SLEOvh.EditValue.ToString & "'"
         'Dim query_check As String = "CALL view_stock_prod_rec('" + id_prod_order + "', '" + id_prod_order_det_cek + "', '" + id_prod_order_ret_out + "', '0','0', '0', '0') "
         'Dim data As DataTable = execute_query(query_check, -1, True, "", "", "", "")
 
-        Dim q_check As String = "CALL view_limit_prod_rec('" + id_prod_order_rec + "','" + id_prod_order + "', '" + id_prod_order_det_cek + "', '" + id_prod_order_ret_out + "', '0','0', '0', '0')"
+        Dim q_check As String = ""
+
+        If get_opt_prod_field("is_enable_qc_report1") = "1" Then
+            q_check = "CALL view_limit_ret_out_from_rec('" + id_prod_order_rec + "','" + id_prod_order + "', '" + id_prod_order_det_cek + "', '" + id_prod_order_ret_out + "')"
+        Else
+            q_check = "CALL view_limit_prod_rec('" + id_prod_order_rec + "','" + id_prod_order + "', '" + id_prod_order_det_cek + "', '" + id_prod_order_ret_out + "', '0','0', '0', '0')"
+        End If
+
         Dim data As DataTable = execute_query(q_check, -1, True, "", "", "", "")
         allow_sum = Decimal.Parse(Data.Rows(0)("qty"))
         If qty_pl > allow_sum Then
@@ -834,7 +842,12 @@ WHERE ovhp.id_ovh_price='" & SLEOvh.EditValue.ToString & "'"
     End Sub
 
     Sub infoQty()
-        FormPopUpProdDet.id_pop_up = "1"
+        If get_opt_prod_field("is_enable_qc_report1") = "1" Then
+            FormPopUpProdDet.id_pop_up = "8"
+        Else
+            FormPopUpProdDet.id_pop_up = "1"
+        End If
+
         FormPopUpProdDet.action = "ins"
         FormPopUpProdDet.id_prod_order_rec = id_prod_order_rec
         FormPopUpProdDet.id_prod_order = id_prod_order

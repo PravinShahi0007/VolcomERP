@@ -600,6 +600,9 @@
         ElseIf report_mark_type = "251" Or report_mark_type = "285" Then
             'bbk summary
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_pn_summary WHERE id_pn_summary = '{0}'", id_report)
+        ElseIf report_mark_type = "252" Then
+            'SKO
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_prod_order_ko WHERE id_prod_order_ko = '{0}'", id_report)
         ElseIf report_mark_type = "254" Or report_mark_type = "256" Then
             ' sales volcom store
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_sales_branch WHERE id_sales_branch = '{0}'", id_report)
@@ -765,6 +768,21 @@
         ElseIf report_mark_type = "376" Then
             'propose big sale product
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_bsp WHERE id_bsp = '{0}'", id_report)
+        ElseIf report_mark_type = "383" Then
+            'propose item list
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_item_pps WHERE id_item_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "384" Then
+            'Perhitungan Deviden
+            query = String.Format("SELECT id_report_status, profit_year as report_number FROM tb_deviden WHERE id_deviden = '{0}'", id_report)
+        ElseIf report_mark_type = "385" Then
+            'QC Report 1
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_qc_report1 WHERE id_qc_report1 = '{0}'", id_report)
+        ElseIf report_mark_type = "388" Then
+            'QC Report 1 Sumary
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_qc_report1_sum WHERE id_qc_report1_sum = '{0}'", id_report)
+        ElseIf report_mark_type = "389" Then
+            'vm asset move
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_vm_item_move WHERE id_vm_item_move = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -2690,6 +2708,7 @@ INNER JOIN
                         Dim s As New ClassShopifyApi()
                         dtweb = s.get_product()
                     Catch ex As Exception
+                        FormMain.SplashScreenManager1.CloseWaitForm()
                         stopCustom("Failed get shopify product : " + ex.ToString)
                         Exit Sub
                     End Try
@@ -3175,16 +3194,23 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
             End If
 
             If id_status_reportx = "5" Then
-                Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
+                'cancel form
+                Dim id_report_now As String = execute_query("SELECT id_report_status FROM tb_sales_pos WHERE id_sales_pos='" & id_report & "'", 0, True, "", "", "", "")
+                If id_report_now = "6" Then
+                    'balik jurnal & stok
+                    Dim csi As New ClassSalesInv()
+                    csi.cancelFormInvoice(id_report, report_mark_type)
+                Else
+                    Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
 
-                If FormSalesPOSDet.is_use_unique_code = "1" Then
-                    'cancelled unique
-                    cancel_rsv_stock.cancellUnique(id_report, report_mark_type)
+                    If FormSalesPOSDet.is_use_unique_code = "1" Then
+                        'cancelled unique
+                        cancel_rsv_stock.cancellUnique(id_report, report_mark_type)
+                    End If
+
+                    'cancelled
+                    cancel_rsv_stock.cancelReservedStock(id_report, "48")
                 End If
-
-
-                'cancelled
-                cancel_rsv_stock.cancelReservedStock(id_report, "48")
             ElseIf id_status_reportx = "6" Then
                 'completed
                 Dim complete_rsv_stock As ClassSalesInv = New ClassSalesInv()
@@ -4380,9 +4406,9 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 cancel.cancelReservedStock(id_report)
                 '
                 Dim quniq As String = "INSERT INTO tb_m_unique_code(`id_comp`,`id_wh_drawer`,`id_product`, `id_pl_prod_order_rec_det_unique` ,`id_fg_repair_det`,`id_type`,`unique_code`,
-                        `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`) 
+                        `id_design_price`,`design_price`,`qty`,`is_unique_report`,`input_date`, id_report, report_mark_type, id_report_status) 
                         SELECT c.id_comp, t.`id_wh_drawer_from`, td.id_product, td.id_pl_prod_order_rec_det_unique,  td.id_fg_repair_det, '8', 
-                        CONCAT(p.product_full_code,td.fg_repair_det_counting), sod.id_design_price, sod.design_price, 1, 1, NOW() 
+                        CONCAT(p.product_full_code,td.fg_repair_det_counting), sod.id_design_price, sod.design_price, 1, 1, NOW(),  t.id_fg_repair, '" + report_mark_type + "', '5'
                         FROM tb_fg_repair_det td
                         INNER JOIN tb_fg_repair t ON t.id_fg_repair = td.id_fg_repair
                         INNER JOIN tb_m_wh_drawer drw_frm ON drw_frm.id_wh_drawer = t.id_wh_drawer_from  
@@ -4404,7 +4430,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                             ) a 
                             GROUP BY a.id_design 
                         ) sod ON sod.id_design = d.id_design 
-                                                WHERE t.id_fg_repair=" & id_report & " AND d.is_old_design=2  AND t.is_use_unique_code=1 "
+                                                WHERE t.id_fg_repair=" & id_report & " AND d.is_old_design=2  AND t.is_use_unique_code=1 AND t.is_to_vendor=2 "
                 execute_non_query(quniq, True, "", "", "", "")
             ElseIf id_status_reportx = "6" Then
                 Dim compl As New ClassFGRepair()
@@ -4571,7 +4597,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                             ) a 
                             GROUP BY a.id_design 
                         ) sod ON sod.id_design = d.id_design 
-                        WHERE t.id_fg_repair_return=" & id_report & " AND d.is_old_design=2 AND t.is_use_unique_code=1 "
+                        WHERE t.id_fg_repair_return=" & id_report & " AND d.is_old_design=2 AND t.is_use_unique_code=1 AND t.is_from_vendor=2 "
                 execute_non_query(quniq, True, "", "", "", "")
                 '
 
@@ -5882,7 +5908,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
 	                `storage_item_notes`,
 	                `id_stock_status`
                 )
-                SELECT IF(rq.is_store_purchase=1,'" & id_purc_store & "',rq.id_departement) AS id_departement, 1, rd.id_item, (pod.`value`/i.stock_convertion) AS value, 148, " + id_report + ", rd.qty_stock, r.date_created,'', 1
+                SELECT IF(rq.is_store_purchase=1,'" & id_purc_store & "',rq.id_departement) AS id_departement, 1, rd.id_item, (pod.`value`/i.stock_convertion) AS value, 148, " + id_report + ", rd.qty_stock, NOW(),'', 1
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec=rd.id_purc_rec
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
@@ -5981,7 +6007,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
 
                 'main journal
                 Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
-                VALUES ('','" + report_number + "','24','" + id_user_prepared + "', NOW(),(SELECT date_created FROM `tb_purc_rec` WHERE id_purc_rec='" + id_report + "'), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                VALUES ('','" + report_number + "','24','" + id_user_prepared + "', NOW(),NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
                 id_acc_trans = execute_query(qjm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
 
@@ -6267,7 +6293,7 @@ VALUES('" & dtsi.Rows(i)("id_item").ToString & "','" & addSlashes(dtsi.Rows(i)("
 
                     'insert qty
                     qi = "INSERT INTO `tb_stock_card_dep`(`id_departement`,`id_item_detail`,`id_report`,`id_report_det`,`report_mark_type`,`qty`,storage_item_datetime)
-VALUES('" & dtsi.Rows(i)("id_departement").ToString & "','" & id_item_detail & "','" & dtsi.Rows(i)("id_purc_rec").ToString & "','" & dtsi.Rows(i)("id_purc_rec_det").ToString & "','" & dtsi.Rows(i)("report_mark_type").ToString & "','" & decimalSQL(Decimal.Parse(dtsi.Rows(i)("qty").ToString)) & "','" & Date.Parse(dtsi.Rows(i)(("date_created").ToString)).ToString("yyyy-MM-dd HH:mm:ss") & "')"
+VALUES('" & dtsi.Rows(i)("id_departement").ToString & "','" & id_item_detail & "','" & dtsi.Rows(i)("id_purc_rec").ToString & "','" & dtsi.Rows(i)("id_purc_rec_det").ToString & "','" & dtsi.Rows(i)("report_mark_type").ToString & "','" & decimalSQL(Decimal.Parse(dtsi.Rows(i)("qty").ToString)) & "',NOW())"
                     execute_non_query(qi, True, "", "", "", "")
                 Next
             End If
@@ -6527,6 +6553,9 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 CALL update_item_reqdel_stt(" + id_report + "); "
                 execute_non_query(query_completed_stock, True, "", "", "", "")
 
+                'stock VM
+                execute_non_query("CALL insert_item_stock_vm('" + id_report + "')", True, "", "", "", "")
+
                 ' select user prepared
                 Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
                 Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
@@ -6622,6 +6651,7 @@ HAVING amo>0"
                         execute_non_query(qjd, True, "", "", "", "")
                     End If
                 End If
+
             End If
 
             'refresh view
@@ -6660,8 +6690,8 @@ HAVING amo>0"
                 Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
                 '
-                Dim q_balik = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor)
-SELECT id_acc_trans, id_acc, credit, debit, CONCAT('Cancel Form - ',acc_trans_det_note) AS acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor
+                Dim q_balik = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor,id_coa_tag)
+SELECT '" & id_acc_trans & "' AS id_acc_trans, id_acc, credit, debit, CONCAT('Cancel Form - ',acc_trans_det_note) AS acc_trans_det_note, report_mark_type, id_report, report_number, id_comp, report_number_ref, id_vendor, id_coa_tag
 FROM tb_a_acc_trans_det
 WHERE id_acc_trans='" & old_id_acc_trans & "'"
                 execute_non_query(q_balik, True, "", "", "", "")
@@ -11398,7 +11428,7 @@ WHERE id_sop_dep_pps='" & id_report & "'"
 
             query = String.Format("UPDATE tb_bsp SET id_report_status = '{0}' WHERE id_bsp = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-        ElseIf report_mark_type = "382" Then
+        ElseIf report_mark_type = "383" Then
             'propose item
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
@@ -11423,6 +11453,138 @@ WHERE id_item_pps='" & id_report & "'"
 
             query = String.Format("UPDATE tb_item_pps SET id_report_status = '{0}' WHERE id_item_pps = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "384" Then
+            'deviden
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'complete
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+
+                'jurnal
+                Dim qu As String = "SELECT created_by,profit_year,date_reff FROM tb_deviden WHERE id_report='" & id_report & "'"
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("created_by").ToString
+                Dim report_number As String = du.Rows(0)("profit_year").ToString
+
+                Dim date_reff As String = Date.Parse(du.Rows(0)("date_reff").ToString).ToString("yyyy-MM-dd")
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, date_reference, acc_trans_note, id_report_status)
+                VALUES('','" + report_number + "','22','" + id_user_prepared + "', NOW(), '" & date_reff & "', 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
+
+                'det journal
+                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_vendor, id_comp, qty, debit, credit, id_currency, kurs, debit_valas, credit_valas, acc_trans_det_note, report_mark_type, id_report, report_number,report_mark_type_ref, id_report_ref, report_number_ref, vendor, id_coa_tag)
+                                    SELECT * FROM
+                                    (
+	                                    /* hutang ke shareholder kredit */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,c.id_acc_ap AS `id_acc`,1  AS id_vendor,1 AS id_comp,  1 AS `qty`,0 AS `debit`, ds.deviden_amount AS `credit`, 1 AS id_currency, 0 AS kurs,0  AS debit_valas, 0 AS credit_valas,CONCAT('Pembagian Deviden ',d.profit_year) AS `note`,384 AS report_mark_type,ds.id_deviden AS id_report, d.profit_year AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor,1 AS id_coa_tag
+                                        FROM `tb_deviden_share` ds
+                                        INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden
+                                        INNER JOIN tb_m_comp c ON ds.id_comp=c.id_comp
+                                        WHERE ds.id_deviden='" & id_report & "' 
+                                        UNION ALL
+                                        /* pph shareholder kredit */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,c.id_acc_ap AS `id_acc`,1  AS id_vendor,1 AS id_comp,  1 AS `qty`,0 AS `debit`, ds.pph_amount AS `credit`, 1 AS id_currency, 0 AS kurs,0  AS debit_valas, 0 AS credit_valas,CONCAT('Pembagian Deviden ',d.profit_year) AS `note`,384 AS report_mark_type,ds.id_deviden AS id_report, d.profit_year AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor,1 AS id_coa_tag
+                                        FROM `tb_deviden_share` ds
+                                        INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden
+                                        INNER JOIN tb_m_comp c ON ds.id_comp=c.id_comp
+                                        WHERE ds.id_deviden='" & id_report & "'  AND ds.pph_amount >0 
+                                        UNION ALL
+                                        /* lawan laba ditahan debit */
+                                        SELECT '" & id_acc_trans & "' AS id_acc_trans,c.id_acc_ap AS `id_acc`,1  AS id_vendor,1 AS id_comp,  1 AS `qty`,SUM(ds.deviden_amount+ds.pph_amount) AS `debit`,0 AS `credit`, 1 AS id_currency, 0 AS kurs,0  AS debit_valas, 0 AS credit_valas,CONCAT('Pembagian Deviden ',d.profit_year) AS `note`,384 AS report_mark_type,ds.id_deviden AS id_report, d.profit_year AS report_number,NULL AS report_mark_type_ref,NULL AS id_report_ref,NULL AS report_number_ref,NULL AS vendor,1 AS id_coa_tag
+                                        FROM `tb_deviden_share` ds
+                                        INNER JOIN tb_deviden d ON d.id_deviden=ds.id_deviden
+                                        INNER JOIN tb_m_comp c ON ds.id_comp=c.id_comp
+                                        WHERE ds.id_deviden='" & id_report & "'               
+                                    )trx WHERE trx.debit != 0 OR trx.credit != 0"
+                execute_non_query(qjd, True, "", "", "", "")
+                '
+
+                FormMain.SplashScreenManager1.CloseWaitForm()
+
+            End If
+
+            query = String.Format("UPDATE tb_deviden SET id_report_status = '{0}' WHERE id_deviden = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "385" Then
+            'qc report 1
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'complete
+
+            End If
+
+            query = String.Format("UPDATE tb_qc_report1 SET id_report_status = '{0}' WHERE id_qc_report1 = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "388" Then
+            'qc report 1 summary
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'complete mail blast
+                Dim mail As ClassSendEmail = New ClassSendEmail()
+                mail.report_mark_type = "388"
+                mail.id_report = id_report
+                mail.send_email()
+            End If
+
+            query = String.Format("UPDATE tb_qc_report1_sum SET id_report_status = '{0}' WHERE id_qc_report1_sum = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            FormQCReport1Sum.load_head()
+        ElseIf report_mark_type = "389" Then
+            'qc report 1
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'complete
+                Dim q As String = "SELECT id_type FROM tb_vm_item_move WHERE id_vm_item_move='" & id_report & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows(0)("id_type").ToString = "1" Then
+                    'trf
+                    q = "INSERT INTO `tb_stock_vm`(`id_comp`,`id_item`,`qty`,`id_report`,`report_mark_type`,`report_date`,`stock_date`,`id_departement`)
+SELECT m.`id_comp_from` AS id_comp,d.id_item,-d.qty AS qty,m.id_vm_item_move,'389' AS rmt,m.created_date,NOW() AS stock_date,'18' AS id_departement
+FROM `tb_vm_item_move_det` d
+INNER JOIN tb_vm_item_move m ON m.id_vm_item_move=d.id_vm_item_move AND m.id_vm_item_move='" & id_report & "'
+UNION ALL
+SELECT m.`id_comp_to` AS id_comp,d.id_item,d.qty AS qty,m.id_vm_item_move,'389' AS rmt,m.created_date,NOW() AS stock_date,'18' AS id_departement
+FROM `tb_vm_item_move_det` d
+INNER JOIN tb_vm_item_move m ON m.id_vm_item_move=d.id_vm_item_move AND m.id_vm_item_move='" & id_report & "'"
+                    execute_non_query(q, True, "", "", "", "")
+                ElseIf dt.Rows(0)("id_type").ToString = "2" Then
+                    'add
+                    q = "INSERT INTO `tb_stock_vm`(`id_comp`,`id_item`,`qty`,`id_report`,`report_mark_type`,`report_date`,`stock_date`,`id_departement`)
+SELECT m.`id_comp_from` AS id_comp,d.id_item,d.qty AS qty,m.id_vm_item_move,'389' AS rmt,m.created_date,NOW() AS stock_date,'18' AS id_departement
+FROM `tb_vm_item_move_det` d
+INNER JOIN tb_vm_item_move m ON m.id_vm_item_move=d.id_vm_item_move AND m.id_vm_item_move='" & id_report & "'"
+                    execute_non_query(q, True, "", "", "", "")
+                ElseIf dt.Rows(0)("id_type").ToString = "3" Then
+                    'remove
+                    q = "INSERT INTO `tb_stock_vm`(`id_comp`,`id_item`,`qty`,`id_report`,`report_mark_type`,`report_date`,`stock_date`,`id_departement`)
+SELECT m.`id_comp_from` AS id_comp,d.id_item,-d.qty AS qty,m.id_vm_item_move,'389' AS rmt,m.created_date,NOW() AS stock_date,'18' AS id_departement
+FROM `tb_vm_item_move_det` d
+INNER JOIN tb_vm_item_move m ON m.id_vm_item_move=d.id_vm_item_move AND m.id_vm_item_move='" & id_report & "'"
+                    execute_non_query(q, True, "", "", "", "")
+                End If
+            End If
+
+            query = String.Format("UPDATE tb_vm_item_move SET id_report_status = '{0}' WHERE id_vm_item_move = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            FormVMMove.load_head()
         End If
 
         'adding lead time

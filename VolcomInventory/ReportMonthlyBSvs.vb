@@ -91,7 +91,7 @@
 
                     Dim percentage As Decimal = 0.00
                     Try
-                        percentage = ((tot_sub_t - tot_sub_p) / tot_sub_t) * 100
+                        percentage = ((tot_sub_t - tot_sub_p) / tot_sub_p) * 100
                     Catch ex As Exception
 
                     End Try
@@ -111,7 +111,7 @@
 
                     Dim percentage As Decimal = 0.00
                     Try
-                        percentage = ((tot_head_t - tot_head_p) / tot_head_t) * 100
+                        percentage = ((tot_head_t - tot_head_p) / tot_head_p) * 100
                     Catch ex As Exception
 
                     End Try
@@ -132,7 +132,7 @@
 
                 Dim percentage As Decimal = 0.00
                 Try
-                    percentage = ((tot_sub_t - tot_sub_p) / tot_sub_t) * 100
+                    percentage = ((tot_sub_t - tot_sub_p) / tot_sub_p) * 100
                 Catch ex As Exception
 
                 End Try
@@ -144,7 +144,7 @@
 
                 Dim percentage_head As Decimal = 0.00
                 Try
-                    percentage_head = ((tot_head_t - tot_head_p) / tot_head_t) * 100
+                    percentage_head = ((tot_head_t - tot_head_p) / tot_head_p) * 100
                 Catch ex As Exception
 
                 End Try

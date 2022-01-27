@@ -900,6 +900,7 @@ Partial Class FormSalesDelOrder
         'GVNewPrepare
         '
         Me.GVNewPrepare.GridControl = Me.GCNewPrepare
+        Me.GVNewPrepare.LevelIndent = 0
         Me.GVNewPrepare.Name = "GVNewPrepare"
         Me.GVNewPrepare.OptionsView.ColumnAutoWidth = True
         Me.GVNewPrepare.OptionsView.ShowFooter = True

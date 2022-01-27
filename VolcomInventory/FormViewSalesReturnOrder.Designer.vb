@@ -69,10 +69,10 @@ Partial Class FormViewSalesReturnOrder
         Me.GridColumnIdDesignPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyReturn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSOH = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnOrderStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnOrderStatus = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TxtOrderType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -544,8 +544,6 @@ Partial Class FormViewSalesReturnOrder
         Me.GridColumnRemark.Caption = "Remark"
         Me.GridColumnRemark.FieldName = "sales_return_order_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
-        Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 10
         Me.GridColumnRemark.Width = 155
         '
         'GridColumnIdDesign
@@ -621,16 +619,6 @@ Partial Class FormViewSalesReturnOrder
         Me.GridColumnSOH.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnSOH.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh", "{0:N0}")})
         '
-        'BtnOrderStatus
-        '
-        Me.BtnOrderStatus.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnOrderStatus.Location = New System.Drawing.Point(0, 465)
-        Me.BtnOrderStatus.Name = "BtnOrderStatus"
-        Me.BtnOrderStatus.Size = New System.Drawing.Size(785, 28)
-        Me.BtnOrderStatus.TabIndex = 190
-        Me.BtnOrderStatus.Text = "Update Order Status"
-        Me.BtnOrderStatus.Visible = False
-        '
         'GridColumnclass
         '
         Me.GridColumnclass.Caption = "Class"
@@ -657,6 +645,16 @@ Partial Class FormViewSalesReturnOrder
         Me.GridColumnsht.OptionsColumn.AllowEdit = False
         Me.GridColumnsht.Visible = True
         Me.GridColumnsht.VisibleIndex = 4
+        '
+        'BtnOrderStatus
+        '
+        Me.BtnOrderStatus.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnOrderStatus.Location = New System.Drawing.Point(0, 465)
+        Me.BtnOrderStatus.Name = "BtnOrderStatus"
+        Me.BtnOrderStatus.Size = New System.Drawing.Size(785, 28)
+        Me.BtnOrderStatus.TabIndex = 190
+        Me.BtnOrderStatus.Text = "Update Order Status"
+        Me.BtnOrderStatus.Visible = False
         '
         'FormViewSalesReturnOrder
         '

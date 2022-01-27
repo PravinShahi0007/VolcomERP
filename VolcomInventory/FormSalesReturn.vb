@@ -159,8 +159,6 @@
                            .amount = CType(table1("amount"), Decimal)
                             }
 
-        GCSalesReturnOrderDetail.DataSource = query_new.ToList
-        GVSalesReturnOrderDetail.OptionsBehavior.AutoExpandAllGroups = True
     End Sub
 
 
@@ -170,8 +168,6 @@
 
     Sub rowChanged()
         Cursor = Cursors.WaitCursor
-        GCSalesReturnOrderDetail.DataSource = Nothing
-        BtnPrintDetail.Visible = False
         'noManipulating()
         'Dim id_sales_return_order As String = "-1"
         'Try
@@ -209,7 +205,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub GVSalesReturnOrderDetail_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVSalesReturnOrderDetail.CustomColumnDisplayText
+    Private Sub GVSalesReturnOrderDetail_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
@@ -274,7 +270,7 @@
         End If
     End Sub
 
-    Private Sub BAccept_Click(sender As Object, e As EventArgs) Handles BAccept.Click
+    Private Sub BAccept_Click(sender As Object, e As EventArgs)
         Dim id_sales_return_order As String = "-1"
         Try
             id_sales_return_order = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
@@ -308,17 +304,15 @@
         Catch ex As Exception
 
         End Try
-        BtnPrintDetail.Visible = True
     End Sub
 
-    Private Sub BtnPrintDetail_Click(sender As Object, e As EventArgs) Handles BtnPrintDetail.Click
+    Private Sub BtnPrintDetail_Click(sender As Object, e As EventArgs)
         Dim nbr As String = ""
         Try
             nbr = GVSalesReturnOrder.GetFocusedRowCellValue("sales_return_order_number").ToString
         Catch ex As Exception
 
         End Try
-        print(GCSalesReturnOrderDetail, nbr)
     End Sub
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
@@ -332,5 +326,39 @@
         FormMenuAuth.type = "14"
         FormMenuAuth.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ViewDetailOrderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailOrderToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_so As String = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_order").ToString
+        If id_so = "0" Then
+            FormViewSalesReturnOrder.id_sales_return_order = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
+            FormViewSalesReturnOrder.ShowDialog()
+        Else
+            FormSalesReturnOrderOLDet.is_view = "1"
+            FormSalesReturnOrderOLDet.action = "upd"
+            FormSalesReturnOrderOLDet.id_sales_return_order = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString()
+            FormSalesReturnOrderOLDet.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub PrintToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PrintToolStripMenuItem.Click
+        If GVSalesReturnOrder.FocusedRowHandle >= 0 And GVSalesReturnOrder.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_so As String = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_order").ToString
+            If id_so = "0" Then
+                FormViewSalesReturnOrder.id_sales_return_order = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
+                FormViewSalesReturnOrder.is_print = "1"
+                FormViewSalesReturnOrder.ShowDialog()
+            Else
+                FormSalesReturnOrderOLDet.is_view = "1"
+                FormSalesReturnOrderOLDet.action = "upd"
+                FormSalesReturnOrderOLDet.id_sales_return_order = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString()
+                FormSalesReturnOrderOLDet.is_print = "1"
+                FormSalesReturnOrderOLDet.ShowDialog()
+            End If
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

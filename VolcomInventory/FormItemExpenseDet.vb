@@ -13,6 +13,8 @@
 
     Public id_sni_pps As String = "-1"
 
+    Public is_duplicate As Boolean = False
+
     Private Sub FormItemExpenseDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEDateReff.EditValue = Now()
         '
@@ -224,6 +226,8 @@ GROUP BY id.`id_departement`"
                 FormMain.SplashScreenManager1.ShowWaitForm()
             End If
 
+            DEDateReff.EditValue = FormItemExpenseSNI.DEDateReff.EditValue
+
             FormMain.SplashScreenManager1.SetWaitFormDescription("Generating from invoice..")
             For i = 0 To FormItemExpenseSNI.BGVBudget.RowCount - 1
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Processing expense " & i + 1 & " of " & (FormItemExpenseSNI.BGVBudget.RowCount) & "  ")
@@ -234,7 +238,7 @@ GROUP BY id.`id_departement`"
                 GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc", "2225")
 
                 GVData.SetRowCellValue(GVData.RowCount - 1, "id_expense_type", "1")
-                GVData.SetRowCellValue(GVData.RowCount - 1, "id_b_expense", "67")
+                GVData.SetRowCellValue(GVData.RowCount - 1, "id_b_expense", FormItemExpenseSNI.SLEBudget.EditValue.ToString)
                 GVData.SetRowCellValue(GVData.RowCount - 1, "cc", "1")
                 '
                 GVData.SetRowCellValue(GVData.RowCount - 1, "description", FormItemExpenseSNI.BGVBudget.GetRowCellValue(i, "budget_desc").ToString)
@@ -446,6 +450,12 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
 
             viewDetail()
             calculate()
+
+            If is_duplicate Then
+                id = "-1"
+                action = "ins"
+            End If
+
             allow_status()
         End If
     End Sub
@@ -521,12 +531,9 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
     End Sub
 
     Sub allow_status()
-        BtnCancell.Visible = True
-        BtnMark.Visible = True
-        BtnAttachment.Visible = True
-        BtnPrint.Visible = True 'pindah permintaan bu mariati
-        '
-        If check_edit_report_status(id_report_status, "157", id) And Not is_view = "1" Then
+
+        'check_edit_report_status(id_report_status, "157", id)
+        If id = "-1" And Not is_view = "1" Then
             'msh bisa edit
             GridColumnAccountDescription.Visible = False
             GridColumnaccount.VisibleIndex = 1
@@ -546,6 +553,11 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
             GridColumnBudgetDesc.Visible = False
             GridColumnBudget.VisibleIndex = 3
         Else
+            BtnCancell.Visible = True
+            BtnMark.Visible = True
+            BtnAttachment.Visible = True
+            BtnPrint.Visible = True 'pindah permintaan bu mariati, tapi dipindah lagi by pak ari
+
             'tidak bisa edit
             GVData.OptionsBehavior.Editable = False
             '

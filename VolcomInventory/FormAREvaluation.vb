@@ -51,9 +51,9 @@
         e.id_sales_pos AS `id_inv`, e.report_number AS `inv_number`, e.report_mark_type AS `inv_rmt`,
         sp.`sales_pos_date` AS `inv_date`, sp.`sales_pos_due_date` AS `inv_due_date`, sp.`sales_pos_start_period` AS `start_period`, sp.`sales_pos_end_period` AS `end_period`,
         DATEDIFF(DATE(e.eval_date),sp.sales_pos_due_date) AS due_days,
-        CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS `inv_amount`,
+        CAST(IF(typ.`is_receive_payment`=2,-1,1) * sp.netto AS DECIMAL(15,2)) AS `inv_amount`,
         IFNULL(pyd.`value`,0.00) AS total_rec, 
-        IFNULL(pyd.`value`,0.00) - CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS total_due,
+        IFNULL(pyd.`value`,0.00) - CAST(IF(typ.`is_receive_payment`=2,-1,1) * sp.netto AS DECIMAL(15,2)) AS total_due,
         IF(e.is_paid=1,'Paid', 'Not Paid') AS `paid_status`, 
         NULL AS `id_propose_delay_payment`, '' as `memo_number`,
         e.release_date, e.note,  IFNULL(eh.jum_hold,0) AS `jum_hold`,IF(e.is_active=1,'Active', 'Not Active') AS `active_status`, IF(e.is_manual_release=1,'Yes', 'No') AS `manual_release_status`, er.memo_number AS `memo_number_release`, IFNULL(er.id_ar_eval_release,0) AS `id_ar_eval_release`
@@ -92,9 +92,9 @@
         Cursor = Cursors.WaitCursor
         Dim rmt_inv As String = execute_query("SELECT GROUP_CONCAT(DISTINCT report_mark_type ORDER BY report_mark_type ASC) FROM tb_sales_pos WHERE id_report_status=6 ", 0, True, "", "", "", "")
         Dim query As String = "SELECT cg.description AS `store_group`, IF(SUM(CASE WHEN e.is_paid=2 THEN 1 ELSE 0 END)>0,IF(MIN(e.is_manual_release)=1,'Manual Release', 'Hold'), 'Release') AS `status`,
-        SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) ) AS `inv_amount`,
+        SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * sp.netto AS DECIMAL(15,2)) ) AS `inv_amount`,
         SUM(IFNULL(pyd.`value`,0.00)) AS total_rec,
-        SUM(IFNULL(pyd.`value`,0.00) - CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS `diff`
+        SUM(IFNULL(pyd.`value`,0.00) - CAST(IF(typ.`is_receive_payment`=2,-1,1) * sp.netto AS DECIMAL(15,2))) AS `diff`
         FROM tb_ar_eval e
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = e.id_comp_group
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = e.id_sales_pos

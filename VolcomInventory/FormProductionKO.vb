@@ -1,9 +1,10 @@
 ﻿Public Class FormProductionKO
     Public id_ko As String = "-1"
     Public is_locked As String = "2"
+    Public is_submit As String = "2"
     Dim is_void As String = "2"
-    Public is_purc_mat As String = "2"
     Public is_view As String = "-1"
+    Public is_purc_mat As String = "2"
 
     Private Sub FormProductionKO_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
@@ -24,7 +25,7 @@
 
     Sub load_head()
         'view yang revisi terakhir
-        Dim query As String = "SELECT ko.is_locked,ko.is_purc_mat,c.phone,c.fax,ko.number,ko.vat,ko.id_ko_template,too.term_production,cc.`contact_person`,c.`comp_number`,c.`comp_name`,c.`address_primary`,ko.`date_created`,LPAD(ko.`revision`,2,'0') AS revision,ko.is_void
+        Dim query As String = "SELECT ko.is_locked,ko.is_purc_mat,c.phone,c.fax,ko.number,ko.vat,ko.id_ko_template,too.term_production,cc.`contact_person`,c.`comp_number`,c.`comp_name`,c.`address_primary`,ko.`date_created`,LPAD(ko.`revision`,2,'0') AS revision,ko.is_void,ko.is_submit
 FROM tb_prod_order_ko ko
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ko.id_comp_contact
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
@@ -51,23 +52,34 @@ WHERE id_prod_order_ko='" & id_ko & "'"
             TEFax.EditValue = data.Rows(0)("fax")
 
             is_locked = data.Rows(0)("is_locked").ToString
+            is_submit = data.Rows(0)("is_submit").ToString
             'load_det
             load_det()
             '
         End If
 
-        If is_locked = "1" Then
-            'locked
+        If is_submit = "1" Then
+            'submit
             BLock.Visible = False
             BUpdate.Visible = False
             BRevise.Visible = True
             PCDel.Visible = False
+            '
+            BPrintKO.Visible = True
+            '
+            BMark.Visible = True
         Else
             BLock.Visible = True
             BUpdate.Visible = True
             BRevise.Visible = False
             PCDel.Visible = True
+            'ttp true karena harus bisa nyetak
+            BPrintKO.Visible = True
+            '
+            BMark.Visible = False
         End If
+
+        'lock
 
         'void
         If is_void = "1" Then
@@ -131,11 +143,13 @@ LEFT JOIN(
 WHERE kod.id_prod_order_ko='" & id_ko & "'
 -- GROUP BY po.id_mat_purc
 ORDER BY po.`id_mat_purc` ASC"
+            GCAttachment.Visible = False
         Else
             query = "SELECT kod.revision,kod.id_prod_order_ko_det,'' AS `no`,po.`prod_order_number`,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name) AS class_dsg,cd.color AS color
 ,wo_price.qty_po AS qty_order,wo_price.prod_order_wo_det_price AS bom_unit,wo_price.price_amount AS po_amount_rp
 ,kod.lead_time_prod AS lead_time,kod.lead_time_payment,wo_price.prod_order_wo_del_date,DATE_ADD(wo_price.prod_order_wo_del_date,INTERVAL kod.lead_time_prod DAY) AS esti_del_date
 ,IFNULL(revtimes.revision_times,0) AS revision_times
+,IF(ISNULL(att.id_prod_order),'Not Complete','Complete') AS att_sts
 FROM `tb_prod_order_ko_det` kod
 INNER JOIN tb_prod_order po ON po.id_prod_order=kod.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON po.`id_prod_demand_design`=pdd.`id_prod_demand_design`
@@ -182,8 +196,16 @@ LEFT JOIN(
 	    GROUP BY kod.id_prod_order,kod.revision
     ) revtimes GROUP BY revtimes.id_prod_order
 )revtimes ON revtimes.id_prod_order=po.id_prod_order
+LEFT JOIN
+(
+    SELECT id_prod_order
+    FROM `tb_prod_order_attach`
+    WHERE id_report_status=6
+    GROUP BY id_prod_order    
+)att ON att.id_prod_order=po.id_prod_order
 WHERE kod.id_prod_order_ko='" & id_ko & "'
 ORDER BY po.`id_prod_order` ASC"
+            GCAttachment.Visible = True
         End If
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
@@ -214,7 +236,9 @@ ORDER BY po.`id_prod_order` ASC"
     End Sub
 
     Private Sub BPrintKO_Click(sender As Object, e As EventArgs) Handles BPrintKO.Click
-        Dim query As String = "SELECT ko.is_purc_mat,kot.upper_part,kot.bottom_part,c.phone,c.fax,ko.number,ko.vat,ko.id_ko_template,too.term_production,cc.`contact_person`,c.`comp_number`,c.`comp_name`,c.`address_primary`,DATE_FORMAT(ko.`date_created`,'%d %M %Y') AS date_created,LPAD(ko.`revision`,2,'0') AS revision
+        Dim id_ko_template As String = execute_query("SELECT id_ko_template FROM tb_prod_order_ko WHERE id_prod_order_ko = " & id_ko, 0, True, "", "", "", "")
+        If Not id_ko_template = "0" Then
+            Dim query As String = "SELECT ko.is_purc_mat,kot.upper_part,kot.bottom_part,c.phone,c.fax,ko.number,ko.vat,ko.id_ko_template,too.term_production,cc.`contact_person`,c.`comp_number`,c.`comp_name`,c.`address_primary`,DATE_FORMAT(ko.`date_created`,'%d %M %Y') AS date_created,LPAD(ko.`revision`,2,'0') AS revision
 ,emp_created.employee_name AS emp_name_created,emp_created.`employee_position` AS created_pos
 ,emp_purc_mngr.employee_name AS emp_name_purc_mngr,emp_purc_mngr.`employee_position` AS purc_mngr_pos
 ,emp_fc.employee_name AS emp_name_fc,emp_fc.`employee_position` AS fc_pos
@@ -232,30 +256,33 @@ INNER JOIN tb_m_employee emp_fc ON emp_fc.`id_employee`=ko.`id_emp_fc`
 INNER JOIN tb_m_employee emp_director ON emp_director.`id_employee`=ko.`id_emp_director`
 INNER JOIN tb_m_employee emp_vice ON emp_vice.`id_employee`=ko.`id_emp_vice_director`
 WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        ReportProductionKO.dt_head = data
-        ReportProductionKO.is_po_mat = data.Rows(0)("is_purc_mat").ToString
-        '
-        ReportProductionKO.dt_det = GCProd.DataSource
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            ReportProductionKO.dt_head = data
+            ReportProductionKO.is_po_mat = data.Rows(0)("is_purc_mat").ToString
+            '
+            ReportProductionKO.dt_det = GCProd.DataSource
 
-        Dim Report As New ReportProductionKO()
-        '
-        Report.LAmountVat.Text = Decimal.Parse(TEVatTot.EditValue.ToString).ToString("N2")
-        Report.LPOAmountRp.Text = Decimal.Parse(GVProd.Columns("po_amount_rp").SummaryItem.SummaryValue.ToString).ToString("N2")
-        Report.LAmountWithVat.Text = Decimal.Parse(TETot.EditValue.ToString).ToString("N2")
-        Report.LQtyOrder.Text = Decimal.Parse(GVProd.Columns("qty_order").SummaryItem.SummaryValue.ToString).ToString("N0")
-        Report.LSay.Text = METotSay.Text
-        Report.XRichUpper.Rtf = data.Rows(0)("upper_part").ToString
-        Report.XRichBottom.Rtf = data.Rows(0)("bottom_part").ToString
-        '
+            Dim Report As New ReportProductionKO()
+            '
+            Report.LAmountVat.Text = Decimal.Parse(TEVatTot.EditValue.ToString).ToString("N2")
+            Report.LPOAmountRp.Text = Decimal.Parse(GVProd.Columns("po_amount_rp").SummaryItem.SummaryValue.ToString).ToString("N2")
+            Report.LAmountWithVat.Text = Decimal.Parse(TETot.EditValue.ToString).ToString("N2")
+            Report.LQtyOrder.Text = Decimal.Parse(GVProd.Columns("qty_order").SummaryItem.SummaryValue.ToString).ToString("N0")
+            Report.LSay.Text = METotSay.Text
+            Report.XRichUpper.Rtf = data.Rows(0)("upper_part").ToString
+            Report.XRichBottom.Rtf = data.Rows(0)("bottom_part").ToString
+            '
 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        If Not is_locked = "1" Then
-            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.Print, DevExpress.XtraPrinting.CommandVisibility.None)
-            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.PrintDirect, DevExpress.XtraPrinting.CommandVisibility.None)
-            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.SendFile, DevExpress.XtraPrinting.CommandVisibility.None)
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+
+            'Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.Print, DevExpress.XtraPrinting.CommandVisibility.None)
+            'Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.PrintDirect, DevExpress.XtraPrinting.CommandVisibility.None)
+            'Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.SendFile, DevExpress.XtraPrinting.CommandVisibility.None)
+
+            Tool.ShowPreview()
+        Else
+            warningCustom("Please choose KO template")
         End If
-        Tool.ShowPreview()
     End Sub
 
     Private Sub BRevise_Click(sender As Object, e As EventArgs) Handles BRevise.Click
@@ -302,15 +329,48 @@ SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`
     End Sub
 
     Private Sub BLock_Click(sender As Object, e As EventArgs) Handles BLock.Click
+        Dim is_attach_ok As Boolean = True
+        'cek attachment
+        Dim qc As String = "SELECT * FROM tb_prod_order_ko_det kod
+LEFT JOIN
+(
+    SELECT id_prod_order FROM `tb_prod_order_attach` WHERE id_report_status=6 GROUP BY id_prod_order
+)att ON att.id_prod_order=kod.`id_prod_order`
+WHERE kod.`id_prod_order_ko`='" & id_ko & "'
+AND ISNULL(att.id_prod_order)"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            is_attach_ok = False
+        End If
+
+        qc = "SELECT * FROM tb_doc WHERE id_report='" & id_ko & "' AND report_mark_type='252'"
+        dtc = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count <= 0 Then
+            is_attach_ok = False
+        End If
+
+        'cek ko template
         Dim id_ko_template As String = execute_query("SELECT id_ko_template FROM tb_prod_order_ko WHERE id_prod_order_ko = " & id_ko, 0, True, "", "", "", "")
-        If Not id_ko_template = "0" Then
-            Dim query As String = "UPDATE tb_prod_order_ko SET is_locked='1' WHERE id_prod_order_ko='" & id_ko & "'"
+        If Not id_ko_template = "0" And is_attach_ok Then
+            Dim query As String = "UPDATE tb_prod_order_ko SET is_submit='1' WHERE id_prod_order_ko='" & id_ko & "'"
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("KO locked")
+            'submit
+            submit_who_prepared("252", id_ko, id_user)
+            '
+            infoCustom("KO Submitted")
             load_head()
         Else
-            stopCustom("Please select Contract Template and Update")
+            stopCustom("Please make sure template contract selected, all FGPO have attachment, and KO have attached signed copy")
         End If
+
+        'If Not id_ko_template = "0" Then
+        '    Dim query As String = "UPDATE tb_prod_order_ko SET is_locked='1' WHERE id_prod_order_ko='" & id_ko & "'"
+        '    execute_non_query(query, True, "", "", "", "")
+        '    infoCustom("KO locked")
+        '    load_head()
+        'Else
+        '    stopCustom("Please select Contract Template and Update")
+        'End If
     End Sub
 
     Private Sub SLERevision_EditValueChanged(sender As Object, e As EventArgs) Handles SLERevision.EditValueChanged
@@ -336,5 +396,11 @@ SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`
         FormDocumentUpload.report_mark_type = "252"
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.id_report = id_ko
+        FormReportMark.report_mark_type = "252"
+        FormReportMark.ShowDialog()
     End Sub
 End Class

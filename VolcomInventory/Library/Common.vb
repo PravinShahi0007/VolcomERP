@@ -6158,7 +6158,7 @@ INNER JOIN tb_prod_fc_sum fcs ON fcs.`id_prod_fc_sum`='" & id_report & "' AND nu
 FROM tb_notif_user nu
 INNER JOIN tb_purc_req fcs ON fcs.`id_purc_req`='" & id_report & "' AND nu.`report_mark_type`='201'"
         ElseIf rmt = "304" Then 'Scan Fisik delivery
-            q = "SELECT 'Scan cek fisik delivery' AS title,'FormOutboundList' AS form_name,'Scan cek fisik delviery tidak balance' AS description, nu.id_user , awb.`ol_number` AS report_number
+            q = "SELECT 'Scan cek fisik delivery' AS title,'FormOutboundList' AS form_name,'Scan cek fisik delivery tidak balance' AS description, nu.id_user , awb.`ol_number` AS report_number
 FROM tb_notif_user nu
 INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`='" & id_report & "' AND nu.`report_mark_type`='304'"
         ElseIf rmt = "305" Then 'Scan Fisik WH
@@ -7739,4 +7739,41 @@ INNER JOIN tb_sales_return_qc awb ON awb.`id_sales_return_qc`='" & id_report & "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
+
+    Function isGWPProduct(ByVal id_design_par As String, ByVal code_par As String) As String
+        ' is_md
+        Dim code_gwp As String = Microsoft.VisualBasic.Left(code_par, 4)
+        If code_gwp = "2" Then
+            Return "1"
+        Else
+            Return "2"
+        End If
+    End Function
+
+    Sub checkClosingSOHSalPeriod(ByVal month_coll As String, ByVal year_coll As String)
+        Dim query As String = "SELECT DATE_FORMAT(STR_TO_DATE(CONCAT(l.year_stock, '-', l.month_stock, '-', '01') ,'%Y-%m-%d'),'%M %Y') AS `month_view`,
+        DATE_FORMAT(lu.last_update, '%d %M %Y %H:%i') AS `last_updated`
+        FROM tb_log_closing_stock_sal_period l 
+        JOIN (
+	        SELECT MAX(l.log_date) AS `last_update` FROM tb_log_closing_stock_sal_period_daily l
+        ) lu
+        WHERE l.year_stock IN(" + year_coll + ") AND l.month_stock IN(" + month_coll + ") AND l.is_closed=2 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            Dim info_str As String = "Data masih akan terus diperbaharui untuk periode : " + System.Environment.NewLine
+            For i As Integer = 0 To data.Rows.Count - 1
+                If i > 0 Then
+                    info_str += System.Environment.NewLine
+                End If
+                info_str += "- " + data.Rows(i)("month_view").ToString + System.Environment.NewLine
+            Next
+            info_str += System.Environment.NewLine
+            info_str += "Last Updated : " + System.Environment.NewLine
+            info_str += "- " + data.Rows(0)("last_updated").ToString
+            info_str += System.Environment.NewLine
+            info_str += System.Environment.NewLine
+            info_str += "Klik OK untuk melanjutkan"
+            infoCustom(info_str)
+        End If
+    End Sub
 End Module

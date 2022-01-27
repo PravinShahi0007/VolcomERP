@@ -191,6 +191,7 @@ Public Class FormProduction
         query += "IFNULL(SUM(qty_retin.qty),0) As qty_ret_in, "
         query += "IFNULL(SUM(qty_retout.qty),0) As qty_ret_out, "
         query += "IFNULL(SUM(qty_claim.qty),0) As qty_ret_claim, "
+        query += "IFNULL(wo_price.fob_price,0) AS fob_price, "
         query += "a.id_term_production ,comp.id_comp,cc.id_comp_contact,comp.comp_name,comp.comp_number,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code,d.design_code_import, h.term_production, g.po_type,d.design_cop, "
         query += "a.prod_order_date,a.id_report_status,c.report_status,season_del_dsg.est_wh_date,season_del_dsg.delivery_date,MIN(qty_plwh.pl_prod_order_date) AS pl_prod_order_date,MIN(rec.prod_order_rec_date) AS prod_order_rec_date, "
         query += "b.id_design,b.id_delivery, e.delivery, f.season, e.id_season,`range`.range "
@@ -238,6 +239,7 @@ Public Class FormProduction
 	                SELECT wo.id_prod_order, wo.id_ovh_price, wo.prod_order_wo_kurs, cur.currency,wo.prod_order_wo_vat,
 	                (SUM(CAST(wod.prod_order_wo_det_price * pod.prod_order_qty AS DECIMAL(13,2))) * wo.prod_order_wo_kurs * (100 + wo.prod_order_wo_vat)/100) AS `wo_price`
                     ,(SUM(CAST(wod.prod_order_wo_det_price * pod.prod_order_qty AS DECIMAL(13,2))) * (100 + wo.prod_order_wo_vat)/100) AS `wo_price_no_kurs`
+                    ,wod.prod_order_wo_det_price AS fob_price
 	                FROM tb_prod_order_wo wo
 	                INNER JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo = wo.id_prod_order_wo
 	                INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det = wod.id_prod_order_det
@@ -285,8 +287,9 @@ GROUP BY recd.id_prod_order_det
                     ) qty_claim ON qty_claim.id_prod_order_det=pod.id_prod_order_det "
         query += "LEFT JOIN (
 	                    SELECT * FROM (
-		                    SELECT * FROM tb_prod_order_ko_det
-		                    ORDER BY id_prod_order_ko_det DESC
+		                    SELECT kod.* FROM tb_prod_order_ko_det kod
+                            INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order)
+		                    ORDER BY kod.id_prod_order_ko_det DESC
 	                    )ko GROUP BY ko.id_prod_order
                     ) ko ON ko.id_prod_order=a.id_prod_order "
         query += "LEFT JOIN (
@@ -705,7 +708,7 @@ GROUP BY recd.id_prod_order_det
             query_where += " AND c.id_comp='" & SLEVendorKO.EditValue.ToString & "'"
         End If
         '
-        Dim query As String = "SELECT ko.*,IF(ko.is_void='1','Void','-') AS status,c.`comp_name` ,GROUP_CONCAT(dsg.design_code,' - ',dsg.design_display_name SEPARATOR '\n') AS design_list
+        Dim query As String = "SELECT ko.*,IF(ko.is_void='1','Void',IF(ko.is_locked=1,'Completed',IF(ko.is_submit=2,'Not Submitted',sts.report_status))) AS status,c.`comp_name` ,GROUP_CONCAT(dsg.design_code,' - ',dsg.design_display_name SEPARATOR '\n') AS design_list
 FROM tb_prod_order_ko ko
 INNER JOIN tb_prod_order_ko_det kod ON kod.id_prod_order_ko=ko.id_prod_order_ko
 INNER JOIN tb_prod_order po ON po.id_prod_order=kod.id_prod_order
@@ -713,6 +716,7 @@ INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_dem
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ko.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=ko.id_report_status
 WHERE ko.id_prod_order_ko 
 IN (SELECT MAX(id_prod_order_ko) AS id FROM `tb_prod_order_ko`
 GROUP BY id_prod_order_ko_reff) AND is_purc_mat=2 " & query_where & " GROUP BY ko.id_prod_order_ko ORDER BY ko.id_prod_order_ko DESC"
@@ -734,6 +738,7 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=2 " & query_where & " GROUP BY k
         viewSearchLookupQuery(SLEVendorKO, query, "id_comp", "comp_name_label", "id_comp")
         viewSearchLookupQuery(SLEVendorKP, query, "id_comp", "comp_name_label", "id_comp")
         viewSearchLookupQuery(SLEVendorCopyProto2, query, "id_comp", "comp_name_label", "id_comp")
+        viewSearchLookupQuery(SLEVendorAttachment, query, "id_comp", "comp_name_label", "id_comp")
     End Sub
 
     Sub view_ko()
@@ -853,5 +858,54 @@ GROUP BY id_prod_order_cps2_reff) AND is_purc_mat=2 " & query_where & " ORDER BY
 
     Private Sub BImportRule_Click(sender As Object, e As EventArgs) Handles BImportRule.Click
         FormImportFGRule.ShowDialog()
+    End Sub
+
+    Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
+        FormProductionAttach.ShowDialog()
+    End Sub
+
+    Private Sub BViewAttachFGPO_Click(sender As Object, e As EventArgs) Handles BViewAttachFGPO.Click
+        load_fgpo_attach()
+    End Sub
+
+    Sub load_fgpo_attach()
+        Dim q As String = "SELECT IF(a.is_submit=1,sts.report_status,'Not Submitted') AS report_status,a.`id_prod_order_attach`,po.`id_prod_order`,d.`id_design`,a.`number`,po.`prod_order_number`,emp.`employee_name`,a.`created_date`,CONCAT(cd.class,' ',d.`design_name`,' ',cd.color) AS design,d.design_code,c.`comp_name`
+FROM tb_prod_order_attach a 
+INNER JOIN tb_prod_order po ON po.id_prod_order=a.`id_prod_order`
+INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order`=po.`id_prod_order` AND wo.`is_main_vendor`=1
+INNER JOIN tb_m_ovh_price prc ON prc.`id_ovh_price`=wo.`id_ovh_price`
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=prc.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN `tb_prod_demand_design` pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+INNER JOIN tb_m_design d ON d.`id_design`=pdd.`id_design`
+INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=a.`id_report_status`
+INNER JOIN tb_m_user usr ON usr.`id_user`=a.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = d.id_design"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCFGPOPPS.DataSource = dt
+        GVFGPOPPS.BestFitColumns()
+    End Sub
+
+    Private Sub GVFGPOPPS_DoubleClick(sender As Object, e As EventArgs) Handles GVFGPOPPS.DoubleClick
+        If GVFGPOPPS.RowCount > 0 Then
+            FormProductionAttach.id = GVFGPOPPS.GetFocusedRowCellValue("id_prod_order_attach").ToString
+            FormProductionAttach.ShowDialog()
+        End If
     End Sub
 End Class

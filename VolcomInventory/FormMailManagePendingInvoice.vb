@@ -38,7 +38,7 @@
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT cg.id_comp_group,cg.comp_group AS `group`, cg.description AS `group_description`, c.id_store_company, hc.comp_name AS `comp_group_office`,
         SUM(sp.sales_pos_total_qty) AS `total_qty`, SUM(sp.`sales_pos_total`) AS sales_pos_total,
-        SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))) AS amount
+        SUM(CAST(IF(typ.`is_receive_payment`=2,-1,1) * sp.netto AS DECIMAL(15,2))) AS amount
         FROM tb_sales_pos sp 
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
         INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type

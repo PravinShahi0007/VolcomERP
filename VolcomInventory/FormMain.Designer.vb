@@ -117,143 +117,6 @@ Partial Class FormMain
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NotifyIconVI = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.NBProdRet = New DevExpress.XtraNavBar.NavBarControl()
-        Me.NBGSales = New DevExpress.XtraNavBar.NavBarGroup()
-        Me.NBSalesTarget = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBLinePlan = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBLinePlanPublic = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGLineList = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBLineListNonMerch = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBDesignLineList = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBDesignListApp = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGLineListDsg = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBProposePrice = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGDS = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBDistSchemaSetup = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGSOReff = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGWHAlloc = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGWHAllocLog = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesOrder = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesOrderReport = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBPrepareOrderUni = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesOrderList = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesOrderCat = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesDelOrder = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGTrfNew = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesReturnOrder = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesReturnOrderOL = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesReturn = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesReturnQC = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBNonStockInv = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBDelEmpty = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesOrderSvcLevel = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBVerifyMaster = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBWHSvcLevel = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesPOS = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBInvDiffMargin = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesPromo = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGMissing = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBScanReturn = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBInvoiceStaff = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesCreditNote = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBRetOlStoreList = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBCreditNoteOLStore = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBODMComplete = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBUniformExpense = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBUniformCreditNote = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBOLStoreReport = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesWeekly = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGSoStore = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGSOWH = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGAdj = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGTrf = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGTrfRec = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGWoff = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGWoffList = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGStock = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGTracking = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBTransList = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSOHPeriode = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSOHPrice = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSOH = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSOHSum = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAWB = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBWHAwbillLock = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBDeliveryMonitoring = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBCargoRate = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBImportDO = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGMissingInvoice = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGMissingCreditNote = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesInvoice = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGRepair = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFGRepairReturnRec = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBPromoTrf = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBTransSum = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBBackupStock = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFirstDel = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBCompareStockCard = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesTracking = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBRevenueBudget = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBRevenue = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesReturnRec = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBOLStoreWork = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesTargetPropose = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBEstQtyToWH = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesRecord = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBVoucherPOS = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBPromoRules = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBBuktiPickup = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBTrackingReturn = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBInvTracking = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBDelManifest = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBDocTracking = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesInv = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBLineListMD = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBLineListMKT = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBLineListRetail = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBLineListVM = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NB3plRate = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFabricType = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSetupBudgetProdDemand = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBRetOlShop = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBRetOlStoreCust = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBCompareStockWebsite = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAcceptRefundOLStore = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBOutboundList = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBPromoCollection = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBVerificationMasterOL = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBVerificationMasterPrice = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSendEmailReturn = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBReturnNote = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBInboundAwb = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBListStore = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NB3PLMailReturn = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBOOSFinalize = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAdjustmentOG = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBPromoCollectionMarketplace = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBReturnForBOF = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBOLReturnRefuse = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBCancellationCN = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBProposePriceMKD = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBPODReport = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBInvoiceVerification = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBMonthlySalesPerformance = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBStockTakePropose = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBStockTakeStorePeriod = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBStockTakePartial = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSNIpps = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSNIWH = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBProductPerform = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBCapsule = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBPromoZalora = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSalesOrderSvcLevelMD = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBProposePromo = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBNominatifPromo = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBRetExos = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBDisableExos = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBEOSChange = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBEts = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBMKDEvent = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBBSP = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGGeneral = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBWork = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBCompany_category = New DevExpress.XtraNavBar.NavBarItem()
@@ -427,6 +290,7 @@ Partial Class FormMain
         Me.NBItemDel = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBItemTrf = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBOGTransfer = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBVMStock = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBPurcPayment = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGProduction = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBHandoverReportPublic = New DevExpress.XtraNavBar.NavBarItem()
@@ -474,6 +338,143 @@ Partial Class FormMain
         Me.NBImportPlanMonth = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBPIBReview = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBLinePlanProduction = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBGSales = New DevExpress.XtraNavBar.NavBarGroup()
+        Me.NBSalesTarget = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBLinePlan = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBLinePlanPublic = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGLineList = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBLineListNonMerch = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBDesignLineList = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBDesignListApp = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGLineListDsg = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBProposePrice = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGDS = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBDistSchemaSetup = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGSOReff = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGWHAlloc = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGWHAllocLog = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesOrder = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesOrderReport = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBPrepareOrderUni = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesOrderList = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesOrderCat = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesDelOrder = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGTrfNew = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesReturnOrder = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesReturnOrderOL = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesReturn = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesReturnQC = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBNonStockInv = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBDelEmpty = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesOrderSvcLevel = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBVerifyMaster = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBWHSvcLevel = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesPOS = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBInvDiffMargin = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesPromo = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGMissing = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBScanReturn = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBInvoiceStaff = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesCreditNote = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBRetOlStoreList = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBCreditNoteOLStore = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBODMComplete = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBUniformExpense = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBUniformCreditNote = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBOLStoreReport = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesWeekly = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGSoStore = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGSOWH = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGAdj = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGTrf = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGTrfRec = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGWoff = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGWoffList = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGStock = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGTracking = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBTransList = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSOHPeriode = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSOHPrice = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSOH = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSOHSum = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAWB = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBWHAwbillLock = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBDeliveryMonitoring = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBCargoRate = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBImportDO = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGMissingInvoice = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGMissingCreditNote = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesInvoice = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGRepair = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFGRepairReturnRec = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBPromoTrf = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBTransSum = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBBackupStock = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFirstDel = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBCompareStockCard = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesTracking = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBRevenueBudget = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBRevenue = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesReturnRec = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBOLStoreWork = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesTargetPropose = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBEstQtyToWH = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesRecord = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBVoucherPOS = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBPromoRules = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBBuktiPickup = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBTrackingReturn = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBInvTracking = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBDelManifest = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBDocTracking = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesInv = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBLineListMD = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBLineListMKT = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBLineListRetail = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBLineListVM = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NB3plRate = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFabricType = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSetupBudgetProdDemand = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBRetOlShop = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBRetOlStoreCust = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBCompareStockWebsite = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAcceptRefundOLStore = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBOutboundList = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBPromoCollection = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBVerificationMasterOL = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBVerificationMasterPrice = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSendEmailReturn = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBReturnNote = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBInboundAwb = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBListStore = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NB3PLMailReturn = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBOOSFinalize = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAdjustmentOG = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBPromoCollectionMarketplace = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBReturnForBOF = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBOLReturnRefuse = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBCancellationCN = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBProposePriceMKD = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBPODReport = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBInvoiceVerification = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBMonthlySalesPerformance = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBStockTakePropose = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBStockTakeStorePeriod = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBStockTakePartial = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSNIpps = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSNIWH = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBProductPerform = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBCapsule = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBPromoZalora = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSalesOrderSvcLevelMD = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBProposePromo = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBNominatifPromo = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBRetExos = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBDisableExos = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBEOSChange = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBEts = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBMKDEvent = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBBSP = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGAccounting = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBBankWithdrawal = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBDebitNote = New DevExpress.XtraNavBar.NavBarItem()
@@ -526,6 +527,7 @@ Partial Class FormMain
         Me.NBPolis = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBBiayaSewa = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBPrepaidExpense = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBDeviden = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBABGRoyaltyZone = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBQC = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBEstQtyToQC = New DevExpress.XtraNavBar.NavBarItem()
@@ -544,6 +546,7 @@ Partial Class FormMain
         Me.NBHandoverReport = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBQCSNI = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSerahTerimaSNI = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBQCReport1 = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGSetup = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NavBarItemItemCategory = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBRawMatCode = New DevExpress.XtraNavBar.NavBarItem()
@@ -1464,7 +1467,7 @@ Partial Class FormMain
         Me.NBProdRet.ActiveGroup = Me.NBGGeneral
         Me.NBProdRet.Dock = System.Windows.Forms.DockStyle.Fill
         Me.NBProdRet.Groups.AddRange(New DevExpress.XtraNavBar.NavBarGroup() {Me.NBGGeneral, Me.NBGHRD, Me.NBGMaster, Me.NBGTransaction, Me.NBGMat, Me.NBGProduction, Me.NBGSales, Me.NBGAccounting, Me.NBQC, Me.NBGSetup})
-        Me.NBProdRet.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItemItemCategory, Me.NBArea, Me.NBCompany_category, Me.NBUom, Me.NBSeason, Me.NBDepartement, Me.NBUser, Me.NBCompany, Me.NBRawMaterial, Me.NBRawMatCode, Me.NBAccess, Me.NBAccessUser, Me.NBOVH, Me.NBProdDemand, Me.NBCode, Me.NBCodeTemplate, Me.NBSample, Me.NBProduct, Me.NBBom, Me.NBPicLocation, Me.NBRawMatCat, Me.NBPLSample, Me.NBHeadNumber, Me.NBSamplePurchase, Me.NBSampleReceive, Me.NBSamplePR, Me.NBWH, Me.NBReceiptSample, Me.NBSampleStorage, Me.NBPLDelivery, Me.NBROSample, Me.NBWork, Me.NBPLDel, Me.NBReqSample, Me.NBSamplePlan, Me.NBMarkAssign, Me.NBMatPurchase, Me.NBReturnSample, Me.NBMatWO, Me.NBMatRecPurc, Me.NBMatRecWO, Me.NBMatRet, Me.NBAdjSample, Me.NBProdOrder, Me.NBMatPR, Me.NBMatPRWO, Me.NBAdjMat, Me.NBProdRec, Me.NBProdReturn, Me.NBMatPL, Me.NBMatMRS, Me.NBProdPLToWH, Me.NBMatInvoice, Me.NBAcc, Me.NBAccJournal, Me.NBProdRecWH, Me.NBSalesTarget, Me.NBSalesOrder, Me.NBSalesDelOrder, Me.NBSalesReturnOrder, Me.NBSalesReturn, Me.NBSalesPOS, Me.NBSalesReturnQC, Me.NBSalesInvoice, Me.NBJournalAdj, Me.NBProdWOPR, Me.NBFGSoStore, Me.NBFGMissing, Me.NBFGMissingInvoice, Me.NBFGSOWH, Me.NBMatSO, Me.NBFGAdj, Me.NBFGTrf, Me.NBFGTrfRec, Me.NBFGTracking, Me.NBFGStock, Me.NBAccSum, Me.NBAccFY, Me.NBMatStock, Me.NBSampleStock, Me.NBEmployee, Me.NBSampleTrf, Me.NBSampleDelivery, Me.NBSampleDelRec, Me.NBSampleBarcode, Me.NBSampleOrder, Me.NBSampleDelOrder, Me.NBSampleStockOpname, Me.NBFGCodeReplace, Me.NBPayment, Me.NBSalesWeekly, Me.NBSalesCreditNote, Me.NBFGMissingCreditNote, Me.NBSOHPeriode, Me.NBSOHPrice, Me.NBSOH, Me.NBSOHSum, Me.NBFGWoff, Me.NavBarItem2, Me.NBFGWoffList, Me.NBProposePrice, Me.NBFGLineList, Me.NBDistSchemaSetup, Me.NBFGLineListDsg, Me.NBRetCode, Me.NBFGProdList, Me.NBPrintBarcode, Me.NBDesignList, Me.NBSampleOrdered, Me.NBFGDS, Me.NBRateStore, Me.NBAdjQC, Me.NBFGSOReff, Me.NBSalesOrderList, Me.NBFGTrfNew, Me.NBSalesPromo, Me.NBComputer, Me.NBScanEFactur, Me.NBBorrowQCRec, Me.NBSeasonNonMerch, Me.NBLineListNonMerch, Me.NBSalesOrderCat, Me.NBAWB, Me.NBCargoRate, Me.NBSalesOrderSvcLevel, Me.NBMasterPrice, Me.NBImportDO, Me.NBDesignLineList, Me.NBWHSvcLevel, Me.NBTestBC, Me.NBSamplePL, Me.NBMasterSamplePrice, Me.NBSamplePriceRet, Me.NBFGWHAlloc, Me.NBProdWO, Me.NBFGWHAllocLog, Me.NBStockQC, Me.NBSamplePLRet, Me.NBDesignListApp, Me.NBLeavePropose, Me.NBInitializeFP, Me.NBFPSetup, Me.NBAttnLog, Me.NBShift, Me.NBHoliday, Me.NBSchedule, Me.NBAttnInd, Me.NBAttnSum, Me.NBEmpReview, Me.NBFGRepair, Me.NBFGRepairRec, Me.NBFGRepairReturn, Me.NBFGRepairReturnRec, Me.NBEmpLeave, Me.NBAttnSumDept, Me.NBEmpEmail, Me.NBScheduleSecurity, Me.NBEmpLeaveRemaining, Me.NBDP, Me.NBChSchedule, Me.NBSchedulePropose, Me.NBProdReport, Me.NBAttnStore, Me.NBSpecialReceiving, Me.NBFinalClear, Me.NBSchCompare, Me.NBDutyReport, Me.NBSampleSum, Me.NBCloseFGPO, Me.NBProdAss, Me.NBTransList, Me.NBRateCargo, Me.NBDelEmpty, Me.NBNonStockInv, Me.NBAwbill, Me.NBEmpUniPeriod, Me.NBRateManagement, Me.NBPrepareOrderUni, Me.NBSubDept, Me.NBCloseRecQC, Me.NBClaimFGPO, Me.NBInvoiceStaff, Me.NBCreditNoteOLStore, Me.NBSalesReturnOrderOL, Me.NBOLStoreReport, Me.NBPromoTrf, Me.NBAgingFG, Me.NBAgingFGReport, Me.NBProdDebitNote, Me.NBTransSum, Me.NBBackupStock, Me.NBCodeReplacementPrint, Me.NBCodeReplacementVerify, Me.NBCargoRateView, Me.NBPayroll, Me.NBFirstDel, Me.NBCompareStockCard, Me.NBLeaveCut, Me.NBProdOver, Me.NBAssetCat, Me.NBAsset, Me.NBAssetPO, Me.NBAssetRec, Me.NBGUniformPublic, Me.NBGUniformAdmin, Me.NBEmpNorm, Me.NBUniformReport, Me.NBProductForBOF, Me.NBSalesTracking, Me.NBUniformExpense, Me.NBWHAwbillLock, Me.NBRevenueBudget, Me.NBRevenue, Me.NBItemList, Me.NBItemCat, Me.NBExpenseBudget, Me.NBMappingCat, Me.NBPurcReq, Me.NBProposeExpenseBudget, Me.NBRevisionExpenseBudget, Me.NBPurcReqAdmin, Me.NBPurcOrder, Me.NBRepairProductToVendor, Me.NBRecRepairFromVendor, Me.NBAttnIndDep, Me.NBPDRef, Me.NBCancelForm, Me.NBCancelFormAdmin, Me.NBPurcReceiveNonAsset, Me.NBItemStock, Me.NBPurcReturn, Me.NBEmpUniSummary, Me.NBClaimReturn, Me.NBItemRequest, Me.NBItemDel, Me.NBPurcPayment, Me.NBItemExpense, Me.NBBankWithdrawal, Me.NBAssetManagement, Me.NBBankDeposit, Me.NBItemRequestForStore, Me.NBCashAdvance, Me.NBSalesReturnRec, Me.NBEmpPerAppraisal, Me.NBEmpPerAppraisalDep, Me.NBDeptHeadSurvey, Me.NBDeptHeadSurveyHRD, Me.NBKursTrans, Me.NBProposeExpenseBudgetAdmin, Me.NBRevExpenseBudgetAdmin, Me.NBOpt, Me.NBSampleBudget, Me.NBOLStoreWork, Me.NBVerifyMaster, Me.NBSamplePOMat, Me.NBProposeEmp, Me.NBSamplePurcClose, Me.NBProposeEmpSal, Me.NBEmpOvertime, Me.NBInvDiffMargin, Me.NBInvoiceFGPO, Me.NBLinePlan, Me.NBMTC, Me.NBLinePlanPublic, Me.NBSalesTargetPropose, Me.NBEmpOvertimeDept, Me.NBWorkOrder, Me.NBEstQtyToWH, Me.NBEstQtyToQC, Me.NBQCHOTarget, Me.NBHandoverReport, Me.NBHandoverReportPublic, Me.NBSalesOrderReport, Me.NBLinePlanProduction, Me.NBProposeEmpSalary, Me.NBItemSubCat, Me.NBItemSubCatAcc, Me.NBPayrollApprove, Me.NBSetupBudgetOPEX, Me.NBSampleDev, Me.NBSetupItemMainCat, Me.NBSalesRecord, Me.NBSetupBudgetCAPEX, Me.NBAgingAR, Me.NBReportBudget, Me.NBVoucherPOS, Me.NBPromoRules, Me.NBInputAttendance, Me.NBPurcReqIC, Me.NBPurcReqIA, Me.NBBuktiPickup, Me.NBDebitNote, Me.NBScheduleProposeSales, Me.NBTrackingReturn, Me.NBInputAttendanceHRD, Me.NBBPJSKesehatan, Me.NBBPJSKesehatanApprove, Me.NBSendEmailAcc, Me.NBCompanyGroup, Me.NBCompanyEmailMapping, Me.NBInvTracking, Me.NBFolluwUpAR, Me.NBInvMat, Me.NBAREvalSchedule, Me.NBAREvaluation, Me.NBDelManifest, Me.NBDelayPayment, Me.NBAccountingLedger, Me.NBCollectionAvg, Me.NBAPReport, Me.NBAccountingWorksheet, Me.NBReportBalanceSheet, Me.NBPriceList, Me.NBDocTracking, Me.NBListFixedAsset, Me.NBUniformCreditNote, Me.NBSalesInv, Me.NBAccClosing, Me.NBSeasonDelivery, Me.NBLeavePerUser, Me.NBPaymentMissing, Me.NBLineListMD, Me.NBEmpPerAppraisalAtt, Me.NBLineListMKT, Me.NBLineListRetail, Me.NBLineListVM, Me.NBSetupBudgetProdDemand, Me.NBAttnIndEmp, Me.NBLeavePerDepartement, Me.NBTabunganMissing, Me.NBScheduleProposeDepartement, Me.NBPriceForSync, Me.NB3plRate, Me.NBFabricType, Me.NBLetterOfStatement, Me.NBCompareStockWebsite, Me.NBItemTrf, Me.NBRetOlShop, Me.NBRetOlStoreList, Me.NBRetOlStoreCust, Me.NBAcceptRefundOLStore, Me.NBCompCOA, Me.NBSalesBranch, Me.NBPromoCollection, Me.NBExternalUser, Me.NBMappingStore, Me.NBMasterStore, Me.NBDesignColumn, Me.NBCNSalesBranch, Me.NBOutboundList, Me.NBODMComplete, Me.NBPOList, Me.NBPayoutReport, Me.NBVerificationMasterOL, Me.NBFabrication, Me.NBABGRoyaltyZone, Me.NBItemRequestPurchasing, Me.NBDesignTemplate, Me.NBMaterialRequisition, Me.NBSendEmailReturn, Me.NBAdditionalCost, Me.NBDesignImages, Me.NBEmployeeContract, Me.NB3PLMailReturn, Me.NBInboundAwb, Me.NBReturnNote, Me.NBListStore, Me.NBScanReturn, Me.NBCompanyEmailMappingWH, Me.NBBatchUpload, Me.NBOOSFinalize, Me.NBAdjustmentOG, Me.NBVerificationMasterPrice, Me.NBPolis, Me.NBPromoCollectionMarketplace, Me.NBReturnForBOF, Me.NBStockCardAsset, Me.NBOLReturnRefuse, Me.NBSetupMasterCode, Me.NBCancellationCN, Me.NBBiayaSewa, Me.NBPricePolicyCode, Me.NBDeliveryMonitoring, Me.NBPriceChecker, Me.NBProposePriceMKD, Me.NBPODReport, Me.NBMonthlySalesPerformance, Me.NBCatalogSpec, Me.NBInvoiceVerification, Me.NBStockTakeStorePeriod, Me.NBProductPerform, Me.NBCompGroupEmail, Me.NBOGTransfer, Me.NBAWBOther, Me.NBCompStore, Me.NBSNIpps, Me.NBSerahTerimaSNI, Me.NBStockTakePartial, Me.NBSNIrealisasi, Me.NBQCSNI, Me.NBSNIBarcode, Me.NBSNIWH, Me.NBPreCal, Me.NBStoreActivation, Me.NBAccountActivation, Me.NBSilhouette, Me.NBPriceMKDVios, Me.NBCapsule, Me.NBStockTakePropose, Me.NBPrepaidExpense, Me.NBPromoZalora, Me.NBSalesOrderSvcLevelMD, Me.NBDisplayCapacity, Me.NBVMStoreDisplay, Me.NBImportPlanMonth, Me.NBPIBReview, Me.NBProposePromo, Me.NBNominatifPromo, Me.NBRetExos, Me.NBDisableExos, Me.NBEOSChange, Me.NBEts, Me.NBMKDEvent, Me.NBBSP})
+        Me.NBProdRet.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItemItemCategory, Me.NBArea, Me.NBCompany_category, Me.NBUom, Me.NBSeason, Me.NBDepartement, Me.NBUser, Me.NBCompany, Me.NBRawMaterial, Me.NBRawMatCode, Me.NBAccess, Me.NBAccessUser, Me.NBOVH, Me.NBProdDemand, Me.NBCode, Me.NBCodeTemplate, Me.NBSample, Me.NBProduct, Me.NBBom, Me.NBPicLocation, Me.NBRawMatCat, Me.NBPLSample, Me.NBHeadNumber, Me.NBSamplePurchase, Me.NBSampleReceive, Me.NBSamplePR, Me.NBWH, Me.NBReceiptSample, Me.NBSampleStorage, Me.NBPLDelivery, Me.NBROSample, Me.NBWork, Me.NBPLDel, Me.NBReqSample, Me.NBSamplePlan, Me.NBMarkAssign, Me.NBMatPurchase, Me.NBReturnSample, Me.NBMatWO, Me.NBMatRecPurc, Me.NBMatRecWO, Me.NBMatRet, Me.NBAdjSample, Me.NBProdOrder, Me.NBMatPR, Me.NBMatPRWO, Me.NBAdjMat, Me.NBProdRec, Me.NBProdReturn, Me.NBMatPL, Me.NBMatMRS, Me.NBProdPLToWH, Me.NBMatInvoice, Me.NBAcc, Me.NBAccJournal, Me.NBProdRecWH, Me.NBSalesTarget, Me.NBSalesOrder, Me.NBSalesDelOrder, Me.NBSalesReturnOrder, Me.NBSalesReturn, Me.NBSalesPOS, Me.NBSalesReturnQC, Me.NBSalesInvoice, Me.NBJournalAdj, Me.NBProdWOPR, Me.NBFGSoStore, Me.NBFGMissing, Me.NBFGMissingInvoice, Me.NBFGSOWH, Me.NBMatSO, Me.NBFGAdj, Me.NBFGTrf, Me.NBFGTrfRec, Me.NBFGTracking, Me.NBFGStock, Me.NBAccSum, Me.NBAccFY, Me.NBMatStock, Me.NBSampleStock, Me.NBEmployee, Me.NBSampleTrf, Me.NBSampleDelivery, Me.NBSampleDelRec, Me.NBSampleBarcode, Me.NBSampleOrder, Me.NBSampleDelOrder, Me.NBSampleStockOpname, Me.NBFGCodeReplace, Me.NBPayment, Me.NBSalesWeekly, Me.NBSalesCreditNote, Me.NBFGMissingCreditNote, Me.NBSOHPeriode, Me.NBSOHPrice, Me.NBSOH, Me.NBSOHSum, Me.NBFGWoff, Me.NavBarItem2, Me.NBFGWoffList, Me.NBProposePrice, Me.NBFGLineList, Me.NBDistSchemaSetup, Me.NBFGLineListDsg, Me.NBRetCode, Me.NBFGProdList, Me.NBPrintBarcode, Me.NBDesignList, Me.NBSampleOrdered, Me.NBFGDS, Me.NBRateStore, Me.NBAdjQC, Me.NBFGSOReff, Me.NBSalesOrderList, Me.NBFGTrfNew, Me.NBSalesPromo, Me.NBComputer, Me.NBScanEFactur, Me.NBBorrowQCRec, Me.NBSeasonNonMerch, Me.NBLineListNonMerch, Me.NBSalesOrderCat, Me.NBAWB, Me.NBCargoRate, Me.NBSalesOrderSvcLevel, Me.NBMasterPrice, Me.NBImportDO, Me.NBDesignLineList, Me.NBWHSvcLevel, Me.NBTestBC, Me.NBSamplePL, Me.NBMasterSamplePrice, Me.NBSamplePriceRet, Me.NBFGWHAlloc, Me.NBProdWO, Me.NBFGWHAllocLog, Me.NBStockQC, Me.NBSamplePLRet, Me.NBDesignListApp, Me.NBLeavePropose, Me.NBInitializeFP, Me.NBFPSetup, Me.NBAttnLog, Me.NBShift, Me.NBHoliday, Me.NBSchedule, Me.NBAttnInd, Me.NBAttnSum, Me.NBEmpReview, Me.NBFGRepair, Me.NBFGRepairRec, Me.NBFGRepairReturn, Me.NBFGRepairReturnRec, Me.NBEmpLeave, Me.NBAttnSumDept, Me.NBEmpEmail, Me.NBScheduleSecurity, Me.NBEmpLeaveRemaining, Me.NBDP, Me.NBChSchedule, Me.NBSchedulePropose, Me.NBProdReport, Me.NBAttnStore, Me.NBSpecialReceiving, Me.NBFinalClear, Me.NBSchCompare, Me.NBDutyReport, Me.NBSampleSum, Me.NBCloseFGPO, Me.NBProdAss, Me.NBTransList, Me.NBRateCargo, Me.NBDelEmpty, Me.NBNonStockInv, Me.NBAwbill, Me.NBEmpUniPeriod, Me.NBRateManagement, Me.NBPrepareOrderUni, Me.NBSubDept, Me.NBCloseRecQC, Me.NBClaimFGPO, Me.NBInvoiceStaff, Me.NBCreditNoteOLStore, Me.NBSalesReturnOrderOL, Me.NBOLStoreReport, Me.NBPromoTrf, Me.NBAgingFG, Me.NBAgingFGReport, Me.NBProdDebitNote, Me.NBTransSum, Me.NBBackupStock, Me.NBCodeReplacementPrint, Me.NBCodeReplacementVerify, Me.NBCargoRateView, Me.NBPayroll, Me.NBFirstDel, Me.NBCompareStockCard, Me.NBLeaveCut, Me.NBProdOver, Me.NBAssetCat, Me.NBAsset, Me.NBAssetPO, Me.NBAssetRec, Me.NBGUniformPublic, Me.NBGUniformAdmin, Me.NBEmpNorm, Me.NBUniformReport, Me.NBProductForBOF, Me.NBSalesTracking, Me.NBUniformExpense, Me.NBWHAwbillLock, Me.NBRevenueBudget, Me.NBRevenue, Me.NBItemList, Me.NBItemCat, Me.NBExpenseBudget, Me.NBMappingCat, Me.NBPurcReq, Me.NBProposeExpenseBudget, Me.NBRevisionExpenseBudget, Me.NBPurcReqAdmin, Me.NBPurcOrder, Me.NBRepairProductToVendor, Me.NBRecRepairFromVendor, Me.NBAttnIndDep, Me.NBPDRef, Me.NBCancelForm, Me.NBCancelFormAdmin, Me.NBPurcReceiveNonAsset, Me.NBItemStock, Me.NBPurcReturn, Me.NBEmpUniSummary, Me.NBClaimReturn, Me.NBItemRequest, Me.NBItemDel, Me.NBPurcPayment, Me.NBItemExpense, Me.NBBankWithdrawal, Me.NBAssetManagement, Me.NBBankDeposit, Me.NBItemRequestForStore, Me.NBCashAdvance, Me.NBSalesReturnRec, Me.NBEmpPerAppraisal, Me.NBEmpPerAppraisalDep, Me.NBDeptHeadSurvey, Me.NBDeptHeadSurveyHRD, Me.NBKursTrans, Me.NBProposeExpenseBudgetAdmin, Me.NBRevExpenseBudgetAdmin, Me.NBOpt, Me.NBSampleBudget, Me.NBOLStoreWork, Me.NBVerifyMaster, Me.NBSamplePOMat, Me.NBProposeEmp, Me.NBSamplePurcClose, Me.NBProposeEmpSal, Me.NBEmpOvertime, Me.NBInvDiffMargin, Me.NBInvoiceFGPO, Me.NBLinePlan, Me.NBMTC, Me.NBLinePlanPublic, Me.NBSalesTargetPropose, Me.NBEmpOvertimeDept, Me.NBWorkOrder, Me.NBEstQtyToWH, Me.NBEstQtyToQC, Me.NBQCHOTarget, Me.NBHandoverReport, Me.NBHandoverReportPublic, Me.NBSalesOrderReport, Me.NBLinePlanProduction, Me.NBProposeEmpSalary, Me.NBItemSubCat, Me.NBItemSubCatAcc, Me.NBPayrollApprove, Me.NBSetupBudgetOPEX, Me.NBSampleDev, Me.NBSetupItemMainCat, Me.NBSalesRecord, Me.NBSetupBudgetCAPEX, Me.NBAgingAR, Me.NBReportBudget, Me.NBVoucherPOS, Me.NBPromoRules, Me.NBInputAttendance, Me.NBPurcReqIC, Me.NBPurcReqIA, Me.NBBuktiPickup, Me.NBDebitNote, Me.NBScheduleProposeSales, Me.NBTrackingReturn, Me.NBInputAttendanceHRD, Me.NBBPJSKesehatan, Me.NBBPJSKesehatanApprove, Me.NBSendEmailAcc, Me.NBCompanyGroup, Me.NBCompanyEmailMapping, Me.NBInvTracking, Me.NBFolluwUpAR, Me.NBInvMat, Me.NBAREvalSchedule, Me.NBAREvaluation, Me.NBDelManifest, Me.NBDelayPayment, Me.NBAccountingLedger, Me.NBCollectionAvg, Me.NBAPReport, Me.NBAccountingWorksheet, Me.NBReportBalanceSheet, Me.NBPriceList, Me.NBDocTracking, Me.NBListFixedAsset, Me.NBUniformCreditNote, Me.NBSalesInv, Me.NBAccClosing, Me.NBSeasonDelivery, Me.NBLeavePerUser, Me.NBPaymentMissing, Me.NBLineListMD, Me.NBEmpPerAppraisalAtt, Me.NBLineListMKT, Me.NBLineListRetail, Me.NBLineListVM, Me.NBSetupBudgetProdDemand, Me.NBAttnIndEmp, Me.NBLeavePerDepartement, Me.NBTabunganMissing, Me.NBScheduleProposeDepartement, Me.NBPriceForSync, Me.NB3plRate, Me.NBFabricType, Me.NBLetterOfStatement, Me.NBCompareStockWebsite, Me.NBItemTrf, Me.NBRetOlShop, Me.NBRetOlStoreList, Me.NBRetOlStoreCust, Me.NBAcceptRefundOLStore, Me.NBCompCOA, Me.NBSalesBranch, Me.NBPromoCollection, Me.NBExternalUser, Me.NBMappingStore, Me.NBMasterStore, Me.NBDesignColumn, Me.NBCNSalesBranch, Me.NBOutboundList, Me.NBODMComplete, Me.NBPOList, Me.NBPayoutReport, Me.NBVerificationMasterOL, Me.NBFabrication, Me.NBABGRoyaltyZone, Me.NBItemRequestPurchasing, Me.NBDesignTemplate, Me.NBMaterialRequisition, Me.NBSendEmailReturn, Me.NBAdditionalCost, Me.NBDesignImages, Me.NBEmployeeContract, Me.NB3PLMailReturn, Me.NBInboundAwb, Me.NBReturnNote, Me.NBListStore, Me.NBScanReturn, Me.NBCompanyEmailMappingWH, Me.NBBatchUpload, Me.NBOOSFinalize, Me.NBAdjustmentOG, Me.NBVerificationMasterPrice, Me.NBPolis, Me.NBPromoCollectionMarketplace, Me.NBReturnForBOF, Me.NBStockCardAsset, Me.NBOLReturnRefuse, Me.NBSetupMasterCode, Me.NBCancellationCN, Me.NBBiayaSewa, Me.NBPricePolicyCode, Me.NBDeliveryMonitoring, Me.NBPriceChecker, Me.NBProposePriceMKD, Me.NBPODReport, Me.NBMonthlySalesPerformance, Me.NBCatalogSpec, Me.NBInvoiceVerification, Me.NBStockTakeStorePeriod, Me.NBProductPerform, Me.NBCompGroupEmail, Me.NBOGTransfer, Me.NBAWBOther, Me.NBCompStore, Me.NBSNIpps, Me.NBSerahTerimaSNI, Me.NBStockTakePartial, Me.NBSNIrealisasi, Me.NBQCSNI, Me.NBSNIBarcode, Me.NBSNIWH, Me.NBPreCal, Me.NBStoreActivation, Me.NBAccountActivation, Me.NBSilhouette, Me.NBPriceMKDVios, Me.NBCapsule, Me.NBStockTakePropose, Me.NBPrepaidExpense, Me.NBPromoZalora, Me.NBSalesOrderSvcLevelMD, Me.NBDisplayCapacity, Me.NBVMStoreDisplay, Me.NBImportPlanMonth, Me.NBPIBReview, Me.NBProposePromo, Me.NBNominatifPromo, Me.NBRetExos, Me.NBDisableExos, Me.NBEOSChange, Me.NBEts, Me.NBMKDEvent, Me.NBBSP, Me.NBDeviden, Me.NBQCReport1, Me.NBVMStock})
         Me.NBProdRet.LargeImages = Me.MenuImages
         Me.NBProdRet.Location = New System.Drawing.Point(2, 26)
         Me.NBProdRet.LookAndFeel.SkinName = "Office 2010 Silver"
@@ -1477,832 +1480,6 @@ Partial Class FormMain
         Me.NBProdRet.TabIndex = 3
         Me.NBProdRet.Text = "NavBarControl1"
         Me.NBProdRet.View = New DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator()
-        '
-        'NBGSales
-        '
-        Me.NBGSales.Caption = "Sales & Inventory"
-        Me.NBGSales.DragDropFlags = DevExpress.XtraNavBar.NavBarDragDrop.None
-        Me.NBGSales.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
-        Me.NBGSales.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesTarget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLinePlan), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLinePlanPublic), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGLineList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLineListNonMerch), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDesignLineList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDesignListApp), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGLineListDsg), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProposePrice), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGDS), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDistSchemaSetup), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGSOReff), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGWHAlloc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGWHAllocLog), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrderReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPrepareOrderUni), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrderList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrderCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesDelOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGTrfNew), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesReturnOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesReturnOrderOL), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesReturnQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBNonStockInv), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDelEmpty), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrderSvcLevel), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBVerifyMaster), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWHSvcLevel), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesPOS), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvDiffMargin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesPromo), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGMissing), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScanReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvoiceStaff), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesCreditNote), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRetOlStoreList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCreditNoteOLStore), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBODMComplete), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBUniformExpense), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBUniformCreditNote), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOLStoreReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesWeekly), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGSoStore), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGSOWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGAdj), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGTrf), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGTrfRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGWoff), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGWoffList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGTracking), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBTransList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSOHPeriode), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSOHPrice), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSOH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSOHSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAWB), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWHAwbillLock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDeliveryMonitoring), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCargoRate), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBImportDO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGMissingInvoice), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGMissingCreditNote), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesInvoice), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGRepair), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGRepairReturnRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPromoTrf), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBTransSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBackupStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFirstDel), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCompareStockCard), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesTracking), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRevenueBudget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRevenue), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesReturnRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOLStoreWork), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesTargetPropose), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEstQtyToWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesRecord), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBVoucherPOS), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPromoRules), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBuktiPickup), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBTrackingReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvTracking), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDelManifest), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDocTracking), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesInv), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLineListMD), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLineListMKT), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLineListRetail), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLineListVM), New DevExpress.XtraNavBar.NavBarItemLink(Me.NB3plRate), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFabricType), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSetupBudgetProdDemand), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRetOlShop), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRetOlStoreCust), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCompareStockWebsite), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAcceptRefundOLStore), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOutboundList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPromoCollection), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBVerificationMasterOL), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBVerificationMasterPrice), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSendEmailReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBReturnNote), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInboundAwb), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBListStore), New DevExpress.XtraNavBar.NavBarItemLink(Me.NB3PLMailReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOOSFinalize), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAdjustmentOG), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPromoCollectionMarketplace), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBReturnForBOF), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOLReturnRefuse), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCancellationCN), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProposePriceMKD), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPODReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvoiceVerification), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMonthlySalesPerformance), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockTakePropose), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockTakeStorePeriod), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockTakePartial), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSNIpps), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSNIWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProductPerform), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCapsule), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPromoZalora), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrderSvcLevelMD), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProposePromo), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBNominatifPromo), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRetExos), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDisableExos), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEOSChange), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEts), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMKDEvent), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBSP)})
-        Me.NBGSales.LargeImage = CType(resources.GetObject("NBGSales.LargeImage"), System.Drawing.Image)
-        Me.NBGSales.LargeImageIndex = 35
-        Me.NBGSales.Name = "NBGSales"
-        Me.NBGSales.SmallImage = CType(resources.GetObject("NBGSales.SmallImage"), System.Drawing.Image)
-        '
-        'NBSalesTarget
-        '
-        Me.NBSalesTarget.Caption = "Sales Target"
-        Me.NBSalesTarget.Name = "NBSalesTarget"
-        Me.NBSalesTarget.SmallImageIndex = 3
-        '
-        'NBLinePlan
-        '
-        Me.NBLinePlan.Caption = "Line Plan"
-        Me.NBLinePlan.Name = "NBLinePlan"
-        Me.NBLinePlan.SmallImage = CType(resources.GetObject("NBLinePlan.SmallImage"), System.Drawing.Image)
-        '
-        'NBLinePlanPublic
-        '
-        Me.NBLinePlanPublic.Caption = "Line Plan"
-        Me.NBLinePlanPublic.Name = "NBLinePlanPublic"
-        Me.NBLinePlanPublic.SmallImage = CType(resources.GetObject("NBLinePlanPublic.SmallImage"), System.Drawing.Image)
-        '
-        'NBFGLineList
-        '
-        Me.NBFGLineList.Caption = "Line Sheet"
-        Me.NBFGLineList.Name = "NBFGLineList"
-        Me.NBFGLineList.SmallImageIndex = 39
-        '
-        'NBLineListNonMerch
-        '
-        Me.NBLineListNonMerch.Caption = "Line Sheet Non Merchandise"
-        Me.NBLineListNonMerch.Name = "NBLineListNonMerch"
-        Me.NBLineListNonMerch.SmallImageIndex = 39
-        '
-        'NBDesignLineList
-        '
-        Me.NBDesignLineList.Caption = "Line List (Design)"
-        Me.NBDesignLineList.Name = "NBDesignLineList"
-        Me.NBDesignLineList.SmallImageIndex = 39
-        '
-        'NBDesignListApp
-        '
-        Me.NBDesignListApp.Caption = "Line List (Design-Approve)"
-        Me.NBDesignListApp.Name = "NBDesignListApp"
-        Me.NBDesignListApp.SmallImageIndex = 39
-        '
-        'NBFGLineListDsg
-        '
-        Me.NBFGLineListDsg.Caption = "Line List Report"
-        Me.NBFGLineListDsg.Name = "NBFGLineListDsg"
-        Me.NBFGLineListDsg.SmallImageIndex = 39
-        '
-        'NBProposePrice
-        '
-        Me.NBProposePrice.Caption = "Propose Price New Product"
-        Me.NBProposePrice.Name = "NBProposePrice"
-        Me.NBProposePrice.SmallImageIndex = 40
-        '
-        'NBFGDS
-        '
-        Me.NBFGDS.Caption = "Distribution scheme"
-        Me.NBFGDS.Name = "NBFGDS"
-        Me.NBFGDS.SmallImageIndex = 23
-        '
-        'NBDistSchemaSetup
-        '
-        Me.NBDistSchemaSetup.Caption = "Disribution Scheme Setup"
-        Me.NBDistSchemaSetup.Name = "NBDistSchemaSetup"
-        Me.NBDistSchemaSetup.SmallImageIndex = 41
-        '
-        'NBFGSOReff
-        '
-        Me.NBFGSOReff.Caption = "Prepare Order New Product"
-        Me.NBFGSOReff.Name = "NBFGSOReff"
-        Me.NBFGSOReff.SmallImageIndex = 38
-        '
-        'NBFGWHAlloc
-        '
-        Me.NBFGWHAlloc.Caption = "Inventory Allocation"
-        Me.NBFGWHAlloc.Name = "NBFGWHAlloc"
-        Me.NBFGWHAlloc.SmallImage = CType(resources.GetObject("NBFGWHAlloc.SmallImage"), System.Drawing.Image)
-        '
-        'NBFGWHAllocLog
-        '
-        Me.NBFGWHAllocLog.Caption = "Inventory Allocation Log"
-        Me.NBFGWHAllocLog.Name = "NBFGWHAllocLog"
-        Me.NBFGWHAllocLog.SmallImage = CType(resources.GetObject("NBFGWHAllocLog.SmallImage"), System.Drawing.Image)
-        '
-        'NBSalesOrder
-        '
-        Me.NBSalesOrder.Caption = "Prepare Order"
-        Me.NBSalesOrder.Name = "NBSalesOrder"
-        Me.NBSalesOrder.SmallImageIndex = 25
-        '
-        'NBSalesOrderReport
-        '
-        Me.NBSalesOrderReport.Caption = "Prepare Order Monitoring"
-        Me.NBSalesOrderReport.Name = "NBSalesOrderReport"
-        Me.NBSalesOrderReport.SmallImage = CType(resources.GetObject("NBSalesOrderReport.SmallImage"), System.Drawing.Image)
-        '
-        'NBPrepareOrderUni
-        '
-        Me.NBPrepareOrderUni.Caption = "Prepare Uniform"
-        Me.NBPrepareOrderUni.Name = "NBPrepareOrderUni"
-        Me.NBPrepareOrderUni.SmallImageIndex = 25
-        '
-        'NBSalesOrderList
-        '
-        Me.NBSalesOrderList.Caption = "Prepare Order List"
-        Me.NBSalesOrderList.Name = "NBSalesOrderList"
-        Me.NBSalesOrderList.SmallImageIndex = 39
-        '
-        'NBSalesOrderCat
-        '
-        Me.NBSalesOrderCat.Caption = "Prepare Order Category"
-        Me.NBSalesOrderCat.Name = "NBSalesOrderCat"
-        Me.NBSalesOrderCat.SmallImageIndex = 16
-        '
-        'NBSalesDelOrder
-        '
-        Me.NBSalesDelOrder.Caption = "Delivery"
-        Me.NBSalesDelOrder.Name = "NBSalesDelOrder"
-        Me.NBSalesDelOrder.SmallImageIndex = 35
-        '
-        'NBFGTrfNew
-        '
-        Me.NBFGTrfNew.Caption = "Transfer"
-        Me.NBFGTrfNew.Name = "NBFGTrfNew"
-        Me.NBFGTrfNew.SmallImageIndex = 42
-        '
-        'NBSalesReturnOrder
-        '
-        Me.NBSalesReturnOrder.Caption = "Propose Return"
-        Me.NBSalesReturnOrder.Name = "NBSalesReturnOrder"
-        Me.NBSalesReturnOrder.SmallImageIndex = 25
-        '
-        'NBSalesReturnOrderOL
-        '
-        Me.NBSalesReturnOrderOL.Caption = "Return Order Online Store"
-        Me.NBSalesReturnOrderOL.Name = "NBSalesReturnOrderOL"
-        Me.NBSalesReturnOrderOL.SmallImageIndex = 25
-        '
-        'NBSalesReturn
-        '
-        Me.NBSalesReturn.Caption = "Return"
-        Me.NBSalesReturn.Name = "NBSalesReturn"
-        Me.NBSalesReturn.SmallImageIndex = 32
-        '
-        'NBSalesReturnQC
-        '
-        Me.NBSalesReturnQC.Caption = "Return Transfer"
-        Me.NBSalesReturnQC.Name = "NBSalesReturnQC"
-        Me.NBSalesReturnQC.SmallImage = CType(resources.GetObject("NBSalesReturnQC.SmallImage"), System.Drawing.Image)
-        Me.NBSalesReturnQC.SmallImageIndex = 32
-        '
-        'NBNonStockInv
-        '
-        Me.NBNonStockInv.Caption = "Non Stock Inventory"
-        Me.NBNonStockInv.Name = "NBNonStockInv"
-        Me.NBNonStockInv.SmallImage = CType(resources.GetObject("NBNonStockInv.SmallImage"), System.Drawing.Image)
-        '
-        'NBDelEmpty
-        '
-        Me.NBDelEmpty.Caption = "Non Stock Inventory - Out"
-        Me.NBDelEmpty.Name = "NBDelEmpty"
-        Me.NBDelEmpty.SmallImage = CType(resources.GetObject("NBDelEmpty.SmallImage"), System.Drawing.Image)
-        Me.NBDelEmpty.SmallImageIndex = 35
-        '
-        'NBSalesOrderSvcLevel
-        '
-        Me.NBSalesOrderSvcLevel.Caption = "Finalize Status - Warehouse"
-        Me.NBSalesOrderSvcLevel.Name = "NBSalesOrderSvcLevel"
-        Me.NBSalesOrderSvcLevel.SmallImageIndex = 50
-        '
-        'NBVerifyMaster
-        '
-        Me.NBVerifyMaster.Caption = "Verify Master Data"
-        Me.NBVerifyMaster.Name = "NBVerifyMaster"
-        Me.NBVerifyMaster.SmallImage = CType(resources.GetObject("NBVerifyMaster.SmallImage"), System.Drawing.Image)
-        '
-        'NBWHSvcLevel
-        '
-        Me.NBWHSvcLevel.Caption = "Order Service Level"
-        Me.NBWHSvcLevel.Name = "NBWHSvcLevel"
-        Me.NBWHSvcLevel.SmallImageIndex = 48
-        '
-        'NBSalesPOS
-        '
-        Me.NBSalesPOS.Caption = "Invoice"
-        Me.NBSalesPOS.Name = "NBSalesPOS"
-        Me.NBSalesPOS.SmallImageIndex = 37
-        '
-        'NBInvDiffMargin
-        '
-        Me.NBInvDiffMargin.Caption = "Invoice (Not Used)"
-        Me.NBInvDiffMargin.Name = "NBInvDiffMargin"
-        Me.NBInvDiffMargin.SmallImageIndex = 37
-        '
-        'NBSalesPromo
-        '
-        Me.NBSalesPromo.Caption = "Marketing Invoice"
-        Me.NBSalesPromo.Name = "NBSalesPromo"
-        Me.NBSalesPromo.SmallImageIndex = 37
-        '
-        'NBFGMissing
-        '
-        Me.NBFGMissing.Caption = "Invoice Missing Promo"
-        Me.NBFGMissing.Name = "NBFGMissing"
-        Me.NBFGMissing.SmallImageIndex = 37
-        '
-        'NBScanReturn
-        '
-        Me.NBScanReturn.Caption = "Scan Return"
-        Me.NBScanReturn.Name = "NBScanReturn"
-        Me.NBScanReturn.SmallImage = CType(resources.GetObject("NBScanReturn.SmallImage"), System.Drawing.Image)
-        '
-        'NBInvoiceStaff
-        '
-        Me.NBInvoiceStaff.Caption = "Invoice (Different Margin)"
-        Me.NBInvoiceStaff.Name = "NBInvoiceStaff"
-        Me.NBInvoiceStaff.SmallImageIndex = 37
-        '
-        'NBSalesCreditNote
-        '
-        Me.NBSalesCreditNote.Caption = "Credit Note"
-        Me.NBSalesCreditNote.Name = "NBSalesCreditNote"
-        Me.NBSalesCreditNote.SmallImageIndex = 37
-        '
-        'NBRetOlStoreList
-        '
-        Me.NBRetOlStoreList.Caption = "Return Centre - OL. Store"
-        Me.NBRetOlStoreList.Name = "NBRetOlStoreList"
-        Me.NBRetOlStoreList.SmallImage = CType(resources.GetObject("NBRetOlStoreList.SmallImage"), System.Drawing.Image)
-        '
-        'NBCreditNoteOLStore
-        '
-        Me.NBCreditNoteOLStore.Caption = "Credit Note Online Store"
-        Me.NBCreditNoteOLStore.Name = "NBCreditNoteOLStore"
-        Me.NBCreditNoteOLStore.SmallImageIndex = 37
-        '
-        'NBODMComplete
-        '
-        Me.NBODMComplete.Caption = "Outbound Delivery Manifest (Completed)"
-        Me.NBODMComplete.Name = "NBODMComplete"
-        Me.NBODMComplete.SmallImage = CType(resources.GetObject("NBODMComplete.SmallImage"), System.Drawing.Image)
-        '
-        'NBUniformExpense
-        '
-        Me.NBUniformExpense.Caption = "Expense"
-        Me.NBUniformExpense.Name = "NBUniformExpense"
-        Me.NBUniformExpense.SmallImage = CType(resources.GetObject("NBUniformExpense.SmallImage"), System.Drawing.Image)
-        '
-        'NBUniformCreditNote
-        '
-        Me.NBUniformCreditNote.Caption = "Credit Note Uniform"
-        Me.NBUniformCreditNote.Name = "NBUniformCreditNote"
-        Me.NBUniformCreditNote.SmallImage = CType(resources.GetObject("NBUniformCreditNote.SmallImage"), System.Drawing.Image)
-        '
-        'NBOLStoreReport
-        '
-        Me.NBOLStoreReport.Caption = "Online Store Report"
-        Me.NBOLStoreReport.Name = "NBOLStoreReport"
-        Me.NBOLStoreReport.SmallImage = CType(resources.GetObject("NBOLStoreReport.SmallImage"), System.Drawing.Image)
-        '
-        'NBSalesWeekly
-        '
-        Me.NBSalesWeekly.Caption = "Standard Sales Report"
-        Me.NBSalesWeekly.Name = "NBSalesWeekly"
-        Me.NBSalesWeekly.SmallImageIndex = 46
-        '
-        'NBFGSoStore
-        '
-        Me.NBFGSoStore.Caption = "Store Stock Opname"
-        Me.NBFGSoStore.Name = "NBFGSoStore"
-        Me.NBFGSoStore.SmallImageIndex = 36
-        '
-        'NBFGSOWH
-        '
-        Me.NBFGSOWH.Caption = "Warehouse Stock Opname"
-        Me.NBFGSOWH.Name = "NBFGSOWH"
-        Me.NBFGSOWH.SmallImageIndex = 36
-        '
-        'NBFGAdj
-        '
-        Me.NBFGAdj.Caption = "Adjustment Qty"
-        Me.NBFGAdj.Name = "NBFGAdj"
-        Me.NBFGAdj.SmallImageIndex = 33
-        '
-        'NBFGTrf
-        '
-        Me.NBFGTrf.Caption = "Transfer Future"
-        Me.NBFGTrf.Name = "NBFGTrf"
-        Me.NBFGTrf.SmallImageIndex = 42
-        '
-        'NBFGTrfRec
-        '
-        Me.NBFGTrfRec.Caption = "Receive Transfer Future"
-        Me.NBFGTrfRec.Name = "NBFGTrfRec"
-        Me.NBFGTrfRec.SmallImageIndex = 27
-        '
-        'NBFGWoff
-        '
-        Me.NBFGWoff.Caption = "Write Off"
-        Me.NBFGWoff.Name = "NBFGWoff"
-        Me.NBFGWoff.SmallImageIndex = 25
-        '
-        'NBFGWoffList
-        '
-        Me.NBFGWoffList.Caption = "Write Off List"
-        Me.NBFGWoffList.Name = "NBFGWoffList"
-        Me.NBFGWoffList.SmallImageIndex = 39
-        '
-        'NBFGStock
-        '
-        Me.NBFGStock.Caption = "Stock"
-        Me.NBFGStock.Name = "NBFGStock"
-        Me.NBFGStock.SmallImageIndex = 26
-        '
-        'NBFGTracking
-        '
-        Me.NBFGTracking.Caption = "Tracking Product"
-        Me.NBFGTracking.Name = "NBFGTracking"
-        Me.NBFGTracking.SmallImageIndex = 47
-        '
-        'NBTransList
-        '
-        Me.NBTransList.Caption = "Transaction List"
-        Me.NBTransList.Name = "NBTransList"
-        Me.NBTransList.SmallImage = CType(resources.GetObject("NBTransList.SmallImage"), System.Drawing.Image)
-        '
-        'NBSOHPeriode
-        '
-        Me.NBSOHPeriode.Caption = "SOH Periode"
-        Me.NBSOHPeriode.Name = "NBSOHPeriode"
-        Me.NBSOHPeriode.SmallImageIndex = 43
-        '
-        'NBSOHPrice
-        '
-        Me.NBSOHPrice.Caption = "SOH Price List"
-        Me.NBSOHPrice.Name = "NBSOHPrice"
-        Me.NBSOHPrice.SmallImageIndex = 40
-        '
-        'NBSOH
-        '
-        Me.NBSOH.Caption = "SOH Compare"
-        Me.NBSOH.Name = "NBSOH"
-        Me.NBSOH.SmallImageIndex = 38
-        '
-        'NBSOHSum
-        '
-        Me.NBSOHSum.Caption = "SOH Summary"
-        Me.NBSOHSum.Name = "NBSOHSum"
-        Me.NBSOHSum.SmallImageIndex = 45
-        '
-        'NBAWB
-        '
-        Me.NBAWB.Caption = "Delivery Monitoring"
-        Me.NBAWB.Name = "NBAWB"
-        Me.NBAWB.SmallImageIndex = 35
-        '
-        'NBWHAwbillLock
-        '
-        Me.NBWHAwbillLock.Caption = "Delivery Monitoring"
-        Me.NBWHAwbillLock.Name = "NBWHAwbillLock"
-        Me.NBWHAwbillLock.SmallImageIndex = 35
-        '
-        'NBDeliveryMonitoring
-        '
-        Me.NBDeliveryMonitoring.Caption = "Delivery Monitoring"
-        Me.NBDeliveryMonitoring.Name = "NBDeliveryMonitoring"
-        Me.NBDeliveryMonitoring.SmallImage = CType(resources.GetObject("NBDeliveryMonitoring.SmallImage"), System.Drawing.Image)
-        '
-        'NBCargoRate
-        '
-        Me.NBCargoRate.Caption = "Inbound Rate"
-        Me.NBCargoRate.Name = "NBCargoRate"
-        Me.NBCargoRate.SmallImageIndex = 34
-        '
-        'NBImportDO
-        '
-        Me.NBImportDO.Caption = "Import Excel Delivery Order"
-        Me.NBImportDO.Name = "NBImportDO"
-        '
-        'NBFGMissingInvoice
-        '
-        Me.NBFGMissingInvoice.Caption = "(Not Used) Missing Invoice"
-        Me.NBFGMissingInvoice.Name = "NBFGMissingInvoice"
-        '
-        'NBFGMissingCreditNote
-        '
-        Me.NBFGMissingCreditNote.Caption = "(Not Used) Missing Credit Note"
-        Me.NBFGMissingCreditNote.Name = "NBFGMissingCreditNote"
-        Me.NBFGMissingCreditNote.SmallImageIndex = 37
-        '
-        'NBSalesInvoice
-        '
-        Me.NBSalesInvoice.Caption = "(Not Used) Sales Invoice"
-        Me.NBSalesInvoice.Name = "NBSalesInvoice"
-        '
-        'NBFGRepair
-        '
-        Me.NBFGRepair.Caption = "Repair Product"
-        Me.NBFGRepair.Name = "NBFGRepair"
-        Me.NBFGRepair.SmallImage = CType(resources.GetObject("NBFGRepair.SmallImage"), System.Drawing.Image)
-        '
-        'NBFGRepairReturnRec
-        '
-        Me.NBFGRepairReturnRec.Caption = "Receive Return Repair Product"
-        Me.NBFGRepairReturnRec.Name = "NBFGRepairReturnRec"
-        Me.NBFGRepairReturnRec.SmallImage = CType(resources.GetObject("NBFGRepairReturnRec.SmallImage"), System.Drawing.Image)
-        '
-        'NBPromoTrf
-        '
-        Me.NBPromoTrf.Caption = "Promo Transfer"
-        Me.NBPromoTrf.Name = "NBPromoTrf"
-        Me.NBPromoTrf.SmallImageIndex = 42
-        '
-        'NBTransSum
-        '
-        Me.NBTransSum.Caption = "Transaction Summary"
-        Me.NBTransSum.Name = "NBTransSum"
-        Me.NBTransSum.SmallImage = CType(resources.GetObject("NBTransSum.SmallImage"), System.Drawing.Image)
-        '
-        'NBBackupStock
-        '
-        Me.NBBackupStock.Caption = "Backup Stock"
-        Me.NBBackupStock.Name = "NBBackupStock"
-        Me.NBBackupStock.SmallImage = CType(resources.GetObject("NBBackupStock.SmallImage"), System.Drawing.Image)
-        '
-        'NBFirstDel
-        '
-        Me.NBFirstDel.Caption = "First Delivery Report"
-        Me.NBFirstDel.Name = "NBFirstDel"
-        Me.NBFirstDel.SmallImage = CType(resources.GetObject("NBFirstDel.SmallImage"), System.Drawing.Image)
-        '
-        'NBCompareStockCard
-        '
-        Me.NBCompareStockCard.Caption = "Compare Stock Card"
-        Me.NBCompareStockCard.Name = "NBCompareStockCard"
-        Me.NBCompareStockCard.SmallImage = CType(resources.GetObject("NBCompareStockCard.SmallImage"), System.Drawing.Image)
-        '
-        'NBSalesTracking
-        '
-        Me.NBSalesTracking.Caption = "Sales Tracking"
-        Me.NBSalesTracking.Name = "NBSalesTracking"
-        Me.NBSalesTracking.SmallImageIndex = 23
-        '
-        'NBRevenueBudget
-        '
-        Me.NBRevenueBudget.Caption = "Revenue Budget"
-        Me.NBRevenueBudget.Name = "NBRevenueBudget"
-        Me.NBRevenueBudget.SmallImage = CType(resources.GetObject("NBRevenueBudget.SmallImage"), System.Drawing.Image)
-        '
-        'NBRevenue
-        '
-        Me.NBRevenue.Caption = "Revenue"
-        Me.NBRevenue.Name = "NBRevenue"
-        Me.NBRevenue.SmallImage = CType(resources.GetObject("NBRevenue.SmallImage"), System.Drawing.Image)
-        '
-        'NBSalesReturnRec
-        '
-        Me.NBSalesReturnRec.Caption = "Receive Return"
-        Me.NBSalesReturnRec.Name = "NBSalesReturnRec"
-        Me.NBSalesReturnRec.SmallImageIndex = 32
-        '
-        'NBOLStoreWork
-        '
-        Me.NBOLStoreWork.Caption = "Online Store Workplace"
-        Me.NBOLStoreWork.Name = "NBOLStoreWork"
-        Me.NBOLStoreWork.SmallImage = CType(resources.GetObject("NBOLStoreWork.SmallImage"), System.Drawing.Image)
-        '
-        'NBSalesTargetPropose
-        '
-        Me.NBSalesTargetPropose.Caption = "Propose Sales Target"
-        Me.NBSalesTargetPropose.Name = "NBSalesTargetPropose"
-        Me.NBSalesTargetPropose.SmallImage = CType(resources.GetObject("NBSalesTargetPropose.SmallImage"), System.Drawing.Image)
-        '
-        'NBEstQtyToWH
-        '
-        Me.NBEstQtyToWH.Caption = "Time Schedule & Estimate Qty "
-        Me.NBEstQtyToWH.Name = "NBEstQtyToWH"
-        Me.NBEstQtyToWH.SmallImage = CType(resources.GetObject("NBEstQtyToWH.SmallImage"), System.Drawing.Image)
-        '
-        'NBSalesRecord
-        '
-        Me.NBSalesRecord.Caption = "Sales Record"
-        Me.NBSalesRecord.Name = "NBSalesRecord"
-        Me.NBSalesRecord.SmallImage = CType(resources.GetObject("NBSalesRecord.SmallImage"), System.Drawing.Image)
-        '
-        'NBVoucherPOS
-        '
-        Me.NBVoucherPOS.Caption = "Voucher POS"
-        Me.NBVoucherPOS.Name = "NBVoucherPOS"
-        Me.NBVoucherPOS.SmallImage = CType(resources.GetObject("NBVoucherPOS.SmallImage"), System.Drawing.Image)
-        '
-        'NBPromoRules
-        '
-        Me.NBPromoRules.Caption = "Promo Product Rules"
-        Me.NBPromoRules.Name = "NBPromoRules"
-        Me.NBPromoRules.SmallImage = CType(resources.GetObject("NBPromoRules.SmallImage"), System.Drawing.Image)
-        '
-        'NBBuktiPickup
-        '
-        Me.NBBuktiPickup.Caption = "Bukti Pickup"
-        Me.NBBuktiPickup.Name = "NBBuktiPickup"
-        Me.NBBuktiPickup.SmallImage = CType(resources.GetObject("NBBuktiPickup.SmallImage"), System.Drawing.Image)
-        '
-        'NBTrackingReturn
-        '
-        Me.NBTrackingReturn.Caption = "Return Tracking"
-        Me.NBTrackingReturn.Name = "NBTrackingReturn"
-        Me.NBTrackingReturn.SmallImage = CType(resources.GetObject("NBTrackingReturn.SmallImage"), System.Drawing.Image)
-        '
-        'NBInvTracking
-        '
-        Me.NBInvTracking.Caption = "Invoice Tracking"
-        Me.NBInvTracking.Name = "NBInvTracking"
-        Me.NBInvTracking.SmallImage = CType(resources.GetObject("NBInvTracking.SmallImage"), System.Drawing.Image)
-        '
-        'NBDelManifest
-        '
-        Me.NBDelManifest.Caption = "Draft Manifest"
-        Me.NBDelManifest.Name = "NBDelManifest"
-        Me.NBDelManifest.SmallImage = CType(resources.GetObject("NBDelManifest.SmallImage"), System.Drawing.Image)
-        '
-        'NBDocTracking
-        '
-        Me.NBDocTracking.Caption = "Document Tracking"
-        Me.NBDocTracking.Name = "NBDocTracking"
-        Me.NBDocTracking.SmallImage = CType(resources.GetObject("NBDocTracking.SmallImage"), System.Drawing.Image)
-        '
-        'NBSalesInv
-        '
-        Me.NBSalesInv.Caption = "Sales / Inventory"
-        Me.NBSalesInv.Name = "NBSalesInv"
-        Me.NBSalesInv.SmallImage = CType(resources.GetObject("NBSalesInv.SmallImage"), System.Drawing.Image)
-        '
-        'NBLineListMD
-        '
-        Me.NBLineListMD.Caption = "Line List"
-        Me.NBLineListMD.Name = "NBLineListMD"
-        Me.NBLineListMD.SmallImage = CType(resources.GetObject("NBLineListMD.SmallImage"), System.Drawing.Image)
-        '
-        'NBLineListMKT
-        '
-        Me.NBLineListMKT.Caption = "Line List"
-        Me.NBLineListMKT.Name = "NBLineListMKT"
-        Me.NBLineListMKT.SmallImage = CType(resources.GetObject("NBLineListMKT.SmallImage"), System.Drawing.Image)
-        '
-        'NBLineListRetail
-        '
-        Me.NBLineListRetail.Caption = "Line List"
-        Me.NBLineListRetail.Name = "NBLineListRetail"
-        Me.NBLineListRetail.SmallImage = CType(resources.GetObject("NBLineListRetail.SmallImage"), System.Drawing.Image)
-        '
-        'NBLineListVM
-        '
-        Me.NBLineListVM.Caption = "Line List"
-        Me.NBLineListVM.Name = "NBLineListVM"
-        Me.NBLineListVM.SmallImage = CType(resources.GetObject("NBLineListVM.SmallImage"), System.Drawing.Image)
-        '
-        'NB3plRate
-        '
-        Me.NB3plRate.Caption = "Rate 3PL"
-        Me.NB3plRate.Name = "NB3plRate"
-        Me.NB3plRate.SmallImage = CType(resources.GetObject("NB3plRate.SmallImage"), System.Drawing.Image)
-        '
-        'NBFabricType
-        '
-        Me.NBFabricType.Caption = "Fabric Type"
-        Me.NBFabricType.Name = "NBFabricType"
-        Me.NBFabricType.SmallImage = CType(resources.GetObject("NBFabricType.SmallImage"), System.Drawing.Image)
-        '
-        'NBSetupBudgetProdDemand
-        '
-        Me.NBSetupBudgetProdDemand.Caption = "Setup Budget PD"
-        Me.NBSetupBudgetProdDemand.Name = "NBSetupBudgetProdDemand"
-        Me.NBSetupBudgetProdDemand.SmallImage = CType(resources.GetObject("NBSetupBudgetProdDemand.SmallImage"), System.Drawing.Image)
-        '
-        'NBRetOlShop
-        '
-        Me.NBRetOlShop.Caption = "VIOS Pre Return"
-        Me.NBRetOlShop.Name = "NBRetOlShop"
-        Me.NBRetOlShop.SmallImage = CType(resources.GetObject("NBRetOlShop.SmallImage"), System.Drawing.Image)
-        '
-        'NBRetOlStoreCust
-        '
-        Me.NBRetOlStoreCust.Caption = "VIOS Return Refuse"
-        Me.NBRetOlStoreCust.Name = "NBRetOlStoreCust"
-        Me.NBRetOlStoreCust.SmallImage = CType(resources.GetObject("NBRetOlStoreCust.SmallImage"), System.Drawing.Image)
-        '
-        'NBCompareStockWebsite
-        '
-        Me.NBCompareStockWebsite.Caption = "Compare Stock Website"
-        Me.NBCompareStockWebsite.Name = "NBCompareStockWebsite"
-        Me.NBCompareStockWebsite.SmallImage = CType(resources.GetObject("NBCompareStockWebsite.SmallImage"), System.Drawing.Image)
-        '
-        'NBAcceptRefundOLStore
-        '
-        Me.NBAcceptRefundOLStore.Caption = "Accept Refund Online Shop"
-        Me.NBAcceptRefundOLStore.Name = "NBAcceptRefundOLStore"
-        Me.NBAcceptRefundOLStore.SmallImage = CType(resources.GetObject("NBAcceptRefundOLStore.SmallImage"), System.Drawing.Image)
-        '
-        'NBOutboundList
-        '
-        Me.NBOutboundList.Caption = "Outbound"
-        Me.NBOutboundList.Name = "NBOutboundList"
-        Me.NBOutboundList.SmallImage = CType(resources.GetObject("NBOutboundList.SmallImage"), System.Drawing.Image)
-        '
-        'NBPromoCollection
-        '
-        Me.NBPromoCollection.Caption = "Propose Promo Collection - VIOS"
-        Me.NBPromoCollection.Name = "NBPromoCollection"
-        Me.NBPromoCollection.SmallImage = CType(resources.GetObject("NBPromoCollection.SmallImage"), System.Drawing.Image)
-        '
-        'NBVerificationMasterOL
-        '
-        Me.NBVerificationMasterOL.Caption = "Verification Master Online Store"
-        Me.NBVerificationMasterOL.Name = "NBVerificationMasterOL"
-        Me.NBVerificationMasterOL.SmallImage = CType(resources.GetObject("NBVerificationMasterOL.SmallImage"), System.Drawing.Image)
-        '
-        'NBVerificationMasterPrice
-        '
-        Me.NBVerificationMasterPrice.Caption = "Verification Master Price"
-        Me.NBVerificationMasterPrice.Name = "NBVerificationMasterPrice"
-        Me.NBVerificationMasterPrice.SmallImage = CType(resources.GetObject("NBVerificationMasterPrice.SmallImage"), System.Drawing.Image)
-        '
-        'NBSendEmailReturn
-        '
-        Me.NBSendEmailReturn.Caption = "Send Email (Return)"
-        Me.NBSendEmailReturn.Name = "NBSendEmailReturn"
-        Me.NBSendEmailReturn.SmallImage = CType(resources.GetObject("NBSendEmailReturn.SmallImage"), System.Drawing.Image)
-        '
-        'NBReturnNote
-        '
-        Me.NBReturnNote.Caption = "Return Note"
-        Me.NBReturnNote.Name = "NBReturnNote"
-        Me.NBReturnNote.SmallImage = CType(resources.GetObject("NBReturnNote.SmallImage"), System.Drawing.Image)
-        '
-        'NBInboundAwb
-        '
-        Me.NBInboundAwb.Caption = "Inbound"
-        Me.NBInboundAwb.Name = "NBInboundAwb"
-        Me.NBInboundAwb.SmallImage = CType(resources.GetObject("NBInboundAwb.SmallImage"), System.Drawing.Image)
-        '
-        'NBListStore
-        '
-        Me.NBListStore.Caption = "Store List"
-        Me.NBListStore.Name = "NBListStore"
-        Me.NBListStore.SmallImage = CType(resources.GetObject("NBListStore.SmallImage"), System.Drawing.Image)
-        '
-        'NB3PLMailReturn
-        '
-        Me.NB3PLMailReturn.Caption = "Pickup Order"
-        Me.NB3PLMailReturn.Name = "NB3PLMailReturn"
-        Me.NB3PLMailReturn.SmallImage = CType(resources.GetObject("NB3PLMailReturn.SmallImage"), System.Drawing.Image)
-        '
-        'NBOOSFinalize
-        '
-        Me.NBOOSFinalize.Caption = "Finalize OOS"
-        Me.NBOOSFinalize.Name = "NBOOSFinalize"
-        Me.NBOOSFinalize.SmallImage = CType(resources.GetObject("NBOOSFinalize.SmallImage"), System.Drawing.Image)
-        '
-        'NBAdjustmentOG
-        '
-        Me.NBAdjustmentOG.Caption = "Adjustment Operational Goods"
-        Me.NBAdjustmentOG.Name = "NBAdjustmentOG"
-        Me.NBAdjustmentOG.SmallImage = CType(resources.GetObject("NBAdjustmentOG.SmallImage"), System.Drawing.Image)
-        '
-        'NBPromoCollectionMarketplace
-        '
-        Me.NBPromoCollectionMarketplace.Caption = "Promo Collection - Marketplace"
-        Me.NBPromoCollectionMarketplace.Name = "NBPromoCollectionMarketplace"
-        Me.NBPromoCollectionMarketplace.SmallImage = CType(resources.GetObject("NBPromoCollectionMarketplace.SmallImage"), System.Drawing.Image)
-        '
-        'NBReturnForBOF
-        '
-        Me.NBReturnForBOF.Caption = "Delivery Return for BOF"
-        Me.NBReturnForBOF.Name = "NBReturnForBOF"
-        Me.NBReturnForBOF.SmallImage = CType(resources.GetObject("NBReturnForBOF.SmallImage"), System.Drawing.Image)
-        '
-        'NBOLReturnRefuse
-        '
-        Me.NBOLReturnRefuse.Caption = "Marketplace Return Refuse"
-        Me.NBOLReturnRefuse.Name = "NBOLReturnRefuse"
-        Me.NBOLReturnRefuse.SmallImage = CType(resources.GetObject("NBOLReturnRefuse.SmallImage"), System.Drawing.Image)
-        '
-        'NBCancellationCN
-        '
-        Me.NBCancellationCN.Caption = "Cancellation CN"
-        Me.NBCancellationCN.Name = "NBCancellationCN"
-        Me.NBCancellationCN.SmallImage = CType(resources.GetObject("NBCancellationCN.SmallImage"), System.Drawing.Image)
-        '
-        'NBProposePriceMKD
-        '
-        Me.NBProposePriceMKD.Caption = "Proposal Turun Harga"
-        Me.NBProposePriceMKD.Name = "NBProposePriceMKD"
-        Me.NBProposePriceMKD.SmallImage = CType(resources.GetObject("NBProposePriceMKD.SmallImage"), System.Drawing.Image)
-        '
-        'NBPODReport
-        '
-        Me.NBPODReport.Caption = "Outbound POD"
-        Me.NBPODReport.Name = "NBPODReport"
-        Me.NBPODReport.SmallImage = CType(resources.GetObject("NBPODReport.SmallImage"), System.Drawing.Image)
-        '
-        'NBInvoiceVerification
-        '
-        Me.NBInvoiceVerification.Caption = "3PL Invoice Verification"
-        Me.NBInvoiceVerification.Name = "NBInvoiceVerification"
-        Me.NBInvoiceVerification.SmallImage = CType(resources.GetObject("NBInvoiceVerification.SmallImage"), System.Drawing.Image)
-        '
-        'NBMonthlySalesPerformance
-        '
-        Me.NBMonthlySalesPerformance.Caption = "Monthly Product Sales Tracking"
-        Me.NBMonthlySalesPerformance.Name = "NBMonthlySalesPerformance"
-        Me.NBMonthlySalesPerformance.SmallImage = CType(resources.GetObject("NBMonthlySalesPerformance.SmallImage"), System.Drawing.Image)
-        '
-        'NBStockTakePropose
-        '
-        Me.NBStockTakePropose.Caption = "Surat Ijin Stock Take"
-        Me.NBStockTakePropose.Name = "NBStockTakePropose"
-        Me.NBStockTakePropose.SmallImage = CType(resources.GetObject("NBStockTakePropose.SmallImage"), System.Drawing.Image)
-        '
-        'NBStockTakeStorePeriod
-        '
-        Me.NBStockTakeStorePeriod.Caption = "Stock Take Store"
-        Me.NBStockTakeStorePeriod.Name = "NBStockTakeStorePeriod"
-        Me.NBStockTakeStorePeriod.SmallImage = CType(resources.GetObject("NBStockTakeStorePeriod.SmallImage"), System.Drawing.Image)
-        '
-        'NBStockTakePartial
-        '
-        Me.NBStockTakePartial.Caption = "Stock Take Partial"
-        Me.NBStockTakePartial.Name = "NBStockTakePartial"
-        Me.NBStockTakePartial.SmallImage = CType(resources.GetObject("NBStockTakePartial.SmallImage"), System.Drawing.Image)
-        '
-        'NBSNIpps
-        '
-        Me.NBSNIpps.Caption = "SNI Propose"
-        Me.NBSNIpps.Name = "NBSNIpps"
-        Me.NBSNIpps.SmallImage = CType(resources.GetObject("NBSNIpps.SmallImage"), System.Drawing.Image)
-        '
-        'NBSNIWH
-        '
-        Me.NBSNIWH.Caption = "SNI WH"
-        Me.NBSNIWH.Name = "NBSNIWH"
-        Me.NBSNIWH.SmallImage = CType(resources.GetObject("NBSNIWH.SmallImage"), System.Drawing.Image)
-        '
-        'NBProductPerform
-        '
-        Me.NBProductPerform.Caption = "Product Performance by Stores"
-        Me.NBProductPerform.Name = "NBProductPerform"
-        Me.NBProductPerform.SmallImage = CType(resources.GetObject("NBProductPerform.SmallImage"), System.Drawing.Image)
-        '
-        'NBCapsule
-        '
-        Me.NBCapsule.Caption = "Capsule Data"
-        Me.NBCapsule.Name = "NBCapsule"
-        Me.NBCapsule.SmallImage = CType(resources.GetObject("NBCapsule.SmallImage"), System.Drawing.Image)
-        '
-        'NBPromoZalora
-        '
-        Me.NBPromoZalora.Caption = "Propose Zalora Promo"
-        Me.NBPromoZalora.Name = "NBPromoZalora"
-        Me.NBPromoZalora.SmallImage = CType(resources.GetObject("NBPromoZalora.SmallImage"), System.Drawing.Image)
-        '
-        'NBSalesOrderSvcLevelMD
-        '
-        Me.NBSalesOrderSvcLevelMD.Caption = "Cancel Prepare Order"
-        Me.NBSalesOrderSvcLevelMD.Name = "NBSalesOrderSvcLevelMD"
-        Me.NBSalesOrderSvcLevelMD.SmallImage = CType(resources.GetObject("NBSalesOrderSvcLevelMD.SmallImage"), System.Drawing.Image)
-        '
-        'NBProposePromo
-        '
-        Me.NBProposePromo.Caption = "Propose Promo"
-        Me.NBProposePromo.Name = "NBProposePromo"
-        Me.NBProposePromo.SmallImage = CType(resources.GetObject("NBProposePromo.SmallImage"), System.Drawing.Image)
-        '
-        'NBNominatifPromo
-        '
-        Me.NBNominatifPromo.Caption = "Daftar Nominatif Promo"
-        Me.NBNominatifPromo.Name = "NBNominatifPromo"
-        Me.NBNominatifPromo.SmallImage = CType(resources.GetObject("NBNominatifPromo.SmallImage"), System.Drawing.Image)
-        '
-        'NBRetExos
-        '
-        Me.NBRetExos.Caption = "Propose Return Extended EOS"
-        Me.NBRetExos.Name = "NBRetExos"
-        Me.NBRetExos.SmallImage = CType(resources.GetObject("NBRetExos.SmallImage"), System.Drawing.Image)
-        '
-        'NBDisableExos
-        '
-        Me.NBDisableExos.Caption = "Change Status Extended EOS"
-        Me.NBDisableExos.Name = "NBDisableExos"
-        Me.NBDisableExos.SmallImage = CType(resources.GetObject("NBDisableExos.SmallImage"), System.Drawing.Image)
-        '
-        'NBEOSChange
-        '
-        Me.NBEOSChange.Caption = "Perpanjangan EOS"
-        Me.NBEOSChange.Name = "NBEOSChange"
-        Me.NBEOSChange.SmallImage = CType(resources.GetObject("NBEOSChange.SmallImage"), System.Drawing.Image)
-        '
-        'NBEts
-        '
-        Me.NBEts.Caption = "Change EOS to Sale"
-        Me.NBEts.Name = "NBEts"
-        Me.NBEts.SmallImage = CType(resources.GetObject("NBEts.SmallImage"), System.Drawing.Image)
-        '
-        'NBMKDEvent
-        '
-        Me.NBMKDEvent.Caption = "End of Season Sale"
-        Me.NBMKDEvent.Name = "NBMKDEvent"
-        Me.NBMKDEvent.SmallImage = CType(resources.GetObject("NBMKDEvent.SmallImage"), System.Drawing.Image)
-        '
-        'NBBSP
-        '
-        Me.NBBSP.Caption = "Propose Big Sale"
-        Me.NBBSP.Name = "NBBSP"
-        Me.NBBSP.SmallImage = CType(resources.GetObject("NBBSP.SmallImage"), System.Drawing.Image)
         '
         'NBGGeneral
         '
@@ -3320,7 +2497,7 @@ Partial Class FormMain
         Me.NBGMat.Caption = "Purchasing"
         Me.NBGMat.DragDropFlags = DevExpress.XtraNavBar.NavBarDragDrop.None
         Me.NBGMat.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
-        Me.NBGMat.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReqIC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReqIA), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemSubCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReqAdmin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemRequestPurchasing), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReceiveNonAsset), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemDel), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemTrf), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOGTransfer), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcPayment)})
+        Me.NBGMat.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReqIC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReqIA), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemSubCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReqAdmin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemRequestPurchasing), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReceiveNonAsset), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemDel), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemTrf), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOGTransfer), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBVMStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcPayment)})
         Me.NBGMat.LargeImage = CType(resources.GetObject("NBGMat.LargeImage"), System.Drawing.Image)
         Me.NBGMat.LargeImageIndex = 26
         Me.NBGMat.Name = "NBGMat"
@@ -3403,6 +2580,12 @@ Partial Class FormMain
         Me.NBOGTransfer.Caption = "OG Transfer"
         Me.NBOGTransfer.Name = "NBOGTransfer"
         Me.NBOGTransfer.SmallImage = CType(resources.GetObject("NBOGTransfer.SmallImage"), System.Drawing.Image)
+        '
+        'NBVMStock
+        '
+        Me.NBVMStock.Caption = "Stock VM"
+        Me.NBVMStock.Name = "NBVMStock"
+        Me.NBVMStock.SmallImage = CType(resources.GetObject("NBVMStock.SmallImage"), System.Drawing.Image)
         '
         'NBPurcPayment
         '
@@ -3712,12 +2895,838 @@ Partial Class FormMain
         Me.NBLinePlanProduction.Name = "NBLinePlanProduction"
         Me.NBLinePlanProduction.SmallImage = CType(resources.GetObject("NBLinePlanProduction.SmallImage"), System.Drawing.Image)
         '
+        'NBGSales
+        '
+        Me.NBGSales.Caption = "Sales & Inventory"
+        Me.NBGSales.DragDropFlags = DevExpress.XtraNavBar.NavBarDragDrop.None
+        Me.NBGSales.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
+        Me.NBGSales.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesTarget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLinePlan), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLinePlanPublic), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGLineList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLineListNonMerch), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDesignLineList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDesignListApp), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGLineListDsg), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProposePrice), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGDS), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDistSchemaSetup), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGSOReff), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGWHAlloc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGWHAllocLog), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrderReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPrepareOrderUni), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrderList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrderCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesDelOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGTrfNew), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesReturnOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesReturnOrderOL), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesReturnQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBNonStockInv), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDelEmpty), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrderSvcLevel), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBVerifyMaster), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWHSvcLevel), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesPOS), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvDiffMargin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesPromo), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGMissing), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScanReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvoiceStaff), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesCreditNote), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRetOlStoreList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCreditNoteOLStore), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBODMComplete), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBUniformExpense), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBUniformCreditNote), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOLStoreReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesWeekly), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGSoStore), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGSOWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGAdj), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGTrf), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGTrfRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGWoff), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGWoffList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGTracking), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBTransList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSOHPeriode), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSOHPrice), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSOH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSOHSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAWB), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWHAwbillLock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDeliveryMonitoring), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCargoRate), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBImportDO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGMissingInvoice), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGMissingCreditNote), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesInvoice), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGRepair), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGRepairReturnRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPromoTrf), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBTransSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBackupStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFirstDel), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCompareStockCard), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesTracking), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRevenueBudget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRevenue), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesReturnRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOLStoreWork), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesTargetPropose), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEstQtyToWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesRecord), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBVoucherPOS), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPromoRules), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBuktiPickup), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBTrackingReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvTracking), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDelManifest), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDocTracking), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesInv), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLineListMD), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLineListMKT), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLineListRetail), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLineListVM), New DevExpress.XtraNavBar.NavBarItemLink(Me.NB3plRate), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFabricType), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSetupBudgetProdDemand), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRetOlShop), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRetOlStoreCust), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCompareStockWebsite), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAcceptRefundOLStore), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOutboundList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPromoCollection), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBVerificationMasterOL), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBVerificationMasterPrice), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSendEmailReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBReturnNote), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInboundAwb), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBListStore), New DevExpress.XtraNavBar.NavBarItemLink(Me.NB3PLMailReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOOSFinalize), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAdjustmentOG), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPromoCollectionMarketplace), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBReturnForBOF), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOLReturnRefuse), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCancellationCN), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProposePriceMKD), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPODReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvoiceVerification), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMonthlySalesPerformance), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockTakePropose), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockTakeStorePeriod), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockTakePartial), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSNIpps), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSNIWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProductPerform), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCapsule), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPromoZalora), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesOrderSvcLevelMD), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProposePromo), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBNominatifPromo), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRetExos), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDisableExos), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEOSChange), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEts), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMKDEvent), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBSP)})
+        Me.NBGSales.LargeImage = CType(resources.GetObject("NBGSales.LargeImage"), System.Drawing.Image)
+        Me.NBGSales.LargeImageIndex = 35
+        Me.NBGSales.Name = "NBGSales"
+        Me.NBGSales.SmallImage = CType(resources.GetObject("NBGSales.SmallImage"), System.Drawing.Image)
+        '
+        'NBSalesTarget
+        '
+        Me.NBSalesTarget.Caption = "Sales Target"
+        Me.NBSalesTarget.Name = "NBSalesTarget"
+        Me.NBSalesTarget.SmallImageIndex = 3
+        '
+        'NBLinePlan
+        '
+        Me.NBLinePlan.Caption = "Line Plan"
+        Me.NBLinePlan.Name = "NBLinePlan"
+        Me.NBLinePlan.SmallImage = CType(resources.GetObject("NBLinePlan.SmallImage"), System.Drawing.Image)
+        '
+        'NBLinePlanPublic
+        '
+        Me.NBLinePlanPublic.Caption = "Line Plan"
+        Me.NBLinePlanPublic.Name = "NBLinePlanPublic"
+        Me.NBLinePlanPublic.SmallImage = CType(resources.GetObject("NBLinePlanPublic.SmallImage"), System.Drawing.Image)
+        '
+        'NBFGLineList
+        '
+        Me.NBFGLineList.Caption = "Line Sheet"
+        Me.NBFGLineList.Name = "NBFGLineList"
+        Me.NBFGLineList.SmallImageIndex = 39
+        '
+        'NBLineListNonMerch
+        '
+        Me.NBLineListNonMerch.Caption = "Line Sheet Non Merchandise"
+        Me.NBLineListNonMerch.Name = "NBLineListNonMerch"
+        Me.NBLineListNonMerch.SmallImageIndex = 39
+        '
+        'NBDesignLineList
+        '
+        Me.NBDesignLineList.Caption = "Line List (Design)"
+        Me.NBDesignLineList.Name = "NBDesignLineList"
+        Me.NBDesignLineList.SmallImageIndex = 39
+        '
+        'NBDesignListApp
+        '
+        Me.NBDesignListApp.Caption = "Line List (Design-Approve)"
+        Me.NBDesignListApp.Name = "NBDesignListApp"
+        Me.NBDesignListApp.SmallImageIndex = 39
+        '
+        'NBFGLineListDsg
+        '
+        Me.NBFGLineListDsg.Caption = "Line List Report"
+        Me.NBFGLineListDsg.Name = "NBFGLineListDsg"
+        Me.NBFGLineListDsg.SmallImageIndex = 39
+        '
+        'NBProposePrice
+        '
+        Me.NBProposePrice.Caption = "Propose Price New Product"
+        Me.NBProposePrice.Name = "NBProposePrice"
+        Me.NBProposePrice.SmallImageIndex = 40
+        '
+        'NBFGDS
+        '
+        Me.NBFGDS.Caption = "Distribution scheme"
+        Me.NBFGDS.Name = "NBFGDS"
+        Me.NBFGDS.SmallImageIndex = 23
+        '
+        'NBDistSchemaSetup
+        '
+        Me.NBDistSchemaSetup.Caption = "Disribution Scheme Setup"
+        Me.NBDistSchemaSetup.Name = "NBDistSchemaSetup"
+        Me.NBDistSchemaSetup.SmallImageIndex = 41
+        '
+        'NBFGSOReff
+        '
+        Me.NBFGSOReff.Caption = "Prepare Order New Product"
+        Me.NBFGSOReff.Name = "NBFGSOReff"
+        Me.NBFGSOReff.SmallImageIndex = 38
+        '
+        'NBFGWHAlloc
+        '
+        Me.NBFGWHAlloc.Caption = "Inventory Allocation"
+        Me.NBFGWHAlloc.Name = "NBFGWHAlloc"
+        Me.NBFGWHAlloc.SmallImage = CType(resources.GetObject("NBFGWHAlloc.SmallImage"), System.Drawing.Image)
+        '
+        'NBFGWHAllocLog
+        '
+        Me.NBFGWHAllocLog.Caption = "Inventory Allocation Log"
+        Me.NBFGWHAllocLog.Name = "NBFGWHAllocLog"
+        Me.NBFGWHAllocLog.SmallImage = CType(resources.GetObject("NBFGWHAllocLog.SmallImage"), System.Drawing.Image)
+        '
+        'NBSalesOrder
+        '
+        Me.NBSalesOrder.Caption = "Prepare Order"
+        Me.NBSalesOrder.Name = "NBSalesOrder"
+        Me.NBSalesOrder.SmallImageIndex = 25
+        '
+        'NBSalesOrderReport
+        '
+        Me.NBSalesOrderReport.Caption = "Prepare Order Monitoring"
+        Me.NBSalesOrderReport.Name = "NBSalesOrderReport"
+        Me.NBSalesOrderReport.SmallImage = CType(resources.GetObject("NBSalesOrderReport.SmallImage"), System.Drawing.Image)
+        '
+        'NBPrepareOrderUni
+        '
+        Me.NBPrepareOrderUni.Caption = "Prepare Uniform"
+        Me.NBPrepareOrderUni.Name = "NBPrepareOrderUni"
+        Me.NBPrepareOrderUni.SmallImageIndex = 25
+        '
+        'NBSalesOrderList
+        '
+        Me.NBSalesOrderList.Caption = "Prepare Order List"
+        Me.NBSalesOrderList.Name = "NBSalesOrderList"
+        Me.NBSalesOrderList.SmallImageIndex = 39
+        '
+        'NBSalesOrderCat
+        '
+        Me.NBSalesOrderCat.Caption = "Prepare Order Category"
+        Me.NBSalesOrderCat.Name = "NBSalesOrderCat"
+        Me.NBSalesOrderCat.SmallImageIndex = 16
+        '
+        'NBSalesDelOrder
+        '
+        Me.NBSalesDelOrder.Caption = "Delivery"
+        Me.NBSalesDelOrder.Name = "NBSalesDelOrder"
+        Me.NBSalesDelOrder.SmallImageIndex = 35
+        '
+        'NBFGTrfNew
+        '
+        Me.NBFGTrfNew.Caption = "Transfer"
+        Me.NBFGTrfNew.Name = "NBFGTrfNew"
+        Me.NBFGTrfNew.SmallImageIndex = 42
+        '
+        'NBSalesReturnOrder
+        '
+        Me.NBSalesReturnOrder.Caption = "Propose Return"
+        Me.NBSalesReturnOrder.Name = "NBSalesReturnOrder"
+        Me.NBSalesReturnOrder.SmallImageIndex = 25
+        '
+        'NBSalesReturnOrderOL
+        '
+        Me.NBSalesReturnOrderOL.Caption = "Return Order Online Store"
+        Me.NBSalesReturnOrderOL.Name = "NBSalesReturnOrderOL"
+        Me.NBSalesReturnOrderOL.SmallImageIndex = 25
+        '
+        'NBSalesReturn
+        '
+        Me.NBSalesReturn.Caption = "Return"
+        Me.NBSalesReturn.Name = "NBSalesReturn"
+        Me.NBSalesReturn.SmallImageIndex = 32
+        '
+        'NBSalesReturnQC
+        '
+        Me.NBSalesReturnQC.Caption = "Return Transfer"
+        Me.NBSalesReturnQC.Name = "NBSalesReturnQC"
+        Me.NBSalesReturnQC.SmallImage = CType(resources.GetObject("NBSalesReturnQC.SmallImage"), System.Drawing.Image)
+        Me.NBSalesReturnQC.SmallImageIndex = 32
+        '
+        'NBNonStockInv
+        '
+        Me.NBNonStockInv.Caption = "Non Stock Inventory"
+        Me.NBNonStockInv.Name = "NBNonStockInv"
+        Me.NBNonStockInv.SmallImage = CType(resources.GetObject("NBNonStockInv.SmallImage"), System.Drawing.Image)
+        '
+        'NBDelEmpty
+        '
+        Me.NBDelEmpty.Caption = "Non Stock Inventory - Out"
+        Me.NBDelEmpty.Name = "NBDelEmpty"
+        Me.NBDelEmpty.SmallImage = CType(resources.GetObject("NBDelEmpty.SmallImage"), System.Drawing.Image)
+        Me.NBDelEmpty.SmallImageIndex = 35
+        '
+        'NBSalesOrderSvcLevel
+        '
+        Me.NBSalesOrderSvcLevel.Caption = "Finalize Status - Warehouse"
+        Me.NBSalesOrderSvcLevel.Name = "NBSalesOrderSvcLevel"
+        Me.NBSalesOrderSvcLevel.SmallImageIndex = 50
+        '
+        'NBVerifyMaster
+        '
+        Me.NBVerifyMaster.Caption = "Verify Master Data"
+        Me.NBVerifyMaster.Name = "NBVerifyMaster"
+        Me.NBVerifyMaster.SmallImage = CType(resources.GetObject("NBVerifyMaster.SmallImage"), System.Drawing.Image)
+        '
+        'NBWHSvcLevel
+        '
+        Me.NBWHSvcLevel.Caption = "Order Service Level"
+        Me.NBWHSvcLevel.Name = "NBWHSvcLevel"
+        Me.NBWHSvcLevel.SmallImageIndex = 48
+        '
+        'NBSalesPOS
+        '
+        Me.NBSalesPOS.Caption = "Invoice"
+        Me.NBSalesPOS.Name = "NBSalesPOS"
+        Me.NBSalesPOS.SmallImageIndex = 37
+        '
+        'NBInvDiffMargin
+        '
+        Me.NBInvDiffMargin.Caption = "Invoice (Not Used)"
+        Me.NBInvDiffMargin.Name = "NBInvDiffMargin"
+        Me.NBInvDiffMargin.SmallImageIndex = 37
+        '
+        'NBSalesPromo
+        '
+        Me.NBSalesPromo.Caption = "Marketing Invoice"
+        Me.NBSalesPromo.Name = "NBSalesPromo"
+        Me.NBSalesPromo.SmallImageIndex = 37
+        '
+        'NBFGMissing
+        '
+        Me.NBFGMissing.Caption = "Invoice Missing Promo"
+        Me.NBFGMissing.Name = "NBFGMissing"
+        Me.NBFGMissing.SmallImageIndex = 37
+        '
+        'NBScanReturn
+        '
+        Me.NBScanReturn.Caption = "Scan Return"
+        Me.NBScanReturn.Name = "NBScanReturn"
+        Me.NBScanReturn.SmallImage = CType(resources.GetObject("NBScanReturn.SmallImage"), System.Drawing.Image)
+        '
+        'NBInvoiceStaff
+        '
+        Me.NBInvoiceStaff.Caption = "Invoice (Different Margin)"
+        Me.NBInvoiceStaff.Name = "NBInvoiceStaff"
+        Me.NBInvoiceStaff.SmallImageIndex = 37
+        '
+        'NBSalesCreditNote
+        '
+        Me.NBSalesCreditNote.Caption = "Credit Note"
+        Me.NBSalesCreditNote.Name = "NBSalesCreditNote"
+        Me.NBSalesCreditNote.SmallImageIndex = 37
+        '
+        'NBRetOlStoreList
+        '
+        Me.NBRetOlStoreList.Caption = "Return Centre - OL. Store"
+        Me.NBRetOlStoreList.Name = "NBRetOlStoreList"
+        Me.NBRetOlStoreList.SmallImage = CType(resources.GetObject("NBRetOlStoreList.SmallImage"), System.Drawing.Image)
+        '
+        'NBCreditNoteOLStore
+        '
+        Me.NBCreditNoteOLStore.Caption = "Credit Note Online Store"
+        Me.NBCreditNoteOLStore.Name = "NBCreditNoteOLStore"
+        Me.NBCreditNoteOLStore.SmallImageIndex = 37
+        '
+        'NBODMComplete
+        '
+        Me.NBODMComplete.Caption = "Outbound Delivery Manifest (Completed)"
+        Me.NBODMComplete.Name = "NBODMComplete"
+        Me.NBODMComplete.SmallImage = CType(resources.GetObject("NBODMComplete.SmallImage"), System.Drawing.Image)
+        '
+        'NBUniformExpense
+        '
+        Me.NBUniformExpense.Caption = "Expense"
+        Me.NBUniformExpense.Name = "NBUniformExpense"
+        Me.NBUniformExpense.SmallImage = CType(resources.GetObject("NBUniformExpense.SmallImage"), System.Drawing.Image)
+        '
+        'NBUniformCreditNote
+        '
+        Me.NBUniformCreditNote.Caption = "Credit Note Uniform"
+        Me.NBUniformCreditNote.Name = "NBUniformCreditNote"
+        Me.NBUniformCreditNote.SmallImage = CType(resources.GetObject("NBUniformCreditNote.SmallImage"), System.Drawing.Image)
+        '
+        'NBOLStoreReport
+        '
+        Me.NBOLStoreReport.Caption = "Online Store Report"
+        Me.NBOLStoreReport.Name = "NBOLStoreReport"
+        Me.NBOLStoreReport.SmallImage = CType(resources.GetObject("NBOLStoreReport.SmallImage"), System.Drawing.Image)
+        '
+        'NBSalesWeekly
+        '
+        Me.NBSalesWeekly.Caption = "Standard Sales Report"
+        Me.NBSalesWeekly.Name = "NBSalesWeekly"
+        Me.NBSalesWeekly.SmallImageIndex = 46
+        '
+        'NBFGSoStore
+        '
+        Me.NBFGSoStore.Caption = "Store Stock Opname"
+        Me.NBFGSoStore.Name = "NBFGSoStore"
+        Me.NBFGSoStore.SmallImageIndex = 36
+        '
+        'NBFGSOWH
+        '
+        Me.NBFGSOWH.Caption = "Warehouse Stock Opname"
+        Me.NBFGSOWH.Name = "NBFGSOWH"
+        Me.NBFGSOWH.SmallImageIndex = 36
+        '
+        'NBFGAdj
+        '
+        Me.NBFGAdj.Caption = "Adjustment Qty"
+        Me.NBFGAdj.Name = "NBFGAdj"
+        Me.NBFGAdj.SmallImageIndex = 33
+        '
+        'NBFGTrf
+        '
+        Me.NBFGTrf.Caption = "Transfer Future"
+        Me.NBFGTrf.Name = "NBFGTrf"
+        Me.NBFGTrf.SmallImageIndex = 42
+        '
+        'NBFGTrfRec
+        '
+        Me.NBFGTrfRec.Caption = "Receive Transfer Future"
+        Me.NBFGTrfRec.Name = "NBFGTrfRec"
+        Me.NBFGTrfRec.SmallImageIndex = 27
+        '
+        'NBFGWoff
+        '
+        Me.NBFGWoff.Caption = "Write Off"
+        Me.NBFGWoff.Name = "NBFGWoff"
+        Me.NBFGWoff.SmallImageIndex = 25
+        '
+        'NBFGWoffList
+        '
+        Me.NBFGWoffList.Caption = "Write Off List"
+        Me.NBFGWoffList.Name = "NBFGWoffList"
+        Me.NBFGWoffList.SmallImageIndex = 39
+        '
+        'NBFGStock
+        '
+        Me.NBFGStock.Caption = "Stock"
+        Me.NBFGStock.Name = "NBFGStock"
+        Me.NBFGStock.SmallImageIndex = 26
+        '
+        'NBFGTracking
+        '
+        Me.NBFGTracking.Caption = "Tracking Product"
+        Me.NBFGTracking.Name = "NBFGTracking"
+        Me.NBFGTracking.SmallImageIndex = 47
+        '
+        'NBTransList
+        '
+        Me.NBTransList.Caption = "Transaction List"
+        Me.NBTransList.Name = "NBTransList"
+        Me.NBTransList.SmallImage = CType(resources.GetObject("NBTransList.SmallImage"), System.Drawing.Image)
+        '
+        'NBSOHPeriode
+        '
+        Me.NBSOHPeriode.Caption = "SOH Periode"
+        Me.NBSOHPeriode.Name = "NBSOHPeriode"
+        Me.NBSOHPeriode.SmallImageIndex = 43
+        '
+        'NBSOHPrice
+        '
+        Me.NBSOHPrice.Caption = "SOH Price List"
+        Me.NBSOHPrice.Name = "NBSOHPrice"
+        Me.NBSOHPrice.SmallImageIndex = 40
+        '
+        'NBSOH
+        '
+        Me.NBSOH.Caption = "SOH Compare"
+        Me.NBSOH.Name = "NBSOH"
+        Me.NBSOH.SmallImageIndex = 38
+        '
+        'NBSOHSum
+        '
+        Me.NBSOHSum.Caption = "SOH Summary"
+        Me.NBSOHSum.Name = "NBSOHSum"
+        Me.NBSOHSum.SmallImageIndex = 45
+        '
+        'NBAWB
+        '
+        Me.NBAWB.Caption = "Delivery Monitoring"
+        Me.NBAWB.Name = "NBAWB"
+        Me.NBAWB.SmallImageIndex = 35
+        '
+        'NBWHAwbillLock
+        '
+        Me.NBWHAwbillLock.Caption = "Delivery Monitoring"
+        Me.NBWHAwbillLock.Name = "NBWHAwbillLock"
+        Me.NBWHAwbillLock.SmallImageIndex = 35
+        '
+        'NBDeliveryMonitoring
+        '
+        Me.NBDeliveryMonitoring.Caption = "Delivery Monitoring"
+        Me.NBDeliveryMonitoring.Name = "NBDeliveryMonitoring"
+        Me.NBDeliveryMonitoring.SmallImage = CType(resources.GetObject("NBDeliveryMonitoring.SmallImage"), System.Drawing.Image)
+        '
+        'NBCargoRate
+        '
+        Me.NBCargoRate.Caption = "Inbound Rate"
+        Me.NBCargoRate.Name = "NBCargoRate"
+        Me.NBCargoRate.SmallImageIndex = 34
+        '
+        'NBImportDO
+        '
+        Me.NBImportDO.Caption = "Import Excel Delivery Order"
+        Me.NBImportDO.Name = "NBImportDO"
+        '
+        'NBFGMissingInvoice
+        '
+        Me.NBFGMissingInvoice.Caption = "(Not Used) Missing Invoice"
+        Me.NBFGMissingInvoice.Name = "NBFGMissingInvoice"
+        '
+        'NBFGMissingCreditNote
+        '
+        Me.NBFGMissingCreditNote.Caption = "(Not Used) Missing Credit Note"
+        Me.NBFGMissingCreditNote.Name = "NBFGMissingCreditNote"
+        Me.NBFGMissingCreditNote.SmallImageIndex = 37
+        '
+        'NBSalesInvoice
+        '
+        Me.NBSalesInvoice.Caption = "(Not Used) Sales Invoice"
+        Me.NBSalesInvoice.Name = "NBSalesInvoice"
+        '
+        'NBFGRepair
+        '
+        Me.NBFGRepair.Caption = "Repair Product"
+        Me.NBFGRepair.Name = "NBFGRepair"
+        Me.NBFGRepair.SmallImage = CType(resources.GetObject("NBFGRepair.SmallImage"), System.Drawing.Image)
+        '
+        'NBFGRepairReturnRec
+        '
+        Me.NBFGRepairReturnRec.Caption = "Receive Return Repair Product"
+        Me.NBFGRepairReturnRec.Name = "NBFGRepairReturnRec"
+        Me.NBFGRepairReturnRec.SmallImage = CType(resources.GetObject("NBFGRepairReturnRec.SmallImage"), System.Drawing.Image)
+        '
+        'NBPromoTrf
+        '
+        Me.NBPromoTrf.Caption = "Promo Transfer"
+        Me.NBPromoTrf.Name = "NBPromoTrf"
+        Me.NBPromoTrf.SmallImageIndex = 42
+        '
+        'NBTransSum
+        '
+        Me.NBTransSum.Caption = "Transaction Summary"
+        Me.NBTransSum.Name = "NBTransSum"
+        Me.NBTransSum.SmallImage = CType(resources.GetObject("NBTransSum.SmallImage"), System.Drawing.Image)
+        '
+        'NBBackupStock
+        '
+        Me.NBBackupStock.Caption = "Backup Stock"
+        Me.NBBackupStock.Name = "NBBackupStock"
+        Me.NBBackupStock.SmallImage = CType(resources.GetObject("NBBackupStock.SmallImage"), System.Drawing.Image)
+        '
+        'NBFirstDel
+        '
+        Me.NBFirstDel.Caption = "First Delivery Report"
+        Me.NBFirstDel.Name = "NBFirstDel"
+        Me.NBFirstDel.SmallImage = CType(resources.GetObject("NBFirstDel.SmallImage"), System.Drawing.Image)
+        '
+        'NBCompareStockCard
+        '
+        Me.NBCompareStockCard.Caption = "Compare Stock Card"
+        Me.NBCompareStockCard.Name = "NBCompareStockCard"
+        Me.NBCompareStockCard.SmallImage = CType(resources.GetObject("NBCompareStockCard.SmallImage"), System.Drawing.Image)
+        '
+        'NBSalesTracking
+        '
+        Me.NBSalesTracking.Caption = "Sales Tracking"
+        Me.NBSalesTracking.Name = "NBSalesTracking"
+        Me.NBSalesTracking.SmallImageIndex = 23
+        '
+        'NBRevenueBudget
+        '
+        Me.NBRevenueBudget.Caption = "Revenue Budget"
+        Me.NBRevenueBudget.Name = "NBRevenueBudget"
+        Me.NBRevenueBudget.SmallImage = CType(resources.GetObject("NBRevenueBudget.SmallImage"), System.Drawing.Image)
+        '
+        'NBRevenue
+        '
+        Me.NBRevenue.Caption = "Revenue"
+        Me.NBRevenue.Name = "NBRevenue"
+        Me.NBRevenue.SmallImage = CType(resources.GetObject("NBRevenue.SmallImage"), System.Drawing.Image)
+        '
+        'NBSalesReturnRec
+        '
+        Me.NBSalesReturnRec.Caption = "Receive Return"
+        Me.NBSalesReturnRec.Name = "NBSalesReturnRec"
+        Me.NBSalesReturnRec.SmallImageIndex = 32
+        '
+        'NBOLStoreWork
+        '
+        Me.NBOLStoreWork.Caption = "Online Store Workplace"
+        Me.NBOLStoreWork.Name = "NBOLStoreWork"
+        Me.NBOLStoreWork.SmallImage = CType(resources.GetObject("NBOLStoreWork.SmallImage"), System.Drawing.Image)
+        '
+        'NBSalesTargetPropose
+        '
+        Me.NBSalesTargetPropose.Caption = "Propose Sales Target"
+        Me.NBSalesTargetPropose.Name = "NBSalesTargetPropose"
+        Me.NBSalesTargetPropose.SmallImage = CType(resources.GetObject("NBSalesTargetPropose.SmallImage"), System.Drawing.Image)
+        '
+        'NBEstQtyToWH
+        '
+        Me.NBEstQtyToWH.Caption = "Time Schedule & Estimate Qty "
+        Me.NBEstQtyToWH.Name = "NBEstQtyToWH"
+        Me.NBEstQtyToWH.SmallImage = CType(resources.GetObject("NBEstQtyToWH.SmallImage"), System.Drawing.Image)
+        '
+        'NBSalesRecord
+        '
+        Me.NBSalesRecord.Caption = "Sales Record"
+        Me.NBSalesRecord.Name = "NBSalesRecord"
+        Me.NBSalesRecord.SmallImage = CType(resources.GetObject("NBSalesRecord.SmallImage"), System.Drawing.Image)
+        '
+        'NBVoucherPOS
+        '
+        Me.NBVoucherPOS.Caption = "Voucher POS"
+        Me.NBVoucherPOS.Name = "NBVoucherPOS"
+        Me.NBVoucherPOS.SmallImage = CType(resources.GetObject("NBVoucherPOS.SmallImage"), System.Drawing.Image)
+        '
+        'NBPromoRules
+        '
+        Me.NBPromoRules.Caption = "Promo Product Rules"
+        Me.NBPromoRules.Name = "NBPromoRules"
+        Me.NBPromoRules.SmallImage = CType(resources.GetObject("NBPromoRules.SmallImage"), System.Drawing.Image)
+        '
+        'NBBuktiPickup
+        '
+        Me.NBBuktiPickup.Caption = "Bukti Pickup"
+        Me.NBBuktiPickup.Name = "NBBuktiPickup"
+        Me.NBBuktiPickup.SmallImage = CType(resources.GetObject("NBBuktiPickup.SmallImage"), System.Drawing.Image)
+        '
+        'NBTrackingReturn
+        '
+        Me.NBTrackingReturn.Caption = "Return Tracking"
+        Me.NBTrackingReturn.Name = "NBTrackingReturn"
+        Me.NBTrackingReturn.SmallImage = CType(resources.GetObject("NBTrackingReturn.SmallImage"), System.Drawing.Image)
+        '
+        'NBInvTracking
+        '
+        Me.NBInvTracking.Caption = "Invoice Tracking"
+        Me.NBInvTracking.Name = "NBInvTracking"
+        Me.NBInvTracking.SmallImage = CType(resources.GetObject("NBInvTracking.SmallImage"), System.Drawing.Image)
+        '
+        'NBDelManifest
+        '
+        Me.NBDelManifest.Caption = "Draft Manifest"
+        Me.NBDelManifest.Name = "NBDelManifest"
+        Me.NBDelManifest.SmallImage = CType(resources.GetObject("NBDelManifest.SmallImage"), System.Drawing.Image)
+        '
+        'NBDocTracking
+        '
+        Me.NBDocTracking.Caption = "Document Tracking"
+        Me.NBDocTracking.Name = "NBDocTracking"
+        Me.NBDocTracking.SmallImage = CType(resources.GetObject("NBDocTracking.SmallImage"), System.Drawing.Image)
+        '
+        'NBSalesInv
+        '
+        Me.NBSalesInv.Caption = "Sales / Inventory"
+        Me.NBSalesInv.Name = "NBSalesInv"
+        Me.NBSalesInv.SmallImage = CType(resources.GetObject("NBSalesInv.SmallImage"), System.Drawing.Image)
+        '
+        'NBLineListMD
+        '
+        Me.NBLineListMD.Caption = "Line List"
+        Me.NBLineListMD.Name = "NBLineListMD"
+        Me.NBLineListMD.SmallImage = CType(resources.GetObject("NBLineListMD.SmallImage"), System.Drawing.Image)
+        '
+        'NBLineListMKT
+        '
+        Me.NBLineListMKT.Caption = "Line List"
+        Me.NBLineListMKT.Name = "NBLineListMKT"
+        Me.NBLineListMKT.SmallImage = CType(resources.GetObject("NBLineListMKT.SmallImage"), System.Drawing.Image)
+        '
+        'NBLineListRetail
+        '
+        Me.NBLineListRetail.Caption = "Line List"
+        Me.NBLineListRetail.Name = "NBLineListRetail"
+        Me.NBLineListRetail.SmallImage = CType(resources.GetObject("NBLineListRetail.SmallImage"), System.Drawing.Image)
+        '
+        'NBLineListVM
+        '
+        Me.NBLineListVM.Caption = "Line List"
+        Me.NBLineListVM.Name = "NBLineListVM"
+        Me.NBLineListVM.SmallImage = CType(resources.GetObject("NBLineListVM.SmallImage"), System.Drawing.Image)
+        '
+        'NB3plRate
+        '
+        Me.NB3plRate.Caption = "Rate 3PL"
+        Me.NB3plRate.Name = "NB3plRate"
+        Me.NB3plRate.SmallImage = CType(resources.GetObject("NB3plRate.SmallImage"), System.Drawing.Image)
+        '
+        'NBFabricType
+        '
+        Me.NBFabricType.Caption = "Fabric Type"
+        Me.NBFabricType.Name = "NBFabricType"
+        Me.NBFabricType.SmallImage = CType(resources.GetObject("NBFabricType.SmallImage"), System.Drawing.Image)
+        '
+        'NBSetupBudgetProdDemand
+        '
+        Me.NBSetupBudgetProdDemand.Caption = "Setup Budget PD"
+        Me.NBSetupBudgetProdDemand.Name = "NBSetupBudgetProdDemand"
+        Me.NBSetupBudgetProdDemand.SmallImage = CType(resources.GetObject("NBSetupBudgetProdDemand.SmallImage"), System.Drawing.Image)
+        '
+        'NBRetOlShop
+        '
+        Me.NBRetOlShop.Caption = "VIOS Pre Return"
+        Me.NBRetOlShop.Name = "NBRetOlShop"
+        Me.NBRetOlShop.SmallImage = CType(resources.GetObject("NBRetOlShop.SmallImage"), System.Drawing.Image)
+        '
+        'NBRetOlStoreCust
+        '
+        Me.NBRetOlStoreCust.Caption = "VIOS Return Refuse"
+        Me.NBRetOlStoreCust.Name = "NBRetOlStoreCust"
+        Me.NBRetOlStoreCust.SmallImage = CType(resources.GetObject("NBRetOlStoreCust.SmallImage"), System.Drawing.Image)
+        '
+        'NBCompareStockWebsite
+        '
+        Me.NBCompareStockWebsite.Caption = "Compare Stock Website"
+        Me.NBCompareStockWebsite.Name = "NBCompareStockWebsite"
+        Me.NBCompareStockWebsite.SmallImage = CType(resources.GetObject("NBCompareStockWebsite.SmallImage"), System.Drawing.Image)
+        '
+        'NBAcceptRefundOLStore
+        '
+        Me.NBAcceptRefundOLStore.Caption = "Accept Refund Online Shop"
+        Me.NBAcceptRefundOLStore.Name = "NBAcceptRefundOLStore"
+        Me.NBAcceptRefundOLStore.SmallImage = CType(resources.GetObject("NBAcceptRefundOLStore.SmallImage"), System.Drawing.Image)
+        '
+        'NBOutboundList
+        '
+        Me.NBOutboundList.Caption = "Outbound"
+        Me.NBOutboundList.Name = "NBOutboundList"
+        Me.NBOutboundList.SmallImage = CType(resources.GetObject("NBOutboundList.SmallImage"), System.Drawing.Image)
+        '
+        'NBPromoCollection
+        '
+        Me.NBPromoCollection.Caption = "Propose Promo Collection - VIOS"
+        Me.NBPromoCollection.Name = "NBPromoCollection"
+        Me.NBPromoCollection.SmallImage = CType(resources.GetObject("NBPromoCollection.SmallImage"), System.Drawing.Image)
+        '
+        'NBVerificationMasterOL
+        '
+        Me.NBVerificationMasterOL.Caption = "Verification Master Online Store"
+        Me.NBVerificationMasterOL.Name = "NBVerificationMasterOL"
+        Me.NBVerificationMasterOL.SmallImage = CType(resources.GetObject("NBVerificationMasterOL.SmallImage"), System.Drawing.Image)
+        '
+        'NBVerificationMasterPrice
+        '
+        Me.NBVerificationMasterPrice.Caption = "Verification Master Price"
+        Me.NBVerificationMasterPrice.Name = "NBVerificationMasterPrice"
+        Me.NBVerificationMasterPrice.SmallImage = CType(resources.GetObject("NBVerificationMasterPrice.SmallImage"), System.Drawing.Image)
+        '
+        'NBSendEmailReturn
+        '
+        Me.NBSendEmailReturn.Caption = "Send Email (Return)"
+        Me.NBSendEmailReturn.Name = "NBSendEmailReturn"
+        Me.NBSendEmailReturn.SmallImage = CType(resources.GetObject("NBSendEmailReturn.SmallImage"), System.Drawing.Image)
+        '
+        'NBReturnNote
+        '
+        Me.NBReturnNote.Caption = "Return Note"
+        Me.NBReturnNote.Name = "NBReturnNote"
+        Me.NBReturnNote.SmallImage = CType(resources.GetObject("NBReturnNote.SmallImage"), System.Drawing.Image)
+        '
+        'NBInboundAwb
+        '
+        Me.NBInboundAwb.Caption = "Inbound"
+        Me.NBInboundAwb.Name = "NBInboundAwb"
+        Me.NBInboundAwb.SmallImage = CType(resources.GetObject("NBInboundAwb.SmallImage"), System.Drawing.Image)
+        '
+        'NBListStore
+        '
+        Me.NBListStore.Caption = "Store List"
+        Me.NBListStore.Name = "NBListStore"
+        Me.NBListStore.SmallImage = CType(resources.GetObject("NBListStore.SmallImage"), System.Drawing.Image)
+        '
+        'NB3PLMailReturn
+        '
+        Me.NB3PLMailReturn.Caption = "Pickup Order"
+        Me.NB3PLMailReturn.Name = "NB3PLMailReturn"
+        Me.NB3PLMailReturn.SmallImage = CType(resources.GetObject("NB3PLMailReturn.SmallImage"), System.Drawing.Image)
+        '
+        'NBOOSFinalize
+        '
+        Me.NBOOSFinalize.Caption = "Finalize OOS"
+        Me.NBOOSFinalize.Name = "NBOOSFinalize"
+        Me.NBOOSFinalize.SmallImage = CType(resources.GetObject("NBOOSFinalize.SmallImage"), System.Drawing.Image)
+        '
+        'NBAdjustmentOG
+        '
+        Me.NBAdjustmentOG.Caption = "Adjustment Operational Goods"
+        Me.NBAdjustmentOG.Name = "NBAdjustmentOG"
+        Me.NBAdjustmentOG.SmallImage = CType(resources.GetObject("NBAdjustmentOG.SmallImage"), System.Drawing.Image)
+        '
+        'NBPromoCollectionMarketplace
+        '
+        Me.NBPromoCollectionMarketplace.Caption = "Promo Collection - Marketplace"
+        Me.NBPromoCollectionMarketplace.Name = "NBPromoCollectionMarketplace"
+        Me.NBPromoCollectionMarketplace.SmallImage = CType(resources.GetObject("NBPromoCollectionMarketplace.SmallImage"), System.Drawing.Image)
+        '
+        'NBReturnForBOF
+        '
+        Me.NBReturnForBOF.Caption = "Delivery Return for BOF"
+        Me.NBReturnForBOF.Name = "NBReturnForBOF"
+        Me.NBReturnForBOF.SmallImage = CType(resources.GetObject("NBReturnForBOF.SmallImage"), System.Drawing.Image)
+        '
+        'NBOLReturnRefuse
+        '
+        Me.NBOLReturnRefuse.Caption = "Marketplace Return Refuse"
+        Me.NBOLReturnRefuse.Name = "NBOLReturnRefuse"
+        Me.NBOLReturnRefuse.SmallImage = CType(resources.GetObject("NBOLReturnRefuse.SmallImage"), System.Drawing.Image)
+        '
+        'NBCancellationCN
+        '
+        Me.NBCancellationCN.Caption = "Cancellation CN"
+        Me.NBCancellationCN.Name = "NBCancellationCN"
+        Me.NBCancellationCN.SmallImage = CType(resources.GetObject("NBCancellationCN.SmallImage"), System.Drawing.Image)
+        '
+        'NBProposePriceMKD
+        '
+        Me.NBProposePriceMKD.Caption = "Proposal Turun Harga"
+        Me.NBProposePriceMKD.Name = "NBProposePriceMKD"
+        Me.NBProposePriceMKD.SmallImage = CType(resources.GetObject("NBProposePriceMKD.SmallImage"), System.Drawing.Image)
+        '
+        'NBPODReport
+        '
+        Me.NBPODReport.Caption = "Outbound POD"
+        Me.NBPODReport.Name = "NBPODReport"
+        Me.NBPODReport.SmallImage = CType(resources.GetObject("NBPODReport.SmallImage"), System.Drawing.Image)
+        '
+        'NBInvoiceVerification
+        '
+        Me.NBInvoiceVerification.Caption = "3PL Invoice Verification"
+        Me.NBInvoiceVerification.Name = "NBInvoiceVerification"
+        Me.NBInvoiceVerification.SmallImage = CType(resources.GetObject("NBInvoiceVerification.SmallImage"), System.Drawing.Image)
+        '
+        'NBMonthlySalesPerformance
+        '
+        Me.NBMonthlySalesPerformance.Caption = "Monthly Product Sales Tracking"
+        Me.NBMonthlySalesPerformance.Name = "NBMonthlySalesPerformance"
+        Me.NBMonthlySalesPerformance.SmallImage = CType(resources.GetObject("NBMonthlySalesPerformance.SmallImage"), System.Drawing.Image)
+        '
+        'NBStockTakePropose
+        '
+        Me.NBStockTakePropose.Caption = "Surat Ijin Stock Take"
+        Me.NBStockTakePropose.Name = "NBStockTakePropose"
+        Me.NBStockTakePropose.SmallImage = CType(resources.GetObject("NBStockTakePropose.SmallImage"), System.Drawing.Image)
+        '
+        'NBStockTakeStorePeriod
+        '
+        Me.NBStockTakeStorePeriod.Caption = "Stock Take Store"
+        Me.NBStockTakeStorePeriod.Name = "NBStockTakeStorePeriod"
+        Me.NBStockTakeStorePeriod.SmallImage = CType(resources.GetObject("NBStockTakeStorePeriod.SmallImage"), System.Drawing.Image)
+        '
+        'NBStockTakePartial
+        '
+        Me.NBStockTakePartial.Caption = "Stock Take Partial"
+        Me.NBStockTakePartial.Name = "NBStockTakePartial"
+        Me.NBStockTakePartial.SmallImage = CType(resources.GetObject("NBStockTakePartial.SmallImage"), System.Drawing.Image)
+        '
+        'NBSNIpps
+        '
+        Me.NBSNIpps.Caption = "SNI Propose"
+        Me.NBSNIpps.Name = "NBSNIpps"
+        Me.NBSNIpps.SmallImage = CType(resources.GetObject("NBSNIpps.SmallImage"), System.Drawing.Image)
+        '
+        'NBSNIWH
+        '
+        Me.NBSNIWH.Caption = "SNI WH"
+        Me.NBSNIWH.Name = "NBSNIWH"
+        Me.NBSNIWH.SmallImage = CType(resources.GetObject("NBSNIWH.SmallImage"), System.Drawing.Image)
+        '
+        'NBProductPerform
+        '
+        Me.NBProductPerform.Caption = "Product Performance by Stores"
+        Me.NBProductPerform.Name = "NBProductPerform"
+        Me.NBProductPerform.SmallImage = CType(resources.GetObject("NBProductPerform.SmallImage"), System.Drawing.Image)
+        '
+        'NBCapsule
+        '
+        Me.NBCapsule.Caption = "Capsule Data"
+        Me.NBCapsule.Name = "NBCapsule"
+        Me.NBCapsule.SmallImage = CType(resources.GetObject("NBCapsule.SmallImage"), System.Drawing.Image)
+        '
+        'NBPromoZalora
+        '
+        Me.NBPromoZalora.Caption = "Propose Zalora Promo"
+        Me.NBPromoZalora.Name = "NBPromoZalora"
+        Me.NBPromoZalora.SmallImage = CType(resources.GetObject("NBPromoZalora.SmallImage"), System.Drawing.Image)
+        '
+        'NBSalesOrderSvcLevelMD
+        '
+        Me.NBSalesOrderSvcLevelMD.Caption = "Cancel Prepare Order"
+        Me.NBSalesOrderSvcLevelMD.Name = "NBSalesOrderSvcLevelMD"
+        Me.NBSalesOrderSvcLevelMD.SmallImage = CType(resources.GetObject("NBSalesOrderSvcLevelMD.SmallImage"), System.Drawing.Image)
+        '
+        'NBProposePromo
+        '
+        Me.NBProposePromo.Caption = "Propose Promo"
+        Me.NBProposePromo.Name = "NBProposePromo"
+        Me.NBProposePromo.SmallImage = CType(resources.GetObject("NBProposePromo.SmallImage"), System.Drawing.Image)
+        '
+        'NBNominatifPromo
+        '
+        Me.NBNominatifPromo.Caption = "Daftar Nominatif Promo"
+        Me.NBNominatifPromo.Name = "NBNominatifPromo"
+        Me.NBNominatifPromo.SmallImage = CType(resources.GetObject("NBNominatifPromo.SmallImage"), System.Drawing.Image)
+        '
+        'NBRetExos
+        '
+        Me.NBRetExos.Caption = "Propose Return Extended EOS"
+        Me.NBRetExos.Name = "NBRetExos"
+        Me.NBRetExos.SmallImage = CType(resources.GetObject("NBRetExos.SmallImage"), System.Drawing.Image)
+        '
+        'NBDisableExos
+        '
+        Me.NBDisableExos.Caption = "Change Status Extended EOS"
+        Me.NBDisableExos.Name = "NBDisableExos"
+        Me.NBDisableExos.SmallImage = CType(resources.GetObject("NBDisableExos.SmallImage"), System.Drawing.Image)
+        '
+        'NBEOSChange
+        '
+        Me.NBEOSChange.Caption = "Perpanjangan EOS"
+        Me.NBEOSChange.Name = "NBEOSChange"
+        Me.NBEOSChange.SmallImage = CType(resources.GetObject("NBEOSChange.SmallImage"), System.Drawing.Image)
+        '
+        'NBEts
+        '
+        Me.NBEts.Caption = "Change EOS to Sale"
+        Me.NBEts.Name = "NBEts"
+        Me.NBEts.SmallImage = CType(resources.GetObject("NBEts.SmallImage"), System.Drawing.Image)
+        '
+        'NBMKDEvent
+        '
+        Me.NBMKDEvent.Caption = "End of Season Sale"
+        Me.NBMKDEvent.Name = "NBMKDEvent"
+        Me.NBMKDEvent.SmallImage = CType(resources.GetObject("NBMKDEvent.SmallImage"), System.Drawing.Image)
+        '
+        'NBBSP
+        '
+        Me.NBBSP.Caption = "Propose Big Sale"
+        Me.NBBSP.Name = "NBBSP"
+        Me.NBBSP.SmallImage = CType(resources.GetObject("NBBSP.SmallImage"), System.Drawing.Image)
+        '
         'NBGAccounting
         '
         Me.NBGAccounting.Caption = "Accounting"
         Me.NBGAccounting.DragDropFlags = DevExpress.XtraNavBar.NavBarDragDrop.None
         Me.NBGAccounting.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
-        Me.NBGAccounting.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBankWithdrawal), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDebitNote), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBankDeposit), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCashAdvance), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBReportBalanceSheet), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccFY), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvoiceFGPO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAcc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSetupItemMainCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMappingCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccJournal), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPayment), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBJournalAdj), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScanEFactur), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRateManagement), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAsset), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetPO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemExpense), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBExpenseBudget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSetupBudgetOPEX), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSetupBudgetCAPEX), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetManagement), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProposeExpenseBudgetAdmin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRevExpenseBudgetAdmin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemSubCatAcc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAgingAR), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAPReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBReportBudget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSendEmailAcc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvMat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFolluwUpAR), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAREvalSchedule), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAREvaluation), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDelayPayment), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccountingLedger), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccountingWorksheet), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCollectionAvg), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBListFixedAsset), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccClosing), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCompCOA), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPaymentMissing), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesBranch), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCNSalesBranch), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPayoutReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPolis), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBiayaSewa), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPrepaidExpense), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBABGRoyaltyZone)})
+        Me.NBGAccounting.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBankWithdrawal), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDebitNote), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBankDeposit), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCashAdvance), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBReportBalanceSheet), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccFY), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvoiceFGPO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAcc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSetupItemMainCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMappingCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccJournal), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPayment), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBJournalAdj), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScanEFactur), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRateManagement), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAsset), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetPO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemExpense), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBExpenseBudget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSetupBudgetOPEX), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSetupBudgetCAPEX), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetManagement), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProposeExpenseBudgetAdmin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRevExpenseBudgetAdmin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemSubCatAcc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAgingAR), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAPReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBReportBudget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSendEmailAcc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInvMat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFolluwUpAR), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAREvalSchedule), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAREvaluation), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDelayPayment), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccountingLedger), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccountingWorksheet), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCollectionAvg), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBListFixedAsset), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccClosing), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCompCOA), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPaymentMissing), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSalesBranch), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCNSalesBranch), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPayoutReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPolis), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBiayaSewa), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPrepaidExpense), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDeviden), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBABGRoyaltyZone)})
         Me.NBGAccounting.LargeImage = CType(resources.GetObject("NBGAccounting.LargeImage"), System.Drawing.Image)
         Me.NBGAccounting.LargeImageIndex = 3
         Me.NBGAccounting.Name = "NBGAccounting"
@@ -4035,6 +4044,12 @@ Partial Class FormMain
         Me.NBPrepaidExpense.Name = "NBPrepaidExpense"
         Me.NBPrepaidExpense.SmallImage = CType(resources.GetObject("NBPrepaidExpense.SmallImage"), System.Drawing.Image)
         '
+        'NBDeviden
+        '
+        Me.NBDeviden.Caption = "Dividen"
+        Me.NBDeviden.Name = "NBDeviden"
+        Me.NBDeviden.SmallImage = CType(resources.GetObject("NBDeviden.SmallImage"), System.Drawing.Image)
+        '
         'NBABGRoyaltyZone
         '
         Me.NBABGRoyaltyZone.Caption = "ABG Royalty Zone"
@@ -4046,7 +4061,7 @@ Partial Class FormMain
         Me.NBQC.Caption = "Quality Control"
         Me.NBQC.DragDropFlags = DevExpress.XtraNavBar.NavBarDragDrop.None
         Me.NBQC.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
-        Me.NBQC.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEstQtyToQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBQCHOTarget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdPLToWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAdjQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBorrowQCRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFinalClear), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGRepairRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGRepairReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRepairProductToVendor), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRecRepairFromVendor), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBHandoverReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBQCSNI), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSerahTerimaSNI)})
+        Me.NBQC.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEstQtyToQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBQCHOTarget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdPLToWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAdjQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBorrowQCRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFinalClear), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGRepairRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGRepairReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRepairProductToVendor), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRecRepairFromVendor), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBHandoverReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBQCSNI), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSerahTerimaSNI), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBQCReport1)})
         Me.NBQC.LargeImage = CType(resources.GetObject("NBQC.LargeImage"), System.Drawing.Image)
         Me.NBQC.LargeImageIndex = 19
         Me.NBQC.Name = "NBQC"
@@ -4151,6 +4166,12 @@ Partial Class FormMain
         Me.NBSerahTerimaSNI.Caption = "SNI Serah Terima"
         Me.NBSerahTerimaSNI.Name = "NBSerahTerimaSNI"
         Me.NBSerahTerimaSNI.SmallImage = CType(resources.GetObject("NBSerahTerimaSNI.SmallImage"), System.Drawing.Image)
+        '
+        'NBQCReport1
+        '
+        Me.NBQCReport1.Caption = "QC Report 1"
+        Me.NBQCReport1.Name = "NBQCReport1"
+        Me.NBQCReport1.SmallImage = CType(resources.GetObject("NBQCReport1.SmallImage"), System.Drawing.Image)
         '
         'NBGSetup
         '
@@ -4911,4 +4932,7 @@ Partial Class FormMain
     Friend WithEvents NBEts As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents NBMKDEvent As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents NBBSP As DevExpress.XtraNavBar.NavBarItem
+    Friend WithEvents NBDeviden As DevExpress.XtraNavBar.NavBarItem
+    Friend WithEvents NBQCReport1 As DevExpress.XtraNavBar.NavBarItem
+    Friend WithEvents NBVMStock As DevExpress.XtraNavBar.NavBarItem
 End Class

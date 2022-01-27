@@ -887,7 +887,7 @@ INNER JOIN `tb_pre_cal_fgpo` cal ON t.`id_type`='2' AND t.`is_active`='1' AND ca
 UNION ALL
 SELECT 11 AS id_pre_cal_temp,'EST STORAGE FEE AND COST PEROUTLAY' AS `desc`, SUM(IF(st.`is_use_cbm`=1,IF(st.`min_cbm`>cal.`cbm`,st.`min_cbm`,CEIL(cal.`cbm`)),1)*st.price) AS unit_price_in_rp,1 AS qty
 FROM `tb_pre_cal_storage` st
-INNER JOIN `tb_pre_cal_fgpo` cal ON st.`is_active`='1'  AND  cal.`id_pre_cal_fgpo`='" & id & "'"
+INNER JOIN `tb_pre_cal_fgpo` cal ON st.`is_active`='1'  AND  cal.`id_pre_cal_fgpo`='" & id & "' AND IF(st.id_type=2,cal.`cbm`<st.cbm_max AND cal.`cbm`>=st.cbm_min,TRUE) "
         'cal.`id_type`=t.`vendor_type` AND
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
 

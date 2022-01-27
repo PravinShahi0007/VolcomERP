@@ -10,6 +10,8 @@
 
     Public id_coa_tag As String = "1"
 
+    Public is_duplicate As Boolean = False
+
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
     End Sub
@@ -157,6 +159,8 @@
                 ElseIf FormInvoiceFGPO.SLEBPLImport.EditValue.ToString = "367" Then 'asuransi
                     SLEVendor.Properties.ReadOnly = False
                 End If
+
+                MENote.Text = FormInvoiceFGPO.SLEBPLImport.Text
             Else
                 TEDocType.Text = "FGPO"
 
@@ -300,21 +304,6 @@ AND (pnd.`value_bef_kurs`+IFNULL(used.val_bef_kurs,0)) > 0"
 
             DERefDate.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='1'", 0, True, "", "", "", "")
         Else
-            SLEVatAcc.Properties.ReadOnly = True
-            BAttachment.Visible = True
-            BtnPrint.Visible = True
-            BtnViewJournal.Visible = True
-            BMark.Visible = True
-            BtnSave.Visible = False
-            PCAddDel.Visible = False
-            DEDueDate.Properties.ReadOnly = True
-            DERefDate.Properties.ReadOnly = True
-            DEDueDateInv.Properties.ReadOnly = True
-            '
-            SLEPayType.Properties.ReadOnly = True
-            SLEVendor.Properties.ReadOnly = True
-            '
-
             Dim query As String = "SELECT pn.*,emp.`employee_name` FROM tb_pn_fgpo pn
 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -348,6 +337,31 @@ WHERE pn.`id_pn_fgpo`='" & id_invoice & "'"
             End If
             load_det()
             calculate()
+            '
+            If is_duplicate Then
+                id_invoice = "-1"
+                BtnPrint.Visible = False
+                BAttachment.Visible = False
+                BtnViewJournal.Visible = False
+                BMark.Visible = False
+                DEDueDate.Properties.ReadOnly = False
+                DEDueDateInv.Properties.ReadOnly = False
+                DERefDate.Properties.ReadOnly = False
+            Else
+                SLEVatAcc.Properties.ReadOnly = True
+                BAttachment.Visible = True
+                BtnPrint.Visible = True
+                BtnViewJournal.Visible = True
+                BMark.Visible = True
+                BtnSave.Visible = False
+                PCAddDel.Visible = False
+                DEDueDate.Properties.ReadOnly = True
+                DERefDate.Properties.ReadOnly = True
+                DEDueDateInv.Properties.ReadOnly = True
+                '
+                SLEPayType.Properties.ReadOnly = True
+                SLEVendor.Properties.ReadOnly = True
+            End If
         End If
     End Sub
 
@@ -831,6 +845,9 @@ WHERE pnd.`id_pn_fgpo`='" & id_invoice & "' AND pnd.report_mark_type='199'"
             End If
 
             newRow("report_number") = FormInvoiceFGPO.GVSummary.GetFocusedRowCellValue("wo_number").ToString
+            newRow("info_design") = ""
+        Else
+            newRow("info_design") = ""
         End If
 
         TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)

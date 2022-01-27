@@ -372,12 +372,12 @@
     End Sub
 
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        'ElseIf Not checkMail() Then
+        'stopCustom("Please input all email for store")
+        'mailSetup()
         GVData.ActiveFilterString = ""
         If GVData.RowCount <= 0 Or Not checkHead() Then
             stopCustom("Please input all data")
-        ElseIf Not checkMail() Then
-            stopCustom("Please input all email for store")
-            mailSetup()
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this Propose Price ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then

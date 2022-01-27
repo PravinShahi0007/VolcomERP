@@ -184,9 +184,9 @@ HAVING debit+credit!=0;"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If Not dt.Rows.Count > 0 Then
                 If id_coa_type = "1" Then
-                    q = "INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det,id_status,id_dc) VALUES('22121110" & Date.Parse(DEUntil.EditValue.ToString).ToString("yy") & "','Tahun 20" & Date.Parse(DEUntil.EditValue.ToString).ToString("yy") & "','1523','2','2','1','2'); SELECT LAST_INSERT_ID(); "
+                    q = "INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det,id_status,id_dc,id_consolidation) VALUES('22121110" & Date.Parse(DEUntil.EditValue.ToString).ToString("yy") & "','Tahun 20" & Date.Parse(DEUntil.EditValue.ToString).ToString("yy") & "','1523','2','2','1','2','24'); SELECT LAST_INSERT_ID(); "
                 ElseIf id_coa_type = "2" Then
-                    q = "INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det,id_status,id_dc) VALUES('22020" & Date.Parse(DEUntil.EditValue.ToString).ToString("yy") & "','Tahun 20" & Date.Parse(DEUntil.EditValue.ToString).ToString("yy") & "','3748','2','2','1','2'); SELECT LAST_INSERT_ID(); "
+                    q = "INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det,id_status,id_dc,id_consolidation) VALUES('22020" & Date.Parse(DEUntil.EditValue.ToString).ToString("yy") & "','Tahun 20" & Date.Parse(DEUntil.EditValue.ToString).ToString("yy") & "','3748','2','2','1','2','24'); SELECT LAST_INSERT_ID(); "
                 End If
                 id_acc_laba = execute_query(q, 0, True, "", "", "", "")
             Else

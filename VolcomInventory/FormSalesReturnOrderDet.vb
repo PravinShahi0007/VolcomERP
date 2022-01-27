@@ -662,7 +662,7 @@
         Report.LRecNumber.Text = TxtSalesOrderNumber.Text
         Report.LRecDate.Text = DEForm.Text
         Report.LabelTo.Text = TxtCodeCompTo.Text + " - " + TxtNameCompTo.Text
-        Report.LabelAddress.Text = MEAdrressCompTo.Text
+        'Report.LabelAddress.Text = MEAdrressCompTo.Text
         Report.LabelEstReturn.Text = DERetDueDate.Text
         Report.LabelNote.Text = MENote.Text
 

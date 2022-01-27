@@ -15,6 +15,11 @@
                 GVItemList.ActiveFilterString = "[ol_store_order]='" + FormSalesPOSDet.TxtOLStoreNumber.Text + "'"
             End If
             GVItemList.FocusedColumn = GridColumn1
+
+            If FormSalesPOSDet.TxtPotPenjualan.EditValue > 0 Then
+                CESelAll.EditValue = True
+                CESelAll.Enabled = False
+            End If
         End If
 
         'inisialisasi jika blm ada
@@ -359,6 +364,7 @@
                         newRow("id_sales_pos_prob") = "0"
                         newRow("id_sales_pos_prob_price") = "0"
                         newRow("id_sales_pos_oos_recon_det") = "0"
+                        newRow("is_gwp") = isGWPProduct(GVItemList.GetRowCellValue(ls, "id_design").ToString, GVItemList.GetRowCellValue(ls, "is_md").ToString)
 
                         TryCast(FormSalesPOSDet.GCItemList.DataSource, DataTable).Rows.Add(newRow)
                         FormSalesPOSDet.GCItemList.RefreshDataSource()
