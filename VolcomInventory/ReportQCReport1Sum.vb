@@ -23,15 +23,17 @@ GROUP BY rec.id_prod_order_rec"
         insert_row_total(RowBM, tot)
         '
         Dim q2 As String = "SELECT d.id_design,vendor.comp_name AS vendor_name,po.id_prod_order,po.prod_order_number,DATE_FORMAT(qrs.created_date,'%d %M %Y') AS created_date,qrs.number
-,FORMAT(pod.qty,0,'id_ID') AS qty_po
+,FORMAT(podd.prod_order_qty,0,'id_ID') AS qty_po
 ,FORMAT(SUM(qrd.qc_report1_det_qty),0,'id_ID') AS qty_qc_report1
 ,FORMAT(SUM(IF(qr.`id_pl_category`=1,qrd.qc_report1_det_qty,0)),0,'id_ID') AS qty_normal
 ,FORMAT(SUM(IF(qr.`id_pl_category`=2,qrd.`qc_report1_det_qty`,0)),0,'id_ID') AS qty_reject_minor
 ,FORMAT(SUM(IF(qr.`id_pl_category`=3,qrd.`qc_report1_det_qty`,0)),0,'id_ID') AS qty_reject_major
 ,FORMAT(SUM(IF(qr.`id_pl_category`!=1,qrd.`qc_report1_det_qty`,0)),0,'id_ID') AS qty_reject
 ,FORMAT(recd.qty,0,'id_ID') AS qty_rec 
-,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color) AS  design_display_name
+,CONCAT(d.design_code,' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color) AS  design_display_name
 ,s.season,d.design_code
+,prd.`product_full_code`
+,pcd.`code_detail_name` AS size
 FROM `tb_qc_report1_det` qrd
 INNER JOIN tb_qc_report1 qr ON qr.`id_qc_report1`=qrd.`id_qc_report1` AND qr.`id_report_status`=6
 INNER JOIN tb_prod_order po ON po.id_prod_order=qr.id_prod_order
@@ -67,33 +69,63 @@ LEFT JOIN (
 	AND cd.id_code IN (32,30,14, 43, 34)
 	GROUP BY dc.id_design
 ) cd ON cd.id_design = d.id_design
+INNER JOIN tb_prod_order_det podd ON podd.id_prod_order_det=qrd.id_prod_order_det
+INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product=podd.id_prod_demand_product
+INNER JOIN tb_m_product prd ON prd.id_product=pdp.id_product
+INNER JOIN tb_m_product_code pc ON pc.id_product=prd.id_product
+INNER JOIN tb_m_code_detail pcd ON pcd.id_code_detail=pc.id_code_detail
 INNER JOIN (
-	SELECT r.id_prod_order , SUM(rd.`prod_order_rec_det_qty`) AS qty
+	SELECT rd.id_prod_order_det,SUM(rd.`prod_order_rec_det_qty`) AS qty
 	FROM tb_prod_order_rec_det rd 
 	INNER JOIN tb_prod_order_rec r ON r.`id_prod_order_rec`=rd.`id_prod_order_rec` AND r.`id_report_status`=6
-    INNER JOIN tb_qc_report1_sum s ON s.id_prod_order=r.id_prod_order AND s.id_qc_report1_sum='" & id & "'
-	GROUP BY r.`id_prod_order`
-) recd ON recd.id_prod_order=po.`id_prod_order`
-INNER JOIN (
-	SELECT pod.id_prod_order,SUM(pod.prod_order_qty) AS qty
-	FROM tb_prod_order_det pod
-    INNER JOIN tb_qc_report1_sum s ON s.id_prod_order=pod.id_prod_order AND s.id_qc_report1_sum='" & id & "'
-	GROUP BY pod.`id_prod_order`
-) pod ON pod.id_prod_order=qr.`id_prod_order`"
+	INNER JOIN tb_qc_report1_sum s ON s.id_prod_order=r.id_prod_order AND s.id_qc_report1_sum='" & id & "'
+	GROUP BY rd.`id_prod_order_det`
+) recd ON recd.id_prod_order_det=podd.`id_prod_order_det`
+GROUP BY podd.`id_prod_order_det`"
         Dim dt As DataTable = execute_query(q2, -1, True, "", "", "", "")
-        DataSource = dt
+        '
+        If dt.Rows.Count > 0 Then
+            Lnumber.Text = dt.Rows(0)("number").ToString
+            LCreatedDate.Text = dt.Rows(0)("created_date").ToString
+            LProdNumber.Text = dt.Rows(0)("prod_order_number").ToString
+            LVendorName.Text = dt.Rows(0)("vendor_name").ToString
+            LabelDesign.Text = dt.Rows(0)("design_display_name").ToString
+            LSeason.Text = dt.Rows(0)("season").ToString
+            '
+            'get images
+            Dim images As Hashtable = New Hashtable()
+            Dim id_design As String = dt.Rows(0)("id_design").ToString
+            Dim fileName As String = id_design & ".jpg".ToLower
 
-        'get images
-        Dim images As Hashtable = New Hashtable()
-        Dim id_design As String = dt.Rows(0)("id_design").ToString
-        Dim fileName As String = id_design & ".jpg".ToLower
+            If (Not images.ContainsKey(fileName)) Then
+                Dim filePath As String = DevExpress.Utils.FilesHelper.FindingFileName(product_image_path, fileName, False)
+                XRPDesign.ImageUrl = filePath
+            End If
 
-        If (Not images.ContainsKey(fileName)) Then
-            Dim filePath As String = DevExpress.Utils.FilesHelper.FindingFileName(product_image_path, fileName, False)
-            XRPDesign.ImageUrl = filePath
+            load_img(dt.Rows(0)("id_prod_order").ToString)
+
+            Dim tot_po As Decimal = 0.0
+            Dim tot_rec As Decimal = 0.0
+            Dim tot_selisih As Decimal = 0.0
+            Dim tot_normal As Decimal = 0.0
+            Dim tot_minor As Decimal = 0.0
+            Dim tot_major As Decimal = 0.0
+            Dim tot_report As Decimal = 0.0
+
+            'details
+            For i = 0 To dt.Rows.Count - 1
+                insert_row_det(ROWdet, dt, i)
+                tot_po += dt.Rows(i)("qty_po")
+                tot_rec += dt.Rows(i)("qty_rec")
+                tot_selisih += dt.Rows(i)("qty_rec") - dt.Rows(i)("qty_po")
+                tot_normal += dt.Rows(i)("qty_normal")
+                tot_minor += dt.Rows(i)("qty_reject_minor")
+                tot_major += dt.Rows(i)("qty_reject_major")
+                tot_report += dt.Rows(i)("qty_qc_report1")
+            Next
+
+            insert_row_det_total(ROWdet, tot_po, tot_rec, tot_selisih, tot_normal, tot_minor, tot_major, tot_report)
         End If
-
-        load_img(dt.Rows(0)("id_prod_order").ToString)
     End Sub
 
     Sub load_img(ByVal id_po As String)
@@ -106,6 +138,160 @@ WHERE qrs.`id_prod_order`='" & id_po & "'"
         For i = 0 To dt.Rows.Count - 1
             insert_row_image(ROWImg, dt, i)
         Next
+    End Sub
+
+    Sub insert_row_det(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)
+        Dim font_row_style As New Font(XTBM.Font.FontFamily, XTBM.Font.Size - 2, FontStyle.Regular)
+
+        row = XTDet.InsertRowBelow(row)
+
+        row.HeightF = 20
+        row.Font = font_row_style
+
+        'code
+        Dim rec As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
+        rec.Text = dt.Rows(row_i)("product_full_code").ToString
+        rec.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        rec.Font = font_row_style
+
+        'size
+        Dim cd_c As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
+        cd_c.Text = dt.Rows(row_i)("size").ToString
+        cd_c.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        cd_c.Font = font_row_style
+
+        'qty po
+        Dim tot_qty As String = Decimal.Parse(dt.Rows(row_i)("qty_po").ToString).ToString("N0")
+
+        Dim tot_qtyc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+        tot_qtyc.Text = tot_qty
+        tot_qtyc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        tot_qtyc.Font = font_row_style
+
+        'qty rec
+        Dim qty_rec As String = Decimal.Parse(dt.Rows(row_i)("qty_rec").ToString).ToString("N0")
+
+        Dim qty_recc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+        qty_recc.Text = qty_rec
+        qty_recc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        qty_recc.Font = font_row_style
+
+        'qty po - rec
+        Dim qty_selisih As String = Decimal.Parse((dt.Rows(row_i)("qty_rec") - dt.Rows(row_i)("qty_po")).ToString).ToString("N0")
+
+        Dim qty_selisihc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+        qty_selisihc.Text = qty_selisih
+        qty_selisihc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        qty_selisihc.Font = font_row_style
+
+        'qty normal
+        Dim qty_normal As String = Decimal.Parse(dt.Rows(row_i)("qty_normal").ToString).ToString("N0")
+
+        Dim qty_normalc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
+        qty_normalc.Text = qty_normal
+        qty_normalc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        qty_normalc.Font = font_row_style
+
+        'qty minor
+        Dim qty_minor As String = Decimal.Parse(dt.Rows(row_i)("qty_reject_minor").ToString).ToString("N0")
+
+        Dim qty_minorc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
+        qty_minorc.Text = qty_minor
+        qty_minorc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        qty_minorc.Font = font_row_style
+
+        'qty major
+        Dim qty_major As String = Decimal.Parse(dt.Rows(row_i)("qty_reject_major").ToString).ToString("N0")
+
+        Dim qty_majorc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
+        qty_majorc.Text = qty_major
+        qty_majorc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        qty_majorc.Font = font_row_style
+
+        'qty total
+        Dim qty_tot As String = Decimal.Parse(dt.Rows(row_i)("qty_qc_report1").ToString).ToString("N0")
+
+        Dim qty_totc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
+        qty_totc.Text = qty_tot
+        qty_totc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        qty_totc.Font = font_row_style
+    End Sub
+
+    Sub insert_row_det_total(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal tot_po As Decimal, ByVal tot_rec As Decimal, ByVal tot_selisih As Decimal, ByVal tot_normal As Decimal, ByVal tot_minor As Decimal, ByVal tot_major As Decimal, ByVal tot_report As Decimal)
+        Dim font_row_style As New Font(XTBM.Font.FontFamily, XTBM.Font.Size - 2, FontStyle.Regular)
+
+        row = XTDet.InsertRowBelow(row)
+
+        row.HeightF = 20
+        row.Font = font_row_style
+
+        'code
+        Dim rec As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
+        rec.Text = "Total"
+        rec.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        rec.Font = font_row_style
+
+        'size
+        Dim cd_c As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
+        cd_c.Text = ""
+        cd_c.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        cd_c.Font = font_row_style
+
+        'qty po
+        Dim tot_qty As String = Decimal.Parse(tot_po).ToString("N0")
+
+        Dim tot_qtyc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(2)
+        tot_qtyc.Text = tot_qty
+        tot_qtyc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        tot_qtyc.Font = font_row_style
+
+        'qty rec
+        Dim qty_rec As String = Decimal.Parse(tot_rec).ToString("N0")
+
+        Dim qty_recc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(3)
+        qty_recc.Text = qty_rec
+        qty_recc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        qty_recc.Font = font_row_style
+
+        'qty po - rec
+        Dim qty_selisih As String = Decimal.Parse(tot_selisih).ToString("N0")
+
+        Dim qty_selisihc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
+        qty_selisihc.Text = qty_selisih
+        qty_selisihc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        qty_selisihc.Font = font_row_style
+
+        'qty normal
+        Dim qty_normal As String = Decimal.Parse(tot_normal).ToString("N0")
+
+        Dim qty_normalc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
+        qty_normalc.Text = qty_normal
+        qty_normalc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        qty_normalc.Font = font_row_style
+
+        'qty minor
+        Dim qty_minor As String = Decimal.Parse(tot_minor).ToString("N0")
+
+        Dim qty_minorc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
+        qty_minorc.Text = qty_minor
+        qty_minorc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        qty_minorc.Font = font_row_style
+
+        'qty major
+        Dim qty_major As String = Decimal.Parse(tot_major).ToString("N0")
+
+        Dim qty_majorc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
+        qty_majorc.Text = qty_major
+        qty_majorc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        qty_majorc.Font = font_row_style
+
+        'qty total
+        Dim qty_tot As String = Decimal.Parse(tot_report).ToString("N0")
+
+        Dim qty_totc As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
+        qty_totc.Text = qty_tot
+        qty_totc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        qty_totc.Font = font_row_style
     End Sub
 
     Sub insert_row_bm(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer)
