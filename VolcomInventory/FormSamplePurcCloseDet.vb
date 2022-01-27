@@ -43,7 +43,7 @@ WHERE pc.`id_sample_purc_close`='" & id_close & "'"
 
     Sub load_det()
         Dim query As String = "SELECT spcd.*,sp.sample_purc_number,ms.`sample_name`,ms.`sample_us_code`,clr.code_detail_name as color,0.00 AS sub_total FROM `tb_sample_purc_close_det` spcd
-INNER JOIN tb_sample_purc_det spd ON spd.`id_sample_purc_det`=spcd.`id_sample_purc_close_det`
+INNER JOIN tb_sample_purc_det spd ON spd.`id_sample_purc_det`=spcd.`id_sample_purc_det`
 INNER JOIN tb_sample_purc sp ON sp.`id_sample_purc`=spd.`id_sample_purc`
 INNER JOIN tb_m_sample_price prc ON prc.`id_sample_price`=spd.`id_sample_price`
 INNER JOIN tb_m_sample ms ON ms.`id_sample`=prc.id_sample
