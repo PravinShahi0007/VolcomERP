@@ -327,4 +327,38 @@
         FormMenuAuth.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub ViewDetailOrderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailOrderToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_so As String = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_order").ToString
+        If id_so = "0" Then
+            FormViewSalesReturnOrder.id_sales_return_order = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
+            FormViewSalesReturnOrder.ShowDialog()
+        Else
+            FormSalesReturnOrderOLDet.is_view = "1"
+            FormSalesReturnOrderOLDet.action = "upd"
+            FormSalesReturnOrderOLDet.id_sales_return_order = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString()
+            FormSalesReturnOrderOLDet.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub PrintToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PrintToolStripMenuItem.Click
+        If GVSalesReturnOrder.FocusedRowHandle >= 0 And GVSalesReturnOrder.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_so As String = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_order").ToString
+            If id_so = "0" Then
+                FormViewSalesReturnOrder.id_sales_return_order = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
+                FormViewSalesReturnOrder.is_print = "1"
+                FormViewSalesReturnOrder.ShowDialog()
+            Else
+                FormSalesReturnOrderOLDet.is_view = "1"
+                FormSalesReturnOrderOLDet.action = "upd"
+                FormSalesReturnOrderOLDet.id_sales_return_order = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString()
+                FormSalesReturnOrderOLDet.is_print = "1"
+                FormSalesReturnOrderOLDet.ShowDialog()
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
