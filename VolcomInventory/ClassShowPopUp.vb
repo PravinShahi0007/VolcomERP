@@ -269,7 +269,7 @@
         ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             'Overtime employee
             FormEmpOvertimeDet.Close()
-        ElseIf report_mark_type = "185" Then
+        ElseIf report_mark_type = "182" Then
             'Sample Purchase Closing
             FormSamplePurcClose.Close()
         ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
@@ -1287,7 +1287,7 @@ GROUP BY rec.`id_prod_order`"
             FormEmpOvertimeDet.is_view = "1"
 
             FormEmpOvertimeDet.ShowDialog()
-        ElseIf report_mark_type = "185" Then
+        ElseIf report_mark_type = "182" Then
             'Sample Purchase Closing
             FormSamplePurcCloseDet.id_close = id_report
             FormSamplePurcCloseDet.is_view = "1"
@@ -2594,7 +2594,7 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_sales_pos"
             field_number = "sales_pos_number"
             field_date = "sales_pos_date"
-        ElseIf report_mark_type = "185" Then
+        ElseIf report_mark_type = "182" Then
             'sample purchase close
             table_name = "tb_sample_purc_close"
             field_id = "id_sample_purc_close"
