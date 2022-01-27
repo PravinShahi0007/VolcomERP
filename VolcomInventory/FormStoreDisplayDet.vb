@@ -975,5 +975,7 @@
         End If
     End Function
 
-
+    Private Sub BtnRefreshRencanaSKU_Click(sender As Object, e As EventArgs) Handles BtnRefreshRencanaSKU.Click
+        viewRencanaSKU()
+    End Sub
 End Class
