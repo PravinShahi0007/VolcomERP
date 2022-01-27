@@ -288,6 +288,25 @@ WHERE ovhp.id_ovh_price='" & SLEOvh.EditValue.ToString & "'"
                 GridColumnPriceOVH.VisibleIndex = "-1"
                 GridColumnAmount.VisibleIndex = "-1"
             End If
+            '
+            If get_opt_prod_field("is_enable_qc_report1") = "1" Then
+                'auto qty yang reject
+                view_barcode_list()
+                For i As Integer = 0 To GVRetDetail.RowCount - 1
+                    Dim qc As String = "CALL view_limit_ret_out_from_rec('" + id_prod_order_rec + "','" + id_prod_order + "', '" + GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString + "', '" + id_prod_order_ret_out + "')"
+                    Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                    If dtc.Rows.Count > 0 Then
+                        GVRetDetail.SetRowCellValue(i, "prod_order_ret_out_det_qty", dtc.Rows(0)("qty"))
+                        GVRetDetail.RefreshData()
+                        For j As Integer = 0 To dtc.Rows(0)("qty") - 1
+                            GVBarcode.AddNewRow()
+                            GVBarcode.SetFocusedRowCellValue("ean_code", dtc.Rows(0)("ean_code"))
+                            GVBarcode.SetFocusedRowCellValue("id_prod_order_det", dtc.Rows(0)("id_prod_order_det"))
+                            GVBarcode.SetFocusedRowCellValue("is_fix", "2")
+                        Next
+                    End If
+                Next
+            End If
         ElseIf action = "upd" Then
             Dim query As String = "CALL view_return_out_prod('" + id_prod_order_ret_out + "', '1')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

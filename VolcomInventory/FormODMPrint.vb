@@ -119,7 +119,16 @@ ORDER BY tb.awbill_no ASC,tb.ol_number ASC,tb.combine_number ASC"
     End Sub
 
     Sub print()
-
+        'blm completed
+        Dim err_status As Boolean = False
+        For i As Integer = 0 To GVListHistory.RowCount - 1 - GetGroupRowCount(GVListHistory)
+            If Not GVListHistory.IsGroupRow(i) Then
+                If Not GVListHistory.GetRowCellValue(i, "id_report_status").ToString = "6" Then
+                    err_status = True
+                    Exit For
+                End If
+            End If
+        Next
 
         'hold delivery
         Dim err_hold As String = ""
@@ -146,6 +155,8 @@ ORDER BY tb.awbill_no ASC,tb.ol_number ASC,tb.combine_number ASC"
             warningCustom("Hold delivery : " + System.Environment.NewLine + err_hold)
         ElseIf err_not_active <> "" Then
             warningCustom("Store not active : " + System.Environment.NewLine + err_not_active)
+        ElseIf err_status Then
+            warningCustom("Please check again complete status")
         Else
             Cursor = Cursors.WaitCursor
 
