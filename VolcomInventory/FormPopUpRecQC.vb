@@ -12,10 +12,10 @@
         'view_prod_order_rec()
 
         If is_show_qc_report1 Then
-            GridColumnOutstandingRetOut.Visible = True
-            GridColumnQtyReject.Visible = True
-            GridColumnQtyRetOut.Visible = True
-            GridColumnQCReport.Visible = True
+            GridColumnOutstandingRetOut.Visible = False
+            GridColumnQtyReject.Visible = False
+            GridColumnQtyRetOut.Visible = False
+            GridColumnQCReport.Visible = False
         Else
             GridColumnOutstandingRetOut.Visible = False
             GridColumnQtyReject.Visible = False
@@ -41,12 +41,13 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
     End Sub
     Sub view_prod_order_rec()
-        Dim query = "SELECT a.id_report_status,h.report_status,g.season,a.id_prod_order_rec,b.id_prod_order ,a.prod_order_rec_number,a.prod_order_rec_note,
+        Dim query = "SELECT pl.pl_category,a.id_report_status,h.report_status,g.season,a.id_prod_order_rec,b.id_prod_order ,a.prod_order_rec_number,a.prod_order_rec_note,
                     DATE_ADD(wo.prod_order_wo_date, INTERVAL wo.`prod_order_wo_lead_time` DAY) AS est_rec_date, i.delivery,
                     delivery_order_date,a.arrive_date,a.delivery_order_number,b.prod_order_number, rec_qty.sum_qty,wo.price_pc,dsg.id_design,
                     prod_order_rec_date, f.comp_name AS comp_from,f.comp_number AS comp_from_code,d.comp_name AS comp_to,dsg.design_code,CONCAT(LEFT(dsg.design_display_name,3),' ',dsg.design_name) AS design_display_name, RIGHT(dsg.design_display_name,3) AS color 
                     FROM tb_prod_order_rec a  
                     INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order AND a.id_report_status=6
+                    INNER JOIN tb_lookup_pl_category pl ON pl.id_pl_category=a.id_pl_category
                     LEFT JOIN 
                     (
                         SELECT wo.*,wod.prod_order_wo_det_price AS price_pc FROM tb_prod_order_wo wo 
@@ -83,6 +84,11 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
         If Not SLESeason.EditValue.ToString = "0" Then
             query += "AND g.id_season='" & SLESeason.EditValue.ToString & "' "
         End If
+        '
+        If id_pop_up = "3" Then
+            query += " AND (a.id_pl_category=1 OR a.id_pl_category=5 OR a.id_pl_category=6) "
+        End If
+        '
         query += "ORDER BY g.date_season_start DESC, a.id_prod_order_rec DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProdRec.DataSource = data
@@ -214,8 +220,12 @@ INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design"
 
                     'FormProductionRetOutSingle
                     FormProductionRetOutSingle.viewDetailReturn()
-                    FormProductionRetOutSingle.view_barcode_list()
+                    If Not get_opt_prod_field("is_enable_qc_report1") = "1" Then
+                        FormProductionRetOutSingle.view_barcode_list()
+                    End If
                     FormProductionRetOutSingle.check_but()
+                    '
+                    '
                     Close()
                 Else
                     stopCustom("Data is empty.")
