@@ -521,7 +521,7 @@
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_ot WHERE id_ot = '{0}'", id_report)
         ElseIf report_mark_type = "185" Then
             'sample purchase close
-            query = String.Format("SELECT id_report_status, number as report_number FROM tb_sample_purc_close WHERE id_ot = '{0}'", id_report)
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_sample_purc_close WHERE id_sample_purc_close = '{0}'", id_report)
         ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
             'overtime report
             query = String.Format("SELECT vr.id_report_status, ot.number FROM tb_ot_verification AS vr LEFT JOIN tb_ot AS ot ON vr.id_ot = ot.id_ot WHERE id_ot_verification = '{0}'", id_report)
