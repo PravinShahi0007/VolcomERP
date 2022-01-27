@@ -6,6 +6,7 @@
 
     Private Sub ReportSalesOrder_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles MyBase.BeforePrint
         GridControl1.DataSource = dt
+        GridView1.BestFitColumns()
         If is_hidden_app_list = "-1" Then
             load_mark_horz("45", id_sales_return_order, "2", "1", XrTable1)
         End If

@@ -339,6 +339,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnTotalTrf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPreparedTrf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnprepared_datetrf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn75 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
         Me.LETypeRestock = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
@@ -386,7 +387,6 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPClosingSuratJalan = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumn75 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.LETypeRestockTOO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1045,7 +1045,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMView, Me.ViewDetailOrderToolStripMenuItem, Me.PrintPrepareOrderToolStripMenuItem, Me.UpdatePackingStatusToolStripMenuItem, Me.LogPrintToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(166, 114)
+        Me.ViewMenu.Size = New System.Drawing.Size(166, 136)
         '
         'SMView
         '
@@ -1607,9 +1607,9 @@ Partial Class FormSalesOrderSvcLevel
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl1.Controls.Add(Me.CheckEdit1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(826, 0)
+        Me.PanelControl1.Location = New System.Drawing.Point(1357, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(86, 68)
+        Me.PanelControl1.Size = New System.Drawing.Size(86, 51)
         Me.PanelControl1.TabIndex = 8902
         '
         'CheckEdit1
@@ -3502,6 +3502,15 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnprepared_datetrf.Visible = True
         Me.GridColumnprepared_datetrf.VisibleIndex = 7
         '
+        'GridColumn75
+        '
+        Me.GridColumn75.Caption = "Final Comment"
+        Me.GridColumn75.FieldName = "final_comment"
+        Me.GridColumn75.Name = "GridColumn75"
+        Me.GridColumn75.OptionsColumn.AllowEdit = False
+        Me.GridColumn75.Visible = True
+        Me.GridColumn75.VisibleIndex = 11
+        '
         'GroupControl4
         '
         Me.GroupControl4.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -3948,15 +3957,6 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTPClosingSuratJalan.Name = "XTPClosingSuratJalan"
         Me.XTPClosingSuratJalan.Size = New System.Drawing.Size(934, 311)
         Me.XTPClosingSuratJalan.Text = "Closing Surat Jalan"
-        '
-        'GridColumn75
-        '
-        Me.GridColumn75.Caption = "Final Comment"
-        Me.GridColumn75.FieldName = "final_comment"
-        Me.GridColumn75.Name = "GridColumn75"
-        Me.GridColumn75.OptionsColumn.AllowEdit = False
-        Me.GridColumn75.Visible = True
-        Me.GridColumn75.VisibleIndex = 11
         '
         'FormSalesOrderSvcLevel
         '
