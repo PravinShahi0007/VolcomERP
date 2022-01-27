@@ -396,16 +396,16 @@
                     If Not bandName.Contains("INFO") Then
                         'display format
                         col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                        col.DisplayFormat.FormatString = "{0:n2}"
+                        col.DisplayFormat.FormatString = "{0:n1}"
 
                         'summary
                         col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
-                        col.SummaryItem.DisplayFormat = "{0:n2}"
+                        col.SummaryItem.DisplayFormat = "{0:n1}"
 
 
                         'group summary
                         Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
-                        summary.DisplayFormat = "{0:N2}"
+                        summary.DisplayFormat = "{0:N1}"
                         summary.FieldName = data.Columns(j).Caption
                         summary.ShowInGroupColumnFooter = col
                         summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
@@ -425,7 +425,7 @@
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
-        Dim query As String = "SELECT cg.class_group AS `CLASS`,SUM(total_sku) AS `TOTAL SKU` 
+        Dim query As String = "SELECT cg.class_group AS `GROUP INFO|CLASS`,SUM(total_sku) AS `TOTAL|SKU` 
         FROM (
          -- exist
          SELECT dpr.id_class_group, dpr.id_season, dpr.id_delivery, COUNT(dpr.id_class_group) AS `total_sku`
@@ -470,7 +470,7 @@
 
             band.Caption = column(i)
 
-            GVDisplayPlanning.Bands.Add(band)
+            GVRencanaSKU.Bands.Add(band)
 
             For j = 0 To data.Columns.Count - 1
                 Dim bandName As String = data.Columns(j).Caption.Split("|")(0)
@@ -492,51 +492,24 @@
                     If Not bandName.Contains("INFO") Then
                         'display format
                         col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                        col.DisplayFormat.FormatString = "{0:n2}"
+                        col.DisplayFormat.FormatString = "{0:n1}"
 
                         'summary
                         col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
-                        col.SummaryItem.DisplayFormat = "{0:n2}"
+                        col.SummaryItem.DisplayFormat = "{0:n1}"
 
 
                         'group summary
                         Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
-                        summary.DisplayFormat = "{0:N2}"
+                        summary.DisplayFormat = "{0:N1}"
                         summary.FieldName = data.Columns(j).Caption
                         summary.ShowInGroupColumnFooter = col
                         summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
-                        GVDisplayPlanning.GroupSummary.Add(summary)
+                        GVRencanaSKU.GroupSummary.Add(summary)
                     End If
                 End If
             Next
         Next
-
-        'For j = 0 To data.Columns.Count - 1
-        '    Dim coluName As String = data.Columns(j).Caption
-        '    Dim col As DevExpress.XtraGrid.Columns.GridColumn = New DevExpress.XtraGrid.Columns.GridColumn
-        '    col.Caption = coluName
-        '    col.VisibleIndex = j
-        '    col.FieldName = data.Columns(j).Caption
-
-        '    If Not coluName.Contains("INFO") Then
-        '        'display format
-        '        col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        '        col.DisplayFormat.FormatString = "{0:n0}"
-
-        '        'summary
-        '        col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
-        '        col.SummaryItem.DisplayFormat = "{0:n0}"
-
-
-        '        'group summary
-        '        Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
-        '        summary.DisplayFormat = "{0:N0}"
-        '        summary.FieldName = data.Columns(j).Caption
-        '        summary.ShowInGroupColumnFooter = col
-        '        summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
-        '        GVDisplayPlanning.GroupSummary.Add(summary)
-        '    End If
-        'Next
 
         GVRencanaSKU.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
