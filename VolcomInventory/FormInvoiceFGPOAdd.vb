@@ -334,7 +334,7 @@ LEFT JOIN
 )pn ON pn.id_report=sp.id_sample_purc
 WHERE sp.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) 
 GROUP BY sp.`id_sample_purc`
-HAVING (qty_rec+qty_close>=po_qty OR sp.is_close_po_manual=1)"
+HAVING (qty_rec+qty_close>=po_qty)"
             End If
         End If
 

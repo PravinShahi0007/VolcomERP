@@ -2329,6 +2329,13 @@ INNER JOIN
                     mail.comment = ""
                     mail.send_email()
                 End If
+
+                'for auto QC report 1 yang sudah reject
+                Dim q As String = "SELECT id_pl_category FROM tb_prod_order_rec WHERE id_prod_order_rec='" & id_report & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows(0)("id_pl_category").ToString = "2" Or dt.Rows(0)("id_pl_category").ToString = "3" Then
+
+                End If
             End If
 
             query = String.Format("UPDATE tb_prod_order_rec SET id_report_status='{0}' WHERE id_prod_order_rec='{1}'", id_status_reportx, id_report)
