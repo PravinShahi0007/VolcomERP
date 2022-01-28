@@ -3,6 +3,8 @@
 
     Public is_block_del_store As String = get_setup_field("is_block_del_store")
 
+    Public is_complete_wholesale As Boolean = False
+
     Private loaded As Boolean = False
 
     Dim id_report_status As String = "-1"
@@ -25,6 +27,16 @@
         form_load()
 
         TEComp.Focus()
+        '
+        If is_complete_wholesale = True Then
+            'check
+            If id_report_status = "6" Or id_report_status = "5" Then
+                BCompleteWholesale.Visible = False
+            Else
+                BCompleteWholesale.Visible = True
+            End If
+        End If
+        '
         loaded = True
     End Sub
 
@@ -212,7 +224,8 @@ GROUP BY cg.`id_comp_group`"
             SELECT *
                 FROM (
                 SELECT 0 AS NO, mdet.id_wh_awb_det, c.id_comp_group, a.ol_number, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, IFNULL(so.shipping_city,ct.city) AS city, a.weight, a.width, a.length, a.height, ((a.width * a.length * a.height) / dt.`volume_divide_by`) AS volume, a.c_weight
-                FROM tb_del_manifest_det AS mdet
+,adet.id_pl_sales_order_del     
+FROM tb_del_manifest_det AS mdet
                 INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest`
                 INNER JOIN tb_lookup_del_type dt ON dt.`id_del_type`=md.`id_del_type`
                 LEFT JOIN tb_wh_awbill_det AS adet ON mdet.id_wh_awb_det = adet.id_wh_awb_det
@@ -373,13 +386,23 @@ UNION ALL
 SELECT awbill_no FROM tb_del_manifest WHERE awbill_no='" & addSlashes(TEAwb.Text) & "' AND id_report_status!=5 AND id_del_manifest!='" & id_del_manifest & "'"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
 
-        'check manifest
+        Dim is_awb_ok As Boolean = True
+        If SLEDelType.EditValue.ToString = "6" Then
+            If TEAwb.Text = "" And Not get_opt_sales_field("is_active_new_ws_del") = "1" Then
+                is_awb_ok = False
+            End If
+        Else
+            If TEAwb.Text = "" Then
+                is_awb_ok = False
+            End If
+        End If
 
+        'check manifest
         If GVList.RowCount < 1 Then
             stopCustom("DO not found.")
         ElseIf TERemarkDiff.Visible = True And TERemarkDiff.Text = "" Then
             stopCustom("Please put remark why choose this 3PL.")
-        ElseIf TEAwb.Text = "" Then
+        ElseIf is_awb_ok Then
             stopCustom("Please put awb/resi number.")
         ElseIf dtc.Rows.Count > 0 Then
             stopCustom("AWB number already used.")
@@ -1145,10 +1168,15 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
             If SLEDelType.EditValue.ToString = "6" Then 'wholesale
                 'TEAwb.EditValue = GVList.GetRowCellValue(0, "ol_number").ToString
                 'TEAwb.ReadOnly = True
-
-                'bisa ketik
-                TEAwb.EditValue = ""
-                TEAwb.ReadOnly = False
+                If get_opt_sales_field("is_active_new_ws_del") = "1" Then
+                    'bisa ketik
+                    TEAwb.EditValue = ""
+                    TEAwb.ReadOnly = True
+                Else
+                    'bisa ketik
+                    TEAwb.EditValue = ""
+                    TEAwb.ReadOnly = False
+                End If
             Else
                 TEAwb.EditValue = ""
                 TEAwb.ReadOnly = False
@@ -1196,5 +1224,68 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
 
         '    _lastKeystroke = DateTime.Now
         'End If
+    End Sub
+
+    Private Sub BCompleteWholesale_Click(sender As Object, e As EventArgs) Handles BCompleteWholesale.Click
+        'hold delivery
+        Dim err_hold As String = ""
+        For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+            If Not GVList.IsGroupRow(i) Then
+                Dim del As New ClassSalesDelOrder()
+                If is_block_del_store = "1" And del.checkUnpaidInvoice(GVList.GetRowCellValue(i, "id_comp_group").ToString) Then
+                    err_hold += GVList.GetRowCellValue(i, "combine_number").ToString + " (" + GVList.GetRowCellValue(i, "comp_number").ToString + " - " + GVList.GetRowCellValue(i, "comp_name").ToString + ")" + System.Environment.NewLine
+                End If
+            End If
+        Next
+
+        'store not active
+        Dim err_not_active As String = ""
+        For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+            If Not GVList.IsGroupRow(i) Then
+                If GVList.GetRowCellValue(i, "is_active").ToString = "2" Then
+                    err_not_active += GVList.GetRowCellValue(i, "combine_number").ToString + " (" + GVList.GetRowCellValue(i, "comp_number").ToString + " - " + GVList.GetRowCellValue(i, "comp_name").ToString + ")" + System.Environment.NewLine
+                End If
+            End If
+        Next
+
+        'already input awb
+        Dim awb_already As Boolean = False
+        Dim qawb As String = "SELECT * FROM `tb_del_manifest` WHERE id_del_manfiest='" & id_del_manifest & "' AND (id_report_status=6 OR id_report_status=5)"
+        Dim dtawb As DataTable = execute_query(qawb, -1, True, "", "", "", "")
+        If dtawb.Rows.Count > 0 Then
+            awb_already = True
+        End If
+
+        If err_hold <> "" Then
+            warningCustom("Hold delivery : " + System.Environment.NewLine + err_hold)
+        ElseIf err_not_active <> "" Then
+            warningCustom("Store not active : " + System.Environment.NewLine + err_not_active)
+        ElseIf awb_already Then
+            warningCustom("Manifest already locked, please contact support.")
+        Else
+            'complete
+            Try
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+
+                For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Processing Order " & i + 1 & " of " & (GVList.RowCount - 1 - GetGroupRowCount(GVList)).ToString)
+                    Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
+                    stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
+                Next
+
+                FormMain.SplashScreenManager1.CloseWaitForm()
+                infoCustom("Completed")
+                Close()
+            Catch ex As Exception
+                'log scan security
+                Dim qlog As String = "INSERT INTO tb_log_scan_security(reff,log_date,log_by,log) VALUES('" & id_del_manifest & "',NOW(),'" & id_user & "','" & addSlashes("Wholesale complete error " & ex.ToString) & "')"
+                execute_non_query(qlog, True, "", "", "", "")
+
+                warningCustom(ex.ToString)
+                FormMain.SplashScreenManager1.CloseWaitForm()
+            End Try
+        End If
     End Sub
 End Class
