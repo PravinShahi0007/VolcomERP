@@ -89,7 +89,7 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='')", oledbconn)
         ElseIf id_pop_up = "14" Then
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([reg_no]='')", oledbconn)
-        ElseIf id_pop_up = "15" Or id_pop_up = "56" Then
+        ElseIf id_pop_up = "15" Or id_pop_up = "56" Or id_pop_up = "64" Then
             MyCommand = New OleDbDataAdapter("select code, SUM(qty) AS qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='') GROUP BY code", oledbconn)
         ElseIf id_pop_up = "17" Then
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='')", oledbconn)
@@ -4734,6 +4734,72 @@ GROUP BY ol.checkout_id
                 GVData.Columns("id_design_price").Visible = False
                 '
             End If
+        ElseIf id_pop_up = "64" Then
+            Dim qry As String = "SELECT p.id_product, p.id_design, p.product_full_code AS `code`, d.design_display_name AS `name`, 
+            sz.code_detail_name AS `size`, cd.class, cd.color, cd.sht
+            FROM tb_m_product p
+            INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+            INNER JOIN tb_m_code_detail sz ON sz.id_code_detail = pc.id_code_detail
+            INNER JOIN tb_m_design d ON d.id_design = p.id_design
+            LEFT JOIN (
+	            SELECT dc.id_design, 
+	            MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	            MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	            MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	            MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	            MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	            MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	            MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	            MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	            FROM tb_m_design_code dc
+	            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	            AND cd.id_code IN (32,30,14, 43)
+	            GROUP BY dc.id_design
+            ) cd ON cd.id_design = d.id_design
+            WHERE d.id_lookup_status_order!=2 "
+            Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb2 = dt.AsEnumerable()
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("code").ToString Equals table_tmp("code").ToString
+                        Into Group
+                        From y1 In Group.DefaultIfEmpty()
+                        Select New With
+                        {
+                            .code = table1("code").ToString,
+                            .class = If(y1 Is Nothing, "", y1("class")),
+                            .description = If(y1 Is Nothing, "", y1("name")),
+                            .color = If(y1 Is Nothing, "", y1("color")),
+                            .silhouette = If(y1 Is Nothing, "", y1("sht")),
+                            .size = If(y1 Is Nothing, "", y1("Size")),
+                            .qty = table1("qty"),
+                            .qty_erp = If(y1 Is Nothing, 0, table1("qty")),
+                            .id_product = If(y1 Is Nothing, 0, y1("id_product")),
+                            .id_design = If(y1 Is Nothing, 0, y1("id_design")),
+                            .Status = If(y1 Is Nothing, "Not found", "OK")
+                        }
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("id_product").Visible = False
+            GVData.Columns("id_design").Visible = False
+            GVData.Columns("code").VisibleIndex = 0
+            GVData.Columns("class").VisibleIndex = 1
+            GVData.Columns("description").VisibleIndex = 2
+            GVData.Columns("silhouette").VisibleIndex = 3
+            GVData.Columns("color").VisibleIndex = 4
+            GVData.Columns("size").VisibleIndex = 5
+            GVData.Columns("qty").VisibleIndex = 6
+            GVData.Columns("qty_erp").VisibleIndex = 7
+            GVData.Columns("Status").VisibleIndex = 8
+            GVData.Columns("qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("qty").DisplayFormat.FormatString = "{0:n0}"
+            GVData.Columns("qty_erp").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("qty_erp").DisplayFormat.FormatString = "{0:n0}"
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -4805,7 +4871,7 @@ GROUP BY ol.checkout_id
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Or id_pop_up = "56" Or id_pop_up = "57" Or id_pop_up = "62" Or id_pop_up = "63" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "42" Or id_pop_up = "43" Or id_pop_up = "47" Or id_pop_up = "48" Or id_pop_up = "50" Or id_pop_up = "51" Or id_pop_up = "53" Or id_pop_up = "54" Or id_pop_up = "56" Or id_pop_up = "57" Or id_pop_up = "62" Or id_pop_up = "63" Or id_pop_up = "64" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -7848,6 +7914,51 @@ GROUP BY ol.checkout_id
                 Else
                     stopCustom("There is no data for import process, please make sure your input !")
                     makeSafeGV(GVData)
+                End If
+            ElseIf id_pop_up = "64" Then
+                makeSafeGV(GVData)
+                GVData.ActiveFilterString = "[Status] = 'OK' "
+                If GVData.RowCount > 0 Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Only status 'OK' will imported, continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+
+
+                        'detail data
+                        Dim id_virtual_sales As String = FormVirtualSalesDet.id
+                        Dim q As String = "DELETE FROM tb_virtual_sales_det WHERE id_virtual_sales='" + id_virtual_sales + "';
+                        INSERT INTO tb_virtual_sales_det(id_virtual_sales, barcode, id_product, id_design, qty, qty_erp) VALUES "
+                        For i As Integer = 0 To GVData.RowCount - 1
+                            Dim barcode As String = addSlashes(GVData.GetRowCellValue(i, "code").ToString)
+                            Dim id_product As String = GVData.GetRowCellValue(i, "id_product").ToString
+                            Dim id_design As String = GVData.GetRowCellValue(i, "id_design").ToString
+                            Dim qty As String = decimalSQL(GVData.GetRowCellValue(i, "qty").ToString)
+                            Dim qty_erp As String = decimalSQL(GVData.GetRowCellValue(i, "qty_erp").ToString)
+
+                            If Not i = 0 Then
+                                q += ","
+                            End If
+                            '
+                            q += "('" + id_virtual_sales + "', '" + id_product + "', '" + id_design + "',  '" + qty + "', '" + qty_erp + "') "
+
+                            '
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        'detail 
+                        If GVData.RowCount > 0 Then
+                            execute_non_query(q, True, "", "", "", "")
+                        End If
+
+
+                        'refresh
+                        FormVirtualSalesDet.viewDetail()
+                        infoCustom("Import Success")
+                        Close()
+                    End If
                 End If
             End If
         End If
