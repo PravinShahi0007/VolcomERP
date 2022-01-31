@@ -392,6 +392,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn76 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn77 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn83 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn78 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn79 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -405,7 +406,26 @@ Partial Class FormSalesOrderSvcLevel
         Me.DEManifestStart = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn83 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPAWBManifest = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupControl7 = New DevExpress.XtraEditors.GroupControl()
+        Me.BViewInputAWBM = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEUntilInputAWBM = New DevExpress.XtraEditors.DateEdit()
+        Me.DEStartInputAWBM = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl29 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
+        Me.GCInputAWBManifest = New DevExpress.XtraGrid.GridControl()
+        Me.GVInputAWBManifest = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn84 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn86 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn87 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn88 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn89 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn90 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BCompleteWholesale = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn91 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn92 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BShowPendingPaymentAWB = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.LETypeRestockTOO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -544,6 +564,15 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEManifestUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEManifestStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEManifestStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPAWBManifest.SuspendLayout()
+        CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl7.SuspendLayout()
+        CType(Me.DEUntilInputAWBM.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilInputAWBM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStartInputAWBM.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStartInputAWBM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCInputAWBManifest, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVInputAWBManifest, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCFilter
@@ -1115,7 +1144,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTCSvcLevel.SelectedTabPage = Me.XTPPrepareOrder
         Me.XTCSvcLevel.Size = New System.Drawing.Size(940, 339)
         Me.XTCSvcLevel.TabIndex = 4
-        Me.XTCSvcLevel.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPrepareOrder, Me.XTPReturnOrder, Me.XTPRec, Me.XTPDelOrder, Me.XTPReturn, Me.XTPReturnQC, Me.XTPTrf, Me.XTPNonStockInv, Me.XTPClosingSuratJalan, Me.XTPCompleteManifest})
+        Me.XTCSvcLevel.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPrepareOrder, Me.XTPReturnOrder, Me.XTPRec, Me.XTPDelOrder, Me.XTPReturn, Me.XTPReturnQC, Me.XTPTrf, Me.XTPNonStockInv, Me.XTPClosingSuratJalan, Me.XTPCompleteManifest, Me.XTPAWBManifest})
         '
         'XTPPrepareOrder
         '
@@ -4025,6 +4054,14 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn77.Visible = True
         Me.GridColumn77.VisibleIndex = 1
         '
+        'GridColumn83
+        '
+        Me.GridColumn83.Caption = "Store"
+        Me.GridColumn83.FieldName = "store"
+        Me.GridColumn83.Name = "GridColumn83"
+        Me.GridColumn83.Visible = True
+        Me.GridColumn83.VisibleIndex = 2
+        '
         'GridColumn78
         '
         Me.GridColumn78.Caption = "Draft Manifest Number"
@@ -4147,13 +4184,210 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl31.TabIndex = 8892
         Me.LabelControl31.Text = "From"
         '
-        'GridColumn83
+        'XTPAWBManifest
         '
-        Me.GridColumn83.Caption = "Store"
-        Me.GridColumn83.FieldName = "store"
-        Me.GridColumn83.Name = "GridColumn83"
-        Me.GridColumn83.Visible = True
-        Me.GridColumn83.VisibleIndex = 2
+        Me.XTPAWBManifest.Controls.Add(Me.GCInputAWBManifest)
+        Me.XTPAWBManifest.Controls.Add(Me.BCompleteWholesale)
+        Me.XTPAWBManifest.Controls.Add(Me.GroupControl7)
+        Me.XTPAWBManifest.Name = "XTPAWBManifest"
+        Me.XTPAWBManifest.Size = New System.Drawing.Size(934, 311)
+        Me.XTPAWBManifest.Text = "Input AWB Manifest"
+        '
+        'GroupControl7
+        '
+        Me.GroupControl7.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl7.Controls.Add(Me.BShowPendingPaymentAWB)
+        Me.GroupControl7.Controls.Add(Me.BViewInputAWBM)
+        Me.GroupControl7.Controls.Add(Me.SimpleButton3)
+        Me.GroupControl7.Controls.Add(Me.DEUntilInputAWBM)
+        Me.GroupControl7.Controls.Add(Me.DEStartInputAWBM)
+        Me.GroupControl7.Controls.Add(Me.LabelControl29)
+        Me.GroupControl7.Controls.Add(Me.LabelControl32)
+        Me.GroupControl7.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl7.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl7.Name = "GroupControl7"
+        Me.GroupControl7.Size = New System.Drawing.Size(934, 39)
+        Me.GroupControl7.TabIndex = 10
+        '
+        'BViewInputAWBM
+        '
+        Me.BViewInputAWBM.Location = New System.Drawing.Point(319, 9)
+        Me.BViewInputAWBM.LookAndFeel.SkinName = "Blue"
+        Me.BViewInputAWBM.Name = "BViewInputAWBM"
+        Me.BViewInputAWBM.Size = New System.Drawing.Size(55, 20)
+        Me.BViewInputAWBM.TabIndex = 8896
+        Me.BViewInputAWBM.Text = "View"
+        '
+        'SimpleButton3
+        '
+        Me.SimpleButton3.ImageIndex = 9
+        Me.SimpleButton3.Location = New System.Drawing.Point(938, 14)
+        Me.SimpleButton3.Name = "SimpleButton3"
+        Me.SimpleButton3.Size = New System.Drawing.Size(104, 20)
+        Me.SimpleButton3.TabIndex = 8898
+        Me.SimpleButton3.Text = "Hide All Detail"
+        Me.SimpleButton3.Visible = False
+        '
+        'DEUntilInputAWBM
+        '
+        Me.DEUntilInputAWBM.EditValue = Nothing
+        Me.DEUntilInputAWBM.Location = New System.Drawing.Point(202, 9)
+        Me.DEUntilInputAWBM.Name = "DEUntilInputAWBM"
+        Me.DEUntilInputAWBM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilInputAWBM.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEUntilInputAWBM.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntilInputAWBM.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilInputAWBM.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntilInputAWBM.TabIndex = 8895
+        '
+        'DEStartInputAWBM
+        '
+        Me.DEStartInputAWBM.EditValue = Nothing
+        Me.DEStartInputAWBM.Location = New System.Drawing.Point(58, 9)
+        Me.DEStartInputAWBM.Name = "DEStartInputAWBM"
+        Me.DEStartInputAWBM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartInputAWBM.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEStartInputAWBM.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEStartInputAWBM.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStartInputAWBM.Size = New System.Drawing.Size(111, 20)
+        Me.DEStartInputAWBM.TabIndex = 8894
+        '
+        'LabelControl29
+        '
+        Me.LabelControl29.Location = New System.Drawing.Point(175, 12)
+        Me.LabelControl29.Name = "LabelControl29"
+        Me.LabelControl29.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl29.TabIndex = 8893
+        Me.LabelControl29.Text = "Until"
+        '
+        'LabelControl32
+        '
+        Me.LabelControl32.Location = New System.Drawing.Point(28, 12)
+        Me.LabelControl32.Name = "LabelControl32"
+        Me.LabelControl32.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl32.TabIndex = 8892
+        Me.LabelControl32.Text = "From"
+        '
+        'GCInputAWBManifest
+        '
+        Me.GCInputAWBManifest.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCInputAWBManifest.Location = New System.Drawing.Point(0, 39)
+        Me.GCInputAWBManifest.MainView = Me.GVInputAWBManifest
+        Me.GCInputAWBManifest.Name = "GCInputAWBManifest"
+        Me.GCInputAWBManifest.Size = New System.Drawing.Size(934, 240)
+        Me.GCInputAWBManifest.TabIndex = 11
+        Me.GCInputAWBManifest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVInputAWBManifest})
+        '
+        'GVInputAWBManifest
+        '
+        Me.GVInputAWBManifest.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn84, Me.GridColumn90, Me.GridColumn86, Me.GridColumn87, Me.GridColumn88, Me.GridColumn89, Me.GridColumn91, Me.GridColumn92})
+        Me.GVInputAWBManifest.GridControl = Me.GCInputAWBManifest
+        Me.GVInputAWBManifest.Name = "GVInputAWBManifest"
+        Me.GVInputAWBManifest.OptionsBehavior.Editable = False
+        Me.GVInputAWBManifest.OptionsView.ColumnAutoWidth = False
+        Me.GVInputAWBManifest.OptionsView.RowAutoHeight = True
+        Me.GVInputAWBManifest.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn84
+        '
+        Me.GridColumn84.FieldName = "id_del_manifest"
+        Me.GridColumn84.Name = "GridColumn84"
+        '
+        'GridColumn86
+        '
+        Me.GridColumn86.Caption = "3PL"
+        Me.GridColumn86.FieldName = "comp_name"
+        Me.GridColumn86.Name = "GridColumn86"
+        Me.GridColumn86.Visible = True
+        Me.GridColumn86.VisibleIndex = 2
+        Me.GridColumn86.Width = 287
+        '
+        'GridColumn87
+        '
+        Me.GridColumn87.Caption = "Store"
+        Me.GridColumn87.FieldName = "store"
+        Me.GridColumn87.Name = "GridColumn87"
+        Me.GridColumn87.Visible = True
+        Me.GridColumn87.VisibleIndex = 1
+        Me.GridColumn87.Width = 240
+        '
+        'GridColumn88
+        '
+        Me.GridColumn88.Caption = "Draft Manifest Number"
+        Me.GridColumn88.FieldName = "number"
+        Me.GridColumn88.Name = "GridColumn88"
+        Me.GridColumn88.Visible = True
+        Me.GridColumn88.VisibleIndex = 0
+        Me.GridColumn88.Width = 237
+        '
+        'GridColumn89
+        '
+        Me.GridColumn89.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn89.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn89.Caption = "Invoice Number"
+        Me.GridColumn89.MaxWidth = 200
+        Me.GridColumn89.MinWidth = 200
+        Me.GridColumn89.Name = "GridColumn89"
+        Me.GridColumn89.Visible = True
+        Me.GridColumn89.VisibleIndex = 4
+        Me.GridColumn89.Width = 200
+        '
+        'GridColumn90
+        '
+        Me.GridColumn90.Caption = "AWB Number"
+        Me.GridColumn90.FieldName = "awbill_no"
+        Me.GridColumn90.Name = "GridColumn90"
+        Me.GridColumn90.Visible = True
+        Me.GridColumn90.VisibleIndex = 6
+        Me.GridColumn90.Width = 335
+        '
+        'BCompleteWholesale
+        '
+        Me.BCompleteWholesale.Appearance.BackColor = System.Drawing.Color.Blue
+        Me.BCompleteWholesale.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCompleteWholesale.Appearance.Options.UseBackColor = True
+        Me.BCompleteWholesale.Appearance.Options.UseForeColor = True
+        Me.BCompleteWholesale.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BCompleteWholesale.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCompleteWholesale.Location = New System.Drawing.Point(0, 279)
+        Me.BCompleteWholesale.Name = "BCompleteWholesale"
+        Me.BCompleteWholesale.Size = New System.Drawing.Size(934, 32)
+        Me.BCompleteWholesale.TabIndex = 14
+        Me.BCompleteWholesale.Text = "Update AWB"
+        Me.BCompleteWholesale.Visible = False
+        '
+        'GridColumn91
+        '
+        Me.GridColumn91.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn91.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn91.Caption = "Delivery Order Number"
+        Me.GridColumn91.MaxWidth = 200
+        Me.GridColumn91.MinWidth = 200
+        Me.GridColumn91.Name = "GridColumn91"
+        Me.GridColumn91.Visible = True
+        Me.GridColumn91.VisibleIndex = 3
+        Me.GridColumn91.Width = 200
+        '
+        'GridColumn92
+        '
+        Me.GridColumn92.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn92.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn92.Caption = "Rec Payment Number"
+        Me.GridColumn92.MaxWidth = 200
+        Me.GridColumn92.MinWidth = 200
+        Me.GridColumn92.Name = "GridColumn92"
+        Me.GridColumn92.Visible = True
+        Me.GridColumn92.VisibleIndex = 5
+        Me.GridColumn92.Width = 200
+        '
+        'BShowPendingPaymentAWB
+        '
+        Me.BShowPendingPaymentAWB.Location = New System.Drawing.Point(380, 9)
+        Me.BShowPendingPaymentAWB.LookAndFeel.SkinName = "Blue"
+        Me.BShowPendingPaymentAWB.Name = "BShowPendingPaymentAWB"
+        Me.BShowPendingPaymentAWB.Size = New System.Drawing.Size(104, 20)
+        Me.BShowPendingPaymentAWB.TabIndex = 8899
+        Me.BShowPendingPaymentAWB.Text = "pending payment"
         '
         'FormSalesOrderSvcLevel
         '
@@ -4316,6 +4550,16 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEManifestUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEManifestStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEManifestStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPAWBManifest.ResumeLayout(False)
+        CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl7.ResumeLayout(False)
+        Me.GroupControl7.PerformLayout()
+        CType(Me.DEUntilInputAWBM.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilInputAWBM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStartInputAWBM.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStartInputAWBM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCInputAWBManifest, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVInputAWBManifest, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -4706,4 +4950,24 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents GridColumn82 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn85 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn83 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPAWBManifest As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCInputAWBManifest As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVInputAWBManifest As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn84 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn86 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn87 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn88 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GroupControl7 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents BViewInputAWBM As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEUntilInputAWBM As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEStartInputAWBM As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl29 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl32 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn89 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn90 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BCompleteWholesale As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn91 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn92 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BShowPendingPaymentAWB As DevExpress.XtraEditors.SimpleButton
 End Class
