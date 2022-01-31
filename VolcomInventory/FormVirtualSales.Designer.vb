@@ -24,8 +24,6 @@ Partial Class FormVirtualSales
         Me.XTPSalesReport = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSales = New DevExpress.XtraGrid.GridControl()
         Me.GVSales = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnCreateNew = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnid_virtual_sales = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncreated_date = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -42,6 +40,8 @@ Partial Class FormVirtualSales
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntotal_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnCreateNew = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPSalesReport.SuspendLayout()
@@ -91,35 +91,6 @@ Partial Class FormVirtualSales
         Me.GVSales.OptionsView.ColumnAutoWidth = False
         Me.GVSales.OptionsView.ShowFooter = True
         Me.GVSales.OptionsView.ShowGroupPanel = False
-        '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.BtnCreateNew)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(712, 51)
-        Me.PanelControl1.TabIndex = 0
-        '
-        'BtnCreateNew
-        '
-        Me.BtnCreateNew.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.BtnCreateNew.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnCreateNew.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BtnCreateNew.Appearance.Image = CType(resources.GetObject("BtnCreateNew.Appearance.Image"), System.Drawing.Image)
-        Me.BtnCreateNew.Appearance.Options.UseBackColor = True
-        Me.BtnCreateNew.Appearance.Options.UseFont = True
-        Me.BtnCreateNew.Appearance.Options.UseForeColor = True
-        Me.BtnCreateNew.Appearance.Options.UseImage = True
-        Me.BtnCreateNew.Location = New System.Drawing.Point(11, 11)
-        Me.BtnCreateNew.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BtnCreateNew.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BtnCreateNew.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BtnCreateNew.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnCreateNew.Name = "BtnCreateNew"
-        Me.BtnCreateNew.Size = New System.Drawing.Size(117, 29)
-        Me.BtnCreateNew.TabIndex = 23
-        Me.BtnCreateNew.Text = "+ Create New"
         '
         'GridColumnid_virtual_sales
         '
@@ -247,6 +218,35 @@ Partial Class FormVirtualSales
         Me.GridColumntotal_qty.Name = "GridColumntotal_qty"
         Me.GridColumntotal_qty.Visible = True
         Me.GridColumntotal_qty.VisibleIndex = 7
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BtnCreateNew)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(712, 51)
+        Me.PanelControl1.TabIndex = 0
+        '
+        'BtnCreateNew
+        '
+        Me.BtnCreateNew.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BtnCreateNew.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnCreateNew.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnCreateNew.Appearance.Image = CType(resources.GetObject("BtnCreateNew.Appearance.Image"), System.Drawing.Image)
+        Me.BtnCreateNew.Appearance.Options.UseBackColor = True
+        Me.BtnCreateNew.Appearance.Options.UseFont = True
+        Me.BtnCreateNew.Appearance.Options.UseForeColor = True
+        Me.BtnCreateNew.Appearance.Options.UseImage = True
+        Me.BtnCreateNew.Location = New System.Drawing.Point(11, 11)
+        Me.BtnCreateNew.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnCreateNew.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnCreateNew.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnCreateNew.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnCreateNew.Name = "BtnCreateNew"
+        Me.BtnCreateNew.Size = New System.Drawing.Size(117, 29)
+        Me.BtnCreateNew.TabIndex = 23
+        Me.BtnCreateNew.Text = "+ Create New"
         '
         'FormVirtualSales
         '

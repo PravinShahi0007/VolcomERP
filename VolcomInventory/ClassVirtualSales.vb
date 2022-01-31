@@ -24,7 +24,7 @@
         INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee "
         query += "WHERE vs.id_virtual_sales>0 "
         query += condition + " "
-        query += "ORDER BY b.id_bsp " + order_type
+        query += "ORDER BY vs.id_virtual_sales " + order_type
         Return query
     End Function
 End Class

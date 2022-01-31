@@ -8564,6 +8564,12 @@
     <Compile Include="FormVirtualSales.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormVirtualSalesDet.Designer.vb">
+      <DependentUpon>FormVirtualSalesDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVirtualSalesDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormVMMove.Designer.vb">
       <DependentUpon>FormVMMove.vb</DependentUpon>
     </Compile>
@@ -15316,6 +15322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormVirtualSales.resx">
       <DependentUpon>FormVirtualSales.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVirtualSalesDet.resx">
+      <DependentUpon>FormVirtualSalesDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVMMove.resx">
       <DependentUpon>FormVMMove.vb</DependentUpon>
