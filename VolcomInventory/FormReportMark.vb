@@ -2330,11 +2330,23 @@ INNER JOIN
                     mail.send_email()
                 End If
 
-                'for auto QC report 1 yang sudah reject
+                'for auto QC report 1 yang sudah reject dari awal
                 Dim q As String = "SELECT id_pl_category FROM tb_prod_order_rec WHERE id_prod_order_rec='" & id_report & "'"
                 Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
                 If dt.Rows(0)("id_pl_category").ToString = "2" Or dt.Rows(0)("id_pl_category").ToString = "3" Then
-
+                    Dim qi As String = "INSERT INTO `tb_qc_report1`(`id_prod_order_rec`,`id_pl_category`,`created_date`,`created_by`,`id_report_status`,`note`,`complete_date`)
+SELECT id_prod_order_rec,id_pl_category,NOW() AS created_date,'" & id_user & "' AS created_by,6 AS id_report_status,'Auto Grade Receiving' AS note,NOW() AS complete_date
+FROM tb_prod_order_rec
+WHERE `id_prod_order_rec`='" & id_report & "';SELECT LAST_INSERT_ID(); "
+                    Dim id_qcr1 As String = execute_query(qi, 0, True, "", "", "", "")
+                    execute_non_query("CALL gen_number('" & id_qcr1 & "','385')", True, "", "", "", "")
+                    'detail
+                    qi = "INSERT INTO tb_qc_report1_det(id_qc_report1,id_prod_order_det,`qc_report1_det_qty`)
+SELECT '" & id_qcr1 & "' AS id_qc_report1,recd.`id_prod_order_det`,recd.`prod_order_rec_det_qty` 
+FROM `tb_prod_order_rec_det` recd
+INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_rec`
+WHERE recd.`id_prod_order_rec`='" & id_report & "'"
+                    execute_non_query(qi, True, "", "", "", "")
                 End If
             End If
 

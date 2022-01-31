@@ -641,6 +641,7 @@ Public Class FormSalesOrderDet
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
+                    BtnSave.Enabled = False
                     sales_order_number = ""
                     'Main tbale
                     Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_period, id_uni_type, sales_order_ol_shop_number, sales_order_ol_shop_date, is_transfer_data, is_sync_stock, customer_name, id_bsp) "
@@ -686,7 +687,7 @@ Public Class FormSalesOrderDet
                     rsv.reservedStock(id_sales_order)
 
                     FormSalesOrder.viewSalesOrder()
-                    FormSalesOrder.viewDet()
+                    'FormSalesOrder.viewDet()
                     FormSalesOrder.GVSalesOrder.FocusedRowHandle = find_row(FormSalesOrder.GVSalesOrder, "id_sales_order", id_sales_order)
                     action = "upd"
                     actionLoad()
@@ -917,10 +918,27 @@ Public Class FormSalesOrderDet
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
         If AllowOpenMark("39", id_sales_order, id_report_status) Then
-            FormReportMark.id_report = id_sales_order
-            FormReportMark.report_mark_type = "39"
-            FormReportMark.form_origin = Name
-            FormReportMark.ShowDialog()
+            'cek reserved
+            Dim qcek As String = "SELECT SUM(so.sales_order_det_qty) AS `qty_order`, IFNULL(f.qty_booked,0) AS `qty_booked`
+            FROM tb_sales_order_det so
+            LEFT JOIN (
+	            SELECT  f.id_report,SUM(f.storage_product_qty) AS `qty_booked`
+	            FROM tb_storage_fg f WHERE f.report_mark_type=39 AND f.id_report=" + id_sales_order + " 
+	            AND f.id_stock_status=2 AND f.id_storage_category=2
+            ) f ON f.id_report = so.id_sales_order
+            WHERE so.id_sales_order=" + id_sales_order + " "
+            Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+            Dim qty_order As Integer = dcek.Rows(0)("qty_order")
+            Dim qty_booked As Integer = dcek.Rows(0)("qty_booked")
+
+            If qty_order > 0 And qty_order = qty_booked Then
+                FormReportMark.id_report = id_sales_order
+                FormReportMark.report_mark_type = "39"
+                FormReportMark.form_origin = Name
+                FormReportMark.ShowDialog()
+            Else
+                stopCustom("Transaction not valid, please contact Administrator")
+            End If
         Else
             stopCustom("Data not found")
         End If

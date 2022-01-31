@@ -304,6 +304,8 @@
         DEUntilTrf.EditValue = data_dt.Rows(0)("dt")
         DEFromNonStock.EditValue = data_dt.Rows(0)("dt")
         DEUntilNonStock.EditValue = data_dt.Rows(0)("dt")
+        DEManifestStart.EditValue = data_dt.Rows(0)("dt")
+        DEManifestUntil.EditValue = data_dt.Rows(0)("dt")
 
         'load expire
         Dim qex As String = "SELECT expired_close_too FROM tb_opt"
@@ -1337,5 +1339,40 @@ WHERE awbd.`id_pl_sales_order_del`='" & GVSalesDelOrder.GetFocusedRowCellValue("
         If dt.Rows.Count > 0 Then
 
         End If
+    End Sub
+
+    Private Sub BViewManifest_Click(sender As Object, e As EventArgs) Handles BViewManifest.Click
+        Dim query As String = "
+            SELECT odm.scan_manifest,odm.print_manifest,CONCAT(store.comp_number,' - ',store.comp_name) AS store,m.id_del_manifest, c.comp_name,m.awbill_no, m.number, DATE_FORMAT(m.created_date, '%d %M %Y %H:%i:%s') AS created_date, DATE_FORMAT(m.updated_date, '%d %M %Y %H:%i:%s') AS updated_date, ea.employee_name AS created_by, eb.employee_name AS updated_by, IFNULL(l.report_status, 'Waiting checked by security') AS report_status
+            FROM tb_del_manifest AS m
+            INNER JOIN tb_m_comp AS c ON m.id_comp = c.id_comp
+            LEFT JOIN tb_m_user AS ua ON m.created_by = ua.id_user
+            LEFT JOIN tb_m_employee AS ea ON ua.id_employee = ea.id_employee
+            LEFT JOIN tb_m_user AS ub ON m.updated_by = ub.id_user
+            LEFT JOIN tb_m_employee AS eb ON ub.id_employee = eb.id_employee
+            INNER JOIN tb_lookup_report_status AS l ON m.id_report_status = l.id_report_status
+            INNER JOIN tb_m_comp store ON store.id_comp=m.id_store_offline
+            LEFT JOIN
+            (
+                SELECT scd.`id_del_manifest`,sc.`number` AS scan_manifest,p.`number` AS print_manifest
+                FROM tb_odm_sc_det scd 
+                INNER JOIN tb_odm_sc sc ON sc.`id_odm_sc`=scd.`id_odm_sc` 
+                LEFT JOIN tb_odm_print_det pd ON pd.`id_odm_sc`=sc.`id_odm_sc`
+                LEFT JOIN tb_odm_print p ON p.`id_odm_print`=pd.`id_odm_print`
+                GROUP BY scd.`id_del_manifest`
+            )odm ON odm.id_del_manifest=m.id_del_manifest
+            WHERE m.id_del_type='6' AND DATE(m.created_date)>=DATE('" & Date.Parse(DEManifestStart.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND DATE(m.created_date)<=DATE('" & Date.Parse(DEManifestUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+            ORDER BY m.id_del_manifest DESC
+        "
+
+        GCList.DataSource = execute_query(query, -1, True, "", "", "", "")
+
+        GVList.BestFitColumns()
+    End Sub
+
+    Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVList.DoubleClick
+        FormDelManifestDet.id_del_manifest = GVList.GetFocusedRowCellValue("id_del_manifest").ToString
+        FormDelManifestDet.is_complete_wholesale = True
+        FormDelManifestDet.ShowDialog()
     End Sub
 End Class

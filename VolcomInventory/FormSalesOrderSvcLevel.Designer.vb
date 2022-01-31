@@ -387,6 +387,25 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPClosingSuratJalan = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPCompleteManifest = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCList = New DevExpress.XtraGrid.GridControl()
+        Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn76 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn77 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn78 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn79 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn81 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn82 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn85 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
+        Me.BViewManifest = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton15 = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEManifestUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.DEManifestStart = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn83 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.LETypeRestockTOO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -516,6 +535,15 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEUntilNonStock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromNonStock.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromNonStock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPCompleteManifest.SuspendLayout()
+        CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl6.SuspendLayout()
+        CType(Me.DEManifestUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEManifestUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEManifestStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEManifestStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCFilter
@@ -1045,7 +1073,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMView, Me.ViewDetailOrderToolStripMenuItem, Me.PrintPrepareOrderToolStripMenuItem, Me.UpdatePackingStatusToolStripMenuItem, Me.LogPrintToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(166, 136)
+        Me.ViewMenu.Size = New System.Drawing.Size(166, 114)
         '
         'SMView
         '
@@ -1087,7 +1115,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTCSvcLevel.SelectedTabPage = Me.XTPPrepareOrder
         Me.XTCSvcLevel.Size = New System.Drawing.Size(940, 339)
         Me.XTCSvcLevel.TabIndex = 4
-        Me.XTCSvcLevel.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPrepareOrder, Me.XTPReturnOrder, Me.XTPRec, Me.XTPDelOrder, Me.XTPReturn, Me.XTPReturnQC, Me.XTPTrf, Me.XTPNonStockInv, Me.XTPClosingSuratJalan})
+        Me.XTCSvcLevel.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPrepareOrder, Me.XTPReturnOrder, Me.XTPRec, Me.XTPDelOrder, Me.XTPReturn, Me.XTPReturnQC, Me.XTPTrf, Me.XTPNonStockInv, Me.XTPClosingSuratJalan, Me.XTPCompleteManifest})
         '
         'XTPPrepareOrder
         '
@@ -1607,9 +1635,9 @@ Partial Class FormSalesOrderSvcLevel
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl1.Controls.Add(Me.CheckEdit1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(1357, 0)
+        Me.PanelControl1.Location = New System.Drawing.Point(826, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(86, 51)
+        Me.PanelControl1.Size = New System.Drawing.Size(86, 68)
         Me.PanelControl1.TabIndex = 8902
         '
         'CheckEdit1
@@ -3958,6 +3986,175 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTPClosingSuratJalan.Size = New System.Drawing.Size(934, 311)
         Me.XTPClosingSuratJalan.Text = "Closing Surat Jalan"
         '
+        'XTPCompleteManifest
+        '
+        Me.XTPCompleteManifest.Controls.Add(Me.GCList)
+        Me.XTPCompleteManifest.Controls.Add(Me.GroupControl6)
+        Me.XTPCompleteManifest.Name = "XTPCompleteManifest"
+        Me.XTPCompleteManifest.Size = New System.Drawing.Size(934, 311)
+        Me.XTPCompleteManifest.Text = "Complete Manifest"
+        '
+        'GCList
+        '
+        Me.GCList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCList.Location = New System.Drawing.Point(0, 39)
+        Me.GCList.MainView = Me.GVList
+        Me.GCList.Name = "GCList"
+        Me.GCList.Size = New System.Drawing.Size(934, 272)
+        Me.GCList.TabIndex = 10
+        Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
+        '
+        'GVList
+        '
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn76, Me.GridColumn77, Me.GridColumn83, Me.GridColumn78, Me.GridColumn79, Me.GridColumn80, Me.GridColumn81, Me.GridColumn82, Me.GridColumn85})
+        Me.GVList.GridControl = Me.GCList
+        Me.GVList.Name = "GVList"
+        Me.GVList.OptionsBehavior.Editable = False
+        Me.GVList.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn76
+        '
+        Me.GridColumn76.FieldName = "id_del_manifest"
+        Me.GridColumn76.Name = "GridColumn76"
+        '
+        'GridColumn77
+        '
+        Me.GridColumn77.Caption = "3PL"
+        Me.GridColumn77.FieldName = "comp_name"
+        Me.GridColumn77.Name = "GridColumn77"
+        Me.GridColumn77.Visible = True
+        Me.GridColumn77.VisibleIndex = 1
+        '
+        'GridColumn78
+        '
+        Me.GridColumn78.Caption = "Draft Manifest Number"
+        Me.GridColumn78.FieldName = "number"
+        Me.GridColumn78.Name = "GridColumn78"
+        Me.GridColumn78.Visible = True
+        Me.GridColumn78.VisibleIndex = 0
+        '
+        'GridColumn79
+        '
+        Me.GridColumn79.Caption = "Created Date"
+        Me.GridColumn79.FieldName = "created_date"
+        Me.GridColumn79.Name = "GridColumn79"
+        Me.GridColumn79.Visible = True
+        Me.GridColumn79.VisibleIndex = 3
+        '
+        'GridColumn80
+        '
+        Me.GridColumn80.Caption = "Created By"
+        Me.GridColumn80.FieldName = "created_by"
+        Me.GridColumn80.Name = "GridColumn80"
+        Me.GridColumn80.Visible = True
+        Me.GridColumn80.VisibleIndex = 4
+        '
+        'GridColumn81
+        '
+        Me.GridColumn81.Caption = "Updated Date"
+        Me.GridColumn81.FieldName = "updated_date"
+        Me.GridColumn81.Name = "GridColumn81"
+        Me.GridColumn81.Visible = True
+        Me.GridColumn81.VisibleIndex = 5
+        '
+        'GridColumn82
+        '
+        Me.GridColumn82.Caption = "Updated By"
+        Me.GridColumn82.FieldName = "updated_by"
+        Me.GridColumn82.Name = "GridColumn82"
+        Me.GridColumn82.Visible = True
+        Me.GridColumn82.VisibleIndex = 6
+        '
+        'GridColumn85
+        '
+        Me.GridColumn85.Caption = "Report Status"
+        Me.GridColumn85.FieldName = "report_status"
+        Me.GridColumn85.Name = "GridColumn85"
+        Me.GridColumn85.Visible = True
+        Me.GridColumn85.VisibleIndex = 7
+        '
+        'GroupControl6
+        '
+        Me.GroupControl6.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl6.Controls.Add(Me.BViewManifest)
+        Me.GroupControl6.Controls.Add(Me.SimpleButton15)
+        Me.GroupControl6.Controls.Add(Me.DEManifestUntil)
+        Me.GroupControl6.Controls.Add(Me.DEManifestStart)
+        Me.GroupControl6.Controls.Add(Me.LabelControl30)
+        Me.GroupControl6.Controls.Add(Me.LabelControl31)
+        Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl6.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl6.Name = "GroupControl6"
+        Me.GroupControl6.Size = New System.Drawing.Size(934, 39)
+        Me.GroupControl6.TabIndex = 9
+        '
+        'BViewManifest
+        '
+        Me.BViewManifest.Location = New System.Drawing.Point(319, 9)
+        Me.BViewManifest.LookAndFeel.SkinName = "Blue"
+        Me.BViewManifest.Name = "BViewManifest"
+        Me.BViewManifest.Size = New System.Drawing.Size(55, 20)
+        Me.BViewManifest.TabIndex = 8896
+        Me.BViewManifest.Text = "View"
+        '
+        'SimpleButton15
+        '
+        Me.SimpleButton15.ImageIndex = 9
+        Me.SimpleButton15.Location = New System.Drawing.Point(938, 14)
+        Me.SimpleButton15.Name = "SimpleButton15"
+        Me.SimpleButton15.Size = New System.Drawing.Size(104, 20)
+        Me.SimpleButton15.TabIndex = 8898
+        Me.SimpleButton15.Text = "Hide All Detail"
+        Me.SimpleButton15.Visible = False
+        '
+        'DEManifestUntil
+        '
+        Me.DEManifestUntil.EditValue = Nothing
+        Me.DEManifestUntil.Location = New System.Drawing.Point(202, 9)
+        Me.DEManifestUntil.Name = "DEManifestUntil"
+        Me.DEManifestUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEManifestUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEManifestUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEManifestUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEManifestUntil.Size = New System.Drawing.Size(111, 20)
+        Me.DEManifestUntil.TabIndex = 8895
+        '
+        'DEManifestStart
+        '
+        Me.DEManifestStart.EditValue = Nothing
+        Me.DEManifestStart.Location = New System.Drawing.Point(58, 9)
+        Me.DEManifestStart.Name = "DEManifestStart"
+        Me.DEManifestStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEManifestStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEManifestStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEManifestStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEManifestStart.Size = New System.Drawing.Size(111, 20)
+        Me.DEManifestStart.TabIndex = 8894
+        '
+        'LabelControl30
+        '
+        Me.LabelControl30.Location = New System.Drawing.Point(175, 12)
+        Me.LabelControl30.Name = "LabelControl30"
+        Me.LabelControl30.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl30.TabIndex = 8893
+        Me.LabelControl30.Text = "Until"
+        '
+        'LabelControl31
+        '
+        Me.LabelControl31.Location = New System.Drawing.Point(28, 12)
+        Me.LabelControl31.Name = "LabelControl31"
+        Me.LabelControl31.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl31.TabIndex = 8892
+        Me.LabelControl31.Text = "From"
+        '
+        'GridColumn83
+        '
+        Me.GridColumn83.Caption = "Store"
+        Me.GridColumn83.FieldName = "store"
+        Me.GridColumn83.Name = "GridColumn83"
+        Me.GridColumn83.Visible = True
+        Me.GridColumn83.VisibleIndex = 2
+        '
         'FormSalesOrderSvcLevel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4109,6 +4306,16 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEUntilNonStock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromNonStock.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromNonStock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPCompleteManifest.ResumeLayout(False)
+        CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl6.ResumeLayout(False)
+        Me.GroupControl6.PerformLayout()
+        CType(Me.DEManifestUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEManifestUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEManifestStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEManifestStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -4480,4 +4687,23 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents GridColumn73 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn74 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn75 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPCompleteManifest As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GroupControl6 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents BViewManifest As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton15 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEManifestUntil As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEManifestStart As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl30 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl31 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVList As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn76 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn77 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn78 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn79 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn80 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn81 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn82 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn85 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn83 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

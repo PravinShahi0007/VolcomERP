@@ -141,6 +141,7 @@ Partial Class FormDelManifestDet
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BGenOffline = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.BCompleteWholesale = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -208,9 +209,9 @@ Partial Class FormDelManifestDet
         'SBAttachement
         '
         Me.SBAttachement.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.SBAttachement.Location = New System.Drawing.Point(0, 635)
+        Me.SBAttachement.Location = New System.Drawing.Point(0, 617)
         Me.SBAttachement.Name = "SBAttachement"
-        Me.SBAttachement.Size = New System.Drawing.Size(1008, 45)
+        Me.SBAttachement.Size = New System.Drawing.Size(1008, 31)
         Me.SBAttachement.TabIndex = 9
         Me.SBAttachement.Text = "Attachment"
         '
@@ -321,7 +322,7 @@ Partial Class FormDelManifestDet
         Me.PCRate.Controls.Add(Me.SLUE3PL)
         Me.PCRate.Controls.Add(Me.Label6)
         Me.PCRate.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCRate.Location = New System.Drawing.Point(0, 426)
+        Me.PCRate.Location = New System.Drawing.Point(0, 408)
         Me.PCRate.Name = "PCRate"
         Me.PCRate.Size = New System.Drawing.Size(1008, 209)
         Me.PCRate.TabIndex = 5
@@ -753,7 +754,7 @@ Partial Class FormDelManifestDet
         Me.GCList.Location = New System.Drawing.Point(0, 159)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
-        Me.GCList.Size = New System.Drawing.Size(1008, 267)
+        Me.GCList.Size = New System.Drawing.Size(1008, 249)
         Me.GCList.TabIndex = 6
         Me.GCList.TabStop = False
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
@@ -1341,6 +1342,21 @@ Partial Class FormDelManifestDet
         Me.LabelControl2.TabIndex = 19
         Me.LabelControl2.Text = "Store"
         '
+        'BCompleteWholesale
+        '
+        Me.BCompleteWholesale.Appearance.BackColor = System.Drawing.Color.Blue
+        Me.BCompleteWholesale.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCompleteWholesale.Appearance.Options.UseBackColor = True
+        Me.BCompleteWholesale.Appearance.Options.UseForeColor = True
+        Me.BCompleteWholesale.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BCompleteWholesale.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCompleteWholesale.Location = New System.Drawing.Point(0, 648)
+        Me.BCompleteWholesale.Name = "BCompleteWholesale"
+        Me.BCompleteWholesale.Size = New System.Drawing.Size(1008, 32)
+        Me.BCompleteWholesale.TabIndex = 13
+        Me.BCompleteWholesale.Text = "Complete"
+        Me.BCompleteWholesale.Visible = False
+        '
         'FormDelManifestDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1351,8 +1367,9 @@ Partial Class FormDelManifestDet
         Me.Controls.Add(Me.PCOnline)
         Me.Controls.Add(Me.PCRate)
         Me.Controls.Add(Me.SBAttachement)
-        Me.Controls.Add(Me.PanelControl4)
         Me.Controls.Add(Me.PanelControl2)
+        Me.Controls.Add(Me.BCompleteWholesale)
+        Me.Controls.Add(Me.PanelControl4)
         Me.Name = "FormDelManifestDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Draft Manifest"
@@ -1529,4 +1546,5 @@ Partial Class FormDelManifestDet
     Friend WithEvents TEActualWeight As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label14 As Label
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BCompleteWholesale As DevExpress.XtraEditors.SimpleButton
 End Class
