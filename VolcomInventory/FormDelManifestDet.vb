@@ -405,7 +405,7 @@ SELECT awbill_no FROM tb_del_manifest WHERE awbill_no='" & addSlashes(TEAwb.Text
             stopCustom("DO not found.")
         ElseIf TERemarkDiff.Visible = True And TERemarkDiff.Text = "" Then
             stopCustom("Please put remark why choose this 3PL.")
-        ElseIf is_awb_ok Then
+        ElseIf Not is_awb_ok Then
             stopCustom("Please put awb/resi number.")
         ElseIf dtc.Rows.Count > 0 Then
             stopCustom("AWB number already used.")
