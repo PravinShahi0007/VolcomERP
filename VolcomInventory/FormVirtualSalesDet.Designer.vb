@@ -87,7 +87,7 @@ Partial Class FormVirtualSalesDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(440, 169)
+        Me.PanelControl1.Size = New System.Drawing.Size(768, 163)
         Me.PanelControl1.TabIndex = 0
         '
         'BtnCreateNew
@@ -101,13 +101,13 @@ Partial Class FormVirtualSalesDet
         Me.BtnCreateNew.Appearance.Options.UseForeColor = True
         Me.BtnCreateNew.Appearance.Options.UseImage = True
         Me.BtnCreateNew.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnCreateNew.Location = New System.Drawing.Point(2, 143)
+        Me.BtnCreateNew.Location = New System.Drawing.Point(2, 137)
         Me.BtnCreateNew.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnCreateNew.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BtnCreateNew.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnCreateNew.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnCreateNew.Name = "BtnCreateNew"
-        Me.BtnCreateNew.Size = New System.Drawing.Size(426, 24)
+        Me.BtnCreateNew.Size = New System.Drawing.Size(484, 24)
         Me.BtnCreateNew.TabIndex = 8943
         Me.BtnCreateNew.Text = "+ Create New"
         '
@@ -216,9 +216,9 @@ Partial Class FormVirtualSalesDet
         Me.PanelControlTopLeft.Controls.Add(Me.TxtNumber)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl2)
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopLeft.Location = New System.Drawing.Point(428, 2)
+        Me.PanelControlTopLeft.Location = New System.Drawing.Point(486, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
-        Me.PanelControlTopLeft.Size = New System.Drawing.Size(10, 165)
+        Me.PanelControlTopLeft.Size = New System.Drawing.Size(280, 159)
         Me.PanelControlTopLeft.TabIndex = 150
         '
         'TxtCreatedBy
@@ -321,18 +321,18 @@ Partial Class FormVirtualSalesDet
         Me.PanelControlBottom.Controls.Add(Me.BtnCancelPropose)
         Me.PanelControlBottom.Controls.Add(Me.BtnSave)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 167)
+        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 518)
         Me.PanelControlBottom.Name = "PanelControlBottom"
-        Me.PanelControlBottom.Size = New System.Drawing.Size(440, 10)
+        Me.PanelControlBottom.Size = New System.Drawing.Size(768, 40)
         Me.PanelControlBottom.TabIndex = 1
         '
         'BtnCancelPropose
         '
         Me.BtnCancelPropose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancelPropose.Image = CType(resources.GetObject("BtnCancelPropose.Image"), System.Drawing.Image)
-        Me.BtnCancelPropose.Location = New System.Drawing.Point(199, 2)
+        Me.BtnCancelPropose.Location = New System.Drawing.Point(527, 2)
         Me.BtnCancelPropose.Name = "BtnCancelPropose"
-        Me.BtnCancelPropose.Size = New System.Drawing.Size(122, 6)
+        Me.BtnCancelPropose.Size = New System.Drawing.Size(122, 36)
         Me.BtnCancelPropose.TabIndex = 3
         Me.BtnCancelPropose.Text = "Cancel Propose"
         '
@@ -340,9 +340,9 @@ Partial Class FormVirtualSalesDet
         '
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
-        Me.BtnSave.Location = New System.Drawing.Point(321, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(649, 2)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(117, 6)
+        Me.BtnSave.Size = New System.Drawing.Size(117, 36)
         Me.BtnSave.TabIndex = 2
         Me.BtnSave.Text = "Save Changes"
         '
@@ -351,9 +351,9 @@ Partial Class FormVirtualSalesDet
         Me.PanelControlNav.Controls.Add(Me.BtnExportAsXLS)
         Me.PanelControlNav.Controls.Add(Me.BtnImportXLS)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNav.Location = New System.Drawing.Point(0, 169)
+        Me.PanelControlNav.Location = New System.Drawing.Point(0, 163)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(440, 10)
+        Me.PanelControlNav.Size = New System.Drawing.Size(768, 52)
         Me.PanelControlNav.TabIndex = 2
         '
         'BtnExportAsXLS
@@ -361,9 +361,9 @@ Partial Class FormVirtualSalesDet
         Me.BtnExportAsXLS.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnExportAsXLS.Image = CType(resources.GetObject("BtnExportAsXLS.Image"), System.Drawing.Image)
         Me.BtnExportAsXLS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnExportAsXLS.Location = New System.Drawing.Point(280, 2)
+        Me.BtnExportAsXLS.Location = New System.Drawing.Point(608, 2)
         Me.BtnExportAsXLS.Name = "BtnExportAsXLS"
-        Me.BtnExportAsXLS.Size = New System.Drawing.Size(79, 6)
+        Me.BtnExportAsXLS.Size = New System.Drawing.Size(79, 48)
         Me.BtnExportAsXLS.TabIndex = 1
         Me.BtnExportAsXLS.Text = "Export As XLS"
         '
@@ -372,19 +372,19 @@ Partial Class FormVirtualSalesDet
         Me.BtnImportXLS.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnImportXLS.Image = CType(resources.GetObject("BtnImportXLS.Image"), System.Drawing.Image)
         Me.BtnImportXLS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnImportXLS.Location = New System.Drawing.Point(359, 2)
+        Me.BtnImportXLS.Location = New System.Drawing.Point(687, 2)
         Me.BtnImportXLS.Name = "BtnImportXLS"
-        Me.BtnImportXLS.Size = New System.Drawing.Size(79, 6)
+        Me.BtnImportXLS.Size = New System.Drawing.Size(79, 48)
         Me.BtnImportXLS.TabIndex = 0
         Me.BtnImportXLS.Text = "Import XLS"
         '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 179)
+        Me.GCData.Location = New System.Drawing.Point(0, 215)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(440, 0)
+        Me.GCData.Size = New System.Drawing.Size(768, 303)
         Me.GCData.TabIndex = 3
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -402,7 +402,7 @@ Partial Class FormVirtualSalesDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(440, 177)
+        Me.ClientSize = New System.Drawing.Size(768, 558)
         Me.Controls.Add(Me.GCData)
         Me.Controls.Add(Me.PanelControlNav)
         Me.Controls.Add(Me.PanelControlBottom)

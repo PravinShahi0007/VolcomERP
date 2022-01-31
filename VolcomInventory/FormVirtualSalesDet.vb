@@ -57,39 +57,24 @@
             Dim y = r.Top + (r.Height - Height) \ 2
             Location = New Point(x, y)
         ElseIf Action = "upd" Then
-            'WindowState = FormWindowState.Maximized
+            WindowState = FormWindowState.Maximized
 
-            'Dim sd As New ClassStoreDisplay()
-            'Dim query As String = sd.queryMain("AND  p.id_display_pps='" + id + "' ", "1")
-            'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            'TxtNumber.Text = data.Rows(0)("number").ToString
-            'LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
-            'id_report_status = data.Rows(0)("id_report_status").ToString
-            'is_confirm = data.Rows(0)("is_confirm").ToString
-            'DECreated.EditValue = data.Rows(0)("created_date")
-            'TxtCreatedBy.EditValue = data.Rows(0)("created_by_name").ToString
-            'DEUpdated.EditValue = data.Rows(0)("updated_date")
-            'TxtUpdatedBy.EditValue = data.Rows(0)("updated_by_name").ToString
-            'SLESeason.EditValue = data.Rows(0)("id_season").ToString
-            'SLEComp.EditValue = data.Rows(0)("id_comp").ToString
-            'MENote.Text = data.Rows(0)("note").ToString
-            'is_confirm = data.Rows(0)("is_confirm").ToString
+            Dim vs As New ClassVirtualSales()
+            Dim query As String = vs.queryMain("AND vs.id_virtual_sales='" + id + "' ", "1")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            TxtNumber.Text = data.Rows(0)("number").ToString
+            LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+            id_report_status = data.Rows(0)("id_report_status").ToString
+            DECreated.EditValue = data.Rows(0)("created_date")
+            TxtCreatedBy.EditValue = data.Rows(0)("created_by_name").ToString
+            SLEComp.EditValue = data.Rows(0)("id_comp").ToString
+            DEStart.EditValue = data.Rows(0)("start_period")
+            DEEnd.EditValue = data.Rows(0)("end_period")
+            MENote.Text = data.Rows(0)("note").ToString
 
-            ''detail
-            'viewDetailSeason()
-            'viewDetail()
-            'allow_status()
-
-            ''cek class mapping - aktifkan saat live
-            ''checkClassGroup()
-
-            ''cek status toko
-            'Dim store_stt As String = execute_query("SELECT IFNULL(c.is_active,0) AS `is_active` FROM tb_m_comp c WHERE c.id_comp='" + SLEComp.EditValue.ToString + "'", 0, True, "", "", "", "")
-            'If store_stt <> "1" Then
-            '    warningCustom("Display toko tidak bisa diproses karena status toko tidak aktif")
-            '    Cursor = Cursors.Default
-            '    Close()
-            'End If
+            'detail
+            viewDetail()
+            allow_status()
         End If
         Cursor = Cursors.Default
     End Sub
@@ -116,14 +101,61 @@
             FormVirtualSales.is_load_new = True
             Close()
         ElseIf action = "upd" Then
-
+            Dim query As String = "UPDATE tb_virtual_sales SET id_comp='" + id_comp + "',  
+            start_period='" + start_period + "', end_period='" + end_period + "', note='" + note + "'
+            WHERE id_virtual_sales='" + id + "' "
+            execute_non_query(query, True, "", "", "", "")
         End If
         Cursor = Cursors.Default
     End Sub
 
     Sub refreshMainview()
+        FormVirtualSales.viewDetail()
+        FormVirtualSales.GVSales.FocusedRowHandle = find_row(FormVirtualSales.GVSales, "id_virtual_sales", id)
+    End Sub
 
-        FormStoreDisplay.viewPps()
-        FormStoreDisplay.GVPPS.FocusedRowHandle = find_row(FormStoreDisplay.GVPPS, "id_display_pps", id)
+    Sub viewDetail()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = ""
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub allow_status()
+        If id_report_status = "5" Then
+            BtnCancelPropose.Visible = False
+            BtnSave.Visible = False
+            BtnImportXLS.Visible = False
+            SLEComp.Enabled = False
+            DEStart.Enabled = False
+            DEEnd.Enabled = False
+            MENote.Enabled = False
+        End If
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        saveHead()
+
+        'view
+        refreshMainview()
+        actionLoad()
+        infoCustom("Save success")
+    End Sub
+
+    Private Sub BtnCancelPropose_Click(sender As Object, e As EventArgs) Handles BtnCancelPropose.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancelled this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "UPDATE tb_virtual_sales SET id_report_status=5 WHERE id_virtual_sales='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+            'nonaktif mark
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", rmt, id)
+            execute_non_query(queryrm, True, "", "", "", "")
+
+            'refresh
+            refreshMainview()
+            actionLoad()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
