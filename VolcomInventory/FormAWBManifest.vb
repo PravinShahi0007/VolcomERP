@@ -57,9 +57,19 @@
         If TEAwb.Text = "" Then
             warningCustom("Please input AWB")
         Else
-            Dim qu As String = "UPDATE tb_del_manifest SET awbill_no='" & addSlashes(TEAwb.Text) & "' WHERE id_del_manifest='" & id_del_manifest & "'"
-            execute_non_query(qu, True, "", "", "", "")
-            Close()
+            'check awb
+            Dim qc As String = "SELECT awbill_no FROM tb_wh_awbill WHERE awbill_no='" & addSlashes(TEAwb.Text) & "' AND id_report_status!=5
+AND id_awbill NOT IN (SELECT id_awbill FROM tb_del_manifest_det WHERE id_del_manifest='" & id_del_manifest & "')
+UNION ALL
+SELECT awbill_no FROM tb_del_manifest WHERE awbill_no='" & addSlashes(TEAwb.Text) & "' AND id_report_status!=5 AND id_del_manifest!='" & id_del_manifest & "'"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dtc.Rows.Count > 0 Then
+                stopCustom("AWB number already used.")
+            Else
+                Dim qu As String = "UPDATE tb_del_manifest SET awbill_no='" & addSlashes(TEAwb.Text) & "' WHERE id_del_manifest='" & id_del_manifest & "'"
+                execute_non_query(qu, True, "", "", "", "")
+                Close()
+            End If
         End If
     End Sub
 End Class
