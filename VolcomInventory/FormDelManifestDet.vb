@@ -387,9 +387,12 @@ SELECT awbill_no FROM tb_del_manifest WHERE awbill_no='" & addSlashes(TEAwb.Text
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
 
         Dim is_awb_ok As Boolean = True
+        Dim is_need_finalize As String = "2"
         If SLEDelType.EditValue.ToString = "6" Then
             If TEAwb.Text = "" And Not get_opt_sales_field("is_active_new_ws_del") = "1" Then
                 is_awb_ok = False
+            ElseIf get_opt_sales_field("is_active_new_ws_del") = "1" And TEAwb.Text = "" Then
+                is_need_finalize = "1"
             End If
         Else
             If TEAwb.Text = "" Then
@@ -448,11 +451,11 @@ SET awb.id_del_type=NULL,awb.awbill_no='',awb.weight_calc=null WHERE dd.id_del_m
 
                     If id_del_manifest = "0" Then
                         query = "INSERT INTO tb_del_manifest (id_comp, created_date, created_by,is_ol_shop,id_comp_group,ol_order,id_store_offline,id_del_type, id_sub_district ,awbill_no, id_cargo,cargo_rate,cargo_min_weight,cargo_lead_time
-,c_weight,c_tot_price,id_cargo_best,cargo_rate_best,cargo_min_weight_best,cargo_lead_time_best,mark_different,actual_weight) 
+,c_weight,c_tot_price,id_cargo_best,cargo_rate_best,cargo_min_weight_best,cargo_lead_time_best,mark_different,actual_weight,is_need_finalize) 
 VALUES (" + GVCargoRate.GetFocusedRowCellValue("id_cargo").ToString + ", NOW(), " + id_user + "
 ,'" + SLEOnlineShop.EditValue.ToString + "','" + SLEStoreGroup.EditValue.ToString + "','" + order + "','" + SLEComp.EditValue.ToString + "'
 ,'" + SLEDelType.EditValue.ToString + "','" + SLESubDistrict.EditValue.ToString + "',TRIM('" + addSlashes(TEAwb.Text) + "'),'" + GVCargoRate.GetFocusedRowCellValue("id_cargo").ToString + "','" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_rate").ToString) + "','" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_min_weight").ToString) + "','" + decimalSQL(GVCargoRate.GetFocusedRowCellValue("cargo_lead_time").ToString) + "'
-,'" + decimalSQL(TECWeight.EditValue.ToString) + "','" + decimalSQL(TETotalRate.EditValue.ToString) + "','" + GVCargoRate.GetRowCellValue(0, "id_cargo").ToString + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "','" + addSlashes(TERemarkDiff.Text) + "','" + decimalSQL(TEActualWeight.EditValue.ToString) + "'); SELECT LAST_INSERT_ID();"
+,'" + decimalSQL(TECWeight.EditValue.ToString) + "','" + decimalSQL(TETotalRate.EditValue.ToString) + "','" + GVCargoRate.GetRowCellValue(0, "id_cargo").ToString + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_rate").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_min_weight").ToString) + "','" + decimalSQL(GVCargoRate.GetRowCellValue(0, "cargo_lead_time").ToString) + "','" + addSlashes(TERemarkDiff.Text) + "','" + decimalSQL(TEActualWeight.EditValue.ToString) + "','" + is_need_finalize + "'); SELECT LAST_INSERT_ID();"
 
                         id_del_manifest = execute_query(query, 0, True, "", "", "", "")
                     Else
@@ -1248,11 +1251,11 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
             End If
         Next
 
-        'already input awb
+        'already closed
         Dim awb_already As Boolean = False
-        Dim qawb As String = "SELECT * FROM `tb_del_manifest` WHERE id_del_manfiest='" & id_del_manifest & "' AND (id_report_status=6 OR id_report_status=5)"
+        Dim qawb As String = "SELECT * FROM `tb_del_manifest` WHERE id_del_manfiest='" & id_del_manifest & "' AND is_need_finalize=1 AND is_finalize_complete=2 AND id_report_status!=6 AND id_report_status!=5"
         Dim dtawb As DataTable = execute_query(qawb, -1, True, "", "", "", "")
-        If dtawb.Rows.Count > 0 Then
+        If Not dtawb.Rows.Count > 0 Then
             awb_already = True
         End If
 
@@ -1276,11 +1279,14 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
                 Next
 
                 FormMain.SplashScreenManager1.CloseWaitForm()
+                '
+                Dim qu As String = "UPDATE tb_del_manifest SET is_finalize_complete=1 WHERE id_del_manfiest='" & id_del_manifest & "'"
+                '
                 infoCustom("Completed")
                 Close()
             Catch ex As Exception
                 'log scan security
-                Dim qlog As String = "INSERT INTO tb_log_scan_security(reff,log_date,log_by,log) VALUES('" & id_del_manifest & "',NOW(),'" & id_user & "','" & addSlashes("Wholesale complete error " & ex.ToString) & "')"
+                Dim qlog As String = "INSERT INTO tb_log_scan_security(reff,log_date,log_by,log) VALUES('" & id_del_manifest & "',NOW(),'" & id_user & "','" & addSlashes("Wholesale manifest complete error " & ex.ToString) & "')"
                 execute_non_query(qlog, True, "", "", "", "")
 
                 warningCustom(ex.ToString)
