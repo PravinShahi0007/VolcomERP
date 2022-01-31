@@ -345,6 +345,7 @@
     <Compile Include="ClassSendEmail.vb" />
     <Compile Include="ClassShipInvoice.vb" />
     <Compile Include="ClassStoreDisplay.vb" />
+    <Compile Include="ClassVirtualSales.vb" />
     <Compile Include="ClassVMStoreDisplay.vb" />
     <Compile Include="ClassZaloraApi.vb" />
     <Compile Include="ClassShopifyApi.vb" />
@@ -8557,6 +8558,12 @@
     <Compile Include="FormVIOSExpiredOrderDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormVirtualSales.Designer.vb">
+      <DependentUpon>FormVirtualSales.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVirtualSales.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormVMMove.Designer.vb">
       <DependentUpon>FormVMMove.vb</DependentUpon>
     </Compile>
@@ -15306,6 +15313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormVIOSExpiredOrderDetail.resx">
       <DependentUpon>FormVIOSExpiredOrderDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVirtualSales.resx">
+      <DependentUpon>FormVirtualSales.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVMMove.resx">
       <DependentUpon>FormVMMove.vb</DependentUpon>
