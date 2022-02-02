@@ -316,6 +316,11 @@
 
         load_surat_jalan()
 
+        If get_opt_sales_field("is_active_new_ws_del") = "2" Then
+            XTPCompleteManifest.PageVisible = False
+            XTPAWBManifest.PageVisible = False
+        End If
+
         If is_md = "1" Then
             XTPClosingSuratJalan.PageVisible = False
             XTPNonStockInv.PageVisible = False
@@ -325,6 +330,8 @@
             XTPDelOrder.PageVisible = False
             XTPRec.PageVisible = False
             XTPReturnOrder.PageVisible = False
+            XTPCompleteManifest.PageVisible = False
+            XTPAWBManifest.PageVisible = False
 
             Text = "Cancel Prepare Order"
         End If
