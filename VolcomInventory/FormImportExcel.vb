@@ -7942,7 +7942,7 @@ GROUP BY ol.checkout_id
                                 q += ","
                             End If
                             '
-                            q += "('" + id_virtual_sales + "', '" + id_product + "', '" + id_design + "',  '" + qty + "', '" + qty_erp + "') "
+                            q += "('" + id_virtual_sales + "', '" + barcode + "','" + id_product + "', '" + id_design + "',  '" + qty + "', '" + qty_erp + "') "
 
                             '
                             PBC.PerformStep()

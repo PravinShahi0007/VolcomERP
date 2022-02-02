@@ -48,6 +48,17 @@ Partial Class FormVirtualSalesDet
         Me.BtnImportXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_virtual_sales_det = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_virtual_sales = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnbarcode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_design = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty_erp = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -390,13 +401,96 @@ Partial Class FormVirtualSalesDet
         '
         'GVData
         '
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_virtual_sales_det, Me.GridColumnid_virtual_sales, Me.GridColumnbarcode, Me.GridColumnid_product, Me.GridColumnid_design, Me.GridColumnclass, Me.GridColumnname, Me.GridColumncolor, Me.GridColumnsize, Me.GridColumnqty, Me.GridColumnqty_erp})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsBehavior.Editable = False
         Me.GVData.OptionsFind.AlwaysVisible = True
+        Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_virtual_sales_det
+        '
+        Me.GridColumnid_virtual_sales_det.Caption = "id_virtual_sales_det"
+        Me.GridColumnid_virtual_sales_det.FieldName = "id_virtual_sales_det"
+        Me.GridColumnid_virtual_sales_det.Name = "GridColumnid_virtual_sales_det"
+        '
+        'GridColumnid_virtual_sales
+        '
+        Me.GridColumnid_virtual_sales.Caption = "id_virtual_sales"
+        Me.GridColumnid_virtual_sales.FieldName = "id_virtual_sales"
+        Me.GridColumnid_virtual_sales.Name = "GridColumnid_virtual_sales"
+        '
+        'GridColumnbarcode
+        '
+        Me.GridColumnbarcode.Caption = "Barcode"
+        Me.GridColumnbarcode.FieldName = "barcode"
+        Me.GridColumnbarcode.Name = "GridColumnbarcode"
+        Me.GridColumnbarcode.Visible = True
+        Me.GridColumnbarcode.VisibleIndex = 0
+        '
+        'GridColumnid_product
+        '
+        Me.GridColumnid_product.Caption = "id_product"
+        Me.GridColumnid_product.FieldName = "id_product"
+        Me.GridColumnid_product.Name = "GridColumnid_product"
+        '
+        'GridColumnid_design
+        '
+        Me.GridColumnid_design.Caption = "id_design"
+        Me.GridColumnid_design.FieldName = "id_design"
+        Me.GridColumnid_design.Name = "GridColumnid_design"
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 1
+        '
+        'GridColumnname
+        '
+        Me.GridColumnname.Caption = "Description"
+        Me.GridColumnname.FieldName = "name"
+        Me.GridColumnname.Name = "GridColumnname"
+        Me.GridColumnname.Visible = True
+        Me.GridColumnname.VisibleIndex = 2
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 3
+        '
+        'GridColumnsize
+        '
+        Me.GridColumnsize.Caption = "Size"
+        Me.GridColumnsize.FieldName = "size"
+        Me.GridColumnsize.Name = "GridColumnsize"
+        Me.GridColumnsize.Visible = True
+        Me.GridColumnsize.VisibleIndex = 4
+        '
+        'GridColumnqty
+        '
+        Me.GridColumnqty.Caption = "Qty"
+        Me.GridColumnqty.FieldName = "qty"
+        Me.GridColumnqty.Name = "GridColumnqty"
+        '
+        'GridColumnqty_erp
+        '
+        Me.GridColumnqty_erp.Caption = "Qty"
+        Me.GridColumnqty_erp.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty_erp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty_erp.FieldName = "qty_erp"
+        Me.GridColumnqty_erp.Name = "GridColumnqty_erp"
+        Me.GridColumnqty_erp.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_erp", "{0:N0}")})
+        Me.GridColumnqty_erp.Visible = True
+        Me.GridColumnqty_erp.VisibleIndex = 5
         '
         'FormVirtualSalesDet
         '
@@ -467,4 +561,15 @@ Partial Class FormVirtualSalesDet
     Friend WithEvents DEEnd As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
     Friend WithEvents BtnCreateNew As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnid_virtual_sales_det As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_virtual_sales As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnbarcode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_product As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_design As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnname As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty_erp As DevExpress.XtraGrid.Columns.GridColumn
 End Class

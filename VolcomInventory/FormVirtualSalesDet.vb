@@ -110,17 +110,45 @@
     End Sub
 
     Sub refreshMainview()
-        FormVirtualSales.viewDetail()
+        FormVirtualSales.viewSalesList()
         FormVirtualSales.GVSales.FocusedRowHandle = find_row(FormVirtualSales.GVSales, "id_virtual_sales", id)
     End Sub
 
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
-        Dim query As String = ""
+        Dim query As String = "SELECT vd.id_virtual_sales_det, vd.id_virtual_sales, 
+        vd.barcode, vd.id_product, vd.id_design, cd.class,p.product_display_name AS `name`, cd.color, cd.code_detail_name AS `size`, 
+        vd.qty, vd.qty_erp 
+        FROM tb_virtual_sales_det vd
+        INNER JOIN tb_m_product p ON p.id_product = vd.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        LEFT JOIN (
+	        SELECT dc.id_design, 
+	        MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	        MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	        MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	        MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	        MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	        MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	        MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	        FROM tb_m_design_code dc
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	        AND cd.id_code IN (32,30,14, 43)
+	        GROUP BY dc.id_design
+        ) cd ON cd.id_design = vd.id_design
+        WHERE vd.id_virtual_sales=" + id + "
+        ORDER BY cd.class ASC, p.product_display_name ASC, vd.barcode ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+        GVData.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
     Sub allow_status()
+        BtnCreateNew.Visible = False
         If id_report_status = "5" Then
             BtnCancelPropose.Visible = False
             BtnSave.Visible = False
