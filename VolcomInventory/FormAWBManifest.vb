@@ -66,8 +66,10 @@ SELECT awbill_no FROM tb_del_manifest WHERE awbill_no='" & addSlashes(TEAwb.Text
             If dtc.Rows.Count > 0 Then
                 stopCustom("AWB number already used.")
             Else
-                Dim qu As String = "UPDATE tb_del_manifest SET awbill_no='" & addSlashes(TEAwb.Text) & "' WHERE id_del_manifest='" & id_del_manifest & "'"
+                Dim qu As String = ""
+                qu = "UPDATE tb_del_manifest SET awbill_no='" & addSlashes(TEAwb.Text) & "' WHERE id_del_manifest='" & id_del_manifest & "'"
                 execute_non_query(qu, True, "", "", "", "")
+
                 'Update AWB
                 qu = "UPDATE tb_wh_awbill awb 
 INNER JOIN tb_wh_awbill_det awbd ON awbd.`id_awbill`=awb.`id_awbill`
