@@ -149,13 +149,13 @@
 
     Sub allow_status()
         BtnCreateNew.Visible = False
+        SLEComp.Enabled = False
+        DEStart.Enabled = False
+        DEEnd.Enabled = False
         If id_report_status = "5" Then
             BtnCancelPropose.Visible = False
             BtnSave.Visible = False
             BtnImportXLS.Visible = False
-            SLEComp.Enabled = False
-            DEStart.Enabled = False
-            DEEnd.Enabled = False
             MENote.Enabled = False
         End If
     End Sub
@@ -192,5 +192,36 @@
         FormImportExcel.id_pop_up = "64"
         FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEComp_EditValueChanged(sender As Object, e As EventArgs) Handles SLEComp.EditValueChanged
+        If action = "ins" Then
+            Dim id_comp As String = "-1"
+            Try
+                id_comp = SLEComp.EditValue.ToString
+            Catch ex As Exception
+            End Try
+            Dim qry As String = "SELECT STR_TO_DATE(DATE_ADD(DATE(NOW()), INTERVAL - (WEEKDAY(DATE(NOW()))+1) DAY), '%Y-%m-%d') AS `last_beg_date` "
+            Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
+            Dim last_beg_date As String = Date.Parse(dt.Rows(0)("last_beg_date").ToString).ToString("yyyy-MM-dd")
+            'get min date
+            Dim query_cek As String = "SELECT IFNULL(DATE_ADD(MAX(sp.sales_pos_end_period),INTERVAL 1 DAY),'1991-05-18') AS `min_date`
+            FROM tb_sales_pos sp 
+            INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+            INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+            INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+            WHERE c.id_comp=" + id_comp + " AND sp.sales_pos_date<='" + last_beg_date + "' AND sp.id_report_status=6 "
+            Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
+            Dim min_date As Date = data_cek.Rows(0)("min_date")
+            DEStart.Properties.MinValue = min_date
+            DEStart.EditValue = min_date
+            DEEnd.EditValue = min_date
+        End If
+    End Sub
+
+    Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
+        If action = "ins" Then
+            DEEnd.Properties.MinValue = DEStart.EditValue
+        End If
     End Sub
 End Class

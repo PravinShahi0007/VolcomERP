@@ -7956,6 +7956,7 @@ GROUP BY ol.checkout_id
 
                         'refresh
                         FormVirtualSalesDet.viewDetail()
+                        FormVirtualSalesDet.refreshMainview()
                         infoCustom("Import Success")
                         Close()
                     End If
