@@ -205,7 +205,8 @@
             Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
             Dim last_beg_date As String = Date.Parse(dt.Rows(0)("last_beg_date").ToString).ToString("yyyy-MM-dd")
             'get min date
-            Dim query_cek As String = "SELECT IFNULL(DATE_ADD(MAX(sp.sales_pos_end_period),INTERVAL 1 DAY),'1991-05-18') AS `min_date`
+            Dim query_cek As String = "SELECT IFNULL(DATE_ADD(MAX(sp.sales_pos_end_period),INTERVAL 1 DAY),'1991-05-18') AS `min_date`,
+            DATE_ADD('" + last_beg_date + "', INTERVAL 7 DAY) AS `max_date`
             FROM tb_sales_pos sp 
             INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
             INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
@@ -213,7 +214,11 @@
             WHERE c.id_comp=" + id_comp + " AND sp.sales_pos_date<='" + last_beg_date + "' AND sp.id_report_status=6 "
             Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
             Dim min_date As Date = data_cek.Rows(0)("min_date")
+            Dim max_date As Date =data_cek.Rows(0)("max_date")
             DEStart.Properties.MinValue = min_date
+            DEStart.Properties.MaxValue = max_date
+            DEEnd.Properties.MinValue = min_date
+            DEEnd.Properties.MaxValue = max_date
             DEStart.EditValue = min_date
             DEEnd.EditValue = min_date
         End If

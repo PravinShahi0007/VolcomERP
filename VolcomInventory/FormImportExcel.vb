@@ -4787,15 +4787,15 @@ GROUP BY ol.checkout_id
             'Customize column
             GVData.Columns("id_product").Visible = False
             GVData.Columns("id_design").Visible = False
+            GVData.Columns("qty").Visible = False
             GVData.Columns("code").VisibleIndex = 0
             GVData.Columns("class").VisibleIndex = 1
             GVData.Columns("description").VisibleIndex = 2
             GVData.Columns("silhouette").VisibleIndex = 3
             GVData.Columns("color").VisibleIndex = 4
             GVData.Columns("size").VisibleIndex = 5
-            GVData.Columns("qty").VisibleIndex = 6
-            GVData.Columns("qty_erp").VisibleIndex = 7
-            GVData.Columns("Status").VisibleIndex = 8
+            GVData.Columns("qty_erp").VisibleIndex = 6
+            GVData.Columns("Status").VisibleIndex = 7
             GVData.Columns("qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("qty").DisplayFormat.FormatString = "{0:n0}"
             GVData.Columns("qty_erp").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
