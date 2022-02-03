@@ -1,8 +1,10 @@
 ﻿Public Class FormVirtualSales
     Public is_load_new As New Boolean
+    Public id_design_selected As String = "0"
 
     Private Sub FormVirtualSales_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSalesList()
+        viewStore()
 
         'caption size sal
         GVSOHSal.Columns("sal_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
@@ -30,6 +32,16 @@
 
     Private Sub FormVirtualSales_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Sub viewStore()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 0 AS `id_comp`, 'All Store' AS `comp_number`, 'All Store' AS `comp_name_label`
+        UNION ALL
+        SELECT c.id_comp, c.comp_number , c.comp_name AS `comp_name_label` 
+        FROM tb_m_comp c WHERE c.id_comp_cat=6 "
+        viewSearchLookupQuery(SLEAccount, query, "id_comp", "comp_name_label", "id_comp")
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewSalesList()
@@ -69,5 +81,125 @@
 
     Private Sub GVSales_DoubleClick(sender As Object, e As EventArgs) Handles GVSales.DoubleClick
         viewDetail()
+    End Sub
+
+    Private Sub SLEAccount_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAccount.EditValueChanged
+        resetViewSalInv()
+    End Sub
+
+    Sub resetViewSalInv()
+        GCSOHSal.DataSource = Nothing
+        DEBeg.EditValue = Nothing
+        TxtSalPeriod.Text = ""
+    End Sub
+
+    Private Sub TxtProduct_EditValueChanged(sender As Object, e As EventArgs) Handles TxtProduct.EditValueChanged
+        ' resetViewSalInv()
+    End Sub
+
+    Private Sub CEFindAllProduct_EditValueChanged(sender As Object, e As EventArgs) Handles CEFindAllProduct.EditValueChanged
+        id_design_selected = "0"
+        TxtProduct.Text = ""
+        resetViewSalInv()
+        If CEFindAllProduct.EditValue = True Then
+            BtnBrowseProduct.Enabled = False
+        Else
+            BtnBrowseProduct.Enabled = True
+        End If
+    End Sub
+
+    Private Sub BtnBrowseProduct_Click(sender As Object, e As EventArgs) Handles BtnBrowseProduct.Click
+        Cursor = Cursors.WaitCursor
+        FormSearchDesign.id_pop_up = "7"
+        FormSearchDesign.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewAcc_Click(sender As Object, e As EventArgs) Handles BtnViewAcc.Click
+        If CEFindAllProduct.EditValue = False And id_design_selected = "0" Then
+            warningCustom("Please input product code first")
+            Exit Sub
+        End If
+
+        viewSalSOH()
+    End Sub
+
+    Sub viewSalSOH()
+        Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        Dim id_comp As String = SLEAccount.EditValue.ToString
+
+
+        Dim query As String = "CALL view_sal_inv_virtual(" + id_comp + "," + id_design_selected + ") "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSOHSal.DataSource = data
+        DEBeg.EditValue = data.Rows(0)("beg_stock_date")
+        TxtSalPeriod.Text = data.Rows(0)("sal_period_date").ToString
+
+        If Not id_comp = 0 Then
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Best fit all column")
+            GVSOHSal.BestFitColumns()
+        End If
+
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnExportToXLSAcc_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSAcc.Click
+        If GVSOHSal.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            'column option creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVSOHSal.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            For i As Integer = 0 To GVSOHSal.Columns.Count - 1
+                Try
+                    If Not GVSOHSal.Columns(i).OwnerBand.Caption = "" Then
+                        GVSOHSal.Columns(i).Caption = GVSOHSal.Columns(i).OwnerBand.Caption + " / " + GVSOHSal.Columns(i).Caption
+                    End If
+                Catch ex As Exception
+                End Try
+            Next
+
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "virtual_sales_inv.xlsx"
+            exportToXLS(path, "soh", GCSOHSal)
+
+            'restore column opt
+            GVSOHSal.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Sub exportToXLS(ByVal path_par As String, ByVal sheet_name_par As String, ByVal gc_par As DevExpress.XtraGrid.GridControl)
+        Cursor = Cursors.WaitCursor
+        Dim path As String = path_par
+
+        ' Customize export options 
+        CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.PrintHeader = True
+        Dim advOptions As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx()
+        advOptions.AllowSortingAndFiltering = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowGridLines = DevExpress.Utils.DefaultBoolean.False
+        advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False
+        advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False
+        advOptions.SheetName = sheet_name_par
+        advOptions.ExportType = DevExpress.Export.ExportType.DataAware
+
+        Try
+            gc_par.ExportToXlsx(path, advOptions)
+            Process.Start(path)
+            ' Open the created XLSX file with the default application. 
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
