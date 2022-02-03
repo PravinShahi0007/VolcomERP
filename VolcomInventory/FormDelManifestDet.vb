@@ -380,7 +380,8 @@ FROM tb_del_manifest_det AS mdet
         End Try
 
         'check awb
-        Dim qc As String = "SELECT awbill_no FROM tb_wh_awbill WHERE awbill_no='" & addSlashes(TEAwb.Text) & "' AND id_report_status!=5
+        Dim qc As String = ""
+        qc = "SELECT awbill_no FROM tb_wh_awbill WHERE awbill_no='" & addSlashes(TEAwb.Text) & "' AND id_report_status!=5
 AND id_awbill NOT IN (SELECT id_awbill FROM tb_del_manifest_det WHERE id_del_manifest='" & id_del_manifest & "')
 UNION ALL
 SELECT awbill_no FROM tb_del_manifest WHERE awbill_no='" & addSlashes(TEAwb.Text) & "' AND id_report_status!=5 AND id_del_manifest!='" & id_del_manifest & "'"
@@ -407,7 +408,7 @@ SELECT awbill_no FROM tb_del_manifest WHERE awbill_no='" & addSlashes(TEAwb.Text
             stopCustom("Please put remark why choose this 3PL.")
         ElseIf Not is_awb_ok Then
             stopCustom("Please put awb/resi number.")
-        ElseIf dtc.Rows.Count > 0 Then
+        ElseIf dtc.Rows.Count > 0 And is_need_finalize = "2" Then
             stopCustom("AWB number already used.")
         Else
             Dim continue_save As Boolean = True
