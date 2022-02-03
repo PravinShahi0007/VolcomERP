@@ -3,6 +3,29 @@
 
     Private Sub FormVirtualSales_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSalesList()
+
+        'caption size sal
+        GVSOHSal.Columns("sal_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        GVSOHSal.Columns("sal_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        GVSOHSal.Columns("sal_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        GVSOHSal.Columns("sal_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        GVSOHSal.Columns("sal_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        GVSOHSal.Columns("sal_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        GVSOHSal.Columns("sal_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        GVSOHSal.Columns("sal_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        GVSOHSal.Columns("sal_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        GVSOHSal.Columns("sal_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        'caption soh sal
+        GVSOHSal.Columns("soh_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        GVSOHSal.Columns("soh_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        GVSOHSal.Columns("soh_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        GVSOHSal.Columns("soh_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        GVSOHSal.Columns("soh_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        GVSOHSal.Columns("soh_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        GVSOHSal.Columns("soh_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        GVSOHSal.Columns("soh_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        GVSOHSal.Columns("soh_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        GVSOHSal.Columns("soh_qty0").Caption = "0" + System.Environment.NewLine + "SM"
     End Sub
 
     Private Sub FormVirtualSales_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
