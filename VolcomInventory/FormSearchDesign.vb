@@ -48,6 +48,10 @@
                 FormVirtualSales.id_design_selected = data.Rows("0")("id_design").ToString
                 FormVirtualSales.TxtProduct.Text = data.Rows("0")("code").ToString + " - " + data.Rows("0")("name").ToString
                 Close()
+            ElseIf id_pop_up = "8" Then
+                FormVirtualSales.id_design_sc = data.Rows("0")("id_design").ToString
+                FormVirtualSales.TxtProductSC.Text = data.Rows("0")("code").ToString + " - " + data.Rows("0")("name").ToString
+                Close()
             End If
         Else
             stopCustom("Product not found")

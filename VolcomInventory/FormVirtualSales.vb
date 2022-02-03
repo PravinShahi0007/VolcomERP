@@ -1,6 +1,7 @@
 ﻿Public Class FormVirtualSales
     Public is_load_new As New Boolean
     Public id_design_selected As String = "0"
+    Public id_design_sc As String = "0"
 
     Private Sub FormVirtualSales_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSalesList()
@@ -41,6 +42,7 @@
         SELECT c.id_comp, c.comp_number , c.comp_name AS `comp_name_label` 
         FROM tb_m_comp c WHERE c.id_comp_cat=6 "
         viewSearchLookupQuery(SLEAccount, query, "id_comp", "comp_name_label", "id_comp")
+        viewSearchLookupQuery(SLEAccountSC, query, "id_comp", "comp_name_label", "id_comp")
         Cursor = Cursors.Default
     End Sub
 
@@ -201,5 +203,147 @@
             stopCustom(ex.ToString)
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BandedGridViewFGStockCard_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles BandedGridViewFGStockCard.CustomColumnDisplayText
+        If (e.Column.FieldName.Contains("enter") Or e.Column.FieldName = "TTL" Or e.Column.FieldName.Contains("Bal")) Then
+            Dim qty As Decimal = Convert.ToDecimal(e.Value)
+            If qty = 0 Then
+                e.DisplayText = "-"
+            End If
+        End If
+    End Sub
+
+    Private Sub CEFindAllProductSC_EditValueChanged(sender As Object, e As EventArgs) Handles CEFindAllProductSC.EditValueChanged
+        id_design_sc = "0"
+        TxtProductSC.Text = ""
+        resetViewSC()
+        If CEFindAllProductSC.EditValue = True Then
+            BtnBrowseProductSC.Enabled = False
+        Else
+            BtnBrowseProductSC.Enabled = True
+        End If
+    End Sub
+
+    Sub resetViewSC()
+        GCFGStockCard.DataSource = Nothing
+    End Sub
+
+    Private Sub SLEAccountSC_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAccountSC.EditValueChanged
+        resetViewSC()
+    End Sub
+
+    Private Sub BtnBrowseProductSC_Click(sender As Object, e As EventArgs) Handles BtnBrowseProductSC.Click
+        Cursor = Cursors.WaitCursor
+        FormSearchDesign.id_pop_up = "8"
+        FormSearchDesign.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewStockCard()
+        Cursor = Cursors.WaitCursor
+        BandedGridViewFGStockCard.Columns.Clear()
+        BandedGridViewFGStockCard.Bands.Clear()
+        'BandedGridViewFGStockCard.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        BandedGridViewFGStockCard.Appearance.BandPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Dim id_wh_selected As String = "0"
+
+        Try
+            id_wh_selected = SLEAccountSC.EditValue.ToString
+        Catch ex As Exception
+        End Try
+
+        Dim band_ref As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BandedGridViewFGStockCard.Bands.AddBand("REFF")
+        Dim band_qty As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BandedGridViewFGStockCard.Bands.AddBand("QUANTITY")
+        Dim band_bal As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BandedGridViewFGStockCard.Bands.AddBand("BALANCE")
+        Dim band_stat As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BandedGridViewFGStockCard.Bands.AddBand("")
+        band_stat.AutoFillDown = True
+
+
+        'data
+        Dim data As DataTable
+        Dim qz As String = "SELECT SUBSTRING(p.product_full_code, 10, 1) AS `size_type`
+        FROM tb_m_design d 
+        INNER JOIN tb_m_product p ON p.id_design = d.id_design
+        WHERE d.id_design='" + id_design_sc + "'
+        GROUP BY SUBSTRING(p.product_full_code, 10, 1) "
+        Dim dz As DataTable = execute_query(qz, -1, True, "", "", "", "")
+        Dim data_stock As New DataTable
+        For z As Integer = 0 To dz.Rows.Count - 1
+            Dim query_sc As String = "CALL view_stock_card_virtual('" + id_design_sc + "', '" + id_wh_selected + "','" + dz.Rows(z)("size_type").ToString + "') "
+            Dim dsc As DataTable = execute_query(query_sc, -1, True, "", "", "", "")
+            If dsc.Rows.Count > 0 Then
+                If data_stock.Rows.Count = 0 Then
+                    data_stock = dsc
+                Else
+                    data_stock.Merge(dsc)
+                End If
+            End If
+        Next
+        data = data_stock
+
+
+
+        For i As Integer = 0 To data.Columns.Count - 1
+            If data.Columns(i).ColumnName.ToString = "id_comp" Or data.Columns(i).ColumnName.ToString = "id_report" Or data.Columns(i).ColumnName.ToString = "report_mark_type" Or data.Columns(i).ColumnName.ToString = "id_storage_category" Or data.Columns(i).ColumnName.ToString = "Time" Or data.Columns(i).ColumnName.ToString = "Transaction" Or data.Columns(i).ColumnName.ToString = "Transaction Type" Or data.Columns(i).ColumnName.ToString = "Size Type" Or data.Columns(i).ColumnName.ToString = "Account" Or data.Columns(i).ColumnName.ToString = "Trasaction Created Date" Then
+                band_ref.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString))
+                If data.Columns(i).ColumnName.ToString = "Time" Then
+                    BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                    BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss"
+                End If
+
+                If data.Columns(i).ColumnName.ToString = "Trasaction Created Date" Then
+                    BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                    BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "dd MMM yyyy"
+                End If
+            ElseIf data.Columns(i).ColumnName.ToString = "Status" Then
+                band_stat.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Status"))
+            ElseIf data.Columns(i).ColumnName.ToString.Contains(" Bal") Then
+                If data.Columns(i).ColumnName.ToString.Contains("enter") Then
+                    Dim col_foc_str As String() = Split(data.Columns(i).ColumnName.ToString, "enter")
+                    Dim cap_col As String = col_foc_str(0).ToString + System.Environment.NewLine + col_foc_str(1).ToString
+                    Dim st_caption As String = cap_col.Length - 4
+                    band_bal.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, cap_col.Substring(0, st_caption)))
+                Else
+                    Dim st_caption As String = data.Columns(i).ColumnName.ToString.Length - 4
+                    band_bal.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString.Substring(0, st_caption)))
+                End If
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n0}"
+            Else
+                If data.Columns(i).ColumnName.ToString.Contains("enter") Then
+                    Dim col_foc_str As String() = Split(data.Columns(i).ColumnName.ToString, "enter")
+                    Dim cap_col As String = col_foc_str(0).ToString + System.Environment.NewLine + col_foc_str(1).ToString
+                    band_qty.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, cap_col))
+                Else
+                    band_qty.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString))
+                End If
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n0}"
+            End If
+            progres_bar_update(i, data.Columns.Count - 1)
+        Next
+
+
+        GCFGStockCard.DataSource = data
+
+        If data.Rows.Count > 0 Then
+            'hide column
+            BandedGridViewFGStockCard.Columns("id_comp").Visible = False
+            BandedGridViewFGStockCard.Columns("id_report").Visible = False
+            BandedGridViewFGStockCard.Columns("report_mark_type").Visible = False
+            BandedGridViewFGStockCard.Columns("id_storage_category").Visible = False
+            'enable group
+            BandedGridViewFGStockCard.Columns("Size Type").GroupIndex = 0
+            BandedGridViewFGStockCard.ExpandAllGroups()
+        End If
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewAccSC_Click(sender As Object, e As EventArgs) Handles BtnViewAccSC.Click
+        viewStockCard()
     End Sub
 End Class
