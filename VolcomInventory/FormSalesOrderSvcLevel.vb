@@ -1650,6 +1650,7 @@ HAVING sts='Paid'"
                         FormMain.SplashScreenManager1.SetWaitFormDescription("Processing Order " & i + 1 & " of " & (GVList.RowCount - 1 - GetGroupRowCount(GVList)).ToString)
                         Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
                         'infoCustom("change status " & GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString)
+                        stt.is_finalize = "1"
                         stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
                         Dim mail As ClassSendEmail = New ClassSendEmail()
                         mail.id_report = GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString
