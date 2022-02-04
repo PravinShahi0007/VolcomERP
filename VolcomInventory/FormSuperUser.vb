@@ -112,8 +112,8 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        'FormStoreDisplay.ShowDialog()
-        FormVirtualSales.ShowDialog()
+        FormStoreDisplay.ShowDialog()
+        'FormVirtualSales.ShowDialog()
         'split kacamata
         'MsgBox(TextEdit1.Text.Split("/")(0).ToString().TrimEnd)
         'MsgBox(TextEdit1.Text.Split("/")(1).ToString().TrimStart)
