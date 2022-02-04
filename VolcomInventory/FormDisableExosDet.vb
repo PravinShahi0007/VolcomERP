@@ -42,6 +42,7 @@
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             id_report_status = data.Rows(0)("id_report_status").ToString
             DEForm.EditValue = data.Rows(0)("created_date")
+            DEEffectDate.EditValue = data.Rows(0)("effective_date")
             TxtSalesOrderNumber.Text = data.Rows(0)("number").ToString
             MENote.Text = data.Rows(0)("note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
