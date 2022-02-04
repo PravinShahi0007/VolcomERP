@@ -124,6 +124,7 @@ Partial Class FormVirtualSales
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEAccountSC = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -135,7 +136,6 @@ Partial Class FormVirtualSales
         Me.BtnViewAccSC = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLSAccSC = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowseProductSC = New DevExpress.XtraEditors.SimpleButton()
-        Me.CEFindAllProductSC = New DevExpress.XtraEditors.CheckEdit()
         Me.TxtProductSC = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -184,7 +184,6 @@ Partial Class FormVirtualSales
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl8.SuspendLayout()
-        CType(Me.CEFindAllProductSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtProductSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -1201,19 +1200,27 @@ Partial Class FormVirtualSales
         '
         'PanelControl7
         '
+        Me.PanelControl7.Controls.Add(Me.LabelControl8)
         Me.PanelControl7.Controls.Add(Me.LookUpEdit1)
         Me.PanelControl7.Controls.Add(Me.LabelControl3)
         Me.PanelControl7.Controls.Add(Me.SLEAccountSC)
         Me.PanelControl7.Controls.Add(Me.PanelControl8)
         Me.PanelControl7.Controls.Add(Me.BtnBrowseProductSC)
-        Me.PanelControl7.Controls.Add(Me.CEFindAllProductSC)
         Me.PanelControl7.Controls.Add(Me.TxtProductSC)
         Me.PanelControl7.Controls.Add(Me.LabelControl4)
         Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl7.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl7.Name = "PanelControl7"
-        Me.PanelControl7.Size = New System.Drawing.Size(444, 112)
+        Me.PanelControl7.Size = New System.Drawing.Size(410, 112)
         Me.PanelControl7.TabIndex = 8928
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(9, 41)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl8.TabIndex = 8931
+        Me.LabelControl8.Text = "Product"
         '
         'LookUpEdit1
         '
@@ -1233,7 +1240,7 @@ Partial Class FormVirtualSales
         '
         'SLEAccountSC
         '
-        Me.SLEAccountSC.Location = New System.Drawing.Point(96, 12)
+        Me.SLEAccountSC.Location = New System.Drawing.Point(63, 12)
         Me.SLEAccountSC.Name = "SLEAccountSC"
         Me.SLEAccountSC.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEAccountSC.Properties.Appearance.Options.UseFont = True
@@ -1280,13 +1287,13 @@ Partial Class FormVirtualSales
         Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl8.Location = New System.Drawing.Point(2, 73)
         Me.PanelControl8.Name = "PanelControl8"
-        Me.PanelControl8.Size = New System.Drawing.Size(440, 37)
+        Me.PanelControl8.Size = New System.Drawing.Size(406, 37)
         Me.PanelControl8.TabIndex = 8925
         '
         'BtnViewAccSC
         '
         Me.BtnViewAccSC.Image = CType(resources.GetObject("BtnViewAccSC.Image"), System.Drawing.Image)
-        Me.BtnViewAccSC.Location = New System.Drawing.Point(354, 9)
+        Me.BtnViewAccSC.Location = New System.Drawing.Point(320, 9)
         Me.BtnViewAccSC.LookAndFeel.SkinName = "Blue"
         Me.BtnViewAccSC.Name = "BtnViewAccSC"
         Me.BtnViewAccSC.Size = New System.Drawing.Size(69, 20)
@@ -1296,7 +1303,7 @@ Partial Class FormVirtualSales
         'BtnExportToXLSAccSC
         '
         Me.BtnExportToXLSAccSC.Image = CType(resources.GetObject("BtnExportToXLSAccSC.Image"), System.Drawing.Image)
-        Me.BtnExportToXLSAccSC.Location = New System.Drawing.Point(257, 9)
+        Me.BtnExportToXLSAccSC.Location = New System.Drawing.Point(223, 9)
         Me.BtnExportToXLSAccSC.LookAndFeel.SkinName = "Blue"
         Me.BtnExportToXLSAccSC.Name = "BtnExportToXLSAccSC"
         Me.BtnExportToXLSAccSC.Size = New System.Drawing.Size(94, 20)
@@ -1305,32 +1312,19 @@ Partial Class FormVirtualSales
         '
         'BtnBrowseProductSC
         '
-        Me.BtnBrowseProductSC.Enabled = False
         Me.BtnBrowseProductSC.Image = CType(resources.GetObject("BtnBrowseProductSC.Image"), System.Drawing.Image)
-        Me.BtnBrowseProductSC.Location = New System.Drawing.Point(399, 38)
+        Me.BtnBrowseProductSC.Location = New System.Drawing.Point(366, 38)
         Me.BtnBrowseProductSC.LookAndFeel.SkinName = "Blue"
         Me.BtnBrowseProductSC.Name = "BtnBrowseProductSC"
         Me.BtnBrowseProductSC.Size = New System.Drawing.Size(26, 20)
         Me.BtnBrowseProductSC.TabIndex = 8904
         Me.BtnBrowseProductSC.Text = "..."
         '
-        'CEFindAllProductSC
-        '
-        Me.CEFindAllProductSC.EditValue = True
-        Me.CEFindAllProductSC.Location = New System.Drawing.Point(8, 38)
-        Me.CEFindAllProductSC.Name = "CEFindAllProductSC"
-        Me.CEFindAllProductSC.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CEFindAllProductSC.Properties.Appearance.Options.UseFont = True
-        Me.CEFindAllProductSC.Properties.Caption = "All Product "
-        Me.CEFindAllProductSC.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.CEFindAllProductSC.Size = New System.Drawing.Size(72, 19)
-        Me.CEFindAllProductSC.TabIndex = 8907
-        '
         'TxtProductSC
         '
         Me.TxtProductSC.EditValue = ""
         Me.TxtProductSC.Enabled = False
-        Me.TxtProductSC.Location = New System.Drawing.Point(96, 38)
+        Me.TxtProductSC.Location = New System.Drawing.Point(63, 38)
         Me.TxtProductSC.Name = "TxtProductSC"
         Me.TxtProductSC.Size = New System.Drawing.Size(297, 20)
         Me.TxtProductSC.TabIndex = 8906
@@ -1401,7 +1395,6 @@ Partial Class FormVirtualSales
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl8.ResumeLayout(False)
-        CType(Me.CEFindAllProductSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtProductSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -1512,7 +1505,6 @@ Partial Class FormVirtualSales
     Friend WithEvents BtnViewAccSC As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnExportToXLSAccSC As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnBrowseProductSC As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents CEFindAllProductSC As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents TxtProductSC As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl9 As DevExpress.XtraEditors.PanelControl
@@ -1525,4 +1517,5 @@ Partial Class FormVirtualSales
     Friend WithEvents GCFGStockCard As DevExpress.XtraGrid.GridControl
     Friend WithEvents BandedGridViewFGStockCard As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
 End Class

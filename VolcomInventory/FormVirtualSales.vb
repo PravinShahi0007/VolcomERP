@@ -6,6 +6,8 @@
     Private Sub FormVirtualSales_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSalesList()
         viewStore()
+        viewStoreSC()
+        CEFindAllProductSC.EditValue = False
 
         'caption size sal
         GVSOHSal.Columns("sal_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
@@ -42,9 +44,17 @@
         SELECT c.id_comp, c.comp_number , c.comp_name AS `comp_name_label` 
         FROM tb_m_comp c WHERE c.id_comp_cat=6 "
         viewSearchLookupQuery(SLEAccount, query, "id_comp", "comp_name_label", "id_comp")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewStoreSC()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT c.id_comp, c.comp_number , c.comp_name AS `comp_name_label` 
+        FROM tb_m_comp c WHERE c.id_comp_cat=6 "
         viewSearchLookupQuery(SLEAccountSC, query, "id_comp", "comp_name_label", "id_comp")
         Cursor = Cursors.Default
     End Sub
+
 
     Sub viewSalesList()
         Cursor = Cursors.WaitCursor
@@ -114,6 +124,7 @@
         Cursor = Cursors.WaitCursor
         FormSearchDesign.id_pop_up = "7"
         FormSearchDesign.ShowDialog()
+        resetViewSalInv()
         Cursor = Cursors.Default
     End Sub
 
@@ -214,7 +225,7 @@
         End If
     End Sub
 
-    Private Sub CEFindAllProductSC_EditValueChanged(sender As Object, e As EventArgs) Handles CEFindAllProductSC.EditValueChanged
+    Private Sub CEFindAllProductSC_EditValueChanged(sender As Object, e As EventArgs)
         id_design_sc = "0"
         TxtProductSC.Text = ""
         resetViewSC()
@@ -237,11 +248,16 @@
         Cursor = Cursors.WaitCursor
         FormSearchDesign.id_pop_up = "8"
         FormSearchDesign.ShowDialog()
+        resetViewSC()
         Cursor = Cursors.Default
     End Sub
 
     Sub viewStockCard()
         Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+
         BandedGridViewFGStockCard.Columns.Clear()
         BandedGridViewFGStockCard.Bands.Clear()
         'BandedGridViewFGStockCard.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
@@ -289,7 +305,7 @@
                 band_ref.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString))
                 If data.Columns(i).ColumnName.ToString = "Time" Then
                     BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-                    BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss"
+                    BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "dd MMM yyyy HH:mm:ss"
                 End If
 
                 If data.Columns(i).ColumnName.ToString = "Trasaction Created Date" Then
@@ -340,6 +356,7 @@
             BandedGridViewFGStockCard.ExpandAllGroups()
         End If
 
+        FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
     End Sub
 
