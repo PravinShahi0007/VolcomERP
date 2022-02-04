@@ -1,6 +1,7 @@
 ﻿Public Class ClassSalesDelOrder
     Public id_volcomstore_normal As String = "-1"
     Public id_volcomstore_sale As String = "-1"
+    Public is_finalize As String = "-1"
 
     Public Function queryMain(ByVal condition As String, ByVal order_type As String) As String
         If order_type = "1" Then
@@ -449,7 +450,11 @@ WHERE pl.id_pl_sales_order_del='" + id_report_par + "'"
         If id_status_reportx_par = "5" Or id_status_reportx_par = "6" Then
             'ini harus di uncomment nanti
             removeAppList("43", id_report_par, id_status_reportx_par)
-            insertFinalComment("43", id_report_par, id_status_reportx_par, "Complete by scan security")
+            If is_finalize = "1" Then
+                insertFinalComment("43", id_report_par, id_status_reportx_par, "Complete by Finalize")
+            Else
+                insertFinalComment("43", id_report_par, id_status_reportx_par, "Complete by scan security")
+            End If
             sendEmailConfirmationFinal(dts.Rows(0)("id_commerce_type").ToString, id_report_par, id_status_reportx_par)
             sendEmailConfirmationforConceptStore(dts.Rows(0)("is_use_unique_code").ToString, id_report_par, "43", id_status_reportx_par)
             updateStatusOnlineStore(dts.Rows(0)("id_commerce_type").ToString, dts.Rows(0)("id_comp").ToString, id_report_par, dts.Rows(0)("id_sales_order_ol_shop").ToString, id_status_reportx_par)
