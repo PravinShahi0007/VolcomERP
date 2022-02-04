@@ -392,13 +392,16 @@ Partial Class FormSalesOrderSvcLevel
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn76 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn77 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn83 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn78 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn93 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn79 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn81 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn82 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn85 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BCompleteWholesaleSDO = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
         Me.BViewManifest = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton15 = New DevExpress.XtraEditors.SimpleButton()
@@ -415,10 +418,14 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn87 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn88 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn89 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn91 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn92 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.BCompleteWholesale = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl7 = New DevExpress.XtraEditors.GroupControl()
+        Me.BHistoryAWBM = New DevExpress.XtraEditors.SimpleButton()
         Me.BShowPendingPaymentAWB = New DevExpress.XtraEditors.SimpleButton()
         Me.BViewInputAWBM = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
@@ -426,10 +433,6 @@ Partial Class FormSalesOrderSvcLevel
         Me.DEStartInputAWBM = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl29 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
-        Me.BHistoryAWBM = New DevExpress.XtraEditors.SimpleButton()
-        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.RepositoryItemMemoEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.LETypeRestockTOO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -562,6 +565,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTPCompleteManifest.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICE, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl6.SuspendLayout()
         CType(Me.DEManifestUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -571,15 +575,15 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTPAWBManifest.SuspendLayout()
         CType(Me.GCInputAWBManifest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVInputAWBManifest, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl7.SuspendLayout()
         CType(Me.DEUntilInputAWBM.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilInputAWBM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartInputAWBM.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartInputAWBM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCFilter
@@ -4025,10 +4029,11 @@ Partial Class FormSalesOrderSvcLevel
         'XTPCompleteManifest
         '
         Me.XTPCompleteManifest.Controls.Add(Me.GCList)
+        Me.XTPCompleteManifest.Controls.Add(Me.BCompleteWholesaleSDO)
         Me.XTPCompleteManifest.Controls.Add(Me.GroupControl6)
         Me.XTPCompleteManifest.Name = "XTPCompleteManifest"
         Me.XTPCompleteManifest.Size = New System.Drawing.Size(934, 311)
-        Me.XTPCompleteManifest.Text = "Complete Manifest"
+        Me.XTPCompleteManifest.Text = "Complete Wholesale Delivery"
         '
         'GCList
         '
@@ -4036,86 +4041,141 @@ Partial Class FormSalesOrderSvcLevel
         Me.GCList.Location = New System.Drawing.Point(0, 39)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
-        Me.GCList.Size = New System.Drawing.Size(934, 272)
+        Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICE})
+        Me.GCList.Size = New System.Drawing.Size(934, 240)
         Me.GCList.TabIndex = 10
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn76, Me.GridColumn77, Me.GridColumn83, Me.GridColumn78, Me.GridColumn79, Me.GridColumn80, Me.GridColumn81, Me.GridColumn82, Me.GridColumn85})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn76, Me.GridColumn77, Me.GridColumn83, Me.GridColumn78, Me.GridColumn93, Me.GridColumn79, Me.GridColumn80, Me.GridColumn81, Me.GridColumn82, Me.GridColumn85})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
-        Me.GVList.OptionsBehavior.Editable = False
         Me.GVList.OptionsView.ShowGroupPanel = False
         '
         'GridColumn76
         '
-        Me.GridColumn76.FieldName = "id_del_manifest"
+        Me.GridColumn76.FieldName = "id_pl_sales_order_del"
         Me.GridColumn76.Name = "GridColumn76"
+        Me.GridColumn76.OptionsColumn.AllowEdit = False
+        Me.GridColumn76.OptionsColumn.AllowFocus = False
         '
         'GridColumn77
         '
-        Me.GridColumn77.Caption = "3PL"
-        Me.GridColumn77.FieldName = "comp_name"
+        Me.GridColumn77.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn77.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn77.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn77.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn77.Caption = "*"
+        Me.GridColumn77.ColumnEdit = Me.RICE
+        Me.GridColumn77.FieldName = "is_check"
         Me.GridColumn77.Name = "GridColumn77"
         Me.GridColumn77.Visible = True
-        Me.GridColumn77.VisibleIndex = 1
+        Me.GridColumn77.VisibleIndex = 0
+        Me.GridColumn77.Width = 50
+        '
+        'RICE
+        '
+        Me.RICE.AutoHeight = False
+        Me.RICE.Name = "RICE"
+        Me.RICE.ValueChecked = "yes"
+        Me.RICE.ValueUnchecked = "no"
         '
         'GridColumn83
         '
         Me.GridColumn83.Caption = "Store"
         Me.GridColumn83.FieldName = "store"
         Me.GridColumn83.Name = "GridColumn83"
+        Me.GridColumn83.OptionsColumn.AllowEdit = False
+        Me.GridColumn83.OptionsColumn.AllowFocus = False
         Me.GridColumn83.Visible = True
         Me.GridColumn83.VisibleIndex = 2
+        Me.GridColumn83.Width = 181
         '
         'GridColumn78
         '
-        Me.GridColumn78.Caption = "Draft Manifest Number"
-        Me.GridColumn78.FieldName = "number"
+        Me.GridColumn78.Caption = "DO Number"
+        Me.GridColumn78.FieldName = "do_number"
         Me.GridColumn78.Name = "GridColumn78"
+        Me.GridColumn78.OptionsColumn.AllowEdit = False
+        Me.GridColumn78.OptionsColumn.AllowFocus = False
         Me.GridColumn78.Visible = True
-        Me.GridColumn78.VisibleIndex = 0
+        Me.GridColumn78.VisibleIndex = 1
+        Me.GridColumn78.Width = 181
+        '
+        'GridColumn93
+        '
+        Me.GridColumn93.Caption = "Outbound Label"
+        Me.GridColumn93.FieldName = "ol_number"
+        Me.GridColumn93.Name = "GridColumn93"
+        Me.GridColumn93.OptionsColumn.AllowEdit = False
+        Me.GridColumn93.OptionsColumn.AllowFocus = False
+        Me.GridColumn93.Visible = True
+        Me.GridColumn93.VisibleIndex = 0
+        Me.GridColumn93.Width = 126
         '
         'GridColumn79
         '
         Me.GridColumn79.Caption = "Created Date"
+        Me.GridColumn79.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn79.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn79.FieldName = "created_date"
         Me.GridColumn79.Name = "GridColumn79"
+        Me.GridColumn79.OptionsColumn.AllowEdit = False
+        Me.GridColumn79.OptionsColumn.AllowFocus = False
         Me.GridColumn79.Visible = True
-        Me.GridColumn79.VisibleIndex = 3
+        Me.GridColumn79.VisibleIndex = 4
+        Me.GridColumn79.Width = 181
         '
         'GridColumn80
         '
         Me.GridColumn80.Caption = "Created By"
         Me.GridColumn80.FieldName = "created_by"
         Me.GridColumn80.Name = "GridColumn80"
-        Me.GridColumn80.Visible = True
-        Me.GridColumn80.VisibleIndex = 4
+        Me.GridColumn80.OptionsColumn.AllowEdit = False
+        Me.GridColumn80.OptionsColumn.AllowFocus = False
+        Me.GridColumn80.Width = 224
         '
         'GridColumn81
         '
         Me.GridColumn81.Caption = "Updated Date"
         Me.GridColumn81.FieldName = "updated_date"
         Me.GridColumn81.Name = "GridColumn81"
-        Me.GridColumn81.Visible = True
-        Me.GridColumn81.VisibleIndex = 5
+        Me.GridColumn81.OptionsColumn.AllowEdit = False
+        Me.GridColumn81.OptionsColumn.AllowFocus = False
+        Me.GridColumn81.Width = 224
         '
         'GridColumn82
         '
         Me.GridColumn82.Caption = "Updated By"
         Me.GridColumn82.FieldName = "updated_by"
         Me.GridColumn82.Name = "GridColumn82"
-        Me.GridColumn82.Visible = True
-        Me.GridColumn82.VisibleIndex = 6
+        Me.GridColumn82.OptionsColumn.AllowEdit = False
+        Me.GridColumn82.OptionsColumn.AllowFocus = False
+        Me.GridColumn82.Width = 224
         '
         'GridColumn85
         '
         Me.GridColumn85.Caption = "Report Status"
         Me.GridColumn85.FieldName = "report_status"
         Me.GridColumn85.Name = "GridColumn85"
-        Me.GridColumn85.Visible = True
-        Me.GridColumn85.VisibleIndex = 7
+        Me.GridColumn85.OptionsColumn.AllowEdit = False
+        Me.GridColumn85.OptionsColumn.AllowFocus = False
+        Me.GridColumn85.Width = 197
+        '
+        'BCompleteWholesaleSDO
+        '
+        Me.BCompleteWholesaleSDO.Appearance.BackColor = System.Drawing.Color.Blue
+        Me.BCompleteWholesaleSDO.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCompleteWholesaleSDO.Appearance.Options.UseBackColor = True
+        Me.BCompleteWholesaleSDO.Appearance.Options.UseForeColor = True
+        Me.BCompleteWholesaleSDO.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BCompleteWholesaleSDO.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCompleteWholesaleSDO.Location = New System.Drawing.Point(0, 279)
+        Me.BCompleteWholesaleSDO.Name = "BCompleteWholesaleSDO"
+        Me.BCompleteWholesaleSDO.Size = New System.Drawing.Size(934, 32)
+        Me.BCompleteWholesaleSDO.TabIndex = 15
+        Me.BCompleteWholesaleSDO.Text = "Complete SDO"
         '
         'GroupControl6
         '
@@ -4276,6 +4336,10 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn89.VisibleIndex = 4
         Me.GridColumn89.Width = 200
         '
+        'RepositoryItemMemoEdit3
+        '
+        Me.RepositoryItemMemoEdit3.Name = "RepositoryItemMemoEdit3"
+        '
         'GridColumn91
         '
         Me.GridColumn91.AppearanceCell.Options.UseTextOptions = True
@@ -4290,6 +4354,10 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn91.VisibleIndex = 3
         Me.GridColumn91.Width = 200
         '
+        'RepositoryItemMemoEdit2
+        '
+        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
+        '
         'GridColumn92
         '
         Me.GridColumn92.AppearanceCell.Options.UseTextOptions = True
@@ -4303,6 +4371,10 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn92.Visible = True
         Me.GridColumn92.VisibleIndex = 5
         Me.GridColumn92.Width = 200
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
         'BCompleteWholesale
         '
@@ -4335,6 +4407,15 @@ Partial Class FormSalesOrderSvcLevel
         Me.GroupControl7.Name = "GroupControl7"
         Me.GroupControl7.Size = New System.Drawing.Size(934, 39)
         Me.GroupControl7.TabIndex = 10
+        '
+        'BHistoryAWBM
+        '
+        Me.BHistoryAWBM.Location = New System.Drawing.Point(490, 9)
+        Me.BHistoryAWBM.LookAndFeel.SkinName = "Blue"
+        Me.BHistoryAWBM.Name = "BHistoryAWBM"
+        Me.BHistoryAWBM.Size = New System.Drawing.Size(68, 20)
+        Me.BHistoryAWBM.TabIndex = 8900
+        Me.BHistoryAWBM.Text = "history"
         '
         'BShowPendingPaymentAWB
         '
@@ -4403,27 +4484,6 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl32.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl32.TabIndex = 8892
         Me.LabelControl32.Text = "From"
-        '
-        'BHistoryAWBM
-        '
-        Me.BHistoryAWBM.Location = New System.Drawing.Point(490, 9)
-        Me.BHistoryAWBM.LookAndFeel.SkinName = "Blue"
-        Me.BHistoryAWBM.Name = "BHistoryAWBM"
-        Me.BHistoryAWBM.Size = New System.Drawing.Size(68, 20)
-        Me.BHistoryAWBM.TabIndex = 8900
-        Me.BHistoryAWBM.Text = "history"
-        '
-        'RepositoryItemMemoEdit1
-        '
-        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
-        '
-        'RepositoryItemMemoEdit2
-        '
-        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
-        '
-        'RepositoryItemMemoEdit3
-        '
-        Me.RepositoryItemMemoEdit3.Name = "RepositoryItemMemoEdit3"
         '
         'FormSalesOrderSvcLevel
         '
@@ -4579,6 +4639,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTPCompleteManifest.ResumeLayout(False)
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICE, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl6.ResumeLayout(False)
         Me.GroupControl6.PerformLayout()
@@ -4589,6 +4650,9 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTPAWBManifest.ResumeLayout(False)
         CType(Me.GCInputAWBManifest, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVInputAWBManifest, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl7.ResumeLayout(False)
         Me.GroupControl7.PerformLayout()
@@ -4596,9 +4660,6 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEUntilInputAWBM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartInputAWBM.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartInputAWBM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -5013,4 +5074,7 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents RepositoryItemMemoEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents RepositoryItemMemoEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents RICE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BCompleteWholesaleSDO As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn93 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

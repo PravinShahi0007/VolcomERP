@@ -142,6 +142,8 @@ Partial Class FormDelManifestDet
         Me.BGenOffline = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BCompleteWholesale = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCPayment = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -775,7 +777,7 @@ Partial Class FormDelManifestDet
         '
         Me.GVList.Appearance.GroupPanel.Font = New System.Drawing.Font("Tahoma", 1.0!)
         Me.GVList.Appearance.GroupPanel.Options.UseFont = True
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdWhAwbDet, Me.GridColumnIdCompGroup, Me.GridColumnCreatedDate, Me.GridColumnCollie, Me.GridColumnCombinedNumber, Me.GridColumnDeliverySlip, Me.GridColumnSDO, Me.GridColumnAWBNumber, Me.GridColumnStoreAccount, Me.GridColumnStoreName, Me.GridColumnQty, Me.GridColumnDestination, Me.GridColumnWeight, Me.GridColumnP, Me.GridColumnL, Me.GridColumnT, Me.GridColumnDim, Me.GridColumnFinal, Me.GridColumnRemark})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdWhAwbDet, Me.GridColumnIdCompGroup, Me.GridColumnCreatedDate, Me.GridColumnCollie, Me.GridColumnCombinedNumber, Me.GridColumnDeliverySlip, Me.GridColumnSDO, Me.GridColumnAWBNumber, Me.GridColumnStoreAccount, Me.GridColumnStoreName, Me.GridColumnQty, Me.GridColumnDestination, Me.GridColumnWeight, Me.GridColumnP, Me.GridColumnL, Me.GridColumnT, Me.GridColumnDim, Me.GridColumnFinal, Me.GridColumnRemark, Me.GCPayment, Me.GridColumn28})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupFormat = ""
         Me.GVList.LevelIndent = 0
@@ -1357,6 +1359,24 @@ Partial Class FormDelManifestDet
         Me.BCompleteWholesale.Text = "Complete"
         Me.BCompleteWholesale.Visible = False
         '
+        'GCPayment
+        '
+        Me.GCPayment.AppearanceCell.Options.UseTextOptions = True
+        Me.GCPayment.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCPayment.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCPayment.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCPayment.Caption = "Payment"
+        Me.GCPayment.FieldName = "pay_sts"
+        Me.GCPayment.Name = "GCPayment"
+        Me.GCPayment.UnboundExpression = "Iif([paid] = 1, 'Paid', 'Pending')"
+        Me.GCPayment.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Is paid"
+        Me.GridColumn28.FieldName = "paid"
+        Me.GridColumn28.Name = "GridColumn28"
+        '
         'FormDelManifestDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1547,4 +1567,6 @@ Partial Class FormDelManifestDet
     Friend WithEvents Label14 As Label
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BCompleteWholesale As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCPayment As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

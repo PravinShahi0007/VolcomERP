@@ -7300,6 +7300,30 @@ WHERE pnd.id_currency!=1 AND pnd.`id_pn`='" & id_report & "'"
                             End Try
                         End If
                     End If
+                    '
+                    Try
+                        Dim qmail As String = "SELECT del.`pl_sales_order_del_number`,c.`comp_number`,c.`comp_name`,m.`id_del_manifest`
+FROM tb_rec_payment_det rd
+INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = rd.id_report
+INNER JOIN tb_pl_sales_order_del del ON del.`id_pl_sales_order_del`=sp.`id_pl_sales_order_del`
+LEFT JOIN tb_wh_awbill_det awbd ON awbd.`id_pl_sales_order_del`=del.`id_pl_sales_order_del`
+LEFT JOIN `tb_del_manifest_det` md ON md.`id_wh_awb_det`=awbd.`id_wh_awb_det`
+LEFT JOIN `tb_del_manifest` m ON m.`id_del_manifest`=md.`id_del_manifest` AND m.`id_del_manifest`!=5
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=sp.`id_store_contact_from`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN tb_m_comp_group cg ON cg.`id_comp_group`=c.`id_comp_group` AND cg.`is_wholesale`=1
+WHERE rd.id_rec_payment='" & id_report & "' AND ISNULL(m.id_del_manifest)
+GROUP BY del.`id_pl_sales_order_del`"
+                        Dim dtmail As DataTable = execute_query(qmail, -1, True, "", "", "", "")
+                        If dtmail.Rows.Count > 0 Then
+                            Dim em As New ClassSendEmail()
+                            em.report_mark_type = "392"
+                            em.id_report = id_report
+                            em.send_email()
+                        End If
+                    Catch ex As Exception
+                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'ERROR SEND EMAIL BBM WHOLESALE (id_rec_payment = " & id_report & ")')", -1, True, "", "", "", "")
+                    End Try
                 ElseIf FormBankDepositDet.type_rec = "3" Then
                     'penjualan toko volcom
                     Dim qjd_upd = "/*closing invoice*/

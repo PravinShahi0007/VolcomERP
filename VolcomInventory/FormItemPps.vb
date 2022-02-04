@@ -1,6 +1,7 @@
 ﻿Public Class FormItemPps
     Public id_pps As String = "-1"
     Public is_view As String = "-1"
+    Public is_vm_item As String = "-1"
 
     Private Sub FormItemPps_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_form()
