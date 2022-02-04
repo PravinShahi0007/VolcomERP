@@ -123,7 +123,7 @@ WHERE it.id_item_pps='" & id_pps & "'"
 
                     If is_vm_item = "1" Then
                         execute_non_query("CALL gen_number('" & id_pps & "','393')", True, "", "", "", "")
-                        submit_who_prepared("383", id_pps, id_user)
+                        submit_who_prepared("393", id_pps, id_user)
                         infoCustom("Itme proposed, waiting approval.")
                         FormVMStock.load_pps()
                         FormVMStock.GVItemPps.FocusedRowHandle = find_row(FormVMStock.GVItemPps, "id_item_pps", id_pps)
@@ -134,7 +134,6 @@ WHERE it.id_item_pps='" & id_pps & "'"
                         FormPurcItem.load_pps()
                         FormPurcItem.GVItemPps.FocusedRowHandle = find_row(FormPurcItem.GVItemPps, "id_item_pps", id_pps)
                     End If
-
 
                     Close()
                 Else 'edit
