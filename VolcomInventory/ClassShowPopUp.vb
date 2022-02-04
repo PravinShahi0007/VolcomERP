@@ -551,6 +551,9 @@
         ElseIf report_mark_type = "389" Then
             'vm asset manage
             FormVMMove.Close()
+        ElseIf report_mark_type = "390" Then
+            'soh virtual
+            FormVirtualSalesDet.Close()
         End If
     End Sub
     Sub show()
@@ -1760,6 +1763,12 @@ GROUP BY rec.`id_prod_order`"
             FormVMMove.is_view = "1"
             FormVMMove.id = id_report
             FormVMMove.ShowDialog()
+        ElseIf report_mark_type = "390" Then
+            'soh virtual
+            FormVirtualSalesDet.action = "upd"
+            FormVirtualSalesDet.is_view = "1"
+            FormVirtualSalesDet.id = id_report
+            FormVirtualSalesDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -3135,6 +3144,12 @@ GROUP BY rec.`id_prod_order`"
             'vm move
             table_name = "tb_vm_item_move"
             field_id = "id_vm_item_move"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "390" Then
+            'soh virtual
+            table_name = "tb_virtual_sales"
+            field_id = "id_virtual_sales"
             field_number = "number"
             field_date = "created_date"
         Else

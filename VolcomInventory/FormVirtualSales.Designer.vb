@@ -19,6 +19,7 @@ Partial Class FormVirtualSales
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormVirtualSales))
         Me.XTCData = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSalesReport = New DevExpress.XtraTab.XtraTabPage()
@@ -113,14 +114,16 @@ Partial Class FormVirtualSales
         Me.LabelControl35 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPStockCard = New DevExpress.XtraTab.XtraTabPage()
         Me.GCFGStockCard = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BandedGridViewFGStockCard = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
-        Me.DateEdit3 = New DevExpress.XtraEditors.DateEdit()
+        Me.DEUntilSC = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
+        Me.DEStartSC = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
+        Me.DEBegSC = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
@@ -166,15 +169,16 @@ Partial Class FormVirtualSales
         CType(Me.TxtProduct.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPStockCard.SuspendLayout()
         CType(Me.GCFGStockCard, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.BandedGridViewFGStockCard, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl9.SuspendLayout()
-        CType(Me.DateEdit3.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStartSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStartSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEBegSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEBegSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1067,6 +1071,7 @@ Partial Class FormVirtualSales
         '
         'GCFGStockCard
         '
+        Me.GCFGStockCard.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCFGStockCard.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCFGStockCard.Location = New System.Drawing.Point(0, 116)
         Me.GCFGStockCard.MainView = Me.BandedGridViewFGStockCard
@@ -1074,6 +1079,18 @@ Partial Class FormVirtualSales
         Me.GCFGStockCard.Size = New System.Drawing.Size(712, 314)
         Me.GCFGStockCard.TabIndex = 4
         Me.GCFGStockCard.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BandedGridViewFGStockCard})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDocumentToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(158, 26)
+        '
+        'ViewDocumentToolStripMenuItem
+        '
+        Me.ViewDocumentToolStripMenuItem.Name = "ViewDocumentToolStripMenuItem"
+        Me.ViewDocumentToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
+        Me.ViewDocumentToolStripMenuItem.Text = "View document"
         '
         'BandedGridViewFGStockCard
         '
@@ -1105,11 +1122,11 @@ Partial Class FormVirtualSales
         '
         'PanelControl9
         '
-        Me.PanelControl9.Controls.Add(Me.DateEdit3)
+        Me.PanelControl9.Controls.Add(Me.DEUntilSC)
         Me.PanelControl9.Controls.Add(Me.LabelControl7)
-        Me.PanelControl9.Controls.Add(Me.DateEdit2)
+        Me.PanelControl9.Controls.Add(Me.DEStartSC)
         Me.PanelControl9.Controls.Add(Me.LabelControl5)
-        Me.PanelControl9.Controls.Add(Me.DateEdit1)
+        Me.PanelControl9.Controls.Add(Me.DEBegSC)
         Me.PanelControl9.Controls.Add(Me.LabelControl6)
         Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl9.Location = New System.Drawing.Point(0, 430)
@@ -1117,20 +1134,20 @@ Partial Class FormVirtualSales
         Me.PanelControl9.Size = New System.Drawing.Size(712, 42)
         Me.PanelControl9.TabIndex = 3
         '
-        'DateEdit3
+        'DEUntilSC
         '
-        Me.DateEdit3.EditValue = Nothing
-        Me.DateEdit3.Enabled = False
-        Me.DateEdit3.Location = New System.Drawing.Point(517, 11)
-        Me.DateEdit3.Name = "DateEdit3"
-        Me.DateEdit3.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DateEdit3.Properties.Appearance.Options.UseFont = True
-        Me.DateEdit3.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit3.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit3.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DateEdit3.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit3.Size = New System.Drawing.Size(134, 20)
-        Me.DateEdit3.TabIndex = 7
+        Me.DEUntilSC.EditValue = Nothing
+        Me.DEUntilSC.Enabled = False
+        Me.DEUntilSC.Location = New System.Drawing.Point(517, 11)
+        Me.DEUntilSC.Name = "DEUntilSC"
+        Me.DEUntilSC.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DEUntilSC.Properties.Appearance.Options.UseFont = True
+        Me.DEUntilSC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilSC.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilSC.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntilSC.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilSC.Size = New System.Drawing.Size(134, 20)
+        Me.DEUntilSC.TabIndex = 7
         '
         'LabelControl7
         '
@@ -1141,20 +1158,20 @@ Partial Class FormVirtualSales
         Me.LabelControl7.TabIndex = 6
         Me.LabelControl7.Text = "-"
         '
-        'DateEdit2
+        'DEStartSC
         '
-        Me.DateEdit2.EditValue = Nothing
-        Me.DateEdit2.Enabled = False
-        Me.DateEdit2.Location = New System.Drawing.Point(366, 11)
-        Me.DateEdit2.Name = "DateEdit2"
-        Me.DateEdit2.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DateEdit2.Properties.Appearance.Options.UseFont = True
-        Me.DateEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DateEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit2.Size = New System.Drawing.Size(134, 20)
-        Me.DateEdit2.TabIndex = 5
+        Me.DEStartSC.EditValue = Nothing
+        Me.DEStartSC.Enabled = False
+        Me.DEStartSC.Location = New System.Drawing.Point(366, 11)
+        Me.DEStartSC.Name = "DEStartSC"
+        Me.DEStartSC.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DEStartSC.Properties.Appearance.Options.UseFont = True
+        Me.DEStartSC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartSC.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartSC.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEStartSC.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStartSC.Size = New System.Drawing.Size(134, 20)
+        Me.DEStartSC.TabIndex = 5
         '
         'LabelControl5
         '
@@ -1165,20 +1182,20 @@ Partial Class FormVirtualSales
         Me.LabelControl5.TabIndex = 4
         Me.LabelControl5.Text = "Input Lap. Penjualan"
         '
-        'DateEdit1
+        'DEBegSC
         '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Enabled = False
-        Me.DateEdit1.Location = New System.Drawing.Point(119, 11)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DateEdit1.Properties.Appearance.Options.UseFont = True
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit1.Size = New System.Drawing.Size(134, 20)
-        Me.DateEdit1.TabIndex = 3
+        Me.DEBegSC.EditValue = Nothing
+        Me.DEBegSC.Enabled = False
+        Me.DEBegSC.Location = New System.Drawing.Point(119, 11)
+        Me.DEBegSC.Name = "DEBegSC"
+        Me.DEBegSC.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DEBegSC.Properties.Appearance.Options.UseFont = True
+        Me.DEBegSC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEBegSC.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEBegSC.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEBegSC.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEBegSC.Size = New System.Drawing.Size(134, 20)
+        Me.DEBegSC.TabIndex = 3
         '
         'LabelControl6
         '
@@ -1375,16 +1392,17 @@ Partial Class FormVirtualSales
         CType(Me.TxtProduct.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPStockCard.ResumeLayout(False)
         CType(Me.GCFGStockCard, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.BandedGridViewFGStockCard, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl9.ResumeLayout(False)
         Me.PanelControl9.PerformLayout()
-        CType(Me.DateEdit3.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStartSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStartSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEBegSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEBegSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1508,14 +1526,16 @@ Partial Class FormVirtualSales
     Friend WithEvents TxtProductSC As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl9 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEBegSC As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DateEdit3 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEUntilSC As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEStartSC As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCFGStockCard As DevExpress.XtraGrid.GridControl
     Friend WithEvents BandedGridViewFGStockCard As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewDocumentToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -158,6 +158,11 @@
             BtnImportXLS.Visible = False
             MENote.Enabled = False
         End If
+
+        If is_view = "1" Then
+            PanelControlNav.Visible = False
+            PanelControlBottom.Visible = False
+        End If
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click

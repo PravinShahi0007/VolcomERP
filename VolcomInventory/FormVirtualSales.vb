@@ -7,7 +7,6 @@
         viewSalesList()
         viewStore()
         viewStoreSC()
-        CEFindAllProductSC.EditValue = False
 
         'caption size sal
         GVSOHSal.Columns("sal_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
@@ -183,7 +182,7 @@
                 System.IO.Directory.CreateDirectory(path)
             End If
             path = path + "virtual_sales_inv.xlsx"
-            exportToXLS(path, "soh", GCSOHSal)
+            exportToXLS(path, "soh", GCSOHSal, False)
 
             'restore column opt
             GVSOHSal.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
@@ -192,7 +191,7 @@
         End If
     End Sub
 
-    Sub exportToXLS(ByVal path_par As String, ByVal sheet_name_par As String, ByVal gc_par As DevExpress.XtraGrid.GridControl)
+    Sub exportToXLS(ByVal path_par As String, ByVal sheet_name_par As String, ByVal gc_par As DevExpress.XtraGrid.GridControl, is_allow_group As Boolean)
         Cursor = Cursors.WaitCursor
         Dim path As String = path_par
 
@@ -201,7 +200,11 @@
         Dim advOptions As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx()
         advOptions.AllowSortingAndFiltering = DevExpress.Utils.DefaultBoolean.False
         advOptions.ShowGridLines = DevExpress.Utils.DefaultBoolean.False
-        advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False
+        If is_allow_group Then
+            advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.True
+        Else
+            advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False
+        End If
         advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False
         advOptions.SheetName = sheet_name_par
         advOptions.ExportType = DevExpress.Export.ExportType.DataAware
@@ -225,19 +228,11 @@
         End If
     End Sub
 
-    Private Sub CEFindAllProductSC_EditValueChanged(sender As Object, e As EventArgs)
-        id_design_sc = "0"
-        TxtProductSC.Text = ""
-        resetViewSC()
-        If CEFindAllProductSC.EditValue = True Then
-            BtnBrowseProductSC.Enabled = False
-        Else
-            BtnBrowseProductSC.Enabled = True
-        End If
-    End Sub
-
     Sub resetViewSC()
         GCFGStockCard.DataSource = Nothing
+        DEBegSC.EditValue = Nothing
+        DEStartSC.EditValue = Nothing
+        DEUntilSC.EditValue = Nothing
     End Sub
 
     Private Sub SLEAccountSC_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAccountSC.EditValueChanged
@@ -351,16 +346,53 @@
             BandedGridViewFGStockCard.Columns("id_report").Visible = False
             BandedGridViewFGStockCard.Columns("report_mark_type").Visible = False
             BandedGridViewFGStockCard.Columns("id_storage_category").Visible = False
+            BandedGridViewFGStockCard.Columns("beg_date").Visible = False
+            BandedGridViewFGStockCard.Columns("from_date").Visible = False
+            BandedGridViewFGStockCard.Columns("until_date").Visible = False
             'enable group
             BandedGridViewFGStockCard.Columns("Size Type").GroupIndex = 0
             BandedGridViewFGStockCard.ExpandAllGroups()
+            'info
+            DEBegSC.EditValue = data.Rows(0)("beg_date")
+            DEStartSC.EditValue = data.Rows(0)("from_date")
+            DEUntilSC.EditValue = data.Rows(0)("until_date")
         End If
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Best fit column")
+        BandedGridViewFGStockCard.BestFitColumns()
 
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnViewAccSC_Click(sender As Object, e As EventArgs) Handles BtnViewAccSC.Click
-        viewStockCard()
+        If id_design_sc <> "0" Then
+            viewStockCard()
+        Else
+            warningCustom("Please complete all data")
+        End If
+    End Sub
+
+    Private Sub ViewDocumentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDocumentToolStripMenuItem.Click
+        If BandedGridViewFGStockCard.RowCount > 0 And BandedGridViewFGStockCard.FocusedRowHandle >= 0 Then
+            Dim m As New ClassShowPopUp()
+            m.report_mark_type = BandedGridViewFGStockCard.GetFocusedRowCellValue("report_mark_type").ToString
+            m.id_report = BandedGridViewFGStockCard.GetFocusedRowCellValue("id_report").ToString
+            m.show()
+        End If
+    End Sub
+
+    Private Sub BtnExportToXLSAccSC_Click(sender As Object, e As EventArgs) Handles BtnExportToXLSAccSC.Click
+        If BandedGridViewFGStockCard.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + "stock_card.xlsx"
+            exportToXLS(path, "stock_card", GCFGStockCard, True)
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
