@@ -122,23 +122,31 @@ WHERE it.id_item_pps='" & id_pps & "'"
                     execute_non_query("CALL gen_number('" & id_pps & "','393')", True, "", "", "", "")
                     submit_who_prepared("383", id_pps, id_user)
                     infoCustom("Itme proposed, waiting approval.")
+                    FormVMStock.load_pps()
+                    FormVMStock.GVItemPps.FocusedRowHandle = find_row(FormVMStock.GVItemPps, "id_item_pps", id_pps)
                 Else
                     execute_non_query("CALL gen_number('" & id_pps & "','383')", True, "", "", "", "")
                     submit_who_prepared("383", id_pps, id_user)
                     infoCustom("Itme proposed, waiting approval.")
+                    FormPurcItem.load_pps()
+                    FormPurcItem.GVItemPps.FocusedRowHandle = find_row(FormPurcItem.GVItemPps, "id_item_pps", id_pps)
                 End If
 
-                FormPurcItem.load_pps()
-                FormPurcItem.GVItemPps.FocusedRowHandle = find_row(FormPurcItem.GVItemPps, "id_item_pps", id_pps)
+
                 Close()
             Else 'edit
                 Dim query As String = "UPDATE tb_item_pps SET item_desc='" & TEDesc.Text & "',id_item_cat='" & SLECat.EditValue.ToString & "',id_item_type='" & SLEItemType.EditValue.ToString & "',id_uom='" & SLEUOM.EditValue.ToString & "',id_uom_stock='" & SLEUOMStock.EditValue.ToString & "',stock_convertion='" & decimalSQL(TEConvertion.EditValue.ToString) & "',def_desc='" & addSlashes(MEDefDesc.Text) & "' WHERE id_item_pps='" & id_pps & "'"
                 execute_non_query(query, True, "", "", "", "")
 
                 infoCustom("Itme updated, waiting approval.")
+                If is_vm_item = "1" Then
+                    FormVMStock.load_pps()
+                    FormVMStock.GVItemPps.FocusedRowHandle = find_row(FormVMStock.GVItemPps, "id_item_pps", id_pps)
+                Else
+                    FormPurcItem.load_pps()
+                    FormPurcItem.GVItemPps.FocusedRowHandle = find_row(FormPurcItem.GVItemPps, "id_item_pps", id_pps)
+                End If
 
-                FormPurcItem.load_pps()
-                FormPurcItem.GVItemPps.FocusedRowHandle = find_row(FormPurcItem.GVItemPps, "id_item_pps", id_pps)
                 Close()
             End If
         Else
