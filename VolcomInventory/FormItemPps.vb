@@ -88,11 +88,18 @@ WHERE it.id_item_pps='" & id_pps & "'"
             TEPPSNumber.Text = data.Rows(0)("number").ToString
             TECreatedBy.Text = data.Rows(0)("employee_name").ToString
             DEDate.EditValue = data.Rows(0)("created_date")
+            '
+            If data.Rows(0)("is_vm_item").ToString = "1" Then
+                is_vm_item = "1"
+            End If
+            '
+            BMark.Visible = True
         Else
             TEPPSNumber.Text = "[auto]"
             SLEPurchaseCategory.EditValue = Nothing
             TECreatedBy.Text = get_user_identify(id_user, "1")
             DEDate.EditValue = Now
+            BMark.Visible = False
         End If
         '
         If is_view = "1" Then
@@ -102,15 +109,24 @@ WHERE it.id_item_pps='" & id_pps & "'"
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         If Not SLEPurchaseCategory.EditValue = Nothing Then
+            Dim vm_item As String = "2"
+            If is_vm_item = "1" Then
+                vm_item = "1"
+            End If
+
             If id_pps = "-1" Then 'new
-                Dim query As String = "INSERT INTO tb_item_pps(created_date,created_by,item_desc,id_item_cat_detail,id_item_cat,id_item_type,id_uom,id_uom_stock,stock_convertion,def_desc, id_display_type) VALUES(NOW(),'" & id_user & "','" & TEDesc.Text & "','" & SLEPurchaseCategory.EditValue.ToString & "','" & SLECat.EditValue.ToString & "','" & SLEItemType.EditValue.ToString & "','" & SLEUOM.EditValue.ToString & "','" & SLEUOMStock.EditValue.ToString & "','" & decimalSQL(TEConvertion.EditValue.ToString) & "','" & addSlashes(MEDefDesc.Text) & "', '" & SLEVMItems.EditValue.ToString & "'); SELECT LAST_INSERT_ID();"
+                Dim query As String = "INSERT INTO tb_item_pps(created_date,created_by,item_desc,id_item_cat_detail,id_item_cat,id_item_type,id_uom,id_uom_stock,stock_convertion,def_desc, id_display_type,is_vm_item) VALUES(NOW(),'" & id_user & "','" & TEDesc.Text & "','" & SLEPurchaseCategory.EditValue.ToString & "','" & SLECat.EditValue.ToString & "','" & SLEItemType.EditValue.ToString & "','" & SLEUOM.EditValue.ToString & "','" & SLEUOMStock.EditValue.ToString & "','" & decimalSQL(TEConvertion.EditValue.ToString) & "','" & addSlashes(MEDefDesc.Text) & "', '" & SLEVMItems.EditValue.ToString & "','" & vm_item & "'); SELECT LAST_INSERT_ID();"
                 id_pps = execute_query(query, 0, True, "", "", "", "")
 
-                execute_non_query("CALL gen_number('" & id_pps & "','383')", True, "", "", "", "")
-
-                infoCustom("Itme proposed, waiting approval.")
-
-                submit_who_prepared("383", id_pps, id_user)
+                If is_vm_item = "1" Then
+                    execute_non_query("CALL gen_number('" & id_pps & "','393')", True, "", "", "", "")
+                    submit_who_prepared("383", id_pps, id_user)
+                    infoCustom("Itme proposed, waiting approval.")
+                Else
+                    execute_non_query("CALL gen_number('" & id_pps & "','383')", True, "", "", "", "")
+                    submit_who_prepared("383", id_pps, id_user)
+                    infoCustom("Itme proposed, waiting approval.")
+                End If
 
                 FormPurcItem.load_pps()
                 FormPurcItem.GVItemPps.FocusedRowHandle = find_row(FormPurcItem.GVItemPps, "id_item_pps", id_pps)
@@ -135,7 +151,11 @@ WHERE it.id_item_pps='" & id_pps & "'"
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
-        FormReportMark.report_mark_type = "383"
+        If is_vm_item = "1" Then
+            FormReportMark.report_mark_type = "393"
+        Else
+            FormReportMark.report_mark_type = "383"
+        End If
         FormReportMark.id_report = id_pps
         FormReportMark.is_view = is_view
         FormReportMark.form_origin = Name

@@ -11471,7 +11471,7 @@ WHERE id_sop_dep_pps='" & id_report & "'"
 
             query = String.Format("UPDATE tb_bsp SET id_report_status = '{0}' WHERE id_bsp = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-        ElseIf report_mark_type = "383" Then
+        ElseIf report_mark_type = "383" Or report_mark_type = "393" Then
             'propose item
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
@@ -11484,8 +11484,8 @@ WHERE id_sop_dep_pps='" & id_report & "'"
                 End If
                 'get item
 
-                Dim qu As String = "INSERT INTO tb_item(`item_desc`,`def_desc`,`id_item_cat_detail`,`id_item_cat`,`id_uom`,`id_uom_stock`,`stock_convertion`,`id_item_type`,`id_display_type`,`date_created`,`id_user_created`,`date_updated`,`id_user_updated`)
-SELECT `item_desc`,`def_desc`,`id_item_cat_detail`,`id_item_cat`,`id_uom`,`id_uom_stock`,`stock_convertion`,`id_item_type`,`id_display_type`,NOW() AS date_created,created_by AS id_user_created,NOW() AS date_updated,created_by AS last_upd
+                Dim qu As String = "INSERT INTO tb_item(`item_desc`,`def_desc`,`id_item_cat_detail`,`id_item_cat`,`id_uom`,`id_uom_stock`,`stock_convertion`,`id_item_type`,`id_display_type`,`date_created`,`id_user_created`,`date_updated`,`id_user_updated`,is_vm_item)
+SELECT `item_desc`,`def_desc`,`id_item_cat_detail`,`id_item_cat`,`id_uom`,`id_uom_stock`,`stock_convertion`,`id_item_type`,`id_display_type`,NOW() AS date_created,created_by AS id_user_created,NOW() AS date_updated,created_by AS last_upd,is_vm_item
 FROM tb_item_pps
 WHERE id_item_pps='" & id_report & "'"
 
