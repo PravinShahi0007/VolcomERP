@@ -186,6 +186,7 @@ INNER JOIN tb_lookup_purc_item_type item_type ON item_type.`id_item_type`=item.`
 INNER JOIN tb_display_type dt ON dt.id_display_type = item.id_display_type
 INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=item.`id_report_status`
 LEFT JOIN tb_m_uom uom_stock ON uom_stock.`id_uom`=item.`id_uom_stock`
+WHERE item.is_vm_item=1
 ORDER BY item.id_item_pps DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCItemPPs.DataSource = dt
@@ -196,5 +197,12 @@ ORDER BY item.id_item_pps DESC"
         FormItemPps.id_pps = "-1"
         FormItemPps.is_vm_item = "1"
         FormItemPps.ShowDialog()
+    End Sub
+
+    Private Sub GVItemPps_DoubleClick(sender As Object, e As EventArgs) Handles GVItemPps.DoubleClick
+        If GVItemPps.RowCount > 0 Then
+            FormItemPps.id_pps = GVItemPps.GetFocusedRowCellValue("id_item_pps").ToString
+            FormItemPps.ShowDialog()
+        End If
     End Sub
 End Class
