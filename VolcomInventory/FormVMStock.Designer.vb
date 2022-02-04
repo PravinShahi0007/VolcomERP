@@ -82,6 +82,25 @@ Partial Class FormVMStock
         Me.BMoveAsset = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefreshMove = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPItem = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCItemPPs = New DevExpress.XtraGrid.GridControl()
+        Me.GVItemPps = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BNewPPS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BRefreshPPS = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DESOHUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,6 +130,12 @@ Partial Class FormVMStock
         CType(Me.GVMoveList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        Me.XTPItem.SuspendLayout()
+        CType(Me.GCItemPPs, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVItemPps, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -281,7 +306,7 @@ Partial Class FormVMStock
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
         Me.XtraTabControl1.Size = New System.Drawing.Size(913, 561)
         Me.XtraTabControl1.TabIndex = 2
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2, Me.XTPMove})
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2, Me.XTPMove, Me.XTPItem})
         '
         'XtraTabPage1
         '
@@ -683,6 +708,176 @@ Partial Class FormVMStock
         Me.BRefreshMove.TabIndex = 0
         Me.BRefreshMove.Text = "Refresh"
         '
+        'XTPItem
+        '
+        Me.XTPItem.Controls.Add(Me.GCItemPPs)
+        Me.XTPItem.Controls.Add(Me.PanelControl4)
+        Me.XTPItem.Name = "XTPItem"
+        Me.XTPItem.Size = New System.Drawing.Size(907, 533)
+        Me.XTPItem.Text = "Propose Item"
+        '
+        'GCItemPPs
+        '
+        Me.GCItemPPs.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCItemPPs.Location = New System.Drawing.Point(0, 43)
+        Me.GCItemPPs.MainView = Me.GVItemPps
+        Me.GCItemPPs.Name = "GCItemPPs"
+        Me.GCItemPPs.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCItemPPs.Size = New System.Drawing.Size(907, 490)
+        Me.GCItemPPs.TabIndex = 12
+        Me.GCItemPPs.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemPps})
+        '
+        'GVItemPps
+        '
+        Me.GVItemPps.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn33, Me.GridColumn20})
+        Me.GVItemPps.GridControl = Me.GCItemPPs
+        Me.GVItemPps.Name = "GVItemPps"
+        Me.GVItemPps.OptionsBehavior.Editable = False
+        Me.GVItemPps.OptionsFind.AlwaysVisible = True
+        Me.GVItemPps.OptionsFind.FindFilterColumns = "item_desc"
+        Me.GVItemPps.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Propose Number"
+        Me.GridColumn21.FieldName = "number"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 0
+        Me.GridColumn21.Width = 96
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Id Cat"
+        Me.GridColumn22.FieldName = "id_item_cat"
+        Me.GridColumn22.Name = "GridColumn22"
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Item Type"
+        Me.GridColumn23.FieldName = "item_type"
+        Me.GridColumn23.Name = "GridColumn23"
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Type"
+        Me.GridColumn24.FieldName = "expense_type"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 5
+        Me.GridColumn24.Width = 74
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Description"
+        Me.GridColumn25.FieldName = "item_desc"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 1
+        Me.GridColumn25.Width = 74
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Category"
+        Me.GridColumn26.FieldName = "item_cat_detail"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 3
+        Me.GridColumn26.Width = 74
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Budget"
+        Me.GridColumn27.FieldName = "item_cat"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 4
+        Me.GridColumn27.Width = 74
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Value"
+        Me.GridColumn28.FieldName = "value"
+        Me.GridColumn28.Name = "GridColumn28"
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Date Created"
+        Me.GridColumn29.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn29.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn29.FieldName = "created_date"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 6
+        Me.GridColumn29.Width = 74
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn30.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn30.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn30.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn30.Caption = "UOM Purchase"
+        Me.GridColumn30.FieldName = "uom"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 2
+        Me.GridColumn30.Width = 74
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Created By"
+        Me.GridColumn33.FieldName = "emp_created"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 7
+        Me.GridColumn33.Width = 95
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Status"
+        Me.GridColumn20.FieldName = "report_status"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 8
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.BNewPPS)
+        Me.PanelControl4.Controls.Add(Me.BRefreshPPS)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(907, 43)
+        Me.PanelControl4.TabIndex = 11
+        '
+        'BNewPPS
+        '
+        Me.BNewPPS.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BNewPPS.Image = CType(resources.GetObject("BNewPPS.Image"), System.Drawing.Image)
+        Me.BNewPPS.Location = New System.Drawing.Point(2, 2)
+        Me.BNewPPS.Name = "BNewPPS"
+        Me.BNewPPS.Size = New System.Drawing.Size(106, 39)
+        Me.BNewPPS.TabIndex = 8907
+        Me.BNewPPS.Text = "New"
+        '
+        'BRefreshPPS
+        '
+        Me.BRefreshPPS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefreshPPS.Image = CType(resources.GetObject("BRefreshPPS.Image"), System.Drawing.Image)
+        Me.BRefreshPPS.Location = New System.Drawing.Point(785, 2)
+        Me.BRefreshPPS.Name = "BRefreshPPS"
+        Me.BRefreshPPS.Size = New System.Drawing.Size(120, 39)
+        Me.BRefreshPPS.TabIndex = 8906
+        Me.BRefreshPPS.Text = "Refresh"
+        '
         'FormVMStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -726,6 +921,12 @@ Partial Class FormVMStock
         CType(Me.GVMoveList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        Me.XTPItem.ResumeLayout(False)
+        CType(Me.GCItemPPs, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVItemPps, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -792,4 +993,23 @@ Partial Class FormVMStock
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTPItem As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BNewPPS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BRefreshPPS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCItemPPs As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVItemPps As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

@@ -536,7 +536,7 @@
         ElseIf report_mark_type = "376" Then
             'propose big sale product
             FormBSPDet.Close()
-        ElseIf report_mark_type = "383" Then
+        ElseIf report_mark_type = "383" Or report_mark_type = "393" Then
             'propose item list
             FormItemPps.Close()
         ElseIf report_mark_type = "384" Then
@@ -1738,7 +1738,7 @@ GROUP BY rec.`id_prod_order`"
             FormBSPDet.action = "upd"
             FormBSPDet.id = id_report
             FormBSPDet.ShowDialog()
-        ElseIf report_mark_type = "383" Then
+        ElseIf report_mark_type = "383" Or report_mark_type = "393" Then
             'propose item list
             FormItemPps.is_view = "1"
             FormItemPps.id_pps = id_report
@@ -3116,7 +3116,7 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_bsp"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "383" Then
+        ElseIf report_mark_type = "383" Or report_mark_type = "393" Then
             'propose item list
             table_name = "tb_item_pps"
             field_id = "id_item_pps"

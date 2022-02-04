@@ -306,6 +306,8 @@
         DEUntilNonStock.EditValue = data_dt.Rows(0)("dt")
         DEManifestStart.EditValue = data_dt.Rows(0)("dt")
         DEManifestUntil.EditValue = data_dt.Rows(0)("dt")
+        DEStartInputAWBM.EditValue = data_dt.Rows(0)("dt")
+        DEUntilInputAWBM.EditValue = data_dt.Rows(0)("dt")
 
         'load expire
         Dim qex As String = "SELECT expired_close_too FROM tb_opt"
@@ -313,6 +315,14 @@
         expired_close_too = dex.Rows(0)("expired_close_too")
 
         load_surat_jalan()
+
+        If get_opt_sales_field("is_active_new_ws_del") = "2" Then
+            XTPCompleteManifest.PageVisible = False
+            XTPAWBManifest.PageVisible = False
+        End If
+
+        'not used
+        XTPAWBManifest.PageVisible = False
 
         If is_md = "1" Then
             XTPClosingSuratJalan.PageVisible = False
@@ -323,6 +333,7 @@
             XTPDelOrder.PageVisible = False
             XTPRec.PageVisible = False
             XTPReturnOrder.PageVisible = False
+            XTPCompleteManifest.PageVisible = False
 
             Text = "Cancel Prepare Order"
         End If
@@ -1341,38 +1352,321 @@ WHERE awbd.`id_pl_sales_order_del`='" & GVSalesDelOrder.GetFocusedRowCellValue("
         End If
     End Sub
 
-    Private Sub BViewManifest_Click(sender As Object, e As EventArgs) Handles BViewManifest.Click
+    Sub load_manifest()
         Dim query As String = "
-            SELECT odm.scan_manifest,odm.print_manifest,CONCAT(store.comp_number,' - ',store.comp_name) AS store,m.id_del_manifest, c.comp_name,m.awbill_no, m.number, DATE_FORMAT(m.created_date, '%d %M %Y %H:%i:%s') AS created_date, DATE_FORMAT(m.updated_date, '%d %M %Y %H:%i:%s') AS updated_date, ea.employee_name AS created_by, eb.employee_name AS updated_by, IFNULL(l.report_status, 'Waiting checked by security') AS report_status
-            FROM tb_del_manifest AS m
-            INNER JOIN tb_m_comp AS c ON m.id_comp = c.id_comp
-            LEFT JOIN tb_m_user AS ua ON m.created_by = ua.id_user
-            LEFT JOIN tb_m_employee AS ea ON ua.id_employee = ea.id_employee
-            LEFT JOIN tb_m_user AS ub ON m.updated_by = ub.id_user
-            LEFT JOIN tb_m_employee AS eb ON ub.id_employee = eb.id_employee
-            INNER JOIN tb_lookup_report_status AS l ON m.id_report_status = l.id_report_status
-            INNER JOIN tb_m_comp store ON store.id_comp=m.id_store_offline
-            LEFT JOIN
-            (
-                SELECT scd.`id_del_manifest`,sc.`number` AS scan_manifest,p.`number` AS print_manifest
-                FROM tb_odm_sc_det scd 
-                INNER JOIN tb_odm_sc sc ON sc.`id_odm_sc`=scd.`id_odm_sc` 
-                LEFT JOIN tb_odm_print_det pd ON pd.`id_odm_sc`=sc.`id_odm_sc`
-                LEFT JOIN tb_odm_print p ON p.`id_odm_print`=pd.`id_odm_print`
-                GROUP BY scd.`id_del_manifest`
-            )odm ON odm.id_del_manifest=m.id_del_manifest
-            WHERE m.id_del_type='6' AND DATE(m.created_date)>=DATE('" & Date.Parse(DEManifestStart.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND DATE(m.created_date)<=DATE('" & Date.Parse(DEManifestUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
-            ORDER BY m.id_del_manifest DESC
-        "
+SELECT 'yes' AS is_check,c.is_active,awb.ol_number,cg.id_comp_group,sp.sales_pos_total,rec.value,IF(sp.sales_pos_total>0,IF(IFNULL(rec.value,0)=0,0,1),0) AS paid, c.comp_name,CONCAT(c.comp_number,' - ',c.comp_name) AS store,
+pl.pl_sales_order_del_number AS do_number,sp.`sales_pos_number` AS inv_number,GROUP_CONCAT(DISTINCT rec.number SEPARATOR ', ') AS bbm_number
+,DATE(pl.pl_sales_order_del_date) as created_date,pl.id_pl_sales_order_del
+FROM tb_pl_sales_order_del pl 
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=pl.`id_store_contact_to` AND pl.id_report_status=3
+INNER JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=c.`id_comp_group` AND cg.is_wholesale=1
+LEFT JOIN 
+(
+	SELECT sp.id_sales_pos,sp.report_mark_type,sp.sales_pos_number,sp.id_pl_sales_order_del,sp.`sales_pos_total`
+	FROM tb_sales_pos sp
+	INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=sp.`id_store_contact_from` AND sp.`id_report_status`=6 
+	INNER JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+	INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=c.`id_comp_group` AND cg.is_wholesale=1
+)sp ON sp.`id_pl_sales_order_del`=pl.`id_pl_sales_order_del`
+LEFT JOIN
+(
+	SELECT r.`number`,r.`id_rec_payment`,rd.`id_report`,rd.`report_mark_type`,pl.`id_sales_order`,rd.`value`
+	FROM tb_rec_payment_det rd 
+	INNER JOIN tb_rec_payment r ON r.`id_rec_payment`=rd.`id_rec_payment` AND r.`id_report_status`=6
+	INNER JOIN tb_sales_pos sp ON sp.`id_sales_pos`=rd.`id_report` AND rd.`report_mark_type`=sp.`report_mark_type`
+	INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=sp.`id_pl_sales_order_del` AND pl.id_report_status=6
+	INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=sp.`id_store_contact_from`
+	INNER JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+	INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=c.`id_comp_group` AND cg.is_wholesale=1
+)rec ON rec.`id_report`=sp.`id_sales_pos` AND sp.`report_mark_type`=rec.report_mark_type
+INNER JOIN tb_wh_awbill_det awbd ON awbd.`id_pl_sales_order_del`=pl.`id_pl_sales_order_del`
+INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill`
+LEFT JOIN (
+	SELECT md.`id_wh_awb_det`,m.`id_del_manifest`,m.`awbill_no` 
+	FROM tb_del_manifest_det md 
+	INNER JOIN tb_del_manifest m ON m.`id_del_manifest`=md.`id_del_manifest`
+	WHERE m.`id_report_status`!=5
+)m ON m.id_wh_awb_det=awbd.`id_wh_awb_det`
+WHERE DATE(pl.pl_sales_order_del_date)>=DATE('" & Date.Parse(DEManifestStart.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND DATE(pl.pl_sales_order_del_date)<=DATE('" & Date.Parse(DEManifestUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "') 
+AND ISNULL(m.id_del_manifest) 
+GROUP BY pl.`id_pl_sales_order_del`"
+        'query = "
+        '    SELECT odm.scan_manifest,odm.print_manifest,CONCAT(store.comp_number,' - ',store.comp_name) AS store,m.id_del_manifest, c.comp_name,m.awbill_no, m.number, DATE_FORMAT(m.created_date, '%d %M %Y %H:%i:%s') AS created_date, DATE_FORMAT(m.updated_date, '%d %M %Y %H:%i:%s') AS updated_date, ea.employee_name AS created_by, eb.employee_name AS updated_by, IFNULL(l.report_status, 'Waiting checked by security') AS report_status
+        '    FROM tb_del_manifest AS m
+        '    INNER JOIN tb_m_comp AS c ON m.id_comp = c.id_comp
+        '    LEFT JOIN tb_m_user AS ua ON m.created_by = ua.id_user
+        '    LEFT JOIN tb_m_employee AS ea ON ua.id_employee = ea.id_employee
+        '    LEFT JOIN tb_m_user AS ub ON m.updated_by = ub.id_user
+        '    LEFT JOIN tb_m_employee AS eb ON ub.id_employee = eb.id_employee
+        '    INNER JOIN tb_lookup_report_status AS l ON m.id_report_status = l.id_report_status
+        '    INNER JOIN tb_m_comp store ON store.id_comp=m.id_store_offline
+        '    LEFT JOIN
+        '    (
+        '        SELECT scd.`id_del_manifest`,sc.`number` AS scan_manifest,p.`number` AS print_manifest
+        '        FROM tb_odm_sc_det scd 
+        '        INNER JOIN tb_odm_sc sc ON sc.`id_odm_sc`=scd.`id_odm_sc` 
+        '        LEFT JOIN tb_odm_print_det pd ON pd.`id_odm_sc`=sc.`id_odm_sc`
+        '        LEFT JOIN tb_odm_print p ON p.`id_odm_print`=pd.`id_odm_print`
+        '        GROUP BY scd.`id_del_manifest`
+        '    )odm ON odm.id_del_manifest=m.id_del_manifest
+        '    WHERE m.id_del_type='6' AND m.is_need_finalize='1' AND DATE(m.created_date)>=DATE('" & Date.Parse(DEManifestStart.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND DATE(m.created_date)<=DATE('" & Date.Parse(DEManifestUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+        '    ORDER BY m.id_del_manifest DESC
+        '"
 
         GCList.DataSource = execute_query(query, -1, True, "", "", "", "")
 
         GVList.BestFitColumns()
     End Sub
 
+    Private Sub BViewManifest_Click(sender As Object, e As EventArgs) Handles BViewManifest.Click
+        load_manifest()
+    End Sub
+
     Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVList.DoubleClick
         FormDelManifestDet.id_del_manifest = GVList.GetFocusedRowCellValue("id_del_manifest").ToString
         FormDelManifestDet.is_complete_wholesale = True
         FormDelManifestDet.ShowDialog()
+    End Sub
+
+    Private Sub BViewInputAWBM_Click(sender As Object, e As EventArgs) Handles BViewInputAWBM.Click
+        Dim query As String = ""
+        '        query = "
+        '            SELECT m.`id_del_manifest`, c.comp_name,m.awbill_no, m.number,CONCAT(store.comp_number,' - ',store.comp_name) AS store,m.`number`,GROUP_CONCAT(DISTINCT pl.pl_sales_order_del_number) AS do_number,GROUP_CONCAT(DISTINCT sp.`sales_pos_number`) AS inv_number,GROUP_CONCAT(DISTINCT r.number) AS bbm_number
+        'FROM `tb_rec_payment_det` rd
+        'INNER JOIN tb_rec_payment r ON r.`id_rec_payment`=rd.`id_rec_payment` AND r.`id_report_status`=6 
+        'INNER JOIN tb_sales_pos sp ON sp.`id_sales_pos`=rd.id_report AND rd.report_mark_type=sp.`report_mark_type` AND sp.`id_report_status`=6
+        'INNER JOIN tb_wh_awbill_det awbd ON awbd.`id_pl_sales_order_del`=sp.`id_pl_sales_order_del`
+        'INNER JOIN tb_pl_sales_order_del pl ON pl.id_pl_sales_order_del=awbd.`id_pl_sales_order_del`
+        'INNER JOIN tb_del_manifest_det md ON md.`id_wh_awb_det`=awbd.`id_wh_awb_det`
+        'INNER JOIN tb_del_manifest m ON m.id_del_manifest=md.`id_del_manifest`
+        'INNER JOIN tb_m_comp AS c ON m.id_comp = c.id_comp
+        'INNER JOIN tb_m_comp store ON store.id_comp=m.id_store_offline
+        'LEFT JOIN
+        '(
+        '	SELECT scd.`id_del_manifest`,sc.`number` AS scan_manifest,p.`number` AS print_manifest
+        '	FROM tb_odm_sc_det scd 
+        '	INNER JOIN tb_odm_sc sc ON sc.`id_odm_sc`=scd.`id_odm_sc` 
+        '	LEFT JOIN tb_odm_print_det pd ON pd.`id_odm_sc`=sc.`id_odm_sc`
+        '	LEFT JOIN tb_odm_print p ON p.`id_odm_print`=pd.`id_odm_print`
+        '	GROUP BY scd.`id_del_manifest`
+        ')odm ON odm.id_del_manifest=m.id_del_manifest
+        'WHERE m.`id_del_type`=6 AND DATE(m.created_date)>=DATE('" & Date.Parse(DEStartInputAWBM.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND DATE(m.created_date)<=DATE('" & Date.Parse(DEUntilInputAWBM.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+        'AND ISNULL(odm.scan_manifest) AND m.is_need_finalize='1' AND m.`is_finalize_complete`=1
+        'GROUP BY md.`id_del_manifest`
+        'ORDER BY m.id_del_manifest DESC"
+
+        query = "SELECT tb.`id_del_manifest`, tb.comp_name,tb.awbill_no, tb.number,tb.store,GROUP_CONCAT(DISTINCT tb.do_number SEPARATOR ', ') AS do_number,GROUP_CONCAT(DISTINCT tb.`inv_number` SEPARATOR ', ') AS inv_number,GROUP_CONCAT(DISTINCT tb.bbm_number SEPARATOR ', ') AS bbm_number,IF(SUM(tb.not_paid)>0,'Pending','Paid') AS sts
+FROM
+(
+	SELECT sp.sales_pos_total,rec.value,IF(sp.sales_pos_total>0,IF(IFNULL(rec.value,0)=0,1,0),0) AS not_paid,m.`id_del_manifest`, c.comp_name,m.awbill_no,CONCAT(store.comp_number,' - ',store.comp_name) AS store,m.`number`,pl.pl_sales_order_del_number AS do_number,sp.`sales_pos_number` AS inv_number,GROUP_CONCAT(DISTINCT rec.number SEPARATOR ', ') AS bbm_number
+	FROM tb_del_manifest_det md 
+	INNER JOIN tb_del_manifest m ON m.id_del_manifest=md.`id_del_manifest` AND m.`id_del_type`=6 AND m.is_need_finalize='1' AND m.`is_finalize_complete`=1
+	INNER JOIN tb_m_comp store ON store.id_comp=m.id_store_offline
+	INNER JOIN tb_wh_awbill_det awbd ON  md.`id_wh_awb_det`=awbd.`id_wh_awb_det`
+	INNER JOIN tb_pl_sales_order_del pl ON awbd.`id_pl_sales_order_del`=pl.`id_pl_sales_order_del` AND pl.id_report_status=6
+	INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=pl.`id_store_contact_to`
+	INNER JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+	INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=c.`id_comp_group` AND cg.is_wholesale=1
+	LEFT JOIN 
+	(
+		SELECT sp.id_sales_pos,sp.report_mark_type,sp.sales_pos_number,sp.id_pl_sales_order_del,sp.`sales_pos_total`
+		FROM tb_sales_pos sp
+		INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=sp.`id_store_contact_from` AND sp.`id_report_status`=6 
+		INNER JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+		INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=c.`id_comp_group` AND cg.is_wholesale=1
+	)sp ON sp.`id_pl_sales_order_del`=pl.`id_pl_sales_order_del`
+	LEFT JOIN
+	(
+		SELECT r.`number`,r.`id_rec_payment`,rd.`id_report`,rd.`report_mark_type`,pl.`id_sales_order`,rd.`value`
+		FROM tb_rec_payment_det rd 
+		INNER JOIN tb_rec_payment r ON r.`id_rec_payment`=rd.`id_rec_payment` AND r.`id_report_status`=6
+		INNER JOIN tb_sales_pos sp ON sp.`id_sales_pos`=rd.`id_report` AND rd.`report_mark_type`=sp.`report_mark_type`
+		INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=sp.`id_pl_sales_order_del` AND pl.id_report_status=6
+		INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=sp.`id_store_contact_from`
+		INNER JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+		INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=c.`id_comp_group` AND cg.is_wholesale=1
+	)rec ON rec.`id_report`=sp.`id_sales_pos` AND sp.`report_mark_type`=rec.report_mark_type
+	LEFT JOIN
+	(
+		SELECT scd.`id_del_manifest`,sc.`number` AS scan_manifest,p.`number` AS print_manifest
+		FROM tb_odm_sc_det scd 
+		INNER JOIN tb_odm_sc sc ON sc.`id_odm_sc`=scd.`id_odm_sc` 
+		LEFT JOIN tb_odm_print_det pd ON pd.`id_odm_sc`=sc.`id_odm_sc`
+		LEFT JOIN tb_odm_print p ON p.`id_odm_print`=pd.`id_odm_print`
+		GROUP BY scd.`id_del_manifest`
+	)odm ON odm.id_del_manifest=m.id_del_manifest
+	WHERE DATE(m.created_date)>=DATE('" & Date.Parse(DEStartInputAWBM.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND DATE(m.created_date)<=DATE('" & Date.Parse(DEUntilInputAWBM.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND ISNULL(odm.scan_manifest) 
+	GROUP BY pl.`id_pl_sales_order_del`
+)tb
+GROUP BY tb.id_del_manifest
+HAVING sts='Paid'"
+
+        GCInputAWBManifest.DataSource = execute_query(query, -1, True, "", "", "", "")
+        GVInputAWBManifest.BestFitColumns()
+        BCompleteWholesale.Visible = True
+    End Sub
+
+    Private Sub BCompleteWholesale_Click(sender As Object, e As EventArgs) Handles BCompleteWholesale.Click
+        If GVInputAWBManifest.RowCount > 0 Then
+            FormAWBManifest.TEDraftNo.Text = GVInputAWBManifest.GetFocusedRowCellValue("number").ToString
+            FormAWBManifest.TE3PLNo.Text = GVInputAWBManifest.GetFocusedRowCellValue("comp_name").ToString
+            FormAWBManifest.TEStore.Text = GVInputAWBManifest.GetFocusedRowCellValue("store").ToString
+            FormAWBManifest.TEAwb.Text = GVInputAWBManifest.GetFocusedRowCellValue("awbill_no").ToString
+            FormAWBManifest.id_del_manifest = GVInputAWBManifest.GetFocusedRowCellValue("id_del_manifest").ToString
+            FormAWBManifest.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BShowPendingPaymentAWB_Click(sender As Object, e As EventArgs) Handles BShowPendingPaymentAWB.Click
+        Dim q As String = "SELECT sp.sales_pos_total,rec.value,IF(sp.sales_pos_total>0,IF(IFNULL(rec.value,0)=0,1,0),0) AS not_paid,m.`id_del_manifest`, c.comp_name,m.awbill_no,CONCAT(store.comp_number,' - ',store.comp_name) AS store,m.`number`,pl.pl_sales_order_del_number AS do_number,sp.`sales_pos_number` AS inv_number,GROUP_CONCAT(DISTINCT rec.number SEPARATOR ', ') AS bbm_number
+	FROM tb_del_manifest_det md 
+	INNER JOIN tb_del_manifest m ON m.id_del_manifest=md.`id_del_manifest` AND m.`id_del_type`=6 AND m.is_need_finalize='1' AND m.`is_finalize_complete`=1
+	INNER JOIN tb_m_comp store ON store.id_comp=m.id_store_offline
+	INNER JOIN tb_wh_awbill_det awbd ON  md.`id_wh_awb_det`=awbd.`id_wh_awb_det`
+	INNER JOIN tb_pl_sales_order_del pl ON awbd.`id_pl_sales_order_del`=pl.`id_pl_sales_order_del` AND pl.id_report_status=6
+	INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=pl.`id_store_contact_to`
+	INNER JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+	INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=c.`id_comp_group` AND cg.is_wholesale=1
+	LEFT JOIN 
+	(
+		SELECT sp.id_sales_pos,sp.report_mark_type,sp.sales_pos_number,sp.id_pl_sales_order_del,sp.`sales_pos_total`
+		FROM tb_sales_pos sp
+		INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=sp.`id_store_contact_from` AND sp.`id_report_status`=6 
+		INNER JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+		INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=c.`id_comp_group` AND cg.is_wholesale=1
+	)sp ON sp.`id_pl_sales_order_del`=pl.`id_pl_sales_order_del`
+	LEFT JOIN
+	(
+		SELECT r.`number`,r.`id_rec_payment`,rd.`id_report`,rd.`report_mark_type`,pl.`id_sales_order`,rd.`value`
+		FROM tb_rec_payment_det rd 
+		INNER JOIN tb_rec_payment r ON r.`id_rec_payment`=rd.`id_rec_payment` AND r.`id_report_status`=6
+		INNER JOIN tb_sales_pos sp ON sp.`id_sales_pos`=rd.`id_report` AND rd.`report_mark_type`=sp.`report_mark_type`
+		INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=sp.`id_pl_sales_order_del` AND pl.id_report_status=6
+		INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=sp.`id_store_contact_from`
+		INNER JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+		INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=c.`id_comp_group` AND cg.is_wholesale=1
+	)rec ON rec.`id_report`=sp.`id_sales_pos` AND sp.`report_mark_type`=rec.report_mark_type
+	LEFT JOIN
+	(
+		SELECT scd.`id_del_manifest`,sc.`number` AS scan_manifest,p.`number` AS print_manifest
+		FROM tb_odm_sc_det scd 
+		INNER JOIN tb_odm_sc sc ON sc.`id_odm_sc`=scd.`id_odm_sc` 
+		LEFT JOIN tb_odm_print_det pd ON pd.`id_odm_sc`=sc.`id_odm_sc`
+		LEFT JOIN tb_odm_print p ON p.`id_odm_print`=pd.`id_odm_print`
+		GROUP BY scd.`id_del_manifest`
+	)odm ON odm.id_del_manifest=m.id_del_manifest
+	WHERE DATE(m.created_date)>=DATE('" & Date.Parse(DEStartInputAWBM.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND DATE(m.created_date)<=DATE('" & Date.Parse(DEUntilInputAWBM.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND ISNULL(odm.scan_manifest) 
+	GROUP BY pl.`id_pl_sales_order_del`
+	HAVING not_paid=1"
+        GCInputAWBManifest.DataSource = execute_query(q, -1, True, "", "", "", "")
+        GVInputAWBManifest.BestFitColumns()
+        BCompleteWholesale.Visible = False
+    End Sub
+
+    Private Sub BHistoryAWBM_Click(sender As Object, e As EventArgs) Handles BHistoryAWBM.Click
+        Dim q As String = "SELECT c.is_active,sp.sales_pos_total,rec.value,IF(sp.sales_pos_total>0,IF(IFNULL(rec.value,0)=0,1,0),0) AS not_paid,m.`id_del_manifest`, c.comp_name,m.awbill_no,CONCAT(store.comp_number,' - ',store.comp_name) AS store,m.`number`,pl.pl_sales_order_del_number AS do_number,sp.`sales_pos_number` AS inv_number,GROUP_CONCAT(DISTINCT rec.number SEPARATOR ', ') AS bbm_number
+	FROM tb_del_manifest_det md 
+	INNER JOIN tb_del_manifest m ON m.id_del_manifest=md.`id_del_manifest` AND m.`id_del_type`=6 
+	INNER JOIN tb_m_comp store ON store.id_comp=m.id_store_offline
+	INNER JOIN tb_wh_awbill_det awbd ON  md.`id_wh_awb_det`=awbd.`id_wh_awb_det`
+	INNER JOIN tb_pl_sales_order_del pl ON awbd.`id_pl_sales_order_del`=pl.`id_pl_sales_order_del` AND pl.id_report_status=6
+	INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=pl.`id_store_contact_to`
+	INNER JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+	INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=c.`id_comp_group` AND cg.is_wholesale=1
+	LEFT JOIN 
+	(
+		SELECT sp.id_sales_pos,sp.report_mark_type,sp.sales_pos_number,sp.id_pl_sales_order_del,sp.`sales_pos_total`
+		FROM tb_sales_pos sp
+		INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=sp.`id_store_contact_from` AND sp.`id_report_status`=6 
+		INNER JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+		INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=c.`id_comp_group` AND cg.is_wholesale=1
+	)sp ON sp.`id_pl_sales_order_del`=pl.`id_pl_sales_order_del`
+	LEFT JOIN
+	(
+		SELECT r.`number`,r.`id_rec_payment`,rd.`id_report`,rd.`report_mark_type`,pl.`id_sales_order`,rd.`value`
+		FROM tb_rec_payment_det rd 
+		INNER JOIN tb_rec_payment r ON r.`id_rec_payment`=rd.`id_rec_payment` AND r.`id_report_status`=6
+		INNER JOIN tb_sales_pos sp ON sp.`id_sales_pos`=rd.`id_report` AND rd.`report_mark_type`=sp.`report_mark_type`
+		INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=sp.`id_pl_sales_order_del` AND pl.id_report_status=6
+		INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=sp.`id_store_contact_from`
+		INNER JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
+		INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=c.`id_comp_group` AND cg.is_wholesale=1
+	)rec ON rec.`id_report`=sp.`id_sales_pos` AND sp.`report_mark_type`=rec.report_mark_type
+	LEFT JOIN
+	(
+		SELECT scd.`id_del_manifest`,sc.`number` AS scan_manifest,p.`number` AS print_manifest
+		FROM tb_odm_sc_det scd 
+		INNER JOIN tb_odm_sc sc ON sc.`id_odm_sc`=scd.`id_odm_sc` 
+		LEFT JOIN tb_odm_print_det pd ON pd.`id_odm_sc`=sc.`id_odm_sc`
+		LEFT JOIN tb_odm_print p ON p.`id_odm_print`=pd.`id_odm_print`
+		GROUP BY scd.`id_del_manifest`
+	)odm ON odm.id_del_manifest=m.id_del_manifest
+	WHERE DATE(m.created_date)>=DATE('" & Date.Parse(DEStartInputAWBM.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND DATE(m.created_date)<=DATE('" & Date.Parse(DEUntilInputAWBM.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND NOT ISNULL(odm.scan_manifest) 
+	GROUP BY pl.`id_pl_sales_order_del`"
+        GCInputAWBManifest.DataSource = execute_query(q, -1, True, "", "", "", "")
+        GVInputAWBManifest.BestFitColumns()
+        BCompleteWholesale.Visible = False
+    End Sub
+
+    Dim is_block_del_store As String = get_setup_field("is_block_del_store")
+
+    Private Sub BCompleteWholesaleSDO_Click(sender As Object, e As EventArgs) Handles BCompleteWholesaleSDO.Click
+        GVList.ActiveFilterString = "[is_check]='yes'"
+        If GVList.RowCount > 0 Then
+            'hold delivery
+            Dim err_hold As String = ""
+            For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+                If Not GVList.IsGroupRow(i) Then
+                    Dim del As New ClassSalesDelOrder()
+                    If is_block_del_store = "1" And del.checkUnpaidInvoice(GVList.GetRowCellValue(i, "id_comp_group").ToString) Then
+                        err_hold += GVList.GetRowCellValue(i, "do_number").ToString + " (" + GVList.GetRowCellValue(i, "store").ToString + ")" + System.Environment.NewLine
+                    End If
+                End If
+            Next
+
+            'store not active
+            Dim err_not_active As String = ""
+            For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+                If Not GVList.IsGroupRow(i) Then
+                    If GVList.GetRowCellValue(i, "is_active").ToString = "2" Then
+                        err_not_active += GVList.GetRowCellValue(i, "do_number").ToString + " (" + GVList.GetRowCellValue(i, "store").ToString + ")" + System.Environment.NewLine
+                    End If
+                End If
+            Next
+
+            If err_hold <> "" Then
+                warningCustom("Hold delivery : " + System.Environment.NewLine + err_hold)
+            ElseIf err_not_active <> "" Then
+                warningCustom("Store not active : " + System.Environment.NewLine + err_not_active)
+            Else
+                'complete
+                Try
+                    If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                        FormMain.SplashScreenManager1.ShowWaitForm()
+                    End If
+
+                    For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+                        FormMain.SplashScreenManager1.SetWaitFormDescription("Processing Order " & i + 1 & " of " & (GVList.RowCount - 1 - GetGroupRowCount(GVList)).ToString)
+                        Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
+                        'infoCustom("change status " & GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString)
+                        stt.is_finalize = "1"
+                        stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
+                        Dim mail As ClassSendEmail = New ClassSendEmail()
+                        mail.id_report = GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString
+                        mail.report_mark_type = "391"
+                        mail.send_email()
+                    Next
+
+                    FormMain.SplashScreenManager1.CloseWaitForm()
+                    Close()
+                Catch ex As Exception
+                    'log scan security
+                    warningCustom(ex.ToString)
+                    FormMain.SplashScreenManager1.CloseWaitForm()
+                End Try
+            End If
+        End If
+        GVList.ActiveFilterString = ""
     End Sub
 End Class

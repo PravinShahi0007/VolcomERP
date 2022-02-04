@@ -234,7 +234,7 @@ GROUP BY del.awbill_no"
                         execute_non_query("INSERT INTO tb_odm_print_log(id_odm_print,report_mark_type,id_comp,date_log) VALUES('" & id_print & "','" & dtc.Rows(0)("report_mark_type").ToString & "','" & dtc.Rows(0)("id_3pl").ToString & "',NOW())", True, "", "", "", "")
                     Catch ex As Exception
                         stopCustom("ERROR SENDING EMAIL INSURANCE, PLEASE CONTACT ADMINISTRATOR")
-                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'ERROR SEND EMAIL INSURANCE')", -1, True, "", "", "", "")
+                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'ERROR SEND EMAIL INSURANCE (id_odm_print = " & id_print & ")')", -1, True, "", "", "", "")
                     End Try
                 End If
             End If

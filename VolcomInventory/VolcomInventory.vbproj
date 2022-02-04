@@ -240,6 +240,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClassAccounting.vb" />
+    <Compile Include="ClassApiPos.vb" />
     <Compile Include="ClassAPIZalora.vb" />
     <Compile Include="ClassAREvaluation.vb" />
     <Compile Include="ClassBliBliApi.vb" />
@@ -501,6 +502,12 @@
       <DependentUpon>FormAREvaluationPickDate.vb</DependentUpon>
     </Compile>
     <Compile Include="FormAREvaluationPickDate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAWBManifest.Designer.vb">
+      <DependentUpon>FormAWBManifest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAWBManifest.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAWBOther.Designer.vb">
@@ -10831,6 +10838,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAREvaluationPickDate.resx">
       <DependentUpon>FormAREvaluationPickDate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAWBManifest.resx">
+      <DependentUpon>FormAWBManifest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAWBOther.resx">
       <DependentUpon>FormAWBOther.vb</DependentUpon>
