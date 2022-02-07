@@ -108,6 +108,9 @@ Partial Class FormSalesOrderDet
         Me.GridColumnOLStoreNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOLStoreOrderDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_ol_promo_collection_sku_replace = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnExportAsFile = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportExcelNew = New DevExpress.XtraEditors.SimpleButton()
@@ -126,9 +129,6 @@ Partial Class FormSalesOrderDet
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsht = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1131,6 +1131,33 @@ Partial Class FormSalesOrderDet
         Me.GridColumnid_ol_promo_collection_sku_replace.Name = "GridColumnid_ol_promo_collection_sku_replace"
         Me.GridColumnid_ol_promo_collection_sku_replace.OptionsColumn.AllowEdit = False
         '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.OptionsColumn.AllowEdit = False
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 2
+        Me.GridColumnclass.Width = 122
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.OptionsColumn.AllowEdit = False
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 4
+        Me.GridColumncolor.Width = 92
+        '
+        'GridColumnsht
+        '
+        Me.GridColumnsht.Caption = "Silhouette"
+        Me.GridColumnsht.FieldName = "sht"
+        Me.GridColumnsht.Name = "GridColumnsht"
+        Me.GridColumnsht.OptionsColumn.AllowEdit = False
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -1314,33 +1341,6 @@ Partial Class FormSalesOrderDet
         Me.LabelControl12.Size = New System.Drawing.Size(74, 13)
         Me.LabelControl12.TabIndex = 8895
         Me.LabelControl12.Text = "Parent Account"
-        '
-        'GridColumnclass
-        '
-        Me.GridColumnclass.Caption = "Class"
-        Me.GridColumnclass.FieldName = "class"
-        Me.GridColumnclass.Name = "GridColumnclass"
-        Me.GridColumnclass.OptionsColumn.AllowEdit = False
-        Me.GridColumnclass.Visible = True
-        Me.GridColumnclass.VisibleIndex = 2
-        Me.GridColumnclass.Width = 122
-        '
-        'GridColumncolor
-        '
-        Me.GridColumncolor.Caption = "Color"
-        Me.GridColumncolor.FieldName = "color"
-        Me.GridColumncolor.Name = "GridColumncolor"
-        Me.GridColumncolor.OptionsColumn.AllowEdit = False
-        Me.GridColumncolor.Visible = True
-        Me.GridColumncolor.VisibleIndex = 4
-        Me.GridColumncolor.Width = 92
-        '
-        'GridColumnsht
-        '
-        Me.GridColumnsht.Caption = "Silhouette"
-        Me.GridColumnsht.FieldName = "sht"
-        Me.GridColumnsht.Name = "GridColumnsht"
-        Me.GridColumnsht.OptionsColumn.AllowEdit = False
         '
         'FormSalesOrderDet
         '
