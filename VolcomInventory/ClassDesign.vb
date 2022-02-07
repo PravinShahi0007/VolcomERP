@@ -2164,7 +2164,7 @@
                 For g As Integer = 0 To GVItemList.RowCount - 1
                     Dim dgwp_filter As DataRow() = dgwp.Select("[product_full_code]='" + GVItemList.GetRowCellValue(g, "code").ToString + "'")
                     If dgwp_filter.Length > 0 Then
-                        sku_gwp_no_price += dgwp_filter(0)("product_full_code").ToString + " - " + GVItemList.GetRowCellValue(g, "class").ToString + " - " + GVItemList.GetRowCellValue(g, "name").ToString + " - " + GVItemList.GetRowCellValue(g, "color").ToString + Environment.NewLine
+                        sku_gwp_no_price += dgwp_filter(0)("product_full_code").ToString + " - " + GVItemList.GetRowCellValue(g, "name").ToString + Environment.NewLine
                     End If
                 Next
             Else
