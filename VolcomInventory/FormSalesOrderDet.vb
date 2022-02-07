@@ -586,43 +586,8 @@ Public Class FormSalesOrderDet
         End If
         FormMain.SplashScreenManager1.SetWaitFormDescription("Checking GWP price")
         Dim sku_gwp_no_price As String = ""
-        GVItemList.ActiveFilterString = ""
-        GVItemList.ActiveFilterString = "StartsWith([code], '8888')"
-        If GVItemList.RowCount <= 0 Then
-            sku_gwp_no_price = ""
-        Else
-            'cek gwp
-            Dim qgwp As String = "SELECT d.id_design, p.product_full_code,d.design_code, d.design_display_name, IFNULL(prc.design_price,0) AS `design_price`
-            FROM tb_m_design d 
-            INNER JOIN tb_m_product p ON p.id_design = d.id_design
-            INNER JOIN tb_season ss ON ss.id_season = d.id_season
-            INNER JOIN tb_range rg ON rg.id_range = ss.id_range
-            LEFT JOIN (
-	            SELECT p.* , LEFT(pt.design_price_type,1) AS `price_type`, cat.id_design_cat, LEFT(cat.design_cat,1) AS `design_cat`
-	            FROM tb_m_design_price p
-	            INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = p.id_design_price_type
-	            INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = pt.id_design_cat
-	            WHERE p.id_design_price IN (
-		            SELECT MAX(p.id_design_price) FROM tb_m_design_price p
-		            WHERE p.design_price_start_date<=NOW() AND is_active_wh=1 AND is_design_cost=0
-		            GROUP BY p.id_design
-	            )
-            ) prc ON prc.id_design = d.id_design
-            WHERE d.id_lookup_status_order!=2 AND rg.is_md=2 AND d.id_design>=6327 
-            HAVING design_price=0 "
-            Dim dgwp As DataTable = execute_query(qgwp, -1, True, "", "", "", "")
-            If dgwp.Rows.Count > 0 Then
-                For g As Integer = 0 To GVItemList.RowCount - 1
-                    Dim dgwp_filter As DataRow() = dgwp.Select("[product_full_code]='" + GVItemList.GetRowCellValue(g, "code").ToString + "'")
-                    If dgwp_filter.Length > 0 Then
-                        sku_gwp_no_price += dgwp_filter(0)("product_full_code").ToString + " - " + GVItemList.GetRowCellValue(g, "class").ToString + " - " + GVItemList.GetRowCellValue(g, "name").ToString + " - " + GVItemList.GetRowCellValue(g, "color").ToString + Environment.NewLine
-                    End If
-                Next
-            Else
-                sku_gwp_no_price = ""
-            End If
-        End If
-        GVItemList.ActiveFilterString = ""
+        Dim gwp As New ClassDesign()
+        sku_gwp_no_price = gwp.checkGWPPrice(GVItemList)
         FormMain.SplashScreenManager1.CloseWaitForm()
 
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMain) Then
