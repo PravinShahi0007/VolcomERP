@@ -395,4 +395,13 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub GVSOHSal_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVSOHSal.CustomColumnDisplayText
+        If (e.Column.FieldName.Contains("soh_qty") Or e.Column.FieldName.Contains("sal_qty")) Then
+            Dim qty As Decimal = Convert.ToDecimal(e.Value)
+            If qty = 0 Then
+                e.DisplayText = "-"
+            End If
+        End If
+    End Sub
 End Class
