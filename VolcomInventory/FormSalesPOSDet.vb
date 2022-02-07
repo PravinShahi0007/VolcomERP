@@ -1357,14 +1357,19 @@ Public Class FormSalesPOSDet
     Sub getPotonganGWP()
         If action = "ins" Then
             'code here
-            GVItemList.ActiveFilterString = "[is_gwp]=1"
-            Dim potongan_gwp As Double = 0.0
-            Try
-                potongan_gwp = Double.Parse(GVItemList.Columns("sales_pos_det_amount").SummaryItem.SummaryValue.ToString)
-            Catch ex As Exception
-            End Try
-            TxtPotGWP.EditValue = potongan_gwp
-            GVItemList.ActiveFilterString = ""
+            If CheckEditInvType.EditValue = False Then
+                GVItemList.ActiveFilterString = "[is_gwp]=1"
+                Dim potongan_gwp As Double = 0.0
+                Try
+                    potongan_gwp = Double.Parse(GVItemList.Columns("sales_pos_det_amount").SummaryItem.SummaryValue.ToString)
+                Catch ex As Exception
+                End Try
+                TxtPotGWP.EditValue = potongan_gwp
+                GVItemList.ActiveFilterString = ""
+            Else
+                'invoice missing potongan penjualan gwp di set 0
+                TxtPotGWP.EditValue = 0.00
+            End If
         Else
             Dim query As String = "SELECT sp.potongan_gwp FROM tb_sales_pos sp WHERE sp.id_sales_pos=" + id_sales_pos + " "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
