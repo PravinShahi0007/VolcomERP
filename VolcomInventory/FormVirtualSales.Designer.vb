@@ -46,7 +46,6 @@ Partial Class FormVirtualSales
         Me.XTPVirtualSalInv = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSOHSal = New DevExpress.XtraGrid.GridControl()
         Me.GVSOHSal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnid_design = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnmain_code = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnclass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -67,7 +66,6 @@ Partial Class FormVirtualSales
         Me.GridColumndesign_first_rec_wh = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnunit_cost = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnsize_type = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnsal_qty1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnsal_qty2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnsal_qty3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -79,7 +77,6 @@ Partial Class FormVirtualSales
         Me.GridColumnsal_qty9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnsal_qty0 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnsal_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnsoh_qty1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnsoh_qty2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnsoh_qty3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -141,6 +138,10 @@ Partial Class FormVirtualSales
         Me.BtnBrowseProductSC = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtProductSC = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPSalesReport.SuspendLayout()
@@ -411,7 +412,7 @@ Partial Class FormVirtualSales
         '
         'GVSOHSal
         '
-        Me.GVSOHSal.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
+        Me.GVSOHSal.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand4, Me.GridBand1, Me.gridBand2, Me.gridBand3})
         Me.GVSOHSal.ColumnPanelRowHeight = 35
         Me.GVSOHSal.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnid_design, Me.GridColumnmain_code, Me.GridColumnname, Me.GridColumnclass, Me.GridColumnseason, Me.GridColumnrange, Me.GridColumncolor, Me.GridColumnsht, Me.GridColumnstt, Me.GridColumnid_compsal, Me.GridColumncomp_numbersalinv, Me.GridColumncomp_namesalinve, Me.GridColumngroup_store, Me.GridColumncomp_cat_name, Me.GridColumngroup_store_desc, Me.GridColumndesign_first_rec_wh, Me.GridColumnsize_type, Me.GridColumnsal_qty1, Me.GridColumnsal_qty2, Me.GridColumnsal_qty3, Me.GridColumnsal_qty4, Me.GridColumnsal_qty5, Me.GridColumnsal_qty6, Me.GridColumnsal_qty7, Me.GridColumnsal_qty8, Me.GridColumnsal_qty9, Me.GridColumnsal_qty0, Me.GridColumnsal_qty, Me.GridColumnsoh_qty1, Me.GridColumnsoh_qty2, Me.GridColumnsoh_qty3, Me.GridColumnsoh_qty4, Me.GridColumnsoh_qty5, Me.GridColumnsoh_qty6, Me.GridColumnsoh_qty7, Me.GridColumnsoh_qty8, Me.GridColumnsoh_qty9, Me.GridColumnsoh_qty0, Me.GridColumnsoh_qty, Me.GridColumnprice_type, Me.GridColumnunit_price, Me.GridColumnunit_cost})
         Me.GVSOHSal.GridControl = Me.GCSOHSal
@@ -424,32 +425,6 @@ Partial Class FormVirtualSales
         Me.GVSOHSal.OptionsView.ColumnAutoWidth = False
         Me.GVSOHSal.OptionsView.ShowFooter = True
         Me.GVSOHSal.OptionsView.ShowGroupPanel = False
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Columns.Add(Me.GridColumnid_design)
-        Me.GridBand1.Columns.Add(Me.GridColumnmain_code)
-        Me.GridBand1.Columns.Add(Me.GridColumnclass)
-        Me.GridBand1.Columns.Add(Me.GridColumnname)
-        Me.GridBand1.Columns.Add(Me.GridColumnsht)
-        Me.GridBand1.Columns.Add(Me.GridColumncolor)
-        Me.GridBand1.Columns.Add(Me.GridColumnseason)
-        Me.GridBand1.Columns.Add(Me.GridColumnrange)
-        Me.GridBand1.Columns.Add(Me.GridColumnstt)
-        Me.GridBand1.Columns.Add(Me.GridColumnunit_price)
-        Me.GridBand1.Columns.Add(Me.GridColumnprice_type)
-        Me.GridBand1.Columns.Add(Me.GridColumnid_compsal)
-        Me.GridBand1.Columns.Add(Me.GridColumncomp_numbersalinv)
-        Me.GridBand1.Columns.Add(Me.GridColumncomp_namesalinve)
-        Me.GridBand1.Columns.Add(Me.GridColumngroup_store)
-        Me.GridBand1.Columns.Add(Me.GridColumncomp_cat_name)
-        Me.GridBand1.Columns.Add(Me.GridColumngroup_store_desc)
-        Me.GridBand1.Columns.Add(Me.GridColumndesign_first_rec_wh)
-        Me.GridBand1.Columns.Add(Me.GridColumnunit_cost)
-        Me.GridBand1.Columns.Add(Me.GridColumnsize_type)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 1098
         '
         'GridColumnid_design
         '
@@ -593,24 +568,6 @@ Partial Class FormVirtualSales
         Me.GridColumnsize_type.Name = "GridColumnsize_type"
         Me.GridColumnsize_type.Visible = True
         '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "SALES"
-        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty1)
-        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty2)
-        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty3)
-        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty4)
-        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty5)
-        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty6)
-        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty7)
-        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty8)
-        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty9)
-        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty0)
-        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 825
-        '
         'GridColumnsal_qty1
         '
         Me.GridColumnsal_qty1.Caption = "sal_qty1"
@@ -720,24 +677,6 @@ Partial Class FormVirtualSales
         Me.GridColumnsal_qty.Name = "GridColumnsal_qty"
         Me.GridColumnsal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", "{0:N0}")})
         Me.GridColumnsal_qty.Visible = True
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "SOH"
-        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty1)
-        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty2)
-        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty3)
-        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty4)
-        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty5)
-        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty6)
-        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty7)
-        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty8)
-        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty9)
-        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty0)
-        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 825
         '
         'GridColumnsoh_qty1
         '
@@ -1354,6 +1293,75 @@ Partial Class FormVirtualSales
         Me.LabelControl4.TabIndex = 8915
         Me.LabelControl4.Text = "Account"
         '
+        'gridBand4
+        '
+        Me.gridBand4.Columns.Add(Me.GridColumnmain_code)
+        Me.gridBand4.Columns.Add(Me.GridColumnclass)
+        Me.gridBand4.Columns.Add(Me.GridColumnname)
+        Me.gridBand4.Columns.Add(Me.GridColumncolor)
+        Me.gridBand4.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 0
+        Me.gridBand4.Width = 300
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Columns.Add(Me.GridColumnid_design)
+        Me.GridBand1.Columns.Add(Me.GridColumnsht)
+        Me.GridBand1.Columns.Add(Me.GridColumnseason)
+        Me.GridBand1.Columns.Add(Me.GridColumnrange)
+        Me.GridBand1.Columns.Add(Me.GridColumnstt)
+        Me.GridBand1.Columns.Add(Me.GridColumnunit_price)
+        Me.GridBand1.Columns.Add(Me.GridColumnprice_type)
+        Me.GridBand1.Columns.Add(Me.GridColumnid_compsal)
+        Me.GridBand1.Columns.Add(Me.GridColumncomp_numbersalinv)
+        Me.GridBand1.Columns.Add(Me.GridColumncomp_namesalinve)
+        Me.GridBand1.Columns.Add(Me.GridColumngroup_store)
+        Me.GridBand1.Columns.Add(Me.GridColumncomp_cat_name)
+        Me.GridBand1.Columns.Add(Me.GridColumngroup_store_desc)
+        Me.GridBand1.Columns.Add(Me.GridColumndesign_first_rec_wh)
+        Me.GridBand1.Columns.Add(Me.GridColumnunit_cost)
+        Me.GridBand1.Columns.Add(Me.GridColumnsize_type)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 1
+        Me.GridBand1.Width = 798
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "SALES"
+        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty1)
+        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty2)
+        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty3)
+        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty4)
+        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty5)
+        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty6)
+        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty7)
+        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty8)
+        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty9)
+        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty0)
+        Me.gridBand2.Columns.Add(Me.GridColumnsal_qty)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 2
+        Me.gridBand2.Width = 825
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "SOH"
+        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty1)
+        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty2)
+        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty3)
+        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty4)
+        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty5)
+        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty6)
+        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty7)
+        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty8)
+        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty9)
+        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty0)
+        Me.gridBand3.Columns.Add(Me.GridColumnsoh_qty)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 3
+        Me.gridBand3.Width = 825
+        '
         'FormVirtualSales
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1506,9 +1514,6 @@ Partial Class FormVirtualSales
     Friend WithEvents GridColumnsoh_qty9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnsoh_qty0 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnsoh_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents XTPStockCard As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
@@ -1538,4 +1543,8 @@ Partial Class FormVirtualSales
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ViewDocumentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class
