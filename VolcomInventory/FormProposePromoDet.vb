@@ -18,8 +18,15 @@
     End Sub
 
     Private Sub SBSubmit_Click(sender As Object, e As EventArgs) Handles SBSubmit.Click
+        'cek gwp no price
+        Dim gwp As New ClassDesign()
+        Dim sku_gwp_no_price As String = ""
+        sku_gwp_no_price = gwp.checkGWPPrice(GVProduct)
+
         If TENama.EditValue.ToString = "" Or MEAlamat.EditValue.ToString = "" Or (TEKTP.EditValue.ToString = "" And TENPWP.EditValue.ToString = "") Then
             stopCustom("Please check your input.")
+        ElseIf sku_gwp_no_price <> "" Then
+            stopCustom("Some GWP products have no price : " + Environment.NewLine + sku_gwp_no_price)
         Else
             GVProduct.FindFilterText = ""
             GVProduct.ActiveFilterString = ""

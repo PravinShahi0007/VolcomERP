@@ -580,6 +580,16 @@ Public Class FormSalesOrderDet
 
         Dim block_stocktake As Boolean = If(LEStatusSO.EditValue.ToString = "5", True, block_stocktake_eos(all_product))
 
+        'check barang non merch baru yang belum ada harga
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Checking GWP price")
+        Dim sku_gwp_no_price As String = ""
+        Dim gwp As New ClassDesign()
+        sku_gwp_no_price = gwp.checkGWPPrice(GVItemList)
+        FormMain.SplashScreenManager1.CloseWaitForm()
+
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMain) Then
             errorInput()
         ElseIf GVItemList.RowCount <= 0 Then
@@ -613,6 +623,8 @@ Public Class FormSalesOrderDet
             Cursor = Cursors.Default
         ElseIf Not block_stocktake And id_commerce_type = "1" Then
             stopCustom("Some product already in EOS and need to stock take first.")
+        ElseIf sku_gwp_no_price <> "" Then
+            stopCustom("Some GWP products have no price : " + Environment.NewLine + sku_gwp_no_price)
         Else
             Dim sales_order_note As String = addSlashes(MENote.Text)
             Dim id_so_type As String = LETypeSO.EditValue.ToString
@@ -905,6 +917,7 @@ Public Class FormSalesOrderDet
     End Sub
 
     Private Sub SimpleButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SimpleButton1.Click
+        'Console.WriteLine(GVItemList.ActiveFilterString.ToString)
         'For i As Integer = 0 To (GVItemList.RowCount - 1)
         '    Try
         '        Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
