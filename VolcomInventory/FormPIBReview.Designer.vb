@@ -136,7 +136,7 @@ Partial Class FormPIBReview
         Me.XTPReview.Controls.Add(Me.BCreatePPS)
         Me.XTPReview.Controls.Add(Me.PanelControl1)
         Me.XTPReview.Name = "XTPReview"
-        Me.XTPReview.Size = New System.Drawing.Size(1005, 528)
+        Me.XTPReview.Size = New System.Drawing.Size(1026, 528)
         Me.XTPReview.Text = "PIB Waiting List"
         '
         'GCSummary
@@ -145,7 +145,7 @@ Partial Class FormPIBReview
         Me.GCSummary.Location = New System.Drawing.Point(0, 49)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(1005, 439)
+        Me.GCSummary.Size = New System.Drawing.Size(1026, 439)
         Me.GCSummary.TabIndex = 1
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
@@ -367,7 +367,7 @@ Partial Class FormPIBReview
         Me.BCreatePPS.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BCreatePPS.Location = New System.Drawing.Point(0, 488)
         Me.BCreatePPS.Name = "BCreatePPS"
-        Me.BCreatePPS.Size = New System.Drawing.Size(1005, 40)
+        Me.BCreatePPS.Size = New System.Drawing.Size(1026, 40)
         Me.BCreatePPS.TabIndex = 6
         Me.BCreatePPS.Text = "Input Detail PIB"
         '
@@ -377,14 +377,14 @@ Partial Class FormPIBReview
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1005, 49)
+        Me.PanelControl1.Size = New System.Drawing.Size(1026, 49)
         Me.PanelControl1.TabIndex = 0
         '
         'BRefresh
         '
         Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Right
         Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
-        Me.BRefresh.Location = New System.Drawing.Point(887, 2)
+        Me.BRefresh.Location = New System.Drawing.Point(908, 2)
         Me.BRefresh.Name = "BRefresh"
         Me.BRefresh.Size = New System.Drawing.Size(116, 45)
         Me.BRefresh.TabIndex = 0
@@ -395,7 +395,7 @@ Partial Class FormPIBReview
         Me.XTPInput.Controls.Add(Me.GCListPPS)
         Me.XTPInput.Controls.Add(Me.PanelControl2)
         Me.XTPInput.Name = "XTPInput"
-        Me.XTPInput.Size = New System.Drawing.Size(1005, 528)
+        Me.XTPInput.Size = New System.Drawing.Size(1026, 528)
         Me.XTPInput.Text = "Input PIB Detail"
         '
         'GCListPPS
@@ -404,7 +404,7 @@ Partial Class FormPIBReview
         Me.GCListPPS.Location = New System.Drawing.Point(0, 49)
         Me.GCListPPS.MainView = Me.GVListPPS
         Me.GCListPPS.Name = "GCListPPS"
-        Me.GCListPPS.Size = New System.Drawing.Size(1005, 479)
+        Me.GCListPPS.Size = New System.Drawing.Size(1026, 479)
         Me.GCListPPS.TabIndex = 2
         Me.GCListPPS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListPPS})
         '
@@ -413,6 +413,8 @@ Partial Class FormPIBReview
         Me.GVListPPS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21})
         Me.GVListPPS.GridControl = Me.GCListPPS
         Me.GVListPPS.Name = "GVListPPS"
+        Me.GVListPPS.OptionsBehavior.Editable = False
+        Me.GVListPPS.OptionsBehavior.ReadOnly = True
         Me.GVListPPS.OptionsView.ShowGroupPanel = False
         '
         'GridColumn18
@@ -452,14 +454,14 @@ Partial Class FormPIBReview
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1005, 49)
+        Me.PanelControl2.Size = New System.Drawing.Size(1026, 49)
         Me.PanelControl2.TabIndex = 1
         '
         'BRefreshPPS
         '
         Me.BRefreshPPS.Dock = System.Windows.Forms.DockStyle.Right
         Me.BRefreshPPS.Image = CType(resources.GetObject("BRefreshPPS.Image"), System.Drawing.Image)
-        Me.BRefreshPPS.Location = New System.Drawing.Point(887, 2)
+        Me.BRefreshPPS.Location = New System.Drawing.Point(908, 2)
         Me.BRefreshPPS.Name = "BRefreshPPS"
         Me.BRefreshPPS.Size = New System.Drawing.Size(116, 45)
         Me.BRefreshPPS.TabIndex = 0

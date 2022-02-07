@@ -848,14 +848,14 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
             Dim query_trans As String = ""
             If rmt = "139" Then 'opex
                 query_trans = "INSERT INTO `tb_b_expense_opex_trans`(id_b_expense_opex,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note) 
-                                SELECT prd.id_b_expense_opex,pr.id_departement,NOW(),(pod.`value` * pod.qty),prd.id_item,pod.`id_purc_order` AS id_report,'202' AS report_mark_type,'Purchase Order'
+                                SELECT prd.id_b_expense_opex,pr.id_departement,NOW(),(pod.`value` * pod.qty),prd.id_item,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
                                 FROM `tb_purc_order_det` pod
                                 INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                 INNER JOIN tb_purc_req pr ON pr.id_purc_req=prd.id_purc_req
                                 WHERE pod.`id_purc_order`='" & id_po & "'"
             Else 'capex
                 query_trans = "INSERT INTO `tb_b_expense_trans`(id_b_expense,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note) 
-                                SELECT prd.id_b_expense,pr.id_departement,NOW(),(pod.`value` * pod.qty),prd.id_item,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
+                                SELECT prd.id_b_expense,pr.id_departement,NOW(),(pod.`value` * pod.qty),prd.id_item,pod.`id_purc_order` AS id_report,'202' AS report_mark_type,'Purchase Order'
                                 FROM `tb_purc_order_det` pod
                                 INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                 INNER JOIN tb_purc_req pr ON pr.id_purc_req=prd.id_purc_req

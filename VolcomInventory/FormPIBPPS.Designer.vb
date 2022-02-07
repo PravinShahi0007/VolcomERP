@@ -43,13 +43,18 @@ Partial Class FormPIBPPS
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCPIBPPps = New DevExpress.XtraGrid.GridControl()
         Me.BGVPIBPPS = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GVPIBPps = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -58,11 +63,6 @@ Partial Class FormPIBPPS
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -331,6 +331,15 @@ Partial Class FormPIBPPS
         Me.BGVPIBPPS.OptionsView.RowAutoHeight = True
         Me.BGVPIBPPS.OptionsView.ShowGroupPanel = False
         '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Detail"
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 150
+        '
         'BandedGridColumn2
         '
         Me.BandedGridColumn2.Caption = "ISB Number"
@@ -350,6 +359,16 @@ Partial Class FormPIBPPS
         '
         Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "Old Value"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn7)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn8)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn6)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 225
+        '
         'BandedGridColumn7
         '
         Me.BandedGridColumn7.Caption = "PIB No"
@@ -366,6 +385,25 @@ Partial Class FormPIBPPS
         Me.BandedGridColumn8.Name = "BandedGridColumn8"
         Me.BandedGridColumn8.Visible = True
         '
+        'BandedGridColumn6
+        '
+        Me.BandedGridColumn6.Caption = "VP Due Date"
+        Me.BandedGridColumn6.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn6.FieldName = "old_vp_due_date"
+        Me.BandedGridColumn6.Name = "BandedGridColumn6"
+        Me.BandedGridColumn6.Visible = True
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "New Value"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn4)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn5)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn9)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 225
+        '
         'BandedGridColumn4
         '
         Me.BandedGridColumn4.Caption = "PIB No"
@@ -381,6 +419,15 @@ Partial Class FormPIBPPS
         Me.BandedGridColumn5.FieldName = "pib_date"
         Me.BandedGridColumn5.Name = "BandedGridColumn5"
         Me.BandedGridColumn5.Visible = True
+        '
+        'BandedGridColumn9
+        '
+        Me.BandedGridColumn9.Caption = "VP Due Date"
+        Me.BandedGridColumn9.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn9.FieldName = "vp_due_date"
+        Me.BandedGridColumn9.Name = "BandedGridColumn9"
+        Me.BandedGridColumn9.Visible = True
         '
         'BandedGridColumn1
         '
@@ -436,53 +483,6 @@ Partial Class FormPIBPPS
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
         '
-        'BandedGridColumn6
-        '
-        Me.BandedGridColumn6.Caption = "VP Due Date"
-        Me.BandedGridColumn6.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.BandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.BandedGridColumn6.FieldName = "old_vp_due_date"
-        Me.BandedGridColumn6.Name = "BandedGridColumn6"
-        Me.BandedGridColumn6.Visible = True
-        '
-        'BandedGridColumn9
-        '
-        Me.BandedGridColumn9.Caption = "VP Due Date"
-        Me.BandedGridColumn9.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.BandedGridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.BandedGridColumn9.FieldName = "vp_due_date"
-        Me.BandedGridColumn9.Name = "BandedGridColumn9"
-        Me.BandedGridColumn9.Visible = True
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "Detail"
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn3)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 150
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "Old Value"
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn7)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn8)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn6)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 225
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "New Value"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn4)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn5)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn9)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 225
-        '
         'FormPIBPPS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -497,7 +497,7 @@ Partial Class FormPIBPPS
         Me.MinimizeBox = False
         Me.Name = "FormPIBPPS"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Propose PIB"
+        Me.Text = "International Shipment Activities"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
