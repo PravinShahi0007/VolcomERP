@@ -34,6 +34,8 @@ Partial Public Class ReportAccountingJournal
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
@@ -63,8 +65,6 @@ Partial Public Class ReportAccountingJournal
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LUnit = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -251,6 +251,24 @@ Partial Public Class ReportAccountingJournal
         Me.RepositoryItemTextEdit2.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.RepositoryItemTextEdit2.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Report"
+        Me.GridColumn10.FieldName = "report_number"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 3
+        Me.GridColumn10.Width = 203
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Reff"
+        Me.GridColumn11.FieldName = "report_number_ref"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.Width = 203
         '
         'TopMargin
         '
@@ -567,24 +585,6 @@ Partial Public Class ReportAccountingJournal
         Me.XrLabel15.StylePriority.UseTextAlignment = False
         Me.XrLabel15.Text = "Unit"
         Me.XrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Report"
-        Me.GridColumn10.FieldName = "report_number"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 3
-        Me.GridColumn10.Width = 203
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Reff"
-        Me.GridColumn11.FieldName = "report_number_reff"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 4
-        Me.GridColumn11.Width = 203
         '
         'ReportAccountingJournal
         '
