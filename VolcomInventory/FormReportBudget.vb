@@ -42,10 +42,10 @@
         Dim query As String = "(SELECT 'All' AS departement,icm.`id_item_cat_main`,icm.`item_cat_main` AS main_cat,et.`expense_type`
         ,opex.`value_expense` AS budget
         ,IFNULL(po.val,0) AS po_booked
-        ,SUM(val.val) AS rec
-        ,IFNULL(po.val,0)+SUM(val.val) AS val_used
-        ,opex.`value_expense`-(IFNULL(po.val,0)+SUM(val.val)) AS val_remaining
-        ,((IFNULL(po.val,0)+SUM(val.val))/opex.value_expense)*100 AS used_percent
+        ,IFNULL(SUM(val.val),0) AS rec
+        ,IFNULL(po.val,0)+IFNULL(SUM(val.val),0) AS val_used
+        ,opex.`value_expense`-(IFNULL(po.val,0)+IFNULL(SUM(val.val),0)) AS val_remaining
+        ,((IFNULL(po.val,0)+IFNULL(SUM(val.val),0))/opex.value_expense)*100 AS used_percent
         ,0 AS id_departement
 FROM `tb_b_expense_opex` opex 
 INNER JOIN tb_item_cat_main icm ON icm.`id_item_cat_main`=opex.`id_item_cat_main`
@@ -74,7 +74,9 @@ GROUP BY opex.`id_b_expense_opex`)"
         GCReportBudgetNew.DataSource = data
         GVReportBudgetNew.BestFitColumns()
         '
-        'PanelChart.Visible = True
+        PCNew.Visible = True
+
+        setGaugeInfoNew()
     End Sub
 
     Sub load_budget()
@@ -132,6 +134,50 @@ GROUP BY opex.`id_b_expense_opex`)"
 
 
         setGaugeInfo()
+    End Sub
+
+    Sub setGaugeInfoNew()
+
+        'isi gauge summary
+        TEBudgetSumNew.EditValue = GVReportBudgetNew.Columns("budget").SummaryItem.SummaryValue
+        TEActualSumNew.EditValue = GVReportBudgetNew.Columns("val_used").SummaryItem.SummaryValue
+
+        ASSumNew.Value = GVReportBudgetNew.Columns("val_used").SummaryItem.SummaryValue / GVReportBudgetNew.Columns("budget").SummaryItem.SummaryValue * 100
+        LCSummaryNew.Text = Decimal.Parse((GVReportBudgetNew.Columns("val_used").SummaryItem.SummaryValue / GVReportBudgetNew.Columns("budget").SummaryItem.SummaryValue) * 100).ToString("N2") + "%"
+        'opex capex
+
+        Dim b_opex As Decimal = 0.0
+        Dim b_capex As Decimal = 0.0
+        '
+        Dim u_opex As Decimal = 0.0
+        Dim u_capex As Decimal = 0.0
+
+        For i As Integer = 0 To GVReportBudgetNew.RowCount - 1
+            If GVReportBudgetNew.GetRowCellValue(i, "expense_type").ToString.ToUpper = "CAPEX" Then
+                b_capex += GVReportBudgetNew.GetRowCellValue(i, "budget")
+                u_capex += GVReportBudgetNew.GetRowCellValue(i, "val_used")
+            Else
+                b_opex += GVReportBudgetNew.GetRowCellValue(i, "budget")
+                u_opex += GVReportBudgetNew.GetRowCellValue(i, "val_used")
+            End If
+        Next
+
+        TEBudgetCapexNew.EditValue = b_capex
+        TEUsedCapexNew.EditValue = u_capex
+        TEBudgetOpexNew.EditValue = b_opex
+        TEUsedOpexNew.EditValue = u_opex
+
+        If Not b_capex = 0 Then
+            'isi gauge capex
+            ASCapexNew.Value = u_capex / b_capex * 100
+            LCCapexNew.Text = Decimal.Parse((u_capex / b_capex) * 100).ToString("N2") + "%"
+        End If
+
+        If Not b_opex = 0 Then
+            'isi gauge opex
+            ASOpexNew.Value = u_opex / b_opex * 100
+            LCOpexNew.Text = Decimal.Parse((u_opex / b_opex) * 100).ToString("N2") + "%"
+        End If
     End Sub
 
     Sub setGaugeInfo()

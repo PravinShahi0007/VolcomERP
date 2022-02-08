@@ -42,7 +42,20 @@
         DEStartCard.EditValue = Now
         DEUntilCard.EditValue = Now
         '
+        DEYearBudgetMapping.EditValue = Now
+        '
         load_dep()
+
+        load_acc_parent()
+    End Sub
+
+    Sub load_acc_parent()
+        Dim q As String = "SELECT a.*,'Office' AS typ,CONCAT(a.acc_name,' - ',a.acc_description) AS acc_desc FROM `tb_a_acc` a
+WHERE a.id_is_det=1 AND LENGTH(a.acc_name)=4 AND a.id_acc_cat=4 AND a.id_coa_type=1 AND a.id_status=1
+UNION ALL
+SELECT a.*,'Cabang' AS typ,CONCAT(a.acc_name,' - ',a.acc_description) AS acc_desc FROM `tb_a_acc` a
+WHERE a.id_is_det=1 AND LENGTH(a.acc_name)=4 AND a.id_coa_type=2 AND a.id_status=1"
+        viewSearchLookupQuery(SLEACCParent, q, "id_acc", "acc_desc", "id_acc")
     End Sub
 
     Sub load_dep()
@@ -126,5 +139,55 @@ ORDER BY pps.id_b_expense_propose DESC"
     Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click
         FormSetupBudgetCAPEXDet.id_pps = GVProposeList.GetFocusedRowCellValue("id_b_expense_propose").ToString
         FormSetupBudgetCAPEXDet.ShowDialog()
+    End Sub
+
+    Private Sub BViewBudgetMapping_Click(sender As Object, e As EventArgs) Handles BViewBudgetMapping.Click
+        load_budget_map()
+    End Sub
+
+    Sub load_budget_map()
+        Dim query As String = "SELECT ic.id_item_cat_main,ic.item_cat_main,'" & Date.Parse(DEYearBudgetMapping.EditValue.ToString).ToString("yyyy") & "' AS `year`,IFNULL(bo.id_b_expense,'') AS id_b_expense,IFNULL(bo.value_expense,0) AS value_expense
+FROM tb_item_cat_main ic
+INNER JOIN `tb_b_expense` bo ON bo.id_item_cat_main=ic.id_item_cat_main AND bo.year='" & Date.Parse(DEYearBudgetMapping.EditValue.ToString).ToString("yyyy") & "' AND bo.is_active='1'
+WHERE ic.id_expense_type='2'
+GROUP BY ic.id_item_cat_main
+ORDER BY ic.id_item_cat_main"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCBudgetMap.DataSource = data
+        GVBudgetMap.BestFitColumns()
+    End Sub
+
+    Sub load_view_map()
+        If GVBudgetMap.RowCount > 0 Then
+            Dim q As String = "SELECT a.*,IF(id_coa_type=1,'Office','Cabang') AS typ,CONCAT(a.acc_name,' - ',a.acc_description) AS acc_desc
+FROM tb_b_expense_map map
+INNER JOIN `tb_a_acc` a ON a.`id_acc`=map.id_acc
+WHERE map.id_item_cat_main='" & GVBudgetMap.GetFocusedRowCellValue("id_item_cat_main").ToString & "' AND map.year='" & GVBudgetMap.GetFocusedRowCellValue("year").ToString & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            GCAccMapping.DataSource = dt
+            GVAccMapping.BestFitColumns()
+        End If
+    End Sub
+
+    Private Sub BAddMapping_Click(sender As Object, e As EventArgs) Handles BAddMapping.Click
+        If GVBudgetMap.RowCount > 0 And Not SLEACCParent.EditValue = Nothing Then
+            'check first
+            Dim q As String = "SELECT id_acc FROM tb_b_expense_map WHERE id_item_cat_main='" & GVBudgetMap.GetFocusedRowCellValue("id_item_cat_main").ToString & "' AND year='" & GVBudgetMap.GetFocusedRowCellValue("year").ToString & "' AND id_acc='" & SLEACCParent.EditValue.ToString & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                warningCustom("Already on list")
+                load_view_map()
+            Else
+                q = "INSERT INTO tb_b_expense_map(id_item_cat_main,year,id_acc) VALUES('" & GVBudgetMap.GetFocusedRowCellValue("id_item_cat_main").ToString & "','" & GVBudgetMap.GetFocusedRowCellValue("year").ToString & "','" & SLEACCParent.EditValue.ToString & "')"
+                execute_non_query(q, True, "", "", "", "")
+                load_view_map()
+            End If
+        End If
+    End Sub
+
+    Private Sub GVBudgetMap_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVBudgetMap.FocusedRowChanged
+        If GVBudgetMap.RowCount > 0 Then
+            load_view_map()
+        End If
     End Sub
 End Class

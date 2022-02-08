@@ -79,6 +79,32 @@ Partial Class FormSetupBudgetCAPEX
         Me.DEStartCard = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPMapping = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEYearBudgetMapping = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.BViewBudgetMapping = New DevExpress.XtraEditors.SimpleButton()
+        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.GCBudgetMap = New DevExpress.XtraGrid.GridControl()
+        Me.GVBudgetMap = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GCAccMapping = New DevExpress.XtraGrid.GridControl()
+        Me.GVAccMapping = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.BAddMapping = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEACCParent = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSampleBudget, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSampleBudget.SuspendLayout()
         Me.XTPBudget.SuspendLayout()
@@ -112,6 +138,22 @@ Partial Class FormSetupBudgetCAPEX
         CType(Me.DEUntilCard.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartCard.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartCard.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPMapping.SuspendLayout()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.DEYearBudgetMapping.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEYearBudgetMapping.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainerControl1.SuspendLayout()
+        CType(Me.GCBudgetMap, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVBudgetMap, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCAccMapping, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVAccMapping, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl6.SuspendLayout()
+        CType(Me.SLEACCParent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSampleBudget
@@ -123,7 +165,7 @@ Partial Class FormSetupBudgetCAPEX
         Me.XTCSampleBudget.SelectedTabPage = Me.XTPBudget
         Me.XTCSampleBudget.Size = New System.Drawing.Size(984, 612)
         Me.XTCSampleBudget.TabIndex = 9
-        Me.XTCSampleBudget.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBudget, Me.XTPProposal, Me.XTPMutasiBudget})
+        Me.XTCSampleBudget.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBudget, Me.XTPProposal, Me.XTPMutasiBudget, Me.XTPMapping})
         '
         'XTPBudget
         '
@@ -706,6 +748,256 @@ Partial Class FormSetupBudgetCAPEX
         Me.BPrint.TabIndex = 8924
         Me.BPrint.Text = "Print"
         '
+        'XTPMapping
+        '
+        Me.XTPMapping.Controls.Add(Me.SplitContainerControl1)
+        Me.XTPMapping.Controls.Add(Me.PanelControl5)
+        Me.XTPMapping.Name = "XTPMapping"
+        Me.XTPMapping.Size = New System.Drawing.Size(978, 584)
+        Me.XTPMapping.Text = "Budget Mapping"
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.Controls.Add(Me.DEYearBudgetMapping)
+        Me.PanelControl5.Controls.Add(Me.LabelControl3)
+        Me.PanelControl5.Controls.Add(Me.BViewBudgetMapping)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(978, 38)
+        Me.PanelControl5.TabIndex = 6
+        '
+        'DEYearBudgetMapping
+        '
+        Me.DEYearBudgetMapping.EditValue = Nothing
+        Me.DEYearBudgetMapping.Location = New System.Drawing.Point(86, 8)
+        Me.DEYearBudgetMapping.Name = "DEYearBudgetMapping"
+        Me.DEYearBudgetMapping.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEYearBudgetMapping.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEYearBudgetMapping.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista
+        Me.DEYearBudgetMapping.Properties.DisplayFormat.FormatString = "yyyy"
+        Me.DEYearBudgetMapping.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEYearBudgetMapping.Properties.Mask.EditMask = "yyyy"
+        Me.DEYearBudgetMapping.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEYearBudgetMapping.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearsGroupView
+        Me.DEYearBudgetMapping.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
+        Me.DEYearBudgetMapping.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
+        Me.DEYearBudgetMapping.Size = New System.Drawing.Size(239, 20)
+        Me.DEYearBudgetMapping.TabIndex = 8905
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 11)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(59, 13)
+        Me.LabelControl3.TabIndex = 8904
+        Me.LabelControl3.Text = "Year Budget"
+        '
+        'BViewBudgetMapping
+        '
+        Me.BViewBudgetMapping.Location = New System.Drawing.Point(331, 6)
+        Me.BViewBudgetMapping.Name = "BViewBudgetMapping"
+        Me.BViewBudgetMapping.Size = New System.Drawing.Size(59, 23)
+        Me.BViewBudgetMapping.TabIndex = 8903
+        Me.BViewBudgetMapping.Text = "Search"
+        '
+        'SplitContainerControl1
+        '
+        Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 38)
+        Me.SplitContainerControl1.Name = "SplitContainerControl1"
+        Me.SplitContainerControl1.Panel1.Controls.Add(Me.GCBudgetMap)
+        Me.SplitContainerControl1.Panel1.Text = "Panel1"
+        Me.SplitContainerControl1.Panel2.Controls.Add(Me.GCAccMapping)
+        Me.SplitContainerControl1.Panel2.Controls.Add(Me.PanelControl6)
+        Me.SplitContainerControl1.Panel2.Text = "Panel2"
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(978, 546)
+        Me.SplitContainerControl1.SplitterPosition = 497
+        Me.SplitContainerControl1.TabIndex = 7
+        Me.SplitContainerControl1.Text = "SplitContainerControl1"
+        '
+        'GCBudgetMap
+        '
+        Me.GCBudgetMap.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCBudgetMap.Location = New System.Drawing.Point(0, 0)
+        Me.GCBudgetMap.MainView = Me.GVBudgetMap
+        Me.GCBudgetMap.Name = "GCBudgetMap"
+        Me.GCBudgetMap.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCBudgetMap.Size = New System.Drawing.Size(497, 546)
+        Me.GCBudgetMap.TabIndex = 6
+        Me.GCBudgetMap.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBudgetMap})
+        '
+        'GVBudgetMap
+        '
+        Me.GVBudgetMap.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11})
+        Me.GVBudgetMap.GridControl = Me.GCBudgetMap
+        Me.GVBudgetMap.Name = "GVBudgetMap"
+        Me.GVBudgetMap.OptionsBehavior.ReadOnly = True
+        Me.GVBudgetMap.OptionsView.ShowFooter = True
+        Me.GVBudgetMap.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Id"
+        Me.GridColumn8.FieldName = "id_b_expense_opex"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Year"
+        Me.GridColumn9.FieldName = "year"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
+        Me.GridColumn9.OptionsColumn.ReadOnly = True
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 0
+        Me.GridColumn9.Width = 177
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Category"
+        Me.GridColumn10.FieldName = "item_cat_main"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
+        Me.GridColumn10.OptionsColumn.ReadOnly = True
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 1
+        Me.GridColumn10.Width = 177
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Value"
+        Me.GridColumn11.DisplayFormat.FormatString = "N2"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn11.FieldName = "value_expense"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.OptionsColumn.ReadOnly = True
+        Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_expense", "{0:N2}")})
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 2
+        Me.GridColumn11.Width = 167
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
+        'GCAccMapping
+        '
+        Me.GCAccMapping.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCAccMapping.Location = New System.Drawing.Point(0, 50)
+        Me.GCAccMapping.MainView = Me.GVAccMapping
+        Me.GCAccMapping.Name = "GCAccMapping"
+        Me.GCAccMapping.Size = New System.Drawing.Size(476, 496)
+        Me.GCAccMapping.TabIndex = 0
+        Me.GCAccMapping.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAccMapping})
+        '
+        'GVAccMapping
+        '
+        Me.GVAccMapping.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.GridColumn13, Me.GridColumn22})
+        Me.GVAccMapping.GridControl = Me.GCAccMapping
+        Me.GVAccMapping.Name = "GVAccMapping"
+        Me.GVAccMapping.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "ID Acc"
+        Me.GridColumn12.Name = "GridColumn12"
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "ACC Parent"
+        Me.GridColumn13.FieldName = "acc_desc"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 0
+        Me.GridColumn13.Width = 1245
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn22.Caption = "COA Tag"
+        Me.GridColumn22.FieldName = "typ"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 1
+        Me.GridColumn22.Width = 387
+        '
+        'PanelControl6
+        '
+        Me.PanelControl6.Controls.Add(Me.BAddMapping)
+        Me.PanelControl6.Controls.Add(Me.LabelControl4)
+        Me.PanelControl6.Controls.Add(Me.SLEACCParent)
+        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl6.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl6.Name = "PanelControl6"
+        Me.PanelControl6.Size = New System.Drawing.Size(476, 50)
+        Me.PanelControl6.TabIndex = 1
+        '
+        'BAddMapping
+        '
+        Me.BAddMapping.Location = New System.Drawing.Point(284, 15)
+        Me.BAddMapping.Name = "BAddMapping"
+        Me.BAddMapping.Size = New System.Drawing.Size(46, 24)
+        Me.BAddMapping.TabIndex = 2
+        Me.BAddMapping.Text = "add"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(14, 20)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl4.TabIndex = 1
+        Me.LabelControl4.Text = "COA Parent"
+        '
+        'SLEACCParent
+        '
+        Me.SLEACCParent.Location = New System.Drawing.Point(77, 17)
+        Me.SLEACCParent.Name = "SLEACCParent"
+        Me.SLEACCParent.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEACCParent.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEACCParent.Size = New System.Drawing.Size(201, 20)
+        Me.SLEACCParent.TabIndex = 0
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn24, Me.GridColumn26, Me.GridColumn27})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "ID Acc"
+        Me.GridColumn24.FieldName = "id_acc"
+        Me.GridColumn24.Name = "GridColumn24"
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "COA"
+        Me.GridColumn26.FieldName = "acc_desc"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 0
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Type"
+        Me.GridColumn27.FieldName = "typ"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 1
+        '
         'FormSetupBudgetCAPEX
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -752,6 +1044,24 @@ Partial Class FormSetupBudgetCAPEX
         CType(Me.DEUntilCard.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartCard.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartCard.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPMapping.ResumeLayout(False)
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        Me.PanelControl5.PerformLayout()
+        CType(Me.DEYearBudgetMapping.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEYearBudgetMapping.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainerControl1.ResumeLayout(False)
+        CType(Me.GCBudgetMap, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVBudgetMap, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCAccMapping, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVAccMapping, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl6.ResumeLayout(False)
+        Me.PanelControl6.PerformLayout()
+        CType(Me.SLEACCParent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -815,4 +1125,30 @@ Partial Class FormSetupBudgetCAPEX
     Friend WithEvents LEDeptSum As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPMapping As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents DEYearBudgetMapping As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BViewBudgetMapping As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SplitContainerControl1 As DevExpress.XtraEditors.SplitContainerControl
+    Friend WithEvents GCBudgetMap As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVBudgetMap As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GCAccMapping As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVAccMapping As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BAddMapping As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEACCParent As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
