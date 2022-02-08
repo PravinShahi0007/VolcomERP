@@ -69,7 +69,45 @@ LEFT JOIN
 	GROUP BY ot.id_b_expense_opex
 )po ON po.id_b_expense_opex=opex.id_b_expense_opex
 WHERE opex.`year`='" & LEYear.Text.ToString & "'
-GROUP BY opex.`id_b_expense_opex`)"
+GROUP BY opex.`id_b_expense_opex`)
+UNION ALL
+(SELECT 'All' AS departement,icm.`id_item_cat_main`,icm.`item_cat_main` AS main_cat,et.`expense_type`
+,capex.`value_expense` AS budget
+,IFNULL(po.val,0) AS po_booked
+,IFNULL(SUM(val.val),0) AS rec
+,IFNULL(po.val,0)+IFNULL(SUM(val.val),0) AS val_used
+,capex.`value_expense`-(IFNULL(po.val,0)+IFNULL(SUM(val.val),0)) AS val_remaining
+,((IFNULL(po.val,0)+IFNULL(SUM(val.val),0))/capex.value_expense)*100 AS used_percent
+,0 AS id_departement
+FROM
+(
+	SELECT icm.`id_item_cat_main`,SUM(capex.`value_expense`) AS value_expense
+	FROM `tb_b_expense` capex 
+	INNER JOIN tb_item_cat_main icm ON icm.`id_item_cat_main`=capex.`id_item_cat_main` AND capex.`year`='" & LEYear.Text.ToString & "'
+	GROUP BY capex.`id_item_cat_main`
+)capex
+INNER JOIN tb_item_cat_main icm ON icm.`id_item_cat_main`=capex.`id_item_cat_main`
+INNER JOIN tb_lookup_expense_type et ON et.`id_expense_type`=icm.`id_expense_type`
+INNER JOIN `tb_b_expense_map` map ON map.`id_item_cat_main`=icm.`id_item_cat_main` AND map.`year`='" & LEYear.Text.ToString & "'
+INNER JOIN  tb_a_acc acc ON acc.`id_acc`=map.`id_acc`
+LEFT JOIN
+(
+	SELECT acc.`id_acc`,acc.`acc_name`,acc.`acc_description`,SUM(IF(acc.`id_dc`=1,trxd.`debit`-trxd.`credit`,trxd.`credit`-trxd.`debit`)) AS val,acc.`id_coa_type`
+	FROM tb_a_acc_trans_det trxd
+	INNER JOIN tb_a_acc_trans trx ON trx.`id_acc_trans`=trxd.`id_acc_trans` AND YEAR(trx.`date_reference`)='" & LEYear.Text.ToString & "'
+	INNER JOIN tb_a_acc acc ON acc.`id_acc`=trxd.`id_acc`
+	WHERE trx.`id_report_status`=6 AND DATE(trx.date_reference) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+	GROUP BY acc.`id_acc`
+)val ON LEFT(val.acc_name,4)=LEFT(acc.`acc_name`,4) AND acc.`id_coa_type`=val.`id_coa_type`
+LEFT JOIN
+(
+	SELECT capex.id_item_cat_main,SUM(ot.value) AS val
+	FROM `tb_b_expense_trans` ot
+	INNER JOIN `tb_b_expense` capex  ON capex.`id_b_expense`=ot.id_b_expense
+	WHERE ot.is_po=1 AND capex.`year`='" & LEYear.Text.ToString & "' AND DATE(ot.date_trans) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+	GROUP BY capex.id_item_cat_main
+)po ON po.id_item_cat_main=icm.id_item_cat_main
+GROUP BY capex.`id_item_cat_main`)"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCReportBudgetNew.DataSource = data
         GVReportBudgetNew.BestFitColumns()
@@ -300,5 +338,9 @@ GROUP BY `year`"
             FormReportBudgetList.year = LEYear.Text
             FormReportBudgetList.ShowDialog()
         End If
+    End Sub
+
+    Private Sub TMBookedPO_Click(sender As Object, e As EventArgs) Handles TMBookedPO.Click
+
     End Sub
 End Class

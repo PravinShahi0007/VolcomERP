@@ -135,6 +135,8 @@ Partial Class FormReportBudget
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMView = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.TMBookedPO = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCItemCat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVItemCat, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -205,6 +207,7 @@ Partial Class FormReportBudget
         CType(Me.TEBudgetSumNew.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCReportBudgetNew, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVReportBudgetNew, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMView.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCItemCat
@@ -1341,7 +1344,7 @@ Partial Class FormReportBudget
         '
         'GCReportBudgetNew
         '
-        Me.GCReportBudgetNew.ContextMenuStrip = Me.ViewMenu
+        Me.GCReportBudgetNew.ContextMenuStrip = Me.CMView
         Me.GCReportBudgetNew.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCReportBudgetNew.Location = New System.Drawing.Point(0, 114)
         Me.GCReportBudgetNew.MainView = Me.GVReportBudgetNew
@@ -1478,6 +1481,18 @@ Partial Class FormReportBudget
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 8
         '
+        'CMView
+        '
+        Me.CMView.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TMBookedPO})
+        Me.CMView.Name = "ContextMenuStripYM"
+        Me.CMView.Size = New System.Drawing.Size(166, 48)
+        '
+        'TMBookedPO
+        '
+        Me.TMBookedPO.Name = "TMBookedPO"
+        Me.TMBookedPO.Size = New System.Drawing.Size(165, 22)
+        Me.TMBookedPO.Text = "Show Booked PO"
+        '
         'FormReportBudget
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1568,6 +1583,7 @@ Partial Class FormReportBudget
         CType(Me.TEBudgetSumNew.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCReportBudgetNew, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVReportBudgetNew, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMView.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1686,4 +1702,6 @@ Partial Class FormReportBudget
     Friend WithEvents TEActualSumNew As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label13 As Label
     Friend WithEvents TEBudgetSumNew As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents CMView As ContextMenuStrip
+    Friend WithEvents TMBookedPO As ToolStripMenuItem
 End Class

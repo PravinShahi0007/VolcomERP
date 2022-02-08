@@ -472,13 +472,13 @@ Partial Public Class ReportPIBPPS
         'LabelTitle
         '
         Me.LabelTitle.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelTitle.LocationFloat = New DevExpress.Utils.PointFloat(810.2437!, 0!)
+        Me.LabelTitle.LocationFloat = New DevExpress.Utils.PointFloat(519.6187!, 0!)
         Me.LabelTitle.Name = "LabelTitle"
         Me.LabelTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelTitle.SizeF = New System.Drawing.SizeF(239.7561!, 20.0!)
+        Me.LabelTitle.SizeF = New System.Drawing.SizeF(530.381!, 20.0!)
         Me.LabelTitle.StylePriority.UseFont = False
         Me.LabelTitle.StylePriority.UseTextAlignment = False
-        Me.LabelTitle.Text = "PIB DETAIL PROPOSE"
+        Me.LabelTitle.Text = "INTERNATIONAL SHIPMENT ACTIVITIES"
         Me.LabelTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomRight
         '
         'ReportPIBPPS

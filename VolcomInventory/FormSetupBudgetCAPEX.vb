@@ -51,7 +51,7 @@
 
     Sub load_acc_parent()
         Dim q As String = "SELECT a.*,'Office' AS typ,CONCAT(a.acc_name,' - ',a.acc_description) AS acc_desc FROM `tb_a_acc` a
-WHERE a.id_is_det=1 AND LENGTH(a.acc_name)=4 AND a.id_acc_cat=4 AND a.id_coa_type=1 AND a.id_status=1
+WHERE a.id_is_det=1 AND LENGTH(a.acc_name)=4 AND a.id_coa_type=1 AND a.id_status=1
 UNION ALL
 SELECT a.*,'Cabang' AS typ,CONCAT(a.acc_name,' - ',a.acc_description) AS acc_desc FROM `tb_a_acc` a
 WHERE a.id_is_det=1 AND LENGTH(a.acc_name)=4 AND a.id_coa_type=2 AND a.id_status=1"
