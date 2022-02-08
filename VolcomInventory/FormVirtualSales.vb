@@ -31,6 +31,28 @@
         GVSOHSal.Columns("soh_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
         GVSOHSal.Columns("soh_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
         GVSOHSal.Columns("soh_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        'caption soh wh
+        GVSOHSal.Columns("wh_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        GVSOHSal.Columns("wh_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        GVSOHSal.Columns("wh_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        GVSOHSal.Columns("wh_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        GVSOHSal.Columns("wh_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        GVSOHSal.Columns("wh_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        GVSOHSal.Columns("wh_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        GVSOHSal.Columns("wh_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        GVSOHSal.Columns("wh_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        GVSOHSal.Columns("wh_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        'caption order
+        GVSOHSal.Columns("order_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        GVSOHSal.Columns("order_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        GVSOHSal.Columns("order_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        GVSOHSal.Columns("order_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        GVSOHSal.Columns("order_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        GVSOHSal.Columns("order_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        GVSOHSal.Columns("order_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        GVSOHSal.Columns("order_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        GVSOHSal.Columns("order_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        GVSOHSal.Columns("order_qty0").Caption = "0" + System.Environment.NewLine + "SM"
     End Sub
 
     Private Sub FormVirtualSales_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
