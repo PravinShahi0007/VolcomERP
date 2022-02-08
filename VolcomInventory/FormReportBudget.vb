@@ -7,7 +7,7 @@
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         If XtraTabControl1.SelectedTabPageIndex = 0 Then
-
+            load_budget_new()
         ElseIf XtraTabControl1.SelectedTabPageIndex = 1 Then
             load_budget()
         End If
@@ -22,6 +22,59 @@
         ASSum.EnableAnimation = True
         ASSum.EasingMode = DevExpress.XtraGauges.Core.Model.EasingMode.EaseIn
         ASSum.EasingFunction = New DevExpress.XtraGauges.Core.Model.BounceEase
+    End Sub
+
+    Sub load_budget_new()
+        Dim dep As String = "0"
+        Dim main_cat As String = "0"
+        Dim where_opex As String = ""
+        Dim where_capex As String = ""
+        '
+        If Not SLEDepartement.EditValue.ToString = "0" Then
+            where_capex += " AND op.id_departement='" & SLEDepartement.EditValue.ToString & "'"
+        End If
+        '
+        If Not SLEMainCategory.EditValue.ToString = "0" Then
+            where_opex += " AND op.id_item_cat_main='" & SLEMainCategory.EditValue.ToString & "'"
+            where_capex += " AND op.id_item_cat_main='" & SLEMainCategory.EditValue.ToString & "'"
+        End If
+        '
+        Dim query As String = "(SELECT 'All' AS departement,icm.`id_item_cat_main`,icm.`item_cat_main` AS main_cat,et.`expense_type`
+        ,opex.`value_expense` AS budget
+        ,IFNULL(po.val,0) AS po_booked
+        ,SUM(val.val) AS rec
+        ,IFNULL(po.val,0)+SUM(val.val) AS val_used
+        ,opex.`value_expense`-(IFNULL(po.val,0)+SUM(val.val)) AS val_remaining
+        ,((IFNULL(po.val,0)+SUM(val.val))/opex.value_expense)*100 AS used_percent
+        ,0 AS id_departement
+FROM `tb_b_expense_opex` opex 
+INNER JOIN tb_item_cat_main icm ON icm.`id_item_cat_main`=opex.`id_item_cat_main`
+INNER JOIN tb_lookup_expense_type et ON et.`id_expense_type`=icm.`id_expense_type`
+INNER JOIN `tb_b_expense_opex_map` map ON map.`id_b_expense_opex`=opex.`id_b_expense_opex`
+INNER JOIN  tb_a_acc acc ON acc.`id_acc`=map.`id_acc`
+LEFT JOIN
+(
+	SELECT acc.`id_acc`,acc.`acc_name`,acc.`acc_description`,SUM(IF(acc.`id_dc`=1,trxd.`debit`-trxd.`credit`,trxd.`credit`-trxd.`debit`)) AS val,acc.`id_coa_type`
+	FROM tb_a_acc_trans_det trxd
+	INNER JOIN tb_a_acc_trans trx ON trx.`id_acc_trans`=trxd.`id_acc_trans` AND YEAR(trx.`date_reference`)='" & LEYear.Text.ToString & "'
+	INNER JOIN tb_a_acc acc ON acc.`id_acc`=trxd.`id_acc`
+	WHERE trx.`id_report_status`=6 AND DATE(trx.date_reference) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+	GROUP BY acc.`id_acc`
+)val ON LEFT(val.acc_name,4)=LEFT(acc.`acc_name`,4) AND acc.`id_coa_type`=val.`id_coa_type`
+LEFT JOIN
+(
+	SELECT ot.id_b_expense_opex,SUM(ot.value) AS val
+	FROM `tb_b_expense_opex_trans` ot
+	WHERE ot.is_po=1 AND DATE(ot.date_trans) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+	GROUP BY ot.id_b_expense_opex
+)po ON po.id_b_expense_opex=opex.id_b_expense_opex
+WHERE opex.`year`='" & LEYear.Text.ToString & "'
+GROUP BY opex.`id_b_expense_opex`)"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCReportBudgetNew.DataSource = data
+        GVReportBudgetNew.BestFitColumns()
+        '
+        'PanelChart.Visible = True
     End Sub
 
     Sub load_budget()
