@@ -5612,20 +5612,20 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 'balik budget
                 If report_mark_type = "139" Then 'opex
                     query = "INSERT INTO `tb_b_expense_opex_trans`(id_b_expense_opex,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note) 
-                                SELECT prd.id_b_expense_opex,pr.id_departement,NOW(),-(pod.`value` * pod.qty),prd.id_item,pod.`id_purc_order` AS id_report,'202' AS report_mark_type,'Purchase Order'
+                                SELECT prd.id_b_expense_opex,pr.id_departement,NOW(),-(pod.`value` * pod.qty),prd.id_item,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
                                 FROM `tb_purc_order_det` pod
                                 INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                 INNER JOIN tb_purc_req pr ON pr.id_purc_req=prd.id_purc_req
                                 WHERE pod.`id_purc_order`='" & id_report & "'"
                 Else 'capex
                     query = "INSERT INTO `tb_b_expense_trans`(id_b_expense,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note) 
-                                SELECT prd.id_b_expense,pr.id_departement,NOW(),-(pod.`value` * pod.qty),prd.id_item,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
+                                SELECT prd.id_b_expense,pr.id_departement,NOW(),-(pod.`value` * pod.qty),prd.id_item,pod.`id_purc_order` AS id_report,'202' AS report_mark_type,'Purchase Order'
                                 FROM `tb_purc_order_det` pod
                                 INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                 INNER JOIN tb_purc_req pr ON pr.id_purc_req=prd.id_purc_req
                                 WHERE pod.`id_purc_order`='" & id_report & "'"
                 End If
-                query = String.Format("INSERT tb_purc_order SET id_report_status='{0}' WHERE id_purc_order ='{1}'", id_status_reportx, id_report)
+                execute_non_query(query, True, "", "", "", "")
             End If
 
             'update status
@@ -5949,7 +5949,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
                 INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
-                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='1'
+                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1
                 UNION ALL
                 SELECT rqd.id_b_expense_opex,2,rq.id_departement,r.date_created,(pod.`value` * rd.qty),rd.id_item, " + id_report + ", 148 AS rmt, 'Receiving PO'
                 FROM tb_purc_rec_det rd
@@ -5959,7 +5959,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
                 INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
-                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1 AND i.id_item_type='1';
+                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1;
                 -- capex
                 INSERT INTO tb_b_expense_trans(id_b_expense,is_po,id_departement,date_trans,`value`,id_item,id_report,report_mark_type,note)
                 SELECT rqd.id_b_expense,1,rq.id_departement,r.date_created,-(pod.`value` * rd.qty),rd.id_item, pod.id_purc_order, 202, 'Adj Budget Booking PO'
@@ -5970,7 +5970,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
                 INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
-                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=2 AND i.id_item_type='1'
+                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=2
                 UNION ALL
                 SELECT rqd.id_b_expense,2,rq.id_departement,r.date_created,(pod.`value` * rd.qty),rd.id_item, " + id_report + ", 148, 'Receiving'
                 FROM tb_purc_rec_det rd
@@ -5980,7 +5980,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
                 INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
-                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=2 AND i.id_item_type='1';"
+                WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=2;"
                 execute_non_query(qb, True, "", "", "", "")
 
                 ' asset
