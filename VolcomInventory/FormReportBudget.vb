@@ -7,7 +7,7 @@
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         If XtraTabControl1.SelectedTabPageIndex = 0 Then
-
+            load_budget_new()
         ElseIf XtraTabControl1.SelectedTabPageIndex = 1 Then
             load_budget()
         End If
@@ -22,6 +22,100 @@
         ASSum.EnableAnimation = True
         ASSum.EasingMode = DevExpress.XtraGauges.Core.Model.EasingMode.EaseIn
         ASSum.EasingFunction = New DevExpress.XtraGauges.Core.Model.BounceEase
+    End Sub
+
+    Sub load_budget_new()
+        Dim dep As String = "0"
+        Dim main_cat As String = "0"
+        Dim where_opex As String = ""
+        Dim where_capex As String = ""
+        '
+        If Not SLEDepartement.EditValue.ToString = "0" Then
+            where_capex += " AND op.id_departement='" & SLEDepartement.EditValue.ToString & "'"
+        End If
+        '
+        If Not SLEMainCategory.EditValue.ToString = "0" Then
+            where_opex += " AND op.id_item_cat_main='" & SLEMainCategory.EditValue.ToString & "'"
+            where_capex += " AND op.id_item_cat_main='" & SLEMainCategory.EditValue.ToString & "'"
+        End If
+        '
+        Dim query As String = "(SELECT 'All' AS departement,icm.`id_item_cat_main`,icm.`item_cat_main` AS main_cat,et.`expense_type`
+        ,opex.`value_expense` AS budget
+        ,IFNULL(po.val,0) AS po_booked
+        ,IFNULL(SUM(val.val),0) AS rec
+        ,IFNULL(po.val,0)+IFNULL(SUM(val.val),0) AS val_used
+        ,opex.`value_expense`-(IFNULL(po.val,0)+IFNULL(SUM(val.val),0)) AS val_remaining
+        ,((IFNULL(po.val,0)+IFNULL(SUM(val.val),0))/opex.value_expense)*100 AS used_percent
+        ,0 AS id_departement
+FROM `tb_b_expense_opex` opex 
+INNER JOIN tb_item_cat_main icm ON icm.`id_item_cat_main`=opex.`id_item_cat_main`
+INNER JOIN tb_lookup_expense_type et ON et.`id_expense_type`=icm.`id_expense_type`
+INNER JOIN `tb_b_expense_opex_map` map ON map.`id_b_expense_opex`=opex.`id_b_expense_opex`
+INNER JOIN  tb_a_acc acc ON acc.`id_acc`=map.`id_acc`
+LEFT JOIN
+(
+	SELECT acc.`id_acc`,acc.`acc_name`,acc.`acc_description`,SUM(IF(acc.`id_dc`=1,trxd.`debit`-trxd.`credit`,trxd.`credit`-trxd.`debit`)) AS val,acc.`id_coa_type`
+	FROM tb_a_acc_trans_det trxd
+	INNER JOIN tb_a_acc_trans trx ON trx.`id_acc_trans`=trxd.`id_acc_trans` AND YEAR(trx.`date_reference`)='" & LEYear.Text.ToString & "'
+	INNER JOIN tb_a_acc acc ON acc.`id_acc`=trxd.`id_acc`
+	WHERE trx.`id_report_status`=6 AND DATE(trx.date_reference) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+	GROUP BY acc.`id_acc`
+)val ON LEFT(val.acc_name,4)=LEFT(acc.`acc_name`,4) AND acc.`id_coa_type`=val.`id_coa_type`
+LEFT JOIN
+(
+	SELECT opex.id_item_cat_main,SUM(ot.value) AS val
+	FROM `tb_b_expense_opex_trans` ot
+	INNER JOIN `tb_b_expense_opex` opex  ON opex.`id_b_expense_opex`=ot.id_b_expense_opex
+	WHERE ot.is_po=1 AND opex.`year`='" & LEYear.Text.ToString & "' AND DATE(ot.date_trans) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+	GROUP BY opex.id_item_cat_main
+)po ON po.id_item_cat_main=icm.id_item_cat_main
+WHERE opex.`year`='" & LEYear.Text.ToString & "'
+GROUP BY opex.`id_item_cat_main`)
+UNION ALL
+(SELECT 'All' AS departement,icm.`id_item_cat_main`,icm.`item_cat_main` AS main_cat,et.`expense_type`
+,capex.`value_expense` AS budget
+,IFNULL(po.val,0) AS po_booked
+,IFNULL(SUM(val.val),0) AS rec
+,IFNULL(po.val,0)+IFNULL(SUM(val.val),0) AS val_used
+,capex.`value_expense`-(IFNULL(po.val,0)+IFNULL(SUM(val.val),0)) AS val_remaining
+,((IFNULL(po.val,0)+IFNULL(SUM(val.val),0))/capex.value_expense)*100 AS used_percent
+,0 AS id_departement
+FROM
+(
+	SELECT icm.`id_item_cat_main`,SUM(capex.`value_expense`) AS value_expense
+	FROM `tb_b_expense` capex 
+	INNER JOIN tb_item_cat_main icm ON icm.`id_item_cat_main`=capex.`id_item_cat_main` AND capex.`year`='" & LEYear.Text.ToString & "'
+	GROUP BY capex.`id_item_cat_main`
+)capex
+INNER JOIN tb_item_cat_main icm ON icm.`id_item_cat_main`=capex.`id_item_cat_main`
+INNER JOIN tb_lookup_expense_type et ON et.`id_expense_type`=icm.`id_expense_type`
+INNER JOIN `tb_b_expense_map` map ON map.`id_item_cat_main`=icm.`id_item_cat_main` AND map.`year`='" & LEYear.Text.ToString & "'
+INNER JOIN  tb_a_acc acc ON acc.`id_acc`=map.`id_acc`
+LEFT JOIN
+(
+	SELECT acc.`id_acc`,acc.`acc_name`,acc.`acc_description`,SUM(IF(acc.`id_dc`=1,trxd.`debit`-trxd.`credit`,trxd.`credit`-trxd.`debit`)) AS val,acc.`id_coa_type`
+	FROM tb_a_acc_trans_det trxd
+	INNER JOIN tb_a_acc_trans trx ON trx.`id_acc_trans`=trxd.`id_acc_trans` AND YEAR(trx.`date_reference`)='" & LEYear.Text.ToString & "'
+	INNER JOIN tb_a_acc acc ON acc.`id_acc`=trxd.`id_acc`
+	WHERE trx.`id_report_status`=6 AND DATE(trx.date_reference) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+	GROUP BY acc.`id_acc`
+)val ON LEFT(val.acc_name,4)=LEFT(acc.`acc_name`,4) AND acc.`id_coa_type`=val.`id_coa_type`
+LEFT JOIN
+(
+	SELECT capex.id_item_cat_main,SUM(ot.value) AS val
+	FROM `tb_b_expense_trans` ot
+	INNER JOIN `tb_b_expense` capex  ON capex.`id_b_expense`=ot.id_b_expense
+	WHERE ot.is_po=1 AND capex.`year`='" & LEYear.Text.ToString & "' AND DATE(ot.date_trans) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+	GROUP BY capex.id_item_cat_main
+)po ON po.id_item_cat_main=icm.id_item_cat_main
+GROUP BY capex.`id_item_cat_main`)"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCReportBudgetNew.DataSource = data
+        GVReportBudgetNew.BestFitColumns()
+        '
+        PCNew.Visible = True
+
+        setGaugeInfoNew()
     End Sub
 
     Sub load_budget()
@@ -79,6 +173,50 @@
 
 
         setGaugeInfo()
+    End Sub
+
+    Sub setGaugeInfoNew()
+
+        'isi gauge summary
+        TEBudgetSumNew.EditValue = GVReportBudgetNew.Columns("budget").SummaryItem.SummaryValue
+        TEActualSumNew.EditValue = GVReportBudgetNew.Columns("val_used").SummaryItem.SummaryValue
+
+        ASSumNew.Value = GVReportBudgetNew.Columns("val_used").SummaryItem.SummaryValue / GVReportBudgetNew.Columns("budget").SummaryItem.SummaryValue * 100
+        LCSummaryNew.Text = Decimal.Parse((GVReportBudgetNew.Columns("val_used").SummaryItem.SummaryValue / GVReportBudgetNew.Columns("budget").SummaryItem.SummaryValue) * 100).ToString("N2") + "%"
+        'opex capex
+
+        Dim b_opex As Decimal = 0.0
+        Dim b_capex As Decimal = 0.0
+        '
+        Dim u_opex As Decimal = 0.0
+        Dim u_capex As Decimal = 0.0
+
+        For i As Integer = 0 To GVReportBudgetNew.RowCount - 1
+            If GVReportBudgetNew.GetRowCellValue(i, "expense_type").ToString.ToUpper = "CAPEX" Then
+                b_capex += GVReportBudgetNew.GetRowCellValue(i, "budget")
+                u_capex += GVReportBudgetNew.GetRowCellValue(i, "val_used")
+            Else
+                b_opex += GVReportBudgetNew.GetRowCellValue(i, "budget")
+                u_opex += GVReportBudgetNew.GetRowCellValue(i, "val_used")
+            End If
+        Next
+
+        TEBudgetCapexNew.EditValue = b_capex
+        TEUsedCapexNew.EditValue = u_capex
+        TEBudgetOpexNew.EditValue = b_opex
+        TEUsedOpexNew.EditValue = u_opex
+
+        If Not b_capex = 0 Then
+            'isi gauge capex
+            ASCapexNew.Value = u_capex / b_capex * 100
+            LCCapexNew.Text = Decimal.Parse((u_capex / b_capex) * 100).ToString("N2") + "%"
+        End If
+
+        If Not b_opex = 0 Then
+            'isi gauge opex
+            ASOpexNew.Value = u_opex / b_opex * 100
+            LCOpexNew.Text = Decimal.Parse((u_opex / b_opex) * 100).ToString("N2") + "%"
+        End If
     End Sub
 
     Sub setGaugeInfo()
@@ -199,6 +337,32 @@ GROUP BY `year`"
             FormReportBudgetList.id_departement = GVItemCat.GetFocusedRowCellValue("id_departement").ToString
             FormReportBudgetList.date_time = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
             FormReportBudgetList.year = LEYear.Text
+            FormReportBudgetList.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub TMBookedPO_Click(sender As Object, e As EventArgs) Handles TMBookedPO.Click
+        If GVReportBudgetNew.RowCount > 0 Then
+            Dim q As String = ""
+            If GVReportBudgetNew.GetFocusedRowCellValue("expense_type").ToString = "OPEX" Then
+                q = "SELECT ot.`id_report`,ot.`report_mark_type`,opex.id_item_cat_main,SUM(ot.value) AS val
+    FROM `tb_b_expense_opex_trans` ot
+    INNER JOIN `tb_b_expense_opex` opex  ON opex.`id_b_expense_opex`=ot.id_b_expense_opex
+    WHERE ot.is_po=1 AND opex.`year`='" & LEYear.Text.ToString & "' AND DATE(ot.date_trans) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+    AND opex.id_item_cat_main='" & GVReportBudgetNew.GetFocusedRowCellValue("id_item_cat_main").ToString & "'
+    GROUP BY ot.`id_report`,ot.`report_mark_type`
+    HAVING val!=0"
+            Else
+                q = "SELECT ot.`id_report`,ot.`report_mark_type`,capex.id_item_cat_main,SUM(ot.value) AS val
+    FROM `tb_b_expense_trans` ot
+    INNER JOIN `tb_b_expense` capex  ON capex.`id_b_expense`=ot.id_b_expense
+    WHERE ot.is_po=1 AND capex.`year`='" & LEYear.Text.ToString & "' AND DATE(ot.date_trans) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+    AND capex.id_item_cat_main='" & GVReportBudgetNew.GetFocusedRowCellValue("id_item_cat_main").ToString & "'
+    GROUP BY ot.`id_report`,ot.`report_mark_type`
+    HAVING val!=0"
+            End If
+            FormReportBudgetList.opt = "2"
+            FormReportBudgetList.qi = q
             FormReportBudgetList.ShowDialog()
         End If
     End Sub

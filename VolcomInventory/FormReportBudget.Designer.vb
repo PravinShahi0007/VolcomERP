@@ -89,6 +89,54 @@ Partial Class FormReportBudget
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPNew = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPOld = New DevExpress.XtraTab.XtraTabPage()
+        Me.PCNew = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.GaugeControl4 = New DevExpress.XtraGauges.Win.GaugeControl()
+        Me.CircularGauge4 = New DevExpress.XtraGauges.Win.Gauges.Circular.CircularGauge()
+        Me.LCCapexNew = New DevExpress.XtraGauges.Win.Base.LabelComponent()
+        Me.ArcScaleRangeBarComponent4 = New DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleRangeBarComponent()
+        Me.ASCapexNew = New DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleComponent()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEUsedCapexNew = New DevExpress.XtraEditors.TextEdit()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.TEBudgetCapexNew = New DevExpress.XtraEditors.TextEdit()
+        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.GaugeControl5 = New DevExpress.XtraGauges.Win.GaugeControl()
+        Me.CircularGauge5 = New DevExpress.XtraGauges.Win.Gauges.Circular.CircularGauge()
+        Me.LCOpexNew = New DevExpress.XtraGauges.Win.Base.LabelComponent()
+        Me.ArcScaleRangeBarComponent5 = New DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleRangeBarComponent()
+        Me.ASOpexNew = New DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleComponent()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEUsedOpexNew = New DevExpress.XtraEditors.TextEdit()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.TEBudgetOpexNew = New DevExpress.XtraEditors.TextEdit()
+        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.GaugeControl6 = New DevExpress.XtraGauges.Win.GaugeControl()
+        Me.CircularGauge6 = New DevExpress.XtraGauges.Win.Gauges.Circular.CircularGauge()
+        Me.LCSummaryNew = New DevExpress.XtraGauges.Win.Base.LabelComponent()
+        Me.ArcScaleRangeBarComponent6 = New DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleRangeBarComponent()
+        Me.ASSumNew = New DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleComponent()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEActualSumNew = New DevExpress.XtraEditors.TextEdit()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.TEBudgetSumNew = New DevExpress.XtraEditors.TextEdit()
+        Me.GCReportBudgetNew = New DevExpress.XtraGrid.GridControl()
+        Me.GVReportBudgetNew = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMView = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.TMBookedPO = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCItemCat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVItemCat, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,7 +177,37 @@ Partial Class FormReportBudget
         CType(Me.TEBudgetSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
+        Me.XTPNew.SuspendLayout()
         Me.XTPOld.SuspendLayout()
+        CType(Me.PCNew, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCNew.SuspendLayout()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.CircularGauge4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LCCapexNew, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ArcScaleRangeBarComponent4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ASCapexNew, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEUsedCapexNew.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEBudgetCapexNew.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl6.SuspendLayout()
+        CType(Me.CircularGauge5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LCOpexNew, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ArcScaleRangeBarComponent5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ASOpexNew, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEUsedOpexNew.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEBudgetOpexNew.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl7.SuspendLayout()
+        CType(Me.CircularGauge6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LCSummaryNew, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ArcScaleRangeBarComponent6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ASSumNew, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEActualSumNew.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEBudgetSumNew.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCReportBudgetNew, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVReportBudgetNew, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMView.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCItemCat
@@ -848,8 +926,10 @@ Partial Class FormReportBudget
         '
         'XTPNew
         '
+        Me.XTPNew.Controls.Add(Me.GCReportBudgetNew)
+        Me.XTPNew.Controls.Add(Me.PCNew)
         Me.XTPNew.Name = "XTPNew"
-        Me.XTPNew.Size = New System.Drawing.Size(294, 272)
+        Me.XTPNew.Size = New System.Drawing.Size(1011, 469)
         Me.XTPNew.Text = "Report"
         '
         'XTPOld
@@ -859,6 +939,559 @@ Partial Class FormReportBudget
         Me.XTPOld.Name = "XTPOld"
         Me.XTPOld.Size = New System.Drawing.Size(1011, 469)
         Me.XTPOld.Text = "Old Report"
+        '
+        'PCNew
+        '
+        Me.PCNew.Controls.Add(Me.PanelControl5)
+        Me.PCNew.Controls.Add(Me.PanelControl6)
+        Me.PCNew.Controls.Add(Me.PanelControl7)
+        Me.PCNew.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCNew.Location = New System.Drawing.Point(0, 0)
+        Me.PCNew.Name = "PCNew"
+        Me.PCNew.Size = New System.Drawing.Size(1011, 114)
+        Me.PCNew.TabIndex = 8
+        Me.PCNew.Visible = False
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.Controls.Add(Me.GaugeControl4)
+        Me.PanelControl5.Controls.Add(Me.Label8)
+        Me.PanelControl5.Controls.Add(Me.LabelControl7)
+        Me.PanelControl5.Controls.Add(Me.TEUsedCapexNew)
+        Me.PanelControl5.Controls.Add(Me.Label9)
+        Me.PanelControl5.Controls.Add(Me.TEBudgetCapexNew)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl5.Location = New System.Drawing.Point(662, 2)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(330, 110)
+        Me.PanelControl5.TabIndex = 12
+        '
+        'GaugeControl4
+        '
+        Me.GaugeControl4.BackColor = System.Drawing.Color.Transparent
+        Me.GaugeControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.GaugeControl4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.GaugeControl4.Gauges.AddRange(New DevExpress.XtraGauges.Base.IGauge() {Me.CircularGauge4})
+        Me.GaugeControl4.Location = New System.Drawing.Point(2, 2)
+        Me.GaugeControl4.Name = "GaugeControl4"
+        Me.GaugeControl4.Size = New System.Drawing.Size(115, 106)
+        Me.GaugeControl4.TabIndex = 2
+        '
+        'CircularGauge4
+        '
+        Me.CircularGauge4.Bounds = New System.Drawing.Rectangle(6, 6, 103, 94)
+        Me.CircularGauge4.Labels.AddRange(New DevExpress.XtraGauges.Win.Base.LabelComponent() {Me.LCCapexNew})
+        Me.CircularGauge4.Name = "CircularGauge4"
+        Me.CircularGauge4.RangeBars.AddRange(New DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleRangeBarComponent() {Me.ArcScaleRangeBarComponent4})
+        Me.CircularGauge4.Scales.AddRange(New DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleComponent() {Me.ASCapexNew})
+        '
+        'LCCapexNew
+        '
+        Me.LCCapexNew.AppearanceText.Font = New System.Drawing.Font("Segoe UI", 27.75!)
+        Me.LCCapexNew.Name = "circularGauge1_Label1"
+        Me.LCCapexNew.Size = New System.Drawing.SizeF(140.0!, 60.0!)
+        Me.LCCapexNew.Text = "0%"
+        Me.LCCapexNew.UseColorScheme = False
+        Me.LCCapexNew.ZOrder = -1001
+        '
+        'ArcScaleRangeBarComponent4
+        '
+        Me.ArcScaleRangeBarComponent4.ArcScale = Me.ASCapexNew
+        Me.ArcScaleRangeBarComponent4.Name = "circularGauge1_RangeBar2"
+        Me.ArcScaleRangeBarComponent4.RoundedCaps = True
+        Me.ArcScaleRangeBarComponent4.ShowBackground = True
+        Me.ArcScaleRangeBarComponent4.StartOffset = 80.0!
+        Me.ArcScaleRangeBarComponent4.ZOrder = -10
+        '
+        'ASCapexNew
+        '
+        Me.ASCapexNew.AppearanceMajorTickmark.BorderBrush = New DevExpress.XtraGauges.Core.Drawing.SolidBrushObject("Color:White")
+        Me.ASCapexNew.AppearanceMajorTickmark.ContentBrush = New DevExpress.XtraGauges.Core.Drawing.SolidBrushObject("Color:White")
+        Me.ASCapexNew.AppearanceMinorTickmark.BorderBrush = New DevExpress.XtraGauges.Core.Drawing.SolidBrushObject("Color:White")
+        Me.ASCapexNew.AppearanceMinorTickmark.ContentBrush = New DevExpress.XtraGauges.Core.Drawing.SolidBrushObject("Color:White")
+        Me.ASCapexNew.AppearanceTickmarkText.Font = New System.Drawing.Font("Tahoma", 8.5!)
+        Me.ASCapexNew.AppearanceTickmarkText.TextBrush = New DevExpress.XtraGauges.Core.Drawing.SolidBrushObject("Color:#484E5A")
+        Me.ASCapexNew.Center = New DevExpress.XtraGauges.Core.Base.PointF2D(125.0!, 125.0!)
+        Me.ASCapexNew.EndAngle = 90.0!
+        Me.ASCapexNew.MajorTickCount = 0
+        Me.ASCapexNew.MajorTickmark.FormatString = "{0:F0}"
+        Me.ASCapexNew.MajorTickmark.ShapeOffset = -14.0!
+        Me.ASCapexNew.MajorTickmark.ShapeType = DevExpress.XtraGauges.Core.Model.TickmarkShapeType.Circular_Style16_1
+        Me.ASCapexNew.MajorTickmark.TextOrientation = DevExpress.XtraGauges.Core.Model.LabelOrientation.LeftToRight
+        Me.ASCapexNew.MaxValue = 100.0!
+        Me.ASCapexNew.MinorTickCount = 0
+        Me.ASCapexNew.MinorTickmark.ShapeOffset = -7.0!
+        Me.ASCapexNew.MinorTickmark.ShapeType = DevExpress.XtraGauges.Core.Model.TickmarkShapeType.Circular_Style16_2
+        Me.ASCapexNew.Name = "scale1"
+        Me.ASCapexNew.StartAngle = -270.0!
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(117, 82)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(33, 15)
+        Me.Label8.TabIndex = 9
+        Me.Label8.Text = "Used"
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Segoe UI Semibold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Location = New System.Drawing.Point(116, 11)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(158, 32)
+        Me.LabelControl7.TabIndex = 3
+        Me.LabelControl7.Text = "Budget CAPEX"
+        '
+        'TEUsedCapexNew
+        '
+        Me.TEUsedCapexNew.Enabled = False
+        Me.TEUsedCapexNew.Location = New System.Drawing.Point(168, 79)
+        Me.TEUsedCapexNew.Name = "TEUsedCapexNew"
+        Me.TEUsedCapexNew.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEUsedCapexNew.Properties.Appearance.Options.UseFont = True
+        Me.TEUsedCapexNew.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEUsedCapexNew.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEUsedCapexNew.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEUsedCapexNew.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEUsedCapexNew.Size = New System.Drawing.Size(150, 22)
+        Me.TEUsedCapexNew.TabIndex = 8
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(117, 52)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(45, 15)
+        Me.Label9.TabIndex = 6
+        Me.Label9.Text = "Budget"
+        '
+        'TEBudgetCapexNew
+        '
+        Me.TEBudgetCapexNew.Enabled = False
+        Me.TEBudgetCapexNew.Location = New System.Drawing.Point(168, 49)
+        Me.TEBudgetCapexNew.Name = "TEBudgetCapexNew"
+        Me.TEBudgetCapexNew.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEBudgetCapexNew.Properties.Appearance.Options.UseFont = True
+        Me.TEBudgetCapexNew.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEBudgetCapexNew.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEBudgetCapexNew.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEBudgetCapexNew.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEBudgetCapexNew.Size = New System.Drawing.Size(150, 22)
+        Me.TEBudgetCapexNew.TabIndex = 7
+        '
+        'PanelControl6
+        '
+        Me.PanelControl6.Controls.Add(Me.GaugeControl5)
+        Me.PanelControl6.Controls.Add(Me.Label10)
+        Me.PanelControl6.Controls.Add(Me.LabelControl8)
+        Me.PanelControl6.Controls.Add(Me.TEUsedOpexNew)
+        Me.PanelControl6.Controls.Add(Me.Label11)
+        Me.PanelControl6.Controls.Add(Me.TEBudgetOpexNew)
+        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl6.Location = New System.Drawing.Point(332, 2)
+        Me.PanelControl6.Name = "PanelControl6"
+        Me.PanelControl6.Size = New System.Drawing.Size(330, 110)
+        Me.PanelControl6.TabIndex = 11
+        '
+        'GaugeControl5
+        '
+        Me.GaugeControl5.BackColor = System.Drawing.Color.Transparent
+        Me.GaugeControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.GaugeControl5.Dock = System.Windows.Forms.DockStyle.Left
+        Me.GaugeControl5.Gauges.AddRange(New DevExpress.XtraGauges.Base.IGauge() {Me.CircularGauge5})
+        Me.GaugeControl5.Location = New System.Drawing.Point(2, 2)
+        Me.GaugeControl5.Name = "GaugeControl5"
+        Me.GaugeControl5.Size = New System.Drawing.Size(115, 106)
+        Me.GaugeControl5.TabIndex = 2
+        '
+        'CircularGauge5
+        '
+        Me.CircularGauge5.Bounds = New System.Drawing.Rectangle(6, 6, 103, 94)
+        Me.CircularGauge5.Labels.AddRange(New DevExpress.XtraGauges.Win.Base.LabelComponent() {Me.LCOpexNew})
+        Me.CircularGauge5.Name = "CircularGauge5"
+        Me.CircularGauge5.RangeBars.AddRange(New DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleRangeBarComponent() {Me.ArcScaleRangeBarComponent5})
+        Me.CircularGauge5.Scales.AddRange(New DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleComponent() {Me.ASOpexNew})
+        '
+        'LCOpexNew
+        '
+        Me.LCOpexNew.AppearanceText.Font = New System.Drawing.Font("Segoe UI", 27.75!)
+        Me.LCOpexNew.Name = "circularGauge1_Label1"
+        Me.LCOpexNew.Size = New System.Drawing.SizeF(140.0!, 60.0!)
+        Me.LCOpexNew.Text = "0%"
+        Me.LCOpexNew.UseColorScheme = False
+        Me.LCOpexNew.ZOrder = -1001
+        '
+        'ArcScaleRangeBarComponent5
+        '
+        Me.ArcScaleRangeBarComponent5.ArcScale = Me.ASOpexNew
+        Me.ArcScaleRangeBarComponent5.Name = "circularGauge1_RangeBar2"
+        Me.ArcScaleRangeBarComponent5.RoundedCaps = True
+        Me.ArcScaleRangeBarComponent5.ShowBackground = True
+        Me.ArcScaleRangeBarComponent5.StartOffset = 80.0!
+        Me.ArcScaleRangeBarComponent5.ZOrder = -10
+        '
+        'ASOpexNew
+        '
+        Me.ASOpexNew.AppearanceMajorTickmark.BorderBrush = New DevExpress.XtraGauges.Core.Drawing.SolidBrushObject("Color:White")
+        Me.ASOpexNew.AppearanceMajorTickmark.ContentBrush = New DevExpress.XtraGauges.Core.Drawing.SolidBrushObject("Color:White")
+        Me.ASOpexNew.AppearanceMinorTickmark.BorderBrush = New DevExpress.XtraGauges.Core.Drawing.SolidBrushObject("Color:White")
+        Me.ASOpexNew.AppearanceMinorTickmark.ContentBrush = New DevExpress.XtraGauges.Core.Drawing.SolidBrushObject("Color:White")
+        Me.ASOpexNew.AppearanceTickmarkText.Font = New System.Drawing.Font("Tahoma", 8.5!)
+        Me.ASOpexNew.AppearanceTickmarkText.TextBrush = New DevExpress.XtraGauges.Core.Drawing.SolidBrushObject("Color:#484E5A")
+        Me.ASOpexNew.Center = New DevExpress.XtraGauges.Core.Base.PointF2D(125.0!, 125.0!)
+        Me.ASOpexNew.EndAngle = 90.0!
+        Me.ASOpexNew.MajorTickCount = 0
+        Me.ASOpexNew.MajorTickmark.FormatString = "{0:F0}"
+        Me.ASOpexNew.MajorTickmark.ShapeOffset = -14.0!
+        Me.ASOpexNew.MajorTickmark.ShapeType = DevExpress.XtraGauges.Core.Model.TickmarkShapeType.Circular_Style16_1
+        Me.ASOpexNew.MajorTickmark.TextOrientation = DevExpress.XtraGauges.Core.Model.LabelOrientation.LeftToRight
+        Me.ASOpexNew.MaxValue = 100.0!
+        Me.ASOpexNew.MinorTickCount = 0
+        Me.ASOpexNew.MinorTickmark.ShapeOffset = -7.0!
+        Me.ASOpexNew.MinorTickmark.ShapeType = DevExpress.XtraGauges.Core.Model.TickmarkShapeType.Circular_Style16_2
+        Me.ASOpexNew.Name = "scale1"
+        Me.ASOpexNew.StartAngle = -270.0!
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(117, 82)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(33, 15)
+        Me.Label10.TabIndex = 9
+        Me.Label10.Text = "Used"
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Segoe UI Semibold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl8.Location = New System.Drawing.Point(116, 11)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(145, 32)
+        Me.LabelControl8.TabIndex = 3
+        Me.LabelControl8.Text = "Budget OPEX"
+        '
+        'TEUsedOpexNew
+        '
+        Me.TEUsedOpexNew.Enabled = False
+        Me.TEUsedOpexNew.Location = New System.Drawing.Point(168, 79)
+        Me.TEUsedOpexNew.Name = "TEUsedOpexNew"
+        Me.TEUsedOpexNew.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEUsedOpexNew.Properties.Appearance.Options.UseFont = True
+        Me.TEUsedOpexNew.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEUsedOpexNew.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEUsedOpexNew.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEUsedOpexNew.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEUsedOpexNew.Size = New System.Drawing.Size(150, 22)
+        Me.TEUsedOpexNew.TabIndex = 8
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Location = New System.Drawing.Point(117, 52)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(45, 15)
+        Me.Label11.TabIndex = 6
+        Me.Label11.Text = "Budget"
+        '
+        'TEBudgetOpexNew
+        '
+        Me.TEBudgetOpexNew.Enabled = False
+        Me.TEBudgetOpexNew.Location = New System.Drawing.Point(168, 49)
+        Me.TEBudgetOpexNew.Name = "TEBudgetOpexNew"
+        Me.TEBudgetOpexNew.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEBudgetOpexNew.Properties.Appearance.Options.UseFont = True
+        Me.TEBudgetOpexNew.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEBudgetOpexNew.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEBudgetOpexNew.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEBudgetOpexNew.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEBudgetOpexNew.Size = New System.Drawing.Size(150, 22)
+        Me.TEBudgetOpexNew.TabIndex = 7
+        '
+        'PanelControl7
+        '
+        Me.PanelControl7.Controls.Add(Me.GaugeControl6)
+        Me.PanelControl7.Controls.Add(Me.Label12)
+        Me.PanelControl7.Controls.Add(Me.LabelControl9)
+        Me.PanelControl7.Controls.Add(Me.TEActualSumNew)
+        Me.PanelControl7.Controls.Add(Me.Label13)
+        Me.PanelControl7.Controls.Add(Me.TEBudgetSumNew)
+        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl7.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl7.Name = "PanelControl7"
+        Me.PanelControl7.Size = New System.Drawing.Size(330, 110)
+        Me.PanelControl7.TabIndex = 10
+        '
+        'GaugeControl6
+        '
+        Me.GaugeControl6.BackColor = System.Drawing.Color.Transparent
+        Me.GaugeControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.GaugeControl6.Dock = System.Windows.Forms.DockStyle.Left
+        Me.GaugeControl6.Gauges.AddRange(New DevExpress.XtraGauges.Base.IGauge() {Me.CircularGauge6})
+        Me.GaugeControl6.Location = New System.Drawing.Point(2, 2)
+        Me.GaugeControl6.Name = "GaugeControl6"
+        Me.GaugeControl6.Size = New System.Drawing.Size(115, 106)
+        Me.GaugeControl6.TabIndex = 2
+        '
+        'CircularGauge6
+        '
+        Me.CircularGauge6.Bounds = New System.Drawing.Rectangle(6, 6, 103, 94)
+        Me.CircularGauge6.Labels.AddRange(New DevExpress.XtraGauges.Win.Base.LabelComponent() {Me.LCSummaryNew})
+        Me.CircularGauge6.Name = "CircularGauge6"
+        Me.CircularGauge6.RangeBars.AddRange(New DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleRangeBarComponent() {Me.ArcScaleRangeBarComponent6})
+        Me.CircularGauge6.Scales.AddRange(New DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleComponent() {Me.ASSumNew})
+        '
+        'LCSummaryNew
+        '
+        Me.LCSummaryNew.AppearanceText.Font = New System.Drawing.Font("Segoe UI", 27.75!)
+        Me.LCSummaryNew.Name = "circularGauge1_Label1"
+        Me.LCSummaryNew.Size = New System.Drawing.SizeF(140.0!, 60.0!)
+        Me.LCSummaryNew.Text = "0%"
+        Me.LCSummaryNew.UseColorScheme = False
+        Me.LCSummaryNew.ZOrder = -1001
+        '
+        'ArcScaleRangeBarComponent6
+        '
+        Me.ArcScaleRangeBarComponent6.ArcScale = Me.ASSumNew
+        Me.ArcScaleRangeBarComponent6.Name = "circularGauge1_RangeBar2"
+        Me.ArcScaleRangeBarComponent6.RoundedCaps = True
+        Me.ArcScaleRangeBarComponent6.ShowBackground = True
+        Me.ArcScaleRangeBarComponent6.StartOffset = 80.0!
+        Me.ArcScaleRangeBarComponent6.ZOrder = -10
+        '
+        'ASSumNew
+        '
+        Me.ASSumNew.AppearanceMajorTickmark.BorderBrush = New DevExpress.XtraGauges.Core.Drawing.SolidBrushObject("Color:White")
+        Me.ASSumNew.AppearanceMajorTickmark.ContentBrush = New DevExpress.XtraGauges.Core.Drawing.SolidBrushObject("Color:White")
+        Me.ASSumNew.AppearanceMinorTickmark.BorderBrush = New DevExpress.XtraGauges.Core.Drawing.SolidBrushObject("Color:White")
+        Me.ASSumNew.AppearanceMinorTickmark.ContentBrush = New DevExpress.XtraGauges.Core.Drawing.SolidBrushObject("Color:White")
+        Me.ASSumNew.AppearanceTickmarkText.Font = New System.Drawing.Font("Tahoma", 8.5!)
+        Me.ASSumNew.AppearanceTickmarkText.TextBrush = New DevExpress.XtraGauges.Core.Drawing.SolidBrushObject("Color:#484E5A")
+        Me.ASSumNew.Center = New DevExpress.XtraGauges.Core.Base.PointF2D(125.0!, 125.0!)
+        Me.ASSumNew.EndAngle = 90.0!
+        Me.ASSumNew.MajorTickCount = 0
+        Me.ASSumNew.MajorTickmark.FormatString = "{0:F0}"
+        Me.ASSumNew.MajorTickmark.ShapeOffset = -14.0!
+        Me.ASSumNew.MajorTickmark.ShapeType = DevExpress.XtraGauges.Core.Model.TickmarkShapeType.Circular_Style16_1
+        Me.ASSumNew.MajorTickmark.TextOrientation = DevExpress.XtraGauges.Core.Model.LabelOrientation.LeftToRight
+        Me.ASSumNew.MaxValue = 100.0!
+        Me.ASSumNew.MinorTickCount = 0
+        Me.ASSumNew.MinorTickmark.ShapeOffset = -7.0!
+        Me.ASSumNew.MinorTickmark.ShapeType = DevExpress.XtraGauges.Core.Model.TickmarkShapeType.Circular_Style16_2
+        Me.ASSumNew.Name = "scale1"
+        Me.ASSumNew.StartAngle = -270.0!
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(117, 82)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(33, 15)
+        Me.Label12.TabIndex = 9
+        Me.Label12.Text = "Used"
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Segoe UI Semibold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(116, 11)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(189, 32)
+        Me.LabelControl9.TabIndex = 3
+        Me.LabelControl9.Text = "Budget Summary"
+        '
+        'TEActualSumNew
+        '
+        Me.TEActualSumNew.Enabled = False
+        Me.TEActualSumNew.Location = New System.Drawing.Point(168, 79)
+        Me.TEActualSumNew.Name = "TEActualSumNew"
+        Me.TEActualSumNew.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEActualSumNew.Properties.Appearance.Options.UseFont = True
+        Me.TEActualSumNew.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEActualSumNew.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEActualSumNew.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEActualSumNew.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEActualSumNew.Size = New System.Drawing.Size(150, 22)
+        Me.TEActualSumNew.TabIndex = 8
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(117, 52)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(45, 15)
+        Me.Label13.TabIndex = 6
+        Me.Label13.Text = "Budget"
+        '
+        'TEBudgetSumNew
+        '
+        Me.TEBudgetSumNew.Enabled = False
+        Me.TEBudgetSumNew.Location = New System.Drawing.Point(168, 49)
+        Me.TEBudgetSumNew.Name = "TEBudgetSumNew"
+        Me.TEBudgetSumNew.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEBudgetSumNew.Properties.Appearance.Options.UseFont = True
+        Me.TEBudgetSumNew.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEBudgetSumNew.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEBudgetSumNew.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEBudgetSumNew.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEBudgetSumNew.Size = New System.Drawing.Size(150, 22)
+        Me.TEBudgetSumNew.TabIndex = 7
+        '
+        'GCReportBudgetNew
+        '
+        Me.GCReportBudgetNew.ContextMenuStrip = Me.CMView
+        Me.GCReportBudgetNew.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCReportBudgetNew.Location = New System.Drawing.Point(0, 114)
+        Me.GCReportBudgetNew.MainView = Me.GVReportBudgetNew
+        Me.GCReportBudgetNew.Name = "GCReportBudgetNew"
+        Me.GCReportBudgetNew.Size = New System.Drawing.Size(1011, 355)
+        Me.GCReportBudgetNew.TabIndex = 9
+        Me.GCReportBudgetNew.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReportBudgetNew})
+        '
+        'GVReportBudgetNew
+        '
+        Me.GVReportBudgetNew.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24})
+        Me.GVReportBudgetNew.GridControl = Me.GCReportBudgetNew
+        Me.GVReportBudgetNew.Name = "GVReportBudgetNew"
+        Me.GVReportBudgetNew.OptionsBehavior.Editable = False
+        Me.GVReportBudgetNew.OptionsFind.AlwaysVisible = True
+        Me.GVReportBudgetNew.OptionsView.ShowFooter = True
+        Me.GVReportBudgetNew.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Id"
+        Me.GridColumn15.FieldName = "id_item_cat_main"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Departement"
+        Me.GridColumn16.FieldName = "departement"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 0
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Expense Type"
+        Me.GridColumn17.FieldName = "expense_type"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 2
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Main Category"
+        Me.GridColumn18.FieldName = "main_cat"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 1
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn19.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn19.Caption = "Budget"
+        Me.GridColumn19.DisplayFormat.FormatString = "N2"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn19.FieldName = "budget"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget", "{0:N2}")})
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 3
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.Caption = "Booked Budget (PO)"
+        Me.GridColumn20.DisplayFormat.FormatString = "N2"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn20.FieldName = "po_booked"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_booked", "{0:N2}")})
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 4
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.Caption = "Actual"
+        Me.GridColumn21.DisplayFormat.FormatString = "N2"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn21.FieldName = "rec"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rec", "{0:N2}")})
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 5
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn22.Caption = "Total Used Budget"
+        Me.GridColumn22.DisplayFormat.FormatString = "N2"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn22.FieldName = "val_used"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_used", "{0:N2}")})
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 6
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn23.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn23.Caption = "Remaining Budget"
+        Me.GridColumn23.DisplayFormat.FormatString = "N2"
+        Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn23.FieldName = "val_remaining"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_remaining", "{0:N2}")})
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 7
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn24.Caption = "Budget Used"
+        Me.GridColumn24.DisplayFormat.FormatString = "{0:N2} %"
+        Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn24.FieldName = "used_percent"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "used_percent", "{0:N2} %", "1")})
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 8
+        '
+        'CMView
+        '
+        Me.CMView.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TMBookedPO})
+        Me.CMView.Name = "ContextMenuStripYM"
+        Me.CMView.Size = New System.Drawing.Size(166, 48)
+        '
+        'TMBookedPO
+        '
+        Me.TMBookedPO.Name = "TMBookedPO"
+        Me.TMBookedPO.Size = New System.Drawing.Size(165, 22)
+        Me.TMBookedPO.Text = "Show Booked PO"
         '
         'FormReportBudget
         '
@@ -917,7 +1550,40 @@ Partial Class FormReportBudget
         CType(Me.TEBudgetSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
+        Me.XTPNew.ResumeLayout(False)
         Me.XTPOld.ResumeLayout(False)
+        CType(Me.PCNew, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCNew.ResumeLayout(False)
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        Me.PanelControl5.PerformLayout()
+        CType(Me.CircularGauge4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LCCapexNew, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ArcScaleRangeBarComponent4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ASCapexNew, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEUsedCapexNew.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEBudgetCapexNew.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl6.ResumeLayout(False)
+        Me.PanelControl6.PerformLayout()
+        CType(Me.CircularGauge5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LCOpexNew, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ArcScaleRangeBarComponent5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ASOpexNew, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEUsedOpexNew.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEBudgetOpexNew.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl7.ResumeLayout(False)
+        Me.PanelControl7.PerformLayout()
+        CType(Me.CircularGauge6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LCSummaryNew, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ArcScaleRangeBarComponent6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ASSumNew, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEActualSumNew.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEBudgetSumNew.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCReportBudgetNew, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVReportBudgetNew, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMView.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -990,4 +1656,52 @@ Partial Class FormReportBudget
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPNew As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPOld As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCReportBudgetNew As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVReportBudgetNew As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PCNew As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GaugeControl4 As DevExpress.XtraGauges.Win.GaugeControl
+    Friend WithEvents CircularGauge4 As DevExpress.XtraGauges.Win.Gauges.Circular.CircularGauge
+    Private WithEvents LCCapexNew As DevExpress.XtraGauges.Win.Base.LabelComponent
+    Private WithEvents ArcScaleRangeBarComponent4 As DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleRangeBarComponent
+    Private WithEvents ASCapexNew As DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleComponent
+    Friend WithEvents Label8 As Label
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEUsedCapexNew As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label9 As Label
+    Friend WithEvents TEBudgetCapexNew As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GaugeControl5 As DevExpress.XtraGauges.Win.GaugeControl
+    Friend WithEvents CircularGauge5 As DevExpress.XtraGauges.Win.Gauges.Circular.CircularGauge
+    Private WithEvents LCOpexNew As DevExpress.XtraGauges.Win.Base.LabelComponent
+    Private WithEvents ArcScaleRangeBarComponent5 As DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleRangeBarComponent
+    Private WithEvents ASOpexNew As DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleComponent
+    Friend WithEvents Label10 As Label
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEUsedOpexNew As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label11 As Label
+    Friend WithEvents TEBudgetOpexNew As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GaugeControl6 As DevExpress.XtraGauges.Win.GaugeControl
+    Friend WithEvents CircularGauge6 As DevExpress.XtraGauges.Win.Gauges.Circular.CircularGauge
+    Private WithEvents LCSummaryNew As DevExpress.XtraGauges.Win.Base.LabelComponent
+    Private WithEvents ArcScaleRangeBarComponent6 As DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleRangeBarComponent
+    Private WithEvents ASSumNew As DevExpress.XtraGauges.Win.Gauges.Circular.ArcScaleComponent
+    Friend WithEvents Label12 As Label
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEActualSumNew As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label13 As Label
+    Friend WithEvents TEBudgetSumNew As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents CMView As ContextMenuStrip
+    Friend WithEvents TMBookedPO As ToolStripMenuItem
 End Class
