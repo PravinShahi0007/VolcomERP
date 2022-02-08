@@ -102,6 +102,8 @@ Partial Class FormDelManifestDet
         Me.GridColumnDim = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFinal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPayment = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TEUpdatedBy = New DevExpress.XtraEditors.TextEdit()
@@ -142,8 +144,6 @@ Partial Class FormDelManifestDet
         Me.BGenOffline = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BCompleteWholesale = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCPayment = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -996,6 +996,30 @@ Partial Class FormDelManifestDet
         Me.GridColumnRemark.OptionsColumn.AllowEdit = False
         Me.GridColumnRemark.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
+        'GCPayment
+        '
+        Me.GCPayment.AppearanceCell.Options.UseTextOptions = True
+        Me.GCPayment.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCPayment.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCPayment.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCPayment.Caption = "Payment"
+        Me.GCPayment.FieldName = "pay_sts"
+        Me.GCPayment.Name = "GCPayment"
+        Me.GCPayment.OptionsColumn.AllowEdit = False
+        Me.GCPayment.OptionsColumn.AllowFocus = False
+        Me.GCPayment.OptionsColumn.ReadOnly = True
+        Me.GCPayment.UnboundExpression = "Iif([paid] = 1, 'Paid', 'Pending')"
+        Me.GCPayment.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Is paid"
+        Me.GridColumn28.FieldName = "paid"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.OptionsColumn.AllowEdit = False
+        Me.GridColumn28.OptionsColumn.AllowFocus = False
+        Me.GridColumn28.OptionsColumn.ReadOnly = True
+        '
         'Label4
         '
         Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -1358,24 +1382,6 @@ Partial Class FormDelManifestDet
         Me.BCompleteWholesale.TabIndex = 13
         Me.BCompleteWholesale.Text = "Complete"
         Me.BCompleteWholesale.Visible = False
-        '
-        'GCPayment
-        '
-        Me.GCPayment.AppearanceCell.Options.UseTextOptions = True
-        Me.GCPayment.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GCPayment.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCPayment.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GCPayment.Caption = "Payment"
-        Me.GCPayment.FieldName = "pay_sts"
-        Me.GCPayment.Name = "GCPayment"
-        Me.GCPayment.UnboundExpression = "Iif([paid] = 1, 'Paid', 'Pending')"
-        Me.GCPayment.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        '
-        'GridColumn28
-        '
-        Me.GridColumn28.Caption = "Is paid"
-        Me.GridColumn28.FieldName = "paid"
-        Me.GridColumn28.Name = "GridColumn28"
         '
         'FormDelManifestDet
         '
