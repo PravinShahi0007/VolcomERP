@@ -457,5 +457,6 @@
             stopCustom(code + Environment.NewLine + cls + " - " + name + " - " + color + Environment.NewLine + Environment.NewLine + "Maximum Qty => " + qty_limit.ToString)
             GVSOHSal.SetFocusedRowCellValue("order_qty" + col_no, 0)
         End If
+        GVSOHSal.Columns("order_qty" + col_no).BestFit()
     End Sub
 End Class
