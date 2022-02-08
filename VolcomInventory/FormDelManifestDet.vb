@@ -888,7 +888,7 @@ ORDER BY awbd.id_awbill ASC,awbd.id_pl_sales_order_del ASC"
 -- ,awb.`weight_calc` AS volume
 ,ROUND((awb.width* awb.length* awb.height)/" & div_by & ",2) AS volume
 ,c.id_sub_district
-,IF(sp.sales_pos_total>0,IF(IFNULL(rec.value,0)=0,2,1),2) AS paid
+,IF(sp.sales_pos_total>0,IF(IFNULL(rec.value,0)=0,2,1),1) AS paid
 FROM tb_wh_awbill_det awbd
 INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 
 -- AND awb.id_del_type='" & SLEDelType.EditValue.ToString & "'
