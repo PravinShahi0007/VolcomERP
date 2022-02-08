@@ -10,10 +10,9 @@
 
         'set footer detail
         RowTotalQty.Text = Decimal.Parse(data.Rows(0)("total_qty").ToString).ToString("N0")
-        RowTotalAmount.Text = Decimal.Parse(data.Rows(0)("total_amo").ToString).ToString("N0")
 
         'detail
         Dim inv As New ClassSalesPOS()
-        inv.detailReport(id_sales_pos, XTable, XTRow)
+        inv.detailReportDelSlip(id_sales_pos, XTable, XTRow)
     End Sub
 End Class
