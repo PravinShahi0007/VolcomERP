@@ -7,6 +7,7 @@
         viewSalesList()
         viewStore()
         viewStoreSC()
+        viewWH()
 
         'caption size sal
         GVSOHSal.Columns("sal_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
@@ -54,6 +55,14 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewWH()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT c.id_comp, c.comp_number , c.comp_name AS `comp_name_label` 
+        FROM tb_m_comp c WHERE c.id_comp_cat=5 AND c.is_active=1 
+        AND c.id_comp NOT IN (SELECT wh_temp FROM tb_opt ) "
+        viewSearchLookupQuery(SLEWH, query, "id_comp", "comp_name_label", "id_comp")
+        Cursor = Cursors.Default
+    End Sub
 
     Sub viewSalesList()
         Cursor = Cursors.WaitCursor
@@ -143,8 +152,15 @@
         End If
         Dim id_comp As String = SLEAccount.EditValue.ToString
 
+        'wh
+        Dim id_wh As String = ""
+        If SLEWH.EditValue = Nothing Then
+            id_wh = "0"
+        Else
+            id_wh = SLEWH.EditValue.ToString
+        End If
 
-        Dim query As String = "CALL view_sal_inv_virtual(" + id_comp + "," + id_design_selected + ") "
+        Dim query As String = "CALL view_sal_inv_virtual(" + id_comp + "," + id_design_selected + ", " + id_wh + ") "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSOHSal.DataSource = data
         DEBeg.EditValue = data.Rows(0)("beg_stock_date")
