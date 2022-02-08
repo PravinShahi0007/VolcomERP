@@ -63,13 +63,14 @@ LEFT JOIN
 )val ON LEFT(val.acc_name,4)=LEFT(acc.`acc_name`,4) AND acc.`id_coa_type`=val.`id_coa_type`
 LEFT JOIN
 (
-	SELECT ot.id_b_expense_opex,SUM(ot.value) AS val
+	SELECT opex.id_item_cat_main,SUM(ot.value) AS val
 	FROM `tb_b_expense_opex_trans` ot
-	WHERE ot.is_po=1 AND DATE(ot.date_trans) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
-	GROUP BY ot.id_b_expense_opex
-)po ON po.id_b_expense_opex=opex.id_b_expense_opex
+	INNER JOIN `tb_b_expense_opex` opex  ON opex.`id_b_expense_opex`=ot.id_b_expense_opex
+	WHERE ot.is_po=1 AND opex.`year`='" & LEYear.Text.ToString & "' AND DATE(ot.date_trans) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+	GROUP BY opex.id_item_cat_main
+)po ON po.id_item_cat_main=icm.id_item_cat_main
 WHERE opex.`year`='" & LEYear.Text.ToString & "'
-GROUP BY opex.`id_b_expense_opex`)
+GROUP BY opex.`id_item_cat_main`)
 UNION ALL
 (SELECT 'All' AS departement,icm.`id_item_cat_main`,icm.`item_cat_main` AS main_cat,et.`expense_type`
 ,capex.`value_expense` AS budget
@@ -341,6 +342,28 @@ GROUP BY `year`"
     End Sub
 
     Private Sub TMBookedPO_Click(sender As Object, e As EventArgs) Handles TMBookedPO.Click
-
+        If GVReportBudgetNew.RowCount > 0 Then
+            Dim q As String = ""
+            If GVReportBudgetNew.GetFocusedRowCellValue("expense_type").ToString = "OPEX" Then
+                q = "SELECT ot.`id_report`,ot.`report_mark_type`,opex.id_item_cat_main,SUM(ot.value) AS val
+    FROM `tb_b_expense_opex_trans` ot
+    INNER JOIN `tb_b_expense_opex` opex  ON opex.`id_b_expense_opex`=ot.id_b_expense_opex
+    WHERE ot.is_po=1 AND opex.`year`='" & LEYear.Text.ToString & "' AND DATE(ot.date_trans) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+    AND opex.id_item_cat_main='" & GVReportBudgetNew.GetFocusedRowCellValue("id_item_cat_main").ToString & "'
+    GROUP BY ot.`id_report`,ot.`report_mark_type`
+    HAVING val!=0"
+            Else
+                q = "SELECT ot.`id_report`,ot.`report_mark_type`,capex.id_item_cat_main,SUM(ot.value) AS val
+    FROM `tb_b_expense_trans` ot
+    INNER JOIN `tb_b_expense` capex  ON capex.`id_b_expense`=ot.id_b_expense
+    WHERE ot.is_po=1 AND capex.`year`='" & LEYear.Text.ToString & "' AND DATE(ot.date_trans) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+    AND capex.id_item_cat_main='" & GVReportBudgetNew.GetFocusedRowCellValue("id_item_cat_main").ToString & "'
+    GROUP BY ot.`id_report`,ot.`report_mark_type`
+    HAVING val!=0"
+            End If
+            FormReportBudgetList.opt = "2"
+            FormReportBudgetList.qi = q
+            FormReportBudgetList.ShowDialog()
+        End If
     End Sub
 End Class
