@@ -6,7 +6,11 @@
     Dim is_purc_dep As String = "1"
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
-        load_budget()
+        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+
+        ElseIf XtraTabControl1.SelectedTabPageIndex = 1 Then
+            load_budget()
+        End If
     End Sub
 
     Private Sub FormReportBudget_Load(sender As Object, e As EventArgs) Handles MyBase.Load
