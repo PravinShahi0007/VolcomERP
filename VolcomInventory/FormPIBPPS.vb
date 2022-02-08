@@ -12,7 +12,7 @@
         If id = "-1" Then 'new
 
         Else 'edit
-            Dim q As String = "SELECT pps.number,emp.employee_name,pps.created_date,pps.note
+            Dim q As String = "SELECT pps.number,emp.employee_name,pps.created_date,pps.note,pps.id_report_status
 FROM tb_pib_pps pps
 INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
@@ -23,6 +23,12 @@ WHERE pps.id_pib_pps='" & id & "'"
                 DECreated.EditValue = dt.Rows(0)("created_date")
                 MENote.Text = dt.Rows(0)("note").ToString
                 TEProposedBy.Text = dt.Rows(0)("employee_name").ToString
+                '
+                If dt.Rows(0)("id_report_status").ToString = "6" Or dt.Rows(0)("id_report_status").ToString = "5" Then
+                    BtnSave.Visible = False
+                    is_view = "1"
+                End If
+                '
             End If
             BtnAttachment.Visible = True
             BtnPrint.Visible = True
@@ -113,7 +119,7 @@ GROUP BY f.id_pre_cal_fgpo"
                     End If
                     q += "('" & id & "','" & BGVPIBPPS.GetRowCellValue(i, "id_pre_cal_fgpo").ToString & "','" & addSlashes(BGVPIBPPS.GetRowCellValue(i, "old_pib_no").ToString) & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "old_pib_date").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "old_vp_due_date").ToString).ToString("yyyy-MM-dd") & "','" & addSlashes(BGVPIBPPS.GetRowCellValue(i, "pib_no").ToString) & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "pib_date").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "vp_due_date").ToString).ToString("yyyy-MM-dd") & "')"
                 Next
-                execute_query(q, -1, True, "", "", "", "")
+                execute_non_query(q, True, "", "", "", "")
 
                 'mark
                 submit_who_prepared("359", id, id_user)
@@ -122,7 +128,24 @@ GROUP BY f.id_pre_cal_fgpo"
 
                 Close()
             Else 'edit
+                execute_non_query("UPDATE tb_pib_pps SET `note`='" & addSlashes(MENote.Text) & "' WHERE id_pib_pps='" & id & "'", True, "", "", "", "")
+                '
+                Dim q As String = ""
+                '
+                execute_non_query("DELETE FROM tb_pib_pps_det WHERE id_pib_pps='" & id & "'", True, "", "", "", "")
+                '
+                q = "INSERT INTO `tb_pib_pps_det`(`id_pib_pps`,`id_pre_cal_fgpo`,`old_pib_no`,`old_pib_date`,`old_vp_due_date`,`pib_no`,`pib_date`,`vp_due_date`) VALUES"
+                For i = 0 To BGVPIBPPS.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id & "','" & BGVPIBPPS.GetRowCellValue(i, "id_pre_cal_fgpo").ToString & "','" & addSlashes(BGVPIBPPS.GetRowCellValue(i, "old_pib_no").ToString) & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "old_pib_date").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "old_vp_due_date").ToString).ToString("yyyy-MM-dd") & "','" & addSlashes(BGVPIBPPS.GetRowCellValue(i, "pib_no").ToString) & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "pib_date").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(BGVPIBPPS.GetRowCellValue(i, "vp_due_date").ToString).ToString("yyyy-MM-dd") & "')"
+                Next
+                execute_non_query(q, True, "", "", "", "")
 
+                infoCustom("PIB detail updated")
+
+                Close()
             End If
         End If
     End Sub

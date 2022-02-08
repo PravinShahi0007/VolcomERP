@@ -888,14 +888,14 @@ ORDER BY awbd.id_awbill ASC,awbd.id_pl_sales_order_del ASC"
 -- ,awb.`weight_calc` AS volume
 ,ROUND((awb.width* awb.length* awb.height)/" & div_by & ",2) AS volume
 ,c.id_sub_district
-,IF(sp.sales_pos_total>0,IF(IFNULL(rec.value,0)=0,2,1),2) AS paid
+,IF(sp.netto>0,IF(IFNULL(rec.value,0)=0,2,1),1) AS paid
 FROM tb_wh_awbill_det awbd
 INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 
 -- AND awb.id_del_type='" & SLEDelType.EditValue.ToString & "'
 INNER JOIN tb_pl_sales_order_del pl ON pl.`id_pl_sales_order_del`=awbd.`id_pl_sales_order_del` AND pl.`id_report_status`!=5
 LEFT JOIN 
 (
-	SELECT sp.id_sales_pos,sp.report_mark_type,sp.sales_pos_number,sp.id_pl_sales_order_del,sp.`sales_pos_total`
+	SELECT sp.id_sales_pos,sp.report_mark_type,sp.sales_pos_number,sp.id_pl_sales_order_del,sp.`sales_pos_total`,sp.netto
 	FROM tb_sales_pos sp
 	INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=sp.`id_store_contact_from` AND sp.`id_report_status`=6 
 	INNER JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp

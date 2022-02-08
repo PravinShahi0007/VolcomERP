@@ -22,6 +22,8 @@ Partial Class FormReportBudget
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormReportBudget))
         Me.GCItemCat = New DevExpress.XtraGrid.GridControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVItemCat = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -84,9 +86,11 @@ Partial Class FormReportBudget
         Me.TEActualSum = New DevExpress.XtraEditors.TextEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TEBudgetSum = New DevExpress.XtraEditors.TextEdit()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPNew = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPOld = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.GCItemCat, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         CType(Me.GVItemCat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -123,19 +127,33 @@ Partial Class FormReportBudget
         CType(Me.ASSum, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEActualSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEBudgetSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ViewMenu.SuspendLayout()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl1.SuspendLayout()
+        Me.XTPOld.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCItemCat
         '
         Me.GCItemCat.ContextMenuStrip = Me.ViewMenu
         Me.GCItemCat.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCItemCat.Location = New System.Drawing.Point(0, 159)
+        Me.GCItemCat.Location = New System.Drawing.Point(0, 114)
         Me.GCItemCat.MainView = Me.GVItemCat
         Me.GCItemCat.Name = "GCItemCat"
-        Me.GCItemCat.Size = New System.Drawing.Size(1017, 383)
+        Me.GCItemCat.Size = New System.Drawing.Size(1011, 355)
         Me.GCItemCat.TabIndex = 2
         Me.GCItemCat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemCat})
+        '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(135, 26)
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "View Usage"
         '
         'GVItemCat
         '
@@ -421,9 +439,9 @@ Partial Class FormReportBudget
         Me.PanelChart.Controls.Add(Me.PanelControl2)
         Me.PanelChart.Controls.Add(Me.PCBSum)
         Me.PanelChart.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelChart.Location = New System.Drawing.Point(0, 45)
+        Me.PanelChart.Location = New System.Drawing.Point(0, 0)
         Me.PanelChart.Name = "PanelChart"
-        Me.PanelChart.Size = New System.Drawing.Size(1017, 114)
+        Me.PanelChart.Size = New System.Drawing.Size(1011, 114)
         Me.PanelChart.TabIndex = 7
         Me.PanelChart.Visible = False
         '
@@ -817,25 +835,37 @@ Partial Class FormReportBudget
         Me.TEBudgetSum.Size = New System.Drawing.Size(150, 22)
         Me.TEBudgetSum.TabIndex = 7
         '
-        'ViewMenu
+        'XtraTabControl1
         '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
-        Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
+        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 45)
+        Me.XtraTabControl1.Name = "XtraTabControl1"
+        Me.XtraTabControl1.SelectedTabPage = Me.XTPNew
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1017, 497)
+        Me.XtraTabControl1.TabIndex = 8
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPNew, Me.XTPOld})
         '
-        'ViewDetailToolStripMenuItem
+        'XTPNew
         '
-        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ViewDetailToolStripMenuItem.Text = "View Usage"
+        Me.XTPNew.Name = "XTPNew"
+        Me.XTPNew.Size = New System.Drawing.Size(294, 272)
+        Me.XTPNew.Text = "Report"
+        '
+        'XTPOld
+        '
+        Me.XTPOld.Controls.Add(Me.GCItemCat)
+        Me.XTPOld.Controls.Add(Me.PanelChart)
+        Me.XTPOld.Name = "XTPOld"
+        Me.XTPOld.Size = New System.Drawing.Size(1011, 469)
+        Me.XTPOld.Text = "Old Report"
         '
         'FormReportBudget
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1017, 542)
-        Me.Controls.Add(Me.GCItemCat)
-        Me.Controls.Add(Me.PanelChart)
+        Me.Controls.Add(Me.XtraTabControl1)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -844,6 +874,7 @@ Partial Class FormReportBudget
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Report Budget"
         CType(Me.GCItemCat, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVItemCat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
@@ -884,7 +915,9 @@ Partial Class FormReportBudget
         CType(Me.ASSum, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEActualSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEBudgetSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ViewMenu.ResumeLayout(False)
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl1.ResumeLayout(False)
+        Me.XTPOld.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -954,4 +987,7 @@ Partial Class FormReportBudget
     Friend WithEvents PCBSum As DevExpress.XtraEditors.PanelControl
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPNew As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPOld As DevExpress.XtraTab.XtraTabPage
 End Class
