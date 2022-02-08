@@ -459,4 +459,26 @@
         End If
         GVSOHSal.Columns("order_qty" + col_no).BestFit()
     End Sub
+
+    Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
+        GVSOHSal.ActiveFilterString = ""
+        GVSOHSal.ActiveFilterString = "[order_qty]>0"
+        If GVSOHSal.RowCount <= 0 Then
+            stopCustom("Please input qty order first")
+        Else
+            Cursor = Cursors.WaitCursor
+            Try
+                FormSalesOrder.MdiParent = FormMain
+                FormSalesOrder.Show()
+                FormSalesOrder.WindowState = FormWindowState.Maximized
+            Catch ex As Exception
+            End Try
+            Me.Focus()
+            FormSalesOrderDet.action = "ins"
+            FormSalesOrderDet.is_from_virtual_soh = True
+            FormSalesOrderDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+        GVSOHSal.ActiveFilterString = ""
+    End Sub
 End Class

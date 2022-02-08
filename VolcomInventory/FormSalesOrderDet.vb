@@ -25,6 +25,7 @@ Public Class FormSalesOrderDet
     Public is_transfer_data As String = "2"
     Public id_ol_promo As String = "-1"
     Public id_bsp As String = "-1"
+    Public is_from_virtual_soh As Boolean = False
 
     Private Sub FormSalesOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         id_type = FormSalesOrder.id_type
@@ -114,6 +115,56 @@ Public Class FormSalesOrderDet
                 LEOrderType.Enabled = False
                 LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", "2")
                 LEStatusSO.Enabled = False
+            End If
+
+            'from virtual sales
+            If is_from_virtual_soh Then
+                'ORDER
+                LEOrderType.ItemIndex = LEOrderType.Properties.GetDataSourceRowIndex("id_order_type", "3")
+                LEOrderType.Enabled = False
+
+                'FROM
+                id_comp_par = FormVirtualSales.SLEWH.EditValue.ToString
+                id_comp_contact_par = get_company_x(id_comp_par, "6")
+                TxtWHNameTo.Text = FormVirtualSales.SLEWH.Text
+                TxtWHCodeTo.Text = FormVirtualSales.SLEWH.Properties.View.GetFocusedRowCellValue("comp_number").ToString
+                TxtWHCodeTo.Enabled = False
+                BtnBrowseWH.Enabled = False
+                LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", "2")
+                LEStatusSO.Enabled = False
+
+                'TO
+                TxtCodeCompTo.Text = FormVirtualSales.SLEAccount.Properties.View.GetFocusedRowCellValue("comp_number").ToString
+                TxtCodeCompTo.Enabled = False
+                id_store = FormVirtualSales.SLEAccount.EditValue.ToString
+                Dim data As DataTable = get_company_by_code(TxtCodeCompTo.Text, "AND comp.id_comp=" + id_store + "")
+                id_commerce_type = data.Rows(0)("id_commerce_type").ToString
+                checkCommerceType()
+                id_store_cat = data.Rows(0)("id_comp_cat").ToString
+                id_store_type = data.Rows(0)("id_store_type").ToString
+                id_wh_type = data.Rows(0)("id_wh_type").ToString
+                'tentukan akun type
+                If data.Rows(0)("id_comp_cat").ToString = "5" Then
+                    'wh
+                    id_account_type = id_wh_type
+                Else
+                    'store
+                    id_account_type = id_store_type
+                    If id_account_type = "3" Then
+                        id_account_type = "2"
+                    End If
+                End If
+                id_store_contact_to = data.Rows(0)("id_comp_contact").ToString
+                TxtNameCompTo.Text = data.Rows(0)("comp_name").ToString
+                MEAdrressCompTo.Text = data.Rows(0)("address_primary").ToString
+                BtnBrowseContactTo.Enabled = False
+                SBSyncShopify.Enabled = False
+
+                'DETAIL
+                viewDetail("-1")
+                noEdit()
+                check_sync()
+                PanelControlNav.Visible = False
             End If
         ElseIf action = "upd" Then
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
