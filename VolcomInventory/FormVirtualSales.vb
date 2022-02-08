@@ -435,11 +435,27 @@
     End Sub
 
     Private Sub GVSOHSal_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVSOHSal.CustomColumnDisplayText
-        If (e.Column.FieldName.Contains("soh_qty") Or e.Column.FieldName.Contains("sal_qty")) Then
+        If (e.Column.FieldName.Contains("soh_qty") Or e.Column.FieldName.Contains("sal_qty") Or e.Column.FieldName.Contains("wh_qty") Or e.Column.FieldName.Contains("order_qty")) Then
             Dim qty As Decimal = Convert.ToDecimal(e.Value)
             If qty = 0 Then
                 e.DisplayText = "-"
             End If
+        End If
+    End Sub
+
+    Private Sub RepositoryItemSpinEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemSpinEdit1.EditValueChanged
+        Dim foc_col As String = GVSOHSal.FocusedColumn.FieldName.ToString
+        Dim col_no As String = Microsoft.VisualBasic.Right(foc_col, 1)
+        Dim SpQty As DevExpress.XtraEditors.SpinEdit = CType(sender, DevExpress.XtraEditors.SpinEdit)
+        Dim qty_order As Decimal = SpQty.EditValue
+        Dim qty_limit As Decimal = GVSOHSal.GetFocusedRowCellValue("wh_qty" + col_no)
+        Dim code As String = GVSOHSal.GetFocusedRowCellValue("main_code").ToString + GVSOHSal.GetFocusedRowCellValue("size_type").ToString + "1"
+        Dim cls As String = GVSOHSal.GetFocusedRowCellValue("class").ToString
+        Dim name As String = GVSOHSal.GetFocusedRowCellValue("name").ToString
+        Dim color As String = GVSOHSal.GetFocusedRowCellValue("color").ToString
+        If qty_order > qty_limit Then
+            stopCustom(code + Environment.NewLine + cls + " - " + name + " - " + color + Environment.NewLine + Environment.NewLine + "Maximum Qty => " + qty_limit.ToString)
+            GVSOHSal.SetFocusedRowCellValue("order_qty" + col_no, 0)
         End If
     End Sub
 End Class
