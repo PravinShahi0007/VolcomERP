@@ -119,11 +119,17 @@ Public Class FormSalesOrderDet
 
             'from virtual sales
             If is_from_virtual_soh Then
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+
                 'ORDER
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Set type order")
                 LEOrderType.ItemIndex = LEOrderType.Properties.GetDataSourceRowIndex("id_order_type", "3")
                 LEOrderType.Enabled = False
 
                 'FROM
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Set WH account")
                 id_comp_par = FormVirtualSales.SLEWH.EditValue.ToString
                 id_comp_contact_par = get_company_x(id_comp_par, "6")
                 TxtWHNameTo.Text = FormVirtualSales.SLEWH.Text
@@ -134,6 +140,7 @@ Public Class FormSalesOrderDet
                 LEStatusSO.Enabled = False
 
                 'TO
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Set store account")
                 TxtCodeCompTo.Text = FormVirtualSales.SLEAccount.Properties.View.GetFocusedRowCellValue("comp_number").ToString
                 TxtCodeCompTo.Enabled = False
                 id_store = FormVirtualSales.SLEAccount.EditValue.ToString
@@ -161,6 +168,7 @@ Public Class FormSalesOrderDet
                 SBSyncShopify.Enabled = False
 
                 'DETAIL
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Loading items")
                 viewDetail("-1")
                 noEdit()
                 check_sync()
@@ -170,14 +178,13 @@ Public Class FormSalesOrderDet
                 Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = FormVirtualSales.GVSOHSal
                 Dim qi As String = "DELETE FROM tb_temp_so_replace WHERE id_user=" + id_user + "; INSERT INTO tb_temp_so_replace(id_user, code, qty) VALUES "
                 For i As Integer = 0 To FormVirtualSales.GVSOHSal.RowCount - 1
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Row " + (i + 1).ToString + " of " + FormVirtualSales.GVSOHSal.RowCount.ToString)
                     If i > 0 Then
                         qi += ","
                     End If
+
+                    Dim jx As Integer = 0
                     For j As Integer = 1 To 10
-                        Dim jx As Integer = 0
-                        If jx > 0 Then
-                            qi += ","
-                        End If
                         Dim indeks As String = ""
                         If j = 10 Then
                             indeks = "0"
@@ -187,12 +194,27 @@ Public Class FormSalesOrderDet
                         Dim code As String = gv.GetRowCellValue(i, "main_code").ToString + gv.GetRowCellValue(i, "size_type").ToString + indeks + "1"
                         Dim qty As String = decimalSQL(gv.GetRowCellValue(i, "order_qty" + indeks).ToString)
                         If qty > 0 Then
+                            If jx > 0 Then
+                                qi += ","
+                            End If
+
                             qi += "('" + id_user + "','" + code + "', '" + qty + "') "
                             jx += 1
                         End If
                     Next
                 Next
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Checking master product")
                 execute_non_query_long(qi, True, "", "", "", "")
+                Dim qview As String = "CALL view_so_replace(" + id_user + ")"
+                Dim dview As DataTable = execute_query(qview, -1, True, "", "", "", "")
+                GCItemList.DataSource = dview
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Bestfit all column")
+                GVItemList.BestFitColumns()
+
+                'clear temporary
+                execute_non_query("DELETE FROM tb_temp_so_replace WHERE id_user=" + id_user + "; ", True, "", "", "", "")
+
+                FormMain.SplashScreenManager1.CloseWaitForm()
             End If
         ElseIf action = "upd" Then
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
