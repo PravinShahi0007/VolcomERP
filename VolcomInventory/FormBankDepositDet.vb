@@ -868,7 +868,7 @@ INNER JOIN tb_a_acc acc ON acc.id_acc=d.coa_pend_penjualan"
                         End If
                         Dim id_acc As String = GVList.GetRowCellValue(i, "id_acc").ToString
                         Dim id_dc As String = GVList.GetRowCellValue(i, "id_dc").ToString
-                        Dim vendor As String = addSlashes(GVList.GetRowCellValue(i, "vendor").ToString)
+                        Dim vendor As String = GVList.GetRowCellValue(i, "vendor").ToString
                         'valas
                         Dim value_bef_kurs As String = "1"
                         If SLEAkunValas.EditValue = 0 Then
