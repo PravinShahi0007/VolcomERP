@@ -167,11 +167,32 @@ Public Class FormSalesOrderDet
                 PanelControlNav.Visible = False
 
                 'load item
-                'Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = 
-                Dim qi As String = "DELETE FROM tb_temp_so_replace WHERE id_user=" + id_user + "; "
+                Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = FormVirtualSales.GVSOHSal
+                Dim qi As String = "DELETE FROM tb_temp_so_replace WHERE id_user=" + id_user + "; INSERT INTO tb_temp_so_replace(id_user, code, qty) VALUES "
                 For i As Integer = 0 To FormVirtualSales.GVSOHSal.RowCount - 1
-                    'Dim code1 As String = decimalSQL(FormVirtualSales.get)
+                    If i > 0 Then
+                        qi += ","
+                    End If
+                    For j As Integer = 1 To 10
+                        Dim jx As Integer = 0
+                        If jx > 0 Then
+                            qi += ","
+                        End If
+                        Dim indeks As String = ""
+                        If j = 10 Then
+                            indeks = "0"
+                        Else
+                            indeks = j.ToString
+                        End If
+                        Dim code As String = gv.GetRowCellValue(i, "main_code").ToString + gv.GetRowCellValue(i, "size_type").ToString + indeks + "1"
+                        Dim qty As String = decimalSQL(gv.GetRowCellValue(i, "order_qty" + indeks).ToString)
+                        If qty > 0 Then
+                            qi += "('" + id_user + "','" + code + "', '" + qty + "') "
+                            jx += 1
+                        End If
+                    Next
                 Next
+                execute_non_query_long(qi, True, "", "", "", "")
             End If
         ElseIf action = "upd" Then
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
