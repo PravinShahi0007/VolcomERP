@@ -191,6 +191,18 @@
         If Not id_comp = 0 Then
             FormMain.SplashScreenManager1.SetWaitFormDescription("Best fit all column")
             GVSOHSal.BestFitColumns()
+
+            Dim width_order As Integer = 50
+            BandedGridColumnorder_qty1.Width = width_order
+            BandedGridColumnorder_qty2.Width = width_order
+            BandedGridColumnorder_qty3.Width = width_order
+            BandedGridColumnorder_qty4.Width = width_order
+            BandedGridColumnorder_qty5.Width = width_order
+            BandedGridColumnorder_qty6.Width = width_order
+            BandedGridColumnorder_qty7.Width = width_order
+            BandedGridColumnorder_qty8.Width = width_order
+            BandedGridColumnorder_qty9.Width = width_order
+            BandedGridColumnorder_qty0.Width = width_order
         End If
 
         FormMain.SplashScreenManager1.CloseWaitForm()

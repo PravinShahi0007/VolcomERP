@@ -808,6 +808,11 @@ Public Class FormSalesOrderDet
                     'gen xls
                     exportToBOF(False)
 
+                    'refresh view other
+                    If is_from_virtual_soh Then
+                        FormVirtualSales.resetViewSalInv()
+                    End If
+
                     infoCustom("Prepare order : " + TxtSalesOrderNumber.Text.ToString + " was created successfully. ")
                     Cursor = Cursors.Default
                 End If
