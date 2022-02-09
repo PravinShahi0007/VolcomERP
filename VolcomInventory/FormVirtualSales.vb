@@ -519,9 +519,11 @@
                 GVSOHSal.SetFocusedRowCellValue("order_qty" + col_no, 0)
             End If
         Else
-            'GVSOHSal.SetFocusedRowCellValue("order_qty" + col_no, 0)
+            GVSOHSal.SetFocusedRowCellValue("order_qty" + col_no, 0)
         End If
+    End Sub
 
-        GVSOHSal.Columns("order_qty" + col_no).BestFit()
+    Private Sub GVSOHSal_FocusedColumnChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs) Handles GVSOHSal.FocusedColumnChanged
+
     End Sub
 End Class
