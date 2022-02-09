@@ -167,10 +167,10 @@ Public Class FormSalesOrderDet
                 PanelControlNav.Visible = False
 
                 'load item
-                Dim gv As gridview
+                'Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = 
                 Dim qi As String = "DELETE FROM tb_temp_so_replace WHERE id_user=" + id_user + "; "
                 For i As Integer = 0 To FormVirtualSales.GVSOHSal.RowCount - 1
-                    Dim code1 As String = decimalSQL(FormVirtualSales.get)
+                    'Dim code1 As String = decimalSQL(FormVirtualSales.get)
                 Next
             End If
         ElseIf action = "upd" Then
