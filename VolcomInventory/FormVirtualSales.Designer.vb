@@ -174,6 +174,7 @@ Partial Class FormVirtualSales
         Me.BtnBrowseProductSC = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtProductSC = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.XTCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCData.SuspendLayout()
         Me.XTPSalesReport.SuspendLayout()
@@ -225,6 +226,7 @@ Partial Class FormVirtualSales
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl8.SuspendLayout()
         CType(Me.TxtProductSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCData
@@ -442,7 +444,7 @@ Partial Class FormVirtualSales
         Me.GCSOHSal.Location = New System.Drawing.Point(0, 142)
         Me.GCSOHSal.MainView = Me.GVSOHSal
         Me.GCSOHSal.Name = "GCSOHSal"
-        Me.GCSOHSal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
+        Me.GCSOHSal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemTextEdit1})
         Me.GCSOHSal.Size = New System.Drawing.Size(712, 256)
         Me.GCSOHSal.TabIndex = 3
         Me.GCSOHSal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSOHSal})
@@ -1104,7 +1106,7 @@ Partial Class FormVirtualSales
         Me.BandedGridColumnorder_qty1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty1.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty1.Caption = "order_qty1"
-        Me.BandedGridColumnorder_qty1.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.BandedGridColumnorder_qty1.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.BandedGridColumnorder_qty1.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnorder_qty1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnorder_qty1.FieldName = "order_qty1"
@@ -1129,7 +1131,7 @@ Partial Class FormVirtualSales
         Me.BandedGridColumnorder_qty2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty2.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty2.Caption = "order_qty2"
-        Me.BandedGridColumnorder_qty2.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.BandedGridColumnorder_qty2.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.BandedGridColumnorder_qty2.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnorder_qty2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnorder_qty2.FieldName = "order_qty2"
@@ -1144,7 +1146,7 @@ Partial Class FormVirtualSales
         Me.BandedGridColumnorder_qty3.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty3.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty3.Caption = "order_qty3"
-        Me.BandedGridColumnorder_qty3.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.BandedGridColumnorder_qty3.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.BandedGridColumnorder_qty3.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnorder_qty3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnorder_qty3.FieldName = "order_qty3"
@@ -1159,7 +1161,7 @@ Partial Class FormVirtualSales
         Me.BandedGridColumnorder_qty4.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty4.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty4.Caption = "order_qty4"
-        Me.BandedGridColumnorder_qty4.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.BandedGridColumnorder_qty4.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.BandedGridColumnorder_qty4.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnorder_qty4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnorder_qty4.FieldName = "order_qty4"
@@ -1174,7 +1176,7 @@ Partial Class FormVirtualSales
         Me.BandedGridColumnorder_qty5.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty5.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty5.Caption = "order_qty5"
-        Me.BandedGridColumnorder_qty5.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.BandedGridColumnorder_qty5.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.BandedGridColumnorder_qty5.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnorder_qty5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnorder_qty5.FieldName = "order_qty5"
@@ -1189,7 +1191,7 @@ Partial Class FormVirtualSales
         Me.BandedGridColumnorder_qty6.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty6.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty6.Caption = "order_qty6"
-        Me.BandedGridColumnorder_qty6.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.BandedGridColumnorder_qty6.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.BandedGridColumnorder_qty6.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnorder_qty6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnorder_qty6.FieldName = "order_qty6"
@@ -1204,7 +1206,7 @@ Partial Class FormVirtualSales
         Me.BandedGridColumnorder_qty7.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty7.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty7.Caption = "order_qty7"
-        Me.BandedGridColumnorder_qty7.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.BandedGridColumnorder_qty7.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.BandedGridColumnorder_qty7.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnorder_qty7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnorder_qty7.FieldName = "order_qty7"
@@ -1219,7 +1221,7 @@ Partial Class FormVirtualSales
         Me.BandedGridColumnorder_qty8.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty8.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty8.Caption = "order_qty8"
-        Me.BandedGridColumnorder_qty8.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.BandedGridColumnorder_qty8.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.BandedGridColumnorder_qty8.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnorder_qty8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnorder_qty8.FieldName = "order_qty8"
@@ -1234,7 +1236,7 @@ Partial Class FormVirtualSales
         Me.BandedGridColumnorder_qty9.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty9.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty9.Caption = "order_qty9"
-        Me.BandedGridColumnorder_qty9.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.BandedGridColumnorder_qty9.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.BandedGridColumnorder_qty9.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnorder_qty9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnorder_qty9.FieldName = "order_qty9"
@@ -1249,7 +1251,7 @@ Partial Class FormVirtualSales
         Me.BandedGridColumnorder_qty0.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty0.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty0.Caption = "order_qty0"
-        Me.BandedGridColumnorder_qty0.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.BandedGridColumnorder_qty0.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.BandedGridColumnorder_qty0.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnorder_qty0.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnorder_qty0.FieldName = "order_qty0"
@@ -1850,6 +1852,16 @@ Partial Class FormVirtualSales
         Me.LabelControl4.TabIndex = 8915
         Me.LabelControl4.Text = "Account"
         '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.DisplayFormat.FormatString = "N0"
+        Me.RepositoryItemTextEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit1.Mask.BeepOnError = True
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "N0"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
         'FormVirtualSales
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1913,6 +1925,7 @@ Partial Class FormVirtualSales
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl8.ResumeLayout(False)
         CType(Me.TxtProductSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2070,4 +2083,5 @@ Partial Class FormVirtualSales
     Friend WithEvents BandedGridColumnorder_qty0 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnorder_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class
