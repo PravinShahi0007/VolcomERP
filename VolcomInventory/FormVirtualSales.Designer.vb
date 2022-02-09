@@ -1101,9 +1101,11 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnorder_qty1
         '
-        Me.BandedGridColumnorder_qty1.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty1.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnorder_qty1.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty1.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnorder_qty1.AppearanceCell.Options.UseFont = True
-        Me.BandedGridColumnorder_qty1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty1.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty1.Caption = "order_qty1"
         Me.BandedGridColumnorder_qty1.ColumnEdit = Me.RepositoryItemTextEdit1
@@ -1126,9 +1128,11 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnorder_qty2
         '
-        Me.BandedGridColumnorder_qty2.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty2.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnorder_qty2.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty2.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnorder_qty2.AppearanceCell.Options.UseFont = True
-        Me.BandedGridColumnorder_qty2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty2.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty2.Caption = "order_qty2"
         Me.BandedGridColumnorder_qty2.ColumnEdit = Me.RepositoryItemTextEdit1
@@ -1141,9 +1145,11 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnorder_qty3
         '
-        Me.BandedGridColumnorder_qty3.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty3.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnorder_qty3.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty3.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnorder_qty3.AppearanceCell.Options.UseFont = True
-        Me.BandedGridColumnorder_qty3.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty3.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty3.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty3.Caption = "order_qty3"
         Me.BandedGridColumnorder_qty3.ColumnEdit = Me.RepositoryItemTextEdit1
@@ -1156,9 +1162,11 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnorder_qty4
         '
-        Me.BandedGridColumnorder_qty4.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty4.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnorder_qty4.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty4.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnorder_qty4.AppearanceCell.Options.UseFont = True
-        Me.BandedGridColumnorder_qty4.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty4.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty4.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty4.Caption = "order_qty4"
         Me.BandedGridColumnorder_qty4.ColumnEdit = Me.RepositoryItemTextEdit1
@@ -1171,9 +1179,11 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnorder_qty5
         '
-        Me.BandedGridColumnorder_qty5.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty5.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnorder_qty5.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty5.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnorder_qty5.AppearanceCell.Options.UseFont = True
-        Me.BandedGridColumnorder_qty5.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty5.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty5.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty5.Caption = "order_qty5"
         Me.BandedGridColumnorder_qty5.ColumnEdit = Me.RepositoryItemTextEdit1
@@ -1186,9 +1196,11 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnorder_qty6
         '
-        Me.BandedGridColumnorder_qty6.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty6.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnorder_qty6.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty6.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnorder_qty6.AppearanceCell.Options.UseFont = True
-        Me.BandedGridColumnorder_qty6.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty6.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty6.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty6.Caption = "order_qty6"
         Me.BandedGridColumnorder_qty6.ColumnEdit = Me.RepositoryItemTextEdit1
@@ -1201,9 +1213,11 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnorder_qty7
         '
-        Me.BandedGridColumnorder_qty7.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty7.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnorder_qty7.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty7.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnorder_qty7.AppearanceCell.Options.UseFont = True
-        Me.BandedGridColumnorder_qty7.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty7.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty7.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty7.Caption = "order_qty7"
         Me.BandedGridColumnorder_qty7.ColumnEdit = Me.RepositoryItemTextEdit1
@@ -1216,9 +1230,11 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnorder_qty8
         '
-        Me.BandedGridColumnorder_qty8.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty8.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnorder_qty8.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty8.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnorder_qty8.AppearanceCell.Options.UseFont = True
-        Me.BandedGridColumnorder_qty8.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty8.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty8.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty8.Caption = "order_qty8"
         Me.BandedGridColumnorder_qty8.ColumnEdit = Me.RepositoryItemTextEdit1
@@ -1231,9 +1247,11 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnorder_qty9
         '
-        Me.BandedGridColumnorder_qty9.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty9.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnorder_qty9.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty9.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnorder_qty9.AppearanceCell.Options.UseFont = True
-        Me.BandedGridColumnorder_qty9.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty9.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty9.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty9.Caption = "order_qty9"
         Me.BandedGridColumnorder_qty9.ColumnEdit = Me.RepositoryItemTextEdit1
@@ -1246,9 +1264,11 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnorder_qty0
         '
-        Me.BandedGridColumnorder_qty0.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty0.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnorder_qty0.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty0.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnorder_qty0.AppearanceCell.Options.UseFont = True
-        Me.BandedGridColumnorder_qty0.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty0.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty0.AppearanceHeader.Options.UseFont = True
         Me.BandedGridColumnorder_qty0.Caption = "order_qty0"
         Me.BandedGridColumnorder_qty0.ColumnEdit = Me.RepositoryItemTextEdit1
@@ -1261,7 +1281,9 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnorder_qty
         '
+        Me.BandedGridColumnorder_qty.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.BandedGridColumnorder_qty.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BandedGridColumnorder_qty.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnorder_qty.AppearanceCell.Options.UseFont = True
         Me.BandedGridColumnorder_qty.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BandedGridColumnorder_qty.AppearanceHeader.Options.UseFont = True
@@ -2065,12 +2087,6 @@ Partial Class FormVirtualSales
     Friend WithEvents BandedGridColumnwh_qty9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnwh_qty0 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnwh_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandWH As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandOrder As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnorder_qty1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnorder_qty2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnorder_qty3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -2084,4 +2100,10 @@ Partial Class FormVirtualSales
     Friend WithEvents BandedGridColumnorder_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandWH As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandOrder As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class
