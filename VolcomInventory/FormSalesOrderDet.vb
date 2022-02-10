@@ -691,6 +691,49 @@ Public Class FormSalesOrderDet
         sku_gwp_no_price = gwp.checkGWPPrice(GVItemList)
         FormMain.SplashScreenManager1.CloseWaitForm()
 
+        'check jika replace
+        GVItemList.ActiveFilterString = ""
+        Dim dt_replace_not_valid As DataTable = Nothing
+        If LEStatusSO.EditValue.ToString = "2" Then
+            Dim id_design_replace As String = ""
+            For r As Integer = 0 To GVItemList.RowCount - 1
+                If r > 0 Then
+                    id_design_replace += ","
+                End If
+                id_design_replace += GVItemList.GetRowCellValue(r, "id_design").ToString
+            Next
+            Dim qcek As String = "SELECT d.design_code AS `code`, cd.class, d.design_display_name AS `description`, cd.color
+            FROM tb_m_design d
+            LEFT JOIN (
+	            SELECT dc.id_design, 
+	            MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	            MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	            MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	            MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	            MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	            MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	            MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	            MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	            FROM tb_m_design_code dc
+	            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	            AND cd.id_code IN (32,30,14, 43)
+	            GROUP BY dc.id_design
+            ) cd ON cd.id_design = d.id_design
+            LEFT JOIN (
+	            SELECT fd.id_design 
+	            FROM tb_m_design_first_del fd 
+	            WHERE fd.id_comp=" + id_store + "
+	            GROUP BY fd.id_design
+            ) fd ON fd.id_design = d.id_design
+            WHERE d.id_lookup_status_order!=2 AND d.id_design IN (" + id_design_replace + ") AND ISNULL(fd.id_design) "
+            dt_replace_not_valid = execute_query(qcek, -1, True, "", "", "", "")
+
+        Else
+            dt_replace_not_valid = Nothing
+        End If
+
+
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMain) Then
             errorInput()
         ElseIf GVItemList.RowCount <= 0 Then
@@ -726,6 +769,11 @@ Public Class FormSalesOrderDet
             stopCustom("Some product already in EOS and need to stock take first.")
         ElseIf sku_gwp_no_price <> "" Then
             stopCustom("Some GWP products have no price : " + Environment.NewLine + sku_gwp_no_price)
+        ElseIf dt_replace_not_valid.Rows.Count > 0 Then
+            stopCustom("Beberapa item belum pernah dikirim. Klik OK untuk melihat detail.")
+            FormValidateStock.Text = "Validate Product"
+            FormValidateStock.dt = dt_replace_not_valid
+            FormValidateStock.ShowDialog()
         Else
             Dim sales_order_note As String = addSlashes(MENote.Text)
             Dim id_so_type As String = LETypeSO.EditValue.ToString
@@ -1157,6 +1205,7 @@ Public Class FormSalesOrderDet
         Else
             query_cond += "AND comp.id_store_type=3 "
         End If
+
         If is_transfer_data = "2" Then
             query_cond += "AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 AND comp.is_only_for_alloc=2 "
         Else
