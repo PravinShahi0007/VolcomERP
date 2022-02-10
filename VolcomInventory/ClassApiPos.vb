@@ -4,42 +4,83 @@
     Dim password As String = get_setup_field("volcom_api_pos_password")
 
     Function getAccessToken() As String
-        Dim request As Net.WebRequest = Net.WebRequest.Create(host + "/api/access-token")
+        Dim wc As Net.WebClient = New Net.WebClient()
 
-        request.Method = "POST"
+        wc.Headers.Add("Accept", "application/json")
 
-        Dim postData As String = "email=" + email + "&password=" + password
+        Dim value As Specialized.NameValueCollection = New Specialized.NameValueCollection
 
-        Dim byteArray As Byte() = System.Text.Encoding.UTF8.GetBytes(postData)
+        value.Add("email", email)
+        value.Add("password", password)
 
-        request.ContentType = "application/x-www-form-urlencoded"
-        request.ContentLength = byteArray.Length
+        Dim response As Byte() = wc.UploadValues(host + "/api/login", "POST", value)
 
-        Dim dataStream As IO.Stream = request.GetRequestStream()
+        Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(System.Text.Encoding.ASCII.GetString(response))
 
-        dataStream.Write(byteArray, 0, byteArray.Length)
-        dataStream.Close()
-
-        Dim response As Net.WebResponse = request.GetResponse()
-
-        Dim access_token As String = ""
-
-        Using stream As IO.Stream = response.GetResponseStream()
-            Dim reader As IO.StreamReader = New IO.StreamReader(stream)
-
-            Dim responseFromServer As String = reader.ReadToEnd()
-
-            Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseFromServer)
-
-            If json("success") Then
-                access_token = json("results")("access_token").ToString
-            End If
-        End Using
-
-        response.Close()
-
-        Return access_token
+        Return json("results")("type").ToString + " " + json("results")("access_token").ToString
     End Function
+
+    Sub removeAccessToken(accessToken As String)
+        Dim wc As Net.WebClient = New Net.WebClient()
+
+        wc.Headers.Add("Accept", "application/json")
+        wc.Headers.Add("Authorization", accessToken)
+
+        wc.OpenRead(host + "/api/logout")
+    End Sub
+
+    Sub syncMaster()
+        Dim j_tb_m_country As String = tableToJson("tb_m_country", "SELECT id_country, country, country_display_name FROM tb_m_country WHERE id_country IN (SELECT id_country FROM tb_m_region WHERE id_region IN (SELECT id_region FROM tb_m_state WHERE id_state IN (SELECT id_state FROM tb_m_city WHERE id_city IN (SELECT id_city FROM tb_m_comp WHERE id_outlet IS NOT NULL AND id_outlet <> ''))))")
+        Dim j_tb_m_region As String = tableToJson("tb_m_region", "SELECT id_region, id_country, region FROM tb_m_region WHERE id_region IN (SELECT id_region FROM tb_m_state WHERE id_state IN (SELECT id_state FROM tb_m_city WHERE id_city IN (SELECT id_city FROM tb_m_comp WHERE id_outlet IS NOT NULL AND id_outlet <> '')))")
+        Dim j_tb_m_state As String = tableToJson("tb_m_state", "SELECT id_state, id_region, state FROM tb_m_state WHERE id_state IN (SELECT id_state FROM tb_m_city WHERE id_city IN (SELECT id_city FROM tb_m_comp WHERE id_outlet IS NOT NULL AND id_outlet <> ''))")
+        Dim j_tb_m_comp_cat As String = tableToJson("tb_m_comp_cat", "SELECT id_comp_cat, comp_cat_name, description FROM tb_m_comp_cat WHERE id_comp_cat IN (SELECT id_comp_cat FROM tb_m_comp WHERE id_outlet IS NOT NULL AND id_outlet <> '')")
+        Dim j_tb_lookup_tax As String = tableToJson("tb_lookup_tax", "SELECT id_tax, tax FROM tb_lookup_tax WHERE id_tax IN (SELECT id_tax FROM tb_m_comp WHERE id_outlet IS NOT NULL AND id_outlet <> '')")
+        Dim j_tb_m_area As String = tableToJson("tb_m_area", "SELECT id_area, area FROM tb_m_area WHERE id_area IN (SELECT id_area FROM tb_m_comp WHERE id_outlet IS NOT NULL AND id_outlet <> '')")
+        Dim j_tb_m_comp_group As String = tableToJson("tb_m_comp_group", "SELECT id_comp_group, comp_group FROM tb_m_comp_group WHERE id_comp_group IN (SELECT id_comp_group FROM tb_m_comp WHERE id_outlet IS NOT NULL AND id_outlet <> '')")
+        Dim j_tb_m_city As String = tableToJson("tb_m_city", "SELECT id_city, id_state, city FROM tb_m_city WHERE id_city IN (SELECT id_city FROM tb_m_comp WHERE id_outlet IS NOT NULL AND id_outlet <> '')")
+        Dim j_tb_m_comp As String = tableToJson("tb_m_comp", "SELECT id_comp, id_comp_cat, comp_number, id_city, comp_name, comp_display_name, address_primary, address_other, fax, postal_code, email, website, id_tax, npwp, is_active, comp_commission, id_area, id_comp_group, id_outlet FROM tb_m_comp WHERE id_outlet IS NOT NULL AND id_outlet <> ''")
+        Dim j_tb_outlet As String = tableToJson("tb_outlet", "SELECT id_outlet, outlet_name FROM tb_outlet")
+
+        Dim out As String = "{" + j_tb_m_country + "," + j_tb_m_region + "," + j_tb_m_state + "," + j_tb_m_comp_cat + "," + j_tb_lookup_tax + "," + j_tb_m_area + "," + j_tb_m_comp_group + "," + j_tb_m_city + "," + j_tb_m_comp + "," + j_tb_outlet + "}"
+
+        Dim pathRoot As String = Application.StartupPath + "\download\"
+
+        If Not IO.Directory.Exists(pathRoot) Then
+            System.IO.Directory.CreateDirectory(pathRoot)
+        End If
+
+        Dim fileName As String = "sync-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".json"
+        Dim file As String = IO.Path.Combine(pathRoot, fileName)
+
+        Dim fs As IO.FileStream = System.IO.File.Create(file)
+
+        Dim info As Byte() = New System.Text.UTF8Encoding(True).GetBytes(out)
+
+        fs.Write(info, 0, info.Length)
+
+        fs.Close()
+
+        Dim accessToken As String = getAccessToken()
+
+        Dim url As String = host + "/api/sync/master"
+
+        Dim wc As Net.WebClient = New Net.WebClient()
+
+        wc.Headers.Add("Accept", "application/json")
+        wc.Headers.Add("Authorization", accessToken)
+
+        Dim responseArray As Byte() = wc.UploadFile(url, "POST", file)
+
+        Dim responseString As String = System.Text.Encoding.ASCII.GetString(responseArray)
+
+        Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
+
+        If json("success") Then
+            infoCustom("Sync master completed.")
+        End If
+
+        removeAccessToken(accessToken)
+    End Sub
 
     Sub syncDeliverySlip(id_list As List(Of String))
         Dim in_id As String = ""
@@ -102,16 +143,24 @@
 
         Dim accessToken As String = getAccessToken()
 
-        Dim url As String = host + "/api/delivery-slip"
+        Dim url As String = host + "/api/sync/delivery-slip"
 
         Dim wc As Net.WebClient = New Net.WebClient()
 
         wc.Headers.Add("Accept", "application/json")
-        wc.Headers.Add("Authorization", "Bearer " + accessToken)
+        wc.Headers.Add("Authorization", accessToken)
 
         Dim responseArray As Byte() = wc.UploadFile(url, "POST", file)
 
         Dim responseString As String = System.Text.Encoding.ASCII.GetString(responseArray)
+
+        Dim jsonRes As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
+
+        If jsonRes("success") Then
+            infoCustom("Sync delivery slip completed.")
+        End If
+
+        removeAccessToken(accessToken)
     End Sub
 
     Sub syncReturnOrder(id_list As List(Of String))
@@ -172,15 +221,33 @@
 
         Dim accessToken As String = getAccessToken()
 
-        Dim url As String = host + "/api/return-order"
+        Dim url As String = host + "/api/sync/return-order"
 
         Dim wc As Net.WebClient = New Net.WebClient()
 
         wc.Headers.Add("Accept", "application/json")
-        wc.Headers.Add("Authorization", "Bearer " + accessToken)
+        wc.Headers.Add("Authorization", accessToken)
 
         Dim responseArray As Byte() = wc.UploadFile(url, "POST", file)
 
         Dim responseString As String = System.Text.Encoding.ASCII.GetString(responseArray)
+
+        Dim jsonRes As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
+
+        If jsonRes("success") Then
+            infoCustom("Sync return order completed.")
+        End If
+
+        removeAccessToken(accessToken)
     End Sub
+
+    Function tableToJson(table As String, query As String) As String
+        Dim out As String = """" + table + """:"
+
+        Dim data As DataTable = execute_query_log_time(query, -1, True, "", "", "", "")
+
+        out += Newtonsoft.Json.JsonConvert.SerializeObject(data)
+
+        Return out
+    End Function
 End Class
