@@ -241,6 +241,64 @@
         removeAccessToken(accessToken)
     End Sub
 
+    Sub syncDesignPrice(id_list As List(Of String), effective_date As String)
+        Dim in_id As String = ""
+
+        For i = 0 To id_list.Count - 1
+            in_id += id_list(i) + ", "
+        Next
+
+        in_id = in_id.Substring(0, in_id.Length - 2)
+
+        Dim query As String = "
+            SELECT id_design_price, id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, is_active_wh, id_user, id_fg_propose_price, is_design_cost
+            FROM tb_m_design_price
+            WHERE id_design IN (" + in_id + ") AND design_price_start_date = '" + effective_date + "'
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        Dim json As String = Newtonsoft.Json.JsonConvert.SerializeObject(data)
+
+        Dim pathRoot As String = Application.StartupPath + "\download\"
+
+        If Not IO.Directory.Exists(pathRoot) Then
+            System.IO.Directory.CreateDirectory(pathRoot)
+        End If
+
+        Dim fileName As String = "sync-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".json"
+        Dim file As String = IO.Path.Combine(pathRoot, fileName)
+
+        Dim fs As IO.FileStream = System.IO.File.Create(file)
+
+        Dim info As Byte() = New System.Text.UTF8Encoding(True).GetBytes(json)
+
+        fs.Write(info, 0, info.Length)
+
+        fs.Close()
+
+        Dim accessToken As String = getAccessToken()
+
+        Dim url As String = host + "/api/sync/design-price"
+
+        Dim wc As Net.WebClient = New Net.WebClient()
+
+        wc.Headers.Add("Accept", "application/json")
+        wc.Headers.Add("Authorization", accessToken)
+
+        Dim responseArray As Byte() = wc.UploadFile(url, "POST", file)
+
+        Dim responseString As String = System.Text.Encoding.ASCII.GetString(responseArray)
+
+        Dim jsonRes As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
+
+        If jsonRes("success") Then
+            infoCustom("Sync design price completed.")
+        End If
+
+        removeAccessToken(accessToken)
+    End Sub
+
     Function tableToJson(table As String, query As String) As String
         Dim out As String = """" + table + """:"
 
