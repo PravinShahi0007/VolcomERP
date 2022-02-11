@@ -21,8 +21,12 @@
 
     Sub load_booked_po()
         Dim query As String = "SELECT 'no' AS is_check,tag.tag_description,po.est_date_receive,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated ,po.pay_due_date,po.date_created
-,SUM(pod.qty) AS qty_po,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value) AS total_po
-,IFNULL(SUM(rec.qty),0) AS qty_rec,IF(ISNULL(rec.id_purc_order_det),0,SUM(rec.qty*(pod.value-pod.discount))-(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.disc_value)+(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.vat_value)) AS total_rec
+,SUM(pod.qty) AS qty_po
+,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value) AS total_po
+,(SUM(pod.qty*(pod.value-pod.discount))) AS total_po_no_vat
+,IFNULL(SUM(rec.qty),0) AS qty_rec
+,IF(ISNULL(rec.id_purc_order_det),0,SUM(rec.qty*(pod.value-pod.discount))-(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.disc_value)+(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.vat_value)) AS total_rec
+,IF(ISNULL(rec.id_purc_order_det),0,SUM(rec.qty*(pod.value-pod.discount))) AS total_rec_no_vat
 ,(IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))*100 AS rec_progress,IF(po.is_close_rec=1,'Closed',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<=0,'Waiting',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<1,'Partial','Complete'))) AS rec_status
 ,po.close_rec_reason,rts.report_status,et.expense_type
 ,IFNULL(payment.value,0) AS val_pay
@@ -59,6 +63,52 @@ GROUP BY po.id_purc_order ORDER BY po.id_purc_order DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPO.DataSource = data
         GVPO.BestFitColumns()
+
+        'details
+        query = "SELECT i.item_desc,tag.tag_description,po.est_date_receive,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated ,po.pay_due_date,po.date_created
+,SUM(pod.qty) AS qty_po,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value) AS total_po
+,(SUM(pod.qty*(pod.value-pod.discount))) AS total_po_no_vat
+,IFNULL(SUM(rec.qty),0) AS qty_rec,IF(ISNULL(rec.id_purc_order_det),0,SUM(rec.qty*(pod.value-pod.discount))-(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.disc_value)+(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.vat_value)) AS total_rec
+,IF(ISNULL(rec.id_purc_order_det),0,SUM(rec.qty*(pod.value-pod.discount))) AS total_rec_no_vat
+,(IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))*100 AS rec_progress,IF(po.is_close_rec=1,'Closed',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<=0,'Waiting',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<1,'Partial','Complete'))) AS rec_status
+,po.close_rec_reason,rts.report_status,et.expense_type
+,IFNULL(payment.value,0) AS val_pay
+,IF(po.is_close_pay=1,'Closed',IF(DATE(NOW())>po.pay_due_date,'Overdue','Open')) AS pay_status, po.is_close_rec, po.id_expense_type, po.id_report_status
+FROM tb_purc_order po
+INNER JOIN tb_coa_tag tag ON tag.id_coa_tag=po.id_coa_tag
+INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
+INNER JOIN tb_item i ON i.id_item=pod.id_item 
+INNER JOIN tb_item_cat icat ON icat.id_item_cat=i.id_item_cat
+INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
+INNER JOIN tb_m_employee emp_cre ON emp_cre.id_employee=usr_cre.id_employee
+INNER JOIN tb_m_user usr_upd ON usr_upd.id_user=po.last_update_by
+INNER JOIN tb_m_employee emp_upd ON emp_upd.id_employee=usr_upd.id_employee
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+INNER JOIN tb_lookup_report_status rts ON rts.id_report_status=po.id_report_status
+INNER JOIN tb_lookup_expense_type et ON et.id_expense_type=po.id_expense_type
+LEFT JOIN 
+( 
+	SELECT recd.`id_purc_order_det`,SUM(recd.`qty`) AS qty FROM tb_purc_rec_det recd 
+	INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_report_status`='6'
+	GROUP BY recd.`id_purc_order_det`
+) rec ON rec.id_purc_order_det=pod.`id_purc_order_det`
+LEFT JOIN
+(
+	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_payment_det` pyd
+	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=5 AND py.report_mark_type='139'
+	GROUP BY pyd.id_report
+)payment ON payment.id_report=po.id_purc_order
+INNER JOIN
+(
+    " & qi & "
+)poj ON poj.id_report=po.id_purc_order AND poj.report_mark_type=po.report_mark_type AND icat.id_item_cat_main=poj.id_item_cat_main
+GROUP BY pod.id_purc_order_det 
+ORDER BY pod.id_purc_order_det DESC"
+        Dim data_det As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCItemList.DataSource = data_det
+        GVItemList.BestFitColumns()
+
     End Sub
 
     Sub load_list()
@@ -85,8 +135,6 @@ LEFT JOIN tb_purc_order po ON po.id_purc_order=et.id_report AND (et.report_mark_
 LEFT JOIN tb_purc_rec rec ON rec.id_purc_rec=et.id_report AND et.report_mark_type='148'
 LEFT JOIN tb_item it ON it.id_item=et.id_item
 WHERE e.`year`='" & year & "' AND DATE(et.date_trans)<='" & date_time & "'"
-        '
-
         '
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCBudgetCard.DataSource = data
@@ -119,5 +167,19 @@ WHERE e.`year`='" & year & "' AND DATE(et.date_trans)<='" & date_time & "'"
         End Try
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVPO_DoubleClick(sender As Object, e As EventArgs) Handles GVPO.DoubleClick
+        If GVPO.RowCount > 0 Then
+            FormPurcOrderDet.id_po = GVPO.GetFocusedRowCellValue("id_purc_order").ToString
+            FormPurcOrderDet.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub GVItemList_DoubleClick(sender As Object, e As EventArgs) Handles GVItemList.DoubleClick
+        If GVItemList.RowCount > 0 Then
+            FormPurcOrderDet.id_po = GVItemList.GetFocusedRowCellValue("id_purc_order").ToString
+            FormPurcOrderDet.ShowDialog()
+        End If
     End Sub
 End Class
