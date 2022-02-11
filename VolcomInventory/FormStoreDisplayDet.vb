@@ -202,12 +202,12 @@
             id = execute_query(query, 0, True, "", "", "", "")
 
             'default season
-            Dim qss As String = "INSERT INTO tb_display_pps_season(id_display_pps, id_season, id_delivery, is_extra_sku)
+            Dim qss As String = "INSERT INTO tb_display_pps_season(id_display_pps, id_season, id_delivery, is_extra_sku, id_display_season_type)
             -- old season
-            SELECT " + id + " AS `idx`,NULL AS `id_season`, NULL AS `id_delivery`, 1 AS `is_extra_sku`
+            SELECT " + id + " AS `idx`,NULL AS `id_season`, NULL AS `id_delivery`, 1 AS `is_extra_sku`,1 AS `id_display_season_type`
             UNION ALL
             -- prev season
-            SELECT " + id + " AS `idx`,ss.id_season, sd.id_delivery, 2 AS `is_extra_sku`
+            SELECT " + id + " AS `idx`,ss.id_season, sd.id_delivery, 2 AS `is_extra_sku`, 1 AS `id_display_season_type`
             FROM (
 	            SELECT ss.id_season, ss.season
 	            FROM tb_season ss
@@ -220,13 +220,13 @@
             INNER JOIN tb_season_delivery sd ON sd.id_season = ss.id_season
             UNION ALL 
             -- current season
-            SELECT " + id + " AS `idx`,ss.id_season, sd.id_delivery, 2 AS `is_extra_sku`
+            SELECT " + id + " AS `idx`,ss.id_season, sd.id_delivery, 2 AS `is_extra_sku`, 2 AS `id_display_season_type`
             FROM tb_season ss
             INNER JOIN tb_season_delivery sd ON sd.id_season = ss.id_season
             WHERE ss.id_season=" + id_season + "
             -- plan season  
             UNION ALL          
-            SELECT " + id + " AS `idx`,ss.id_season, sd.id_delivery, 2 AS `is_extra_sku`
+            SELECT " + id + " AS `idx`,ss.id_season, sd.id_delivery, 2 AS `is_extra_sku`, 3 AS `id_display_season_type`
             FROM (
 	            SELECT ss.id_season, ss.season
 	            FROM tb_season ss
@@ -775,7 +775,7 @@
                 FormMain.SplashScreenManager1.ShowWaitForm()
             End If
             GVDetail.ActiveFilterString = "[id_display_pps_det]=0 AND [is_selected_new]=1 "
-            Dim qins As String = "INSERT INTO tb_display_pps_det(id_display_pps, id_design, is_selected, id_display_pps_ref, pps_ref_number, id_class_group) VALUES "
+            Dim qins As String = "INSERT INTO tb_display_pps_det(id_display_pps, id_design, is_selected, id_display_pps_ref, pps_ref_number, id_class_group, id_delivery) VALUES "
             For i As Integer = 0 To (GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail)
                 Cursor = Cursors.WaitCursor
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Processing new detail " + (i + 1).ToString + "/" + GVDetail.RowCount.ToString)
@@ -787,10 +787,11 @@
                 End If
                 Dim pps_ref_number As String = GVDetail.GetRowCellValue(i, "pps_ref_number").ToString
                 Dim id_class_group As String = GVDetail.GetRowCellValue(i, "id_class_group").ToString
+                Dim id_delivery As String = GVDetail.GetRowCellValue(i, "id_delivery").ToString
                 If i > 0 Then
                     qins += ","
                 End If
-                qins += "('" + id + "', '" + id_design + "', '" + is_selected + "', " + id_display_pps_ref + ", '" + pps_ref_number + "', '" + id_class_group + "') "
+                qins += "('" + id + "', '" + id_design + "', '" + is_selected + "', " + id_display_pps_ref + ", '" + pps_ref_number + "', '" + id_class_group + "', '" + id_delivery + "') "
                 Cursor = Cursors.Default
             Next
             If GVDetail.RowCount > 0 Then
