@@ -1029,7 +1029,7 @@ Partial Class FormSalesOrderDet
         Me.GridColumnIdProduct.Caption = "Id Product"
         Me.GridColumnIdProduct.FieldName = "id_product"
         Me.GridColumnIdProduct.Name = "GridColumnIdProduct"
-        Me.GridColumnIdProduct.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumnIdProduct.OptionsColumn.AllowEdit = False
         '
         'GridColumnIdSample
         '

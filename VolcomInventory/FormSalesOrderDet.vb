@@ -25,6 +25,7 @@ Public Class FormSalesOrderDet
     Public is_transfer_data As String = "2"
     Public id_ol_promo As String = "-1"
     Public id_bsp As String = "-1"
+    Public is_from_virtual_soh As Boolean = False
 
     Private Sub FormSalesOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         id_type = FormSalesOrder.id_type
@@ -114,6 +115,106 @@ Public Class FormSalesOrderDet
                 LEOrderType.Enabled = False
                 LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", "2")
                 LEStatusSO.Enabled = False
+            End If
+
+            'from virtual sales
+            If is_from_virtual_soh Then
+                If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                End If
+
+                'ORDER
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Set type order")
+                LEOrderType.ItemIndex = LEOrderType.Properties.GetDataSourceRowIndex("id_order_type", "3")
+                LEOrderType.Enabled = False
+
+                'FROM
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Set WH account")
+                id_comp_par = FormVirtualSales.SLEWH.EditValue.ToString
+                id_comp_contact_par = get_company_x(id_comp_par, "6")
+                TxtWHNameTo.Text = FormVirtualSales.SLEWH.Text
+                TxtWHCodeTo.Text = FormVirtualSales.SLEWH.Properties.View.GetFocusedRowCellValue("comp_number").ToString
+                TxtWHCodeTo.Enabled = False
+                BtnBrowseWH.Enabled = False
+                LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", "2")
+                LEStatusSO.Enabled = False
+
+                'TO
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Set store account")
+                TxtCodeCompTo.Text = FormVirtualSales.SLEAccount.Properties.View.GetFocusedRowCellValue("comp_number").ToString
+                TxtCodeCompTo.Enabled = False
+                id_store = FormVirtualSales.SLEAccount.EditValue.ToString
+                Dim data As DataTable = get_company_by_code(TxtCodeCompTo.Text, "AND comp.id_comp=" + id_store + "")
+                id_commerce_type = data.Rows(0)("id_commerce_type").ToString
+                checkCommerceType()
+                id_store_cat = data.Rows(0)("id_comp_cat").ToString
+                id_store_type = data.Rows(0)("id_store_type").ToString
+                id_wh_type = data.Rows(0)("id_wh_type").ToString
+                'tentukan akun type
+                If data.Rows(0)("id_comp_cat").ToString = "5" Then
+                    'wh
+                    id_account_type = id_wh_type
+                Else
+                    'store
+                    id_account_type = id_store_type
+                    If id_account_type = "3" Then
+                        id_account_type = "2"
+                    End If
+                End If
+                id_store_contact_to = data.Rows(0)("id_comp_contact").ToString
+                TxtNameCompTo.Text = data.Rows(0)("comp_name").ToString
+                MEAdrressCompTo.Text = data.Rows(0)("address_primary").ToString
+                BtnBrowseContactTo.Enabled = False
+                SBSyncShopify.Enabled = False
+
+                'DETAIL
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Loading items")
+                viewDetail("-1")
+                noEdit()
+                check_sync()
+                PanelControlNav.Visible = False
+
+                'load item
+                Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = FormVirtualSales.GVSOHSal
+                Dim qi As String = "DELETE FROM tb_temp_so_replace WHERE id_user=" + id_user + "; INSERT INTO tb_temp_so_replace(id_user, code, qty) VALUES "
+                For i As Integer = 0 To FormVirtualSales.GVSOHSal.RowCount - 1
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Row " + (i + 1).ToString + " of " + FormVirtualSales.GVSOHSal.RowCount.ToString)
+                    If i > 0 Then
+                        qi += ","
+                    End If
+
+                    Dim jx As Integer = 0
+                    For j As Integer = 1 To 10
+                        Dim indeks As String = ""
+                        If j = 10 Then
+                            indeks = "0"
+                        Else
+                            indeks = j.ToString
+                        End If
+                        Dim code As String = gv.GetRowCellValue(i, "main_code").ToString + gv.GetRowCellValue(i, "size_type").ToString + indeks + "1"
+                        Dim qty As String = decimalSQL(gv.GetRowCellValue(i, "order_qty" + indeks).ToString)
+                        If qty > 0 Then
+                            If jx > 0 Then
+                                qi += ","
+                            End If
+
+                            qi += "('" + id_user + "','" + code + "', '" + qty + "') "
+                            jx += 1
+                        End If
+                    Next
+                Next
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Checking master product")
+                execute_non_query_long(qi, True, "", "", "", "")
+                Dim qview As String = "CALL view_so_replace(" + id_user + ")"
+                Dim dview As DataTable = execute_query(qview, -1, True, "", "", "", "")
+                GCItemList.DataSource = dview
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Bestfit all column")
+                GVItemList.BestFitColumns()
+
+                'clear temporary
+                execute_non_query("DELETE FROM tb_temp_so_replace WHERE id_user=" + id_user + "; ", True, "", "", "", "")
+
+                FormMain.SplashScreenManager1.CloseWaitForm()
             End If
         ElseIf action = "upd" Then
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
@@ -590,6 +691,61 @@ Public Class FormSalesOrderDet
         sku_gwp_no_price = gwp.checkGWPPrice(GVItemList)
         FormMain.SplashScreenManager1.CloseWaitForm()
 
+        'check jika replace
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        GVItemList.ActiveFilterString = ""
+        Dim dt_replace_not_valid As DataTable = Nothing
+        Dim cond_valid_replace As Boolean = False
+        If LEStatusSO.EditValue.ToString = "2" Then
+            Dim id_design_replace As String = ""
+            For r As Integer = 0 To GVItemList.RowCount - 1
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Get sku " + (r.ToString) + "/" + GVItemList.RowCount.ToString)
+                If r > 0 Then
+                    id_design_replace += ","
+                End If
+                id_design_replace += GVItemList.GetRowCellValue(r, "id_design").ToString
+            Next
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Checking first delivery")
+            Dim qcek As String = "SELECT d.design_code AS `code`, cd.class, d.design_display_name AS `description`, cd.color
+            FROM tb_m_design d
+            LEFT JOIN (
+	            SELECT dc.id_design, 
+	            MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	            MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	            MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	            MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	            MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	            MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	            MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	            MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	            MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+	            FROM tb_m_design_code dc
+	            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	            AND cd.id_code IN (32,30,14, 43)
+	            GROUP BY dc.id_design
+            ) cd ON cd.id_design = d.id_design
+            LEFT JOIN (
+	            SELECT fd.id_design 
+	            FROM tb_m_design_first_del fd 
+	            WHERE fd.id_comp=" + id_store + "
+	            GROUP BY fd.id_design
+            ) fd ON fd.id_design = d.id_design
+            WHERE d.id_lookup_status_order!=2 AND d.id_design IN (" + id_design_replace + ") AND ISNULL(fd.id_design) "
+            dt_replace_not_valid = execute_query(qcek, -1, True, "", "", "", "")
+            If dt_replace_not_valid.Rows.Count > 0 Then
+                cond_valid_replace = False
+            Else
+                cond_valid_replace = True
+            End If
+        Else
+            dt_replace_not_valid = Nothing
+            cond_valid_replace = True
+        End If
+        FormMain.SplashScreenManager1.CloseWaitForm()
+
+
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMain) Then
             errorInput()
         ElseIf GVItemList.RowCount <= 0 Then
@@ -625,6 +781,11 @@ Public Class FormSalesOrderDet
             stopCustom("Some product already in EOS and need to stock take first.")
         ElseIf sku_gwp_no_price <> "" Then
             stopCustom("Some GWP products have no price : " + Environment.NewLine + sku_gwp_no_price)
+        ElseIf Not cond_valid_replace Then
+            stopCustom("Beberapa item belum pernah dikirim. Klik OK untuk melihat detail.")
+            FormValidateStock.Text = "Validate Product"
+            FormValidateStock.dt = dt_replace_not_valid
+            FormValidateStock.ShowDialog()
         Else
             Dim sales_order_note As String = addSlashes(MENote.Text)
             Dim id_so_type As String = LETypeSO.EditValue.ToString
@@ -706,6 +867,11 @@ Public Class FormSalesOrderDet
 
                     'gen xls
                     exportToBOF(False)
+
+                    'refresh view other
+                    If is_from_virtual_soh Then
+                        FormVirtualSales.resetViewSalInv()
+                    End If
 
                     infoCustom("Prepare order : " + TxtSalesOrderNumber.Text.ToString + " was created successfully. ")
                     Cursor = Cursors.Default
@@ -1046,11 +1212,12 @@ Public Class FormSalesOrderDet
     Sub getStore()
         Dim id_so_type As String = LETypeSO.EditValue.ToString
         Dim query_cond As String = "AND comp.id_comp<>'" + get_setup_field("wh_temp") + "' "
-        If id_bsp = "-1" Then
+        If id_bsp = "-1" Or id_bsp = "NULL" Then
             query_cond += "AND (comp.id_store_type!=3 OR ISNULL(comp.id_store_type)) "
         Else
             query_cond += "AND comp.id_store_type=3 "
         End If
+
         If is_transfer_data = "2" Then
             query_cond += "AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 AND comp.is_only_for_alloc=2 "
         Else

@@ -289,7 +289,7 @@ WHERE awbd.`id_pl_sales_order_del`='" & gv.GetRowCellValue(a, "id_pl_sales_order
                                         m.id_report = id_rts
                                         m.send_email()
                                 Catch ex As Exception
-                                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send email return non list id_sales_return = " & id_rts & " | error : " & ex.ToString & "')", -1, True, "", "", "", "")
+                                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send email return non list id_sales_return = " & id_rts & " | error : " & addSlashes(ex.ToString) & "')", -1, True, "", "", "", "")
                                     End Try
                                 End If
                             End If
