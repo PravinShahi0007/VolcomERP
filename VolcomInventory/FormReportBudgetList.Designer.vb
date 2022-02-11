@@ -80,6 +80,26 @@ Partial Class FormReportBudgetList
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemProgressBar1 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
+        Me.XTPRec = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPDel = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCRec = New DevExpress.XtraGrid.GridControl()
+        Me.GVRec = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemProgressBar2 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
+        Me.GCDel = New DevExpress.XtraGrid.GridControl()
+        Me.GVDel = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemProgressBar3 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         CType(Me.GCBudgetCard, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewReport.SuspendLayout()
         CType(Me.GVBudgetCard, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,6 +119,16 @@ Partial Class FormReportBudgetList
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPRec.SuspendLayout()
+        Me.XTPDel.SuspendLayout()
+        CType(Me.GCRec, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVRec, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemProgressBar2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCDel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemProgressBar3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCBudgetCard
@@ -204,7 +234,7 @@ Partial Class FormReportBudgetList
         Me.XtraTabControl1.SelectedTabPage = Me.XTPCard
         Me.XtraTabControl1.Size = New System.Drawing.Size(792, 527)
         Me.XtraTabControl1.TabIndex = 1
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPCard, Me.XTPList})
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPCard, Me.XTPList, Me.XTPRec, Me.XTPDel})
         '
         'XTPCard
         '
@@ -708,6 +738,210 @@ Partial Class FormReportBudgetList
         Me.RepositoryItemProgressBar1.ShowTitle = True
         Me.RepositoryItemProgressBar1.Step = 1
         '
+        'XTPRec
+        '
+        Me.XTPRec.Controls.Add(Me.GCRec)
+        Me.XTPRec.Name = "XTPRec"
+        Me.XTPRec.Size = New System.Drawing.Size(786, 499)
+        Me.XTPRec.Text = "Receiving"
+        '
+        'XTPDel
+        '
+        Me.XTPDel.Controls.Add(Me.GCDel)
+        Me.XTPDel.Name = "XTPDel"
+        Me.XTPDel.Size = New System.Drawing.Size(786, 499)
+        Me.XTPDel.Text = "Delivery"
+        '
+        'GCRec
+        '
+        Me.GCRec.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCRec.Location = New System.Drawing.Point(0, 0)
+        Me.GCRec.MainView = Me.GVRec
+        Me.GCRec.Name = "GCRec"
+        Me.GCRec.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemProgressBar2})
+        Me.GCRec.Size = New System.Drawing.Size(786, 499)
+        Me.GCRec.TabIndex = 3
+        Me.GCRec.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRec})
+        '
+        'GVRec
+        '
+        Me.GVRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn25, Me.GridColumn26, Me.GridColumn29, Me.GridColumn33, Me.GridColumn38})
+        Me.GVRec.GridControl = Me.GCRec
+        Me.GVRec.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "last_update", Nothing, "Total PO : {0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", Me.GridColumn38, "{0:N2}")})
+        Me.GVRec.Name = "GVRec"
+        Me.GVRec.OptionsBehavior.Editable = False
+        Me.GVRec.OptionsBehavior.ReadOnly = True
+        Me.GVRec.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVRec.OptionsView.ShowFooter = True
+        Me.GVRec.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "ID Rec"
+        Me.GridColumn25.FieldName = "id_report"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Item"
+        Me.GridColumn26.FieldName = "item_desc"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 1
+        Me.GridColumn26.Width = 181
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Rec Number"
+        Me.GridColumn29.FieldName = "purc_rec_number"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.OptionsColumn.AllowEdit = False
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 0
+        Me.GridColumn29.Width = 149
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Date"
+        Me.GridColumn33.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn33.FieldName = "date_trans"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.OptionsColumn.AllowEdit = False
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 2
+        Me.GridColumn33.Width = 139
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn38.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn38.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn38.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn38.Caption = "Amount"
+        Me.GridColumn38.DisplayFormat.FormatString = "N2"
+        Me.GridColumn38.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn38.FieldName = "value"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.OptionsColumn.AllowEdit = False
+        Me.GridColumn38.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 3
+        Me.GridColumn38.Width = 111
+        '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        Me.RepositoryItemCheckEdit2.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit2.ValueUnchecked = "no"
+        '
+        'RepositoryItemProgressBar2
+        '
+        Me.RepositoryItemProgressBar2.EndColor = System.Drawing.Color.LawnGreen
+        Me.RepositoryItemProgressBar2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.RepositoryItemProgressBar2.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.RepositoryItemProgressBar2.Name = "RepositoryItemProgressBar2"
+        Me.RepositoryItemProgressBar2.ProgressViewStyle = DevExpress.XtraEditors.Controls.ProgressViewStyle.Solid
+        Me.RepositoryItemProgressBar2.ShowTitle = True
+        Me.RepositoryItemProgressBar2.Step = 1
+        '
+        'GCDel
+        '
+        Me.GCDel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDel.Location = New System.Drawing.Point(0, 0)
+        Me.GCDel.MainView = Me.GVDel
+        Me.GCDel.Name = "GCDel"
+        Me.GCDel.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3, Me.RepositoryItemProgressBar3})
+        Me.GCDel.Size = New System.Drawing.Size(786, 499)
+        Me.GCDel.TabIndex = 4
+        Me.GCDel.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDel})
+        '
+        'GVDel
+        '
+        Me.GVDel.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn30, Me.GridColumn32, Me.GridColumn34, Me.GridColumn40})
+        Me.GVDel.GridControl = Me.GCDel
+        Me.GVDel.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "last_update", Nothing, "Total PO : {0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_rec", Me.GridColumn40, "{0:N2}")})
+        Me.GVDel.Name = "GVDel"
+        Me.GVDel.OptionsBehavior.Editable = False
+        Me.GVDel.OptionsBehavior.ReadOnly = True
+        Me.GVDel.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVDel.OptionsView.ShowFooter = True
+        Me.GVDel.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "ID Rec"
+        Me.GridColumn23.FieldName = "id_report"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Note"
+        Me.GridColumn30.FieldName = "acc_trans_det_note"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 1
+        Me.GridColumn30.Width = 181
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "Del Number"
+        Me.GridColumn32.FieldName = "number"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.OptionsColumn.AllowEdit = False
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 0
+        Me.GridColumn32.Width = 149
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Date"
+        Me.GridColumn34.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn34.FieldName = "date_reference"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.OptionsColumn.AllowEdit = False
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 2
+        Me.GridColumn34.Width = 139
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn40.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn40.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn40.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn40.Caption = "Amount"
+        Me.GridColumn40.DisplayFormat.FormatString = "N2"
+        Me.GridColumn40.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn40.FieldName = "val"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.OptionsColumn.AllowEdit = False
+        Me.GridColumn40.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val", "{0:N2}")})
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 3
+        Me.GridColumn40.Width = 111
+        '
+        'RepositoryItemCheckEdit3
+        '
+        Me.RepositoryItemCheckEdit3.AutoHeight = False
+        Me.RepositoryItemCheckEdit3.Name = "RepositoryItemCheckEdit3"
+        Me.RepositoryItemCheckEdit3.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit3.ValueUnchecked = "no"
+        '
+        'RepositoryItemProgressBar3
+        '
+        Me.RepositoryItemProgressBar3.EndColor = System.Drawing.Color.LawnGreen
+        Me.RepositoryItemProgressBar3.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.RepositoryItemProgressBar3.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.RepositoryItemProgressBar3.Name = "RepositoryItemProgressBar3"
+        Me.RepositoryItemProgressBar3.ProgressViewStyle = DevExpress.XtraEditors.Controls.ProgressViewStyle.Solid
+        Me.RepositoryItemProgressBar3.ShowTitle = True
+        Me.RepositoryItemProgressBar3.Step = 1
+        '
         'FormReportBudgetList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -739,6 +973,16 @@ Partial Class FormReportBudgetList
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPRec.ResumeLayout(False)
+        Me.XTPDel.ResumeLayout(False)
+        CType(Me.GCRec, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVRec, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemProgressBar2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCDel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemProgressBar3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -803,4 +1047,24 @@ Partial Class FormReportBudgetList
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPRec As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPDel As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCRec As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVRec As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents RepositoryItemProgressBar2 As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
+    Friend WithEvents GCDel As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDel As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents RepositoryItemProgressBar3 As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
 End Class

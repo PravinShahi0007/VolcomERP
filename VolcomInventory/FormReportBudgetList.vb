@@ -7,16 +7,68 @@
 
     Public opt As String = "1"
     Public qi As String = ""
+    Public quntil As String = ""
 
     Private Sub FormReportBudgetList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_list()
         '
         If opt = "1" Then
             XTPList.PageVisible = False
-        ElseIf opt = "2" Then
+            XTPRec.PageVisible = False
+            XTPDel.PageVisible = False
+        ElseIf opt = "2" Then 'PO book
             XTPCard.PageVisible = False
+            XTPRec.PageVisible = False
+            XTPDel.PageVisible = False
             load_booked_po()
+        ElseIf opt = "3" Then 'Receiving
+            XTPCard.PageVisible = False
+            XTPList.PageVisible = False
+            XTPDel.PageVisible = False
+            load_rec()
+        ElseIf opt = "4" Then 'Delivery
+            XTPCard.PageVisible = False
+            XTPList.PageVisible = False
+            XTPRec.PageVisible = False
+            load_del()
         End If
+    End Sub
+
+    Sub load_rec()
+        Dim q As String = "SELECT ot.value,it.`item_desc`,rec.purc_rec_number,ot.date_trans,ot.id_report
+FROM `tb_b_expense_opex_trans` ot
+INNER JOIN tb_purc_rec rec ON rec.id_purc_rec=ot.id_report
+INNER JOIN tb_item it ON it.`id_item`=ot.id_item
+INNER JOIN `tb_b_expense_opex` opex  ON opex.`id_b_expense_opex`=ot.id_b_expense_opex
+WHERE ot.is_po=2 " & qi & quntil
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCRec.DataSource = dt
+        GVRec.BestFitColumns()
+    End Sub
+
+    Sub load_del()
+        Dim q As String = "
+SELECT acc.`id_acc`,acc.`acc_name`,acc.`acc_description`,SUM(IF(acc.`id_dc`=1,trxd.`debit`-trxd.`credit`,trxd.`credit`-trxd.`debit`)) AS val,acc.`id_coa_type`,trxd.`id_report`,trxd.`report_mark_type`
+,del.`number`,trxd.`acc_trans_det_note`,trx.`date_reference`
+FROM tb_a_acc_trans_det trxd
+INNER JOIN tb_a_acc_trans trx ON trx.`id_acc_trans`=trxd.`id_acc_trans` AND YEAR(trx.`date_reference`)='2022'
+INNER JOIN tb_a_acc acc ON acc.`id_acc`=trxd.`id_acc`
+INNER JOIN tb_item_del del ON del.`id_item_del`=trxd.`id_report`
+INNER JOIN
+(
+	SELECT acc.`acc_name`,acc.`id_coa_type` FROM
+	`tb_b_expense_opex` opex 
+	INNER JOIN tb_item_cat_main icm ON icm.`id_item_cat_main`=opex.`id_item_cat_main`
+	INNER JOIN tb_lookup_expense_type et ON et.`id_expense_type`=icm.`id_expense_type`
+	INNER JOIN `tb_b_expense_opex_map` map ON map.`id_b_expense_opex`=opex.`id_b_expense_opex`
+	INNER JOIN  tb_a_acc acc ON acc.`id_acc`=map.`id_acc` " & qi & "
+)del ON LEFT(del.acc_name,4)=LEFT(acc.`acc_name`,4) AND acc.`id_coa_type`=del.`id_coa_type`
+WHERE trx.`id_report_status`=6 " & quntil & "
+AND (trxd.`report_mark_type`='156' OR trxd.`report_mark_type`='166')
+GROUP BY trxd.`id_report`,trxd.`report_mark_type`"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCDel.DataSource = dt
+        GVDel.BestFitColumns()
     End Sub
 
     Sub load_booked_po()
@@ -181,5 +233,17 @@ WHERE e.`year`='" & year & "' AND DATE(et.date_trans)<='" & date_time & "'"
             FormPurcOrderDet.id_po = GVItemList.GetFocusedRowCellValue("id_purc_order").ToString
             FormPurcOrderDet.ShowDialog()
         End If
+    End Sub
+
+    Private Sub GVRec_DoubleClick(sender As Object, e As EventArgs) Handles GVRec.DoubleClick
+        FormPurcReceiveDet.action = "upd"
+        FormPurcReceiveDet.id = GVRec.GetFocusedRowCellValue("id_report").ToString
+        FormPurcReceiveDet.ShowDialog()
+    End Sub
+
+    Private Sub GVDel_DoubleClick(sender As Object, e As EventArgs) Handles GVDel.DoubleClick
+        FormItemDelDetail.action = "upd"
+        FormItemDelDetail.id = GVDel.GetFocusedRowCellValue("id_report").ToString
+        FormItemDelDetail.ShowDialog()
     End Sub
 End Class

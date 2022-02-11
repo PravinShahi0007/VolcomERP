@@ -6575,6 +6575,9 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 'stock VM
                 execute_non_query("CALL insert_item_stock_vm('" + id_report + "')", True, "", "", "", "")
 
+                'budget used
+
+
                 ' select user prepared
                 Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
                 Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
