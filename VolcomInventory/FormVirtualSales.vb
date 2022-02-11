@@ -61,11 +61,10 @@
 
     Sub viewStore()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT 0 AS `id_comp`, 'All Store' AS `comp_number`, 'All Store' AS `comp_name_label`
-        UNION ALL
-        SELECT c.id_comp, c.comp_number , c.comp_name AS `comp_name_label` 
+        Dim query As String = "SELECT c.id_comp, c.comp_number , c.comp_name AS `comp_name_label` 
         FROM tb_m_comp c WHERE c.id_comp_cat=6 "
         viewSearchLookupQuery(SLEAccount, query, "id_comp", "comp_name_label", "id_comp")
+        SLEAccount.EditValue = Nothing
         Cursor = Cursors.Default
     End Sub
 
@@ -83,6 +82,7 @@
         FROM tb_m_comp c WHERE c.id_comp_cat=5 AND c.is_active=1 
         AND c.id_comp NOT IN (SELECT wh_temp FROM tb_opt ) "
         viewSearchLookupQuery(SLEWH, query, "id_comp", "comp_name_label", "id_comp")
+        SLEWH.EditValue = Nothing
         Cursor = Cursors.Default
     End Sub
 
@@ -164,6 +164,11 @@
             Exit Sub
         End If
 
+        If SLEAccount.EditValue = Nothing Or SLEWH.EditValue = Nothing Then
+            warningCustom("Please select Store & WH first")
+            Exit Sub
+        End If
+
         viewSalSOH()
     End Sub
 
@@ -173,6 +178,7 @@
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
         Dim id_comp As String = SLEAccount.EditValue.ToString
+        Dim store_code As String = SLEAccount.Properties.View.GetFocusedRowCellValue("comp_number").ToString
 
         'wh
         Dim id_wh As String = ""
@@ -181,6 +187,12 @@
         Else
             id_wh = SLEWH.EditValue.ToString
         End If
+        Dim wh_code As String = SLEWH.Properties.View.GetFocusedRowCellValue("comp_number").ToString
+
+        'set band
+        gridBandSales.Caption = "SALES : " + store_code
+        gridBandSOHStore.Caption = "SOH : " + store_code
+        gridBandSOHWH.Caption = "SOH : " + wh_code
 
         Dim query As String = "CALL view_sal_inv_virtual(" + id_comp + "," + id_design_selected + ", " + id_wh + ") "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

@@ -692,16 +692,22 @@ Public Class FormSalesOrderDet
         FormMain.SplashScreenManager1.CloseWaitForm()
 
         'check jika replace
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
         GVItemList.ActiveFilterString = ""
         Dim dt_replace_not_valid As DataTable = Nothing
+        Dim cond_valid_replace As Boolean = False
         If LEStatusSO.EditValue.ToString = "2" Then
             Dim id_design_replace As String = ""
             For r As Integer = 0 To GVItemList.RowCount - 1
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Get sku " + (r.ToString) + "/" + GVItemList.RowCount.ToString)
                 If r > 0 Then
                     id_design_replace += ","
                 End If
                 id_design_replace += GVItemList.GetRowCellValue(r, "id_design").ToString
             Next
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Checking first delivery")
             Dim qcek As String = "SELECT d.design_code AS `code`, cd.class, d.design_display_name AS `description`, cd.color
             FROM tb_m_design d
             LEFT JOIN (
@@ -728,10 +734,16 @@ Public Class FormSalesOrderDet
             ) fd ON fd.id_design = d.id_design
             WHERE d.id_lookup_status_order!=2 AND d.id_design IN (" + id_design_replace + ") AND ISNULL(fd.id_design) "
             dt_replace_not_valid = execute_query(qcek, -1, True, "", "", "", "")
-
+            If dt_replace_not_valid.Rows.Count > 0 Then
+                cond_valid_replace = False
+            Else
+                cond_valid_replace = True
+            End If
         Else
             dt_replace_not_valid = Nothing
+            cond_valid_replace = True
         End If
+        FormMain.SplashScreenManager1.CloseWaitForm()
 
 
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMain) Then
@@ -769,7 +781,7 @@ Public Class FormSalesOrderDet
             stopCustom("Some product already in EOS and need to stock take first.")
         ElseIf sku_gwp_no_price <> "" Then
             stopCustom("Some GWP products have no price : " + Environment.NewLine + sku_gwp_no_price)
-        ElseIf dt_replace_not_valid.Rows.Count > 0 Then
+        ElseIf Not cond_valid_replace Then
             stopCustom("Beberapa item belum pernah dikirim. Klik OK untuk melihat detail.")
             FormValidateStock.Text = "Validate Product"
             FormValidateStock.dt = dt_replace_not_valid
@@ -1200,7 +1212,7 @@ Public Class FormSalesOrderDet
     Sub getStore()
         Dim id_so_type As String = LETypeSO.EditValue.ToString
         Dim query_cond As String = "AND comp.id_comp<>'" + get_setup_field("wh_temp") + "' "
-        If id_bsp = "-1" Then
+        If id_bsp = "-1" Or id_bsp = "NULL" Then
             query_cond += "AND (comp.id_store_type!=3 OR ISNULL(comp.id_store_type)) "
         Else
             query_cond += "AND comp.id_store_type=3 "
