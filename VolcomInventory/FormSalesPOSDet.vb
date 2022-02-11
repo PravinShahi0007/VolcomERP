@@ -1357,14 +1357,19 @@ Public Class FormSalesPOSDet
     Sub getPotonganGWP()
         If action = "ins" Then
             'code here
-            GVItemList.ActiveFilterString = "[is_gwp]=1"
-            Dim potongan_gwp As Double = 0.0
-            Try
-                potongan_gwp = Double.Parse(GVItemList.Columns("sales_pos_det_amount").SummaryItem.SummaryValue.ToString)
-            Catch ex As Exception
-            End Try
-            TxtPotGWP.EditValue = potongan_gwp
-            GVItemList.ActiveFilterString = ""
+            If CheckEditInvType.EditValue = False Then
+                GVItemList.ActiveFilterString = "[is_gwp]=1"
+                Dim potongan_gwp As Double = 0.0
+                Try
+                    potongan_gwp = Double.Parse(GVItemList.Columns("sales_pos_det_amount").SummaryItem.SummaryValue.ToString)
+                Catch ex As Exception
+                End Try
+                TxtPotGWP.EditValue = potongan_gwp
+                GVItemList.ActiveFilterString = ""
+            Else
+                'invoice missing potongan penjualan gwp di set 0
+                TxtPotGWP.EditValue = 0.00
+            End If
         Else
             Dim query As String = "SELECT sp.potongan_gwp FROM tb_sales_pos sp WHERE sp.id_sales_pos=" + id_sales_pos + " "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -2277,7 +2282,7 @@ Public Class FormSalesPOSDet
         End If
 
         Dim query As String = "SELECT pldel.id_pl_sales_order_del, so.sales_order_ol_shop_number, pldel.id_store_contact_to, comp.id_comp, comp.comp_name, comp.comp_number, comp.address_primary, comp.npwp, comp.id_drawer_def, comp.comp_commission, rck.id_wh_rack, loc.id_wh_locator, sp.id_sales_pos,
-            IFNULL(comp.id_acc_sales,0) AS `id_acc_sales`, IFNULL(comp.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(comp.id_acc_ar,0) AS `id_acc_ar`
+            IFNULL(comp.id_acc_sales,0) AS `id_acc_sales`, IFNULL(comp.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(comp.id_acc_ar,0) AS `id_acc_ar`, pldel.pl_sales_order_del_note
             FROM tb_pl_sales_order_del pldel 
             INNER JOIN tb_sales_order so ON so.id_sales_order = pldel.id_sales_order "
         query += " INNER JOIN tb_m_comp_contact cc On cc.id_comp_contact=pldel.id_store_contact_to"
@@ -2314,6 +2319,7 @@ Public Class FormSalesPOSDet
             TENPWP.Text = data.Rows(0)("npwp").ToString
             SPDiscount.EditValue = data.Rows(0)("comp_commission")
             PanelControlNav.Visible = False
+            MENote.Text = data.Rows(0)("pl_sales_order_del_note").ToString
 
             'isi coa
             If id_menu <> "3" And id_menu <> "4" Then

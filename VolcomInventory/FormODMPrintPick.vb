@@ -9,7 +9,7 @@ FROM tb_odm_sc_det odd
 INNER JOIN tb_odm_sc od ON odd.`id_odm_sc`=od.`id_odm_sc` AND od.id_report_status!=5
 INNER JOIN tb_m_user usr ON usr.`id_user`=od.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-INNER JOIN tb_del_manifest d ON d.`id_del_manifest`=odd.`id_del_manifest`
+INNER JOIN tb_del_manifest d ON d.`id_del_manifest`=odd.`id_del_manifest` AND d.id_report_status=6
 LEFT JOIN 
 (
     SELECT id_odm_sc ,pd.id_odm_print

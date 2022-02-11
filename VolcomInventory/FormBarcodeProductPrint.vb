@@ -177,7 +177,7 @@ Public Class FormBarcodeProductPrint
     End Sub
 
     Sub load_printer()
-        Dim query As String = "SELECT id_printer_barcode,printer_barcode FROM tb_lookup_printer_barcode"
+        Dim query As String = "SELECT id_printer_barcode,printer_barcode FROM tb_lookup_printer_barcode WHERE is_purchasing=1"
         viewLookupQuery(LEPrinter, query, 0, "printer_barcode", "id_printer_barcode")
         LEPrinter.ItemIndex = 0
     End Sub

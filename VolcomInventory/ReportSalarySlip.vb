@@ -3,6 +3,7 @@
     Public id_payroll As String = ""
     Private Sub ReportEmpUni_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         Dim is_thr As String = execute_query("SELECT is_thr FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
+        Dim is_bonus As String = execute_query("SELECT is_bonus FROM tb_emp_payroll_type WHERE id_payroll_type = (SELECT id_payroll_type FROM tb_emp_payroll WHERE id_payroll = " + id_payroll + ")", 0, True, "", "", "", "")
 
         If is_thr = "1" Then
             XLWorking.Text = "Working Years"
@@ -41,6 +42,54 @@
             LWorkingDays.LocationF = New PointF(845.44, 202.61)
 
             XPFooter.LocationF = New PointF(0, 272.61)
+        End If
+
+        If is_bonus = "1" Then
+            XLWorking.Visible = False
+            XLWorking2.Visible = False
+            LWorkingDays.Visible = False
+            XLHouse.Visible = False
+            XLHouse2.Visible = False
+            LHousingAllow.Visible = False
+            XLAttendance.Visible = False
+            XLAttendance2.Visible = False
+            LAttnAllow.Visible = False
+            XLOvertime.Visible = False
+            XLOvertime2.Visible = False
+            LOvertimePay.Visible = False
+            XLRemaining.Visible = False
+            XLRemaining2.Visible = False
+            LDPPay.Visible = False
+            XLBonus.Visible = False
+            XLBonus2.Visible = False
+            LBonus.Visible = False
+            XLOvertimeHours.Visible = False
+            XLOvertimeHours2.Visible = False
+            LOvertimePoint.Visible = False
+            XLJob.Visible = False
+            XLJob2.Visible = False
+            LJobAllow.Visible = False
+            XLMeal.Visible = False
+            XLMeal2.Visible = False
+            LMealAllow.Visible = False
+            XLTransport.Visible = False
+            XLTransport2.Visible = False
+            LTransporAllow.Visible = False
+
+            XLDeduction.Text = ""
+            XLDeduction2.Text = ""
+            LTotalDeduction.Text = ""
+
+            XPDeduction.Visible = False
+
+            XLAdjustment.LocationF = New PointF(0, 82.61)
+            XLAdjustment2.LocationF = New PointF(317.5, 82.61)
+            LAdjustment.LocationF = New PointF(349.25, 82.61)
+
+            XPFooter.LocationF = New PointF(0, 122.61)
+
+            XLBasic.Text = "Total Bonus"
+            LBasicSalary.Text = "[total_bonus]"
         End If
 
         Dim query As String = "CALL view_salary_slip('" & where_string & "','" & id_payroll & "')"

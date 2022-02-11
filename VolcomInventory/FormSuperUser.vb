@@ -113,6 +113,14 @@
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
         FormStoreDisplay.ShowDialog()
+        'Dim m As New ClassSendEmail()
+        'm.design_code = "RTS15250"
+        'm.design = "P49 - PS A YANI PONTIANAK"
+        'm.par1 = "13"
+        'm.report_mark_type = "46"
+        'm.id_report = 17236
+        'm.send_email()
+        'FormVirtualSales.ShowDialog()
         'split kacamata
         'MsgBox(TextEdit1.Text.Split("/")(0).ToString().TrimEnd)
         'MsgBox(TextEdit1.Text.Split("/")(1).ToString().TrimStart)

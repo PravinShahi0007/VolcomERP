@@ -305,17 +305,26 @@ GROUP BY sp.`id_sample_purc`"
             Else
                 query = "SELECT sp.`id_sample_purc` AS id_report,0 AS id_prod_order,sp.`sample_purc_number` AS report_number,'Purchase Sample' AS description,c.comp_name AS info
 ,sp.id_currency,sp.sample_purc_kurs AS kurs,sp.sample_purc_vat AS vat,SUM(spd.sample_purc_det_price*spd.sample_purc_det_qty) AS po_val,SUM(spd.sample_purc_det_qty) AS po_qty,IFNULL(rec.amount_rec,0) AS amount_rec,IFNULL(rec.qty_rec,0) AS qty_rec
+,IFNULL(SUM(cls.qty_close),0) AS qty_close
 FROM `tb_sample_purc` sp
 INNER JOIN tb_sample_purc_det spd ON spd.`id_sample_purc`=sp.`id_sample_purc`
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=sp.`id_comp_contact_to`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp` AND c.id_comp='" & FormInvoiceFGPODP.SLEVendor.EditValue.ToString & "'
 LEFT JOIN (
-	SELECT pod.id_sample_purc,SUM(recd.sample_purc_rec_det_qty*recd.fob_price_update) AS amount_rec,SUM(recd.sample_purc_rec_det_qty) AS qty_rec
-	FROM `tb_sample_purc_rec_det` recd
-	INNER JOIN tb_sample_purc_det pod ON pod.id_sample_purc_det=recd.id_sample_purc_det
-	INNER JOIN tb_sample_purc_rec rec ON rec.id_sample_purc_rec=recd.id_sample_purc_rec AND rec.id_report_status=6
-	GROUP BY pod.id_sample_purc
+	SELECT pod.id_sample_purc,pod.`id_sample_purc_det`,SUM(recd.sample_purc_rec_det_qty*recd.fob_price_update) AS amount_rec,SUM(recd.sample_purc_rec_det_qty) AS qty_rec
+    FROM `tb_sample_purc_rec_det` recd
+    INNER JOIN tb_sample_purc_det pod ON pod.id_sample_purc_det=recd.id_sample_purc_det
+    INNER JOIN tb_sample_purc_rec rec ON rec.id_sample_purc_rec=recd.id_sample_purc_rec AND rec.id_report_status=6
+    GROUP BY pod.id_sample_purc
 )rec ON rec.id_sample_purc=sp.`id_sample_purc`
+LEFT JOIN (
+    SELECT pod.id_sample_purc_det,SUM(recd.qty) AS qty_close
+    FROM `tb_sample_purc_close_det` recd
+    INNER JOIN tb_sample_purc_det pod ON pod.id_sample_purc_det=recd.id_sample_purc_det
+    INNER JOIN `tb_sample_purc_close` rec ON rec.id_sample_purc_close=recd.id_sample_purc_close 
+    AND rec.id_report_status=6
+    GROUP BY pod.id_sample_purc_det
+)cls ON cls.id_sample_purc_det=spd.`id_sample_purc_det`
 LEFT JOIN 
 (
     SELECT pn.id_pn_fgpo,pnd.id_report
@@ -325,7 +334,7 @@ LEFT JOIN
 )pn ON pn.id_report=sp.id_sample_purc
 WHERE sp.`id_report_status`='6' AND ISNULL(pn.id_pn_fgpo) 
 GROUP BY sp.`id_sample_purc`
-HAVING qty_rec>=po_qty"
+HAVING (qty_rec+qty_close>=po_qty)"
             End If
         End If
 

@@ -43,7 +43,7 @@ WHERE pc.`id_sample_purc_close`='" & id_close & "'"
 
     Sub load_det()
         Dim query As String = "SELECT spcd.*,sp.sample_purc_number,ms.`sample_name`,ms.`sample_us_code`,clr.code_detail_name as color,0.00 AS sub_total FROM `tb_sample_purc_close_det` spcd
-INNER JOIN tb_sample_purc_det spd ON spd.`id_sample_purc_det`=spcd.`id_sample_purc_close_det`
+INNER JOIN tb_sample_purc_det spd ON spd.`id_sample_purc_det`=spcd.`id_sample_purc_det`
 INNER JOIN tb_sample_purc sp ON sp.`id_sample_purc`=spd.`id_sample_purc`
 INNER JOIN tb_m_sample_price prc ON prc.`id_sample_price`=spd.`id_sample_price`
 INNER JOIN tb_m_sample ms ON ms.`id_sample`=prc.id_sample
@@ -117,10 +117,10 @@ WHERE spcd.id_sample_purc_close='" & id_close & "'"
             Next
             execute_non_query(query, True, "", "", "", "")
 
-            query = "CALL gen_number('" & id_close & "','185')"
+            query = "CALL gen_number('" & id_close & "','182')"
             execute_non_query(query, True, "", "", "", "")
 
-            submit_who_prepared("185", id_close, id_user)
+            submit_who_prepared("182", id_close, id_user)
 
             infoCustom("Closing Sample Purchase submitted.")
 
@@ -130,7 +130,7 @@ WHERE spcd.id_sample_purc_close='" & id_close & "'"
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         FormReportMark.id_report = id_close
-        FormReportMark.report_mark_type = "185"
+        FormReportMark.report_mark_type = "182"
         If is_view = "1" Then
             FormReportMark.is_view = "1"
         End If

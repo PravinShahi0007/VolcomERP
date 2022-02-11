@@ -5,6 +5,8 @@
     Public is_able_download_asuransi_3pl As Boolean = False
     Dim is_block_del_store As String = get_setup_field("is_block_del_store")
 
+    Dim is_need_finalize As Boolean = False
+
     Private Sub BView_Click(sender As Object, e As EventArgs)
         'view()
     End Sub
@@ -14,7 +16,7 @@
 FROM (
     SELECT 0 AS NO,a.ol_number,md.id_comp AS id_3pl,sts.report_status,'' AS is_check, mdet.id_wh_awb_det, md.number, md.id_del_manifest,pdel.`id_pl_sales_order_del`,
     c.id_comp_group, a.awbill_no, a.awbill_date, a.id_awbill, IFNULL(pdelc.combine_number, adet.do_no) AS combine_number, adet.do_no, pdel.pl_sales_order_del_number, c.comp_number, c.comp_name, CONCAT((ROUND(IF(pdelc.combine_number IS NULL, adet.qty, z.qty), 0)), ' ') AS qty, IFNULL(so.shipping_city,ct.city) AS city
-    ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight, c.is_active
+    ,a.weight, a.width, a.length, a.height, a.weight_calc AS volume, md.c_weight, c.is_active,md.`is_need_finalize`,md.`is_finalize_complete`
     FROM tb_del_manifest_det AS mdet
     INNER JOIN tb_del_manifest md ON md.`id_del_manifest`=mdet.`id_del_manifest` 
     AND ISNULL(md.`id_report_status`)
@@ -51,6 +53,11 @@ ORDER BY tb.comp_number ASC, tb.id_awbill ASC, tb.combine_number ASC"
             warningCustom("AWB not found or already checked.")
             TEAWB.Text = ""
         Else
+            If GVList.GetRowCellValue(0, "is_need_finalize").ToString = "1" And GVList.GetRowCellValue(0, "is_finalize_complete").ToString = "1" Then
+                is_need_finalize = True
+            Else
+                is_need_finalize = False
+            End If
             TEAWB.Enabled = False
             SLUE3PL.Properties.ReadOnly = True
             'BView.Visible = False
@@ -249,11 +256,13 @@ VALUES('" & SLUE3PL.EditValue.ToString & "','" & addSlashes(TEAWB.Text) & "','" 
                 Next
                 execute_non_query(q, True, "", "", "", "")
 
-                For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
-                    FormMain.SplashScreenManager1.SetWaitFormDescription("Processing Order " & i + 1 & " of " & (GVList.RowCount - 1 - GetGroupRowCount(GVList)).ToString)
-                    Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
-                    stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
-                Next
+                If Not is_need_finalize Then
+                    For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
+                        FormMain.SplashScreenManager1.SetWaitFormDescription("Processing Order " & i + 1 & " of " & (GVList.RowCount - 1 - GetGroupRowCount(GVList)).ToString)
+                        Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
+                        stt.changeStatus(GVList.GetRowCellValue(i, "id_pl_sales_order_del").ToString, "6")
+                    Next
+                End If
 
                 before_id_del_manifest = ""
                 For i As Integer = 0 To GVList.RowCount - 1 - GetGroupRowCount(GVList)
@@ -296,7 +305,7 @@ WHERE dd.`id_del_manifest`='" & GVList.GetRowCellValue(i, "id_del_manifest").ToS
     End Sub
 
     Private Sub TEAWB_KeyUp(sender As Object, e As KeyEventArgs) Handles TEAWB.KeyUp
-        If e.KeyCode = Keys.Enter Then
+        If e.KeyCode = Keys.Enter And Not TEAWB.Text = "" Then
             view()
         End If
     End Sub

@@ -12,7 +12,7 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT s.id_disable_exos, s.`number`, s.created_date, s.id_report_status, stt.report_status, s.note 
+        Dim query As String = "SELECT s.id_disable_exos, s.`number`, s.effective_date, s.created_date, s.id_report_status, stt.report_status, s.note 
         FROM tb_disable_exos s
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = s.id_report_status "
         query += "WHERE s.id_disable_exos>0 "

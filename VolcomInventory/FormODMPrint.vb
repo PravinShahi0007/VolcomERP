@@ -119,7 +119,16 @@ ORDER BY tb.awbill_no ASC,tb.ol_number ASC,tb.combine_number ASC"
     End Sub
 
     Sub print()
-
+        'blm completed
+        Dim err_status As Boolean = False
+        For i As Integer = 0 To GVListHistory.RowCount - 1 - GetGroupRowCount(GVListHistory)
+            If Not GVListHistory.IsGroupRow(i) Then
+                If Not GVListHistory.GetRowCellValue(i, "id_report_status").ToString = "6" Then
+                    err_status = True
+                    Exit For
+                End If
+            End If
+        Next
 
         'hold delivery
         Dim err_hold As String = ""
@@ -146,6 +155,8 @@ ORDER BY tb.awbill_no ASC,tb.ol_number ASC,tb.combine_number ASC"
             warningCustom("Hold delivery : " + System.Environment.NewLine + err_hold)
         ElseIf err_not_active <> "" Then
             warningCustom("Store not active : " + System.Environment.NewLine + err_not_active)
+        ElseIf err_status Then
+            warningCustom("Please check again complete status")
         Else
             Cursor = Cursors.WaitCursor
 
@@ -223,7 +234,7 @@ GROUP BY del.awbill_no"
                         execute_non_query("INSERT INTO tb_odm_print_log(id_odm_print,report_mark_type,id_comp,date_log) VALUES('" & id_print & "','" & dtc.Rows(0)("report_mark_type").ToString & "','" & dtc.Rows(0)("id_3pl").ToString & "',NOW())", True, "", "", "", "")
                     Catch ex As Exception
                         stopCustom("ERROR SENDING EMAIL INSURANCE, PLEASE CONTACT ADMINISTRATOR")
-                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'ERROR SEND EMAIL INSURANCE')", -1, True, "", "", "", "")
+                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'ERROR SEND EMAIL INSURANCE (id_odm_print = " & id_print & ")')", -1, True, "", "", "", "")
                     End Try
                 End If
             End If

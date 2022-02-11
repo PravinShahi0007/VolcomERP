@@ -261,17 +261,21 @@ WHERE qr.id_qc_report1='" + id + "' "
     End Sub
 
     Private Sub BScan_Click(sender As Object, e As EventArgs) Handles BScan.Click
-        MENote.Enabled = False
-        BtnBrowsePO.Enabled = False
-        BtnSave.Enabled = False
-        BScan.Enabled = False
-        BStop.Enabled = True
-        BDelete.Enabled = False
-        BtnCancel.Enabled = False
-        GVRetDetail.OptionsBehavior.Editable = False
-        ControlBox = False
-        BtnInfoSrs.Enabled = False
-        newRowsBc()
+        If SLEQCReport.EditValue = Nothing Then
+            warningCustom("Please select qc report type first.")
+        Else
+            MENote.Enabled = False
+            BtnBrowsePO.Enabled = False
+            BtnSave.Enabled = False
+            BScan.Enabled = False
+            BStop.Enabled = True
+            BDelete.Enabled = False
+            BtnCancel.Enabled = False
+            GVRetDetail.OptionsBehavior.Editable = False
+            ControlBox = False
+            BtnInfoSrs.Enabled = False
+            newRowsBc()
+        End If
     End Sub
 
     Sub newRowsBc()

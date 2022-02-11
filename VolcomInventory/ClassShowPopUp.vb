@@ -269,7 +269,7 @@
         ElseIf report_mark_type = "184" Or report_mark_type = "213" Or report_mark_type = "214" Or report_mark_type = "219" Or report_mark_type = "220" Then
             'Overtime employee
             FormEmpOvertimeDet.Close()
-        ElseIf report_mark_type = "185" Then
+        ElseIf report_mark_type = "182" Then
             'Sample Purchase Closing
             FormSamplePurcClose.Close()
         ElseIf report_mark_type = "187" Or report_mark_type = "215" Or report_mark_type = "216" Then
@@ -536,7 +536,7 @@
         ElseIf report_mark_type = "376" Then
             'propose big sale product
             FormBSPDet.Close()
-        ElseIf report_mark_type = "383" Then
+        ElseIf report_mark_type = "383" Or report_mark_type = "393" Then
             'propose item list
             FormItemPps.Close()
         ElseIf report_mark_type = "384" Then
@@ -551,6 +551,9 @@
         ElseIf report_mark_type = "389" Then
             'vm asset manage
             FormVMMove.Close()
+        ElseIf report_mark_type = "390" Then
+            'soh virtual
+            FormVirtualSalesDet.Close()
         End If
     End Sub
     Sub show()
@@ -1287,7 +1290,7 @@ GROUP BY rec.`id_prod_order`"
             FormEmpOvertimeDet.is_view = "1"
 
             FormEmpOvertimeDet.ShowDialog()
-        ElseIf report_mark_type = "185" Then
+        ElseIf report_mark_type = "182" Then
             'Sample Purchase Closing
             FormSamplePurcCloseDet.id_close = id_report
             FormSamplePurcCloseDet.is_view = "1"
@@ -1735,7 +1738,7 @@ GROUP BY rec.`id_prod_order`"
             FormBSPDet.action = "upd"
             FormBSPDet.id = id_report
             FormBSPDet.ShowDialog()
-        ElseIf report_mark_type = "383" Then
+        ElseIf report_mark_type = "383" Or report_mark_type = "393" Then
             'propose item list
             FormItemPps.is_view = "1"
             FormItemPps.id_pps = id_report
@@ -1760,6 +1763,12 @@ GROUP BY rec.`id_prod_order`"
             FormVMMove.is_view = "1"
             FormVMMove.id = id_report
             FormVMMove.ShowDialog()
+        ElseIf report_mark_type = "390" Then
+            'soh virtual
+            FormVirtualSalesDet.action = "upd"
+            FormVirtualSalesDet.is_view = "1"
+            FormVirtualSalesDet.id = id_report
+            FormVirtualSalesDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -2594,7 +2603,7 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_sales_pos"
             field_number = "sales_pos_number"
             field_date = "sales_pos_date"
-        ElseIf report_mark_type = "185" Then
+        ElseIf report_mark_type = "182" Then
             'sample purchase close
             table_name = "tb_sample_purc_close"
             field_id = "id_sample_purc_close"
@@ -3107,7 +3116,7 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_bsp"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "383" Then
+        ElseIf report_mark_type = "383" Or report_mark_type = "393" Then
             'propose item list
             table_name = "tb_item_pps"
             field_id = "id_item_pps"
@@ -3135,6 +3144,12 @@ GROUP BY rec.`id_prod_order`"
             'vm move
             table_name = "tb_vm_item_move"
             field_id = "id_vm_item_move"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "390" Then
+            'soh virtual
+            table_name = "tb_virtual_sales"
+            field_id = "id_virtual_sales"
             field_number = "number"
             field_date = "created_date"
         Else

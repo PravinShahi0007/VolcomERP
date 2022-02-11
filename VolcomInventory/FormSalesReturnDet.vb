@@ -1943,13 +1943,18 @@ Public Class FormSalesReturnDet
                     Exit Sub
                 Else
                     'cek extended eos (id_extended_eos)
+                    Dim is_extended_eos As String = ""
                     If dcr.Rows(0)("id_extended_eos").ToString = "1" Then
-                        Cursor = Cursors.Default
-                        makeSafeGV(GVItemList)
-                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
-                        GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                        stopCustomDialog("This product is still in Extended EOS, please contact MD Dept. to create propose return via menu 'Propose Return Extended EOSS' !")
-                        Exit Sub
+                        is_extended_eos = "1"
+                        'bloking tidak jadi kepake
+                        'Cursor = Cursors.Default
+                        'makeSafeGV(GVItemList)
+                        'GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                        'GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                        'stopCustomDialog("This product is still in Extended EOS, please contact MD Dept. to create propose return via menu 'Propose Return Extended EOSS' !")
+                        'Exit Sub
+                    Else
+                        is_extended_eos = "2"
                     End If
 
                     Dim dtu As DataTable = Nothing
@@ -1971,8 +1976,8 @@ Public Class FormSalesReturnDet
                     Dim dtu_filter As DataRow() = dtu.Select("[product_full_code]='" + code_check + "' ")
                     If (dtu_filter.Length > 0) Then
                         ' add ror detail
-                        Dim qar As String = "INSERT INTO tb_sales_return_order_det(id_sales_return_order, id_product, id_return_cat, id_design_price, design_price, sales_return_order_det_qty, sales_return_order_det_note, is_non_list) 
-                        VALUES(" + id_sales_return_order + ", " + dcr.Rows(0)("id_product").ToString + ",1, '" + dcr.Rows(0)("id_design_price").ToString + "', '" + decimalSQL(dcr.Rows(0)("design_price").ToString) + "',0,'',1); SELECT LAST_INSERT_ID(); "
+                        Dim qar As String = "INSERT INTO tb_sales_return_order_det(id_sales_return_order, id_product, id_return_cat, id_design_price, design_price, sales_return_order_det_qty, sales_return_order_det_note, is_non_list, is_extended_eos) 
+                        VALUES(" + id_sales_return_order + ", " + dcr.Rows(0)("id_product").ToString + ",1, '" + dcr.Rows(0)("id_design_price").ToString + "', '" + decimalSQL(dcr.Rows(0)("design_price").ToString) + "',0,'',1, '" + is_extended_eos + "'); SELECT LAST_INSERT_ID(); "
                         Dim id_rod_new As String = execute_query(qar, 0, True, "", "", "", "")
 
                         'add on Grid list

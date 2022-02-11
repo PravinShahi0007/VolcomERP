@@ -271,6 +271,29 @@ WHERE awbd.`id_pl_sales_order_del`='" & gv.GetRowCellValue(a, "id_pl_sales_order
                             End If
                             removeAppList(report_mark_type, FormSalesOrderSvcLevel.GVSalesReturn.GetRowCellValue(i, "id_sales_return").ToString, id_status_reportx)
                             insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVSalesReturn.GetRowCellValue(i, "id_sales_return").ToString, id_status_reportx, note)
+
+                            Dim sales_return_number As String = FormSalesOrderSvcLevel.GVSalesReturn.GetRowCellValue(i, "sales_return_number").ToString
+                            Dim store As String = FormSalesOrderSvcLevel.GVSalesReturn.GetRowCellValue(i, "store_name_from").ToString
+                            Dim total_qty As String = FormSalesOrderSvcLevel.GVSalesReturn.GetRowCellValue(i, "total").ToString
+                            Dim is_non_list As String = FormSalesOrderSvcLevel.GVSalesReturn.GetRowCellValue(i, "is_non_list").ToString
+                            Dim id_rts As String = FormSalesOrderSvcLevel.GVSalesReturn.GetRowCellValue(i, "id_sales_return").ToString
+                            If SLEStatusRec.EditValue.ToString = "6" Then
+                                'send email non list
+                                If is_non_list = "1" Then
+                                    Try
+                                        Dim m As New ClassSendEmail()
+                                        m.design_code = sales_return_number
+                                        m.design = store
+                                        m.par1 = total_qty
+                                        m.report_mark_type = "46"
+                                        m.id_report = id_rts
+                                        m.send_email()
+                                Catch ex As Exception
+                                        execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send email return non list id_sales_return = " & id_rts & " | error : " & addSlashes(ex.ToString) & "')", -1, True, "", "", "", "")
+                                    End Try
+                                End If
+                            End If
+
                             PBC.PerformStep()
                             PBC.Update()
                         Next

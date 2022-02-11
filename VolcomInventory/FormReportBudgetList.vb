@@ -5,8 +5,60 @@
     Public main_cat As String = "-1"
     Public year As String = ""
 
+    Public opt As String = "1"
+    Public qi As String = ""
+
     Private Sub FormReportBudgetList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_list()
+        '
+        If opt = "1" Then
+            XTPList.PageVisible = False
+        ElseIf opt = "2" Then
+            XTPCard.PageVisible = False
+            load_booked_po()
+        End If
+    End Sub
+
+    Sub load_booked_po()
+        Dim query As String = "SELECT 'no' AS is_check,tag.tag_description,po.est_date_receive,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated ,po.pay_due_date,po.date_created
+,SUM(pod.qty) AS qty_po,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value) AS total_po
+,IFNULL(SUM(rec.qty),0) AS qty_rec,IF(ISNULL(rec.id_purc_order_det),0,SUM(rec.qty*(pod.value-pod.discount))-(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.disc_value)+(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.vat_value)) AS total_rec
+,(IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))*100 AS rec_progress,IF(po.is_close_rec=1,'Closed',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<=0,'Waiting',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<1,'Partial','Complete'))) AS rec_status
+,po.close_rec_reason,rts.report_status,et.expense_type
+,IFNULL(payment.value,0) AS val_pay
+,IF(po.is_close_pay=1,'Closed',IF(DATE(NOW())>po.pay_due_date,'Overdue','Open')) as pay_status, po.is_close_rec, po.id_expense_type, po.id_report_status
+FROM tb_purc_order po
+INNER JOIN tb_coa_tag tag ON tag.id_coa_tag=po.id_coa_tag
+INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
+INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
+INNER JOIN tb_m_employee emp_cre ON emp_cre.id_employee=usr_cre.id_employee
+INNER JOIN tb_m_user usr_upd ON usr_upd.id_user=po.last_update_by
+INNER JOIN tb_m_employee emp_upd ON emp_upd.id_employee=usr_upd.id_employee
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+INNER JOIN tb_lookup_report_status rts ON rts.id_report_status=po.id_report_status
+INNER JOIN tb_lookup_expense_type et ON et.id_expense_type=po.id_expense_type
+LEFT JOIN 
+( 
+	SELECT recd.`id_purc_order_det`,SUM(recd.`qty`) AS qty FROM tb_purc_rec_det recd 
+	INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_report_status`='6'
+	GROUP BY recd.`id_purc_order_det`
+) rec ON rec.id_purc_order_det=pod.`id_purc_order_det`
+LEFT JOIN
+(
+	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_payment_det` pyd
+	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=5 AND py.report_mark_type='139'
+	GROUP BY pyd.id_report
+)payment ON payment.id_report=po.id_purc_order
+INNER JOIN
+(
+    " & qi & "
+)poj ON poj.id_report=po.id_purc_order AND poj.report_mark_type=po.report_mark_type
+GROUP BY po.id_purc_order ORDER BY po.id_purc_order DESC"
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPO.DataSource = data
+        GVPO.BestFitColumns()
     End Sub
 
     Sub load_list()
