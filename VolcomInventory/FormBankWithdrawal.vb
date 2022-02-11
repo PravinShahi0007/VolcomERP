@@ -1792,4 +1792,10 @@ HAVING balance>0"
         GCShareHolder.DataSource = dt
         GVShareHolder.BestFitColumns()
     End Sub
+
+    Private Sub SLEPayType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEPayType.EditValueChanged
+        For i = GVPOList.RowCount - 1 To 0 Step -1
+            GVPOList.DeleteRow(i)
+        Next
+    End Sub
 End Class
