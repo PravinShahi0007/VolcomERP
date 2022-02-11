@@ -7,6 +7,7 @@
         viewSalesList()
         viewStore()
         viewStoreSC()
+        viewWH()
 
         'caption size sal
         GVSOHSal.Columns("sal_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
@@ -30,6 +31,28 @@
         GVSOHSal.Columns("soh_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
         GVSOHSal.Columns("soh_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
         GVSOHSal.Columns("soh_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        'caption soh wh
+        GVSOHSal.Columns("wh_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        GVSOHSal.Columns("wh_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        GVSOHSal.Columns("wh_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        GVSOHSal.Columns("wh_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        GVSOHSal.Columns("wh_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        GVSOHSal.Columns("wh_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        GVSOHSal.Columns("wh_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        GVSOHSal.Columns("wh_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        GVSOHSal.Columns("wh_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        GVSOHSal.Columns("wh_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        'caption order
+        GVSOHSal.Columns("order_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        GVSOHSal.Columns("order_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        GVSOHSal.Columns("order_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        GVSOHSal.Columns("order_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        GVSOHSal.Columns("order_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        GVSOHSal.Columns("order_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        GVSOHSal.Columns("order_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        GVSOHSal.Columns("order_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        GVSOHSal.Columns("order_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        GVSOHSal.Columns("order_qty0").Caption = "0" + System.Environment.NewLine + "SM"
     End Sub
 
     Private Sub FormVirtualSales_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -38,11 +61,10 @@
 
     Sub viewStore()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT 0 AS `id_comp`, 'All Store' AS `comp_number`, 'All Store' AS `comp_name_label`
-        UNION ALL
-        SELECT c.id_comp, c.comp_number , c.comp_name AS `comp_name_label` 
+        Dim query As String = "SELECT c.id_comp, c.comp_number , c.comp_name AS `comp_name_label` 
         FROM tb_m_comp c WHERE c.id_comp_cat=6 "
         viewSearchLookupQuery(SLEAccount, query, "id_comp", "comp_name_label", "id_comp")
+        SLEAccount.EditValue = Nothing
         Cursor = Cursors.Default
     End Sub
 
@@ -54,6 +76,15 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewWH()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT c.id_comp, c.comp_number , c.comp_name AS `comp_name_label` 
+        FROM tb_m_comp c WHERE c.id_comp_cat=5 AND c.is_active=1 
+        AND c.id_comp NOT IN (SELECT wh_temp FROM tb_opt ) "
+        viewSearchLookupQuery(SLEWH, query, "id_comp", "comp_name_label", "id_comp")
+        SLEWH.EditValue = Nothing
+        Cursor = Cursors.Default
+    End Sub
 
     Sub viewSalesList()
         Cursor = Cursors.WaitCursor
@@ -133,6 +164,11 @@
             Exit Sub
         End If
 
+        If SLEAccount.EditValue = Nothing Or SLEWH.EditValue = Nothing Then
+            warningCustom("Please select Store & WH first")
+            Exit Sub
+        End If
+
         viewSalSOH()
     End Sub
 
@@ -142,9 +178,23 @@
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
         Dim id_comp As String = SLEAccount.EditValue.ToString
+        Dim store_code As String = SLEAccount.Properties.View.GetFocusedRowCellValue("comp_number").ToString
 
+        'wh
+        Dim id_wh As String = ""
+        If SLEWH.EditValue = Nothing Then
+            id_wh = "0"
+        Else
+            id_wh = SLEWH.EditValue.ToString
+        End If
+        Dim wh_code As String = SLEWH.Properties.View.GetFocusedRowCellValue("comp_number").ToString
 
-        Dim query As String = "CALL view_sal_inv_virtual(" + id_comp + "," + id_design_selected + ") "
+        'set band
+        gridBandSales.Caption = "SALES : " + store_code
+        gridBandSOHStore.Caption = "SOH : " + store_code
+        gridBandSOHWH.Caption = "SOH : " + wh_code
+
+        Dim query As String = "CALL view_sal_inv_virtual(" + id_comp + "," + id_design_selected + ", " + id_wh + ") "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSOHSal.DataSource = data
         DEBeg.EditValue = data.Rows(0)("beg_stock_date")
@@ -153,6 +203,18 @@
         If Not id_comp = 0 Then
             FormMain.SplashScreenManager1.SetWaitFormDescription("Best fit all column")
             GVSOHSal.BestFitColumns()
+
+            Dim width_order As Integer = 50
+            BandedGridColumnorder_qty1.Width = width_order
+            BandedGridColumnorder_qty2.Width = width_order
+            BandedGridColumnorder_qty3.Width = width_order
+            BandedGridColumnorder_qty4.Width = width_order
+            BandedGridColumnorder_qty5.Width = width_order
+            BandedGridColumnorder_qty6.Width = width_order
+            BandedGridColumnorder_qty7.Width = width_order
+            BandedGridColumnorder_qty8.Width = width_order
+            BandedGridColumnorder_qty9.Width = width_order
+            BandedGridColumnorder_qty0.Width = width_order
         End If
 
         FormMain.SplashScreenManager1.CloseWaitForm()
@@ -394,5 +456,86 @@
             exportToXLS(path, "stock_card", GCFGStockCard, True)
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub GVSOHSal_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVSOHSal.CustomColumnDisplayText
+        If (e.Column.FieldName.Contains("soh_qty") Or e.Column.FieldName.Contains("sal_qty") Or e.Column.FieldName.Contains("wh_qty") Or e.Column.FieldName.Contains("order_qty")) Then
+            Dim qty As Decimal = 0
+            Try
+                qty = Convert.ToDecimal(e.Value)
+            Catch ex As Exception
+                qty = 0
+            End Try
+            If qty = 0 Then
+                e.DisplayText = "-"
+            End If
+        End If
+    End Sub
+
+    Private Sub RepositoryItemSpinEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemSpinEdit1.EditValueChanged
+        'Dim foc_col As String = GVSOHSal.FocusedColumn.FieldName.ToString
+        'Dim col_no As String = Microsoft.VisualBasic.Right(foc_col, 1)
+        'Dim SpQty As DevExpress.XtraEditors.SpinEdit = CType(sender, DevExpress.XtraEditors.SpinEdit)
+        'If Not SpQty.EditValue = Nothing Then
+        '    Dim qty_order As Decimal = SpQty.EditValue
+        '    Dim qty_limit As Decimal = GVSOHSal.GetFocusedRowCellValue("wh_qty" + col_no)
+        '    Dim code As String = GVSOHSal.GetFocusedRowCellValue("main_code").ToString + GVSOHSal.GetFocusedRowCellValue("size_type").ToString + "1"
+        '    Dim cls As String = GVSOHSal.GetFocusedRowCellValue("class").ToString
+        '    Dim name As String = GVSOHSal.GetFocusedRowCellValue("name").ToString
+        '    Dim color As String = GVSOHSal.GetFocusedRowCellValue("color").ToString
+        '    If qty_order > qty_limit Then
+        '        stopCustom(code + Environment.NewLine + cls + " - " + name + " - " + color + Environment.NewLine + Environment.NewLine + "Maximum Qty => " + qty_limit.ToString)
+        '        GVSOHSal.SetFocusedRowCellValue("order_qty" + col_no, 0)
+        '    End If
+        'Else
+        '    GVSOHSal.SetFocusedRowCellValue("order_qty" + col_no, 0)
+        'End If
+        'GVSOHSal.Columns("order_qty" + col_no).BestFit()
+    End Sub
+
+    Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
+        GVSOHSal.ActiveFilterString = ""
+        GVSOHSal.ActiveFilterString = "[order_qty]>0"
+        If GVSOHSal.RowCount <= 0 Then
+            stopCustom("Please input qty order first")
+        Else
+            Cursor = Cursors.WaitCursor
+            Try
+                FormSalesOrder.MdiParent = FormMain
+                FormSalesOrder.Show()
+                FormSalesOrder.WindowState = FormWindowState.Maximized
+            Catch ex As Exception
+            End Try
+            Me.Focus()
+            FormSalesOrderDet.action = "ins"
+            FormSalesOrderDet.is_from_virtual_soh = True
+            FormSalesOrderDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+        GVSOHSal.ActiveFilterString = ""
+    End Sub
+
+    Private Sub RepositoryItemTextEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemTextEdit1.EditValueChanged
+        Dim foc_col As String = GVSOHSal.FocusedColumn.FieldName.ToString
+        Dim col_no As String = Microsoft.VisualBasic.Right(foc_col, 1)
+        Dim SpQty As DevExpress.XtraEditors.TextEdit = CType(sender, DevExpress.XtraEditors.TextEdit)
+        If Not SpQty.EditValue = Nothing Then
+            Dim qty_order As Decimal = SpQty.EditValue
+            Dim qty_limit As Decimal = GVSOHSal.GetFocusedRowCellValue("wh_qty" + col_no)
+            Dim code As String = GVSOHSal.GetFocusedRowCellValue("main_code").ToString + GVSOHSal.GetFocusedRowCellValue("size_type").ToString + "1"
+            Dim cls As String = GVSOHSal.GetFocusedRowCellValue("class").ToString
+            Dim name As String = GVSOHSal.GetFocusedRowCellValue("name").ToString
+            Dim color As String = GVSOHSal.GetFocusedRowCellValue("color").ToString
+            If qty_order > qty_limit Then
+                stopCustom(code + Environment.NewLine + cls + " - " + name + " - " + color + Environment.NewLine + Environment.NewLine + "Maximum Qty => " + qty_limit.ToString)
+                GVSOHSal.SetFocusedRowCellValue("order_qty" + col_no, 0)
+            End If
+        Else
+            GVSOHSal.SetFocusedRowCellValue("order_qty" + col_no, 0)
+        End If
+    End Sub
+
+    Private Sub GVSOHSal_FocusedColumnChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs) Handles GVSOHSal.FocusedColumnChanged
+
     End Sub
 End Class
