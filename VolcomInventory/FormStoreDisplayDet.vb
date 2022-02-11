@@ -98,6 +98,7 @@
             'detail
             viewDisplayPlanning()
             viewRencanaSKU()
+            viewSetupHanger()
             allow_status()
 
 
@@ -425,25 +426,48 @@
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
-        Dim query As String = "SELECT cg.class_group AS `GROUP INFO|CLASS`,SUM(total_sku) AS `TOTAL|SKU` 
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Memuat season/del")
+        Dim qs As String = "SELECT dps.id_display_pps_season, 
+        IF(ISNULL(ss.id_season), 'EXTRA SKU', CONCAT(ss.season,' D',sd.delivery)) AS `season_del`,
+        dps.id_display_season_type, UPPER(dst.display_season_type) AS `display_season_type`, dps.is_extra_sku
+        FROM tb_display_pps_season dps 
+        LEFT JOIN tb_season ss ON ss.id_season = dps.id_season
+        LEFT JOIN tb_season_delivery sd ON sd.id_delivery = dps.id_delivery
+        INNER JOIN tb_display_season_type dst ON dst.id_display_season_type = dps.id_display_season_type
+        WHERE dps.id_display_pps=" + id + "
+        ORDER BY sd.delivery_date "
+        Dim ds As DataTable = execute_query(qs, -1, True, "", "", "", "")
+        Dim ds_filter As DataRow() = ds.Select("[is_extra_sku]=1")
+        Dim id_extra_sku = ds_filter(0)("id_display_pps_season").ToString
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Memuat rencana SKU")
+        Dim query As String = "SELECT cg.class_group AS `GROUP INFO|CLASS`, "
+        For c As Integer = 0 To ds.Rows.Count - 1
+            query += "IFNULL(SUM(CASE WHEN a.id_display_pps_season=" + ds.Rows(c)("id_display_pps_season").ToString + " THEN a.total_sku END),0) AS `" + ds.Rows(c)("display_season_type").ToString + "|" + ds.Rows(c)("season_del").ToString + "`, "
+        Next
+        query += "SUM(total_sku) AS `TOTAL|SKU` 
         FROM (
-         -- exist
-         SELECT dpr.id_class_group, dpr.id_season, dpr.id_delivery, COUNT(dpr.id_class_group) AS `total_sku`
-         FROM tb_display_pps_res dpr
-         WHERE dpr.id_display_pps=" + id + "
-         GROUP BY dpr.id_class_group, dpr.id_delivery
-         UNION ALL
-         -- current
-         SELECT dpd.id_class_group, d.id_season, d.id_delivery, COUNT(dpd.id_class_group) AS `total_sku`
-         FROM tb_display_pps_det dpd
-         INNER JOIN tb_m_design d ON d.id_design = dpd.id_design
-         WHERE dpd.id_display_pps=" + id + "
-         GROUP BY dpd.id_class_group, d.id_delivery
-         -- plan
-         UNION ALL
-         SELECT dpp.id_class_group, dpp.id_season, dpp.id_delivery, dpp.qty_sku AS `total_sku`
-         FROM tb_display_pps_plan dpp
-         WHERE dpp.id_display_pps=" + id + "
+            -- exist
+	        SELECT dpr.id_class_group, dpr.id_season, dpr.id_delivery, COUNT(dpr.id_class_group) AS `total_sku`, IFNULL(dps.id_display_pps_season," + id_extra_sku + ") AS `id_display_pps_season`
+	        FROM tb_display_pps_res dpr
+	        LEFT JOIN tb_display_pps_season dps ON dps.id_delivery = dpr.id_delivery AND dps.id_display_pps=" + id + "
+	        WHERE dpr.id_display_pps=" + id + "
+	        GROUP BY dpr.id_class_group, dpr.id_delivery
+	        -- current
+	        UNION ALL
+	        SELECT dpd.id_class_group, dp.id_season, dpd.id_delivery, COUNT(dpd.id_class_group) AS `total_sku`, dps.id_display_pps_season
+	        FROM tb_display_pps_det dpd
+	        INNER JOIN tb_display_pps dp ON dp.id_display_pps = dpd.id_display_pps
+	        INNER JOIN tb_display_pps_season dps ON dps.id_delivery = dpd.id_delivery AND dps.id_display_pps=" + id + "
+	        WHERE dpd.id_display_pps=" + id + " AND dpd.is_selected=1
+	        GROUP BY dpd.id_class_group, dpd.id_delivery
+	        -- plan
+	        UNION ALL
+	        SELECT dpp.id_class_group, dpp.id_season, dpp.id_delivery, dpp.qty_sku AS `total_sku`, dps.id_display_pps_season
+	        FROM tb_display_pps_plan dpp
+	        INNER JOIN tb_display_pps_season dps ON dps.id_delivery = dpp.id_delivery AND dps.id_display_pps=" + id + "
+	        WHERE dpp.id_display_pps=" + id + "
         ) a
         INNER JOIN tb_class_group cg ON cg.id_class_group = a.id_class_group
         GROUP BY a.id_class_group
@@ -451,6 +475,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRencanaSKU.DataSource = data
 
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Atur kolom")
         'clear band
         GVRencanaSKU.Bands.Clear()
         GVRencanaSKU.Columns.Clear()
@@ -492,16 +517,16 @@
                     If Not bandName.Contains("INFO") Then
                         'display format
                         col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                        col.DisplayFormat.FormatString = "{0:n1}"
+                        col.DisplayFormat.FormatString = "{0:n0}"
 
                         'summary
                         col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
-                        col.SummaryItem.DisplayFormat = "{0:n1}"
+                        col.SummaryItem.DisplayFormat = "{0:n0}"
 
 
                         'group summary
                         Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
-                        summary.DisplayFormat = "{0:N1}"
+                        summary.DisplayFormat = "{0:N0}"
                         summary.FieldName = data.Columns(j).Caption
                         summary.ShowInGroupColumnFooter = col
                         summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
@@ -512,6 +537,20 @@
         Next
 
         GVRencanaSKU.BestFitColumns()
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewSetupHanger()
+        Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Memuat pengaturan hanger")
+        Dim query As String = ""
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSetupHanger.DataSource = data
+        GVSetupHanger.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
     End Sub
@@ -548,6 +587,11 @@
             BtnSaveChanges.Visible = True
             MENote.Enabled = True
             GVDetail.OptionsBehavior.ReadOnly = False
+            PanelControlRencanaSKU.Visible = True
+            PanelControlRekapSKU.Visible = True
+            BtnConfirmOrder.Visible = True
+            BtnAddPlan.Visible = True
+            BtnDeletePlan.Visible = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -556,6 +600,11 @@
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
             GVDetail.OptionsBehavior.ReadOnly = True
+            PanelControlRencanaSKU.Visible = False
+            PanelControlRekapSKU.Visible = False
+            BtnConfirmOrder.Visible = False
+            BtnAddPlan.Visible = False
+            BtnDeletePlan.Visible = False
         End If
 
         'reset propose
@@ -577,6 +626,11 @@
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
             GVDetail.OptionsBehavior.ReadOnly = True
+            PanelControlRencanaSKU.Visible = False
+            PanelControlRekapSKU.Visible = False
+            BtnConfirmOrder.Visible = False
+            BtnAddPlan.Visible = False
+            BtnDeletePlan.Visible = False
         End If
     End Sub
 
