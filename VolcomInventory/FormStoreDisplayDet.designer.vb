@@ -19,6 +19,7 @@ Partial Class FormStoreDisplayDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStoreDisplayDet))
         Me.RepoSelectDesign = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -64,10 +65,16 @@ Partial Class FormStoreDisplayDet
         Me.GCRencanaSKU = New DevExpress.XtraGrid.GridControl()
         Me.GVRencanaSKU = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.PanelControlRencanaSKU = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnDisplayPlan = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnExistingDisplay = New DevExpress.XtraEditors.SimpleButton()
+        Me.PopupMenuRencanaJumlahSKU = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.BBICurrentSeason = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBIExisting = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBIPlan = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.BtnRefreshRencanaSKU = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnCurrSeasonOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPCurrSeasonOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVDetail = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
@@ -129,17 +136,15 @@ Partial Class FormStoreDisplayDet
         Me.BtnSummaryRencanaSKU = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDeletePlan = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddPlan = New DevExpress.XtraEditors.SimpleButton()
-        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-        Me.GCRekapDisplay = New DevExpress.XtraGrid.GridControl()
-        Me.GVRekapDisplay = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.XTPSetupHanger = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControlSetupHanger = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnAddHanger = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDeleteHanger = New DevExpress.XtraEditors.SimpleButton()
         Me.GCSetupHanger = New DevExpress.XtraGrid.GridControl()
         Me.GVSetupHanger = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControlRekapSKU = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAddHanger = New DevExpress.XtraEditors.SimpleButton()
-        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.BtnSetupHangerSummary = New DevExpress.XtraEditors.SimpleButton()
+        Me.DropDownRencanaJumlahSKU = New DevExpress.XtraEditors.DropDownButton()
+        Me.BtnSetupHanger = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.RepoSelectDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUpdated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -175,6 +180,8 @@ Partial Class FormStoreDisplayDet
         CType(Me.GVRencanaSKU, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlRencanaSKU, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlRencanaSKU.SuspendLayout()
+        CType(Me.PopupMenuRencanaJumlahSKU, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPCurrSeasonOrder.SuspendLayout()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -190,19 +197,11 @@ Partial Class FormStoreDisplayDet
         CType(Me.GVPlan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        Me.XtraTabPage1.SuspendLayout()
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl2.SuspendLayout()
-        CType(Me.GCRekapDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVRekapDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl1.SuspendLayout()
+        Me.XTPSetupHanger.SuspendLayout()
+        CType(Me.PanelControlSetupHanger, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlSetupHanger.SuspendLayout()
         CType(Me.GCSetupHanger, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSetupHanger, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControlRekapSKU, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlRekapSKU.SuspendLayout()
-        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainerControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'RepoSelectDesign
@@ -623,7 +622,7 @@ Partial Class FormStoreDisplayDet
         Me.XTCDetail.SelectedTabPage = Me.XTPMasterDisplay
         Me.XTCDetail.Size = New System.Drawing.Size(800, 392)
         Me.XTCDetail.TabIndex = 8943
-        Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMasterDisplay, Me.XTPRencanaSKU, Me.XtraTabPage1})
+        Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMasterDisplay, Me.XTPRencanaSKU})
         '
         'XTPMasterDisplay
         '
@@ -661,7 +660,7 @@ Partial Class FormStoreDisplayDet
         Me.XTPRencanaSKU.Image = CType(resources.GetObject("XTPRencanaSKU.Image"), System.Drawing.Image)
         Me.XTPRencanaSKU.Name = "XTPRencanaSKU"
         Me.XTPRencanaSKU.Size = New System.Drawing.Size(794, 361)
-        Me.XTPRencanaSKU.Text = "Rencana Jumlah SKU"
+        Me.XTPRencanaSKU.Text = "Display Setup"
         '
         'XTCRencanaSKU
         '
@@ -672,7 +671,7 @@ Partial Class FormStoreDisplayDet
         Me.XTCRencanaSKU.SelectedTabPage = Me.XTPSummaryRencanaSKU
         Me.XTCRencanaSKU.Size = New System.Drawing.Size(794, 361)
         Me.XTCRencanaSKU.TabIndex = 0
-        Me.XTCRencanaSKU.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummaryRencanaSKU, Me.XTPCurrSeasonOrder, Me.XTPExisting, Me.XTPPlanlRencanaSKU})
+        Me.XTCRencanaSKU.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummaryRencanaSKU, Me.XTPCurrSeasonOrder, Me.XTPExisting, Me.XTPPlanlRencanaSKU, Me.XTPSetupHanger})
         '
         'XTPSummaryRencanaSKU
         '
@@ -704,35 +703,76 @@ Partial Class FormStoreDisplayDet
         '
         'PanelControlRencanaSKU
         '
-        Me.PanelControlRencanaSKU.Controls.Add(Me.BtnDisplayPlan)
-        Me.PanelControlRencanaSKU.Controls.Add(Me.BtnExistingDisplay)
+        Me.PanelControlRencanaSKU.Controls.Add(Me.BtnSetupHanger)
+        Me.PanelControlRencanaSKU.Controls.Add(Me.DropDownRencanaJumlahSKU)
         Me.PanelControlRencanaSKU.Controls.Add(Me.BtnRefreshRencanaSKU)
-        Me.PanelControlRencanaSKU.Controls.Add(Me.BtnCurrSeasonOrder)
         Me.PanelControlRencanaSKU.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlRencanaSKU.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlRencanaSKU.Name = "PanelControlRencanaSKU"
         Me.PanelControlRencanaSKU.Size = New System.Drawing.Size(765, 42)
         Me.PanelControlRencanaSKU.TabIndex = 1
         '
-        'BtnDisplayPlan
+        'PopupMenuRencanaJumlahSKU
         '
-        Me.BtnDisplayPlan.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnDisplayPlan.Image = CType(resources.GetObject("BtnDisplayPlan.Image"), System.Drawing.Image)
-        Me.BtnDisplayPlan.Location = New System.Drawing.Point(170, 2)
-        Me.BtnDisplayPlan.Name = "BtnDisplayPlan"
-        Me.BtnDisplayPlan.Size = New System.Drawing.Size(74, 38)
-        Me.BtnDisplayPlan.TabIndex = 1
-        Me.BtnDisplayPlan.Text = "Plan"
+        Me.PopupMenuRencanaJumlahSKU.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBICurrentSeason), New DevExpress.XtraBars.LinkPersistInfo(Me.BBIExisting), New DevExpress.XtraBars.LinkPersistInfo(Me.BBIPlan)})
+        Me.PopupMenuRencanaJumlahSKU.Manager = Me.BarManager1
+        Me.PopupMenuRencanaJumlahSKU.Name = "PopupMenuRencanaJumlahSKU"
         '
-        'BtnExistingDisplay
+        'BBICurrentSeason
         '
-        Me.BtnExistingDisplay.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnExistingDisplay.Image = CType(resources.GetObject("BtnExistingDisplay.Image"), System.Drawing.Image)
-        Me.BtnExistingDisplay.Location = New System.Drawing.Point(82, 2)
-        Me.BtnExistingDisplay.Name = "BtnExistingDisplay"
-        Me.BtnExistingDisplay.Size = New System.Drawing.Size(88, 38)
-        Me.BtnExistingDisplay.TabIndex = 3
-        Me.BtnExistingDisplay.Text = "Existing"
+        Me.BBICurrentSeason.Caption = "SX YY"
+        Me.BBICurrentSeason.Id = 0
+        Me.BBICurrentSeason.Name = "BBICurrentSeason"
+        '
+        'BBIExisting
+        '
+        Me.BBIExisting.Caption = "Existing"
+        Me.BBIExisting.Id = 1
+        Me.BBIExisting.Name = "BBIExisting"
+        '
+        'BBIPlan
+        '
+        Me.BBIPlan.Caption = "Plan"
+        Me.BBIPlan.Id = 2
+        Me.BBIPlan.Name = "BBIPlan"
+        '
+        'BarManager1
+        '
+        Me.BarManager1.DockControls.Add(Me.barDockControlTop)
+        Me.BarManager1.DockControls.Add(Me.barDockControlBottom)
+        Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
+        Me.BarManager1.DockControls.Add(Me.barDockControlRight)
+        Me.BarManager1.Form = Me
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBICurrentSeason, Me.BBIExisting, Me.BBIPlan})
+        Me.BarManager1.MaxItemId = 3
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1008, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 561)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1008, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 561)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(1008, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 561)
         '
         'BtnRefreshRencanaSKU
         '
@@ -743,16 +783,6 @@ Partial Class FormStoreDisplayDet
         Me.BtnRefreshRencanaSKU.Size = New System.Drawing.Size(91, 38)
         Me.BtnRefreshRencanaSKU.TabIndex = 0
         Me.BtnRefreshRencanaSKU.Text = "Refresh"
-        '
-        'BtnCurrSeasonOrder
-        '
-        Me.BtnCurrSeasonOrder.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnCurrSeasonOrder.Image = CType(resources.GetObject("BtnCurrSeasonOrder.Image"), System.Drawing.Image)
-        Me.BtnCurrSeasonOrder.Location = New System.Drawing.Point(2, 2)
-        Me.BtnCurrSeasonOrder.Name = "BtnCurrSeasonOrder"
-        Me.BtnCurrSeasonOrder.Size = New System.Drawing.Size(80, 38)
-        Me.BtnCurrSeasonOrder.TabIndex = 2
-        Me.BtnCurrSeasonOrder.Text = "SX YY"
         '
         'XTPCurrSeasonOrder
         '
@@ -1295,62 +1325,55 @@ Partial Class FormStoreDisplayDet
         Me.BtnAddPlan.TabIndex = 3
         Me.BtnAddPlan.Text = "Add"
         '
-        'XtraTabPage1
+        'XTPSetupHanger
         '
-        Me.XtraTabPage1.Controls.Add(Me.SplitContainerControl1)
-        Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(794, 361)
-        Me.XtraTabPage1.Text = "Rekapitulasi Jumlah Display / SKU"
+        Me.XTPSetupHanger.Controls.Add(Me.GCSetupHanger)
+        Me.XTPSetupHanger.Controls.Add(Me.PanelControlSetupHanger)
+        Me.XTPSetupHanger.Name = "XTPSetupHanger"
+        Me.XTPSetupHanger.PageEnabled = False
+        Me.XTPSetupHanger.Size = New System.Drawing.Size(765, 355)
+        Me.XTPSetupHanger.Text = "Setup Hanger"
         '
-        'GroupControl2
+        'PanelControlSetupHanger
         '
-        Me.GroupControl2.Controls.Add(Me.GCRekapDisplay)
-        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(794, 179)
-        Me.GroupControl2.TabIndex = 1
-        Me.GroupControl2.Text = "Rekap Jumlah Display / SKU"
+        Me.PanelControlSetupHanger.Controls.Add(Me.BtnSetupHangerSummary)
+        Me.PanelControlSetupHanger.Controls.Add(Me.BtnDeleteHanger)
+        Me.PanelControlSetupHanger.Controls.Add(Me.BtnAddHanger)
+        Me.PanelControlSetupHanger.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlSetupHanger.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlSetupHanger.Name = "PanelControlSetupHanger"
+        Me.PanelControlSetupHanger.Size = New System.Drawing.Size(765, 48)
+        Me.PanelControlSetupHanger.TabIndex = 0
         '
-        'GCRekapDisplay
+        'BtnAddHanger
         '
-        Me.GCRekapDisplay.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCRekapDisplay.Location = New System.Drawing.Point(2, 20)
-        Me.GCRekapDisplay.MainView = Me.GVRekapDisplay
-        Me.GCRekapDisplay.Name = "GCRekapDisplay"
-        Me.GCRekapDisplay.Size = New System.Drawing.Size(790, 157)
-        Me.GCRekapDisplay.TabIndex = 1
-        Me.GCRekapDisplay.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRekapDisplay})
+        Me.BtnAddHanger.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddHanger.Image = CType(resources.GetObject("BtnAddHanger.Image"), System.Drawing.Image)
+        Me.BtnAddHanger.Location = New System.Drawing.Point(688, 2)
+        Me.BtnAddHanger.Name = "BtnAddHanger"
+        Me.BtnAddHanger.Size = New System.Drawing.Size(75, 44)
+        Me.BtnAddHanger.TabIndex = 0
+        Me.BtnAddHanger.Text = "Add"
         '
-        'GVRekapDisplay
+        'BtnDeleteHanger
         '
-        Me.GVRekapDisplay.GridControl = Me.GCRekapDisplay
-        Me.GVRekapDisplay.Name = "GVRekapDisplay"
-        Me.GVRekapDisplay.OptionsBehavior.Editable = False
-        Me.GVRekapDisplay.OptionsFind.AlwaysVisible = True
-        Me.GVRekapDisplay.OptionsView.ColumnAutoWidth = False
-        Me.GVRekapDisplay.OptionsView.ShowFooter = True
-        Me.GVRekapDisplay.OptionsView.ShowGroupPanel = False
-        '
-        'GroupControl1
-        '
-        Me.GroupControl1.Controls.Add(Me.GCSetupHanger)
-        Me.GroupControl1.Controls.Add(Me.PanelControlRekapSKU)
-        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(794, 177)
-        Me.GroupControl1.TabIndex = 0
-        Me.GroupControl1.Text = "Setup Jumlah Hanger"
+        Me.BtnDeleteHanger.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDeleteHanger.Image = CType(resources.GetObject("BtnDeleteHanger.Image"), System.Drawing.Image)
+        Me.BtnDeleteHanger.Location = New System.Drawing.Point(608, 2)
+        Me.BtnDeleteHanger.Name = "BtnDeleteHanger"
+        Me.BtnDeleteHanger.Size = New System.Drawing.Size(80, 44)
+        Me.BtnDeleteHanger.TabIndex = 1
+        Me.BtnDeleteHanger.Text = "Delete"
         '
         'GCSetupHanger
         '
         Me.GCSetupHanger.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSetupHanger.Location = New System.Drawing.Point(2, 62)
+        Me.GCSetupHanger.Location = New System.Drawing.Point(0, 48)
         Me.GCSetupHanger.MainView = Me.GVSetupHanger
+        Me.GCSetupHanger.MenuManager = Me.BarManager1
         Me.GCSetupHanger.Name = "GCSetupHanger"
-        Me.GCSetupHanger.Size = New System.Drawing.Size(790, 113)
-        Me.GCSetupHanger.TabIndex = 3
+        Me.GCSetupHanger.Size = New System.Drawing.Size(765, 307)
+        Me.GCSetupHanger.TabIndex = 1
         Me.GCSetupHanger.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSetupHanger})
         '
         'GVSetupHanger
@@ -1362,50 +1385,36 @@ Partial Class FormStoreDisplayDet
         Me.GVSetupHanger.OptionsFind.AlwaysVisible = True
         Me.GVSetupHanger.OptionsView.ShowGroupPanel = False
         '
-        'PanelControlRekapSKU
+        'BtnSetupHangerSummary
         '
-        Me.PanelControlRekapSKU.Controls.Add(Me.BtnDelete)
-        Me.PanelControlRekapSKU.Controls.Add(Me.BtnAddHanger)
-        Me.PanelControlRekapSKU.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlRekapSKU.Location = New System.Drawing.Point(2, 20)
-        Me.PanelControlRekapSKU.Name = "PanelControlRekapSKU"
-        Me.PanelControlRekapSKU.Size = New System.Drawing.Size(790, 42)
-        Me.PanelControlRekapSKU.TabIndex = 2
+        Me.BtnSetupHangerSummary.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSetupHangerSummary.Image = CType(resources.GetObject("BtnSetupHangerSummary.Image"), System.Drawing.Image)
+        Me.BtnSetupHangerSummary.Location = New System.Drawing.Point(489, 2)
+        Me.BtnSetupHangerSummary.Name = "BtnSetupHangerSummary"
+        Me.BtnSetupHangerSummary.Size = New System.Drawing.Size(119, 44)
+        Me.BtnSetupHangerSummary.TabIndex = 2
+        Me.BtnSetupHangerSummary.Text = "View Summary"
         '
-        'BtnDelete
+        'DropDownRencanaJumlahSKU
         '
-        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(624, 2)
-        Me.BtnDelete.Name = "BtnDelete"
-        Me.BtnDelete.Size = New System.Drawing.Size(90, 38)
-        Me.BtnDelete.TabIndex = 1
-        Me.BtnDelete.Text = "Delete"
+        Me.DropDownRencanaJumlahSKU.Dock = System.Windows.Forms.DockStyle.Left
+        Me.DropDownRencanaJumlahSKU.DropDownControl = Me.PopupMenuRencanaJumlahSKU
+        Me.DropDownRencanaJumlahSKU.Image = CType(resources.GetObject("DropDownRencanaJumlahSKU.Image"), System.Drawing.Image)
+        Me.DropDownRencanaJumlahSKU.Location = New System.Drawing.Point(2, 2)
+        Me.DropDownRencanaJumlahSKU.Name = "DropDownRencanaJumlahSKU"
+        Me.DropDownRencanaJumlahSKU.Size = New System.Drawing.Size(166, 38)
+        Me.DropDownRencanaJumlahSKU.TabIndex = 5
+        Me.DropDownRencanaJumlahSKU.Text = "Rencana Jumlah SKU"
         '
-        'BtnAddHanger
+        'BtnSetupHanger
         '
-        Me.BtnAddHanger.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAddHanger.Image = CType(resources.GetObject("BtnAddHanger.Image"), System.Drawing.Image)
-        Me.BtnAddHanger.Location = New System.Drawing.Point(714, 2)
-        Me.BtnAddHanger.Name = "BtnAddHanger"
-        Me.BtnAddHanger.Size = New System.Drawing.Size(74, 38)
-        Me.BtnAddHanger.TabIndex = 0
-        Me.BtnAddHanger.Text = "Add"
-        '
-        'SplitContainerControl1
-        '
-        Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainerControl1.Horizontal = False
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainerControl1.Name = "SplitContainerControl1"
-        Me.SplitContainerControl1.Panel1.Controls.Add(Me.GroupControl1)
-        Me.SplitContainerControl1.Panel1.Text = "Panel1"
-        Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl2)
-        Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(794, 361)
-        Me.SplitContainerControl1.SplitterPosition = 177
-        Me.SplitContainerControl1.TabIndex = 2
-        Me.SplitContainerControl1.Text = "SplitContainerControl1"
+        Me.BtnSetupHanger.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnSetupHanger.Image = CType(resources.GetObject("BtnSetupHanger.Image"), System.Drawing.Image)
+        Me.BtnSetupHanger.Location = New System.Drawing.Point(168, 2)
+        Me.BtnSetupHanger.Name = "BtnSetupHanger"
+        Me.BtnSetupHanger.Size = New System.Drawing.Size(118, 38)
+        Me.BtnSetupHanger.TabIndex = 6
+        Me.BtnSetupHanger.Text = "Setup Hanger"
         '
         'FormStoreDisplayDet
         '
@@ -1416,6 +1425,10 @@ Partial Class FormStoreDisplayDet
         Me.Controls.Add(Me.PanelControlBottom)
         Me.Controls.Add(Me.PanelControlTitle)
         Me.Controls.Add(Me.PanelControlNo)
+        Me.Controls.Add(Me.barDockControlLeft)
+        Me.Controls.Add(Me.barDockControlRight)
+        Me.Controls.Add(Me.barDockControlBottom)
+        Me.Controls.Add(Me.barDockControlTop)
         Me.MinimizeBox = False
         Me.Name = "FormStoreDisplayDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -1457,6 +1470,8 @@ Partial Class FormStoreDisplayDet
         CType(Me.GVRencanaSKU, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlRencanaSKU, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlRencanaSKU.ResumeLayout(False)
+        CType(Me.PopupMenuRencanaJumlahSKU, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPCurrSeasonOrder.ResumeLayout(False)
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1472,20 +1487,13 @@ Partial Class FormStoreDisplayDet
         CType(Me.GVPlan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        Me.XtraTabPage1.ResumeLayout(False)
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl2.ResumeLayout(False)
-        CType(Me.GCRekapDisplay, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVRekapDisplay, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl1.ResumeLayout(False)
+        Me.XTPSetupHanger.ResumeLayout(False)
+        CType(Me.PanelControlSetupHanger, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlSetupHanger.ResumeLayout(False)
         CType(Me.GCSetupHanger, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSetupHanger, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControlRekapSKU, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlRekapSKU.ResumeLayout(False)
-        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainerControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
@@ -1559,7 +1567,6 @@ Partial Class FormStoreDisplayDet
     Friend WithEvents BtnSummaryRencanaSKU As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnDeletePlan As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAddPlan As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnDisplayPlan As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCPlan As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVPlan As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnid_display_pps_plan As DevExpress.XtraGrid.Columns.GridColumn
@@ -1576,8 +1583,6 @@ Partial Class FormStoreDisplayDet
     Friend WithEvents XTPCurrSeasonOrder As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnSOBackToSummary As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnExistingDisplay As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnCurrSeasonOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTPExisting As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnExistingBackToSummary As DevExpress.XtraEditors.SimpleButton
@@ -1597,15 +1602,22 @@ Partial Class FormStoreDisplayDet
     Friend WithEvents BandedGridColumnid_class_group As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnid_lookup_status_order As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnid_delivery As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents GCRekapDisplay As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVRekapDisplay As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents PanelControlRekapSKU As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnDelete As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PopupMenuRencanaJumlahSKU As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents BBICurrentSeason As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBIExisting As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBIPlan As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
+    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents XTPSetupHanger As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControlSetupHanger As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnDeleteHanger As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAddHanger As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCSetupHanger As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVSetupHanger As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents SplitContainerControl1 As DevExpress.XtraEditors.SplitContainerControl
+    Friend WithEvents BtnSetupHangerSummary As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DropDownRencanaJumlahSKU As DevExpress.XtraEditors.DropDownButton
+    Friend WithEvents BtnSetupHanger As DevExpress.XtraEditors.SimpleButton
 End Class

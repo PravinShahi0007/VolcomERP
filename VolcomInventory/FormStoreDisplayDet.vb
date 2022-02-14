@@ -92,14 +92,12 @@
             is_confirm = data.Rows(0)("is_confirm").ToString
 
             'set title
-            BtnCurrSeasonOrder.Text = SLESeason.Text
+            BBICurrentSeason.Caption = SLESeason.Text
             XTPCurrSeasonOrder.Text = SLESeason.Text + " Order"
 
             'detail
             viewDisplayPlanning()
             viewRencanaSKU()
-            viewSetupHanger()
-            viewRekapDisplay()
             allow_status()
 
 
@@ -445,9 +443,9 @@
         FormMain.SplashScreenManager1.SetWaitFormDescription("Memuat rencana SKU")
         Dim query As String = "SELECT cg.class_group AS `GROUP INFO|CLASS`, "
         For c As Integer = 0 To ds.Rows.Count - 1
-            query += "IFNULL(SUM(CASE WHEN a.id_display_pps_season=" + ds.Rows(c)("id_display_pps_season").ToString + " THEN a.total_sku END),0) AS `" + ds.Rows(c)("display_season_type").ToString + "|" + ds.Rows(c)("season_del").ToString + "`, "
+            query += "IFNULL(SUM(CASE WHEN a.id_display_pps_season=" + ds.Rows(c)("id_display_pps_season").ToString + " THEN a.total_sku END),0) AS `RENCANA JUMLAH SKU|" + ds.Rows(c)("season_del").ToString + "`, "
         Next
-        query += "SUM(total_sku) AS `TOTAL|SKU` 
+        query += "SUM(total_sku) AS `RENCANA JUMLAH SKU|TOTAL` 
         FROM (
             -- exist
 	        SELECT dpr.id_class_group, dpr.id_season, dpr.id_delivery, COUNT(dpr.id_class_group) AS `total_sku`, IFNULL(dps.id_display_pps_season," + id_extra_sku + ") AS `id_display_pps_season`
@@ -628,7 +626,7 @@
             MENote.Enabled = True
             GVDetail.OptionsBehavior.ReadOnly = False
             PanelControlRencanaSKU.Visible = True
-            PanelControlRekapSKU.Visible = True
+            PanelControlSetupHanger.Visible = True
             BtnConfirmOrder.Visible = True
             BtnAddPlan.Visible = True
             BtnDeletePlan.Visible = True
@@ -641,7 +639,7 @@
             MENote.Enabled = False
             GVDetail.OptionsBehavior.ReadOnly = True
             PanelControlRencanaSKU.Visible = False
-            PanelControlRekapSKU.Visible = False
+            PanelControlSetupHanger.Visible = False
             BtnConfirmOrder.Visible = False
             BtnAddPlan.Visible = False
             BtnDeletePlan.Visible = False
@@ -667,7 +665,7 @@
             MENote.Enabled = False
             GVDetail.OptionsBehavior.ReadOnly = True
             PanelControlRencanaSKU.Visible = False
-            PanelControlRekapSKU.Visible = False
+            PanelControlSetupHanger.Visible = False
             BtnConfirmOrder.Visible = False
             BtnAddPlan.Visible = False
             BtnDeletePlan.Visible = False
@@ -907,15 +905,8 @@
         End If
     End Sub
 
-    Private Sub BtnDisplayPlan_Click(sender As Object, e As EventArgs) Handles BtnDisplayPlan.Click
-        Cursor = Cursors.WaitCursor
-        GVPlan.ActiveFilterString = ""
-        GVPlan.ApplyFindFilter("")
-        XTPPlanlRencanaSKU.PageEnabled = True
-        XTCRencanaSKU.SelectedTabPageIndex = 3
-        XTPSummaryRencanaSKU.PageEnabled = False
-        viewPlan()
-        Cursor = Cursors.Default
+    Private Sub BtnDisplayPlan_Click(sender As Object, e As EventArgs)
+
     End Sub
 
     Private Sub BtnSummaryRencanaSKU_Click(sender As Object, e As EventArgs) Handles BtnSummaryRencanaSKU.Click
@@ -978,15 +969,8 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub BtnCurrSeasonOrder_Click(sender As Object, e As EventArgs) Handles BtnCurrSeasonOrder.Click
-        Cursor = Cursors.WaitCursor
-        GVDetail.ActiveFilterString = ""
-        GVDetail.ApplyFindFilter("")
-        XTPCurrSeasonOrder.PageEnabled = True
-        XTCRencanaSKU.SelectedTabPageIndex = 1
-        XTPSummaryRencanaSKU.PageEnabled = False
-        viewDetail()
-        Cursor = Cursors.Default
+    Private Sub BtnCurrSeasonOrder_Click(sender As Object, e As EventArgs)
+
     End Sub
 
     Private Sub BtnSOBackToSummary_Click(sender As Object, e As EventArgs) Handles BtnSOBackToSummary.Click
@@ -1042,15 +1026,8 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub BtnExistingDisplay_Click(sender As Object, e As EventArgs) Handles BtnExistingDisplay.Click
-        Cursor = Cursors.WaitCursor
-        GVExisting.ActiveFilterString = ""
-        GVExisting.ApplyFindFilter("")
-        XTPExisting.PageEnabled = True
-        XTCRencanaSKU.SelectedTabPageIndex = 2
-        XTPSummaryRencanaSKU.PageEnabled = False
-        viewExisting()
-        Cursor = Cursors.Default
+    Private Sub BtnExistingDisplay_Click(sender As Object, e As EventArgs)
+
     End Sub
 
     Private Sub BtnExistingBackToSummary_Click(sender As Object, e As EventArgs) Handles BtnExistingBackToSummary.Click
@@ -1106,15 +1083,52 @@
         viewRencanaSKU()
     End Sub
 
-    Private Sub BtnAddHanger_Click(sender As Object, e As EventArgs) Handles BtnAddHanger.Click
+    Private Sub BtnAddHanger_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub BtnDelete_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub BBICurrentSeason_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBICurrentSeason.ItemClick
         Cursor = Cursors.WaitCursor
-        FormStoreDisplayHanger.id_display_pps = id
-        FormStoreDisplayHanger.id_comp = SLEComp.EditValue.ToString
-        FormStoreDisplayHanger.ShowDialog()
+        GVDetail.ActiveFilterString = ""
+        GVDetail.ApplyFindFilter("")
+        XTPCurrSeasonOrder.PageEnabled = True
+        XTCRencanaSKU.SelectedTabPageIndex = 1
+        XTPSummaryRencanaSKU.PageEnabled = False
+        viewDetail()
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
+    Private Sub BBIExisting_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBIExisting.ItemClick
+        Cursor = Cursors.WaitCursor
+        GVExisting.ActiveFilterString = ""
+        GVExisting.ApplyFindFilter("")
+        XTPExisting.PageEnabled = True
+        XTCRencanaSKU.SelectedTabPageIndex = 2
+        XTPSummaryRencanaSKU.PageEnabled = False
+        viewExisting()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BBIPlan_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBIPlan.ItemClick
+        Cursor = Cursors.WaitCursor
+        GVPlan.ActiveFilterString = ""
+        GVPlan.ApplyFindFilter("")
+        XTPPlanlRencanaSKU.PageEnabled = True
+        XTCRencanaSKU.SelectedTabPageIndex = 3
+        XTPSummaryRencanaSKU.PageEnabled = False
+        viewPlan()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSetupHanger_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub BtnDeleteHanger_Click(sender As Object, e As EventArgs) Handles BtnDeleteHanger.Click
         If GVSetupHanger.RowCount > 0 And GVSetupHanger.FocusedRowHandle >= 0 Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this setup hanger ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -1128,5 +1142,34 @@
                 Cursor = Cursors.Default
             End If
         End If
+    End Sub
+
+    Private Sub BtnAddHanger_Click_1(sender As Object, e As EventArgs) Handles BtnAddHanger.Click
+        Cursor = Cursors.WaitCursor
+        FormStoreDisplayHanger.id_display_pps = id
+        FormStoreDisplayHanger.id_comp = SLEComp.EditValue.ToString
+        FormStoreDisplayHanger.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSetupHangerSummary_Click(sender As Object, e As EventArgs) Handles BtnSetupHangerSummary.Click
+        XTPSummaryRencanaSKU.PageEnabled = True
+        XTCRencanaSKU.SelectedTabPageIndex = 0
+        XTPSetupHanger.PageEnabled = False
+    End Sub
+
+    Private Sub PanelControl3_Paint(sender As Object, e As PaintEventArgs) Handles PanelControl3.Paint
+
+    End Sub
+
+    Private Sub BtnSetupHanger_Click_1(sender As Object, e As EventArgs) Handles BtnSetupHanger.Click
+        Cursor = Cursors.WaitCursor
+        GVSetupHanger.ActiveFilterString = ""
+        GVSetupHanger.ApplyFindFilter("")
+        XTPSetupHanger.PageEnabled = True
+        XTCRencanaSKU.SelectedTabPageIndex = 4
+        XTPSummaryRencanaSKU.PageEnabled = False
+        viewSetupHanger()
+        Cursor = Cursors.Default
     End Sub
 End Class
