@@ -1397,10 +1397,10 @@ Partial Class FormStoreDisplayDet
         '
         'DropDownRencanaJumlahSKU
         '
-        Me.DropDownRencanaJumlahSKU.Dock = System.Windows.Forms.DockStyle.Left
+        Me.DropDownRencanaJumlahSKU.Dock = System.Windows.Forms.DockStyle.Right
         Me.DropDownRencanaJumlahSKU.DropDownControl = Me.PopupMenuRencanaJumlahSKU
         Me.DropDownRencanaJumlahSKU.Image = CType(resources.GetObject("DropDownRencanaJumlahSKU.Image"), System.Drawing.Image)
-        Me.DropDownRencanaJumlahSKU.Location = New System.Drawing.Point(2, 2)
+        Me.DropDownRencanaJumlahSKU.Location = New System.Drawing.Point(506, 2)
         Me.DropDownRencanaJumlahSKU.Name = "DropDownRencanaJumlahSKU"
         Me.DropDownRencanaJumlahSKU.Size = New System.Drawing.Size(166, 38)
         Me.DropDownRencanaJumlahSKU.TabIndex = 5
@@ -1408,9 +1408,9 @@ Partial Class FormStoreDisplayDet
         '
         'BtnSetupHanger
         '
-        Me.BtnSetupHanger.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnSetupHanger.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSetupHanger.Image = CType(resources.GetObject("BtnSetupHanger.Image"), System.Drawing.Image)
-        Me.BtnSetupHanger.Location = New System.Drawing.Point(168, 2)
+        Me.BtnSetupHanger.Location = New System.Drawing.Point(388, 2)
         Me.BtnSetupHanger.Name = "BtnSetupHanger"
         Me.BtnSetupHanger.Size = New System.Drawing.Size(118, 38)
         Me.BtnSetupHanger.TabIndex = 6

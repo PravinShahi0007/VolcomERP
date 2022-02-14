@@ -101,8 +101,15 @@
             allow_status()
 
 
-            'cek class mapping - aktifkan saat live
-            'checkClassGroup()
+            'cek update master jika belum confirm
+            If is_confirm = "2" Then
+                Dim id_max_pps As String = execute_query("SELECT IFNULL(MAX(dps.id_display_master),0) AS `id_max_pps` FROM tb_display_pps_store dps WHERE dps.id_display_pps=" + id + "", 0, True, "", "", "", "")
+                Dim id_max_master As String = execute_query("SELECT IFNULL(MAX(dm.id_display_master),0) AS `id_max_master`
+                FROM tb_display_master dm WHERE dm.id_comp=" + data.Rows(0)("id_comp").ToString + " AND dm.is_active=1 ", 0, True, "", "", "", "")
+                If id_max_master <> id_max_pps Then
+                    insDefaultMasterDisplay(data.Rows(0)("id_comp").ToString)
+                End If
+            End If
 
             'cek status toko
             Dim store_stt As String = execute_query("SELECT IFNULL(c.is_active,0) AS `is_active` FROM tb_m_comp c WHERE c.id_comp='" + SLEComp.EditValue.ToString + "'", 0, True, "", "", "", "")
@@ -240,13 +247,7 @@
             execute_non_query(qss, True, "", "", "", "")
 
             'default master display
-            Dim qmd As String = "INSERT INTO tb_display_pps_store(id_display_pps, id_display_master, id_class_group, id_display_type, qty, capacity,estimasi_sku)
-            SELECT " + id + ", dm.id_display_master, dm.id_class_group, dm.id_display_type, dm.qty, da.capacity, cg.estimasi_sku
-            FROM tb_display_master dm 
-            INNER JOIN tb_display_alloc da ON da.id_display_type = dm.id_display_type AND da.id_class_group = dm.id_class_group
-            INNER JOIN tb_class_group cg ON cg.id_class_group = dm.id_class_group
-            WHERE dm.is_active=1 AND dm.id_comp=" + id_comp + " AND dm.qty>0 "
-            execute_non_query(qmd, True, "", "", "", "")
+            insDefaultMasterDisplay(id_comp)
 
             'default existing product
             Dim qep As String = "INSERT INTO tb_display_pps_res(id_display_pps, id_season, id_delivery, id_class_group, id_design, qty_curr, qty_pps)
@@ -286,6 +287,19 @@
             Dim query As String = "UPDATE tb_display_pps SET note='" + note + "' WHERE id_display_pps='" + id + "' "
             execute_non_query(query, True, "", "", "", "")
         End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub insDefaultMasterDisplay(ByVal id_comp_par As String)
+        Cursor = Cursors.WaitCursor
+        Dim qmd As String = "DELETE FROM tb_display_pps_store WHERE id_display_pps='" + id + "'; 
+        INSERT INTO tb_display_pps_store(id_display_pps, id_display_master, id_class_group, id_display_type, qty, capacity,estimasi_sku)
+        SELECT " + id + ", dm.id_display_master, dm.id_class_group, dm.id_display_type, dm.qty, da.capacity, cg.estimasi_sku
+        FROM tb_display_master dm 
+        INNER JOIN tb_display_alloc da ON da.id_display_type = dm.id_display_type AND da.id_class_group = dm.id_class_group
+        INNER JOIN tb_class_group cg ON cg.id_class_group = dm.id_class_group
+        WHERE dm.is_active=1 AND dm.id_comp=" + id_comp_par + " AND dm.qty>0 "
+        execute_non_query(qmd, True, "", "", "", "")
         Cursor = Cursors.Default
     End Sub
 
@@ -445,7 +459,11 @@
         For c As Integer = 0 To ds.Rows.Count - 1
             query += "IFNULL(SUM(CASE WHEN a.id_display_pps_season=" + ds.Rows(c)("id_display_pps_season").ToString + " THEN a.total_sku END),0) AS `RENCANA JUMLAH SKU|" + ds.Rows(c)("season_del").ToString + "`, "
         Next
-        query += "SUM(total_sku) AS `RENCANA JUMLAH SKU|TOTAL` 
+        query += "SUM(total_sku) AS `RENCANA JUMLAH SKU|TOTAL`, "
+        For c As Integer = 0 To ds.Rows.Count - 1
+            query += "IFNULL(SUM(CASE WHEN a.id_display_pps_season=" + ds.Rows(c)("id_display_pps_season").ToString + " THEN IFNULL(a.total_sku,0) * IFNULL(dph.qty_hanger,0)  END),0) AS `REKAPITULASI JUMLAH DISPLAY/SKU|" + ds.Rows(c)("season_del").ToString + "`, "
+        Next
+        query += "SUM(total_sku * dph.qty_hanger) AS `REKAPITULASI JUMLAH DISPLAY/SKU|TOTAL`
         FROM (
             -- exist
 	        SELECT dpr.id_class_group, dpr.id_season, dpr.id_delivery, COUNT(dpr.id_class_group) AS `total_sku`, IFNULL(dps.id_display_pps_season," + id_extra_sku + ") AS `id_display_pps_season`
@@ -469,6 +487,7 @@
 	        WHERE dpp.id_display_pps=" + id + "
         ) a
         INNER JOIN tb_class_group cg ON cg.id_class_group = a.id_class_group
+        LEFT JOIN tb_display_pps_hanger dph ON dph.id_class_group = a.id_class_group AND dph.id_display_pps_season = a.id_display_pps_season AND dph.id_display_pps=" + id + "
         GROUP BY a.id_class_group
         ORDER BY class_group ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
