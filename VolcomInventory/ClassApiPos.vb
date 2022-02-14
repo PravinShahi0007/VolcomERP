@@ -299,6 +299,52 @@
         removeAccessToken(accessToken)
     End Sub
 
+    Sub syncEmployeeUser()
+        Dim j_tb_pos_role As String = tableToJson("tb_pos_role", "SELECT id_pos_role, role FROM tb_pos_role")
+        Dim j_tb_m_employee As String = tableToJson("tb_m_employee", "SELECT id_employee, id_sex, id_departement, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, email_lokal, email_lokal_pass, email_external, email_external_pass, email_other, email_other_pass, phone, phone_mobile, phone_ext, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, employee_bpjs_kesehatan, employee_bpjs_kesehatan_date, employee_npwp, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, NULL AS basic_salary, NULL AS allow_job, NULL AS allow_meal, NULL AS allow_trans, NULL AS allow_house, NULL AS allow_car FROM tb_m_employee WHERE id_departement IN (SELECT id_departement FROM tb_m_departement WHERE id_outlet <> '' OR id_outlet IS NOT NULL) AND id_employee_active = 1")
+        Dim j_tb_pos_user As String = tableToJson("tb_pos_user", "SELECT id_pos_user, id_employee, id_pos_role, username, password, is_change FROM tb_pos_user")
+
+        Dim out As String = "{" + j_tb_pos_role + "," + j_tb_m_employee + "," + j_tb_pos_user + "}"
+
+        Dim pathRoot As String = Application.StartupPath + "\download\"
+
+        If Not IO.Directory.Exists(pathRoot) Then
+            System.IO.Directory.CreateDirectory(pathRoot)
+        End If
+
+        Dim fileName As String = "sync-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".json"
+        Dim file As String = IO.Path.Combine(pathRoot, fileName)
+
+        Dim fs As IO.FileStream = System.IO.File.Create(file)
+
+        Dim info As Byte() = New System.Text.UTF8Encoding(True).GetBytes(out)
+
+        fs.Write(info, 0, info.Length)
+
+        fs.Close()
+
+        Dim accessToken As String = getAccessToken()
+
+        Dim url As String = host + "/api/sync/user"
+
+        Dim wc As Net.WebClient = New Net.WebClient()
+
+        wc.Headers.Add("Accept", "application/json")
+        wc.Headers.Add("Authorization", accessToken)
+
+        Dim responseArray As Byte() = wc.UploadFile(url, "POST", file)
+
+        Dim responseString As String = System.Text.Encoding.ASCII.GetString(responseArray)
+
+        Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
+
+        If json("success") Then
+            infoCustom("Sync user completed.")
+        End If
+
+        removeAccessToken(accessToken)
+    End Sub
+
     Function tableToJson(table As String, query As String) As String
         Dim out As String = """" + table + """:"
 
