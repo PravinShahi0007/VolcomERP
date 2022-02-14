@@ -301,7 +301,13 @@
 
     Sub syncEmployeeUser()
         Dim j_tb_pos_role As String = tableToJson("tb_pos_role", "SELECT id_pos_role, role FROM tb_pos_role")
-        Dim j_tb_m_employee As String = tableToJson("tb_m_employee", "SELECT id_employee, id_sex, id_departement, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, email_lokal, email_lokal_pass, email_external, email_external_pass, email_other, email_other_pass, phone, phone_mobile, phone_ext, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, employee_bpjs_kesehatan, employee_bpjs_kesehatan_date, employee_npwp, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, NULL AS basic_salary, NULL AS allow_job, NULL AS allow_meal, NULL AS allow_trans, NULL AS allow_house, NULL AS allow_car FROM tb_m_employee WHERE id_departement IN (SELECT id_departement FROM tb_m_departement WHERE id_outlet <> '' OR id_outlet IS NOT NULL) AND id_employee_active = 1")
+        Dim j_tb_m_employee As String = tableToJson("tb_m_employee", "
+            SELECT e.id_employee, e.id_sex, e.id_departement, e.id_blood_type, e.id_religion, e.id_country, e.id_education, e.id_employee_status, e.start_period, e.end_period, e.id_employee_active, e.employee_code, e.employee_name, e.employee_nick_name, e.employee_initial_name, e.employee_pob, e.employee_dob, e.employee_ethnic, e.employee_join_date, e.employee_last_date, e.employee_position, e.id_employee_level, e.email_lokal, e.email_lokal_pass, e.email_external, e.email_external_pass, e.email_other, e.email_other_pass, e.phone, e.phone_mobile, e.phone_ext, e.employee_ktp, e.employee_ktp_period, e.employee_passport, e.employee_passport_period, e.employee_bpjs_tk, e.employee_bpjs_tk_date, e.employee_bpjs_kesehatan, e.employee_bpjs_kesehatan_date, e.employee_npwp, e.address_primary, e.address_additional, e.id_marriage_status, e.husband, e.wife, e.child1, e.child2, e.child3, NULL AS basic_salary, NULL AS allow_job, NULL AS allow_meal, NULL AS allow_trans, NULL AS allow_house, NULL AS allow_car, d.id_outlet
+            FROM tb_m_employee AS e
+            LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement
+            WHERE (d.id_outlet <> '' OR d.id_outlet IS NOT NULL) AND id_employee_active = 1
+
+        ")
         Dim j_tb_pos_user As String = tableToJson("tb_pos_user", "SELECT id_pos_user, id_employee, id_pos_role, username, password, is_change FROM tb_pos_user")
 
         Dim out As String = "{" + j_tb_pos_role + "," + j_tb_m_employee + "," + j_tb_pos_user + "}"
