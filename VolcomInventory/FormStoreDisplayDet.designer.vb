@@ -139,6 +139,7 @@ Partial Class FormStoreDisplayDet
         Me.PanelControlRekapSKU = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddHanger = New DevExpress.XtraEditors.SimpleButton()
+        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         CType(Me.RepoSelectDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUpdated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -200,6 +201,8 @@ Partial Class FormStoreDisplayDet
         CType(Me.GVSetupHanger, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlRekapSKU, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlRekapSKU.SuspendLayout()
+        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainerControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'RepoSelectDesign
@@ -1294,8 +1297,7 @@ Partial Class FormStoreDisplayDet
         '
         'XtraTabPage1
         '
-        Me.XtraTabPage1.Controls.Add(Me.GroupControl2)
-        Me.XtraTabPage1.Controls.Add(Me.GroupControl1)
+        Me.XtraTabPage1.Controls.Add(Me.SplitContainerControl1)
         Me.XtraTabPage1.Name = "XtraTabPage1"
         Me.XtraTabPage1.Size = New System.Drawing.Size(794, 361)
         Me.XtraTabPage1.Text = "Rekapitulasi Jumlah Display / SKU"
@@ -1304,9 +1306,9 @@ Partial Class FormStoreDisplayDet
         '
         Me.GroupControl2.Controls.Add(Me.GCRekapDisplay)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 183)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(794, 178)
+        Me.GroupControl2.Size = New System.Drawing.Size(794, 179)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Rekap Jumlah Display / SKU"
         '
@@ -1316,7 +1318,7 @@ Partial Class FormStoreDisplayDet
         Me.GCRekapDisplay.Location = New System.Drawing.Point(2, 20)
         Me.GCRekapDisplay.MainView = Me.GVRekapDisplay
         Me.GCRekapDisplay.Name = "GCRekapDisplay"
-        Me.GCRekapDisplay.Size = New System.Drawing.Size(790, 156)
+        Me.GCRekapDisplay.Size = New System.Drawing.Size(790, 157)
         Me.GCRekapDisplay.TabIndex = 1
         Me.GCRekapDisplay.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRekapDisplay})
         '
@@ -1334,12 +1336,12 @@ Partial Class FormStoreDisplayDet
         '
         Me.GroupControl1.Controls.Add(Me.GCSetupHanger)
         Me.GroupControl1.Controls.Add(Me.PanelControlRekapSKU)
-        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(794, 183)
+        Me.GroupControl1.Size = New System.Drawing.Size(794, 177)
         Me.GroupControl1.TabIndex = 0
-        Me.GroupControl1.Text = "Setup Hanger"
+        Me.GroupControl1.Text = "Setup Jumlah Hanger"
         '
         'GCSetupHanger
         '
@@ -1347,7 +1349,7 @@ Partial Class FormStoreDisplayDet
         Me.GCSetupHanger.Location = New System.Drawing.Point(2, 62)
         Me.GCSetupHanger.MainView = Me.GVSetupHanger
         Me.GCSetupHanger.Name = "GCSetupHanger"
-        Me.GCSetupHanger.Size = New System.Drawing.Size(790, 119)
+        Me.GCSetupHanger.Size = New System.Drawing.Size(790, 113)
         Me.GCSetupHanger.TabIndex = 3
         Me.GCSetupHanger.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSetupHanger})
         '
@@ -1355,6 +1357,7 @@ Partial Class FormStoreDisplayDet
         '
         Me.GVSetupHanger.GridControl = Me.GCSetupHanger
         Me.GVSetupHanger.Name = "GVSetupHanger"
+        Me.GVSetupHanger.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVSetupHanger.OptionsBehavior.Editable = False
         Me.GVSetupHanger.OptionsFind.AlwaysVisible = True
         Me.GVSetupHanger.OptionsView.ShowGroupPanel = False
@@ -1388,6 +1391,21 @@ Partial Class FormStoreDisplayDet
         Me.BtnAddHanger.Size = New System.Drawing.Size(74, 38)
         Me.BtnAddHanger.TabIndex = 0
         Me.BtnAddHanger.Text = "Add"
+        '
+        'SplitContainerControl1
+        '
+        Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainerControl1.Horizontal = False
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainerControl1.Name = "SplitContainerControl1"
+        Me.SplitContainerControl1.Panel1.Controls.Add(Me.GroupControl1)
+        Me.SplitContainerControl1.Panel1.Text = "Panel1"
+        Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl2)
+        Me.SplitContainerControl1.Panel2.Text = "Panel2"
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(794, 361)
+        Me.SplitContainerControl1.SplitterPosition = 177
+        Me.SplitContainerControl1.TabIndex = 2
+        Me.SplitContainerControl1.Text = "SplitContainerControl1"
         '
         'FormStoreDisplayDet
         '
@@ -1465,6 +1483,8 @@ Partial Class FormStoreDisplayDet
         CType(Me.GVSetupHanger, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlRekapSKU, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlRekapSKU.ResumeLayout(False)
+        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainerControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1587,4 +1607,5 @@ Partial Class FormStoreDisplayDet
     Friend WithEvents BtnAddHanger As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCSetupHanger As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVSetupHanger As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents SplitContainerControl1 As DevExpress.XtraEditors.SplitContainerControl
 End Class

@@ -48,6 +48,8 @@ Partial Class FormStoreDisplayHanger
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelectAllSeason = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -71,6 +73,9 @@ Partial Class FormStoreDisplayHanger
         Me.GroupControl1.SuspendLayout()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.CESelectAllSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemCheckEdit2
@@ -275,11 +280,11 @@ Partial Class FormStoreDisplayHanger
         'GCSeason
         '
         Me.GCSeason.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSeason.Location = New System.Drawing.Point(2, 20)
+        Me.GCSeason.Location = New System.Drawing.Point(2, 52)
         Me.GCSeason.MainView = Me.GVSeason
         Me.GCSeason.Name = "GCSeason"
         Me.GCSeason.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCSeason.Size = New System.Drawing.Size(363, 238)
+        Me.GCSeason.Size = New System.Drawing.Size(363, 206)
         Me.GCSeason.TabIndex = 3
         Me.GCSeason.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSeason})
         '
@@ -346,12 +351,30 @@ Partial Class FormStoreDisplayHanger
         Me.GroupControl2.AppearanceCaption.Options.UseFont = True
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Top
         Me.GroupControl2.Controls.Add(Me.GCSeason)
+        Me.GroupControl2.Controls.Add(Me.PanelControl5)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(217, 53)
         Me.GroupControl2.Name = "GroupControl2"
         Me.GroupControl2.Size = New System.Drawing.Size(367, 260)
         Me.GroupControl2.TabIndex = 5
         Me.GroupControl2.Text = "Select Season"
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.Controls.Add(Me.CESelectAllSeason)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl5.Location = New System.Drawing.Point(2, 20)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(363, 32)
+        Me.PanelControl5.TabIndex = 4
+        '
+        'CESelectAllSeason
+        '
+        Me.CESelectAllSeason.Location = New System.Drawing.Point(9, 6)
+        Me.CESelectAllSeason.Name = "CESelectAllSeason"
+        Me.CESelectAllSeason.Properties.Caption = "Select All Season"
+        Me.CESelectAllSeason.Size = New System.Drawing.Size(117, 19)
+        Me.CESelectAllSeason.TabIndex = 0
         '
         'FormStoreDisplayHanger
         '
@@ -391,6 +414,9 @@ Partial Class FormStoreDisplayHanger
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        CType(Me.CESelectAllSeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -423,4 +449,6 @@ Partial Class FormStoreDisplayHanger
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CESelectAllSeason As DevExpress.XtraEditors.CheckEdit
 End Class

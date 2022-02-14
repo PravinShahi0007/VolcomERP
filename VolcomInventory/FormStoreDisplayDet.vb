@@ -99,6 +99,7 @@
             viewDisplayPlanning()
             viewRencanaSKU()
             viewSetupHanger()
+            viewRekapDisplay()
             allow_status()
 
 
@@ -546,10 +547,39 @@
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Memuat hanger per season/del")
+        Dim qs As String = "SELECT dps.id_display_pps_season, 
+        IF(ISNULL(ss.id_season), 'EXTRA SKU', CONCAT(ss.season,' D',sd.delivery)) AS `season_del`,
+        dps.id_display_season_type, UPPER(dst.display_season_type) AS `display_season_type`, dps.is_extra_sku
+        FROM tb_display_pps_season dps 
+        LEFT JOIN tb_season ss ON ss.id_season = dps.id_season
+        LEFT JOIN tb_season_delivery sd ON sd.id_delivery = dps.id_delivery
+        INNER JOIN tb_display_season_type dst ON dst.id_display_season_type = dps.id_display_season_type
+        WHERE dps.id_display_pps=" + id + "
+        ORDER BY sd.delivery_date "
+        Dim ds As DataTable = execute_query(qs, -1, True, "", "", "", "")
+
+
         FormMain.SplashScreenManager1.SetWaitFormDescription("Memuat pengaturan hanger")
-        Dim query As String = ""
+        Dim query As String = "SELECT cg.id_division, cg.id_class_cat,dv.code_detail_name AS `Division`,cc.class_cat AS `Category`, "
+        For c As Integer = 0 To ds.Rows.Count - 1
+            query += "IFNULL(MAX(CASE WHEN dph.id_display_pps_season=" + ds.Rows(c)("id_display_pps_season").ToString + " THEN dph.qty_hanger END),0) AS `" + ds.Rows(c)("season_del").ToString + "`, "
+        Next
+        query += "'' AS `note`
+        From tb_display_pps_hanger dph
+        INNER JOIN tb_class_group cg ON cg.id_class_group = dph.id_class_group
+        INNER JOIN tb_class_cat cc ON cc.id_class_cat = cg.id_class_cat
+        INNER JOIN tb_m_code_detail dv ON dv.id_code_detail = cg.id_division
+        WHERE dph.id_display_pps=" + id + "
+        GROUP BY cg.id_division, cg.id_class_cat
+        ORDER BY Division ASC, Category ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSetupHanger.DataSource = data
+        GVSetupHanger.Columns("id_division").Visible = False
+        GVSetupHanger.Columns("id_class_cat").Visible = False
+        GVSetupHanger.Columns("note").Visible = False
+        GVSetupHanger.Columns("Division").GroupIndex = 0
         GVSetupHanger.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
@@ -1082,5 +1112,21 @@
         FormStoreDisplayHanger.id_comp = SLEComp.EditValue.ToString
         FormStoreDisplayHanger.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
+        If GVSetupHanger.RowCount > 0 And GVSetupHanger.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this setup hanger ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Dim id_division As String = GVSetupHanger.GetFocusedRowCellValue("id_division").ToString
+                Dim id_class_cat As String = GVSetupHanger.GetFocusedRowCellValue("id_class_cat").ToString
+                Dim query As String = "DELETE FROM tb_display_pps_hanger WHERE id_display_pps='" + id + "' AND id_division='" + id_division + "' AND id_class_cat='" + id_class_cat + "' "
+                execute_non_query(query, True, "", "", "", "")
+                viewSetupHanger()
+                viewRekapDisplay()
+                Cursor = Cursors.Default
+            End If
+        End If
     End Sub
 End Class

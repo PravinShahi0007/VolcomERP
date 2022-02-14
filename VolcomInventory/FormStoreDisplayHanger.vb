@@ -3,12 +3,13 @@
     Public id_comp As String = "-1"
 
     Private Sub FormStoreDisplayHanger_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        viewDivision()
+        viewClassCat()
         actionLoad()
     End Sub
 
     Sub actionLoad()
-        viewDivision()
-        viewClassCat()
+        CESelectAllSeason.EditValue = False
         TxtQty.EditValue = 0
     End Sub
 
@@ -53,10 +54,12 @@
 
     Private Sub SLEDivision_EditValueChanged(sender As Object, e As EventArgs) Handles SLEDivision.EditValueChanged
         viewSeason()
+        viewClassGroup()
     End Sub
 
     Private Sub SLECategory_EditValueChanged(sender As Object, e As EventArgs) Handles SLECategory.EditValueChanged
         viewSeason()
+        viewClassGroup()
     End Sub
 
     Sub viewSeason()
@@ -108,7 +111,14 @@
         End Try
         Dim query As String = "SELECT cg.id_class_group, cg.class_group, 'Yes' AS `is_select` 
         FROM tb_class_group cg 
-        WHERE cg.is_active=1 AND cg.id_division=" + id_division + " AND cg.id_class_cat=" + id_class_cat + " "
+        LEFT JOIN (
+            SELECT cg.id_class_group
+            FROM tb_display_master dm 
+            INNER JOIN tb_class_group cg ON cg.id_class_group = dm.id_class_group
+            WHERE dm.id_comp=" + id_comp + " AND dm.is_active=1
+            GROUP BY cg.id_class_group
+        ) dm ON dm.id_class_group = cg.id_class_group
+        WHERE cg.is_active=1 AND !ISNULL(dm.id_class_group) AND cg.id_division=" + id_division + " AND cg.id_class_cat=" + id_class_cat + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCClassGroup.DataSource = data
         GVClassGroup.BestFitColumns()
@@ -152,9 +162,12 @@
                 Next
             Next
             If indeks > 0 Then
-                execute_non_query(query, -1, True, "", "", "", "")
+                execute_non_query(query, -1, True, "", "", "")
             End If
             actionLoad()
+            viewSeason()
+            FormStoreDisplayDet.viewSetupHanger()
+            FormStoreDisplayDet.viewRekapDisplay()
         End If
 
         'clean fiklter
@@ -164,5 +177,15 @@
 
     Private Sub BtnDiscard_Click(sender As Object, e As EventArgs) Handles BtnDiscard.Click
         Close()
+    End Sub
+
+    Private Sub CESelectAllSeason_EditValueChanged(sender As Object, e As EventArgs) Handles CESelectAllSeason.EditValueChanged
+        For i As Integer = 0 To GVSeason.RowCount - 1
+            If CESelectAllSeason.EditValue = True Then
+                GVSeason.SetRowCellValue(i, "is_select", "Yes")
+            Else
+                GVSeason.SetRowCellValue(i, "is_select", "No")
+            End If
+        Next
     End Sub
 End Class
