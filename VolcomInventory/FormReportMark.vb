@@ -6575,6 +6575,9 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 'stock VM
                 execute_non_query("CALL insert_item_stock_vm('" + id_report + "')", True, "", "", "", "")
 
+                'budget used
+
+
                 ' select user prepared
                 Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
                 Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
@@ -9785,7 +9788,7 @@ WHERE (pnsd.id_pn_summary_type=1 OR pnsd.id_pn_summary_type=3) AND pnsd.id_pn_su
                         INSERT INTO tb_b_expense_opex_trans (id_b_expense_opex, id_departement, date_trans, `value`, id_item, id_report, report_mark_type, note)
                         SELECT *
                         FROM (
-	                        SELECT p_det.id_b_expense_opex, p.id_departement, NOW() AS date_trans, (IFNULL(r.qty, 0) * o_det.value) - (o_det.qty * o_det.value) AS `value`, p_det.id_item, o_det.id_purc_order AS id_report, 202 AS report_mark_type, 'Close Receiving Reverse' AS note
+	                        SELECT p_det.id_b_expense_opex, p.id_departement, NOW() AS date_trans, (IFNULL(r.qty, 0) * o_det.value) - (o_det.qty * o_det.value) AS `value`, p_det.id_item, o_det.id_purc_order AS id_report, 139 AS report_mark_type, 'Close Receiving Reverse' AS note
 	                        FROM tb_purc_order_det AS o_det
 	                        LEFT JOIN tb_purc_req_det AS p_det ON o_det.id_purc_req_det = p_det.id_purc_req_det
 	                        LEFT JOIN tb_purc_req AS p ON p_det.id_purc_req = p.id_purc_req
@@ -9805,7 +9808,7 @@ WHERE (pnsd.id_pn_summary_type=1 OR pnsd.id_pn_summary_type=3) AND pnsd.id_pn_su
                         INSERT INTO tb_b_expense_trans (id_b_expense, id_departement, date_trans, `value`, id_item, id_report, report_mark_type, note)
                         SELECT *
                         FROM (
-	                        SELECT p_det.id_b_expense, p.id_departement, NOW() AS date_trans, (IFNULL(r.qty, 0) * o_det.value) - (o_det.qty * o_det.value) AS `value`, p_det.id_item, o_det.id_purc_order AS id_report, 139 AS report_mark_type, 'Close Receiving Reverse' AS note
+	                        SELECT p_det.id_b_expense, p.id_departement, NOW() AS date_trans, (IFNULL(r.qty, 0) * o_det.value) - (o_det.qty * o_det.value) AS `value`, p_det.id_item, o_det.id_purc_order AS id_report, 202 AS report_mark_type, 'Close Receiving Reverse' AS note
 	                        FROM tb_purc_order_det AS o_det
 	                        LEFT JOIN tb_purc_req_det AS p_det ON o_det.id_purc_req_det = p_det.id_purc_req_det
 	                        LEFT JOIN tb_purc_req AS p ON p_det.id_purc_req = p.id_purc_req

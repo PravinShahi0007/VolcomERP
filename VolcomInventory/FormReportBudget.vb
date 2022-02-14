@@ -43,6 +43,8 @@
         ,opex.`value_expense` AS budget
         ,IFNULL(po.val,0) AS po_booked
         ,IFNULL(SUM(val.val),0) AS rec
+        ,IFNULL(stok.val,0) AS stok
+        ,IFNULL(SUM(val.val_del),0) AS del
         ,IFNULL(po.val,0)+IFNULL(SUM(val.val),0) AS val_used
         ,opex.`value_expense`-(IFNULL(po.val,0)+IFNULL(SUM(val.val),0)) AS val_remaining
         ,((IFNULL(po.val,0)+IFNULL(SUM(val.val),0))/opex.value_expense)*100 AS used_percent
@@ -55,6 +57,7 @@ INNER JOIN  tb_a_acc acc ON acc.`id_acc`=map.`id_acc`
 LEFT JOIN
 (
 	SELECT acc.`id_acc`,acc.`acc_name`,acc.`acc_description`,SUM(IF(acc.`id_dc`=1,trxd.`debit`-trxd.`credit`,trxd.`credit`-trxd.`debit`)) AS val,acc.`id_coa_type`
+    ,SUM(IF(trxd.`report_mark_type`='156' OR trxd.`report_mark_type`='166',IF(acc.`id_dc`=1,trxd.`debit`-trxd.`credit`,trxd.`credit`-trxd.`debit`),0)) AS val_del
 	FROM tb_a_acc_trans_det trxd
 	INNER JOIN tb_a_acc_trans trx ON trx.`id_acc_trans`=trxd.`id_acc_trans` AND YEAR(trx.`date_reference`)='" & LEYear.Text.ToString & "'
 	INNER JOIN tb_a_acc acc ON acc.`id_acc`=trxd.`id_acc`
@@ -69,6 +72,14 @@ LEFT JOIN
 	WHERE ot.is_po=1 AND opex.`year`='" & LEYear.Text.ToString & "' AND DATE(ot.date_trans) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
 	GROUP BY opex.id_item_cat_main
 )po ON po.id_item_cat_main=icm.id_item_cat_main
+LEFT JOIN
+(
+	SELECT opex.id_item_cat_main,SUM(ot.value) AS val
+	FROM `tb_b_expense_opex_trans` ot
+	INNER JOIN `tb_b_expense_opex` opex  ON opex.`id_b_expense_opex`=ot.id_b_expense_opex
+	WHERE ot.is_po=2 AND ot.report_mark_type='148' AND opex.`year`='" & LEYear.Text.ToString & "' AND DATE(ot.date_trans) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+	GROUP BY opex.id_item_cat_main
+)stok ON stok.id_item_cat_main=icm.id_item_cat_main
 WHERE opex.`year`='" & LEYear.Text.ToString & "'
 GROUP BY opex.`id_item_cat_main`)
 UNION ALL
@@ -76,6 +87,8 @@ UNION ALL
 ,capex.`value_expense` AS budget
 ,IFNULL(po.val,0) AS po_booked
 ,IFNULL(SUM(val.val),0) AS rec
+,0 AS stok
+,0 AS del
 ,IFNULL(po.val,0)+IFNULL(SUM(val.val),0) AS val_used
 ,capex.`value_expense`-(IFNULL(po.val,0)+IFNULL(SUM(val.val),0)) AS val_remaining
 ,((IFNULL(po.val,0)+IFNULL(SUM(val.val),0))/capex.value_expense)*100 AS used_percent
@@ -363,6 +376,29 @@ GROUP BY `year`"
             End If
             FormReportBudgetList.opt = "2"
             FormReportBudgetList.qi = q
+            FormReportBudgetList.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub ShowReceivingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowReceivingToolStripMenuItem.Click
+        If GVReportBudgetNew.RowCount > 0 Then
+            Dim q As String = "AND opex.`year`='" & LEYear.Text.ToString & "' AND report_mark_type='148' AND opex.id_item_cat_main='" & GVReportBudgetNew.GetFocusedRowCellValue("id_item_cat_main").ToString & "'"
+            Dim quntil As String = " AND DATE(ot.date_trans) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "') "
+            FormReportBudgetList.opt = "3"
+            FormReportBudgetList.qi = q
+            FormReportBudgetList.quntil = quntil
+            FormReportBudgetList.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub ShowItemDeliveredToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowItemDeliveredToolStripMenuItem.Click
+        '
+        If GVReportBudgetNew.RowCount > 0 Then
+            Dim q As String = "AND opex.`year`='" & LEYear.Text.ToString & "' AND opex.id_item_cat_main='" & GVReportBudgetNew.GetFocusedRowCellValue("id_item_cat_main").ToString & "' "
+            Dim quntil As String = " AND DATE(trx.date_reference) <= DATE('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "') "
+            FormReportBudgetList.opt = "4"
+            FormReportBudgetList.qi = q
+            FormReportBudgetList.quntil = quntil
             FormReportBudgetList.ShowDialog()
         End If
     End Sub

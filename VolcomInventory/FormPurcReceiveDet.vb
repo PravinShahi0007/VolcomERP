@@ -197,7 +197,7 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND (pnd.`report_mar
                     Dim item_detail As String = GVSummary.GetRowCellValue(i, "item_detail").ToString
                     Dim qty_total As Decimal = GVSummary.GetRowCellValue(i, "qty")
                     makeSafeGV(GVDetail)
-                    GVDetail.ActiveFilterString = String.Format("[id_item]='{0}' AND [item_detail]='{1}'", id_item, item_detail.Replace("'", "''"))
+                    GVDetail.ActiveFilterString = String.Format("[id_item]='{0}' AND [item_detail] LIKE '{1}'", id_item, item_detail.Replace("'", "''"))
                     For j As Integer = 0 To (GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail)
                         If qty_total > 0 Then
                             Dim qty As Decimal = GVDetail.GetRowCellValue(j, "qty_remaining")
@@ -276,7 +276,7 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND (pnd.`report_mar
             INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
             INNER JOIN tb_m_uom u_st ON u_st.id_uom = i.id_uom_stock
             WHERE pod.is_drop='2' AND pod.id_purc_order=" + id_purc_order + "
-            GROUP BY pod.id_item, BINARY CONCAT(reqd.item_detail,IF(ISNULL(reqd.remark) OR reqd.remark='','',CONCAT('\r\n',reqd.remark))) "
+            GROUP BY pod.id_item, BINARY CONCAT(LOWER(reqd.item_detail),IF(ISNULL(reqd.remark) OR reqd.remark='','',CONCAT('\r\n',reqd.remark))) "
         ElseIf action = "upd" Then
             query = "SELECT rd.id_purc_rec_det, rd.id_purc_rec,  
             rd.id_item, i.item_desc, i.id_uom, u.uom, CONCAT(reqd.item_detail,IF(ISNULL(reqd.remark) OR reqd.remark='','',CONCAT('\r\n',reqd.remark))) AS item_detail,
@@ -289,7 +289,7 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND (pnd.`report_mar
             INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
             INNER JOIN tb_m_uom u_st ON u_st.id_uom = i.id_uom_stock
             WHERE rd.id_purc_rec=" + id + " 
-            GROUP BY rd.id_item,BINARY CONCAT(reqd.item_detail,IF(ISNULL(reqd.remark) OR reqd.remark='','',CONCAT('\r\n',reqd.remark))) "
+            GROUP BY rd.id_item,BINARY CONCAT(LOWER(reqd.item_detail),IF(ISNULL(reqd.remark) OR reqd.remark='','',CONCAT('\r\n',reqd.remark))) "
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummary.DataSource = data
