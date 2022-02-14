@@ -40,7 +40,7 @@
             End If
         End If
 
-        Dim query = "SELECT a.id_prod_order,a.`prod_order_number`,a.prod_order_date,g.po_type
+        Dim query = "SELECT f.season,a.id_prod_order,a.`prod_order_number`,a.prod_order_date,g.po_type
 ,comp.comp_name,IF(ISNULL(ko.lead_time_prod),NULL,DATE_ADD(wo.prod_order_wo_del_date,INTERVAL ko.lead_time_prod DAY)) AS est_del_date_ko,qty_plwh.pl_prod_order_date,rec.prod_order_rec_date,
 season_del_dsg.delivery_date,season_del_dsg.est_wh_date,
 d.design_display_name, d.design_code,d.design_code_import,
@@ -50,7 +50,8 @@ IFNULL(SUM(qty_plwh.qty),0) AS qty_plwh,
 IFNULL(SUM(qty_rec_plwh.qty),0) AS qty_rec_plwh, 
 IFNULL(SUM(qty_retin.qty),0) AS qty_ret_in, 
 IFNULL(SUM(qty_retout.qty),0) AS qty_ret_out, 
-IFNULL(SUM(qty_claim.qty),0) AS qty_ret_claim ,
+IFNULL(SUM(qty_claim.qty),0) AS qty_ret_claim,
+IFNULL(SUM(qty_retin_closed.qty_closed),0) AS qty_ret_closed,
 IFNULL(qr.qty_qr,0) AS qty_qr, 
 IFNULL(qr.qty_normal,0) AS qty_normal, 
 IFNULL(qr.qty_minor,0) AS qty_minor, 
@@ -105,10 +106,29 @@ LEFT JOIN
 LEFT JOIN
 (
 	SELECT retd.`id_prod_order_det`,SUM(retd.`prod_order_ret_in_det_qty`) AS qty FROM `tb_prod_order_ret_in_det` retd
-	INNER JOIN `tb_prod_order_ret_in` ret ON ret.`id_prod_order_ret_in`=retd.`id_prod_order_ret_in`
+	INNER JOIN `tb_prod_order_ret_in` ret ON ret.`id_prod_order_ret_in`=retd.`id_prod_order_ret_in` 
 	WHERE ret.`id_report_status`!='5'
 	GROUP BY retd.`id_prod_order_det`
 ) qty_retin ON qty_retin.id_prod_order_det=pod.id_prod_order_det 
+LEFT JOIN
+(
+	SELECT reto.id_prod_order_det,reto.qty-reti.qty AS qty_closed FROM
+    (
+	    SELECT retd.`id_prod_order_det`,SUM(retd.`prod_order_ret_out_det_qty`) AS qty FROM `tb_prod_order_ret_out_det` retd
+	    INNER JOIN `tb_prod_order_ret_out` ret ON ret.`id_prod_order_ret_out`=retd.`id_prod_order_ret_out`
+	    WHERE ret.`id_report_status`!='5' AND ret.is_closed=1
+	    GROUP BY retd.`id_prod_order_det`
+    )reto
+    LEFT JOIN
+    (
+	    SELECT retd.`id_prod_order_det`,SUM(retd.`prod_order_ret_in_det_qty`) AS qty FROM `tb_prod_order_ret_in_det` retd
+	    INNER JOIN `tb_prod_order_ret_in` ret ON ret.`id_prod_order_ret_in`=retd.`id_prod_order_ret_in` 
+	    INNER JOIN `tb_prod_order_ret_out` reto ON reto.`id_prod_order_ret_out`=ret.`id_prod_order_ret_out` AND reto.is_closed=1
+	    WHERE ret.`id_report_status`!='5'
+	    GROUP BY retd.`id_prod_order_det`
+    )reti ON reto.`id_prod_order_det`=reti.id_prod_order_det
+    HAVING qty_closed>0
+) qty_retin_closed ON qty_retin.id_prod_order_det=pod.id_prod_order_det 
 LEFT JOIN
 (
 	SELECT retd.`id_prod_order_det`,SUM(retd.`prod_order_ret_out_det_qty`) AS qty FROM `tb_prod_order_ret_out_det` retd
