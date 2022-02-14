@@ -555,6 +555,16 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewRekapDisplay()
+        Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Memuat rekapitulasi jumlah display")
+        FormMain.SplashScreenManager1.CloseWaitForm()
+        Cursor = Cursors.Default
+    End Sub
+
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
@@ -1064,5 +1074,13 @@
 
     Private Sub BtnRefreshRencanaSKU_Click(sender As Object, e As EventArgs) Handles BtnRefreshRencanaSKU.Click
         viewRencanaSKU()
+    End Sub
+
+    Private Sub BtnAddHanger_Click(sender As Object, e As EventArgs) Handles BtnAddHanger.Click
+        Cursor = Cursors.WaitCursor
+        FormStoreDisplayHanger.id_display_pps = id
+        FormStoreDisplayHanger.id_comp = SLEComp.EditValue.ToString
+        FormStoreDisplayHanger.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
