@@ -455,7 +455,7 @@
         Dim id_extra_sku = ds_filter(0)("id_display_pps_season").ToString
 
         FormMain.SplashScreenManager1.SetWaitFormDescription("Memuat rencana SKU")
-        Dim query As String = "SELECT cg.class_group AS `GROUP INFO|CLASS`, "
+        Dim query As String = "SELECT cg.class_group AS `GROUP INFO|CLASS`,dv.code_detail_name AS `GROUP INFO|DIVISION`, cc.class_cat AS `GROUP INFO|CATEGORY`, "
         For c As Integer = 0 To ds.Rows.Count - 1
             query += "IFNULL(SUM(CASE WHEN a.id_display_pps_season=" + ds.Rows(c)("id_display_pps_season").ToString + " THEN a.total_sku END),0) AS `RENCANA JUMLAH SKU|" + ds.Rows(c)("season_del").ToString + "`, "
         Next
@@ -463,7 +463,9 @@
         For c As Integer = 0 To ds.Rows.Count - 1
             query += "IFNULL(SUM(CASE WHEN a.id_display_pps_season=" + ds.Rows(c)("id_display_pps_season").ToString + " THEN IFNULL(a.total_sku,0) * IFNULL(dph.qty_hanger,0)  END),0) AS `REKAPITULASI JUMLAH DISPLAY/SKU|" + ds.Rows(c)("season_del").ToString + "`, "
         Next
-        query += "SUM(total_sku * dph.qty_hanger) AS `REKAPITULASI JUMLAH DISPLAY/SKU|TOTAL`
+        query += "SUM(IFNULL(total_sku,0) * IFNULL(dph.qty_hanger,0)) AS `REKAPITULASI JUMLAH DISPLAY/SKU|TOTAL`,
+        IFNULL(dm.qty_avl,0) AS `KALKULASI KAPASITAS DISPLAY|AVAILABLE`,
+        (IFNULL(dm.qty_avl,0)-SUM(IFNULL(total_sku,0) * IFNULL(dph.qty_hanger,0))) AS `KALKULASI KAPASITAS DISPLAY|BALANCE`
         FROM (
             -- exist
 	        SELECT dpr.id_class_group, dpr.id_season, dpr.id_delivery, COUNT(dpr.id_class_group) AS `total_sku`, IFNULL(dps.id_display_pps_season," + id_extra_sku + ") AS `id_display_pps_season`
@@ -487,9 +489,17 @@
 	        WHERE dpp.id_display_pps=" + id + "
         ) a
         INNER JOIN tb_class_group cg ON cg.id_class_group = a.id_class_group
+        INNER JOIN tb_m_code_detail dv ON dv.id_code_detail = cg.id_division
+        INNER JOIN tb_class_cat cc ON cc.id_class_cat = cg.id_class_cat
         LEFT JOIN tb_display_pps_hanger dph ON dph.id_class_group = a.id_class_group AND dph.id_display_pps_season = a.id_display_pps_season AND dph.id_display_pps=" + id + "
+        LEFT JOIN (
+            SELECT dps.id_class_group, SUM(dps.qty * dps.capacity) AS `qty_avl` 
+            FROM tb_display_pps_store dps
+            WHERE dps.id_display_pps=" + id + "
+            GROUP BY dps.id_class_group
+        ) dm ON dm.id_class_group = cg.id_class_group
         GROUP BY a.id_class_group
-        ORDER BY class_group ASC "
+        ORDER BY dv.code_detail_name ASC, cc.class_cat ASC,class_group ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRencanaSKU.DataSource = data
 
