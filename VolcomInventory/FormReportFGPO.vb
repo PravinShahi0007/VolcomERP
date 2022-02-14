@@ -128,7 +128,7 @@ LEFT JOIN
 	    GROUP BY retd.`id_prod_order_det`
     )reti ON reto.`id_prod_order_det`=reti.id_prod_order_det
     HAVING qty_closed>0
-) qty_retin_closed ON qty_retin.id_prod_order_det=pod.id_prod_order_det 
+) qty_retin_closed ON qty_retin_closed.id_prod_order_det=pod.id_prod_order_det 
 LEFT JOIN
 (
 	SELECT retd.`id_prod_order_det`,SUM(retd.`prod_order_ret_out_det_qty`) AS qty FROM `tb_prod_order_ret_out_det` retd
