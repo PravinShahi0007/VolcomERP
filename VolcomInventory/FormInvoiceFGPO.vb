@@ -163,11 +163,13 @@ LEFT JOIN
 )oldest_price ON oldest_price.id_wo=wo.`id_prod_order_wo`
 LEFT JOIN
 (
-    SELECT * FROM (
-		SELECT kod.* FROM tb_prod_order_ko_det kod
-        INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order)
-		ORDER BY kod.id_prod_order_ko_det DESC
-	)ko GROUP BY ko.id_prod_order
+    SELECT kod.* FROM (
+	    SELECT MAX(kod.id_prod_order_ko_det) AS id_prod_order_ko_det
+	    FROM tb_prod_order_ko_det kod
+	    INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order)
+	    GROUP BY kod.id_prod_order 
+    )ko
+    INNER JOIN tb_prod_order_ko_det kod ON kod.`id_prod_order_ko_det`=ko.id_prod_order_ko_det 
 )ko ON ko.id_prod_order=po.id_prod_order
 LEFT JOIN
 (

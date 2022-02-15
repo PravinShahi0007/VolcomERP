@@ -35,12 +35,19 @@
     End Sub
 
     Sub load_rec()
-        Dim q As String = "SELECT ot.value,it.`item_desc`,rec.purc_rec_number,ot.date_trans,ot.id_report
+        Dim q As String = "(SELECT ot.value,it.`item_desc`,rec.purc_rec_number,ot.date_trans,ot.id_report
 FROM `tb_b_expense_opex_trans` ot
 INNER JOIN tb_purc_rec rec ON rec.id_purc_rec=ot.id_report
 INNER JOIN tb_item it ON it.`id_item`=ot.id_item
-INNER JOIN `tb_b_expense_opex` opex  ON opex.`id_b_expense_opex`=ot.id_b_expense_opex
-WHERE ot.is_po=2 " & qi & quntil
+INNER JOIN `tb_b_expense_opex` ex  ON ex.`id_b_expense_opex`=ot.id_b_expense_opex
+WHERE ot.is_po=2 " & qi & quntil & " )
+UNION ALL
+(SELECT ot.value,it.`item_desc`,rec.purc_rec_number,ot.date_trans,ot.id_report
+FROM `tb_b_expense_trans` ot
+INNER JOIN tb_purc_rec rec ON rec.id_purc_rec=ot.id_report
+INNER JOIN tb_item it ON it.`id_item`=ot.id_item
+INNER JOIN `tb_b_expense` ex  ON ex.`id_b_expense`=ot.id_b_expense
+WHERE ot.is_po=2 " & qi & quntil & " )"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCRec.DataSource = dt
         GVRec.BestFitColumns()

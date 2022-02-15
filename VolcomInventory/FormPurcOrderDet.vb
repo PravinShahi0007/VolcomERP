@@ -274,6 +274,7 @@ WHERE po.id_purc_order='" & id_po & "'"
             If GVPurcReq.GetRowCellValue(i, "id_expense_type").ToString = "1" Then 'opex
                 q_budget = "SELECT bdg.value_expense-IFNULL(SUM(bdgu.value),0) AS remaining_budget FROM `tb_b_expense_opex` bdg 
 LEFT JOIN `tb_b_expense_opex_trans` bdgu ON bdgu.`id_b_expense_opex`=bdg.`id_b_expense_opex`
+
 WHERE bdg.`id_b_expense_opex`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense_opex").ToString & "'"
             Else
                 q_budget = "SELECT bdg.value_expense-IFNULL(SUM(bdgu.value),0) AS remaining_budget FROM tb_b_expense bdg 

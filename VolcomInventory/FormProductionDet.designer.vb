@@ -1063,12 +1063,13 @@ Partial Class FormProductionDet
         '
         'GridColumn10
         '
-        Me.GridColumn10.Caption = "Mat Sent Date"
+        Me.GridColumn10.Caption = "Created Date"
         Me.GridColumn10.ColumnEdit = Me.RIDESentDate
         Me.GridColumn10.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn10.FieldName = "prod_order_wo_del_date"
         Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowFocus = False
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 3
         '
