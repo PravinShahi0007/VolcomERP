@@ -268,36 +268,84 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
     Sub load_item_pil()
         Dim query As String = ""
 
+        'query = "SELECT it.id_item,it.def_desc,itt.item_type,IF(main.is_fixed_asset=1,'yes','no') AS is_fixed_asset,used.id_b_expense,used_opex.id_b_expense_opex,cat.`id_expense_type`,it.`id_item_cat`,it.item_desc,uom.uom,cat.item_cat,IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) AS budget,IFNULL(IF(cat.`id_expense_type`='2',used.val,used_opex.val),0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining,it.`latest_price` 
+        '            FROM tb_item it
+        '             INNER JOIN tb_lookup_purc_item_type itt ON itt.id_item_type=it.id_item_type
+        '            INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
+        '            INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
+        '            INNER JOIN tb_item_cat_main main ON main.id_item_cat_main=cat.id_item_cat_main
+        '            INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement = '" & id_departement & "'
+        '            LEFT JOIN
+        '            (
+        '             SELECT ex.`value_expense`,used.val AS val,ex.`id_b_expense`,ex.`id_item_cat_main` 
+        '             FROM tb_b_expense ex 
+        '             LEFT JOIN 
+        '             (
+        '              SELECT trx.id_b_expense,SUM(`value`) AS val
+        '              FROM `tb_b_expense_trans` trx
+        '              GROUP BY trx.id_b_expense
+        '             ) used ON used.id_b_expense=ex.`id_b_expense` 
+        '                WHERE ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AND ex.`id_departement`='" & id_departement & "'
+        '            )used ON used.id_item_cat_main=cat.`id_item_cat_main`
+        '            LEFT JOIN
+        '            (
+        '             SELECT ex.`value_expense`,used.val AS val,ex.`id_b_expense_opex`,ex.`id_item_cat_main` 
+        '             FROM tb_b_expense_opex ex 
+        '             LEFT JOIN 
+        '             (
+        '              SELECT trx.id_b_expense_opex,SUM(`value`) AS val
+        '              FROM `tb_b_expense_opex_trans` trx
+        '              GROUP BY trx.id_b_expense_opex
+        '             ) used ON used.id_b_expense_opex=ex.`id_b_expense_opex` 
+        '                WHERE ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "'
+        '            )used_opex ON used_opex.id_item_cat_main=cat.`id_item_cat_main`
+        '            WHERE it.is_active='1' AND cat.id_expense_type='" & SLEPurcType.EditValue.ToString & "' AND IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) > 0"
         query = "SELECT it.id_item,it.def_desc,itt.item_type,IF(main.is_fixed_asset=1,'yes','no') AS is_fixed_asset,used.id_b_expense,used_opex.id_b_expense_opex,cat.`id_expense_type`,it.`id_item_cat`,it.item_desc,uom.uom,cat.item_cat,IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) AS budget,IFNULL(IF(cat.`id_expense_type`='2',used.val,used_opex.val),0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining,it.`latest_price` 
                     FROM tb_item it
-                     INNER JOIN tb_lookup_purc_item_type itt ON itt.id_item_type=it.id_item_type
+                    INNER JOIN tb_lookup_purc_item_type itt ON itt.id_item_type=it.id_item_type
                     INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
                     INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
                     INNER JOIN tb_item_cat_main main ON main.id_item_cat_main=cat.id_item_cat_main
                     INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement = '" & id_departement & "'
                     LEFT JOIN
                     (
-	                    SELECT ex.`value_expense`,used.val AS val,ex.`id_b_expense`,ex.`id_item_cat_main` 
-	                    FROM tb_b_expense ex 
-	                    LEFT JOIN 
-	                    (
-		                    SELECT trx.id_b_expense,SUM(`value`) AS val
-		                    FROM `tb_b_expense_trans` trx
-		                    GROUP BY trx.id_b_expense
-	                    ) used ON used.id_b_expense=ex.`id_b_expense` 
-                        WHERE ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AND ex.`id_departement`='" & id_departement & "'
+                         SELECT ex.`value_expense`,used.val AS val,ex.`id_b_expense`,ex.`id_item_cat_main` 
+                         FROM tb_b_expense ex 
+                         LEFT JOIN 
+                         (
+                            SELECT trx.id_b_expense,SUM(`value`) AS val
+                            FROM `tb_b_expense_trans` trx
+                            GROUP BY trx.id_b_expense
+                         ) used ON used.id_b_expense=ex.`id_b_expense` 
+                         WHERE ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AND ex.`id_departement`='" & id_departement & "'
                     )used ON used.id_item_cat_main=cat.`id_item_cat_main`
                     LEFT JOIN
                     (
-	                    SELECT ex.`value_expense`,used.val AS val,ex.`id_b_expense_opex`,ex.`id_item_cat_main` 
-	                    FROM tb_b_expense_opex ex 
-	                    LEFT JOIN 
-	                    (
-		                    SELECT trx.id_b_expense_opex,SUM(`value`) AS val
-		                    FROM `tb_b_expense_opex_trans` trx
-		                    GROUP BY trx.id_b_expense_opex
-	                    ) used ON used.id_b_expense_opex=ex.`id_b_expense_opex` 
-                        WHERE ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "'
+                        SELECT opex.`value_expense`,IFNULL(used.val,0)+IFNULL(SUM(val.val),0) AS val
+                        ,opex.`id_b_expense_opex`,opex.`id_item_cat_main` 
+                        FROM `tb_b_expense_opex` opex 
+                        INNER JOIN tb_item_cat_main icm ON icm.`id_item_cat_main`=opex.`id_item_cat_main` AND opex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "'
+                        INNER JOIN tb_lookup_expense_type et ON et.`id_expense_type`=icm.`id_expense_type`
+                        INNER JOIN `tb_b_expense_opex_map` map ON map.`id_b_expense_opex`=opex.`id_b_expense_opex`
+                        INNER JOIN  tb_a_acc acc ON acc.`id_acc`=map.`id_acc`
+                        LEFT JOIN
+                        (
+	                        SELECT acc.`id_acc`,acc.`acc_name`,acc.`acc_description`,SUM(IF(acc.`id_dc`=1,trxd.`debit`-trxd.`credit`,trxd.`credit`-trxd.`debit`)) AS val,acc.`id_coa_type`
+	                        FROM tb_a_acc_trans_det trxd
+	                        INNER JOIN tb_a_acc_trans trx ON trx.`id_acc_trans`=trxd.`id_acc_trans` AND YEAR(trx.`date_reference`)='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "'
+	                        INNER JOIN tb_a_acc acc ON acc.`id_acc`=trxd.`id_acc`
+	                        WHERE trx.`id_report_status`=6
+	                        GROUP BY acc.`id_acc`
+                        )val ON LEFT(val.acc_name,4)=LEFT(acc.`acc_name`,4) AND acc.`id_coa_type`=val.`id_coa_type`
+                        LEFT JOIN
+                        (
+	                        SELECT opex.id_item_cat_main,SUM(ot.value) AS val
+	                        FROM `tb_b_expense_opex_trans` ot
+	                        INNER JOIN `tb_b_expense_opex` opex  ON opex.`id_b_expense_opex`=ot.id_b_expense_opex
+	                        WHERE (ot.is_po=1 OR (ot.is_po=2 AND ot.report_mark_type=148)) AND opex.`year`='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' 
+	                        GROUP BY opex.id_item_cat_main
+                        )used ON used.id_item_cat_main=icm.id_item_cat_main
+                        GROUP BY opex.`id_item_cat_main`
                     )used_opex ON used_opex.id_item_cat_main=cat.`id_item_cat_main`
                     WHERE it.is_active='1' AND cat.id_expense_type='" & SLEPurcType.EditValue.ToString & "' AND IFNULL(IF(cat.`id_expense_type`='2',used.value_expense,used_opex.value_expense),0) > 0"
         If GVItemList.RowCount > 1 Then
@@ -305,6 +353,7 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
         End If
         viewSearchLookupRepositoryQuery(RISLEItem, query, 0, "item_desc", "id_item")
         RISLEItem.View.BestFitColumns()
+        RepositoryItemSearchLookUpEdit1View.BestFitColumns()
     End Sub
 
     Sub load_item_pil_edit()

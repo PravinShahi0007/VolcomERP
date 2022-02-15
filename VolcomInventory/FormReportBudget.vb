@@ -41,7 +41,7 @@
         ,IFNULL(SUM(val.val),0) AS rec
         ,IFNULL(stok.val,0) AS stok
         ,IFNULL(SUM(val.val_del),0) AS del
-        ,IFNULL(po.val,0)+IFNULL(SUM(val.val),0) AS val_used
+        ,IFNULL(po.val,0)+IFNULL(SUM(val.val),0)+IFNULL(stok.val,0) AS val_used
         ,opex.`value_expense`-(IFNULL(po.val,0)+IFNULL(SUM(val.val),0)+IFNULL(stok.val,0)) AS val_remaining
         ,((IFNULL(po.val,0)+IFNULL(SUM(val.val),0)+IFNULL(stok.val,0))/opex.value_expense)*100 AS used_percent
         ,0 AS id_departement
