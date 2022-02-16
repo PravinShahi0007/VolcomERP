@@ -1996,6 +1996,9 @@
                                 save_additional()
                                 Dim stt As New ClassDesign
                                 stt.updatedTime(id_design)
+                                'log line list
+                                Dim now_date As String = DateTime.Parse(getTimeDB.ToString).ToString("yyyy-MM-dd")
+                                stt.insertLogLineList("395", False, id_user, id_user, id_design, "-", now_date, id_design, "New Master Design")
                                 infoCustom(display_name + ", has been sucessfully created.")
                                 actionLoad()
                             End If
@@ -2099,6 +2102,9 @@
                             'ipdate time
                             Dim stt As New ClassDesign
                             stt.updatedTime(id_design)
+                            'log line list
+                            Dim now_date As String = DateTime.Parse(getTimeDB.ToString).ToString("yyyy-MM-dd")
+                            stt.insertLogLineList("395", False, id_user, id_user, id_design, "-", now_date, id_design, "Update Master Design")
 
                             Cursor = Cursors.Default
 
@@ -2221,6 +2227,9 @@
                         'ipdate time
                         Dim stt As New ClassDesign
                         stt.updatedTime(id_design)
+                        'log line list
+                        Dim now_date As String = DateTime.Parse(getTimeDB.ToString).ToString("yyyy-MM-dd")
+                        stt.insertLogLineList("395", False, id_user, id_user, id_design, "-", now_date, id_design, "New Master Design")
 
                         infoCustom(display_name + " has been sucessfully created.")
                         actionLoad()

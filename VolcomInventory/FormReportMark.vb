@@ -1432,6 +1432,10 @@
                 Catch ex As Exception
                     execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PD;" + id_report + ";" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
                 End Try
+
+                'log perubahan
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, True, "", "", "", "", "", "", "")
             End If
 
             'update status
