@@ -2555,6 +2555,10 @@ WHERE recd.`id_prod_order_rec`='" & id_report & "'"
             'infoCustom("Status changed.")
             '
             If id_status_reportx = "6" Then
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
+
                 query = String.Format("UPDATE tb_prod_order_ret_in SET complete_date=NOW() WHERE id_prod_order_ret_in ='{0}'", id_report)
                 execute_non_query(query, True, "", "", "", "")
             End If
