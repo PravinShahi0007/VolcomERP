@@ -2191,7 +2191,7 @@
                     SELECT NOW(), '" + id_user + "', rm.id_user, '" + rmt + "', pd.id_prod_demand,pd.prod_demand_number, pd.prod_demand_date, pdd.id_design, pd.prod_demand_note
                     FROM tb_prod_demand_design pdd 
                     INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand
-                    INNER JOIN tb_report_mark rm ON rm.id_report = pd.id_prod_demand AND rm.report_mark_type=9 AND rm.id_report_status=1
+                    INNER JOIN tb_report_mark rm ON rm.id_report = pd.id_prod_demand AND rm.report_mark_type=" + rmt + " AND rm.id_report_status=1
                     WHERE pdd.id_prod_demand=" + id_report_trans + " AND pdd.is_void=2 "
                 ElseIf rmt = "143" Or rmt = "144" Or rmt = "145" Or rmt = "194" Or rmt = "195" Or rmt = "196" Or rmt = "210" Then
                     'PD revisi
@@ -2208,8 +2208,17 @@
                     SELECT NOW(), '" + id_user + "', rm.id_user, '" + rmt + "', po.id_prod_order, po.prod_order_number, po.prod_order_date, pdd.id_design, 'PO Created'
                     FROM tb_prod_order po
                     INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
-                    INNER JOIN tb_report_mark rm ON rm.id_report = po.id_prod_order AND rm.report_mark_type= 22 AND rm.id_report_status=1
+                    INNER JOIN tb_report_mark rm ON rm.id_report = po.id_prod_order AND rm.report_mark_type=22 AND rm.id_report_status=1
                     WHERE po.id_prod_order=" + id_report_trans + " "
+                ElseIf rmt = "28" Or rmt = "127" Then
+                    'REC QC
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note)
+                    SELECT NOW(), '" + id_user + "', IFNULL(rm.id_user, '" + id_user + "'), '" + rmt + "',r.id_prod_order_rec, r.prod_order_rec_number, r.prod_order_rec_date, pdd.id_design, 'Receive in QC'
+                    FROM tb_prod_order_rec r
+                    LEFT JOIN tb_report_mark rm ON rm.id_report = r.id_prod_order_rec AND rm.report_mark_type=" + rmt + " AND rm.id_report_status=1
+                    INNER JOIN tb_prod_order po ON po.id_prod_order = r.id_prod_order
+                    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+                    WHERE r.id_prod_order_rec=" + id_report_trans + " "
                 End If
                 execute_non_query(query, True, "", "", "", "")
             End If
