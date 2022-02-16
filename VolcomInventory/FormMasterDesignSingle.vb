@@ -1998,7 +1998,7 @@
                                 stt.updatedTime(id_design)
                                 'log line list
                                 Dim now_date As String = DateTime.Parse(getTimeDB.ToString).ToString("yyyy-MM-dd")
-                                stt.insertLogLineList("395", False, id_user, id_user, id_design, "-", now_date, id_design, "New Master Design")
+                                stt.insertLogLineList("395", id_design, False, id_user, id_user, "-", now_date, id_design, "New Master Design")
                                 infoCustom(display_name + ", has been sucessfully created.")
                                 actionLoad()
                             End If
@@ -2104,7 +2104,7 @@
                             stt.updatedTime(id_design)
                             'log line list
                             Dim now_date As String = DateTime.Parse(getTimeDB.ToString).ToString("yyyy-MM-dd")
-                            stt.insertLogLineList("395", False, id_user, id_user, id_design, "-", now_date, id_design, "Update Master Design")
+                            stt.insertLogLineList("395", id_design, False, id_user, id_user, "-", now_date, id_design, "Update Master Design")
 
                             Cursor = Cursors.Default
 
@@ -2229,7 +2229,7 @@
                         stt.updatedTime(id_design)
                         'log line list
                         Dim now_date As String = DateTime.Parse(getTimeDB.ToString).ToString("yyyy-MM-dd")
-                        stt.insertLogLineList("395", False, id_user, id_user, id_design, "-", now_date, id_design, "New Master Design")
+                        stt.insertLogLineList("395", id_design, False, id_user, id_user, "-", now_date, id_design, "New Master Design")
 
                         infoCustom(display_name + " has been sucessfully created.")
                         actionLoad()

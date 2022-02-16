@@ -2175,7 +2175,7 @@
         Return sku_gwp_no_price
     End Function
 
-    Sub insertLogLineList(ByVal rmt As String, ByVal is_bulk As Boolean, ByVal user_modified As String, ByVal user_created As String, ByVal id_report_trans As String, ByVal number_trans As String, ByVal date_trans As String, ByVal id_design_par As String, ByVal note As String)
+    Sub insertLogLineList(ByVal rmt As String, ByVal id_report_trans As String, ByVal is_bulk As Boolean, ByVal user_modified As String, ByVal user_created As String, ByVal number_trans As String, ByVal date_trans As String, ByVal id_design_par As String, ByVal note As String)
         Try
             If is_bulk = False Then
                 'single log
@@ -2206,7 +2206,7 @@
                 execute_non_query(query, True, "", "", "", "")
             End If
         Catch ex As Exception
-            execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(DATE(NOW()), 'Err Log Line List (" + rmt + "/" + id_report_trans + "/" + id_design_par + "):" + ex.ToString + "')", True, "", "", "", "")
+            execute_non_query("INSERT INTO tb_log_error(datetime, err, id_user) VALUES(DATE(NOW()), 'Err Log Line List (" + rmt + "/" + id_report_trans + "/" + id_design_par + "):" + ex.ToString + "', '" + id_user + "')", True, "", "", "", "")
         End Try
     End Sub
 End Class

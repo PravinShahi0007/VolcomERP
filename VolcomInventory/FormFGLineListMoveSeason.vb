@@ -141,7 +141,7 @@
 
                     'log line list
                     Dim now_date As String = DateTime.Parse(getTimeDB.ToString).ToString("yyyy-MM-dd")
-                    upd.insertLogLineList("394", False, id_user, id_user, id_design, "-", now_date, id_design, note)
+                    upd.insertLogLineList("394", id_design, False, id_user, id_user, "-", now_date, id_design, note)
 
                     PBC.PerformStep()
                     PBC.Update()
