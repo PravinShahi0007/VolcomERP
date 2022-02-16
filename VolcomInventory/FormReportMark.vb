@@ -1432,6 +1432,10 @@
                 Catch ex As Exception
                     execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PD;" + id_report + ";" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
                 End Try
+
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
             End If
 
             'update status
@@ -2010,6 +2014,10 @@
                 nm.id_report = id_report
                 nm.report_mark_type = report_mark_type
                 nm.send_email()
+
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
             End If
 
             Try
@@ -2348,6 +2356,10 @@ INNER JOIN tb_prod_order_rec rec ON rec.`id_prod_order_rec`=recd.`id_prod_order_
 WHERE recd.`id_prod_order_rec`='" & id_report & "'"
                     execute_non_query(qi, True, "", "", "", "")
                 End If
+
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_prod_order_rec SET id_report_status='{0}' WHERE id_prod_order_rec='{1}'", id_status_reportx, id_report)
@@ -2513,6 +2525,10 @@ WHERE recd.`id_prod_order_rec`='" & id_report & "'"
             End If
 
             If id_status_reportx = "6" Then
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
+
                 query = String.Format("UPDATE tb_prod_order_ret_out SET complete_date=NOW() WHERE id_prod_order_ret_out ='{0}'", id_report)
                 execute_non_query(query, True, "", "", "", "")
             End If
@@ -2539,6 +2555,10 @@ WHERE recd.`id_prod_order_rec`='" & id_report & "'"
             'infoCustom("Status changed.")
             '
             If id_status_reportx = "6" Then
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
+
                 query = String.Format("UPDATE tb_prod_order_ret_in SET complete_date=NOW() WHERE id_prod_order_ret_in ='{0}'", id_report)
                 execute_non_query(query, True, "", "", "", "")
             End If
@@ -5797,6 +5817,10 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 Catch ex As Exception
                     execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PD REVISE;" + id_report + ";" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
                 End Try
+
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
             End If
 
             'update status
@@ -11568,6 +11592,9 @@ WHERE id_item_pps='" & id_report & "'"
             If id_status_reportx = "6" Then
                 'complete
 
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_qc_report1 SET id_report_status = '{0}' WHERE id_qc_report1 = '{1}'", id_status_reportx, id_report)
