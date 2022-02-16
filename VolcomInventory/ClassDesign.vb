@@ -2175,27 +2175,38 @@
         Return sku_gwp_no_price
     End Function
 
-    Sub insertLogLineList(ByVal is_bulk As Boolean, ByVal user_modified As String, ByVal user_created As String, ByVal rmt As String, ByVal id_report_trans As String, ByVal number_trans As String, ByVal date_trans As String, ByVal note As String)
-        If is_bulk = False Then
-            'single log
-            Dim query As String = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note) 
-            VALUES(NOW(), '" + user_modified + "', '" + user_created + "', '" + rmt + "', '" + id_report_trans + "', '" + number_trans + "', '" + date_trans + "', '" + note + "') "
-            execute_non_query(query, True, "", "", "", "")
-        Else
-            'bulk 
-            Dim query As String = ""
-            If rmt = "9" Then
-                'prod demand
-                query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note) 
-                SELECT NOW(), '" + id_user + "', rm.id_user, '" + rmt + "', pd.id_prod_demand,pd.prod_demand_number, pd.prod_demand_date, pdd.id_design, CONCAT('PD Created; ',pd.prod_demand_note)
-                FROM tb_prod_demand_design pdd 
-                INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand
-                INNER JOIN tb_report_mark rm ON rm.id_report = pd.id_prod_demand AND rm.report_mark_type=9 AND rm.id_report_status=1
-                WHERE pdd.id_prod_demand=" + id_report_trans + " AND pdd.is_void=2 "
-            ElseIf rmt = "143" Or rmt = "144" Or rmt = "194" Or rmt = "210" Then
-                'PD revisi
+    Sub insertLogLineList(ByVal rmt As String, ByVal is_bulk As Boolean, ByVal user_modified As String, ByVal user_created As String, ByVal id_report_trans As String, ByVal number_trans As String, ByVal date_trans As String, ByVal id_design_par As String, ByVal note As String)
+        Try
+            If is_bulk = False Then
+                'single log
+                Dim query As String = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note) 
+                 VALUES(NOW(), '" + user_modified + "', '" + user_created + "', '" + rmt + "', '" + id_report_trans + "', '" + number_trans + "', '" + date_trans + "', '" + id_design_par + "', '" + note + "') "
+                execute_non_query(query, True, "", "", "", "")
+            Else
+                'bulk 
+                Dim query As String = ""
+                If rmt = "9" Or rmt = "80" Or rmt = "81" Or rmt = "206" Then
+                    'prod demand
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note) 
+                    SELECT NOW(), '" + id_user + "', rm.id_user, '" + rmt + "', pd.id_prod_demand,pd.prod_demand_number, pd.prod_demand_date, pdd.id_design, pd.prod_demand_note
+                    FROM tb_prod_demand_design pdd 
+                    INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand
+                    INNER JOIN tb_report_mark rm ON rm.id_report = pd.id_prod_demand AND rm.report_mark_type=9 AND rm.id_report_status=1
+                    WHERE pdd.id_prod_demand=" + id_report_trans + " AND pdd.is_void=2 "
+                ElseIf rmt = "143" Or rmt = "144" Or rmt = "145" Or rmt = "194" Or rmt = "195" Or rmt = "196" Or rmt = "210" Then
+                    'PD revisi
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note) 
+                    SELECT NOW(), '" + id_user + "', rm.id_user, pdr.report_mark_type, pdr.id_prod_demand_rev, CONCAT(pd.prod_demand_number,'/Rev ',pdr.rev_count), pdr.created_date, pddr.id_design, pdr.note
+                    FROM tb_prod_demand_rev pdr
+                    INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdr.id_prod_demand
+                    INNER JOIN tb_report_mark rm ON rm.id_report = pdr.id_prod_demand_rev AND rm.report_mark_type= pdr.report_mark_type AND rm.id_report_status=1
+                    INNER JOIN tb_prod_demand_design_rev pddr ON pddr.id_prod_demand_rev = pdr.id_prod_demand_rev
+                    WHERE pdr.id_prod_demand_rev=" + id_report_trans + " "
+                End If
+                execute_non_query(query, True, "", "", "", "")
             End If
-            execute_non_query(query, True, "", "", "", "")
-        End If
+        Catch ex As Exception
+            execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(DATE(NOW()), 'Err Log Line List (" + rmt + "/" + id_report_trans + "/" + id_design_par + "):" + ex.ToString + "')", True, "", "", "", "")
+        End Try
     End Sub
 End Class
