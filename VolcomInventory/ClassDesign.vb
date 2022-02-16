@@ -2228,6 +2228,15 @@
                     INNER JOIN tb_prod_order po ON po.id_prod_order = q.id_prod_order
                     INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
                     WHERE q.id_qc_report1=" + id_report_trans + " "
+                ElseIf rmt = "31" Then
+                    'QC RET OUT
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note)
+                    SELECT NOW(), '" + id_user + "' ,IFNULL(rm.id_user, '" + id_user + "'), '" + rmt + "', r.id_prod_order_ret_out, r.prod_order_ret_out_number, r.prod_order_ret_out_date, pdd.id_design, 'QC Return Out'
+                    FROM tb_prod_order_ret_out r
+                    LEFT JOIN tb_report_mark rm ON rm.id_report = r.id_prod_order_ret_out AND rm.report_mark_type=" + rmt + " AND rm.id_report_status=1
+                    INNER JOIN tb_prod_order po ON po.id_prod_order = r.id_prod_order
+                    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+                    WHERE r.id_prod_order_ret_out=" + id_report_trans + " "
                 End If
                 execute_non_query(query, True, "", "", "", "")
             End If
