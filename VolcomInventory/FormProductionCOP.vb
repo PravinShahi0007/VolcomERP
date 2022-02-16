@@ -161,8 +161,8 @@ WHERE dsg.id_design = '{0}'", id_design)
                     BUpdateCOP.Enabled = False
                 Else
                     If data.Rows(0)("id_division").ToString = "14696" Then
-                        'Kids
-                        BSyncSNI.Visible = True
+                        'Kids , sudah via approval realisasi SNI
+                        'BSyncSNI.Visible = True
                     End If
                     '
                     BApprove.Text = "Lock + Approve"
@@ -682,9 +682,9 @@ WHERE `id_design`='" & id_design & "' "
                 TEUnitPrice.EditValue = total / TEQty.EditValue
             End If
             '
-            If BSyncSNI.Visible = True Then
-                load_sni()
-            End If
+            'If BSyncSNI.Visible = True Then
+            '    load_sni()
+            'End If
         End If
     End Sub
 
