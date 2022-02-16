@@ -200,6 +200,9 @@
     Private Sub BUpdate_Click(sender As Object, e As EventArgs) Handles BUpdate.Click
         Dim q As String = "UPDATE tb_prod_order_ret_out SET prod_order_ret_out_due_date='" & Date.Parse(DERetDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' WHERE id_prod_order_ret_out='" & id_prod_order_ret_out & "'"
         execute_non_query(q, True, "", "", "", "")
+
+        execute_non_query("INSERT INTO `tb_prod_order_ret_out_log`(`datetime`,`id_user`,`est_ret_in`) VALUES(NOW(),'" & id_user & "','" & Date.Parse(DERetDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "')", True, "", "", "", "")
+
         infoCustom("Estimate return in updated")
     End Sub
 

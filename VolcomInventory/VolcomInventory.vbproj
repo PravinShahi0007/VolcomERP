@@ -4947,6 +4947,12 @@
     <Compile Include="FormRevenue.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormRiderContract.Designer.vb">
+      <DependentUpon>FormRiderContract.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRiderContract.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesBranch.Designer.vb">
       <DependentUpon>FormSalesBranch.vb</DependentUpon>
     </Compile>
@@ -13105,6 +13111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRevenue.resx">
       <DependentUpon>FormRevenue.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRiderContract.resx">
+      <DependentUpon>FormRiderContract.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesBranch.resx">
       <DependentUpon>FormSalesBranch.vb</DependentUpon>
