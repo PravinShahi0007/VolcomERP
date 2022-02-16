@@ -5801,6 +5801,10 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 Catch ex As Exception
                     execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PD REVISE;" + id_report + ";" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
                 End Try
+
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
             End If
 
             'update status
