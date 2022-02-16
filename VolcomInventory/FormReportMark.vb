@@ -11584,6 +11584,9 @@ WHERE id_item_pps='" & id_report & "'"
             If id_status_reportx = "6" Then
                 'complete
 
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_qc_report1 SET id_report_status = '{0}' WHERE id_qc_report1 = '{1}'", id_status_reportx, id_report)
