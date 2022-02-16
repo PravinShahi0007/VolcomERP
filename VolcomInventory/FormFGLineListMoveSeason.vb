@@ -118,13 +118,16 @@
                     Dim id_season_from As String = SLESeasonFrom.EditValue.ToString
 
                     'update line list status
+                    Dim note As String = ""
                     Dim query_upd As String = "UPDATE tb_m_design SET id_lookup_status_order='" + id_lookup_status_order + "' "
                     If id_lookup_status_order = "2" Then 'drop
                         query_upd += ", id_active=2 "
+                        note = "Drop article"
                     ElseIf id_lookup_status_order = "3" Then 'move
                         Dim query_get_del As String = "SELECT id_delivery FROM tb_season_delivery WHERE id_season='" + id_season_to + "' LIMIT 1 "
                         Dim id_delivery As String = execute_query(query_get_del, 0, True, "", "", "", "")
                         query_upd += ",id_season='" + id_season_to + "', id_delivery='" + id_delivery + "', id_delivery_act='" + id_delivery + "', id_season_move=IF(ISNULL(id_season_move),'" + id_season_from + "',id_season_move) "
+                        note = "Move season " + addSlashes(SLESeasonFrom.Text) + "=>" + addSlashes(SLESeason.Text)
                     Else
                         query_upd += ", id_season='" + id_season_to + "', id_season_move=NULL "
                     End If
@@ -135,6 +138,10 @@
                     'update time
                     Dim upd As New ClassDesign
                     upd.updatedTime(id_design)
+
+                    'log line list
+                    Dim now_date As String = DateTime.Parse(getTimeDB.ToString).ToString("yyyy-MM-dd")
+                    upd.insertLogLineList("394", False, id_user, id_user, id_design, "-", now_date, id_design, note)
 
                     PBC.PerformStep()
                     PBC.Update()
