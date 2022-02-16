@@ -241,6 +241,116 @@
         removeAccessToken(accessToken)
     End Sub
 
+    Sub syncDesignPrice(id_list As List(Of String), effective_date As String)
+        Dim in_id As String = ""
+
+        For i = 0 To id_list.Count - 1
+            in_id += id_list(i) + ", "
+        Next
+
+        in_id = in_id.Substring(0, in_id.Length - 2)
+
+        Dim query As String = "
+            SELECT id_design_price, id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, is_active_wh, id_user, id_fg_propose_price, is_design_cost
+            FROM tb_m_design_price
+            WHERE id_design IN (" + in_id + ") AND design_price_start_date = '" + effective_date + "'
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        Dim json As String = Newtonsoft.Json.JsonConvert.SerializeObject(data)
+
+        Dim pathRoot As String = Application.StartupPath + "\download\"
+
+        If Not IO.Directory.Exists(pathRoot) Then
+            System.IO.Directory.CreateDirectory(pathRoot)
+        End If
+
+        Dim fileName As String = "sync-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".json"
+        Dim file As String = IO.Path.Combine(pathRoot, fileName)
+
+        Dim fs As IO.FileStream = System.IO.File.Create(file)
+
+        Dim info As Byte() = New System.Text.UTF8Encoding(True).GetBytes(json)
+
+        fs.Write(info, 0, info.Length)
+
+        fs.Close()
+
+        Dim accessToken As String = getAccessToken()
+
+        Dim url As String = host + "/api/sync/design-price"
+
+        Dim wc As Net.WebClient = New Net.WebClient()
+
+        wc.Headers.Add("Accept", "application/json")
+        wc.Headers.Add("Authorization", accessToken)
+
+        Dim responseArray As Byte() = wc.UploadFile(url, "POST", file)
+
+        Dim responseString As String = System.Text.Encoding.ASCII.GetString(responseArray)
+
+        Dim jsonRes As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
+
+        If jsonRes("success") Then
+            infoCustom("Sync design price completed.")
+        End If
+
+        removeAccessToken(accessToken)
+    End Sub
+
+    Sub syncEmployeeUser()
+        Dim j_tb_pos_role As String = tableToJson("tb_pos_role", "SELECT id_pos_role, role FROM tb_pos_role")
+        Dim j_tb_m_employee As String = tableToJson("tb_m_employee", "
+            SELECT e.id_employee, e.id_sex, e.id_departement, e.id_blood_type, e.id_religion, e.id_country, e.id_education, e.id_employee_status, e.start_period, e.end_period, e.id_employee_active, e.employee_code, e.employee_name, e.employee_nick_name, e.employee_initial_name, e.employee_pob, e.employee_dob, e.employee_ethnic, e.employee_join_date, e.employee_last_date, e.employee_position, e.id_employee_level, e.email_lokal, e.email_lokal_pass, e.email_external, e.email_external_pass, e.email_other, e.email_other_pass, e.phone, e.phone_mobile, e.phone_ext, e.employee_ktp, e.employee_ktp_period, e.employee_passport, e.employee_passport_period, e.employee_bpjs_tk, e.employee_bpjs_tk_date, e.employee_bpjs_kesehatan, e.employee_bpjs_kesehatan_date, e.employee_npwp, e.address_primary, e.address_additional, e.id_marriage_status, e.husband, e.wife, e.child1, e.child2, e.child3, NULL AS basic_salary, NULL AS allow_job, NULL AS allow_meal, NULL AS allow_trans, NULL AS allow_house, NULL AS allow_car, d.id_outlet
+            FROM tb_m_employee AS e
+            LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement
+            WHERE (d.id_outlet <> '' OR d.id_outlet IS NOT NULL) AND id_employee_active = 1
+
+        ")
+        Dim j_tb_pos_user As String = tableToJson("tb_pos_user", "SELECT id_pos_user, id_employee, id_pos_role, username, password, is_change FROM tb_pos_user")
+
+        Dim out As String = "{" + j_tb_pos_role + "," + j_tb_m_employee + "," + j_tb_pos_user + "}"
+
+        Dim pathRoot As String = Application.StartupPath + "\download\"
+
+        If Not IO.Directory.Exists(pathRoot) Then
+            System.IO.Directory.CreateDirectory(pathRoot)
+        End If
+
+        Dim fileName As String = "sync-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".json"
+        Dim file As String = IO.Path.Combine(pathRoot, fileName)
+
+        Dim fs As IO.FileStream = System.IO.File.Create(file)
+
+        Dim info As Byte() = New System.Text.UTF8Encoding(True).GetBytes(out)
+
+        fs.Write(info, 0, info.Length)
+
+        fs.Close()
+
+        Dim accessToken As String = getAccessToken()
+
+        Dim url As String = host + "/api/sync/user"
+
+        Dim wc As Net.WebClient = New Net.WebClient()
+
+        wc.Headers.Add("Accept", "application/json")
+        wc.Headers.Add("Authorization", accessToken)
+
+        Dim responseArray As Byte() = wc.UploadFile(url, "POST", file)
+
+        Dim responseString As String = System.Text.Encoding.ASCII.GetString(responseArray)
+
+        Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
+
+        If json("success") Then
+            infoCustom("Sync user completed.")
+        End If
+
+        removeAccessToken(accessToken)
+    End Sub
+
     Function tableToJson(table As String, query As String) As String
         Dim out As String = """" + table + """:"
 

@@ -357,6 +357,7 @@ WHERE ovhp.id_ovh_price='" & SLEOvh.EditValue.ToString & "'"
         If dt.Rows.Count > 0 Then
             already_ret_out = True
         End If
+
         'cek dengan requisition di DB
         For i As Integer = 0 To ((GVRetDetail.RowCount - 1) - GetGroupRowCount(GVRetDetail))
             Dim id_prod_order_det_cekya As String = GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString

@@ -44,13 +44,13 @@ Partial Class FormReportBudget
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEDepartement = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelChart = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -88,7 +88,24 @@ Partial Class FormReportBudget
         Me.TEBudgetSum = New DevExpress.XtraEditors.TextEdit()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPNew = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPOld = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCReportBudgetNew = New DevExpress.XtraGrid.GridControl()
+        Me.CMView = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.TMBookedPO = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ShowReceivingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ShowItemDeliveredToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GVReportBudgetNew = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCNew = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.GaugeControl4 = New DevExpress.XtraGauges.Win.GaugeControl()
@@ -123,20 +140,7 @@ Partial Class FormReportBudget
         Me.TEActualSumNew = New DevExpress.XtraEditors.TextEdit()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.TEBudgetSumNew = New DevExpress.XtraEditors.TextEdit()
-        Me.GCReportBudgetNew = New DevExpress.XtraGrid.GridControl()
-        Me.GVReportBudgetNew = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CMView = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.TMBookedPO = New System.Windows.Forms.ToolStripMenuItem()
+        Me.XTPOld = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.GCItemCat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVItemCat, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -178,7 +182,9 @@ Partial Class FormReportBudget
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPNew.SuspendLayout()
-        Me.XTPOld.SuspendLayout()
+        CType(Me.GCReportBudgetNew, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMView.SuspendLayout()
+        CType(Me.GVReportBudgetNew, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCNew, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCNew.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -205,9 +211,7 @@ Partial Class FormReportBudget
         CType(Me.ASSumNew, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEActualSumNew.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEBudgetSumNew.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCReportBudgetNew, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVReportBudgetNew, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.CMView.SuspendLayout()
+        Me.XTPOld.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCItemCat
@@ -363,15 +367,15 @@ Partial Class FormReportBudget
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SLEDepartement)
         Me.PanelControl1.Controls.Add(Me.LEYear)
+        Me.PanelControl1.Controls.Add(Me.LabelControl6)
         Me.PanelControl1.Controls.Add(Me.DEUntil)
         Me.PanelControl1.Controls.Add(Me.Label4)
         Me.PanelControl1.Controls.Add(Me.SLEMainCategory)
-        Me.PanelControl1.Controls.Add(Me.SLEDepartement)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.BtnView)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
-        Me.PanelControl1.Controls.Add(Me.LabelControl6)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
@@ -380,7 +384,7 @@ Partial Class FormReportBudget
         '
         'LEYear
         '
-        Me.LEYear.Location = New System.Drawing.Point(293, 14)
+        Me.LEYear.Location = New System.Drawing.Point(44, 13)
         Me.LEYear.Name = "LEYear"
         Me.LEYear.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEYear.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("year", "Year")})
@@ -390,7 +394,7 @@ Partial Class FormReportBudget
         'DEUntil
         '
         Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(468, 14)
+        Me.DEUntil.Location = New System.Drawing.Point(219, 13)
         Me.DEUntil.Name = "DEUntil"
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -402,7 +406,7 @@ Partial Class FormReportBudget
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(424, 17)
+        Me.Label4.Location = New System.Drawing.Point(175, 16)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(38, 13)
         Me.Label4.TabIndex = 8913
@@ -410,7 +414,7 @@ Partial Class FormReportBudget
         '
         'SLEMainCategory
         '
-        Me.SLEMainCategory.Location = New System.Drawing.Point(677, 14)
+        Me.SLEMainCategory.Location = New System.Drawing.Point(428, 13)
         Me.SLEMainCategory.Name = "SLEMainCategory"
         Me.SLEMainCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEMainCategory.Properties.View = Me.SearchLookUpEdit1View
@@ -447,14 +451,40 @@ Partial Class FormReportBudget
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 1
         '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(16, 16)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(22, 13)
+        Me.LabelControl2.TabIndex = 28
+        Me.LabelControl2.Text = "Year"
+        '
+        'BtnView
+        '
+        Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
+        Me.BtnView.Location = New System.Drawing.Point(626, 11)
+        Me.BtnView.Name = "BtnView"
+        Me.BtnView.Size = New System.Drawing.Size(75, 23)
+        Me.BtnView.TabIndex = 27
+        Me.BtnView.Text = "View"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(352, 16)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(70, 13)
+        Me.LabelControl1.TabIndex = 25
+        Me.LabelControl1.Text = "Main Category"
+        '
         'SLEDepartement
         '
-        Me.SLEDepartement.Location = New System.Drawing.Point(82, 14)
+        Me.SLEDepartement.Location = New System.Drawing.Point(776, 13)
         Me.SLEDepartement.Name = "SLEDepartement"
         Me.SLEDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEDepartement.Properties.View = Me.GridView2
         Me.SLEDepartement.Size = New System.Drawing.Size(177, 20)
         Me.SLEDepartement.TabIndex = 8910
+        Me.SLEDepartement.Visible = False
         '
         'GridView2
         '
@@ -478,38 +508,14 @@ Partial Class FormReportBudget
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 0
         '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(265, 17)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(22, 13)
-        Me.LabelControl2.TabIndex = 28
-        Me.LabelControl2.Text = "Year"
-        '
-        'BtnView
-        '
-        Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
-        Me.BtnView.Location = New System.Drawing.Point(875, 12)
-        Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(75, 23)
-        Me.BtnView.TabIndex = 27
-        Me.BtnView.Text = "View"
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(601, 17)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(70, 13)
-        Me.LabelControl1.TabIndex = 25
-        Me.LabelControl1.Text = "Main Category"
-        '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(12, 17)
+        Me.LabelControl6.Location = New System.Drawing.Point(707, 16)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(63, 13)
         Me.LabelControl6.TabIndex = 23
         Me.LabelControl6.Text = "Departement"
+        Me.LabelControl6.Visible = False
         '
         'PanelChart
         '
@@ -932,13 +938,198 @@ Partial Class FormReportBudget
         Me.XTPNew.Size = New System.Drawing.Size(1011, 469)
         Me.XTPNew.Text = "Report"
         '
-        'XTPOld
+        'GCReportBudgetNew
         '
-        Me.XTPOld.Controls.Add(Me.GCItemCat)
-        Me.XTPOld.Controls.Add(Me.PanelChart)
-        Me.XTPOld.Name = "XTPOld"
-        Me.XTPOld.Size = New System.Drawing.Size(1011, 469)
-        Me.XTPOld.Text = "Old Report"
+        Me.GCReportBudgetNew.ContextMenuStrip = Me.CMView
+        Me.GCReportBudgetNew.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCReportBudgetNew.Location = New System.Drawing.Point(0, 114)
+        Me.GCReportBudgetNew.MainView = Me.GVReportBudgetNew
+        Me.GCReportBudgetNew.Name = "GCReportBudgetNew"
+        Me.GCReportBudgetNew.Size = New System.Drawing.Size(1011, 355)
+        Me.GCReportBudgetNew.TabIndex = 9
+        Me.GCReportBudgetNew.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReportBudgetNew})
+        '
+        'CMView
+        '
+        Me.CMView.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TMBookedPO, Me.ShowReceivingToolStripMenuItem, Me.ShowItemDeliveredToolStripMenuItem})
+        Me.CMView.Name = "ContextMenuStripYM"
+        Me.CMView.Size = New System.Drawing.Size(183, 70)
+        '
+        'TMBookedPO
+        '
+        Me.TMBookedPO.Name = "TMBookedPO"
+        Me.TMBookedPO.Size = New System.Drawing.Size(182, 22)
+        Me.TMBookedPO.Text = "Show Booked PO"
+        '
+        'ShowReceivingToolStripMenuItem
+        '
+        Me.ShowReceivingToolStripMenuItem.Name = "ShowReceivingToolStripMenuItem"
+        Me.ShowReceivingToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.ShowReceivingToolStripMenuItem.Text = "Show Item Received"
+        '
+        'ShowItemDeliveredToolStripMenuItem
+        '
+        Me.ShowItemDeliveredToolStripMenuItem.Name = "ShowItemDeliveredToolStripMenuItem"
+        Me.ShowItemDeliveredToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.ShowItemDeliveredToolStripMenuItem.Text = "Show Item Delivered"
+        '
+        'GVReportBudgetNew
+        '
+        Me.GVReportBudgetNew.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn26, Me.GridColumn25, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24})
+        Me.GVReportBudgetNew.GridControl = Me.GCReportBudgetNew
+        Me.GVReportBudgetNew.Name = "GVReportBudgetNew"
+        Me.GVReportBudgetNew.OptionsBehavior.Editable = False
+        Me.GVReportBudgetNew.OptionsFind.AlwaysVisible = True
+        Me.GVReportBudgetNew.OptionsView.ShowFooter = True
+        Me.GVReportBudgetNew.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Id"
+        Me.GridColumn15.FieldName = "id_item_cat_main"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Departement"
+        Me.GridColumn16.FieldName = "departement"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 0
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Expense Type"
+        Me.GridColumn17.FieldName = "expense_type"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 2
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Main Category"
+        Me.GridColumn18.FieldName = "main_cat"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 1
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn19.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn19.Caption = "Budget"
+        Me.GridColumn19.DisplayFormat.FormatString = "N2"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn19.FieldName = "budget"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget", "{0:N2}")})
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 3
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.Caption = "Booked Budget (PO)"
+        Me.GridColumn20.DisplayFormat.FormatString = "N2"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn20.FieldName = "po_booked"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_booked", "{0:N2}")})
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 4
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn26.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn26.Caption = "Received"
+        Me.GridColumn26.DisplayFormat.FormatString = "N2"
+        Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn26.FieldName = "stok"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "stok", "{0:N2}")})
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 5
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn25.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn25.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn25.Caption = "Delivery"
+        Me.GridColumn25.DisplayFormat.FormatString = "N2"
+        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn25.FieldName = "del"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del", "{0:N2}")})
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 6
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.Caption = "Actual"
+        Me.GridColumn21.DisplayFormat.FormatString = "N2"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn21.FieldName = "rec"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rec", "{0:N2}")})
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 7
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn22.Caption = "Total Used Budget"
+        Me.GridColumn22.DisplayFormat.FormatString = "N2"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn22.FieldName = "val_used"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_used", "{0:N2}")})
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 8
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn23.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn23.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn23.Caption = "Remaining Budget"
+        Me.GridColumn23.DisplayFormat.FormatString = "N2"
+        Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn23.FieldName = "val_remaining"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_remaining", "{0:N2}")})
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 9
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn24.Caption = "Budget Used"
+        Me.GridColumn24.DisplayFormat.FormatString = "{0:N2} %"
+        Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn24.FieldName = "used_percent"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "used_percent", "{0:N2} %", "1")})
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 10
         '
         'PCNew
         '
@@ -1342,156 +1533,13 @@ Partial Class FormReportBudget
         Me.TEBudgetSumNew.Size = New System.Drawing.Size(150, 22)
         Me.TEBudgetSumNew.TabIndex = 7
         '
-        'GCReportBudgetNew
+        'XTPOld
         '
-        Me.GCReportBudgetNew.ContextMenuStrip = Me.CMView
-        Me.GCReportBudgetNew.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCReportBudgetNew.Location = New System.Drawing.Point(0, 114)
-        Me.GCReportBudgetNew.MainView = Me.GVReportBudgetNew
-        Me.GCReportBudgetNew.Name = "GCReportBudgetNew"
-        Me.GCReportBudgetNew.Size = New System.Drawing.Size(1011, 355)
-        Me.GCReportBudgetNew.TabIndex = 9
-        Me.GCReportBudgetNew.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReportBudgetNew})
-        '
-        'GVReportBudgetNew
-        '
-        Me.GVReportBudgetNew.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24})
-        Me.GVReportBudgetNew.GridControl = Me.GCReportBudgetNew
-        Me.GVReportBudgetNew.Name = "GVReportBudgetNew"
-        Me.GVReportBudgetNew.OptionsBehavior.Editable = False
-        Me.GVReportBudgetNew.OptionsFind.AlwaysVisible = True
-        Me.GVReportBudgetNew.OptionsView.ShowFooter = True
-        Me.GVReportBudgetNew.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "Id"
-        Me.GridColumn15.FieldName = "id_item_cat_main"
-        Me.GridColumn15.Name = "GridColumn15"
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Departement"
-        Me.GridColumn16.FieldName = "departement"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 0
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Expense Type"
-        Me.GridColumn17.FieldName = "expense_type"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 2
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "Main Category"
-        Me.GridColumn18.FieldName = "main_cat"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 1
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn19.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn19.Caption = "Budget"
-        Me.GridColumn19.DisplayFormat.FormatString = "N2"
-        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn19.FieldName = "budget"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget", "{0:N2}")})
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 3
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn20.Caption = "Booked Budget (PO)"
-        Me.GridColumn20.DisplayFormat.FormatString = "N2"
-        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn20.FieldName = "po_booked"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_booked", "{0:N2}")})
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 4
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn21.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn21.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn21.Caption = "Actual"
-        Me.GridColumn21.DisplayFormat.FormatString = "N2"
-        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn21.FieldName = "rec"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rec", "{0:N2}")})
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 5
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn22.Caption = "Total Used Budget"
-        Me.GridColumn22.DisplayFormat.FormatString = "N2"
-        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn22.FieldName = "val_used"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_used", "{0:N2}")})
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 6
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn23.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn23.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn23.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn23.Caption = "Remaining Budget"
-        Me.GridColumn23.DisplayFormat.FormatString = "N2"
-        Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn23.FieldName = "val_remaining"
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_remaining", "{0:N2}")})
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 7
-        '
-        'GridColumn24
-        '
-        Me.GridColumn24.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn24.Caption = "Budget Used"
-        Me.GridColumn24.DisplayFormat.FormatString = "{0:N2} %"
-        Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn24.FieldName = "used_percent"
-        Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "used_percent", "{0:N2} %", "1")})
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 8
-        '
-        'CMView
-        '
-        Me.CMView.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TMBookedPO})
-        Me.CMView.Name = "ContextMenuStripYM"
-        Me.CMView.Size = New System.Drawing.Size(166, 48)
-        '
-        'TMBookedPO
-        '
-        Me.TMBookedPO.Name = "TMBookedPO"
-        Me.TMBookedPO.Size = New System.Drawing.Size(165, 22)
-        Me.TMBookedPO.Text = "Show Booked PO"
+        Me.XTPOld.Controls.Add(Me.GCItemCat)
+        Me.XTPOld.Controls.Add(Me.PanelChart)
+        Me.XTPOld.Name = "XTPOld"
+        Me.XTPOld.Size = New System.Drawing.Size(1011, 469)
+        Me.XTPOld.Text = "Old Report"
         '
         'FormReportBudget
         '
@@ -1551,7 +1599,9 @@ Partial Class FormReportBudget
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPNew.ResumeLayout(False)
-        Me.XTPOld.ResumeLayout(False)
+        CType(Me.GCReportBudgetNew, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMView.ResumeLayout(False)
+        CType(Me.GVReportBudgetNew, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCNew, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCNew.ResumeLayout(False)
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1581,9 +1631,7 @@ Partial Class FormReportBudget
         CType(Me.ASSumNew, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEActualSumNew.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEBudgetSumNew.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCReportBudgetNew, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVReportBudgetNew, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.CMView.ResumeLayout(False)
+        Me.XTPOld.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1704,4 +1752,8 @@ Partial Class FormReportBudget
     Friend WithEvents TEBudgetSumNew As DevExpress.XtraEditors.TextEdit
     Friend WithEvents CMView As ContextMenuStrip
     Friend WithEvents TMBookedPO As ToolStripMenuItem
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ShowReceivingToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ShowItemDeliveredToolStripMenuItem As ToolStripMenuItem
 End Class
