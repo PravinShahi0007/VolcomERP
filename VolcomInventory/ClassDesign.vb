@@ -2202,6 +2202,14 @@
                     INNER JOIN tb_report_mark rm ON rm.id_report = pdr.id_prod_demand_rev AND rm.report_mark_type= pdr.report_mark_type AND rm.id_report_status=1
                     INNER JOIN tb_prod_demand_design_rev pddr ON pddr.id_prod_demand_rev = pdr.id_prod_demand_rev
                     WHERE pdr.id_prod_demand_rev=" + id_report_trans + " "
+                ElseIf rmt = "22" Then
+                    'F.G PO
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note)
+                    SELECT NOW(), '" + id_user + "', rm.id_user, '" + rmt + "', po.id_prod_order, po.prod_order_number, po.prod_order_date, pdd.id_design, 'PO Created'
+                    FROM tb_prod_order po
+                    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+                    INNER JOIN tb_report_mark rm ON rm.id_report = po.id_prod_order AND rm.report_mark_type= 22 AND rm.id_report_status=1
+                    WHERE po.id_prod_order=" + id_report_trans + " "
                 End If
                 execute_non_query(query, True, "", "", "", "")
             End If

@@ -2014,6 +2014,10 @@
                 nm.id_report = id_report
                 nm.report_mark_type = report_mark_type
                 nm.send_email()
+
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
             End If
 
             Try
