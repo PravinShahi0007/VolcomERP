@@ -299,6 +299,8 @@
         If id_ovh_price = "" Or Not formIsValidInGroup(EPMatWO, GroupGeneralHeader) Or id_comp_ship_to = "-1" Then
             'error input
             stopCustom("Please make sure :" & vbNewLine & "- Work Order is not blank" & vbNewLine & "- Ship To is not blank" & vbNewLine & "- Work Order number is correct")
+        ElseIf Not Date.Parse(TEDelDate.EditValue) = Date.Parse(DEDateNow.EditValue) Then
+            stopCustom("Cant input different date")
         Else
             If id_wo <> "-1" Then
                 'edit

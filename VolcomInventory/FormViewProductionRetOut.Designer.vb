@@ -36,6 +36,7 @@ Partial Class FormViewProductionRetOut
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PEView = New DevExpress.XtraEditors.PictureEdit()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.BUpdate = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtSeason = New DevExpress.XtraEditors.TextEdit()
@@ -105,7 +106,7 @@ Partial Class FormViewProductionRetOut
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupControl3.Location = New System.Drawing.Point(0, 533)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(873, 65)
+        Me.GroupControl3.Size = New System.Drawing.Size(1005, 65)
         Me.GroupControl3.TabIndex = 62
         '
         'BtnAttachment
@@ -113,7 +114,7 @@ Partial Class FormViewProductionRetOut
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BtnAttachment.Location = New System.Drawing.Point(20, 34)
         Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(851, 29)
+        Me.BtnAttachment.Size = New System.Drawing.Size(983, 29)
         Me.BtnAttachment.TabIndex = 5
         Me.BtnAttachment.Text = "Attachment"
         '
@@ -122,7 +123,7 @@ Partial Class FormViewProductionRetOut
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Top
         Me.BMark.Location = New System.Drawing.Point(20, 2)
         Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(851, 32)
+        Me.BMark.Size = New System.Drawing.Size(983, 32)
         Me.BMark.TabIndex = 4
         Me.BMark.Text = "Mark"
         '
@@ -135,7 +136,7 @@ Partial Class FormViewProductionRetOut
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(873, 140)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(1005, 140)
         Me.GroupGeneralHeader.TabIndex = 177
         '
         'PanelControlTopMiddle
@@ -154,7 +155,7 @@ Partial Class FormViewProductionRetOut
         Me.PanelControlTopMiddle.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlTopMiddle.Location = New System.Drawing.Point(134, 2)
         Me.PanelControlTopMiddle.Name = "PanelControlTopMiddle"
-        Me.PanelControlTopMiddle.Size = New System.Drawing.Size(423, 136)
+        Me.PanelControlTopMiddle.Size = New System.Drawing.Size(477, 136)
         Me.PanelControlTopMiddle.TabIndex = 10003
         '
         'MEAdrressCompTo
@@ -166,7 +167,7 @@ Partial Class FormViewProductionRetOut
         Me.MEAdrressCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MEAdrressCompTo.Properties.Appearance.Options.UseFont = True
         Me.MEAdrressCompTo.Properties.ReadOnly = True
-        Me.MEAdrressCompTo.Size = New System.Drawing.Size(320, 42)
+        Me.MEAdrressCompTo.Size = New System.Drawing.Size(374, 42)
         Me.MEAdrressCompTo.TabIndex = 4444
         '
         'LabelControl1
@@ -202,7 +203,7 @@ Partial Class FormViewProductionRetOut
         Me.TxtNameCompFrom.Properties.Appearance.Options.UseFont = True
         Me.TxtNameCompFrom.Properties.EditValueChangedDelay = 1
         Me.TxtNameCompFrom.Properties.ReadOnly = True
-        Me.TxtNameCompFrom.Size = New System.Drawing.Size(212, 20)
+        Me.TxtNameCompFrom.Size = New System.Drawing.Size(266, 20)
         Me.TxtNameCompFrom.TabIndex = 8888
         Me.TxtNameCompFrom.TabStop = False
         '
@@ -224,7 +225,7 @@ Partial Class FormViewProductionRetOut
         Me.TxtOrderNumber.Name = "TxtOrderNumber"
         Me.TxtOrderNumber.Properties.EditValueChangedDelay = 1
         Me.TxtOrderNumber.Properties.ReadOnly = True
-        Me.TxtOrderNumber.Size = New System.Drawing.Size(320, 20)
+        Me.TxtOrderNumber.Size = New System.Drawing.Size(374, 20)
         Me.TxtOrderNumber.TabIndex = 9999
         '
         'TxtCodeCompTo
@@ -251,7 +252,7 @@ Partial Class FormViewProductionRetOut
         Me.TxtNameCompTo.Properties.Appearance.Options.UseFont = True
         Me.TxtNameCompTo.Properties.EditValueChangedDelay = 1
         Me.TxtNameCompTo.Properties.ReadOnly = True
-        Me.TxtNameCompTo.Size = New System.Drawing.Size(212, 20)
+        Me.TxtNameCompTo.Size = New System.Drawing.Size(266, 20)
         Me.TxtNameCompTo.TabIndex = 5555
         Me.TxtNameCompTo.TabStop = False
         '
@@ -289,6 +290,7 @@ Partial Class FormViewProductionRetOut
         'PanelControlTopRight
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopRight.Controls.Add(Me.BUpdate)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl9)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl8)
         Me.PanelControlTopRight.Controls.Add(Me.TxtSeason)
@@ -300,10 +302,18 @@ Partial Class FormViewProductionRetOut
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl6)
         Me.PanelControlTopRight.Controls.Add(Me.DERet)
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopRight.Location = New System.Drawing.Point(557, 2)
+        Me.PanelControlTopRight.Location = New System.Drawing.Point(611, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(314, 136)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(392, 136)
         Me.PanelControlTopRight.TabIndex = 10001
+        '
+        'BUpdate
+        '
+        Me.BUpdate.Location = New System.Drawing.Point(319, 53)
+        Me.BUpdate.Name = "BUpdate"
+        Me.BUpdate.Size = New System.Drawing.Size(63, 23)
+        Me.BUpdate.TabIndex = 10008
+        Me.BUpdate.Text = "update"
         '
         'LabelControl9
         '
@@ -332,7 +342,7 @@ Partial Class FormViewProductionRetOut
         Me.TxtSeason.Name = "TxtSeason"
         Me.TxtSeason.Properties.EditValueChangedDelay = 1
         Me.TxtSeason.Properties.ReadOnly = True
-        Me.TxtSeason.Size = New System.Drawing.Size(210, 20)
+        Me.TxtSeason.Size = New System.Drawing.Size(288, 20)
         Me.TxtSeason.TabIndex = 10003
         Me.TxtSeason.TabStop = False
         '
@@ -343,7 +353,7 @@ Partial Class FormViewProductionRetOut
         Me.TxtRetOutNumber.Name = "TxtRetOutNumber"
         Me.TxtRetOutNumber.Properties.EditValueChangedDelay = 1
         Me.TxtRetOutNumber.Properties.ReadOnly = True
-        Me.TxtRetOutNumber.Size = New System.Drawing.Size(210, 20)
+        Me.TxtRetOutNumber.Size = New System.Drawing.Size(288, 20)
         Me.TxtRetOutNumber.TabIndex = 8
         '
         'TxtDesign
@@ -355,7 +365,7 @@ Partial Class FormViewProductionRetOut
         Me.TxtDesign.Name = "TxtDesign"
         Me.TxtDesign.Properties.EditValueChangedDelay = 1
         Me.TxtDesign.Properties.ReadOnly = True
-        Me.TxtDesign.Size = New System.Drawing.Size(210, 20)
+        Me.TxtDesign.Size = New System.Drawing.Size(288, 20)
         Me.TxtDesign.TabIndex = 10002
         Me.TxtDesign.TabStop = False
         '
@@ -377,7 +387,7 @@ Partial Class FormViewProductionRetOut
         Me.DERetDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DERetDueDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DERetDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DERetDueDate.Size = New System.Drawing.Size(210, 20)
+        Me.DERetDueDate.Size = New System.Drawing.Size(219, 20)
         Me.DERetDueDate.TabIndex = 4
         '
         'LabelControl7
@@ -405,7 +415,7 @@ Partial Class FormViewProductionRetOut
         Me.DERet.Name = "DERet"
         Me.DERet.Properties.EditValueChangedDelay = 1
         Me.DERet.Properties.ReadOnly = True
-        Me.DERet.Size = New System.Drawing.Size(210, 20)
+        Me.DERet.Size = New System.Drawing.Size(288, 20)
         Me.DERet.TabIndex = 162
         '
         'GCRetDetail
@@ -416,7 +426,7 @@ Partial Class FormViewProductionRetOut
         Me.GCRetDetail.MainView = Me.GVRetDetail
         Me.GCRetDetail.Name = "GCRetDetail"
         Me.GCRetDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCRetDetail.Size = New System.Drawing.Size(873, 333)
+        Me.GCRetDetail.Size = New System.Drawing.Size(1005, 333)
         Me.GCRetDetail.TabIndex = 1
         Me.GCRetDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRetDetail})
         '
@@ -558,7 +568,7 @@ Partial Class FormViewProductionRetOut
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupControl1.Location = New System.Drawing.Point(0, 473)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(873, 60)
+        Me.GroupControl1.Size = New System.Drawing.Size(1005, 60)
         Me.GroupControl1.TabIndex = 179
         '
         'PanelControlBottomRight
@@ -567,7 +577,7 @@ Partial Class FormViewProductionRetOut
         Me.PanelControlBottomRight.Controls.Add(Me.LEReportStatus)
         Me.PanelControlBottomRight.Controls.Add(Me.LabelControl21)
         Me.PanelControlBottomRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlBottomRight.Location = New System.Drawing.Point(479, 2)
+        Me.PanelControlBottomRight.Location = New System.Drawing.Point(611, 2)
         Me.PanelControlBottomRight.Name = "PanelControlBottomRight"
         Me.PanelControlBottomRight.Size = New System.Drawing.Size(392, 56)
         Me.PanelControlBottomRight.TabIndex = 139
@@ -596,7 +606,7 @@ Partial Class FormViewProductionRetOut
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(108, 7)
+        Me.MENote.Location = New System.Drawing.Point(108, 9)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
         Me.MENote.Size = New System.Drawing.Size(323, 43)
@@ -604,7 +614,7 @@ Partial Class FormViewProductionRetOut
         '
         'LabelControl18
         '
-        Me.LabelControl18.Location = New System.Drawing.Point(27, 9)
+        Me.LabelControl18.Location = New System.Drawing.Point(27, 11)
         Me.LabelControl18.Name = "LabelControl18"
         Me.LabelControl18.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl18.TabIndex = 138
@@ -614,7 +624,7 @@ Partial Class FormViewProductionRetOut
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(873, 598)
+        Me.ClientSize = New System.Drawing.Size(1005, 598)
         Me.Controls.Add(Me.GCRetDetail)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.GroupGeneralHeader)
@@ -708,4 +718,5 @@ Partial Class FormViewProductionRetOut
     Friend WithEvents TxtDesign As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BUpdate As DevExpress.XtraEditors.SimpleButton
 End Class
