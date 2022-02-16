@@ -297,6 +297,9 @@ Partial Class FormLineList
         Me.BandedGridColumn92 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn93 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn94 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.XtraScrollableControl1.SuspendLayout()
@@ -313,6 +316,8 @@ Partial Class FormLineList
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkPP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         Me.SuspendLayout()
         '
         'BandedGridColumnis_drop
@@ -335,11 +340,12 @@ Partial Class FormLineList
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(957, 46)
+        Me.PanelControl1.Size = New System.Drawing.Size(1201, 49)
         Me.PanelControl1.TabIndex = 0
         '
         'XtraScrollableControl1
         '
+        Me.XtraScrollableControl1.Controls.Add(Me.PanelControl2)
         Me.XtraScrollableControl1.Controls.Add(Me.SLEMechType)
         Me.XtraScrollableControl1.Controls.Add(Me.LabelControl4)
         Me.XtraScrollableControl1.Controls.Add(Me.CEBreakSize)
@@ -351,7 +357,7 @@ Partial Class FormLineList
         Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraScrollableControl1.Location = New System.Drawing.Point(2, 2)
         Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
-        Me.XtraScrollableControl1.Size = New System.Drawing.Size(953, 42)
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1197, 45)
         Me.XtraScrollableControl1.TabIndex = 8913
         '
         'SLEMechType
@@ -381,7 +387,7 @@ Partial Class FormLineList
         '
         'CEBreakSize
         '
-        Me.CEBreakSize.Location = New System.Drawing.Point(18, 46)
+        Me.CEBreakSize.Location = New System.Drawing.Point(35, 112)
         Me.CEBreakSize.Name = "CEBreakSize"
         Me.CEBreakSize.Properties.Caption = "show breakdown size"
         Me.CEBreakSize.Size = New System.Drawing.Size(124, 19)
@@ -432,7 +438,7 @@ Partial Class FormLineList
         'BtnExportToXLSRec
         '
         Me.BtnExportToXLSRec.Image = CType(resources.GetObject("BtnExportToXLSRec.Image"), System.Drawing.Image)
-        Me.BtnExportToXLSRec.Location = New System.Drawing.Point(429, 8)
+        Me.BtnExportToXLSRec.Location = New System.Drawing.Point(414, 8)
         Me.BtnExportToXLSRec.LookAndFeel.SkinName = "Blue"
         Me.BtnExportToXLSRec.Name = "BtnExportToXLSRec"
         Me.BtnExportToXLSRec.Size = New System.Drawing.Size(103, 23)
@@ -444,13 +450,13 @@ Partial Class FormLineList
         Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
         Me.BtnView.Location = New System.Drawing.Point(348, 8)
         Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(75, 23)
+        Me.BtnView.Size = New System.Drawing.Size(62, 23)
         Me.BtnView.TabIndex = 1
         Me.BtnView.Text = "View"
         '
         'CheckEditFreeze
         '
-        Me.CheckEditFreeze.Location = New System.Drawing.Point(629, 10)
+        Me.CheckEditFreeze.Location = New System.Drawing.Point(606, 10)
         Me.CheckEditFreeze.Name = "CheckEditFreeze"
         Me.CheckEditFreeze.Properties.Caption = "Freeze Column"
         Me.CheckEditFreeze.Size = New System.Drawing.Size(93, 19)
@@ -458,7 +464,7 @@ Partial Class FormLineList
         '
         'CheckImg
         '
-        Me.CheckImg.Location = New System.Drawing.Point(540, 10)
+        Me.CheckImg.Location = New System.Drawing.Point(522, 10)
         Me.CheckImg.Name = "CheckImg"
         Me.CheckImg.Properties.Caption = "Show Images"
         Me.CheckImg.Size = New System.Drawing.Size(87, 19)
@@ -467,11 +473,11 @@ Partial Class FormLineList
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 46)
+        Me.GCData.Location = New System.Drawing.Point(0, 49)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemPictureEdit1, Me.RepoLinkProdDemand, Me.RepoLinkPP})
-        Me.GCData.Size = New System.Drawing.Size(957, 494)
+        Me.GCData.Size = New System.Drawing.Size(1201, 515)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -3060,11 +3066,50 @@ Partial Class FormLineList
         Me.BandedGridColumn94.Name = "BandedGridColumn94"
         Me.BandedGridColumn94.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pd_qty_sni#bz#10", "{0:N0}")})
         '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.LabelControl11.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.LabelControl11.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.LabelControl11.Location = New System.Drawing.Point(52, 10)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Padding = New System.Windows.Forms.Padding(3)
+        Me.LabelControl11.Size = New System.Drawing.Size(85, 21)
+        Me.LabelControl11.TabIndex = 8932
+        Me.LabelControl11.Text = "MOVE SEASON"
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.LabelControl6.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.LabelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.LabelControl6.Location = New System.Drawing.Point(9, 10)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Padding = New System.Windows.Forms.Padding(3)
+        Me.LabelControl6.Size = New System.Drawing.Size(39, 21)
+        Me.LabelControl6.TabIndex = 8931
+        Me.LabelControl6.Text = "DROP"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.LabelControl11)
+        Me.PanelControl2.Controls.Add(Me.LabelControl6)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl2.Location = New System.Drawing.Point(1035, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(145, 131)
+        Me.PanelControl2.TabIndex = 8933
+        '
         'FormLineList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(957, 540)
+        Me.ClientSize = New System.Drawing.Size(1201, 564)
         Me.Controls.Add(Me.GCData)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormLineList"
@@ -3087,6 +3132,9 @@ Partial Class FormLineList
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkProdDemand, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkPP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3364,4 +3412,7 @@ Partial Class FormLineList
     Friend WithEvents gridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnis_drop As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnis_move As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class
