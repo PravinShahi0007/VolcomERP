@@ -4226,7 +4226,7 @@ GROUP BY ol.checkout_id
                         SELECT b.id_st_store_bap_det, h.id_sales_return AS id_report, IF(h.id_ret_type = 1, 46, IF(h.id_ret_type = 3, 113, IF(h.id_ret_type = 4, 120, 111))) AS report_mark_type, r.report_mark_type_name, SUM(d.sales_return_det_qty) AS qty
                         FROM tb_sales_return_det AS d
                         LEFT JOIN tb_sales_return AS h ON d.id_sales_return = h.id_sales_return
-                        LEFT JOIN tb_m_comp_contact AS c ON h.id_comp_contact_to = c.id_comp_contact
+                        LEFT JOIN tb_m_comp_contact AS c ON h.id_store_contact_from = c.id_comp_contact
                         LEFT JOIN tb_lookup_report_mark_type AS r ON r.report_mark_type = IF(h.id_ret_type = 1, 46, IF(h.id_ret_type = 3, 113, IF(h.id_ret_type = 4, 120, 111)))
                         LEFT JOIN tb_m_product AS p ON d.id_product = p.id_product
                         LEFT JOIN tb_st_store_bap_det AS b ON p.id_product = b.id_product AND b.id_st_store_bap = " + id_st_store_bap + "
