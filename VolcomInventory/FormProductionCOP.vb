@@ -25,6 +25,7 @@
 ,dsg.`final_cop_rate_cat`,dsg.`final_cop_kurs`,dsg.`final_cop_value`,dsg.`final_cop_mng_kurs`,dsg.`final_cop_mng_value`,dsg.`final_is_approve`
 ,dsg.rate_management,dsg.prod_order_cop_kurs_mng,dsg.prod_order_cop_mng,dsg.prod_order_cop_mng_addcost,dsg.design_name
 ,dsg.design_display_name,dsg.design_code,dsg.id_cop_status,dsg.cop_pre_percent_bea_masuk,dsg.cop_pre_remark,dsg.design_cop,dsg.design_cop_addcost,cd.class,cd.color
+,cd.id_division
 FROM tb_m_design dsg 
 LEFT JOIN (
 	SELECT dc.id_design, 
@@ -159,6 +160,11 @@ WHERE dsg.id_design = '{0}'", id_design)
                     '
                     BUpdateCOP.Enabled = False
                 Else
+                    If data.Rows(0)("id_division").ToString = "14696" Then
+                        'Kids
+                        BSyncSNI.Visible = True
+                    End If
+                    '
                     BApprove.Text = "Lock + Approve"
                     BApprove.Enabled = True
                     '
@@ -675,6 +681,10 @@ WHERE `id_design`='" & id_design & "' "
                 TECOPCurrent.EditValue = total / TEQty.EditValue
                 TEUnitPrice.EditValue = total / TEQty.EditValue
             End If
+            '
+            If BSyncSNI.Visible = True Then
+                load_sni()
+            End If
         End If
     End Sub
 
@@ -734,5 +744,28 @@ WHERE `id_design`='" & id_design & "' "
 
     Private Sub TEUnitPrice_EditValueChanged(sender As Object, e As EventArgs) Handles TEUnitPrice.EditValueChanged
         TECOPCurrent.EditValue = TEUnitPrice.EditValue
+    End Sub
+
+    Private Sub BSyncSNI_Click(sender As Object, e As EventArgs) Handles BSyncSNI.Click
+        load_sni()
+    End Sub
+
+    Sub load_sni()
+        'check
+        Dim q As String = "SELECT IFNULL(SUM(tb.realis),0) AS val FROM
+(
+	SELECT id_sni_realisasi,SUM((rec_qty-ret_qty)*bom_price) AS realis FROM tb_sni_realisasi_return
+	WHERE id_sni_realisasi = (SELECT id_sni_realisasi FROM `tb_sni_realisasi_return` ret INNER JOIN tb_m_product p ON p.`id_product`=ret.`id_product` WHERE p.`id_design`='" & id_design & "' AND ret.`id_sni_realisasi`=6 LIMIT 1)
+	UNION ALL
+	SELECT id_sni_realisasi,SUM(qty*`value`) AS realis FROM tb_sni_realisasi_budget
+	WHERE id_sni_realisasi = (SELECT id_sni_realisasi FROM `tb_sni_realisasi_return` ret INNER JOIN tb_m_product p ON p.`id_product`=ret.`id_product` WHERE p.`id_design`='" & id_design & "' AND ret.`id_sni_realisasi`=6 LIMIT 1)
+)tb
+having val>0"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            TEAddCost.EditValue = dt.Rows(0)("val")
+        Else
+            warningCustom("SNI realisasi tidak ditemukan")
+        End If
     End Sub
 End Class
