@@ -123,10 +123,11 @@ Partial Class FormRiderContract
         Me.GridColumn4.Caption = "Periode Start"
         Me.GridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn4.FieldName = "kontrak_from"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
-        Me.GridColumn4.Width = 261
+        Me.GridColumn4.Width = 169
         '
         'BImport
         '
@@ -212,10 +213,11 @@ Partial Class FormRiderContract
         Me.GridColumn9.Caption = "Periode Until"
         Me.GridColumn9.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn9.FieldName = "kontrak_until"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 3
-        Me.GridColumn9.Width = 261
+        Me.GridColumn9.Width = 169
         '
         'GridColumn10
         '
@@ -266,6 +268,7 @@ Partial Class FormRiderContract
         Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn13.Caption = "*"
         Me.GridColumn13.ColumnEdit = Me.RICE
+        Me.GridColumn13.FieldName = "is_check"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 0
