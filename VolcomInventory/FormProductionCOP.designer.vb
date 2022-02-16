@@ -23,6 +23,8 @@ Partial Class FormProductionCOP
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionCOP))
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEColor = New DevExpress.XtraEditors.TextEdit()
+        Me.TEClass = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TEDesign = New DevExpress.XtraEditors.TextEdit()
         Me.LEStatus = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -174,12 +176,13 @@ Partial Class FormProductionCOP
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMEditCost = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewLogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TEClass = New DevExpress.XtraEditors.TextEdit()
-        Me.TEColor = New DevExpress.XtraEditors.TextEdit()
+        Me.BSyncSNI = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl8.SuspendLayout()
+        CType(Me.TEColor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEClass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -254,8 +257,6 @@ Partial Class FormProductionCOP
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
         Me.ViewMenu.SuspendLayout()
-        CType(Me.TEClass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEColor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -283,6 +284,20 @@ Partial Class FormProductionCOP
         Me.PanelControl8.Name = "PanelControl8"
         Me.PanelControl8.Size = New System.Drawing.Size(570, 65)
         Me.PanelControl8.TabIndex = 159
+        '
+        'TEColor
+        '
+        Me.TEColor.Location = New System.Drawing.Point(460, 10)
+        Me.TEColor.Name = "TEColor"
+        Me.TEColor.Size = New System.Drawing.Size(88, 20)
+        Me.TEColor.TabIndex = 159
+        '
+        'TEClass
+        '
+        Me.TEClass.Location = New System.Drawing.Point(69, 11)
+        Me.TEClass.Name = "TEClass"
+        Me.TEClass.Size = New System.Drawing.Size(88, 20)
+        Me.TEClass.TabIndex = 158
         '
         'LabelControl1
         '
@@ -1236,6 +1251,7 @@ Partial Class FormProductionCOP
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BSyncSNI)
         Me.PanelControl3.Controls.Add(Me.LPercentBeaMasuk)
         Me.PanelControl3.Controls.Add(Me.BPrintCOPMan)
         Me.PanelControl3.Controls.Add(Me.TEPercentBeamasuk)
@@ -2052,19 +2068,16 @@ Partial Class FormProductionCOP
         Me.ViewLogToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.ViewLogToolStripMenuItem.Text = "View Log"
         '
-        'TEClass
+        'BSyncSNI
         '
-        Me.TEClass.Location = New System.Drawing.Point(69, 11)
-        Me.TEClass.Name = "TEClass"
-        Me.TEClass.Size = New System.Drawing.Size(88, 20)
-        Me.TEClass.TabIndex = 158
-        '
-        'TEColor
-        '
-        Me.TEColor.Location = New System.Drawing.Point(460, 10)
-        Me.TEColor.Name = "TEColor"
-        Me.TEColor.Size = New System.Drawing.Size(88, 20)
-        Me.TEColor.TabIndex = 159
+        Me.BSyncSNI.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BSyncSNI.Image = CType(resources.GetObject("BSyncSNI.Image"), System.Drawing.Image)
+        Me.BSyncSNI.Location = New System.Drawing.Point(795, 2)
+        Me.BSyncSNI.Name = "BSyncSNI"
+        Me.BSyncSNI.Size = New System.Drawing.Size(106, 41)
+        Me.BSyncSNI.TabIndex = 159
+        Me.BSyncSNI.Text = "Sync SNI"
+        Me.BSyncSNI.Visible = False
         '
         'FormProductionCOP
         '
@@ -2086,6 +2099,8 @@ Partial Class FormProductionCOP
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl8.ResumeLayout(False)
         Me.PanelControl8.PerformLayout()
+        CType(Me.TEColor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEClass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2170,8 +2185,6 @@ Partial Class FormProductionCOP
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl4.ResumeLayout(False)
         Me.ViewMenu.ResumeLayout(False)
-        CType(Me.TEClass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEColor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2330,4 +2343,5 @@ Partial Class FormProductionCOP
     Friend WithEvents BApprove As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEColor As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TEClass As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BSyncSNI As DevExpress.XtraEditors.SimpleButton
 End Class
