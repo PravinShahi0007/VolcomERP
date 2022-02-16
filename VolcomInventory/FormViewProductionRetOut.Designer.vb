@@ -36,6 +36,7 @@ Partial Class FormViewProductionRetOut
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PEView = New DevExpress.XtraEditors.PictureEdit()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.BUpdate = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtSeason = New DevExpress.XtraEditors.TextEdit()
@@ -65,7 +66,6 @@ Partial Class FormViewProductionRetOut
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
-        Me.BUpdate = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -306,6 +306,14 @@ Partial Class FormViewProductionRetOut
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(392, 136)
         Me.PanelControlTopRight.TabIndex = 10001
+        '
+        'BUpdate
+        '
+        Me.BUpdate.Location = New System.Drawing.Point(319, 53)
+        Me.BUpdate.Name = "BUpdate"
+        Me.BUpdate.Size = New System.Drawing.Size(63, 23)
+        Me.BUpdate.TabIndex = 10008
+        Me.BUpdate.Text = "update"
         '
         'LabelControl9
         '
@@ -598,7 +606,7 @@ Partial Class FormViewProductionRetOut
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(108, 7)
+        Me.MENote.Location = New System.Drawing.Point(108, 9)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
         Me.MENote.Size = New System.Drawing.Size(323, 43)
@@ -606,19 +614,11 @@ Partial Class FormViewProductionRetOut
         '
         'LabelControl18
         '
-        Me.LabelControl18.Location = New System.Drawing.Point(27, 9)
+        Me.LabelControl18.Location = New System.Drawing.Point(27, 11)
         Me.LabelControl18.Name = "LabelControl18"
         Me.LabelControl18.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl18.TabIndex = 138
         Me.LabelControl18.Text = "Note"
-        '
-        'BUpdate
-        '
-        Me.BUpdate.Location = New System.Drawing.Point(319, 53)
-        Me.BUpdate.Name = "BUpdate"
-        Me.BUpdate.Size = New System.Drawing.Size(63, 23)
-        Me.BUpdate.TabIndex = 10008
-        Me.BUpdate.Text = "update"
         '
         'FormViewProductionRetOut
         '
