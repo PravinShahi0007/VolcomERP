@@ -561,48 +561,53 @@ WHERE ovhp.id_ovh_price='" & SLEOvh.EditValue.ToString & "'"
     End Sub
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        GVRetDetail.BestFitColumns()
-        ReportProductionRetOut.dt = GCRetDetail.DataSource
-        ReportProductionRetOut.id_prod_order_ret_out = id_prod_order_ret_out
-        Dim Report As New ReportProductionRetOut()
+        If id_report_status = "6" Then
+            GVRetDetail.BestFitColumns()
+            ReportProductionRetOut.dt = GCRetDetail.DataSource
+            ReportProductionRetOut.id_prod_order_ret_out = id_prod_order_ret_out
+            Dim Report As New ReportProductionRetOut()
 
-        ' '... 
-        ' ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVRetDetail.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.GVRetDetail.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVRetDetail.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVRetDetail.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        'Grid Detail
-        ReportStyleGridview(Report.GVRetDetail)
+            'Grid Detail
+            ReportStyleGridview(Report.GVRetDetail)
 
-        'Parse val
-        Report.LabelPO.Text = TxtOrderNumber.Text
-        Report.LabelNo.Text = TxtRetOutNumber.Text
-        Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
-        Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
-        Report.LabelDate.Text = DERet.Text
-        Report.LabelDueDate.Text = DERetDueDate.Text
-        Report.LabelDesign.Text = TxtDesign.Text.ToString
-        Report.LabelSeason.Text = TxtSeason.Text.ToString
-        Report.LabelNote.Text = MENote.Text
-        '
-        If LERetType.EditValue.ToString = "2" Then
-            Report.LOVH1.Visible = True
-            Report.LOVH2.Visible = True
-            Report.LOVH3.Visible = True
-            Report.LOVH3.Text = SLEOvh.Text.ToString
+            'Parse val
+            Report.LabelPO.Text = TxtOrderNumber.Text
+            Report.LabelNo.Text = TxtRetOutNumber.Text
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
+            Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
+            Report.LabelDate.Text = DERet.Text
+            Report.LabelDueDate.Text = DERetDueDate.Text
+            Report.LabelDesign.Text = TxtDesign.Text.ToString
+            Report.LabelSeason.Text = TxtSeason.Text.ToString
+            Report.LabelNote.Text = MENote.Text
+            '
+            If LERetType.EditValue.ToString = "2" Then
+                Report.LOVH1.Visible = True
+                Report.LOVH2.Visible = True
+                Report.LOVH3.Visible = True
+                Report.LOVH3.Text = SLEOvh.Text.ToString
+            Else
+                Report.LOVH1.Visible = False
+                Report.LOVH2.Visible = False
+                Report.LOVH3.Visible = False
+            End If
+            '
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
         Else
-            Report.LOVH1.Visible = False
-            Report.LOVH2.Visible = False
-            Report.LOVH3.Visible = False
+            warningCustom("Dokumen belum melalui proses approval")
         End If
-        '
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
+
         Cursor = Cursors.Default
     End Sub
     'Validating

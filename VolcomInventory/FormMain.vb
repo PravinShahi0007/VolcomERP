@@ -9989,6 +9989,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormQCReport1" Then
             FormQCReport1.Close()
             FormQCReport1.Dispose()
+        ElseIf formName = "FormRiderContract" Then
+            FormRiderContract.Close()
+            FormRiderContract.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -17083,6 +17086,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormVirtualSales.Show()
             FormVirtualSales.WindowState = FormWindowState.Maximized
             FormVirtualSales.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBRiderContract_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRiderContract.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormRiderContract.MdiParent = Me
+            FormRiderContract.Show()
+            FormRiderContract.WindowState = FormWindowState.Maximized
+            FormRiderContract.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
