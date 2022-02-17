@@ -2581,6 +2581,13 @@ WHERE recd.`id_prod_order_rec`='" & id_report & "'"
                 id_status_reportx = "6"
             End If
 
+            If id_status_reportx = "6" Then
+                'complete
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
+            End If
+
             'cari status di db
             Dim id_report_now As String = execute_query("SELECT id_report_status FROM tb_pl_prod_order WHERE id_pl_prod_order='" & id_report & "'", 0, True, "", "", "", "")
 

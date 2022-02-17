@@ -2255,6 +2255,15 @@
                     INNER JOIN tb_prod_order po ON po.id_prod_order = q.id_prod_order
                     INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
                     WHERE q.id_prod_fc=" + id_report_trans + " "
+                ElseIf rmt = "33" Then
+                    'PL (Handover)
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note)
+                    SELECT NOW(), '" + id_user + "' , IFNULL(rm.id_user, '" + id_user + "'), '" + rmt + "', pl.id_pl_prod_order, pl.pl_prod_order_number, pl.pl_prod_order_date, pdd.id_design, 'Packing List (Handover to WH)'
+                    FROM tb_pl_prod_order pl
+                    LEFT JOIN tb_report_mark rm ON rm.id_report = pl.id_pl_prod_order AND rm.report_mark_type=" + rmt + " AND rm.id_report_status=1
+                    INNER JOIN tb_prod_order po ON po.id_prod_order = pl.id_prod_order
+                    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+                    WHERE pl.id_pl_prod_order=" + id_report_trans + " "
                 End If
                 execute_non_query(query, True, "", "", "", "")
             End If
