@@ -2246,6 +2246,51 @@
                     INNER JOIN tb_prod_order po ON po.id_prod_order = r.id_prod_order
                     INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
                     WHERE r.id_prod_order_ret_in=" + id_report_trans + " "
+                ElseIf rmt = "105" Or rmt = "224" Then
+                    'QC REPORT II
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note)
+                    SELECT NOW(), '" + id_user + "', IFNULL(rm.id_user, '" + id_user + "'), '" + rmt + "', q.id_prod_fc, q.prod_fc_number, q.prod_fc_date, pdd.id_design, 'QC Report II'
+                    FROM tb_prod_fc q
+                    LEFT JOIN tb_report_mark rm ON rm.id_report = q.id_prod_fc AND rm.report_mark_type=" + rmt + " AND rm.id_report_status=1
+                    INNER JOIN tb_prod_order po ON po.id_prod_order = q.id_prod_order
+                    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+                    WHERE q.id_prod_fc=" + id_report_trans + " "
+                ElseIf rmt = "33" Then
+                    'PL (Handover)
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note)
+                    SELECT NOW(), '" + id_user + "' , IFNULL(rm.id_user, '" + id_user + "'), '" + rmt + "', pl.id_pl_prod_order, pl.pl_prod_order_number, pl.pl_prod_order_date, pdd.id_design, 'Packing List (Handover to WH)'
+                    FROM tb_pl_prod_order pl
+                    LEFT JOIN tb_report_mark rm ON rm.id_report = pl.id_pl_prod_order AND rm.report_mark_type=" + rmt + " AND rm.id_report_status=1
+                    INNER JOIN tb_prod_order po ON po.id_prod_order = pl.id_prod_order
+                    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+                    WHERE pl.id_pl_prod_order=" + id_report_trans + " "
+                ElseIf rmt = "37" Then
+                    ' REC IN WH
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note)
+                    SELECT NOW(), '" + id_user + "', rm.id_user, 37, r.id_pl_prod_order_rec, r.pl_prod_order_rec_number, r.pl_prod_order_rec_date, pdd.id_design, 'Received by WH'
+                    FROM tb_pl_prod_order_rec r
+                    INNER JOIN tb_report_mark rm ON rm.id_report = r.id_pl_prod_order_rec AND rm.report_mark_type=37 AND rm.id_report_status=1
+                    INNER JOIN tb_pl_prod_order pl ON pl.id_pl_prod_order = r.id_pl_prod_order
+                    INNER JOIN tb_prod_order po ON po.id_prod_order = pl.id_prod_order
+                    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+                    WHERE r.id_pl_prod_order_rec=" + id_report_trans + " "
+                ElseIf rmt = "70" Then
+                    'PP New Product
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note)
+                    SELECT NOW(), '" + id_user + "', rm.id_user, 70, p.id_fg_propose_price, p.fg_propose_price_number, p.fg_propose_price_date, pd.id_design, 'PP New Product'
+                    FROM tb_fg_propose_price p
+                    INNER JOIN tb_report_mark rm ON rm.id_report = p.id_fg_propose_price AND rm.report_mark_type=70 AND rm.id_report_status=1
+                    INNER JOIN tb_fg_propose_price_detail pd ON pd.id_fg_propose_price = p.id_fg_propose_price
+                    WHERE p.id_fg_propose_price=" + id_report_trans + " AND pd.is_active=1 "
+                ElseIf rmt = "188" Then
+                    'PP NEW PRODUCT REVISE
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note)
+                    SELECT NOW(), '" + id_user + "', rm.id_user, 188, pr.id_fg_propose_price_rev, CONCAT(p.fg_propose_price_number,'/Rev',pr.rev_count), pr.created_date, prd.id_design, 'PP New Product- Revise'
+                    FROM tb_fg_propose_price_rev pr
+                    INNER JOIN tb_fg_propose_price p ON p.id_fg_propose_price = pr.id_fg_propose_price
+                    INNER JOIN tb_report_mark rm ON rm.id_report = pr.id_fg_propose_price_rev AND rm.report_mark_type=188 AND rm.id_report_status=1
+                    INNER JOIN tb_fg_propose_price_rev_det prd ON prd.id_fg_propose_price_rev = pr.id_fg_propose_price_rev
+                    WHERE pr.id_fg_propose_price_rev=" + id_report_trans + " "
                 End If
                 execute_non_query(query, True, "", "", "", "")
             End If
