@@ -2246,6 +2246,15 @@
                     INNER JOIN tb_prod_order po ON po.id_prod_order = r.id_prod_order
                     INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
                     WHERE r.id_prod_order_ret_in=" + id_report_trans + " "
+                ElseIf rmt = "105" Or rmt = "224" Then
+                    'QC REPORT II
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note)
+                    SELECT NOW(), '" + id_user + "', IFNULL(rm.id_user, '" + id_user + "'), '" + rmt + "', q.id_prod_fc, q.prod_fc_number, q.prod_fc_date, pdd.id_design, 'QC Report II'
+                    FROM tb_prod_fc q
+                    LEFT JOIN tb_report_mark rm ON rm.id_report = q.id_prod_fc AND rm.report_mark_type=" + rmt + " AND rm.id_report_status=1
+                    INNER JOIN tb_prod_order po ON po.id_prod_order = q.id_prod_order
+                    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+                    WHERE q.id_prod_fc=" + id_report_trans + " "
                 End If
                 execute_non_query(query, True, "", "", "", "")
             End If

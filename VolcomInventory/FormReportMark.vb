@@ -4988,6 +4988,14 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 id_status_reportx = "6"
             End If
 
+            If id_status_reportx = "6" Then
+                'complete
+
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
+            End If
+
             'cari status di db
             Dim id_report_now As String = execute_query("SELECT id_report_status FROM tb_prod_fc WHERE id_prod_fc='" & id_report & "'", 0, True, "", "", "", "")
 
