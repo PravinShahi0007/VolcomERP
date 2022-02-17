@@ -2274,6 +2274,14 @@
                     INNER JOIN tb_prod_order po ON po.id_prod_order = pl.id_prod_order
                     INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
                     WHERE r.id_pl_prod_order_rec=" + id_report_trans + " "
+                ElseIf rmt = "70" Then
+                    'PP New Product
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note)
+                    SELECT NOW(), '" + id_user + "', rm.id_user, 70, p.id_fg_propose_price, p.fg_propose_price_number, p.fg_propose_price_date, pd.id_design, 'PP New Product'
+                    FROM tb_fg_propose_price p
+                    INNER JOIN tb_report_mark rm ON rm.id_report = p.id_fg_propose_price AND rm.report_mark_type=70 AND rm.id_report_status=1
+                    INNER JOIN tb_fg_propose_price_detail pd ON pd.id_fg_propose_price = p.id_fg_propose_price
+                    WHERE p.id_fg_propose_price=" + id_report_trans + " AND pd.is_active=1 "
                 End If
                 execute_non_query(query, True, "", "", "", "")
             End If

@@ -3967,6 +3967,10 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                         execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PP;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
                     End Try
                 End If
+
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_fg_propose_price SET id_report_status='{0}' WHERE id_fg_propose_price ='{1}'", id_status_reportx, id_report)
