@@ -2581,6 +2581,13 @@ WHERE recd.`id_prod_order_rec`='" & id_report & "'"
                 id_status_reportx = "6"
             End If
 
+            If id_status_reportx = "6" Then
+                'complete
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
+            End If
+
             'cari status di db
             Dim id_report_now As String = execute_query("SELECT id_report_status FROM tb_pl_prod_order WHERE id_pl_prod_order='" & id_report & "'", 0, True, "", "", "", "")
 
@@ -3960,6 +3967,10 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                         execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PP;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
                     End Try
                 End If
+
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_fg_propose_price SET id_report_status='{0}' WHERE id_fg_propose_price ='{1}'", id_status_reportx, id_report)
@@ -4986,6 +4997,14 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
             'Final Clear
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'complete
+
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
             End If
 
             'cari status di db
@@ -8265,6 +8284,10 @@ WHERE prcd.id_fg_propose_price_rev=" + id_report + " AND !ISNULL(id_design_price
                         execute_non_query("INSERT INTO tb_error_mail(date, description) VALUES(NOW(), 'PP Rev;" + addSlashes(ex.ToString) + "'); ", True, "", "", "", "")
                     End Try
                 End If
+
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
 
                 query = String.Format("UPDATE tb_fg_propose_price_rev SET id_report_status='{0}' WHERE id_fg_propose_price_rev ='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
