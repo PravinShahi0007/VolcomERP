@@ -3021,6 +3021,12 @@
     <Compile Include="FormLineList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormLineListChangesHistory.Designer.vb">
+      <DependentUpon>FormLineListChangesHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormLineListChangesHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormListPOMat.Designer.vb">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
     </Compile>
@@ -12159,6 +12165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormLineList.resx">
       <DependentUpon>FormLineList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLineListChangesHistory.resx">
+      <DependentUpon>FormLineListChangesHistory.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormListPOMat.resx">
       <DependentUpon>FormListPOMat.vb</DependentUpon>

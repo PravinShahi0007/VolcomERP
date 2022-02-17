@@ -8,6 +8,7 @@
 
     Private Sub FormLineList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewType()
+        viewLineListType()
 
         'col
         Dim qry As String = "SELECT * FROM tb_col_line_list l "
@@ -39,6 +40,9 @@
         str = New System.IO.MemoryStream()
         GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
         str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'freeze
+        CheckEditFreeze.EditValue = True
     End Sub
 
     Private Sub FormLineList_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -79,6 +83,11 @@
 UNION ALL
 SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
         viewSearchLookupQuery(SLEMechType, query, "id_type", "type", "id_type")
+    End Sub
+
+    Sub viewLineListType()
+        Dim query As String = "SELECT lv.id_line_list_view, lv.line_list_view FROM tb_lookup_line_list_view lv "
+        viewSearchLookupQuery(SLEViewType, query, "id_line_list_view", "line_list_view", "id_line_list_view")
     End Sub
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
@@ -569,6 +578,43 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
             If GVData.GetRowCellValue(e.RowHandle, "id_design_type").ToString = "2" Then
                 e.Appearance.BackColor = Color.SkyBlue
             End If
+        End If
+    End Sub
+
+    Private Sub BtnViewChange_Click(sender As Object, e As EventArgs) Handles BtnViewChange.Click
+        Cursor = Cursors.WaitCursor
+        FormLineListChangesHistory.id_season = SLESeason.EditValue.ToString
+        FormLineListChangesHistory.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEViewType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEViewType.EditValueChanged
+        If SLEViewType.EditValue.ToString = "1" Then
+            DEChangesDate.Enabled = False
+        Else
+            DEChangesDate.Enabled = True
+            Dim dtnow As DateTime = getTimeDB()
+            DEChangesDate.EditValue = dtnow
+        End If
+    End Sub
+
+    Private Sub RepoBtnChangesHist_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoBtnChangesHist.ButtonClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormLineListChangesHistory.is_from_beginning = True
+            FormLineListChangesHistory.id_design = GVData.GetFocusedRowCellValue("id_design").ToString
+            FormLineListChangesHistory.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoLinkChanges_Click(sender As Object, e As EventArgs) Handles RepoLinkChanges.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormLineListChangesHistory.is_from_beginning = True
+            FormLineListChangesHistory.id_design = GVData.GetFocusedRowCellValue("id_design").ToString
+            FormLineListChangesHistory.ShowDialog()
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class
