@@ -2282,6 +2282,15 @@
                     INNER JOIN tb_report_mark rm ON rm.id_report = p.id_fg_propose_price AND rm.report_mark_type=70 AND rm.id_report_status=1
                     INNER JOIN tb_fg_propose_price_detail pd ON pd.id_fg_propose_price = p.id_fg_propose_price
                     WHERE p.id_fg_propose_price=" + id_report_trans + " AND pd.is_active=1 "
+                ElseIf rmt = "188" Then
+                    'PP NEW PRODUCT REVISE
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note)
+                    SELECT NOW(), '" + id_user + "', rm.id_user, 188, pr.id_fg_propose_price_rev, CONCAT(p.fg_propose_price_number,'/Rev',pr.rev_count), pr.created_date, prd.id_design, 'PP New Product- Revise'
+                    FROM tb_fg_propose_price_rev pr
+                    INNER JOIN tb_fg_propose_price p ON p.id_fg_propose_price = pr.id_fg_propose_price
+                    INNER JOIN tb_report_mark rm ON rm.id_report = pr.id_fg_propose_price_rev AND rm.report_mark_type=188 AND rm.id_report_status=1
+                    INNER JOIN tb_fg_propose_price_rev_det prd ON prd.id_fg_propose_price_rev = pr.id_fg_propose_price_rev
+                    WHERE pr.id_fg_propose_price_rev=" + id_report_trans + " "
                 End If
                 execute_non_query(query, True, "", "", "", "")
             End If

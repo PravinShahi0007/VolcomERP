@@ -112,7 +112,9 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        FormStoreDisplay.ShowDialog()
+        'FormStoreDisplay.ShowDialog()
+        Dim cd As New ClassDesign()
+        cd.insertLogLineList("188", "10", True, "", "", "", "", "", "")
         'Dim m As New ClassSendEmail()
         'm.design_code = "RTS15250"
         'm.design = "P49 - PS A YANI PONTIANAK"
