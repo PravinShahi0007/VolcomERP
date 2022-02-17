@@ -21,36 +21,36 @@ Partial Class FormRiderContract
     Private Sub InitializeComponent()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPKontrak = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPPPS = New DevExpress.XtraTab.XtraTabPage()
         Me.GCContractList = New DevExpress.XtraGrid.GridControl()
         Me.GVContractList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BImport = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BChanges = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPPPS = New DevExpress.XtraTab.XtraTabPage()
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BChanges = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RICE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BImport = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPKontrak.SuspendLayout()
-        Me.XTPPPS.SuspendLayout()
         CType(Me.GCContractList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVContractList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICE, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPPPS.SuspendLayout()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICE, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XtraTabControl1
@@ -71,14 +71,6 @@ Partial Class FormRiderContract
         Me.XTPKontrak.Name = "XTPKontrak"
         Me.XTPKontrak.Size = New System.Drawing.Size(1095, 538)
         Me.XTPKontrak.Text = "Contract List"
-        '
-        'XTPPPS
-        '
-        Me.XTPPPS.Controls.Add(Me.GridControl2)
-        Me.XTPPPS.Controls.Add(Me.BImport)
-        Me.XTPPPS.Name = "XTPPPS"
-        Me.XTPPPS.Size = New System.Drawing.Size(1095, 538)
-        Me.XTPPPS.Text = "Changes Proposal"
         '
         'GCContractList
         '
@@ -109,6 +101,25 @@ Partial Class FormRiderContract
         Me.GridColumn2.Caption = "ID Comp"
         Me.GridColumn2.Name = "GridColumn2"
         '
+        'GridColumn13
+        '
+        Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn13.Caption = "*"
+        Me.GridColumn13.ColumnEdit = Me.RICE
+        Me.GridColumn13.FieldName = "is_check"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 0
+        Me.GridColumn13.Width = 54
+        '
+        'RICE
+        '
+        Me.RICE.AutoHeight = False
+        Me.RICE.Name = "RICE"
+        Me.RICE.ValueChecked = "yes"
+        Me.RICE.ValueUnchecked = "no"
+        '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Rider"
@@ -129,23 +140,84 @@ Partial Class FormRiderContract
         Me.GridColumn4.VisibleIndex = 2
         Me.GridColumn4.Width = 169
         '
-        'BImport
+        'GridColumn9
         '
-        Me.BImport.Appearance.BackColor = System.Drawing.Color.Blue
-        Me.BImport.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BImport.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BImport.Appearance.Options.UseBackColor = True
-        Me.BImport.Appearance.Options.UseFont = True
-        Me.BImport.Appearance.Options.UseForeColor = True
-        Me.BImport.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BImport.Location = New System.Drawing.Point(0, 504)
-        Me.BImport.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
-        Me.BImport.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BImport.Name = "BImport"
-        Me.BImport.Size = New System.Drawing.Size(1095, 34)
-        Me.BImport.TabIndex = 92
-        Me.BImport.Text = "Generate Expense"
-        Me.BImport.Visible = False
+        Me.GridColumn9.Caption = "Periode Until"
+        Me.GridColumn9.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn9.FieldName = "kontrak_until"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 3
+        Me.GridColumn9.Width = 169
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn11.Caption = "Periode (Month)"
+        Me.GridColumn11.FieldName = "qty_month"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.Width = 261
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn10.Caption = "Monthly Payment"
+        Me.GridColumn10.DisplayFormat.FormatString = "N2"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn10.FieldName = "monthly_pay"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 5
+        Me.GridColumn10.Width = 261
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn12.Caption = "Total Payment"
+        Me.GridColumn12.DisplayFormat.FormatString = "N2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn12.FieldName = "monthly_pay_tot"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 6
+        Me.GridColumn12.Width = 268
+        '
+        'BChanges
+        '
+        Me.BChanges.Appearance.BackColor = System.Drawing.Color.Blue
+        Me.BChanges.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BChanges.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BChanges.Appearance.Options.UseBackColor = True
+        Me.BChanges.Appearance.Options.UseFont = True
+        Me.BChanges.Appearance.Options.UseForeColor = True
+        Me.BChanges.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BChanges.Location = New System.Drawing.Point(0, 504)
+        Me.BChanges.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.BChanges.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BChanges.Name = "BChanges"
+        Me.BChanges.Size = New System.Drawing.Size(1095, 34)
+        Me.BChanges.TabIndex = 93
+        Me.BChanges.Text = "Changes"
+        '
+        'XTPPPS
+        '
+        Me.XTPPPS.Controls.Add(Me.GridControl2)
+        Me.XTPPPS.Controls.Add(Me.BImport)
+        Me.XTPPPS.Name = "XTPPPS"
+        Me.XTPPPS.Size = New System.Drawing.Size(1095, 538)
+        Me.XTPPPS.Text = "Changes Proposal"
         '
         'GridControl2
         '
@@ -190,96 +262,23 @@ Partial Class FormRiderContract
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 2
         '
-        'BChanges
+        'BImport
         '
-        Me.BChanges.Appearance.BackColor = System.Drawing.Color.Blue
-        Me.BChanges.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BChanges.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BChanges.Appearance.Options.UseBackColor = True
-        Me.BChanges.Appearance.Options.UseFont = True
-        Me.BChanges.Appearance.Options.UseForeColor = True
-        Me.BChanges.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BChanges.Location = New System.Drawing.Point(0, 504)
-        Me.BChanges.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
-        Me.BChanges.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BChanges.Name = "BChanges"
-        Me.BChanges.Size = New System.Drawing.Size(1095, 34)
-        Me.BChanges.TabIndex = 93
-        Me.BChanges.Text = "Changes"
-        Me.BChanges.Visible = False
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Periode Until"
-        Me.GridColumn9.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn9.FieldName = "kontrak_until"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 3
-        Me.GridColumn9.Width = 169
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn10.Caption = "Monthly Payment"
-        Me.GridColumn10.DisplayFormat.FormatString = "N2"
-        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn10.FieldName = "monthly_pay"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 5
-        Me.GridColumn10.Width = 261
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn11.Caption = "Periode (Month)"
-        Me.GridColumn11.FieldName = "qty_month"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 4
-        Me.GridColumn11.Width = 261
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn12.Caption = "Total Payment"
-        Me.GridColumn12.DisplayFormat.FormatString = "N2"
-        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn12.FieldName = "monthly_pay_tot"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 6
-        Me.GridColumn12.Width = 268
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn13.Caption = "*"
-        Me.GridColumn13.ColumnEdit = Me.RICE
-        Me.GridColumn13.FieldName = "is_check"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 0
-        Me.GridColumn13.Width = 54
-        '
-        'RICE
-        '
-        Me.RICE.AutoHeight = False
-        Me.RICE.Name = "RICE"
-        Me.RICE.ValueChecked = "yes"
-        Me.RICE.ValueUnchecked = "no"
+        Me.BImport.Appearance.BackColor = System.Drawing.Color.Blue
+        Me.BImport.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BImport.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BImport.Appearance.Options.UseBackColor = True
+        Me.BImport.Appearance.Options.UseFont = True
+        Me.BImport.Appearance.Options.UseForeColor = True
+        Me.BImport.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BImport.Location = New System.Drawing.Point(0, 504)
+        Me.BImport.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.BImport.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BImport.Name = "BImport"
+        Me.BImport.Size = New System.Drawing.Size(1095, 34)
+        Me.BImport.TabIndex = 92
+        Me.BImport.Text = "Generate Expense"
+        Me.BImport.Visible = False
         '
         'FormRiderContract
         '
@@ -297,12 +296,12 @@ Partial Class FormRiderContract
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPKontrak.ResumeLayout(False)
-        Me.XTPPPS.ResumeLayout(False)
         CType(Me.GCContractList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVContractList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICE, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPPPS.ResumeLayout(False)
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
