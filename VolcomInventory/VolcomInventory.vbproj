@@ -13121,6 +13121,9 @@
     <EmbeddedResource Include="FormRiderContract.resx">
       <DependentUpon>FormRiderContract.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormRiderContractDet.resx">
+      <DependentUpon>FormRiderContractDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesBranch.resx">
       <DependentUpon>FormSalesBranch.vb</DependentUpon>
     </EmbeddedResource>
