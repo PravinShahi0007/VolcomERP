@@ -139,6 +139,10 @@
             ) prc ON prc.id_design = d.id_design 
             WHERE rd.id_pl_prod_order_rec=" + id_report_par + " AND d.is_old_design=2 AND r.is_use_unique_code=1 "
             execute_non_query_long(qun, True, "", "", "", "")
+
+            'log perubahan line list
+            Dim cd As New ClassDesign()
+            cd.insertLogLineList("37", id_report_par, True, "", "", "", "", "", "")
         End If
 
         Dim query As String = String.Format("UPDATE tb_pl_prod_order_rec SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_pl_prod_order_rec ='{1}'", id_status_reportx_par, id_report_par)
