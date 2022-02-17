@@ -260,7 +260,7 @@
                 ),0) AS `Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_soh2 += "soh.`Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_sas1 += "(soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`/(soh.`Monthly SOH " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`+soh.`Sales " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "`))*100 AS `Monthly SAS " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
-                col_rts1 += "IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(46,120) AND soh.qty>0 " + where_store + " THEN soh.qty END),0) AS `Monthly Return " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
+                col_rts1 += "ABS(IFNULL(SUM(CASE WHEN soh.soh_date='" + y.ToString + "-" + m.ToString + "-01' AND soh.report_mark_type IN(46,120) " + where_store + " THEN soh.qty END),0)) AS `Monthly Return " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_rts2 += "soh.`Monthly Return " + y.ToString + "|" + month(m - 1) + " " + y.ToString + "` "
                 col_del1 += "IFNULL(SUM(
 		            CASE
