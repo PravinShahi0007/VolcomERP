@@ -40,9 +40,6 @@
         str = New System.IO.MemoryStream()
         GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
         str.Seek(0, System.IO.SeekOrigin.Begin)
-
-        'freeze
-        CheckEditFreeze.EditValue = True
     End Sub
 
     Private Sub FormLineList_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -131,8 +128,22 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
             break_size = "2"
         End If
 
+        'date changes
+        Dim date_from_selected As String = ""
+        If SLEViewType.EditValue.ToString = "1" Then
+            date_from_selected = "0000-00-00"
+            gridBandChangesNote.Visible = False
+        Else
+            Try
+                date_from_selected = DateTime.Parse(DEChangesDate.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            gridBandChangesNote.Visible = True
+            gridBandChangesNote.VisibleIndex = 0
+        End If
+
         Dim id_ss As String = SLESeason.EditValue.ToString
-        Dim query As String = "CALL view_line_list_all_new_bz(" + id_ss + "," + break_size + ")"
+        Dim query As String = "CALL view_line_list_all_new_2022(" + id_ss + "," + break_size + ", '" + date_from_selected + "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
 
@@ -590,6 +601,7 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
 
     Private Sub SLEViewType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEViewType.EditValueChanged
         If SLEViewType.EditValue.ToString = "1" Then
+            DEChangesDate.EditValue = Nothing
             DEChangesDate.Enabled = False
         Else
             DEChangesDate.Enabled = True
