@@ -146,7 +146,7 @@ ORDER BY pps.id_b_expense_propose DESC"
     End Sub
 
     Sub load_budget_map()
-        Dim query As String = "SELECT ic.id_item_cat_main,ic.item_cat_main,'" & Date.Parse(DEYearBudgetMapping.EditValue.ToString).ToString("yyyy") & "' AS `year`,IFNULL(bo.id_b_expense,'') AS id_b_expense,IFNULL(bo.value_expense,0) AS value_expense
+        Dim query As String = "SELECT ic.id_item_cat_main,ic.item_cat_main,'" & Date.Parse(DEYearBudgetMapping.EditValue.ToString).ToString("yyyy") & "' AS `year`,IFNULL(bo.id_b_expense,'') AS id_b_expense,SUM(IFNULL(bo.value_expense,0)) AS value_expense
 FROM tb_item_cat_main ic
 INNER JOIN `tb_b_expense` bo ON bo.id_item_cat_main=ic.id_item_cat_main AND bo.year='" & Date.Parse(DEYearBudgetMapping.EditValue.ToString).ToString("yyyy") & "' AND bo.is_active='1'
 WHERE ic.id_expense_type='2'
