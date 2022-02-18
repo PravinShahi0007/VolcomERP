@@ -328,7 +328,7 @@ Public Class FormSalesPOSDet
             End If
 
             'from bap
-            If id_menu = "1" And Not id_st_store_bap = "" Then
+            If (id_menu = "1" Or id_menu = "4") And Not id_st_store_bap = "" Then
                 Dim comp_ref As String = execute_query("SELECT c.comp_number FROM tb_st_store_bap AS b LEFT JOIN tb_m_comp AS c ON b.id_comp = c.id_comp WHERE b.id_st_store_bap = " + id_st_store_bap, 0, True, "", "", "", "")
                 TxtCodeCompFrom.Text = comp_ref
                 TxtCodeCompFrom.Enabled = False
@@ -813,6 +813,10 @@ Public Class FormSalesPOSDet
                     id_memo_type = "8"
                     'sales_pos_number = header_number_sales("6")
                     sales_pos_number = ""
+
+                    If Not id_st_store_bap = "" Then
+                        report_mark_type = "399"
+                    End If
                 Else
                     report_mark_type = "183"
                     id_memo_type = "9"

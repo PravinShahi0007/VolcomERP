@@ -402,7 +402,7 @@
         ElseIf report_mark_type = "116" Then
             'missing promo
             query = String.Format("SELECT id_report_status,sales_pos_number as report_number FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
-        ElseIf report_mark_type = "117" Then
+        ElseIf report_mark_type = "117" Or report_mark_type = "399" Then
             'missing staff
             query = String.Format("SELECT id_report_status,sales_pos_number as report_number FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
         ElseIf report_mark_type = "123" Then
@@ -5103,6 +5103,39 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 'completed
                 Dim complete_rsv_stock As ClassSalesInv = New ClassSalesInv()
                 complete_rsv_stock.completedStockMissingStaff(id_report, "117")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            'infoCustom("Status changed.")
+
+            If form_origin = "FormSalesPOSDet" Then
+                FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormSalesPOSDet.check_but()
+                FormSalesPOSDet.actionLoad()
+                FormSalesPOS.viewSalesPOS()
+                FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_report)
+            Else
+                'code here
+            End If
+        ElseIf report_mark_type = "399" Then
+            'imvoice missing staff BAP
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "5" Then
+                Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
+
+                If FormSalesPOSDet.is_use_unique_code = "1" Then
+                    'cancelled unique
+                    cancel_rsv_stock.cancellUnique(id_report, report_mark_type)
+                End If
+            ElseIf id_status_reportx = "6" Then
+                'completed
+                Dim complete_rsv_stock As ClassSalesInv = New ClassSalesInv()
+                complete_rsv_stock.completedStockMissingStaff(id_report, "399")
             End If
 
             'update status

@@ -40,8 +40,9 @@
         Dim j_tb_m_city As String = tableToJson("tb_m_city", "SELECT id_city, id_state, city FROM tb_m_city WHERE id_city IN (SELECT id_city FROM tb_m_comp WHERE id_outlet IS NOT NULL AND id_outlet <> '')")
         Dim j_tb_outlet As String = tableToJson("tb_outlet", "SELECT id_outlet, outlet_name FROM tb_outlet")
         Dim j_tb_m_comp As String = tableToJson("tb_m_comp", "SELECT id_comp, id_comp_cat, comp_number, id_city, comp_name, comp_display_name, address_primary, address_other, fax, postal_code, email, website, id_tax, npwp, is_active, comp_commission, id_area, id_comp_group, id_outlet FROM tb_m_comp WHERE id_outlet IS NOT NULL AND id_outlet <> ''")
+        Dim j_tb_pos_card_type As String = tableToJson("tb_pos_card_type", "SELECT id_card, card_name, discount FROM tb_pos_card_type")
 
-        Dim out As String = "{" + j_tb_m_country + "," + j_tb_m_region + "," + j_tb_m_state + "," + j_tb_m_comp_cat + "," + j_tb_lookup_tax + "," + j_tb_m_area + "," + j_tb_m_comp_group + "," + j_tb_m_city + "," + j_tb_outlet + "," + j_tb_m_comp + "}"
+        Dim out As String = "{" + j_tb_m_country + "," + j_tb_m_region + "," + j_tb_m_state + "," + j_tb_m_comp_cat + "," + j_tb_lookup_tax + "," + j_tb_m_area + "," + j_tb_m_comp_group + "," + j_tb_m_city + "," + j_tb_outlet + "," + j_tb_m_comp + "," + j_tb_pos_card_type + "}"
 
         Dim pathRoot As String = Application.StartupPath + "\download\"
 
