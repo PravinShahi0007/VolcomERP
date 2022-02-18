@@ -31,7 +31,7 @@
 
     Public Sub updateStock(ByVal id_purc_return As String, ByVal id_storage_cat As String)
         Dim query As String = "INSERT INTO tb_storage_item (id_departement, id_storage_category,id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, id_stock_status)
-        SELECT req.id_departement, " + id_storage_cat + ",rd.id_item, getAvgCost(rd.id_item) AS `cost`, 152, rd.id_purc_return,rd.qty, NOW(),1
+        SELECT req.id_departement, " + id_storage_cat + ",rd.id_item, getAvgCostUnit(rd.id_item,(SELECT id_coa_tag FROM tb_m_departement WHERE id_departement=r.id_departement)) AS `cost`, 152, rd.id_purc_return,rd.qty, NOW(),1
         FROM tb_purc_return_det rd
         INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
         INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det

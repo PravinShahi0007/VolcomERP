@@ -28,7 +28,7 @@
         Dim id_purc_store As String = get_purc_setup_field("id_purc_store")
 
         Dim query As String = "INSERT INTO tb_storage_item (id_departement, id_storage_category,id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, id_stock_status)
-        SELECT IF(rd.is_store_request=2,r.id_departement,'" & id_purc_store & "'), " & id_storage_cat & ", rd.id_item, getAvgCost(rd.id_item), " & rmt & ", r.id_item_req, rd.qty, NOW(), 1
+        SELECT IF(rd.is_store_request=2,r.id_departement,'" & id_purc_store & "'), " & id_storage_cat & ", rd.id_item, getAvgCostUnit(rd.id_item,(SELECT id_coa_tag FROM tb_m_departement WHERE id_departement=r.id_departement)) AS cost, " & rmt & ", r.id_item_req, rd.qty, NOW(), 1
         FROM tb_item_req r
         INNER JOIN tb_item_req_det rd ON rd.id_item_req = r.id_item_req
         WHERE r.id_item_req=" + id_item_req
