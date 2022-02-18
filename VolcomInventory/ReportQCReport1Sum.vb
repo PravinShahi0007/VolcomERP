@@ -394,6 +394,7 @@ WHERE qrs.`id_prod_order`='" & id_po & "'"
         If (Not images.ContainsKey(fileName)) Then
             Dim filePath As String = DevExpress.Utils.FilesHelper.FindingFileName(imagedir, fileName, False)
             img_box.ImageUrl = filePath
+            img_box.Image = ResizeImage(img_box.Image)
         End If
         'note
         Dim cd_c As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(1)
@@ -401,6 +402,10 @@ WHERE qrs.`id_prod_order`='" & id_po & "'"
         cd_c.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         cd_c.Font = font_row_style
     End Sub
+
+    Public Shared Function ResizeImage(ByVal InputImage As Image) As Image
+        Return New Bitmap(InputImage, New Size(500, 750))
+    End Function
 
     'Private Sub GVImage_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs)
     '    If e.Column.FieldName = "img" Then
