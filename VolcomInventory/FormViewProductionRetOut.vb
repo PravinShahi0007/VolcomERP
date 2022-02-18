@@ -210,7 +210,9 @@
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_prod_order_ret_out
         FormDocumentUpload.report_mark_type = "31"
-        FormDocumentUpload.is_view = "1"
+        If id_report_status = "6" Or id_report_status = "5" Then
+            FormDocumentUpload.is_view = "1"
+        End If
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
