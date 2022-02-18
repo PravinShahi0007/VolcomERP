@@ -562,6 +562,7 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
 
     Private Sub SLESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLESeason.EditValueChanged
         resetview()
+        GCData.DataSource = Nothing
     End Sub
 
     Sub resetview()
@@ -608,6 +609,7 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
             Dim dtnow As DateTime = getTimeDB()
             DEChangesDate.EditValue = dtnow
         End If
+        GCData.DataSource = Nothing
     End Sub
 
     Private Sub RepoBtnChangesHist_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoBtnChangesHist.ButtonClick
@@ -628,5 +630,9 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
             FormLineListChangesHistory.ShowDialog()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub DEChangesDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEChangesDate.EditValueChanged
+        GCData.DataSource = Nothing
     End Sub
 End Class

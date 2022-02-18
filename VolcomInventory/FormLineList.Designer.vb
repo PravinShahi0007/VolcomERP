@@ -377,7 +377,7 @@ Partial Class FormLineList
         'BtnViewChange
         '
         Me.BtnViewChange.Image = CType(resources.GetObject("BtnViewChange.Image"), System.Drawing.Image)
-        Me.BtnViewChange.Location = New System.Drawing.Point(561, 28)
+        Me.BtnViewChange.Location = New System.Drawing.Point(596, 28)
         Me.BtnViewChange.LookAndFeel.SkinName = "Blue"
         Me.BtnViewChange.Name = "BtnViewChange"
         Me.BtnViewChange.Size = New System.Drawing.Size(111, 23)
@@ -398,14 +398,14 @@ Partial Class FormLineList
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(374, 96)
+        Me.PanelControl3.Size = New System.Drawing.Size(411, 96)
         Me.PanelControl3.TabIndex = 8936
         '
         'DEChangesDate
         '
         Me.DEChangesDate.EditValue = Nothing
         Me.DEChangesDate.Enabled = False
-        Me.DEChangesDate.Location = New System.Drawing.Point(179, 39)
+        Me.DEChangesDate.Location = New System.Drawing.Point(206, 39)
         Me.DEChangesDate.Name = "DEChangesDate"
         Me.DEChangesDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEChangesDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -422,7 +422,7 @@ Partial Class FormLineList
         Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl11.Appearance.ForeColor = System.Drawing.Color.Black
         Me.LabelControl11.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.LabelControl11.Location = New System.Drawing.Point(278, 65)
+        Me.LabelControl11.Location = New System.Drawing.Point(305, 65)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Padding = New System.Windows.Forms.Padding(3)
         Me.LabelControl11.Size = New System.Drawing.Size(80, 19)
@@ -444,7 +444,7 @@ Partial Class FormLineList
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl6.Appearance.ForeColor = System.Drawing.Color.Black
         Me.LabelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.LabelControl6.Location = New System.Drawing.Point(240, 65)
+        Me.LabelControl6.Location = New System.Drawing.Point(267, 65)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Padding = New System.Windows.Forms.Padding(3)
         Me.LabelControl6.Size = New System.Drawing.Size(35, 19)
@@ -453,7 +453,7 @@ Partial Class FormLineList
         '
         'SLESeason
         '
-        Me.SLESeason.Location = New System.Drawing.Point(179, 12)
+        Me.SLESeason.Location = New System.Drawing.Point(206, 12)
         Me.SLESeason.Name = "SLESeason"
         Me.SLESeason.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
@@ -495,7 +495,7 @@ Partial Class FormLineList
         '
         'SLEViewType
         '
-        Me.SLEViewType.Location = New System.Drawing.Point(55, 38)
+        Me.SLEViewType.Location = New System.Drawing.Point(82, 38)
         Me.SLEViewType.Name = "SLEViewType"
         Me.SLEViewType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEViewType.Properties.ShowClearButton = False
@@ -522,13 +522,13 @@ Partial Class FormLineList
         '
         Me.LabelControl1.Location = New System.Drawing.Point(15, 41)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl1.TabIndex = 8934
-        Me.LabelControl1.Text = "Type"
+        Me.LabelControl1.Text = "View Option"
         '
         'SLEMechType
         '
-        Me.SLEMechType.Location = New System.Drawing.Point(55, 12)
+        Me.SLEMechType.Location = New System.Drawing.Point(82, 12)
         Me.SLEMechType.Name = "SLEMechType"
         Me.SLEMechType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEMechType.Properties.ShowClearButton = False
@@ -546,7 +546,7 @@ Partial Class FormLineList
         'BtnExportToXLSRec
         '
         Me.BtnExportToXLSRec.Image = CType(resources.GetObject("BtnExportToXLSRec.Image"), System.Drawing.Image)
-        Me.BtnExportToXLSRec.Location = New System.Drawing.Point(454, 28)
+        Me.BtnExportToXLSRec.Location = New System.Drawing.Point(489, 28)
         Me.BtnExportToXLSRec.LookAndFeel.SkinName = "Blue"
         Me.BtnExportToXLSRec.Name = "BtnExportToXLSRec"
         Me.BtnExportToXLSRec.Size = New System.Drawing.Size(101, 23)
@@ -556,7 +556,7 @@ Partial Class FormLineList
         'BtnView
         '
         Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
-        Me.BtnView.Location = New System.Drawing.Point(388, 28)
+        Me.BtnView.Location = New System.Drawing.Point(423, 28)
         Me.BtnView.Name = "BtnView"
         Me.BtnView.Size = New System.Drawing.Size(62, 23)
         Me.BtnView.TabIndex = 1
@@ -564,7 +564,7 @@ Partial Class FormLineList
         '
         'CheckEditFreeze
         '
-        Me.CheckEditFreeze.Location = New System.Drawing.Point(579, 57)
+        Me.CheckEditFreeze.Location = New System.Drawing.Point(614, 57)
         Me.CheckEditFreeze.Name = "CheckEditFreeze"
         Me.CheckEditFreeze.Properties.Caption = "Freeze Column"
         Me.CheckEditFreeze.Size = New System.Drawing.Size(93, 19)
@@ -572,7 +572,7 @@ Partial Class FormLineList
         '
         'CheckImg
         '
-        Me.CheckImg.Location = New System.Drawing.Point(493, 57)
+        Me.CheckImg.Location = New System.Drawing.Point(528, 57)
         Me.CheckImg.Name = "CheckImg"
         Me.CheckImg.Properties.Caption = "Show Images"
         Me.CheckImg.Size = New System.Drawing.Size(87, 19)
