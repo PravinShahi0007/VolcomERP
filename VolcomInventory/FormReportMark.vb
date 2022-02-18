@@ -6631,7 +6631,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 Dim id_purc_store As String = get_purc_setup_field("id_purc_store")
 
                 Dim query_completed_stock As String = "INSERT INTO tb_storage_item (id_departement, id_storage_category,id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, id_stock_status)
-                SELECT IF(rd.is_store_request=1,'" & id_purc_store & "',r.id_departement) AS id_departement, 1, dd.id_item, getAvgCost(dd.id_item), IF(r.is_for_store=1,163,154) AS rmt, r.id_item_req, dd.qty, d.created_date, 1
+                SELECT IF(rd.is_store_request=1,'" & id_purc_store & "',r.id_departement) AS id_departement, 1, dd.id_item, getAvgCostUnit(dd.id_item,(SELECT id_coa_tag FROM tb_m_departement WHERE id_departement=r.id_departement)) AS cost, IF(r.is_for_store=1,163,154) AS rmt, r.id_item_req, dd.qty, d.created_date, 1
                 FROM tb_item_del d
                 INNER JOIN tb_item_del_det dd ON dd.id_item_del = d.id_item_del
                 INNER JOIN tb_item_req_det rd ON rd.id_item_req_det=dd.`id_item_req_det`
@@ -6639,7 +6639,7 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 WHERE d.id_item_del=" + id_report + " 
                 -- AND rd.is_store_request='2'
                 UNION ALL
-                SELECT IF(rd.is_store_request=1,'" & id_purc_store & "',r.id_departement) AS id_departement, 2, dd.id_item, getAvgCost(dd.id_item), " + report_mark_type + " AS rmt, d.id_item_del, dd.qty, d.created_date, 1
+                SELECT IF(rd.is_store_request=1,'" & id_purc_store & "',r.id_departement) AS id_departement, 2, dd.id_item, getAvgCostUnit(dd.id_item,(SELECT id_coa_tag FROM tb_m_departement WHERE id_departement=r.id_departement)) AS cost, " + report_mark_type + " AS rmt, d.id_item_del, dd.qty, d.created_date, 1
                 FROM tb_item_del d
                 INNER JOIN tb_item_del_det dd ON dd.id_item_del = d.id_item_del
                 INNER JOIN tb_item_req_det rd ON rd.id_item_req_det=dd.`id_item_req_det`
@@ -6661,9 +6661,10 @@ WHERE copd.id_design_cop_propose='" & id_report & "';"
                 Dim report_number As String = du.Rows(0)("report_number").ToString
 
                 'cek value
-                Dim qcv As String = "SELECT SUM(dd.qty*getAvgCost(dd.id_item)) AS amo,d.`created_date`
+                Dim qcv As String = "SELECT SUM(dd.qty*getAvgCostUnit(dd.id_item,(SELECT id_coa_tag FROM tb_m_departement WHERE id_departement=r.id_departement))) AS amo,d.`created_date`
 FROM tb_item_del_det dd
 INNER JOIN tb_item_del d ON d.`id_item_del`=dd.`id_item_del`
+INNER JOIN tb_item_req r ON r.id_item_req=d.id_item_req
 WHERE dd.id_item_del='" & id_report & "'
 HAVING amo>0"
                 Dim dtv As DataTable = execute_query(qcv, -1, True, "", "", "", "")
@@ -6678,7 +6679,7 @@ HAVING amo>0"
                     'det journal
                     If FormItemDelDetail.is_for_store = "1" Then
                         Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_comp)
-                    SELECT " + id_acc_trans + " AS `id_trans`,m.id_coa_out AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `debit`, 0 AS `credit`,
+                    SELECT " + id_acc_trans + " AS `id_trans`,m.id_coa_out AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCostUnit(dd.id_item,(SELECT id_coa_tag FROM tb_m_departement WHERE id_departement=r.id_departement))) AS `debit`, 0 AS `credit`,
                     CONCAT('Expense : ',cat.item_cat,' (',c.comp_number,'), ',d.note) AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, c.id_comp
                     FROM tb_item_del_det_alloc dd
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
@@ -6691,7 +6692,7 @@ HAVING amo>0"
                     GROUP BY i.id_item_cat, dd.id_comp
                     UNION ALL
                     -- afiliasi companynya
-                    SELECT " + id_acc_trans + " AS `id_trans`,(SELECT id_acc_afiliasi FROM tb_opt_accounting LIMIT 1) AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `credit`,
+                    SELECT " + id_acc_trans + " AS `id_trans`,(SELECT id_acc_afiliasi FROM tb_opt_accounting LIMIT 1) AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCostUnit(dd.id_item,(SELECT id_coa_tag FROM tb_m_departement WHERE id_departement=r.id_departement))) AS `credit`,
                     CONCAT('Expense : ',cat.item_cat,' (',c.comp_number,'), ',d.note) AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, c.id_comp
                     FROM tb_item_del_det_alloc dd
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
@@ -6704,7 +6705,7 @@ HAVING amo>0"
                     GROUP BY i.id_item_cat, dd.id_comp
                     UNION ALL
                     -- balik afiliasi volcom
-                    SELECT " + id_acc_trans + " AS `id_trans`,(SELECT id_acc_afiliasi FROM tb_opt_accounting LIMIT 1) AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `debit`, 0 AS `credit`,
+                    SELECT " + id_acc_trans + " AS `id_trans`,(SELECT id_acc_afiliasi FROM tb_opt_accounting LIMIT 1) AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCostUnit(dd.id_item,(SELECT id_coa_tag FROM tb_m_departement WHERE id_departement=r.id_departement))) AS `debit`, 0 AS `credit`,
                     CONCAT('Expense : ',cat.item_cat,' (',c.comp_number,'), ',d.note) AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, 1
                     FROM tb_item_del_det_alloc dd
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
@@ -6716,7 +6717,7 @@ HAVING amo>0"
                     WHERE dd.id_item_del=" + id_report + "
                     GROUP BY i.id_item_cat, dd.id_comp
                     UNION ALL
-                    SELECT " + id_acc_trans + " AS `id_trans`,o.acc_coa_receive AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `credit`, '' AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, 1 AS `id_comp`
+                    SELECT " + id_acc_trans + " AS `id_trans`,o.acc_coa_receive AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCostUnit(dd.id_item,(SELECT id_coa_tag FROM tb_m_departement WHERE id_departement=r.id_departement))) AS `credit`, '' AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, 1 AS `id_comp`
                     FROM tb_item_del_det dd
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
                     JOIN tb_opt_purchasing o
@@ -6725,7 +6726,7 @@ HAVING amo>0"
                         execute_non_query(qjd, True, "", "", "", "")
                     ElseIf FormItemDelDetail.is_for_store = "2" Then
                         Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,id_comp,id_coa_tag)
-                    SELECT " + id_acc_trans + " AS `id_trans`,m.id_coa_out AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `debit`, 0 AS `credit`, i.`item_desc` AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.number, 1 AS `id_comp`,dep.id_coa_tag
+                    SELECT " + id_acc_trans + " AS `id_trans`,m.id_coa_out AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCostUnit(dd.id_item,(SELECT id_coa_tag FROM tb_m_departement WHERE id_departement=r.id_departement))) AS `debit`, 0 AS `credit`, i.`item_desc` AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.number, 1 AS `id_comp`,dep.id_coa_tag
                     FROM tb_item_del_det dd
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
                     INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
@@ -6736,7 +6737,7 @@ HAVING amo>0"
                     WHERE dd.id_item_del=" + id_report + "
                     GROUP BY dd.id_item_del_det
                     UNION ALL
-                    SELECT " + id_acc_trans + " AS `id_trans`,IF(dep.id_coa_tag=1,o.acc_coa_receive,o.acc_coa_receive_cabang) AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `credit`, i.`item_desc` AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.number, 1 AS `id_comp`,dep.id_coa_tag
+                    SELECT " + id_acc_trans + " AS `id_trans`,IF(dep.id_coa_tag=1,o.acc_coa_receive,o.acc_coa_receive_cabang) AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCostUnit(dd.id_item,(SELECT id_coa_tag FROM tb_m_departement WHERE id_departement=r.id_departement))) AS `credit`, i.`item_desc` AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.number, 1 AS `id_comp`,dep.id_coa_tag
                     FROM tb_item_del_det dd
                     INNER JOIN tb_item i ON i.id_item = dd.id_item
                     INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat

@@ -35,4 +35,11 @@
     Private Sub BChanges_Click(sender As Object, e As EventArgs) Handles BChanges.Click
         FormRiderContractDet.ShowDialog()
     End Sub
+
+    Private Sub GVPPS_DoubleClick(sender As Object, e As EventArgs) Handles GVPPS.DoubleClick
+        If GVPPS.RowCount > 0 Then
+            FormRiderContractDet.id_pps = ""
+            FormRiderContractDet.ShowDialog()
+        End If
+    End Sub
 End Class

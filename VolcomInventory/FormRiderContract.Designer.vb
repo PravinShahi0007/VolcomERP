@@ -35,13 +35,11 @@ Partial Class FormRiderContract
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPPS = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCPPS = New DevExpress.XtraGrid.GridControl()
+        Me.GVPPS = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BImport = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPKontrak.SuspendLayout()
@@ -49,8 +47,8 @@ Partial Class FormRiderContract
         CType(Me.GVContractList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICE, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPPPS.SuspendLayout()
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCPPS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XtraTabControl1
@@ -213,72 +211,51 @@ Partial Class FormRiderContract
         '
         'XTPPPS
         '
-        Me.XTPPPS.Controls.Add(Me.GridControl2)
-        Me.XTPPPS.Controls.Add(Me.BImport)
+        Me.XTPPPS.Controls.Add(Me.GCPPS)
         Me.XTPPPS.Name = "XTPPPS"
         Me.XTPPPS.Size = New System.Drawing.Size(1095, 538)
         Me.XTPPPS.Text = "Changes Proposal"
         '
-        'GridControl2
+        'GCPPS
         '
-        Me.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl2.Location = New System.Drawing.Point(0, 0)
-        Me.GridControl2.MainView = Me.GridView2
-        Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(1095, 504)
-        Me.GridControl2.TabIndex = 93
-        Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+        Me.GCPPS.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPPS.Location = New System.Drawing.Point(0, 0)
+        Me.GCPPS.MainView = Me.GVPPS
+        Me.GCPPS.Name = "GCPPS"
+        Me.GCPPS.Size = New System.Drawing.Size(1095, 538)
+        Me.GCPPS.TabIndex = 93
+        Me.GCPPS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPPS})
         '
-        'GridView2
+        'GVPPS
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
-        Me.GridView2.GridControl = Me.GridControl2
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsView.ShowGroupPanel = False
+        Me.GVPPS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GVPPS.GridControl = Me.GCPPS
+        Me.GVPPS.Name = "GVPPS"
+        Me.GVPPS.OptionsBehavior.Editable = False
+        Me.GVPPS.OptionsBehavior.ReadOnly = True
+        Me.GVPPS.OptionsView.ShowGroupPanel = False
         '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "ID Changes"
+        Me.GridColumn5.FieldName = "id_kontrak_rider_pps"
         Me.GridColumn5.Name = "GridColumn5"
         '
         'GridColumn6
         '
-        Me.GridColumn6.Caption = "GridColumn2"
+        Me.GridColumn6.Caption = "Number"
+        Me.GridColumn6.FieldName = "number"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 0
         '
         'GridColumn7
         '
-        Me.GridColumn7.Caption = "GridColumn3"
+        Me.GridColumn7.Caption = "Status"
+        Me.GridColumn7.FieldName = "report_status"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 1
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "GridColumn4"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 2
-        '
-        'BImport
-        '
-        Me.BImport.Appearance.BackColor = System.Drawing.Color.Blue
-        Me.BImport.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BImport.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BImport.Appearance.Options.UseBackColor = True
-        Me.BImport.Appearance.Options.UseFont = True
-        Me.BImport.Appearance.Options.UseForeColor = True
-        Me.BImport.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BImport.Location = New System.Drawing.Point(0, 504)
-        Me.BImport.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
-        Me.BImport.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BImport.Name = "BImport"
-        Me.BImport.Size = New System.Drawing.Size(1095, 34)
-        Me.BImport.TabIndex = 92
-        Me.BImport.Text = "Generate Expense"
-        Me.BImport.Visible = False
         '
         'FormRiderContract
         '
@@ -300,8 +277,8 @@ Partial Class FormRiderContract
         CType(Me.GVContractList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPPPS.ResumeLayout(False)
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCPPS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPPS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -316,13 +293,11 @@ Partial Class FormRiderContract
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BChanges As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCPPS As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPPS As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BImport As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
