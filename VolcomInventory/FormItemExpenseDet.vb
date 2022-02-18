@@ -1181,6 +1181,7 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
     Private Sub BtnBrowse_Click(sender As Object, e As EventArgs) Handles BtnBrowse.Click
         Cursor = Cursors.WaitCursor
         FormPopUpContact.id_pop_up = "90"
+        FormPopUpContact.is_must_active = "1"
         FormPopUpContact.ShowDialog()
         Cursor = Cursors.Default
     End Sub

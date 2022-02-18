@@ -28,6 +28,10 @@
 
     End Sub
 
+    Sub load_rider()
+        Dim q As String = "SELECT * FROM tb_"
+    End Sub
+
     Sub load_contract()
         Dim q As String = ""
     End Sub
