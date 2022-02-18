@@ -169,6 +169,38 @@
         INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
         INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
         WHERE p.id_sales_pos=" + id_report_param + " AND pd.sales_pos_det_qty>0  "
+
+        If report_mark_type_param = "399" Then
+            query = "INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status)
+            SELECT getCompByContact(p.id_store_contact_from, 4), 1, pd.id_product, IFNULL(dsg.design_cop, 0), 343, p.id_st_store_bap, pd.sales_pos_det_qty, NOW(), '', 2
+            FROM tb_sales_pos p
+            INNER JOIN tb_sales_pos_det pd ON pd.id_sales_pos = p.id_sales_pos
+            INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
+            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
+            WHERE p.id_sales_pos=" + id_report_param + " AND pd.sales_pos_det_qty>0 
+            UNION ALL 
+            SELECT getCompByContact(p.id_store_contact_from, 4), 2, pd.id_product, IFNULL(dsg.design_cop,0), 315, " + id_report_param + ", pd.sales_pos_det_qty, NOW(), '', 1
+            FROM tb_sales_pos p
+            INNER JOIN tb_sales_pos_det pd ON pd.id_sales_pos = p.id_sales_pos
+            INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
+            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
+            WHERE p.id_sales_pos=" + id_report_param + " AND pd.sales_pos_det_qty>0 
+            UNION ALL 
+            SELECT getCompByContact(p.id_comp_contact_bill, 4), 1, pd.id_product, IFNULL(dsg.design_cop,0), 316, " + id_report_param + ", pd.sales_pos_det_qty, NOW(), '', 1
+            FROM tb_sales_pos p
+            INNER JOIN tb_sales_pos_det pd ON pd.id_sales_pos = p.id_sales_pos
+            INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
+            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
+            WHERE p.id_sales_pos=" + id_report_param + " AND pd.sales_pos_det_qty>0 
+            UNION ALL
+            SELECT getCompByContact(p.id_comp_contact_bill, 4), 2, pd.id_product, IFNULL(dsg.design_cop,0), " + report_mark_type_param + ", " + id_report_param + ", pd.sales_pos_det_qty, NOW(), '', 1
+            FROM tb_sales_pos p
+            INNER JOIN tb_sales_pos_det pd ON pd.id_sales_pos = p.id_sales_pos
+            INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
+            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
+            WHERE p.id_sales_pos=" + id_report_param + " AND pd.sales_pos_det_qty>0  "
+        End If
+
         execute_non_query(query, True, "", "", "", "")
 
         'posting
@@ -214,7 +246,7 @@
         Dim qty_unik As String = ""
         Dim col_unik As String = ""
 
-        If report_mark_type_param = "48" Or report_mark_type_param = "54" Or report_mark_type_param = "344" Or report_mark_type_param = "116" Or report_mark_type_param = "117" Then
+        If report_mark_type_param = "48" Or report_mark_type_param = "54" Or report_mark_type_param = "344" Or report_mark_type_param = "116" Or report_mark_type_param = "117" Or report_mark_type_param = "399" Then
             id_type_unik = "2"
             qty_unik = "1"
             col_unik = "id_sales_pos_det_counting"
