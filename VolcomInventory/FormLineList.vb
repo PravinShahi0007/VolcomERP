@@ -8,6 +8,7 @@
 
     Private Sub FormLineList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewType()
+        viewLineListType()
 
         'col
         Dim qry As String = "SELECT * FROM tb_col_line_list l "
@@ -81,6 +82,11 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
         viewSearchLookupQuery(SLEMechType, query, "id_type", "type", "id_type")
     End Sub
 
+    Sub viewLineListType()
+        Dim query As String = "SELECT lv.id_line_list_view, lv.line_list_view FROM tb_lookup_line_list_view lv "
+        viewSearchLookupQuery(SLEViewType, query, "id_line_list_view", "line_list_view", "id_line_list_view")
+    End Sub
+
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         viewData()
     End Sub
@@ -122,8 +128,22 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
             break_size = "2"
         End If
 
+        'date changes
+        Dim date_from_selected As String = ""
+        If SLEViewType.EditValue.ToString = "1" Then
+            date_from_selected = "0000-00-00"
+            gridBandChangesNote.Visible = False
+        Else
+            Try
+                date_from_selected = DateTime.Parse(DEChangesDate.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            gridBandChangesNote.Visible = True
+            gridBandChangesNote.VisibleIndex = 0
+        End If
+
         Dim id_ss As String = SLESeason.EditValue.ToString
-        Dim query As String = "CALL view_line_list_all_new_bz(" + id_ss + "," + break_size + ")"
+        Dim query As String = "CALL view_line_list_all_new_2022(" + id_ss + "," + break_size + ", '" + date_from_selected + "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
 
@@ -542,6 +562,7 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
 
     Private Sub SLESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLESeason.EditValueChanged
         resetview()
+        GCData.DataSource = Nothing
     End Sub
 
     Sub resetview()
@@ -570,5 +591,48 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
                 e.Appearance.BackColor = Color.SkyBlue
             End If
         End If
+    End Sub
+
+    Private Sub BtnViewChange_Click(sender As Object, e As EventArgs) Handles BtnViewChange.Click
+        Cursor = Cursors.WaitCursor
+        FormLineListChangesHistory.id_season = SLESeason.EditValue.ToString
+        FormLineListChangesHistory.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEViewType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEViewType.EditValueChanged
+        If SLEViewType.EditValue.ToString = "1" Then
+            DEChangesDate.EditValue = Nothing
+            DEChangesDate.Enabled = False
+        Else
+            DEChangesDate.Enabled = True
+            Dim dtnow As DateTime = getTimeDB()
+            DEChangesDate.EditValue = dtnow
+        End If
+        GCData.DataSource = Nothing
+    End Sub
+
+    Private Sub RepoBtnChangesHist_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoBtnChangesHist.ButtonClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormLineListChangesHistory.is_from_beginning = True
+            FormLineListChangesHistory.id_design = GVData.GetFocusedRowCellValue("id_design").ToString
+            FormLineListChangesHistory.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoLinkChanges_Click(sender As Object, e As EventArgs) Handles RepoLinkChanges.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormLineListChangesHistory.is_from_beginning = True
+            FormLineListChangesHistory.id_design = GVData.GetFocusedRowCellValue("id_design").ToString
+            FormLineListChangesHistory.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub DEChangesDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEChangesDate.EditValueChanged
+        GCData.DataSource = Nothing
     End Sub
 End Class

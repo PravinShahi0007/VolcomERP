@@ -24,26 +24,40 @@ Partial Class FormLineList
         Dim FormatConditionRuleValue1 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim FormatConditionRuleValue2 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.BandedGridColumnis_drop = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnis_move = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
-        Me.SLEMechType = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnViewChange = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEChangesDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.CEBreakSize = New DevExpress.XtraEditors.CheckEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.SLESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRange = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLEViewType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEMechType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.BtnExportToXLSRec = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.CheckEditFreeze = New DevExpress.XtraEditors.CheckEdit()
         Me.CheckImg = New DevExpress.XtraEditors.CheckEdit()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.gridBandChangesNote = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnchanges_note = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridBandFreeze = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnview_changes = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepoLinkChanges = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnImg = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemPictureEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
@@ -64,7 +78,6 @@ Partial Class FormLineList
         Me.BandedGridColumnsize_chart = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnfabrication = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndetail_description = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.BandedGridColumneos = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnage = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnin_store_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -297,27 +310,31 @@ Partial Class FormLineList
         Me.BandedGridColumn92 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn93 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn94 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.RepoBtnChangesHist = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.XtraScrollableControl1.SuspendLayout()
-        CType(Me.SLEMechType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.DEChangesDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEChangesDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEBreakSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEViewType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEMechType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditFreeze.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkChanges, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkPP, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
+        CType(Me.RepoBtnChangesHist, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BandedGridColumnis_drop
@@ -340,16 +357,13 @@ Partial Class FormLineList
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1201, 49)
+        Me.PanelControl1.Size = New System.Drawing.Size(1201, 100)
         Me.PanelControl1.TabIndex = 0
         '
         'XtraScrollableControl1
         '
-        Me.XtraScrollableControl1.Controls.Add(Me.PanelControl2)
-        Me.XtraScrollableControl1.Controls.Add(Me.SLEMechType)
-        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl4)
-        Me.XtraScrollableControl1.Controls.Add(Me.CEBreakSize)
-        Me.XtraScrollableControl1.Controls.Add(Me.SLESeason)
+        Me.XtraScrollableControl1.Controls.Add(Me.BtnViewChange)
+        Me.XtraScrollableControl1.Controls.Add(Me.PanelControl3)
         Me.XtraScrollableControl1.Controls.Add(Me.BtnExportToXLSRec)
         Me.XtraScrollableControl1.Controls.Add(Me.BtnView)
         Me.XtraScrollableControl1.Controls.Add(Me.CheckEditFreeze)
@@ -357,52 +371,96 @@ Partial Class FormLineList
         Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraScrollableControl1.Location = New System.Drawing.Point(2, 2)
         Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
-        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1197, 45)
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1197, 96)
         Me.XtraScrollableControl1.TabIndex = 8913
         '
-        'SLEMechType
+        'BtnViewChange
         '
-        Me.SLEMechType.Location = New System.Drawing.Point(59, 10)
-        Me.SLEMechType.Name = "SLEMechType"
-        Me.SLEMechType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEMechType.Properties.ShowClearButton = False
-        Me.SLEMechType.Properties.View = Me.GridView1
-        Me.SLEMechType.Size = New System.Drawing.Size(121, 20)
-        Me.SLEMechType.TabIndex = 8912
+        Me.BtnViewChange.Image = CType(resources.GetObject("BtnViewChange.Image"), System.Drawing.Image)
+        Me.BtnViewChange.Location = New System.Drawing.Point(596, 28)
+        Me.BtnViewChange.LookAndFeel.SkinName = "Blue"
+        Me.BtnViewChange.Name = "BtnViewChange"
+        Me.BtnViewChange.Size = New System.Drawing.Size(111, 23)
+        Me.BtnViewChange.TabIndex = 8937
+        Me.BtnViewChange.Text = "Changes History"
         '
-        'GridView1
+        'PanelControl3
         '
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.PanelControl3.Controls.Add(Me.DEChangesDate)
+        Me.PanelControl3.Controls.Add(Me.LabelControl11)
+        Me.PanelControl3.Controls.Add(Me.CEBreakSize)
+        Me.PanelControl3.Controls.Add(Me.LabelControl6)
+        Me.PanelControl3.Controls.Add(Me.SLESeason)
+        Me.PanelControl3.Controls.Add(Me.SLEViewType)
+        Me.PanelControl3.Controls.Add(Me.LabelControl4)
+        Me.PanelControl3.Controls.Add(Me.LabelControl1)
+        Me.PanelControl3.Controls.Add(Me.SLEMechType)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(411, 96)
+        Me.PanelControl3.TabIndex = 8936
         '
-        'LabelControl4
+        'DEChangesDate
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(18, 13)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(35, 13)
-        Me.LabelControl4.TabIndex = 96
-        Me.LabelControl4.Text = "Season"
+        Me.DEChangesDate.EditValue = Nothing
+        Me.DEChangesDate.Enabled = False
+        Me.DEChangesDate.Location = New System.Drawing.Point(206, 39)
+        Me.DEChangesDate.Name = "DEChangesDate"
+        Me.DEChangesDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEChangesDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEChangesDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEChangesDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEChangesDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEChangesDate.Size = New System.Drawing.Size(179, 20)
+        Me.DEChangesDate.TabIndex = 8936
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.LabelControl11.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.LabelControl11.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.LabelControl11.Location = New System.Drawing.Point(305, 65)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Padding = New System.Windows.Forms.Padding(3)
+        Me.LabelControl11.Size = New System.Drawing.Size(80, 19)
+        Me.LabelControl11.TabIndex = 8932
+        Me.LabelControl11.Text = "MOVE SEASON"
         '
         'CEBreakSize
         '
-        Me.CEBreakSize.Location = New System.Drawing.Point(35, 112)
+        Me.CEBreakSize.Location = New System.Drawing.Point(10, 173)
         Me.CEBreakSize.Name = "CEBreakSize"
         Me.CEBreakSize.Properties.Caption = "show breakdown size"
         Me.CEBreakSize.Size = New System.Drawing.Size(124, 19)
         Me.CEBreakSize.TabIndex = 8909
         '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.LabelControl6.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.LabelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.LabelControl6.Location = New System.Drawing.Point(267, 65)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Padding = New System.Windows.Forms.Padding(3)
+        Me.LabelControl6.Size = New System.Drawing.Size(35, 19)
+        Me.LabelControl6.TabIndex = 8931
+        Me.LabelControl6.Text = "DROP"
+        '
         'SLESeason
         '
-        Me.SLESeason.Location = New System.Drawing.Point(183, 10)
+        Me.SLESeason.Location = New System.Drawing.Point(206, 12)
         Me.SLESeason.Name = "SLESeason"
         Me.SLESeason.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
         Me.SLESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLESeason.Properties.ShowClearButton = False
         Me.SLESeason.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLESeason.Size = New System.Drawing.Size(159, 20)
+        Me.SLESeason.Size = New System.Drawing.Size(179, 20)
         Me.SLESeason.TabIndex = 97
         '
         'SearchLookUpEdit1View
@@ -435,20 +493,70 @@ Partial Class FormLineList
         Me.GridColumnSeason.Visible = True
         Me.GridColumnSeason.VisibleIndex = 1
         '
+        'SLEViewType
+        '
+        Me.SLEViewType.Location = New System.Drawing.Point(82, 38)
+        Me.SLEViewType.Name = "SLEViewType"
+        Me.SLEViewType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEViewType.Properties.ShowClearButton = False
+        Me.SLEViewType.Properties.View = Me.GridView2
+        Me.SLEViewType.Size = New System.Drawing.Size(121, 20)
+        Me.SLEViewType.TabIndex = 8935
+        '
+        'GridView2
+        '
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(15, 15)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(35, 13)
+        Me.LabelControl4.TabIndex = 96
+        Me.LabelControl4.Text = "Season"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(15, 41)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl1.TabIndex = 8934
+        Me.LabelControl1.Text = "View Option"
+        '
+        'SLEMechType
+        '
+        Me.SLEMechType.Location = New System.Drawing.Point(82, 12)
+        Me.SLEMechType.Name = "SLEMechType"
+        Me.SLEMechType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEMechType.Properties.ShowClearButton = False
+        Me.SLEMechType.Properties.View = Me.GridView1
+        Me.SLEMechType.Size = New System.Drawing.Size(121, 20)
+        Me.SLEMechType.TabIndex = 8912
+        '
+        'GridView1
+        '
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
         'BtnExportToXLSRec
         '
         Me.BtnExportToXLSRec.Image = CType(resources.GetObject("BtnExportToXLSRec.Image"), System.Drawing.Image)
-        Me.BtnExportToXLSRec.Location = New System.Drawing.Point(414, 8)
+        Me.BtnExportToXLSRec.Location = New System.Drawing.Point(489, 28)
         Me.BtnExportToXLSRec.LookAndFeel.SkinName = "Blue"
         Me.BtnExportToXLSRec.Name = "BtnExportToXLSRec"
-        Me.BtnExportToXLSRec.Size = New System.Drawing.Size(103, 23)
+        Me.BtnExportToXLSRec.Size = New System.Drawing.Size(101, 23)
         Me.BtnExportToXLSRec.TabIndex = 8908
         Me.BtnExportToXLSRec.Text = "Export to XLS"
         '
         'BtnView
         '
         Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
-        Me.BtnView.Location = New System.Drawing.Point(348, 8)
+        Me.BtnView.Location = New System.Drawing.Point(423, 28)
         Me.BtnView.Name = "BtnView"
         Me.BtnView.Size = New System.Drawing.Size(62, 23)
         Me.BtnView.TabIndex = 1
@@ -456,7 +564,7 @@ Partial Class FormLineList
         '
         'CheckEditFreeze
         '
-        Me.CheckEditFreeze.Location = New System.Drawing.Point(606, 10)
+        Me.CheckEditFreeze.Location = New System.Drawing.Point(614, 57)
         Me.CheckEditFreeze.Name = "CheckEditFreeze"
         Me.CheckEditFreeze.Properties.Caption = "Freeze Column"
         Me.CheckEditFreeze.Size = New System.Drawing.Size(93, 19)
@@ -464,7 +572,7 @@ Partial Class FormLineList
         '
         'CheckImg
         '
-        Me.CheckImg.Location = New System.Drawing.Point(522, 10)
+        Me.CheckImg.Location = New System.Drawing.Point(528, 57)
         Me.CheckImg.Name = "CheckImg"
         Me.CheckImg.Properties.Caption = "Show Images"
         Me.CheckImg.Size = New System.Drawing.Size(87, 19)
@@ -473,11 +581,11 @@ Partial Class FormLineList
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 49)
+        Me.GCData.Location = New System.Drawing.Point(0, 100)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemPictureEdit1, Me.RepoLinkProdDemand, Me.RepoLinkPP})
-        Me.GCData.Size = New System.Drawing.Size(1201, 515)
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemPictureEdit1, Me.RepoLinkProdDemand, Me.RepoLinkPP, Me.RepoBtnChangesHist, Me.RepoLinkChanges})
+        Me.GCData.Size = New System.Drawing.Size(1201, 464)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -489,9 +597,9 @@ Partial Class FormLineList
         Me.GVData.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVData.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBandFreeze, Me.gridBandGeneral, Me.gridBandPD, Me.gridBandQCReport, Me.gridBandActual})
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandChangesNote, Me.GridBandFreeze, Me.gridBandGeneral, Me.gridBandPD, Me.gridBandQCReport, Me.gridBandActual})
         Me.GVData.ColumnPanelRowHeight = 35
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_design, Me.BandedGridColumncode_import, Me.BandedGridColumncode, Me.BandedGridColumndescription, Me.BandedGridColumnid_delivery, Me.BandedGridColumndelivery, Me.BandedGridColumnid_season_orign, Me.BandedGridColumnseason_orign, Me.BandedGridColumnstyle_country, Me.BandedGridColumnid_product_origin, Me.BandedGridColumnproduct_origin, Me.BandedGridColumnid_class, Me.BandedGridColumnclass, Me.BandedGridColumnid_division, Me.BandedGridColumndivision, Me.BandedGridColumncolor, Me.BandedGridColumnsize_chart, Me.BandedGridColumnfabrication, Me.BandedGridColumndetail_description, Me.BandedGridColumneos, Me.BandedGridColumnage, Me.BandedGridColumnin_store_date, Me.BandedGridColumnret_date, Me.BandedGridColumncode_ret, Me.BandedGridColumnestimate_wh_date, Me.BandedGridColumnmove_drop, Me.BandedGridColumnid_prod_demand_design, Me.BandedGridColumnid_prod_demand, Me.BandedGridColumnpd_number, Me.BandedGridColumnpd_status, Me.BandedGridColumnid_delivery_pd, Me.BandedGridColumndelivery_pd, Me.BandedGridColumnid_season_pd, Me.BandedGridColumnseason_pd, Me.BandedGridColumnpd_qty_mkt, Me.BandedGridColumnpd_qty_buff, Me.BandedGridColumnpd_qty_core, Me.BandedGridColumnpd_qty_dev, Me.BandedGridColumnpd_qty_act_order_sales, Me.BandedGridColumnpd_qty_ttl, Me.BandedGridColumnadditional_cost_estimate, Me.BandedGridColumncost_estimate_min_additional, Me.BandedGridColumncost_estimate, Me.BandedGridColumnrate_cop_estimate, Me.BandedGridColumnadditional_price_estimate, Me.BandedGridColumnprice_estimate_min_additional, Me.BandedGridColumnprice_estimate, Me.BandedGridColumnmark_up_estimate, Me.BandedGridColumntotal_cost_estimate_min_additional, Me.BandedGridColumntotal_amount_estimate_min_additional, Me.BandedGridColumntotal_cost_estimate_mkt, Me.BandedGridColumntotal_cost_estimate_buff, Me.BandedGridColumntotal_cost_estimate_core, Me.BandedGridColumntotal_cost_estimate_dev, Me.BandedGridColumntotal_cost_estimate_act_order_sales, Me.BandedGridColumntotal_cost_estimate, Me.BandedGridColumntotal_amount_estimate_mkt, Me.BandedGridColumntotal_amount_estimate_buff, Me.BandedGridColumntotal_amount_estimate_core, Me.BandedGridColumntotal_amount_estimate_dev, Me.BandedGridColumntotal_amount_estimate_act_order_sales, Me.BandedGridColumntotal_amount_estimate, Me.BandedGridColumnid_prod_order, Me.BandedGridColumnorder_number, Me.BandedGridColumnorder_date, Me.BandedGridColumnvendor_account, Me.BandedGridColumnvendor, Me.BandedGridColumnqty_ttl_rec, Me.BandedGridColumnqty_ttl_mkt, Me.BandedGridColumnid_cop_status, Me.BandedGridColumncop_status, Me.BandedGridColumnadditional_cost_pre_final, Me.BandedGridColumncop_pre_final, Me.BandedGridColumncop_pre_final_min_additional, Me.BandedGridColumnrate_cop_pre_final, Me.BandedGridColumnadditional_cost_final, Me.BandedGridColumncop_final, Me.BandedGridColumncop_final_min_additional, Me.BandedGridColumnrate_cop_final, Me.BandedGridColumnpp_number, Me.BandedGridColumnpp_date, Me.BandedGridColumnadditional_price, Me.BandedGridColumnprice_min_additional, Me.BandedGridColumnprice, Me.BandedGridColumnmark_up, Me.BandedGridColumntotal_amount_min_additional, Me.BandedGridColumntotal_cost_min_additional, Me.BandedGridColumntotal_amount_mkt, Me.BandedGridColumntotal_amount, Me.BandedGridColumntotal_cost_mkt, Me.BandedGridColumntotal_cost, Me.BandedGridColumnno, Me.BandedGridColumnImg, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn21, Me.BandedGridColumn22, Me.BandedGridColumn23, Me.BandedGridColumn24, Me.BandedGridColumn25, Me.BandedGridColumn26, Me.BandedGridColumn27, Me.BandedGridColumn28, Me.BandedGridColumn29, Me.BandedGridColumn30, Me.BandedGridColumn31, Me.BandedGridColumn32, Me.BandedGridColumn33, Me.BandedGridColumn34, Me.BandedGridColumn35, Me.BandedGridColumn36, Me.BandedGridColumn37, Me.BandedGridColumn38, Me.BandedGridColumn39, Me.BandedGridColumn40, Me.BandedGridColumn41, Me.BandedGridColumn42, Me.BandedGridColumn43, Me.BandedGridColumn44, Me.BandedGridColumn45, Me.BandedGridColumn46, Me.BandedGridColumn47, Me.BandedGridColumn48, Me.BandedGridColumn49, Me.BandedGridColumn50, Me.BandedGridColumn51, Me.BandedGridColumn52, Me.BandedGridColumn53, Me.BandedGridColumn54, Me.BandedGridColumn55, Me.BandedGridColumn56, Me.BandedGridColumn57, Me.BandedGridColumn58, Me.BandedGridColumn59, Me.BandedGridColumn60, Me.BandedGridColumnactual_wh_date, Me.BandedGridColumnactual_in_store_date, Me.BandedGridColumn61, Me.BandedGridColumn62, Me.BandedGridColumn63, Me.BandedGridColumn64, Me.BandedGridColumn65, Me.BandedGridColumn66, Me.BandedGridColumn67, Me.BandedGridColumn68, Me.BandedGridColumn69, Me.BandedGridColumn70, Me.BandedGridColumn71, Me.BandedGridColumn72, Me.BandedGridColumn73, Me.BandedGridColumn74, Me.BandedGridColumn75, Me.BandedGridColumn76, Me.BandedGridColumn77, Me.BandedGridColumn78, Me.BandedGridColumn79, Me.BandedGridColumn80, Me.BandedGridColumn81, Me.BandedGridColumn82, Me.BandedGridColumn83, Me.BandedGridColumn84, Me.BandedGridColumnpd_qty_sni, Me.BandedGridColumn85, Me.BandedGridColumn86, Me.BandedGridColumn87, Me.BandedGridColumn88, Me.BandedGridColumn89, Me.BandedGridColumn90, Me.BandedGridColumn91, Me.BandedGridColumn92, Me.BandedGridColumn93, Me.BandedGridColumn94, Me.BandedGridColumntotal_cost_estimate_sni, Me.BandedGridColumntotal_amount_estimate_sni, Me.BandedGridColumnsht_name, Me.BandedGridColumncolor_base, Me.BandedGridColumneta_rec_qc, Me.BandedGridColumnfirst_rqc_date, Me.BandedGridColumnlast_rqc_date, Me.BandedGridColumnrqc_normal, Me.BandedGridColumnrqc_minor, Me.BandedGridColumnrqc_major, Me.BandedGridColumnrqc_afkir, Me.BandedGridColumnrqc_extra, Me.BandedGridColumnrqc_over, Me.BandedGridColumnrqc_total, Me.BandedGridColumnfirst_qcr1_date, Me.BandedGridColumnlast_qcr1_date, Me.BandedGridColumnqcr1_normal, Me.BandedGridColumnqcr1_minor, Me.BandedGridColumnqcr1_major, Me.BandedGridColumnqcr1_afkir, Me.BandedGridColumnqcr1_total, Me.BandedGridColumnfirst_ro_date, Me.BandedGridColumnlast_ro_date, Me.BandedGridColumnest_ret_in, Me.BandedGridColumnro_total, Me.BandedGridColumnfirst_ri_date, Me.BandedGridColumnlast_ri_date, Me.BandedGridColumnri_total, Me.BandedGridColumnfirst_qcr2_date, Me.BandedGridColumnlast_qcr2_date, Me.BandedGridColumnqcr2_normal, Me.BandedGridColumnqcr2_minor, Me.BandedGridColumnqcr2_major, Me.BandedGridColumnqcr2_afkir, Me.BandedGridColumnqcr2_total, Me.BandedGridColumnfirst_pl_date, Me.BandedGridColumnlast_pl_date, Me.BandedGridColumnpl_normal, Me.BandedGridColumnpl_minor, Me.BandedGridColumnpl_major, Me.BandedGridColumnpl_afkir, Me.BandedGridColumnpl_total, Me.BandedGridColumn95, Me.BandedGridColumn96, Me.BandedGridColumn97, Me.BandedGridColumnrec_qty_afkir, Me.BandedGridColumnis_drop, Me.BandedGridColumnis_move})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_design, Me.BandedGridColumncode_import, Me.BandedGridColumncode, Me.BandedGridColumndescription, Me.BandedGridColumnid_delivery, Me.BandedGridColumndelivery, Me.BandedGridColumnid_season_orign, Me.BandedGridColumnseason_orign, Me.BandedGridColumnstyle_country, Me.BandedGridColumnid_product_origin, Me.BandedGridColumnproduct_origin, Me.BandedGridColumnid_class, Me.BandedGridColumnclass, Me.BandedGridColumnid_division, Me.BandedGridColumndivision, Me.BandedGridColumncolor, Me.BandedGridColumnsize_chart, Me.BandedGridColumnfabrication, Me.BandedGridColumndetail_description, Me.BandedGridColumneos, Me.BandedGridColumnage, Me.BandedGridColumnin_store_date, Me.BandedGridColumnret_date, Me.BandedGridColumncode_ret, Me.BandedGridColumnestimate_wh_date, Me.BandedGridColumnmove_drop, Me.BandedGridColumnid_prod_demand_design, Me.BandedGridColumnid_prod_demand, Me.BandedGridColumnpd_number, Me.BandedGridColumnpd_status, Me.BandedGridColumnid_delivery_pd, Me.BandedGridColumndelivery_pd, Me.BandedGridColumnid_season_pd, Me.BandedGridColumnseason_pd, Me.BandedGridColumnpd_qty_mkt, Me.BandedGridColumnpd_qty_buff, Me.BandedGridColumnpd_qty_core, Me.BandedGridColumnpd_qty_dev, Me.BandedGridColumnpd_qty_act_order_sales, Me.BandedGridColumnpd_qty_ttl, Me.BandedGridColumnadditional_cost_estimate, Me.BandedGridColumncost_estimate_min_additional, Me.BandedGridColumncost_estimate, Me.BandedGridColumnrate_cop_estimate, Me.BandedGridColumnadditional_price_estimate, Me.BandedGridColumnprice_estimate_min_additional, Me.BandedGridColumnprice_estimate, Me.BandedGridColumnmark_up_estimate, Me.BandedGridColumntotal_cost_estimate_min_additional, Me.BandedGridColumntotal_amount_estimate_min_additional, Me.BandedGridColumntotal_cost_estimate_mkt, Me.BandedGridColumntotal_cost_estimate_buff, Me.BandedGridColumntotal_cost_estimate_core, Me.BandedGridColumntotal_cost_estimate_dev, Me.BandedGridColumntotal_cost_estimate_act_order_sales, Me.BandedGridColumntotal_cost_estimate, Me.BandedGridColumntotal_amount_estimate_mkt, Me.BandedGridColumntotal_amount_estimate_buff, Me.BandedGridColumntotal_amount_estimate_core, Me.BandedGridColumntotal_amount_estimate_dev, Me.BandedGridColumntotal_amount_estimate_act_order_sales, Me.BandedGridColumntotal_amount_estimate, Me.BandedGridColumnid_prod_order, Me.BandedGridColumnorder_number, Me.BandedGridColumnorder_date, Me.BandedGridColumnvendor_account, Me.BandedGridColumnvendor, Me.BandedGridColumnqty_ttl_rec, Me.BandedGridColumnqty_ttl_mkt, Me.BandedGridColumnid_cop_status, Me.BandedGridColumncop_status, Me.BandedGridColumnadditional_cost_pre_final, Me.BandedGridColumncop_pre_final, Me.BandedGridColumncop_pre_final_min_additional, Me.BandedGridColumnrate_cop_pre_final, Me.BandedGridColumnadditional_cost_final, Me.BandedGridColumncop_final, Me.BandedGridColumncop_final_min_additional, Me.BandedGridColumnrate_cop_final, Me.BandedGridColumnpp_number, Me.BandedGridColumnpp_date, Me.BandedGridColumnadditional_price, Me.BandedGridColumnprice_min_additional, Me.BandedGridColumnprice, Me.BandedGridColumnmark_up, Me.BandedGridColumntotal_amount_min_additional, Me.BandedGridColumntotal_cost_min_additional, Me.BandedGridColumntotal_amount_mkt, Me.BandedGridColumntotal_amount, Me.BandedGridColumntotal_cost_mkt, Me.BandedGridColumntotal_cost, Me.BandedGridColumnno, Me.BandedGridColumnImg, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn21, Me.BandedGridColumn22, Me.BandedGridColumn23, Me.BandedGridColumn24, Me.BandedGridColumn25, Me.BandedGridColumn26, Me.BandedGridColumn27, Me.BandedGridColumn28, Me.BandedGridColumn29, Me.BandedGridColumn30, Me.BandedGridColumn31, Me.BandedGridColumn32, Me.BandedGridColumn33, Me.BandedGridColumn34, Me.BandedGridColumn35, Me.BandedGridColumn36, Me.BandedGridColumn37, Me.BandedGridColumn38, Me.BandedGridColumn39, Me.BandedGridColumn40, Me.BandedGridColumn41, Me.BandedGridColumn42, Me.BandedGridColumn43, Me.BandedGridColumn44, Me.BandedGridColumn45, Me.BandedGridColumn46, Me.BandedGridColumn47, Me.BandedGridColumn48, Me.BandedGridColumn49, Me.BandedGridColumn50, Me.BandedGridColumn51, Me.BandedGridColumn52, Me.BandedGridColumn53, Me.BandedGridColumn54, Me.BandedGridColumn55, Me.BandedGridColumn56, Me.BandedGridColumn57, Me.BandedGridColumn58, Me.BandedGridColumn59, Me.BandedGridColumn60, Me.BandedGridColumnactual_wh_date, Me.BandedGridColumnactual_in_store_date, Me.BandedGridColumn61, Me.BandedGridColumn62, Me.BandedGridColumn63, Me.BandedGridColumn64, Me.BandedGridColumn65, Me.BandedGridColumn66, Me.BandedGridColumn67, Me.BandedGridColumn68, Me.BandedGridColumn69, Me.BandedGridColumn70, Me.BandedGridColumn71, Me.BandedGridColumn72, Me.BandedGridColumn73, Me.BandedGridColumn74, Me.BandedGridColumn75, Me.BandedGridColumn76, Me.BandedGridColumn77, Me.BandedGridColumn78, Me.BandedGridColumn79, Me.BandedGridColumn80, Me.BandedGridColumn81, Me.BandedGridColumn82, Me.BandedGridColumn83, Me.BandedGridColumn84, Me.BandedGridColumnpd_qty_sni, Me.BandedGridColumn85, Me.BandedGridColumn86, Me.BandedGridColumn87, Me.BandedGridColumn88, Me.BandedGridColumn89, Me.BandedGridColumn90, Me.BandedGridColumn91, Me.BandedGridColumn92, Me.BandedGridColumn93, Me.BandedGridColumn94, Me.BandedGridColumntotal_cost_estimate_sni, Me.BandedGridColumntotal_amount_estimate_sni, Me.BandedGridColumnsht_name, Me.BandedGridColumncolor_base, Me.BandedGridColumneta_rec_qc, Me.BandedGridColumnfirst_rqc_date, Me.BandedGridColumnlast_rqc_date, Me.BandedGridColumnrqc_normal, Me.BandedGridColumnrqc_minor, Me.BandedGridColumnrqc_major, Me.BandedGridColumnrqc_afkir, Me.BandedGridColumnrqc_extra, Me.BandedGridColumnrqc_over, Me.BandedGridColumnrqc_total, Me.BandedGridColumnfirst_qcr1_date, Me.BandedGridColumnlast_qcr1_date, Me.BandedGridColumnqcr1_normal, Me.BandedGridColumnqcr1_minor, Me.BandedGridColumnqcr1_major, Me.BandedGridColumnqcr1_afkir, Me.BandedGridColumnqcr1_total, Me.BandedGridColumnfirst_ro_date, Me.BandedGridColumnlast_ro_date, Me.BandedGridColumnest_ret_in, Me.BandedGridColumnro_total, Me.BandedGridColumnfirst_ri_date, Me.BandedGridColumnlast_ri_date, Me.BandedGridColumnri_total, Me.BandedGridColumnfirst_qcr2_date, Me.BandedGridColumnlast_qcr2_date, Me.BandedGridColumnqcr2_normal, Me.BandedGridColumnqcr2_minor, Me.BandedGridColumnqcr2_major, Me.BandedGridColumnqcr2_afkir, Me.BandedGridColumnqcr2_total, Me.BandedGridColumnfirst_pl_date, Me.BandedGridColumnlast_pl_date, Me.BandedGridColumnpl_normal, Me.BandedGridColumnpl_minor, Me.BandedGridColumnpl_major, Me.BandedGridColumnpl_afkir, Me.BandedGridColumnpl_total, Me.BandedGridColumn95, Me.BandedGridColumn96, Me.BandedGridColumn97, Me.BandedGridColumnrec_qty_afkir, Me.BandedGridColumnis_drop, Me.BandedGridColumnis_move, Me.BandedGridColumnview_changes, Me.BandedGridColumnchanges_note})
         GridFormatRule1.ApplyToRow = True
         GridFormatRule1.Column = Me.BandedGridColumnis_drop
         GridFormatRule1.Name = "Format0"
@@ -525,8 +633,31 @@ Partial Class FormLineList
         Me.GVData.OptionsView.ShowGroupPanel = False
         Me.GVData.RowHeight = 30
         '
+        'gridBandChangesNote
+        '
+        Me.gridBandChangesNote.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridBandChangesNote.AppearanceHeader.Options.UseFont = True
+        Me.gridBandChangesNote.Columns.Add(Me.BandedGridColumnchanges_note)
+        Me.gridBandChangesNote.Name = "gridBandChangesNote"
+        Me.gridBandChangesNote.Visible = False
+        Me.gridBandChangesNote.VisibleIndex = -1
+        Me.gridBandChangesNote.Width = 75
+        '
+        'BandedGridColumnchanges_note
+        '
+        Me.BandedGridColumnchanges_note.Caption = "UPDATED TRANS."
+        Me.BandedGridColumnchanges_note.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.BandedGridColumnchanges_note.FieldName = "changes_note"
+        Me.BandedGridColumnchanges_note.Name = "BandedGridColumnchanges_note"
+        Me.BandedGridColumnchanges_note.Visible = True
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
         'GridBandFreeze
         '
+        Me.GridBandFreeze.Columns.Add(Me.BandedGridColumnview_changes)
         Me.GridBandFreeze.Columns.Add(Me.BandedGridColumnno)
         Me.GridBandFreeze.Columns.Add(Me.BandedGridColumnImg)
         Me.GridBandFreeze.Columns.Add(Me.BandedGridColumncode_import)
@@ -534,7 +665,20 @@ Partial Class FormLineList
         Me.GridBandFreeze.Columns.Add(Me.BandedGridColumndescription)
         Me.GridBandFreeze.Name = "GridBandFreeze"
         Me.GridBandFreeze.VisibleIndex = 0
-        Me.GridBandFreeze.Width = 379
+        Me.GridBandFreeze.Width = 454
+        '
+        'BandedGridColumnview_changes
+        '
+        Me.BandedGridColumnview_changes.Caption = "CHANGES HISTORY"
+        Me.BandedGridColumnview_changes.ColumnEdit = Me.RepoLinkChanges
+        Me.BandedGridColumnview_changes.FieldName = "view_changes"
+        Me.BandedGridColumnview_changes.Name = "BandedGridColumnview_changes"
+        Me.BandedGridColumnview_changes.Visible = True
+        '
+        'RepoLinkChanges
+        '
+        Me.RepoLinkChanges.AutoHeight = False
+        Me.RepoLinkChanges.Name = "RepoLinkChanges"
         '
         'BandedGridColumnno
         '
@@ -716,10 +860,6 @@ Partial Class FormLineList
         Me.BandedGridColumndetail_description.Name = "BandedGridColumndetail_description"
         Me.BandedGridColumndetail_description.Visible = True
         Me.BandedGridColumndetail_description.Width = 159
-        '
-        'RepositoryItemMemoEdit1
-        '
-        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
         'BandedGridColumneos
         '
@@ -3066,44 +3206,19 @@ Partial Class FormLineList
         Me.BandedGridColumn94.Name = "BandedGridColumn94"
         Me.BandedGridColumn94.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pd_qty_sni#bz#10", "{0:N0}")})
         '
-        'LabelControl11
+        'RepoBtnChangesHist
         '
-        Me.LabelControl11.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.LabelControl11.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.LabelControl11.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.LabelControl11.Location = New System.Drawing.Point(52, 10)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Padding = New System.Windows.Forms.Padding(3)
-        Me.LabelControl11.Size = New System.Drawing.Size(85, 21)
-        Me.LabelControl11.TabIndex = 8932
-        Me.LabelControl11.Text = "MOVE SEASON"
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.LabelControl6.Appearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.LabelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.LabelControl6.Location = New System.Drawing.Point(9, 10)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Padding = New System.Windows.Forms.Padding(3)
-        Me.LabelControl6.Size = New System.Drawing.Size(39, 21)
-        Me.LabelControl6.TabIndex = 8931
-        Me.LabelControl6.Text = "DROP"
-        '
-        'PanelControl2
-        '
-        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl2.Controls.Add(Me.LabelControl11)
-        Me.PanelControl2.Controls.Add(Me.LabelControl6)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl2.Location = New System.Drawing.Point(1035, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(145, 131)
-        Me.PanelControl2.TabIndex = 8933
+        Me.RepoBtnChangesHist.AutoHeight = False
+        SerializableAppearanceObject1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject1.Options.UseBackColor = True
+        SerializableAppearanceObject1.Options.UseFont = True
+        SerializableAppearanceObject1.Options.UseForeColor = True
+        Me.RepoBtnChangesHist.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "view change", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        Me.RepoBtnChangesHist.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.RepoBtnChangesHist.Name = "RepoBtnChangesHist"
+        Me.RepoBtnChangesHist.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
         'FormLineList
         '
@@ -3118,23 +3233,28 @@ Partial Class FormLineList
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.XtraScrollableControl1.ResumeLayout(False)
-        Me.XtraScrollableControl1.PerformLayout()
-        CType(Me.SLEMechType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.DEChangesDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEChangesDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEBreakSize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEViewType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEMechType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditFreeze.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkChanges, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkProdDemand, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkPP, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        Me.PanelControl2.PerformLayout()
+        CType(Me.RepoBtnChangesHist, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3396,6 +3516,21 @@ Partial Class FormLineList
     Friend WithEvents BandedGridColumn96 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn97 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnrec_qty_afkir As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnis_drop As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnis_move As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnViewChange As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SLEViewType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEChangesDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents RepoBtnChangesHist As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents BandedGridColumnview_changes As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepoLinkChanges As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents BandedGridColumnchanges_note As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandChangesNote As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBandFreeze As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandPD As DevExpress.XtraGrid.Views.BandedGrid.GridBand
@@ -3410,9 +3545,4 @@ Partial Class FormLineList
     Friend WithEvents gridBandRecWH As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandDelToStore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumnis_drop As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnis_move As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class
