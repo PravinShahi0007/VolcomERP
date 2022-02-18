@@ -813,6 +813,10 @@ Public Class FormSalesPOSDet
                     id_memo_type = "8"
                     'sales_pos_number = header_number_sales("6")
                     sales_pos_number = ""
+
+                    If Not id_st_store_bap = "" Then
+                        report_mark_type = "399"
+                    End If
                 Else
                     report_mark_type = "183"
                     id_memo_type = "9"
