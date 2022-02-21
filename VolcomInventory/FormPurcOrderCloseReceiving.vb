@@ -23,6 +23,8 @@
                 WHERE id_close_receiving = " + id_close_receiving + ")
             "
         ElseIf change_type = "move" Then
+            Text = "Purchase Order Move Est. Receive Date"
+
             query_select = "
                 (SELECT m.number, DATE_FORMAT(m.created_date, '%d %M %Y %H:%i:%s') AS created_date, e.employee_name AS created_by, m.id_report_status, s.report_status
                 FROM tb_purc_order_move_date AS m
@@ -259,6 +261,7 @@
         If change_type = "close" Then
             Report.GVPO.Columns("to_est_date_receive").Visible = False
         Else
+            Report.XrLabel1.Text = "MOVE EST. RECEIVE DATE PURCHASE ORDER"
             Report.GVPO.Columns("close_rec_reason").Visible = False
         End If
 
