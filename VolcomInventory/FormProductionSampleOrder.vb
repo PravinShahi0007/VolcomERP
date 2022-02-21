@@ -105,7 +105,7 @@ WHERE id_prod_order_cps2='" & id & "'"
             'ORDER BY po.`id_mat_purc` ASC"
         Else
             query = "SELECT kpd.eta_copy_proto_2,kpd.revision,kpd.id_prod_order_cps2_det,'' AS `no`,po.`prod_order_number`
-,dsg.design_display_name,cd.color AS color
+,dsg.design_display_name,cd.color AS color,cd.class AS class
 ,IFNULL(revtimes.revision_times,0) AS revision_times
 ,kpd.id_prod_order
 ,kpd.eta_copy_proto_2

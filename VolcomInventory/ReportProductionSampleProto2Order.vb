@@ -41,7 +41,7 @@
             tb_class.SizeF = New Size(45, 20)
             tb_class.LocationF = New Point(172, po_height)
             tb_class.Font = New Font("Calibri", 11, FontStyle.Bold)
-            tb_class.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+            tb_class.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             tb_class.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             tb_class.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
 
