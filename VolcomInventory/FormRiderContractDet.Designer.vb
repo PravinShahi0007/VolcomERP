@@ -44,6 +44,10 @@ Partial Class FormRiderContractDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RISLECat = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit2View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemSearchLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -83,6 +87,8 @@ Partial Class FormRiderContractDet
         Me.XTPPPS.SuspendLayout()
         CType(Me.GCPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPPS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLECat, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -291,7 +297,7 @@ Partial Class FormRiderContractDet
         Me.GCPPS.Location = New System.Drawing.Point(0, 0)
         Me.GCPPS.MainView = Me.GVPPS
         Me.GCPPS.Name = "GCPPS"
-        Me.GCPPS.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.RepositoryItemSearchLookUpEdit1})
+        Me.GCPPS.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.RepositoryItemSearchLookUpEdit1, Me.RISLECat})
         Me.GCPPS.Size = New System.Drawing.Size(1005, 243)
         Me.GCPPS.TabIndex = 0
         Me.GCPPS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPPS})
@@ -314,7 +320,7 @@ Partial Class FormRiderContractDet
         Me.GridBand1.Columns.Add(Me.GridColumn2)
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 150
+        Me.GridBand1.Width = 349
         '
         'GridColumn1
         '
@@ -333,11 +339,40 @@ Partial Class FormRiderContractDet
         'GridColumn8
         '
         Me.GridColumn8.Caption = "Category"
+        Me.GridColumn8.ColumnEdit = Me.RISLECat
         Me.GridColumn8.FieldName = "category"
         Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.OptionsColumn.AllowEdit = False
-        Me.GridColumn8.OptionsColumn.AllowFocus = False
         Me.GridColumn8.Visible = True
+        Me.GridColumn8.Width = 114
+        '
+        'RISLECat
+        '
+        Me.RISLECat.AutoHeight = False
+        Me.RISLECat.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLECat.Name = "RISLECat"
+        Me.RISLECat.View = Me.RepositoryItemSearchLookUpEdit2View
+        '
+        'RepositoryItemSearchLookUpEdit2View
+        '
+        Me.RepositoryItemSearchLookUpEdit2View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.GridColumn13})
+        Me.RepositoryItemSearchLookUpEdit2View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit2View.Name = "RepositoryItemSearchLookUpEdit2View"
+        Me.RepositoryItemSearchLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit2View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "ID"
+        Me.GridColumn12.FieldName = "id_kontrak_type"
+        Me.GridColumn12.Name = "GridColumn12"
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Category"
+        Me.GridColumn13.FieldName = "kontrak_type"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 0
         '
         'GridColumn2
         '
@@ -346,6 +381,7 @@ Partial Class FormRiderContractDet
         Me.GridColumn2.FieldName = "id_comp"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
+        Me.GridColumn2.Width = 235
         '
         'RepositoryItemSearchLookUpEdit1
         '
@@ -419,7 +455,6 @@ Partial Class FormRiderContractDet
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
         Me.BandedGridColumn3.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn3.OptionsColumn.AllowFocus = False
-        Me.BandedGridColumn3.UnboundExpression = "DateDiffMonth([old_kontrak_from], [old_kontrak_until]) + 1"
         Me.BandedGridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.BandedGridColumn3.Visible = True
         '
@@ -506,7 +541,6 @@ Partial Class FormRiderContractDet
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.OptionsColumn.AllowFocus = False
-        Me.GridColumn5.UnboundExpression = "DateDiffMonth([kontrak_from], [kontrak_until]) + 1"
         Me.GridColumn5.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumn5.Visible = True
         '
@@ -591,6 +625,8 @@ Partial Class FormRiderContractDet
         Me.XTPPPS.ResumeLayout(False)
         CType(Me.GCPPS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPPS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLECat, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit2View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -651,4 +687,8 @@ Partial Class FormRiderContractDet
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RISLECat As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RepositoryItemSearchLookUpEdit2View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
