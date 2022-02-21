@@ -43,6 +43,7 @@ FROM `tb_kontrak_rider_pps_det` ppsd
 WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCPPS.DataSource = dt
+        GVPPS.BestFitColumns()
     End Sub
 
     Sub load_type()
@@ -80,7 +81,7 @@ WHERE c.`is_active`=1 AND c.`id_comp_cat`=2"
         Dim is_ok As Boolean = True
         'check
         For i = 0 To GVPPS.RowCount - 1
-            If GVPPS.GetRowCellValue(i, "category") Is Nothing Or GVPPS.GetRowCellValue(i, "id_comp") Is Nothing Or GVPPS.GetRowCellValue(i, "qty_month") <= 0 Or GVPPS.GetRowCellValue(i, "monthly_pay") <= 0 Then
+            If GVPPS.GetRowCellValue(i, "id_kontrak_type") Is Nothing Or GVPPS.GetRowCellValue(i, "id_comp") Is Nothing Or GVPPS.GetRowCellValue(i, "qty_month") <= 0 Or GVPPS.GetRowCellValue(i, "monthly_pay") <= 0 Then
                 is_ok = False
                 Exit For
             End If
@@ -133,25 +134,56 @@ WHERE c.`is_active`=1 AND c.`id_comp_cat`=2"
     End Sub
 
     Private Sub GVPPS_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles GVPPS.CustomUnboundColumnData
-        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
-        If e.Column.FieldName = "qty_month" AndAlso e.IsGetData Then
+        'If e.Column.FieldName = "qty_month" Then
+        '    Try
+        '        Dim total_month As String = ""
+        '        Dim q As String = "SELECT TIMESTAMPDIFF(MONTH, '" & Date.Parse(GVPPS.GetRowCellValue(e.ListSourceRowIndex, "kontrak_from").ToString).ToString("yyyy-MM-dd") & "', '" & Date.Parse(GVPPS.GetRowCellValue(e.ListSourceRowIndex, "kontrak_until").ToString).ToString("yyyy-MM-dd") & "') as diff"
+        '        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        '        If dt.Rows.Count > 0 Then
+        '            e.Value = dt.Rows(0)("diff")
+        '        End If
+        '    Catch ex As Exception
+
+        '    End Try
+        'ElseIf e.Column.FieldName = "qty_month_old" Then
+        '    Try
+        '        Dim total_month As String = ""
+        '        Dim q As String = "SELECT TIMESTAMPDIFF(MONTH, '" & Date.Parse(GVPPS.GetRowCellValue(e.ListSourceRowIndex, "kontrak_from_old").ToString).ToString("yyyy-MM-dd") & "', '" & Date.Parse(GVPPS.GetRowCellValue(e.ListSourceRowIndex, "kontrak_until_old").ToString).ToString("yyyy-MM-dd") & "') as diff"
+        '        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        '        If dt.Rows.Count > 0 Then
+        '            e.Value = dt.Rows(0)("diff")
+        '        End If
+        '    Catch ex As Exception
+
+        '    End Try
+        'End If
+    End Sub
+
+    Private Sub GVPPS_HiddenEditor(sender As Object, e As EventArgs) Handles GVPPS.HiddenEditor
+
+        '
+        GVPPS.BestFitColumns()
+    End Sub
+
+    Private Sub GVPPS_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVPPS.CellValueChanged
+        If e.Column.FieldName = "kontrak_from_old" Or e.Column.FieldName = "kontrak_until_old" Then
             Try
                 Dim total_month As String = ""
-                Dim q As String = "SELECT TIMESTAMPDIFF(MONTH, '" & Date.Parse(GVPPS.GetRowCellValue(e.ListSourceRowIndex, "kontrak_from").ToString).ToString("yyyy-MM-dd") & "', '" & Date.Parse(GVPPS.GetRowCellValue(e.ListSourceRowIndex, "kontrak_until").ToString).ToString("yyyy-MM-dd") & "') as diff"
+                Dim q As String = "SELECT TIMESTAMPDIFF(MONTH, '" & Date.Parse(GVPPS.GetRowCellValue(e.RowHandle, "kontrak_from").ToString).ToString("yyyy-MM-dd") & "', '" & Date.Parse(GVPPS.GetRowCellValue(e.RowHandle, "kontrak_until").ToString).ToString("yyyy-MM-dd") & "') as diff"
                 Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
                 If dt.Rows.Count > 0 Then
-                    e.Value = dt.Rows(0)("diff")
+                    GVPPS.SetFocusedRowCellValue("qty_month", dt.Rows(0)("diff"))
                 End If
             Catch ex As Exception
 
             End Try
-        ElseIf e.Column.FieldName = "qty_month_old" AndAlso e.IsGetData Then
+        ElseIf e.Column.FieldName = "kontrak_from_old" Or e.Column.FieldName = "kontrak_until_old" Then
             Try
                 Dim total_month As String = ""
-                Dim q As String = "SELECT TIMESTAMPDIFF(MONTH, '" & Date.Parse(GVPPS.GetRowCellValue(e.ListSourceRowIndex, "kontrak_from_old").ToString).ToString("yyyy-MM-dd") & "', '" & Date.Parse(GVPPS.GetRowCellValue(e.ListSourceRowIndex, "kontrak_until_old").ToString).ToString("yyyy-MM-dd") & "') as diff"
+                Dim q As String = "SELECT TIMESTAMPDIFF(MONTH, '" & Date.Parse(GVPPS.GetRowCellValue(e.RowHandle, "kontrak_from_old").ToString).ToString("yyyy-MM-dd") & "', '" & Date.Parse(GVPPS.GetRowCellValue(e.RowHandle, "kontrak_until_old").ToString).ToString("yyyy-MM-dd") & "') as diff"
                 Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
                 If dt.Rows.Count > 0 Then
-                    e.Value = dt.Rows(0)("diff")
+                    GVPPS.SetFocusedRowCellValue("qty_month_old", dt.Rows(0)("diff"))
                 End If
             Catch ex As Exception
 
