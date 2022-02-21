@@ -7198,7 +7198,12 @@ WHERE pnd.id_currency!=1 AND pnd.`id_pn`='" & id_report & "'"
             'refresh view
 
             'FormBankWithdrawal.load_payment()
-            FormBankWithdrawalDet.form_load()
+            Try
+                FormBankWithdrawalDet.form_load()
+            Catch ex As Exception
+
+            End Try
+
             'FormBankWithdrawal.GVList.FocusedRowHandle = find_row(FormBankWithdrawal.GVList, "id_pn", id_report)
         ElseIf report_mark_type = "160" Then
             'Asset management

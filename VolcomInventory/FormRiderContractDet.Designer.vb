@@ -395,6 +395,8 @@ Partial Class FormRiderContractDet
         Me.BandedGridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn1.FieldName = "old_kontrak_from"
         Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.BandedGridColumn1.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn1.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn1.Visible = True
         '
         'BandedGridColumn2
@@ -404,6 +406,8 @@ Partial Class FormRiderContractDet
         Me.BandedGridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn2.FieldName = "old_kontrak_until"
         Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn2.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn2.Visible = True
         '
         'BandedGridColumn3
@@ -413,6 +417,8 @@ Partial Class FormRiderContractDet
         Me.BandedGridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn3.FieldName = "qty_month_old"
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn3.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn3.UnboundExpression = "DateDiffMonth([old_kontrak_from], [old_kontrak_until]) + 1"
         Me.BandedGridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.BandedGridColumn3.Visible = True
@@ -424,6 +430,8 @@ Partial Class FormRiderContractDet
         Me.BandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn4.FieldName = "monthly_pay_old"
         Me.BandedGridColumn4.Name = "BandedGridColumn4"
+        Me.BandedGridColumn4.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn4.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn4.Visible = True
         '
         'BandedGridColumn5
@@ -433,6 +441,8 @@ Partial Class FormRiderContractDet
         Me.BandedGridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn5.FieldName = "monthly_pay_tot_old"
         Me.BandedGridColumn5.Name = "BandedGridColumn5"
+        Me.BandedGridColumn5.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn5.OptionsColumn.AllowFocus = False
         Me.BandedGridColumn5.UnboundExpression = "[qty_month_old] * [monthly_pay_old]"
         Me.BandedGridColumn5.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumn5.Visible = True
@@ -494,6 +504,8 @@ Partial Class FormRiderContractDet
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn5.FieldName = "qty_month"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        Me.GridColumn5.OptionsColumn.AllowFocus = False
         Me.GridColumn5.UnboundExpression = "DateDiffMonth([kontrak_from], [kontrak_until]) + 1"
         Me.GridColumn5.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumn5.Visible = True
