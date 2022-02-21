@@ -39,7 +39,7 @@ Partial Class FormRiderContractDet
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPPS = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPPS = New DevExpress.XtraGrid.GridControl()
-        Me.BandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GVPPS = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -82,7 +82,7 @@ Partial Class FormRiderContractDet
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPPPS.SuspendLayout()
         CType(Me.GCPPS, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -289,21 +289,21 @@ Partial Class FormRiderContractDet
         '
         Me.GCPPS.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCPPS.Location = New System.Drawing.Point(0, 0)
-        Me.GCPPS.MainView = Me.BandedGridView1
+        Me.GCPPS.MainView = Me.GVPPS
         Me.GCPPS.Name = "GCPPS"
         Me.GCPPS.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.RepositoryItemSearchLookUpEdit1})
         Me.GCPPS.Size = New System.Drawing.Size(1005, 243)
         Me.GCPPS.TabIndex = 0
-        Me.GCPPS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BandedGridView1})
+        Me.GCPPS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPPS})
         '
-        'BandedGridView1
+        'GVPPS
         '
-        Me.BandedGridView1.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
-        Me.BandedGridView1.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn11, Me.GridColumn8, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5})
-        Me.BandedGridView1.GridControl = Me.GCPPS
-        Me.BandedGridView1.Name = "BandedGridView1"
-        Me.BandedGridView1.OptionsView.ColumnAutoWidth = False
-        Me.BandedGridView1.OptionsView.ShowGroupPanel = False
+        Me.GVPPS.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
+        Me.GVPPS.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn11, Me.GridColumn8, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5})
+        Me.GVPPS.GridControl = Me.GCPPS
+        Me.GVPPS.Name = "GVPPS"
+        Me.GVPPS.OptionsView.ColumnAutoWidth = False
+        Me.GVPPS.OptionsView.ShowGroupPanel = False
         '
         'GridBand1
         '
@@ -332,8 +332,8 @@ Partial Class FormRiderContractDet
         '
         'GridColumn8
         '
-        Me.GridColumn8.Caption = "Type"
-        Me.GridColumn8.FieldName = "type"
+        Me.GridColumn8.Caption = "Category"
+        Me.GridColumn8.FieldName = "category"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.AllowEdit = False
         Me.GridColumn8.OptionsColumn.AllowFocus = False
@@ -413,6 +413,8 @@ Partial Class FormRiderContractDet
         Me.BandedGridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn3.FieldName = "qty_month_old"
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.UnboundExpression = "DateDiffMonth([old_kontrak_from], [old_kontrak_until]) + 1"
+        Me.BandedGridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.BandedGridColumn3.Visible = True
         '
         'BandedGridColumn4
@@ -431,6 +433,8 @@ Partial Class FormRiderContractDet
         Me.BandedGridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn5.FieldName = "monthly_pay_tot_old"
         Me.BandedGridColumn5.Name = "BandedGridColumn5"
+        Me.BandedGridColumn5.UnboundExpression = "[qty_month_old] * [monthly_pay_old]"
+        Me.BandedGridColumn5.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumn5.Visible = True
         '
         'gridBand3
@@ -574,7 +578,7 @@ Partial Class FormRiderContractDet
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPPPS.ResumeLayout(False)
         CType(Me.GCPPS, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPPS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -617,7 +621,7 @@ Partial Class FormRiderContractDet
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents BandedGridView1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GVPPS As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
