@@ -104,7 +104,8 @@ WHERE id_prod_order_cps2='" & id & "'"
             'GROUP BY po.id_mat_purc
             'ORDER BY po.`id_mat_purc` ASC"
         Else
-            query = "SELECT kpd.eta_copy_proto_2,kpd.revision,kpd.id_prod_order_cps2_det,'' AS `no`,po.`prod_order_number`,LEFT(dsg.design_display_name,LENGTH(dsg.design_display_name)-3) AS class_dsg,RIGHT(dsg.design_display_name,3) AS color
+            query = "SELECT kpd.eta_copy_proto_2,kpd.revision,kpd.id_prod_order_cps2_det,'' AS `no`,po.`prod_order_number`
+,dsg.design_display_name,cd.color AS color
 ,IFNULL(revtimes.revision_times,0) AS revision_times
 ,kpd.id_prod_order
 ,kpd.eta_copy_proto_2
@@ -114,6 +115,25 @@ FROM `tb_prod_order_cps2_det` kpd
 INNER JOIN tb_prod_order po ON po.id_prod_order=kpd.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON po.`id_prod_demand_design`=pdd.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+INNER JOIN tb_season s ON s.id_season=dsg.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43, 34)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = dsg.id_design
 LEFT JOIN(
     SELECT revtimes.id_prod_order,COUNT(DISTINCT revtimes.revision) AS revision_times FROM
     (
