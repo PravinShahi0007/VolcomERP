@@ -79,6 +79,7 @@
         If id_design <> "-1" Then
             query += "AND d.id_design='" + id_design + "' "
         End If
+        query += "ORDER BY ll.log_date DESC, ll.id_design ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()

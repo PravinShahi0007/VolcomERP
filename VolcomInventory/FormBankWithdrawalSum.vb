@@ -188,9 +188,9 @@ WHERE " & qw & " py.`id_report_status`!='5' AND py.`id_report_status`='3' AND py
             DEPayment.Enabled = False
             SLEType.ReadOnly = True
             '
-            LChangeTo.Visible = True
-            DEChangeDate.Visible = True
-            BChangeDate.Visible = True
+            'LChangeTo.Visible = True
+            'DEChangeDate.Visible = True
+            'BChangeDate.Visible = True
             '
             BGenerate.Text = "Unlock"
         Else
