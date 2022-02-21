@@ -235,6 +235,8 @@ WHERE qrs.`id_prod_order`='" & id_po & "'"
         Else
             'submit
             submit_who_prepared("388", id, id_user)
+            execute_non_query("UPDATE tb_qc_report1_sum SET is_submit=1 WHERE id_qc_report1_sum='" & id & "'", True, "", "", "", "")
+            '
             infoCustom("Summary submitted")
             load_head()
         End If

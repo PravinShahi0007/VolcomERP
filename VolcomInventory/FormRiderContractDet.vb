@@ -1,9 +1,39 @@
 ﻿Public Class FormRiderContractDet
     Public id_pps As String = "-1"
+    Public is_view As String = "-1"
 
     Private Sub FormRiderContractDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_head()
+    End Sub
+
+    Sub load_head()
         load_type()
         load_rider()
+
+        If id_pps = "-1" Then
+            'new
+        Else
+            'edit
+            BtnSave.Visible = False
+            PCAddDel.Visible = False
+            '
+            BtnPrint.Visible = True
+            BtnMark.Visible = True
+            '
+            Dim q As String = "SELECT * FROM tb_kontrak_rider_pps pps
+INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=pps.`id_report_status`
+INNER JOIN tb_m_user usr ON usr.`id_user`=pps.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+WHERE pps.`id_kontrak_rider_pps`=" & id_pps
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                TxtNumber.Text = dt.Rows(0)("number").ToString
+                DECreated.EditValue = dt.Rows(0)("created_date")
+                TEProposedBy.Text = dt.Rows(0)("employee_name").ToString
+                MENote.Text = dt.Rows(0)("note").ToString
+            End If
+        End If
+
         load_det()
     End Sub
 
@@ -66,7 +96,7 @@ WHERE c.`is_active`=1 AND c.`id_comp_cat`=2"
                     '
                     execute_non_query("CALL gen_number('" & id_pps & "','398')", True, "", "", "", "")
                     'detail
-                    q = "INSERT INTO tb_kontrak_rider_pps_det(`id_kontrak_rider_pps`,`id_comp`,`id_type`,`kontrak_from`,`kontrak_until`,`monthly_pay`,`id_kontrak_old`,`kontrak_from_old`,`kontrak_until_old`,`monthly_pay_old`) VALUES"
+                    q = "INSERT INTO tb_kontrak_rider_pps_det(`id_kontrak_rider_pps`,`id_comp`,`id_kontrak_type`,`kontrak_from`,`kontrak_until`,`monthly_pay`,`id_kontrak_old`,`kontrak_from_old`,`kontrak_until_old`,`monthly_pay_old`) VALUES"
                     For i = 0 To GVPPS.RowCount - 1
                         Dim id_kontrak_old As String = "0"
                         Dim kontrak_from_old As String = "NULL"
@@ -84,9 +114,12 @@ WHERE c.`is_active`=1 AND c.`id_comp_cat`=2"
                         If Not i = 0 Then
                             q += ","
                         End If
-                        q += "('" & id_pps & "','" & GVPPS.GetRowCellValue(i, "id_comp").ToString & "','" & GVPPS.GetRowCellValue(i, "id_type").ToString & "','" & Date.Parse(GVPPS.GetRowCellValue(i, "kontrak_from").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPPS.GetRowCellValue(i, "kontrak_until").ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(Decimal.Parse(GVPPS.GetRowCellValue(i, "monthly_pay").ToString).ToString) & "'," & id_kontrak_old & "," & kontrak_from_old & "," & kontrak_until_old & "," & monthly_pay_old & ")"
+                        q += "('" & id_pps & "','" & GVPPS.GetRowCellValue(i, "id_comp").ToString & "','" & GVPPS.GetRowCellValue(i, "id_kontrak_type").ToString & "','" & Date.Parse(GVPPS.GetRowCellValue(i, "kontrak_from").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPPS.GetRowCellValue(i, "kontrak_until").ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(Decimal.Parse(GVPPS.GetRowCellValue(i, "monthly_pay").ToString).ToString) & "'," & id_kontrak_old & "," & kontrak_from_old & "," & kontrak_until_old & "," & monthly_pay_old & ")"
                     Next
                     execute_non_query(q, True, "", "", "", "")
+                    '
+                    submit_who_prepared("398", id_pps, id_user)
+                    '
                     Close()
                 Else 'edit
 

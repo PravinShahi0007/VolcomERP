@@ -554,6 +554,9 @@
         ElseIf report_mark_type = "390" Then
             'soh virtual
             FormVirtualSalesDet.Close()
+        ElseIf report_mark_type = "398" Then
+            'endorsee contract
+            FormRiderContractDet.Close()
         End If
     End Sub
     Sub show()
@@ -1769,6 +1772,11 @@ GROUP BY rec.`id_prod_order`"
             FormVirtualSalesDet.is_view = "1"
             FormVirtualSalesDet.id = id_report
             FormVirtualSalesDet.ShowDialog()
+        ElseIf report_mark_type = "398" Then
+            'endorsee contract
+            FormRiderContractDet.is_view = "1"
+            FormRiderContractDet.id_pps = id_report
+            FormRiderContractDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -3150,6 +3158,12 @@ GROUP BY rec.`id_prod_order`"
             'soh virtual
             table_name = "tb_virtual_sales"
             field_id = "id_virtual_sales"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "398" Then
+            'endorsee contract
+            table_name = "tb_kontrak_rider_pps"
+            field_id = "id_kontrak_rider_pps"
             field_number = "number"
             field_date = "created_date"
         Else

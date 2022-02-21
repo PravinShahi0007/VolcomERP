@@ -783,6 +783,9 @@
         ElseIf report_mark_type = "389" Then
             'vm asset move
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_vm_item_move WHERE id_vm_item_move = '{0}'", id_report)
+        ElseIf report_mark_type = "398" Then
+            'endorsee contract
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_kontrak_rider_pps WHERE id_kontrak_rider_pps = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -11680,7 +11683,7 @@ WHERE id_item_pps='" & id_report & "'"
 
             FormQCReport1Sum.load_head()
         ElseIf report_mark_type = "389" Then
-            'qc report 1
+            'vm move
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
             End If
@@ -11720,6 +11723,29 @@ INNER JOIN tb_vm_item_move m ON m.id_vm_item_move=d.id_vm_item_move AND m.id_vm_
             query = String.Format("UPDATE tb_vm_item_move SET id_report_status = '{0}' WHERE id_vm_item_move = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             FormVMMove.load_head()
+        ElseIf report_mark_type = "398" Then
+            'endorsee contract
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'complete
+                Dim qi As String = ""
+                'non active old kontrak if changes
+
+                'insert new contract
+                qi = "INSERT INTO `tb_kontrak_rider`(`id_comp`,`id_kontrak_type`,`kontrak_from`,`kontrak_until`,`monthly_pay`,`is_active`,`reff`)
+SELECT ppsd.id_comp,ppsd.id_kontrak_type,ppsd.kontrak_from,ppsd.kontrak_until,ppsd.monthly_pay,1 AS is_active,ppsd.id_kontrak_rider_pps AS reff
+FROM tb_kontrak_rider_pps_det ppsd
+WHERE ppsd.id_kontrak_rider_pps='" & id_report & "'"
+                execute_non_query(qi, True, "", "", "", "")
+            End If
+
+            query = String.Format("UPDATE tb_qc_report1_sum SET id_report_status = '{0}' WHERE id_qc_report1_sum = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            FormQCReport1Sum.load_head()
         End If
 
         'adding lead time

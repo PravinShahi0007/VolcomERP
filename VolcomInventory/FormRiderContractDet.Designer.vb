@@ -23,7 +23,7 @@ Partial Class FormRiderContractDet
         Me.PanelControlPay = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEProposedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -33,7 +33,7 @@ Partial Class FormRiderContractDet
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
@@ -74,14 +74,14 @@ Partial Class FormRiderContractDet
         Me.PanelControlPay.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEProposedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCAddDel.SuspendLayout()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPPPS.SuspendLayout()
@@ -115,7 +115,7 @@ Partial Class FormRiderContractDet
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
-        Me.PanelControl2.Controls.Add(Me.TextEdit1)
+        Me.PanelControl2.Controls.Add(Me.TEProposedBy)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
         Me.PanelControl2.Controls.Add(Me.DECreated)
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
@@ -135,15 +135,15 @@ Partial Class FormRiderContractDet
         Me.LabelControl5.TabIndex = 8
         Me.LabelControl5.Text = "Proposed By"
         '
-        'TextEdit1
+        'TEProposedBy
         '
-        Me.TextEdit1.Enabled = False
-        Me.TextEdit1.Location = New System.Drawing.Point(105, 63)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit1.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit1.Size = New System.Drawing.Size(174, 20)
-        Me.TextEdit1.TabIndex = 9
+        Me.TEProposedBy.Enabled = False
+        Me.TEProposedBy.Location = New System.Drawing.Point(105, 63)
+        Me.TEProposedBy.Name = "TEProposedBy"
+        Me.TEProposedBy.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEProposedBy.Properties.Appearance.Options.UseFont = True
+        Me.TEProposedBy.Size = New System.Drawing.Size(174, 20)
+        Me.TEProposedBy.TabIndex = 9
         '
         'LabelControl4
         '
@@ -243,15 +243,15 @@ Partial Class FormRiderContractDet
         Me.BtnSave.TabIndex = 6
         Me.BtnSave.Text = "Save"
         '
-        'PanelControl1
+        'PCAddDel
         '
-        Me.PanelControl1.Controls.Add(Me.BtnDelete)
-        Me.PanelControl1.Controls.Add(Me.BtnAdd)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 99)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1011, 40)
-        Me.PanelControl1.TabIndex = 19
+        Me.PCAddDel.Controls.Add(Me.BtnDelete)
+        Me.PCAddDel.Controls.Add(Me.BtnAdd)
+        Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCAddDel.Location = New System.Drawing.Point(0, 99)
+        Me.PCAddDel.Name = "PCAddDel"
+        Me.PCAddDel.Size = New System.Drawing.Size(1011, 40)
+        Me.PCAddDel.TabIndex = 19
         '
         'BtnDelete
         '
@@ -340,7 +340,7 @@ Partial Class FormRiderContractDet
         '
         Me.GridColumn8.Caption = "Category"
         Me.GridColumn8.ColumnEdit = Me.RISLECat
-        Me.GridColumn8.FieldName = "category"
+        Me.GridColumn8.FieldName = "id_kontrak_type"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.Width = 114
@@ -598,7 +598,7 @@ Partial Class FormRiderContractDet
         Me.ClientSize = New System.Drawing.Size(1011, 531)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Controls.Add(Me.PanelControl3)
-        Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.PCAddDel)
         Me.Controls.Add(Me.PanelControlBottom)
         Me.Controls.Add(Me.PanelControlPay)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -612,14 +612,14 @@ Partial Class FormRiderContractDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEProposedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCAddDel.ResumeLayout(False)
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPPPS.ResumeLayout(False)
@@ -653,8 +653,8 @@ Partial Class FormRiderContractDet
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TEProposedBy As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents PCAddDel As DevExpress.XtraEditors.PanelControl
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPPPS As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCPPS As DevExpress.XtraGrid.GridControl

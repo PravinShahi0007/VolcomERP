@@ -40,6 +40,7 @@ Partial Class FormRiderContract
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BRefreshPPS = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPKontrak.SuspendLayout()
@@ -120,7 +121,7 @@ Partial Class FormRiderContract
         '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "Rider"
+        Me.GridColumn3.Caption = "Endorsee"
         Me.GridColumn3.FieldName = "comp_name"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
@@ -212,6 +213,7 @@ Partial Class FormRiderContract
         'XTPPPS
         '
         Me.XTPPPS.Controls.Add(Me.GCPPS)
+        Me.XTPPPS.Controls.Add(Me.BRefreshPPS)
         Me.XTPPPS.Name = "XTPPPS"
         Me.XTPPPS.Size = New System.Drawing.Size(1095, 538)
         Me.XTPPPS.Text = "Changes Proposal"
@@ -222,7 +224,7 @@ Partial Class FormRiderContract
         Me.GCPPS.Location = New System.Drawing.Point(0, 0)
         Me.GCPPS.MainView = Me.GVPPS
         Me.GCPPS.Name = "GCPPS"
-        Me.GCPPS.Size = New System.Drawing.Size(1095, 538)
+        Me.GCPPS.Size = New System.Drawing.Size(1095, 504)
         Me.GCPPS.TabIndex = 93
         Me.GCPPS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPPS})
         '
@@ -257,6 +259,23 @@ Partial Class FormRiderContract
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 1
         '
+        'BRefreshPPS
+        '
+        Me.BRefreshPPS.Appearance.BackColor = System.Drawing.Color.LimeGreen
+        Me.BRefreshPPS.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BRefreshPPS.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BRefreshPPS.Appearance.Options.UseBackColor = True
+        Me.BRefreshPPS.Appearance.Options.UseFont = True
+        Me.BRefreshPPS.Appearance.Options.UseForeColor = True
+        Me.BRefreshPPS.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BRefreshPPS.Location = New System.Drawing.Point(0, 504)
+        Me.BRefreshPPS.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.BRefreshPPS.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BRefreshPPS.Name = "BRefreshPPS"
+        Me.BRefreshPPS.Size = New System.Drawing.Size(1095, 34)
+        Me.BRefreshPPS.TabIndex = 94
+        Me.BRefreshPPS.Text = "Refresh"
+        '
         'FormRiderContract
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -268,7 +287,7 @@ Partial Class FormRiderContract
         Me.MinimizeBox = False
         Me.Name = "FormRiderContract"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Rider Contract"
+        Me.Text = "Endorsee Contract"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
@@ -304,4 +323,5 @@ Partial Class FormRiderContract
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BRefreshPPS As DevExpress.XtraEditors.SimpleButton
 End Class

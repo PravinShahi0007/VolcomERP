@@ -208,6 +208,7 @@ Partial Class FormMain
         Me.NBDeptHeadSurveyHRD = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBEmpOvertime = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBLetterOfStatement = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBRiderContract = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBEmployeeContract = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGMaster = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBSeason = New DevExpress.XtraNavBar.NavBarItem()
@@ -567,7 +568,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBRiderContract = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2044,6 +2044,12 @@ Partial Class FormMain
         Me.NBLetterOfStatement.Caption = "Letter of Statement"
         Me.NBLetterOfStatement.Name = "NBLetterOfStatement"
         Me.NBLetterOfStatement.SmallImage = CType(resources.GetObject("NBLetterOfStatement.SmallImage"), System.Drawing.Image)
+        '
+        'NBRiderContract
+        '
+        Me.NBRiderContract.Caption = "Endorsee Contract"
+        Me.NBRiderContract.Name = "NBRiderContract"
+        Me.NBRiderContract.SmallImage = CType(resources.GetObject("NBRiderContract.SmallImage"), System.Drawing.Image)
         '
         'NBEmployeeContract
         '
@@ -4359,12 +4365,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBRiderContract
-        '
-        Me.NBRiderContract.Caption = "Rider Contract"
-        Me.NBRiderContract.Name = "NBRiderContract"
-        Me.NBRiderContract.SmallImage = CType(resources.GetObject("NBRiderContract.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
