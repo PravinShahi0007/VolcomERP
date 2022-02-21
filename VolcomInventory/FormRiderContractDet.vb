@@ -166,7 +166,7 @@ WHERE c.`is_active`=1 AND c.`id_comp_cat`=2"
     End Sub
 
     Private Sub GVPPS_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVPPS.CellValueChanged
-        If e.Column.FieldName = "kontrak_from_old" Or e.Column.FieldName = "kontrak_until_old" Then
+        If e.Column.FieldName = "kontrak_from" Or e.Column.FieldName = "kontrak_until" Then
             Try
                 Dim total_month As String = ""
                 Dim q As String = "SELECT TIMESTAMPDIFF(MONTH, '" & Date.Parse(GVPPS.GetRowCellValue(e.RowHandle, "kontrak_from").ToString).ToString("yyyy-MM-dd") & "', '" & Date.Parse(GVPPS.GetRowCellValue(e.RowHandle, "kontrak_until").ToString).ToString("yyyy-MM-dd") & "') as diff"
