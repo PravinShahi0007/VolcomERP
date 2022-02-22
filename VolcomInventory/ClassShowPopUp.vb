@@ -120,7 +120,7 @@
         ElseIf report_mark_type = "47" Then
             'return in mat
             FormViewMatRetInProd.Close()
-        ElseIf report_mark_type = "48" Or report_mark_type = "66" Or report_mark_type = "118" Or report_mark_type = "54" Or report_mark_type = "344" Or report_mark_type = "67" Or report_mark_type = "116" Or report_mark_type = "117" Or report_mark_type = "183" Or report_mark_type = "292" Or report_mark_type = "315" Or report_mark_type = "316" Then
+        ElseIf report_mark_type = "48" Or report_mark_type = "66" Or report_mark_type = "118" Or report_mark_type = "54" Or report_mark_type = "344" Or report_mark_type = "67" Or report_mark_type = "116" Or report_mark_type = "117" Or report_mark_type = "183" Or report_mark_type = "292" Or report_mark_type = "315" Or report_mark_type = "316" Or report_mark_type = "399" Then
             'invoice/missing/credit note
             FormViewSalesPOS.Close()
         ElseIf report_mark_type = "50" Then
@@ -1037,7 +1037,7 @@ GROUP BY rec.`id_prod_order`"
             FormViewSalesPOS.id_menu = "3"
             FormViewSalesPOS.id_sales_pos = id_report
             FormViewSalesPOS.ShowDialog()
-        ElseIf report_mark_type = "117" Then
+        ElseIf report_mark_type = "117" Or report_mark_type = "399" Then
             'INVOICE MISSING staaff
             FormViewSalesPOS.id_menu = "4"
             FormViewSalesPOS.id_sales_pos = id_report
@@ -2401,7 +2401,7 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_sales_pos"
             field_number = "sales_pos_number"
             field_date = "sales_pos_date"
-        ElseIf report_mark_type = "117" Then
+        ElseIf report_mark_type = "117" Or report_mark_type = "399" Then
             'missing staff
             table_name = "tb_sales_pos"
             field_id = "id_sales_pos"
