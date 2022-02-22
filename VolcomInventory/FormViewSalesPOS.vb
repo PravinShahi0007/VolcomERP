@@ -194,6 +194,10 @@
             report_mark_type = "116"
         ElseIf id_memo_type = "8" Then ' missing staff
             report_mark_type = "117"
+
+            If Not data.Rows(0)("id_st_store_bap").ToString = "" Then
+                report_mark_type = "399"
+            End If
         ElseIf id_memo_type = "9" Then 'invoice diff margin
             report_mark_type = "183"
         ElseIf id_memo_type = "10" Then 'invoice diff margin
