@@ -11736,7 +11736,7 @@ INNER JOIN tb_vm_item_move m ON m.id_vm_item_move=d.id_vm_item_move AND m.id_vm_
                 qi = "UPDATE tb_kontrak_rider_pps_det ppsd
 INNER JOIN tb_kontrak_rider_pps pps ON pps.id_kontrak_rider_pps=ppsd.id_kontrak_rider_pps AND pps.id_type=2
 INNER JOIN `tb_kontrak_rider` r ON r.id_kontrak_rider=ppsd.id_kontrak_old
-SET r.is_active=2
+SET r.is_active=2,r.id_kontrak_rider_new=ppsd.id_kontrak_rider,r.reff=ppsd.id_kontrak_rider_pps
 WHERE ppsd.id_kontrak_rider_pps='" & id_report & "'"
                 execute_non_query(qi, True, "", "", "", "")
 

@@ -72,4 +72,11 @@ ORDER BY pps.id_kontrak_rider_pps DESC"
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
         load_contract()
     End Sub
+
+    Private Sub BChanges_Click_1(sender As Object, e As EventArgs) Handles BChanges.Click
+        GVContractList.ActiveFilterString = "[is_check]='yes'"
+        FormRiderContractDet.id_type = "2"
+        FormRiderContractDet.ShowDialog()
+        GVContractList.ActiveFilterString = ""
+    End Sub
 End Class

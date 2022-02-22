@@ -29,10 +29,23 @@
                     GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "monthly_pay_tot_old", FormRiderContract.GVContractList.GetRowCellValue(i, "total"))
                     '
                     GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "monthly_pay", "0")
-                    GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_until", Date.Parse(Now().ToString))
-                    GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_from", Date.Parse(Now().ToString))
+                    If id_type = "1" Then
+                        GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_from", FormRiderContract.GVContractList.GetRowCellValue(i, "kontrak_until"))
+                        GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_until", FormRiderContract.GVContractList.GetRowCellValue(i, "kontrak_until"))
+                    Else
+                        GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_until", FormRiderContract.GVContractList.GetRowCellValue(i, "kontrak_until"))
+                        GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_from", FormRiderContract.GVContractList.GetRowCellValue(i, "kontrak_from"))
+                        PCAddDel.Visible = False
+                    End If
+
                     GVPPS.RefreshData()
                 Next
+            End If
+            If id_type = "1" Then
+                TEType.Text = "New / Extend"
+            Else
+                TEType.Text = "Changes"
+                PCAddDel.Visible = False
             End If
         Else
             'edit
@@ -61,8 +74,6 @@ WHERE pps.`id_kontrak_rider_pps`=" & id_pps
             End If
             load_det()
         End If
-
-
     End Sub
 
     Sub load_det()
@@ -116,14 +127,37 @@ FROM tb_m_comp c "
         Dim is_ok As Boolean = True
         'check
         For i = 0 To GVPPS.RowCount - 1
-            If GVPPS.GetRowCellValue(i, "id_kontrak_type") Is Nothing Or GVPPS.GetRowCellValue(i, "id_comp") Is Nothing Or GVPPS.GetRowCellValue(i, "qty_month") <= 0 Or GVPPS.GetRowCellValue(i, "monthly_pay") <= 0 Then
+            If GVPPS.GetRowCellValue(i, "id_kontrak_type") Is Nothing Or GVPPS.GetRowCellValue(i, "id_comp") Is Nothing Or GVPPS.GetRowCellValue(i, "qty_month") <= 0 Or GVPPS.GetRowCellValue(i, "monthly_pay") <= 0 Or (GVPPS.GetRowCellValue(i, "kontrak_from") <= GVPPS.GetRowCellValue(i, "kontrak_until")) Then
+                warningCustom("Please complete your input")
                 is_ok = False
                 Exit For
             End If
         Next
 
+        If id_type = "1" Then
+            'new tidak boleh sebelum until
+            For i = 0 To GVPPS.RowCount - 1
+                If GVPPS.GetRowCellValue(i, "id_kontrak_old").ToString = "" Or GVPPS.GetRowCellValue(i, "id_kontrak_old").ToString = "0" Then
+                    If GVPPS.GetRowCellValue(i, "kontrak_until_old") > GVPPS.GetRowCellValue(i, "kontrak_from") Then
+                        warningCustom("Please make sure new period is not below old period")
+                        is_ok = False
+                        Exit For
+                    End If
+                End If
+            Next
+        ElseIf id_type = "2" Then
+            'changes tidak boleh sesudah until
+            For i = 0 To GVPPS.RowCount - 1
+                If GVPPS.GetRowCellValue(i, "kontrak_until") > GVPPS.GetRowCellValue(i, "kontrak_until_old") Or GVPPS.GetRowCellValue(i, "kontrak_from") < GVPPS.GetRowCellValue(i, "kontrak_from_old") Then
+                    warningCustom("Please make sure changes is between old period")
+                    is_ok = False
+                    Exit For
+                End If
+            Next
+        End If
+
         If Not is_ok Then
-            warningCustom("Please check your input")
+
         Else
             If GVPPS.RowCount > 0 Then
                 If id_pps = "-1" Then 'new
@@ -228,7 +262,7 @@ FROM tb_m_comp c "
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Dim qc As String = "SELECT 
-h.`number`,emp.employee_name AS created_by,DATE_FORMAT(h.created_date,'%d %M %Y') AS created_date,h.note
+h.`number`,emp.employee_name AS created_by,DATE_FORMAT(h.created_date,'%d %M %Y') AS created_date,h.note,IF(h.id_type=1,'New / Extend','Changes') AS report_type
 FROM `tb_kontrak_rider_pps` h 
 INNER JOIN tb_m_user usr ON usr.id_user=h.created_by
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
