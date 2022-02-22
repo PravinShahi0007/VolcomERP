@@ -11733,7 +11733,12 @@ INNER JOIN tb_vm_item_move m ON m.id_vm_item_move=d.id_vm_item_move AND m.id_vm_
                 'complete
                 Dim qi As String = ""
                 'non active old kontrak if changes
-                qi = ""
+                qi = "UPDATE tb_kontrak_rider_pps_det ppsd
+INNER JOIN tb_kontrak_rider_pps pps ON pps.id_kontrak_rider_pps=ppsd.id_kontrak_rider_pps AND pps.id_type=2
+INNER JOIN `tb_kontrak_rider` r ON r.id_kontrak_rider=ppsd.id_kontrak_old
+SET r.is_active=2
+WHERE ppsd.id_kontrak_rider_pps='" & id_report & "'"
+                execute_non_query(qi, True, "", "", "", "")
 
                 'insert new contract
                 qi = "INSERT INTO `tb_kontrak_rider`(`id_comp`,`id_kontrak_type`,`kontrak_from`,`kontrak_until`,`monthly_pay`,`is_active`,`reff`)
