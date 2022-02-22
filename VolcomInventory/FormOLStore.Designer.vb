@@ -19,7 +19,6 @@ Partial Class FormOLStore
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOLStore))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -42,7 +41,7 @@ Partial Class FormOLStore
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnExportToBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip()
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -83,7 +82,7 @@ Partial Class FormOLStore
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOrderSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStripSum = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStripSum = New System.Windows.Forms.ContextMenuStrip()
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FileAttachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -226,8 +225,12 @@ Partial Class FormOLStore
         Me.GridColumnid_comp_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.ContextMenuStripOwnOlStore = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStripOwnOlStore = New System.Windows.Forms.ContextMenuStrip()
         Me.CantProceedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLESyncStatus = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLEGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -300,6 +303,10 @@ Partial Class FormOLStore
         CType(Me.SLEOLStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStripOwnOlStore.SuspendLayout()
+        CType(Me.SLESyncStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -1615,11 +1622,11 @@ Partial Class FormOLStore
         'GCVolcom
         '
         Me.GCVolcom.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCVolcom.Location = New System.Drawing.Point(0, 43)
+        Me.GCVolcom.Location = New System.Drawing.Point(0, 66)
         Me.GCVolcom.MainView = Me.GVVolcom
         Me.GCVolcom.Name = "GCVolcom"
         Me.GCVolcom.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.LinkTrfOrder, Me.LinkTrf, Me.LinkSalesOrder, Me.RICEIsCheck})
-        Me.GCVolcom.Size = New System.Drawing.Size(994, 402)
+        Me.GCVolcom.Size = New System.Drawing.Size(994, 375)
         Me.GCVolcom.TabIndex = 1
         Me.GCVolcom.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVVolcom})
         '
@@ -1986,11 +1993,12 @@ Partial Class FormOLStore
         '
         'PanelControlFollowUp
         '
+        Me.PanelControlFollowUp.Controls.Add(Me.PanelControl4)
         Me.PanelControlFollowUp.Controls.Add(Me.PanelControl6)
         Me.PanelControlFollowUp.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlFollowUp.Location = New System.Drawing.Point(0, 445)
+        Me.PanelControlFollowUp.Location = New System.Drawing.Point(0, 441)
         Me.PanelControlFollowUp.Name = "PanelControlFollowUp"
-        Me.PanelControlFollowUp.Size = New System.Drawing.Size(994, 36)
+        Me.PanelControlFollowUp.Size = New System.Drawing.Size(994, 40)
         Me.PanelControlFollowUp.TabIndex = 2
         '
         'PanelControl6
@@ -2001,7 +2009,7 @@ Partial Class FormOLStore
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl6.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(10, 32)
+        Me.PanelControl6.Size = New System.Drawing.Size(10, 36)
         Me.PanelControl6.TabIndex = 7
         Me.PanelControl6.Visible = False
         '
@@ -2024,7 +2032,7 @@ Partial Class FormOLStore
         Me.SBCloseOrder.Image = CType(resources.GetObject("SBCloseOrder.Image"), System.Drawing.Image)
         Me.SBCloseOrder.Location = New System.Drawing.Point(-28, 0)
         Me.SBCloseOrder.Name = "SBCloseOrder"
-        Me.SBCloseOrder.Size = New System.Drawing.Size(38, 32)
+        Me.SBCloseOrder.Size = New System.Drawing.Size(38, 36)
         Me.SBCloseOrder.TabIndex = 5
         Me.SBCloseOrder.Text = "Close Order"
         Me.SBCloseOrder.Visible = False
@@ -2042,16 +2050,17 @@ Partial Class FormOLStore
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(994, 43)
+        Me.PanelControl3.Size = New System.Drawing.Size(994, 66)
         Me.PanelControl3.TabIndex = 0
         '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(557, 2)
+        Me.BtnPrint.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnPrint.Location = New System.Drawing.Point(672, 2)
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(78, 39)
+        Me.BtnPrint.Size = New System.Drawing.Size(63, 62)
         Me.BtnPrint.TabIndex = 1
         Me.BtnPrint.Text = "Print"
         '
@@ -2059,9 +2068,10 @@ Partial Class FormOLStore
         '
         Me.BtnOOS.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnOOS.Image = CType(resources.GetObject("BtnOOS.Image"), System.Drawing.Image)
-        Me.BtnOOS.Location = New System.Drawing.Point(635, 2)
+        Me.BtnOOS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnOOS.Location = New System.Drawing.Point(735, 2)
         Me.BtnOOS.Name = "BtnOOS"
-        Me.BtnOOS.Size = New System.Drawing.Size(78, 39)
+        Me.BtnOOS.Size = New System.Drawing.Size(61, 62)
         Me.BtnOOS.TabIndex = 7
         Me.BtnOOS.Text = "OOS"
         '
@@ -2069,9 +2079,10 @@ Partial Class FormOLStore
         '
         Me.BtnXLSSyncOrder.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnXLSSyncOrder.Image = CType(resources.GetObject("BtnXLSSyncOrder.Image"), System.Drawing.Image)
-        Me.BtnXLSSyncOrder.Location = New System.Drawing.Point(354, 2)
+        Me.BtnXLSSyncOrder.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnXLSSyncOrder.Location = New System.Drawing.Point(331, 2)
         Me.BtnXLSSyncOrder.Name = "BtnXLSSyncOrder"
-        Me.BtnXLSSyncOrder.Size = New System.Drawing.Size(129, 39)
+        Me.BtnXLSSyncOrder.Size = New System.Drawing.Size(96, 62)
         Me.BtnXLSSyncOrder.TabIndex = 6
         Me.BtnXLSSyncOrder.Text = "Import XLS Order"
         '
@@ -2079,9 +2090,10 @@ Partial Class FormOLStore
         '
         Me.BtnSyncOrder.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnSyncOrder.Image = CType(resources.GetObject("BtnSyncOrder.Image"), System.Drawing.Image)
-        Me.BtnSyncOrder.Location = New System.Drawing.Point(250, 2)
+        Me.BtnSyncOrder.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnSyncOrder.Location = New System.Drawing.Point(253, 2)
         Me.BtnSyncOrder.Name = "BtnSyncOrder"
-        Me.BtnSyncOrder.Size = New System.Drawing.Size(104, 39)
+        Me.BtnSyncOrder.Size = New System.Drawing.Size(78, 62)
         Me.BtnSyncOrder.TabIndex = 0
         Me.BtnSyncOrder.Text = "Sync Order"
         '
@@ -2089,9 +2101,10 @@ Partial Class FormOLStore
         '
         Me.BtnConfirmedOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnConfirmedOrder.Image = CType(resources.GetObject("BtnConfirmedOrder.Image"), System.Drawing.Image)
-        Me.BtnConfirmedOrder.Location = New System.Drawing.Point(713, 2)
+        Me.BtnConfirmedOrder.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnConfirmedOrder.Location = New System.Drawing.Point(796, 2)
         Me.BtnConfirmedOrder.Name = "BtnConfirmedOrder"
-        Me.BtnConfirmedOrder.Size = New System.Drawing.Size(100, 39)
+        Me.BtnConfirmedOrder.Size = New System.Drawing.Size(69, 62)
         Me.BtnConfirmedOrder.TabIndex = 3
         Me.BtnConfirmedOrder.Text = "Confirmed"
         '
@@ -2099,9 +2112,10 @@ Partial Class FormOLStore
         '
         Me.BtnPendingOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPendingOrder.Image = CType(resources.GetObject("BtnPendingOrder.Image"), System.Drawing.Image)
-        Me.BtnPendingOrder.Location = New System.Drawing.Point(813, 2)
+        Me.BtnPendingOrder.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnPendingOrder.Location = New System.Drawing.Point(865, 2)
         Me.BtnPendingOrder.Name = "BtnPendingOrder"
-        Me.BtnPendingOrder.Size = New System.Drawing.Size(88, 39)
+        Me.BtnPendingOrder.Size = New System.Drawing.Size(63, 62)
         Me.BtnPendingOrder.TabIndex = 2
         Me.BtnPendingOrder.Text = "Pending"
         '
@@ -2109,9 +2123,10 @@ Partial Class FormOLStore
         '
         Me.BtnAllOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAllOrder.Image = CType(resources.GetObject("BtnAllOrder.Image"), System.Drawing.Image)
-        Me.BtnAllOrder.Location = New System.Drawing.Point(901, 2)
+        Me.BtnAllOrder.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnAllOrder.Location = New System.Drawing.Point(928, 2)
         Me.BtnAllOrder.Name = "BtnAllOrder"
-        Me.BtnAllOrder.Size = New System.Drawing.Size(91, 39)
+        Me.BtnAllOrder.Size = New System.Drawing.Size(64, 62)
         Me.BtnAllOrder.TabIndex = 4
         Me.BtnAllOrder.Text = "Show All"
         '
@@ -2123,12 +2138,12 @@ Partial Class FormOLStore
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl5.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(248, 39)
+        Me.PanelControl5.Size = New System.Drawing.Size(251, 62)
         Me.PanelControl5.TabIndex = 5
         '
         'SLEOLStore
         '
-        Me.SLEOLStore.Location = New System.Drawing.Point(53, 10)
+        Me.SLEOLStore.Location = New System.Drawing.Point(53, 20)
         Me.SLEOLStore.Name = "SLEOLStore"
         Me.SLEOLStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEOLStore.Properties.ShowClearButton = False
@@ -2160,7 +2175,7 @@ Partial Class FormOLStore
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(8, 13)
+        Me.LabelControl1.Location = New System.Drawing.Point(8, 23)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(42, 13)
         Me.LabelControl1.TabIndex = 0
@@ -2177,6 +2192,47 @@ Partial Class FormOLStore
         Me.CantProceedToolStripMenuItem.Name = "CantProceedToolStripMenuItem"
         Me.CantProceedToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
         Me.CantProceedToolStripMenuItem.Text = "Can't proceed"
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(8, 8)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(81, 19)
+        Me.LabelControl2.TabIndex = 6
+        Me.LabelControl2.Text = "Sync Status"
+        '
+        'SLESyncStatus
+        '
+        Me.SLESyncStatus.EditValue = "- Sync Status -"
+        Me.SLESyncStatus.Enabled = False
+        Me.SLESyncStatus.Location = New System.Drawing.Point(95, 4)
+        Me.SLESyncStatus.Name = "SLESyncStatus"
+        Me.SLESyncStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLESyncStatus.Properties.Appearance.Options.UseFont = True
+        Me.SLESyncStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLESyncStatus.Properties.NullText = "- Sync Status -"
+        Me.SLESyncStatus.Properties.View = Me.GridView6
+        Me.SLESyncStatus.Size = New System.Drawing.Size(211, 26)
+        Me.SLESyncStatus.TabIndex = 7
+        '
+        'GridView6
+        '
+        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ShowGroupPanel = False
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.LabelControl2)
+        Me.PanelControl4.Controls.Add(Me.SLESyncStatus)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl4.Location = New System.Drawing.Point(12, 2)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(319, 36)
+        Me.PanelControl4.TabIndex = 8
         '
         'FormOLStore
         '
@@ -2262,6 +2318,11 @@ Partial Class FormOLStore
         CType(Me.SLEOLStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStripOwnOlStore.ResumeLayout(False)
+        CType(Me.SLESyncStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2473,4 +2534,8 @@ Partial Class FormOLStore
     Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnOOS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLESyncStatus As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

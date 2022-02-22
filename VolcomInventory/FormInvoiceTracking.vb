@@ -198,7 +198,10 @@
 	                FROM tb_mail_manage_det md
 	                INNER JOIN tb_mail_manage m ON m.id_mail_manage = md.id_mail_manage
 	                INNER JOIN tb_lookup_mail_status stt ON stt.id_mail_status = m.id_mail_status
-	                WHERE m.report_mark_type=227
+                    INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = md.id_report
+                    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+                    INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+	                WHERE m.report_mark_type=227 AND c.id_comp_group = m.mail_parameter
 	                ORDER BY m.id_mail_manage DESC
                 ) w 
                 GROUP BY w.id_report
