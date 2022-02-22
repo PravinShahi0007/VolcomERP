@@ -190,4 +190,8 @@ WHERE c.`is_active`=1 AND c.`id_comp_cat`=2"
             End Try
         End If
     End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
+    End Sub
 End Class
