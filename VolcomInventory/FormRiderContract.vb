@@ -32,14 +32,27 @@
         Dim q As String = ""
     End Sub
 
+    Sub load_pps()
+        Dim q As String = "SELECT * FROM tb_kontrak_rider_pps pps
+INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=pps.`id_report_status`
+ORDER BY pps.id_kontrak_rider_pps DESC"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCPPS.DataSource = dt
+        GVPPS.BestFitColumns()
+    End Sub
+
     Private Sub BChanges_Click(sender As Object, e As EventArgs) Handles BChanges.Click
         FormRiderContractDet.ShowDialog()
     End Sub
 
     Private Sub GVPPS_DoubleClick(sender As Object, e As EventArgs) Handles GVPPS.DoubleClick
         If GVPPS.RowCount > 0 Then
-            FormRiderContractDet.id_pps = ""
+            FormRiderContractDet.id_pps = GVPPS.GetFocusedRowCellValue("id_kontrak_rider_pps").ToString
             FormRiderContractDet.ShowDialog()
         End If
+    End Sub
+
+    Private Sub BRefreshPPS_Click(sender As Object, e As EventArgs) Handles BRefreshPPS.Click
+        load_pps()
     End Sub
 End Class
