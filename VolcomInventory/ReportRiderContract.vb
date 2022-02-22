@@ -15,7 +15,7 @@
 ,CONCAT(IFNULL(DATE_FORMAT(ppsd.kontrak_from,'%d %b %Y'),''),' - ',IFNULL(DATE_FORMAT(ppsd.kontrak_until,'%d %b %Y'),'')) AS contract
 ,IF(ISNULL(ppsd.`kontrak_from`),0,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until)*ppsd.`monthly_pay`) AS total
 ,IFNULL(ppsd.`monthly_pay`,0) AS monthly_pay
-,IFNULL((IFNULL(ppsd.`monthly_pay`,0)-IFNULL(ppsd.`monthly_pay_old`,0))/IFNULL(ppsd.`monthly_pay_old`,0),0)/100 AS inc
+,IFNULL((IFNULL(ppsd.`monthly_pay`,0)-IFNULL(ppsd.`monthly_pay_old`,0))/IFNULL(ppsd.`monthly_pay_old`,0),0)*100 AS inc
 FROM `tb_kontrak_rider_pps_det` ppsd
 INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
 WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "' AND ppsd.id_kontrak_type=1"
@@ -52,7 +52,7 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "' AND ppsd.id_kontrak_type=1"
 ,CONCAT(IFNULL(DATE_FORMAT(ppsd.kontrak_from,'%d %b %Y'),''),' - ',IFNULL(DATE_FORMAT(ppsd.kontrak_until,'%d %b %Y'),'')) AS contract
 ,IF(ISNULL(ppsd.`kontrak_from`),0,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until)*ppsd.`monthly_pay`) AS total
 ,IFNULL(ppsd.`monthly_pay`,0) AS monthly_pay
-,IFNULL((IFNULL(ppsd.`monthly_pay`,0)-IFNULL(ppsd.`monthly_pay_old`,0))/IFNULL(ppsd.`monthly_pay_old`,0),0)/100 AS inc
+,IFNULL((IFNULL(ppsd.`monthly_pay`,0)-IFNULL(ppsd.`monthly_pay_old`,0))/IFNULL(ppsd.`monthly_pay_old`,0),0)*100 AS inc
 FROM `tb_kontrak_rider_pps_det` ppsd
 INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
 WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "' AND ppsd.id_kontrak_type=2"
@@ -89,10 +89,10 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "' AND ppsd.id_kontrak_type=2"
 ,CONCAT(IFNULL(DATE_FORMAT(ppsd.kontrak_from,'%d %b %Y'),''),' - ',IFNULL(DATE_FORMAT(ppsd.kontrak_until,'%d %b %Y'),'')) AS contract
 ,IF(ISNULL(ppsd.`kontrak_from`),0,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until)*ppsd.`monthly_pay`) AS total
 ,IFNULL(ppsd.`monthly_pay`,0) AS monthly_pay
-,IFNULL((IFNULL(ppsd.`monthly_pay`,0)-IFNULL(ppsd.`monthly_pay_old`,0))/IFNULL(ppsd.`monthly_pay_old`,0),0)/100 AS inc
+,IFNULL((IFNULL(ppsd.`monthly_pay`,0)-IFNULL(ppsd.`monthly_pay_old`,0))/IFNULL(ppsd.`monthly_pay_old`,0),0)*100 AS inc
 FROM `tb_kontrak_rider_pps_det` ppsd
 INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
-WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "' AND ppsd.id_kontrak_type=2"
+WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "' AND ppsd.id_kontrak_type=3"
         Dim dtambasador As DataTable = execute_query(q_ambasador, -1, True, "", "", "", "")
         If dtambasador.Rows.Count > 0 Then
             Dim total_sub As Decimal = 0.00
@@ -117,15 +117,21 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "' AND ppsd.id_kontrak_type=2"
         Else
             SBAmbasador.Visible = False
         End If
+        '
+        LTotMonthlyOld.Text = monthly_total_old.ToString("N2")
+        LTotOld.Text = total_old.ToString("N2")
+        LTotMonthly.Text = monthly_total.ToString("N2")
+        Ltot.Text = total.ToString("N2")
     End Sub
 
     Sub insert_row(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer, ByVal xt As DevExpress.XtraReports.UI.XRTable)
-        Dim font_row_style As New Font(xt.Font.FontFamily, xt.Font.Size - 1, FontStyle.Regular)
+        Dim font_row_style As New Font(xt.Font.FontFamily, xt.Font.Size - 2, FontStyle.Regular)
 
         row = xt.InsertRowBelow(row)
 
         row.HeightF = 15
         row.Font = font_row_style
+        row.BackColor = Color.Transparent
 
         'no
         Dim no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
@@ -168,7 +174,7 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "' AND ppsd.id_kontrak_type=2"
         contract.Font = font_row_style
 
         'payment
-        Dim pay As String = Decimal.Parse(dt.Rows(row_i)("monthly_pay_old").ToString).ToString("N2")
+        Dim pay As String = Decimal.Parse(dt.Rows(row_i)("monthly_pay").ToString).ToString("N2")
 
         Dim pay_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
         pay_col.Text = pay
@@ -176,7 +182,7 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "' AND ppsd.id_kontrak_type=2"
         pay_col.Font = font_row_style
 
         'total payment
-        Dim tot_pay As String = Decimal.Parse(dt.Rows(row_i)("monthly_pay_old").ToString).ToString("N2")
+        Dim tot_pay As String = Decimal.Parse(dt.Rows(row_i)("total").ToString).ToString("N2")
 
         Dim tot_pay_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
         tot_pay_col.Text = tot_pay
@@ -186,19 +192,20 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "' AND ppsd.id_kontrak_type=2"
         'inc dec
         Dim incdec As String = Decimal.Parse(dt.Rows(row_i)("inc").ToString).ToString("N2")
 
-        Dim incdec_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
+        Dim incdec_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
         incdec_col.Text = incdec & " % "
         incdec_col.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         incdec_col.Font = font_row_style
     End Sub
 
     Sub insert_row_total(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal xt As DevExpress.XtraReports.UI.XRTable, ByVal sub_monthly_old As Decimal, ByVal sub_total_old As Decimal, ByVal sub_monthly As Decimal, ByVal sub_total As Decimal)
-        Dim font_row_style As New Font(XTSurf.Font.FontFamily, XTAmbasador.Font.Size - 1, FontStyle.Regular)
+        Dim font_row_style As New Font(xt.Font.FontFamily, xt.Font.Size - 2, FontStyle.Regular)
 
-        row = XTSurf.InsertRowBelow(row)
+        row = xt.InsertRowBelow(row)
 
         row.HeightF = 15
         row.Font = font_row_style
+        row.BackColor = Color.LightGray
 
         'no
         Dim no As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(0)
@@ -257,9 +264,14 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "' AND ppsd.id_kontrak_type=2"
         tot_pay_col.Font = font_row_style
 
         'inc dec
-        Dim incdec As String = Decimal.Parse((((sub_monthly - sub_monthly_old) / sub_monthly_old) * 100).ToString).ToString("N2")
+        Dim incdec As String = ""
+        If Not sub_monthly_old = 0 Then
+            incdec = Decimal.Parse((((sub_monthly - sub_monthly_old) / sub_monthly_old) * 100).ToString).ToString("N2")
+        Else
+            incdec = 0.ToString("N2")
+        End If
 
-        Dim incdec_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(7)
+        Dim incdec_col As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(8)
         incdec_col.Text = incdec & " % "
         incdec_col.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         incdec_col.Font = font_row_style

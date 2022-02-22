@@ -34,6 +34,7 @@ Partial Class FormRiderContract
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BChanges = New DevExpress.XtraEditors.SimpleButton()
+        Me.BNewExtend = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPPS = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPPS = New DevExpress.XtraGrid.GridControl()
         Me.GVPPS = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -41,6 +42,10 @@ Partial Class FormRiderContract
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BRefreshPPS = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEContract = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.BView = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPKontrak.SuspendLayout()
@@ -50,6 +55,10 @@ Partial Class FormRiderContract
         Me.XTPPPS.SuspendLayout()
         CType(Me.GCPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPPS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.DEContract.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEContract.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XtraTabControl1
@@ -66,7 +75,9 @@ Partial Class FormRiderContract
         'XTPKontrak
         '
         Me.XTPKontrak.Controls.Add(Me.GCContractList)
+        Me.XTPKontrak.Controls.Add(Me.PanelControl1)
         Me.XTPKontrak.Controls.Add(Me.BChanges)
+        Me.XTPKontrak.Controls.Add(Me.BNewExtend)
         Me.XTPKontrak.Name = "XTPKontrak"
         Me.XTPKontrak.Size = New System.Drawing.Size(1095, 538)
         Me.XTPKontrak.Text = "Contract List"
@@ -74,11 +85,11 @@ Partial Class FormRiderContract
         'GCContractList
         '
         Me.GCContractList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCContractList.Location = New System.Drawing.Point(0, 0)
+        Me.GCContractList.Location = New System.Drawing.Point(0, 45)
         Me.GCContractList.MainView = Me.GVContractList
         Me.GCContractList.Name = "GCContractList"
         Me.GCContractList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICE})
-        Me.GCContractList.Size = New System.Drawing.Size(1095, 504)
+        Me.GCContractList.Size = New System.Drawing.Size(1095, 425)
         Me.GCContractList.TabIndex = 0
         Me.GCContractList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVContractList})
         '
@@ -187,7 +198,7 @@ Partial Class FormRiderContract
         Me.GridColumn12.Caption = "Total Payment"
         Me.GridColumn12.DisplayFormat.FormatString = "N2"
         Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn12.FieldName = "monthly_pay_tot"
+        Me.GridColumn12.FieldName = "total"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 6
@@ -202,13 +213,30 @@ Partial Class FormRiderContract
         Me.BChanges.Appearance.Options.UseFont = True
         Me.BChanges.Appearance.Options.UseForeColor = True
         Me.BChanges.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BChanges.Location = New System.Drawing.Point(0, 504)
+        Me.BChanges.Location = New System.Drawing.Point(0, 470)
         Me.BChanges.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
         Me.BChanges.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BChanges.Name = "BChanges"
         Me.BChanges.Size = New System.Drawing.Size(1095, 34)
-        Me.BChanges.TabIndex = 93
+        Me.BChanges.TabIndex = 94
         Me.BChanges.Text = "Changes"
+        '
+        'BNewExtend
+        '
+        Me.BNewExtend.Appearance.BackColor = System.Drawing.Color.Blue
+        Me.BNewExtend.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BNewExtend.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BNewExtend.Appearance.Options.UseBackColor = True
+        Me.BNewExtend.Appearance.Options.UseFont = True
+        Me.BNewExtend.Appearance.Options.UseForeColor = True
+        Me.BNewExtend.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BNewExtend.Location = New System.Drawing.Point(0, 504)
+        Me.BNewExtend.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.BNewExtend.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BNewExtend.Name = "BNewExtend"
+        Me.BNewExtend.Size = New System.Drawing.Size(1095, 34)
+        Me.BNewExtend.TabIndex = 93
+        Me.BNewExtend.Text = "New / Extend"
         '
         'XTPPPS
         '
@@ -276,6 +304,45 @@ Partial Class FormRiderContract
         Me.BRefreshPPS.TabIndex = 94
         Me.BRefreshPPS.Text = "Refresh"
         '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BView)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
+        Me.PanelControl1.Controls.Add(Me.DEContract)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1095, 45)
+        Me.PanelControl1.TabIndex = 95
+        '
+        'DEContract
+        '
+        Me.DEContract.EditValue = Nothing
+        Me.DEContract.Location = New System.Drawing.Point(78, 11)
+        Me.DEContract.Name = "DEContract"
+        Me.DEContract.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEContract.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEContract.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEContract.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEContract.Size = New System.Drawing.Size(232, 20)
+        Me.DEContract.TabIndex = 0
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 14)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(61, 13)
+        Me.LabelControl1.TabIndex = 1
+        Me.LabelControl1.Text = "Contract Per"
+        '
+        'BView
+        '
+        Me.BView.Location = New System.Drawing.Point(316, 9)
+        Me.BView.Name = "BView"
+        Me.BView.Size = New System.Drawing.Size(58, 23)
+        Me.BView.TabIndex = 2
+        Me.BView.Text = "view"
+        '
         'FormRiderContract
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -298,6 +365,11 @@ Partial Class FormRiderContract
         Me.XTPPPS.ResumeLayout(False)
         CType(Me.GCPPS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPPS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.DEContract.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEContract.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -311,7 +383,7 @@ Partial Class FormRiderContract
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BChanges As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BNewExtend As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCPPS As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVPPS As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
@@ -324,4 +396,9 @@ Partial Class FormRiderContract
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BRefreshPPS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BChanges As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEContract As DevExpress.XtraEditors.DateEdit
 End Class

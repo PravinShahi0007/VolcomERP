@@ -79,12 +79,18 @@ Partial Public Class ReportRiderContract
         Me.XrTableRow3 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell26 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell27 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell28 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell29 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.LTotMonthlyOld = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.LTotOld = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell30 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell31 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell32 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.LTotMonthly = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.Ltot = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell33 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XTSurf, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTSkate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTAmbasador, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,7 +117,7 @@ Partial Public Class ReportRiderContract
         Me.LCreatedBy.StylePriority.UseFont = False
         Me.LCreatedBy.StylePriority.UseTextAlignment = False
         Me.LCreatedBy.Text = "[created_by]"
-        Me.LCreatedBy.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.LCreatedBy.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel8
         '
@@ -171,12 +177,12 @@ Partial Public Class ReportRiderContract
         Me.LCreatedDate.StylePriority.UseFont = False
         Me.LCreatedDate.StylePriority.UseTextAlignment = False
         Me.LCreatedDate.Text = "[created_date]"
-        Me.LCreatedDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.LCreatedDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'SBSurf
         '
-        Me.SBSurf.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XTSurf})
-        Me.SBSurf.HeightF = 41.87501!
+        Me.SBSurf.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel1, Me.XTSurf})
+        Me.SBSurf.HeightF = 48.12501!
         Me.SBSurf.Name = "SBSurf"
         '
         'XTSurf
@@ -184,8 +190,8 @@ Partial Public Class ReportRiderContract
         Me.XTSurf.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XTSurf.Font = New System.Drawing.Font("Times New Roman", 12.0!)
-        Me.XTSurf.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XTSurf.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.XTSurf.LocationFloat = New DevExpress.Utils.PointFloat(0!, 28.12501!)
         Me.XTSurf.Name = "XTSurf"
         Me.XTSurf.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
         Me.XTSurf.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XRSurf})
@@ -198,9 +204,11 @@ Partial Public Class ReportRiderContract
         '
         'XRSurf
         '
+        Me.XRSurf.BackColor = System.Drawing.Color.LightGray
         Me.XRSurf.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell6, Me.XrTableCell7, Me.XrTableCell8, Me.XrTableCell9, Me.XrTableCell10, Me.XrTableCell11, Me.XrTableCell12, Me.XrTableCell13, Me.XrTableCell14})
-        Me.XRSurf.Font = New System.Drawing.Font("Times New Roman", 11.0!)
+        Me.XRSurf.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.XRSurf.Name = "XRSurf"
+        Me.XRSurf.StylePriority.UseBackColor = False
         Me.XRSurf.StylePriority.UseFont = False
         Me.XRSurf.Weight = 1.3333333333333335R
         '
@@ -209,7 +217,7 @@ Partial Public Class ReportRiderContract
         Me.XrTableCell6.Name = "XrTableCell6"
         Me.XrTableCell6.StylePriority.UseTextAlignment = False
         Me.XrTableCell6.Text = "No"
-        Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell6.Weight = 0.46040678420141634R
         '
         'XrTableCell7
@@ -278,8 +286,8 @@ Partial Public Class ReportRiderContract
         '
         'SBSkate
         '
-        Me.SBSkate.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XTSkate})
-        Me.SBSkate.HeightF = 38.75001!
+        Me.SBSkate.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel4, Me.XTSkate})
+        Me.SBSkate.HeightF = 48.12501!
         Me.SBSkate.Name = "SBSkate"
         '
         'XTSkate
@@ -287,8 +295,8 @@ Partial Public Class ReportRiderContract
         Me.XTSkate.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XTSkate.Font = New System.Drawing.Font("Times New Roman", 12.0!)
-        Me.XTSkate.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XTSkate.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.XTSkate.LocationFloat = New DevExpress.Utils.PointFloat(0!, 28.12501!)
         Me.XTSkate.Name = "XTSkate"
         Me.XTSkate.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
         Me.XTSkate.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XRSkate})
@@ -301,9 +309,11 @@ Partial Public Class ReportRiderContract
         '
         'XRSkate
         '
+        Me.XRSkate.BackColor = System.Drawing.Color.LightGray
         Me.XRSkate.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell15, Me.XrTableCell16, Me.XrTableCell17, Me.XrTableCell18, Me.XrTableCell19, Me.XrTableCell20, Me.XrTableCell21, Me.XrTableCell23, Me.XrTableCell24})
-        Me.XRSkate.Font = New System.Drawing.Font("Times New Roman", 11.0!)
+        Me.XRSkate.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.XRSkate.Name = "XRSkate"
+        Me.XRSkate.StylePriority.UseBackColor = False
         Me.XRSkate.StylePriority.UseFont = False
         Me.XRSkate.Weight = 1.3333333333333335R
         '
@@ -312,7 +322,7 @@ Partial Public Class ReportRiderContract
         Me.XrTableCell15.Name = "XrTableCell15"
         Me.XrTableCell15.StylePriority.UseTextAlignment = False
         Me.XrTableCell15.Text = "No"
-        Me.XrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell15.Weight = 0.46040678420141634R
         '
         'XrTableCell16
@@ -381,8 +391,8 @@ Partial Public Class ReportRiderContract
         '
         'SBAmbasador
         '
-        Me.SBAmbasador.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XTAmbasador})
-        Me.SBAmbasador.HeightF = 40.83335!
+        Me.SBAmbasador.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel5, Me.XTAmbasador})
+        Me.SBAmbasador.HeightF = 48.12501!
         Me.SBAmbasador.Name = "SBAmbasador"
         '
         'XTAmbasador
@@ -390,8 +400,8 @@ Partial Public Class ReportRiderContract
         Me.XTAmbasador.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XTAmbasador.Font = New System.Drawing.Font("Times New Roman", 12.0!)
-        Me.XTAmbasador.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XTAmbasador.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.XTAmbasador.LocationFloat = New DevExpress.Utils.PointFloat(0!, 28.12501!)
         Me.XTAmbasador.Name = "XTAmbasador"
         Me.XTAmbasador.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
         Me.XTAmbasador.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XRAmbasador})
@@ -404,9 +414,11 @@ Partial Public Class ReportRiderContract
         '
         'XRAmbasador
         '
+        Me.XRAmbasador.BackColor = System.Drawing.Color.LightGray
         Me.XRAmbasador.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell69, Me.XrTableCell72, Me.XrTableCell71, Me.XrTableCell1, Me.XrTableCell22, Me.XrTableCell2, Me.XrTableCell3, Me.XrTableCell4, Me.XrTableCell5})
-        Me.XRAmbasador.Font = New System.Drawing.Font("Times New Roman", 11.0!)
+        Me.XRAmbasador.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.XRAmbasador.Name = "XRAmbasador"
+        Me.XRAmbasador.StylePriority.UseBackColor = False
         Me.XRAmbasador.StylePriority.UseFont = False
         Me.XRAmbasador.Weight = 1.3333333333333335R
         '
@@ -415,7 +427,7 @@ Partial Public Class ReportRiderContract
         Me.XrTableCell69.Name = "XrTableCell69"
         Me.XrTableCell69.StylePriority.UseTextAlignment = False
         Me.XrTableCell69.Text = "No"
-        Me.XrTableCell69.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell69.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell69.Weight = 0.46040678420141634R
         '
         'XrTableCell72
@@ -556,14 +568,14 @@ Partial Public Class ReportRiderContract
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable4, Me.XrTable3})
-        Me.ReportFooter.HeightF = 63.12504!
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel10, Me.XrLabel9, Me.XrLabel6, Me.XrTable4, Me.XrTable3})
+        Me.ReportFooter.HeightF = 122.5!
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrTable4
         '
         Me.XrTable4.Font = New System.Drawing.Font("Consolas", 8.0!)
-        Me.XrTable4.LocationFloat = New DevExpress.Utils.PointFloat(0.00003178914!, 38.12504!)
+        Me.XrTable4.LocationFloat = New DevExpress.Utils.PointFloat(0.00003178914!, 97.50004!)
         Me.XrTable4.Name = "XrTable4"
         Me.XrTable4.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow4})
         Me.XrTable4.SizeF = New System.Drawing.SizeF(1110.0!, 25.0!)
@@ -589,8 +601,8 @@ Partial Public Class ReportRiderContract
         Me.XrTable3.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable3.Font = New System.Drawing.Font("Times New Roman", 12.0!)
-        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(40.0!, 0!)
+        Me.XrTable3.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(40.0!, 18.12504!)
         Me.XrTable3.Name = "XrTable3"
         Me.XrTable3.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
         Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow3})
@@ -603,8 +615,8 @@ Partial Public Class ReportRiderContract
         '
         'XrTableRow3
         '
-        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell26, Me.XrTableCell27, Me.XrTableCell28, Me.XrTableCell29, Me.XrTableCell30, Me.XrTableCell31, Me.XrTableCell32, Me.XrTableCell33})
-        Me.XrTableRow3.Font = New System.Drawing.Font("Times New Roman", 11.0!)
+        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell26, Me.XrTableCell27, Me.LTotMonthlyOld, Me.LTotOld, Me.XrTableCell30, Me.LTotMonthly, Me.Ltot, Me.XrTableCell33})
+        Me.XrTableRow3.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.XrTableRow3.Name = "XrTableRow3"
         Me.XrTableRow3.StylePriority.UseFont = False
         Me.XrTableRow3.Weight = 1.3333333333333335R
@@ -624,19 +636,19 @@ Partial Public Class ReportRiderContract
         Me.XrTableCell27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.XrTableCell27.Weight = 2.0718304737990945R
         '
-        'XrTableCell28
+        'LTotMonthlyOld
         '
-        Me.XrTableCell28.Name = "XrTableCell28"
-        Me.XrTableCell28.StylePriority.UseTextAlignment = False
-        Me.XrTableCell28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell28.Weight = 1.266118665801717R
+        Me.LTotMonthlyOld.Name = "LTotMonthlyOld"
+        Me.LTotMonthlyOld.StylePriority.UseTextAlignment = False
+        Me.LTotMonthlyOld.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.LTotMonthlyOld.Weight = 1.266118665801717R
         '
-        'XrTableCell29
+        'LTotOld
         '
-        Me.XrTableCell29.Name = "XrTableCell29"
-        Me.XrTableCell29.StylePriority.UseTextAlignment = False
-        Me.XrTableCell29.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell29.Weight = 1.266118665801717R
+        Me.LTotOld.Name = "LTotOld"
+        Me.LTotOld.StylePriority.UseTextAlignment = False
+        Me.LTotOld.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.LTotOld.Weight = 1.266118665801717R
         '
         'XrTableCell30
         '
@@ -645,27 +657,97 @@ Partial Public Class ReportRiderContract
         Me.XrTableCell30.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.XrTableCell30.Weight = 2.0718305544329971R
         '
-        'XrTableCell31
+        'LTotMonthly
         '
-        Me.XrTableCell31.Name = "XrTableCell31"
-        Me.XrTableCell31.StylePriority.UseTextAlignment = False
-        Me.XrTableCell31.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell31.Weight = 1.266118665801717R
+        Me.LTotMonthly.Name = "LTotMonthly"
+        Me.LTotMonthly.StylePriority.UseTextAlignment = False
+        Me.LTotMonthly.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.LTotMonthly.Weight = 1.266118665801717R
         '
-        'XrTableCell32
+        'Ltot
         '
-        Me.XrTableCell32.Name = "XrTableCell32"
-        Me.XrTableCell32.StylePriority.UseTextAlignment = False
-        Me.XrTableCell32.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.XrTableCell32.Weight = 1.2661186684301955R
+        Me.Ltot.Name = "Ltot"
+        Me.Ltot.StylePriority.UseTextAlignment = False
+        Me.Ltot.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.Ltot.Weight = 1.2661186684301955R
         '
         'XrTableCell33
         '
         Me.XrTableCell33.Name = "XrTableCell33"
         Me.XrTableCell33.StylePriority.UseTextAlignment = False
-        Me.XrTableCell33.Text = "% in/dec"
         Me.XrTableCell33.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.XrTableCell33.Weight = 0.80571171639441941R
+        '
+        'XrLabel1
+        '
+        Me.XrLabel1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel1.Name = "XrLabel1"
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(1111.0!, 28.12501!)
+        Me.XrLabel1.StylePriority.UseFont = False
+        Me.XrLabel1.StylePriority.UseTextAlignment = False
+        Me.XrLabel1.Text = "I. Surf Rider"
+        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel4
+        '
+        Me.XrLabel4.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel4.Name = "XrLabel4"
+        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(1111.0!, 28.12501!)
+        Me.XrLabel4.StylePriority.UseFont = False
+        Me.XrLabel4.StylePriority.UseTextAlignment = False
+        Me.XrLabel4.Text = "II. Skateboard Rider"
+        Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel5
+        '
+        Me.XrLabel5.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(1111.0!, 28.12501!)
+        Me.XrLabel5.StylePriority.UseFont = False
+        Me.XrLabel5.StylePriority.UseTextAlignment = False
+        Me.XrLabel5.Text = "III. Team Ambassadors"
+        Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel6
+        '
+        Me.XrLabel6.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel6.Name = "XrLabel6"
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(1111.0!, 18.12504!)
+        Me.XrLabel6.StylePriority.UseFont = False
+        Me.XrLabel6.StylePriority.UseTextAlignment = False
+        Me.XrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel9
+        '
+        Me.XrLabel9.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(0!, 48.95833!)
+        Me.XrLabel9.Name = "XrLabel9"
+        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel9.SizeF = New System.Drawing.SizeF(40.0!, 16.18693!)
+        Me.XrLabel9.StylePriority.UseFont = False
+        Me.XrLabel9.StylePriority.UseTextAlignment = False
+        Me.XrLabel9.Text = "Note :"
+        Me.XrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel10
+        '
+        Me.XrLabel10.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(39.99999!, 48.95833!)
+        Me.XrLabel10.Name = "XrLabel10"
+        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel10.SizeF = New System.Drawing.SizeF(1061.0!, 37.08337!)
+        Me.XrLabel10.StylePriority.UseFont = False
+        Me.XrLabel10.StylePriority.UseTextAlignment = False
+        Me.XrLabel10.Text = "[note]"
+        Me.XrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'ReportRiderContract
         '
@@ -739,15 +821,21 @@ Partial Public Class ReportRiderContract
     Friend WithEvents XrTableRow3 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell26 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell27 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell28 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell29 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents LTotMonthlyOld As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents LTotOld As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell30 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell31 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableCell32 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents LTotMonthly As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents Ltot As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell33 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
     Friend WithEvents XrTable4 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow4 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell25 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents SBAmbasador As DevExpress.XtraReports.UI.SubBand
+    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
 End Class

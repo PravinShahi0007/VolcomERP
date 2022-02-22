@@ -25,11 +25,21 @@
     End Sub
 
     Private Sub FormRiderContract_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        DEContract.EditValue = Now
     End Sub
 
     Sub load_contract()
-        Dim q As String = ""
+        Dim q As String = "SELECT 'no' AS is_check,ppsd.id_kontrak_rider,c.`comp_name`,ppsd.kontrak_from,ppsd.kontrak_until,ppsd.id_comp,ppsd.id_kontrak_type
+,CONCAT(IFNULL(DATE_FORMAT(ppsd.kontrak_from,'%d %b %Y'),''),' - ',IFNULL(DATE_FORMAT(ppsd.kontrak_until,'%d %b %Y'),'')) AS contract
+,IF(ISNULL(ppsd.`kontrak_from`),0,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until)*ppsd.`monthly_pay`) AS total
+,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until) AS qty_month
+,IFNULL(ppsd.`monthly_pay`,0) AS monthly_pay
+FROM `tb_kontrak_rider` ppsd
+INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
+WHERE ppsd.kontrak_from<='" & Date.Parse(DEContract.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND ppsd.kontrak_until>='" & Date.Parse(DEContract.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCContractList.DataSource = dt
+        GVContractList.BestFitColumns()
     End Sub
 
     Sub load_pps()
@@ -41,8 +51,11 @@ ORDER BY pps.id_kontrak_rider_pps DESC"
         GVPPS.BestFitColumns()
     End Sub
 
-    Private Sub BChanges_Click(sender As Object, e As EventArgs) Handles BChanges.Click
+    Private Sub BChanges_Click(sender As Object, e As EventArgs) Handles BNewExtend.Click
+        GVContractList.ActiveFilterString = "[is_check]='yes'"
+        FormRiderContractDet.id_type = "1"
         FormRiderContractDet.ShowDialog()
+        GVContractList.ActiveFilterString = ""
     End Sub
 
     Private Sub GVPPS_DoubleClick(sender As Object, e As EventArgs) Handles GVPPS.DoubleClick
@@ -54,5 +67,9 @@ ORDER BY pps.id_kontrak_rider_pps DESC"
 
     Private Sub BRefreshPPS_Click(sender As Object, e As EventArgs) Handles BRefreshPPS.Click
         load_pps()
+    End Sub
+
+    Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+        load_contract()
     End Sub
 End Class

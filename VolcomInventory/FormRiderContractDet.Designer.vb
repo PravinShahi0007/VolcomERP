@@ -22,6 +22,8 @@ Partial Class FormRiderContractDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormRiderContractDet))
         Me.PanelControlPay = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEType = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.TEProposedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -68,10 +70,12 @@ Partial Class FormRiderContractDet
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlPay.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEProposedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,12 +110,14 @@ Partial Class FormRiderContractDet
         Me.PanelControlPay.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlPay.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlPay.Name = "PanelControlPay"
-        Me.PanelControlPay.Size = New System.Drawing.Size(1011, 99)
+        Me.PanelControlPay.Size = New System.Drawing.Size(1011, 124)
         Me.PanelControlPay.TabIndex = 17
         '
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.LabelControl2)
+        Me.PanelControl2.Controls.Add(Me.TEType)
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
         Me.PanelControl2.Controls.Add(Me.TEProposedBy)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
@@ -121,8 +127,27 @@ Partial Class FormRiderContractDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl2.Location = New System.Drawing.Point(717, 2)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(292, 95)
+        Me.PanelControl2.Size = New System.Drawing.Size(292, 120)
         Me.PanelControl2.TabIndex = 5
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(13, 92)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl2.TabIndex = 10
+        Me.LabelControl2.Text = "Type"
+        '
+        'TEType
+        '
+        Me.TEType.Enabled = False
+        Me.TEType.Location = New System.Drawing.Point(105, 89)
+        Me.TEType.Name = "TEType"
+        Me.TEType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEType.Properties.Appearance.Options.UseFont = True
+        Me.TEType.Size = New System.Drawing.Size(174, 20)
+        Me.TEType.TabIndex = 11
         '
         'LabelControl5
         '
@@ -193,7 +218,7 @@ Partial Class FormRiderContractDet
         Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
         Me.PanelControlBottom.Controls.Add(Me.BtnSave)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 490)
+        Me.PanelControlBottom.Location = New System.Drawing.Point(0, 519)
         Me.PanelControlBottom.Name = "PanelControlBottom"
         Me.PanelControlBottom.Size = New System.Drawing.Size(1011, 41)
         Me.PanelControlBottom.TabIndex = 18
@@ -246,7 +271,7 @@ Partial Class FormRiderContractDet
         Me.PCAddDel.Controls.Add(Me.BtnDelete)
         Me.PCAddDel.Controls.Add(Me.BtnAdd)
         Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PCAddDel.Location = New System.Drawing.Point(0, 99)
+        Me.PCAddDel.Location = New System.Drawing.Point(0, 124)
         Me.PCAddDel.Name = "PCAddDel"
         Me.PCAddDel.Size = New System.Drawing.Size(1011, 40)
         Me.PCAddDel.TabIndex = 19
@@ -275,10 +300,10 @@ Partial Class FormRiderContractDet
         '
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 139)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 164)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XTPPPS
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1011, 271)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1011, 275)
         Me.XtraTabControl1.TabIndex = 20
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPPS})
         '
@@ -286,7 +311,7 @@ Partial Class FormRiderContractDet
         '
         Me.XTPPPS.Controls.Add(Me.GCPPS)
         Me.XTPPPS.Name = "XTPPPS"
-        Me.XTPPPS.Size = New System.Drawing.Size(1005, 243)
+        Me.XTPPPS.Size = New System.Drawing.Size(1005, 247)
         Me.XTPPPS.Text = "Proposal"
         '
         'GCPPS
@@ -296,14 +321,14 @@ Partial Class FormRiderContractDet
         Me.GCPPS.MainView = Me.GVPPS
         Me.GCPPS.Name = "GCPPS"
         Me.GCPPS.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.RepositoryItemSearchLookUpEdit1, Me.RISLECat})
-        Me.GCPPS.Size = New System.Drawing.Size(1005, 243)
+        Me.GCPPS.Size = New System.Drawing.Size(1005, 247)
         Me.GCPPS.TabIndex = 0
         Me.GCPPS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPPS})
         '
         'GVPPS
         '
         Me.GVPPS.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
-        Me.GVPPS.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn8, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5})
+        Me.GVPPS.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn6, Me.GridColumn8, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5})
         Me.GVPPS.GridControl = Me.GCPPS
         Me.GVPPS.Name = "GVPPS"
         Me.GVPPS.OptionsView.ColumnAutoWidth = False
@@ -411,7 +436,7 @@ Partial Class FormRiderContractDet
         Me.BandedGridColumn1.Caption = "Contract From"
         Me.BandedGridColumn1.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.BandedGridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.BandedGridColumn1.FieldName = "old_kontrak_from"
+        Me.BandedGridColumn1.FieldName = "kontrak_from_old"
         Me.BandedGridColumn1.Name = "BandedGridColumn1"
         Me.BandedGridColumn1.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn1.OptionsColumn.AllowFocus = False
@@ -422,7 +447,7 @@ Partial Class FormRiderContractDet
         Me.BandedGridColumn2.Caption = "Contract Until"
         Me.BandedGridColumn2.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.BandedGridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.BandedGridColumn2.FieldName = "old_kontrak_until"
+        Me.BandedGridColumn2.FieldName = "kontrak_until_old"
         Me.BandedGridColumn2.Name = "BandedGridColumn2"
         Me.BandedGridColumn2.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn2.OptionsColumn.AllowFocus = False
@@ -553,7 +578,7 @@ Partial Class FormRiderContractDet
         Me.PanelControl3.Controls.Add(Me.MENote)
         Me.PanelControl3.Controls.Add(Me.LabelControl1)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 410)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 439)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(1011, 80)
         Me.PanelControl3.TabIndex = 21
@@ -573,11 +598,19 @@ Partial Class FormRiderContractDet
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Note"
         '
+        'BandedGridColumn6
+        '
+        Me.BandedGridColumn6.Caption = "id_kontrak_old"
+        Me.BandedGridColumn6.FieldName = "id_kontrak_old"
+        Me.BandedGridColumn6.Name = "BandedGridColumn6"
+        Me.BandedGridColumn6.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn6.OptionsColumn.AllowFocus = False
+        '
         'FormRiderContractDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1011, 531)
+        Me.ClientSize = New System.Drawing.Size(1011, 560)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PCAddDel)
@@ -594,6 +627,7 @@ Partial Class FormRiderContractDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEProposedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -671,4 +705,7 @@ Partial Class FormRiderContractDet
     Friend WithEvents RepositoryItemSearchLookUpEdit2View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEType As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BandedGridColumn6 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
