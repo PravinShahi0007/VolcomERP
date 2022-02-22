@@ -192,6 +192,27 @@ WHERE c.`is_active`=1 AND c.`id_comp_cat`=2"
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Dim qc As String = "SELECT 
+h.`number`,emp.employee_name AS created_by,DATE_FORMAT(h.created_date,'%d %M %Y') AS created_date
+FROM `tb_kontrak_rider_pps` h 
+INNER JOIN tb_m_user usr ON usr.id_user=h.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE h.`id_kontrak_rider_pps`='" & id_pps & "'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            'print
+            Cursor = Cursors.WaitCursor
 
+            Dim Report As New ReportRiderContract()
+            Report.id_pps = id_pps
+            Report.DataSource = dtc
+
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+
+            Cursor = Cursors.Default
+        Else
+            warningCustom("No data found")
+        End If
     End Sub
 End Class
