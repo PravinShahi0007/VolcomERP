@@ -1129,7 +1129,7 @@ WHERE d.id_payout_zalora=" + id + " " + cond_cat
 	        WHERE f.id_payout_zalora!=" + id + "
 	        GROUP BY f.id_sales_order_det
         ) f ON f.id_sales_order_det = sod.id_sales_order_det
-        WHERE d.id_report_status=6 AND c.id_comp_group=64 AND stt.`status`='failed' 
+        WHERE d.id_report_status=6 AND c.id_comp_group=64 AND stt.`status` IN ('failed', 'canceled')
         AND !ISNULL(sal.id_sales_order_det) AND !ISNULL(cn.id_sales_order_det) AND !ISNULL(rts.id_sales_order_det) AND ISNULL(f.id_sales_order_det)
         GROUP BY sod.id_sales_order_det "
         Return query
