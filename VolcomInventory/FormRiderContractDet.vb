@@ -38,7 +38,7 @@ WHERE pps.`id_kontrak_rider_pps`=" & id_pps
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT ppsd.*
+        Dim q As String = "SELECT ppsd.*,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until) AS qty_month,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from_old,ppsd.kontrak_until_old) as qty_month_old
 FROM `tb_kontrak_rider_pps_det` ppsd
 WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -189,5 +189,9 @@ WHERE c.`is_active`=1 AND c.`id_comp_cat`=2"
 
             End Try
         End If
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
     End Sub
 End Class

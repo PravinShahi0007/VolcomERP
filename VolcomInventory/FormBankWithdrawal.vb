@@ -142,7 +142,6 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
 UNION ALL
 SELECT 'KGS' AS id_comp,'KGS Group' AS comp_name,'KGS' AS comp_status  "
         viewSearchLookupQuery(SLEFGPOVendor, query, "id_comp", "comp_name", "id_comp")
-        SLEFGPOVendor.EditValue = Nothing
     End Sub
 
     Sub load_vendor_refund()
