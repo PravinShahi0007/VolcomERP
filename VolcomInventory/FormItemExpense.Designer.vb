@@ -91,24 +91,24 @@ Partial Class FormItemExpense
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BrefreshSNI = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPRider = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.BViewEndorsee = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEContract = New DevExpress.XtraEditors.DateEdit()
         Me.GCContractList = New DevExpress.XtraGrid.GridControl()
         Me.GVContractList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BViewEndorsee = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEContract = New DevExpress.XtraEditors.DateEdit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,13 +142,13 @@ Partial Class FormItemExpense
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         Me.XTPRider.SuspendLayout()
+        CType(Me.GCContractList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVContractList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICE, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.DEContract.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEContract.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCContractList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVContractList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICE, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCData
@@ -810,45 +810,6 @@ Partial Class FormItemExpense
         Me.XTPRider.Size = New System.Drawing.Size(1006, 528)
         Me.XTPRider.Text = "Endorsee"
         '
-        'PanelControl4
-        '
-        Me.PanelControl4.Controls.Add(Me.BViewEndorsee)
-        Me.PanelControl4.Controls.Add(Me.LabelControl5)
-        Me.PanelControl4.Controls.Add(Me.DEContract)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(1006, 45)
-        Me.PanelControl4.TabIndex = 96
-        '
-        'BViewEndorsee
-        '
-        Me.BViewEndorsee.Location = New System.Drawing.Point(297, 9)
-        Me.BViewEndorsee.Name = "BViewEndorsee"
-        Me.BViewEndorsee.Size = New System.Drawing.Size(58, 23)
-        Me.BViewEndorsee.TabIndex = 2
-        Me.BViewEndorsee.Text = "view"
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Location = New System.Drawing.Point(11, 14)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(48, 13)
-        Me.LabelControl5.TabIndex = 1
-        Me.LabelControl5.Text = "Date Reff"
-        '
-        'DEContract
-        '
-        Me.DEContract.EditValue = Nothing
-        Me.DEContract.Location = New System.Drawing.Point(65, 11)
-        Me.DEContract.Name = "DEContract"
-        Me.DEContract.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEContract.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEContract.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEContract.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEContract.Size = New System.Drawing.Size(226, 20)
-        Me.DEContract.TabIndex = 0
-        '
         'GCContractList
         '
         Me.GCContractList.Dock = System.Windows.Forms.DockStyle.Fill
@@ -895,6 +856,17 @@ Partial Class FormItemExpense
         Me.RICE.ValueChecked = "yes"
         Me.RICE.ValueUnchecked = "no"
         '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Periode"
+        Me.GridColumn21.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn21.FieldName = "periode"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 1
+        Me.GridColumn21.Width = 111
+        '
         'GridColumn15
         '
         Me.GridColumn15.Caption = "Endorsee"
@@ -902,7 +874,7 @@ Partial Class FormItemExpense
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 0
-        Me.GridColumn15.Width = 455
+        Me.GridColumn15.Width = 263
         '
         'GridColumn16
         '
@@ -913,7 +885,7 @@ Partial Class FormItemExpense
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 2
-        Me.GridColumn16.Width = 275
+        Me.GridColumn16.Width = 159
         '
         'GridColumn17
         '
@@ -924,7 +896,7 @@ Partial Class FormItemExpense
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 3
-        Me.GridColumn17.Width = 275
+        Me.GridColumn17.Width = 159
         '
         'GridColumn18
         '
@@ -950,7 +922,7 @@ Partial Class FormItemExpense
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 4
-        Me.GridColumn19.Width = 435
+        Me.GridColumn19.Width = 169
         '
         'GridColumn20
         '
@@ -965,17 +937,6 @@ Partial Class FormItemExpense
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Width = 268
         '
-        'GridColumn21
-        '
-        Me.GridColumn21.Caption = "Periode"
-        Me.GridColumn21.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn21.FieldName = "periode"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 1
-        Me.GridColumn21.Width = 192
-        '
         'GridColumn22
         '
         Me.GridColumn22.Caption = "Expense Number"
@@ -983,6 +944,46 @@ Partial Class FormItemExpense
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
         Me.GridColumn22.VisibleIndex = 5
+        Me.GridColumn22.Width = 127
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.BViewEndorsee)
+        Me.PanelControl4.Controls.Add(Me.LabelControl5)
+        Me.PanelControl4.Controls.Add(Me.DEContract)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(1006, 45)
+        Me.PanelControl4.TabIndex = 96
+        '
+        'BViewEndorsee
+        '
+        Me.BViewEndorsee.Location = New System.Drawing.Point(297, 9)
+        Me.BViewEndorsee.Name = "BViewEndorsee"
+        Me.BViewEndorsee.Size = New System.Drawing.Size(58, 23)
+        Me.BViewEndorsee.TabIndex = 2
+        Me.BViewEndorsee.Text = "view"
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(11, 14)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(48, 13)
+        Me.LabelControl5.TabIndex = 1
+        Me.LabelControl5.Text = "Date Reff"
+        '
+        'DEContract
+        '
+        Me.DEContract.EditValue = Nothing
+        Me.DEContract.Location = New System.Drawing.Point(65, 11)
+        Me.DEContract.Name = "DEContract"
+        Me.DEContract.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEContract.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEContract.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEContract.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEContract.Size = New System.Drawing.Size(226, 20)
+        Me.DEContract.TabIndex = 0
         '
         'FormItemExpense
         '
@@ -1028,14 +1029,14 @@ Partial Class FormItemExpense
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.XTPRider.ResumeLayout(False)
+        CType(Me.GCContractList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVContractList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICE, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
         CType(Me.DEContract.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEContract.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCContractList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVContractList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

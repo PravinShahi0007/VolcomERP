@@ -439,6 +439,7 @@ Partial Public Class ReportBankWithdrawalSum
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LNote, Me.XrTable1, Me.LTotal, Me.XrLabel16, Me.XrLabel17, Me.LTotSay})
         Me.ReportFooter.HeightF = 150.3333!
+        Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
         '
         'LNote
