@@ -57,6 +57,8 @@ Partial Class FormLineList
         Me.BandedGridColumnImg = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemPictureEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.BandedGridColumnCatalogImg = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnMoreImg = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepoLinkMoreImg = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.BandedGridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnlast_changes_date = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnview_changes = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -298,9 +300,7 @@ Partial Class FormLineList
         Me.BandedGridColumn93 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn94 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoBtnChangesHist = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.BandedGridColumnMoreImg = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoBtnMoreImg = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.RepoLinkMoreImg = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.gridBandChangesNote = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandImage = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridBandFreeze = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -337,12 +337,12 @@ Partial Class FormLineList
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLinkMoreImg, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkChanges, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLinkPP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoBtnChangesHist, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoBtnMoreImg, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepoLinkMoreImg, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BandedGridColumnis_drop
@@ -678,6 +678,19 @@ Partial Class FormLineList
         Me.BandedGridColumnCatalogImg.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnCatalogImg.UnboundType = DevExpress.Data.UnboundColumnType.[Object]
         Me.BandedGridColumnCatalogImg.Visible = True
+        '
+        'BandedGridColumnMoreImg
+        '
+        Me.BandedGridColumnMoreImg.Caption = "  "
+        Me.BandedGridColumnMoreImg.ColumnEdit = Me.RepoLinkMoreImg
+        Me.BandedGridColumnMoreImg.FieldName = "view_more_images"
+        Me.BandedGridColumnMoreImg.Name = "BandedGridColumnMoreImg"
+        Me.BandedGridColumnMoreImg.Visible = True
+        '
+        'RepoLinkMoreImg
+        '
+        Me.RepoLinkMoreImg.AutoHeight = False
+        Me.RepoLinkMoreImg.Name = "RepoLinkMoreImg"
         '
         'BandedGridColumnno
         '
@@ -2914,24 +2927,11 @@ Partial Class FormLineList
         Me.RepoBtnChangesHist.Name = "RepoBtnChangesHist"
         Me.RepoBtnChangesHist.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
-        'BandedGridColumnMoreImg
-        '
-        Me.BandedGridColumnMoreImg.Caption = "  "
-        Me.BandedGridColumnMoreImg.ColumnEdit = Me.RepoLinkMoreImg
-        Me.BandedGridColumnMoreImg.FieldName = "view_more_images"
-        Me.BandedGridColumnMoreImg.Name = "BandedGridColumnMoreImg"
-        Me.BandedGridColumnMoreImg.Visible = True
-        '
         'RepoBtnMoreImg
         '
         Me.RepoBtnMoreImg.AutoHeight = False
         Me.RepoBtnMoreImg.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepoBtnMoreImg.Name = "RepoBtnMoreImg"
-        '
-        'RepoLinkMoreImg
-        '
-        Me.RepoLinkMoreImg.AutoHeight = False
-        Me.RepoLinkMoreImg.Name = "RepoLinkMoreImg"
         '
         'gridBandChangesNote
         '
@@ -2960,12 +2960,13 @@ Partial Class FormLineList
         Me.GridBandFreeze.Columns.Add(Me.BandedGridColumnno)
         Me.GridBandFreeze.Columns.Add(Me.BandedGridColumnlast_changes_date)
         Me.GridBandFreeze.Columns.Add(Me.BandedGridColumnview_changes)
+        Me.GridBandFreeze.Columns.Add(Me.BandedGridColumnmove_drop)
         Me.GridBandFreeze.Columns.Add(Me.BandedGridColumncode_import)
         Me.GridBandFreeze.Columns.Add(Me.BandedGridColumncode)
         Me.GridBandFreeze.Columns.Add(Me.BandedGridColumndescription)
         Me.GridBandFreeze.Name = "GridBandFreeze"
         Me.GridBandFreeze.VisibleIndex = 0
-        Me.GridBandFreeze.Width = 529
+        Me.GridBandFreeze.Width = 604
         '
         'gridBandGeneral
         '
@@ -2988,11 +2989,10 @@ Partial Class FormLineList
         Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnret_date)
         Me.gridBandGeneral.Columns.Add(Me.BandedGridColumncode_ret)
         Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnestimate_wh_date)
-        Me.gridBandGeneral.Columns.Add(Me.BandedGridColumnmove_drop)
         Me.gridBandGeneral.Columns.Add(Me.BandedGridColumn83)
         Me.gridBandGeneral.Name = "gridBandGeneral"
         Me.gridBandGeneral.VisibleIndex = 1
-        Me.gridBandGeneral.Width = 1475
+        Me.gridBandGeneral.Width = 1400
         '
         'gridBandPD
         '
@@ -3311,12 +3311,12 @@ Partial Class FormLineList
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLinkMoreImg, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkChanges, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkProdDemand, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLinkPP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoBtnChangesHist, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoBtnMoreImg, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepoLinkMoreImg, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3594,10 +3594,11 @@ Partial Class FormLineList
     Friend WithEvents BandedGridColumnchanges_note As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnlast_changes_date As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnCatalogImg As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandChangesNote As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandImage As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnMoreImg As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepoLinkMoreImg As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents RepoBtnMoreImg As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents gridBandChangesNote As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandImage As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBandFreeze As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandPD As DevExpress.XtraGrid.Views.BandedGrid.GridBand
@@ -3612,5 +3613,4 @@ Partial Class FormLineList
     Friend WithEvents gridBandRecWH As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandDelToStore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents RepoBtnMoreImg As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

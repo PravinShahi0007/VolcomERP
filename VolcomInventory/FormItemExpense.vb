@@ -225,6 +225,14 @@ WHERE pps.id_report_status=6 AND ISNULL(sr.id_sni_realisasi) "
         End If
     End Sub
 
+    Private Sub GVContractList_DoubleClick(sender As Object, e As EventArgs) Handles GVContractList.DoubleClick
+        'check
+        Dim q As String = "SELECT ed.*,DATE_FORMAT(e.`date_reff`,'%m%Y') FROM tb_item_expense_det ed
+INNER JOIN tb_item_expense e ON e.`id_item_expense`=ed.`id_item_expense` AND e.`id_report_status`!=5 
+WHERE ed.`id_report`='1' AND report_mark_type='398' AND DATE_FORMAT(e.`date_reff`,'%m%Y')=DATE_FORMAT('','%m%Y')"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+    End Sub
+
     'Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BImport.Click
     '    If GVInvoice.RowCount > 0 Then
     '        FormItemExpenseDet.action = "ins"

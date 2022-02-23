@@ -2925,6 +2925,12 @@
     <Compile Include="FormItemExpensePop.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemExpenseRider.Designer.vb">
+      <DependentUpon>FormItemExpenseRider.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemExpenseRider.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemExpenseSNI.Designer.vb">
       <DependentUpon>FormItemExpenseSNI.vb</DependentUpon>
     </Compile>
@@ -9528,6 +9534,12 @@
     <Compile Include="ReportItemExpense.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportItemExpenseRider.Designer.vb">
+      <DependentUpon>ReportItemExpenseRider.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportItemExpenseRider.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportItemReq.Designer.vb">
       <DependentUpon>ReportItemReq.vb</DependentUpon>
     </Compile>
@@ -12123,6 +12135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemExpensePop.resx">
       <DependentUpon>FormItemExpensePop.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemExpenseRider.resx">
+      <DependentUpon>FormItemExpenseRider.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemExpenseSNI.resx">
       <DependentUpon>FormItemExpenseSNI.vb</DependentUpon>
