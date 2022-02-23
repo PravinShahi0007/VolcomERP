@@ -408,15 +408,18 @@ SELECT awbill_no FROM tb_del_manifest WHERE awbill_no='" & addSlashes(TEAwb.Text
         Dim is_need_finalize As String = "2"
         Dim is_finalize_complete As String = "2"
         Dim is_ok_payment As Boolean = True
-        If SLEDelType.EditValue.ToString = "6" Then
-            For i = 0 To GVList.RowCount - 1
-                If GVList.GetRowCellValue(i, "paid").ToString = "2" Then
-                    is_ok_payment = False
-                    Exit For
-                End If
-            Next
-            is_need_finalize = "1"
-            is_finalize_complete = "1"
+
+        If Not type = "cancel" Then
+            If SLEDelType.EditValue.ToString = "6" Then
+                For i = 0 To GVList.RowCount - 1
+                    If GVList.GetRowCellValue(i, "paid").ToString = "2" Then
+                        is_ok_payment = False
+                        Exit For
+                    End If
+                Next
+                is_need_finalize = "1"
+                is_finalize_complete = "1"
+            End If
         End If
 
         'check manifest
@@ -897,7 +900,7 @@ LEFT JOIN
 (
 	SELECT sp.id_sales_pos,sp.report_mark_type,sp.sales_pos_number,sp.id_pl_sales_order_del,sp.`sales_pos_total`,sp.netto
 	FROM tb_sales_pos sp
-	INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=sp.`id_store_contact_from` AND sp.`id_report_status`=6 
+	INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=sp.`id_store_contact_from` AND sp.`id_report_status`!=5 
 	INNER JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
 	INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=c.`id_comp_group` AND cg.is_wholesale=1
 )sp ON sp.`id_pl_sales_order_del`=pl.`id_pl_sales_order_del`
