@@ -418,6 +418,14 @@ GROUP BY dn.`id_debit_note`"
                     End If
                     calculate_amount()
                     TEKurs.EditValue = FormBankWithdrawal.TEKurs.EditValue
+                    '
+                    If Not FormBankWithdrawal.SLEAkunValas.EditValue.ToString = "0" Then
+                        Dim q As String = "SELECT id_acc FROM `tb_valas_bank` WHERE id_valas_bank='" & FormBankWithdrawal.SLEAkunValas.EditValue.ToString & "'"
+                        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                        If dt.Rows.Count > 0 Then
+                            SLEPayFrom.EditValue = dt.Rows(0)("id_acc").ToString
+                        End If
+                    End If
                 ElseIf FormBankWithdrawal.XTCPO.SelectedTabPage.Name = "XTPDPKhusus" Then
                     'load header
                     Dim id_comp As String = FormBankWithdrawal.SLEDPKhususVendor.EditValue

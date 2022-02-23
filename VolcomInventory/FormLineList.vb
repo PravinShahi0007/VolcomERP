@@ -5,9 +5,17 @@
     Public id_menu As String = "-1"
     Dim is_dept As String = "-1"
     Dim str As System.IO.Stream
+    Private cloud_host As String = get_setup_field("cloud_host").ToString
+    Private cloud_username As String = get_setup_field("cloud_username").ToString
+    Private cloud_password As String = get_setup_field("cloud_password").ToString
+    Private cloud_port As String = get_setup_field("cloud_port").ToString
+
+    Private cloud_image_path As String = get_setup_field("cloud_image_path").ToString
+    Private cloud_image_url As String = get_setup_field("cloud_image_url").ToString
 
     Private Sub FormLineList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewType()
+        viewLineListType()
 
         'col
         Dim qry As String = "SELECT * FROM tb_col_line_list l "
@@ -81,6 +89,11 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
         viewSearchLookupQuery(SLEMechType, query, "id_type", "type", "id_type")
     End Sub
 
+    Sub viewLineListType()
+        Dim query As String = "SELECT lv.id_line_list_view, lv.line_list_view FROM tb_lookup_line_list_view lv "
+        viewSearchLookupQuery(SLEViewType, query, "id_line_list_view", "line_list_view", "id_line_list_view")
+    End Sub
+
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         viewData()
     End Sub
@@ -122,8 +135,22 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
             break_size = "2"
         End If
 
+        'date changes
+        Dim date_from_selected As String = ""
+        If SLEViewType.EditValue.ToString = "1" Then
+            date_from_selected = "0000-00-00"
+            gridBandChangesNote.Visible = False
+        Else
+            Try
+                date_from_selected = DateTime.Parse(DEChangesDate.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            gridBandChangesNote.Visible = True
+            gridBandChangesNote.VisibleIndex = 0
+        End If
+
         Dim id_ss As String = SLESeason.EditValue.ToString
-        Dim query As String = "CALL view_line_list_all_new_bz(" + id_ss + "," + break_size + ")"
+        Dim query As String = "CALL view_line_list_all_new_2022(" + id_ss + "," + break_size + ", '" + date_from_selected + "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
 
@@ -334,20 +361,54 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
             End If
 
             e.Value = Images(fileName)
+        ElseIf e.Column.FieldName = "catalog_img" AndAlso e.IsGetData And CheckImg.EditValue.ToString = "True" Then
+            Dim images As Hashtable = New Hashtable()
+
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim id As String = CStr(view.GetListSourceRowCellValue(e.ListSourceRowIndex, "code"))
+
+            Dim img As Image = Nothing
+            Dim resizeImg As Image = Nothing
+
+            Dim fileName As String = "/TH_" + id + "_" + 1.ToString + ".jpg"
+
+            img = Image.FromFile(ImageDir + "\default.jpg")
+
+            resizeImg = img.GetThumbnailImage(100, 100, Nothing, Nothing)
+
+            Try
+                Dim filePath As String = cloud_image_url + fileName
+
+                Dim t As Net.WebClient = New Net.WebClient
+
+                img = Image.FromStream(New IO.MemoryStream(t.DownloadData(filePath)))
+
+                resizeImg = img.GetThumbnailImage(100, 100, Nothing, Nothing)
+            Catch ex As Exception
+            End Try
+
+            images.Add(fileName, resizeImg)
+
+            e.Value = images(fileName)
         End If
     End Sub
 
     Private Sub CheckImg_CheckedChanged(sender As Object, e As EventArgs) Handles CheckImg.CheckedChanged
         Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading images")
         Dim val As String = CheckImg.EditValue.ToString
         If val = "True" Then
-            BandedGridColumnImg.Visible = True
-            BandedGridColumnImg.VisibleIndex = 1
+            gridBandImage.Visible = True
+            gridBandImage.VisibleIndex = 0
         Else
-            BandedGridColumnImg.Visible = False
+            gridBandImage.Visible = False
         End If
         GCData.RefreshDataSource()
         GVData.RefreshData()
+        FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
     End Sub
 
@@ -542,6 +603,7 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
 
     Private Sub SLESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLESeason.EditValueChanged
         resetview()
+        GCData.DataSource = Nothing
     End Sub
 
     Sub resetview()
@@ -569,6 +631,58 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
             If GVData.GetRowCellValue(e.RowHandle, "id_design_type").ToString = "2" Then
                 e.Appearance.BackColor = Color.SkyBlue
             End If
+        End If
+    End Sub
+
+    Private Sub BtnViewChange_Click(sender As Object, e As EventArgs) Handles BtnViewChange.Click
+        Cursor = Cursors.WaitCursor
+        FormLineListChangesHistory.id_season = SLESeason.EditValue.ToString
+        FormLineListChangesHistory.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEViewType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEViewType.EditValueChanged
+        If SLEViewType.EditValue.ToString = "1" Then
+            DEChangesDate.EditValue = Nothing
+            DEChangesDate.Enabled = False
+        Else
+            DEChangesDate.Enabled = True
+            Dim dtnow As DateTime = getTimeDB()
+            DEChangesDate.EditValue = dtnow
+        End If
+        GCData.DataSource = Nothing
+    End Sub
+
+    Private Sub RepoBtnChangesHist_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoBtnChangesHist.ButtonClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormLineListChangesHistory.is_from_beginning = True
+            FormLineListChangesHistory.id_design = GVData.GetFocusedRowCellValue("id_design").ToString
+            FormLineListChangesHistory.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoLinkChanges_Click(sender As Object, e As EventArgs) Handles RepoLinkChanges.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormLineListChangesHistory.is_from_beginning = True
+            FormLineListChangesHistory.id_design = GVData.GetFocusedRowCellValue("id_design").ToString
+            FormLineListChangesHistory.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub DEChangesDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEChangesDate.EditValueChanged
+        GCData.DataSource = Nothing
+    End Sub
+
+    Private Sub RepoLinkMoreImg_Click(sender As Object, e As EventArgs) Handles RepoLinkMoreImg.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormDesignImagesDetail.id_design = GVData.GetFocusedRowCellValue("id_design").ToString
+            FormDesignImagesDetail.ShowDialog()
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class

@@ -58,6 +58,13 @@
             MENote.Text = data.Rows(0)("prod_order_ret_out_note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             id_report_status = data.Rows(0)("id_report_status").ToString
+            '
+            If id_report_status = "1" Then
+                BUpdate.Visible = True
+            Else
+                BUpdate.Visible = False
+            End If
+            '
             id_prod_order = data.Rows(0)("id_prod_order").ToString
             id_design = data.Rows(0)("id_design").ToString
             TxtDesign.Text = data.Rows(0)("design_display_name").ToString
@@ -77,7 +84,6 @@
         GVRetDetail.OptionsBehavior.Editable = False
         MENote.Properties.ReadOnly = True
         DERet.Properties.ReadOnly = True
-        DERetDueDate.Enabled = False
         GVRetDetail.OptionsCustomization.AllowGroup = True
         BtnAttachment.Enabled = True
 
@@ -191,11 +197,22 @@
         Cursor = Cursors.Default
     End Sub
 
+    Private Sub BUpdate_Click(sender As Object, e As EventArgs) Handles BUpdate.Click
+        Dim q As String = "UPDATE tb_prod_order_ret_out SET prod_order_ret_out_due_date='" & Date.Parse(DERetDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' WHERE id_prod_order_ret_out='" & id_prod_order_ret_out & "'"
+        execute_non_query(q, True, "", "", "", "")
+
+        execute_non_query("INSERT INTO `tb_prod_order_ret_out_log`(`datetime`,`id_user`,`est_ret_in`) VALUES(NOW(),'" & id_user & "','" & Date.Parse(DERetDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "')", True, "", "", "", "")
+
+        infoCustom("Estimate return in updated")
+    End Sub
+
     Private Sub BtnAttachment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_prod_order_ret_out
         FormDocumentUpload.report_mark_type = "31"
-        FormDocumentUpload.is_view = "1"
+        If id_report_status = "6" Or id_report_status = "5" Then
+            FormDocumentUpload.is_view = "1"
+        End If
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub

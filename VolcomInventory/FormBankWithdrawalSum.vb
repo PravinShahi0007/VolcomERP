@@ -175,6 +175,8 @@ INNER JOIN tb_coa_tag ct ON ct.id_coa_tag=py.id_coa_tag AND ct.id_coa_type='" & 
 WHERE " & qw & " py.`id_report_status`!='5' AND py.`id_report_status`='3' AND py.is_auto_debet='2' AND py.`id_report_status`!='6' AND  DATE(py.`date_payment`)='" & Date.Parse(DEPayment.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
             q += " GROUP BY py.id_pn "
 
+            ' harus sudah approve menghindari yang tidak2
+
             'If SLEType.EditValue.ToString = "1" Then
             '    q += " GROUP BY py.id_pn "
             'Else
@@ -188,9 +190,9 @@ WHERE " & qw & " py.`id_report_status`!='5' AND py.`id_report_status`='3' AND py
             DEPayment.Enabled = False
             SLEType.ReadOnly = True
             '
-            LChangeTo.Visible = True
-            DEChangeDate.Visible = True
-            BChangeDate.Visible = True
+            'LChangeTo.Visible = True
+            'DEChangeDate.Visible = True
+            'BChangeDate.Visible = True
             '
             BGenerate.Text = "Unlock"
         Else

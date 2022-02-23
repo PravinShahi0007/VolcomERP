@@ -28,6 +28,15 @@
                     XTPInputImage.PageVisible = False
                     ContextMenuStrip1.Visible = False
                 End If
+                '
+                If dt.Rows(0)("is_submit").ToString = "1" Then
+                    BMark.Text = "Mark"
+                    '
+                    XTPInputImage.PageVisible = False
+                    ContextMenuStrip1.Visible = False
+                Else
+                    BMark.Text = "Submit"
+                End If
             End If
             BGenerate.Visible = False
             XTCImage.Enabled = True
@@ -151,7 +160,7 @@ GROUP BY po.`id_prod_order`"
         id = execute_query(q, 0, True, "", "", "", "")
         '
         execute_non_query("CALL gen_number('" & id & "','388')", True, "", "", "", "")
-        submit_who_prepared("388", id, id_user)
+        'submit_who_prepared("388", id, id_user)
         '
         load_head()
     End Sub
@@ -216,11 +225,22 @@ WHERE qrs.`id_prod_order`='" & id_po & "'"
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
-        FormReportMark.report_mark_type = "388"
-        FormReportMark.id_report = id
-        FormReportMark.is_view = is_view
-        FormReportMark.form_origin = Name
-        FormReportMark.ShowDialog()
+
+        If BMark.Text = "Mark" Then
+            FormReportMark.report_mark_type = "388"
+            FormReportMark.id_report = id
+            FormReportMark.is_view = is_view
+            FormReportMark.form_origin = Name
+            FormReportMark.ShowDialog()
+        Else
+            'submit
+            submit_who_prepared("388", id, id_user)
+            execute_non_query("UPDATE tb_qc_report1_sum SET is_submit=1 WHERE id_qc_report1_sum='" & id & "'", True, "", "", "", "")
+            '
+            infoCustom("Summary submitted")
+            load_head()
+        End If
+
         Cursor = Cursors.Default
     End Sub
 

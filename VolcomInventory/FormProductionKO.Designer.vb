@@ -95,6 +95,7 @@ Partial Class FormProductionKO
         Me.GridColumnPOAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPOKurs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCAttachment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
@@ -109,7 +110,6 @@ Partial Class FormProductionKO
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.PCDel = New DevExpress.XtraEditors.PanelControl()
         Me.Bdel = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCAttachment = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -917,6 +917,19 @@ Partial Class FormProductionKO
         Me.GridColumn13.VisibleIndex = 5
         Me.GridColumn13.Width = 252
         '
+        'GCAttachment
+        '
+        Me.GCAttachment.AppearanceCell.Options.UseTextOptions = True
+        Me.GCAttachment.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCAttachment.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCAttachment.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCAttachment.Caption = "Attachment Status"
+        Me.GCAttachment.FieldName = "att_sts"
+        Me.GCAttachment.Name = "GCAttachment"
+        Me.GCAttachment.Visible = True
+        Me.GCAttachment.VisibleIndex = 9
+        Me.GCAttachment.Width = 126
+        '
         'RIPictureEdit
         '
         Me.RIPictureEdit.Name = "RIPictureEdit"
@@ -1069,19 +1082,6 @@ Partial Class FormProductionKO
         Me.Bdel.Size = New System.Drawing.Size(91, 38)
         Me.Bdel.TabIndex = 17
         Me.Bdel.Text = "Delete"
-        '
-        'GCAttachment
-        '
-        Me.GCAttachment.AppearanceCell.Options.UseTextOptions = True
-        Me.GCAttachment.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GCAttachment.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCAttachment.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GCAttachment.Caption = "Attachment Status"
-        Me.GCAttachment.FieldName = "att_sts"
-        Me.GCAttachment.Name = "GCAttachment"
-        Me.GCAttachment.Visible = True
-        Me.GCAttachment.VisibleIndex = 9
-        Me.GCAttachment.Width = 126
         '
         'FormProductionKO
         '

@@ -408,15 +408,18 @@ SELECT awbill_no FROM tb_del_manifest WHERE awbill_no='" & addSlashes(TEAwb.Text
         Dim is_need_finalize As String = "2"
         Dim is_finalize_complete As String = "2"
         Dim is_ok_payment As Boolean = True
-        If SLEDelType.EditValue.ToString = "6" Then
-            For i = 0 To GVList.RowCount - 1
-                If GVList.GetRowCellValue(i, "paid").ToString = "2" Then
-                    is_ok_payment = False
-                    Exit For
-                End If
-            Next
-            is_need_finalize = "1"
-            is_finalize_complete = "1"
+
+        If Not type = "cancel" Then
+            If SLEDelType.EditValue.ToString = "6" Then
+                For i = 0 To GVList.RowCount - 1
+                    If GVList.GetRowCellValue(i, "paid").ToString = "2" Then
+                        is_ok_payment = False
+                        Exit For
+                    End If
+                Next
+                is_need_finalize = "1"
+                is_finalize_complete = "1"
+            End If
         End If
 
         'check manifest
@@ -888,7 +891,7 @@ ORDER BY awbd.id_awbill ASC,awbd.id_pl_sales_order_del ASC"
 -- ,awb.`weight_calc` AS volume
 ,ROUND((awb.width* awb.length* awb.height)/" & div_by & ",2) AS volume
 ,c.id_sub_district
-,IF(sp.netto>0,IF(IFNULL(rec.value,0)=0,2,1),1) AS paid
+,IF(ISNULL(sp.id_sales_pos),2,IF(sp.netto>0,IF(IFNULL(rec.value,0)=0,2,1),1)) AS paid
 FROM tb_wh_awbill_det awbd
 INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 
 -- AND awb.id_del_type='" & SLEDelType.EditValue.ToString & "'

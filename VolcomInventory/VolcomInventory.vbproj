@@ -2925,6 +2925,12 @@
     <Compile Include="FormItemExpensePop.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemExpenseRider.Designer.vb">
+      <DependentUpon>FormItemExpenseRider.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemExpenseRider.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemExpenseSNI.Designer.vb">
       <DependentUpon>FormItemExpenseSNI.vb</DependentUpon>
     </Compile>
@@ -3019,6 +3025,12 @@
       <DependentUpon>FormLineList.vb</DependentUpon>
     </Compile>
     <Compile Include="FormLineList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLineListChangesHistory.Designer.vb">
+      <DependentUpon>FormLineListChangesHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormLineListChangesHistory.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormListPOMat.Designer.vb">
@@ -4945,6 +4957,18 @@
       <DependentUpon>FormRevenue.vb</DependentUpon>
     </Compile>
     <Compile Include="FormRevenue.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRiderContract.Designer.vb">
+      <DependentUpon>FormRiderContract.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRiderContract.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRiderContractDet.Designer.vb">
+      <DependentUpon>FormRiderContractDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRiderContractDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesBranch.Designer.vb">
@@ -9522,6 +9546,12 @@
     <Compile Include="ReportItemExpense.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportItemExpenseRider.Designer.vb">
+      <DependentUpon>ReportItemExpenseRider.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportItemExpenseRider.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportItemReq.Designer.vb">
       <DependentUpon>ReportItemReq.vb</DependentUpon>
     </Compile>
@@ -10222,6 +10252,12 @@
       <DependentUpon>ReportReturnNote.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportReturnNote.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportRiderContract.Designer.vb">
+      <DependentUpon>ReportRiderContract.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportRiderContract.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportSalarySlip.Designer.vb">
@@ -12112,6 +12148,9 @@
     <EmbeddedResource Include="FormItemExpensePop.resx">
       <DependentUpon>FormItemExpensePop.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormItemExpenseRider.resx">
+      <DependentUpon>FormItemExpenseRider.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormItemExpenseSNI.resx">
       <DependentUpon>FormItemExpenseSNI.vb</DependentUpon>
     </EmbeddedResource>
@@ -12159,6 +12198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormLineList.resx">
       <DependentUpon>FormLineList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLineListChangesHistory.resx">
+      <DependentUpon>FormLineListChangesHistory.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormListPOMat.resx">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
@@ -13117,6 +13159,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRevenue.resx">
       <DependentUpon>FormRevenue.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRiderContract.resx">
+      <DependentUpon>FormRiderContract.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRiderContractDet.resx">
+      <DependentUpon>FormRiderContractDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesBranch.resx">
       <DependentUpon>FormSalesBranch.vb</DependentUpon>
@@ -16226,6 +16274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportReturnNote.resx">
       <DependentUpon>ReportReturnNote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportRiderContract.resx">
+      <DependentUpon>ReportRiderContract.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalarySlip.resx">
       <DependentUpon>ReportSalarySlip.vb</DependentUpon>

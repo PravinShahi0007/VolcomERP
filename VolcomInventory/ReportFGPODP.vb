@@ -1,6 +1,6 @@
 ﻿Public Class ReportFGPODP
     Public Shared id_pn_fgpo As String
-    Public id_pre As String
+    Public id_pre As String = "-1"
     Public Shared dt As DataTable
 
     Private Sub Detail_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles Detail.BeforePrint

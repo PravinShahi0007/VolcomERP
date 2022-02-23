@@ -30,6 +30,8 @@ Partial Class FormDesignImagesDetail
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemHyperLinkEdit = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XtraTabPageV = New DevExpress.XtraTab.XtraTabPage()
         Me.GCV = New DevExpress.XtraGrid.GridControl()
         Me.GVV = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -39,6 +41,8 @@ Partial Class FormDesignImagesDetail
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XtraTabPageSQ = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSQ = New DevExpress.XtraGrid.GridControl()
         Me.GVSQ = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -48,6 +52,8 @@ Partial Class FormDesignImagesDetail
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XtraTabPageTH = New DevExpress.XtraTab.XtraTabPage()
         Me.GCTH = New DevExpress.XtraGrid.GridControl()
         Me.GVTH = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -57,12 +63,6 @@ Partial Class FormDesignImagesDetail
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemHyperLinkEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,24 +72,24 @@ Partial Class FormDesignImagesDetail
         CType(Me.GVZ, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemPictureEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabPageV.SuspendLayout()
         CType(Me.GCV, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVV, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabPageSQ.SuspendLayout()
         CType(Me.GCSQ, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSQ, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemPictureEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabPageTH.SuspendLayout()
         CType(Me.GCTH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVTH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemPictureEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -173,6 +173,24 @@ Partial Class FormDesignImagesDetail
         Me.GridColumn4.FieldName = "sort"
         Me.GridColumn4.Name = "GridColumn4"
         '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Image"
+        Me.GridColumn17.ColumnEdit = Me.RepositoryItemCheckEdit
+        Me.GridColumn17.FieldName = "file_open"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 2
+        '
+        'RepositoryItemCheckEdit
+        '
+        Me.RepositoryItemCheckEdit.AutoHeight = False
+        Me.RepositoryItemCheckEdit.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit.Name = "RepositoryItemCheckEdit"
+        Me.RepositoryItemCheckEdit.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit.PictureGrayed = CType(resources.GetObject("RepositoryItemCheckEdit.PictureGrayed"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit.PictureUnchecked = CType(resources.GetObject("RepositoryItemCheckEdit.PictureUnchecked"), System.Drawing.Image)
+        '
         'XtraTabPageV
         '
         Me.XtraTabPageV.Controls.Add(Me.GCV)
@@ -242,6 +260,24 @@ Partial Class FormDesignImagesDetail
         Me.GridColumn8.Caption = "Sort"
         Me.GridColumn8.FieldName = "sort"
         Me.GridColumn8.Name = "GridColumn8"
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Image"
+        Me.GridColumn18.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumn18.FieldName = "file_open"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 2
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit1.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit1.PictureGrayed = CType(resources.GetObject("RepositoryItemCheckEdit1.PictureGrayed"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit1.PictureUnchecked = CType(resources.GetObject("RepositoryItemCheckEdit1.PictureUnchecked"), System.Drawing.Image)
         '
         'XtraTabPageSQ
         '
@@ -313,6 +349,24 @@ Partial Class FormDesignImagesDetail
         Me.GridColumn12.FieldName = "sort"
         Me.GridColumn12.Name = "GridColumn12"
         '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Image"
+        Me.GridColumn19.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumn19.FieldName = "file_open"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 2
+        '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        Me.RepositoryItemCheckEdit2.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit2.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit2.PictureGrayed = CType(resources.GetObject("RepositoryItemCheckEdit2.PictureGrayed"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit2.PictureUnchecked = CType(resources.GetObject("RepositoryItemCheckEdit2.PictureUnchecked"), System.Drawing.Image)
+        '
         'XtraTabPageTH
         '
         Me.XtraTabPageTH.Controls.Add(Me.GCTH)
@@ -383,60 +437,6 @@ Partial Class FormDesignImagesDetail
         Me.GridColumn16.FieldName = "sort"
         Me.GridColumn16.Name = "GridColumn16"
         '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Image"
-        Me.GridColumn17.ColumnEdit = Me.RepositoryItemCheckEdit
-        Me.GridColumn17.FieldName = "file_open"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 2
-        '
-        'RepositoryItemCheckEdit
-        '
-        Me.RepositoryItemCheckEdit.AutoHeight = False
-        Me.RepositoryItemCheckEdit.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
-        Me.RepositoryItemCheckEdit.Name = "RepositoryItemCheckEdit"
-        Me.RepositoryItemCheckEdit.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit.PictureChecked"), System.Drawing.Image)
-        Me.RepositoryItemCheckEdit.PictureGrayed = CType(resources.GetObject("RepositoryItemCheckEdit.PictureGrayed"), System.Drawing.Image)
-        Me.RepositoryItemCheckEdit.PictureUnchecked = CType(resources.GetObject("RepositoryItemCheckEdit.PictureUnchecked"), System.Drawing.Image)
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "Image"
-        Me.GridColumn18.ColumnEdit = Me.RepositoryItemCheckEdit1
-        Me.GridColumn18.FieldName = "file_open"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 2
-        '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit1.PictureChecked"), System.Drawing.Image)
-        Me.RepositoryItemCheckEdit1.PictureGrayed = CType(resources.GetObject("RepositoryItemCheckEdit1.PictureGrayed"), System.Drawing.Image)
-        Me.RepositoryItemCheckEdit1.PictureUnchecked = CType(resources.GetObject("RepositoryItemCheckEdit1.PictureUnchecked"), System.Drawing.Image)
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Image"
-        Me.GridColumn19.ColumnEdit = Me.RepositoryItemCheckEdit2
-        Me.GridColumn19.FieldName = "file_open"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 2
-        '
-        'RepositoryItemCheckEdit2
-        '
-        Me.RepositoryItemCheckEdit2.AutoHeight = False
-        Me.RepositoryItemCheckEdit2.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
-        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
-        Me.RepositoryItemCheckEdit2.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit2.PictureChecked"), System.Drawing.Image)
-        Me.RepositoryItemCheckEdit2.PictureGrayed = CType(resources.GetObject("RepositoryItemCheckEdit2.PictureGrayed"), System.Drawing.Image)
-        Me.RepositoryItemCheckEdit2.PictureUnchecked = CType(resources.GetObject("RepositoryItemCheckEdit2.PictureUnchecked"), System.Drawing.Image)
-        '
         'GridColumn20
         '
         Me.GridColumn20.Caption = "Image"
@@ -472,24 +472,24 @@ Partial Class FormDesignImagesDetail
         CType(Me.GVZ, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemPictureEdit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabPageV.ResumeLayout(False)
         CType(Me.GCV, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVV, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabPageSQ.ResumeLayout(False)
         CType(Me.GCSQ, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSQ, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemPictureEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabPageTH.ResumeLayout(False)
         CType(Me.GCTH, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVTH, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemPictureEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

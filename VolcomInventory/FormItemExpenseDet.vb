@@ -11,6 +11,8 @@
 
     Public id_awb_inv_sum As String = "-1"
 
+    Public id_kontrak_rider As String = "-1"
+
     Public id_sni_pps As String = "-1"
 
     Public is_duplicate As Boolean = False
@@ -258,6 +260,44 @@ GROUP BY id.`id_departement`"
                 GVData.SetRowCellValue(GVData.RowCount - 1, "qty", FormItemExpenseSNI.BGVBudget.GetRowCellValue(i, "r_qty"))
                 '
             Next
+            FormMain.SplashScreenManager1.CloseWaitForm()
+            GVData.BestFitColumns()
+        End If
+
+        If Not id_kontrak_rider = "-1" Then
+            If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
+            End If
+
+            Dim q As String = ""
+
+            DEDateReff.EditValue = FormItemExpenseRider.DEDateReff.EditValue
+
+            GVData.AddNewRow()
+            GVData.FocusedRowHandle = GVData.RowCount - 1
+
+            'GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc", "2225")
+
+            'GVData.SetRowCellValue(GVData.RowCount - 1, "id_expense_type", "1")
+            'GVData.SetRowCellValue(GVData.RowCount - 1, "id_b_expense", FormItemExpenseSNI.SLEBudget.EditValue.ToString)
+            'GVData.SetRowCellValue(GVData.RowCount - 1, "cc", "1")
+            ''
+            'GVData.SetRowCellValue(GVData.RowCount - 1, "description", FormItemExpenseSNI.BGVBudget.GetRowCellValue(i, "budget_desc").ToString)
+            'GVData.SetRowCellValue(GVData.RowCount - 1, "amount", FormItemExpenseSNI.BGVBudget.GetRowCellValue(i, "r_sub_amount"))
+            'GVData.SetRowCellValue(GVData.RowCount - 1, "tax_percent", FormItemExpenseSNI.TEPPN3PLInv.EditValue)
+            ''
+            'GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc_pph", FormItemExpenseSNI.SLEPPH3PLInv.EditValue.ToString)
+            'GVData.SetRowCellValue(GVData.RowCount - 1, "pph_percent", FormItemExpenseSNI.TEPPH3PLInv.EditValue)
+            ''
+            'GVData.SetRowCellValue(GVData.RowCount - 1, "amount_before", FormItemExpenseSNI.BGVBudget.GetRowCellValue(i, "r_sub_amount"))
+            'GVData.SetRowCellValue(GVData.RowCount - 1, "kurs", 1)
+            'GVData.SetRowCellValue(GVData.RowCount - 1, "id_currency", 1)
+            'GVData.SetRowCellValue(GVData.RowCount - 1, "is_lock", "yes")
+            'GVData.SetRowCellValue(GVData.RowCount - 1, "id_report", FormItemExpenseSNI.BGVBudget.GetRowCellValue(i, "id_sni_pps").ToString)
+            'GVData.SetRowCellValue(GVData.RowCount - 1, "id_report_det", FormItemExpenseSNI.BGVBudget.GetRowCellValue(i, "id_sni_pps_budget").ToString)
+            'GVData.SetRowCellValue(GVData.RowCount - 1, "report_mark_type", "319")
+            'GVData.SetRowCellValue(GVData.RowCount - 1, "qty", FormItemExpenseSNI.BGVBudget.GetRowCellValue(i, "r_qty"))
+
             FormMain.SplashScreenManager1.CloseWaitForm()
             GVData.BestFitColumns()
         End If
@@ -1181,6 +1221,7 @@ WHERE a.id_status=1 AND a.id_is_det=2 "
     Private Sub BtnBrowse_Click(sender As Object, e As EventArgs) Handles BtnBrowse.Click
         Cursor = Cursors.WaitCursor
         FormPopUpContact.id_pop_up = "90"
+        FormPopUpContact.is_must_active = "1"
         FormPopUpContact.ShowDialog()
         Cursor = Cursors.Default
     End Sub

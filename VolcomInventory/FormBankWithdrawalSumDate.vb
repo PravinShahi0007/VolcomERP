@@ -23,6 +23,15 @@
                 q = "UPDATE tb_pn SET date_payment='" & Date.Parse(DEReleaseDate.EditValue.ToString).ToString("yyyy-MM-dd") & "' WHERE id_pn='" & FormBankWithdrawalSum.GVList.GetRowCellValue(i, "id_pn").ToString & "'"
                 execute_non_query(q, True, "", "", "", "")
 
+                'reset mark
+                q = String.Format("UPDATE tb_report_mark SET id_mark='1',report_mark_lead_time=NULL,report_mark_start_datetime=NULL,report_mark_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'{2}'", "159", FormBankWithdrawalSum.GVList.GetRowCellValue(i, "id_pn").ToString, "1")
+                execute_non_query(q, True, "", "", "", "")
+                '
+                FormReportMark.id_report = FormBankWithdrawalSum.GVList.GetRowCellValue(i, "id_pn").ToString
+                FormReportMark.report_mark_type = "159"
+                FormReportMark.change_status("1")
+                'end reset mark
+
                 'FormBankWithdrawalSum.load_det()
                 '
                 FormBankWithdrawalDet.Opacity = 0

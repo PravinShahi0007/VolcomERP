@@ -22,7 +22,7 @@
 
                 'in stock
                 Dim query_stock As String = "INSERT INTO tb_storage_item (id_departement, id_storage_category,id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, id_stock_status)
-            SELECT r.id_departement, 1, rd.id_item, getAvgCost(rd.id_item), 154, r.id_item_req, rd.qty, NOW(), 1
+            SELECT r.id_departement, 1, rd.id_item, getAvgCostUnit(rd.id_item,(SELECT id_coa_tag FROM tb_m_departement WHERE id_departement=r.id_departement)), 154, r.id_item_req, rd.qty, NOW(), 1
             FROM tb_item_req r
             INNER JOIN tb_item_req_det rd ON rd.id_item_req = r.id_item_req
             WHERE 1=1 AND (" + where_string + ") "

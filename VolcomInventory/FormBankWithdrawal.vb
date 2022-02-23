@@ -235,23 +235,27 @@ WHERE py.id_coa_tag='" & SLEUnitBBKList.EditValue.ToString & "' AND DATE(py.date
     End Sub
     '
     Sub load_fgpo()
-        Dim where_string As String = ""
-
-        If SLEFGPOVendor.EditValue.ToString = "KGS" Then
-            where_string = " AND c.id_comp IN (SELECT id_comp FROM tb_import_rule_vendor WHERE id_import_rule=3) "
-            BCreatePaymentFGPO.Visible = True
-        ElseIf Not SLEFGPOVendor.EditValue.ToString = "0" Then
-            where_string = " AND c.id_comp = " & SLEFGPOVendor.EditValue.ToString & " "
-            BCreatePaymentFGPO.Visible = True
+        If SLEFGPOVendor.EditValue = Nothing Then
+            warningCustom("Select vendor first")
         Else
-            BCreatePaymentFGPO.Visible = False
+            Dim where_string As String = ""
+
+            If SLEFGPOVendor.EditValue.ToString = "KGS" Then
+                where_string = " AND c.id_comp IN (SELECT id_comp FROM tb_import_rule_vendor WHERE id_import_rule=3) "
+                BCreatePaymentFGPO.Visible = True
+            ElseIf Not SLEFGPOVendor.EditValue.ToString = "0" Then
+                where_string = " AND c.id_comp = " & SLEFGPOVendor.EditValue.ToString & " "
+                BCreatePaymentFGPO.Visible = True
+            Else
+                BCreatePaymentFGPO.Visible = False
+            End If
+
+            Dim query As String = "CALL view_payment_fgpo('" & where_string & "'," & decimalSQL(TEKurs.EditValue.ToString).ToString & ")"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            GCFGPO.DataSource = data
+            GVFGPO.BestFitColumns()
         End If
-
-        Dim query As String = "CALL view_payment_fgpo('" & where_string & "'," & decimalSQL(TEKurs.EditValue.ToString).ToString & ")"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-
-        GCFGPO.DataSource = data
-        GVFGPO.BestFitColumns()
     End Sub
     '
     Sub load_vendor_dpkhusus()
@@ -1573,6 +1577,10 @@ GROUP BY pns.`id_pn_summary`"
 
     Private Sub SLEAkunValas_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAkunValas.EditValueChanged
         'search kurs rata2
+        load_valas_rate()
+    End Sub
+
+    Sub load_valas_rate()
         Try
             Dim q As String = "SELECT * FROM `tb_stock_valas` 
 WHERE id_valas_bank=" & SLEAkunValas.EditValue.ToString & " AND id_currency=2
@@ -1589,10 +1597,13 @@ ORDER BY id_stock_valas DESC LIMIT 1"
     End Sub
 
     Sub view_valas()
-        Dim query As String = "SELECT 0 AS id_valas_bank,'No Valas' AS valas_bank
-UNION ALL
-SELECT id_valas_bank,valas_bank FROM tb_valas_bank
+        Dim query As String = "SELECT id_valas_bank,valas_bank FROM tb_valas_bank
 WHERE is_active=1"
+        viewSearchLookupQuery(SLEAkunValas, query, "id_valas_bank", "valas_bank", "id_valas_bank")
+    End Sub
+
+    Sub view_no_valas()
+        Dim query As String = "SELECT 0 AS id_valas_bank,'No Valas' AS valas_bank"
         viewSearchLookupQuery(SLEAkunValas, query, "id_valas_bank", "valas_bank", "id_valas_bank")
     End Sub
 
@@ -1797,5 +1808,34 @@ HAVING balance>0"
         For i = GVPOList.RowCount - 1 To 0 Step -1
             GVPOList.DeleteRow(i)
         Next
+    End Sub
+
+    Private Sub SLEFGPOVendor_EditValueChanged(sender As Object, e As EventArgs) Handles SLEFGPOVendor.EditValueChanged
+        clear_list()
+
+        Dim q As String = "SELECT co.`id_country`,co.`country`,IF(co.`id_country`=5,'no','yes') AS is_valas
+FROM tb_m_comp c
+INNER JOIN tb_m_city ct ON ct.`id_city`=c.`id_city`
+INNER JOIN tb_m_state st ON st.`id_state`=ct.`id_state`
+INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
+INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country`
+WHERE c.`id_comp`='" & SLEFGPOVendor.EditValue.ToString & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            If dt.Rows(0)("is_valas").ToString = "yes" Then
+                'valas
+                view_valas()
+            Else
+                view_no_valas()
+            End If
+        End If
+        load_valas_rate()
+    End Sub
+
+    Sub clear_list()
+        For i = GVFGPO.RowCount - 1 To 0 Step -1
+            GVFGPO.DeleteRow(i)
+        Next
+        BCreatePaymentFGPO.Visible = False
     End Sub
 End Class

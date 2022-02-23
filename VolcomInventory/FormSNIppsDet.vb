@@ -418,7 +418,7 @@ HAVING NOT ISNULL(err)"
     Private Sub BDel_Click(sender As Object, e As EventArgs) Handles BDel.Click
         Dim confirm As DialogResult
 
-        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to cancel ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete item ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
         If confirm = DialogResult.Yes Then
             GVBudgetCop.ActiveFilterString = "[is_check]='yes'"
