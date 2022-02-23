@@ -216,25 +216,32 @@
     End Sub
 
     Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
-        Dim report As New ReportProposePromo()
+        Dim report_mark_type As String = execute_query("SELECT report_mark_type FROM tb_propose_promo WHERE id_propose_promo = '" + id_propose_promo + "'", 0, True, "", "", "", "")
+        Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_propose_promo WHERE id_propose_promo = '" + id_propose_promo + "'", 0, True, "", "", "", "")
 
-        report.id_propose_promo = id_propose_promo
+        If Not check_allow_print(id_report_status, report_mark_type, id_propose_promo) Then
+            warningCustom("Can't print, please approve first.")
+        Else
+            Dim report As New ReportProposePromo()
 
-        report.XLNumber.Text = TENumber.EditValue.ToString
-        report.XLKTP.Text = TEKTP.EditValue.ToString
-        report.XLNama.Text = TENama.EditValue.ToString
-        report.XLNPWP.Text = TENPWP.EditValue.ToString
-        report.XLCreatedAt.Text = TECreatedAt.EditValue.ToString
-        report.XLCreatedBy.Text = TECreatedBy.EditValue.ToString
-        report.XLAlamat.Text = MEAlamat.EditValue.ToString
+            report.id_propose_promo = id_propose_promo
 
-        report.GCProduct.DataSource = GCProduct.DataSource
+            report.XLNumber.Text = TENumber.EditValue.ToString
+            report.XLKTP.Text = TEKTP.EditValue.ToString
+            report.XLNama.Text = TENama.EditValue.ToString
+            report.XLNPWP.Text = TENPWP.EditValue.ToString
+            report.XLCreatedAt.Text = TECreatedAt.EditValue.ToString
+            report.XLCreatedBy.Text = TECreatedBy.EditValue.ToString
+            report.XLAlamat.Text = MEAlamat.EditValue.ToString
 
-        report.GVProduct.BestFitColumns()
+            report.GCProduct.DataSource = GCProduct.DataSource
 
-        Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+            report.GVProduct.BestFitColumns()
 
-        tool.ShowPreviewDialog()
+            Dim tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(report)
+
+            tool.ShowPreviewDialog()
+        End If
     End Sub
 
     Sub create_too(id_report As String)
