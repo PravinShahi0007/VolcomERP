@@ -5,6 +5,13 @@
     Public id_menu As String = "-1"
     Dim is_dept As String = "-1"
     Dim str As System.IO.Stream
+    Private cloud_host As String = get_setup_field("cloud_host").ToString
+    Private cloud_username As String = get_setup_field("cloud_username").ToString
+    Private cloud_password As String = get_setup_field("cloud_password").ToString
+    Private cloud_port As String = get_setup_field("cloud_port").ToString
+
+    Private cloud_image_path As String = get_setup_field("cloud_image_path").ToString
+    Private cloud_image_url As String = get_setup_field("cloud_image_url").ToString
 
     Private Sub FormLineList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewType()
@@ -354,20 +361,54 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
             End If
 
             e.Value = Images(fileName)
+        ElseIf e.Column.FieldName = "catalog_img" AndAlso e.IsGetData And CheckImg.EditValue.ToString = "True" Then
+            Dim images As Hashtable = New Hashtable()
+
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim id As String = CStr(view.GetListSourceRowCellValue(e.ListSourceRowIndex, "code"))
+
+            Dim img As Image = Nothing
+            Dim resizeImg As Image = Nothing
+
+            Dim fileName As String = "/TH_" + id + "_" + 1.ToString + ".jpg"
+
+            img = Image.FromFile(ImageDir + "\default.jpg")
+
+            resizeImg = img.GetThumbnailImage(100, 100, Nothing, Nothing)
+
+            Try
+                Dim filePath As String = cloud_image_url + fileName
+
+                Dim t As Net.WebClient = New Net.WebClient
+
+                img = Image.FromStream(New IO.MemoryStream(t.DownloadData(filePath)))
+
+                resizeImg = img.GetThumbnailImage(100, 100, Nothing, Nothing)
+            Catch ex As Exception
+            End Try
+
+            images.Add(fileName, resizeImg)
+
+            e.Value = images(fileName)
         End If
     End Sub
 
     Private Sub CheckImg_CheckedChanged(sender As Object, e As EventArgs) Handles CheckImg.CheckedChanged
         Cursor = Cursors.WaitCursor
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading images")
         Dim val As String = CheckImg.EditValue.ToString
         If val = "True" Then
-            BandedGridColumnImg.Visible = True
-            BandedGridColumnImg.VisibleIndex = 1
+            gridBandImage.Visible = True
+            gridBandImage.VisibleIndex = 0
         Else
-            BandedGridColumnImg.Visible = False
+            gridBandImage.Visible = False
         End If
         GCData.RefreshDataSource()
         GVData.RefreshData()
+        FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
     End Sub
 
@@ -634,5 +675,14 @@ SELECT 2 AS `id_type`, 'Non Merch.' AS `type` "
 
     Private Sub DEChangesDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEChangesDate.EditValueChanged
         GCData.DataSource = Nothing
+    End Sub
+
+    Private Sub RepoLinkMoreImg_Click(sender As Object, e As EventArgs) Handles RepoLinkMoreImg.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormDesignImagesDetail.id_design = GVData.GetFocusedRowCellValue("id_design").ToString
+            FormDesignImagesDetail.ShowDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

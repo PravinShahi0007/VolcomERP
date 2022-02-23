@@ -10230,6 +10230,12 @@
     <Compile Include="ReportReturnNote.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportRiderContract.Designer.vb">
+      <DependentUpon>ReportRiderContract.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportRiderContract.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalarySlip.Designer.vb">
       <DependentUpon>ReportSalarySlip.vb</DependentUpon>
     </Compile>
@@ -16235,6 +16241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportReturnNote.resx">
       <DependentUpon>ReportReturnNote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportRiderContract.resx">
+      <DependentUpon>ReportRiderContract.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalarySlip.resx">
       <DependentUpon>ReportSalarySlip.vb</DependentUpon>

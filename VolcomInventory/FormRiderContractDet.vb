@@ -1,7 +1,7 @@
 ﻿Public Class FormRiderContractDet
     Public id_pps As String = "-1"
     Public is_view As String = "-1"
-
+    Public id_type As String = "1"
     Private Sub FormRiderContractDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_head()
     End Sub
@@ -12,6 +12,41 @@
 
         If id_pps = "-1" Then
             'new
+            load_det()
+            If FormRiderContract.GVContractList.RowCount > 0 Then
+                For i = 0 To FormRiderContract.GVContractList.RowCount - 1
+                    GVPPS.AddNewRow()
+                    GVPPS.FocusedRowHandle = GVPPS.RowCount - 1
+                    '
+                    GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "id_kontrak_type", FormRiderContract.GVContractList.GetRowCellValue(i, "id_kontrak_type"))
+                    GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "id_comp", FormRiderContract.GVContractList.GetRowCellValue(i, "id_comp"))
+                    '
+                    GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "id_kontrak_old", FormRiderContract.GVContractList.GetRowCellValue(i, "id_kontrak_rider").ToString)
+                    GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "monthly_pay_old", FormRiderContract.GVContractList.GetRowCellValue(i, "monthly_pay"))
+                    GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_until_old", FormRiderContract.GVContractList.GetRowCellValue(i, "kontrak_until"))
+                    GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_from_old", FormRiderContract.GVContractList.GetRowCellValue(i, "kontrak_from"))
+                    GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "qty_month_old", FormRiderContract.GVContractList.GetRowCellValue(i, "qty_month"))
+                    GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "monthly_pay_tot_old", FormRiderContract.GVContractList.GetRowCellValue(i, "total"))
+                    '
+                    GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "monthly_pay", "0")
+                    If id_type = "1" Then
+                        GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_from", FormRiderContract.GVContractList.GetRowCellValue(i, "kontrak_until"))
+                        GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_until", FormRiderContract.GVContractList.GetRowCellValue(i, "kontrak_until"))
+                    Else
+                        GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_until", FormRiderContract.GVContractList.GetRowCellValue(i, "kontrak_until"))
+                        GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_from", FormRiderContract.GVContractList.GetRowCellValue(i, "kontrak_from"))
+                        PCAddDel.Visible = False
+                    End If
+
+                    GVPPS.RefreshData()
+                Next
+            End If
+            If id_type = "1" Then
+                TEType.Text = "New / Extend"
+            Else
+                TEType.Text = "Changes"
+                PCAddDel.Visible = False
+            End If
         Else
             'edit
             BtnSave.Visible = False
@@ -20,7 +55,7 @@
             BtnPrint.Visible = True
             BtnMark.Visible = True
             '
-            Dim q As String = "SELECT * FROM tb_kontrak_rider_pps pps
+            Dim q As String = "SELECT pps.number,pps.created_date,pps.note,emp.employee_name,pps.id_type,IF(pps.id_type=1,'New / Extend','Changes') AS typ FROM tb_kontrak_rider_pps pps
 INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=pps.`id_report_status`
 INNER JOIN tb_m_user usr ON usr.`id_user`=pps.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -31,10 +66,14 @@ WHERE pps.`id_kontrak_rider_pps`=" & id_pps
                 DECreated.EditValue = dt.Rows(0)("created_date")
                 TEProposedBy.Text = dt.Rows(0)("employee_name").ToString
                 MENote.Text = dt.Rows(0)("note").ToString
+                TEType.Text = dt.Rows(0)("typ").ToString
+                id_type = dt.Rows(0)("id_type").ToString
             End If
+            If is_view = "1" Then
+                BtnPrint.Visible = False
+            End If
+            load_det()
         End If
-
-        load_det()
     End Sub
 
     Sub load_det()
@@ -71,9 +110,16 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "'"
     End Sub
 
     Sub load_rider()
-        Dim q As String = "SELECT c.id_comp,CONCAT(c.`comp_number`,' - ',c.comp_name) AS comp_name
-FROM tb_m_comp c 
-WHERE c.`is_active`=1 AND c.`id_comp_cat`=2"
+        Dim q As String = ""
+        If id_pps = "-1" Then
+            q = "SELECT c.id_comp,CONCAT(c.`comp_number`,' - ',c.comp_name) AS comp_name
+FROM tb_m_comp c "
+            'q += " WHERE c.`is_active`=1 AND c.`id_comp_cat`=2"
+        Else
+            q = "SELECT c.id_comp,CONCAT(c.`comp_number`,' - ',c.comp_name) AS comp_name
+FROM tb_m_comp c "
+        End If
+
         viewSearchLookupRepositoryQuery(RepositoryItemSearchLookUpEdit1, q, 0, "comp_name", "id_comp")
     End Sub
 
@@ -81,14 +127,37 @@ WHERE c.`is_active`=1 AND c.`id_comp_cat`=2"
         Dim is_ok As Boolean = True
         'check
         For i = 0 To GVPPS.RowCount - 1
-            If GVPPS.GetRowCellValue(i, "id_kontrak_type") Is Nothing Or GVPPS.GetRowCellValue(i, "id_comp") Is Nothing Or GVPPS.GetRowCellValue(i, "qty_month") <= 0 Or GVPPS.GetRowCellValue(i, "monthly_pay") <= 0 Then
+            If GVPPS.GetRowCellValue(i, "id_kontrak_type") Is Nothing Or GVPPS.GetRowCellValue(i, "id_comp") Is Nothing Or GVPPS.GetRowCellValue(i, "qty_month") <= 0 Or GVPPS.GetRowCellValue(i, "monthly_pay") <= 0 Or (GVPPS.GetRowCellValue(i, "kontrak_from") <= GVPPS.GetRowCellValue(i, "kontrak_until")) Then
+                warningCustom("Please complete your input")
                 is_ok = False
                 Exit For
             End If
         Next
 
+        If id_type = "1" Then
+            'new tidak boleh sebelum until
+            For i = 0 To GVPPS.RowCount - 1
+                If GVPPS.GetRowCellValue(i, "id_kontrak_old").ToString = "" Or GVPPS.GetRowCellValue(i, "id_kontrak_old").ToString = "0" Then
+                    If GVPPS.GetRowCellValue(i, "kontrak_until_old") > GVPPS.GetRowCellValue(i, "kontrak_from") Then
+                        warningCustom("Please make sure new period is not below old period")
+                        is_ok = False
+                        Exit For
+                    End If
+                End If
+            Next
+        ElseIf id_type = "2" Then
+            'changes tidak boleh sesudah until
+            For i = 0 To GVPPS.RowCount - 1
+                If GVPPS.GetRowCellValue(i, "kontrak_until") > GVPPS.GetRowCellValue(i, "kontrak_until_old") Or GVPPS.GetRowCellValue(i, "kontrak_from") < GVPPS.GetRowCellValue(i, "kontrak_from_old") Then
+                    warningCustom("Please make sure changes is between old period")
+                    is_ok = False
+                    Exit For
+                End If
+            Next
+        End If
+
         If Not is_ok Then
-            warningCustom("Please check your input")
+
         Else
             If GVPPS.RowCount > 0 Then
                 If id_pps = "-1" Then 'new
@@ -189,5 +258,49 @@ WHERE c.`is_active`=1 AND c.`id_comp_cat`=2"
 
             End Try
         End If
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Dim qc As String = "SELECT 
+h.`number`,emp.employee_name AS created_by,DATE_FORMAT(h.created_date,'%d %M %Y') AS created_date,h.note,IF(h.id_type=1,'New / Extend','Changes') AS report_type
+FROM `tb_kontrak_rider_pps` h 
+INNER JOIN tb_m_user usr ON usr.id_user=h.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE h.`id_kontrak_rider_pps`='" & id_pps & "'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count > 0 Then
+            'print
+            Cursor = Cursors.WaitCursor
+
+            Dim Report As New ReportRiderContract()
+            Report.id_pps = id_pps
+            Report.DataSource = dtc
+
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+
+            Cursor = Cursors.Default
+        Else
+            warningCustom("No data found")
+        End If
+    End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = "398"
+        FormReportMark.id_report = id_pps
+        FormReportMark.is_view = is_view
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = "398"
+        FormDocumentUpload.is_view = is_view
+        FormDocumentUpload.id_report = id_pps
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

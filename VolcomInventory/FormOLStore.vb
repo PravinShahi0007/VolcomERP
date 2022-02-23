@@ -4,6 +4,7 @@
         'viewComp()
         viewOLStoreGroup()
         viewOLStore()
+        viewSyncStatus()
     End Sub
 
     Sub setDateNow()
@@ -31,6 +32,13 @@
         WHERE c.id_commerce_type=2
         GROUP BY cg.id_comp_group "
         viewSearchLookupQuery(SLEGroup, query, "id_comp_group", "description", "id_comp_group")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewSyncStatus()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT * FROM tb_lookup_sync_status lss "
+        viewSearchLookupQuery(SLESyncStatus, query, "id_sync_status", "sync_status", "id_sync_status")
         Cursor = Cursors.Default
     End Sub
 
@@ -517,6 +525,7 @@
     Sub syncOrder()
         Cursor = Cursors.WaitCursor
         'initial general
+        SLESyncStatus.EditValue = "2"
         Dim err As String = ""
 
         'cek freeze
@@ -734,6 +743,7 @@
             End If
         End If
         CEAllow.EditValue = False
+        SLESyncStatus.EditValue = "1"
         Cursor = Cursors.Default
     End Sub
 
