@@ -455,7 +455,7 @@
         Dim id_extra_sku = ds_filter(0)("id_display_pps_season").ToString
 
         FormMain.SplashScreenManager1.SetWaitFormDescription("Memuat rencana SKU")
-        Dim query As String = "SELECT cg.class_group AS `GROUP INFO|CLASS`,dv.code_detail_name AS `GROUP INFO|DIVISION`, cc.class_cat AS `GROUP INFO|CATEGORY`, "
+        Dim query As String = "SELECT cg.class_group AS `GROUP INFO|CLASS`,cg.id_division AS `GROUP INFO|id_division`,dv.code_detail_name AS `GROUP INFO|DIVISION`,cg.id_class_cat AS `GROUP INFO|id_class_cat`, cc.class_cat AS `GROUP INFO|CATEGORY`, "
         For c As Integer = 0 To ds.Rows.Count - 1
             query += "IFNULL(SUM(CASE WHEN a.id_display_pps_season=" + ds.Rows(c)("id_display_pps_season").ToString + " THEN a.total_sku END),0) AS `RENCANA JUMLAH SKU|" + ds.Rows(c)("season_del").ToString + "`, "
         Next
@@ -563,11 +563,82 @@
                 End If
             Next
         Next
-
+        GVRencanaSKU.Columns("GROUP INFO|id_division").Visible = False
+        GVRencanaSKU.Columns("GROUP INFO|id_class_cat").Visible = False
         GVRencanaSKU.BestFitColumns()
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Prepare summary by category")
+        Dim qsum As String = "SELECT cg.id_division, dv.code_detail_name AS `division`,
+        cg.id_class_cat, cc.class_cat, 0 AS `avl_qty`, 0 AS `occ_qty`
+        FROM (
+	        -- exist
+	        SELECT dpr.id_class_group
+	        FROM tb_display_pps_res dpr
+	        WHERE dpr.id_display_pps=" + id + "
+	        GROUP BY dpr.id_class_group
+	        -- current
+	        UNION ALL
+	        SELECT dpd.id_class_group
+	        FROM tb_display_pps_det dpd
+	        WHERE dpd.id_display_pps=" + id + " AND dpd.is_selected=1
+	        GROUP BY dpd.id_class_group
+	        -- plan
+	        UNION ALL
+	        SELECT dpp.id_class_group
+	        FROM tb_display_pps_plan dpp
+	        WHERE dpp.id_display_pps=" + id + "
+        ) a
+        INNER JOIN tb_class_group cg ON cg.id_class_group = a.id_class_group
+        INNER JOIN tb_m_code_detail dv ON dv.id_code_detail = cg.id_division
+        INNER JOIN tb_class_cat cc ON cc.id_class_cat = cg.id_class_cat
+        GROUP BY cg.id_division, cg.id_class_cat
+        ORDER BY dv.code_detail_name ASC, cc.class_cat ASC "
+        Dim dsum As DataTable = execute_query(qsum, -1, True, "", "", "", "")
+        GCCalculateCategory.DataSource = dsum
+        GVCalculateCategory.BestFitColumns()
+        For s As Integer = 0 To (GVCalculateCategory.RowCount - 1) - GetGroupRowCount(GVCalculateCategory)
+            FormMain.SplashScreenManager1.SetWaitFormDescription("kalkulasi " + (s + 1).ToString + "/" + GVCalculateCategory.RowCount.ToString)
+            Dim id_division_selected As String = GVCalculateCategory.GetRowCellValue(s, "id_division").ToString
+            Dim id_class_cat_selected As String = GVCalculateCategory.GetRowCellValue(s, "id_class_cat").ToString
+            GVRencanaSKU.ActiveFilterString = "[GROUP INFO|id_division]='" + id_division_selected + "' AND [GROUP INFO|id_class_cat]='" + id_class_cat_selected + "' "
+            Dim avl As Integer = 0
+            Try
+                avl = GVRencanaSKU.Columns("KALKULASI KAPASITAS DISPLAY|AVAILABLE").SummaryItem.SummaryValue
+            Catch ex As Exception
+                avl = 0
+            End Try
+            Dim occ As Integer = 0
+            Try
+                occ = GVRencanaSKU.Columns("REKAPITULASI JUMLAH DISPLAY/SKU|TOTAL").SummaryItem.SummaryValue
+            Catch ex As Exception
+                occ = 0
+            End Try
+            GVCalculateCategory.SetRowCellValue(s, "avl_qty", avl)
+            GVCalculateCategory.SetRowCellValue(s, "occ_qty", occ)
+        Next
+        GVRencanaSKU.ActiveFilterString = ""
+        GCCalculateCategory.RefreshDataSource()
+        GVCalculateCategory.RefreshData()
+
         FormMain.SplashScreenManager1.CloseWaitForm()
+
+        If Not isValidDisplay() Then
+            stopCustom("Beberapa kategori produk berstatus over display, cek detailnya pada bagian 'summary by category'")
+        End If
         Cursor = Cursors.Default
     End Sub
+
+    Function isValidDisplay() As Boolean
+        GVCalculateCategory.ActiveFilterString = "[is_over]=1"
+        Dim cond As Boolean
+        If GVCalculateCategory.RowCount > 0 Then
+            cond = False
+        Else
+            cond = True
+        End If
+        GVCalculateCategory.ActiveFilterString = ""
+        Return cond
+    End Function
 
     Sub viewSetupHanger()
         Cursor = Cursors.WaitCursor
@@ -704,8 +775,8 @@
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
         makeSafeGV(GVDetail)
 
-        If GVDetail.RowCount <= 0 Then
-            stopCustom("No propose were made. If you want to cancel this propose, please click 'Cancel Propose'")
+        If Not isValidDisplay() Then
+            stopCustom("Beberapa kategori produk berstatus over display, cek detailnya pada bagian 'summary by category'")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this Propose  ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -942,6 +1013,7 @@
         XTPSummaryRencanaSKU.PageEnabled = True
         XTCRencanaSKU.SelectedTabPageIndex = 0
         XTPPlanlRencanaSKU.PageEnabled = False
+        viewRencanaSKU()
     End Sub
 
     'Sub saveDetailSeason()
@@ -1018,6 +1090,7 @@
         XTPSummaryRencanaSKU.PageEnabled = True
         XTCRencanaSKU.SelectedTabPageIndex = 0
         XTPCurrSeasonOrder.PageEnabled = False
+        viewRencanaSKU()
     End Sub
 
     Sub viewExisting()
@@ -1063,6 +1136,7 @@
         XTPSummaryRencanaSKU.PageEnabled = True
         XTCRencanaSKU.SelectedTabPageIndex = 0
         XTPExisting.PageEnabled = False
+        viewRencanaSKU()
     End Sub
 
     Private Sub BtnConfirmOrder_Click(sender As Object, e As EventArgs) Handles BtnConfirmOrder.Click
@@ -1185,6 +1259,7 @@
         XTPSummaryRencanaSKU.PageEnabled = True
         XTCRencanaSKU.SelectedTabPageIndex = 0
         XTPSetupHanger.PageEnabled = False
+        viewRencanaSKU()
     End Sub
 
     Private Sub PanelControl3_Paint(sender As Object, e As PaintEventArgs) Handles PanelControl3.Paint

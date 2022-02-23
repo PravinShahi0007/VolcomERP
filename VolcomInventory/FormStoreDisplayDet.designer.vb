@@ -21,6 +21,11 @@ Partial Class FormStoreDisplayDet
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStoreDisplayDet))
+        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue1 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
+        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue2 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
+        Me.GridColumnis_over = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoSelectDesign = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtUpdatedBy = New DevExpress.XtraEditors.TextEdit()
@@ -66,6 +71,12 @@ Partial Class FormStoreDisplayDet
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GCCalculateCategory = New DevExpress.XtraGrid.GridControl()
         Me.GVCalculateCategory = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_division = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndivisionsum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_class_cat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass_catsum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnavl_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnocc_qty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
@@ -222,6 +233,14 @@ Partial Class FormStoreDisplayDet
         CType(Me.PanelControlSetupHanger, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlSetupHanger.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'GridColumnis_over
+        '
+        Me.GridColumnis_over.Caption = "is_over"
+        Me.GridColumnis_over.FieldName = "is_over"
+        Me.GridColumnis_over.Name = "GridColumnis_over"
+        Me.GridColumnis_over.UnboundExpression = "Iif([occ_qty] > [avl_qty], 1, 2)"
+        Me.GridColumnis_over.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         '
         'RepoSelectDesign
         '
@@ -709,21 +728,23 @@ Partial Class FormStoreDisplayDet
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl2)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
         Me.SplitContainerControl1.Size = New System.Drawing.Size(765, 355)
-        Me.SplitContainerControl1.SplitterPosition = 252
+        Me.SplitContainerControl1.SplitterPosition = 259
         Me.SplitContainerControl1.TabIndex = 2
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
         '
         'GroupControl1
         '
+        Me.GroupControl1.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupControl1.AppearanceCaption.Options.UseFont = True
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Bottom
         Me.GroupControl1.Controls.Add(Me.GCCalculateCategory)
         Me.GroupControl1.Controls.Add(Me.PanelControl1)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(252, 355)
+        Me.GroupControl1.Size = New System.Drawing.Size(259, 355)
         Me.GroupControl1.TabIndex = 3
-        Me.GroupControl1.Text = "Summary by Category"
+        Me.GroupControl1.Text = "summary by category"
         '
         'GCCalculateCategory
         '
@@ -732,15 +753,88 @@ Partial Class FormStoreDisplayDet
         Me.GCCalculateCategory.MainView = Me.GVCalculateCategory
         Me.GCCalculateCategory.MenuManager = Me.BarManager1
         Me.GCCalculateCategory.Name = "GCCalculateCategory"
-        Me.GCCalculateCategory.Size = New System.Drawing.Size(248, 291)
+        Me.GCCalculateCategory.Size = New System.Drawing.Size(255, 290)
         Me.GCCalculateCategory.TabIndex = 0
         Me.GCCalculateCategory.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCalculateCategory})
         '
         'GVCalculateCategory
         '
+        Me.GVCalculateCategory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_division, Me.GridColumndivisionsum, Me.GridColumnid_class_cat, Me.GridColumnclass_catsum, Me.GridColumnavl_qty, Me.GridColumnocc_qty, Me.GridColumnis_over})
+        GridFormatRule1.ApplyToRow = True
+        GridFormatRule1.Column = Me.GridColumnis_over
+        GridFormatRule1.Name = "Format0"
+        FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        FormatConditionRuleValue1.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Expression
+        FormatConditionRuleValue1.Expression = "Iif([is_over] = 1, True, False)"
+        GridFormatRule1.Rule = FormatConditionRuleValue1
+        GridFormatRule2.ApplyToRow = True
+        GridFormatRule2.Name = "Format1"
+        FormatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        FormatConditionRuleValue2.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Expression
+        FormatConditionRuleValue2.Expression = "Iif([is_over] = 2, True, False)"
+        GridFormatRule2.Rule = FormatConditionRuleValue2
+        Me.GVCalculateCategory.FormatRules.Add(GridFormatRule1)
+        Me.GVCalculateCategory.FormatRules.Add(GridFormatRule2)
         Me.GVCalculateCategory.GridControl = Me.GCCalculateCategory
+        Me.GVCalculateCategory.GroupCount = 1
+        Me.GVCalculateCategory.LevelIndent = 0
         Me.GVCalculateCategory.Name = "GVCalculateCategory"
+        Me.GVCalculateCategory.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVCalculateCategory.OptionsBehavior.ReadOnly = True
+        Me.GVCalculateCategory.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GVCalculateCategory.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVCalculateCategory.OptionsView.ShowGroupPanel = False
+        Me.GVCalculateCategory.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumndivisionsum, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumnid_division
+        '
+        Me.GridColumnid_division.Caption = "id_division"
+        Me.GridColumnid_division.FieldName = "id_division"
+        Me.GridColumnid_division.Name = "GridColumnid_division"
+        '
+        'GridColumndivisionsum
+        '
+        Me.GridColumndivisionsum.Caption = "Division"
+        Me.GridColumndivisionsum.FieldName = "division"
+        Me.GridColumndivisionsum.Name = "GridColumndivisionsum"
+        Me.GridColumndivisionsum.Visible = True
+        Me.GridColumndivisionsum.VisibleIndex = 0
+        '
+        'GridColumnid_class_cat
+        '
+        Me.GridColumnid_class_cat.Caption = "id_class_cat"
+        Me.GridColumnid_class_cat.FieldName = "id_class_cat"
+        Me.GridColumnid_class_cat.Name = "GridColumnid_class_cat"
+        '
+        'GridColumnclass_catsum
+        '
+        Me.GridColumnclass_catsum.Caption = "Category"
+        Me.GridColumnclass_catsum.FieldName = "class_cat"
+        Me.GridColumnclass_catsum.Name = "GridColumnclass_catsum"
+        Me.GridColumnclass_catsum.Visible = True
+        Me.GridColumnclass_catsum.VisibleIndex = 0
+        '
+        'GridColumnavl_qty
+        '
+        Me.GridColumnavl_qty.Caption = "Available"
+        Me.GridColumnavl_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnavl_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnavl_qty.FieldName = "avl_qty"
+        Me.GridColumnavl_qty.Name = "GridColumnavl_qty"
+        Me.GridColumnavl_qty.Visible = True
+        Me.GridColumnavl_qty.VisibleIndex = 1
+        '
+        'GridColumnocc_qty
+        '
+        Me.GridColumnocc_qty.Caption = "Occupied"
+        Me.GridColumnocc_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnocc_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnocc_qty.FieldName = "occ_qty"
+        Me.GridColumnocc_qty.Name = "GridColumnocc_qty"
+        Me.GridColumnocc_qty.Visible = True
+        Me.GridColumnocc_qty.VisibleIndex = 2
         '
         'BarManager1
         '
@@ -806,7 +900,7 @@ Partial Class FormStoreDisplayDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(248, 42)
+        Me.PanelControl1.Size = New System.Drawing.Size(255, 42)
         Me.PanelControl1.TabIndex = 1
         '
         'LabelControl12
@@ -848,15 +942,17 @@ Partial Class FormStoreDisplayDet
         '
         'GroupControl2
         '
+        Me.GroupControl2.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupControl2.AppearanceCaption.Options.UseFont = True
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Bottom
         Me.GroupControl2.Controls.Add(Me.GCRencanaSKU)
         Me.GroupControl2.Controls.Add(Me.PanelControlRencanaSKU)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(508, 355)
+        Me.GroupControl2.Size = New System.Drawing.Size(501, 355)
         Me.GroupControl2.TabIndex = 4
-        Me.GroupControl2.Text = "Summary by Class"
+        Me.GroupControl2.Text = "summary by class"
         '
         'GCRencanaSKU
         '
@@ -864,7 +960,7 @@ Partial Class FormStoreDisplayDet
         Me.GCRencanaSKU.Location = New System.Drawing.Point(2, 44)
         Me.GCRencanaSKU.MainView = Me.GVRencanaSKU
         Me.GCRencanaSKU.Name = "GCRencanaSKU"
-        Me.GCRencanaSKU.Size = New System.Drawing.Size(504, 291)
+        Me.GCRencanaSKU.Size = New System.Drawing.Size(497, 290)
         Me.GCRencanaSKU.TabIndex = 0
         Me.GCRencanaSKU.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRencanaSKU})
         '
@@ -887,14 +983,14 @@ Partial Class FormStoreDisplayDet
         Me.PanelControlRencanaSKU.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlRencanaSKU.Location = New System.Drawing.Point(2, 2)
         Me.PanelControlRencanaSKU.Name = "PanelControlRencanaSKU"
-        Me.PanelControlRencanaSKU.Size = New System.Drawing.Size(504, 42)
+        Me.PanelControlRencanaSKU.Size = New System.Drawing.Size(497, 42)
         Me.PanelControlRencanaSKU.TabIndex = 1
         '
         'BtnSetupHanger
         '
         Me.BtnSetupHanger.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSetupHanger.Image = CType(resources.GetObject("BtnSetupHanger.Image"), System.Drawing.Image)
-        Me.BtnSetupHanger.Location = New System.Drawing.Point(127, 2)
+        Me.BtnSetupHanger.Location = New System.Drawing.Point(120, 2)
         Me.BtnSetupHanger.Name = "BtnSetupHanger"
         Me.BtnSetupHanger.Size = New System.Drawing.Size(118, 38)
         Me.BtnSetupHanger.TabIndex = 6
@@ -905,7 +1001,7 @@ Partial Class FormStoreDisplayDet
         Me.DropDownRencanaJumlahSKU.Dock = System.Windows.Forms.DockStyle.Right
         Me.DropDownRencanaJumlahSKU.DropDownControl = Me.PopupMenuRencanaJumlahSKU
         Me.DropDownRencanaJumlahSKU.Image = CType(resources.GetObject("DropDownRencanaJumlahSKU.Image"), System.Drawing.Image)
-        Me.DropDownRencanaJumlahSKU.Location = New System.Drawing.Point(245, 2)
+        Me.DropDownRencanaJumlahSKU.Location = New System.Drawing.Point(238, 2)
         Me.DropDownRencanaJumlahSKU.Name = "DropDownRencanaJumlahSKU"
         Me.DropDownRencanaJumlahSKU.Size = New System.Drawing.Size(166, 38)
         Me.DropDownRencanaJumlahSKU.TabIndex = 5
@@ -921,7 +1017,7 @@ Partial Class FormStoreDisplayDet
         '
         Me.BtnRefreshRencanaSKU.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnRefreshRencanaSKU.Image = CType(resources.GetObject("BtnRefreshRencanaSKU.Image"), System.Drawing.Image)
-        Me.BtnRefreshRencanaSKU.Location = New System.Drawing.Point(411, 2)
+        Me.BtnRefreshRencanaSKU.Location = New System.Drawing.Point(404, 2)
         Me.BtnRefreshRencanaSKU.Name = "BtnRefreshRencanaSKU"
         Me.BtnRefreshRencanaSKU.Size = New System.Drawing.Size(91, 38)
         Me.BtnRefreshRencanaSKU.TabIndex = 0
@@ -1762,4 +1858,11 @@ Partial Class FormStoreDisplayDet
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnid_division As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndivisionsum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_class_cat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass_catsum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnavl_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnocc_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_over As DevExpress.XtraGrid.Columns.GridColumn
 End Class
