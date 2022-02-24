@@ -17143,7 +17143,7 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
     End Sub
 
-    Private Sub LineListQC_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles LineListQC.LinkClicked
+    Private Sub LineListQC_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLineListQC.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
             FormLineList.id_menu = "6"
