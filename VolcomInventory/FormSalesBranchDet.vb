@@ -1062,7 +1062,7 @@ Public Class FormSalesBranchDet
             LEFT JOIN tb_m_departement AS d ON s.id_outlet = d.id_outlet
             LEFT JOIN tb_coa_tag AS g ON d.id_departement = g.id_departement
             LEFT JOIN tb_m_comp AS c ON g.id_comp = c.id_comp
-            WHERE DATE(s.pos_date) = '" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "' AND s.id_outlet = 1
+            WHERE DATE(s.pos_date) = '" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "' AND s.id_outlet = 1 AND s.id_card_type <> 0
             GROUP BY s.id_card_type
 
             UNION ALL
@@ -1075,7 +1075,7 @@ Public Class FormSalesBranchDet
             LEFT JOIN tb_m_departement AS d ON s.id_outlet = d.id_outlet
             LEFT JOIN tb_coa_tag AS g ON d.id_departement = g.id_departement
             LEFT JOIN tb_m_comp AS c ON g.id_comp = c.id_comp
-            WHERE DATE(s.pos_date) = '" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "' AND s.id_outlet = 1
+            WHERE DATE(s.pos_date) = '" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "' AND s.id_outlet = 1 AND s.id_card_type <> 0
             GROUP BY s.id_card_type
 
             UNION ALL
