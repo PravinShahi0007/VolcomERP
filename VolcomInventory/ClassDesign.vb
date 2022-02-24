@@ -2210,6 +2210,16 @@
                     INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
                     INNER JOIN tb_report_mark rm ON rm.id_report = po.id_prod_order AND rm.report_mark_type=22 AND rm.id_report_status=1
                     WHERE po.id_prod_order=" + id_report_trans + " "
+                ElseIf rmt = "252" Then
+                    'konfirmasi order
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note)
+                    SELECT NOW(), '" + id_user + "', rm.id_user, '252', m.id_prod_order_ko, m.number, m.date_created, pdd.id_design, 'SKO created' 
+                    FROM tb_prod_order_ko_det d 
+                    INNER JOIN tb_prod_order_ko m ON m.id_prod_order_ko = d.id_prod_order_ko
+                    INNER JOIN tb_report_mark rm ON rm.id_report = m.id_prod_order_ko AND rm.report_mark_type=252 AND rm.id_report_status=1
+                    INNER JOIN tb_prod_order po ON po.id_prod_order = d.id_prod_order
+                    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+                    WHERE d.id_prod_order_ko=" + id_report_trans + " AND d.revision = m.revision "
                 ElseIf rmt = "28" Or rmt = "127" Then
                     'REC QC
                     query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note)

@@ -9663,6 +9663,10 @@ WHERE (pnsd.id_pn_summary_type=1 OR pnsd.id_pn_summary_type=3) AND pnsd.id_pn_su
             If id_status_reportx = "6" Then
                 'complete 
                 execute_non_query("UPDATE tb_prod_order_ko SET is_locked=1 WHERE id_prod_order_ko='" & id_report & "'", True, "", "", "", "")
+
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
             End If
 
             'update status
