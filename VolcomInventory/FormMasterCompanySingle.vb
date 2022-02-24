@@ -1777,8 +1777,19 @@ FROM tb_m_comp_cat ccat WHERE ccat.id_comp_cat='" & LECompanyCategory.EditValue.
 
     Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
         If LEStatus.EditValue.ToString <> "3" Then
-            warningCustom("Klik 'Reset' jika ingin melakukan perubahan master kapasitas toko")
+            warningCustom("Klik 'Reset' jika ingin melakukan perubahan master kapasitas toko dan pastikan tidak ada proposal display yang sedang diproses approvalnya")
             Exit Sub
+        End If
+
+        If LEStatus.EditValue.ToString = "3" Then
+            Dim qcek As String = "SELECT IFNULL(GROUP_CONCAT(DISTINCT p.number),'-') AS `display_trans`
+            FROM tb_display_pps p 
+            WHERE p.id_comp=" + id_company + " AND p.id_report_status<5 AND p.is_confirm=1 "
+            Dim trans_ots As String = execute_query(qcek, 0, True, "", "", "", "")
+            If trans_ots <> "-" Then
+                warningCustom("Master display tidak dapat diubah, karena sedang diproses approval pada proposal display nomer : " + trans_ots)
+                Exit Sub
+            End If
         End If
 
         Cursor = Cursors.WaitCursor
