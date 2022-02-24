@@ -1894,8 +1894,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormMasterStoreDet.ShowDialog()
         ElseIf formName = "FormSalesBranch" Then
             If FormSalesBranch.rmt = "254" Then
-                FormSalesBranchDet.action = "ins"
-                FormSalesBranchDet.ShowDialog()
+                If FormSalesBranch.XTCData.SelectedTabPage.Name = "XTPPOS" Then
+                    FormSalesBranchDet.action = "ins"
+
+                    FormSalesBranchDet.outlet_id = FormSalesBranch.GVSync.GetFocusedRowCellValue("id_outlet").ToString
+                    FormSalesBranchDet.sale_date = FormSalesBranch.GVSync.GetFocusedRowCellValue("date").ToString
+
+                    FormSalesBranchDet.ShowDialog()
+                Else
+                    FormSalesBranchDet.action = "ins"
+                    FormSalesBranchDet.ShowDialog()
+                End If
             End If
         ElseIf formName = "FormMasterDesignFabrication" Then
             FormMasterDesignFabricationDet.id_design_fabrication = "0"

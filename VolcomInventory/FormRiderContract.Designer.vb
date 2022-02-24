@@ -46,6 +46,9 @@ Partial Class FormRiderContract
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BRefreshPPS = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPKontrak.SuspendLayout()
@@ -297,7 +300,7 @@ Partial Class FormRiderContract
         '
         'GVPPS
         '
-        Me.GVPPS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GVPPS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn8, Me.GridColumn14, Me.GridColumn6, Me.GridColumn15, Me.GridColumn7})
         Me.GVPPS.GridControl = Me.GCPPS
         Me.GVPPS.Name = "GVPPS"
         Me.GVPPS.OptionsBehavior.Editable = False
@@ -316,7 +319,7 @@ Partial Class FormRiderContract
         Me.GridColumn6.FieldName = "number"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
+        Me.GridColumn6.VisibleIndex = 1
         '
         'GridColumn7
         '
@@ -324,7 +327,7 @@ Partial Class FormRiderContract
         Me.GridColumn7.FieldName = "report_status"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 1
+        Me.GridColumn7.VisibleIndex = 4
         '
         'BRefreshPPS
         '
@@ -342,6 +345,32 @@ Partial Class FormRiderContract
         Me.BRefreshPPS.Size = New System.Drawing.Size(1095, 34)
         Me.BRefreshPPS.TabIndex = 94
         Me.BRefreshPPS.Text = "Refresh"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Created By"
+        Me.GridColumn8.FieldName = "employee_name"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 2
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Type"
+        Me.GridColumn14.FieldName = "type"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Created date"
+        Me.GridColumn15.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn15.FieldName = "created_date"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 3
         '
         'FormRiderContract
         '
@@ -401,4 +430,7 @@ Partial Class FormRiderContract
     Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEContract As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

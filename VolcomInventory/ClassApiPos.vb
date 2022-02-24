@@ -361,4 +361,35 @@
 
         Return out
     End Function
+
+    Sub syncSale(sale_date As String)
+        Dim accessToken As String = getAccessToken()
+
+        Dim url As String = host + "/api/sync/sale/" + sale_date
+
+        Dim wc As Net.WebClient = New Net.WebClient()
+
+        wc.Headers.Add("Accept", "application/json")
+        wc.Headers.Add("Authorization", accessToken)
+
+        Dim responseString As String = wc.DownloadString(url)
+
+        Dim json As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
+
+        For Each head In json("results")
+            Dim query_head As String = "
+                INSERT INTO tb_pos_sale (id_pos, id_outlet, id_pos_ref, pos_number, pos_date, pos_closed_date, id_shift, shift_type, id_user_employee, id_user_employee_cancel, id_pos_status, id_pos_cat, note, subtotal, discount, tax, total, id_voucher, voucher_number, voucher, `point`, cash, `card`, id_card_type, card_number, card_name, `change`, total_qty, id_sales, id_country, is_payment_ok, is_closed, closed_date, closed_by, is_get_promo) VALUES ('" + head("id_pos").ToString() + "', '" + head("id_outlet").ToString() + "', '" + head("id_pos_ref").ToString() + "', '" + head("pos_number").ToString() + "', '" + head("pos_date").ToString() + "', '" + head("pos_closed_date").ToString() + "', '" + head("id_shift").ToString() + "', '" + head("shift_type").ToString() + "', '" + head("id_user_employee").ToString() + "', '" + head("id_user_employee_cancel").ToString() + "', '" + head("id_pos_status").ToString() + "', '" + head("id_pos_cat").ToString() + "', '" + head("note").ToString() + "', '" + head("subtotal").ToString() + "', '" + head("discount").ToString() + "', '" + head("tax").ToString() + "', '" + head("total").ToString() + "', '" + head("id_voucher").ToString() + "', '" + head("voucher_number").ToString() + "', '" + head("voucher").ToString() + "', '" + head("point").ToString() + "', '" + head("cash").ToString() + "', '" + head("card").ToString() + "', '" + head("id_card_type").ToString() + "', '" + head("card_number").ToString() + "', '" + head("card_name").ToString() + "', '" + head("change").ToString() + "', '" + head("total_qty").ToString() + "', '" + head("id_sales").ToString() + "', '" + head("id_country").ToString() + "', '" + head("is_payment_ok").ToString() + "', '" + head("is_closed").ToString() + "', '" + head("closed_date").ToString() + "', '" + head("closed_by").ToString() + "', '" + head("is_get_promo").ToString() + "'); SELECT LAST_INSERT_ID();
+            "
+
+            Dim id_pos_sale As String = execute_query(query_head, 0, True, "", "", "", "")
+
+            For Each detail In head("details")
+                Dim query_detail As String = "
+                    INSERT INTO tb_pos_sale_det (id_pos_sale, id_pos_det, id_pos, id_item, item_code, id_product, id_comp_sup, comm, qty, price, id_design_cat, is_free_promo, revise_reason, id_user_revise) VALUES ('" + id_pos_sale + "', '" + detail("id_pos_det").ToString() + "', '" + detail("id_pos").ToString() + "', '" + detail("id_item").ToString() + "', '" + detail("item_code").ToString() + "', '" + detail("id_product").ToString() + "', '" + detail("id_comp_sup").ToString() + "', '" + detail("comm").ToString() + "', '" + detail("qty").ToString() + "', '" + detail("price").ToString() + "', '" + detail("id_design_cat").ToString() + "', '" + detail("is_free_promo").ToString() + "', '" + detail("revise_reason").ToString() + "', '" + detail("id_user_revise").ToString() + "')
+                "
+
+                execute_non_query(query_detail, True, "", "", "", "")
+            Next
+        Next
+    End Sub
 End Class

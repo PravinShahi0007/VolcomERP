@@ -6,6 +6,7 @@
     Private Sub FormItemExpense_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEBBKFrom.EditValue = Now
         DEBBKTo.EditValue = Now
+        DEContract.EditValue = Now
         '
         load_unit()
         viewData()
@@ -227,17 +228,46 @@ WHERE pps.id_report_status=6 AND ISNULL(sr.id_sni_realisasi) "
 
     Private Sub GVContractList_DoubleClick(sender As Object, e As EventArgs) Handles GVContractList.DoubleClick
         'check
-        Dim q As String = "SELECT ed.*,DATE_FORMAT(e.`date_reff`,'%m%Y') FROM tb_item_expense_det ed
+        If GVContractList.RowCount > 0 Then
+            Dim q As String = "SELECT ed.*,DATE_FORMAT(e.`date_reff`,'%m%Y') FROM tb_item_expense_det ed
 INNER JOIN tb_item_expense e ON e.`id_item_expense`=ed.`id_item_expense` AND e.`id_report_status`!=5 
-WHERE ed.`id_report`='1' AND report_mark_type='398' AND DATE_FORMAT(e.`date_reff`,'%m%Y')=DATE_FORMAT('','%m%Y')"
-        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+WHERE ed.`id_report`='" & GVContractList.GetFocusedRowCellValue("id_kontrak_rider").ToString & "' AND report_mark_type='398' AND DATE_FORMAT(e.`date_reff`,'%m%Y')=DATE_FORMAT('" & Date.Parse(GVContractList.GetFocusedRowCellValue("periode").ToString).ToString("yyyy-MM-dd") & "','%m%Y')"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count = 0 Then
+                FormItemExpenseRider.TEVendor.Text = GVContractList.GetFocusedRowCellValue("comp_name").ToString
+                FormItemExpenseRider.id_kontrak_rider = GVContractList.GetFocusedRowCellValue("id_kontrak_rider").ToString
+                FormItemExpenseRider.ShowDialog()
+            Else
+                warningCustom("This endorsee payment already created")
+            End If
+        End If
+
     End Sub
 
-    'Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BImport.Click
-    '    If GVInvoice.RowCount > 0 Then
-    '        FormItemExpenseDet.action = "ins"
-    '        FormItemExpenseDet.id_awb_inv_sum = GVInvoice.GetFocusedRowCellValue("id_awb_inv_sum").ToString
-    '        FormItemExpenseDet.ShowDialog()
-    '    End If
-    'End Sub
+    Private Sub BViewEndorsee_Click(sender As Object, e As EventArgs) Handles BViewEndorsee.Click
+        load_contract()
+    End Sub
+
+    Sub load_contract()
+        Dim q As String = "SELECT 'no' AS is_check,'" & Date.Parse(DEContract.EditValue.ToString).ToString("yyyy-MM-dd") & "' AS periode,ppsd.id_kontrak_rider,c.`comp_name`,ppsd.kontrak_from,ppsd.kontrak_until,ppsd.id_comp,ppsd.id_kontrak_type
+,CONCAT(IFNULL(DATE_FORMAT(ppsd.kontrak_from,'%d %b %Y'),''),' - ',IFNULL(DATE_FORMAT(ppsd.kontrak_until,'%d %b %Y'),'')) AS contract
+,IF(ISNULL(ppsd.`kontrak_from`),0,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until)*ppsd.`monthly_pay`) AS total
+,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until) AS qty_month
+,IFNULL(ppsd.`monthly_pay`,0) AS monthly_pay
+,e.number
+FROM `tb_kontrak_rider` ppsd
+INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp` AND ppsd.is_active=1
+LEFT JOIN 
+(
+    SELECT k.`id_comp`,e.id_item_expense,e.`number` FROM tb_item_expense_det ed
+    INNER JOIN tb_item_expense e ON e.`id_item_expense`=ed.`id_item_expense` AND e.`id_report_status`!=5 
+    INNER JOIN tb_kontrak_rider k ON k.id_kontrak_rider=ed.id_report AND ed.report_mark_type='398'
+    WHERE DATE_FORMAT(e.`date_reff`,'%m%Y')=DATE_FORMAT('" & Date.Parse(DEContract.EditValue.ToString).ToString("yyyy-MM-dd") & "','%m%Y')
+    GROUP BY k.id_comp
+)e ON e.id_comp=ppsd.id_comp
+WHERE ppsd.kontrak_from<='" & Date.Parse(DEContract.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE_SUB(ppsd.kontrak_until, INTERVAL 1 DAY)>='" & Date.Parse(DEContract.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCContractList.DataSource = dt
+        GVContractList.BestFitColumns()
+    End Sub
 End Class
