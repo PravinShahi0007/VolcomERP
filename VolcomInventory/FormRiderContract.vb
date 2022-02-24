@@ -46,7 +46,7 @@ WHERE ppsd.is_active=1 AND ppsd.kontrak_from<='" & Date.Parse(DEContract.EditVal
         Dim q As String = "SELECT pps.id_kontrak_rider_pps,emp.employee_name,pps.number,pps.created_date,sts.report_status,IF(pps.id_type=1,'New/Extend','Changes') AS type FROM tb_kontrak_rider_pps pps
 INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=pps.`id_report_status`
 INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
-INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employe
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 ORDER BY pps.id_kontrak_rider_pps DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCPPS.DataSource = dt
