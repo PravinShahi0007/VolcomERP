@@ -540,7 +540,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
 
     Private Sub BPickVendor_Click(sender As Object, e As EventArgs) Handles BPickVendor.Click
         FormPopUpContact.id_pop_up = "86"
-        FormPopUpContact.id_cat = "1,8"
+        FormPopUpContact.id_cat = "1,8,7"
         FormPopUpContact.is_must_active = "1"
         FormPopUpContact.ShowDialog()
     End Sub

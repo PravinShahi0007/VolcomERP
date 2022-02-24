@@ -26,6 +26,8 @@
         '
         load_pph_account()
         load_budget()
+        '
+
     End Sub
 
     Sub load_budget()
@@ -41,6 +43,13 @@ INNER JOIN tb_m_departement dep ON dep.id_departement=bo.id_departement
 WHERE bo.`year`=YEAR('" & Date.Parse(DEDateReff.EditValue.ToString).ToString("yyyy-MM-dd") & "') AND bo.is_active='1'"
         viewSearchLookupQuery(SLEBudget, q, "id_b_expense", "item_cat_main", "id_b_expense")
         SLEBudget.EditValue = Nothing
+
+        Try
+            'default
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Sub load_pph_account()
