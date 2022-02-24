@@ -11744,7 +11744,7 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_report & "'"
                 qi = "INSERT INTO `tb_kontrak_rider`(`id_comp`,`id_kontrak_type`,`kontrak_from`,`kontrak_until`,`monthly_pay`,`is_active`,`reff`,`reff_det`)
 SELECT ppsd.id_comp,ppsd.id_kontrak_type,ppsd.kontrak_from,ppsd.kontrak_until,ppsd.monthly_pay,1 AS is_active,ppsd.id_kontrak_rider_pps AS reff,ppsd.id_kontrak_rider_pps_det AS reff_det
 FROM tb_kontrak_rider_pps_det ppsd
-INNER JOIN tb_kontrak_rider_pps pps ON pps.id_kontrak_rider_pps=ppsd.id_kontrak_rider_pps 
+INNER JOIN tb_kontrak_rider_pps pps ON pps.id_kontrak_rider_pps=ppsd.id_kontrak_rider_pps AND ppsd.terminate=2
 WHERE ppsd.id_kontrak_rider_pps='" & id_report & "'"
                 execute_non_query(qi, True, "", "", "", "")
             End If
