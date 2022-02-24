@@ -12,10 +12,10 @@
 ,CONCAT(IFNULL(DATE_FORMAT(ppsd.kontrak_from_old,'%d %b %Y'),''),' - ',IFNULL(DATE_FORMAT(ppsd.kontrak_until_old,'%d %b %Y'),'')) AS contract_old
 ,IF(ISNULL(ppsd.`kontrak_from_old`),0,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from_old,ppsd.kontrak_until_old)*ppsd.`monthly_pay_old`) AS total_old
 ,IFNULL(ppsd.`monthly_pay_old`,0) AS monthly_pay_old
-,CONCAT(IFNULL(DATE_FORMAT(ppsd.kontrak_from,'%d %b %Y'),''),' - ',IFNULL(DATE_FORMAT(ppsd.kontrak_until,'%d %b %Y'),'')) AS contract
-,IF(ISNULL(ppsd.`kontrak_from`),0,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until)*ppsd.`monthly_pay`) AS total
-,IFNULL(ppsd.`monthly_pay`,0) AS monthly_pay
-,IFNULL((IFNULL(ppsd.`monthly_pay`,0)-IFNULL(ppsd.`monthly_pay_old`,0))/IFNULL(ppsd.`monthly_pay_old`,0),0)*100 AS inc
+,IF(ppsd.terminate=1,'Contract terminated',CONCAT(IFNULL(DATE_FORMAT(ppsd.kontrak_from,'%d %b %Y'),''),' - ',IFNULL(DATE_FORMAT(ppsd.kontrak_until,'%d %b %Y'),''))) AS contract
+,IF(ppsd.terminate=1,0,IF(ISNULL(ppsd.`kontrak_from`),0,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until)*ppsd.`monthly_pay`)) AS total
+,IF(ppsd.terminate=1,0,IFNULL(ppsd.`monthly_pay`,0)) AS monthly_pay
+,IFNULL((IF(ppsd.terminate=1,0,IFNULL(ppsd.`monthly_pay`,0))-IFNULL(ppsd.`monthly_pay_old`,0))/IFNULL(ppsd.`monthly_pay_old`,0),0)*100 AS inc
 FROM `tb_kontrak_rider_pps_det` ppsd
 INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
 WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "' AND ppsd.id_kontrak_type=1"
@@ -49,10 +49,10 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "' AND ppsd.id_kontrak_type=1"
 ,CONCAT(IFNULL(DATE_FORMAT(ppsd.kontrak_from_old,'%d %b %Y'),''),' - ',IFNULL(DATE_FORMAT(ppsd.kontrak_until_old,'%d %b %Y'),'')) AS contract_old
 ,IF(ISNULL(ppsd.`kontrak_from_old`),0,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from_old,ppsd.kontrak_until_old)*ppsd.`monthly_pay_old`) AS total_old
 ,IFNULL(ppsd.`monthly_pay_old`,0) AS monthly_pay_old
-,CONCAT(IFNULL(DATE_FORMAT(ppsd.kontrak_from,'%d %b %Y'),''),' - ',IFNULL(DATE_FORMAT(ppsd.kontrak_until,'%d %b %Y'),'')) AS contract
-,IF(ISNULL(ppsd.`kontrak_from`),0,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until)*ppsd.`monthly_pay`) AS total
-,IFNULL(ppsd.`monthly_pay`,0) AS monthly_pay
-,IFNULL((IFNULL(ppsd.`monthly_pay`,0)-IFNULL(ppsd.`monthly_pay_old`,0))/IFNULL(ppsd.`monthly_pay_old`,0),0)*100 AS inc
+,IF(ppsd.terminate=1,'Contract terminated',CONCAT(IFNULL(DATE_FORMAT(ppsd.kontrak_from,'%d %b %Y'),''),' - ',IFNULL(DATE_FORMAT(ppsd.kontrak_until,'%d %b %Y'),''))) AS contract
+,IF(ppsd.terminate=1,0,IF(ISNULL(ppsd.`kontrak_from`),0,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until)*ppsd.`monthly_pay`)) AS total
+,IF(ppsd.terminate=1,0,IFNULL(ppsd.`monthly_pay`,0)) AS monthly_pay
+,IFNULL((IF(ppsd.terminate=1,0,IFNULL(ppsd.`monthly_pay`,0))-IFNULL(ppsd.`monthly_pay_old`,0))/IFNULL(ppsd.`monthly_pay_old`,0),0)*100 AS inc
 FROM `tb_kontrak_rider_pps_det` ppsd
 INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
 WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "' AND ppsd.id_kontrak_type=2"
@@ -86,10 +86,10 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "' AND ppsd.id_kontrak_type=2"
 ,CONCAT(IFNULL(DATE_FORMAT(ppsd.kontrak_from_old,'%d %b %Y'),''),' - ',IFNULL(DATE_FORMAT(ppsd.kontrak_until_old,'%d %b %Y'),'')) AS contract_old
 ,IF(ISNULL(ppsd.`kontrak_from_old`),0,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from_old,ppsd.kontrak_until_old)*ppsd.`monthly_pay_old`) AS total_old
 ,IFNULL(ppsd.`monthly_pay_old`,0) AS monthly_pay_old
-,CONCAT(IFNULL(DATE_FORMAT(ppsd.kontrak_from,'%d %b %Y'),''),' - ',IFNULL(DATE_FORMAT(ppsd.kontrak_until,'%d %b %Y'),'')) AS contract
-,IF(ISNULL(ppsd.`kontrak_from`),0,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until)*ppsd.`monthly_pay`) AS total
-,IFNULL(ppsd.`monthly_pay`,0) AS monthly_pay
-,IFNULL((IFNULL(ppsd.`monthly_pay`,0)-IFNULL(ppsd.`monthly_pay_old`,0))/IFNULL(ppsd.`monthly_pay_old`,0),0)*100 AS inc
+,IF(ppsd.terminate=1,'Contract terminated',CONCAT(IFNULL(DATE_FORMAT(ppsd.kontrak_from,'%d %b %Y'),''),' - ',IFNULL(DATE_FORMAT(ppsd.kontrak_until,'%d %b %Y'),''))) AS contract
+,IF(ppsd.terminate=1,0,IF(ISNULL(ppsd.`kontrak_from`),0,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until)*ppsd.`monthly_pay`)) AS total
+,IF(ppsd.terminate=1,0,IFNULL(ppsd.`monthly_pay`,0)) AS monthly_pay
+,IFNULL((IF(ppsd.terminate=1,0,IFNULL(ppsd.`monthly_pay`,0))-IFNULL(ppsd.`monthly_pay_old`,0))/IFNULL(ppsd.`monthly_pay_old`,0),0)*100 AS inc
 FROM `tb_kontrak_rider_pps_det` ppsd
 INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
 WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "' AND ppsd.id_kontrak_type=3"

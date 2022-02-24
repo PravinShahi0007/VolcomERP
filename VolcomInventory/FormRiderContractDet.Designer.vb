@@ -42,7 +42,6 @@ Partial Class FormRiderContractDet
         Me.XTPPPS = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPPS = New DevExpress.XtraGrid.GridControl()
         Me.GVPPS = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RISLECat = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RepositoryItemSearchLookUpEdit2View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -53,13 +52,11 @@ Partial Class FormRiderContractDet
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -67,10 +64,15 @@ Partial Class FormRiderContractDet
         Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCTerminate = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlPay.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,6 +102,7 @@ Partial Class FormRiderContractDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlPay
@@ -320,7 +323,7 @@ Partial Class FormRiderContractDet
         Me.GCPPS.Location = New System.Drawing.Point(0, 0)
         Me.GCPPS.MainView = Me.GVPPS
         Me.GCPPS.Name = "GCPPS"
-        Me.GCPPS.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.RepositoryItemSearchLookUpEdit1, Me.RISLECat})
+        Me.GCPPS.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.RepositoryItemSearchLookUpEdit1, Me.RISLECat, Me.RepositoryItemCheckEdit1})
         Me.GCPPS.Size = New System.Drawing.Size(1005, 247)
         Me.GCPPS.TabIndex = 0
         Me.GCPPS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPPS})
@@ -328,20 +331,11 @@ Partial Class FormRiderContractDet
         'GVPPS
         '
         Me.GVPPS.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
-        Me.GVPPS.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn6, Me.GridColumn8, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5})
+        Me.GVPPS.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn6, Me.GridColumn8, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.GCTerminate})
         Me.GVPPS.GridControl = Me.GCPPS
         Me.GVPPS.Name = "GVPPS"
         Me.GVPPS.OptionsView.ColumnAutoWidth = False
         Me.GVPPS.OptionsView.ShowGroupPanel = False
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "Detail"
-        Me.GridBand1.Columns.Add(Me.GridColumn8)
-        Me.GridBand1.Columns.Add(Me.GridColumn2)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 349
         '
         'GridColumn8
         '
@@ -419,18 +413,6 @@ Partial Class FormRiderContractDet
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 0
         '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "Old"
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn1)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn2)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn3)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn4)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn5)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 375
-        '
         'BandedGridColumn1
         '
         Me.BandedGridColumn1.Caption = "Contract From"
@@ -488,18 +470,6 @@ Partial Class FormRiderContractDet
         Me.BandedGridColumn5.UnboundExpression = "[qty_month_old] * [monthly_pay_old]"
         Me.BandedGridColumn5.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumn5.Visible = True
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "New"
-        Me.gridBand3.Columns.Add(Me.GridColumn3)
-        Me.gridBand3.Columns.Add(Me.GridColumn4)
-        Me.gridBand3.Columns.Add(Me.GridColumn5)
-        Me.gridBand3.Columns.Add(Me.GridColumn6)
-        Me.gridBand3.Columns.Add(Me.GridColumn7)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 375
         '
         'GridColumn3
         '
@@ -573,6 +543,14 @@ Partial Class FormRiderContractDet
         Me.GridColumn7.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn7.Visible = True
         '
+        'BandedGridColumn6
+        '
+        Me.BandedGridColumn6.Caption = "id_kontrak_old"
+        Me.BandedGridColumn6.FieldName = "id_kontrak_old"
+        Me.BandedGridColumn6.Name = "BandedGridColumn6"
+        Me.BandedGridColumn6.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn6.OptionsColumn.AllowFocus = False
+        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.MENote)
@@ -598,13 +576,54 @@ Partial Class FormRiderContractDet
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Note"
         '
-        'BandedGridColumn6
+        'GCTerminate
         '
-        Me.BandedGridColumn6.Caption = "id_kontrak_old"
-        Me.BandedGridColumn6.FieldName = "id_kontrak_old"
-        Me.BandedGridColumn6.Name = "BandedGridColumn6"
-        Me.BandedGridColumn6.OptionsColumn.AllowEdit = False
-        Me.BandedGridColumn6.OptionsColumn.AllowFocus = False
+        Me.GCTerminate.Caption = "Terminate Contract"
+        Me.GCTerminate.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GCTerminate.FieldName = "is_terminate"
+        Me.GCTerminate.Name = "GCTerminate"
+        Me.GCTerminate.Visible = True
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Detail"
+        Me.GridBand1.Columns.Add(Me.GridColumn8)
+        Me.GridBand1.Columns.Add(Me.GridColumn2)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 349
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "Old"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn1)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn2)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn3)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn4)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn5)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 375
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "New"
+        Me.gridBand3.Columns.Add(Me.GridColumn3)
+        Me.gridBand3.Columns.Add(Me.GridColumn4)
+        Me.gridBand3.Columns.Add(Me.GridColumn5)
+        Me.gridBand3.Columns.Add(Me.GridColumn6)
+        Me.gridBand3.Columns.Add(Me.GridColumn7)
+        Me.gridBand3.Columns.Add(Me.GCTerminate)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 450
         '
         'FormRiderContractDet
         '
@@ -653,6 +672,7 @@ Partial Class FormRiderContractDet
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -686,16 +706,13 @@ Partial Class FormRiderContractDet
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GVPPS As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -708,4 +725,9 @@ Partial Class FormRiderContractDet
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEType As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BandedGridColumn6 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GCTerminate As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

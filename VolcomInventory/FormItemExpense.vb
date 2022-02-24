@@ -256,14 +256,16 @@ WHERE ed.`id_report`='" & GVContractList.GetFocusedRowCellValue("id_kontrak_ride
 ,IFNULL(ppsd.`monthly_pay`,0) AS monthly_pay
 ,e.number
 FROM `tb_kontrak_rider` ppsd
-INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
+INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp` AND ppsd.is_active=1
 LEFT JOIN 
 (
-    SELECT ed.`id_report`,e.id_item_expense,e.`number` FROM tb_item_expense_det ed
+    SELECT k.`id_comp`,e.id_item_expense,e.`number` FROM tb_item_expense_det ed
     INNER JOIN tb_item_expense e ON e.`id_item_expense`=ed.`id_item_expense` AND e.`id_report_status`!=5 
-    WHERE report_mark_type='398' AND DATE_FORMAT(e.`date_reff`,'%m%Y')=DATE_FORMAT('" & Date.Parse(DEContract.EditValue.ToString).ToString("yyyy-MM-dd") & "','%m%Y')
-)e ON e.id_report=ppsd.id_kontrak_rider
-WHERE ppsd.kontrak_from<='" & Date.Parse(DEContract.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND ppsd.kontrak_until>='" & Date.Parse(DEContract.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+    INNER JOIN tb_kontrak_rider k ON k.id_kontrak_rider=ed.id_report AND ed.report_mark_type='398'
+    WHERE DATE_FORMAT(e.`date_reff`,'%m%Y')=DATE_FORMAT('" & Date.Parse(DEContract.EditValue.ToString).ToString("yyyy-MM-dd") & "','%m%Y')
+    GROUP BY k.id_comp
+)e ON e.id_comp=ppsd.id_comp
+WHERE ppsd.kontrak_from<='" & Date.Parse(DEContract.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE_SUB(ppsd.kontrak_until, INTERVAL 1 DAY)>='" & Date.Parse(DEContract.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCContractList.DataSource = dt
         GVContractList.BestFitColumns()
