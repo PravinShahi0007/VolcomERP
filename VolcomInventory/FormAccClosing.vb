@@ -203,30 +203,30 @@ HAVING debit+credit!=0;"
                 q = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_comp, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,id_coa_tag)
                  SELECT " + id_acc_trans + " AS `id_trans`,1," + id_acc_laba + ",1 AS qty,0 AS debit,SUM((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit)) AS credit,'Pindah laba tahun berjalan ke laba ditahan' AS note,0 AS rmt,0 AS id_report,'' AS number, trxd.id_coa_tag
 FROM tb_a_acc_trans_det trxd
-INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans
+INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans AND trx.id_report_status=6
 INNER JOIN tb_a_acc acc ON acc.id_acc=trxd.id_acc AND LEFT(acc.acc_name,7)='2214111' AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
-WHERE YEAR(trx.date_reference)='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy") & "'
+WHERE YEAR(trx.date_reference)='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy") & "' AND trx.`acc_trans_note`!='Closing pindah saldo tahun berjalan ke laba ditahan'
 UNION ALL
 SELECT " + id_acc_trans + " AS `id_trans`,1,acc.id_acc,1 AS qty,SUM((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit)) AS debit,0 AS credit,'Pindah laba tahun berjalan ke laba ditahan' AS note,0 AS rmt,0 AS id_report,'' AS number, trxd.id_coa_tag
 FROM tb_a_acc_trans_det trxd
-INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans
+INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans AND trx.id_report_status=6
 INNER JOIN tb_a_acc acc ON acc.id_acc=trxd.id_acc AND LEFT(acc.acc_name,7)='2214111' AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
-WHERE YEAR(trx.date_reference)='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy") & "'
+WHERE YEAR(trx.date_reference)='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy") & "' AND trx.`acc_trans_note`!='Closing pindah saldo tahun berjalan ke laba ditahan'
 GROUP BY acc.id_acc"
                 execute_non_query(q, True, "", "", "", "")
             ElseIf id_coa_type = "2" Then 'cabang
                 q = "INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_comp, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number,id_coa_tag)
                 SELECT " + id_acc_trans + " AS `id_trans`,1," + id_acc_laba + ",1 AS qty,0 AS debit,SUM((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit)) AS credit,'Pindah laba tahun berjalan ke laba ditahan' AS note,0 AS rmt,0 AS id_report,'' AS number, trxd.id_coa_tag
 FROM tb_a_acc_trans_det trxd
-INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans
-INNER JOIN tb_a_acc acc ON acc.id_acc=trxd.id_acc AND LEFT(acc.acc_name,7)='2204' AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
-WHERE YEAR(trx.date_reference)='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy") & "'
+INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans AND trx.id_report_status=6
+INNER JOIN tb_a_acc acc ON acc.id_acc=trxd.id_acc AND LEFT(acc.acc_name,4)='2204' AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
+WHERE YEAR(trx.date_reference)='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy") & "' AND trx.`acc_trans_note`!='Closing pindah saldo tahun berjalan ke laba ditahan'
 UNION ALL
 SELECT " + id_acc_trans + " AS `id_trans`,1,acc.id_acc,1 AS qty,SUM((IF(acc.id_dc=1,1,-1)*trxd.debit)+(IF(acc.id_dc=1,-1,1)*trxd.credit)) AS debit,0 AS credit,'Pindah laba tahun berjalan ke laba ditahan' AS note,0 AS rmt,0 AS id_report,'' AS number, trxd.id_coa_tag
 FROM tb_a_acc_trans_det trxd
-INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans
-INNER JOIN tb_a_acc acc ON acc.id_acc=trxd.id_acc AND LEFT(acc.acc_name,7)='2204' AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
-WHERE YEAR(trx.date_reference)='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy") & "'
+INNER JOIN tb_a_acc_trans trx ON trx.id_acc_trans=trxd.id_acc_trans AND trx.id_report_status=6
+INNER JOIN tb_a_acc acc ON acc.id_acc=trxd.id_acc AND LEFT(acc.acc_name,4)='2204' AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
+WHERE YEAR(trx.date_reference)='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy") & "' AND trx.`acc_trans_note`!='Closing pindah saldo tahun berjalan ke laba ditahan'
 GROUP BY acc.id_acc"
                 execute_non_query(q, True, "", "", "", "")
             End If

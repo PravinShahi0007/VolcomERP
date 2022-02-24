@@ -25,27 +25,24 @@ Partial Class FormItemExpenseRider
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEBudget = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.TEDesc3PLInv = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEVendor = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEPPH3PLInv = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TEPPH3PLInv = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPPN3PLInv = New DevExpress.XtraEditors.TextEdit()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.DEDateReff.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateReff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEDesc3PLInv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEPPH3PLInv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,7 +59,7 @@ Partial Class FormItemExpenseRider
         Me.BImport.Appearance.Options.UseFont = True
         Me.BImport.Appearance.Options.UseForeColor = True
         Me.BImport.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BImport.Location = New System.Drawing.Point(0, 199)
+        Me.BImport.Location = New System.Drawing.Point(0, 171)
         Me.BImport.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
         Me.BImport.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BImport.Name = "BImport"
@@ -72,7 +69,7 @@ Partial Class FormItemExpenseRider
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(13, 145)
+        Me.LabelControl8.Location = New System.Drawing.Point(13, 119)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(47, 13)
         Me.LabelControl8.TabIndex = 124
@@ -81,7 +78,7 @@ Partial Class FormItemExpenseRider
         'DEDateReff
         '
         Me.DEDateReff.EditValue = Nothing
-        Me.DEDateReff.Location = New System.Drawing.Point(94, 142)
+        Me.DEDateReff.Location = New System.Drawing.Point(94, 116)
         Me.DEDateReff.Name = "DEDateReff"
         Me.DEDateReff.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DEDateReff.Properties.Appearance.Options.UseFont = True
@@ -94,7 +91,7 @@ Partial Class FormItemExpenseRider
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(13, 171)
+        Me.LabelControl7.Location = New System.Drawing.Point(13, 145)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl7.TabIndex = 122
@@ -102,7 +99,7 @@ Partial Class FormItemExpenseRider
         '
         'SLEBudget
         '
-        Me.SLEBudget.Location = New System.Drawing.Point(94, 168)
+        Me.SLEBudget.Location = New System.Drawing.Point(94, 142)
         Me.SLEBudget.Name = "SLEBudget"
         Me.SLEBudget.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEBudget.Properties.View = Me.GridView1
@@ -117,20 +114,19 @@ Partial Class FormItemExpenseRider
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        'TEDesc3PLInv
+        'GridColumn1
         '
-        Me.TEDesc3PLInv.Location = New System.Drawing.Point(94, 116)
-        Me.TEDesc3PLInv.Name = "TEDesc3PLInv"
-        Me.TEDesc3PLInv.Size = New System.Drawing.Size(336, 20)
-        Me.TEDesc3PLInv.TabIndex = 120
+        Me.GridColumn1.Caption = "ID"
+        Me.GridColumn1.FieldName = "id_b_expense"
+        Me.GridColumn1.Name = "GridColumn1"
         '
-        'LabelControl6
+        'GridColumn2
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(13, 119)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(53, 13)
-        Me.LabelControl6.TabIndex = 119
-        Me.LabelControl6.Text = "Description"
+        Me.GridColumn2.Caption = "Expense"
+        Me.GridColumn2.FieldName = "item_cat_main"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
         '
         'LabelControl4
         '
@@ -173,6 +169,30 @@ Partial Class FormItemExpenseRider
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "id"
+        Me.GridColumn3.FieldName = "id_acc"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "ACC"
+        Me.GridColumn4.FieldName = "acc_name"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        Me.GridColumn4.Width = 400
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Description"
+        Me.GridColumn5.FieldName = "acc_description"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 1
+        Me.GridColumn5.Width = 1216
+        '
         'TEPPH3PLInv
         '
         Me.TEPPH3PLInv.Location = New System.Drawing.Point(94, 64)
@@ -209,55 +229,15 @@ Partial Class FormItemExpenseRider
         Me.TEPPN3PLInv.Size = New System.Drawing.Size(174, 20)
         Me.TEPPN3PLInv.TabIndex = 109
         '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID"
-        Me.GridColumn1.FieldName = "id_b_expense"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Expense"
-        Me.GridColumn2.FieldName = "item_cat_main"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "id"
-        Me.GridColumn3.FieldName = "id_acc"
-        Me.GridColumn3.Name = "GridColumn3"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "ACC"
-        Me.GridColumn4.FieldName = "acc_name"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
-        Me.GridColumn4.Width = 400
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Description"
-        Me.GridColumn5.FieldName = "acc_description"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 1
-        Me.GridColumn5.Width = 1216
-        '
         'FormItemExpenseRider
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(442, 233)
+        Me.ClientSize = New System.Drawing.Size(442, 205)
         Me.Controls.Add(Me.LabelControl8)
         Me.Controls.Add(Me.DEDateReff)
         Me.Controls.Add(Me.LabelControl7)
         Me.Controls.Add(Me.SLEBudget)
-        Me.Controls.Add(Me.TEDesc3PLInv)
-        Me.Controls.Add(Me.LabelControl6)
         Me.Controls.Add(Me.LabelControl4)
         Me.Controls.Add(Me.TEVendor)
         Me.Controls.Add(Me.LabelControl3)
@@ -277,7 +257,6 @@ Partial Class FormItemExpenseRider
         CType(Me.DEDateReff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEDesc3PLInv.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEPPH3PLInv.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
@@ -296,8 +275,6 @@ Partial Class FormItemExpenseRider
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents TEDesc3PLInv As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEVendor As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl

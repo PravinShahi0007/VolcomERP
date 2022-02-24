@@ -122,6 +122,8 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "' AND ppsd.id_kontrak_type=3"
         LTotOld.Text = total_old.ToString("N2")
         LTotMonthly.Text = monthly_total.ToString("N2")
         Ltot.Text = total.ToString("N2")
+        '
+        pre_load_mark_horz("398", id_pps, "2", "2", XRReport)
     End Sub
 
     Sub insert_row(ByRef row As DevExpress.XtraReports.UI.XRTableRow, ByVal dt As DataTable, ByVal row_i As Integer, ByVal xt As DevExpress.XtraReports.UI.XRTable)

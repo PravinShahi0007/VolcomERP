@@ -269,34 +269,49 @@ GROUP BY id.`id_departement`"
                 FormMain.SplashScreenManager1.ShowWaitForm()
             End If
 
-            Dim q As String = ""
-
             DEDateReff.EditValue = FormItemExpenseRider.DEDateReff.EditValue
 
-            GVData.AddNewRow()
-            GVData.FocusedRowHandle = GVData.RowCount - 1
+            Dim q As String = "SELECT ppsd.id_kontrak_rider,c.`comp_name`,ppsd.kontrak_from,ppsd.kontrak_until,ppsd.id_comp,ppsd.id_kontrak_type
+,CONCAT(IFNULL(DATE_FORMAT(ppsd.kontrak_from,'%d %b %Y'),''),' - ',IFNULL(DATE_FORMAT(ppsd.kontrak_until,'%d %b %Y'),'')) AS contract
+,IF(ISNULL(ppsd.`kontrak_from`),0,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until)*ppsd.`monthly_pay`) AS total
+,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until) AS qty_month
+,IFNULL(ppsd.`monthly_pay`,0) AS monthly_pay
+,c.id_acc_ap
+FROM `tb_kontrak_rider` ppsd
+INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
+WHERE ppsd.id_kontrak_rider='" & id_kontrak_rider & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                TEInvNo.Text = Date.Parse(FormItemExpenseRider.DEDateReff.EditValue.ToString).ToString("MMMM yyyy") & " - " & dt.Rows(0)("comp_name").ToString
+                id_comp = dt.Rows(0)("id_comp").ToString
+                TxtCompNumber.Text = get_company_x(dt.Rows(0)("id_comp").ToString, "2")
+                TxtCompName.Text = get_company_x(dt.Rows(0)("id_comp").ToString, "1")
 
-            'GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc", "2225")
+                GVData.AddNewRow()
+                GVData.FocusedRowHandle = GVData.RowCount - 1
 
-            'GVData.SetRowCellValue(GVData.RowCount - 1, "id_expense_type", "1")
-            'GVData.SetRowCellValue(GVData.RowCount - 1, "id_b_expense", FormItemExpenseSNI.SLEBudget.EditValue.ToString)
-            'GVData.SetRowCellValue(GVData.RowCount - 1, "cc", "1")
-            ''
-            'GVData.SetRowCellValue(GVData.RowCount - 1, "description", FormItemExpenseSNI.BGVBudget.GetRowCellValue(i, "budget_desc").ToString)
-            'GVData.SetRowCellValue(GVData.RowCount - 1, "amount", FormItemExpenseSNI.BGVBudget.GetRowCellValue(i, "r_sub_amount"))
-            'GVData.SetRowCellValue(GVData.RowCount - 1, "tax_percent", FormItemExpenseSNI.TEPPN3PLInv.EditValue)
-            ''
-            'GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc_pph", FormItemExpenseSNI.SLEPPH3PLInv.EditValue.ToString)
-            'GVData.SetRowCellValue(GVData.RowCount - 1, "pph_percent", FormItemExpenseSNI.TEPPH3PLInv.EditValue)
-            ''
-            'GVData.SetRowCellValue(GVData.RowCount - 1, "amount_before", FormItemExpenseSNI.BGVBudget.GetRowCellValue(i, "r_sub_amount"))
-            'GVData.SetRowCellValue(GVData.RowCount - 1, "kurs", 1)
-            'GVData.SetRowCellValue(GVData.RowCount - 1, "id_currency", 1)
-            'GVData.SetRowCellValue(GVData.RowCount - 1, "is_lock", "yes")
-            'GVData.SetRowCellValue(GVData.RowCount - 1, "id_report", FormItemExpenseSNI.BGVBudget.GetRowCellValue(i, "id_sni_pps").ToString)
-            'GVData.SetRowCellValue(GVData.RowCount - 1, "id_report_det", FormItemExpenseSNI.BGVBudget.GetRowCellValue(i, "id_sni_pps_budget").ToString)
-            'GVData.SetRowCellValue(GVData.RowCount - 1, "report_mark_type", "319")
-            'GVData.SetRowCellValue(GVData.RowCount - 1, "qty", FormItemExpenseSNI.BGVBudget.GetRowCellValue(i, "r_qty"))
+                GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc", "3213")
+
+                GVData.SetRowCellValue(GVData.RowCount - 1, "id_expense_type", "1")
+                GVData.SetRowCellValue(GVData.RowCount - 1, "id_b_expense", FormItemExpenseRider.SLEBudget.EditValue.ToString)
+                GVData.SetRowCellValue(GVData.RowCount - 1, "cc", "1")
+                '
+                GVData.SetRowCellValue(GVData.RowCount - 1, "description", Date.Parse(FormItemExpenseRider.DEDateReff.EditValue.ToString).ToString("MMMM yyyy") & " - " & dt.Rows(0)("comp_name").ToString & " - " & "Honor Volcom Team Riders & Ambassadors")
+                GVData.SetRowCellValue(GVData.RowCount - 1, "amount", dt.Rows(0)("monthly_pay"))
+                GVData.SetRowCellValue(GVData.RowCount - 1, "tax_percent", FormItemExpenseRider.TEPPN3PLInv.EditValue)
+                '
+                GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc_pph", FormItemExpenseRider.SLEPPH3PLInv.EditValue.ToString)
+                GVData.SetRowCellValue(GVData.RowCount - 1, "pph_percent", FormItemExpenseRider.TEPPH3PLInv.EditValue)
+                '
+                GVData.SetRowCellValue(GVData.RowCount - 1, "amount_before", dt.Rows(0)("monthly_pay"))
+                GVData.SetRowCellValue(GVData.RowCount - 1, "kurs", 1)
+                GVData.SetRowCellValue(GVData.RowCount - 1, "id_currency", 1)
+                GVData.SetRowCellValue(GVData.RowCount - 1, "is_lock", "yes")
+                GVData.SetRowCellValue(GVData.RowCount - 1, "id_report", id_kontrak_rider)
+                GVData.SetRowCellValue(GVData.RowCount - 1, "id_report_det", id_kontrak_rider)
+                GVData.SetRowCellValue(GVData.RowCount - 1, "report_mark_type", "398")
+                GVData.SetRowCellValue(GVData.RowCount - 1, "qty", "1")
+            End If
 
             FormMain.SplashScreenManager1.CloseWaitForm()
             GVData.BestFitColumns()

@@ -11736,13 +11736,13 @@ INNER JOIN tb_vm_item_move m ON m.id_vm_item_move=d.id_vm_item_move AND m.id_vm_
                 qi = "UPDATE tb_kontrak_rider_pps_det ppsd
 INNER JOIN tb_kontrak_rider_pps pps ON pps.id_kontrak_rider_pps=ppsd.id_kontrak_rider_pps AND pps.id_type=2
 INNER JOIN `tb_kontrak_rider` r ON r.id_kontrak_rider=ppsd.id_kontrak_old
-SET r.is_active=2,r.id_kontrak_rider_new=ppsd.id_kontrak_rider,r.reff=ppsd.id_kontrak_rider_pps
+SET r.is_active=2,r.na_reff=ppsd.id_kontrak_rider_pps,r.na_reff_det=ppsd.id_kontrak_rider_pps_det
 WHERE ppsd.id_kontrak_rider_pps='" & id_report & "'"
                 execute_non_query(qi, True, "", "", "", "")
 
                 'insert new contract
-                qi = "INSERT INTO `tb_kontrak_rider`(`id_comp`,`id_kontrak_type`,`kontrak_from`,`kontrak_until`,`monthly_pay`,`is_active`,`reff`)
-SELECT ppsd.id_comp,ppsd.id_kontrak_type,ppsd.kontrak_from,ppsd.kontrak_until,ppsd.monthly_pay,1 AS is_active,ppsd.id_kontrak_rider_pps AS reff
+                qi = "INSERT INTO `tb_kontrak_rider`(`id_comp`,`id_kontrak_type`,`kontrak_from`,`kontrak_until`,`monthly_pay`,`is_active`,`reff`,`reff_det`)
+SELECT ppsd.id_comp,ppsd.id_kontrak_type,ppsd.kontrak_from,ppsd.kontrak_until,ppsd.monthly_pay,1 AS is_active,ppsd.id_kontrak_rider_pps AS reff,ppsd.id_kontrak_rider_pps_det AS reff_det
 FROM tb_kontrak_rider_pps_det ppsd
 INNER JOIN tb_kontrak_rider_pps pps ON pps.id_kontrak_rider_pps=ppsd.id_kontrak_rider_pps 
 WHERE ppsd.id_kontrak_rider_pps='" & id_report & "'"

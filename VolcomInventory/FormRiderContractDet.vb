@@ -28,13 +28,16 @@
                     GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "qty_month_old", FormRiderContract.GVContractList.GetRowCellValue(i, "qty_month"))
                     GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "monthly_pay_tot_old", FormRiderContract.GVContractList.GetRowCellValue(i, "total"))
                     '
-                    GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "monthly_pay", "0")
+                    GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "monthly_pay", FormRiderContract.GVContractList.GetRowCellValue(i, "monthly_pay"))
+
                     If id_type = "1" Then
                         GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_from", FormRiderContract.GVContractList.GetRowCellValue(i, "kontrak_until"))
                         GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_until", FormRiderContract.GVContractList.GetRowCellValue(i, "kontrak_until"))
+                        GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "qty_month", 0)
                     Else
                         GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_until", FormRiderContract.GVContractList.GetRowCellValue(i, "kontrak_until"))
                         GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_from", FormRiderContract.GVContractList.GetRowCellValue(i, "kontrak_from"))
+                        GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "qty_month", FormRiderContract.GVContractList.GetRowCellValue(i, "qty_month"))
                         PCAddDel.Visible = False
                     End If
 
@@ -127,8 +130,8 @@ FROM tb_m_comp c "
         Dim is_ok As Boolean = True
         'check
         For i = 0 To GVPPS.RowCount - 1
-            If GVPPS.GetRowCellValue(i, "id_kontrak_type") Is Nothing Or GVPPS.GetRowCellValue(i, "id_comp") Is Nothing Or GVPPS.GetRowCellValue(i, "qty_month") <= 0 Or GVPPS.GetRowCellValue(i, "monthly_pay") <= 0 Or (GVPPS.GetRowCellValue(i, "kontrak_from") <= GVPPS.GetRowCellValue(i, "kontrak_until")) Then
-                warningCustom("Please complete your input")
+            If GVPPS.GetRowCellValue(i, "id_kontrak_type") Is Nothing Or GVPPS.GetRowCellValue(i, "id_comp") Is Nothing Or GVPPS.GetRowCellValue(i, "qty_month") <= 0 Or GVPPS.GetRowCellValue(i, "monthly_pay") <= 0 Or (GVPPS.GetRowCellValue(i, "kontrak_from") >= GVPPS.GetRowCellValue(i, "kontrak_until")) Then
+                warningCustom("Please make sure your input have proper value")
                 is_ok = False
                 Exit For
             End If
@@ -161,7 +164,7 @@ FROM tb_m_comp c "
         Else
             If GVPPS.RowCount > 0 Then
                 If id_pps = "-1" Then 'new
-                    Dim q As String = "INSERT INTO `tb_kontrak_rider_pps`(created_by,created_date,note) VALUES('" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "'); SELECT LAST_INSERT_ID(); "
+                    Dim q As String = "INSERT INTO `tb_kontrak_rider_pps`(id_type,created_by,created_date,note) VALUES('" & id_type & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "'); SELECT LAST_INSERT_ID(); "
                     id_pps = execute_query(q, 0, True, "", "", "", "")
                     '
                     execute_non_query("CALL gen_number('" & id_pps & "','398')", True, "", "", "", "")
