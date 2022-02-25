@@ -20,19 +20,11 @@
     End Sub
     '
     Sub check_menu()
-        If XTCPO.SelectedTabPageIndex = 0 Then
-            bnew_active = "0"
-            bedit_active = "0"
-            bdel_active = "0"
-            checkFormAccess(Name)
-            button_main(bnew_active, bedit_active, bdel_active)
-        Else
-            bnew_active = "0"
-            bedit_active = "0"
-            bdel_active = "0"
-            checkFormAccess(Name)
-            button_main(bnew_active, bedit_active, bdel_active)
-        End If
+        bnew_active = "0"
+        bedit_active = "0"
+        bdel_active = "0"
+        checkFormAccess(Name)
+        button_main(bnew_active, bedit_active, bdel_active)
     End Sub
 
     Sub load_po_status()

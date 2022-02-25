@@ -103,6 +103,7 @@ Partial Class FormPurcOrder
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn99 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn101 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -220,7 +221,10 @@ Partial Class FormPurcOrder
         Me.RepositoryItemProgressBar3 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.SBReceiveDateCreateNew = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn101 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BCreatePenawaran = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPPenawaran = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -289,6 +293,9 @@ Partial Class FormPurcOrder
         CType(Me.RepositoryItemProgressBar3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
+        Me.XTPPenawaran.SuspendLayout()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl6.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -298,9 +305,9 @@ Partial Class FormPurcOrder
         Me.XTCPO.Location = New System.Drawing.Point(0, 0)
         Me.XTCPO.Name = "XTCPO"
         Me.XTCPO.SelectedTabPage = Me.XTPRequest
-        Me.XTCPO.Size = New System.Drawing.Size(1151, 498)
+        Me.XTCPO.Size = New System.Drawing.Size(1199, 498)
         Me.XTCPO.TabIndex = 0
-        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPRequest, Me.XTPPO, Me.XTPPOList, Me.XTPCloseReceiving, Me.XTPReceiveDate})
+        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPRequest, Me.XTPPO, Me.XTPPOList, Me.XTPCloseReceiving, Me.XTPReceiveDate, Me.XTPPenawaran})
         '
         'XTPRequest
         '
@@ -308,6 +315,7 @@ Partial Class FormPurcOrder
         Me.XTPRequest.Controls.Add(Me.BCreatePO)
         Me.XTPRequest.Controls.Add(Me.BCantFulfill)
         Me.XTPRequest.Controls.Add(Me.PanelControl2)
+        Me.XTPRequest.Controls.Add(Me.BCreatePenawaran)
         Me.XTPRequest.Name = "XTPRequest"
         Me.XTPRequest.Size = New System.Drawing.Size(1145, 470)
         Me.XTPRequest.Text = "Request List"
@@ -319,7 +327,7 @@ Partial Class FormPurcOrder
         Me.GCPurcReq.MainView = Me.GVPurcReq
         Me.GCPurcReq.Name = "GCPurcReq"
         Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck, Me.RICEPurchase, Me.RITEQty, Me.RIMemoDetail})
-        Me.GCPurcReq.Size = New System.Drawing.Size(1145, 362)
+        Me.GCPurcReq.Size = New System.Drawing.Size(1145, 330)
         Me.GCPurcReq.TabIndex = 10
         Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
         '
@@ -694,7 +702,7 @@ Partial Class FormPurcOrder
         Me.BCreatePO.Appearance.Options.UseFont = True
         Me.BCreatePO.Appearance.Options.UseForeColor = True
         Me.BCreatePO.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCreatePO.Location = New System.Drawing.Point(0, 406)
+        Me.BCreatePO.Location = New System.Drawing.Point(0, 374)
         Me.BCreatePO.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BCreatePO.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BCreatePO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -713,7 +721,7 @@ Partial Class FormPurcOrder
         Me.BCantFulfill.Appearance.Options.UseFont = True
         Me.BCantFulfill.Appearance.Options.UseForeColor = True
         Me.BCantFulfill.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCantFulfill.Location = New System.Drawing.Point(0, 438)
+        Me.BCantFulfill.Location = New System.Drawing.Point(0, 406)
         Me.BCantFulfill.LookAndFeel.SkinMaskColor = System.Drawing.Color.Red
         Me.BCantFulfill.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BCantFulfill.LookAndFeel.UseDefaultLookAndFeel = False
@@ -1069,6 +1077,14 @@ Partial Class FormPurcOrder
         Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 2
+        '
+        'GridColumn101
+        '
+        Me.GridColumn101.Caption = "PO Type"
+        Me.GridColumn101.FieldName = "expense_type"
+        Me.GridColumn101.Name = "GridColumn101"
+        Me.GridColumn101.Visible = True
+        Me.GridColumn101.VisibleIndex = 1
         '
         'GridColumn2
         '
@@ -1819,14 +1835,14 @@ Partial Class FormPurcOrder
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1151, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1199, 0)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.barDockControlBottom.Location = New System.Drawing.Point(0, 498)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1151, 0)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1199, 0)
         '
         'barDockControlLeft
         '
@@ -1839,7 +1855,7 @@ Partial Class FormPurcOrder
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1151, 0)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1199, 0)
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 498)
         '
         'BBPD
@@ -2146,19 +2162,54 @@ Partial Class FormPurcOrder
         Me.SBReceiveDateCreateNew.TabIndex = 8914
         Me.SBReceiveDateCreateNew.Text = "create new"
         '
-        'GridColumn101
+        'BCreatePenawaran
         '
-        Me.GridColumn101.Caption = "PO Type"
-        Me.GridColumn101.FieldName = "expense_type"
-        Me.GridColumn101.Name = "GridColumn101"
-        Me.GridColumn101.Visible = True
-        Me.GridColumn101.VisibleIndex = 1
+        Me.BCreatePenawaran.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BCreatePenawaran.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreatePenawaran.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreatePenawaran.Appearance.Options.UseBackColor = True
+        Me.BCreatePenawaran.Appearance.Options.UseFont = True
+        Me.BCreatePenawaran.Appearance.Options.UseForeColor = True
+        Me.BCreatePenawaran.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreatePenawaran.Location = New System.Drawing.Point(0, 438)
+        Me.BCreatePenawaran.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreatePenawaran.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreatePenawaran.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreatePenawaran.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreatePenawaran.Name = "BCreatePenawaran"
+        Me.BCreatePenawaran.Size = New System.Drawing.Size(1145, 32)
+        Me.BCreatePenawaran.TabIndex = 14
+        Me.BCreatePenawaran.Text = "Propose Penawaran"
+        '
+        'XTPPenawaran
+        '
+        Me.XTPPenawaran.Controls.Add(Me.PanelControl6)
+        Me.XTPPenawaran.Name = "XTPPenawaran"
+        Me.XTPPenawaran.Size = New System.Drawing.Size(1193, 470)
+        Me.XTPPenawaran.Text = "List Penawaran"
+        '
+        'PanelControl6
+        '
+        Me.PanelControl6.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl6.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl6.Name = "PanelControl6"
+        Me.PanelControl6.Size = New System.Drawing.Size(1193, 44)
+        Me.PanelControl6.TabIndex = 12
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Location = New System.Drawing.Point(940, 9)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(60, 23)
+        Me.SimpleButton1.TabIndex = 8913
+        Me.SimpleButton1.Text = "view"
         '
         'FormPurcOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1151, 498)
+        Me.ClientSize = New System.Drawing.Size(1199, 498)
         Me.Controls.Add(Me.XTCPO)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
@@ -2241,6 +2292,9 @@ Partial Class FormPurcOrder
         CType(Me.RepositoryItemProgressBar3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
+        Me.XTPPenawaran.ResumeLayout(False)
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl6.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2446,4 +2500,8 @@ Partial Class FormPurcOrder
     Friend WithEvents RIMemoDetail As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents GridColumn100 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn101 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BCreatePenawaran As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPPenawaran As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class
