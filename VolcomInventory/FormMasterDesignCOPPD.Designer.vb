@@ -45,6 +45,8 @@ Partial Class FormMasterDesignCOPPD
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TETargetCost = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEColor = New DevExpress.XtraEditors.TextEdit()
+        Me.TEClass = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.SLECOO = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -102,8 +104,6 @@ Partial Class FormMasterDesignCOPPD
         Me.TETodayKurs = New DevExpress.XtraEditors.TextEdit()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.TEClass = New DevExpress.XtraEditors.TextEdit()
-        Me.TEColor = New DevExpress.XtraEditors.TextEdit()
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,6 +118,8 @@ Partial Class FormMasterDesignCOPPD
         CType(Me.TETargetCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TEColor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEClass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECOO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECoolStorage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,8 +148,6 @@ Partial Class FormMasterDesignCOPPD
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TETodayKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEClass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEColor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -181,7 +181,7 @@ Partial Class FormMasterDesignCOPPD
         Me.TEVendorName.Properties.Appearance.Options.UseFont = True
         Me.TEVendorName.Properties.EditValueChangedDelay = 1
         Me.TEVendorName.Properties.ReadOnly = True
-        Me.TEVendorName.Size = New System.Drawing.Size(422, 20)
+        Me.TEVendorName.Size = New System.Drawing.Size(475, 20)
         Me.TEVendorName.TabIndex = 8892
         Me.TEVendorName.TabStop = False
         '
@@ -190,7 +190,7 @@ Partial Class FormMasterDesignCOPPD
         Me.BtnBrowseContactFrom.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnBrowseContactFrom.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBrowseContactFrom.Appearance.Options.UseFont = True
-        Me.BtnBrowseContactFrom.Location = New System.Drawing.Point(698, 44)
+        Me.BtnBrowseContactFrom.Location = New System.Drawing.Point(751, 44)
         Me.BtnBrowseContactFrom.Name = "BtnBrowseContactFrom"
         Me.BtnBrowseContactFrom.Size = New System.Drawing.Size(23, 20)
         Me.BtnBrowseContactFrom.TabIndex = 8890
@@ -229,7 +229,7 @@ Partial Class FormMasterDesignCOPPD
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(827, 44)
+        Me.PanelControl3.Size = New System.Drawing.Size(880, 44)
         Me.PanelControl3.TabIndex = 5
         Me.PanelControl3.TabStop = True
         '
@@ -238,7 +238,7 @@ Partial Class FormMasterDesignCOPPD
         Me.BLock.Dock = System.Windows.Forms.DockStyle.Right
         Me.BLock.Image = CType(resources.GetObject("BLock.Image"), System.Drawing.Image)
         Me.BLock.ImageList = Me.LargeImageCollection
-        Me.BLock.Location = New System.Drawing.Point(651, 2)
+        Me.BLock.Location = New System.Drawing.Point(704, 2)
         Me.BLock.Name = "BLock"
         Me.BLock.Size = New System.Drawing.Size(99, 40)
         Me.BLock.TabIndex = 9
@@ -260,7 +260,7 @@ Partial Class FormMasterDesignCOPPD
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(750, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(803, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 40)
         Me.BtnCancel.TabIndex = 7
@@ -299,7 +299,7 @@ Partial Class FormMasterDesignCOPPD
         Me.TEDesc.Properties.Appearance.Options.UseFont = True
         Me.TEDesc.Properties.EditValueChangedDelay = 1
         Me.TEDesc.Properties.ReadOnly = True
-        Me.TEDesc.Size = New System.Drawing.Size(309, 20)
+        Me.TEDesc.Size = New System.Drawing.Size(362, 20)
         Me.TEDesc.TabIndex = 8897
         Me.TEDesc.TabStop = False
         '
@@ -410,7 +410,7 @@ Partial Class FormMasterDesignCOPPD
         Me.BUpdateVendor.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BUpdateVendor.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BUpdateVendor.Appearance.Options.UseFont = True
-        Me.BUpdateVendor.Location = New System.Drawing.Point(727, 44)
+        Me.BUpdateVendor.Location = New System.Drawing.Point(780, 44)
         Me.BUpdateVendor.Name = "BUpdateVendor"
         Me.BUpdateVendor.Size = New System.Drawing.Size(88, 20)
         Me.BUpdateVendor.TabIndex = 8907
@@ -447,6 +447,8 @@ Partial Class FormMasterDesignCOPPD
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.LStorage)
+        Me.PanelControl1.Controls.Add(Me.SLECoolStorage)
         Me.PanelControl1.Controls.Add(Me.TEColor)
         Me.PanelControl1.Controls.Add(Me.TEClass)
         Me.PanelControl1.Controls.Add(Me.LabelControl10)
@@ -472,8 +474,38 @@ Partial Class FormMasterDesignCOPPD
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(827, 151)
+        Me.PanelControl1.Size = New System.Drawing.Size(880, 151)
         Me.PanelControl1.TabIndex = 8910
+        '
+        'TEColor
+        '
+        Me.TEColor.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEColor.EditValue = ""
+        Me.TEColor.Location = New System.Drawing.Point(763, 18)
+        Me.TEColor.Name = "TEColor"
+        Me.TEColor.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEColor.Properties.Appearance.Options.UseFont = True
+        Me.TEColor.Properties.EditValueChangedDelay = 1
+        Me.TEColor.Properties.ReadOnly = True
+        Me.TEColor.Size = New System.Drawing.Size(105, 20)
+        Me.TEColor.TabIndex = 8913
+        Me.TEColor.TabStop = False
+        '
+        'TEClass
+        '
+        Me.TEClass.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEClass.EditValue = ""
+        Me.TEClass.Location = New System.Drawing.Point(272, 18)
+        Me.TEClass.Name = "TEClass"
+        Me.TEClass.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEClass.Properties.Appearance.Options.UseFont = True
+        Me.TEClass.Properties.EditValueChangedDelay = 1
+        Me.TEClass.Properties.ReadOnly = True
+        Me.TEClass.Size = New System.Drawing.Size(117, 20)
+        Me.TEClass.TabIndex = 8912
+        Me.TEClass.TabStop = False
         '
         'LabelControl10
         '
@@ -516,22 +548,21 @@ Partial Class FormMasterDesignCOPPD
         '
         'LStorage
         '
-        Me.LStorage.Location = New System.Drawing.Point(303, 13)
+        Me.LStorage.Location = New System.Drawing.Point(634, 73)
         Me.LStorage.Name = "LStorage"
         Me.LStorage.Size = New System.Drawing.Size(65, 13)
         Me.LStorage.TabIndex = 8911
         Me.LStorage.Text = "Storage Type"
-        Me.LStorage.Visible = False
         '
         'SLECoolStorage
         '
-        Me.SLECoolStorage.Location = New System.Drawing.Point(381, 10)
+        Me.SLECoolStorage.Location = New System.Drawing.Point(705, 70)
         Me.SLECoolStorage.Name = "SLECoolStorage"
         Me.SLECoolStorage.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECoolStorage.Properties.ReadOnly = True
         Me.SLECoolStorage.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLECoolStorage.Size = New System.Drawing.Size(146, 20)
+        Me.SLECoolStorage.Size = New System.Drawing.Size(157, 20)
         Me.SLECoolStorage.TabIndex = 8910
-        Me.SLECoolStorage.Visible = False
         '
         'SearchLookUpEdit1View
         '
@@ -561,7 +592,7 @@ Partial Class FormMasterDesignCOPPD
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 151)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(827, 402)
+        Me.PanelControl2.Size = New System.Drawing.Size(880, 402)
         Me.PanelControl2.TabIndex = 8911
         '
         'XTCCOPPD
@@ -571,7 +602,7 @@ Partial Class FormMasterDesignCOPPD
         Me.XTCCOPPD.Location = New System.Drawing.Point(2, 2)
         Me.XTCCOPPD.Name = "XTCCOPPD"
         Me.XTCCOPPD.SelectedTabPage = Me.XTPCurrent
-        Me.XTCCOPPD.Size = New System.Drawing.Size(823, 398)
+        Me.XTCCOPPD.Size = New System.Drawing.Size(876, 398)
         Me.XTCCOPPD.TabIndex = 3
         Me.XTCCOPPD.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPCurrent, Me.XTPUpdateCOP})
         '
@@ -580,7 +611,7 @@ Partial Class FormMasterDesignCOPPD
         Me.XTPCurrent.Controls.Add(Me.GCCOPCurrent)
         Me.XTPCurrent.Controls.Add(Me.GCDraft)
         Me.XTPCurrent.Name = "XTPCurrent"
-        Me.XTPCurrent.Size = New System.Drawing.Size(817, 370)
+        Me.XTPCurrent.Size = New System.Drawing.Size(870, 370)
         Me.XTPCurrent.Text = "Current"
         '
         'GCCOPCurrent
@@ -590,7 +621,7 @@ Partial Class FormMasterDesignCOPPD
         Me.GCCOPCurrent.MainView = Me.GVCOPCurrent
         Me.GCCOPCurrent.Name = "GCCOPCurrent"
         Me.GCCOPCurrent.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLE})
-        Me.GCCOPCurrent.Size = New System.Drawing.Size(817, 312)
+        Me.GCCOPCurrent.Size = New System.Drawing.Size(870, 312)
         Me.GCCOPCurrent.TabIndex = 1
         Me.GCCOPCurrent.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCOPCurrent})
         '
@@ -760,7 +791,7 @@ Partial Class FormMasterDesignCOPPD
         Me.GCDraft.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCDraft.Location = New System.Drawing.Point(0, 0)
         Me.GCDraft.Name = "GCDraft"
-        Me.GCDraft.Size = New System.Drawing.Size(817, 58)
+        Me.GCDraft.Size = New System.Drawing.Size(870, 58)
         Me.GCDraft.TabIndex = 2
         Me.GCDraft.Text = "Draft ECOP"
         '
@@ -827,7 +858,7 @@ Partial Class FormMasterDesignCOPPD
         Me.XTPUpdateCOP.Controls.Add(Me.BUpdateCOP)
         Me.XTPUpdateCOP.Controls.Add(Me.PanelControl4)
         Me.XTPUpdateCOP.Name = "XTPUpdateCOP"
-        Me.XTPUpdateCOP.Size = New System.Drawing.Size(817, 370)
+        Me.XTPUpdateCOP.Size = New System.Drawing.Size(870, 370)
         Me.XTPUpdateCOP.Text = "Input COP"
         '
         'PanelControl5
@@ -837,14 +868,14 @@ Partial Class FormMasterDesignCOPPD
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl5.Location = New System.Drawing.Point(0, 256)
         Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(817, 85)
+        Me.PanelControl5.Size = New System.Drawing.Size(870, 85)
         Me.PanelControl5.TabIndex = 3
         '
         'MEECOPNote
         '
         Me.MEECOPNote.Location = New System.Drawing.Point(55, 4)
         Me.MEECOPNote.Name = "MEECOPNote"
-        Me.MEECOPNote.Size = New System.Drawing.Size(757, 75)
+        Me.MEECOPNote.Size = New System.Drawing.Size(804, 75)
         Me.MEECOPNote.TabIndex = 1
         '
         'LabelControl9
@@ -862,7 +893,7 @@ Partial Class FormMasterDesignCOPPD
         Me.GCCOPComponent.MainView = Me.GVCOPComponent
         Me.GCCOPComponent.Name = "GCCOPComponent"
         Me.GCCOPComponent.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLEComp})
-        Me.GCCOPComponent.Size = New System.Drawing.Size(817, 216)
+        Me.GCCOPComponent.Size = New System.Drawing.Size(870, 216)
         Me.GCCOPComponent.TabIndex = 0
         Me.GCCOPComponent.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCOPComponent})
         '
@@ -1022,15 +1053,13 @@ Partial Class FormMasterDesignCOPPD
         Me.BUpdateCOP.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BUpdateCOP.Location = New System.Drawing.Point(0, 341)
         Me.BUpdateCOP.Name = "BUpdateCOP"
-        Me.BUpdateCOP.Size = New System.Drawing.Size(817, 29)
+        Me.BUpdateCOP.Size = New System.Drawing.Size(870, 29)
         Me.BUpdateCOP.TabIndex = 2
         Me.BUpdateCOP.Text = "Update"
         '
         'PanelControl4
         '
-        Me.PanelControl4.Controls.Add(Me.LStorage)
         Me.PanelControl4.Controls.Add(Me.BTemplate)
-        Me.PanelControl4.Controls.Add(Me.SLECoolStorage)
         Me.PanelControl4.Controls.Add(Me.LabelControl8)
         Me.PanelControl4.Controls.Add(Me.TETodayKurs)
         Me.PanelControl4.Controls.Add(Me.BDelete)
@@ -1038,14 +1067,14 @@ Partial Class FormMasterDesignCOPPD
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(817, 40)
+        Me.PanelControl4.Size = New System.Drawing.Size(870, 40)
         Me.PanelControl4.TabIndex = 1
         '
         'BTemplate
         '
         Me.BTemplate.Dock = System.Windows.Forms.DockStyle.Right
         Me.BTemplate.Image = CType(resources.GetObject("BTemplate.Image"), System.Drawing.Image)
-        Me.BTemplate.Location = New System.Drawing.Point(533, 2)
+        Me.BTemplate.Location = New System.Drawing.Point(586, 2)
         Me.BTemplate.Name = "BTemplate"
         Me.BTemplate.Size = New System.Drawing.Size(126, 36)
         Me.BTemplate.TabIndex = 8904
@@ -1079,7 +1108,7 @@ Partial Class FormMasterDesignCOPPD
         '
         Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDelete.Image = CType(resources.GetObject("BDelete.Image"), System.Drawing.Image)
-        Me.BDelete.Location = New System.Drawing.Point(659, 2)
+        Me.BDelete.Location = New System.Drawing.Point(712, 2)
         Me.BDelete.Name = "BDelete"
         Me.BDelete.Size = New System.Drawing.Size(81, 36)
         Me.BDelete.TabIndex = 1
@@ -1089,47 +1118,17 @@ Partial Class FormMasterDesignCOPPD
         '
         Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAdd.Image = CType(resources.GetObject("BAdd.Image"), System.Drawing.Image)
-        Me.BAdd.Location = New System.Drawing.Point(740, 2)
+        Me.BAdd.Location = New System.Drawing.Point(793, 2)
         Me.BAdd.Name = "BAdd"
         Me.BAdd.Size = New System.Drawing.Size(75, 36)
         Me.BAdd.TabIndex = 0
         Me.BAdd.Text = "Add"
         '
-        'TEClass
-        '
-        Me.TEClass.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TEClass.EditValue = ""
-        Me.TEClass.Location = New System.Drawing.Point(272, 18)
-        Me.TEClass.Name = "TEClass"
-        Me.TEClass.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TEClass.Properties.Appearance.Options.UseFont = True
-        Me.TEClass.Properties.EditValueChangedDelay = 1
-        Me.TEClass.Properties.ReadOnly = True
-        Me.TEClass.Size = New System.Drawing.Size(117, 20)
-        Me.TEClass.TabIndex = 8912
-        Me.TEClass.TabStop = False
-        '
-        'TEColor
-        '
-        Me.TEColor.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TEColor.EditValue = ""
-        Me.TEColor.Location = New System.Drawing.Point(710, 18)
-        Me.TEColor.Name = "TEColor"
-        Me.TEColor.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TEColor.Properties.Appearance.Options.UseFont = True
-        Me.TEColor.Properties.EditValueChangedDelay = 1
-        Me.TEColor.Properties.ReadOnly = True
-        Me.TEColor.Size = New System.Drawing.Size(105, 20)
-        Me.TEColor.TabIndex = 8913
-        Me.TEColor.TabStop = False
-        '
         'FormMasterDesignCOPPD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(827, 597)
+        Me.ClientSize = New System.Drawing.Size(880, 597)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl3)
@@ -1155,6 +1154,8 @@ Partial Class FormMasterDesignCOPPD
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TEColor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEClass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECOO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECoolStorage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1186,8 +1187,6 @@ Partial Class FormMasterDesignCOPPD
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
         CType(Me.TETodayKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEClass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEColor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
