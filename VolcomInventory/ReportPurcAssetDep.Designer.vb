@@ -63,8 +63,11 @@ Partial Public Class ReportPurcAssetDep
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
-        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrLabel38 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
+        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LJournalDate = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCDepreciation, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDepreciation, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLEDepCoa, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -259,8 +262,8 @@ Partial Public Class ReportPurcAssetDep
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.Lunit, Me.XrLabel6, Me.XrLabel2, Me.XrLabel7, Me.LENDPeriod, Me.XrLabel5, Me.XrLabel1, Me.XrLabel29, Me.XrLabel26, Me.XrLabel4, Me.XrLabel3, Me.LNumber, Me.LDateCreated, Me.XrPictureBox1})
-        Me.PageHeader.HeightF = 110.4167!
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel8, Me.XrLabel9, Me.LJournalDate, Me.Lunit, Me.XrLabel6, Me.XrLabel2, Me.XrLabel7, Me.LENDPeriod, Me.XrLabel5, Me.XrLabel1, Me.XrLabel29, Me.XrLabel26, Me.XrLabel4, Me.XrLabel3, Me.LNumber, Me.LDateCreated, Me.XrPictureBox1})
+        Me.PageHeader.HeightF = 143.75!
         Me.PageHeader.Name = "PageHeader"
         '
         'Lunit
@@ -484,20 +487,6 @@ Partial Public Class ReportPurcAssetDep
         Me.PageFooter.HeightF = 19.7596!
         Me.PageFooter.Name = "PageFooter"
         '
-        'XrPageInfo1
-        '
-        Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrPageInfo1.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(862.0!, 0!)
-        Me.XrPageInfo1.Name = "XrPageInfo1"
-        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 19.7596!)
-        Me.XrPageInfo1.StylePriority.UseBorders = False
-        Me.XrPageInfo1.StylePriority.UseFont = False
-        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
-        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        '
         'XrLabel38
         '
         Me.XrLabel38.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Italic)
@@ -512,6 +501,61 @@ Partial Public Class ReportPurcAssetDep
         Me.XrLabel38.StylePriority.UseTextAlignment = False
         Me.XrLabel38.Text = "Printed from Volcom ERP "
         Me.XrLabel38.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrPageInfo1
+        '
+        Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrPageInfo1.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrPageInfo1.Format = "Page {0} of {1}"
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(862.0!, 0!)
+        Me.XrPageInfo1.Name = "XrPageInfo1"
+        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 19.7596!)
+        Me.XrPageInfo1.StylePriority.UseBorders = False
+        Me.XrPageInfo1.StylePriority.UseFont = False
+        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
+        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        '
+        'XrLabel8
+        '
+        Me.XrLabel8.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel8.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(0!, 100.4167!)
+        Me.XrLabel8.Name = "XrLabel8"
+        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel8.SizeF = New System.Drawing.SizeF(159.5833!, 22.13!)
+        Me.XrLabel8.StylePriority.UseBorders = False
+        Me.XrLabel8.StylePriority.UseFont = False
+        Me.XrLabel8.StylePriority.UseTextAlignment = False
+        Me.XrLabel8.Text = "JOURNAL DATE"
+        Me.XrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel9
+        '
+        Me.XrLabel9.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel9.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(159.5833!, 100.4167!)
+        Me.XrLabel9.Name = "XrLabel9"
+        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel9.SizeF = New System.Drawing.SizeF(13.54169!, 22.13!)
+        Me.XrLabel9.StylePriority.UseBorders = False
+        Me.XrLabel9.StylePriority.UseFont = False
+        Me.XrLabel9.StylePriority.UseTextAlignment = False
+        Me.XrLabel9.Text = ":"
+        Me.XrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'LJournalDate
+        '
+        Me.LJournalDate.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LJournalDate.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LJournalDate.LocationFloat = New DevExpress.Utils.PointFloat(173.125!, 100.4167!)
+        Me.LJournalDate.Name = "LJournalDate"
+        Me.LJournalDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LJournalDate.SizeF = New System.Drawing.SizeF(360.4789!, 22.13!)
+        Me.LJournalDate.StylePriority.UseBorders = False
+        Me.LJournalDate.StylePriority.UseFont = False
+        Me.LJournalDate.StylePriority.UseTextAlignment = False
+        Me.LJournalDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'ReportPurcAssetDep
         '
@@ -575,4 +619,7 @@ Partial Public Class ReportPurcAssetDep
     Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel38 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LJournalDate As DevExpress.XtraReports.UI.XRLabel
 End Class

@@ -59,6 +59,12 @@ INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 WHERE trx.`is_close`='2' AND DATE(trx.`date_reference`)<'" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-01") & "' AND trxd.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
 GROUP BY trxd.`id_acc_trans`
 UNION ALL
+SELECT '' AS id_acc_trans,'' AS id_report,'' AS report_number,'' AS report_mark_type,'' AS `employee_name`,'' AS `date_created`,'' AS `date_reference`,'' AS `bill_type`,'' AS `acc_trans_number`,0 AS debit,0 AS credit,IF(COUNT(tb.id_asset_dep_pps)>0,'ok','Asset depreciation for this month not found.') AS sts
+FROM(
+	SELECT id_asset_dep_pps FROM tb_asset_dep_pps WHERE id_coa_tag=4 AND id_report_status='" & SLEUnit.EditValue.ToString & "' AND reff_date='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "'
+)tb
+HAVING sts!='ok'
+UNION ALL
 SELECT '' AS id_acc_trans,'' AS id_report,'' AS report_number,'' AS report_mark_type,'' AS `employee_name`,'' AS `date_created`,'' AS `date_reference`,'' AS `bill_type`,'' AS `acc_trans_number`,IF(IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0)<0,IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0),0) * -1 AS debit,IF(IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0)>0,IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0),0) AS credit,'Branch vs Kantor pusat tidak balance' AS sts 
 FROM `tb_consolidation` c
 LEFT JOIN
