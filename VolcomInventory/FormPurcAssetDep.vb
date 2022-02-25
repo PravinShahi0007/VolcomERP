@@ -33,6 +33,8 @@
         If id_dep = "-1" Then
             BMark.Visible = False
             BtnPrint.Visible = False
+            '
+            DEJournal.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='" & SLEUnit.EditValue.ToString & "'", 0, True, "", "", "", "")
         Else
             BMark.Visible = True
             BtnPrint.Visible = True
@@ -49,6 +51,7 @@ WHERE id_asset_dep_pps='" & id_dep & "'"
                 TENumber.Text = dt.Rows(0)("number").ToString
                 DECreatedDate.EditValue = dt.Rows(0)("created_date")
                 DEReffDate.EditValue = dt.Rows(0)("reff_date")
+                DEJournal.EditValue = dt.Rows(0)("posting_reff_date")
                 TECreatedBy.Text = dt.Rows(0)("employee_name").ToString
                 SLEUnit.EditValue = dt.Rows(0)("id_coa_tag").ToString
                 id_report_status = dt.Rows(0)("id_report_status").ToString
@@ -79,6 +82,11 @@ WHERE ppsd.id_asset_dep_pps='" & id_dep & "'"
     Private Sub DEReffDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEReffDate.EditValueChanged
         Try
             DEReffDate.EditValue = New DateTime(DEReffDate.EditValue.Year, DEReffDate.EditValue.Month, Date.DaysInMonth(DEReffDate.EditValue.Year, DEReffDate.EditValue.Month))
+            If DEReffDate.EditValue < DEJournal.Properties.MinValue Then
+                DEJournal.EditValue = DEJournal.Properties.MinValue
+            Else
+                DEJournal.EditValue = DEReffDate.EditValue
+            End If
         Catch ex As Exception
         End Try
     End Sub
@@ -155,8 +163,8 @@ WHERE DATE_FORMAT(reff_date,'%m%Y')=DATE_FORMAT(LAST_DAY(DATE_SUB('" & Date.Pars
                 warningCustom("Please load depreciation first")
             Else
                 If id_dep = "-1" Then 'new
-                    Dim q As String = "INSERT INTO `tb_asset_dep_pps`(created_date,created_by,reff_date,id_coa_tag)
-VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & SLEUnit.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
+                    Dim q As String = "INSERT INTO `tb_asset_dep_pps`(created_date,created_by,reff_date,posting_reff_date,id_coa_tag)
+VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEJournal.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & SLEUnit.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
                     id_dep = execute_query(q, 0, True, "", "", "", "")
                     'det
                     q = "INSERT INTO tb_asset_dep_pps_det(`id_asset_dep_pps`,`id_purc_rec_asset`,`id_acc_dep`,`id_acc_dep_accum`,`accum_dep`,`remaining_life`,`dep_value`) VALUES"
@@ -297,10 +305,15 @@ VALUES(DATE(NOW()),'" & id_user & "','" & Date.Parse(DEReffDate.EditValue.ToStri
         Report.LNumber.Text = TENumber.Text.ToUpper
         Report.LDateCreated.Text = DECreatedDate.Text.ToUpper
         Report.LENDPeriod.Text = DEReffDate.Text.ToUpper
+        Report.LJournalDate.Text = DEJournal.Text.ToUpper
         Report.Lunit.Text = SLEUnit.Text.ToUpper
 
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreviewDialog()
+    End Sub
+
+    Private Sub SLEUnit_EditValueChanged(sender As Object, e As EventArgs) Handles SLEUnit.EditValueChanged
+        DEJournal.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='" & SLEUnit.EditValue.ToString & "'", 0, True, "", "", "", "")
     End Sub
 End Class
