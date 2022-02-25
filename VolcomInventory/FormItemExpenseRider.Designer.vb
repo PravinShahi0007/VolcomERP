@@ -39,7 +39,7 @@ Partial Class FormItemExpenseRider
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPPN3PLInv = New DevExpress.XtraEditors.TextEdit()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CEGrossup = New System.Windows.Forms.CheckBox()
         CType(Me.DEDateReff.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateReff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -230,22 +230,22 @@ Partial Class FormItemExpenseRider
         Me.TEPPN3PLInv.Size = New System.Drawing.Size(336, 20)
         Me.TEPPN3PLInv.TabIndex = 109
         '
-        'CheckBox1
+        'CEGrossup
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(365, 66)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(65, 17)
-        Me.CheckBox1.TabIndex = 125
-        Me.CheckBox1.Text = "Grossup"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.CEGrossup.AutoSize = True
+        Me.CEGrossup.Location = New System.Drawing.Point(365, 66)
+        Me.CEGrossup.Name = "CEGrossup"
+        Me.CEGrossup.Size = New System.Drawing.Size(65, 17)
+        Me.CEGrossup.TabIndex = 125
+        Me.CEGrossup.Text = "Grossup"
+        Me.CEGrossup.UseVisualStyleBackColor = True
         '
         'FormItemExpenseRider
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(442, 205)
-        Me.Controls.Add(Me.CheckBox1)
+        Me.Controls.Add(Me.CEGrossup)
         Me.Controls.Add(Me.LabelControl8)
         Me.Controls.Add(Me.DEDateReff)
         Me.Controls.Add(Me.LabelControl7)
@@ -299,5 +299,5 @@ Partial Class FormItemExpenseRider
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEPPN3PLInv As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents CEGrossup As CheckBox
 End Class

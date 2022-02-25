@@ -27,7 +27,12 @@
         load_pph_account()
         load_budget()
         '
+        Try
+            SLEPPH3PLInv.EditValue = get_opt_acc_field("id_acc_pph_rider")
+            SLEBudget.EditValue = get_opt_acc_field("id_budget_rider")
+        Catch ex As Exception
 
+        End Try
     End Sub
 
     Sub load_budget()

@@ -311,6 +311,26 @@ WHERE ppsd.id_kontrak_rider='" & id_kontrak_rider & "'"
                 GVData.SetRowCellValue(GVData.RowCount - 1, "id_report_det", id_kontrak_rider)
                 GVData.SetRowCellValue(GVData.RowCount - 1, "report_mark_type", "398")
                 GVData.SetRowCellValue(GVData.RowCount - 1, "qty", "1")
+                '
+                GVData.RefreshData()
+                GCData.Refresh()
+                '
+                If FormItemExpenseRider.CEGrossup.Checked = True Then
+                    Try
+                        Dim dpp As Decimal = Decimal.Parse(GVData.GetRowCellValue(GVData.RowCount - 1, "amount").ToString)
+                        Dim pph As Decimal = Decimal.Parse(GVData.GetRowCellValue(GVData.RowCount - 1, "pph_percent").ToString)
+                        '
+                        Dim kurs As Decimal = Decimal.Parse(GVData.GetRowCellValue(GVData.RowCount - 1, "kurs").ToString)
+                        '
+                        Dim grossup_val As Decimal = 0.00
+                        grossup_val = (100 / (100 - pph)) * dpp
+                        GVData.SetRowCellValue(GVData.RowCount - 1, "amount_before", grossup_val / kurs)
+                        GVData.SetRowCellValue(GVData.RowCount - 1, "amount", grossup_val)
+                        calculate()
+                    Catch ex As Exception
+                    End Try
+                End If
+                '
             End If
 
             FormMain.SplashScreenManager1.CloseWaitForm()

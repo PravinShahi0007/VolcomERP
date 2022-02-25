@@ -26,6 +26,12 @@
             is_dept = "is_retail"
         ElseIf id_menu = "3" Then
             is_dept = "is_vm"
+        ElseIf id_menu = "4" Then
+            is_dept = "is_wh"
+        ElseIf id_menu = "5" Then
+            is_dept = "is_pur"
+        ElseIf id_menu = "6" Then
+            is_dept = "is_qc"
         Else
             is_dept = "is_md"
         End If
