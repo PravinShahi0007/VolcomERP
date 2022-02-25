@@ -230,11 +230,9 @@ Partial Class FormPurcOrder
         Me.GridView9 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn102 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn103 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView11 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn104 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPenawaran = New DevExpress.XtraGrid.GridControl()
+        Me.GVPenawaran = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumn105 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn106 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn107 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn108 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -244,26 +242,9 @@ Partial Class FormPurcOrder
         Me.GridColumn112 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn113 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn114 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn115 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GridColumn116 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn117 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn118 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn119 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn120 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn121 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn122 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn123 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn124 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn125 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn126 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn127 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn128 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn129 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn130 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn131 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn132 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn133 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn134 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.RepositoryItemCheckEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -340,8 +321,8 @@ Partial Class FormPurcOrder
         Me.PanelControl6.SuspendLayout()
         CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCPenawaran, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPenawaran, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2234,7 +2215,7 @@ Partial Class FormPurcOrder
         '
         'XTPPenawaran
         '
-        Me.XTPPenawaran.Controls.Add(Me.GridControl1)
+        Me.XTPPenawaran.Controls.Add(Me.GCPenawaran)
         Me.XTPPenawaran.Controls.Add(Me.PanelControl6)
         Me.XTPPenawaran.Name = "XTPPenawaran"
         Me.XTPPenawaran.PageVisible = False
@@ -2299,39 +2280,26 @@ Partial Class FormPurcOrder
         Me.GridColumn103.Visible = True
         Me.GridColumn103.VisibleIndex = 0
         '
-        'GridControl1
+        'GCPenawaran
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 44)
-        Me.GridControl1.MainView = Me.GridView11
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit5, Me.RepositoryItemCheckEdit4, Me.RepositoryItemTextEdit1, Me.RepositoryItemMemoEdit1})
-        Me.GridControl1.Size = New System.Drawing.Size(1193, 426)
-        Me.GridControl1.TabIndex = 13
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView11})
+        Me.GCPenawaran.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPenawaran.Location = New System.Drawing.Point(0, 44)
+        Me.GCPenawaran.MainView = Me.GVPenawaran
+        Me.GCPenawaran.Name = "GCPenawaran"
+        Me.GCPenawaran.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit5, Me.RepositoryItemCheckEdit4, Me.RepositoryItemTextEdit1, Me.RepositoryItemMemoEdit1})
+        Me.GCPenawaran.Size = New System.Drawing.Size(1193, 426)
+        Me.GCPenawaran.TabIndex = 13
+        Me.GCPenawaran.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPenawaran})
         '
-        'GridView11
+        'GVPenawaran
         '
-        Me.GridView11.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn104, Me.GridColumn105, Me.GridColumn106, Me.GridColumn107, Me.GridColumn108, Me.GridColumn109, Me.GridColumn110, Me.GridColumn111, Me.GridColumn112, Me.GridColumn113, Me.GridColumn114, Me.GridColumn115, Me.GridColumn116, Me.GridColumn117, Me.GridColumn118, Me.GridColumn119, Me.GridColumn120, Me.GridColumn121, Me.GridColumn122, Me.GridColumn123, Me.GridColumn124, Me.GridColumn125, Me.GridColumn126, Me.GridColumn127, Me.GridColumn128, Me.GridColumn129, Me.GridColumn130, Me.GridColumn131, Me.GridColumn132, Me.GridColumn133, Me.GridColumn134})
-        Me.GridView11.GridControl = Me.GridControl1
-        Me.GridView11.Name = "GridView11"
-        Me.GridView11.OptionsFind.AlwaysVisible = True
-        Me.GridView11.OptionsView.ColumnAutoWidth = False
-        Me.GridView11.OptionsView.RowAutoHeight = True
-        Me.GridView11.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn104
-        '
-        Me.GridColumn104.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn104.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn104.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn104.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn104.Caption = "*"
-        Me.GridColumn104.ColumnEdit = Me.RepositoryItemCheckEdit4
-        Me.GridColumn104.FieldName = "is_check"
-        Me.GridColumn104.Name = "GridColumn104"
-        Me.GridColumn104.Visible = True
-        Me.GridColumn104.VisibleIndex = 0
+        Me.GVPenawaran.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn106, Me.GridColumn107, Me.GridColumn108, Me.GridColumn109, Me.GridColumn110, Me.GridColumn111, Me.GridColumn112, Me.GridColumn113, Me.GridColumn114, Me.GridColumn121, Me.GridColumn122, Me.GridColumn134})
+        Me.GVPenawaran.GridControl = Me.GCPenawaran
+        Me.GVPenawaran.Name = "GVPenawaran"
+        Me.GVPenawaran.OptionsFind.AlwaysVisible = True
+        Me.GVPenawaran.OptionsView.ColumnAutoWidth = False
+        Me.GVPenawaran.OptionsView.RowAutoHeight = True
+        Me.GVPenawaran.OptionsView.ShowGroupPanel = False
         '
         'RepositoryItemCheckEdit4
         '
@@ -2339,14 +2307,6 @@ Partial Class FormPurcOrder
         Me.RepositoryItemCheckEdit4.Name = "RepositoryItemCheckEdit4"
         Me.RepositoryItemCheckEdit4.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit4.ValueUnchecked = "no"
-        '
-        'GridColumn105
-        '
-        Me.GridColumn105.Caption = "id_purc_req"
-        Me.GridColumn105.FieldName = "id_purc_req_det"
-        Me.GridColumn105.Name = "GridColumn105"
-        Me.GridColumn105.OptionsColumn.AllowEdit = False
-        Me.GridColumn105.OptionsColumn.AllowFocus = False
         '
         'GridColumn106
         '
@@ -2439,17 +2399,6 @@ Partial Class FormPurcOrder
         Me.GridColumn114.VisibleIndex = 6
         Me.GridColumn114.Width = 83
         '
-        'GridColumn115
-        '
-        Me.GridColumn115.Caption = "Qty PO"
-        Me.GridColumn115.ColumnEdit = Me.RepositoryItemTextEdit1
-        Me.GridColumn115.DisplayFormat.FormatString = "N2"
-        Me.GridColumn115.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn115.FieldName = "qty_po"
-        Me.GridColumn115.Name = "GridColumn115"
-        Me.GridColumn115.OptionsColumn.AllowEdit = False
-        Me.GridColumn115.OptionsColumn.AllowFocus = False
-        '
         'RepositoryItemTextEdit1
         '
         Me.RepositoryItemTextEdit1.AutoHeight = False
@@ -2458,53 +2407,6 @@ Partial Class FormPurcOrder
         Me.RepositoryItemTextEdit1.Mask.EditMask = "N2"
         Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
-        '
-        'GridColumn116
-        '
-        Me.GridColumn116.Caption = "ID Report Status"
-        Me.GridColumn116.FieldName = "id_report_status"
-        Me.GridColumn116.Name = "GridColumn116"
-        Me.GridColumn116.OptionsColumn.AllowEdit = False
-        Me.GridColumn116.OptionsColumn.AllowFocus = False
-        '
-        'GridColumn117
-        '
-        Me.GridColumn117.Caption = "ID Item Type"
-        Me.GridColumn117.FieldName = "id_item_type"
-        Me.GridColumn117.Name = "GridColumn117"
-        Me.GridColumn117.OptionsColumn.AllowEdit = False
-        Me.GridColumn117.OptionsColumn.AllowFocus = False
-        '
-        'GridColumn118
-        '
-        Me.GridColumn118.Caption = "Item Type"
-        Me.GridColumn118.FieldName = "item_type"
-        Me.GridColumn118.Name = "GridColumn118"
-        Me.GridColumn118.OptionsColumn.AllowEdit = False
-        Me.GridColumn118.OptionsColumn.AllowFocus = False
-        '
-        'GridColumn119
-        '
-        Me.GridColumn119.Caption = "Latest Price"
-        Me.GridColumn119.DisplayFormat.FormatString = "N2"
-        Me.GridColumn119.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn119.FieldName = "latest_price"
-        Me.GridColumn119.Name = "GridColumn119"
-        Me.GridColumn119.OptionsColumn.AllowEdit = False
-        Me.GridColumn119.OptionsColumn.AllowFocus = False
-        Me.GridColumn119.Visible = True
-        Me.GridColumn119.VisibleIndex = 12
-        '
-        'GridColumn120
-        '
-        Me.GridColumn120.Caption = "Value (PR)"
-        Me.GridColumn120.DisplayFormat.FormatString = "N2"
-        Me.GridColumn120.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn120.FieldName = "val_pr"
-        Me.GridColumn120.Name = "GridColumn120"
-        Me.GridColumn120.OptionsColumn.AllowEdit = False
-        Me.GridColumn120.OptionsColumn.AllowFocus = False
-        Me.GridColumn120.Width = 78
         '
         'GridColumn121
         '
@@ -2516,7 +2418,7 @@ Partial Class FormPurcOrder
         Me.GridColumn121.OptionsColumn.AllowEdit = False
         Me.GridColumn121.OptionsColumn.AllowFocus = False
         Me.GridColumn121.Visible = True
-        Me.GridColumn121.VisibleIndex = 11
+        Me.GridColumn121.VisibleIndex = 2
         Me.GridColumn121.Width = 81
         '
         'GridColumn122
@@ -2527,126 +2429,8 @@ Partial Class FormPurcOrder
         Me.GridColumn122.OptionsColumn.AllowEdit = False
         Me.GridColumn122.OptionsColumn.AllowFocus = False
         Me.GridColumn122.Visible = True
-        Me.GridColumn122.VisibleIndex = 2
+        Me.GridColumn122.VisibleIndex = 0
         Me.GridColumn122.Width = 81
-        '
-        'GridColumn123
-        '
-        Me.GridColumn123.Caption = "Status Request"
-        Me.GridColumn123.FieldName = "status_po"
-        Me.GridColumn123.Name = "GridColumn123"
-        Me.GridColumn123.OptionsColumn.AllowEdit = False
-        Me.GridColumn123.OptionsColumn.AllowFocus = False
-        Me.GridColumn123.Width = 84
-        '
-        'GridColumn124
-        '
-        Me.GridColumn124.Caption = "Shipping Destination"
-        Me.GridColumn124.FieldName = "ship_destination"
-        Me.GridColumn124.Name = "GridColumn124"
-        Me.GridColumn124.OptionsColumn.AllowEdit = False
-        Me.GridColumn124.OptionsColumn.AllowFocus = False
-        Me.GridColumn124.Visible = True
-        Me.GridColumn124.VisibleIndex = 9
-        Me.GridColumn124.Width = 107
-        '
-        'GridColumn125
-        '
-        Me.GridColumn125.Caption = "Shipping Address"
-        Me.GridColumn125.FieldName = "ship_address"
-        Me.GridColumn125.Name = "GridColumn125"
-        Me.GridColumn125.OptionsColumn.AllowEdit = False
-        Me.GridColumn125.OptionsColumn.AllowFocus = False
-        Me.GridColumn125.Visible = True
-        Me.GridColumn125.VisibleIndex = 10
-        Me.GridColumn125.Width = 92
-        '
-        'GridColumn126
-        '
-        Me.GridColumn126.Caption = "Created By"
-        Me.GridColumn126.FieldName = "created_by"
-        Me.GridColumn126.Name = "GridColumn126"
-        Me.GridColumn126.OptionsColumn.AllowEdit = False
-        Me.GridColumn126.OptionsColumn.AllowFocus = False
-        '
-        'GridColumn127
-        '
-        Me.GridColumn127.Caption = "Last Update"
-        Me.GridColumn127.FieldName = "date_last_upd"
-        Me.GridColumn127.Name = "GridColumn127"
-        Me.GridColumn127.OptionsColumn.AllowEdit = False
-        Me.GridColumn127.OptionsColumn.AllowFocus = False
-        '
-        'GridColumn128
-        '
-        Me.GridColumn128.Caption = "Last Update By"
-        Me.GridColumn128.FieldName = "last_upd_by"
-        Me.GridColumn128.Name = "GridColumn128"
-        Me.GridColumn128.OptionsColumn.AllowEdit = False
-        Me.GridColumn128.OptionsColumn.AllowFocus = False
-        '
-        'GridColumn129
-        '
-        Me.GridColumn129.Caption = "Qty PO Created"
-        Me.GridColumn129.DisplayFormat.FormatString = "N2"
-        Me.GridColumn129.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn129.FieldName = "qty_po_created"
-        Me.GridColumn129.Name = "GridColumn129"
-        Me.GridColumn129.OptionsColumn.AllowEdit = False
-        Me.GridColumn129.OptionsColumn.AllowFocus = False
-        Me.GridColumn129.Width = 78
-        '
-        'GridColumn130
-        '
-        Me.GridColumn130.Caption = "Qty Received"
-        Me.GridColumn130.DisplayFormat.FormatString = "N2"
-        Me.GridColumn130.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn130.FieldName = "qty_rec"
-        Me.GridColumn130.Name = "GridColumn130"
-        Me.GridColumn130.OptionsColumn.AllowEdit = False
-        Me.GridColumn130.OptionsColumn.AllowFocus = False
-        Me.GridColumn130.Visible = True
-        Me.GridColumn130.VisibleIndex = 13
-        Me.GridColumn130.Width = 78
-        '
-        'GridColumn131
-        '
-        Me.GridColumn131.Caption = "Diff Receiving - PO"
-        Me.GridColumn131.DisplayFormat.FormatString = "N2"
-        Me.GridColumn131.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn131.FieldName = "diff_rec_po"
-        Me.GridColumn131.Name = "GridColumn131"
-        Me.GridColumn131.OptionsColumn.AllowEdit = False
-        Me.GridColumn131.OptionsColumn.AllowFocus = False
-        Me.GridColumn131.UnboundExpression = "[qty_rec] - [qty_po_created]"
-        Me.GridColumn131.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn131.Visible = True
-        Me.GridColumn131.VisibleIndex = 14
-        Me.GridColumn131.Width = 107
-        '
-        'GridColumn132
-        '
-        Me.GridColumn132.Caption = "Diff Receiving - Request"
-        Me.GridColumn132.DisplayFormat.FormatString = "N2"
-        Me.GridColumn132.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn132.FieldName = "diff_rec_req"
-        Me.GridColumn132.Name = "GridColumn132"
-        Me.GridColumn132.OptionsColumn.AllowEdit = False
-        Me.GridColumn132.OptionsColumn.AllowFocus = False
-        Me.GridColumn132.UnboundExpression = "[qty_rec] - [qty_pr]"
-        Me.GridColumn132.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn132.Visible = True
-        Me.GridColumn132.VisibleIndex = 15
-        Me.GridColumn132.Width = 133
-        '
-        'GridColumn133
-        '
-        Me.GridColumn133.Caption = "Validity Check"
-        Me.GridColumn133.FieldName = "status_val"
-        Me.GridColumn133.Name = "GridColumn133"
-        Me.GridColumn133.OptionsColumn.AllowEdit = False
-        Me.GridColumn133.OptionsColumn.AllowFocus = False
-        Me.GridColumn133.Width = 87
         '
         'GridColumn134
         '
@@ -2765,8 +2549,8 @@ Partial Class FormPurcOrder
         Me.PanelControl6.PerformLayout()
         CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCPenawaran, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPenawaran, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2985,11 +2769,9 @@ Partial Class FormPurcOrder
     Friend WithEvents GridView9 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn102 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn103 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView11 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn104 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPenawaran As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPenawaran As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents RepositoryItemCheckEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents GridColumn105 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn106 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn107 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn108 As DevExpress.XtraGrid.Columns.GridColumn
@@ -2999,26 +2781,9 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn112 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn113 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn114 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn115 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents GridColumn116 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn117 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn118 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn119 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn120 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn121 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn122 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn123 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn124 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn125 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn126 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn127 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn128 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn129 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn130 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn131 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn132 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn133 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn134 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents RepositoryItemCheckEdit5 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
