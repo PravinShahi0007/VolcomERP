@@ -19,6 +19,7 @@ Partial Class FormSalesBranch
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesBranch))
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_sales_branch = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -59,6 +60,15 @@ Partial Class FormSalesBranch
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncoa_tag = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPPOS = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSync = New DevExpress.XtraGrid.GridControl()
+        Me.GVSync = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.DESync = New DevExpress.XtraEditors.DateEdit()
+        Me.SBSync = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,6 +89,13 @@ Partial Class FormSalesBranch
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPPOS.SuspendLayout()
+        CType(Me.GCSync, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSync, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.DESync.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DESync.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCData
@@ -309,7 +326,7 @@ Partial Class FormSalesBranch
         Me.XTCData.SelectedTabPage = Me.XTPCreatedList
         Me.XTCData.Size = New System.Drawing.Size(788, 496)
         Me.XTCData.TabIndex = 16
-        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPCreatedList, Me.XTPCN})
+        Me.XTCData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPCreatedList, Me.XTPCN, Me.XTPPOS})
         '
         'XTPCreatedList
         '
@@ -454,6 +471,89 @@ Partial Class FormSalesBranch
         Me.LabelControl2.TabIndex = 8915
         Me.LabelControl2.Text = "Unit"
         '
+        'XTPPOS
+        '
+        Me.XTPPOS.Controls.Add(Me.GCSync)
+        Me.XTPPOS.Controls.Add(Me.PanelControl3)
+        Me.XTPPOS.Name = "XTPPOS"
+        Me.XTPPOS.Size = New System.Drawing.Size(782, 468)
+        Me.XTPPOS.Text = "From POS"
+        '
+        'GCSync
+        '
+        Me.GCSync.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSync.Location = New System.Drawing.Point(0, 45)
+        Me.GCSync.MainView = Me.GVSync
+        Me.GCSync.Name = "GCSync"
+        Me.GCSync.Size = New System.Drawing.Size(782, 423)
+        Me.GCSync.TabIndex = 1
+        Me.GCSync.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSync})
+        '
+        'GVSync
+        '
+        Me.GVSync.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVSync.GridControl = Me.GCSync
+        Me.GVSync.Name = "GVSync"
+        Me.GVSync.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.FieldName = "id_outlet"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Outlet"
+        Me.GridColumn4.FieldName = "outlet_name"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Date"
+        Me.GridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn5.FieldName = "date"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 1
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.DESync)
+        Me.PanelControl3.Controls.Add(Me.SBSync)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(782, 45)
+        Me.PanelControl3.TabIndex = 0
+        '
+        'DESync
+        '
+        Me.DESync.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DESync.EditValue = Nothing
+        Me.DESync.Location = New System.Drawing.Point(528, 11)
+        Me.DESync.Name = "DESync"
+        Me.DESync.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DESync.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DESync.Properties.EditFormat.FormatString = "dd MMMM yyyy"
+        Me.DESync.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DESync.Properties.Mask.EditMask = "dd MMMM yyyy"
+        Me.DESync.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DESync.Size = New System.Drawing.Size(140, 20)
+        Me.DESync.TabIndex = 1
+        '
+        'SBSync
+        '
+        Me.SBSync.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBSync.Image = CType(resources.GetObject("SBSync.Image"), System.Drawing.Image)
+        Me.SBSync.Location = New System.Drawing.Point(680, 2)
+        Me.SBSync.Name = "SBSync"
+        Me.SBSync.Size = New System.Drawing.Size(100, 41)
+        Me.SBSync.TabIndex = 0
+        Me.SBSync.Text = "Sync"
+        '
         'FormSalesBranch
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -486,6 +586,13 @@ Partial Class FormSalesBranch
         Me.PanelControl1.PerformLayout()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPPOS.ResumeLayout(False)
+        CType(Me.GCSync, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSync, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.DESync.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DESync.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -530,4 +637,13 @@ Partial Class FormSalesBranch
     Friend WithEvents GridColumnnumber_cn As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumntransaction_date_cn As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndue_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPPOS As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCSync As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSync As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBSync As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DESync As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

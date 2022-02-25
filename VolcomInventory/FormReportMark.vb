@@ -2345,8 +2345,8 @@ INNER JOIN
                 Dim q As String = "SELECT id_pl_category FROM tb_prod_order_rec WHERE id_prod_order_rec='" & id_report & "'"
                 Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
                 If dt.Rows(0)("id_pl_category").ToString = "2" Or dt.Rows(0)("id_pl_category").ToString = "3" Then
-                    Dim qi As String = "INSERT INTO `tb_qc_report1`(`id_prod_order_rec`,`id_pl_category`,`created_date`,`created_by`,`id_report_status`,`note`,`complete_date`)
-SELECT id_prod_order_rec,id_pl_category,NOW() AS created_date,'" & id_user & "' AS created_by,6 AS id_report_status,'Auto Grade Receiving' AS note,NOW() AS complete_date
+                    Dim qi As String = "INSERT INTO `tb_qc_report1`(`id_prod_order_rec`,id_prod_order,`id_pl_category`,`created_date`,`created_by`,`id_report_status`,`note`,`complete_date`)
+SELECT id_prod_order_rec,id_prod_order,id_pl_category,NOW() AS created_date,'" & id_user & "' AS created_by,6 AS id_report_status,'Auto Grade Receiving' AS note,NOW() AS complete_date
 FROM tb_prod_order_rec
 WHERE `id_prod_order_rec`='" & id_report & "';SELECT LAST_INSERT_ID(); "
                     Dim id_qcr1 As String = execute_query(qi, 0, True, "", "", "", "")
@@ -9663,6 +9663,10 @@ WHERE (pnsd.id_pn_summary_type=1 OR pnsd.id_pn_summary_type=3) AND pnsd.id_pn_su
             If id_status_reportx = "6" Then
                 'complete 
                 execute_non_query("UPDATE tb_prod_order_ko SET is_locked=1 WHERE id_prod_order_ko='" & id_report & "'", True, "", "", "", "")
+
+                'log perubahan line list
+                Dim cd As New ClassDesign()
+                cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
             End If
 
             'update status
@@ -11744,7 +11748,7 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_report & "'"
                 qi = "INSERT INTO `tb_kontrak_rider`(`id_comp`,`id_kontrak_type`,`kontrak_from`,`kontrak_until`,`monthly_pay`,`is_active`,`reff`,`reff_det`)
 SELECT ppsd.id_comp,ppsd.id_kontrak_type,ppsd.kontrak_from,ppsd.kontrak_until,ppsd.monthly_pay,1 AS is_active,ppsd.id_kontrak_rider_pps AS reff,ppsd.id_kontrak_rider_pps_det AS reff_det
 FROM tb_kontrak_rider_pps_det ppsd
-INNER JOIN tb_kontrak_rider_pps pps ON pps.id_kontrak_rider_pps=ppsd.id_kontrak_rider_pps 
+INNER JOIN tb_kontrak_rider_pps pps ON pps.id_kontrak_rider_pps=ppsd.id_kontrak_rider_pps AND ppsd.terminate=2
 WHERE ppsd.id_kontrak_rider_pps='" & id_report & "'"
                 execute_non_query(qi, True, "", "", "", "")
             End If

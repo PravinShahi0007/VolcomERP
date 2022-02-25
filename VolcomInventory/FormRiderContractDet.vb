@@ -29,6 +29,7 @@
                     GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "monthly_pay_tot_old", FormRiderContract.GVContractList.GetRowCellValue(i, "total"))
                     '
                     GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "monthly_pay", FormRiderContract.GVContractList.GetRowCellValue(i, "monthly_pay"))
+                    GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "is_terminate", "no")
 
                     If id_type = "1" Then
                         GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_from", FormRiderContract.GVContractList.GetRowCellValue(i, "kontrak_until"))
@@ -46,9 +47,11 @@
             End If
             If id_type = "1" Then
                 TEType.Text = "New / Extend"
+                GCTerminate.Visible = False
             Else
                 TEType.Text = "Changes"
                 PCAddDel.Visible = False
+                GCTerminate.Visible = True
             End If
         Else
             'edit
@@ -71,6 +74,11 @@ WHERE pps.`id_kontrak_rider_pps`=" & id_pps
                 MENote.Text = dt.Rows(0)("note").ToString
                 TEType.Text = dt.Rows(0)("typ").ToString
                 id_type = dt.Rows(0)("id_type").ToString
+
+                If id_type = "1" Then
+                    GCTerminate.Visible = True
+                End If
+
             End If
             If is_view = "1" Then
                 BtnPrint.Visible = False
@@ -80,7 +88,7 @@ WHERE pps.`id_kontrak_rider_pps`=" & id_pps
     End Sub
 
     Sub load_det()
-        Dim q As String = "SELECT ppsd.*,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until) AS qty_month,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from_old,ppsd.kontrak_until_old) as qty_month_old
+        Dim q As String = "SELECT ppsd.*,IF(ppsd.terminate=1,'yes','no') AS is_terminate,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from,ppsd.kontrak_until) AS qty_month,TIMESTAMPDIFF(MONTH,ppsd.kontrak_from_old,ppsd.kontrak_until_old) as qty_month_old
 FROM `tb_kontrak_rider_pps_det` ppsd
 WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
@@ -107,6 +115,7 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_pps & "'"
         GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "monthly_pay", "0")
         GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_until", Date.Parse(Now().ToString))
         GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "kontrak_from", Date.Parse(Now().ToString))
+        GVPPS.SetRowCellValue(GVPPS.RowCount - 1, "is_terminate", "no")
         GVPPS.RefreshData()
         '
         GVPPS.BestFitColumns()
@@ -141,6 +150,7 @@ FROM tb_m_comp c "
             'new tidak boleh sebelum until
             For i = 0 To GVPPS.RowCount - 1
                 If GVPPS.GetRowCellValue(i, "id_kontrak_old").ToString = "" Or GVPPS.GetRowCellValue(i, "id_kontrak_old").ToString = "0" Then
+                Else
                     If GVPPS.GetRowCellValue(i, "kontrak_until_old") > GVPPS.GetRowCellValue(i, "kontrak_from") Then
                         warningCustom("Please make sure new period is not below old period")
                         is_ok = False
@@ -169,12 +179,17 @@ FROM tb_m_comp c "
                     '
                     execute_non_query("CALL gen_number('" & id_pps & "','398')", True, "", "", "", "")
                     'detail
-                    q = "INSERT INTO tb_kontrak_rider_pps_det(`id_kontrak_rider_pps`,`id_comp`,`id_kontrak_type`,`kontrak_from`,`kontrak_until`,`monthly_pay`,`id_kontrak_old`,`kontrak_from_old`,`kontrak_until_old`,`monthly_pay_old`) VALUES"
+                    q = "INSERT INTO tb_kontrak_rider_pps_det(`id_kontrak_rider_pps`,`id_comp`,`id_kontrak_type`,`kontrak_from`,`kontrak_until`,`monthly_pay`,`id_kontrak_old`,`kontrak_from_old`,`kontrak_until_old`,`monthly_pay_old`,terminate) VALUES"
                     For i = 0 To GVPPS.RowCount - 1
                         Dim id_kontrak_old As String = "0"
                         Dim kontrak_from_old As String = "NULL"
                         Dim kontrak_until_old As String = "NULL"
                         Dim monthly_pay_old As String = "'0'"
+                        Dim terminate As String = "2"
+
+                        If GVPPS.GetRowCellValue(i, "is_terminate").ToString = "yes" Then
+                            terminate = "1"
+                        End If
 
                         If GVPPS.GetRowCellValue(i, "id_kontrak_old").ToString = "0" Or GVPPS.GetRowCellValue(i, "id_kontrak_old").ToString = "" Then
                         Else
@@ -187,13 +202,17 @@ FROM tb_m_comp c "
                         If Not i = 0 Then
                             q += ","
                         End If
-                        q += "('" & id_pps & "','" & GVPPS.GetRowCellValue(i, "id_comp").ToString & "','" & GVPPS.GetRowCellValue(i, "id_kontrak_type").ToString & "','" & Date.Parse(GVPPS.GetRowCellValue(i, "kontrak_from").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPPS.GetRowCellValue(i, "kontrak_until").ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(Decimal.Parse(GVPPS.GetRowCellValue(i, "monthly_pay").ToString).ToString) & "'," & id_kontrak_old & "," & kontrak_from_old & "," & kontrak_until_old & "," & monthly_pay_old & ")"
+                        q += "('" & id_pps & "','" & GVPPS.GetRowCellValue(i, "id_comp").ToString & "','" & GVPPS.GetRowCellValue(i, "id_kontrak_type").ToString & "','" & Date.Parse(GVPPS.GetRowCellValue(i, "kontrak_from").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPPS.GetRowCellValue(i, "kontrak_until").ToString).ToString("yyyy-MM-dd") & "','" & decimalSQL(Decimal.Parse(GVPPS.GetRowCellValue(i, "monthly_pay").ToString).ToString) & "'," & id_kontrak_old & "," & kontrak_from_old & "," & kontrak_until_old & "," & monthly_pay_old & ",'" & terminate & "')"
                     Next
                     execute_non_query(q, True, "", "", "", "")
                     '
                     submit_who_prepared("398", id_pps, id_user)
                     '
-                    Close()
+                    FormRiderContract.XtraTabControl1.SelectedTabPageIndex = 1
+                    FormRiderContract.load_pps()
+                    FormRiderContract.load_contract()
+                    load_head()
+                    'Close()
                 Else 'edit
 
                 End If

@@ -395,6 +395,9 @@ AND ISNULL(att.id_prod_order)"
         FormDocumentUpload.id_report = id_ko
         FormDocumentUpload.report_mark_type = "252"
         FormDocumentUpload.ShowDialog()
+        If is_submit = "1" Then
+            FormDocumentUpload.is_view = "1"
+        End If
         Cursor = Cursors.Default
     End Sub
 

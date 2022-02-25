@@ -36,10 +36,22 @@
         FROM (
 	        SELECT ds.id_class_group,ds.id_design,ds.qty 
 	        FROM tb_display_stock ds
+            INNER JOIN (
+                SELECT MAX(ds.id_display_stock) AS `id_display_stock`, ds.id_design
+                FROM tb_display_stock ds
+                WHERE ds.is_active=1 AND ds.effective_date<='" + date_par + "'
+                GROUP BY ds.id_design
+            ) da ON da.id_display_stock = ds.id_display_stock
 	        WHERE ds.is_active=1 AND ds.in_store_date<='" + date_par + "' " + cond_par + "
 	        UNION ALL
 	        SELECT ds.id_class_group,ds.id_design,(ds.qty*-1)
 	        FROM tb_display_stock ds
+            INNER JOIN (
+                SELECT MAX(ds.id_display_stock) AS `id_display_stock`, ds.id_design
+                FROM tb_display_stock ds
+                WHERE ds.is_active=1 AND ds.effective_date<='" + date_par + "'
+                GROUP BY ds.id_design
+            ) da ON da.id_display_stock = ds.id_display_stock
 	        WHERE ds.is_active=1 AND ds.return_date<='" + date_par + "' " + cond_par + "
         ) ds
         GROUP BY ds.id_class_group "

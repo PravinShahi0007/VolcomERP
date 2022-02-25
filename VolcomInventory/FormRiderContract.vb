@@ -36,15 +36,17 @@
 ,IFNULL(ppsd.`monthly_pay`,0) AS monthly_pay
 FROM `tb_kontrak_rider` ppsd
 INNER JOIN tb_m_comp c ON c.`id_comp`=ppsd.`id_comp`
-WHERE ppsd.kontrak_from<='" & Date.Parse(DEContract.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND ppsd.kontrak_until>='" & Date.Parse(DEContract.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+WHERE ppsd.is_active=1 AND ppsd.kontrak_from<='" & Date.Parse(DEContract.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND ppsd.kontrak_until>='" & Date.Parse(DEContract.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCContractList.DataSource = dt
         GVContractList.BestFitColumns()
     End Sub
 
     Sub load_pps()
-        Dim q As String = "SELECT * FROM tb_kontrak_rider_pps pps
+        Dim q As String = "SELECT pps.id_kontrak_rider_pps,emp.employee_name,pps.number,pps.created_date,sts.report_status,IF(pps.id_type=1,'New/Extend','Changes') AS type FROM tb_kontrak_rider_pps pps
 INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=pps.`id_report_status`
+INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 ORDER BY pps.id_kontrak_rider_pps DESC"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCPPS.DataSource = dt

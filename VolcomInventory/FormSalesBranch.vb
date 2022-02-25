@@ -13,6 +13,9 @@
         If rmt = "256" Then
             XTPCN.PageVisible = True
         End If
+
+        DESync.EditValue = Date.Parse(execute_query("SELECT DATE(DATE_SUB(NOW(), INTERVAL 1 DAY)) ", 0, True, "", "", "", ""))
+        DESync.Properties.MaxValue = Date.Parse(execute_query("SELECT DATE(DATE_SUB(NOW(), INTERVAL 1 DAY)) ", 0, True, "", "", "", ""))
     End Sub
 
     Sub viewCoaTag()
@@ -69,6 +72,12 @@
                 bdel_active = "0"
                 noManipulating()
             End If
+        ElseIf XTCData.SelectedTabPageIndex = 2 Then
+            bnew_active = "1"
+            bedit_active = "0"
+            bdel_active = "0"
+            checkFormAccess(Name)
+            button_main(bnew_active, bedit_active, bdel_active)
         Else
             bnew_active = "0"
             bedit_active = "0"
@@ -168,5 +177,41 @@
             FormSalesBranchDet.ShowDialog()
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBSync_Click(sender As Object, e As EventArgs) Handles SBSync.Click
+        Dim is_sync As String = execute_query("SELECT IFNULL((SELECT COUNT(*) FROM tb_pos_sale WHERE DATE(pos_date) = '" + Date.Parse(DESync.EditValue.ToString).ToString("yyyy-MM-dd") + "'), 0) AS is_sync", 0, True, "", "", "", "")
+
+        If is_sync = "0" Then
+            Try
+                Dim class_pos As ClassApiPos = New ClassApiPos
+
+                class_pos.syncSale(Date.Parse(DESync.EditValue.ToString).ToString("yyyy-MM-dd"))
+            Catch ex As Exception
+                stopCustom("Connection error.")
+
+                Exit Sub
+            End Try
+
+            execute_non_query("INSERT INTO tb_sales_branch_sync (sync_date, created_at, created_by) VALUES ('" + Date.Parse(DESync.EditValue.ToString).ToString("yyyy-MM-dd") + "', NOW(), " + id_employee_user + ")", True, "", "", "", "")
+        Else
+            infoCustom("Data already sync, will load from database.")
+        End If
+
+        Dim data As DataTable = execute_query("
+            SELECT s.id_outlet, o.outlet_name, DATE(s.pos_date) AS `date`
+            FROM tb_pos_sale AS s
+            LEFT JOIN tb_outlet AS o ON s.id_outlet = o.id_outlet
+            WHERE DATE(s.pos_date) = '" + Date.Parse(DESync.EditValue.ToString).ToString("yyyy-MM-dd") + "' AND CONCAT(DATE(s.pos_date), '_', s.id_outlet) NOT IN (SELECT CONCAT(b.transaction_date, '_', IFNULL(d.id_outlet, '0')) AS s FROM tb_sales_branch AS b LEFT JOIN tb_coa_tag AS a ON b.id_coa_tag = a.id_coa_tag LEFT JOIN tb_m_departement AS d ON a.id_departement = d.id_departement WHERE b.id_report_status <> 5)
+            GROUP BY s.id_outlet, DATE(s.pos_date)
+        ", -1, True, "", "", "", "")
+
+        If data.Rows.Count = 0 Then
+            stopCustom("No sales for selected date or already created.")
+        Else
+            GCSync.DataSource = data
+
+            GVSync.BestFitColumns()
+        End If
     End Sub
 End Class

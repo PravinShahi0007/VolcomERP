@@ -9,6 +9,9 @@ Public Class FormSalesBranchDet
     Public id_memo_type As String = "1"
     Public id_sales_branch_ref As String = "-1"
 
+    Public outlet_id As String = ""
+    Public sale_date As String = ""
+
     Private Sub FormSalesBranchDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'general
         Dim menu_name As String = execute_query("SELECT report_mark_type_name FROM tb_lookup_report_mark_type WHERE report_mark_type='" + rmt + "' ", 0, True, "", "", "", "")
@@ -29,6 +32,10 @@ Public Class FormSalesBranchDet
         viewStores()
         viewCOA()
         actionLoad()
+
+        If Not outlet_id = "" And Not sale_date = "" Then
+            loadFromPOS()
+        End If
     End Sub
 
     Sub viewStores()
@@ -1015,5 +1022,87 @@ Public Class FormSalesBranchDet
 
     Private Sub DESalesDate_EditValueChanged(sender As Object, e As EventArgs) Handles DESalesDate.EditValueChanged
         load_kurs()
+    End Sub
+
+    Sub loadFromPOS()
+        Dim query_head As String = "
+            SELECT c.id_store_type, SUM(d.qty * d.price) AS amount
+            FROM tb_pos_sale_det AS d
+            LEFT JOIN tb_pos_sale AS s ON d.id_pos_sale = s.id_pos_sale
+            LEFT JOIN tb_m_comp AS c ON d.id_comp_sup = c.id_comp
+            WHERE DATE(s.pos_date) = '" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "'
+            GROUP BY c.id_store_type
+        "
+
+        Dim data_head As DataTable = execute_query(query_head, -1, True, "", "", "", "")
+
+        For i = 0 To data_head.Rows.Count - 1
+            If data_head.Rows(i)("id_store_type").ToString = "1" Then
+                TxtNormalSales.EditValue = data_head.Rows(i)("amount")
+            End If
+
+            If data_head.Rows(i)("id_store_type").ToString = "2" Then
+                TxtSaleSales.EditValue = data_head.Rows(i)("amount")
+            End If
+        Next
+
+        SLEUnit.EditValue = execute_query("SELECT t.id_coa_tag FROM tb_coa_tag AS t LEFT JOIN tb_m_departement AS d ON t.id_departement = d.id_departement WHERE d.id_outlet = " + outlet_id, 0, True, "", "", "", "")
+
+        DESalesDate.EditValue = Date.Parse(sale_date)
+
+        SLEStoreNormal.EditValue = execute_query("SELECT id_comp FROM tb_m_comp WHERE id_store_type = 1 AND id_outlet = " + outlet_id, 0, True, "", "", "", "")
+        SLEStoreSale.EditValue = execute_query("SELECT id_comp FROM tb_m_comp WHERE id_store_type = 2 AND id_outlet = " + outlet_id, 0, True, "", "", "", "")
+
+        Dim query_detail As String = "
+            -- CARD FULL
+            SELECT 0 AS id_sales_branch_det, 0 AS id_sales_branch, 0 AS id_sales_branch_ref_det, t.id_acc, a.acc_name AS coa_account, a.acc_description AS coa_description, 1 AS id_dc, 'D' AS dc_code, g.id_comp, CONCAT(t.card_name, ' - ', DATE_FORMAT('" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "', '%d/%m')) AS note, (s.card - (s.card * (IFNULL(t.discount, 0) / 100))) AS `value`, 0 AS `no`, c.comp_number, '' AS id_report, '' AS number, '' AS vendor, '' AS amount_limit
+            FROM tb_pos_sale AS s
+            LEFT JOIN tb_pos_card_type AS t ON s.id_card_type = t.id_card
+            LEFT JOIN tb_a_acc AS a ON t.id_acc = a.id_acc
+            LEFT JOIN tb_m_departement AS d ON s.id_outlet = d.id_outlet
+            LEFT JOIN tb_coa_tag AS g ON d.id_departement = g.id_departement
+            LEFT JOIN tb_m_comp AS c ON g.id_comp = c.id_comp
+            WHERE DATE(s.pos_date) = '" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "' AND s.id_outlet = 1 AND s.id_card_type <> 0
+            GROUP BY s.id_card_type
+
+            UNION ALL
+
+            -- CARD DISCOUNT
+            SELECT 0 AS id_sales_branch_det, 0 AS id_sales_branch, 0 AS id_sales_branch_ref_det, t.discount_acc AS id_acc, a.acc_name AS coa_account, a.acc_description AS coa_description, 1 AS id_dc, 'D' AS dc_code, g.id_comp, CONCAT('DISCOUNT ', t.card_name, ' - ', DATE_FORMAT('" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "', '%d/%m')) AS note, (s.card * (IFNULL(t.discount, 0) / 100)) AS `value`, 0 AS `no`, c.comp_number, '' AS id_report, '' AS number, '' AS vendor, '' AS amount_limit
+            FROM tb_pos_sale AS s
+            LEFT JOIN tb_pos_card_type AS t ON s.id_card_type = t.id_card
+            LEFT JOIN tb_a_acc AS a ON t.discount_acc = a.id_acc
+            LEFT JOIN tb_m_departement AS d ON s.id_outlet = d.id_outlet
+            LEFT JOIN tb_coa_tag AS g ON d.id_departement = g.id_departement
+            LEFT JOIN tb_m_comp AS c ON g.id_comp = c.id_comp
+            WHERE DATE(s.pos_date) = '" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "' AND s.id_outlet = 1 AND s.id_card_type <> 0
+            GROUP BY s.id_card_type
+
+            UNION ALL
+
+            -- CASH
+            SELECT 0 AS id_sales_branch_det, 0 AS id_sales_branch, 0 AS id_sales_branch_ref_det, 3541 AS id_acc, a.acc_name AS coa_account, a.acc_description AS coa_description, 1 AS id_dc, 'D' AS dc_code, g.id_comp, CONCAT('PENJUALAN TUNAI', ' - ', DATE_FORMAT('" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "', '%d/%m')) AS note, SUM(s.cash - s.change) AS `value`, 0 AS `no`, c.comp_number, '' AS id_report, '' AS number, '' AS vendor, '' AS amount_limit
+            FROM tb_pos_sale AS s
+            LEFT JOIN tb_a_acc AS a ON a.id_acc = 3541
+            LEFT JOIN tb_m_departement AS d ON s.id_outlet = d.id_outlet
+            LEFT JOIN tb_coa_tag AS g ON d.id_departement = g.id_departement
+            LEFT JOIN tb_m_comp AS c ON g.id_comp = c.id_comp
+            WHERE DATE(s.pos_date) = '" + Date.Parse(sale_date).ToString("yyyy-MM-dd") + "' AND s.id_outlet = 1
+        "
+
+        Dim data_detail As DataTable = execute_query(query_detail, -1, True, "", "", "", "")
+
+        GCData.DataSource = data_detail
+
+        GVData.BestFitColumns()
+
+        SLEUnit.ReadOnly = True
+        DESalesDate.ReadOnly = True
+        SLEStoreNormal.ReadOnly = True
+        TxtNormalSales.ReadOnly = True
+        SLEStoreSale.ReadOnly = True
+        TxtSaleSales.ReadOnly = True
+        BtnAdd.Enabled = False
+        BtnDelete.Enabled = False
     End Sub
 End Class
