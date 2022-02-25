@@ -11,7 +11,8 @@
         Dim q As String = "SELECT lo.*,emp.employee_name 
 FROM `tb_prod_order_eta_qc_log` lo
 INNER JOIN tb_m_user usr ON usr.id_user=lo.id_user
-INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee"
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE lo.id_prod_order='" & id_prod_order & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCLog.DataSource = dt
         GVLog.BestFitColumns()
@@ -27,7 +28,7 @@ INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee"
         qu = "UPDATE tb_prod_order SET manual_eta_date='" & Date.Parse(DEArrive.EditValue.ToString).ToString("yyyy-MM-dd") & "' WHERE id_prod_order='" & id_prod_order & "'"
         execute_non_query(qu, True, "", "", "", "")
         'insert log
-        qu = "INSERT INTO tb_prod_order_eta_qc_log(id_user,datetime,eta_date) VALUES('" & id_user & "',NOW(),'" & Date.Parse(DEArrive.EditValue.ToString).ToString("yyyy-MM-dd") & "')"
+        qu = "INSERT INTO tb_prod_order_eta_qc_log(id_user,datetime,eta_date,id_prod_order) VALUES('" & id_user & "',NOW(),'" & Date.Parse(DEArrive.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_prod_order & "')"
         execute_non_query(qu, True, "", "", "", "")
 
         view_eta_log()
