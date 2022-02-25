@@ -71,6 +71,8 @@ Partial Class FormProduction
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn76 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn102 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn103 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCFilterDate = New DevExpress.XtraEditors.PanelControl()
         Me.BReportView = New DevExpress.XtraEditors.SimpleButton()
         Me.PCSelAll = New DevExpress.XtraEditors.PanelControl()
@@ -302,7 +304,7 @@ Partial Class FormProduction
         Me.GridColumn93 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewAttachFGPO = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn102 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.UpdateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -433,19 +435,19 @@ Partial Class FormProduction
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewReceivingToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewReceivingToolStripMenuItem, Me.UpdateToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(154, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(246, 70)
         '
         'ViewReceivingToolStripMenuItem
         '
         Me.ViewReceivingToolStripMenuItem.Name = "ViewReceivingToolStripMenuItem"
-        Me.ViewReceivingToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
-        Me.ViewReceivingToolStripMenuItem.Text = "View Receiving"
+        Me.ViewReceivingToolStripMenuItem.Size = New System.Drawing.Size(245, 22)
+        Me.ViewReceivingToolStripMenuItem.Text = "View Receiving QC"
         '
         'GVProd
         '
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn54, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumn55, Me.GridColumn58, Me.GridColumn57, Me.GridColumn56, Me.GridColumnIdReportStatus, Me.GridColumn64, Me.GridColumn65, Me.GridColumn63, Me.GridColumn62, Me.GridColumnProdDate, Me.GridColumn53, Me.GridColumn52, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumn89, Me.GridColumnDesign, Me.GridColumn90, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnPLWHQty, Me.GridColumn42, Me.GridColumn41, Me.GridColumn43, Me.GridColumn45, Me.GridColumn44, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn4, Me.GridColumn77, Me.GridColumnDiff, Me.GridColumn27, Me.GridColumn30, Me.GridColumn76, Me.GridColumn102})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn54, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumn55, Me.GridColumn58, Me.GridColumn57, Me.GridColumn56, Me.GridColumnIdReportStatus, Me.GridColumn64, Me.GridColumn65, Me.GridColumn63, Me.GridColumn62, Me.GridColumnProdDate, Me.GridColumn53, Me.GridColumn52, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumn89, Me.GridColumnDesign, Me.GridColumn90, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnPLWHQty, Me.GridColumn42, Me.GridColumn41, Me.GridColumn43, Me.GridColumn45, Me.GridColumn44, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn4, Me.GridColumn77, Me.GridColumnDiff, Me.GridColumn27, Me.GridColumn30, Me.GridColumn76, Me.GridColumn102, Me.GridColumn103})
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.GroupCount = 2
         Me.GVProd.Name = "GVProd"
@@ -503,7 +505,7 @@ Partial Class FormProduction
         Me.GridColumnReportStatus.Name = "GridColumnReportStatus"
         Me.GridColumnReportStatus.OptionsColumn.AllowEdit = False
         Me.GridColumnReportStatus.Visible = True
-        Me.GridColumnReportStatus.VisibleIndex = 16
+        Me.GridColumnReportStatus.VisibleIndex = 17
         Me.GridColumnReportStatus.Width = 106
         '
         'GridColumn55
@@ -565,7 +567,7 @@ Partial Class FormProduction
         Me.GridColumn63.FieldName = "prod_order_rec_date"
         Me.GridColumn63.Name = "GridColumn63"
         Me.GridColumn63.Visible = True
-        Me.GridColumn63.VisibleIndex = 14
+        Me.GridColumn63.VisibleIndex = 15
         '
         'GridColumn62
         '
@@ -575,7 +577,7 @@ Partial Class FormProduction
         Me.GridColumn62.FieldName = "pl_prod_order_date"
         Me.GridColumn62.Name = "GridColumn62"
         Me.GridColumn62.Visible = True
-        Me.GridColumn62.VisibleIndex = 15
+        Me.GridColumn62.VisibleIndex = 16
         '
         'GridColumnProdDate
         '
@@ -646,7 +648,7 @@ Partial Class FormProduction
         Me.GridColumnDesignCOP.Name = "GridColumnDesignCOP"
         Me.GridColumnDesignCOP.OptionsColumn.AllowEdit = False
         Me.GridColumnDesignCOP.Visible = True
-        Me.GridColumnDesignCOP.VisibleIndex = 26
+        Me.GridColumnDesignCOP.VisibleIndex = 27
         '
         'GridColumn89
         '
@@ -705,7 +707,7 @@ Partial Class FormProduction
         Me.GridColumnOrderQty.Name = "GridColumnOrderQty"
         Me.GridColumnOrderQty.OptionsColumn.AllowEdit = False
         Me.GridColumnOrderQty.Visible = True
-        Me.GridColumnOrderQty.VisibleIndex = 17
+        Me.GridColumnOrderQty.VisibleIndex = 18
         Me.GridColumnOrderQty.Width = 89
         '
         'GridColumnRecQty
@@ -721,7 +723,7 @@ Partial Class FormProduction
         Me.GridColumnRecQty.Name = "GridColumnRecQty"
         Me.GridColumnRecQty.OptionsColumn.AllowEdit = False
         Me.GridColumnRecQty.Visible = True
-        Me.GridColumnRecQty.VisibleIndex = 18
+        Me.GridColumnRecQty.VisibleIndex = 19
         Me.GridColumnRecQty.Width = 96
         '
         'GridColumnPLWHQty
@@ -737,7 +739,7 @@ Partial Class FormProduction
         Me.GridColumnPLWHQty.Name = "GridColumnPLWHQty"
         Me.GridColumnPLWHQty.OptionsColumn.AllowEdit = False
         Me.GridColumnPLWHQty.Visible = True
-        Me.GridColumnPLWHQty.VisibleIndex = 24
+        Me.GridColumnPLWHQty.VisibleIndex = 25
         Me.GridColumnPLWHQty.Width = 85
         '
         'GridColumn42
@@ -753,7 +755,7 @@ Partial Class FormProduction
         Me.GridColumn42.Name = "GridColumn42"
         Me.GridColumn42.OptionsColumn.AllowEdit = False
         Me.GridColumn42.Visible = True
-        Me.GridColumn42.VisibleIndex = 20
+        Me.GridColumn42.VisibleIndex = 21
         '
         'GridColumn41
         '
@@ -768,7 +770,7 @@ Partial Class FormProduction
         Me.GridColumn41.Name = "GridColumn41"
         Me.GridColumn41.OptionsColumn.AllowEdit = False
         Me.GridColumn41.Visible = True
-        Me.GridColumn41.VisibleIndex = 21
+        Me.GridColumn41.VisibleIndex = 22
         '
         'GridColumn43
         '
@@ -783,7 +785,7 @@ Partial Class FormProduction
         Me.GridColumn43.Name = "GridColumn43"
         Me.GridColumn43.OptionsColumn.AllowEdit = False
         Me.GridColumn43.Visible = True
-        Me.GridColumn43.VisibleIndex = 22
+        Me.GridColumn43.VisibleIndex = 23
         '
         'GridColumn45
         '
@@ -795,7 +797,7 @@ Partial Class FormProduction
         Me.GridColumn45.UnboundExpression = "[qty_ret_out] - [qty_ret_in] - [qty_ret_claim]"
         Me.GridColumn45.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 23
+        Me.GridColumn45.VisibleIndex = 24
         '
         'GridColumn44
         '
@@ -813,7 +815,7 @@ Partial Class FormProduction
         Me.GridColumn44.UnboundExpression = "[qty_rec] - [qty_ret_out] + [qty_ret_in] - [qty_plwh]"
         Me.GridColumn44.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumn44.Visible = True
-        Me.GridColumn44.VisibleIndex = 25
+        Me.GridColumn44.VisibleIndex = 26
         '
         'GridColumnIdPO
         '
@@ -887,7 +889,7 @@ Partial Class FormProduction
         Me.GridColumnDiff.UnboundExpression = "[qty_rec] - [qty_order]"
         Me.GridColumnDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumnDiff.Visible = True
-        Me.GridColumnDiff.VisibleIndex = 19
+        Me.GridColumnDiff.VisibleIndex = 20
         '
         'GridColumn27
         '
@@ -896,7 +898,7 @@ Partial Class FormProduction
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.OptionsColumn.AllowEdit = False
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 27
+        Me.GridColumn27.VisibleIndex = 28
         '
         'GridColumn30
         '
@@ -905,7 +907,7 @@ Partial Class FormProduction
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.OptionsColumn.AllowEdit = False
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 28
+        Me.GridColumn30.VisibleIndex = 29
         '
         'GridColumn76
         '
@@ -915,7 +917,25 @@ Partial Class FormProduction
         Me.GridColumn76.FieldName = "sample_proto_2"
         Me.GridColumn76.Name = "GridColumn76"
         Me.GridColumn76.Visible = True
-        Me.GridColumn76.VisibleIndex = 29
+        Me.GridColumn76.VisibleIndex = 30
+        '
+        'GridColumn102
+        '
+        Me.GridColumn102.Caption = "FOB Price"
+        Me.GridColumn102.DisplayFormat.FormatString = "N4"
+        Me.GridColumn102.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn102.FieldName = "fob_price"
+        Me.GridColumn102.Name = "GridColumn102"
+        '
+        'GridColumn103
+        '
+        Me.GridColumn103.Caption = "Manual Update Est Rec QC"
+        Me.GridColumn103.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn103.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn103.FieldName = "manual_eta_date"
+        Me.GridColumn103.Name = "GridColumn103"
+        Me.GridColumn103.Visible = True
+        Me.GridColumn103.VisibleIndex = 14
         '
         'PCFilterDate
         '
@@ -3062,13 +3082,11 @@ Partial Class FormProduction
         Me.BViewAttachFGPO.TabIndex = 8903
         Me.BViewAttachFGPO.Text = "Search"
         '
-        'GridColumn102
+        'UpdateToolStripMenuItem
         '
-        Me.GridColumn102.Caption = "FOB Price"
-        Me.GridColumn102.DisplayFormat.FormatString = "N4"
-        Me.GridColumn102.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn102.FieldName = "fob_price"
-        Me.GridColumn102.Name = "GridColumn102"
+        Me.UpdateToolStripMenuItem.Name = "UpdateToolStripMenuItem"
+        Me.UpdateToolStripMenuItem.Size = New System.Drawing.Size(245, 22)
+        Me.UpdateToolStripMenuItem.Text = "Update Manual Estimate Rec QC"
         '
         'FormProduction
         '
@@ -3471,4 +3489,6 @@ Partial Class FormProduction
     Friend WithEvents BCreatePO As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn101 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn102 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn103 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents UpdateToolStripMenuItem As ToolStripMenuItem
 End Class

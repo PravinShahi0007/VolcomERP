@@ -910,4 +910,11 @@ LEFT JOIN (
             FormProductionAttach.ShowDialog()
         End If
     End Sub
+
+    Private Sub UpdateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateToolStripMenuItem.Click
+        If GVProd.RowCount > 0 Then
+            FormProductionManualETA.id_prod_order = GVFGPOPPS.GetFocusedRowCellValue("id_prod_order").ToString
+            FormProductionManualETA.ShowDialog()
+        End If
+    End Sub
 End Class
