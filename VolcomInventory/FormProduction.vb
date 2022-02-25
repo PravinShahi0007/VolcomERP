@@ -198,7 +198,7 @@ Public Class FormProduction
         query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit,maxd.employee_name as last_mark,cd.color AS color,CONCAT(cd.class,' ',d.design_name) AS class_dsg "
         query += ",py.payment,DATE_ADD(wo.prod_order_wo_del_date,INTERVAL prod_order_wo_lead_time DAY) AS est_del_date,IF(ISNULL(ko.lead_time_prod),NULL,DATE_ADD(wo.prod_order_wo_del_date,INTERVAL ko.lead_time_prod DAY)) AS est_del_date_ko,wo.prod_order_wo_lead_time AS lead_time,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL (wo.prod_order_wo_lead_time+wo.prod_order_wo_top) DAY) AS payment_due_date,prod_order_wo_top AS lead_time_pay "
         query += ",wo_price.prod_order_wo_vat as vat,wo_price.wo_price AS po_amount_rp,wo_price.wo_price_no_kurs AS po_amount,wo_price.currency as po_curr,wo_price.prod_order_wo_kurs AS po_kurs,IFNULL(SUM(pod.prod_order_qty),0)*(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_amount,(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_unit "
-        query += ",IF(ISNULL(kp.sample_proto_2),a.sample_proto_2,kp.sample_proto_2) AS sample_proto_2,cd.class,cd.color "
+        query += ",IF(ISNULL(kp.sample_proto_2),a.sample_proto_2,kp.sample_proto_2) AS sample_proto_2,cd.class,cd.color,a.manual_eta_date "
         query += "FROM tb_prod_order a "
         query += "INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order "
         query += "INNER JOIN tb_prod_demand_design b On a.id_prod_demand_design = b.id_prod_demand_design "
@@ -908,6 +908,13 @@ LEFT JOIN (
         If GVFGPOPPS.RowCount > 0 Then
             FormProductionAttach.id = GVFGPOPPS.GetFocusedRowCellValue("id_prod_order_attach").ToString
             FormProductionAttach.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub UpdateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateToolStripMenuItem.Click
+        If GVProd.RowCount > 0 Then
+            FormProductionManualETA.id_prod_order = GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+            FormProductionManualETA.ShowDialog()
         End If
     End Sub
 End Class
