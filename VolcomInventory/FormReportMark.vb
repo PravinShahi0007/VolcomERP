@@ -10219,7 +10219,7 @@ WHERE psd.id_asset_dep_pps='" & id_report & "'"
 
                 'main journal
                 Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status,date_reference) 
-                VALUES ('','" + report_number + "','0','" + id_user + "', NOW(), 'Auto Posting', '6', (SELECT reff_date FROM tb_asset_dep_pps WHERE id_asset_dep_pps='" & id_report & "')); SELECT LAST_INSERT_ID(); "
+                VALUES ('','" + report_number + "','0','" + id_user + "', NOW(), 'Auto Posting', '6', (SELECT posting_reff_date FROM tb_asset_dep_pps WHERE id_asset_dep_pps='" & id_report & "')); SELECT LAST_INSERT_ID(); "
                 Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
 
