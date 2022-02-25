@@ -2,6 +2,7 @@
     Public id_prod_order As String = "-1"
     Private Sub FormProductionManualETA_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEArrive.Properties.MinValue = Now
+        DEArrive.EditValue = Now
     End Sub
 
     Sub view_eta_log()
