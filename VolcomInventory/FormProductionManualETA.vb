@@ -3,6 +3,8 @@
     Private Sub FormProductionManualETA_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEArrive.Properties.MinValue = Now
         DEArrive.EditValue = Now
+
+        view_eta_log()
     End Sub
 
     Sub view_eta_log()
