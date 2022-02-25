@@ -29,5 +29,17 @@ INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee"
         execute_non_query(qu, True, "", "", "", "")
 
         view_eta_log()
+
+        Dim qid_design As String = "SELECT pdd.id_design
+FROM tb_prod_order po
+INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
+WHERE po.id_prod_order='" & id_prod_order & "'"
+        Dim dt As DataTable = execute_query(qid_design, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            Dim now_date As String = DateTime.Parse(getTimeDB.ToString).ToString("yyyy-MM-dd")
+
+            Dim s As New ClassDesign
+            s.insertLogLineList("400", "0", False, id_user, id_user, "-", now_date, dt.Rows(0)("id_design").ToString, "Update Manual Estimate Receiving QC")
+        End If
     End Sub
 End Class

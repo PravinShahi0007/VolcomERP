@@ -73,7 +73,7 @@ Partial Class FormProductionManualETA
         Me.DEArrive.Name = "DEArrive"
         Me.DEArrive.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEArrive.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEArrive.Properties.DisplayFormat.FormatString = "dd'/'MM'/'yyyy"
+        Me.DEArrive.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEArrive.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEArrive.Size = New System.Drawing.Size(253, 20)
         Me.DEArrive.TabIndex = 167
@@ -96,7 +96,6 @@ Partial Class FormProductionManualETA
         Me.BRefresh.Size = New System.Drawing.Size(846, 34)
         Me.BRefresh.TabIndex = 92
         Me.BRefresh.Text = "Refresh"
-        Me.BRefresh.Visible = False
         '
         'GCLog
         '
@@ -133,6 +132,8 @@ Partial Class FormProductionManualETA
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Input Datetime"
+        Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy H:mm"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn3.FieldName = "datetime"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
@@ -141,6 +142,8 @@ Partial Class FormProductionManualETA
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Tanggal Estimasi"
+        Me.GridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn4.FieldName = "eta_date"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
@@ -159,7 +162,7 @@ Partial Class FormProductionManualETA
         Me.MinimizeBox = False
         Me.Name = "FormProductionManualETA"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Input Manual Estimasi Receiving QC"
+        Me.Text = "Update Manual Estimate Receiving QC"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
