@@ -238,6 +238,9 @@
     Sub view_cool_storage()
         Dim query As String = "SELECT id_cool_storage, cool_storage FROM tb_lookup_cool_storage ORDER BY id_cool_storage DESC "
         viewSearchLookupQuery(SLUECoolStorage, query, "id_cool_storage", "cool_storage", "id_cool_storage")
+        If id_design = "-1" Then
+            SLUECoolStorage.EditValue = Nothing
+        End If
     End Sub
 
     Sub load_isi_param(ByVal id_type As String)
@@ -1222,7 +1225,7 @@
             DEInStoreDet.Enabled = False
             BtnAddRetCode.Enabled = False
             SLELinePlan.Enabled = False
-            SLUECoolStorage.Enabled = False
+            SLUECoolStorage.Enabled = True
 
             'comment
             PanelControlComment.Visible = True
@@ -1653,6 +1656,12 @@
                 stopCustom("Design name maximum 17 character")
                 Exit Sub
             End If
+        End If
+
+        'cek cool storage
+        If SLUECoolStorage.EditValue = Nothing Then
+            stopCustom("Please input storage type")
+            Exit Sub
         End If
 
         Cursor = Cursors.WaitCursor

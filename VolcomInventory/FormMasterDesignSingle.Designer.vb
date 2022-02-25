@@ -118,6 +118,8 @@ Partial Class FormMasterDesignSingle
         Me.GridView10 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnseason_orign_display = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncountry_display_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelDel = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelDelDate = New DevExpress.XtraEditors.LabelControl()
@@ -296,8 +298,6 @@ Partial Class FormMasterDesignSingle
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
         Me.EPChanges = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumnseason_orign_display = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumncountry_display_name = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RILEValNon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1095,7 +1095,7 @@ Partial Class FormMasterDesignSingle
         Me.SLUECoolStorage.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.SLUECoolStorage.Name = "SLUECoolStorage"
         Me.SLUECoolStorage.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLUECoolStorage.Properties.NullText = ""
+        Me.SLUECoolStorage.Properties.NullText = "- Select Storage Type -"
         Me.SLUECoolStorage.Properties.ShowClearButton = False
         Me.SLUECoolStorage.Properties.ShowFooter = False
         Me.SLUECoolStorage.Properties.View = Me.GridView17
@@ -1130,9 +1130,9 @@ Partial Class FormMasterDesignSingle
         Me.LCoolStorage.Location = New System.Drawing.Point(10, 651)
         Me.LCoolStorage.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LCoolStorage.Name = "LCoolStorage"
-        Me.LCoolStorage.Size = New System.Drawing.Size(62, 13)
+        Me.LCoolStorage.Size = New System.Drawing.Size(65, 13)
         Me.LCoolStorage.TabIndex = 141
-        Me.LCoolStorage.Text = "Cool Storage"
+        Me.LCoolStorage.Text = "Storage Type"
         '
         'LabelControlUpdateName
         '
@@ -1421,6 +1421,22 @@ Partial Class FormMasterDesignSingle
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
         Me.GridColumn27.VisibleIndex = 0
+        '
+        'GridColumnseason_orign_display
+        '
+        Me.GridColumnseason_orign_display.Caption = "Season Display"
+        Me.GridColumnseason_orign_display.FieldName = "season_orign_display"
+        Me.GridColumnseason_orign_display.Name = "GridColumnseason_orign_display"
+        Me.GridColumnseason_orign_display.Visible = True
+        Me.GridColumnseason_orign_display.VisibleIndex = 1
+        '
+        'GridColumncountry_display_name
+        '
+        Me.GridColumncountry_display_name.Caption = "Country"
+        Me.GridColumncountry_display_name.FieldName = "country_display_name"
+        Me.GridColumncountry_display_name.Name = "GridColumncountry_display_name"
+        Me.GridColumncountry_display_name.Visible = True
+        Me.GridColumncountry_display_name.VisibleIndex = 2
         '
         'LabelDel
         '
@@ -3158,22 +3174,6 @@ Partial Class FormMasterDesignSingle
         Me.EPChanges.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EPChanges.ContainerControl = Me
         Me.EPChanges.Icon = CType(resources.GetObject("EPChanges.Icon"), System.Drawing.Icon)
-        '
-        'GridColumnseason_orign_display
-        '
-        Me.GridColumnseason_orign_display.Caption = "Season Display"
-        Me.GridColumnseason_orign_display.FieldName = "season_orign_display"
-        Me.GridColumnseason_orign_display.Name = "GridColumnseason_orign_display"
-        Me.GridColumnseason_orign_display.Visible = True
-        Me.GridColumnseason_orign_display.VisibleIndex = 1
-        '
-        'GridColumncountry_display_name
-        '
-        Me.GridColumncountry_display_name.Caption = "Country"
-        Me.GridColumncountry_display_name.FieldName = "country_display_name"
-        Me.GridColumncountry_display_name.Name = "GridColumncountry_display_name"
-        Me.GridColumncountry_display_name.Visible = True
-        Me.GridColumncountry_display_name.VisibleIndex = 2
         '
         'FormMasterDesignSingle
         '
