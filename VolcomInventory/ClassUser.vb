@@ -74,7 +74,7 @@ Public Class ClassUser
         End If
 
         Dim query As String = ""
-        query += "SELECT l.id_user, e.id_employee, e.employee_code, e.employee_name, e.employee_position,l.ip_address,l.version_number, l.`time`, 
+        query += "SELECT l.id_user, u.username, e.id_employee, e.employee_code, e.employee_name, e.employee_position,l.ip_address,l.version_number, l.`time`, 
         l.`type`, IF(l.`type`=1,'Login', 'Logout') AS `type_display`
         FROM tb_log_login l
         INNER JOIN tb_m_user u ON l.id_user = u.id_user

@@ -72,13 +72,15 @@ Partial Class FormAccountingLedger
         Me.GridColumncomp_group = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
-        Me.BSearchVoucher = New DevExpress.XtraEditors.SimpleButton()
-        Me.BExportRaw = New DevExpress.XtraEditors.SimpleButton()
         Me.SLUECC = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.BSearchVoucher = New DevExpress.XtraEditors.SimpleButton()
+        Me.BExportRaw = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SLEUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUETo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -367,7 +369,7 @@ Partial Class FormAccountingLedger
         Me.GVAccountingLedger.AppearancePrint.Row.Options.UseBackColor = True
         Me.GVAccountingLedger.AppearancePrint.Row.Options.UseBorderColor = True
         Me.GVAccountingLedger.AppearancePrint.Row.Options.UseFont = True
-        Me.GVAccountingLedger.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn24, Me.GridColumn20, Me.GridColumn19, Me.GridColumn18, Me.GridColumn17, Me.GridColumn30, Me.GridColumn28, Me.GridColumn16, Me.GridColumn23, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn22, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn21, Me.GridColumncomp_group, Me.GridColumn29})
+        Me.GVAccountingLedger.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn24, Me.GridColumn20, Me.GridColumn19, Me.GridColumn18, Me.GridColumn17, Me.GridColumn30, Me.GridColumn28, Me.GridColumn16, Me.GridColumn23, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn22, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn21, Me.GridColumncomp_group, Me.GridColumn29, Me.GridColumn33, Me.GridColumn34})
         Me.GVAccountingLedger.GridControl = Me.GCAccountingLedger
         Me.GVAccountingLedger.GroupCount = 3
         Me.GVAccountingLedger.GroupFormat = "[#image]{1} {2}"
@@ -580,22 +582,6 @@ Partial Class FormAccountingLedger
         Me.XtraScrollableControl1.Size = New System.Drawing.Size(1259, 69)
         Me.XtraScrollableControl1.TabIndex = 4
         '
-        'BSearchVoucher
-        '
-        Me.BSearchVoucher.Location = New System.Drawing.Point(1404, 11)
-        Me.BSearchVoucher.Name = "BSearchVoucher"
-        Me.BSearchVoucher.Size = New System.Drawing.Size(100, 23)
-        Me.BSearchVoucher.TabIndex = 12
-        Me.BSearchVoucher.Text = "Search by number"
-        '
-        'BExportRaw
-        '
-        Me.BExportRaw.Location = New System.Drawing.Point(1295, 11)
-        Me.BExportRaw.Name = "BExportRaw"
-        Me.BExportRaw.Size = New System.Drawing.Size(103, 23)
-        Me.BExportRaw.TabIndex = 11
-        Me.BExportRaw.Text = "Export to Excel"
-        '
         'SLUECC
         '
         Me.SLUECC.Location = New System.Drawing.Point(220, 13)
@@ -638,6 +624,34 @@ Partial Class FormAccountingLedger
         Me.LabelControl6.Size = New System.Drawing.Size(14, 13)
         Me.LabelControl6.TabIndex = 13
         Me.LabelControl6.Text = "CC"
+        '
+        'BSearchVoucher
+        '
+        Me.BSearchVoucher.Location = New System.Drawing.Point(1404, 11)
+        Me.BSearchVoucher.Name = "BSearchVoucher"
+        Me.BSearchVoucher.Size = New System.Drawing.Size(100, 23)
+        Me.BSearchVoucher.TabIndex = 12
+        Me.BSearchVoucher.Text = "Search by number"
+        '
+        'BExportRaw
+        '
+        Me.BExportRaw.Location = New System.Drawing.Point(1295, 11)
+        Me.BExportRaw.Name = "BExportRaw"
+        Me.BExportRaw.Size = New System.Drawing.Size(103, 23)
+        Me.BExportRaw.TabIndex = 11
+        Me.BExportRaw.Text = "Export to Excel"
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Debit Valas"
+        Me.GridColumn33.FieldName = "debit_valas"
+        Me.GridColumn33.Name = "GridColumn33"
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Credit Valas"
+        Me.GridColumn34.FieldName = "credit_valas"
+        Me.GridColumn34.Name = "GridColumn34"
         '
         'FormAccountingLedger
         '
@@ -730,4 +744,6 @@ Partial Class FormAccountingLedger
     Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
