@@ -562,7 +562,7 @@ LEFT JOIN (
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
-        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading Failed Order")
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading Failed/Cancelled Order")
         Dim query As String = "SELECT f.id_payout_zalora_close_fail,f.id_sales_order_det, sod.item_id, sod.ol_store_id, so.sales_order_ol_shop_number AS `order_number`, 
         so.sales_order_ol_shop_date AS `order_date`, so.customer_name,
         f.id_sales_pos_det, sp.sales_pos_number, sp.sales_pos_date, f.report_mark_type, f.amount, f.id_sales_return_det, r.sales_return_number, r.sales_return_date
