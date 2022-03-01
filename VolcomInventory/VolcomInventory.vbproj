@@ -4323,6 +4323,12 @@
     <Compile Include="FormProductionKP.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionManualETA.Designer.vb">
+      <DependentUpon>FormProductionManualETA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionManualETA.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionMRSPickPO.Designer.vb">
       <DependentUpon>FormProductionMRSPickPO.vb</DependentUpon>
     </Compile>
@@ -12844,6 +12850,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionKP.resx">
       <DependentUpon>FormProductionKP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionManualETA.resx">
+      <DependentUpon>FormProductionManualETA.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionMRSPickPO.resx">
       <DependentUpon>FormProductionMRSPickPO.vb</DependentUpon>

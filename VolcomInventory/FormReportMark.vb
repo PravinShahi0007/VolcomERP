@@ -3158,6 +3158,31 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
             Else
                 'code here
             End If
+
+            If id_status_reportx = "6" Then
+                'sync return to pos
+                Dim sync_status As String = "1"
+                Dim sync_message As String = ""
+
+                Try
+                    Dim id_outlet As String = execute_query("SELECT IFNULL(c.id_outlet, 0) AS id_outlet FROM tb_sales_return_order AS r LEFT JOIN tb_m_comp_contact AS t ON r.id_store_contact_to = t.id_comp_contact LEFT JOIN tb_m_comp AS c ON t.id_comp = c.id_comp WHERE r.id_sales_return_order = '" + id_report + "'", 0, True, "", "", "", "")
+
+                    If Not id_outlet = "0" Then
+                        Dim list_id As List(Of String) = New List(Of String)
+
+                        list_id.Add(id_report)
+
+                        Dim classSync As ClassApiPos = New ClassApiPos
+
+                        classSync.syncReturnOrder(list_id)
+                    End If
+                Catch ex As Exception
+                    sync_status = "2"
+                    sync_message = ex.ToString
+                End Try
+
+                execute_non_query("INSERT INTO tb_pos_sync (sync_type, sync_status, message, created_at) VALUES ('Return: Report Mark Type (45)', " + sync_status + ", '" + addSlashes(sync_message) + "', NOW())", True, "", "", "", "")
+            End If
         ElseIf report_mark_type = "46" Or report_mark_type = "111" Or report_mark_type = "113" Or report_mark_type = "120" Then
             'SALES RETURN
             If id_status_reportx = "3" And report_mark_type = "111" Then
@@ -3971,6 +3996,31 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                     End Try
                 End If
 
+                'sync price to pos
+                Dim sync_status As String = "1"
+                Dim sync_message As String = ""
+
+                Try
+                    Dim design_table As DataTable = execute_query("SELECT d.id_design FROM tb_fg_propose_price_detail AS d LEFT JOIN tb_fg_propose_price AS a ON d.id_fg_propose_price = a.id_fg_propose_price WHERE d.id_fg_propose_price = '" + id_report + "'", -1, True, "", "", "", "")
+
+                    Dim list_id As List(Of String) = New List(Of String)
+
+                    For i = 0 To design_table.Rows.Count - 1
+                        list_id.Add(design_table.Rows(i)("id_design").ToString)
+                    Next
+
+                    Dim date_now As String = execute_query("SELECT DATE(NOW()) AS date_now", 0, True, "", "", "", "")
+
+                    Dim classSync As ClassApiPos = New ClassApiPos
+
+                    classSync.syncDesignPrice(list_id, Date.Parse(date_now).ToString("yyyy-MM-dd"))
+                Catch ex As Exception
+                    sync_status = "2"
+                    sync_message = ex.ToString
+                End Try
+
+                execute_non_query("INSERT INTO tb_pos_sync (sync_type, sync_status, message, created_at) VALUES ('Price: Report Mark Type (70)', " + sync_status + ", '" + addSlashes(sync_message) + "', NOW())", True, "", "", "", "")
+
                 'log perubahan line list
                 Dim cd As New ClassDesign()
                 cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
@@ -4278,6 +4328,29 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 Catch ex As Exception
                     stopCustom(ex.ToString)
                 End Try
+
+                'sync price to pos
+                Dim sync_status As String = "1"
+                Dim sync_message As String = ""
+
+                Try
+                    Dim design_table As DataTable = execute_query("SELECT d.id_design, IF(p.fg_effective_date = '0000-00-00', DATE(NOW()), p.fg_effective_date) AS fg_effective_date FROM tb_fg_price_det AS d LEFT JOIN tb_fg_price AS p ON d.id_fg_price = p.id_fg_price WHERE d.id_fg_price = '" + id_report + "'", -1, True, "", "", "", "")
+
+                    Dim list_id As List(Of String) = New List(Of String)
+
+                    For i = 0 To design_table.Rows.Count - 1
+                        list_id.Add(design_table.Rows(i)("id_design").ToString)
+                    Next
+
+                    Dim classSync As ClassApiPos = New ClassApiPos
+
+                    classSync.syncDesignPrice(list_id, Date.Parse(design_table.Rows(0)("fg_effective_date").ToString).ToString("yyyy-MM-dd"))
+                Catch ex As Exception
+                    sync_status = "2"
+                    sync_message = ex.ToString
+                End Try
+
+                execute_non_query("INSERT INTO tb_pos_sync (sync_type, sync_status, message, created_at) VALUES ('Price: Report Mark Type (82)', " + sync_status + ", '" + addSlashes(sync_message) + "', NOW())", True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_fg_price SET id_report_status='{0}' WHERE id_fg_price ='{1}'", id_status_reportx, id_report)
@@ -8341,6 +8414,31 @@ WHERE prcd.id_fg_propose_price_rev=" + id_report + " AND !ISNULL(id_design_price
                     FormFGProposePrice.viewRevision()
                     FormFGProposePrice.GVRev.FocusedRowHandle = find_row(FormFGProposePrice.GVRev, "id_fg_propose_price_rev", id_report)
                 End If
+
+                'sync price to pos
+                Dim sync_status As String = "1"
+                Dim sync_message As String = ""
+
+                Try
+                    Dim design_table As DataTable = execute_query("SELECT id_design FROM tb_fg_propose_price_rev_det WHERE id_fg_propose_price_rev = '" + id_report + "'", -1, True, "", "", "", "")
+
+                    Dim list_id As List(Of String) = New List(Of String)
+
+                    For i = 0 To design_table.Rows.Count - 1
+                        list_id.Add(design_table.Rows(i)("id_design").ToString)
+                    Next
+
+                    Dim date_now As String = execute_query("SELECT DATE(NOW()) AS date_now", 0, True, "", "", "", "")
+
+                    Dim classSync As ClassApiPos = New ClassApiPos
+
+                    classSync.syncDesignPrice(list_id, Date.Parse(date_now).ToString("yyyy-MM-dd"))
+                Catch ex As Exception
+                    sync_status = "2"
+                    sync_message = ex.ToString
+                End Try
+
+                execute_non_query("INSERT INTO tb_pos_sync (sync_type, sync_status, message, created_at) VALUES ('Price: Report Mark Type (188)', " + sync_status + ", '" + addSlashes(sync_message) + "', NOW())", True, "", "", "", "")
             End If
         ElseIf report_mark_type = "189" Then
             'Invoice FGPO
@@ -10219,7 +10317,7 @@ WHERE psd.id_asset_dep_pps='" & id_report & "'"
 
                 'main journal
                 Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status,date_reference) 
-                VALUES ('','" + report_number + "','0','" + id_user + "', NOW(), 'Auto Posting', '6', (SELECT reff_date FROM tb_asset_dep_pps WHERE id_asset_dep_pps='" & id_report & "')); SELECT LAST_INSERT_ID(); "
+                VALUES ('','" + report_number + "','0','" + id_user + "', NOW(), 'Auto Posting', '6', (SELECT posting_reff_date FROM tb_asset_dep_pps WHERE id_asset_dep_pps='" & id_report & "')); SELECT LAST_INSERT_ID(); "
                 Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id_acc_trans + ",36)", True, "", "", "", "")
 
@@ -10626,6 +10724,29 @@ WHERE pps.id_product_weight_pps='" & id_report & "'"
                 '    Next
                 '    FormMain.SplashScreenManager1.CloseWaitForm()
                 'End If
+
+                'sync price to pos
+                Dim sync_status As String = "1"
+                Dim sync_message As String = ""
+
+                Try
+                    Dim design_table As DataTable = execute_query("SELECT d.id_design, p.effective_date FROM tb_pp_change_det AS d LEFT JOIN tb_pp_change AS p ON d.id_pp_change = p.id_pp_change WHERE d.id_pp_change = '" + id_report + "' AND d.propose_price_final IS NOT NULL AND d.propose_price_final > 0", -1, True, "", "", "", "")
+
+                    Dim list_id As List(Of String) = New List(Of String)
+
+                    For i = 0 To design_table.Rows.Count - 1
+                        list_id.Add(design_table.Rows(i)("id_design").ToString)
+                    Next
+
+                    Dim classSync As ClassApiPos = New ClassApiPos
+
+                    classSync.syncDesignPrice(list_id, Date.Parse(design_table.Rows(0)("effective_date").ToString).ToString("yyyy-MM-dd"))
+                Catch ex As Exception
+                    sync_status = "2"
+                    sync_message = ex.ToString
+                End Try
+
+                execute_non_query("INSERT INTO tb_pos_sync (sync_type, sync_status, message, created_at) VALUES ('Price: Report Mark Type (306)', " + sync_status + ", '" + addSlashes(sync_message) + "', NOW())", True, "", "", "", "")
             End If
 
             'update status
@@ -11342,6 +11463,29 @@ WHERE ppsd.id_pib_pps='" & id_report & "'"
                 FROM tb_ret_exos_det rd
                 WHERE rd.id_ret_exos=" + id_report + "; "
                 execute_non_query(qdetail, True, "", "", "", "")
+
+                'sync return to pos
+                Dim sync_status As String = "1"
+                Dim sync_message As String = ""
+
+                Try
+                    Dim id_outlet As String = execute_query("SELECT IFNULL(c.id_outlet, 0) AS id_outlet FROM tb_sales_return_order AS r LEFT JOIN tb_m_comp_contact AS t ON r.id_store_contact_to = t.id_comp_contact LEFT JOIN tb_m_comp AS c ON t.id_comp = c.id_comp WHERE r.id_sales_return_order = '" + id_new + "'", 0, True, "", "", "", "")
+
+                    If Not id_outlet = "0" Then
+                        Dim list_id As List(Of String) = New List(Of String)
+
+                        list_id.Add(id_new)
+
+                        Dim classSync As ClassApiPos = New ClassApiPos
+
+                        classSync.syncReturnOrder(list_id)
+                    End If
+                Catch ex As Exception
+                    sync_status = "2"
+                    sync_message = ex.ToString
+                End Try
+
+                execute_non_query("INSERT INTO tb_pos_sync (sync_type, sync_status, message, created_at) VALUES ('Return: Report Mark Type (359)', " + sync_status + ", '" + addSlashes(sync_message) + "', NOW())", True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_ret_exos SET id_report_status = '{0}' WHERE id_ret_exos = '{1}'", id_status_reportx, id_report)
@@ -11403,6 +11547,29 @@ WHERE ppsd.id_pib_pps='" & id_report & "'"
                 INNER JOIN tb_ets prc ON prc.id_ets = det.id_ets 
                 WHERE det.id_ets='" + id_report + "' AND det.id_propose_type=1 "
                 execute_non_query(query_ins, True, "", "", "", "")
+
+                'sync price to pos
+                Dim sync_status As String = "1"
+                Dim sync_message As String = ""
+
+                Try
+                    Dim design_table As DataTable = execute_query("SELECT d.id_design, IF(e.effective_date = '0000-00-00', DATE(NOW()), e.effective_date) AS effective_date FROM tb_ets_det AS d LEFT JOIN tb_ets AS e ON d.id_ets = e.id_ets WHERE d.id_ets = '" + id_report + "' AND d.id_propose_type = 1", -1, True, "", "", "", "")
+
+                    Dim list_id As List(Of String) = New List(Of String)
+
+                    For i = 0 To design_table.Rows.Count - 1
+                        list_id.Add(design_table.Rows(i)("id_design").ToString)
+                    Next
+
+                    Dim classSync As ClassApiPos = New ClassApiPos
+
+                    classSync.syncDesignPrice(list_id, Date.Parse(design_table.Rows(0)("effective_date").ToString).ToString("yyyy-MM-dd"))
+                Catch ex As Exception
+                    sync_status = "2"
+                    sync_message = ex.ToString
+                End Try
+
+                execute_non_query("INSERT INTO tb_pos_sync (sync_type, sync_status, message, created_at) VALUES ('Return: Report Mark Type (370)', " + sync_status + ", '" + addSlashes(sync_message) + "', NOW())", True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_ets SET id_report_status = '{0}' WHERE id_ets = '{1}'", id_status_reportx, id_report)

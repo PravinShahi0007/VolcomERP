@@ -462,6 +462,29 @@ WHERE pl.id_pl_sales_order_del='" + id_report_par + "'"
             If id_status_reportx_par = "6" And dts.Rows(0)("id_store_type").ToString = "6" Then
                 sendNotificationPromo(dts.Rows(0)("pl_sales_order_del_number").ToString)
             End If
+
+            'sync delivery to pos api
+            Dim sync_status As String = "1"
+            Dim sync_message As String = ""
+
+            Try
+                Dim id_outlet As String = execute_query("SELECT IFNULL(id_outlet, 0) AS id_outlet FROM tb_m_comp WHERE id_comp = '" + dts.Rows(0)("id_comp").ToString + "'", 0, True, "", "", "", "")
+
+                If Not id_outlet = "0" Then
+                    Dim list_id As List(Of String) = New List(Of String)
+
+                    list_id.Add(id_report_par)
+
+                    Dim classSync As ClassApiPos = New ClassApiPos
+
+                    classSync.syncDeliverySlip(list_id)
+                End If
+            Catch ex As Exception
+                sync_status = "2"
+                sync_message = ex.ToString
+            End Try
+
+            execute_non_query("INSERT INTO tb_pos_sync (sync_type, sync_status, message, created_at) VALUES ('Delivery: ClassSalesDelOrder', " + sync_status + ", '" + addSlashes(sync_message) + "', NOW())", True, "", "", "", "")
         End If
 
         Dim query As String = String.Format("UPDATE tb_pl_sales_order_del SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_pl_sales_order_del ='{1}'", id_status_reportx_par, id_report_par)
