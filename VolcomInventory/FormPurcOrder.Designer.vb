@@ -95,6 +95,7 @@ Partial Class FormPurcOrder
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.BCreatePenawaran = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPO = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPO = New DevExpress.XtraGrid.GridControl()
         Me.MenuGCPO = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -221,10 +222,32 @@ Partial Class FormPurcOrder
         Me.RepositoryItemProgressBar3 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.SBReceiveDateCreateNew = New DevExpress.XtraEditors.SimpleButton()
-        Me.BCreatePenawaran = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPenawaran = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView9 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn102 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn103 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPenawaran = New DevExpress.XtraGrid.GridControl()
+        Me.GVPenawaran = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn106 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn107 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn108 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn109 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn110 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn111 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn112 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn113 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn114 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn121 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn122 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn134 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.RepositoryItemCheckEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -296,6 +319,14 @@ Partial Class FormPurcOrder
         Me.XTPPenawaran.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
+        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCPenawaran, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPenawaran, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -317,7 +348,7 @@ Partial Class FormPurcOrder
         Me.XTPRequest.Controls.Add(Me.PanelControl2)
         Me.XTPRequest.Controls.Add(Me.BCreatePenawaran)
         Me.XTPRequest.Name = "XTPRequest"
-        Me.XTPRequest.Size = New System.Drawing.Size(1145, 470)
+        Me.XTPRequest.Size = New System.Drawing.Size(1193, 470)
         Me.XTPRequest.Text = "Request List"
         '
         'GCPurcReq
@@ -327,7 +358,7 @@ Partial Class FormPurcOrder
         Me.GCPurcReq.MainView = Me.GVPurcReq
         Me.GCPurcReq.Name = "GCPurcReq"
         Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck, Me.RICEPurchase, Me.RITEQty, Me.RIMemoDetail})
-        Me.GCPurcReq.Size = New System.Drawing.Size(1145, 330)
+        Me.GCPurcReq.Size = New System.Drawing.Size(1193, 330)
         Me.GCPurcReq.TabIndex = 10
         Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
         '
@@ -708,7 +739,7 @@ Partial Class FormPurcOrder
         Me.BCreatePO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BCreatePO.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BCreatePO.Name = "BCreatePO"
-        Me.BCreatePO.Size = New System.Drawing.Size(1145, 32)
+        Me.BCreatePO.Size = New System.Drawing.Size(1193, 32)
         Me.BCreatePO.TabIndex = 12
         Me.BCreatePO.Text = "Create Purchase"
         '
@@ -726,7 +757,7 @@ Partial Class FormPurcOrder
         Me.BCantFulfill.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BCantFulfill.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BCantFulfill.Name = "BCantFulfill"
-        Me.BCantFulfill.Size = New System.Drawing.Size(1145, 32)
+        Me.BCantFulfill.Size = New System.Drawing.Size(1193, 32)
         Me.BCantFulfill.TabIndex = 13
         Me.BCantFulfill.Text = "Unable to fulfill"
         '
@@ -748,7 +779,7 @@ Partial Class FormPurcOrder
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1145, 44)
+        Me.PanelControl2.Size = New System.Drawing.Size(1193, 44)
         Me.PanelControl2.TabIndex = 11
         '
         'LabelControl22
@@ -1010,12 +1041,32 @@ Partial Class FormPurcOrder
         Me.LabelControl1.TabIndex = 8911
         Me.LabelControl1.Text = "Departement"
         '
+        'BCreatePenawaran
+        '
+        Me.BCreatePenawaran.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BCreatePenawaran.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreatePenawaran.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreatePenawaran.Appearance.Options.UseBackColor = True
+        Me.BCreatePenawaran.Appearance.Options.UseFont = True
+        Me.BCreatePenawaran.Appearance.Options.UseForeColor = True
+        Me.BCreatePenawaran.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCreatePenawaran.Location = New System.Drawing.Point(0, 438)
+        Me.BCreatePenawaran.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreatePenawaran.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreatePenawaran.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreatePenawaran.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreatePenawaran.Name = "BCreatePenawaran"
+        Me.BCreatePenawaran.Size = New System.Drawing.Size(1193, 32)
+        Me.BCreatePenawaran.TabIndex = 14
+        Me.BCreatePenawaran.Text = "Propose Penawaran"
+        Me.BCreatePenawaran.Visible = False
+        '
         'XTPPO
         '
         Me.XTPPO.Controls.Add(Me.GCPO)
         Me.XTPPO.Controls.Add(Me.PanelControl1)
         Me.XTPPO.Name = "XTPPO"
-        Me.XTPPO.Size = New System.Drawing.Size(1145, 470)
+        Me.XTPPO.Size = New System.Drawing.Size(1193, 470)
         Me.XTPPO.Text = "Purchase Order List"
         '
         'GCPO
@@ -1026,7 +1077,7 @@ Partial Class FormPurcOrder
         Me.GCPO.MainView = Me.GVPO
         Me.GCPO.Name = "GCPO"
         Me.GCPO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEIsCheckPO, Me.RPBRec})
-        Me.GCPO.Size = New System.Drawing.Size(1145, 428)
+        Me.GCPO.Size = New System.Drawing.Size(1193, 428)
         Me.GCPO.TabIndex = 0
         Me.GCPO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPO})
         '
@@ -1312,7 +1363,7 @@ Partial Class FormPurcOrder
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1145, 42)
+        Me.PanelControl1.Size = New System.Drawing.Size(1193, 42)
         Me.PanelControl1.TabIndex = 1
         '
         'SLERecStatus
@@ -1417,7 +1468,7 @@ Partial Class FormPurcOrder
         Me.XTPPOList.Controls.Add(Me.PanelControl3)
         Me.XTPPOList.Controls.Add(Me.PanelControlNavLineListBottom)
         Me.XTPPOList.Name = "XTPPOList"
-        Me.XTPPOList.Size = New System.Drawing.Size(1145, 470)
+        Me.XTPPOList.Size = New System.Drawing.Size(1193, 470)
         Me.XTPPOList.Text = "List Item PO"
         '
         'GCPOItem
@@ -1427,7 +1478,7 @@ Partial Class FormPurcOrder
         Me.GCPOItem.MainView = Me.GVPOItem
         Me.GCPOItem.Name = "GCPOItem"
         Me.GCPOItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemProgressBar1})
-        Me.GCPOItem.Size = New System.Drawing.Size(1145, 391)
+        Me.GCPOItem.Size = New System.Drawing.Size(1193, 391)
         Me.GCPOItem.TabIndex = 4
         Me.GCPOItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPOItem})
         '
@@ -1648,7 +1699,7 @@ Partial Class FormPurcOrder
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1145, 42)
+        Me.PanelControl3.Size = New System.Drawing.Size(1193, 42)
         Me.PanelControl3.TabIndex = 5
         '
         'SLEPONumber
@@ -1773,7 +1824,7 @@ Partial Class FormPurcOrder
         Me.PanelControlNavLineListBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlNavLineListBottom.Location = New System.Drawing.Point(0, 433)
         Me.PanelControlNavLineListBottom.Name = "PanelControlNavLineListBottom"
-        Me.PanelControlNavLineListBottom.Size = New System.Drawing.Size(1145, 37)
+        Me.PanelControlNavLineListBottom.Size = New System.Drawing.Size(1193, 37)
         Me.PanelControlNavLineListBottom.TabIndex = 3
         '
         'PCSelAll
@@ -1801,7 +1852,7 @@ Partial Class FormPurcOrder
         Me.BtnDropQuickMenu.DropDownControl = Me.PopupMenu1
         Me.BtnDropQuickMenu.ImageIndex = 17
         Me.BtnDropQuickMenu.ImageList = Me.LargeImageCollection
-        Me.BtnDropQuickMenu.Location = New System.Drawing.Point(1032, 2)
+        Me.BtnDropQuickMenu.Location = New System.Drawing.Point(1080, 2)
         Me.BtnDropQuickMenu.Name = "BtnDropQuickMenu"
         Me.BtnDropQuickMenu.Size = New System.Drawing.Size(111, 33)
         Me.BtnDropQuickMenu.TabIndex = 107
@@ -1945,7 +1996,7 @@ Partial Class FormPurcOrder
         Me.XTPCloseReceiving.Controls.Add(Me.GCCloseReceiving)
         Me.XTPCloseReceiving.Controls.Add(Me.PanelControl4)
         Me.XTPCloseReceiving.Name = "XTPCloseReceiving"
-        Me.XTPCloseReceiving.Size = New System.Drawing.Size(1145, 470)
+        Me.XTPCloseReceiving.Size = New System.Drawing.Size(1193, 470)
         Me.XTPCloseReceiving.Text = "Close Receiving"
         '
         'GCCloseReceiving
@@ -1956,7 +2007,7 @@ Partial Class FormPurcOrder
         Me.GCCloseReceiving.MainView = Me.GVCloseReceiving
         Me.GCCloseReceiving.Name = "GCCloseReceiving"
         Me.GCCloseReceiving.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemProgressBar2})
-        Me.GCCloseReceiving.Size = New System.Drawing.Size(1145, 428)
+        Me.GCCloseReceiving.Size = New System.Drawing.Size(1193, 428)
         Me.GCCloseReceiving.TabIndex = 8
         Me.GCCloseReceiving.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCloseReceiving})
         '
@@ -2040,7 +2091,7 @@ Partial Class FormPurcOrder
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(1145, 42)
+        Me.PanelControl4.Size = New System.Drawing.Size(1193, 42)
         Me.PanelControl4.TabIndex = 7
         '
         'SBCreateNewClose
@@ -2056,7 +2107,7 @@ Partial Class FormPurcOrder
         Me.XTPReceiveDate.Controls.Add(Me.GCReceiveDate)
         Me.XTPReceiveDate.Controls.Add(Me.PanelControl5)
         Me.XTPReceiveDate.Name = "XTPReceiveDate"
-        Me.XTPReceiveDate.Size = New System.Drawing.Size(1145, 470)
+        Me.XTPReceiveDate.Size = New System.Drawing.Size(1193, 470)
         Me.XTPReceiveDate.Text = "Move Est. Receive Date"
         '
         'GCReceiveDate
@@ -2067,7 +2118,7 @@ Partial Class FormPurcOrder
         Me.GCReceiveDate.MainView = Me.GVReceiveDate
         Me.GCReceiveDate.Name = "GCReceiveDate"
         Me.GCReceiveDate.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3, Me.RepositoryItemProgressBar3})
-        Me.GCReceiveDate.Size = New System.Drawing.Size(1145, 428)
+        Me.GCReceiveDate.Size = New System.Drawing.Size(1193, 428)
         Me.GCReceiveDate.TabIndex = 10
         Me.GCReceiveDate.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReceiveDate})
         '
@@ -2151,7 +2202,7 @@ Partial Class FormPurcOrder
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(1145, 42)
+        Me.PanelControl5.Size = New System.Drawing.Size(1193, 42)
         Me.PanelControl5.TabIndex = 9
         '
         'SBReceiveDateCreateNew
@@ -2162,34 +2213,19 @@ Partial Class FormPurcOrder
         Me.SBReceiveDateCreateNew.TabIndex = 8914
         Me.SBReceiveDateCreateNew.Text = "create new"
         '
-        'BCreatePenawaran
-        '
-        Me.BCreatePenawaran.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.BCreatePenawaran.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BCreatePenawaran.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BCreatePenawaran.Appearance.Options.UseBackColor = True
-        Me.BCreatePenawaran.Appearance.Options.UseFont = True
-        Me.BCreatePenawaran.Appearance.Options.UseForeColor = True
-        Me.BCreatePenawaran.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCreatePenawaran.Location = New System.Drawing.Point(0, 438)
-        Me.BCreatePenawaran.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BCreatePenawaran.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BCreatePenawaran.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BCreatePenawaran.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BCreatePenawaran.Name = "BCreatePenawaran"
-        Me.BCreatePenawaran.Size = New System.Drawing.Size(1145, 32)
-        Me.BCreatePenawaran.TabIndex = 14
-        Me.BCreatePenawaran.Text = "Propose Penawaran"
-        '
         'XTPPenawaran
         '
+        Me.XTPPenawaran.Controls.Add(Me.GCPenawaran)
         Me.XTPPenawaran.Controls.Add(Me.PanelControl6)
         Me.XTPPenawaran.Name = "XTPPenawaran"
+        Me.XTPPenawaran.PageVisible = False
         Me.XTPPenawaran.Size = New System.Drawing.Size(1193, 470)
         Me.XTPPenawaran.Text = "List Penawaran"
         '
         'PanelControl6
         '
+        Me.PanelControl6.Controls.Add(Me.SearchLookUpEdit1)
+        Me.PanelControl6.Controls.Add(Me.LabelControl10)
         Me.PanelControl6.Controls.Add(Me.SimpleButton1)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl6.Location = New System.Drawing.Point(0, 0)
@@ -2199,11 +2235,226 @@ Partial Class FormPurcOrder
         '
         'SimpleButton1
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(940, 9)
+        Me.SimpleButton1.Location = New System.Drawing.Point(357, 11)
         Me.SimpleButton1.Name = "SimpleButton1"
         Me.SimpleButton1.Size = New System.Drawing.Size(60, 23)
         Me.SimpleButton1.TabIndex = 8913
         Me.SimpleButton1.Text = "view"
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(20, 16)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl10.TabIndex = 8914
+        Me.LabelControl10.Text = "Request Item"
+        '
+        'SearchLookUpEdit1
+        '
+        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(100, 13)
+        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
+        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SearchLookUpEdit1.Properties.View = Me.GridView9
+        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(251, 20)
+        Me.SearchLookUpEdit1.TabIndex = 8915
+        '
+        'GridView9
+        '
+        Me.GridView9.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn102, Me.GridColumn103})
+        Me.GridView9.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView9.Name = "GridView9"
+        Me.GridView9.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView9.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn102
+        '
+        Me.GridColumn102.Caption = "ID Departement"
+        Me.GridColumn102.FieldName = "id_departement"
+        Me.GridColumn102.Name = "GridColumn102"
+        '
+        'GridColumn103
+        '
+        Me.GridColumn103.Caption = "Departement"
+        Me.GridColumn103.FieldName = "departement"
+        Me.GridColumn103.Name = "GridColumn103"
+        Me.GridColumn103.Visible = True
+        Me.GridColumn103.VisibleIndex = 0
+        '
+        'GCPenawaran
+        '
+        Me.GCPenawaran.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPenawaran.Location = New System.Drawing.Point(0, 44)
+        Me.GCPenawaran.MainView = Me.GVPenawaran
+        Me.GCPenawaran.Name = "GCPenawaran"
+        Me.GCPenawaran.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit5, Me.RepositoryItemCheckEdit4, Me.RepositoryItemTextEdit1, Me.RepositoryItemMemoEdit1})
+        Me.GCPenawaran.Size = New System.Drawing.Size(1193, 426)
+        Me.GCPenawaran.TabIndex = 13
+        Me.GCPenawaran.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPenawaran})
+        '
+        'GVPenawaran
+        '
+        Me.GVPenawaran.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn106, Me.GridColumn107, Me.GridColumn108, Me.GridColumn109, Me.GridColumn110, Me.GridColumn111, Me.GridColumn112, Me.GridColumn113, Me.GridColumn114, Me.GridColumn121, Me.GridColumn122, Me.GridColumn134})
+        Me.GVPenawaran.GridControl = Me.GCPenawaran
+        Me.GVPenawaran.Name = "GVPenawaran"
+        Me.GVPenawaran.OptionsFind.AlwaysVisible = True
+        Me.GVPenawaran.OptionsView.ColumnAutoWidth = False
+        Me.GVPenawaran.OptionsView.RowAutoHeight = True
+        Me.GVPenawaran.OptionsView.ShowGroupPanel = False
+        '
+        'RepositoryItemCheckEdit4
+        '
+        Me.RepositoryItemCheckEdit4.AutoHeight = False
+        Me.RepositoryItemCheckEdit4.Name = "RepositoryItemCheckEdit4"
+        Me.RepositoryItemCheckEdit4.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit4.ValueUnchecked = "no"
+        '
+        'GridColumn106
+        '
+        Me.GridColumn106.Caption = "ID Req Det"
+        Me.GridColumn106.FieldName = "id_purc_req_det"
+        Me.GridColumn106.Name = "GridColumn106"
+        Me.GridColumn106.OptionsColumn.AllowEdit = False
+        Me.GridColumn106.OptionsColumn.AllowFocus = False
+        '
+        'GridColumn107
+        '
+        Me.GridColumn107.Caption = "Request Number"
+        Me.GridColumn107.FieldName = "purc_req_number"
+        Me.GridColumn107.Name = "GridColumn107"
+        Me.GridColumn107.OptionsColumn.AllowEdit = False
+        Me.GridColumn107.OptionsColumn.AllowFocus = False
+        Me.GridColumn107.Visible = True
+        Me.GridColumn107.VisibleIndex = 1
+        Me.GridColumn107.Width = 98
+        '
+        'GridColumn108
+        '
+        Me.GridColumn108.Caption = "Requirement Date"
+        Me.GridColumn108.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn108.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn108.FieldName = "requirement_date"
+        Me.GridColumn108.Name = "GridColumn108"
+        Me.GridColumn108.Visible = True
+        Me.GridColumn108.VisibleIndex = 3
+        Me.GridColumn108.Width = 117
+        '
+        'GridColumn109
+        '
+        Me.GridColumn109.Caption = "ID Vendor Type"
+        Me.GridColumn109.FieldName = "id_vendor_type"
+        Me.GridColumn109.Name = "GridColumn109"
+        Me.GridColumn109.OptionsColumn.AllowEdit = False
+        Me.GridColumn109.OptionsColumn.AllowFocus = False
+        '
+        'GridColumn110
+        '
+        Me.GridColumn110.Caption = "Vendor Type"
+        Me.GridColumn110.FieldName = "vendor_type"
+        Me.GridColumn110.Name = "GridColumn110"
+        Me.GridColumn110.OptionsColumn.AllowEdit = False
+        Me.GridColumn110.OptionsColumn.AllowFocus = False
+        Me.GridColumn110.Visible = True
+        Me.GridColumn110.VisibleIndex = 8
+        '
+        'GridColumn111
+        '
+        Me.GridColumn111.Caption = "ID Item"
+        Me.GridColumn111.FieldName = "id_item"
+        Me.GridColumn111.Name = "GridColumn111"
+        Me.GridColumn111.OptionsColumn.AllowEdit = False
+        Me.GridColumn111.OptionsColumn.AllowFocus = False
+        '
+        'GridColumn112
+        '
+        Me.GridColumn112.Caption = "Item"
+        Me.GridColumn112.FieldName = "item_desc"
+        Me.GridColumn112.Name = "GridColumn112"
+        Me.GridColumn112.OptionsColumn.AllowEdit = False
+        Me.GridColumn112.OptionsColumn.AllowFocus = False
+        Me.GridColumn112.Visible = True
+        Me.GridColumn112.VisibleIndex = 4
+        Me.GridColumn112.Width = 78
+        '
+        'GridColumn113
+        '
+        Me.GridColumn113.Caption = "UOM"
+        Me.GridColumn113.FieldName = "uom"
+        Me.GridColumn113.Name = "GridColumn113"
+        Me.GridColumn113.OptionsColumn.AllowEdit = False
+        Me.GridColumn113.OptionsColumn.AllowFocus = False
+        Me.GridColumn113.Visible = True
+        Me.GridColumn113.VisibleIndex = 7
+        Me.GridColumn113.Width = 51
+        '
+        'GridColumn114
+        '
+        Me.GridColumn114.Caption = "Qty Requested"
+        Me.GridColumn114.DisplayFormat.FormatString = "N2"
+        Me.GridColumn114.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn114.FieldName = "qty_pr"
+        Me.GridColumn114.Name = "GridColumn114"
+        Me.GridColumn114.OptionsColumn.AllowEdit = False
+        Me.GridColumn114.OptionsColumn.AllowFocus = False
+        Me.GridColumn114.Visible = True
+        Me.GridColumn114.VisibleIndex = 6
+        Me.GridColumn114.Width = 83
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.DisplayFormat.FormatString = "N2"
+        Me.RepositoryItemTextEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "N2"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
+        'GridColumn121
+        '
+        Me.GridColumn121.Caption = "Date Created"
+        Me.GridColumn121.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn121.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn121.FieldName = "pr_created"
+        Me.GridColumn121.Name = "GridColumn121"
+        Me.GridColumn121.OptionsColumn.AllowEdit = False
+        Me.GridColumn121.OptionsColumn.AllowFocus = False
+        Me.GridColumn121.Visible = True
+        Me.GridColumn121.VisibleIndex = 2
+        Me.GridColumn121.Width = 81
+        '
+        'GridColumn122
+        '
+        Me.GridColumn122.Caption = "Departement"
+        Me.GridColumn122.FieldName = "departement"
+        Me.GridColumn122.Name = "GridColumn122"
+        Me.GridColumn122.OptionsColumn.AllowEdit = False
+        Me.GridColumn122.OptionsColumn.AllowFocus = False
+        Me.GridColumn122.Visible = True
+        Me.GridColumn122.VisibleIndex = 0
+        Me.GridColumn122.Width = 81
+        '
+        'GridColumn134
+        '
+        Me.GridColumn134.Caption = "Item Detail"
+        Me.GridColumn134.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumn134.FieldName = "item_detail"
+        Me.GridColumn134.MaxWidth = 300
+        Me.GridColumn134.Name = "GridColumn134"
+        Me.GridColumn134.OptionsColumn.AllowEdit = False
+        Me.GridColumn134.OptionsColumn.AllowFocus = False
+        Me.GridColumn134.Visible = True
+        Me.GridColumn134.VisibleIndex = 5
+        Me.GridColumn134.Width = 140
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
+        'RepositoryItemCheckEdit5
+        '
+        Me.RepositoryItemCheckEdit5.AutoHeight = False
+        Me.RepositoryItemCheckEdit5.Name = "RepositoryItemCheckEdit5"
+        Me.RepositoryItemCheckEdit5.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit5.ValueUnchecked = "no"
         '
         'FormPurcOrder
         '
@@ -2295,6 +2546,15 @@ Partial Class FormPurcOrder
         Me.XTPPenawaran.ResumeLayout(False)
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
+        Me.PanelControl6.PerformLayout()
+        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCPenawaran, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPenawaran, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2504,4 +2764,27 @@ Partial Class FormPurcOrder
     Friend WithEvents XTPPenawaran As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView9 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn102 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn103 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPenawaran As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPenawaran As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents RepositoryItemCheckEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn106 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn107 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn108 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn109 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn110 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn111 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn112 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn113 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn114 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumn121 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn122 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn134 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents RepositoryItemCheckEdit5 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
