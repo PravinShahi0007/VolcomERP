@@ -557,6 +557,9 @@
         ElseIf report_mark_type = "398" Then
             'endorsee contract
             FormRiderContractDet.Close()
+        ElseIf report_mark_type = "353" Then
+            'store display
+            FormStoreDisplayDet.Close()
         End If
     End Sub
     Sub show()
@@ -1777,6 +1780,12 @@ GROUP BY rec.`id_prod_order`"
             FormRiderContractDet.is_view = "1"
             FormRiderContractDet.id_pps = id_report
             FormRiderContractDet.ShowDialog()
+        ElseIf report_mark_type = "353" Then
+            'store display
+            FormStoreDisplayDet.is_view = "1"
+            FormStoreDisplayDet.action = "upd"
+            FormStoreDisplayDet.id = id_report
+            FormStoreDisplayDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -3166,6 +3175,12 @@ GROUP BY rec.`id_prod_order`"
             field_id = "id_kontrak_rider_pps"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "353" Then
+            'store display
+            table_name = "tb_display_pps"
+            field_id = "id_display_pps"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -3839,6 +3854,19 @@ LIMIT 1 "
                     Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                     If datax.Rows.Count > 0 Then
                         info_col = datax.Rows(0)("number").ToString
+                    End If
+                ElseIf report_mark_type = "353" Then
+                    'store display
+                    query = "SELECT c.comp_number , c.comp_name, ss.season 
+                    FROM tb_display_pps p
+                    INNER JOIN tb_season ss ON ss.id_season = p.id_season
+                    INNER JOIN tb_m_comp c ON c.id_comp = p.id_comp
+                    WHERE p.id_display_pps=" + id_report + " "
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        info_col = datax.Rows(0)("season").ToString
+                        info_design_code = datax.Rows(0)("comp_number").ToString
+                        info_design = datax.Rows(0)("comp_name").ToString
                     End If
                 End If
             End If
