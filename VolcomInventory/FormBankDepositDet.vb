@@ -78,8 +78,8 @@ Public Class FormBankDepositDet
                     sp.id_acc_ar AS `id_acc`, coa.acc_name, coa.acc_description,
                     c.comp_number AS `comp_number`,c.`comp_number` AS `vendor`
                     ,IFNULL(pyd.`value`,0.00) AS total_rec,
-                    CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `value`,
-                    CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `balance_due`,
+                    CAST(IF(typ.`is_receive_payment`=2,-1,1) * (sp.netto) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `value`,
+                    CAST(IF(typ.`is_receive_payment`=2,-1,1) * (sp.netto) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `balance_due`,
                     CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `note`,IF(typ.`is_receive_payment`=2,1,2) AS `id_dc`, IF(typ.`is_receive_payment`=2,'D','K') AS `dc_code`,
                     ABS((SELECT balance_due)) AS `value_view`, 0 AS `value_bef_kurs`
                     FROM tb_list_payout_det d
@@ -188,8 +188,8 @@ Public Class FormBankDepositDet
                     sp.id_acc_ar AS `id_acc`, coa.acc_name, coa.acc_description,
                     c.comp_number AS `comp_number`,c.`comp_number` AS `vendor`
                     ,IFNULL(pyd.`value`,0.00) AS total_rec,
-                    CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `value`,
-                    CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `balance_due`,
+                    CAST(IF(typ.`is_receive_payment`=2,-1,1) * (sp.netto) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `value`,
+                    CAST(IF(typ.`is_receive_payment`=2,-1,1) * (sp.netto) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS `balance_due`,
                     CONCAT(c.comp_name,' Per ', DATE_FORMAT(sp.sales_pos_start_period,'%d-%m-%y'),' s/d ', DATE_FORMAT(sp.sales_pos_end_period,'%d-%m-%y')) AS `note`,IF(typ.`is_receive_payment`=2,1,2) AS `id_dc`, IF(typ.`is_receive_payment`=2,'D','K') AS `dc_code`,
                     ABS((SELECT balance_due)) AS `value_view`, 0 AS `value_bef_kurs`
                     FROM tb_virtual_acc_trans_inv d
