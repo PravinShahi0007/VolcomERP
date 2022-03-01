@@ -57,4 +57,8 @@
         GROUP BY ds.id_class_group "
         Return query
     End Function
+
+    Sub completeProposeDisplay(ByVal id_report_par As String)
+
+    End Sub
 End Class

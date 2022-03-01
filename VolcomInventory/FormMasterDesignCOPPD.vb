@@ -49,14 +49,21 @@
         '
         Dim qv As String = "SELECT cc.`id_comp` AS id_comp_pd,cc.`id_comp_contact` AS prod_order_cop_pd_vendor,c.comp_number AS comp_number_pd,c.comp_name AS comp_name_pd,d.prod_order_cop_kurs_pd,d.cop_pd_note,d.coo
 ,d.prod_order_cop_pd_addcost,d.prod_order_cop_pd,d.is_cold_storage,d.prod_order_cop_pd_curr,IFNULL(cd.source,'Local') AS source,IFNULL(cd.division,'-') AS division
+,cd.class AS product_class_display,cd.color AS color_display
+,d.prod_order_cop_pd,d.prod_order_cop_pd_addcost,d.prod_order_cop_pd_curr
+,d.id_season
 FROM tb_m_design d
-LEFT JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=d.`aging_design`
+LEFT JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=d.`prod_order_cop_pd_vendor`
 LEFT JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 LEFT JOIN (
 	SELECT dc.id_design, 
 	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
 	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
-	MAX(CASE WHEN cd.id_code=5 THEN cd.code_detail_name END) AS `source`
+	MAX(CASE WHEN cd.id_code=5 THEN cd.code_detail_name END) AS `source`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`
 	FROM tb_m_design_code dc
 	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
 	AND cd.id_code IN (32,5)
@@ -65,25 +72,25 @@ LEFT JOIN (
 WHERE d.id_design='" & id_design & "'"
         Dim dtv As DataTable = execute_query(qv, -1, True, "", "", "", "")
         If dtv.Rows.Count > 0 Then
-            id_season = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_season")
+            id_season = dtv.Rows(0)("id_season")
 
-            id_comp = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_comp_pd").ToString
-            id_comp_contact = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_vendor").ToString
-            TEVendor.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("comp_number_pd").ToString
-            TEVendorName.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("comp_name_pd").ToString
-            TEKurs.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_kurs_pd")
-            MEECOPNote.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("cop_pd_note").ToString
-            SLECOO.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("coo").ToString
+            id_comp = dtv.Rows(0)("id_comp_pd").ToString
+            id_comp_contact = dtv.Rows(0)("prod_order_cop_pd_vendor").ToString
+            TEVendor.Text = dtv.Rows(0)("comp_number_pd").ToString
+            TEVendorName.Text = dtv.Rows(0)("comp_name_pd").ToString
+            TEKurs.EditValue = dtv.Rows(0)("prod_order_cop_kurs_pd")
+            MEECOPNote.Text = dtv.Rows(0)("cop_pd_note").ToString
+            SLECOO.EditValue = dtv.Rows(0)("coo").ToString
             '
-            TEClass.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("product_class_display").ToString
-            TEColor.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("color_display").ToString
+            TEClass.Text = dtv.Rows(0)("product_class_display").ToString
+            TEColor.Text = dtv.Rows(0)("color_display").ToString
             '
-            TEEcop.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd") - FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
-            TEAdditionalCost.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
-            SLECoolStorage.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("is_cold_storage").ToString
+            TEEcop.EditValue = dtv.Rows(0)("prod_order_cop_pd") - dtv.Rows(0)("prod_order_cop_pd_addcost")
+            TEAdditionalCost.EditValue = dtv.Rows(0)("prod_order_cop_pd_addcost")
+            SLECoolStorage.EditValue = dtv.Rows(0)("is_cold_storage").ToString
             '
             LECurrency.EditValue = Nothing
-            LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_curr").ToString)
+            LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", dtv.Rows(0)("prod_order_cop_pd_curr").ToString)
             LECurrency.Visible = False
             '
             If dtv.Rows(0)("source").ToString = "Local" And dtv.Rows(0)("division").ToString = "KID" Then
