@@ -58,7 +58,7 @@
         Return query
     End Function
 
-    Sub completeProposeDisplay(ByVal id_report_par As String)
+    Sub completeProposeDisplay(ByVal rmt_par As String, ByVal id_report_par As String)
 
     End Sub
 End Class
