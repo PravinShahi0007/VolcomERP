@@ -1,6 +1,7 @@
 ﻿Public Class FormPurcOrderPenawaranPPS
     Public id_pps As String = "-1"
-
+    Dim id_vendor_type As Integer = 1
+    Dim vendor_type As String = "Silver"
     Private Sub FormPurcOrderPenawaranPPS_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'load
         load_det()
@@ -25,12 +26,26 @@
             GVPurcReq.SetRowCellValue(GVPurcReq.RowCount - 1, "ship_destination", FormPurcOrder.GVPurcReq.GetRowCellValue(i, "ship_destination"))
             GVPurcReq.SetRowCellValue(GVPurcReq.RowCount - 1, "ship_address", FormPurcOrder.GVPurcReq.GetRowCellValue(i, "ship_address"))
             '
+            If FormPurcOrder.GVPurcReq.GetRowCellValue(i, "id_vendor_type") > id_vendor_type And FormPurcOrder.GVPurcReq.GetRowCellValue(i, "id_vendor_type") <= 4 Then
+                id_vendor_type = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "id_vendor_type")
+                vendor_type = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "vendor_type").ToString
+            End If
         Next
 
         GVPurcReq.RefreshData()
         GVPurcReq.BestFitColumns()
+        '
+        TEVendorType.Text = vendor_type
+        load_vendor()
 
         FormMain.SplashScreenManager1.CloseWaitForm()
+    End Sub
+
+    Sub load_vendor()
+        Dim q As String = "SELECT id_comp,CONCAT(comp_number,' - ',comp_name) AS comp_name FROM tb_m_comp c
+WHERE c.is_active='1' AND c.id_vendor_type>=" & id_vendor_type & " AND c.id_vendor_type<=4
+AND c.id_comp_cat IN (1,8,7)"
+        viewSearchLookupQuery(SLEVendor, q, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Sub load_det()
@@ -81,6 +96,14 @@ LEFT JOIN
 WHERE req.`id_report_status`='6' AND rd.`is_close`='2' AND rd.is_unable_fulfill='2' AND (IFNULL(po.qty,0) = 0 OR (po.is_close_rec = 1 AND po.qty <> po.qty_rec)) "
         GCPurcReq.DataSource = execute_query(q, -1, True, "", "", "", "")
         GVPurcReq.BestFitColumns()
+        '
+        'load vendor list
+        q = "SELECT ov.id_comp,ov.id_purc_offer_vendor,CONCAT(c.comp_number,' - ',c.comp_name) AS comp_name
+FROM `tb_purc_offer_vendor` ov
+INNER JOIN tb_m_comp c ON c.id_comp=ov.id_comp
+WHERE ov.id_purc_offer='" & id_pps & "'"
+        GCVendor.DataSource = execute_query(q, -1, True, "", "", "", "")
+        GVVendor.BestFitColumns()
     End Sub
 
     Private Sub BCancel_Click(sender As Object, e As EventArgs) Handles BCancel.Click
@@ -88,6 +111,61 @@ WHERE req.`id_report_status`='6' AND rd.`is_close`='2' AND rd.is_unable_fulfill=
     End Sub
 
     Private Sub BSend_Click(sender As Object, e As EventArgs) Handles BSend.Click
+        If GVVendor.RowCount > 0 And GVPurcReq.RowCount > 0 Then
+            If id_pps = "-1" Then
+                Dim q As String = "INSERT INTO `tb_purc_offer`(created_by,created_date,id_vendor_type)
+VALUES('" & id_user & "',NOW(),'" & id_vendor_type & "')"
+                id_pps = execute_query(q, 0, True, "", "", "", "")
+                'item
+                q = "INSERT INTO tb_purc_offer_pr(`id_purc_offer`,`id_purc_req_det`) VALUES"
+                For i = 0 To GVPurcReq.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id_pps & "','" & GVPurcReq.GetRowCellValue(i, "id_purc_req_det").ToString & "')"
+                Next
+                execute_non_query(q, True, "", "", "", "")
+                'vendor
+                q = "INSERT INTO tb_purc_offer_vendor(`id_purc_offer`,`id_comp`) VALUES"
+                For i = 0 To GVVendor.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id_pps & "','" & GVVendor.GetRowCellValue(i, "id_comp").ToString & "')"
+                Next
+                execute_non_query(q, True, "", "", "", "")
+            End If
+        Else
+            warningCustom("Please choose at least 1 vendor")
+        End If
+    End Sub
 
+    Private Sub BAddVendor_Click(sender As Object, e As EventArgs) Handles BAddVendor.Click
+        Dim is_ok As Boolean = True
+        For i = 0 To GVVendor.RowCount - 1
+            If GVVendor.GetRowCellValue(i, "id_comp").ToString = SLEVendor.EditValue.ToString Then
+                warningCustom("Vendor already choosen")
+                is_ok = False
+                Exit For
+            End If
+        Next
+
+        If is_ok Then
+            GVVendor.AddNewRow()
+            GVVendor.FocusedRowHandle = GVPurcReq.RowCount - 1
+            '
+            GVVendor.SetRowCellValue(GVPurcReq.RowCount - 1, "id_comp", SLEVendor.EditValue.ToString)
+            GVVendor.SetRowCellValue(GVPurcReq.RowCount - 1, "comp_name", SLEVendor.Text)
+            GVVendor.BestFitColumns()
+        End If
+    End Sub
+
+    Private Sub DeleteVendorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteVendorToolStripMenuItem.Click
+        If GVVendor.RowCount > 0 Then
+            GVVendor.DeleteSelectedRows()
+            GVVendor.RefreshData()
+        Else
+            warningCustom("No vendor selected")
+        End If
     End Sub
 End Class
