@@ -19,22 +19,21 @@ Partial Class FormPurcOrderPenawaranPPS
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcOrderPenawaranPPS))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEProposeBy = New DevExpress.XtraEditors.TextEdit()
-        Me.TEProposedBy = New DevExpress.XtraEditors.TextEdit()
         Me.TEVendorType = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.GCVendor = New DevExpress.XtraGrid.GridControl()
-        Me.GVVendor = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.TEProposedBy = New DevExpress.XtraEditors.TextEdit()
+        Me.TEProposeBy = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSend = New DevExpress.XtraEditors.SimpleButton()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GCPurcReq = New DevExpress.XtraGrid.GridControl()
         Me.GVPurcReq = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.RICEPurchase = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -58,30 +57,46 @@ Partial Class FormPurcOrderPenawaranPPS
         Me.GridColumn73 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIMemoDetail = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RICEPurchase = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCVendor = New DevExpress.XtraGrid.GridControl()
+        Me.GVVendor = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BSend = New DevExpress.XtraEditors.SimpleButton()
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BAddVendor = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DeleteVendorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TEVendorType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEProposedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEProposeBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl2.SuspendLayout()
-        CType(Me.TEProposeBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEProposedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEVendorType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCVendor, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVVendor, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIMemoDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl2.SuspendLayout()
+        CType(Me.GCVendor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVVendor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -95,70 +110,8 @@ Partial Class FormPurcOrderPenawaranPPS
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1188, 72)
+        Me.PanelControl1.Size = New System.Drawing.Size(1089, 72)
         Me.PanelControl1.TabIndex = 0
-        '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.BCancel)
-        Me.PanelControl2.Controls.Add(Me.BSend)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 586)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1188, 43)
-        Me.PanelControl2.TabIndex = 1
-        '
-        'GroupControl1
-        '
-        Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl1.Controls.Add(Me.GCPurcReq)
-        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 72)
-        Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1188, 256)
-        Me.GroupControl1.TabIndex = 2
-        Me.GroupControl1.Text = "Item"
-        '
-        'GroupControl2
-        '
-        Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl2.Controls.Add(Me.GCVendor)
-        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 328)
-        Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(1188, 258)
-        Me.GroupControl2.TabIndex = 3
-        Me.GroupControl2.Text = "Vendor"
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(17, 16)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(60, 13)
-        Me.LabelControl1.TabIndex = 0
-        Me.LabelControl1.Text = "Proposed By"
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(17, 41)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(71, 13)
-        Me.LabelControl2.TabIndex = 1
-        Me.LabelControl2.Text = "Proposed Date"
-        '
-        'TEProposeBy
-        '
-        Me.TEProposeBy.Location = New System.Drawing.Point(94, 12)
-        Me.TEProposeBy.Name = "TEProposeBy"
-        Me.TEProposeBy.Size = New System.Drawing.Size(307, 20)
-        Me.TEProposeBy.TabIndex = 2
-        '
-        'TEProposedBy
-        '
-        Me.TEProposedBy.Location = New System.Drawing.Point(94, 38)
-        Me.TEProposedBy.Name = "TEProposedBy"
-        Me.TEProposedBy.Size = New System.Drawing.Size(307, 20)
-        Me.TEProposedBy.TabIndex = 3
         '
         'TEVendorType
         '
@@ -175,22 +128,76 @@ Partial Class FormPurcOrderPenawaranPPS
         Me.LabelControl3.TabIndex = 4
         Me.LabelControl3.Text = "Vendor Type"
         '
-        'GCVendor
+        'TEProposedBy
         '
-        Me.GCVendor.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCVendor.Location = New System.Drawing.Point(20, 2)
-        Me.GCVendor.MainView = Me.GVVendor
-        Me.GCVendor.Name = "GCVendor"
-        Me.GCVendor.Size = New System.Drawing.Size(1166, 254)
-        Me.GCVendor.TabIndex = 1
-        Me.GCVendor.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVVendor})
+        Me.TEProposedBy.Location = New System.Drawing.Point(94, 38)
+        Me.TEProposedBy.Name = "TEProposedBy"
+        Me.TEProposedBy.Size = New System.Drawing.Size(307, 20)
+        Me.TEProposedBy.TabIndex = 3
         '
-        'GVVendor
+        'TEProposeBy
         '
-        Me.GVVendor.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
-        Me.GVVendor.GridControl = Me.GCVendor
-        Me.GVVendor.Name = "GVVendor"
-        Me.GVVendor.OptionsView.ShowGroupPanel = False
+        Me.TEProposeBy.Location = New System.Drawing.Point(94, 12)
+        Me.TEProposeBy.Name = "TEProposeBy"
+        Me.TEProposeBy.Size = New System.Drawing.Size(307, 20)
+        Me.TEProposeBy.TabIndex = 2
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(17, 41)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(71, 13)
+        Me.LabelControl2.TabIndex = 1
+        Me.LabelControl2.Text = "Proposed Date"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(17, 16)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(60, 13)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "Proposed By"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.BCancel)
+        Me.PanelControl2.Controls.Add(Me.BSend)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 586)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1089, 43)
+        Me.PanelControl2.TabIndex = 1
+        '
+        'BCancel
+        '
+        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCancel.Image = CType(resources.GetObject("BCancel.Image"), System.Drawing.Image)
+        Me.BCancel.Location = New System.Drawing.Point(863, 2)
+        Me.BCancel.Name = "BCancel"
+        Me.BCancel.Size = New System.Drawing.Size(112, 39)
+        Me.BCancel.TabIndex = 1
+        Me.BCancel.Text = "Cancel"
+        '
+        'BSend
+        '
+        Me.BSend.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BSend.Image = CType(resources.GetObject("BSend.Image"), System.Drawing.Image)
+        Me.BSend.Location = New System.Drawing.Point(975, 2)
+        Me.BSend.Name = "BSend"
+        Me.BSend.Size = New System.Drawing.Size(112, 39)
+        Me.BSend.TabIndex = 0
+        Me.BSend.Text = "Send"
+        '
+        'GroupControl1
+        '
+        Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.GCPurcReq)
+        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 72)
+        Me.GroupControl1.Name = "GroupControl1"
+        Me.GroupControl1.Size = New System.Drawing.Size(1089, 256)
+        Me.GroupControl1.TabIndex = 2
+        Me.GroupControl1.Text = "Item"
         '
         'GCPurcReq
         '
@@ -199,7 +206,7 @@ Partial Class FormPurcOrderPenawaranPPS
         Me.GCPurcReq.MainView = Me.GVPurcReq
         Me.GCPurcReq.Name = "GCPurcReq"
         Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck, Me.RICEPurchase, Me.RITEQty, Me.RIMemoDetail})
-        Me.GCPurcReq.Size = New System.Drawing.Size(1166, 252)
+        Me.GCPurcReq.Size = New System.Drawing.Size(1067, 252)
         Me.GCPurcReq.TabIndex = 11
         Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
         '
@@ -212,13 +219,6 @@ Partial Class FormPurcOrderPenawaranPPS
         Me.GVPurcReq.OptionsView.ColumnAutoWidth = False
         Me.GVPurcReq.OptionsView.RowAutoHeight = True
         Me.GVPurcReq.OptionsView.ShowGroupPanel = False
-        '
-        'RICEPurchase
-        '
-        Me.RICEPurchase.AutoHeight = False
-        Me.RICEPurchase.Name = "RICEPurchase"
-        Me.RICEPurchase.ValueChecked = "yes"
-        Me.RICEPurchase.ValueUnchecked = "no"
         '
         'GridColumn8
         '
@@ -440,6 +440,42 @@ Partial Class FormPurcOrderPenawaranPPS
         Me.RICECheck.ValueChecked = "yes"
         Me.RICECheck.ValueUnchecked = "no"
         '
+        'RICEPurchase
+        '
+        Me.RICEPurchase.AutoHeight = False
+        Me.RICEPurchase.Name = "RICEPurchase"
+        Me.RICEPurchase.ValueChecked = "yes"
+        Me.RICEPurchase.ValueUnchecked = "no"
+        '
+        'GroupControl2
+        '
+        Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.GCVendor)
+        Me.GroupControl2.Controls.Add(Me.PanelControl3)
+        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 328)
+        Me.GroupControl2.Name = "GroupControl2"
+        Me.GroupControl2.Size = New System.Drawing.Size(1089, 258)
+        Me.GroupControl2.TabIndex = 3
+        Me.GroupControl2.Text = "Vendor"
+        '
+        'GCVendor
+        '
+        Me.GCVendor.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCVendor.Location = New System.Drawing.Point(20, 43)
+        Me.GCVendor.MainView = Me.GVVendor
+        Me.GCVendor.Name = "GCVendor"
+        Me.GCVendor.Size = New System.Drawing.Size(1067, 213)
+        Me.GCVendor.TabIndex = 1
+        Me.GCVendor.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVVendor})
+        '
+        'GVVendor
+        '
+        Me.GVVendor.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GVVendor.GridControl = Me.GCVendor
+        Me.GVVendor.Name = "GVVendor"
+        Me.GVVendor.OptionsView.ShowGroupPanel = False
+        '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "ID Vendor"
@@ -451,8 +487,6 @@ Partial Class FormPurcOrderPenawaranPPS
         Me.GridColumn2.Caption = "Vendor Code"
         Me.GridColumn2.FieldName = "comp_number"
         Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
         Me.GridColumn2.Width = 286
         '
         'GridColumn3
@@ -461,34 +495,84 @@ Partial Class FormPurcOrderPenawaranPPS
         Me.GridColumn3.FieldName = "comp_name"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.VisibleIndex = 0
         Me.GridColumn3.Width = 1346
         '
-        'BSend
+        'PanelControl3
         '
-        Me.BSend.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BSend.Image = CType(resources.GetObject("BSend.Image"), System.Drawing.Image)
-        Me.BSend.Location = New System.Drawing.Point(1074, 2)
-        Me.BSend.Name = "BSend"
-        Me.BSend.Size = New System.Drawing.Size(112, 39)
-        Me.BSend.TabIndex = 0
-        Me.BSend.Text = "Send"
+        Me.PanelControl3.Controls.Add(Me.BAddVendor)
+        Me.PanelControl3.Controls.Add(Me.LabelControl4)
+        Me.PanelControl3.Controls.Add(Me.SLEVendor)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(20, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1067, 41)
+        Me.PanelControl3.TabIndex = 2
         '
-        'BCancel
+        'BAddVendor
         '
-        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BCancel.Image = CType(resources.GetObject("BCancel.Image"), System.Drawing.Image)
-        Me.BCancel.Location = New System.Drawing.Point(962, 2)
-        Me.BCancel.Name = "BCancel"
-        Me.BCancel.Size = New System.Drawing.Size(112, 39)
-        Me.BCancel.TabIndex = 1
-        Me.BCancel.Text = "Cancel"
+        Me.BAddVendor.Location = New System.Drawing.Point(387, 9)
+        Me.BAddVendor.Name = "BAddVendor"
+        Me.BAddVendor.Size = New System.Drawing.Size(61, 23)
+        Me.BAddVendor.TabIndex = 6
+        Me.BAddVendor.Text = "add"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(14, 14)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl4.TabIndex = 5
+        Me.LabelControl4.Text = "Vendor"
+        '
+        'SLEVendor
+        '
+        Me.SLEVendor.Location = New System.Drawing.Point(54, 11)
+        Me.SLEVendor.Name = "SLEVendor"
+        Me.SLEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendor.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEVendor.Size = New System.Drawing.Size(327, 20)
+        Me.SLEVendor.TabIndex = 0
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteVendorToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(148, 26)
+        '
+        'DeleteVendorToolStripMenuItem
+        '
+        Me.DeleteVendorToolStripMenuItem.Name = "DeleteVendorToolStripMenuItem"
+        Me.DeleteVendorToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.DeleteVendorToolStripMenuItem.Text = "Delete Vendor"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "ID"
+        Me.GridColumn4.FieldName = "id_comp"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Vendor"
+        Me.GridColumn5.FieldName = "comp_name"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
         '
         'FormPurcOrderPenawaranPPS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1188, 629)
+        Me.ClientSize = New System.Drawing.Size(1089, 629)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.PanelControl2)
@@ -502,23 +586,29 @@ Partial Class FormPurcOrderPenawaranPPS
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TEVendorType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEProposedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEProposeBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl2.ResumeLayout(False)
-        CType(Me.TEProposeBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEProposedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEVendorType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCVendor, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVVendor, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIMemoDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl2.ResumeLayout(False)
+        CType(Me.GCVendor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVVendor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -566,4 +656,13 @@ Partial Class FormPurcOrderPenawaranPPS
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BSend As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BAddVendor As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEVendor As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents DeleteVendorToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
