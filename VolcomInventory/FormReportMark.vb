@@ -759,6 +759,9 @@
         ElseIf report_mark_type = "365" Then
             'perpanjang eos
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_eos_change WHERE id_eos_change = '{0}'", id_report)
+        ElseIf report_mark_type = "374" Then
+            'attachment fgpo
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_prod_order_attach WHERE id_prod_order_attach = '{0}'", id_report)
         ElseIf report_mark_type = "375" Then
             'sop index pps
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_sop_pps WHERE id_sop_pps = '{0}'", id_report)

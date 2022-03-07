@@ -12,7 +12,7 @@
 
             GVPurcReq.AddNewRow()
             GVPurcReq.FocusedRowHandle = GVPurcReq.RowCount - 1
-
+            '
             GVPurcReq.SetRowCellValue(GVPurcReq.RowCount - 1, "id_purc_req_det", FormPurcOrder.GVPurcReq.GetRowCellValue(i, "id_purc_req_det"))
             GVPurcReq.SetRowCellValue(GVPurcReq.RowCount - 1, "departement", FormPurcOrder.GVPurcReq.GetRowCellValue(i, "departement"))
             GVPurcReq.SetRowCellValue(GVPurcReq.RowCount - 1, "purc_req_number", FormPurcOrder.GVPurcReq.GetRowCellValue(i, "purc_req_number"))
@@ -25,8 +25,10 @@
             GVPurcReq.SetRowCellValue(GVPurcReq.RowCount - 1, "ship_destination", FormPurcOrder.GVPurcReq.GetRowCellValue(i, "ship_destination"))
             GVPurcReq.SetRowCellValue(GVPurcReq.RowCount - 1, "ship_address", FormPurcOrder.GVPurcReq.GetRowCellValue(i, "ship_address"))
             '
-            GVPurcReq.RefreshData()
         Next
+
+        GVPurcReq.RefreshData()
+        GVPurcReq.BestFitColumns()
 
         FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
