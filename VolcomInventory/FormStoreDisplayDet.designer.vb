@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormStoreDisplayDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormStoreDisplayDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStoreDisplayDet))
@@ -991,9 +991,9 @@ Partial Class FormStoreDisplayDet
         '
         Me.BtnSetupHanger.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSetupHanger.Image = CType(resources.GetObject("BtnSetupHanger.Image"), System.Drawing.Image)
-        Me.BtnSetupHanger.Location = New System.Drawing.Point(120, 2)
+        Me.BtnSetupHanger.Location = New System.Drawing.Point(125, 2)
         Me.BtnSetupHanger.Name = "BtnSetupHanger"
-        Me.BtnSetupHanger.Size = New System.Drawing.Size(118, 38)
+        Me.BtnSetupHanger.Size = New System.Drawing.Size(114, 38)
         Me.BtnSetupHanger.TabIndex = 6
         Me.BtnSetupHanger.Text = "Setup Hanger"
         '
@@ -1002,9 +1002,9 @@ Partial Class FormStoreDisplayDet
         Me.DropDownRencanaJumlahSKU.Dock = System.Windows.Forms.DockStyle.Right
         Me.DropDownRencanaJumlahSKU.DropDownControl = Me.PopupMenuRencanaJumlahSKU
         Me.DropDownRencanaJumlahSKU.Image = CType(resources.GetObject("DropDownRencanaJumlahSKU.Image"), System.Drawing.Image)
-        Me.DropDownRencanaJumlahSKU.Location = New System.Drawing.Point(238, 2)
+        Me.DropDownRencanaJumlahSKU.Location = New System.Drawing.Point(239, 2)
         Me.DropDownRencanaJumlahSKU.Name = "DropDownRencanaJumlahSKU"
-        Me.DropDownRencanaJumlahSKU.Size = New System.Drawing.Size(166, 38)
+        Me.DropDownRencanaJumlahSKU.Size = New System.Drawing.Size(167, 38)
         Me.DropDownRencanaJumlahSKU.TabIndex = 5
         Me.DropDownRencanaJumlahSKU.Text = "Rencana Jumlah SKU"
         '
@@ -1018,9 +1018,9 @@ Partial Class FormStoreDisplayDet
         '
         Me.BtnRefreshRencanaSKU.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnRefreshRencanaSKU.Image = CType(resources.GetObject("BtnRefreshRencanaSKU.Image"), System.Drawing.Image)
-        Me.BtnRefreshRencanaSKU.Location = New System.Drawing.Point(404, 2)
+        Me.BtnRefreshRencanaSKU.Location = New System.Drawing.Point(406, 2)
         Me.BtnRefreshRencanaSKU.Name = "BtnRefreshRencanaSKU"
-        Me.BtnRefreshRencanaSKU.Size = New System.Drawing.Size(91, 38)
+        Me.BtnRefreshRencanaSKU.Size = New System.Drawing.Size(89, 38)
         Me.BtnRefreshRencanaSKU.TabIndex = 0
         Me.BtnRefreshRencanaSKU.Text = "Refresh"
         '
