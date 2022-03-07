@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormStoreDisplay
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormStoreDisplay
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStoreDisplay))
         Me.XTCStoreDisplay = New DevExpress.XtraTab.XtraTabControl()
@@ -39,6 +39,7 @@ Partial Class FormStoreDisplay
         Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDisplayCapacity = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlLeft = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
@@ -49,9 +50,23 @@ Partial Class FormStoreDisplay
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnCreateNew = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnDisplayCapacity = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEDisplayDate = New DevExpress.XtraEditors.DateEdit()
+        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
+        Me.GCDisplay = New DevExpress.XtraGrid.GridControl()
+        Me.XTCView = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GVDisplay = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         CType(Me.XTCStoreDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStoreDisplay.SuspendLayout()
+        Me.XTPView.SuspendLayout()
         Me.XTPPropose.SuspendLayout()
         CType(Me.GCPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPPS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -63,6 +78,20 @@ Partial Class FormStoreDisplay
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDisplayDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDisplayDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCView.SuspendLayout()
+        Me.XtraTabPage1.SuspendLayout()
+        CType(Me.GVDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCStoreDisplay
@@ -80,9 +109,10 @@ Partial Class FormStoreDisplay
         '
         'XTPView
         '
+        Me.XTPView.Controls.Add(Me.XTCView)
         Me.XTPView.Image = CType(resources.GetObject("XTPView.Image"), System.Drawing.Image)
         Me.XTPView.Name = "XTPView"
-        Me.XTPView.Size = New System.Drawing.Size(927, 453)
+        Me.XTPView.Size = New System.Drawing.Size(1001, 453)
         Me.XTPView.Text = "View"
         '
         'XTPPropose
@@ -224,6 +254,26 @@ Partial Class FormStoreDisplay
         Me.PanelControl1.Size = New System.Drawing.Size(1001, 48)
         Me.PanelControl1.TabIndex = 0
         '
+        'BtnDisplayCapacity
+        '
+        Me.BtnDisplayCapacity.Appearance.BackColor = System.Drawing.Color.OrangeRed
+        Me.BtnDisplayCapacity.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnDisplayCapacity.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnDisplayCapacity.Appearance.Image = CType(resources.GetObject("BtnDisplayCapacity.Appearance.Image"), System.Drawing.Image)
+        Me.BtnDisplayCapacity.Appearance.Options.UseBackColor = True
+        Me.BtnDisplayCapacity.Appearance.Options.UseFont = True
+        Me.BtnDisplayCapacity.Appearance.Options.UseForeColor = True
+        Me.BtnDisplayCapacity.Appearance.Options.UseImage = True
+        Me.BtnDisplayCapacity.Location = New System.Drawing.Point(131, 9)
+        Me.BtnDisplayCapacity.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnDisplayCapacity.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnDisplayCapacity.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnDisplayCapacity.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnDisplayCapacity.Name = "BtnDisplayCapacity"
+        Me.BtnDisplayCapacity.Size = New System.Drawing.Size(133, 29)
+        Me.BtnDisplayCapacity.TabIndex = 23
+        Me.BtnDisplayCapacity.Text = "Display Capacity"
+        '
         'PanelControlLeft
         '
         Me.PanelControlLeft.Controls.Add(Me.BtnPrint)
@@ -344,25 +394,156 @@ Partial Class FormStoreDisplay
         Me.BtnCreateNew.TabIndex = 22
         Me.BtnCreateNew.Text = "+ Create New"
         '
-        'BtnDisplayCapacity
+        'PanelControl2
         '
-        Me.BtnDisplayCapacity.Appearance.BackColor = System.Drawing.Color.OrangeRed
-        Me.BtnDisplayCapacity.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnDisplayCapacity.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BtnDisplayCapacity.Appearance.Image = CType(resources.GetObject("SimpleButton1.Appearance.Image"), System.Drawing.Image)
-        Me.BtnDisplayCapacity.Appearance.Options.UseBackColor = True
-        Me.BtnDisplayCapacity.Appearance.Options.UseFont = True
-        Me.BtnDisplayCapacity.Appearance.Options.UseForeColor = True
-        Me.BtnDisplayCapacity.Appearance.Options.UseImage = True
-        Me.BtnDisplayCapacity.Location = New System.Drawing.Point(131, 9)
-        Me.BtnDisplayCapacity.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BtnDisplayCapacity.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BtnDisplayCapacity.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BtnDisplayCapacity.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnDisplayCapacity.Name = "BtnDisplayCapacity"
-        Me.BtnDisplayCapacity.Size = New System.Drawing.Size(133, 29)
-        Me.BtnDisplayCapacity.TabIndex = 23
-        Me.BtnDisplayCapacity.Text = "Display Capacity"
+        Me.PanelControl2.Controls.Add(Me.PanelControl3)
+        Me.PanelControl2.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl2.Controls.Add(Me.SimpleButton2)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(972, 69)
+        Me.PanelControl2.TabIndex = 1
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.CheckEdit1)
+        Me.PanelControl3.Controls.Add(Me.DEDisplayDate)
+        Me.PanelControl3.Controls.Add(Me.LabelControl4)
+        Me.PanelControl3.Controls.Add(Me.SearchLookUpEdit1)
+        Me.PanelControl3.Controls.Add(Me.LabelControl3)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(578, 65)
+        Me.PanelControl3.TabIndex = 22
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Appearance.BackColor = System.Drawing.Color.DimGray
+        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.White
+        Me.SimpleButton1.Appearance.Options.UseBackColor = True
+        Me.SimpleButton1.Appearance.Options.UseFont = True
+        Me.SimpleButton1.Appearance.Options.UseForeColor = True
+        Me.SimpleButton1.Location = New System.Drawing.Point(652, 31)
+        Me.SimpleButton1.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.SimpleButton1.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.SimpleButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.SimpleButton1.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(70, 21)
+        Me.SimpleButton1.TabIndex = 20
+        Me.SimpleButton1.Text = "Print List"
+        '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.SimpleButton2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.SimpleButton2.Appearance.ForeColor = System.Drawing.Color.White
+        Me.SimpleButton2.Appearance.Options.UseBackColor = True
+        Me.SimpleButton2.Appearance.Options.UseFont = True
+        Me.SimpleButton2.Appearance.Options.UseForeColor = True
+        Me.SimpleButton2.Location = New System.Drawing.Point(586, 31)
+        Me.SimpleButton2.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.SimpleButton2.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.SimpleButton2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.SimpleButton2.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(63, 21)
+        Me.SimpleButton2.TabIndex = 19
+        Me.SimpleButton2.Text = "View"
+        '
+        'SearchLookUpEdit1
+        '
+        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(12, 30)
+        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
+        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SearchLookUpEdit1.Properties.ShowClearButton = False
+        Me.SearchLookUpEdit1.Properties.View = Me.GridView2
+        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(242, 20)
+        Me.SearchLookUpEdit1.TabIndex = 4
+        '
+        'GridView2
+        '
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 11)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl3.TabIndex = 3
+        Me.LabelControl3.Text = "Store"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(258, 11)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl4.TabIndex = 4
+        Me.LabelControl4.Text = "Date"
+        '
+        'DEDisplayDate
+        '
+        Me.DEDisplayDate.EditValue = Nothing
+        Me.DEDisplayDate.Location = New System.Drawing.Point(258, 30)
+        Me.DEDisplayDate.Name = "DEDisplayDate"
+        Me.DEDisplayDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDisplayDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDisplayDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEDisplayDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDisplayDate.Size = New System.Drawing.Size(166, 20)
+        Me.DEDisplayDate.TabIndex = 2
+        '
+        'CheckEdit1
+        '
+        Me.CheckEdit1.Location = New System.Drawing.Point(430, 30)
+        Me.CheckEdit1.Name = "CheckEdit1"
+        Me.CheckEdit1.Properties.Caption = "Show Breakdown Season"
+        Me.CheckEdit1.Size = New System.Drawing.Size(140, 19)
+        Me.CheckEdit1.TabIndex = 2
+        '
+        'GCDisplay
+        '
+        Me.GCDisplay.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDisplay.Location = New System.Drawing.Point(0, 69)
+        Me.GCDisplay.MainView = Me.GVDisplay
+        Me.GCDisplay.Name = "GCDisplay"
+        Me.GCDisplay.Size = New System.Drawing.Size(972, 378)
+        Me.GCDisplay.TabIndex = 2
+        Me.GCDisplay.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDisplay})
+        '
+        'XTCView
+        '
+        Me.XTCView.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCView.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.XTCView.Location = New System.Drawing.Point(0, 0)
+        Me.XTCView.Name = "XTCView"
+        Me.XTCView.SelectedTabPage = Me.XtraTabPage1
+        Me.XTCView.Size = New System.Drawing.Size(1001, 453)
+        Me.XTCView.TabIndex = 3
+        Me.XTCView.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
+        '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Controls.Add(Me.GCDisplay)
+        Me.XtraTabPage1.Controls.Add(Me.PanelControl2)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(972, 447)
+        Me.XtraTabPage1.Text = "By Class Group"
+        '
+        'GVDisplay
+        '
+        Me.GVDisplay.GridControl = Me.GCDisplay
+        Me.GVDisplay.Name = "GVDisplay"
+        Me.GVDisplay.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVDisplay.OptionsBehavior.ReadOnly = True
+        Me.GVDisplay.OptionsFind.AlwaysVisible = True
+        Me.GVDisplay.OptionsView.ShowGroupPanel = False
         '
         'FormStoreDisplay
         '
@@ -375,6 +556,7 @@ Partial Class FormStoreDisplay
         Me.Text = "Store Display"
         CType(Me.XTCStoreDisplay, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCStoreDisplay.ResumeLayout(False)
+        Me.XTPView.ResumeLayout(False)
         Me.XTPPropose.ResumeLayout(False)
         CType(Me.GCPPS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPPS, System.ComponentModel.ISupportInitialize).EndInit()
@@ -387,6 +569,21 @@ Partial Class FormStoreDisplay
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDisplayDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDisplayDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCDisplay, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCView.ResumeLayout(False)
+        Me.XtraTabPage1.ResumeLayout(False)
+        CType(Me.GVDisplay, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -421,4 +618,18 @@ Partial Class FormStoreDisplay
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnDisplayCapacity As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents DEDisplayDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents XTCView As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCDisplay As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDisplay As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
 End Class
