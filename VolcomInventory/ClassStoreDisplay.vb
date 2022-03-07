@@ -59,6 +59,32 @@
     End Function
 
     Sub completeProposeDisplay(ByVal rmt_par As String, ByVal id_report_par As String)
-
+        Dim query As String = "DELETE FROM tb_display_stock WHERE report_mark_type=" + rmt_par + " AND id_report=" + id_report_par + ";
+        INSERT INTO tb_display_stock(id_season, id_delivery,id_class_group,id_design,id_comp,in_store_date,return_date,effective_date,qty,report_mark_type, id_report, report_number, is_active, input_date)
+        -- existing
+        SELECT d.id_season, d.id_delivery, dpr.id_class_group, dpr.id_design, dp.id_comp,sd.delivery_date, rc.ret_date, dp.in_store_date AS `effective_date`, dph.qty_hanger, 353, dp.id_display_pps, dp.`number`, 1, NOW()
+        FROM tb_display_pps_res dpr
+        INNER JOIN tb_display_pps dp ON dp.id_display_pps = dpr.id_display_pps
+        INNER JOIN tb_m_design d ON d.id_design = dpr.id_design
+        INNER JOIN tb_lookup_ret_code rc ON rc.id_ret_code = d.id_ret_code
+        INNER JOIN tb_season_delivery sd ON sd.id_delivery = d.id_delivery
+        LEFT JOIN tb_display_pps_season dps ON dps.id_delivery = d.id_delivery  AND dps.id_display_pps=" + id_report_par + "
+        JOIN tb_display_pps_season ex ON ex.id_display_pps=" + id_report_par + " AND ex.is_extra_sku=1
+        INNER JOIN tb_display_pps_hanger dph ON dph.id_display_pps_season = IFNULL(dps.id_display_pps_season, ex.id_display_pps_season) AND dph.id_class_group = dpr.id_class_group AND dph.id_display_pps=" + id_report_par + "
+        WHERE dpr.id_display_pps=" + id_report_par + " AND d.id_lookup_status_order!=2 
+        -- current season 
+        UNION ALL
+        SELECT d.id_season, d.id_delivery, dpr.id_class_group, dpr.id_design, dp.id_comp,sd.delivery_date, rc.ret_date, dp.in_store_date AS `effective_date`, dph.qty_hanger, 353, dp.id_display_pps, dp.`number`, 1, NOW()
+        FROM tb_display_pps_det dpr
+        INNER JOIN tb_display_pps dp ON dp.id_display_pps = dpr.id_display_pps
+        INNER JOIN tb_m_design d ON d.id_design = dpr.id_design
+        INNER JOIN tb_lookup_ret_code rc ON rc.id_ret_code = d.id_ret_code
+        INNER JOIN tb_season_delivery sd ON sd.id_delivery = d.id_delivery
+        LEFT JOIN tb_display_pps_season dps ON dps.id_delivery = d.id_delivery  AND dps.id_display_pps=" + id_report_par + "
+        JOIN tb_display_pps_season ex ON ex.id_display_pps=" + id_report_par + " AND ex.is_extra_sku=1
+        INNER JOIN tb_display_pps_hanger dph ON dph.id_display_pps_season = IFNULL(dps.id_display_pps_season, ex.id_display_pps_season) AND dph.id_class_group = dpr.id_class_group AND dph.id_display_pps=" + id_report_par + "
+        WHERE dpr.id_display_pps=" + id_report_par + " AND d.id_lookup_status_order!=2 
+        -- plan season (sementara belum masuk) "
+        execute_non_query(query, -1, True, "", "", "")
     End Sub
 End Class
