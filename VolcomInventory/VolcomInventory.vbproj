@@ -10726,6 +10726,12 @@
     <Compile Include="ReportStockTakeStoreBAPHasil.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportStoreDisplay.Designer.vb">
+      <DependentUpon>ReportStoreDisplay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportStoreDisplay.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSummaryInvoice.Designer.vb">
       <DependentUpon>ReportSummaryInvoice.vb</DependentUpon>
     </Compile>
@@ -16548,6 +16554,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportStockTakeStoreBAPHasil.resx">
       <DependentUpon>ReportStockTakeStoreBAPHasil.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportStoreDisplay.resx">
+      <DependentUpon>ReportStoreDisplay.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSummaryInvoice.resx">
       <DependentUpon>ReportSummaryInvoice.vb</DependentUpon>
