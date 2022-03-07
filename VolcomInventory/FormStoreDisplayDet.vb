@@ -118,6 +118,12 @@
                 Cursor = Cursors.Default
                 Close()
             End If
+
+            'view
+            If is_view = "1" Then
+                XTCDetail.SelectedTabPageIndex = 1
+                BtnCancell.Visible = False
+            End If
         End If
         Cursor = Cursors.Default
     End Sub
