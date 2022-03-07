@@ -4677,6 +4677,12 @@
     <Compile Include="FormPurcOrderDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPurcOrderPenawaranPPS.Designer.vb">
+      <DependentUpon>FormPurcOrderPenawaranPPS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcOrderPenawaranPPS.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPurcPayment.Designer.vb">
       <DependentUpon>FormPurcPayment.vb</DependentUpon>
     </Compile>
@@ -13012,6 +13018,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcOrderDet.resx">
       <DependentUpon>FormPurcOrderDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcOrderPenawaranPPS.resx">
+      <DependentUpon>FormPurcOrderPenawaranPPS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcPayment.resx">
       <DependentUpon>FormPurcPayment.vb</DependentUpon>
