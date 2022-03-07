@@ -247,7 +247,7 @@ Partial Class FormPurcOrder
         Me.GridColumn102 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn103 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BViewRequest = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -2400,7 +2400,7 @@ Partial Class FormPurcOrder
         '
         Me.PanelControl6.Controls.Add(Me.SearchLookUpEdit1)
         Me.PanelControl6.Controls.Add(Me.LabelControl10)
-        Me.PanelControl6.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl6.Controls.Add(Me.BViewRequest)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl6.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl6.Name = "PanelControl6"
@@ -2446,13 +2446,13 @@ Partial Class FormPurcOrder
         Me.LabelControl10.TabIndex = 8914
         Me.LabelControl10.Text = "Request Item"
         '
-        'SimpleButton1
+        'BViewRequest
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(357, 11)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(60, 23)
-        Me.SimpleButton1.TabIndex = 8913
-        Me.SimpleButton1.Text = "view"
+        Me.BViewRequest.Location = New System.Drawing.Point(357, 11)
+        Me.BViewRequest.Name = "BViewRequest"
+        Me.BViewRequest.Size = New System.Drawing.Size(60, 23)
+        Me.BViewRequest.TabIndex = 8913
+        Me.BViewRequest.Text = "view"
         '
         'FormPurcOrder
         '
@@ -2761,7 +2761,7 @@ Partial Class FormPurcOrder
     Friend WithEvents BCreatePenawaran As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTPPenawaran As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BViewRequest As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView9 As DevExpress.XtraGrid.Views.Grid.GridView

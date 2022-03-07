@@ -637,6 +637,8 @@ GROUP BY pod.id_purc_order_det"
     End Sub
 
     Private Sub BCreatePenawaran_Click(sender As Object, e As EventArgs) Handles BCreatePenawaran.Click
-
+        GVPurcReq.ActiveFilterString = "[is_check]='yes'"
+        FormPurcOrderPenawaranPPS.ShowDialog()
+        GVPurcReq.ActiveFilterString = ""
     End Sub
 End Class

@@ -952,9 +952,9 @@ INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_m_comp c ON c.`id_comp`=dn.`id_comp` " & id_comp & "
 INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ar
 INNER JOIN (
-	SELECT dnd.id_inv_mat,ROUND(SUM(dnd.`value`*((100+dn.vat_percent)/100)),2) AS amount 
+	SELECT dnd.id_inv_mat,ROUND(SUM(dnd.`value`*((100+IF(c.id_status_pabean = 1, dn.vat_percent, 0))/100)),2) AS amount 
 	,0 AS vat
-	,ROUND(SUM(dnd.`value`*((100+dn.vat_percent)/100)),2) AS value_bef_kurs
+	,ROUND(SUM(dnd.`value`*((100+IF(c.id_status_pabean = 1, dn.vat_percent, 0))/100)),2) AS value_bef_kurs
 	,0 AS amount_selisih_kurs 
 	,cur.`id_currency`,cur.`currency`,1 AS `kurs`
 	FROM tb_inv_mat_det dnd 
@@ -1018,9 +1018,9 @@ INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_m_comp c ON c.`id_comp`=dn.`id_comp` " & id_comp & "
 INNER JOIN tb_a_acc acc ON acc.id_acc=c.id_acc_ar
 INNER JOIN (
-	SELECT dnd.id_inv_mat,SUM(dnd.`value`*((100+dn.vat_percent)/100)) AS amount 
+	SELECT dnd.id_inv_mat,SUM(dnd.`value`*((100+IF(c.id_status_pabean = 1, dn.vat_percent, 0))/100)) AS amount 
 	,0 AS vat
-	,SUM(dnd.`value`*((100+dn.vat_percent)/100)) AS value_bef_kurs
+	,SUM(dnd.`value`*((100+IF(c.id_status_pabean = 1, dn.vat_percent, 0))/100)) AS value_bef_kurs
 	,0 AS amount_selisih_kurs 
 	,cur.`id_currency`,cur.`currency`,1 AS `kurs`
 	FROM tb_inv_mat_det dnd 

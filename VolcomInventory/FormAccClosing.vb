@@ -61,7 +61,7 @@ GROUP BY trxd.`id_acc_trans`
 UNION ALL
 SELECT '' AS id_acc_trans,'' AS id_report,'' AS report_number,'' AS report_mark_type,'' AS `employee_name`,'' AS `date_created`,'' AS `date_reference`,'' AS `bill_type`,'' AS `acc_trans_number`,0 AS debit,0 AS credit,IF(COUNT(tb.id_asset_dep_pps)>0,'ok','Asset depreciation for this month not found.') AS sts
 FROM(
-	SELECT id_asset_dep_pps FROM tb_asset_dep_pps WHERE id_coa_tag=4 AND id_report_status='" & SLEUnit.EditValue.ToString & "' AND reff_date='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "'
+	SELECT id_asset_dep_pps FROM tb_asset_dep_pps WHERE id_coa_tag='" & SLEUnit.EditValue.ToString & "' AND id_report_status='6' AND reff_date='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "'
 )tb
 HAVING sts!='ok'
 UNION ALL
