@@ -11938,7 +11938,7 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_report & "'"
 
             If id_status_reportx = "6" Then
                 Dim csd As New ClassStoreDisplay()
-                csd.completeProposeDisplay(id_report)
+                csd.completeProposeDisplay(report_mark_type, id_report)
             End If
 
             query = String.Format("UPDATE tb_display_pps SET id_report_status = '{0}' WHERE id_display_pps = '{1}'", id_status_reportx, id_report)
