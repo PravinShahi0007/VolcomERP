@@ -85,6 +85,6 @@
         INNER JOIN tb_display_pps_hanger dph ON dph.id_display_pps_season = IFNULL(dps.id_display_pps_season, ex.id_display_pps_season) AND dph.id_class_group = dpr.id_class_group AND dph.id_display_pps=" + id_report_par + "
         WHERE dpr.id_display_pps=" + id_report_par + " AND d.id_lookup_status_order!=2 
         -- plan season (sementara belum masuk) "
-        execute_non_query(query, -1, True, "", "", "", "")
+        execute_non_query(query, -1, True, "", "", "")
     End Sub
 End Class

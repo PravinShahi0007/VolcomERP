@@ -559,6 +559,18 @@
                         summary.ShowInGroupColumnFooter = col
                         summary.SummaryType = DevExpress.Data.SummaryItemType.Sum
                         GVRencanaSKU.GroupSummary.Add(summary)
+                    ElseIf coluName = "CATEGORY" Then
+                        'summary custom footer
+                        col.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Custom
+                        col.SummaryItem.Tag = "foot"
+
+                        'group footer
+                        Dim summary As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem
+                        summary.FieldName = data.Columns(j).Caption
+                        summary.ShowInGroupColumnFooter = col
+                        summary.SummaryType = DevExpress.Data.SummaryItemType.Custom
+                        summary.Tag = "footgroup"
+                        GVRencanaSKU.GroupSummary.Add(summary)
                     End If
                 End If
             Next
@@ -1275,5 +1287,43 @@
         XTPSummaryRencanaSKU.PageEnabled = False
         viewSetupHanger()
         Cursor = Cursors.Default
+    End Sub
+
+    Dim footgroup_cat As String = ""
+    Dim footgroup_div As String = ""
+    Private Sub GVRencanaSKU_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVRencanaSKU.CustomSummaryCalculate
+        Dim summaryID As String = Convert.ToString(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            footgroup_cat = ""
+            footgroup_div = ""
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            Dim cat As String = View.GetRowCellValue(e.RowHandle, "GROUP INFO|CATEGORY").ToString
+            Dim division As String = View.GetRowCellValue(e.RowHandle, "GROUP INFO|DIVISION").ToString
+            Select Case summaryID
+                Case "footgroup"
+                    footgroup_cat = cat
+                    footgroup_div = division
+            End Select
+        End If
+
+
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case "foot" 'total summary estimate
+                    e.TotalValue = "TOTAL"
+                Case "footgroup" 'group summary  cat
+                    If e.GroupLevel.ToString = "1" Then
+                        e.TotalValue = "SUB TOTAL " + footgroup_div.ToUpper + " " + footgroup_cat.ToUpper
+                    Else
+                        e.TotalValue = "SUB TOTAL " + footgroup_div.ToUpper
+                    End If
+            End Select
+        End If
     End Sub
 End Class

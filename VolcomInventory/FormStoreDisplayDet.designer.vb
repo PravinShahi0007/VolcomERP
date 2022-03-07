@@ -967,6 +967,7 @@ Partial Class FormStoreDisplayDet
         'GVRencanaSKU
         '
         Me.GVRencanaSKU.GridControl = Me.GCRencanaSKU
+        Me.GVRencanaSKU.LevelIndent = 0
         Me.GVRencanaSKU.Name = "GVRencanaSKU"
         Me.GVRencanaSKU.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVRencanaSKU.OptionsBehavior.Editable = False
