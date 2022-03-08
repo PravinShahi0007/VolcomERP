@@ -238,11 +238,18 @@ Partial Class FormPurcOrder
         Me.GridColumn122 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn134 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GridColumn104 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn105 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLEVendorPenawaran = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView11 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn115 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn116 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEPr = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView9 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn102 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn103 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -325,7 +332,9 @@ Partial Class FormPurcOrder
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEVendorPenawaran.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEPr.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -2233,7 +2242,7 @@ Partial Class FormPurcOrder
         '
         'GVPenawaran
         '
-        Me.GVPenawaran.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn106, Me.GridColumn107, Me.GridColumn108, Me.GridColumn109, Me.GridColumn110, Me.GridColumn111, Me.GridColumn112, Me.GridColumn113, Me.GridColumn114, Me.GridColumn121, Me.GridColumn122, Me.GridColumn134})
+        Me.GVPenawaran.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn106, Me.GridColumn107, Me.GridColumn108, Me.GridColumn109, Me.GridColumn110, Me.GridColumn111, Me.GridColumn112, Me.GridColumn113, Me.GridColumn114, Me.GridColumn121, Me.GridColumn122, Me.GridColumn134, Me.GridColumn104, Me.GridColumn105})
         Me.GVPenawaran.GridControl = Me.GCPenawaran
         Me.GVPenawaran.Name = "GVPenawaran"
         Me.GVPenawaran.OptionsFind.AlwaysVisible = True
@@ -2373,6 +2382,28 @@ Partial Class FormPurcOrder
         '
         Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
+        'GridColumn104
+        '
+        Me.GridColumn104.Caption = "Vendor Asked"
+        Me.GridColumn104.FieldName = "comp_name"
+        Me.GridColumn104.Name = "GridColumn104"
+        Me.GridColumn104.Visible = True
+        Me.GridColumn104.VisibleIndex = 9
+        '
+        'GridColumn105
+        '
+        Me.GridColumn105.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn105.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn105.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn105.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn105.Caption = "Vendor Offer"
+        Me.GridColumn105.DisplayFormat.FormatString = "N2"
+        Me.GridColumn105.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn105.FieldName = "offer"
+        Me.GridColumn105.Name = "GridColumn105"
+        Me.GridColumn105.Visible = True
+        Me.GridColumn105.VisibleIndex = 10
+        '
         'RepositoryItemCheckEdit5
         '
         Me.RepositoryItemCheckEdit5.AutoHeight = False
@@ -2398,7 +2429,9 @@ Partial Class FormPurcOrder
         '
         'PanelControl6
         '
-        Me.PanelControl6.Controls.Add(Me.SearchLookUpEdit1)
+        Me.PanelControl6.Controls.Add(Me.SLEVendorPenawaran)
+        Me.PanelControl6.Controls.Add(Me.LabelControl11)
+        Me.PanelControl6.Controls.Add(Me.SLEPr)
         Me.PanelControl6.Controls.Add(Me.LabelControl10)
         Me.PanelControl6.Controls.Add(Me.BViewRequest)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Top
@@ -2407,14 +2440,53 @@ Partial Class FormPurcOrder
         Me.PanelControl6.Size = New System.Drawing.Size(1193, 44)
         Me.PanelControl6.TabIndex = 12
         '
-        'SearchLookUpEdit1
+        'SLEVendorPenawaran
         '
-        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(100, 13)
-        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
-        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit1.Properties.View = Me.GridView9
-        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(251, 20)
-        Me.SearchLookUpEdit1.TabIndex = 8915
+        Me.SLEVendorPenawaran.Location = New System.Drawing.Point(379, 13)
+        Me.SLEVendorPenawaran.Name = "SLEVendorPenawaran"
+        Me.SLEVendorPenawaran.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendorPenawaran.Properties.View = Me.GridView11
+        Me.SLEVendorPenawaran.Size = New System.Drawing.Size(213, 20)
+        Me.SLEVendorPenawaran.TabIndex = 8917
+        '
+        'GridView11
+        '
+        Me.GridView11.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn115, Me.GridColumn116})
+        Me.GridView11.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView11.Name = "GridView11"
+        Me.GridView11.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView11.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn115
+        '
+        Me.GridColumn115.Caption = "ID PR"
+        Me.GridColumn115.FieldName = "id_comp"
+        Me.GridColumn115.Name = "GridColumn115"
+        '
+        'GridColumn116
+        '
+        Me.GridColumn116.Caption = "Vendor"
+        Me.GridColumn116.FieldName = "comp_name"
+        Me.GridColumn116.Name = "GridColumn116"
+        Me.GridColumn116.Visible = True
+        Me.GridColumn116.VisibleIndex = 0
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(339, 16)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl11.TabIndex = 8916
+        Me.LabelControl11.Text = "Vendor"
+        '
+        'SLEPr
+        '
+        Me.SLEPr.Location = New System.Drawing.Point(73, 13)
+        Me.SLEPr.Name = "SLEPr"
+        Me.SLEPr.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEPr.Properties.View = Me.GridView9
+        Me.SLEPr.Size = New System.Drawing.Size(251, 20)
+        Me.SLEPr.TabIndex = 8915
         '
         'GridView9
         '
@@ -2426,29 +2498,29 @@ Partial Class FormPurcOrder
         '
         'GridColumn102
         '
-        Me.GridColumn102.Caption = "ID Departement"
-        Me.GridColumn102.FieldName = "id_departement"
+        Me.GridColumn102.Caption = "ID PR"
+        Me.GridColumn102.FieldName = "id_purc_req"
         Me.GridColumn102.Name = "GridColumn102"
         '
         'GridColumn103
         '
-        Me.GridColumn103.Caption = "Departement"
-        Me.GridColumn103.FieldName = "departement"
+        Me.GridColumn103.Caption = "Number"
+        Me.GridColumn103.FieldName = "purc_req_number"
         Me.GridColumn103.Name = "GridColumn103"
         Me.GridColumn103.Visible = True
         Me.GridColumn103.VisibleIndex = 0
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(20, 16)
+        Me.LabelControl10.Location = New System.Drawing.Point(11, 16)
         Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl10.Size = New System.Drawing.Size(56, 13)
         Me.LabelControl10.TabIndex = 8914
-        Me.LabelControl10.Text = "Request Item"
+        Me.LabelControl10.Text = "Request No"
         '
         'BViewRequest
         '
-        Me.BViewRequest.Location = New System.Drawing.Point(357, 11)
+        Me.BViewRequest.Location = New System.Drawing.Point(598, 11)
         Me.BViewRequest.Name = "BViewRequest"
         Me.BViewRequest.Size = New System.Drawing.Size(60, 23)
         Me.BViewRequest.TabIndex = 8913
@@ -2551,7 +2623,9 @@ Partial Class FormPurcOrder
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEVendorPenawaran.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEPr.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -2763,7 +2837,7 @@ Partial Class FormPurcOrder
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BViewRequest As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLEPr As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView9 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn102 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn103 As DevExpress.XtraGrid.Columns.GridColumn
@@ -2785,4 +2859,11 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn134 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents RepositoryItemCheckEdit5 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn104 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn105 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLEVendorPenawaran As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView11 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn115 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn116 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
 End Class

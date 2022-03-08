@@ -98,11 +98,12 @@ WHERE req.`id_report_status`='6' AND rd.`is_close`='2' AND rd.is_unable_fulfill=
         GVPurcReq.BestFitColumns()
         '
         'load vendor list
-        q = "SELECT ov.id_comp,ov.id_purc_offer_vendor,CONCAT(c.comp_number,' - ',c.comp_name) AS comp_name
+        Dim qv = "SELECT ov.id_comp,ov.id_purc_offer_vendor,CONCAT(c.comp_number,' - ',c.comp_name) AS comp_name
 FROM `tb_purc_offer_vendor` ov
 INNER JOIN tb_m_comp c ON c.id_comp=ov.id_comp
-WHERE ov.id_purc_offer='" & id_pps & "'"
-        GCVendor.DataSource = execute_query(q, -1, True, "", "", "", "")
+WHERE ov.id_purc_offer='" & id_pps & "'
+GROUP BY ov.id_comp"
+        GCVendor.DataSource = execute_query(qv, -1, True, "", "", "", "")
         GVVendor.BestFitColumns()
     End Sub
 
@@ -113,27 +114,57 @@ WHERE ov.id_purc_offer='" & id_pps & "'"
     Private Sub BSend_Click(sender As Object, e As EventArgs) Handles BSend.Click
         If GVVendor.RowCount > 0 And GVPurcReq.RowCount > 0 Then
             If id_pps = "-1" Then
-                Dim q As String = "INSERT INTO `tb_purc_offer`(created_by,created_date,id_vendor_type)
-VALUES('" & id_user & "',NOW(),'" & id_vendor_type & "')"
-                id_pps = execute_query(q, 0, True, "", "", "", "")
-                'item
-                q = "INSERT INTO tb_purc_offer_pr(`id_purc_offer`,`id_purc_req_det`) VALUES"
+                Dim is_ok As Boolean = True
+
+                Dim qc As String = "SELECT ov.id_comp,ov.id_purc_req_det FROM `tb_purc_offer_vendor` ov
+INNER JOIN `tb_purc_offer` o ON o.id_purc_offer=ov.id_purc_offer AND ov.is_active=1"
+                Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                '
                 For i = 0 To GVPurcReq.RowCount - 1
-                    If Not i = 0 Then
-                        q += ","
+                    For j = 0 To GVVendor.RowCount - 1
+                        Dim dr As DataRow() = dtc.Select("[id_comp] = '" & GVVendor.GetRowCellValue(j, "id_comp").ToString & "' AND [id_purc_req_det]='" & GVPurcReq.GetRowCellValue(i, "id_purc_req_det").ToString & "'")
+                        If dr.Length > 0 Then
+                            warningCustom(GVVendor.GetRowCellValue(j, "comp_name").ToString & " untuk item " & GVPurcReq.GetRowCellValue(i, "item_detail").ToString & " sudah pernah diajukan penawaran.")
+                            is_ok = False
+                            Exit For
+                        End If
+                    Next
+                    If Not is_ok Then
+                        Exit For
                     End If
-                    q += "('" & id_pps & "','" & GVPurcReq.GetRowCellValue(i, "id_purc_req_det").ToString & "')"
                 Next
-                execute_non_query(q, True, "", "", "", "")
-                'vendor
-                q = "INSERT INTO tb_purc_offer_vendor(`id_purc_offer`,`id_comp`) VALUES"
-                For i = 0 To GVVendor.RowCount - 1
-                    If Not i = 0 Then
-                        q += ","
-                    End If
-                    q += "('" & id_pps & "','" & GVVendor.GetRowCellValue(i, "id_comp").ToString & "')"
-                Next
-                execute_non_query(q, True, "", "", "", "")
+
+                '
+                If is_ok Then
+                    Dim q As String = "INSERT INTO `tb_purc_offer`(created_by,created_date,id_vendor_type)
+VALUES('" & id_user & "',NOW(),'" & id_vendor_type & "'); SELECT LAST_INSERT_ID();"
+                    id_pps = execute_query(q, 0, True, "", "", "", "")
+                    'item
+                    q = "INSERT INTO tb_purc_offer_pr(`id_purc_offer`,`id_purc_req_det`) VALUES"
+                    For i = 0 To GVPurcReq.RowCount - 1
+                        If Not i = 0 Then
+                            q += ","
+                        End If
+                        q += "('" & id_pps & "','" & GVPurcReq.GetRowCellValue(i, "id_purc_req_det").ToString & "')"
+                    Next
+                    execute_non_query(q, True, "", "", "", "")
+                    'vendor
+                    q = "INSERT INTO tb_purc_offer_vendor(`id_purc_offer`,`id_purc_req_det`,`id_comp`) VALUES"
+                    For i = 0 To GVPurcReq.RowCount - 1
+                        For j = 0 To GVVendor.RowCount - 1
+                            If Not i = 0 Or Not j = 0 Then
+                                q += ","
+                            End If
+                            q += "('" & id_pps & "','" & GVPurcReq.GetRowCellValue(i, "id_purc_req_det").ToString & "','" & GVVendor.GetRowCellValue(j, "id_comp").ToString & "')"
+                        Next
+                    Next
+                    execute_non_query(q, True, "", "", "", "")
+
+                    Close()
+                    FormPurcOrder.view_offer_pr()
+                    FormPurcOrder.view_offer_vendor()
+                    FormPurcOrder.XTCPO.SelectedTabPageIndex = 5
+                End If
             End If
         Else
             warningCustom("Please choose at least 1 vendor")
@@ -152,10 +183,10 @@ VALUES('" & id_user & "',NOW(),'" & id_vendor_type & "')"
 
         If is_ok Then
             GVVendor.AddNewRow()
-            GVVendor.FocusedRowHandle = GVPurcReq.RowCount - 1
+            GVVendor.FocusedRowHandle = GVVendor.RowCount - 1
             '
-            GVVendor.SetRowCellValue(GVPurcReq.RowCount - 1, "id_comp", SLEVendor.EditValue.ToString)
-            GVVendor.SetRowCellValue(GVPurcReq.RowCount - 1, "comp_name", SLEVendor.Text)
+            GVVendor.SetRowCellValue(GVVendor.RowCount - 1, "id_comp", SLEVendor.EditValue.ToString)
+            GVVendor.SetRowCellValue(GVVendor.RowCount - 1, "comp_name", SLEVendor.Text)
             GVVendor.BestFitColumns()
         End If
     End Sub
@@ -167,5 +198,9 @@ VALUES('" & id_user & "',NOW(),'" & id_vendor_type & "')"
         Else
             warningCustom("No vendor selected")
         End If
+    End Sub
+
+    Private Sub FormPurcOrderPenawaranPPS_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class

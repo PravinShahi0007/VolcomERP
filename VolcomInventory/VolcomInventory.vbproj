@@ -7953,6 +7953,18 @@
     <Compile Include="FormSuperUserSubDept.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSyncPOS.Designer.vb">
+      <DependentUpon>FormSyncPOS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSyncPOS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSyncPOSRole.Designer.vb">
+      <DependentUpon>FormSyncPOSRole.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSyncPOSRole.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormTabunganMissing.Designer.vb">
       <DependentUpon>FormTabunganMissing.vb</DependentUpon>
     </Compile>
@@ -15001,6 +15013,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSuperUserSubDept.resx">
       <DependentUpon>FormSuperUserSubDept.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSyncPOS.resx">
+      <DependentUpon>FormSyncPOS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSyncPOSRole.resx">
+      <DependentUpon>FormSyncPOSRole.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTabunganMissing.resx">
       <DependentUpon>FormTabunganMissing.vb</DependentUpon>

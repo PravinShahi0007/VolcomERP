@@ -47,6 +47,77 @@
         SLEUnit.EditValue = "1"
     End Sub
 
+    Sub view_offer_pr()
+        Dim q As String = "SELECT 0 AS id_purc_req,'ALL' AS purc_req_number
+UNION ALL
+(SELECT pr.id_purc_req,pr.purc_req_number
+FROM `tb_purc_offer_vendor` ov
+INNER JOIN tb_purc_req_det prd ON prd.id_purc_req_det=ov.id_purc_req_det
+INNER JOIN tb_purc_req pr ON pr.id_purc_req=prd.id_purc_req AND pr.id_report_status=6
+LEFT JOIN 
+(
+	SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,SUM(pod.`qty`) AS qty, SUM(IF(po.is_close_rec=1,0,pod.`qty`)) AS qty_pending, po.is_close_rec, IFNULL(SUM(rec.`qty_rec`),0) AS qty_rec  
+	FROM tb_purc_order_det pod
+	INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
+	LEFT JOIN 
+	(
+		SELECT recd.id_purc_order_det,SUM(recd.qty) AS qty_rec
+		FROM `tb_purc_rec_det` recd 
+		INNER JOIN tb_purc_rec rec ON rec.id_purc_rec=recd.id_purc_rec AND rec.id_report_status!=5
+		GROUP BY recd.id_purc_order_det
+	) rec ON pod.`id_purc_order_det` = rec.`id_purc_order_det`
+	WHERE po.`id_report_status`!='5' AND pod.is_drop='2'
+	GROUP BY pod.`id_purc_req_det`
+)po ON po.id_purc_req_det=prd.`id_purc_req_det`
+LEFT JOIN 
+(
+	SELECT pod.`id_purc_req_det`,SUM(recd.`qty`) AS qty FROM tb_purc_rec_det recd
+	INNER JOIN tb_purc_order_det pod ON recd.id_purc_order_det=pod.id_purc_order_det
+	INNER JOIN tb_purc_rec rec ON recd.`id_purc_rec`=rec.id_purc_rec
+	WHERE rec.`id_report_status`!='5'
+	GROUP BY pod.`id_purc_req_det`
+)rec ON rec.id_purc_req_det=prd.`id_purc_req_det`
+WHERE prd.`is_close`='2' AND prd.is_unable_fulfill='2' AND (IFNULL(po.qty,0) = 0 OR (po.is_close_rec = 1 AND po.qty <> po.qty_rec))
+GROUP BY pr.id_purc_req)"
+        viewSearchLookupQuery(SLEPr, q, "id_purc_req", "purc_req_number", "id_purc_req")
+    End Sub
+
+    Sub view_offer_vendor()
+        Dim q As String = "SELECT 0 AS id_comp,'ALL' AS comp_name
+UNION ALL
+SELECT ov.id_comp,CONCAT(c.comp_number,' - ',c.comp_name) AS comp_name
+FROM `tb_purc_offer_vendor` ov
+INNER JOIN tb_m_comp c ON c.id_comp=ov.id_comp
+INNER JOIN tb_purc_req_det prd ON prd.id_purc_req_det=ov.id_purc_req_det
+INNER JOIN tb_purc_req pr ON pr.id_purc_req=prd.id_purc_req AND pr.id_report_status=6
+LEFT JOIN 
+(
+	SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,SUM(pod.`qty`) AS qty, SUM(IF(po.is_close_rec=1,0,pod.`qty`)) AS qty_pending, po.is_close_rec, IFNULL(SUM(rec.`qty_rec`),0) AS qty_rec  
+	FROM tb_purc_order_det pod
+	INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
+	LEFT JOIN 
+	(
+		SELECT recd.id_purc_order_det,SUM(recd.qty) AS qty_rec
+		FROM `tb_purc_rec_det` recd 
+		INNER JOIN tb_purc_rec rec ON rec.id_purc_rec=recd.id_purc_rec AND rec.id_report_status!=5
+		GROUP BY recd.id_purc_order_det
+	) rec ON pod.`id_purc_order_det` = rec.`id_purc_order_det`
+	WHERE po.`id_report_status`!='5' AND pod.is_drop='2'
+	GROUP BY pod.`id_purc_req_det`
+)po ON po.id_purc_req_det=prd.`id_purc_req_det`
+LEFT JOIN 
+(
+	SELECT pod.`id_purc_req_det`,SUM(recd.`qty`) AS qty FROM tb_purc_rec_det recd
+	INNER JOIN tb_purc_order_det pod ON recd.id_purc_order_det=pod.id_purc_order_det
+	INNER JOIN tb_purc_rec rec ON recd.`id_purc_rec`=rec.id_purc_rec
+	WHERE rec.`id_report_status`!='5'
+	GROUP BY pod.`id_purc_req_det`
+)rec ON rec.id_purc_req_det=prd.`id_purc_req_det`
+WHERE prd.`is_close`='2' AND prd.is_unable_fulfill='2' AND (IFNULL(po.qty,0) = 0 OR (po.is_close_rec = 1 AND po.qty <> po.qty_rec))
+GROUP BY pr.id_purc_req"
+        viewSearchLookupQuery(SLEVendorPenawaran, q, "id_comp", "comp_name", "id_comp")
+    End Sub
+
     Private Sub FormPurcOrder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_unit()
 
@@ -63,6 +134,9 @@
         load_expense_type()
         '
         load_rec_status()
+        '
+        view_offer_pr()
+        view_offer_vendor()
         '
         check_menu()
     End Sub
@@ -640,5 +714,70 @@ GROUP BY pod.id_purc_order_det"
         GVPurcReq.ActiveFilterString = "[is_check]='yes'"
         FormPurcOrderPenawaranPPS.ShowDialog()
         GVPurcReq.ActiveFilterString = ""
+    End Sub
+
+    Private Sub BViewRequest_Click(sender As Object, e As EventArgs) Handles BViewRequest.Click
+        Dim qw As String = ""
+
+        If Not SLEVendorPenawaran.EditValue.ToString = "0" Then
+            qw += " AND ov.id_comp='" & SLEVendorPenawaran.EditValue.ToString & "' "
+        End If
+
+        If Not SLEPr.EditValue.ToString = "0" Then
+            qw += " AND rd.id_purc_req='" & SLEPr.EditValue.ToString & "' "
+        End If
+
+        Dim q As String = "SELECT  '-' AS status_val,cat.id_expense_type,CONCAT(rd.item_detail,IF(ISNULL(rd.remark) OR rd.remark='','',CONCAT('\r\n',rd.remark))) AS item_detail,rd.id_b_expense,rd.id_b_expense_opex,icd.id_vendor_type,icd.item_cat_detail,vt.vendor_type,req.date_created AS pr_created,dep.`departement`,rd.`id_purc_req_det`,req.`id_purc_req`,req.`purc_req_number`,cat.`item_cat`,itm.`item_desc`,rd.`value` AS val_pr,rd.`qty` AS qty_pr,'no' AS is_check 
+,req.note,IFNULL(po.qty,0) AS qty_po_created,req.id_user_created,IFNULL(po.qty_pending,0) AS po_qty_pending,IFNULL(rec.qty,0)-IFNULL(ret.qty,0) AS qty_rec,0.00 AS qty_po,uom.uom,rd.id_item,req.id_item_type,req.id_report_status,typ.item_type,itm.latest_price,rd.ship_destination,rd.ship_address, (IFNULL(po.qty_rec,0) - IFNULL(po.qty,0)) qty_s_rec
+,req.requirement_date
+,ov.vendor_offer
+,CONCAT(c.comp_number,' - ',c.comp_name) AS comp_name
+FROM `tb_purc_offer_vendor` ov
+INNER JOIN tb_m_comp c ON c.id_comp=ov.id_comp
+INNER JOIN `tb_purc_offer` o ON o.id_purc_offer=ov.id_purc_offer AND ov.is_active=1
+INNER JOIN tb_purc_req_det rd ON rd.id_purc_req_det=ov.id_purc_req_det 
+INNER JOIN tb_purc_req req ON req.id_purc_req=rd.id_purc_req
+INNER JOIN tb_lookup_purc_item_type typ ON typ.id_item_type=req.id_item_type
+INNER JOIN tb_item itm ON itm.`id_item`=rd.`id_item`
+INNER JOIN tb_m_uom uom ON uom.id_uom=itm.id_uom
+INNER JOIN tb_item_cat cat ON cat.`id_item_cat`=itm.`id_item_cat`
+INNER JOIN tb_m_departement dep ON dep.`id_departement`=req.`id_departement`
+INNER JOIN tb_item_cat_detail icd ON icd.`id_item_cat_detail`=itm.`id_item_cat_detail`
+INNER JOIN tb_vendor_type vt ON vt.id_vendor_type=icd.id_vendor_type
+LEFT JOIN 
+(
+	SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,SUM(pod.`qty`) AS qty, SUM(IF(po.is_close_rec=1,0,pod.`qty`)) AS qty_pending, po.is_close_rec, IFNULL(SUM(rec.`qty_rec`),0) AS qty_rec  
+	FROM tb_purc_order_det pod
+	INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
+	LEFT JOIN 
+	(
+		SELECT recd.id_purc_order_det,SUM(recd.qty) AS qty_rec
+		FROM `tb_purc_rec_det` recd 
+		INNER JOIN tb_purc_rec rec ON rec.id_purc_rec=recd.id_purc_rec AND rec.id_report_status!=5
+		GROUP BY recd.id_purc_order_det
+	) rec ON pod.`id_purc_order_det` = rec.`id_purc_order_det`
+	WHERE po.`id_report_status`!='5' AND pod.is_drop='2'
+	GROUP BY pod.`id_purc_req_det`
+)po ON po.id_purc_req_det=rd.`id_purc_req_det`
+LEFT JOIN 
+(
+	SELECT pod.`id_purc_req_det`,SUM(recd.`qty`) AS qty FROM tb_purc_rec_det recd
+	INNER JOIN tb_purc_order_det pod ON recd.id_purc_order_det=pod.id_purc_order_det
+	INNER JOIN tb_purc_rec rec ON recd.`id_purc_rec`=rec.id_purc_rec
+	WHERE rec.`id_report_status`!='5'
+	GROUP BY pod.`id_purc_req_det`
+)rec ON rec.id_purc_req_det=rd.`id_purc_req_det`
+LEFT JOIN 
+(
+    SELECT pod.`id_purc_req_det`,SUM(prd.`qty`) AS qty FROM `tb_purc_return_det` prd
+    INNER JOIN `tb_purc_return` pr ON pr.id_purc_return=prd.id_purc_return AND pr.id_report_status!='5'
+    INNER JOIN tb_purc_order_det pod ON prd.id_purc_order_det=pod.id_purc_order_det
+    INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status`!='5'
+    GROUP BY pod.`id_purc_req_det`
+)ret ON ret.id_purc_req_det=rd.`id_purc_req_det`
+WHERE req.`id_report_status`='6' AND rd.`is_close`='2' AND rd.is_unable_fulfill='2' AND (IFNULL(po.qty,0) = 0 OR (po.is_close_rec = 1 AND po.qty <> po.qty_rec)) " & qw
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCPenawaran.DataSource = dt
+        GVPenawaran.BestFitColumns()
     End Sub
 End Class
