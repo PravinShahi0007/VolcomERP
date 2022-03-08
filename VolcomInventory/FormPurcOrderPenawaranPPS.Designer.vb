@@ -60,6 +60,8 @@ Partial Class FormPurcOrderPenawaranPPS
         Me.RICEPurchase = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCVendor = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DeleteVendorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVVendor = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -69,8 +71,6 @@ Partial Class FormPurcOrderPenawaranPPS
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.DeleteVendorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,12 +91,12 @@ Partial Class FormPurcOrderPenawaranPPS
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.GCVendor, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVVendor, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -130,6 +130,7 @@ Partial Class FormPurcOrderPenawaranPPS
         '
         'TEProposedBy
         '
+        Me.TEProposedBy.EditValue = "[auto]"
         Me.TEProposedBy.Location = New System.Drawing.Point(94, 38)
         Me.TEProposedBy.Name = "TEProposedBy"
         Me.TEProposedBy.Size = New System.Drawing.Size(307, 20)
@@ -137,6 +138,7 @@ Partial Class FormPurcOrderPenawaranPPS
         '
         'TEProposeBy
         '
+        Me.TEProposeBy.EditValue = "[auto]"
         Me.TEProposeBy.Location = New System.Drawing.Point(94, 12)
         Me.TEProposeBy.Name = "TEProposeBy"
         Me.TEProposeBy.Size = New System.Drawing.Size(307, 20)
@@ -461,6 +463,7 @@ Partial Class FormPurcOrderPenawaranPPS
         '
         'GCVendor
         '
+        Me.GCVendor.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCVendor.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCVendor.Location = New System.Drawing.Point(20, 43)
         Me.GCVendor.MainView = Me.GVVendor
@@ -469,11 +472,25 @@ Partial Class FormPurcOrderPenawaranPPS
         Me.GCVendor.TabIndex = 1
         Me.GCVendor.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVVendor})
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteVendorToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(148, 26)
+        '
+        'DeleteVendorToolStripMenuItem
+        '
+        Me.DeleteVendorToolStripMenuItem.Name = "DeleteVendorToolStripMenuItem"
+        Me.DeleteVendorToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.DeleteVendorToolStripMenuItem.Text = "Delete Vendor"
+        '
         'GVVendor
         '
         Me.GVVendor.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
         Me.GVVendor.GridControl = Me.GCVendor
         Me.GVVendor.Name = "GVVendor"
+        Me.GVVendor.OptionsBehavior.Editable = False
+        Me.GVVendor.OptionsBehavior.ReadOnly = True
         Me.GVVendor.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -542,18 +559,6 @@ Partial Class FormPurcOrderPenawaranPPS
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteVendorToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(148, 26)
-        '
-        'DeleteVendorToolStripMenuItem
-        '
-        Me.DeleteVendorToolStripMenuItem.Name = "DeleteVendorToolStripMenuItem"
-        Me.DeleteVendorToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
-        Me.DeleteVendorToolStripMenuItem.Text = "Delete Vendor"
-        '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "ID"
@@ -602,13 +607,13 @@ Partial Class FormPurcOrderPenawaranPPS
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.GCVendor, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVVendor, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
