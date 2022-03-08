@@ -219,9 +219,10 @@
         Dim cond_par As String = "AND ds.id_comp='" + id_store + "' "
         Dim query As String = "SELECT dps.id_class_group AS `GROUP INFO|id_class_group`, cg.class_group AS `GROUP INFO|CLASS`, dv.display_name AS `GROUP INFO|DIVISION`, cc.class_cat AS `GROUP INFO|CATEGORY`,
         " + coldt + ",
-        (" + col_tot_capacity + ") AS `TOTAL|AVAILABLE DISPLAY`, IFNULL(oc.qty,0.00) AS `TOTAL|OCCUPIED DISPLAY`, (" + col_tot_capacity + ")-IFNULL(oc.qty,0.00) AS `TOTAL|BALANCE DISPLAY`, IFNULL(oc.jum_sku,0) AS `TOTAL|OCCUPIED SKU`,'view detail sku' AS `TOTAL|ACTION`
+        (" + col_tot_capacity + ") AS `TOTAL|AVAILABLE DISPLAY`, IFNULL(oc.qty,0.00) AS `TOTAL|OCCUPIED DISPLAY`, (" + col_tot_capacity + ")-IFNULL(oc.qty,0.00) AS `TOTAL|BALANCE DISPLAY`, IFNULL(oc.jum_sku,0) AS `TOTAL|OCCUPIED SKU`
          " + col_ss2 + "
         " + col_sku_ss2 + "
+        ,'occupied sku detail' AS `ACTION|DETAIL SKU`
         FROM tb_display_master dps
         INNER JOIN tb_display_alloc da ON da.id_display_type = dps.id_display_type AND da.id_class_group = dps.id_class_group
         INNER JOIN tb_class_group cg ON cg.id_class_group = dps.id_class_group
@@ -287,7 +288,7 @@
                     End If
 
 
-                    If Not bandName.Contains("INFO") Then
+                    If Not bandName.Contains("INFO") And Not bandName.Contains("ACTION") Then
                         'display format
                         col.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                         col.DisplayFormat.FormatString = "{0:n1}"
@@ -308,8 +309,13 @@
                 End If
             Next
         Next
+        'col visible
         GVDisplay.Columns("GROUP INFO|id_class_group").Visible = False
-        GVDisplay.Columns("TOTAL|ACTION").Caption = " "
+        GVDisplay.Columns("ACTION|DETAIL SKU").Caption = " "
+        'col repo
+        Dim repHyperLink As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+        GCDisplay.RepositoryItems.Add(repHyperLink)
+        CType(GCDisplay.MainView, DevExpress.XtraGrid.Views.Grid.GridView).Columns("ACTION|DETAIL SKU").ColumnEdit = repHyperLink
         GVDisplay.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
@@ -329,5 +335,9 @@
 
     Private Sub CEBreakdownSeason_EditValueChanged(sender As Object, e As EventArgs) Handles CEBreakdownSeason.EditValueChanged
         resetView()
+    End Sub
+
+    Private Sub GVDisplay_Click(sender As Object, e As EventArgs) Handles GVDisplay.Click
+
     End Sub
 End Class
