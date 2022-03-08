@@ -527,7 +527,7 @@ WHERE pnd.`id_report` IN (" & id & ") AND pnd.report_mark_type='360'"
         Dim qc As String = "SELECT * 
 FROM tb_pn_fgpo_det fd
 INNER JOIN tb_pn_fgpo f ON f.`id_pn_fgpo`=fd.`id_pn_fgpo`
-WHERE fd.`id_report`='" & GVSummary.GetFocusedRowCellValue("id_pre_cal_fgpo").ToString & "' AND fd.`report_mark_type`='" & rmt & "' AND f.`id_report_status`!=5"
+WHERE f.type='" & If(SLEBPLImport.EditValue.ToString = "368A", "1", "2") & "' AND fd.`id_report`='" & GVSummary.GetFocusedRowCellValue("id_pre_cal_fgpo").ToString & "' AND fd.`report_mark_type`='" & rmt & "' AND f.`id_report_status`!=5"
         Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dtc.Rows.Count > 0 Then
             warningCustom("This payment already created")
