@@ -164,14 +164,27 @@
         Next
 
         Dim cond_par As String = "AND ds.id_comp='" + id_store + "' "
+        Dim csd As New ClassStoreDisplay()
         Dim query As String = "SELECT dps.id_class_group AS `GROUP INFO|id_class_group`, cg.class_group AS `GROUP INFO|CLASS`, dv.display_name AS `GROUP INFO|DIVISION`, cc.class_cat AS `GROUP INFO|CATEGORY`,
         " + coldt + ",
-        (" + col_tot_capacity + ") AS `TOTAL DISPLAY|AVAILABLE`
+        (" + col_tot_capacity + ") AS `TOTAL|AVAILABLE DISPLAY`, IFNULL(oc.qty,0.00) AS `TOTAL|OCCUPIED DISPLAY`, (" + col_tot_capacity + ")-IFNULL(oc.qty,0.00) AS `TOTAL|BALANCE DISPLAY`, IFNULL(oc.jum_sku,0) AS `TOTAL|OCCUPIED SKU`
         FROM tb_display_master dps
         INNER JOIN tb_display_alloc da ON da.id_display_type = dps.id_display_type AND da.id_class_group = dps.id_class_group
         INNER JOIN tb_class_group cg ON cg.id_class_group = dps.id_class_group
         INNER JOIN tb_class_cat cc ON cc.id_class_cat = cg.id_class_cat
         INNER JOIN tb_m_code_detail dv ON dv.id_code_detail = cg.id_division
+        LEFT JOIN (
+            SELECT oc.id_class_group, COUNT(oc.id_class_group) AS `jum_sku`, SUM(oc.qty) AS `qty` 
+            FROM (
+                SELECT ds.id_class_group, ds.id_design, SUM(ds.qty) AS `qty`
+                FROM (
+                  " + csd.queryBasicDisplay(date_par, id_store) + "
+                ) ds
+                GROUP BY ds.id_design
+                HAVING qty>0 
+            ) oc
+            GROUP BY oc.id_class_group
+        ) oc ON oc.id_class_group = dps.id_class_group
         WHERE dps.id_comp=" + id_store + " AND dps.is_active=1
         GROUP BY dps.id_class_group
         ORDER BY dv.display_name ASC,cc.class_cat, cg.class_group "
@@ -216,6 +229,7 @@
                     If data.Columns(j).Caption = "GROUP INFO|DIVISION" Or data.Columns(j).Caption = "GROUP INFO|CATEGORY" Then
                         col.Group()
                     End If
+
 
                     If Not bandName.Contains("INFO") Then
                         'display format

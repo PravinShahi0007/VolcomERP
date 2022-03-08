@@ -58,6 +58,29 @@
         Return query
     End Function
 
+    Function queryBasicDisplay(ByVal date_par As String, ByVal id_store_par As String) As String
+        Dim query As String = "SELECT ds.id_class_group, ds.id_season, ds.id_delivery,ds.id_design,ds.qty 
+        FROM tb_display_stock ds
+        INNER JOIN (
+            SELECT MAX(ds.id_display_stock) AS `id_display_stock`, ds.id_design
+            FROM tb_display_stock ds
+            WHERE ds.is_active=1 AND ds.effective_date<='" + date_par + "'
+            GROUP BY ds.id_design
+        ) da ON da.id_display_stock = ds.id_display_stock
+        WHERE ds.is_active=1 AND ds.in_store_date<='" + date_par + "' AND ds.id_comp=" + id_store_par + "
+        UNION ALL
+        SELECT ds.id_class_group, ds.id_season, ds.id_delivery,ds.id_design,(ds.qty*-1)
+        FROM tb_display_stock ds
+        INNER JOIN (
+            SELECT MAX(ds.id_display_stock) AS `id_display_stock`, ds.id_design
+            FROM tb_display_stock ds
+            WHERE ds.is_active=1 AND ds.effective_date<='" + date_par + "'
+            GROUP BY ds.id_design
+        ) da ON da.id_display_stock = ds.id_display_stock
+        WHERE ds.is_active=1 AND ds.return_date<='" + date_par + "' AND ds.id_comp=" + id_store_par + " "
+        Return query
+    End Function
+
     Sub completeProposeDisplay(ByVal rmt_par As String, ByVal id_report_par As String)
         Dim query As String = "DELETE FROM tb_display_stock WHERE report_mark_type=" + rmt_par + " AND id_report=" + id_report_par + ";
         INSERT INTO tb_display_stock(id_season, id_delivery,id_class_group,id_design,id_comp,in_store_date,return_date,effective_date,qty,report_mark_type, id_report, report_number, is_active, input_date)

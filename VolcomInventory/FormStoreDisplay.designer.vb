@@ -24,9 +24,10 @@ Partial Class FormStoreDisplay
         Me.XTPView = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCView = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCDisplay = New DevExpress.XtraGrid.GridControl()
+        Me.GVDisplay = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
         Me.DEDisplayDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEStoreView = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -62,19 +63,18 @@ Partial Class FormStoreDisplay
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnCreateNew = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCDisplay = New DevExpress.XtraGrid.GridControl()
-        Me.GVDisplay = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         CType(Me.XTCStoreDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStoreDisplay.SuspendLayout()
         Me.XTPView.SuspendLayout()
         CType(Me.XTCView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCView.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
+        CType(Me.GCDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDisplayDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDisplayDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStoreView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,8 +90,6 @@ Partial Class FormStoreDisplay
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCStoreDisplay
@@ -134,6 +132,27 @@ Partial Class FormStoreDisplay
         Me.XtraTabPage1.Size = New System.Drawing.Size(972, 447)
         Me.XtraTabPage1.Text = "By Class Group"
         '
+        'GCDisplay
+        '
+        Me.GCDisplay.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDisplay.Location = New System.Drawing.Point(0, 69)
+        Me.GCDisplay.MainView = Me.GVDisplay
+        Me.GCDisplay.Name = "GCDisplay"
+        Me.GCDisplay.Size = New System.Drawing.Size(972, 378)
+        Me.GCDisplay.TabIndex = 2
+        Me.GCDisplay.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDisplay})
+        '
+        'GVDisplay
+        '
+        Me.GVDisplay.GridControl = Me.GCDisplay
+        Me.GVDisplay.Name = "GVDisplay"
+        Me.GVDisplay.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVDisplay.OptionsBehavior.ReadOnly = True
+        Me.GVDisplay.OptionsFind.AlwaysVisible = True
+        Me.GVDisplay.OptionsView.ColumnAutoWidth = False
+        Me.GVDisplay.OptionsView.ShowFooter = True
+        Me.GVDisplay.OptionsView.ShowGroupPanel = False
+        '
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.PanelControl3)
@@ -147,7 +166,6 @@ Partial Class FormStoreDisplay
         '
         'PanelControl3
         '
-        Me.PanelControl3.Controls.Add(Me.CheckEdit1)
         Me.PanelControl3.Controls.Add(Me.DEDisplayDate)
         Me.PanelControl3.Controls.Add(Me.LabelControl4)
         Me.PanelControl3.Controls.Add(Me.SLEStoreView)
@@ -155,16 +173,8 @@ Partial Class FormStoreDisplay
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(578, 65)
+        Me.PanelControl3.Size = New System.Drawing.Size(451, 65)
         Me.PanelControl3.TabIndex = 22
-        '
-        'CheckEdit1
-        '
-        Me.CheckEdit1.Location = New System.Drawing.Point(430, 30)
-        Me.CheckEdit1.Name = "CheckEdit1"
-        Me.CheckEdit1.Properties.Caption = "Show Breakdown Season"
-        Me.CheckEdit1.Size = New System.Drawing.Size(140, 19)
-        Me.CheckEdit1.TabIndex = 2
         '
         'DEDisplayDate
         '
@@ -219,7 +229,7 @@ Partial Class FormStoreDisplay
         Me.BtnPrintStoreDisplay.Appearance.Options.UseBackColor = True
         Me.BtnPrintStoreDisplay.Appearance.Options.UseFont = True
         Me.BtnPrintStoreDisplay.Appearance.Options.UseForeColor = True
-        Me.BtnPrintStoreDisplay.Location = New System.Drawing.Point(652, 31)
+        Me.BtnPrintStoreDisplay.Location = New System.Drawing.Point(525, 31)
         Me.BtnPrintStoreDisplay.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnPrintStoreDisplay.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BtnPrintStoreDisplay.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -237,7 +247,7 @@ Partial Class FormStoreDisplay
         Me.BtnViewStoreDisplay.Appearance.Options.UseBackColor = True
         Me.BtnViewStoreDisplay.Appearance.Options.UseFont = True
         Me.BtnViewStoreDisplay.Appearance.Options.UseForeColor = True
-        Me.BtnViewStoreDisplay.Location = New System.Drawing.Point(586, 31)
+        Me.BtnViewStoreDisplay.Location = New System.Drawing.Point(459, 31)
         Me.BtnViewStoreDisplay.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnViewStoreDisplay.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BtnViewStoreDisplay.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -526,27 +536,6 @@ Partial Class FormStoreDisplay
         Me.BtnCreateNew.TabIndex = 22
         Me.BtnCreateNew.Text = "+ Create New"
         '
-        'GCDisplay
-        '
-        Me.GCDisplay.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDisplay.Location = New System.Drawing.Point(0, 69)
-        Me.GCDisplay.MainView = Me.GVDisplay
-        Me.GCDisplay.Name = "GCDisplay"
-        Me.GCDisplay.Size = New System.Drawing.Size(972, 378)
-        Me.GCDisplay.TabIndex = 2
-        Me.GCDisplay.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDisplay})
-        '
-        'GVDisplay
-        '
-        Me.GVDisplay.GridControl = Me.GCDisplay
-        Me.GVDisplay.Name = "GVDisplay"
-        Me.GVDisplay.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVDisplay.OptionsBehavior.ReadOnly = True
-        Me.GVDisplay.OptionsFind.AlwaysVisible = True
-        Me.GVDisplay.OptionsView.ColumnAutoWidth = False
-        Me.GVDisplay.OptionsView.ShowFooter = True
-        Me.GVDisplay.OptionsView.ShowGroupPanel = False
-        '
         'FormStoreDisplay
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -562,12 +551,13 @@ Partial Class FormStoreDisplay
         CType(Me.XTCView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCView.ResumeLayout(False)
         Me.XtraTabPage1.ResumeLayout(False)
+        CType(Me.GCDisplay, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDisplay, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDisplayDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDisplayDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStoreView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -584,8 +574,6 @@ Partial Class FormStoreDisplay
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCDisplay, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVDisplay, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -629,7 +617,6 @@ Partial Class FormStoreDisplay
     Friend WithEvents SLEStoreView As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents XTCView As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCDisplay As DevExpress.XtraGrid.GridControl
