@@ -1,5 +1,6 @@
 ﻿Public Class FormStoreDisplay
     Public is_load_new As Boolean = False
+    Dim is_view_detail_art As Boolean = False
 
     Sub viewSeason()
         Cursor = Cursors.WaitCursor
@@ -33,6 +34,7 @@
         WHERE c.id_comp_cat=6 
         ORDER BY c.comp_number ASC) "
         viewSearchLookupQuery(SLEStoreView, query, "id_comp", "comp", "id_comp")
+        viewSearchLookupQuery(SLEStoreArt, query, "id_comp", "comp", "id_comp")
         Cursor = Cursors.Default
     End Sub
 
@@ -42,7 +44,9 @@
         viewCompSpesific()
 
         'date
-        DEDisplayDate.EditValue = getTimeDB()
+        Dim dtnow As DateTime = getTimeDB()
+        DEDisplayDate.EditValue = dtnow
+        DEDateArt.EditValue = dtnow
     End Sub
 
     Private Sub FormStoreDisplay_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -222,7 +226,6 @@
         (" + col_tot_capacity + ") AS `TOTAL|AVAILABLE DISPLAY`, IFNULL(oc.qty,0.00) AS `TOTAL|OCCUPIED DISPLAY`, (" + col_tot_capacity + ")-IFNULL(oc.qty,0.00) AS `TOTAL|BALANCE DISPLAY`, IFNULL(oc.jum_sku,0) AS `TOTAL|OCCUPIED SKU`
          " + col_ss2 + "
         " + col_sku_ss2 + "
-        ,'occupied sku detail' AS `ACTION|DETAIL SKU`
         FROM tb_display_master dps
         INNER JOIN tb_display_alloc da ON da.id_display_type = dps.id_display_type AND da.id_class_group = dps.id_class_group
         INNER JOIN tb_class_group cg ON cg.id_class_group = dps.id_class_group
@@ -311,11 +314,6 @@
         Next
         'col visible
         GVDisplay.Columns("GROUP INFO|id_class_group").Visible = False
-        GVDisplay.Columns("ACTION|DETAIL SKU").Caption = " "
-        'col repo
-        Dim repHyperLink As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
-        GCDisplay.RepositoryItems.Add(repHyperLink)
-        CType(GCDisplay.MainView, DevExpress.XtraGrid.Views.Grid.GridView).Columns("ACTION|DETAIL SKU").ColumnEdit = repHyperLink
         GVDisplay.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
@@ -339,5 +337,96 @@
 
     Private Sub GVDisplay_Click(sender As Object, e As EventArgs) Handles GVDisplay.Click
 
+    End Sub
+
+    Private Sub ViewOccupiedSKUDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewOccupiedSKUDetailToolStripMenuItem.Click
+        If GVDisplay.RowCount > 0 And GVDisplay.FocusedRowHandle >= 0 Then
+            is_view_detail_art = True
+            SLEStoreArt.EditValue = SLEStoreView.EditValue
+            DEDateArt.EditValue = DEDisplayDate.EditValue
+            viewArt()
+            XTCView.SelectedTabPageIndex = 1
+            XTPClassGroup.PageEnabled = False
+        End If
+    End Sub
+
+    Private Sub BtnPrintStoreDisplay_Click(sender As Object, e As EventArgs) Handles BtnPrintStoreDisplay.Click
+        print_raw(GCDisplay, "")
+    End Sub
+
+    Private Sub BtnViewArt_Click(sender As Object, e As EventArgs) Handles BtnViewArt.Click
+        If is_view_detail_art Then
+            XTPClassGroup.PageEnabled = True
+            XTCView.SelectedTabPageIndex = 0
+            is_view_detail_art = False
+        Else
+            viewArt()
+        End If
+    End Sub
+
+    Private Sub XTCView_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCView.SelectedPageChanged
+        If XTCView.SelectedTabPageIndex = 1 Then
+            If is_view_detail_art Then
+                BtnViewArt.Text = "Summary"
+                PanelControlArt.Enabled = False
+            Else
+                GCArt.DataSource = Nothing
+                BtnViewArt.Text = "View"
+                PanelControlArt.Enabled = True
+            End If
+        End If
+    End Sub
+
+    Sub viewArt()
+        Cursor = Cursors.WaitCursor
+        'option
+        Dim id_store As String = SLEStoreArt.EditValue.ToString
+        Dim date_par As String = DateTime.Parse(DEDateArt.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim csd As New ClassStoreDisplay()
+        Dim query As String = "SELECT ds.id_class_group, ds.id_design, d.design_code AS `code`, cd.class, d.design_display_name AS `name`, cd.color,
+        ds.id_season,ds.id_delivery, CONCAT(ss.season,' D',sd.delivery) AS `season_del`, SUM(ds.qty) AS `qty`
+        FROM (
+            " + csd.queryBasicDisplay(date_par, id_store) + "
+        ) ds
+        INNER JOIN tb_m_design d ON d.id_design = ds.id_design
+        LEFT JOIN (
+		    SELECT dc.id_design, 
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+		    MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+		    MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+		    MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+		    MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`
+		    FROM tb_m_design_code dc
+		    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+		    AND cd.id_code IN (32,30,14, 43)
+		    GROUP BY dc.id_design
+	    ) cd ON cd.id_design = d.id_design
+        INNER JOIN tb_season_delivery sd ON sd.id_delivery = ds.id_delivery
+        INNER JOIN tb_season ss ON ss.id_season = ds.id_season
+        WHERE 1=1 "
+        If is_view_detail_art Then
+            query += "AND ds.id_class_group='" + GVDisplay.GetFocusedRowCellValue("GROUP INFO|id_class_group").ToString + "' "
+        End If
+        query += "GROUP BY ds.id_design
+        HAVING qty>0 
+        ORDER BY `season_del` ASC, `class` ASC, `name` ASC"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCArt.DataSource = data
+        GVArt.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVArt_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVArt.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub BtnPrintArt_Click(sender As Object, e As EventArgs) Handles BtnPrintArt.Click
+        print_raw(GCArt, "")
     End Sub
 End Class

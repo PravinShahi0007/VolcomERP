@@ -19,12 +19,15 @@ Partial Class FormStoreDisplay
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStoreDisplay))
         Me.XTCStoreDisplay = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPView = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCView = New DevExpress.XtraTab.XtraTabControl()
-        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPClassGroup = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDisplay = New DevExpress.XtraGrid.GridControl()
+        Me.CMSDisplay = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewOccupiedSKUDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVDisplay = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -36,6 +39,26 @@ Partial Class FormStoreDisplay
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnPrintStoreDisplay = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewStoreDisplay = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPDesign = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCArt = New DevExpress.XtraGrid.GridControl()
+        Me.GVArt = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_design = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnseason_del = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlArt = New DevExpress.XtraEditors.PanelControl()
+        Me.DEDateArt = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEStoreArt = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnPrintArt = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnViewArt = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPropose = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPPS = New DevExpress.XtraGrid.GridControl()
         Me.GVPPS = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -69,8 +92,9 @@ Partial Class FormStoreDisplay
         Me.XTPView.SuspendLayout()
         CType(Me.XTCView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCView.SuspendLayout()
-        Me.XtraTabPage1.SuspendLayout()
+        Me.XTPClassGroup.SuspendLayout()
         CType(Me.GCDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMSDisplay.SuspendLayout()
         CType(Me.GVDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -81,6 +105,17 @@ Partial Class FormStoreDisplay
         CType(Me.DEDisplayDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStoreView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPDesign.SuspendLayout()
+        CType(Me.GCArt, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVArt, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.PanelControlArt, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlArt.SuspendLayout()
+        CType(Me.DEDateArt.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDateArt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEStoreArt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPPropose.SuspendLayout()
         CType(Me.GCPPS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPPS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,21 +156,22 @@ Partial Class FormStoreDisplay
         Me.XTCView.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
         Me.XTCView.Location = New System.Drawing.Point(0, 0)
         Me.XTCView.Name = "XTCView"
-        Me.XTCView.SelectedTabPage = Me.XtraTabPage1
+        Me.XTCView.SelectedTabPage = Me.XTPClassGroup
         Me.XTCView.Size = New System.Drawing.Size(1001, 453)
         Me.XTCView.TabIndex = 3
-        Me.XTCView.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
+        Me.XTCView.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPClassGroup, Me.XTPDesign})
         '
-        'XtraTabPage1
+        'XTPClassGroup
         '
-        Me.XtraTabPage1.Controls.Add(Me.GCDisplay)
-        Me.XtraTabPage1.Controls.Add(Me.PanelControl2)
-        Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(972, 447)
-        Me.XtraTabPage1.Text = "By Class Group"
+        Me.XTPClassGroup.Controls.Add(Me.GCDisplay)
+        Me.XTPClassGroup.Controls.Add(Me.PanelControl2)
+        Me.XTPClassGroup.Name = "XTPClassGroup"
+        Me.XTPClassGroup.Size = New System.Drawing.Size(972, 447)
+        Me.XTPClassGroup.Text = "By Class Group"
         '
         'GCDisplay
         '
+        Me.GCDisplay.ContextMenuStrip = Me.CMSDisplay
         Me.GCDisplay.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCDisplay.Location = New System.Drawing.Point(0, 69)
         Me.GCDisplay.MainView = Me.GVDisplay
@@ -143,6 +179,18 @@ Partial Class FormStoreDisplay
         Me.GCDisplay.Size = New System.Drawing.Size(972, 378)
         Me.GCDisplay.TabIndex = 2
         Me.GCDisplay.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDisplay})
+        '
+        'CMSDisplay
+        '
+        Me.CMSDisplay.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewOccupiedSKUDetailToolStripMenuItem})
+        Me.CMSDisplay.Name = "CMSDisplay"
+        Me.CMSDisplay.Size = New System.Drawing.Size(211, 26)
+        '
+        'ViewOccupiedSKUDetailToolStripMenuItem
+        '
+        Me.ViewOccupiedSKUDetailToolStripMenuItem.Name = "ViewOccupiedSKUDetailToolStripMenuItem"
+        Me.ViewOccupiedSKUDetailToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.ViewOccupiedSKUDetailToolStripMenuItem.Text = "View Occupied SKU Detail"
         '
         'GVDisplay
         '
@@ -267,6 +315,210 @@ Partial Class FormStoreDisplay
         Me.BtnViewStoreDisplay.Size = New System.Drawing.Size(63, 21)
         Me.BtnViewStoreDisplay.TabIndex = 19
         Me.BtnViewStoreDisplay.Text = "View"
+        '
+        'XTPDesign
+        '
+        Me.XTPDesign.Controls.Add(Me.GCArt)
+        Me.XTPDesign.Controls.Add(Me.PanelControl4)
+        Me.XTPDesign.Name = "XTPDesign"
+        Me.XTPDesign.Size = New System.Drawing.Size(972, 447)
+        Me.XTPDesign.Text = "By Article"
+        '
+        'GCArt
+        '
+        Me.GCArt.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCArt.Location = New System.Drawing.Point(0, 69)
+        Me.GCArt.MainView = Me.GVArt
+        Me.GCArt.Name = "GCArt"
+        Me.GCArt.Size = New System.Drawing.Size(972, 378)
+        Me.GCArt.TabIndex = 3
+        Me.GCArt.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVArt})
+        '
+        'GVArt
+        '
+        Me.GVArt.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_design, Me.GridColumncode, Me.GridColumnclass, Me.GridColumnname, Me.GridColumncolor, Me.GridColumnseason_del, Me.GridColumnqty, Me.GridColumnno})
+        Me.GVArt.GridControl = Me.GCArt
+        Me.GVArt.GroupCount = 1
+        Me.GVArt.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnqty, "{0:n0}")})
+        Me.GVArt.Name = "GVArt"
+        Me.GVArt.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVArt.OptionsBehavior.ReadOnly = True
+        Me.GVArt.OptionsFind.AlwaysVisible = True
+        Me.GVArt.OptionsView.ColumnAutoWidth = False
+        Me.GVArt.OptionsView.ShowFooter = True
+        Me.GVArt.OptionsView.ShowGroupedColumns = True
+        Me.GVArt.OptionsView.ShowGroupPanel = False
+        Me.GVArt.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnseason_del, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumnid_design
+        '
+        Me.GridColumnid_design.Caption = "id_design"
+        Me.GridColumnid_design.FieldName = "id_design"
+        Me.GridColumnid_design.Name = "GridColumnid_design"
+        '
+        'GridColumncode
+        '
+        Me.GridColumncode.Caption = "Code"
+        Me.GridColumncode.FieldName = "code"
+        Me.GridColumncode.Name = "GridColumncode"
+        Me.GridColumncode.Visible = True
+        Me.GridColumncode.VisibleIndex = 2
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 3
+        '
+        'GridColumnname
+        '
+        Me.GridColumnname.Caption = "Description"
+        Me.GridColumnname.FieldName = "name"
+        Me.GridColumnname.Name = "GridColumnname"
+        Me.GridColumnname.Visible = True
+        Me.GridColumnname.VisibleIndex = 4
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 5
+        '
+        'GridColumnseason_del
+        '
+        Me.GridColumnseason_del.Caption = "Season"
+        Me.GridColumnseason_del.FieldName = "season_del"
+        Me.GridColumnseason_del.Name = "GridColumnseason_del"
+        Me.GridColumnseason_del.Visible = True
+        Me.GridColumnseason_del.VisibleIndex = 1
+        '
+        'GridColumnqty
+        '
+        Me.GridColumnqty.Caption = "Qty"
+        Me.GridColumnqty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty.FieldName = "qty"
+        Me.GridColumnqty.Name = "GridColumnqty"
+        Me.GridColumnqty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumnqty.Visible = True
+        Me.GridColumnqty.VisibleIndex = 6
+        '
+        'GridColumnno
+        '
+        Me.GridColumnno.Caption = "No"
+        Me.GridColumnno.FieldName = "no"
+        Me.GridColumnno.Name = "GridColumnno"
+        Me.GridColumnno.Visible = True
+        Me.GridColumnno.VisibleIndex = 0
+        Me.GridColumnno.Width = 50
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.PanelControlArt)
+        Me.PanelControl4.Controls.Add(Me.BtnPrintArt)
+        Me.PanelControl4.Controls.Add(Me.BtnViewArt)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(972, 69)
+        Me.PanelControl4.TabIndex = 2
+        '
+        'PanelControlArt
+        '
+        Me.PanelControlArt.Controls.Add(Me.DEDateArt)
+        Me.PanelControlArt.Controls.Add(Me.LabelControl5)
+        Me.PanelControlArt.Controls.Add(Me.SLEStoreArt)
+        Me.PanelControlArt.Controls.Add(Me.LabelControl6)
+        Me.PanelControlArt.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControlArt.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControlArt.Name = "PanelControlArt"
+        Me.PanelControlArt.Size = New System.Drawing.Size(441, 65)
+        Me.PanelControlArt.TabIndex = 22
+        '
+        'DEDateArt
+        '
+        Me.DEDateArt.EditValue = Nothing
+        Me.DEDateArt.Location = New System.Drawing.Point(258, 30)
+        Me.DEDateArt.Name = "DEDateArt"
+        Me.DEDateArt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDateArt.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDateArt.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEDateArt.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDateArt.Size = New System.Drawing.Size(166, 20)
+        Me.DEDateArt.TabIndex = 2
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(258, 11)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl5.TabIndex = 4
+        Me.LabelControl5.Text = "Date"
+        '
+        'SLEStoreArt
+        '
+        Me.SLEStoreArt.Location = New System.Drawing.Point(12, 30)
+        Me.SLEStoreArt.Name = "SLEStoreArt"
+        Me.SLEStoreArt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStoreArt.Properties.ShowClearButton = False
+        Me.SLEStoreArt.Properties.View = Me.GridView3
+        Me.SLEStoreArt.Size = New System.Drawing.Size(242, 20)
+        Me.SLEStoreArt.TabIndex = 4
+        '
+        'GridView3
+        '
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(12, 11)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl6.TabIndex = 3
+        Me.LabelControl6.Text = "Store"
+        '
+        'BtnPrintArt
+        '
+        Me.BtnPrintArt.Appearance.BackColor = System.Drawing.Color.DimGray
+        Me.BtnPrintArt.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnPrintArt.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnPrintArt.Appearance.Options.UseBackColor = True
+        Me.BtnPrintArt.Appearance.Options.UseFont = True
+        Me.BtnPrintArt.Appearance.Options.UseForeColor = True
+        Me.BtnPrintArt.Location = New System.Drawing.Point(544, 31)
+        Me.BtnPrintArt.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnPrintArt.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnPrintArt.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnPrintArt.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnPrintArt.Name = "BtnPrintArt"
+        Me.BtnPrintArt.Size = New System.Drawing.Size(70, 21)
+        Me.BtnPrintArt.TabIndex = 20
+        Me.BtnPrintArt.Text = "Print List"
+        '
+        'BtnViewArt
+        '
+        Me.BtnViewArt.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnViewArt.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnViewArt.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnViewArt.Appearance.Options.UseBackColor = True
+        Me.BtnViewArt.Appearance.Options.UseFont = True
+        Me.BtnViewArt.Appearance.Options.UseForeColor = True
+        Me.BtnViewArt.Location = New System.Drawing.Point(450, 31)
+        Me.BtnViewArt.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnViewArt.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnViewArt.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnViewArt.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnViewArt.Name = "BtnViewArt"
+        Me.BtnViewArt.Size = New System.Drawing.Size(91, 21)
+        Me.BtnViewArt.TabIndex = 19
+        Me.BtnViewArt.Text = "View"
         '
         'XTPPropose
         '
@@ -561,8 +813,9 @@ Partial Class FormStoreDisplay
         Me.XTPView.ResumeLayout(False)
         CType(Me.XTCView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCView.ResumeLayout(False)
-        Me.XtraTabPage1.ResumeLayout(False)
+        Me.XTPClassGroup.ResumeLayout(False)
         CType(Me.GCDisplay, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMSDisplay.ResumeLayout(False)
         CType(Me.GVDisplay, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -574,6 +827,18 @@ Partial Class FormStoreDisplay
         CType(Me.DEDisplayDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStoreView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPDesign.ResumeLayout(False)
+        CType(Me.GCArt, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVArt, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        CType(Me.PanelControlArt, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlArt.ResumeLayout(False)
+        Me.PanelControlArt.PerformLayout()
+        CType(Me.DEDateArt.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDateArt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEStoreArt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPPropose.ResumeLayout(False)
         CType(Me.GCPPS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPPS, System.ComponentModel.ISupportInitialize).EndInit()
@@ -630,8 +895,30 @@ Partial Class FormStoreDisplay
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents XTCView As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPClassGroup As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCDisplay As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVDisplay As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents CEBreakdownSeason As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CMSDisplay As ContextMenuStrip
+    Friend WithEvents ViewOccupiedSKUDetailToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents XTPDesign As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControlArt As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents DEDateArt As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEStoreArt As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnPrintArt As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnViewArt As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCArt As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVArt As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_design As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnname As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnseason_del As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnno As DevExpress.XtraGrid.Columns.GridColumn
 End Class
