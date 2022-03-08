@@ -112,6 +112,7 @@ Partial Class FormProductionCOP
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BSyncSNI = New DevExpress.XtraEditors.SimpleButton()
         Me.LPercentBeaMasuk = New DevExpress.XtraEditors.LabelControl()
         Me.BPrintCOPMan = New DevExpress.XtraEditors.SimpleButton()
         Me.TEPercentBeamasuk = New DevExpress.XtraEditors.TextEdit()
@@ -176,7 +177,8 @@ Partial Class FormProductionCOP
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMEditCost = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewLogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BSyncSNI = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -426,7 +428,7 @@ Partial Class FormProductionCOP
         '
         'GVListProd
         '
-        Me.GVListProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.GridColumnEANCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyOrder, Me.GridColumnQtyCreated, Me.GridColumnQtyRemaining, Me.ColNote, Me.GridColumn42, Me.GridColumn43})
+        Me.GVListProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.GridColumn48, Me.ColCode, Me.GridColumn49, Me.GridColumnEANCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyOrder, Me.GridColumnQtyCreated, Me.GridColumnQtyRemaining, Me.ColNote, Me.GridColumn42, Me.GridColumn43})
         Me.GVListProd.GridControl = Me.GCListProd
         Me.GVListProd.GroupCount = 1
         Me.GVListProd.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "receive_created_qty", Me.GridColumnQtyCreated, "{0:N}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_qty", Me.ColQtyOrder, "{0:N}")})
@@ -462,7 +464,7 @@ Partial Class FormProductionCOP
         Me.ColNo.OptionsColumn.AllowEdit = False
         Me.ColNo.Visible = True
         Me.ColNo.VisibleIndex = 0
-        Me.ColNo.Width = 41
+        Me.ColNo.Width = 92
         '
         'ColCode
         '
@@ -472,7 +474,7 @@ Partial Class FormProductionCOP
         Me.ColCode.OptionsColumn.AllowEdit = False
         Me.ColCode.Visible = True
         Me.ColCode.VisibleIndex = 1
-        Me.ColCode.Width = 86
+        Me.ColCode.Width = 193
         '
         'GridColumnEANCode
         '
@@ -487,8 +489,8 @@ Partial Class FormProductionCOP
         Me.ColName.Name = "ColName"
         Me.ColName.OptionsColumn.AllowEdit = False
         Me.ColName.Visible = True
-        Me.ColName.VisibleIndex = 2
-        Me.ColName.Width = 217
+        Me.ColName.VisibleIndex = 3
+        Me.ColName.Width = 544
         '
         'ColSize
         '
@@ -501,8 +503,8 @@ Partial Class FormProductionCOP
         Me.ColSize.Name = "ColSize"
         Me.ColSize.OptionsColumn.AllowEdit = False
         Me.ColSize.Visible = True
-        Me.ColSize.VisibleIndex = 3
-        Me.ColSize.Width = 59
+        Me.ColSize.VisibleIndex = 5
+        Me.ColSize.Width = 138
         '
         'ColQty
         '
@@ -530,8 +532,8 @@ Partial Class FormProductionCOP
         Me.ColQtyOrder.Name = "ColQtyOrder"
         Me.ColQtyOrder.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_qty", "{0:f2}")})
         Me.ColQtyOrder.Visible = True
-        Me.ColQtyOrder.VisibleIndex = 4
-        Me.ColQtyOrder.Width = 80
+        Me.ColQtyOrder.VisibleIndex = 6
+        Me.ColQtyOrder.Width = 188
         '
         'RepositoryItemSpinEdit1
         '
@@ -558,8 +560,8 @@ Partial Class FormProductionCOP
         Me.GridColumnQtyCreated.Name = "GridColumnQtyCreated"
         Me.GridColumnQtyCreated.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "receive_created_qty", "{0:f2}")})
         Me.GridColumnQtyCreated.Visible = True
-        Me.GridColumnQtyCreated.VisibleIndex = 5
-        Me.GridColumnQtyCreated.Width = 92
+        Me.GridColumnQtyCreated.VisibleIndex = 7
+        Me.GridColumnQtyCreated.Width = 228
         '
         'GridColumnQtyRemaining
         '
@@ -1260,6 +1262,17 @@ Partial Class FormProductionCOP
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(998, 45)
         Me.PanelControl3.TabIndex = 7
+        '
+        'BSyncSNI
+        '
+        Me.BSyncSNI.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BSyncSNI.Image = CType(resources.GetObject("BSyncSNI.Image"), System.Drawing.Image)
+        Me.BSyncSNI.Location = New System.Drawing.Point(795, 2)
+        Me.BSyncSNI.Name = "BSyncSNI"
+        Me.BSyncSNI.Size = New System.Drawing.Size(106, 41)
+        Me.BSyncSNI.TabIndex = 159
+        Me.BSyncSNI.Text = "Sync SNI"
+        Me.BSyncSNI.Visible = False
         '
         'LPercentBeaMasuk
         '
@@ -2068,16 +2081,31 @@ Partial Class FormProductionCOP
         Me.ViewLogToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.ViewLogToolStripMenuItem.Text = "View Log"
         '
-        'BSyncSNI
+        'GridColumn48
         '
-        Me.BSyncSNI.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BSyncSNI.Image = CType(resources.GetObject("BSyncSNI.Image"), System.Drawing.Image)
-        Me.BSyncSNI.Location = New System.Drawing.Point(795, 2)
-        Me.BSyncSNI.Name = "BSyncSNI"
-        Me.BSyncSNI.Size = New System.Drawing.Size(106, 41)
-        Me.BSyncSNI.TabIndex = 159
-        Me.BSyncSNI.Text = "Sync SNI"
-        Me.BSyncSNI.Visible = False
+        Me.GridColumn48.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn48.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn48.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn48.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn48.Caption = "Class"
+        Me.GridColumn48.FieldName = "class_display"
+        Me.GridColumn48.Name = "GridColumn48"
+        Me.GridColumn48.Visible = True
+        Me.GridColumn48.VisibleIndex = 2
+        Me.GridColumn48.Width = 130
+        '
+        'GridColumn49
+        '
+        Me.GridColumn49.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn49.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn49.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn49.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn49.Caption = "Color"
+        Me.GridColumn49.FieldName = "color_display"
+        Me.GridColumn49.Name = "GridColumn49"
+        Me.GridColumn49.Visible = True
+        Me.GridColumn49.VisibleIndex = 4
+        Me.GridColumn49.Width = 119
         '
         'FormProductionCOP
         '
@@ -2344,4 +2372,6 @@ Partial Class FormProductionCOP
     Friend WithEvents TEColor As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TEClass As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BSyncSNI As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
