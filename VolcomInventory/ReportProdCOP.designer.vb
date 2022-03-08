@@ -85,12 +85,14 @@ Partial Public Class ReportProdCOP
         Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LCityDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
-        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LVendor = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel19 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LVendorAddress = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LVendor = New DevExpress.XtraReports.UI.XRLabel()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCCost, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCost, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCListProd, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -378,7 +380,7 @@ Partial Public Class ReportProdCOP
         Me.GVListProd.AppearancePrint.HeaderPanel.Options.UseForeColor = True
         Me.GVListProd.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.0!)
         Me.GVListProd.AppearancePrint.Row.Options.UseFont = True
-        Me.GVListProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.ColCode, Me.GridColumnEANCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyOrder, Me.GridColumnQtyCreated, Me.GridColumnQtyRemaining, Me.ColNote, Me.GridColumn42, Me.GridColumn43})
+        Me.GVListProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdRecDet, Me.ColIdPurcDet, Me.ColNo, Me.GridColumn1, Me.ColCode, Me.GridColumn2, Me.GridColumnEANCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColQtyOrder, Me.GridColumnQtyCreated, Me.GridColumnQtyRemaining, Me.ColNote, Me.GridColumn42, Me.GridColumn43})
         Me.GVListProd.GridControl = Me.GCListProd
         Me.GVListProd.GroupCount = 1
         Me.GVListProd.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "receive_created_qty", Me.GridColumnQtyCreated, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_qty", Me.ColQtyOrder, "{0:N0}")})
@@ -413,7 +415,7 @@ Partial Public Class ReportProdCOP
         Me.ColNo.OptionsColumn.AllowEdit = False
         Me.ColNo.Visible = True
         Me.ColNo.VisibleIndex = 0
-        Me.ColNo.Width = 41
+        Me.ColNo.Width = 92
         '
         'ColCode
         '
@@ -423,7 +425,7 @@ Partial Public Class ReportProdCOP
         Me.ColCode.OptionsColumn.AllowEdit = False
         Me.ColCode.Visible = True
         Me.ColCode.VisibleIndex = 1
-        Me.ColCode.Width = 86
+        Me.ColCode.Width = 193
         '
         'GridColumnEANCode
         '
@@ -438,8 +440,8 @@ Partial Public Class ReportProdCOP
         Me.ColName.Name = "ColName"
         Me.ColName.OptionsColumn.AllowEdit = False
         Me.ColName.Visible = True
-        Me.ColName.VisibleIndex = 2
-        Me.ColName.Width = 217
+        Me.ColName.VisibleIndex = 3
+        Me.ColName.Width = 502
         '
         'ColSize
         '
@@ -452,8 +454,8 @@ Partial Public Class ReportProdCOP
         Me.ColSize.Name = "ColSize"
         Me.ColSize.OptionsColumn.AllowEdit = False
         Me.ColSize.Visible = True
-        Me.ColSize.VisibleIndex = 3
-        Me.ColSize.Width = 59
+        Me.ColSize.VisibleIndex = 5
+        Me.ColSize.Width = 145
         '
         'ColQty
         '
@@ -481,8 +483,8 @@ Partial Public Class ReportProdCOP
         Me.ColQtyOrder.Name = "ColQtyOrder"
         Me.ColQtyOrder.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_qty", "{0:N0}")})
         Me.ColQtyOrder.Visible = True
-        Me.ColQtyOrder.VisibleIndex = 4
-        Me.ColQtyOrder.Width = 80
+        Me.ColQtyOrder.VisibleIndex = 6
+        Me.ColQtyOrder.Width = 199
         '
         'RepositoryItemSpinEdit1
         '
@@ -509,8 +511,8 @@ Partial Public Class ReportProdCOP
         Me.GridColumnQtyCreated.Name = "GridColumnQtyCreated"
         Me.GridColumnQtyCreated.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "receive_created_qty", "{0:N0}")})
         Me.GridColumnQtyCreated.Visible = True
-        Me.GridColumnQtyCreated.VisibleIndex = 5
-        Me.GridColumnQtyCreated.Width = 92
+        Me.GridColumnQtyCreated.VisibleIndex = 7
+        Me.GridColumnQtyCreated.Width = 241
         '
         'GridColumnQtyRemaining
         '
@@ -888,6 +890,36 @@ Partial Public Class ReportProdCOP
         Me.PageHeader.HeightF = 96.875!
         Me.PageHeader.Name = "PageHeader"
         '
+        'XrLabel19
+        '
+        Me.XrLabel19.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(64.67027!, 52.08337!)
+        Me.XrLabel19.Name = "XrLabel19"
+        Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel19.SizeF = New System.Drawing.SizeF(13.54167!, 15.0!)
+        Me.XrLabel19.StylePriority.UseFont = False
+        Me.XrLabel19.Text = ":"
+        '
+        'XrLabel20
+        '
+        Me.XrLabel20.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(1.000086!, 52.08337!)
+        Me.XrLabel20.Name = "XrLabel20"
+        Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel20.SizeF = New System.Drawing.SizeF(63.6702!, 15.0!)
+        Me.XrLabel20.StylePriority.UseFont = False
+        Me.XrLabel20.Text = "Address"
+        '
+        'LVendorAddress
+        '
+        Me.LVendorAddress.Font = New System.Drawing.Font("Times New Roman", 10.0!)
+        Me.LVendorAddress.LocationFloat = New DevExpress.Utils.PointFloat(78.21194!, 52.08337!)
+        Me.LVendorAddress.Name = "LVendorAddress"
+        Me.LVendorAddress.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LVendorAddress.SizeF = New System.Drawing.SizeF(320.6196!, 32.29163!)
+        Me.LVendorAddress.StylePriority.UseFont = False
+        Me.LVendorAddress.Text = "BOM"
+        '
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
@@ -918,35 +950,31 @@ Partial Public Class ReportProdCOP
         Me.LVendor.StylePriority.UseFont = False
         Me.LVendor.Text = "BOM"
         '
-        'XrLabel19
+        'GridColumn1
         '
-        Me.XrLabel19.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(64.67027!, 52.08337!)
-        Me.XrLabel19.Name = "XrLabel19"
-        Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel19.SizeF = New System.Drawing.SizeF(13.54167!, 15.0!)
-        Me.XrLabel19.StylePriority.UseFont = False
-        Me.XrLabel19.Text = ":"
+        Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.Caption = "Class"
+        Me.GridColumn1.FieldName = "class_display"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 2
+        Me.GridColumn1.Width = 134
         '
-        'XrLabel20
+        'GridColumn2
         '
-        Me.XrLabel20.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(1.000086!, 52.08337!)
-        Me.XrLabel20.Name = "XrLabel20"
-        Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel20.SizeF = New System.Drawing.SizeF(63.6702!, 15.0!)
-        Me.XrLabel20.StylePriority.UseFont = False
-        Me.XrLabel20.Text = "Address"
-        '
-        'LVendorAddress
-        '
-        Me.LVendorAddress.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.LVendorAddress.LocationFloat = New DevExpress.Utils.PointFloat(78.21194!, 52.08337!)
-        Me.LVendorAddress.Name = "LVendorAddress"
-        Me.LVendorAddress.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LVendorAddress.SizeF = New System.Drawing.SizeF(320.6196!, 32.29163!)
-        Me.LVendorAddress.StylePriority.UseFont = False
-        Me.LVendorAddress.Text = "BOM"
+        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.Caption = "Color"
+        Me.GridColumn2.FieldName = "color_display"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 4
+        Me.GridColumn2.Width = 126
         '
         'ReportProdCOP
         '
@@ -1038,4 +1066,6 @@ Partial Public Class ReportProdCOP
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LVendor As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
