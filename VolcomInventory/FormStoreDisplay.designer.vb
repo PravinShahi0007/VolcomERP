@@ -28,6 +28,7 @@ Partial Class FormStoreDisplay
         Me.GVDisplay = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEBreakdownSeason = New DevExpress.XtraEditors.CheckEdit()
         Me.DEDisplayDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEStoreView = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -75,6 +76,7 @@ Partial Class FormStoreDisplay
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.CEBreakdownSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDisplayDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDisplayDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStoreView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -166,6 +168,7 @@ Partial Class FormStoreDisplay
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.CEBreakdownSeason)
         Me.PanelControl3.Controls.Add(Me.DEDisplayDate)
         Me.PanelControl3.Controls.Add(Me.LabelControl4)
         Me.PanelControl3.Controls.Add(Me.SLEStoreView)
@@ -173,8 +176,16 @@ Partial Class FormStoreDisplay
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(451, 65)
+        Me.PanelControl3.Size = New System.Drawing.Size(554, 65)
         Me.PanelControl3.TabIndex = 22
+        '
+        'CEBreakdownSeason
+        '
+        Me.CEBreakdownSeason.Location = New System.Drawing.Point(430, 30)
+        Me.CEBreakdownSeason.Name = "CEBreakdownSeason"
+        Me.CEBreakdownSeason.Properties.Caption = "Show Detail Season"
+        Me.CEBreakdownSeason.Size = New System.Drawing.Size(121, 19)
+        Me.CEBreakdownSeason.TabIndex = 5
         '
         'DEDisplayDate
         '
@@ -229,7 +240,7 @@ Partial Class FormStoreDisplay
         Me.BtnPrintStoreDisplay.Appearance.Options.UseBackColor = True
         Me.BtnPrintStoreDisplay.Appearance.Options.UseFont = True
         Me.BtnPrintStoreDisplay.Appearance.Options.UseForeColor = True
-        Me.BtnPrintStoreDisplay.Location = New System.Drawing.Point(525, 31)
+        Me.BtnPrintStoreDisplay.Location = New System.Drawing.Point(633, 31)
         Me.BtnPrintStoreDisplay.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnPrintStoreDisplay.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BtnPrintStoreDisplay.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -247,7 +258,7 @@ Partial Class FormStoreDisplay
         Me.BtnViewStoreDisplay.Appearance.Options.UseBackColor = True
         Me.BtnViewStoreDisplay.Appearance.Options.UseFont = True
         Me.BtnViewStoreDisplay.Appearance.Options.UseForeColor = True
-        Me.BtnViewStoreDisplay.Location = New System.Drawing.Point(459, 31)
+        Me.BtnViewStoreDisplay.Location = New System.Drawing.Point(567, 31)
         Me.BtnViewStoreDisplay.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnViewStoreDisplay.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
         Me.BtnViewStoreDisplay.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
@@ -558,6 +569,7 @@ Partial Class FormStoreDisplay
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.CEBreakdownSeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDisplayDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDisplayDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStoreView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -621,4 +633,5 @@ Partial Class FormStoreDisplay
     Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCDisplay As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVDisplay As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents CEBreakdownSeason As DevExpress.XtraEditors.CheckEdit
 End Class

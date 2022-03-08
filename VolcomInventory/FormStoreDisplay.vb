@@ -138,10 +138,63 @@
         End If
         FormMain.SplashScreenManager1.SetWaitFormDescription("Loading display")
 
-        'date & comp
+        'option
         Dim id_store As String = SLEStoreView.EditValue.ToString
         Dim date_par As String = DateTime.Parse(DEDisplayDate.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim is_show_season As String = ""
+        If CEBreakdownSeason.EditValue = True Then
+            is_show_season = "1"
+        Else
+            is_show_season = "2"
+        End If
+        Dim csd As New ClassStoreDisplay()
 
+        'build query show season
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Build query")
+        Dim col_ss1 As String = ""
+        Dim col_ss2 As String = ""
+        Dim col_sku_ss1 As String = ""
+        Dim col_sku_ss2 As String = ""
+        If is_show_season = "1" Then
+            Dim qs As String = "SELECT oc.id_delivery, CONCAT(ss.season,' D',sd.delivery) AS `season_del`
+            FROM (
+                SELECT ds.id_class_group, ds.id_design, ds.id_delivery, SUM(ds.qty) AS `qty`
+                FROM (
+                  " + csd.queryBasicDisplay(date_par, id_store) + "
+                ) ds
+                GROUP BY ds.id_design
+                HAVING qty>0 
+            ) oc
+            INNER JOIN tb_season_delivery sd ON sd.id_delivery = oc.id_delivery
+            INNER JOIN tb_season ss ON ss.id_season = sd.id_season
+            GROUP BY oc.id_delivery 
+            ORDER BY sd.delivery_date ASC "
+            Dim ds As DataTable = execute_query(qs, -1, True, "", "", "", "")
+            For s As Integer = 0 To ds.Rows.Count - 1
+                If s > 0 Then
+                    col_ss1 += ","
+                    col_ss2 += ","
+                    col_sku_ss1 += ","
+                    col_sku_ss2 += ","
+                End If
+                col_ss1 += "SUM(CASE WHEN oc.id_delivery=" + ds.Rows(s)("id_delivery").ToString + " THEN oc.qty END) AS `qty" + ds.Rows(s)("id_delivery").ToString + "` "
+                col_ss2 += "IFNULL(oc.qty" + ds.Rows(s)("id_delivery").ToString + ",0) AS `TOTAL OCCUPIED DISPLAY - SEASON DETAIL|" + ds.Rows(s)("season_del").ToString + "` "
+                col_sku_ss1 += "COUNT(CASE WHEN oc.id_delivery=" + ds.Rows(s)("id_delivery").ToString + " THEN oc.id_class_group END) AS `jum_sku" + ds.Rows(s)("id_delivery").ToString + "` "
+                col_sku_ss2 += "IFNULL(oc.jum_sku" + ds.Rows(s)("id_delivery").ToString + ",0) AS `TOTAL OCCUPIED SKU - SEASON DETAIL|" + ds.Rows(s)("season_del").ToString + "` "
+            Next
+        End If
+        If col_ss1 <> "" Then
+            col_ss1 = ", " + col_ss1
+        End If
+        If col_ss2 <> "" Then
+            col_ss2 = ", " + col_ss2
+        End If
+        If col_sku_ss1 <> "" Then
+            col_sku_ss1 = ", " + col_sku_ss1
+        End If
+        If col_sku_ss2 <> "" Then
+            col_sku_ss2 = ", " + col_sku_ss2
+        End If
 
         'build query for display type
         Dim qdt As String = "SELECT dt.id_display_type, dt.display_type 
@@ -164,10 +217,11 @@
         Next
 
         Dim cond_par As String = "AND ds.id_comp='" + id_store + "' "
-        Dim csd As New ClassStoreDisplay()
         Dim query As String = "SELECT dps.id_class_group AS `GROUP INFO|id_class_group`, cg.class_group AS `GROUP INFO|CLASS`, dv.display_name AS `GROUP INFO|DIVISION`, cc.class_cat AS `GROUP INFO|CATEGORY`,
         " + coldt + ",
-        (" + col_tot_capacity + ") AS `TOTAL|AVAILABLE DISPLAY`, IFNULL(oc.qty,0.00) AS `TOTAL|OCCUPIED DISPLAY`, (" + col_tot_capacity + ")-IFNULL(oc.qty,0.00) AS `TOTAL|BALANCE DISPLAY`, IFNULL(oc.jum_sku,0) AS `TOTAL|OCCUPIED SKU`
+        (" + col_tot_capacity + ") AS `TOTAL|AVAILABLE DISPLAY`, IFNULL(oc.qty,0.00) AS `TOTAL|OCCUPIED DISPLAY`, (" + col_tot_capacity + ")-IFNULL(oc.qty,0.00) AS `TOTAL|BALANCE DISPLAY`, IFNULL(oc.jum_sku,0) AS `TOTAL|OCCUPIED SKU`,'view detail sku' AS `TOTAL|ACTION`
+         " + col_ss2 + "
+        " + col_sku_ss2 + "
         FROM tb_display_master dps
         INNER JOIN tb_display_alloc da ON da.id_display_type = dps.id_display_type AND da.id_class_group = dps.id_class_group
         INNER JOIN tb_class_group cg ON cg.id_class_group = dps.id_class_group
@@ -175,8 +229,10 @@
         INNER JOIN tb_m_code_detail dv ON dv.id_code_detail = cg.id_division
         LEFT JOIN (
             SELECT oc.id_class_group, COUNT(oc.id_class_group) AS `jum_sku`, SUM(oc.qty) AS `qty` 
+            " + col_ss1 + "
+            " + col_sku_ss1 + "
             FROM (
-                SELECT ds.id_class_group, ds.id_design, SUM(ds.qty) AS `qty`
+                SELECT ds.id_class_group, ds.id_design, ds.id_delivery, SUM(ds.qty) AS `qty`
                 FROM (
                   " + csd.queryBasicDisplay(date_par, id_store) + "
                 ) ds
@@ -253,8 +309,25 @@
             Next
         Next
         GVDisplay.Columns("GROUP INFO|id_class_group").Visible = False
+        GVDisplay.Columns("TOTAL|ACTION").Caption = " "
         GVDisplay.BestFitColumns()
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEStoreView_EditValueChanged(sender As Object, e As EventArgs) Handles SLEStoreView.EditValueChanged
+        resetView()
+    End Sub
+
+    Sub resetView()
+        GCDisplay.DataSource = Nothing
+    End Sub
+
+    Private Sub DEDisplayDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEDisplayDate.EditValueChanged
+        resetView()
+    End Sub
+
+    Private Sub CEBreakdownSeason_EditValueChanged(sender As Object, e As EventArgs) Handles CEBreakdownSeason.EditValueChanged
+        resetView()
     End Sub
 End Class
