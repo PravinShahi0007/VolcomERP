@@ -137,10 +137,6 @@
 
     Sub viewStoreDisplay()
         Cursor = Cursors.WaitCursor
-        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
-            FormMain.SplashScreenManager1.ShowWaitForm()
-        End If
-        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading display")
 
         'option
         Dim id_store As String = SLEStoreView.EditValue.ToString
@@ -152,6 +148,22 @@
             is_show_season = "2"
         End If
         Dim csd As New ClassStoreDisplay()
+
+        'cek master
+        Dim qcm As String = "SELECT * FROM tb_display_master dps WHERE dps.id_comp='" + id_store + "' AND dps.is_active=1 "
+        Dim dcm As DataTable = execute_query(qcm, -1, True, "", "", "", "")
+        If dcm.Rows.Count <= 0 Then
+            Cursor = Cursors.Default
+            stopCustom("Master display not available for this store : " + SLEStoreView.Text)
+            Exit Sub
+        End If
+
+        If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
+            FormMain.SplashScreenManager1.ShowWaitForm()
+        End If
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading display")
+
+
 
         'build query show season
         FormMain.SplashScreenManager1.SetWaitFormDescription("Build query")
