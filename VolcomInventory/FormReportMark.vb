@@ -3399,16 +3399,24 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
 
             Try
                 If id_status_reportx = "5" Then
-                    Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
+                    'cancel form
+                    Dim id_report_now As String = execute_query("SELECT id_report_status FROM tb_sales_pos WHERE id_sales_pos='" & id_report & "'", 0, True, "", "", "", "")
+                    If id_report_now = "6" Then
+                        'balik jurnal & stok
+                        Dim csi As New ClassSalesInv()
+                        csi.cancelFormInvoice(id_report, report_mark_type)
+                    Else
+                        Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
 
-                    If FormSalesPOSDet.is_use_unique_code = "1" Then
-                        'cancelled unique
-                        cancel_rsv_stock.cancellUnique(id_report, report_mark_type)
+                        If FormSalesPOSDet.is_use_unique_code = "1" Then
+                            'cancelled unique
+                            cancel_rsv_stock.cancellUnique(id_report, report_mark_type)
+                        End If
+
+
+                        'cancelled stock
+                        cancel_rsv_stock.cancelReservedStock(id_report, "54")
                     End If
-
-
-                    'cancelled stock
-                    cancel_rsv_stock.cancelReservedStock(id_report, "54")
                 ElseIf id_status_reportx = "6" Then
                     'completed
                     Dim complete_rsv_stock As ClassSalesInv = New ClassSalesInv()
