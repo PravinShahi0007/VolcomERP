@@ -143,6 +143,24 @@
                     Dim now_date As String = DateTime.Parse(getTimeDB.ToString).ToString("yyyy-MM-dd")
                     upd.insertLogLineList("394", id_design, False, id_user, id_user, "-", now_date, id_design, note)
 
+                    'store display
+                    Try
+                        If id_lookup_status_order = "2" Then 'drop
+                            Dim qsd As String = "-- update non active
+                            UPDATE tb_display_stock SET is_active=2 WHERE id_design='" + id_design + "'; 
+                            -- ins changes log
+                            INSERT INTO tb_display_stock_changes_log(id_design, id_report, report_mark_type, report_number, report_date, log_date, log_note, id_user)
+                            SELECT ds.id_design, 0, 394, '-', DATE(NOW()), NOW(), 'Drop article : set display as non active','" + id_user + "' 
+                            FROM tb_display_stock ds 
+                            WHERE ds.id_design=" + id_design + "
+                            GROUP BY ds.id_design; "
+                            execute_non_query_long(qsd, True, "", "", "", "")
+                        End If
+                    Catch ex As Exception
+                        stopCustom("Failed update status store display : " + ex.ToString)
+                    End Try
+
+
                     PBC.PerformStep()
                     PBC.Update()
                 Next
