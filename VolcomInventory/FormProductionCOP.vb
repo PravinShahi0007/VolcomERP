@@ -701,7 +701,7 @@ WHERE `id_design`='" & id_design & "' "
         Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
         '
         If Not id_role_login = get_opt_prod_field("id_role_prod_manager") Then
-            stopCustom("You have no right to do this.")
+            stopCustom("You have no access to do this.")
         ElseIf TECOPCurrent.EditValue = 0 Or TECOPMan.EditValue = 0 Then
             stopCustom("Please complete COP by rate")
         ElseIf TEUnitPrice.EditValue = 0 Then
