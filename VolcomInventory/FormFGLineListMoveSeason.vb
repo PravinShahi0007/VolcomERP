@@ -157,6 +157,7 @@
                             execute_non_query_long(qsd, True, "", "", "", "")
                         End If
                     Catch ex As Exception
+                        'jika gagal
                         stopCustom("Failed update status store display : " + ex.ToString)
                     End Try
 
