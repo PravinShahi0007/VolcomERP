@@ -44,7 +44,9 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
         load_approval_ic_ia()
         load_report_status()
         is_reload = " Then1"
-        DEYearBudget.EditValue = Now
+
+        DEYearBudget.EditValue = getTimeDB()
+
         load_purc_type()
         is_reload = "2"
         '
