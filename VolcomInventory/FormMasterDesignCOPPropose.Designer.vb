@@ -47,7 +47,9 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumnIdDet = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnIdDesign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDesignCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnclass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDesign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumncolor = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnVendorCodeBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnVendorNameBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -84,8 +86,6 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControlBottomLeft = New DevExpress.XtraEditors.PanelControl()
         Me.CEAdditionalCost = New DevExpress.XtraEditors.CheckEdit()
         Me.CENeedMarketing = New DevExpress.XtraEditors.CheckEdit()
-        Me.BandedGridColumnclass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumncolor = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GBBefore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GBAfter = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -149,7 +149,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 475)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(886, 41)
+        Me.PanelControl1.Size = New System.Drawing.Size(1173, 41)
         Me.PanelControl1.TabIndex = 1
         '
         'BAttach
@@ -157,7 +157,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.BAttach.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAttach.ImageIndex = 16
         Me.BAttach.ImageList = Me.LargeImageCollection
-        Me.BAttach.Location = New System.Drawing.Point(554, 2)
+        Me.BAttach.Location = New System.Drawing.Point(841, 2)
         Me.BAttach.Name = "BAttach"
         Me.BAttach.Size = New System.Drawing.Size(105, 37)
         Me.BAttach.TabIndex = 16
@@ -169,7 +169,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(659, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(946, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 37)
         Me.BtnPrint.TabIndex = 13
@@ -193,7 +193,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(734, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(1021, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 37)
         Me.BtnCancel.TabIndex = 14
@@ -205,7 +205,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 7
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(809, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(1096, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 37)
         Me.BtnSave.TabIndex = 12
@@ -219,7 +219,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(886, 71)
+        Me.PanelControl2.Size = New System.Drawing.Size(1173, 71)
         Me.PanelControl2.TabIndex = 2
         '
         'PanelControl4
@@ -283,7 +283,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControlTopRight.Controls.Add(Me.DEDateCreated)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopRight.Location = New System.Drawing.Point(576, 2)
+        Me.PanelControlTopRight.Location = New System.Drawing.Point(863, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(308, 67)
         Me.PanelControlTopRight.TabIndex = 8936
@@ -335,7 +335,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCAddDel.Location = New System.Drawing.Point(0, 71)
         Me.PCAddDel.Name = "PCAddDel"
-        Me.PCAddDel.Size = New System.Drawing.Size(886, 39)
+        Me.PCAddDel.Size = New System.Drawing.Size(1173, 39)
         Me.PCAddDel.TabIndex = 5
         '
         'BtnDel
@@ -343,7 +343,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDel.ImageIndex = 1
         Me.BtnDel.ImageList = Me.LargeImageCollection
-        Me.BtnDel.Location = New System.Drawing.Point(711, 2)
+        Me.BtnDel.Location = New System.Drawing.Point(998, 2)
         Me.BtnDel.Name = "BtnDel"
         Me.BtnDel.Size = New System.Drawing.Size(90, 35)
         Me.BtnDel.TabIndex = 8
@@ -356,7 +356,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.ImageIndex = 0
         Me.BtnAdd.ImageList = Me.LargeImageCollection
-        Me.BtnAdd.Location = New System.Drawing.Point(801, 2)
+        Me.BtnAdd.Location = New System.Drawing.Point(1088, 2)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(83, 35)
         Me.BtnAdd.TabIndex = 6
@@ -372,7 +372,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.GCItemList.MainView = Me.BGVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RISLEItem})
-        Me.GCItemList.Size = New System.Drawing.Size(886, 243)
+        Me.GCItemList.Size = New System.Drawing.Size(1173, 243)
         Me.GCItemList.TabIndex = 6
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVItemList})
         '
@@ -412,12 +412,26 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumnDesignCode.Name = "GridColumnDesignCode"
         Me.GridColumnDesignCode.Visible = True
         '
+        'BandedGridColumnclass
+        '
+        Me.BandedGridColumnclass.Caption = "Class"
+        Me.BandedGridColumnclass.FieldName = "class"
+        Me.BandedGridColumnclass.Name = "BandedGridColumnclass"
+        Me.BandedGridColumnclass.Visible = True
+        '
         'GridColumnDesign
         '
         Me.GridColumnDesign.Caption = "Design"
         Me.GridColumnDesign.FieldName = "design_display_name"
         Me.GridColumnDesign.Name = "GridColumnDesign"
         Me.GridColumnDesign.Visible = True
+        '
+        'BandedGridColumncolor
+        '
+        Me.BandedGridColumncolor.Caption = "Color"
+        Me.BandedGridColumncolor.FieldName = "color"
+        Me.BandedGridColumncolor.Name = "BandedGridColumncolor"
+        Me.BandedGridColumncolor.Visible = True
         '
         'BandedGridColumn1
         '
@@ -512,7 +526,6 @@ Partial Class FormMasterDesignCOPPropose
         Me.BGCStorageBefore.Caption = "Storage Before"
         Me.BGCStorageBefore.FieldName = "cold_storage_before"
         Me.BGCStorageBefore.Name = "BGCStorageBefore"
-        Me.BGCStorageBefore.Visible = True
         '
         'GridColumnVendorCode
         '
@@ -565,7 +578,6 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumnECOP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnECOP.FieldName = "design_cop"
         Me.GridColumnECOP.Name = "GridColumnECOP"
-        Me.GridColumnECOP.Visible = True
         '
         'GridColumnECOPExclude
         '
@@ -575,6 +587,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumnECOPExclude.FieldName = "design_cop_ex"
         Me.GridColumnECOPExclude.Name = "GridColumnECOPExclude"
         Me.GridColumnECOPExclude.Visible = True
+        Me.GridColumnECOPExclude.Width = 142
         '
         'GridColumnAddCost
         '
@@ -587,14 +600,12 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumnAddCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAddCost.FieldName = "add_cost"
         Me.GridColumnAddCost.Name = "GridColumnAddCost"
-        Me.GridColumnAddCost.Visible = True
         '
         'BGCStorageAfter
         '
         Me.BGCStorageAfter.Caption = "Storage After"
         Me.BGCStorageAfter.FieldName = "cold_storage_after"
         Me.BGCStorageAfter.Name = "BGCStorageAfter"
-        Me.BGCStorageAfter.Visible = True
         '
         'BandedGridColumnIdCompContact
         '
@@ -692,7 +703,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.MENote.Location = New System.Drawing.Point(61, 35)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 1000
-        Me.MENote.Size = New System.Drawing.Size(809, 49)
+        Me.MENote.Size = New System.Drawing.Size(1096, 49)
         Me.MENote.TabIndex = 6
         '
         'LabelControl18
@@ -716,7 +727,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
         Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(206, 20)
+        Me.LEReportStatus.Size = New System.Drawing.Size(493, 20)
         Me.LEReportStatus.TabIndex = 7
         '
         'PanelControlBottomLeft
@@ -731,7 +742,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControlBottomLeft.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlBottomLeft.Location = New System.Drawing.Point(0, 353)
         Me.PanelControlBottomLeft.Name = "PanelControlBottomLeft"
-        Me.PanelControlBottomLeft.Size = New System.Drawing.Size(886, 122)
+        Me.PanelControlBottomLeft.Size = New System.Drawing.Size(1173, 122)
         Me.PanelControlBottomLeft.TabIndex = 172
         '
         'CEAdditionalCost
@@ -741,6 +752,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.CEAdditionalCost.Properties.Caption = "Additional Cost"
         Me.CEAdditionalCost.Size = New System.Drawing.Size(95, 19)
         Me.CEAdditionalCost.TabIndex = 146
+        Me.CEAdditionalCost.Visible = False
         '
         'CENeedMarketing
         '
@@ -749,20 +761,6 @@ Partial Class FormMasterDesignCOPPropose
         Me.CENeedMarketing.Properties.Caption = "Need Marketing Approval"
         Me.CENeedMarketing.Size = New System.Drawing.Size(151, 19)
         Me.CENeedMarketing.TabIndex = 145
-        '
-        'BandedGridColumnclass
-        '
-        Me.BandedGridColumnclass.Caption = "Class"
-        Me.BandedGridColumnclass.FieldName = "class"
-        Me.BandedGridColumnclass.Name = "BandedGridColumnclass"
-        Me.BandedGridColumnclass.Visible = True
-        '
-        'BandedGridColumncolor
-        '
-        Me.BandedGridColumncolor.Caption = "Color"
-        Me.BandedGridColumncolor.FieldName = "color"
-        Me.BandedGridColumncolor.Name = "BandedGridColumncolor"
-        Me.BandedGridColumncolor.Visible = True
         '
         'GridBand1
         '
@@ -791,7 +789,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.GBBefore.Columns.Add(Me.BGCStorageBefore)
         Me.GBBefore.Name = "GBBefore"
         Me.GBBefore.VisibleIndex = 1
-        Me.GBBefore.Width = 619
+        Me.GBBefore.Width = 544
         '
         'GBAfter
         '
@@ -807,13 +805,13 @@ Partial Class FormMasterDesignCOPPropose
         Me.GBAfter.Columns.Add(Me.BGCStorageAfter)
         Me.GBAfter.Name = "GBAfter"
         Me.GBAfter.VisibleIndex = 2
-        Me.GBAfter.Width = 600
+        Me.GBAfter.Width = 442
         '
         'FormMasterDesignCOPPropose
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(886, 516)
+        Me.ClientSize = New System.Drawing.Size(1173, 516)
         Me.Controls.Add(Me.GCItemList)
         Me.Controls.Add(Me.PanelControlBottomLeft)
         Me.Controls.Add(Me.PCAddDel)
@@ -922,9 +920,9 @@ Partial Class FormMasterDesignCOPPropose
     Friend WithEvents CEAdditionalCost As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents BGCStorageBefore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BGCStorageAfter As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnclass As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumncolor As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBBefore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBAfter As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

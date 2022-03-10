@@ -6590,6 +6590,28 @@ SELECT cmp.description,copd.id_design,NOW(),cmp.id_currency,cmp.kurs,cmp.before_
 INNER JOIN `tb_design_cop_propose_det` copd ON copd.id_design_cop_propose_det=cmp.id_design_cop_propose_det
 WHERE copd.id_design_cop_propose='" & id_report & "';"
                 execute_non_query(query, True, "", "", "", "")
+
+                'check jika ada kids notif HR
+                Dim qc As String = "SELECT pps.id_sni_pps ,d.id_design_cop_propose
+FROM `tb_design_cop_propose_det` d
+INNER JOIN tb_m_design dsg ON dsg.id_design=d.id_design AND d.id_design_cop_propose='" & id_report & "'
+INNER JOIN tb_m_design_code cd ON cd.`id_code_detail`=14696 AND cd.`id_design`=dsg.`id_design`
+INNER JOIN `tb_sni_pps_list` l ON l.id_design=dsg.id_design
+INNER JOIN `tb_sni_pps` pps ON pps.id_sni_pps=l.id_sni_pps AND pps.id_report_status=6"
+                Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                If dtc.Rows.Count > 0 Then
+                    'ada kids
+                    'update status SNI
+                    For i = 0 To dtc.Rows.Count - 1
+                        Dim q As String = "UPDATE tb_sni_pps SET is_need_confirm=1,id_design_cop_propose='" & dtc.Rows(i)("id_design_cop_propose").ToString & "' WHERE id_sni_pps='" & dtc.Rows(i)("id_sni_pps").ToString & "'"
+                        execute_non_query(q, True, "", "", "", "")
+                    Next
+                    'email notif
+                    Dim em As New ClassSendEmail()
+                    em.report_mark_type = "401"
+                    em.id_report = id_report
+                    em.send_email()
+                End If
             End If
             'update status
             query = String.Format("UPDATE tb_design_cop_propose SET id_report_status='{0}' WHERE id_design_cop_propose ='{1}'", id_status_reportx, id_report)
