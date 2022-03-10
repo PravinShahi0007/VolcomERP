@@ -1028,7 +1028,7 @@
             BtnAddSeasonOrign.Enabled = False
 
             SLELinePlan.Enabled = True
-            LESeason.Enabled = True
+            LESeason.Enabled = False
             BtnAddSeaason.Enabled = True
             XTPLineList.PageVisible = True
             XTPSize.PageVisible = True
