@@ -2069,6 +2069,20 @@
 
             execute_non_query(query, True, "", "", "", "")
 
+            'user pos
+            Dim is_outlet As String = execute_query("SELECT id_outlet FROM tb_m_departement WHERE id_departement = (SELECT id_departement FROM tb_m_employee WHERE id_employee = " + id_employee + ")", 0, True, "", "", "", "")
+
+            If Not is_outlet = "" Then
+                query = "
+                    INSERT INTO tb_pos_user (id_employee, username, `password`)
+                    SELECT '" + id_employee + "' AS id_employee, employee_code AS username, MD5(employee_code) AS `password`
+                    FROM tb_m_employee
+                    WHERE id_employee = '" + id_employee + "'
+                "
+
+                execute_non_query(query, True, "", "", "", "")
+            End If
+
             progress.ProgressBarControl.EditValue = 40
         End If
 
