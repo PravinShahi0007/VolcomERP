@@ -115,7 +115,7 @@
                 Dim id_season_to As String = SLESeason.EditValue.ToString
                 For i As Integer = 0 To ((FormFGLineList.BGVLineList.RowCount - 1) - GetGroupRowCount(FormFGLineList.BGVLineList))
                     Dim id_design As String = FormFGLineList.BGVLineList.GetRowCellValue(i, "id_design").ToString
-                    Dim in_store_date_old As String = DateTime.Parse(FormFGLineList.BGVLineList.GetRowCellValue(i, "IN STORE DATE").ToString).ToString("yyyy-MM-dd")
+                    Dim in_store_date_old As String = DateTime.Parse(FormFGLineList.BGVLineList.GetRowCellValue(i, "IN STORE DATE").ToString).ToString("dd MMMM yyyy")
                     Dim id_season_from As String = SLESeasonFrom.EditValue.ToString
 
                     'update line list status
@@ -159,8 +159,8 @@
                             execute_non_query_long(qsd, True, "", "", "", "")
                         ElseIf id_lookup_status_order = "3" Then 'move
                             Dim ddel As DataTable = execute_query("SELECT sd.delivery_date FROM tb_season_delivery sd WHERE sd.id_delivery="+id_delivery+" ",-1, True,"", "", "", "")
-                            Dim in_store_date As Date = DateTime.Parse(ddel.Rows(0)("delivery_date").ToString).ToString("yyyy-MM-dd")
-                            Dim in_store_date_view As Date = DateTime.Parse(ddel.Rows(0)("delivery_date").ToString).ToString("dd MMMM yyyy")
+                            Dim in_store_date As String = DateTime.Parse(ddel.Rows(0)("delivery_date").ToString).ToString("yyyy-MM-dd")
+                            Dim in_store_date_view As String = DateTime.Parse(ddel.Rows(0)("delivery_date").ToString).ToString("dd MMMM yyyy")
                             Dim qsd As String = "-- update display stock
                             UPDATE tb_display_stock SET id_season='" + id_season_to + "', id_delivery='" + id_delivery + "',in_store_date='" + in_store_date + "' WHERE id_design='" + id_design + "'; 
                             -- ins change log
@@ -169,6 +169,7 @@
                             FROM tb_display_stock ds 
                             WHERE ds.id_design=" + id_design + "
                             GROUP BY ds.id_design; "
+                            execute_non_query_long(qsd, True, "", "", "", "")
                         End If
                     Catch ex As Exception
                         'jika gagal
