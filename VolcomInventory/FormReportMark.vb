@@ -5838,6 +5838,26 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 SET main.id_lookup_status_order=2, main.id_active=2; "
                 execute_non_query(query_void, True, "", "", "", "")
 
+                'update display stok jika drop
+                Try
+                    Dim qd As String = "-- udpate display
+                    UPDATE tb_display_stock main 
+                    INNER JOIN (
+	                    SELECT pddr.id_design FROM tb_prod_demand_design_rev pddr
+	                    WHERE pddr.id_prod_demand_rev=" + id_report + " AND pddr.id_pd_status_rev=2
+                    ) src ON src.id_design = main.id_design
+                    SET main.is_active=2; 
+                    -- insert log
+                    INSERT INTO tb_display_stock_changes_log(id_design, id_report, report_mark_type, report_number, report_date, log_date, log_note, id_user)
+                    SELECT pddr.id_design, pddr.id_prod_demand_rev, pdr.report_mark_type, CONCAT(pd.prod_demand_number,'/Rev ',pdr.rev_count), pdr.created_date, NOW(), 'Drop article via Revision PD : set display as non active', '" + id_user + "'
+                    FROM tb_prod_demand_design_rev pddr
+                    INNER JOIN tb_prod_demand_rev pdr ON pdr.id_prod_demand_rev = pddr.id_prod_demand_rev
+                    INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdr.id_prod_demand
+                    INNER JOIN tb_display_stock ds ON ds.id_design = pddr.id_design
+                    WHERE pddr.id_prod_demand_rev=" + id_report + " AND pddr.id_pd_status_rev=2
+                    GROUP BY pddr.id_design; "
+                Catch ex As Exception
+                End Try
 
                 Dim qpr As String = "SELECT pdd.`id_prod_demand_design_rev`,pdd.`id_prod_demand_rev`,pdd.`id_prod_demand_design`, pdd_org.`id_delivery`, pdd.`id_design`, pdd.`id_currency`, pdd.`prod_demand_design_propose_price`,
                 pdd.`additional_price`, pdd.`prod_demand_design_estimate_price`, pdd.`prod_demand_design_total_cost`, pdd.`additional_cost`, pdd.`royalty_design`, pdd.`royalty_special`, pdd.`inflation`,
