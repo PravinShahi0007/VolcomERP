@@ -158,7 +158,7 @@
         Dim jsonRes As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
 
         If jsonRes("success") Then
-            infoCustom("Sync delivery slip completed.")
+            'infoCustom("Sync delivery slip completed.")
         End If
 
         removeAccessToken(accessToken)
@@ -236,7 +236,7 @@
         Dim jsonRes As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
 
         If jsonRes("success") Then
-            infoCustom("Sync return order completed.")
+            'infoCustom("Sync return order completed.")
         End If
 
         removeAccessToken(accessToken)
@@ -294,7 +294,7 @@
         Dim jsonRes As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(responseString)
 
         If jsonRes("success") Then
-            infoCustom("Sync design price completed.")
+            'infoCustom("Sync design price completed.")
         End If
 
         removeAccessToken(accessToken)
