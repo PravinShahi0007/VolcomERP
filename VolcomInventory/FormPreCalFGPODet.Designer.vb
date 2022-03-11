@@ -690,7 +690,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn3.Caption = "FOB Price"
-        Me.GridColumn3.DisplayFormat.FormatString = "N2"
+        Me.GridColumn3.DisplayFormat.FormatString = "N4"
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn3.FieldName = "price"
         Me.GridColumn3.Name = "GridColumn3"
@@ -728,7 +728,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn7.Caption = "Total FOB"
-        Me.GridColumn7.DisplayFormat.FormatString = "N2"
+        Me.GridColumn7.DisplayFormat.FormatString = "N4"
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn7.FieldName = "total_amount"
         Me.GridColumn7.Name = "GridColumn7"
@@ -1732,12 +1732,12 @@ Partial Class FormPreCalFGPODet
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(156, 26)
+        Me.ViewMenu.Size = New System.Drawing.Size(155, 26)
         '
         'ViewDetailToolStripMenuItem
         '
         Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.ViewDetailToolStripMenuItem.Text = "Choose Vendor"
         '
         'GVPickVendor

@@ -951,7 +951,7 @@ AND NOT ISNULL(choosen_id_comp)"
     End Sub
 
     Sub print_duty()
-        Dim qc As String = "SELECT FORMAT(SUM(bm.tot_fob),2,'ID_id') AS tot_fob,FORMAT(bm.total_freight_po,2,'ID_id') AS tot_freight,FORMAT(bm.tot_qty_royalty,'ID_id') AS tot_qty_royalty
+        Dim qc As String = "SELECT FORMAT(SUM(bm.tot_fob),4,'ID_id') AS tot_fob,FORMAT(bm.total_freight_po,2,'ID_id') AS tot_freight,FORMAT(bm.tot_qty_royalty,'ID_id') AS tot_qty_royalty
 ,FORMAT(SUM(bm.tot_royalty),2,'ID_id') AS tot_freight_cost_royalty,FORMAT(SUM(bm.qty),'ID_id') AS tot_qty
 ,FORMAT(SUM(bm.tot_fob_rp),2,'ID_id') AS tot_fob_rp,FORMAT((SUM(bm.tot_cif)),2,'ID_id') AS tot_cif,FORMAT(SUM(bm.tot_duty),2,'ID_id') AS tot_bm,FORMAT(SUM(bm.tot_cif)+SUM(bm.tot_duty),2,'ID_id') AS tot_cif_bm
 ,FORMAT(h.ppn,2,'ID_id') AS ppn,FORMAT(ROUND((SUM(bm.tot_cif)+SUM(bm.tot_duty))*(h.ppn/100),2),2,'ID_id') AS tot_ppn
