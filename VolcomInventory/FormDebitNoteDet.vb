@@ -6,9 +6,9 @@
     Public is_view As String = "-1"
 
     Sub load_form()
-        DERefDate.EditValue = Now
-        DEDueDate.EditValue = Now
-        DEDueDateInv.EditValue = Now
+        DERefDate.EditValue = getTimeDB()
+        DEDueDate.EditValue = getTimeDB()
+        DEDueDateInv.EditValue = getTimeDB()
 
         view_status()
         load_header()

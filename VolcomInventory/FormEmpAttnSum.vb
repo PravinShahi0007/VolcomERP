@@ -399,8 +399,8 @@
         viewDept()
         viewStatus()
         viewEmployee()
-        DEStartSum.EditValue = Now
-        DEUntilSum.EditValue = Now
+        DEStartSum.EditValue = getTimeDB()
+        DEUntilSum.EditValue = getTimeDB()
         '
         'If view_one_dept Or view_store Then
         '    SMEditKet.Visible = False

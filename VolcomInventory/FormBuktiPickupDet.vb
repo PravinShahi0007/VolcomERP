@@ -16,9 +16,9 @@
     Sub load_form()
         If id_pickup = "0" Then
             SLUECompany.EditValue = 0
-            DEDate.EditValue = Now
+            DEDate.EditValue = getTimeDB()
             TECreatedBy.EditValue = get_emp(id_employee_user, "2")
-            DECreatedDate.EditValue = Now
+            DECreatedDate.EditValue = getTimeDB()
             TEUpdatedBy.EditValue = ""
             DEUpdatedDate.EditValue = ""
             MENote.EditValue = ""

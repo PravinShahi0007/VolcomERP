@@ -6,7 +6,7 @@
     Private Sub FormDesignInfo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewWH()
         viewGroupType()
-        DEUntilAcc.EditValue = Now
+        DEUntilAcc.EditValue = getTimeDB()
         setCaptionSize(GVSOHCode)
 
         Dim query As String = "SELECT d.id_design, d.design_code, d.design_display_name, cls.class_display, cls.class, 

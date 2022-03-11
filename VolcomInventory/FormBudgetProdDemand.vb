@@ -1,10 +1,10 @@
 ﻿Public Class FormBudgetProdDemand
     Public last_cond As String = ""
     Private Sub FormBudgetProdDemand_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DEYearBudget.EditValue = Now
-        DEYearProposedBudget.EditValue = Now
-        DEFrom.EditValue = Now
-        DEUntil.EditValue = Now
+        DEYearBudget.EditValue = getTimeDB()
+        DEYearProposedBudget.EditValue = getTimeDB()
+        DEFrom.EditValue = getTimeDB()
+        DEUntil.EditValue = getTimeDB()
     End Sub
 
     Private Sub FormBudgetProdDemand_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated

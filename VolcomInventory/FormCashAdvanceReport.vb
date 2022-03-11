@@ -8,8 +8,8 @@
     End Sub
 
     Private Sub FormCashAdvanceReport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DateFrom.EditValue = Now
-        DateTo.EditValue = Now
+        DateFrom.EditValue = getTimeDB()
+        DateTo.EditValue = getTimeDB()
     End Sub
 
     Sub load_ca()

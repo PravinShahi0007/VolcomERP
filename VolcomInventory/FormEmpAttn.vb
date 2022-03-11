@@ -60,8 +60,8 @@
     End Sub
 
     Private Sub FormEmpAttn_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DEStart.EditValue = Now
-        DEUntil.EditValue = Now
+        DEStart.EditValue = getTimeDB()
+        DEUntil.EditValue = getTimeDB()
     End Sub
 
     Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged

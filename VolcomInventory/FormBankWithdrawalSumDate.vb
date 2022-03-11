@@ -50,6 +50,6 @@
     End Sub
 
     Private Sub FormBankWithdrawalSumDate_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DEReleaseDate.EditValue = Now
+        DEReleaseDate.EditValue = getTimeDB()
     End Sub
 End Class

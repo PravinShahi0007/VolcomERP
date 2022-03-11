@@ -48,8 +48,8 @@ GROUP BY rate.id_comp"
     Private Sub FormInbound3PL_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_3pl()
 
-        DEStart.EditValue = Now
-        DEUntil.EditValue = Now
+        DEStart.EditValue = getTimeDB()
+        DEUntil.EditValue = getTimeDB()
     End Sub
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click

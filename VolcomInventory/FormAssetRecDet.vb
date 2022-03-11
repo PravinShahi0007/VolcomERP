@@ -8,7 +8,7 @@
         load_dept()
         load_user()
         '
-        DERecDate.EditValue = Now()
+        DERecDate.EditValue = getTimeDB()
         '
         If Not id_rec = "-1" Then  'edit
             load_det()

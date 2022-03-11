@@ -56,11 +56,11 @@ WHERE DATE(awb.pickup_date)>='" & Date.Parse(DEStart.EditValue.ToString).ToStrin
     Private Sub FormAWBOther_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_vendor()
         '
-        DEStart.EditValue = Now
-        DEUntil.EditValue = Now
+        DEStart.EditValue = getTimeDB()
+        DEUntil.EditValue = getTimeDB()
         '
-        DEStartAWBList.EditValue = Now
-        DEUntilAWBList.EditValue = Now
+        DEStartAWBList.EditValue = getTimeDB()
+        DEUntilAWBList.EditValue = getTimeDB()
     End Sub
 
     Sub load_vendor()

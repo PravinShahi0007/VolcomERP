@@ -74,10 +74,10 @@ SELECT '3' AS id_approval,'Not Approve' AS approval"
             '
             TEReqBy.Text = name_user
             id_user_created = id_user
-            DEDateCreated.EditValue = Now
+            DEDateCreated.EditValue = getTimeDB()
             TEReqNUmber.Text = "[auto generate]"
 
-            DERequirementDate.EditValue = Date.Parse(Now).AddDays(7)
+            DERequirementDate.EditValue = Date.Parse(getTimeDB().ToString).AddDays(7)
             '
             GVItemList.OptionsBehavior.Editable = True
             BtnAttachment.Visible = False

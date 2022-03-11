@@ -92,7 +92,7 @@
             BDuplicate.Visible = True
             BDupDesign.Visible = True
         Else
-            DEBOM.EditValue = Now()
+            DEBOM.EditValue = getTimeDB()
             BDuplicate.Visible = False
             BDupDesign.Visible = False
         End If

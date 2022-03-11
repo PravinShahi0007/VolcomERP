@@ -18,7 +18,7 @@
 
     Private Sub FormDeliveryCargoDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If id_awbill = "-1" Then 'new
-            DEDateCreated.EditValue = Now
+            DEDateCreated.EditValue = getTimeDB()
             TEDepartement.Text = get_departement_x(id_departement_user, "1")
             '
             BSave.Visible = True

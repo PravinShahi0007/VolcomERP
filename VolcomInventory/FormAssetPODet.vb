@@ -4,8 +4,8 @@
     Private Sub FormAssetPODet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TEVat.EditValue = 10
         '
-        DEPODate.EditValue = Now
-        DEEstRecDate.EditValue = Now
+        DEPODate.EditValue = getTimeDB()
+        DEEstRecDate.EditValue = getTimeDB()
         '
         load_cat()
         load_dept()

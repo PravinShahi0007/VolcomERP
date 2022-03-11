@@ -13,8 +13,8 @@
         TEDeviden.EditValue = 0
         TEDevidenPercent.EditValue = 0
         '
-        DEDateReff.EditValue = Now
-        DECreated.EditValue = Now
+        DEDateReff.EditValue = getTimeDB()
+        DECreated.EditValue = getTimeDB()
         '
         load_year()
 
