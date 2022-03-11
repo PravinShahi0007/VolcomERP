@@ -2,6 +2,8 @@
 Public Class FormDeliverySingle
     Public action As String
     Public id_delivery As String
+    Dim old_in_store_date As Date
+
     'Load
     Private Sub FormDeliverySingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         If action = "upd" Then
@@ -9,6 +11,7 @@ Public Class FormDeliverySingle
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             SpDelivery.Text = data.Rows(0)("delivery").ToString
             DEDelDate.EditValue = data.Rows(0)("delivery_date")
+            old_in_store_date = data.Rows(0)("delivery_date")
             Try
                 DEWHDate.EditValue = data.Rows(0)("est_wh_date")
             Catch ex As Exception
@@ -38,6 +41,27 @@ Public Class FormDeliverySingle
         Catch ex As Exception
         End Try
 
+        'cek display
+        Dim cond_display As Boolean = True
+        If action = "ins" Then
+            cond_display = True
+        Else
+            If old_in_store_date = DEDelDate.EditValue Then
+                cond_display = True
+            Else
+                'cek ke propose display
+                Dim qsd As String = "SELECT * FROM tb_display_pps_det dpd
+                INNER JOIN tb_display_pps dp ON dp.id_display_pps = dpd.id_display_pps
+                WHERE dp.id_report_status!=5 AND dpd.id_delivery=" + id_delivery + " "
+                Dim dsd As DataTable = execute_query(qsd, -1, True, "", "", "", "")
+                If dsd.Rows.Count > 0 Then
+                    cond_display = False
+                Else
+                    cond_display = True
+                End If
+            End If
+        End If
+
         Dim query As String
         Dim query_count As String
         ValidateChildren()
@@ -45,6 +69,8 @@ Public Class FormDeliverySingle
 
         If Not formIsValidInGroup(ErrorProvider1, GCtrlDelivery) Then
             errorInput()
+        ElseIf Not cond_display Then
+            stopCustom("Can't edit in store date, because already propose for store display")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save changes this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
