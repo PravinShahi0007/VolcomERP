@@ -11,9 +11,9 @@ Public Class FormInvMatDet
         load_vendor()
         load_type()
 
-        DEDueDate.EditValue = Now
-        DERefDate.EditValue = Now
-        DEDateCreated.EditValue = Now
+        DEDueDate.EditValue = getTimeDB()
+        DERefDate.EditValue = getTimeDB()
+        DEDateCreated.EditValue = getTimeDB()
 
         If id_inv = "-1" Then 'new
             BtnPrint.Visible = False

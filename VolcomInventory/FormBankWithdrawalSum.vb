@@ -15,9 +15,9 @@
         TETotal.EditValue = 0.0
         load_type()
         load_summary_type()
-        DEDateCreated.EditValue = Now
-        DEPayment.EditValue = Now
-        DEChangeDate.EditValue = Now
+        DEDateCreated.EditValue = getTimeDB()
+        DEPayment.EditValue = getTimeDB()
+        DEChangeDate.EditValue = getTimeDB()
 
         If id_sum = "-1" Then 'new
             BCancel.Visible = False

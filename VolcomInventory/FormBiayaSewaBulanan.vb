@@ -24,8 +24,8 @@
 
     Private Sub FormPurcAssetDep_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_unit()
-        DEReffDate.EditValue = Now
-        DECreatedDate.EditValue = Now
+        DEReffDate.EditValue = getTimeDB()
+        DECreatedDate.EditValue = getTimeDB()
         '
         TENumber.Text = "[auto number]"
         TECreatedBy.Text = "[auto]"

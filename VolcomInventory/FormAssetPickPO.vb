@@ -1,7 +1,7 @@
 ﻿Public Class FormAssetPickPO
     Private Sub FormAssetPickPO_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DEStart.EditValue = Now
-        DEEnd.EditValue = Now
+        DEStart.EditValue = getTimeDB()
+        DEEnd.EditValue = getTimeDB()
         '
         load_pil()
         load_po()

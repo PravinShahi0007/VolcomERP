@@ -37,8 +37,8 @@
         GCLeave.DataSource = data
     End Sub
     Sub load_date()
-        DEStart.EditValue = Now
-        DEUntil.EditValue = Now
+        DEStart.EditValue = getTimeDB()
+        DEUntil.EditValue = getTimeDB()
     End Sub
 
     Private Sub FormEmpDP_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
