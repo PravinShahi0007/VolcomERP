@@ -21,10 +21,10 @@ Partial Class FormStoreDisplayDet
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStoreDisplayDet))
-        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue1 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
-        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleValue2 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
+        Dim GridFormatRule3 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue3 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
+        Dim GridFormatRule4 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleValue4 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Me.GridColumnis_over = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoSelectDesign = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -165,6 +165,7 @@ Partial Class FormStoreDisplayDet
         Me.BtnSetupHangerSummary = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDeleteHanger = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddHanger = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSetKoef = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.RepoSelectDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUpdated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -760,23 +761,23 @@ Partial Class FormStoreDisplayDet
         'GVCalculateCategory
         '
         Me.GVCalculateCategory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_division, Me.GridColumndivisionsum, Me.GridColumnid_class_cat, Me.GridColumnclass_catsum, Me.GridColumnavl_qty, Me.GridColumnocc_qty, Me.GridColumnis_over})
-        GridFormatRule1.ApplyToRow = True
-        GridFormatRule1.Column = Me.GridColumnis_over
-        GridFormatRule1.Name = "Format0"
-        FormatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        FormatConditionRuleValue1.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue1.Expression = "Iif([is_over] = 1, True, False)"
-        GridFormatRule1.Rule = FormatConditionRuleValue1
-        GridFormatRule2.ApplyToRow = True
-        GridFormatRule2.Name = "Format1"
-        FormatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        FormatConditionRuleValue2.Appearance.Options.UseBackColor = True
-        FormatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Expression
-        FormatConditionRuleValue2.Expression = "Iif([is_over] = 2, True, False)"
-        GridFormatRule2.Rule = FormatConditionRuleValue2
-        Me.GVCalculateCategory.FormatRules.Add(GridFormatRule1)
-        Me.GVCalculateCategory.FormatRules.Add(GridFormatRule2)
+        GridFormatRule3.ApplyToRow = True
+        GridFormatRule3.Column = Me.GridColumnis_over
+        GridFormatRule3.Name = "Format0"
+        FormatConditionRuleValue3.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        FormatConditionRuleValue3.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue3.Condition = DevExpress.XtraEditors.FormatCondition.Expression
+        FormatConditionRuleValue3.Expression = "Iif([is_over] = 1, True, False)"
+        GridFormatRule3.Rule = FormatConditionRuleValue3
+        GridFormatRule4.ApplyToRow = True
+        GridFormatRule4.Name = "Format1"
+        FormatConditionRuleValue4.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        FormatConditionRuleValue4.Appearance.Options.UseBackColor = True
+        FormatConditionRuleValue4.Condition = DevExpress.XtraEditors.FormatCondition.Expression
+        FormatConditionRuleValue4.Expression = "Iif([is_over] = 2, True, False)"
+        GridFormatRule4.Rule = FormatConditionRuleValue4
+        Me.GVCalculateCategory.FormatRules.Add(GridFormatRule3)
+        Me.GVCalculateCategory.FormatRules.Add(GridFormatRule4)
         Me.GVCalculateCategory.GridControl = Me.GCCalculateCategory
         Me.GVCalculateCategory.GroupCount = 1
         Me.GVCalculateCategory.LevelIndent = 0
@@ -978,6 +979,7 @@ Partial Class FormStoreDisplayDet
         '
         'PanelControlRencanaSKU
         '
+        Me.PanelControlRencanaSKU.Controls.Add(Me.BtnSetKoef)
         Me.PanelControlRencanaSKU.Controls.Add(Me.BtnSetupHanger)
         Me.PanelControlRencanaSKU.Controls.Add(Me.DropDownRencanaJumlahSKU)
         Me.PanelControlRencanaSKU.Controls.Add(Me.BtnRefreshRencanaSKU)
@@ -991,22 +993,22 @@ Partial Class FormStoreDisplayDet
         '
         Me.BtnSetupHanger.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSetupHanger.Image = CType(resources.GetObject("BtnSetupHanger.Image"), System.Drawing.Image)
-        Me.BtnSetupHanger.Location = New System.Drawing.Point(125, 2)
+        Me.BtnSetupHanger.Location = New System.Drawing.Point(165, 2)
         Me.BtnSetupHanger.Name = "BtnSetupHanger"
-        Me.BtnSetupHanger.Size = New System.Drawing.Size(114, 38)
+        Me.BtnSetupHanger.Size = New System.Drawing.Size(99, 38)
         Me.BtnSetupHanger.TabIndex = 6
-        Me.BtnSetupHanger.Text = "Setup Hanger"
+        Me.BtnSetupHanger.Text = "Set Hanger"
         '
         'DropDownRencanaJumlahSKU
         '
         Me.DropDownRencanaJumlahSKU.Dock = System.Windows.Forms.DockStyle.Right
         Me.DropDownRencanaJumlahSKU.DropDownControl = Me.PopupMenuRencanaJumlahSKU
         Me.DropDownRencanaJumlahSKU.Image = CType(resources.GetObject("DropDownRencanaJumlahSKU.Image"), System.Drawing.Image)
-        Me.DropDownRencanaJumlahSKU.Location = New System.Drawing.Point(239, 2)
+        Me.DropDownRencanaJumlahSKU.Location = New System.Drawing.Point(264, 2)
         Me.DropDownRencanaJumlahSKU.Name = "DropDownRencanaJumlahSKU"
-        Me.DropDownRencanaJumlahSKU.Size = New System.Drawing.Size(167, 38)
+        Me.DropDownRencanaJumlahSKU.Size = New System.Drawing.Size(142, 38)
         Me.DropDownRencanaJumlahSKU.TabIndex = 5
-        Me.DropDownRencanaJumlahSKU.Text = "Rencana Jumlah SKU"
+        Me.DropDownRencanaJumlahSKU.Text = "Rencana Jml SKU"
         '
         'PopupMenuRencanaJumlahSKU
         '
@@ -1635,6 +1637,16 @@ Partial Class FormStoreDisplayDet
         Me.BtnAddHanger.TabIndex = 0
         Me.BtnAddHanger.Text = "Add"
         '
+        'BtnSetKoef
+        '
+        Me.BtnSetKoef.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSetKoef.Image = CType(resources.GetObject("BtnSetKoef.Image"), System.Drawing.Image)
+        Me.BtnSetKoef.Location = New System.Drawing.Point(51, 2)
+        Me.BtnSetKoef.Name = "BtnSetKoef"
+        Me.BtnSetKoef.Size = New System.Drawing.Size(114, 38)
+        Me.BtnSetKoef.TabIndex = 7
+        Me.BtnSetKoef.Text = "Koef. Sold Out"
+        '
         'FormStoreDisplayDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1866,4 +1878,5 @@ Partial Class FormStoreDisplayDet
     Friend WithEvents GridColumnavl_qty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnocc_qty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnis_over As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnSetKoef As DevExpress.XtraEditors.SimpleButton
 End Class
