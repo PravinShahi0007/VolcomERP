@@ -18,8 +18,8 @@
     End Sub
 
     Private Sub FormEmpChSchedule_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DEStart.EditValue = Now
-        DEUntil.EditValue = Now
+        DEStart.EditValue = getTimeDB()
+        DEUntil.EditValue = getTimeDB()
         load_chschedule()
     End Sub
 

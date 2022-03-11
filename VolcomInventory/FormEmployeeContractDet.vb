@@ -31,7 +31,7 @@
 
         Dim month As String = execute_query("SELECT `code` FROM `tb_ot_memo_number_mon` WHERE `month` = MONTH(NOW())", 0, True, "", "", "", "")
 
-        DEDate.EditValue = Now
+        DEDate.EditValue = getTimeDB()
         TEName.EditValue = get_emp(id_employee_user, "2")
         TENumberBack.EditValue = "/INT/HRD-KK/" + month + "/" + Date.Now.ToString("yy")
     End Sub

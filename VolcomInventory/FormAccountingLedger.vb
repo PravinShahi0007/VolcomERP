@@ -1,9 +1,9 @@
 ﻿Public Class FormAccountingLedger
     Private Sub FormAccountingLedger_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DEFrom.EditValue = Now
-        DETo.EditValue = Now
+        DEFrom.EditValue = getTimeDB()
+        DETo.EditValue = getTimeDB()
 
-        DETo.Properties.MinValue = Now
+        DETo.Properties.MinValue = getTimeDB()
 
         load_unit()
         load_cc()

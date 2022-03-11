@@ -9,8 +9,8 @@
     Public is_single_user As Boolean = False
     Public is_departement_sub As Boolean = False
     Private Sub FormEmpLeave_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DEStart.EditValue = Now
-        DEUntil.EditValue = Now
+        DEStart.EditValue = getTimeDB()
+        DEUntil.EditValue = getTimeDB()
         '
         If is_hrd = "1" Then
             Text = "Leave Management"

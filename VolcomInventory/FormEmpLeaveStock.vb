@@ -22,8 +22,8 @@
             XTCLeaveRemaining.SelectedTabPage = t
         Next t
         XTCLeaveRemaining.SelectedTabPage = XTCLeaveRemaining.TabPages(0)
-        DEFrom.EditValue = Now
-        DETo.EditValue = Now
+        DEFrom.EditValue = getTimeDB()
+        DETo.EditValue = getTimeDB()
         viewDept()
     End Sub
 

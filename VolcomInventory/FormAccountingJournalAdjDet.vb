@@ -11,7 +11,7 @@
     Public is_view As String = "-1"
     '
     Private Sub FormAccountingJournalAdjDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        DERefDate.EditValue = Now()
+        DERefDate.EditValue = getTimeDB()
 
         If id_trans_adj = "-1" Then 'new
             TEUserEntry.Text = get_user_identify(id_user, 1)

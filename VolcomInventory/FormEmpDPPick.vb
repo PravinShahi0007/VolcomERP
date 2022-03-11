@@ -41,7 +41,7 @@
     End Sub
 
     Private Sub FormEmpDPPick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DEStartDP.EditValue = Now.Date
+        DEStartDP.EditValue = getTimeDB()
         calc()
         DEStartDP.Focus()
     End Sub

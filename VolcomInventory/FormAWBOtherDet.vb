@@ -10,9 +10,9 @@
     End Sub
 
     Private Sub FormAWBOtherDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DECreatedDate.EditValue = Now
-        DEPickupDate.Properties.MaxValue = Now
-        DEPickupDate.EditValue = Now
+        DECreatedDate.EditValue = getTimeDB()
+        DEPickupDate.Properties.MaxValue = getTimeDB()
+        DEPickupDate.EditValue = getTimeDB()
         '
         load_head()
     End Sub

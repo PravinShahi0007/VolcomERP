@@ -909,7 +909,7 @@ WHERE a.id_acc_trans='" & id_trans & "'"
                 If Not allow_input Then
                     stopCustom("Selected date already closed.")
 
-                    DERefDate.EditValue = Now
+                    DERefDate.EditValue = getTimeDB()
                 End If
             End If
         Catch ex As Exception

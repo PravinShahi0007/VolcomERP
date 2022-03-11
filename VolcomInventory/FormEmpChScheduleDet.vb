@@ -10,7 +10,7 @@
     Private Sub FormEmpChScheduleDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If id_ch_sch = "-1" Then ' new
             TENumber.Text = header_number_emp("3")
-            DEDate.EditValue = Now()
+            DEDate.EditValue = getTimeDB()
             '
             TEEmployeeCode.Enabled = True
             '
