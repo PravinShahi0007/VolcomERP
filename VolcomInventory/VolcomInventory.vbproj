@@ -1432,6 +1432,12 @@
     <Compile Include="FormDesignInfo.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDesignOrderView.Designer.vb">
+      <DependentUpon>FormDesignOrderView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDesignOrderView.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDeviden.Designer.vb">
       <DependentUpon>FormDeviden.vb</DependentUpon>
     </Compile>
@@ -11415,6 +11421,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDesignInfo.resx">
       <DependentUpon>FormDesignInfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDesignOrderView.resx">
+      <DependentUpon>FormDesignOrderView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDeviden.resx">
       <DependentUpon>FormDeviden.vb</DependentUpon>
