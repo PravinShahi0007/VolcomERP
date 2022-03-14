@@ -14,7 +14,8 @@ WHERE sni.`id_sni_pps`='" & id_pps & "'"
 FROM 
 `tb_sni_pps_budget` ppsb
 LEFT JOIN tb_m_design dsg ON dsg.`id_design`=ppsb.`id_design`
-WHERE ppsb.`id_sni_pps`='" & id_pps & "'"
+WHERE ppsb.`id_sni_pps`='" & id_pps & "'
+ORDER BY IFNULL(ppsb.id_design,'A') ASC"
         Dim dtdet As DataTable = execute_query(qdet, -1, True, "", "", "", "")
 
         Dim row_baru As DevExpress.XtraReports.UI.XRTableRow = XRDetail
