@@ -139,13 +139,13 @@ WHERE l.`id_pre_cal_fgpo`='" & id_report & "'"
 
         'fob $
         Dim fob As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(4)
-        fob.Text = Decimal.Parse(dt.Rows(row_i)("price").ToString).ToString("N2")
+        fob.Text = Decimal.Parse(dt.Rows(row_i)("price").ToString).ToString("N4")
         fob.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         fob.Font = font_row_style
 
         'tot fob $
         Dim tot_fob As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
-        tot_fob.Text = Decimal.Parse(dt.Rows(row_i)("tot_fob").ToString).ToString("N2")
+        tot_fob.Text = Decimal.Parse(dt.Rows(row_i)("tot_fob").ToString).ToString("N4")
         tot_fob.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         tot_fob.Font = font_row_style
 
@@ -310,7 +310,7 @@ WHERE l.`id_pre_cal_fgpo`='" & id_report & "'"
 
         'tot fob $
         Dim tot_fob As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(5)
-        tot_fob.Text = Decimal.Parse(tot_fobh.ToString).ToString("N2")
+        tot_fob.Text = Decimal.Parse(tot_fobh.ToString).ToString("N4")
         tot_fob.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         tot_fob.Font = font_row_style
 
