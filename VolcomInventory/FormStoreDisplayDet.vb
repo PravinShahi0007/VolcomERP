@@ -896,6 +896,12 @@
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
+
+        'copy stream
+        Dim strmain As System.IO.Stream = New System.IO.MemoryStream()
+        GVRencanaSKU.SaveLayoutToStream(strmain, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        strmain.Seek(0, System.IO.SeekOrigin.Begin)
+
         GVRencanaSKU.ActiveFilterString = ""
         GVRencanaSKU.BestFitColumns()
         Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
@@ -910,13 +916,6 @@
         ReportStoreDisplay.id_report_status = LEReportStatus.EditValue.ToString
         ReportStoreDisplay.rmt = rmt
         Dim Report As New ReportStoreDisplay()
-
-        'option col
-        'BandedGridColumndesign_code.Width = 44
-        'BandedGridColumnname.Width = 84
-        'For Each c In GVData.FormatRules
-        '    c.Enabled = False
-        'Next
 
         '... 
         ' creating And saving the view's layout to a new memory stream 
@@ -970,16 +969,9 @@
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreviewDialog()
 
-
-        'For Each c In GVData.FormatRules
-        '    c.Enabled = True
-        'Next
-
-        'If Not check_allow_print(id_report_status, rmt, id) Then
-        '    warningCustom("Can't print, please complete all approval on system first")
-        'Else
-
-        'End If
+        'paste stream
+        GVRencanaSKU.RestoreLayoutFromStream(strmain, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        strmain.Seek(0, System.IO.SeekOrigin.Begin)
         Cursor = Cursors.Default
     End Sub
 
