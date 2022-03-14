@@ -469,8 +469,18 @@
         For c As Integer = 0 To ds.Rows.Count - 1
             query += "IFNULL(SUM(CASE WHEN a.id_display_pps_season=" + ds.Rows(c)("id_display_pps_season").ToString + " THEN IFNULL(a.total_sku,0) * IFNULL(dph.qty_hanger,0)  END),0) AS `REKAPITULASI JUMLAH DISPLAY/SKU|" + ds.Rows(c)("season_del").ToString + "`, "
         Next
-        query += "SUM(IFNULL(total_sku,0) * IFNULL(dph.qty_hanger,0)) AS `REKAPITULASI JUMLAH DISPLAY/SKU|TOTAL`,
-        IFNULL(dm.qty_avl,0) AS `KALKULASI KAPASITAS DISPLAY|AVAILABLE`,
+        query += "SUM(IFNULL(total_sku,0) * IFNULL(dph.qty_hanger,0)) AS `REKAPITULASI JUMLAH DISPLAY/SKU|TOTAL`, "
+        Dim col_tot_koef As String = ""
+        For c As Integer = 0 To ds.Rows.Count - 1
+            If c > 0 Then
+                col_tot_koef += "+"
+            End If
+            Dim koef As String = "IFNULL(SUM(CASE WHEN a.id_display_pps_season=" + ds.Rows(c)("id_display_pps_season").ToString + " THEN IFNULL(a.total_sku,0) * IFNULL(dph.qty_hanger,0)  END),0) * IFNULL(SUM(CASE WHEN a.id_display_pps_season=" + ds.Rows(c)("id_display_pps_season").ToString + " THEN (IFNULL(dpk.koef_sold_out,0)/100)  END),0) "
+            query += koef + " AS `KOEF. SOLD OUT|" + ds.Rows(c)("season_del").ToString + "`, "
+            col_tot_koef += koef
+        Next
+        query += "(" + col_tot_koef + ") AS `KOEF. SOLD OUT|TOTAL`, "
+        query += "IFNULL(dm.qty_avl,0) AS `KALKULASI KAPASITAS DISPLAY|AVAILABLE`,
         (IFNULL(dm.qty_avl,0)-SUM(IFNULL(total_sku,0) * IFNULL(dph.qty_hanger,0))) AS `KALKULASI KAPASITAS DISPLAY|BALANCE`
         FROM (
             -- exist
@@ -498,6 +508,7 @@
         INNER JOIN tb_m_code_detail dv ON dv.id_code_detail = cg.id_division
         INNER JOIN tb_class_cat cc ON cc.id_class_cat = cg.id_class_cat
         LEFT JOIN tb_display_pps_hanger dph ON dph.id_class_group = a.id_class_group AND dph.id_display_pps_season = a.id_display_pps_season AND dph.id_display_pps=" + id + "
+        LEFT JOIN tb_display_pps_koef dpk ON dpk.id_class_group = a.id_class_group AND dpk.id_display_pps_season = a.id_display_pps_season AND dpk.id_display_pps=" + id + "
         LEFT JOIN (
             SELECT dps.id_class_group, SUM(dps.qty * dps.capacity) AS `qty_avl` 
             FROM tb_display_pps_store dps
