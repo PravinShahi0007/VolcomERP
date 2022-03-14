@@ -917,7 +917,7 @@ INNER JOIN `tb_pre_cal_fgpo` cal ON st.`is_active`='1'  AND  cal.`id_pre_cal_fgp
     End Sub
 
     Private Sub BPrintBudget2_Click(sender As Object, e As EventArgs) Handles BPrintBudget2.Click
-        Dim qc As String = "SELECT number,f.reason,FORMAT(SUM(l.`qty`),0,'id_ID') AS qtyf,SUM(l.`qty`) AS qty,FORMAT(SUM(l.`price`*l.`qty`),2,'id_ID') AS fob_tot,c.`comp_name` AS best,cs.`comp_name` AS second_best,FORMAT(f.`cbm`,2,'id_ID') AS cbm,FORMAT(f.`ctn`,0,'id_ID') AS ctn,FORMAT(f.`weight`,0,'id_ID') AS weight,f.`pol`,cv.`comp_name` AS vendor_comp,FORMAT(f.`rate_management`,2,'id_ID') AS rate_management
+        Dim qc As String = "SELECT number,f.reason,FORMAT(SUM(l.`qty`),0,'id_ID') AS qtyf,SUM(l.`qty`) AS qty,FORMAT(SUM(l.`price`*l.`qty`),4,'id_ID') AS fob_tot,c.`comp_name` AS best,cs.`comp_name` AS second_best,FORMAT(f.`cbm`,2,'id_ID') AS cbm,FORMAT(f.`ctn`,0,'id_ID') AS ctn,FORMAT(f.`weight`,0,'id_ID') AS weight,f.`pol`,cv.`comp_name` AS vendor_comp,FORMAT(f.`rate_management`,2,'id_ID') AS rate_management
 FROM `tb_pre_cal_fgpo` f
 INNER JOIN tb_m_comp cv ON cv.`id_comp`=f.`id_comp`
 INNER JOIN tb_pre_cal_fgpo_list l ON l.`id_pre_cal_fgpo`=f.`id_pre_cal_fgpo`
@@ -1145,6 +1145,32 @@ WHERE cal.id_pre_cal_fgpo='" & id & "'"
             Dim q As String = "UPDATE tb_pre_cal_fgpo SET quot_no='" & addSlashes(TEQuotNo.EditValue.ToString) & "',quot_amo='" & decimalSQL(Decimal.Parse(TEQuotAmo.EditValue.ToString)) & "',act_cbm='" & decimalSQL(Decimal.Parse(TECBM.EditValue.ToString)) & "' WHERE id_pre_cal_fgpo='" & id & "'"
             execute_non_query(q, True, "", "", "", "")
             load_head()
+        End If
+    End Sub
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        'check FGPO and right step
+        If GVListFGPO.RowCount > 0 And steps = 1 Then
+            Dim q As String = "SELECT SUM(pod.prod_order_qty)-IFNULL(already.qty,0) AS qty
+FROM tb_prod_order_det pod 
+INNER JOIN tb_prod_order po ON po.id_prod_order=pod.id_prod_order
+INNER JOIN tb_pre_cal_fgpo_khusus pok ON pok.id_prod_order=po.id_prod_order
+LEFT JOIN 
+(
+	SELECT id_prod_order,SUM(qty) AS qty 
+	FROM tb_pre_cal_fgpo_list l
+	INNER JOIN tb_pre_cal_fgpo f ON f.id_pre_cal_fgpo=l.id_pre_cal_fgpo AND f.id_report_status!=5
+	WHERE l.id_prod_order='" & GVListFGPO.GetFocusedRowCellValue("id_prod_order").ToString & "'
+)already ON already.id_prod_order=po.id_prod_order
+WHERE pok.id_prod_order='" & GVListFGPO.GetFocusedRowCellValue("id_prod_order").ToString & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                'ada khusus
+                FormPreCalFGPOQty.TEQtyShipment.Properties.MaxValue = dt.Rows(0)("qty")
+                FormPreCalFGPOQty.ShowDialog()
+            End If
+        Else
+            warningCustom("Data not valid to edit")
         End If
     End Sub
 End Class
