@@ -35,7 +35,7 @@ SELECT 1 AS id,'Yes' AS auto_debet"
         TETrfFee.EditValue = 0.0
         TEKurs.EditValue = 1.0
         TETotal.EditValue = 0.00
-        DEDateCreated.EditValue = Now
+        DEDateCreated.EditValue = getTimeDB()
         DEPayment.Properties.MinValue = execute_query("SELECT DATE_ADD(MAX(date_until),INTERVAL 1 DAY) FROM `tb_closing_log` WHERE id_coa_tag='" & id_coa_tag & "'", 0, True, "", "", "", "")
         TEPayNumber.Text = "[Auto generate]"
         TxtTag.EditValue = execute_query("SELECT CONCAT(tag_code, ' - ', tag_description) AS tag FROM tb_coa_tag WHERE id_coa_tag = " & id_coa_tag, 0, True, "", "", "", "")

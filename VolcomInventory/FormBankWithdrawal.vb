@@ -28,11 +28,11 @@
     End Sub
 
     Private Sub FormBankWithdrawal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DEBBKFrom.EditValue = Now
-        DEBBKTo.EditValue = Now
+        DEBBKFrom.EditValue = getTimeDB()
+        DEBBKTo.EditValue = getTimeDB()
         '
-        DEFromSum.EditValue = Now
-        DEToSum.EditValue = Now
+        DEFromSum.EditValue = getTimeDB()
+        DEToSum.EditValue = getTimeDB()
         '
         TEKurs.EditValue = 1.0
         TEKursDPKhusus.EditValue = 1.0

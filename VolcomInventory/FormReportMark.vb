@@ -3170,9 +3170,9 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 Dim sync_status As String = "1"
                 Dim sync_message As String = ""
 
-                Try
-                    Dim id_outlet As String = execute_query("SELECT IFNULL(c.id_outlet, 0) AS id_outlet FROM tb_sales_return_order AS r LEFT JOIN tb_m_comp_contact AS t ON r.id_store_contact_to = t.id_comp_contact LEFT JOIN tb_m_comp AS c ON t.id_comp = c.id_comp WHERE r.id_sales_return_order = '" + id_report + "'", 0, True, "", "", "", "")
+                Dim id_outlet As String = execute_query("SELECT IFNULL(c.id_outlet, 0) AS id_outlet FROM tb_sales_return_order AS r LEFT JOIN tb_m_comp_contact AS t ON r.id_store_contact_to = t.id_comp_contact LEFT JOIN tb_m_comp AS c ON t.id_comp = c.id_comp WHERE r.id_sales_return_order = '" + id_report + "'", 0, True, "", "", "", "")
 
+                Try
                     If Not id_outlet = "0" Then
                         Dim list_id As List(Of String) = New List(Of String)
 
@@ -3187,7 +3187,9 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                     sync_message = ex.ToString
                 End Try
 
-                execute_non_query("INSERT INTO tb_pos_sync (sync_type, sync_status, message, created_at) VALUES ('Return: Report Mark Type (45)', " + sync_status + ", '" + addSlashes(sync_message) + "', NOW())", True, "", "", "", "")
+                If Not id_outlet = "0" Then
+                    execute_non_query("INSERT INTO tb_pos_sync (sync_type, sync_status, message, created_at) VALUES ('Return: Report Mark Type (45)', " + sync_status + ", '" + addSlashes(sync_message) + "', NOW())", True, "", "", "", "")
+                End If
             End If
         ElseIf report_mark_type = "46" Or report_mark_type = "111" Or report_mark_type = "113" Or report_mark_type = "120" Then
             'SALES RETURN

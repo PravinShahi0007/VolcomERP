@@ -26,9 +26,9 @@
         load_employee()
         load_report_status()
 
-        DEDateCreated.EditValue = Now
-        DEAdvanceEnd.EditValue = Now
-        DEDueDate.EditValue = Now
+        DEDateCreated.EditValue = getTimeDB()
+        DEAdvanceEnd.EditValue = getTimeDB()
+        DEDueDate.EditValue = getTimeDB()
         '
         TENumber.Text = "[auto generate]"
         SLEPayFrom.EditValue = 11

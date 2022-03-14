@@ -1,7 +1,7 @@
 ﻿Public Class FormDeliveryMonitoring
     Private Sub FormDeliveryMonitoring_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DEFrom.EditValue = Now
-        DETo.EditValue = Now
+        DEFrom.EditValue = getTimeDB()
+        DETo.EditValue = getTimeDB()
 
         view_type()
         view3pl()

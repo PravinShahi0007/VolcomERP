@@ -14,9 +14,9 @@
     End Sub
 
     Private Sub FormBulanImport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DEYearStart.EditValue = Now()
-        DEYearUntil.EditValue = Now()
-        DEYearInput.EditValue = Now()
+        DEYearStart.EditValue = getTimeDB()
+        DEYearUntil.EditValue = getTimeDB()
+        DEYearInput.EditValue = getTimeDB()
         '
     End Sub
 

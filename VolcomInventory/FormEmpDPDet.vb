@@ -19,7 +19,7 @@
     '
     Private Sub FormEmpDPDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TENumber.Text = header_number_emp("2")
-        DEDateCreated.EditValue = Now
+        DEDateCreated.EditValue = getTimeDB()
         load_payroll_periode()
         '
         If id_emp_dp = "-1" Then 'new

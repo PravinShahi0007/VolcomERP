@@ -6,8 +6,8 @@
 
         DateEditCreatedDateFrom.Properties.MinValue = Date.Parse(get_setup_field("manifest_min_date").ToString)
 
-        DateEditCreatedDateFrom.EditValue = Now
-        DateEditCreatedDateTo.EditValue = Now
+        DateEditCreatedDateFrom.EditValue = getTimeDB()
+        DateEditCreatedDateTo.EditValue = getTimeDB()
     End Sub
 
     Private Sub FormDelManifestPick_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed

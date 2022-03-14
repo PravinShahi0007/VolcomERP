@@ -9,7 +9,7 @@
         load_unit()
         load_acc()
 
-        DECreatedDate.EditValue = Now
+        DECreatedDate.EditValue = getTimeDB()
         '
         TENumber.Text = "[auto number]"
         TECreatedBy.Text = "[auto]"

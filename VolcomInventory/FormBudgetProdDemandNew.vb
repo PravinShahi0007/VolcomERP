@@ -1,6 +1,6 @@
 ﻿Public Class FormBudgetProdDemandNew
     Private Sub FormBudgetProdDemandNew_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DEYearBudget.EditValue = Now
+        DEYearBudget.EditValue = getTimeDB()
     End Sub
 
     Private Sub FormBudgetProdDemandNew_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed

@@ -1395,7 +1395,7 @@ WHERE c.id_comp='" & id_company & "' AND ISNULL(cl.`id_comp_legal`)"
         Try
             TECompanyCode_Validating(TECompanyCode, New System.ComponentModel.CancelEventArgs)
 
-            If LECompanyCategory.EditValue.ToString = "1" Or LECompanyCategory.EditValue.ToString = "8" Then
+            If LECompanyCategory.EditValue.ToString = "1" Or LECompanyCategory.EditValue.ToString = "7" Or LECompanyCategory.EditValue.ToString = "8" Then
                 LVendorType.Visible = True
                 SLEVendorType.Visible = True
                 LCStatusPabean.Visible = True

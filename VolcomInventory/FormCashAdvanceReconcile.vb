@@ -221,7 +221,7 @@
             TENumber.Text = data.Rows(0)("number").ToString
             '
             If data.Rows(0)("act_report_back_date").ToString = "" Then
-                DEActualReconcileDate.EditValue = Now
+                DEActualReconcileDate.EditValue = getTimeDB()
             Else
                 DEActualReconcileDate.EditValue = data.Rows(0)("act_report_back_date").ToString
             End If

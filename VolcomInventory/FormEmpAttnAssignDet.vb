@@ -27,7 +27,7 @@
             Catch ex As Exception
             End Try
 
-            DEDate.EditValue = Now
+            DEDate.EditValue = getTimeDB()
             TENumber.Text = header_number_emp("4")
 
             '

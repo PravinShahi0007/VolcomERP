@@ -101,7 +101,7 @@
             TEEmployeeCode.Properties.ReadOnly = False
             BPickEmployee.Visible = True
 
-            DEDateCreated.EditValue = Now
+            DEDateCreated.EditValue = getTimeDB()
 
             BMark.Visible = False
             BPrint.Visible = False
@@ -903,8 +903,8 @@
                     infoCustom("Cuti diajukan. Menunggu persetujuan.")
                 End If
                 '
-                FormEmpLeave.DEStart.EditValue = Now
-                FormEmpLeave.DEUntil.EditValue = Now
+                FormEmpLeave.DEStart.EditValue = getTimeDB()
+                FormEmpLeave.DEUntil.EditValue = getTimeDB()
                 FormEmpLeave.load_sum()
                 FormEmpLeave.GVLeave.FocusedRowHandle = find_row(FormEmpLeave.GVLeave, "id_emp_leave", id_emp_leave)
                 '

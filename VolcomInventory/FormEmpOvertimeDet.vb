@@ -33,7 +33,7 @@
 
         LEDepartement.EditValue = id_departement_user
         TECreatedBy.EditValue = get_emp(id_employee_user, "2")
-        DECreatedAt.EditValue = Now
+        DECreatedAt.EditValue = getTimeDB()
 
         generate_memo_format()
 

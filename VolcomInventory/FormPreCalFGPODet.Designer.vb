@@ -242,6 +242,8 @@ Partial Class FormPreCalFGPODet
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TECTN = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.CMChangeQty = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEProposeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -349,6 +351,7 @@ Partial Class FormPreCalFGPODet
         CType(Me.TECTN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
+        Me.CMChangeQty.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -622,6 +625,7 @@ Partial Class FormPreCalFGPODet
         '
         'GCListFGPO
         '
+        Me.GCListFGPO.ContextMenuStrip = Me.CMChangeQty
         Me.GCListFGPO.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCListFGPO.Location = New System.Drawing.Point(0, 43)
         Me.GCListFGPO.MainView = Me.GVListFGPO
@@ -690,7 +694,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn3.Caption = "FOB Price"
-        Me.GridColumn3.DisplayFormat.FormatString = "N2"
+        Me.GridColumn3.DisplayFormat.FormatString = "N4"
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn3.FieldName = "price"
         Me.GridColumn3.Name = "GridColumn3"
@@ -708,7 +712,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn4.Caption = "Qty Order"
+        Me.GridColumn4.Caption = "Qty Shipment"
         Me.GridColumn4.DisplayFormat.FormatString = "N2"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "qty"
@@ -728,7 +732,7 @@ Partial Class FormPreCalFGPODet
         Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn7.Caption = "Total FOB"
-        Me.GridColumn7.DisplayFormat.FormatString = "N2"
+        Me.GridColumn7.DisplayFormat.FormatString = "N4"
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn7.FieldName = "total_amount"
         Me.GridColumn7.Name = "GridColumn7"
@@ -1732,12 +1736,12 @@ Partial Class FormPreCalFGPODet
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(156, 26)
+        Me.ViewMenu.Size = New System.Drawing.Size(155, 26)
         '
         'ViewDetailToolStripMenuItem
         '
         Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.ViewDetailToolStripMenuItem.Text = "Choose Vendor"
         '
         'GVPickVendor
@@ -3035,6 +3039,18 @@ Partial Class FormPreCalFGPODet
         Me.PanelControl6.Size = New System.Drawing.Size(1022, 42)
         Me.PanelControl6.TabIndex = 157
         '
+        'CMChangeQty
+        '
+        Me.CMChangeQty.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.CMChangeQty.Name = "ContextMenuStripYM"
+        Me.CMChangeQty.Size = New System.Drawing.Size(138, 26)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem1.Text = "Change Qty"
+        '
         'FormPreCalFGPODet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3167,6 +3183,7 @@ Partial Class FormPreCalFGPODet
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
+        Me.CMChangeQty.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -3392,4 +3409,6 @@ Partial Class FormPreCalFGPODet
     Friend WithEvents GridColumn77 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEActCBM As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents CMChangeQty As ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
 End Class
