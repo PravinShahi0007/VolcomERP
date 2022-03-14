@@ -4023,6 +4023,12 @@
     <Compile Include="FormPreCalFGPODet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPreCalFGPOQty.Designer.vb">
+      <DependentUpon>FormPreCalFGPOQty.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPreCalFGPOQty.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPrepaidExpense.Designer.vb">
       <DependentUpon>FormPrepaidExpense.vb</DependentUpon>
     </Compile>
@@ -12736,6 +12742,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPreCalFGPODet.resx">
       <DependentUpon>FormPreCalFGPODet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPreCalFGPOQty.resx">
+      <DependentUpon>FormPreCalFGPOQty.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrepaidExpense.resx">
       <DependentUpon>FormPrepaidExpense.vb</DependentUpon>
