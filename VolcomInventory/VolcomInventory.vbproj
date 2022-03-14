@@ -7935,6 +7935,12 @@
     <Compile Include="FormStoreDisplayHanger.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStoreDisplayKSO.Designer.vb">
+      <DependentUpon>FormStoreDisplayKSO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStoreDisplayKSO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStoreStatus.Designer.vb">
       <DependentUpon>FormStoreStatus.vb</DependentUpon>
     </Compile>
@@ -15028,6 +15034,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStoreDisplayHanger.resx">
       <DependentUpon>FormStoreDisplayHanger.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStoreDisplayKSO.resx">
+      <DependentUpon>FormStoreDisplayKSO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStoreStatus.resx">
       <DependentUpon>FormStoreStatus.vb</DependentUpon>

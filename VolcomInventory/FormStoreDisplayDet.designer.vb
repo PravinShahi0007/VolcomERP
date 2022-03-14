@@ -93,6 +93,7 @@ Partial Class FormStoreDisplayDet
         Me.GCRencanaSKU = New DevExpress.XtraGrid.GridControl()
         Me.GVRencanaSKU = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.PanelControlRencanaSKU = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnSetKoef = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSetupHanger = New DevExpress.XtraEditors.SimpleButton()
         Me.DropDownRencanaJumlahSKU = New DevExpress.XtraEditors.DropDownButton()
         Me.PopupMenuRencanaJumlahSKU = New DevExpress.XtraBars.PopupMenu(Me.components)
@@ -165,7 +166,13 @@ Partial Class FormStoreDisplayDet
         Me.BtnSetupHangerSummary = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDeleteHanger = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddHanger = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnSetKoef = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPKoefSoldOut = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCKoefSoldOut = New DevExpress.XtraGrid.GridControl()
+        Me.GVKoefSoldOut = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnKSOSummary = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDeleteKSO = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddKSO = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.RepoSelectDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtUpdatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUpdated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -233,6 +240,11 @@ Partial Class FormStoreDisplayDet
         CType(Me.GVSetupHanger, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlSetupHanger, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlSetupHanger.SuspendLayout()
+        Me.XTPKoefSoldOut.SuspendLayout()
+        CType(Me.GCKoefSoldOut, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVKoefSoldOut, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
         Me.SuspendLayout()
         '
         'GridColumnis_over
@@ -710,7 +722,7 @@ Partial Class FormStoreDisplayDet
         Me.XTCRencanaSKU.SelectedTabPage = Me.XTPSummaryRencanaSKU
         Me.XTCRencanaSKU.Size = New System.Drawing.Size(794, 361)
         Me.XTCRencanaSKU.TabIndex = 0
-        Me.XTCRencanaSKU.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummaryRencanaSKU, Me.XTPCurrSeasonOrder, Me.XTPExisting, Me.XTPPlanlRencanaSKU, Me.XTPSetupHanger})
+        Me.XTCRencanaSKU.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummaryRencanaSKU, Me.XTPCurrSeasonOrder, Me.XTPExisting, Me.XTPPlanlRencanaSKU, Me.XTPSetupHanger, Me.XTPKoefSoldOut})
         '
         'XTPSummaryRencanaSKU
         '
@@ -988,6 +1000,16 @@ Partial Class FormStoreDisplayDet
         Me.PanelControlRencanaSKU.Name = "PanelControlRencanaSKU"
         Me.PanelControlRencanaSKU.Size = New System.Drawing.Size(497, 42)
         Me.PanelControlRencanaSKU.TabIndex = 1
+        '
+        'BtnSetKoef
+        '
+        Me.BtnSetKoef.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSetKoef.Image = CType(resources.GetObject("BtnSetKoef.Image"), System.Drawing.Image)
+        Me.BtnSetKoef.Location = New System.Drawing.Point(51, 2)
+        Me.BtnSetKoef.Name = "BtnSetKoef"
+        Me.BtnSetKoef.Size = New System.Drawing.Size(114, 38)
+        Me.BtnSetKoef.TabIndex = 7
+        Me.BtnSetKoef.Text = "Koef. Sold Out"
         '
         'BtnSetupHanger
         '
@@ -1637,15 +1659,75 @@ Partial Class FormStoreDisplayDet
         Me.BtnAddHanger.TabIndex = 0
         Me.BtnAddHanger.Text = "Add"
         '
-        'BtnSetKoef
+        'XTPKoefSoldOut
         '
-        Me.BtnSetKoef.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSetKoef.Image = CType(resources.GetObject("BtnSetKoef.Image"), System.Drawing.Image)
-        Me.BtnSetKoef.Location = New System.Drawing.Point(51, 2)
-        Me.BtnSetKoef.Name = "BtnSetKoef"
-        Me.BtnSetKoef.Size = New System.Drawing.Size(114, 38)
-        Me.BtnSetKoef.TabIndex = 7
-        Me.BtnSetKoef.Text = "Koef. Sold Out"
+        Me.XTPKoefSoldOut.Controls.Add(Me.GCKoefSoldOut)
+        Me.XTPKoefSoldOut.Controls.Add(Me.PanelControl5)
+        Me.XTPKoefSoldOut.Name = "XTPKoefSoldOut"
+        Me.XTPKoefSoldOut.PageEnabled = False
+        Me.XTPKoefSoldOut.Size = New System.Drawing.Size(765, 355)
+        Me.XTPKoefSoldOut.Text = "Koef. Sold Out"
+        '
+        'GCKoefSoldOut
+        '
+        Me.GCKoefSoldOut.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCKoefSoldOut.Location = New System.Drawing.Point(0, 48)
+        Me.GCKoefSoldOut.MainView = Me.GVKoefSoldOut
+        Me.GCKoefSoldOut.MenuManager = Me.BarManager1
+        Me.GCKoefSoldOut.Name = "GCKoefSoldOut"
+        Me.GCKoefSoldOut.Size = New System.Drawing.Size(765, 307)
+        Me.GCKoefSoldOut.TabIndex = 2
+        Me.GCKoefSoldOut.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVKoefSoldOut})
+        '
+        'GVKoefSoldOut
+        '
+        Me.GVKoefSoldOut.GridControl = Me.GCKoefSoldOut
+        Me.GVKoefSoldOut.Name = "GVKoefSoldOut"
+        Me.GVKoefSoldOut.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVKoefSoldOut.OptionsBehavior.Editable = False
+        Me.GVKoefSoldOut.OptionsFind.AlwaysVisible = True
+        Me.GVKoefSoldOut.OptionsView.ShowGroupPanel = False
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.Controls.Add(Me.BtnKSOSummary)
+        Me.PanelControl5.Controls.Add(Me.BtnDeleteKSO)
+        Me.PanelControl5.Controls.Add(Me.BtnAddKSO)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(765, 48)
+        Me.PanelControl5.TabIndex = 1
+        '
+        'BtnKSOSummary
+        '
+        Me.BtnKSOSummary.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnKSOSummary.Image = CType(resources.GetObject("BtnKSOSummary.Image"), System.Drawing.Image)
+        Me.BtnKSOSummary.Location = New System.Drawing.Point(489, 2)
+        Me.BtnKSOSummary.Name = "BtnKSOSummary"
+        Me.BtnKSOSummary.Size = New System.Drawing.Size(119, 44)
+        Me.BtnKSOSummary.TabIndex = 2
+        Me.BtnKSOSummary.Text = "View Summary"
+        '
+        'BtnDeleteKSO
+        '
+        Me.BtnDeleteKSO.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDeleteKSO.Image = CType(resources.GetObject("BtnDeleteKSO.Image"), System.Drawing.Image)
+        Me.BtnDeleteKSO.Location = New System.Drawing.Point(608, 2)
+        Me.BtnDeleteKSO.Name = "BtnDeleteKSO"
+        Me.BtnDeleteKSO.Size = New System.Drawing.Size(80, 44)
+        Me.BtnDeleteKSO.TabIndex = 1
+        Me.BtnDeleteKSO.Text = "Delete"
+        '
+        'BtnAddKSO
+        '
+        Me.BtnAddKSO.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddKSO.Image = CType(resources.GetObject("BtnAddKSO.Image"), System.Drawing.Image)
+        Me.BtnAddKSO.Location = New System.Drawing.Point(688, 2)
+        Me.BtnAddKSO.Name = "BtnAddKSO"
+        Me.BtnAddKSO.Size = New System.Drawing.Size(75, 44)
+        Me.BtnAddKSO.TabIndex = 0
+        Me.BtnAddKSO.Text = "Add"
         '
         'FormStoreDisplayDet
         '
@@ -1734,6 +1816,11 @@ Partial Class FormStoreDisplayDet
         CType(Me.GVSetupHanger, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlSetupHanger, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlSetupHanger.ResumeLayout(False)
+        Me.XTPKoefSoldOut.ResumeLayout(False)
+        CType(Me.GCKoefSoldOut, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVKoefSoldOut, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1879,4 +1966,11 @@ Partial Class FormStoreDisplayDet
     Friend WithEvents GridColumnocc_qty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnis_over As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnSetKoef As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPKoefSoldOut As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCKoefSoldOut As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVKoefSoldOut As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnKSOSummary As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnDeleteKSO As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAddKSO As DevExpress.XtraEditors.SimpleButton
 End Class
