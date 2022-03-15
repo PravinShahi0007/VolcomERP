@@ -140,18 +140,44 @@ WHERE pd.is_pd=2 AND dsg.id_design='" & dt.Rows(i)("id_design").ToString & "'"
 
     Private Sub RIRevise_Click(sender As Object, e As EventArgs) Handles RIRevise.Click
         Dim confirm As DialogResult
-        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Choosing no changes, continue ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Choosing this will cancel old propose, continue ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
         If confirm = DialogResult.Yes Then
             'update pps
-            Dim qup As String = "UPDATE `tb_sni_pps` SET is_confirmed=1,is_revise=2 WHERE id_sni_pps='" & GVConfirm.GetFocusedRowCellValue("id_sni_pps").ToString & "'"
+            Dim qup As String = "UPDATE `tb_sni_pps` SET is_confirmed=1,is_revise=2,id_report_status=5 WHERE id_sni_pps='" & GVConfirm.GetFocusedRowCellValue("id_sni_pps").ToString & "'"
             execute_non_query(qup, True, "", "", "", "")
             'duplicate SNI
-            'header
+            qup = "INSERT INTO `tb_sni_pps`(`id_season`,`created_by`,`created_date`)
+SELECT `id_season`," & id_user & ",NOW()
+FROM tb_sni_pps
+WHERE id_sni_pps='" & GVConfirm.GetFocusedRowCellValue("id_sni_pps").ToString & "'; SELECT LAST_INSERT_ID();"
+            Dim id_new_pps As String = execute_query(qup, 0, True, "", "", "", "")
+            'list design
+            qup = "INSERT INTO `tb_sni_pps_list`(`id_sni_pps`,`id_design`,`id_prod_demand_product`,`qty`)
+SELECT '" & id_new_pps & "' AS id_sni_pps,l.`id_design`,l.`id_prod_demand_product`,pqty.qty
+FROM tb_sni_pps_list l
+INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product=l.id_prod_demand_product
+INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=pdp.id_prod_demand_design
+INNER JOIN 
+(
+	SELECT pdd.id_design,SUM(pdp.prod_demand_product_qty) AS qty 
+	FROM tb_prod_demand_product pdp
+	INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=pdp.id_prod_demand_design
+	INNER JOIN tb_prod_demand pd ON pd.id_prod_demand=pdd.id_prod_demand AND pd.is_pd=2
+	GROUP BY pdd.id_design
+) pqty ON pqty.id_design=pdd.id_design
+WHERE l.id_sni_pps='" & GVConfirm.GetFocusedRowCellValue("id_sni_pps").ToString & "';"
+            execute_non_query(qup, True, "", "", "", "")
 
             'detail
+            qup = "INSERT INTO tb_sni_pps_budget(id_sni_pps,budget_desc,budget_value,budget_qty)
+SELECT '" & id_new_pps & "' AS id_sni_pps,budget_desc,budget_value,budget_qty
+FROM `tb_sni_pps_budget`
+WHERE id_sni_pps='" & GVConfirm.GetFocusedRowCellValue("id_sni_pps").ToString & "' AND ISNULL(id_design)"
+            execute_non_query(qup, True, "", "", "", "")
 
-            'open sni form dengan default data sebelum submit
+            FormSNIppsDet.id_pps = id_new_pps
+            FormSNIppsDet.ShowDialog()
         End If
     End Sub
 End Class

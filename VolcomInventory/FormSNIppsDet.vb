@@ -44,6 +44,7 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
             XTPListDesign.PageVisible = True
             XTPProposedList.PageVisible = False
             XTPBudgetPropose.PageVisible = False
+            '
         Else
             'edit
             Dim q As String = "SELECT pps.`id_sni_pps`,pps.`number`,pps.`created_date`,emp.`employee_name`,pps.id_report_status,pps.is_submit 
