@@ -148,6 +148,7 @@ WHERE pd.is_pd=2 AND dsg.id_design='" & dt.Rows(i)("id_design").ToString & "'"
             execute_non_query(qup, True, "", "", "", "")
             'duplicate SNI
             'header
+
             'detail
 
             'open sni form dengan default data sebelum submit
