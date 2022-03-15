@@ -10001,6 +10001,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormRiderContract" Then
             FormRiderContract.Close()
             FormRiderContract.Dispose()
+        ElseIf formName = "FormStoreDisplay" Then
+            FormStoreDisplay.Close()
+            FormStoreDisplay.Dispose()
+        ElseIf formName = "FormDesignOrderView" Then
+            FormDesignOrderView.Close()
+            FormDesignOrderView.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11063,6 +11069,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDeviden.load_deviden()
         ElseIf formName = "FormQCReport1" Then
             FormQCReport1.load_qc_report1()
+        ElseIf formName = "FormStoreDisplay" Then
+            FormStoreDisplay.refreshData()
+        ElseIf formName = "FormDesignOrderView" Then
+            FormDesignOrderView.viewData()
         End If
     End Sub
     'Switch

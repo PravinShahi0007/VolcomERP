@@ -441,4 +441,12 @@
     Private Sub BtnPrintArt_Click(sender As Object, e As EventArgs) Handles BtnPrintArt.Click
         print_raw(GCArt, "")
     End Sub
+
+    Sub refreshData()
+        If XTCStoreDisplay.SelectedTabPageIndex = 0 Then
+            viewStoreDisplay()
+        Else
+            viewPps()
+        End If
+    End Sub
 End Class

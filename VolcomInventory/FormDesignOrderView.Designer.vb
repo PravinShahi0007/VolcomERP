@@ -20,16 +20,16 @@ Partial Class FormDesignOrderView
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControlLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControlLeft = New DevExpress.XtraEditors.PanelControl()
         Me.SLEComp = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.SLESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,17 +56,23 @@ Partial Class FormDesignOrderView
         Me.PanelControl1.Size = New System.Drawing.Size(771, 48)
         Me.PanelControl1.TabIndex = 1
         '
-        'PanelControlLeft
+        'SimpleButton1
         '
-        Me.PanelControlLeft.Controls.Add(Me.SLEComp)
-        Me.PanelControlLeft.Controls.Add(Me.SLESeason)
-        Me.PanelControlLeft.Controls.Add(Me.LabelControl2)
-        Me.PanelControlLeft.Controls.Add(Me.LabelControl1)
-        Me.PanelControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControlLeft.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControlLeft.Name = "PanelControlLeft"
-        Me.PanelControlLeft.Size = New System.Drawing.Size(507, 44)
-        Me.PanelControlLeft.TabIndex = 21
+        Me.SimpleButton1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.White
+        Me.SimpleButton1.Appearance.Options.UseBackColor = True
+        Me.SimpleButton1.Appearance.Options.UseFont = True
+        Me.SimpleButton1.Appearance.Options.UseForeColor = True
+        Me.SimpleButton1.Location = New System.Drawing.Point(645, 15)
+        Me.SimpleButton1.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.SimpleButton1.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.SimpleButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.SimpleButton1.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(89, 21)
+        Me.SimpleButton1.TabIndex = 21
+        Me.SimpleButton1.Text = "Export to XLS"
         '
         'BtnPrint
         '
@@ -86,23 +92,17 @@ Partial Class FormDesignOrderView
         Me.BtnPrint.TabIndex = 20
         Me.BtnPrint.Text = "Print"
         '
-        'BtnView
+        'PanelControlLeft
         '
-        Me.BtnView.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BtnView.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BtnView.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BtnView.Appearance.Options.UseBackColor = True
-        Me.BtnView.Appearance.Options.UseFont = True
-        Me.BtnView.Appearance.Options.UseForeColor = True
-        Me.BtnView.Location = New System.Drawing.Point(515, 15)
-        Me.BtnView.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BtnView.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BtnView.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BtnView.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(63, 21)
-        Me.BtnView.TabIndex = 19
-        Me.BtnView.Text = "View"
+        Me.PanelControlLeft.Controls.Add(Me.SLEComp)
+        Me.PanelControlLeft.Controls.Add(Me.SLESeason)
+        Me.PanelControlLeft.Controls.Add(Me.LabelControl2)
+        Me.PanelControlLeft.Controls.Add(Me.LabelControl1)
+        Me.PanelControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControlLeft.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControlLeft.Name = "PanelControlLeft"
+        Me.PanelControlLeft.Size = New System.Drawing.Size(507, 44)
+        Me.PanelControlLeft.TabIndex = 21
         '
         'SLEComp
         '
@@ -154,23 +154,23 @@ Partial Class FormDesignOrderView
         Me.LabelControl1.TabIndex = 2
         Me.LabelControl1.Text = "Season"
         '
-        'SimpleButton1
+        'BtnView
         '
-        Me.SimpleButton1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.White
-        Me.SimpleButton1.Appearance.Options.UseBackColor = True
-        Me.SimpleButton1.Appearance.Options.UseFont = True
-        Me.SimpleButton1.Appearance.Options.UseForeColor = True
-        Me.SimpleButton1.Location = New System.Drawing.Point(645, 15)
-        Me.SimpleButton1.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.SimpleButton1.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.SimpleButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.SimpleButton1.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(89, 21)
-        Me.SimpleButton1.TabIndex = 21
-        Me.SimpleButton1.Text = "Export to XLS"
+        Me.BtnView.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnView.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnView.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnView.Appearance.Options.UseBackColor = True
+        Me.BtnView.Appearance.Options.UseFont = True
+        Me.BtnView.Appearance.Options.UseForeColor = True
+        Me.BtnView.Location = New System.Drawing.Point(515, 15)
+        Me.BtnView.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnView.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BtnView.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnView.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnView.Name = "BtnView"
+        Me.BtnView.Size = New System.Drawing.Size(63, 21)
+        Me.BtnView.TabIndex = 19
+        Me.BtnView.Text = "View"
         '
         'GCData
         '
