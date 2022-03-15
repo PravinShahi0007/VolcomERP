@@ -28,6 +28,9 @@ Partial Class FormClassGroupDet
         Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnclass_desc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.SLECat = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -36,21 +39,21 @@ Partial Class FormClassGroupDet
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtGroupName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtEstimasiSKU = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtGroupName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtEstimasiSKU.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BtnConfirm
@@ -126,6 +129,8 @@ Partial Class FormClassGroupDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.TxtEstimasiSKU)
+        Me.PanelControl1.Controls.Add(Me.LabelControl5)
         Me.PanelControl1.Controls.Add(Me.SLEType)
         Me.PanelControl1.Controls.Add(Me.LabelControl4)
         Me.PanelControl1.Controls.Add(Me.SLECat)
@@ -139,6 +144,34 @@ Partial Class FormClassGroupDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(603, 93)
         Me.PanelControl1.TabIndex = 2
+        '
+        'SLEType
+        '
+        Me.SLEType.Location = New System.Drawing.Point(394, 19)
+        Me.SLEType.Name = "SLEType"
+        Me.SLEType.Properties.Appearance.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEType.Properties.Appearance.Options.UseFont = True
+        Me.SLEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEType.Properties.ShowClearButton = False
+        Me.SLEType.Properties.View = Me.GridView2
+        Me.SLEType.Size = New System.Drawing.Size(197, 22)
+        Me.SLEType.TabIndex = 9
+        '
+        'GridView2
+        '
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(302, 22)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(32, 16)
+        Me.LabelControl4.TabIndex = 8
+        Me.LabelControl4.Text = "Type"
         '
         'SLECat
         '
@@ -216,33 +249,25 @@ Partial Class FormClassGroupDet
         Me.LabelControl1.TabIndex = 3
         Me.LabelControl1.Text = "Group Name"
         '
-        'LabelControl4
+        'LabelControl5
         '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(302, 22)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(32, 16)
-        Me.LabelControl4.TabIndex = 8
-        Me.LabelControl4.Text = "Type"
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(302, 50)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(81, 16)
+        Me.LabelControl5.TabIndex = 10
+        Me.LabelControl5.Text = "Estimasi SKU"
         '
-        'SLEType
+        'TxtEstimasiSKU
         '
-        Me.SLEType.Location = New System.Drawing.Point(340, 19)
-        Me.SLEType.Name = "SLEType"
-        Me.SLEType.Properties.Appearance.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SLEType.Properties.Appearance.Options.UseFont = True
-        Me.SLEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEType.Properties.ShowClearButton = False
-        Me.SLEType.Properties.View = Me.GridView2
-        Me.SLEType.Size = New System.Drawing.Size(212, 22)
-        Me.SLEType.TabIndex = 9
-        '
-        'GridView2
-        '
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
+        Me.TxtEstimasiSKU.Location = New System.Drawing.Point(394, 49)
+        Me.TxtEstimasiSKU.Name = "TxtEstimasiSKU"
+        Me.TxtEstimasiSKU.Properties.DisplayFormat.FormatString = "N0"
+        Me.TxtEstimasiSKU.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtEstimasiSKU.Properties.Mask.EditMask = "N0"
+        Me.TxtEstimasiSKU.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtEstimasiSKU.Size = New System.Drawing.Size(197, 20)
+        Me.TxtEstimasiSKU.TabIndex = 11
         '
         'FormClassGroupDet
         '
@@ -264,13 +289,14 @@ Partial Class FormClassGroupDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtGroupName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtEstimasiSKU.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -295,4 +321,6 @@ Partial Class FormClassGroupDet
     Friend WithEvents SLEType As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtEstimasiSKU As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
 End Class

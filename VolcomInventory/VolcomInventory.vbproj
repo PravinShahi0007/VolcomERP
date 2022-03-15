@@ -1432,6 +1432,12 @@
     <Compile Include="FormDesignInfo.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDesignOrderView.Designer.vb">
+      <DependentUpon>FormDesignOrderView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDesignOrderView.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDeviden.Designer.vb">
       <DependentUpon>FormDeviden.vb</DependentUpon>
     </Compile>
@@ -7917,10 +7923,28 @@
     <Compile Include="FormStoreDisplay.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStoreDisplayAddPlan.Designer.vb">
+      <DependentUpon>FormStoreDisplayAddPlan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStoreDisplayAddPlan.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStoreDisplayDet.designer.vb">
       <DependentUpon>FormStoreDisplayDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormStoreDisplayDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStoreDisplayHanger.Designer.vb">
+      <DependentUpon>FormStoreDisplayHanger.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStoreDisplayHanger.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStoreDisplayKSO.Designer.vb">
+      <DependentUpon>FormStoreDisplayKSO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStoreDisplayKSO.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormStoreStatus.Designer.vb">
@@ -10732,6 +10756,12 @@
     <Compile Include="ReportStockTakeStoreBAPHasil.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportStoreDisplay.Designer.vb">
+      <DependentUpon>ReportStoreDisplay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportStoreDisplay.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSummaryInvoice.Designer.vb">
       <DependentUpon>ReportSummaryInvoice.vb</DependentUpon>
     </Compile>
@@ -11403,6 +11433,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDesignInfo.resx">
       <DependentUpon>FormDesignInfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDesignOrderView.resx">
+      <DependentUpon>FormDesignOrderView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDeviden.resx">
       <DependentUpon>FormDeviden.vb</DependentUpon>
@@ -15002,8 +15035,17 @@
     <EmbeddedResource Include="FormStoreDisplay.resx">
       <DependentUpon>FormStoreDisplay.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormStoreDisplayAddPlan.resx">
+      <DependentUpon>FormStoreDisplayAddPlan.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormStoreDisplayDet.resx">
       <DependentUpon>FormStoreDisplayDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStoreDisplayHanger.resx">
+      <DependentUpon>FormStoreDisplayHanger.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStoreDisplayKSO.resx">
+      <DependentUpon>FormStoreDisplayKSO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStoreStatus.resx">
       <DependentUpon>FormStoreStatus.vb</DependentUpon>
@@ -16557,6 +16599,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportStockTakeStoreBAPHasil.resx">
       <DependentUpon>ReportStockTakeStoreBAPHasil.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportStoreDisplay.resx">
+      <DependentUpon>ReportStoreDisplay.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSummaryInvoice.resx">
       <DependentUpon>ReportSummaryInvoice.vb</DependentUpon>

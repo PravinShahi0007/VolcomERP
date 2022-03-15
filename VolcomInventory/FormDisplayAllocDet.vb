@@ -48,7 +48,7 @@
     Sub resetView()
         SLEDisplayType.EditValue = Nothing
         TxtCapacity.EditValue = 0.00
-        TxtQty.EditValue = 0
+        TxtQty.EditValue = 2
     End Sub
 
     Private Sub SLEDisplayType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEDisplayType.EditValueChanged

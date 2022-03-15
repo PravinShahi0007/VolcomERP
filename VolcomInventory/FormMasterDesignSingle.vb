@@ -23,6 +23,8 @@
     Public id_design_rev_from As String = "NULL"
     Public is_pcd As String = "-1"
     Public id_changes As String = "-1"
+    Dim id_delivery_old As String = "-1"
+    Dim id_ret_code_old As String = "-1"
 
     'View UOM
     Private Sub viewUOM(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -515,6 +517,7 @@
 
                 LERetCode.EditValue = Nothing
                 LERetCode.ItemIndex = LERetCode.Properties.GetDataSourceRowIndex("id_ret_code", data.Rows(0)("id_ret_code").ToString)
+                id_ret_code_old = data.Rows(0)("id_ret_code").ToString
 
                 LEUOM.EditValue = Nothing
                 LEUOM.ItemIndex = LEUOM.Properties.GetDataSourceRowIndex("id_uom", data.Rows(0)("id_uom").ToString)
@@ -529,6 +532,7 @@
 
                 SLEDel.EditValue = data.Rows(0)("id_delivery").ToString
                 SLEDelAct.EditValue = data.Rows(0)("id_delivery_act").ToString
+                id_delivery_old = data.Rows(0)("id_delivery").ToString
                 DEEOS.EditValue = data.Rows(0)("design_eos")
                 DERetDate.EditValue = data.Rows(0)("ret_date")
                 TxtDelDate.EditValue = data.Rows(0)("delivery_date")
@@ -1028,7 +1032,7 @@
             BtnAddSeasonOrign.Enabled = False
 
             SLELinePlan.Enabled = True
-            LESeason.Enabled = True
+            LESeason.Enabled = False
             BtnAddSeaason.Enabled = True
             XTPLineList.PageVisible = True
             XTPSize.PageVisible = True
@@ -2115,6 +2119,46 @@
                             Dim now_date As String = DateTime.Parse(getTimeDB.ToString).ToString("yyyy-MM-dd")
                             stt.insertLogLineList("395", id_design, False, id_user, id_user, "-", now_date, id_design, "Update Master Design")
 
+                            'display store delivery berubah
+                            If id_delivery_old <> id_delivery Then
+                                Try
+                                    Dim in_store_date As String = DateTime.Parse(TxtDelDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                                    Dim in_store_date_view As String = DateTime.Parse(TxtDelDate.EditValue.ToString).ToString("dd MMMM yyyy")
+                                    Dim ddel As DataTable = execute_query("SELECT sd.delivery_date FROM tb_season_delivery sd WHERE sd.id_delivery=" + id_delivery_old + " ", -1, True, "", "", "", "")
+                                    Dim in_store_date_old_view As String = DateTime.Parse(ddel.Rows(0)("delivery_date").ToString).ToString("dd MMMM yyyy")
+                                    Dim qsd As String = "-- update display stock
+                                    UPDATE tb_display_stock SET id_delivery='" + id_delivery + "',in_store_date='" + in_store_date + "' WHERE id_design='" + id_design + "'; 
+                                    -- ins change log
+                                    INSERT INTO tb_display_stock_changes_log(id_design, id_report, report_mark_type, report_number, report_date, log_date, log_note, id_user)
+                                    SELECT ds.id_design, 0, 395, '-', DATE(NOW()), NOW(), 'Change in store date : " + in_store_date_old_view + "->" + in_store_date_view + ";','" + id_user + "' 
+                                    FROM tb_display_stock ds 
+                                    WHERE ds.id_design=" + id_design + "
+                                    GROUP BY ds.id_design; "
+                                    execute_non_query_long(qsd, True, "", "", "", "")
+                                Catch ex As Exception
+                                    warningCustom("Failed to update store display (delivery/in store date) ")
+                                End Try
+                            End If
+                            'display store ret code berubah
+                            If id_ret_code_old <> design_ret_code Then
+                                Try
+                                    Dim return_date As String = DateTime.Parse(DERetDate.EditValue.ToString).ToString("yyyy-MM-dd")
+                                    Dim return_date_view As String = DateTime.Parse(DERetDate.EditValue.ToString).ToString("dd MMMM yyyy")
+                                    Dim dret As DataTable = execute_query("SELECT rc.ret_date FROM tb_lookup_ret_code rc WHERE rc.id_ret_code=" + id_ret_code_old + " ", -1, True, "", "", "", "")
+                                    Dim return_date_old_view As String = DateTime.Parse(dret.Rows(0)("ret_date").ToString).ToString("dd MMMM yyyy")
+                                    Dim qsd As String = "-- update display stock
+                                    UPDATE tb_display_stock SET return_date='" + return_date + "' WHERE id_design='" + id_design + "'; 
+                                    -- ins change log
+                                    INSERT INTO tb_display_stock_changes_log(id_design, id_report, report_mark_type, report_number, report_date, log_date, log_note, id_user)
+                                    SELECT ds.id_design, 0, 395, '-', DATE(NOW()), NOW(), 'Change return date : " + return_date_old_view + "->" + return_date_view + ";','" + id_user + "' 
+                                    FROM tb_display_stock ds 
+                                    WHERE ds.id_design=" + id_design + "
+                                    GROUP BY ds.id_design; "
+                                    execute_non_query_long(qsd, True, "", "", "", "")
+                                Catch ex As Exception
+                                    warningCustom("Failed to update store display (return date) ")
+                                End Try
+                            End If
                             Cursor = Cursors.Default
 
                             If is_pcd = "1" Then

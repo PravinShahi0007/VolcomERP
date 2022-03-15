@@ -2,6 +2,7 @@
     Public action As String = "-1"
     Public id_ret_code As String = "-1"
     Public quick_edit As String = "-1"
+    Dim old_ret_date As String = ""
 
     Private Sub FormMasterRetCodeDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         actionLoad()
@@ -14,6 +15,7 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             TxtRetCode.Text = data.Rows(0)("ret_code").ToString
             DERetDate.EditValue = data.Rows(0)("ret_date")
+            old_ret_date = data.Rows(0)("ret_date")
             TxtDesc.Text = data.Rows(0)("ret_description").ToString
         End If
     End Sub
@@ -33,8 +35,33 @@
             dt = DERetDate.EditValue
         Catch ex As Exception
         End Try
+
+        'cek display
+        Dim cond_display As Boolean = True
+        If action = "ins" Then
+            cond_display = True
+        Else
+            If old_ret_date = DERetDate.EditValue Then
+                cond_display = True
+            Else
+                'cek ke propose display
+                Dim qsd As String = "SELECT * FROM tb_display_pps_det dpd
+                INNER JOIN tb_display_pps dp ON dp.id_display_pps = dpd.id_display_pps
+                INNER JOIN tb_m_design d ON d.id_design = dpd.id_design
+                WHERE dp.id_report_status!=5 AND d.id_ret_code=" + id_ret_code + " "
+                Dim dsd As DataTable = execute_query(qsd, -1, True, "", "", "", "")
+                If dsd.Rows.Count > 0 Then
+                    cond_display = False
+                Else
+                    cond_display = True
+                End If
+            End If
+        End If
+
         If TxtRetCode.Text = "" Or dt = "0000-00-00" Then
             stopCustom("Data can't blank!")
+        ElseIf Not cond_display Then
+            stopCustom("Can't edit return date, because already propose for store display")
         Else
             Dim query_cek As String = "SELECT COUNT(*) FROM tb_lookup_ret_code a WHERE a.ret_code='" + TxtRetCode.Text + "' "
             If action = "upd" Then
