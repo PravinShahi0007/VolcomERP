@@ -759,11 +759,14 @@
             BtnSaveChanges.Visible = True
             MENote.Enabled = True
             GVDetail.OptionsBehavior.ReadOnly = False
-            PanelControlRencanaSKU.Visible = True
             PanelControlSetupHanger.Visible = True
             BtnConfirmOrder.Visible = True
             BtnAddPlan.Visible = True
             BtnDeletePlan.Visible = True
+            BtnAddHanger.Visible = True
+            BtnDeleteHanger.Visible = True
+            BtnAddKSO.Visible = True
+            BtnDeleteKSO.Visible = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -772,11 +775,14 @@
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
             GVDetail.OptionsBehavior.ReadOnly = True
-            PanelControlRencanaSKU.Visible = False
             PanelControlSetupHanger.Visible = False
             BtnConfirmOrder.Visible = False
             BtnAddPlan.Visible = False
             BtnDeletePlan.Visible = False
+            BtnAddHanger.Visible = False
+            BtnDeleteHanger.Visible = False
+            BtnAddKSO.Visible = False
+            BtnDeleteKSO.Visible = False
         End If
 
         'reset propose
@@ -798,11 +804,14 @@
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
             GVDetail.OptionsBehavior.ReadOnly = True
-            PanelControlRencanaSKU.Visible = False
             PanelControlSetupHanger.Visible = False
             BtnConfirmOrder.Visible = False
             BtnAddPlan.Visible = False
             BtnDeletePlan.Visible = False
+            BtnAddHanger.Visible = False
+            BtnDeleteHanger.Visible = False
+            BtnAddKSO.Visible = False
+            BtnDeleteKSO.Visible = False
         End If
     End Sub
 
@@ -901,6 +910,18 @@
         Dim strmain As System.IO.Stream = New System.IO.MemoryStream()
         GVRencanaSKU.SaveLayoutToStream(strmain, DevExpress.Utils.OptionsLayoutBase.FullLayout)
         strmain.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'loop band
+        For i As Integer = 0 To GVRencanaSKU.Bands.VisibleBandCount - 1
+            Try
+                If GVRencanaSKU.Bands.GetVisibleBand(i).Caption.ToString = "KOEF. SOLD OUT" Then
+                    GVRencanaSKU.Bands.GetVisibleBand(i).Visible = False
+                End If
+            Catch ex As Exception
+
+            End Try
+
+        Next i
 
         GVRencanaSKU.ActiveFilterString = ""
         GVRencanaSKU.BestFitColumns()
@@ -1442,5 +1463,17 @@
         XTCRencanaSKU.SelectedTabPageIndex = 0
         XTPKoefSoldOut.PageEnabled = False
         viewRencanaSKU()
+    End Sub
+
+    Private Sub IterateBandColumns(ByVal band As DevExpress.XtraGrid.Views.BandedGrid.GridBand)
+        If band.Children.Count > 0 Then 'a parent band  
+            For Each childBand As DevExpress.XtraGrid.Views.BandedGrid.GridBand In band.Children
+                IterateBandColumns(childBand)
+            Next childBand
+        Else 'the bottommost band with columns  
+            For Each column As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn In band.Columns
+                Console.WriteLine(column.Caption)
+            Next column
+        End If
     End Sub
 End Class
