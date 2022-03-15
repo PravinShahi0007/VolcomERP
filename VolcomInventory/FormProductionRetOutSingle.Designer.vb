@@ -113,6 +113,7 @@ Partial Class FormProductionRetOutSingle
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
+        Me.BDelAllScan = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1158,6 +1159,7 @@ Partial Class FormProductionRetOutSingle
         'PanelNavBarcode
         '
         Me.PanelNavBarcode.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelNavBarcode.Controls.Add(Me.BDelAllScan)
         Me.PanelNavBarcode.Controls.Add(Me.BDelete)
         Me.PanelNavBarcode.Controls.Add(Me.BStop)
         Me.PanelNavBarcode.Controls.Add(Me.BScan)
@@ -1202,6 +1204,17 @@ Partial Class FormProductionRetOutSingle
         Me.BScan.Size = New System.Drawing.Size(91, 33)
         Me.BScan.TabIndex = 5
         Me.BScan.Text = "Start Scan"
+        '
+        'BDelAllScan
+        '
+        Me.BDelAllScan.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BDelAllScan.ImageIndex = 1
+        Me.BDelAllScan.ImageList = Me.LargeImageCollection
+        Me.BDelAllScan.Location = New System.Drawing.Point(0, 0)
+        Me.BDelAllScan.Name = "BDelAllScan"
+        Me.BDelAllScan.Size = New System.Drawing.Size(121, 33)
+        Me.BDelAllScan.TabIndex = 8
+        Me.BDelAllScan.Text = "Delete All Scan"
         '
         'FormProductionRetOutSingle
         '
@@ -1367,4 +1380,5 @@ Partial Class FormProductionRetOutSingle
     Friend WithEvents TERecNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BDelAllScan As DevExpress.XtraEditors.SimpleButton
 End Class
