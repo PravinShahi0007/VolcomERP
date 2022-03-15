@@ -163,6 +163,7 @@ LEFT JOIN (
             BtnSave.Enabled = True
             BScan.Enabled = True
             BDelete.Enabled = True
+            BDelAllScan.Enabled = True
             BtnInfoSrs.Enabled = True
             GVRetDetail.OptionsCustomization.AllowGroup = False
         Else
@@ -178,6 +179,7 @@ LEFT JOIN (
             BtnSave.Enabled = False
             BScan.Enabled = False
             BDelete.Enabled = False
+            BDelAllScan.Enabled = False
             BtnInfoSrs.Enabled = False
             GVRetDetail.OptionsCustomization.AllowGroup = True
         End If
@@ -1048,6 +1050,24 @@ WHERE ovhp.id_ovh_price='" & SLEOvh.EditValue.ToString & "'"
             SLEOvh.Enabled = True
             SLEOvh.EditValue = Nothing
         End If
+    End Sub
+
+    Private Sub BDelAllScan_Click(sender As Object, e As EventArgs) Handles BDelAllScan.Click
+        For i = GVBarcode.RowCount - 1 To 0 Step -1
+            GVBarcode.DeleteRow(i)
+        Next
+
+        'weird
+        If GVBarcode.RowCount > 0 Then
+            For i = GVBarcode.RowCount - 1 To 0 Step -1
+                GVBarcode.DeleteRow(i)
+            Next
+        End If
+
+        For i = 0 To GVRetDetail.RowCount - 1
+            GVRetDetail.SetRowCellValue(i, "prod_order_ret_out_det_qty", 0)
+        Next
+        allowDelete()
     End Sub
 
     Private Sub ReleaseObject(ByVal o As Object)
