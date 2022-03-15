@@ -144,6 +144,7 @@
 
     Sub resetView()
         GCData.DataSource = Nothing
+        GVData.Columns.Clear()
     End Sub
 
     Private Sub SLEComp_EditValueChanged(sender As Object, e As EventArgs) Handles SLEComp.EditValueChanged
