@@ -1620,9 +1620,9 @@ WHERE is_active=1"
         Dim query_check As String = "SELECT IFNULL(id_acc_dp,0) AS id_acc_dp,IFNULL(id_acc_ap,0) AS id_acc_ap,IFNULL(id_acc_cabang_dp,0) AS id_acc_cabang_dp,IFNULL(id_acc_cabang_ap,0) AS id_acc_cabang_ap FROM tb_m_comp c
 WHERE c.id_comp='" & SLEVendorPrepaidEx.EditValue & "'"
         Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
-        If SLEUnitExpense.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
+        If SLEUnitPrepaidEx.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
             warningCustom("This vendor AP account is not set.")
-        ElseIf Not SLEUnitExpense.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_cabang_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
+        ElseIf Not SLEUnitPrepaidEx.EditValue.ToString = "1" And data_check.Rows(0)("id_acc_cabang_ap").ToString = "0" And SLEPayTypeExpense.EditValue.ToString = "2" Then
             warningCustom("This vendor AP account is not set.")
         Else
             load_prepaid_expense()
