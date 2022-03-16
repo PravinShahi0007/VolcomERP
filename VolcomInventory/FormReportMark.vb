@@ -5858,6 +5858,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                     INNER JOIN tb_display_stock ds ON ds.id_design = pddr.id_design
                     WHERE pddr.id_prod_demand_rev=" + id_report + " AND pddr.id_pd_status_rev=2
                     GROUP BY pddr.id_design; "
+                    execute_non_query(qd, True, "", "", "", "")
                 Catch ex As Exception
                 End Try
 

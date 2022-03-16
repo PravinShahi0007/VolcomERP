@@ -256,30 +256,15 @@
             insDefaultMasterDisplay(id_comp)
 
             'default existing product
+            Dim sd As New ClassStoreDisplay()
+            Dim qbasic As String = sd.queryBasicDisplay(in_store_date, id_comp)
             Dim qep As String = "INSERT INTO tb_display_pps_res(id_display_pps, id_season, id_delivery, id_class_group, id_design, qty_curr, qty_pps)
             SELECT '" + id + "', ds.id_season, ds.id_delivery, ds.id_class_group, ds.id_design, SUM(ds.qty) AS `qty_curr`, SUM(ds.qty) AS `qty_pps`
             FROM (
-              SELECT ds.id_class_group, ds.id_season, ds.id_delivery,ds.id_design,ds.qty 
-              FROM tb_display_stock ds
-              INNER JOIN (
-                SELECT MAX(ds.id_display_stock) AS `id_display_stock`, ds.id_design
-                FROM tb_display_stock ds
-                WHERE ds.is_active=1 AND ds.effective_date<='" + in_store_date + "'
-                GROUP BY ds.id_design
-              ) da ON da.id_display_stock = ds.id_display_stock
-              WHERE ds.is_active=1 AND ds.in_store_date<='" + in_store_date + "' AND ds.id_comp=" + id_comp + "
-              UNION ALL
-              SELECT ds.id_class_group, ds.id_season, ds.id_delivery,ds.id_design,(ds.qty*-1)
-              FROM tb_display_stock ds
-              INNER JOIN (
-                SELECT MAX(ds.id_display_stock) AS `id_display_stock`, ds.id_design
-                FROM tb_display_stock ds
-                WHERE ds.is_active=1 AND ds.effective_date<='" + in_store_date + "'
-                GROUP BY ds.id_design
-              ) da ON da.id_display_stock = ds.id_display_stock
-              WHERE ds.is_active=1 AND ds.return_date<='" + in_store_date + "' AND ds.id_comp=" + id_comp + "
+              " + qbasic + "
             ) ds
-            GROUP BY ds.id_design "
+            GROUP BY ds.id_design 
+            HAVING qty_curr>0 "
             execute_non_query(qep, True, "", "", "", "")
 
             'gen number

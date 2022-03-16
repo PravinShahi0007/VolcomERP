@@ -23,11 +23,11 @@
     End Sub
 
     Sub view_coa()
-        Dim query As String = "SELECT id_acc,acc_name,CONCAT(acc_name,' - ',acc_description) AS acc_description FROM tb_a_acc WHERE id_is_det='2' AND id_status='1' AND acc_name LIKE '111511%'"
+        Dim query As String = "SELECT id_acc,acc_name,CONCAT(acc_name,' - ',acc_description) AS acc_description FROM tb_a_acc WHERE id_is_det='2' AND id_status='1' "
         If id_coa_tag = "1" Then
-            query += " AND id_coa_type='1' "
+            query += " AND acc_name LIKE '111511%' AND id_coa_type='1' "
         Else
-            query += " AND id_coa_type='2' "
+            query += " AND acc_name LIKE '1107%' AND id_coa_type='2' "
         End If
         viewSearchLookupQuery(SLEVatAcc, query, "id_acc", "acc_description", "id_acc")
     End Sub
@@ -1337,6 +1337,10 @@ WHERE c.id_comp='" + id_comp + "' "
     End Sub
 
     Private Sub SLEUnit_EditValueChanged(sender As Object, e As EventArgs) Handles SLEUnit.EditValueChanged
+        id_coa_tag = SLEUnit.EditValue.ToString
+
         view_coa()
+        viewCOARepo()
+        viewCOAPPH()
     End Sub
 End Class
