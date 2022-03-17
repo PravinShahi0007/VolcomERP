@@ -8,6 +8,7 @@
         viewStore()
         viewStoreSC()
         viewWH()
+        DEFromAcc.EditValue = getTimeDB()
 
         'caption size sal
         GVSOHSal.Columns("sal_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
@@ -189,12 +190,19 @@
         End If
         Dim wh_code As String = SLEWH.Properties.View.GetFocusedRowCellValue("comp_number").ToString
 
+        'date history from
+        Dim date_from_selected As String = "0000-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromAcc.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
         'set band
-        gridBandSales.Caption = "SALES : " + store_code
+        gridBandSales.Caption = "SALES REPORT : " + store_code
         gridBandSOHStore.Caption = "SOH : " + store_code
         gridBandSOHWH.Caption = "SOH : " + wh_code
 
-        Dim query As String = "CALL view_sal_inv_virtual(" + id_comp + "," + id_design_selected + ", " + id_wh + ") "
+        Dim query As String = "CALL view_sal_inv_virtual(" + id_comp + "," + id_design_selected + ", " + id_wh + ",'" + date_from_selected + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSOHSal.DataSource = data
         DEBeg.EditValue = data.Rows(0)("beg_stock_date")
