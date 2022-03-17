@@ -1711,6 +1711,7 @@ GROUP BY ed.id_prepaid_expense ORDER BY e.id_prepaid_expense DESC "
             If is_pending = True Then
                 warningCustom("Please process all pending payment for selected prepaid expense")
             Else
+                FormBankWithdrawalDet.id_coa_tag = SLEUnitPrepaidEx.EditValue.ToString
                 FormBankWithdrawalDet.report_mark_type = "349"
                 FormBankWithdrawalDet.ShowDialog()
             End If
