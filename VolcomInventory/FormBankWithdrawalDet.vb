@@ -19,7 +19,12 @@ Public Class FormBankWithdrawalDet
     End Sub
 
     Sub load_trf_cost()
-        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2' AND id_acc='2946'"
+        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2' "
+        If id_coa_tag = "1" Then
+            query += "AND id_acc='2946' "
+        Else
+            query += "AND id_acc='3891' "
+        End If
         viewSearchLookupQuery(SLEACCTrfFee, query, "id_acc", "acc_description", "id_acc")
     End Sub
 
