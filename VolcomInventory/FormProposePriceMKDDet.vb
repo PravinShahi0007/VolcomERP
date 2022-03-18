@@ -1082,4 +1082,8 @@ HAVING jum=0 "
             Return True
         End If
     End Function
+
+    Private Sub BtnFixedPrice_Click(sender As Object, e As EventArgs) Handles BtnFixedPrice.Click
+
+    End Sub
 End Class

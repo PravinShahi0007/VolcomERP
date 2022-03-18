@@ -48,8 +48,8 @@ Partial Class FormProposePriceMKDDet
         Dim FormatConditionRuleValue13 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Dim GridFormatRule14 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim FormatConditionRuleValue14 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.BandedGridColumncheck_stt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumndesign_code = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.LinkDesignCode = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
@@ -172,6 +172,7 @@ Partial Class FormProposePriceMKDDet
         Me.BtnFinalPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAllProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnFixedPrice = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LinkDesignCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDisc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1050,13 +1051,13 @@ Partial Class FormProposePriceMKDDet
         '
         Me.RepoBtnEditPropose.AutoHeight = False
         Me.RepoBtnEditPropose.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        SerializableAppearanceObject1.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject1.Options.UseBackColor = True
-        SerializableAppearanceObject1.Options.UseFont = True
-        SerializableAppearanceObject1.Options.UseForeColor = True
-        Me.RepoBtnEditPropose.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Edit", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject5.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject5.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject5.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject5.Options.UseBackColor = True
+        SerializableAppearanceObject5.Options.UseFont = True
+        SerializableAppearanceObject5.Options.UseForeColor = True
+        Me.RepoBtnEditPropose.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Edit", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, "", Nothing, Nothing, True)})
         Me.RepoBtnEditPropose.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnEditPropose.Name = "RepoBtnEditPropose"
         Me.RepoBtnEditPropose.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -1346,13 +1347,13 @@ Partial Class FormProposePriceMKDDet
         '
         Me.RepoBtnHist.AutoHeight = False
         Me.RepoBtnHist.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        SerializableAppearanceObject2.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject2.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject2.Options.UseBackColor = True
-        SerializableAppearanceObject2.Options.UseFont = True
-        SerializableAppearanceObject2.Options.UseForeColor = True
-        Me.RepoBtnHist.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View More", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject6.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject6.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject6.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject6.Options.UseBackColor = True
+        SerializableAppearanceObject6.Options.UseFont = True
+        SerializableAppearanceObject6.Options.UseForeColor = True
+        Me.RepoBtnHist.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "View More", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject6, "", Nothing, Nothing, True)})
         Me.RepoBtnHist.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.RepoBtnHist.Name = "RepoBtnHist"
         Me.RepoBtnHist.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
@@ -1714,6 +1715,7 @@ Partial Class FormProposePriceMKDDet
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.PanelOpt)
+        Me.PanelControl3.Controls.Add(Me.BtnFixedPrice)
         Me.PanelControl3.Controls.Add(Me.BtnExtendedEOS)
         Me.PanelControl3.Controls.Add(Me.BtnUseERPRecom)
         Me.PanelControl3.Controls.Add(Me.BtnBulkEdit)
@@ -1736,7 +1738,7 @@ Partial Class FormProposePriceMKDDet
         Me.PanelOpt.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelOpt.Controls.Add(Me.CESelectAll)
         Me.PanelOpt.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelOpt.Location = New System.Drawing.Point(503, 2)
+        Me.PanelOpt.Location = New System.Drawing.Point(445, 2)
         Me.PanelOpt.Name = "PanelOpt"
         Me.PanelOpt.Size = New System.Drawing.Size(74, 56)
         Me.PanelOpt.TabIndex = 8932
@@ -1754,9 +1756,9 @@ Partial Class FormProposePriceMKDDet
         Me.BtnExtendedEOS.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnExtendedEOS.Image = CType(resources.GetObject("BtnExtendedEOS.Image"), System.Drawing.Image)
         Me.BtnExtendedEOS.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnExtendedEOS.Location = New System.Drawing.Point(577, 2)
+        Me.BtnExtendedEOS.Location = New System.Drawing.Point(597, 2)
         Me.BtnExtendedEOS.Name = "BtnExtendedEOS"
-        Me.BtnExtendedEOS.Size = New System.Drawing.Size(89, 56)
+        Me.BtnExtendedEOS.Size = New System.Drawing.Size(83, 56)
         Me.BtnExtendedEOS.TabIndex = 8934
         Me.BtnExtendedEOS.Text = "Extended EOS"
         Me.BtnExtendedEOS.Visible = False
@@ -1766,11 +1768,11 @@ Partial Class FormProposePriceMKDDet
         Me.BtnUseERPRecom.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnUseERPRecom.Image = CType(resources.GetObject("BtnUseERPRecom.Image"), System.Drawing.Image)
         Me.BtnUseERPRecom.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
-        Me.BtnUseERPRecom.Location = New System.Drawing.Point(666, 2)
+        Me.BtnUseERPRecom.Location = New System.Drawing.Point(680, 2)
         Me.BtnUseERPRecom.Name = "BtnUseERPRecom"
-        Me.BtnUseERPRecom.Size = New System.Drawing.Size(88, 56)
+        Me.BtnUseERPRecom.Size = New System.Drawing.Size(74, 56)
         Me.BtnUseERPRecom.TabIndex = 8933
-        Me.BtnUseERPRecom.Text = "Use ERP Recom."
+        Me.BtnUseERPRecom.Text = "ERP Recom."
         Me.BtnUseERPRecom.Visible = False
         '
         'BtnBulkEdit
@@ -1792,10 +1794,10 @@ Partial Class FormProposePriceMKDDet
         Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl11.Appearance.ForeColor = System.Drawing.Color.Black
         Me.LabelControl11.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.LabelControl11.Location = New System.Drawing.Point(280, 19)
+        Me.LabelControl11.Location = New System.Drawing.Point(106, 29)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Padding = New System.Windows.Forms.Padding(3)
-        Me.LabelControl11.Size = New System.Drawing.Size(108, 21)
+        Me.LabelControl11.Size = New System.Drawing.Size(110, 23)
         Me.LabelControl11.TabIndex = 8930
         Me.LabelControl11.Text = "Up to 70% and more"
         '
@@ -1806,17 +1808,17 @@ Partial Class FormProposePriceMKDDet
         Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl10.Appearance.ForeColor = System.Drawing.Color.Black
         Me.LabelControl10.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.LabelControl10.Location = New System.Drawing.Point(217, 19)
+        Me.LabelControl10.Location = New System.Drawing.Point(41, 29)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Padding = New System.Windows.Forms.Padding(3)
-        Me.LabelControl10.Size = New System.Drawing.Size(60, 21)
+        Me.LabelControl10.Size = New System.Drawing.Size(65, 23)
         Me.LabelControl10.TabIndex = 8929
-        Me.LabelControl10.Text = "Up to 50%"
+        Me.LabelControl10.Text = "Up to 50% "
         '
         'LabelControl9
         '
         Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(11, 22)
+        Me.LabelControl9.Location = New System.Drawing.Point(10, 19)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(25, 13)
         Me.LabelControl9.TabIndex = 8927
@@ -1829,10 +1831,10 @@ Partial Class FormProposePriceMKDDet
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl8.Appearance.ForeColor = System.Drawing.Color.Black
         Me.LabelControl8.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.LabelControl8.Location = New System.Drawing.Point(154, 19)
+        Me.LabelControl8.Location = New System.Drawing.Point(154, 6)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Padding = New System.Windows.Forms.Padding(3)
-        Me.LabelControl8.Size = New System.Drawing.Size(60, 21)
+        Me.LabelControl8.Size = New System.Drawing.Size(62, 23)
         Me.LabelControl8.TabIndex = 8928
         Me.LabelControl8.Text = "Up to 30%"
         '
@@ -1843,10 +1845,10 @@ Partial Class FormProposePriceMKDDet
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl6.Appearance.ForeColor = System.Drawing.Color.Black
         Me.LabelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.LabelControl6.Location = New System.Drawing.Point(41, 19)
+        Me.LabelControl6.Location = New System.Drawing.Point(41, 6)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Padding = New System.Windows.Forms.Padding(3)
-        Me.LabelControl6.Size = New System.Drawing.Size(111, 21)
+        Me.LabelControl6.Size = New System.Drawing.Size(113, 23)
         Me.LabelControl6.TabIndex = 8927
         Me.LabelControl6.Text = "Not Use Recom. Disc."
         '
@@ -1884,6 +1886,18 @@ Partial Class FormProposePriceMKDDet
         Me.BtnExportToXLS.Size = New System.Drawing.Size(75, 56)
         Me.BtnExportToXLS.TabIndex = 11
         Me.BtnExportToXLS.Text = "Export XLS"
+        '
+        'BtnFixedPrice
+        '
+        Me.BtnFixedPrice.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnFixedPrice.Image = CType(resources.GetObject("BtnFixedPrice.Image"), System.Drawing.Image)
+        Me.BtnFixedPrice.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
+        Me.BtnFixedPrice.Location = New System.Drawing.Point(519, 2)
+        Me.BtnFixedPrice.Name = "BtnFixedPrice"
+        Me.BtnFixedPrice.Size = New System.Drawing.Size(78, 56)
+        Me.BtnFixedPrice.TabIndex = 8935
+        Me.BtnFixedPrice.Text = "Fixed Price"
+        Me.BtnFixedPrice.Visible = False
         '
         'FormProposePriceMKDDet
         '
@@ -2067,4 +2081,5 @@ Partial Class FormProposePriceMKDDet
     Friend WithEvents gridBandTotalValue As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandOther As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BtnMailSetup As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnFixedPrice As DevExpress.XtraEditors.SimpleButton
 End Class
