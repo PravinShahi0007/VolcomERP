@@ -8,6 +8,7 @@
         viewStore()
         viewStoreSC()
         viewWH()
+        DEFromAcc.EditValue = getTimeDB()
 
         'caption size sal
         GVSOHSal.Columns("sal_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
@@ -53,6 +54,17 @@
         GVSOHSal.Columns("order_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
         GVSOHSal.Columns("order_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
         GVSOHSal.Columns("order_qty0").Caption = "0" + System.Environment.NewLine + "SM"
+        'sales history
+        GVSOHSal.Columns("hsal_qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+        GVSOHSal.Columns("hsal_qty2").Caption = "2" + System.Environment.NewLine + "XS"
+        GVSOHSal.Columns("hsal_qty3").Caption = "3" + System.Environment.NewLine + "S"
+        GVSOHSal.Columns("hsal_qty4").Caption = "4" + System.Environment.NewLine + "M"
+        GVSOHSal.Columns("hsal_qty5").Caption = "5" + System.Environment.NewLine + "ML"
+        GVSOHSal.Columns("hsal_qty6").Caption = "6" + System.Environment.NewLine + "L"
+        GVSOHSal.Columns("hsal_qty7").Caption = "7" + System.Environment.NewLine + "XL"
+        GVSOHSal.Columns("hsal_qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+        GVSOHSal.Columns("hsal_qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+        GVSOHSal.Columns("hsal_qty0").Caption = "0" + System.Environment.NewLine + "SM"
     End Sub
 
     Private Sub FormVirtualSales_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -189,12 +201,20 @@
         End If
         Dim wh_code As String = SLEWH.Properties.View.GetFocusedRowCellValue("comp_number").ToString
 
+        'date history from
+        Dim date_from_selected As String = "0000-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromAcc.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
         'set band
-        gridBandSales.Caption = "SALES : " + store_code
+        gridBandSalesHistory.Caption = "HISTORY SALES : " + store_code
+        gridBandSales.Caption = "SALES REPORT : " + store_code
         gridBandSOHStore.Caption = "SOH : " + store_code
         gridBandSOHWH.Caption = "SOH : " + wh_code
 
-        Dim query As String = "CALL view_sal_inv_virtual(" + id_comp + "," + id_design_selected + ", " + id_wh + ") "
+        Dim query As String = "CALL view_sal_inv_virtual(" + id_comp + "," + id_design_selected + ", " + id_wh + ",'" + date_from_selected + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSOHSal.DataSource = data
         DEBeg.EditValue = data.Rows(0)("beg_stock_date")
