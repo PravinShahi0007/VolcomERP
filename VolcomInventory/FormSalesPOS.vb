@@ -505,13 +505,22 @@
         p.no_stock_qty, 0 AS `qty_on_process`, 0 AS `qty_proceed`,
         (p.invoice_qty+p.no_stock_qty) AS `total_qty`,
         'No' AS `is_select`, 0 AS `qty_new`,
-        IF(p.invoice_qty=IFNULL(proc_prc.qty_proceed,0)+IFNULL(proc_cs.qty_proceed,0),'Close','Open') AS `is_open_invoice_view`, rg.is_md
-        From tb_sales_pos_prob p
+        IF(p.invoice_qty=IFNULL(proc_prc.qty_proceed,0)+IFNULL(proc_cs.qty_proceed,0),'Close','Open') AS `is_open_invoice_view`, rg.is_md "
+        If id_menu = "4" Then
+            query += ",s.id_comp AS `id_store`, sc.id_comp_contact AS `id_store_contact`,s.comp_number AS `store_number`, s.comp_name AS `store_name` "
+        End If
+        query += "From tb_sales_pos_prob p
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = p.id_sales_pos
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
         INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
-        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
-        INNER JOIN tb_m_product prod ON prod.id_product = p.id_product
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group "
+        If id_menu = "4" Then
+            query += "INNER JOIN tb_sales_pos rsp ON rsp.id_sales_pos = p.id_sales_pos
+            INNER JOIN tb_m_comp_contact sc ON sc.`id_comp_contact`= sp.`id_store_contact_from`
+            INNER JOIN tb_m_comp s ON s.`id_comp`=sc.`id_comp`
+            INNER JOIN tb_m_comp_group sg ON sg.id_comp_group = s.id_comp_group "
+        End If
+        query +="INNER JOIN tb_m_product prod On prod.id_product = p.id_product
         INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
         INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
