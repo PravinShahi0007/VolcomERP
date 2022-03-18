@@ -690,6 +690,7 @@
                 Dim err As String = ""
                 Dim err_price_valid As String = ""
                 Dim err_qty As String = ""
+                Dim cek_store As List(Of String) = New List(Of String)
                 For c As Integer = 0 To GVProbList.RowCount - 1
                     Dim id_sales_pos_prob_cek As String = GVProbList.GetRowCellValue(c, "id_sales_pos_prob").ToString
                     Dim code As String = GVProbList.GetRowCellValue(c, "code").ToString
@@ -714,6 +715,18 @@
                     If hold_qty <= 0 Then
                         err_qty += code + System.Environment.NewLine
                     End If
+
+                    'store
+                    If id_menu = "4" Then
+                        'invoice diff margin
+                        Dim store_number As String = GVProbList.GetRowCellValue(c, "store_number").ToString
+                        If Not cek_store.Contains(store_number) Then
+                            cek_store.Add(store_number)
+                        End If
+                    Else
+                        cek_store.Clear()
+                        cek_store.Add(GVProbList.GetRowCellValue(c, "comp_number").ToString)
+                    End If
                 Next
 
                 If err <> "" Then
@@ -722,6 +735,15 @@
                     stopCustom("Please propose 'Price Reconcile' first for these product : " + System.Environment.NewLine + err_price_valid)
                 ElseIf err_qty <> "" Then
                     stopCustom("No available qty for these product : " + System.Environment.NewLine + err_qty)
+                ElseIf cek_store.Count > 1 Then
+                    Dim err_store_selected As String = ""
+                    For c As Integer = 0 To cek_store.Count - 1
+                        If c > 0 Then
+                            err_store_selected += ","
+                        End If
+                        err_store_selected += cek_store(c).ToString
+                    Next
+                    stopCustom("Selected invoice have different store : " + System.Environment.NewLine + err_store_selected)
                 Else
                     FormSalesPOSDet.is_from_prob_list = True
                     FormSalesPOSDet.action = "ins"

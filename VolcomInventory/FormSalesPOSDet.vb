@@ -283,11 +283,29 @@ Public Class FormSalesPOSDet
             If (id_menu = "1" Or id_menu = "4") And is_from_prob_list Then
                 Dim typ As String = FormSalesPOS.LETypeProb.EditValue.ToString
                 'get comp
-                Dim id_comp_prob As String = FormSalesPOS.SLEStoreProb.EditValue.ToString
+                Dim id_comp_prob As String =""
+                If id_menu = "4" Then
+                    id_comp_prob = FormSalesPOS.GVProbList.GetFocusedRowCellValue("id_store").ToString
+                Else
+                    id_comp_prob = FormSalesPOS.SLEStoreProb.EditValue.ToString
+                End If
                 Dim comp_prob As String = execute_query("SELECT comp_number FROM tb_m_comp WHERE id_comp='" + id_comp_prob + "' ", 0, True, "", "", "", "")
                 TxtCodeCompFrom.Text = comp_prob
                 TxtCodeCompFrom.Enabled = False
                 actionCompFrom()
+                BtnBrowseContactFrom.Enabled = False
+
+                'get bill
+                If id_menu = "4" Then
+                    Dim id_bill_to As String = FormSalesPOS.SLEStoreProb.EditValue.ToString
+                    Dim bill_to As String = execute_query("SELECT comp_number FROM tb_m_comp WHERE id_comp='" + id_bill_to + "' ", 0, True, "", "", "", "")
+                    TxtCodeBillTo.Text = bill_to
+                    TxtCodeBillTo.Enabled = False
+                    actionBillTo()
+                    BtnBrowseBillTo.Enabled = False
+                End If
+
+                '
                 BtnImport.Visible = False
                 BtnLoadFromProbList.Visible = True
 
@@ -2557,50 +2575,54 @@ Public Class FormSalesPOSDet
         FormPopUpContact.ShowDialog()
     End Sub
 
+    Sub actionBillTo()
+        Dim query As String = "SELECT dr.id_wh_drawer,rack.id_wh_rack,loc.id_wh_locator,cc.id_comp_contact,cc.id_comp,c.npwp,c.comp_number,c.comp_name,c.comp_commission,c.address_primary,c.id_so_type, IFNULL(c.id_acc_sales,0) AS `id_acc_sales`, IFNULL(c.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(c.id_acc_ar,0) AS `id_acc_ar` "
+        query += " From tb_m_comp_contact cc "
+        query += " INNER JOIN tb_m_comp c On c.id_comp=cc.id_comp"
+        query += " INNER JOIN tb_m_wh_drawer dr ON dr.id_wh_drawer=c.id_drawer_def"
+        query += " INNER JOIN tb_m_wh_rack rack ON rack.id_wh_rack=dr.id_wh_rack"
+        query += " INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator=rack.id_wh_locator"
+        query += " where cc.is_default=1 And c.id_comp_cat='" + id_comp_cat_store + "' AND c.comp_number='" + addSlashes(TxtCodeBillTo.Text) + "'"
+        Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
+
+        If data.Rows.Count <= 0 Then
+            stopCustom("Store not found.")
+            defaultResetBillTo()
+            TxtCodeBillTo.Focus()
+        ElseIf data.Rows.Count > 1 Then
+            FormPopUpContact.id_pop_up = "80"
+            FormPopUpContact.id_cat = id_comp_cat_store
+            FormPopUpContact.GVCompany.ActiveFilterString = "[comp_number]='" + addSlashes(TxtCodeBillTo.Text) + "'"
+            FormPopUpContact.ShowDialog()
+        Else
+            'If check_acc(data.Rows(0)("id_comp").ToString) Then
+            id_comp_bill_to = data.Rows(0)("id_comp").ToString
+            SPDiscount.EditValue = data.Rows(0)("comp_commission")
+            id_comp_contact_bill = data.Rows(0)("id_comp_contact").ToString
+            TxtNameBillTo.Text = data.Rows(0)("comp_name").ToString
+            TxtCodeBillTo.Text = data.Rows(0)("comp_number").ToString
+
+            'isi COA
+            If id_menu = "4" Then
+                id_acc_sales = data.Rows(0)("id_acc_sales").ToString
+                id_acc_sales_return = data.Rows(0)("id_acc_sales_return").ToString
+                id_acc_ar = data.Rows(0)("id_acc_ar").ToString
+                viewCheckCOA(data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString)
+            End If
+
+            calculate()
+            check_do()
+            '
+            DEDueDate.Focus()
+            'Else
+            '    stopCustom("Store not registered for auto posting journal.")
+            'End If
+        End If
+    End Sub
+
     Private Sub TxtCodeBillTo_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeBillTo.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim query As String = "SELECT dr.id_wh_drawer,rack.id_wh_rack,loc.id_wh_locator,cc.id_comp_contact,cc.id_comp,c.npwp,c.comp_number,c.comp_name,c.comp_commission,c.address_primary,c.id_so_type, IFNULL(c.id_acc_sales,0) AS `id_acc_sales`, IFNULL(c.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(c.id_acc_ar,0) AS `id_acc_ar` "
-            query += " From tb_m_comp_contact cc "
-            query += " INNER JOIN tb_m_comp c On c.id_comp=cc.id_comp"
-            query += " INNER JOIN tb_m_wh_drawer dr ON dr.id_wh_drawer=c.id_drawer_def"
-            query += " INNER JOIN tb_m_wh_rack rack ON rack.id_wh_rack=dr.id_wh_rack"
-            query += " INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator=rack.id_wh_locator"
-            query += " where cc.is_default=1 And c.id_comp_cat='" + id_comp_cat_store + "' AND c.comp_number='" + addSlashes(TxtCodeBillTo.Text) + "'"
-            Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
-
-            If data.Rows.Count <= 0 Then
-                stopCustom("Store not found.")
-                defaultResetBillTo()
-                TxtCodeBillTo.Focus()
-            ElseIf data.Rows.Count > 1 Then
-                FormPopUpContact.id_pop_up = "80"
-                FormPopUpContact.id_cat = id_comp_cat_store
-                FormPopUpContact.GVCompany.ActiveFilterString = "[comp_number]='" + addSlashes(TxtCodeBillTo.Text) + "'"
-                FormPopUpContact.ShowDialog()
-            Else
-                'If check_acc(data.Rows(0)("id_comp").ToString) Then
-                id_comp_bill_to = data.Rows(0)("id_comp").ToString
-                SPDiscount.EditValue = data.Rows(0)("comp_commission")
-                id_comp_contact_bill = data.Rows(0)("id_comp_contact").ToString
-                TxtNameBillTo.Text = data.Rows(0)("comp_name").ToString
-                TxtCodeBillTo.Text = data.Rows(0)("comp_number").ToString
-
-                'isi COA
-                If id_menu = "4" Then
-                    id_acc_sales = data.Rows(0)("id_acc_sales").ToString
-                    id_acc_sales_return = data.Rows(0)("id_acc_sales_return").ToString
-                    id_acc_ar = data.Rows(0)("id_acc_ar").ToString
-                    viewCheckCOA(data.Rows(0)("comp_number").ToString + " - " + data.Rows(0)("comp_name").ToString)
-                End If
-
-                calculate()
-                check_do()
-                '
-                DEDueDate.Focus()
-                'Else
-                '    stopCustom("Store not registered for auto posting journal.")
-                'End If
-            End If
+            actionBillTo()
         Else
             defaultResetBillTo()
         End If
