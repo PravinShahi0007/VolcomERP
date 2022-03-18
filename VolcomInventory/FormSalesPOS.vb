@@ -505,13 +505,22 @@
         p.no_stock_qty, 0 AS `qty_on_process`, 0 AS `qty_proceed`,
         (p.invoice_qty+p.no_stock_qty) AS `total_qty`,
         'No' AS `is_select`, 0 AS `qty_new`,
-        IF(p.invoice_qty=IFNULL(proc_prc.qty_proceed,0)+IFNULL(proc_cs.qty_proceed,0),'Close','Open') AS `is_open_invoice_view`, rg.is_md
-        From tb_sales_pos_prob p
+        IF(p.invoice_qty=IFNULL(proc_prc.qty_proceed,0)+IFNULL(proc_cs.qty_proceed,0),'Close','Open') AS `is_open_invoice_view`, rg.is_md "
+        If id_menu = "4" Then
+            query += ",s.id_comp AS `id_store`, sc.id_comp_contact AS `id_store_contact`,s.comp_number AS `store_number`, s.comp_name AS `store_name` "
+        End If
+        query += "From tb_sales_pos_prob p
         INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = p.id_sales_pos
         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
         INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
-        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
-        INNER JOIN tb_m_product prod ON prod.id_product = p.id_product
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group "
+        If id_menu = "4" Then
+            query += "INNER JOIN tb_sales_pos rsp ON rsp.id_sales_pos = p.id_sales_pos
+            INNER JOIN tb_m_comp_contact sc ON sc.`id_comp_contact`= sp.`id_store_contact_from`
+            INNER JOIN tb_m_comp s ON s.`id_comp`=sc.`id_comp`
+            INNER JOIN tb_m_comp_group sg ON sg.id_comp_group = s.id_comp_group "
+        End If
+        query +="INNER JOIN tb_m_product prod On prod.id_product = p.id_product
         INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
         INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
@@ -681,6 +690,7 @@
                 Dim err As String = ""
                 Dim err_price_valid As String = ""
                 Dim err_qty As String = ""
+                Dim cek_store As List(Of String) = New List(Of String)
                 For c As Integer = 0 To GVProbList.RowCount - 1
                     Dim id_sales_pos_prob_cek As String = GVProbList.GetRowCellValue(c, "id_sales_pos_prob").ToString
                     Dim code As String = GVProbList.GetRowCellValue(c, "code").ToString
@@ -705,6 +715,18 @@
                     If hold_qty <= 0 Then
                         err_qty += code + System.Environment.NewLine
                     End If
+
+                    'store
+                    If id_menu = "4" Then
+                        'invoice diff margin
+                        Dim store_number As String = GVProbList.GetRowCellValue(c, "store_number").ToString
+                        If Not cek_store.Contains(store_number) Then
+                            cek_store.Add(store_number)
+                        End If
+                    Else
+                        cek_store.Clear()
+                        cek_store.Add(GVProbList.GetRowCellValue(c, "comp_number").ToString)
+                    End If
                 Next
 
                 If err <> "" Then
@@ -713,6 +735,15 @@
                     stopCustom("Please propose 'Price Reconcile' first for these product : " + System.Environment.NewLine + err_price_valid)
                 ElseIf err_qty <> "" Then
                     stopCustom("No available qty for these product : " + System.Environment.NewLine + err_qty)
+                ElseIf cek_store.Count > 1 Then
+                    Dim err_store_selected As String = ""
+                    For c As Integer = 0 To cek_store.Count - 1
+                        If c > 0 Then
+                            err_store_selected += ","
+                        End If
+                        err_store_selected += cek_store(c).ToString
+                    Next
+                    stopCustom("Selected invoice have different store : " + System.Environment.NewLine + err_store_selected)
                 Else
                     FormSalesPOSDet.is_from_prob_list = True
                     FormSalesPOSDet.action = "ins"
