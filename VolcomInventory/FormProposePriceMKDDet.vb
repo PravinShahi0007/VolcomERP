@@ -190,6 +190,7 @@
             If LEMKDType.EditValue = "1" Then
                 BtnExtendedEOS.Visible = True
             End If
+            BtnFixedPrice.Visible = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -209,6 +210,7 @@
             BtnUseERPRecom.Visible = False
             PanelOpt.Visible = False
             BtnExtendedEOS.Visible = False
+            BtnFixedPrice.Visible = False
         End If
 
         'reset propose
@@ -239,6 +241,7 @@
             BtnUseERPRecom.Visible = False
             PanelOpt.Visible = False
             BtnExtendedEOS.Visible = False
+            BtnFixedPrice.Visible = False
         End If
     End Sub
 
@@ -1082,4 +1085,26 @@ HAVING jum=0 "
             Return True
         End If
     End Function
+
+    Private Sub BtnFixedPrice_Click(sender As Object, e As EventArgs) Handles BtnFixedPrice.Click
+        Cursor = Cursors.WaitCursor
+        Dim last_filter As String = GVData.ActiveFilterString.ToString
+        Dim ftr As String = "[is_select]='Yes' "
+        If last_filter <> "" Then
+            ftr += "AND " + last_filter
+        End If
+        GVData.ActiveFilterString = ftr
+        If GVData.RowCount > 0 Then
+            is_enable_custom_calc = False
+            FormProposePriceMKDFixedPrie.ShowDialog()
+            is_enable_custom_calc = True
+            GCData.RefreshDataSource()
+            GVData.RefreshData()
+        Else
+            stopCustom("No selected items")
+        End If
+        CESelectAll.EditValue = False
+        GVData.ActiveFilterString = "" + last_filter
+        Cursor = Cursors.Default
+    End Sub
 End Class
