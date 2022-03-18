@@ -27,6 +27,11 @@
         query += "DATE_FORMAT(a.prod_order_date,'%d %M %Y') AS prod_order_date, "
         query += "DATE_FORMAT(DATE_ADD(a.prod_order_date,INTERVAL a.prod_order_lead_time DAY),'%d %M %Y') AS prod_order_lead_time, "
         query += "wo.comp_number AS `vendor_code`, wo.comp_name AS `vendor`,SUM(pod.prod_order_qty) AS qty,IFNULL(wo.id_currency,1) AS id_currency,IFNULL(wo.prod_order_wo_det_price,0) AS price "
+
+        If id_pop_up = "12" Then
+            query += ",pcl.qty AS qty_listing,SUM(pod.prod_order_qty)-IFNULL(pcl.qty,0) AS qty_rem "
+        End If
+
         query += "FROM tb_prod_order_det pod
 INNER JOIN tb_prod_order a ON a.id_prod_order=pod.id_prod_order "
         query += "INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design "
@@ -49,7 +54,7 @@ INNER JOIN tb_prod_order a ON a.id_prod_order=pod.id_prod_order "
 
         If id_pop_up = "12" Then
             query += "LEFT JOIN (
-    SELECT pcl.`id_prod_order`
+    SELECT pcl.`id_prod_order`,SUM(pcl.qty) AS qty
     FROM `tb_pre_cal_fgpo_list` pcl
     INNER JOIN tb_pre_cal_fgpo pc ON pc.`id_pre_cal_fgpo`=pcl.`id_pre_cal_fgpo` AND pc.`id_report_status`!=5
     GROUP BY pcl.id_prod_order
@@ -71,11 +76,11 @@ INNER JOIN tb_prod_order a ON a.id_prod_order=pod.id_prod_order "
             query += " AND wo.id_comp='" & id_comp & "'"
         End If
 
-        If id_pop_up = "12" Then
-            query += " AND ISNULL(pcl.id_prod_order) "
-        End If
-
         query += " GROUP BY a.id_prod_order "
+
+        If id_pop_up = "12" Then
+            query += " HAVING qty>IFNULL(qty_listing,0) "
+        End If
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         data.Columns.Add("images", GetType(Image))
@@ -399,7 +404,7 @@ INNER JOIN tb_prod_order a ON a.id_prod_order=pod.id_prod_order "
                     FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("design_code", GVProd.GetFocusedRowCellValue("design_code").ToString)
                     FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("id_currency", GVProd.GetFocusedRowCellValue("id_currency").ToString)
                     FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("price", GVProd.GetFocusedRowCellValue("price"))
-                    FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("qty", GVProd.GetFocusedRowCellValue("qty"))
+                    FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("qty", GVProd.GetFocusedRowCellValue("qty_rem"))
                     FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("duty", 10)
                     FormPreCalFGPODet.GVListFGPO.RefreshData()
                     FormPreCalFGPODet.GVListFGPO.UpdateTotalSummary()
