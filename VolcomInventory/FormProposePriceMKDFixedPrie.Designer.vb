@@ -52,6 +52,8 @@ Partial Class FormProposePriceMKDFixedPrie
         Me.TxtProposeFinal.Properties.Appearance.Options.UseFont = True
         Me.TxtProposeFinal.Properties.DisplayFormat.FormatString = "N0"
         Me.TxtProposeFinal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtProposeFinal.Properties.Mask.EditMask = "N0"
+        Me.TxtProposeFinal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TxtProposeFinal.Size = New System.Drawing.Size(287, 20)
         Me.TxtProposeFinal.TabIndex = 43
         '

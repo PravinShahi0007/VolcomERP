@@ -1,6 +1,7 @@
 ﻿Public Class FormProposePriceMKDFixedPrie
     Private Sub FormProposePriceMKDFixedPrie_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         checkPropose()
+        ActiveControl = TxtProposeFinal
     End Sub
 
     Sub checkPropose()
@@ -10,6 +11,7 @@
         Else
             TxtProposeFinal.Enabled = True
             TxtProposeFinal.EditValue = 0.00
+            TxtProposeFinal.Focus()
         End If
     End Sub
 
@@ -60,12 +62,21 @@
                 FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_status", "")
             Else
                 Dim input_price As Decimal = TxtProposeFinal.EditValue
-                propose_disc_selected = Math.Round(((normal_price - input_price) / normal_price) * 100)
-                FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_disc", propose_disc_selected)
-                FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price", input_price)
-                FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price_final", input_price)
-                FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_disc_group", "Up to " + Decimal.Parse(propose_disc_selected.ToString).ToString("N0") + "%")
-                FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_status", "Turun")
+                If input_price < current_price Then
+                    propose_disc_selected = Math.Round(((normal_price - input_price) / normal_price) * 100)
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_disc", propose_disc_selected)
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price", input_price)
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price_final", input_price)
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_disc_group", "Up to " + Decimal.Parse(propose_disc_selected.ToString).ToString("N0") + "%")
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_status", "Turun")
+                Else
+                    propose_disc_selected = -1
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_disc", Nothing)
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price", Nothing)
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_price_final", Nothing)
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_disc_group", "")
+                    FormProposePriceMKDDet.GVData.SetRowCellValue(i, "propose_status", "")
+                End If
             End If
             FormProposePriceMKDDet.GVData.SetRowCellValue(i, "note", MENote.Text)
             If propose_disc_selected <> erp_discount Then
