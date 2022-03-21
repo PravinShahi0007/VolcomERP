@@ -2156,7 +2156,7 @@ Public Class FormSalesPOSDet
             cond_cat = "And (c.id_comp_cat='5' OR c.id_comp_cat=6) "
         End If
         Dim query As String = "Select dr.id_wh_drawer, rack.id_wh_rack, Loc.id_wh_locator, cc.id_comp_contact, cc.id_comp, c.npwp, c.comp_number, c.comp_name, c.comp_commission, c.address_primary, c.id_so_type, c.is_use_unique_code, IFNULL(c.id_acc_sales,0) AS `id_acc_sales`, IFNULL(c.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(c.id_acc_ar,0) AS `id_acc_ar`,
-        IF(c.id_comp_cat=5, c.id_wh_type,IF(c.id_comp_cat=6,c.id_store_type,0)) AS `id_account_type` "
+        IF(c.id_comp_cat=5, c.id_wh_type,IF(c.id_comp_cat=6,c.id_store_type,0)) AS `id_account_type`, c.id_comp_group "
         query += " From tb_m_comp_contact cc "
         query += " INNER JOIN tb_m_comp c On c.id_comp=cc.id_comp"
         query += " INNER JOIN tb_m_wh_drawer dr ON dr.id_wh_drawer=c.id_drawer_def"
@@ -2255,6 +2255,10 @@ Public Class FormSalesPOSDet
             Else
                 DEDueDate.Focus()
             End If
+
+            'min date due date
+            setMinDueDate(data.Rows(0)("id_comp_group").ToString)
+
             'Else
             '    stopCustom("Store not registered for auto posting journal.")
             'End If
@@ -3501,5 +3505,14 @@ GROUP BY r.id_sales_pos_recon "
         Next
 
         formBAP.Close()
+    End Sub
+
+    Sub setMinDueDate(ByVal id_comp_group_par As String)
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT DATE_ADD(DATE(NOW()), INTERVAL cg.default_min_due_date DAY) AS  `date_min`
+        FROM tb_m_comp_group cg WHERE cg.id_comp_group=" + id_comp_group_par + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        DEDueDate.Properties.MinValue = data.Rows(0)("date_min")
+        Cursor = Cursors.Default
     End Sub
 End Class
