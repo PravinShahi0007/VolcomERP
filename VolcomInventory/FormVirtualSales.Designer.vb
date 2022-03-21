@@ -111,9 +111,22 @@ Partial Class FormVirtualSales
         Me.BandedGridColumnorder_qty9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnorder_qty0 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnorder_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnhsal_qty1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnhsal_qty2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnhsal_qty3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnhsal_qty4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnhsal_qty5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnhsal_qty6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnhsal_qty7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnhsal_qty8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnhsal_qty9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnhsal_qty0 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnhsal_qty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEFromAcc = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEWH = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -171,6 +184,7 @@ Partial Class FormVirtualSales
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.gridBandFreeze = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandSalesHistory = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandSales = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandSOHStore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandSOHWH = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -191,6 +205,8 @@ Partial Class FormVirtualSales
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.DEFromAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEWH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPriceType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -441,21 +457,21 @@ Partial Class FormVirtualSales
         'GCSOHSal
         '
         Me.GCSOHSal.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSOHSal.Location = New System.Drawing.Point(0, 142)
+        Me.GCSOHSal.Location = New System.Drawing.Point(0, 171)
         Me.GCSOHSal.MainView = Me.GVSOHSal
         Me.GCSOHSal.Name = "GCSOHSal"
         Me.GCSOHSal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemTextEdit1})
-        Me.GCSOHSal.Size = New System.Drawing.Size(712, 256)
+        Me.GCSOHSal.Size = New System.Drawing.Size(712, 227)
         Me.GCSOHSal.TabIndex = 3
         Me.GCSOHSal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSOHSal})
         '
         'GVSOHSal
         '
-        Me.GVSOHSal.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandFreeze, Me.GridBand1, Me.gridBandSales, Me.gridBandSOHStore, Me.gridBandSOHWH, Me.gridBandOrder})
+        Me.GVSOHSal.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandFreeze, Me.GridBand1, Me.gridBandSalesHistory, Me.gridBandSales, Me.gridBandSOHStore, Me.gridBandSOHWH, Me.gridBandOrder})
         Me.GVSOHSal.ColumnPanelRowHeight = 35
-        Me.GVSOHSal.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnid_design, Me.GridColumnmain_code, Me.GridColumnname, Me.GridColumnclass, Me.GridColumnseason, Me.GridColumnrange, Me.GridColumncolor, Me.GridColumnsht, Me.GridColumnstt, Me.GridColumnid_compsal, Me.GridColumncomp_numbersalinv, Me.GridColumncomp_namesalinve, Me.GridColumngroup_store, Me.GridColumncomp_cat_name, Me.GridColumngroup_store_desc, Me.GridColumndesign_first_rec_wh, Me.GridColumnsize_type, Me.GridColumnsal_qty1, Me.GridColumnsal_qty2, Me.GridColumnsal_qty3, Me.GridColumnsal_qty4, Me.GridColumnsal_qty5, Me.GridColumnsal_qty6, Me.GridColumnsal_qty7, Me.GridColumnsal_qty8, Me.GridColumnsal_qty9, Me.GridColumnsal_qty0, Me.GridColumnsal_qty, Me.GridColumnsoh_qty1, Me.GridColumnsoh_qty2, Me.GridColumnsoh_qty3, Me.GridColumnsoh_qty4, Me.GridColumnsoh_qty5, Me.GridColumnsoh_qty6, Me.GridColumnsoh_qty7, Me.GridColumnsoh_qty8, Me.GridColumnsoh_qty9, Me.GridColumnsoh_qty0, Me.GridColumnsoh_qty, Me.GridColumnprice_type, Me.GridColumnunit_price, Me.GridColumnunit_cost, Me.BandedGridColumnwh_qty1, Me.BandedGridColumnwh_qty2, Me.BandedGridColumnwh_qty3, Me.BandedGridColumnwh_qty4, Me.BandedGridColumnwh_qty5, Me.BandedGridColumnwh_qty6, Me.BandedGridColumnwh_qty7, Me.BandedGridColumnwh_qty8, Me.BandedGridColumnwh_qty9, Me.BandedGridColumnwh_qty0, Me.BandedGridColumnwh_qty, Me.BandedGridColumnorder_qty1, Me.BandedGridColumnorder_qty2, Me.BandedGridColumnorder_qty3, Me.BandedGridColumnorder_qty4, Me.BandedGridColumnorder_qty5, Me.BandedGridColumnorder_qty6, Me.BandedGridColumnorder_qty7, Me.BandedGridColumnorder_qty8, Me.BandedGridColumnorder_qty9, Me.BandedGridColumnorder_qty0, Me.BandedGridColumnorder_qty})
+        Me.GVSOHSal.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnid_design, Me.GridColumnmain_code, Me.GridColumnname, Me.GridColumnclass, Me.GridColumnseason, Me.GridColumnrange, Me.GridColumncolor, Me.GridColumnsht, Me.GridColumnstt, Me.GridColumnid_compsal, Me.GridColumncomp_numbersalinv, Me.GridColumncomp_namesalinve, Me.GridColumngroup_store, Me.GridColumncomp_cat_name, Me.GridColumngroup_store_desc, Me.GridColumndesign_first_rec_wh, Me.GridColumnsize_type, Me.GridColumnsal_qty1, Me.GridColumnsal_qty2, Me.GridColumnsal_qty3, Me.GridColumnsal_qty4, Me.GridColumnsal_qty5, Me.GridColumnsal_qty6, Me.GridColumnsal_qty7, Me.GridColumnsal_qty8, Me.GridColumnsal_qty9, Me.GridColumnsal_qty0, Me.GridColumnsal_qty, Me.GridColumnsoh_qty1, Me.GridColumnsoh_qty2, Me.GridColumnsoh_qty3, Me.GridColumnsoh_qty4, Me.GridColumnsoh_qty5, Me.GridColumnsoh_qty6, Me.GridColumnsoh_qty7, Me.GridColumnsoh_qty8, Me.GridColumnsoh_qty9, Me.GridColumnsoh_qty0, Me.GridColumnsoh_qty, Me.GridColumnprice_type, Me.GridColumnunit_price, Me.GridColumnunit_cost, Me.BandedGridColumnwh_qty1, Me.BandedGridColumnwh_qty2, Me.BandedGridColumnwh_qty3, Me.BandedGridColumnwh_qty4, Me.BandedGridColumnwh_qty5, Me.BandedGridColumnwh_qty6, Me.BandedGridColumnwh_qty7, Me.BandedGridColumnwh_qty8, Me.BandedGridColumnwh_qty9, Me.BandedGridColumnwh_qty0, Me.BandedGridColumnwh_qty, Me.BandedGridColumnorder_qty1, Me.BandedGridColumnorder_qty2, Me.BandedGridColumnorder_qty3, Me.BandedGridColumnorder_qty4, Me.BandedGridColumnorder_qty5, Me.BandedGridColumnorder_qty6, Me.BandedGridColumnorder_qty7, Me.BandedGridColumnorder_qty8, Me.BandedGridColumnorder_qty9, Me.BandedGridColumnorder_qty0, Me.BandedGridColumnorder_qty, Me.BandedGridColumnhsal_qty1, Me.BandedGridColumnhsal_qty2, Me.BandedGridColumnhsal_qty3, Me.BandedGridColumnhsal_qty4, Me.BandedGridColumnhsal_qty5, Me.BandedGridColumnhsal_qty6, Me.BandedGridColumnhsal_qty7, Me.BandedGridColumnhsal_qty8, Me.BandedGridColumnhsal_qty9, Me.BandedGridColumnhsal_qty0, Me.BandedGridColumnhsal_qty})
         Me.GVSOHSal.GridControl = Me.GCSOHSal
-        Me.GVSOHSal.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty1", Me.GridColumnsal_qty1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty2", Me.GridColumnsal_qty2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty3", Me.GridColumnsal_qty3, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty4", Me.GridColumnsal_qty4, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty5", Me.GridColumnsal_qty5, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty6", Me.GridColumnsal_qty6, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty7", Me.GridColumnsal_qty7, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty8", Me.GridColumnsal_qty8, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty9", Me.GridColumnsal_qty9, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty0", Me.GridColumnsal_qty0, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", Me.GridColumnsal_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty1", Me.GridColumnsoh_qty1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty2", Me.GridColumnsoh_qty2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty3", Me.GridColumnsoh_qty3, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty4", Me.GridColumnsoh_qty4, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty5", Me.GridColumnsoh_qty5, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty6", Me.GridColumnsoh_qty6, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty7", Me.GridColumnsoh_qty7, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty8", Me.GridColumnsoh_qty8, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty9", Me.GridColumnsoh_qty9, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty0", Me.GridColumnsoh_qty0, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty", Me.GridColumnsoh_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty1", Me.BandedGridColumnwh_qty1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty2", Me.BandedGridColumnwh_qty2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty3", Me.BandedGridColumnwh_qty3, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty4", Me.BandedGridColumnwh_qty4, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty5", Me.BandedGridColumnwh_qty5, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty6", Me.BandedGridColumnwh_qty6, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty7", Me.BandedGridColumnwh_qty7, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty8", Me.BandedGridColumnwh_qty8, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty9", Me.BandedGridColumnwh_qty9, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty0", Me.BandedGridColumnwh_qty0, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty", Me.BandedGridColumnwh_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty1", Me.BandedGridColumnorder_qty1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty2", Me.BandedGridColumnorder_qty2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty3", Me.BandedGridColumnorder_qty3, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty4", Me.BandedGridColumnorder_qty4, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty5", Me.BandedGridColumnorder_qty5, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty6", Me.BandedGridColumnorder_qty6, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty7", Me.BandedGridColumnorder_qty7, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty8", Me.BandedGridColumnorder_qty8, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty9", Me.BandedGridColumnorder_qty9, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty0", Me.BandedGridColumnorder_qty0, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", Me.BandedGridColumnorder_qty, "{0:N0}")})
+        Me.GVSOHSal.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty1", Me.GridColumnsal_qty1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty2", Me.GridColumnsal_qty2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty3", Me.GridColumnsal_qty3, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty4", Me.GridColumnsal_qty4, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty5", Me.GridColumnsal_qty5, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty6", Me.GridColumnsal_qty6, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty7", Me.GridColumnsal_qty7, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty8", Me.GridColumnsal_qty8, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty9", Me.GridColumnsal_qty9, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty0", Me.GridColumnsal_qty0, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", Me.GridColumnsal_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty1", Me.GridColumnsoh_qty1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty2", Me.GridColumnsoh_qty2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty3", Me.GridColumnsoh_qty3, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty4", Me.GridColumnsoh_qty4, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty5", Me.GridColumnsoh_qty5, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty6", Me.GridColumnsoh_qty6, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty7", Me.GridColumnsoh_qty7, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty8", Me.GridColumnsoh_qty8, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty9", Me.GridColumnsoh_qty9, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty0", Me.GridColumnsoh_qty0, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty", Me.GridColumnsoh_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty1", Me.BandedGridColumnwh_qty1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty2", Me.BandedGridColumnwh_qty2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty3", Me.BandedGridColumnwh_qty3, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty4", Me.BandedGridColumnwh_qty4, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty5", Me.BandedGridColumnwh_qty5, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty6", Me.BandedGridColumnwh_qty6, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty7", Me.BandedGridColumnwh_qty7, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty8", Me.BandedGridColumnwh_qty8, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty9", Me.BandedGridColumnwh_qty9, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty0", Me.BandedGridColumnwh_qty0, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "wh_qty", Me.BandedGridColumnwh_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty1", Me.BandedGridColumnorder_qty1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty2", Me.BandedGridColumnorder_qty2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty3", Me.BandedGridColumnorder_qty3, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty4", Me.BandedGridColumnorder_qty4, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty5", Me.BandedGridColumnorder_qty5, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty6", Me.BandedGridColumnorder_qty6, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty7", Me.BandedGridColumnorder_qty7, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty8", Me.BandedGridColumnorder_qty8, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty9", Me.BandedGridColumnorder_qty9, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty0", Me.BandedGridColumnorder_qty0, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", Me.BandedGridColumnorder_qty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty1", Me.BandedGridColumnhsal_qty1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty2", Me.BandedGridColumnhsal_qty2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty3", Me.BandedGridColumnhsal_qty3, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty4", Me.BandedGridColumnhsal_qty4, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty5", Me.BandedGridColumnhsal_qty5, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty6", Me.BandedGridColumnhsal_qty6, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty7", Me.BandedGridColumnhsal_qty7, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty8", Me.BandedGridColumnhsal_qty8, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty9", Me.BandedGridColumnhsal_qty9, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty0", Me.BandedGridColumnhsal_qty0, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty", Me.BandedGridColumnhsal_qty, "{0:N0}")})
         Me.GVSOHSal.Name = "GVSOHSal"
         Me.GVSOHSal.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVSOHSal.OptionsFind.AlwaysVisible = True
@@ -628,6 +644,8 @@ Partial Class FormVirtualSales
         '
         'GridColumnsal_qty1
         '
+        Me.GridColumnsal_qty1.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsal_qty1.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsal_qty1.Caption = "sal_qty1"
         Me.GridColumnsal_qty1.DisplayFormat.FormatString = "N0"
         Me.GridColumnsal_qty1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -639,6 +657,8 @@ Partial Class FormVirtualSales
         '
         'GridColumnsal_qty2
         '
+        Me.GridColumnsal_qty2.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsal_qty2.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsal_qty2.Caption = "sal_qty2"
         Me.GridColumnsal_qty2.DisplayFormat.FormatString = "N0"
         Me.GridColumnsal_qty2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -650,6 +670,8 @@ Partial Class FormVirtualSales
         '
         'GridColumnsal_qty3
         '
+        Me.GridColumnsal_qty3.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsal_qty3.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsal_qty3.Caption = "sal_qty3"
         Me.GridColumnsal_qty3.DisplayFormat.FormatString = "N0"
         Me.GridColumnsal_qty3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -661,6 +683,8 @@ Partial Class FormVirtualSales
         '
         'GridColumnsal_qty4
         '
+        Me.GridColumnsal_qty4.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsal_qty4.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsal_qty4.Caption = "sal_qty4"
         Me.GridColumnsal_qty4.DisplayFormat.FormatString = "N0"
         Me.GridColumnsal_qty4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -672,6 +696,8 @@ Partial Class FormVirtualSales
         '
         'GridColumnsal_qty5
         '
+        Me.GridColumnsal_qty5.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsal_qty5.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsal_qty5.Caption = "sal_qty5"
         Me.GridColumnsal_qty5.DisplayFormat.FormatString = "N0"
         Me.GridColumnsal_qty5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -683,6 +709,8 @@ Partial Class FormVirtualSales
         '
         'GridColumnsal_qty6
         '
+        Me.GridColumnsal_qty6.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsal_qty6.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsal_qty6.Caption = "sal_qty6"
         Me.GridColumnsal_qty6.DisplayFormat.FormatString = "N0"
         Me.GridColumnsal_qty6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -694,6 +722,8 @@ Partial Class FormVirtualSales
         '
         'GridColumnsal_qty7
         '
+        Me.GridColumnsal_qty7.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsal_qty7.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsal_qty7.Caption = "sal_qty7"
         Me.GridColumnsal_qty7.DisplayFormat.FormatString = "N0"
         Me.GridColumnsal_qty7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -705,6 +735,8 @@ Partial Class FormVirtualSales
         '
         'GridColumnsal_qty8
         '
+        Me.GridColumnsal_qty8.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsal_qty8.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsal_qty8.Caption = "sal_qty8"
         Me.GridColumnsal_qty8.DisplayFormat.FormatString = "N0"
         Me.GridColumnsal_qty8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -716,6 +748,8 @@ Partial Class FormVirtualSales
         '
         'GridColumnsal_qty9
         '
+        Me.GridColumnsal_qty9.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsal_qty9.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsal_qty9.Caption = "sal_qty9"
         Me.GridColumnsal_qty9.DisplayFormat.FormatString = "N0"
         Me.GridColumnsal_qty9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -727,6 +761,8 @@ Partial Class FormVirtualSales
         '
         'GridColumnsal_qty0
         '
+        Me.GridColumnsal_qty0.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsal_qty0.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsal_qty0.Caption = "sal_qty0"
         Me.GridColumnsal_qty0.DisplayFormat.FormatString = "N0"
         Me.GridColumnsal_qty0.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -738,6 +774,8 @@ Partial Class FormVirtualSales
         '
         'GridColumnsal_qty
         '
+        Me.GridColumnsal_qty.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsal_qty.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsal_qty.Caption = "Total Sal"
         Me.GridColumnsal_qty.DisplayFormat.FormatString = "N0"
         Me.GridColumnsal_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -749,6 +787,8 @@ Partial Class FormVirtualSales
         '
         'GridColumnsoh_qty1
         '
+        Me.GridColumnsoh_qty1.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsoh_qty1.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsoh_qty1.Caption = "soh_qty1"
         Me.GridColumnsoh_qty1.DisplayFormat.FormatString = "N0"
         Me.GridColumnsoh_qty1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -757,9 +797,12 @@ Partial Class FormVirtualSales
         Me.GridColumnsoh_qty1.OptionsColumn.ReadOnly = True
         Me.GridColumnsoh_qty1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty1", "{0:N0}")})
         Me.GridColumnsoh_qty1.Visible = True
+        Me.GridColumnsoh_qty1.Width = 76
         '
         'GridColumnsoh_qty2
         '
+        Me.GridColumnsoh_qty2.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsoh_qty2.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsoh_qty2.Caption = "soh_qty2"
         Me.GridColumnsoh_qty2.DisplayFormat.FormatString = "N0"
         Me.GridColumnsoh_qty2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -768,9 +811,12 @@ Partial Class FormVirtualSales
         Me.GridColumnsoh_qty2.OptionsColumn.ReadOnly = True
         Me.GridColumnsoh_qty2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty2", "{0:N0}")})
         Me.GridColumnsoh_qty2.Visible = True
+        Me.GridColumnsoh_qty2.Width = 76
         '
         'GridColumnsoh_qty3
         '
+        Me.GridColumnsoh_qty3.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsoh_qty3.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsoh_qty3.Caption = "soh_qty3"
         Me.GridColumnsoh_qty3.DisplayFormat.FormatString = "N0"
         Me.GridColumnsoh_qty3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -779,9 +825,12 @@ Partial Class FormVirtualSales
         Me.GridColumnsoh_qty3.OptionsColumn.ReadOnly = True
         Me.GridColumnsoh_qty3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty3", "{0:N0}")})
         Me.GridColumnsoh_qty3.Visible = True
+        Me.GridColumnsoh_qty3.Width = 76
         '
         'GridColumnsoh_qty4
         '
+        Me.GridColumnsoh_qty4.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsoh_qty4.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsoh_qty4.Caption = "soh_qty4"
         Me.GridColumnsoh_qty4.DisplayFormat.FormatString = "N0"
         Me.GridColumnsoh_qty4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -790,9 +839,12 @@ Partial Class FormVirtualSales
         Me.GridColumnsoh_qty4.OptionsColumn.ReadOnly = True
         Me.GridColumnsoh_qty4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty4", "{0:N0}")})
         Me.GridColumnsoh_qty4.Visible = True
+        Me.GridColumnsoh_qty4.Width = 76
         '
         'GridColumnsoh_qty5
         '
+        Me.GridColumnsoh_qty5.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsoh_qty5.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsoh_qty5.Caption = "soh_qty5"
         Me.GridColumnsoh_qty5.DisplayFormat.FormatString = "N0"
         Me.GridColumnsoh_qty5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -801,9 +853,12 @@ Partial Class FormVirtualSales
         Me.GridColumnsoh_qty5.OptionsColumn.ReadOnly = True
         Me.GridColumnsoh_qty5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty5", "{0:N0}")})
         Me.GridColumnsoh_qty5.Visible = True
+        Me.GridColumnsoh_qty5.Width = 76
         '
         'GridColumnsoh_qty6
         '
+        Me.GridColumnsoh_qty6.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsoh_qty6.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsoh_qty6.Caption = "soh_qty6"
         Me.GridColumnsoh_qty6.DisplayFormat.FormatString = "N0"
         Me.GridColumnsoh_qty6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -812,9 +867,12 @@ Partial Class FormVirtualSales
         Me.GridColumnsoh_qty6.OptionsColumn.ReadOnly = True
         Me.GridColumnsoh_qty6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty6", "{0:N0}")})
         Me.GridColumnsoh_qty6.Visible = True
+        Me.GridColumnsoh_qty6.Width = 76
         '
         'GridColumnsoh_qty7
         '
+        Me.GridColumnsoh_qty7.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsoh_qty7.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsoh_qty7.Caption = "soh_qty7"
         Me.GridColumnsoh_qty7.DisplayFormat.FormatString = "N0"
         Me.GridColumnsoh_qty7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -823,9 +881,12 @@ Partial Class FormVirtualSales
         Me.GridColumnsoh_qty7.OptionsColumn.ReadOnly = True
         Me.GridColumnsoh_qty7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty7", "{0:N0}")})
         Me.GridColumnsoh_qty7.Visible = True
+        Me.GridColumnsoh_qty7.Width = 76
         '
         'GridColumnsoh_qty8
         '
+        Me.GridColumnsoh_qty8.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsoh_qty8.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsoh_qty8.Caption = "soh_qty8"
         Me.GridColumnsoh_qty8.DisplayFormat.FormatString = "N0"
         Me.GridColumnsoh_qty8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -834,9 +895,12 @@ Partial Class FormVirtualSales
         Me.GridColumnsoh_qty8.OptionsColumn.ReadOnly = True
         Me.GridColumnsoh_qty8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty8", "{0:N0}")})
         Me.GridColumnsoh_qty8.Visible = True
+        Me.GridColumnsoh_qty8.Width = 76
         '
         'GridColumnsoh_qty9
         '
+        Me.GridColumnsoh_qty9.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsoh_qty9.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsoh_qty9.Caption = "soh_qty9"
         Me.GridColumnsoh_qty9.DisplayFormat.FormatString = "N0"
         Me.GridColumnsoh_qty9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -845,9 +909,12 @@ Partial Class FormVirtualSales
         Me.GridColumnsoh_qty9.OptionsColumn.ReadOnly = True
         Me.GridColumnsoh_qty9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty9", "{0:N0}")})
         Me.GridColumnsoh_qty9.Visible = True
+        Me.GridColumnsoh_qty9.Width = 76
         '
         'GridColumnsoh_qty0
         '
+        Me.GridColumnsoh_qty0.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsoh_qty0.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsoh_qty0.Caption = "soh_qty0"
         Me.GridColumnsoh_qty0.DisplayFormat.FormatString = "N0"
         Me.GridColumnsoh_qty0.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -856,9 +923,12 @@ Partial Class FormVirtualSales
         Me.GridColumnsoh_qty0.OptionsColumn.ReadOnly = True
         Me.GridColumnsoh_qty0.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty0", "{0:N0}")})
         Me.GridColumnsoh_qty0.Visible = True
+        Me.GridColumnsoh_qty0.Width = 76
         '
         'GridColumnsoh_qty
         '
+        Me.GridColumnsoh_qty.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumnsoh_qty.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnsoh_qty.Caption = "Total SOH"
         Me.GridColumnsoh_qty.DisplayFormat.FormatString = "N0"
         Me.GridColumnsoh_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -867,9 +937,12 @@ Partial Class FormVirtualSales
         Me.GridColumnsoh_qty.OptionsColumn.ReadOnly = True
         Me.GridColumnsoh_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty", "{0:N0}")})
         Me.GridColumnsoh_qty.Visible = True
+        Me.GridColumnsoh_qty.Width = 80
         '
         'BandedGridColumnwh_qty1
         '
+        Me.BandedGridColumnwh_qty1.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.BandedGridColumnwh_qty1.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnwh_qty1.Caption = "wh_qty1"
         Me.BandedGridColumnwh_qty1.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnwh_qty1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -881,6 +954,8 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnwh_qty2
         '
+        Me.BandedGridColumnwh_qty2.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.BandedGridColumnwh_qty2.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnwh_qty2.Caption = "wh_qty2"
         Me.BandedGridColumnwh_qty2.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnwh_qty2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -892,6 +967,8 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnwh_qty3
         '
+        Me.BandedGridColumnwh_qty3.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.BandedGridColumnwh_qty3.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnwh_qty3.Caption = "wh_qty3"
         Me.BandedGridColumnwh_qty3.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnwh_qty3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -903,6 +980,8 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnwh_qty4
         '
+        Me.BandedGridColumnwh_qty4.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.BandedGridColumnwh_qty4.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnwh_qty4.Caption = "wh_qty4"
         Me.BandedGridColumnwh_qty4.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnwh_qty4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -914,6 +993,8 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnwh_qty5
         '
+        Me.BandedGridColumnwh_qty5.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.BandedGridColumnwh_qty5.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnwh_qty5.Caption = "wh_qty5"
         Me.BandedGridColumnwh_qty5.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnwh_qty5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -925,6 +1006,8 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnwh_qty6
         '
+        Me.BandedGridColumnwh_qty6.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.BandedGridColumnwh_qty6.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnwh_qty6.Caption = "wh_qty6"
         Me.BandedGridColumnwh_qty6.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnwh_qty6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -936,6 +1019,8 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnwh_qty7
         '
+        Me.BandedGridColumnwh_qty7.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.BandedGridColumnwh_qty7.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnwh_qty7.Caption = "wh_qty7"
         Me.BandedGridColumnwh_qty7.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnwh_qty7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -947,6 +1032,8 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnwh_qty8
         '
+        Me.BandedGridColumnwh_qty8.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.BandedGridColumnwh_qty8.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnwh_qty8.Caption = "wh_qty8"
         Me.BandedGridColumnwh_qty8.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnwh_qty8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -958,6 +1045,8 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnwh_qty9
         '
+        Me.BandedGridColumnwh_qty9.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.BandedGridColumnwh_qty9.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnwh_qty9.Caption = "wh_qty9"
         Me.BandedGridColumnwh_qty9.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnwh_qty9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -969,6 +1058,8 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnwh_qty0
         '
+        Me.BandedGridColumnwh_qty0.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.BandedGridColumnwh_qty0.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnwh_qty0.Caption = "wh_qty0"
         Me.BandedGridColumnwh_qty0.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnwh_qty0.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -980,6 +1071,8 @@ Partial Class FormVirtualSales
         '
         'BandedGridColumnwh_qty
         '
+        Me.BandedGridColumnwh_qty.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.BandedGridColumnwh_qty.AppearanceCell.Options.UseBackColor = True
         Me.BandedGridColumnwh_qty.Caption = "Total SOH"
         Me.BandedGridColumnwh_qty.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnwh_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -1188,6 +1281,138 @@ Partial Class FormVirtualSales
         Me.BandedGridColumnorder_qty.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnorder_qty.Visible = True
         '
+        'BandedGridColumnhsal_qty1
+        '
+        Me.BandedGridColumnhsal_qty1.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnhsal_qty1.AppearanceCell.Options.UseBackColor = True
+        Me.BandedGridColumnhsal_qty1.Caption = "hsal_qty1"
+        Me.BandedGridColumnhsal_qty1.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnhsal_qty1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnhsal_qty1.FieldName = "hsal_qty1"
+        Me.BandedGridColumnhsal_qty1.Name = "BandedGridColumnhsal_qty1"
+        Me.BandedGridColumnhsal_qty1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty1", "{0:N0}")})
+        Me.BandedGridColumnhsal_qty1.Visible = True
+        '
+        'BandedGridColumnhsal_qty2
+        '
+        Me.BandedGridColumnhsal_qty2.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnhsal_qty2.AppearanceCell.Options.UseBackColor = True
+        Me.BandedGridColumnhsal_qty2.Caption = "hsal_qty2"
+        Me.BandedGridColumnhsal_qty2.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnhsal_qty2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnhsal_qty2.FieldName = "hsal_qty2"
+        Me.BandedGridColumnhsal_qty2.Name = "BandedGridColumnhsal_qty2"
+        Me.BandedGridColumnhsal_qty2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty2", "{0:N0}")})
+        Me.BandedGridColumnhsal_qty2.Visible = True
+        '
+        'BandedGridColumnhsal_qty3
+        '
+        Me.BandedGridColumnhsal_qty3.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnhsal_qty3.AppearanceCell.Options.UseBackColor = True
+        Me.BandedGridColumnhsal_qty3.Caption = "hsal_qty3"
+        Me.BandedGridColumnhsal_qty3.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnhsal_qty3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnhsal_qty3.FieldName = "hsal_qty3"
+        Me.BandedGridColumnhsal_qty3.Name = "BandedGridColumnhsal_qty3"
+        Me.BandedGridColumnhsal_qty3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty3", "{0:N0}")})
+        Me.BandedGridColumnhsal_qty3.Visible = True
+        '
+        'BandedGridColumnhsal_qty4
+        '
+        Me.BandedGridColumnhsal_qty4.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnhsal_qty4.AppearanceCell.Options.UseBackColor = True
+        Me.BandedGridColumnhsal_qty4.Caption = "hsal_qty4"
+        Me.BandedGridColumnhsal_qty4.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnhsal_qty4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnhsal_qty4.FieldName = "hsal_qty4"
+        Me.BandedGridColumnhsal_qty4.Name = "BandedGridColumnhsal_qty4"
+        Me.BandedGridColumnhsal_qty4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty4", "{0:N0}")})
+        Me.BandedGridColumnhsal_qty4.Visible = True
+        '
+        'BandedGridColumnhsal_qty5
+        '
+        Me.BandedGridColumnhsal_qty5.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnhsal_qty5.AppearanceCell.Options.UseBackColor = True
+        Me.BandedGridColumnhsal_qty5.Caption = "hsal_qty5"
+        Me.BandedGridColumnhsal_qty5.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnhsal_qty5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnhsal_qty5.FieldName = "hsal_qty5"
+        Me.BandedGridColumnhsal_qty5.Name = "BandedGridColumnhsal_qty5"
+        Me.BandedGridColumnhsal_qty5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty5", "{0:N0}")})
+        Me.BandedGridColumnhsal_qty5.Visible = True
+        '
+        'BandedGridColumnhsal_qty6
+        '
+        Me.BandedGridColumnhsal_qty6.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnhsal_qty6.AppearanceCell.Options.UseBackColor = True
+        Me.BandedGridColumnhsal_qty6.Caption = "hsal_qty6"
+        Me.BandedGridColumnhsal_qty6.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnhsal_qty6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnhsal_qty6.FieldName = "hsal_qty6"
+        Me.BandedGridColumnhsal_qty6.Name = "BandedGridColumnhsal_qty6"
+        Me.BandedGridColumnhsal_qty6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty6", "{0:N0}")})
+        Me.BandedGridColumnhsal_qty6.Visible = True
+        '
+        'BandedGridColumnhsal_qty7
+        '
+        Me.BandedGridColumnhsal_qty7.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnhsal_qty7.AppearanceCell.Options.UseBackColor = True
+        Me.BandedGridColumnhsal_qty7.Caption = "hsal_qty7"
+        Me.BandedGridColumnhsal_qty7.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnhsal_qty7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnhsal_qty7.FieldName = "hsal_qty7"
+        Me.BandedGridColumnhsal_qty7.Name = "BandedGridColumnhsal_qty7"
+        Me.BandedGridColumnhsal_qty7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty7", "{0:N0}")})
+        Me.BandedGridColumnhsal_qty7.Visible = True
+        '
+        'BandedGridColumnhsal_qty8
+        '
+        Me.BandedGridColumnhsal_qty8.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnhsal_qty8.AppearanceCell.Options.UseBackColor = True
+        Me.BandedGridColumnhsal_qty8.Caption = "hsal_qty8"
+        Me.BandedGridColumnhsal_qty8.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnhsal_qty8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnhsal_qty8.FieldName = "hsal_qty8"
+        Me.BandedGridColumnhsal_qty8.Name = "BandedGridColumnhsal_qty8"
+        Me.BandedGridColumnhsal_qty8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty8", "{0:N0}")})
+        Me.BandedGridColumnhsal_qty8.Visible = True
+        '
+        'BandedGridColumnhsal_qty9
+        '
+        Me.BandedGridColumnhsal_qty9.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnhsal_qty9.AppearanceCell.Options.UseBackColor = True
+        Me.BandedGridColumnhsal_qty9.Caption = "hsal_qty9"
+        Me.BandedGridColumnhsal_qty9.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnhsal_qty9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnhsal_qty9.FieldName = "hsal_qty9"
+        Me.BandedGridColumnhsal_qty9.Name = "BandedGridColumnhsal_qty9"
+        Me.BandedGridColumnhsal_qty9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty9", "{0:N0}")})
+        Me.BandedGridColumnhsal_qty9.Visible = True
+        '
+        'BandedGridColumnhsal_qty0
+        '
+        Me.BandedGridColumnhsal_qty0.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnhsal_qty0.AppearanceCell.Options.UseBackColor = True
+        Me.BandedGridColumnhsal_qty0.Caption = "hsal_qty0"
+        Me.BandedGridColumnhsal_qty0.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnhsal_qty0.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnhsal_qty0.FieldName = "hsal_qty0"
+        Me.BandedGridColumnhsal_qty0.Name = "BandedGridColumnhsal_qty0"
+        Me.BandedGridColumnhsal_qty0.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty0", "{0:N0}")})
+        Me.BandedGridColumnhsal_qty0.Visible = True
+        '
+        'BandedGridColumnhsal_qty
+        '
+        Me.BandedGridColumnhsal_qty.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BandedGridColumnhsal_qty.AppearanceCell.Options.UseBackColor = True
+        Me.BandedGridColumnhsal_qty.Caption = "Total Sal"
+        Me.BandedGridColumnhsal_qty.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnhsal_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnhsal_qty.FieldName = "hsal_qty"
+        Me.BandedGridColumnhsal_qty.Name = "BandedGridColumnhsal_qty"
+        Me.BandedGridColumnhsal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hsal_qty", "{0:N0}")})
+        Me.BandedGridColumnhsal_qty.Visible = True
+        '
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
@@ -1204,11 +1429,13 @@ Partial Class FormVirtualSales
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(712, 142)
+        Me.PanelControl2.Size = New System.Drawing.Size(712, 171)
         Me.PanelControl2.TabIndex = 1
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.DEFromAcc)
+        Me.PanelControl3.Controls.Add(Me.LabelControl11)
         Me.PanelControl3.Controls.Add(Me.LabelControl9)
         Me.PanelControl3.Controls.Add(Me.SLEWH)
         Me.PanelControl3.Controls.Add(Me.LEPriceType)
@@ -1222,8 +1449,32 @@ Partial Class FormVirtualSales
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(444, 138)
+        Me.PanelControl3.Size = New System.Drawing.Size(455, 167)
         Me.PanelControl3.TabIndex = 8928
+        '
+        'DEFromAcc
+        '
+        Me.DEFromAcc.EditValue = Nothing
+        Me.DEFromAcc.Location = New System.Drawing.Point(107, 90)
+        Me.DEFromAcc.Name = "DEFromAcc"
+        Me.DEFromAcc.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEFromAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromAcc.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEFromAcc.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEFromAcc.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromAcc.Properties.Mask.EditMask = "Y"
+        Me.DEFromAcc.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEFromAcc.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearView
+        Me.DEFromAcc.Size = New System.Drawing.Size(329, 20)
+        Me.DEFromAcc.TabIndex = 8935
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(9, 93)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(82, 13)
+        Me.LabelControl11.TabIndex = 8934
+        Me.LabelControl11.Text = "Sal. History From"
         '
         'LabelControl9
         '
@@ -1235,7 +1486,7 @@ Partial Class FormVirtualSales
         '
         'SLEWH
         '
-        Me.SLEWH.Location = New System.Drawing.Point(96, 64)
+        Me.SLEWH.Location = New System.Drawing.Point(107, 64)
         Me.SLEWH.Name = "SLEWH"
         Me.SLEWH.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEWH.Properties.Appearance.Options.UseFont = True
@@ -1294,7 +1545,7 @@ Partial Class FormVirtualSales
         '
         'SLEAccount
         '
-        Me.SLEAccount.Location = New System.Drawing.Point(96, 12)
+        Me.SLEAccount.Location = New System.Drawing.Point(107, 12)
         Me.SLEAccount.Name = "SLEAccount"
         Me.SLEAccount.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEAccount.Properties.Appearance.Options.UseFont = True
@@ -1340,15 +1591,15 @@ Partial Class FormVirtualSales
         Me.PanelControl4.Controls.Add(Me.BtnViewAcc)
         Me.PanelControl4.Controls.Add(Me.BtnExportToXLSAcc)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(2, 99)
+        Me.PanelControl4.Location = New System.Drawing.Point(2, 128)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(440, 37)
+        Me.PanelControl4.Size = New System.Drawing.Size(451, 37)
         Me.PanelControl4.TabIndex = 8925
         '
         'BtnViewAcc
         '
         Me.BtnViewAcc.Image = CType(resources.GetObject("BtnViewAcc.Image"), System.Drawing.Image)
-        Me.BtnViewAcc.Location = New System.Drawing.Point(354, 9)
+        Me.BtnViewAcc.Location = New System.Drawing.Point(365, 12)
         Me.BtnViewAcc.LookAndFeel.SkinName = "Blue"
         Me.BtnViewAcc.Name = "BtnViewAcc"
         Me.BtnViewAcc.Size = New System.Drawing.Size(69, 20)
@@ -1358,7 +1609,7 @@ Partial Class FormVirtualSales
         'BtnExportToXLSAcc
         '
         Me.BtnExportToXLSAcc.Image = CType(resources.GetObject("BtnExportToXLSAcc.Image"), System.Drawing.Image)
-        Me.BtnExportToXLSAcc.Location = New System.Drawing.Point(257, 9)
+        Me.BtnExportToXLSAcc.Location = New System.Drawing.Point(268, 12)
         Me.BtnExportToXLSAcc.LookAndFeel.SkinName = "Blue"
         Me.BtnExportToXLSAcc.Name = "BtnExportToXLSAcc"
         Me.BtnExportToXLSAcc.Size = New System.Drawing.Size(94, 20)
@@ -1369,7 +1620,7 @@ Partial Class FormVirtualSales
         '
         Me.BtnBrowseProduct.Enabled = False
         Me.BtnBrowseProduct.Image = CType(resources.GetObject("BtnBrowseProduct.Image"), System.Drawing.Image)
-        Me.BtnBrowseProduct.Location = New System.Drawing.Point(399, 38)
+        Me.BtnBrowseProduct.Location = New System.Drawing.Point(410, 38)
         Me.BtnBrowseProduct.LookAndFeel.SkinName = "Blue"
         Me.BtnBrowseProduct.Name = "BtnBrowseProduct"
         Me.BtnBrowseProduct.Size = New System.Drawing.Size(26, 20)
@@ -1392,7 +1643,7 @@ Partial Class FormVirtualSales
         '
         Me.TxtProduct.EditValue = ""
         Me.TxtProduct.Enabled = False
-        Me.TxtProduct.Location = New System.Drawing.Point(96, 38)
+        Me.TxtProduct.Location = New System.Drawing.Point(107, 38)
         Me.TxtProduct.Name = "TxtProduct"
         Me.TxtProduct.Size = New System.Drawing.Size(297, 20)
         Me.TxtProduct.TabIndex = 8906
@@ -1811,6 +2062,24 @@ Partial Class FormVirtualSales
         Me.GridBand1.VisibleIndex = 1
         Me.GridBand1.Width = 798
         '
+        'gridBandSalesHistory
+        '
+        Me.gridBandSalesHistory.Caption = "SALES HISTORY"
+        Me.gridBandSalesHistory.Columns.Add(Me.BandedGridColumnhsal_qty1)
+        Me.gridBandSalesHistory.Columns.Add(Me.BandedGridColumnhsal_qty2)
+        Me.gridBandSalesHistory.Columns.Add(Me.BandedGridColumnhsal_qty3)
+        Me.gridBandSalesHistory.Columns.Add(Me.BandedGridColumnhsal_qty4)
+        Me.gridBandSalesHistory.Columns.Add(Me.BandedGridColumnhsal_qty5)
+        Me.gridBandSalesHistory.Columns.Add(Me.BandedGridColumnhsal_qty6)
+        Me.gridBandSalesHistory.Columns.Add(Me.BandedGridColumnhsal_qty7)
+        Me.gridBandSalesHistory.Columns.Add(Me.BandedGridColumnhsal_qty8)
+        Me.gridBandSalesHistory.Columns.Add(Me.BandedGridColumnhsal_qty9)
+        Me.gridBandSalesHistory.Columns.Add(Me.BandedGridColumnhsal_qty0)
+        Me.gridBandSalesHistory.Columns.Add(Me.BandedGridColumnhsal_qty)
+        Me.gridBandSalesHistory.Name = "gridBandSalesHistory"
+        Me.gridBandSalesHistory.VisibleIndex = 2
+        Me.gridBandSalesHistory.Width = 825
+        '
         'gridBandSales
         '
         Me.gridBandSales.Caption = "SALES"
@@ -1826,7 +2095,7 @@ Partial Class FormVirtualSales
         Me.gridBandSales.Columns.Add(Me.GridColumnsal_qty0)
         Me.gridBandSales.Columns.Add(Me.GridColumnsal_qty)
         Me.gridBandSales.Name = "gridBandSales"
-        Me.gridBandSales.VisibleIndex = 2
+        Me.gridBandSales.VisibleIndex = 3
         Me.gridBandSales.Width = 825
         '
         'gridBandSOHStore
@@ -1844,8 +2113,8 @@ Partial Class FormVirtualSales
         Me.gridBandSOHStore.Columns.Add(Me.GridColumnsoh_qty0)
         Me.gridBandSOHStore.Columns.Add(Me.GridColumnsoh_qty)
         Me.gridBandSOHStore.Name = "gridBandSOHStore"
-        Me.gridBandSOHStore.VisibleIndex = 3
-        Me.gridBandSOHStore.Width = 825
+        Me.gridBandSOHStore.VisibleIndex = 4
+        Me.gridBandSOHStore.Width = 840
         '
         'gridBandSOHWH
         '
@@ -1862,7 +2131,7 @@ Partial Class FormVirtualSales
         Me.gridBandSOHWH.Columns.Add(Me.BandedGridColumnwh_qty0)
         Me.gridBandSOHWH.Columns.Add(Me.BandedGridColumnwh_qty)
         Me.gridBandSOHWH.Name = "gridBandSOHWH"
-        Me.gridBandSOHWH.VisibleIndex = 4
+        Me.gridBandSOHWH.VisibleIndex = 5
         Me.gridBandSOHWH.Width = 825
         '
         'gridBandOrder
@@ -1883,7 +2152,7 @@ Partial Class FormVirtualSales
         Me.gridBandOrder.Columns.Add(Me.BandedGridColumnorder_qty)
         Me.gridBandOrder.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
         Me.gridBandOrder.Name = "gridBandOrder"
-        Me.gridBandOrder.VisibleIndex = 5
+        Me.gridBandOrder.VisibleIndex = 6
         Me.gridBandOrder.Width = 825
         '
         'FormVirtualSales
@@ -1911,6 +2180,8 @@ Partial Class FormVirtualSales
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.DEFromAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEWH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPriceType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2102,8 +2373,22 @@ Partial Class FormVirtualSales
     Friend WithEvents BandedGridColumnorder_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEFromAcc As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents BandedGridColumnhsal_qty1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnhsal_qty2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnhsal_qty3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnhsal_qty4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnhsal_qty5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnhsal_qty6 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnhsal_qty7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnhsal_qty8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnhsal_qty9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnhsal_qty0 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnhsal_qty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandFreeze As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandSalesHistory As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandSales As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandSOHStore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandSOHWH As DevExpress.XtraGrid.Views.BandedGrid.GridBand

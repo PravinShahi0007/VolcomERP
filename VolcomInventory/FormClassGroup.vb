@@ -38,7 +38,7 @@
     Sub viewData()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT cg.id_class_group, dv.display_name AS `division`, typ.class_type, UPPER(cat.class_cat) AS `class_cat`,
-GROUP_CONCAT(DISTINCT cls.display_name ORDER BY cls.display_name ASC) AS `class_group`
+GROUP_CONCAT(DISTINCT cls.display_name ORDER BY cls.display_name ASC) AS `class_group`, cg.estimasi_sku
 FROM tb_class_group cg 
 INNER JOIN tb_class_group_det cgd ON cgd.id_class_group = cg.id_class_group
 INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = cgd.id_class

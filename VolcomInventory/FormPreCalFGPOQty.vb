@@ -1,7 +1,7 @@
 ﻿Public Class FormPreCalFGPOQty
     Private Sub BPropose_Click(sender As Object, e As EventArgs) Handles BPropose.Click
-        If TEQtyShipment.EditValue > 0 Then
-            warningCustom("Qty shiement tidak boleh 0")
+        If TEQtyShipment.EditValue = 0 Then
+            warningCustom("Qty shipment tidak boleh 0")
         Else
             FormPreCalFGPODet.GVListFGPO.SetFocusedRowCellValue("qty", TEQtyShipment.EditValue)
             Close()

@@ -98,7 +98,7 @@ Partial Class FormDisplayAllocDet
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(17, 175)
+        Me.LabelControl4.Location = New System.Drawing.Point(17, 262)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(81, 13)
         Me.LabelControl4.TabIndex = 6
@@ -106,7 +106,7 @@ Partial Class FormDisplayAllocDet
         '
         'TxtQty
         '
-        Me.TxtQty.Location = New System.Drawing.Point(17, 194)
+        Me.TxtQty.Location = New System.Drawing.Point(17, 281)
         Me.TxtQty.Name = "TxtQty"
         Me.TxtQty.Properties.DisplayFormat.FormatString = "N0"
         Me.TxtQty.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -120,7 +120,7 @@ Partial Class FormDisplayAllocDet
         Me.BtnConfirm.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnConfirm.Appearance.Options.UseFont = True
         Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnConfirm.Location = New System.Drawing.Point(0, 241)
+        Me.BtnConfirm.Location = New System.Drawing.Point(0, 186)
         Me.BtnConfirm.LookAndFeel.SkinMaskColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.BtnConfirm.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnConfirm.Name = "BtnConfirm"
@@ -132,7 +132,7 @@ Partial Class FormDisplayAllocDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(415, 267)
+        Me.ClientSize = New System.Drawing.Size(415, 212)
         Me.Controls.Add(Me.BtnConfirm)
         Me.Controls.Add(Me.TxtQty)
         Me.Controls.Add(Me.LabelControl4)

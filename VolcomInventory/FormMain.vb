@@ -10001,6 +10001,12 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormRiderContract" Then
             FormRiderContract.Close()
             FormRiderContract.Dispose()
+        ElseIf formName = "FormStoreDisplay" Then
+            FormStoreDisplay.Close()
+            FormStoreDisplay.Dispose()
+        ElseIf formName = "FormDesignOrderView" Then
+            FormDesignOrderView.Close()
+            FormDesignOrderView.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11063,6 +11069,10 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDeviden.load_deviden()
         ElseIf formName = "FormQCReport1" Then
             FormQCReport1.load_qc_report1()
+        ElseIf formName = "FormStoreDisplay" Then
+            FormStoreDisplay.refreshData()
+        ElseIf formName = "FormDesignOrderView" Then
+            FormDesignOrderView.viewData()
         End If
     End Sub
     'Switch
@@ -17164,6 +17174,32 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormSyncPOS.Show()
             FormSyncPOS.WindowState = FormWindowState.Maximized
             FormSyncPOS.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBStoreDisplay_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBStoreDisplay.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormStoreDisplay.MdiParent = Me
+            FormStoreDisplay.Show()
+            FormStoreDisplay.WindowState = FormWindowState.Maximized
+            FormStoreDisplay.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBDesignOrderView_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDesignOrderView.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormDesignOrderView.MdiParent = Me
+            FormDesignOrderView.Show()
+            FormDesignOrderView.WindowState = FormWindowState.Maximized
+            FormDesignOrderView.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

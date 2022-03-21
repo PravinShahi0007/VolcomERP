@@ -1162,7 +1162,8 @@ LEFT JOIN
 	INNER JOIN tb_pre_cal_fgpo f ON f.id_pre_cal_fgpo=l.id_pre_cal_fgpo AND f.id_report_status!=5
 	WHERE l.id_prod_order='" & GVListFGPO.GetFocusedRowCellValue("id_prod_order").ToString & "'
 )already ON already.id_prod_order=po.id_prod_order
-WHERE pok.id_prod_order='" & GVListFGPO.GetFocusedRowCellValue("id_prod_order").ToString & "'"
+WHERE pok.id_prod_order='" & GVListFGPO.GetFocusedRowCellValue("id_prod_order").ToString & "'
+HAVING qty>0"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
                 'ada khusus

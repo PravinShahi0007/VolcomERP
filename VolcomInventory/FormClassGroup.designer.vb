@@ -31,6 +31,7 @@ Partial Class FormClassGroup
         Me.GridColumndivision = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnclass_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnclass_cat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnestimasi_sku = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,7 +91,7 @@ Partial Class FormClassGroup
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_class_group, Me.GridColumnclass_group, Me.GridColumndivision, Me.GridColumnclass_type, Me.GridColumnclass_cat})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_class_group, Me.GridColumnclass_group, Me.GridColumndivision, Me.GridColumnclass_type, Me.GridColumnclass_cat, Me.GridColumnestimasi_sku})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
@@ -135,6 +136,16 @@ Partial Class FormClassGroup
         Me.GridColumnclass_cat.Visible = True
         Me.GridColumnclass_cat.VisibleIndex = 2
         '
+        'GridColumnestimasi_sku
+        '
+        Me.GridColumnestimasi_sku.Caption = "ESTIMASI SKU"
+        Me.GridColumnestimasi_sku.DisplayFormat.FormatString = "N0"
+        Me.GridColumnestimasi_sku.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnestimasi_sku.FieldName = "estimasi_sku"
+        Me.GridColumnestimasi_sku.Name = "GridColumnestimasi_sku"
+        Me.GridColumnestimasi_sku.Visible = True
+        Me.GridColumnestimasi_sku.VisibleIndex = 4
+        '
         'FormClassGroup
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -164,4 +175,5 @@ Partial Class FormClassGroup
     Friend WithEvents GridColumndivision As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnclass_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnclass_cat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnestimasi_sku As DevExpress.XtraGrid.Columns.GridColumn
 End Class

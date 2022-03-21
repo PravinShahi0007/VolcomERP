@@ -109,7 +109,7 @@
 
     Sub view_company()
         Dim query As String = "SELECT tb_m_comp.id_tax,tb_lookup_tax.tax,tb_m_comp.id_commerce_type,tb_m_comp.comp_commission,tb_m_comp.id_comp as id_comp,tb_m_comp.comp_number as comp_number,tb_m_comp.comp_name as comp_name,tb_m_comp.address_primary as address_primary,tb_m_comp.is_active as is_active, tb_m_comp.id_comp_cat, tb_m_comp_cat.comp_cat_name as company_category,tb_m_comp_group.comp_group, tb_m_comp.id_wh_type, tb_m_comp.id_store_type, tb_m_comp.id_wh_type, IFNULL(tb_m_comp.id_commerce_type,1) AS `id_commerce_type`,tb_m_comp.id_drawer_def,
-        IF(tb_m_comp.id_comp_cat=5, tb_m_comp.id_wh_type,IF(tb_m_comp.id_comp_cat=6,tb_m_comp.id_store_type,0)) AS `id_account_type`, tb_m_comp.is_use_unique_code, IFNULL(tb_m_comp.id_acc_sales,0) AS `id_acc_sales`, IFNULL(tb_m_comp.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(tb_m_comp.id_acc_ar,0) AS `id_acc_ar` "
+        IF(tb_m_comp.id_comp_cat=5, tb_m_comp.id_wh_type,IF(tb_m_comp.id_comp_cat=6,tb_m_comp.id_store_type,0)) AS `id_account_type`, tb_m_comp.is_use_unique_code, IFNULL(tb_m_comp.id_acc_sales,0) AS `id_acc_sales`, IFNULL(tb_m_comp.id_acc_sales_return,0) AS `id_acc_sales_return`, IFNULL(tb_m_comp.id_acc_ar,0) AS `id_acc_ar`, tb_m_comp.id_comp_group "
         query += " FROM tb_m_comp INNER JOIN tb_m_comp_cat ON tb_m_comp.id_comp_cat=tb_m_comp_cat.id_comp_cat "
         query += " INNER JOIN tb_lookup_tax ON tb_lookup_tax.id_tax=tb_m_comp.id_tax "
         query += " INNER JOIN tb_m_comp_group ON tb_m_comp_group.id_comp_group=tb_m_comp.id_comp_group "
@@ -660,7 +660,7 @@
                 FormSalesPOSDet.SPDiscount.EditValue = Decimal.Parse(GVCompany.GetFocusedRowCellValue("comp_commission").ToString)
             End If
             FormSalesPOSDet.id_comp = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
-            FormSalesPOSDet.id_store_type = GVCompany.GetFocusedRowCellDisplayText("id_account_type").ToString
+            FormSalesPOSDet.id_store_type = GVCompany.GetFocusedRowCellValue("id_account_type").ToString
             FormSalesPOSDet.id_store_contact_from = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
             FormSalesPOSDet.is_use_unique_code = GVCompany.GetFocusedRowCellValue("is_use_unique_code").ToString
             FormSalesPOSDet.TxtNameCompFrom.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "1")
@@ -691,6 +691,7 @@
             FormSalesPOSDet.getVat()
             FormSalesPOSDet.getTaxBase()
             FormSalesPOSDet.check_do()
+            FormSalesPOSDet.setMinDueDate(GVCompany.GetFocusedRowCellValue("id_comp_group").ToString)
             Close()
             'Else
             '    stopCustom("Store not registered for auto posting journal.")
