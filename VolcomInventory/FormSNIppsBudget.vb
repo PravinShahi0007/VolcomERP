@@ -152,6 +152,9 @@ SELECT `id_season`," & id_user & ",NOW()
 FROM tb_sni_pps
 WHERE id_sni_pps='" & GVConfirm.GetFocusedRowCellValue("id_sni_pps").ToString & "'; SELECT LAST_INSERT_ID();"
             Dim id_new_pps As String = execute_query(qup, 0, True, "", "", "", "")
+            'generate number
+            execute_non_query("CALL gen_number('" & id_new_pps & "','319')", True, "", "", "", "")
+
             'list design
             qup = "INSERT INTO `tb_sni_pps_list`(`id_sni_pps`,`id_design`,`id_prod_demand_product`,`qty`)
 SELECT '" & id_new_pps & "' AS id_sni_pps,l.`id_design`,l.`id_prod_demand_product`,pqty.qty
