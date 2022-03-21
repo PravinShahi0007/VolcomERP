@@ -1185,10 +1185,10 @@ Public Class FormSalesOrderDet
         Else
             Cursor = Cursors.WaitCursor
             If id_ol_promo = "-1" Then
-                FormSalesOrderSingleV2.id_wh_par = id_comp_par
-                FormSalesOrderSingleV2.id_store_par = id_store
-                FormSalesOrderSingleV2.data_par = GCItemList.DataSource
-                FormSalesOrderSingleV2.ShowDialog()
+                'FormSalesOrderSingleV2.id_wh_par = id_comp_par
+                'FormSalesOrderSingleV2.id_store_par = id_store
+                'FormSalesOrderSingleV2.data_par = GCItemList.DataSource
+                'FormSalesOrderSingleV2.ShowDialog()
             Else
                 FormSalesOrderPromoList.id_ol_promo = id_ol_promo
                 FormSalesOrderPromoList.data_par = GCItemList.DataSource
