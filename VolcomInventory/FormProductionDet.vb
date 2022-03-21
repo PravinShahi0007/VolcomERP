@@ -396,7 +396,8 @@ INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 WHERE ovhp.`id_ovh_price`='" & id_ovh_price & "'"
             Dim dtvat As DataTable = execute_query(qvat, -1, True, "", "", "", "")
             If dtvat.Rows.Count > 0 Then
-                vat = If(dtvat.Rows(0)("id_tax").ToString = "2", "10", "0")
+                Dim vat_opt As String = get_setup_field("vat_inv_default").ToString
+                vat = If(dtvat.Rows(0)("id_tax").ToString = "2", vat_opt, "0")
             End If
             del_date = Date.Parse(Now().ToString).ToString("yyyy-MM-dd")
             kurs = data.Rows(i)("kurs").ToString

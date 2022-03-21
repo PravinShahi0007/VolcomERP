@@ -44,6 +44,7 @@ WHERE b.id_sni_pps='" & id_pps & "' AND ISNULL(b.id_design)"
             XTPListDesign.PageVisible = True
             XTPProposedList.PageVisible = False
             XTPBudgetPropose.PageVisible = False
+            '
         Else
             'edit
             Dim q As String = "SELECT pps.`id_sni_pps`,pps.`number`,pps.`created_date`,emp.`employee_name`,pps.id_report_status,pps.is_submit 
@@ -110,6 +111,7 @@ INNER JOIN
     FROM tb_m_design dsg
     INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=dsg.`id_prod_demand_design_line`
     INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_design`=pdd.`id_prod_demand_design`
+    INNER JOIN tb_prod_demand pd ON pd.id_prod_demand=pdd.id_prod_demand AND pd.is_pd=2
     GROUP BY dsg.`id_design`
 )pdl ON pdl.id_design=dsg.id_design
 LEFT JOIN
@@ -117,6 +119,7 @@ LEFT JOIN
     SELECT dsg.id_design,pdp.`id_prod_demand_product`
     FROM tb_m_design dsg
     INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=dsg.`id_prod_demand_design_line`
+    INNER JOIN tb_prod_demand pd ON pd.id_prod_demand=pdd.id_prod_demand AND pd.is_pd=2
     INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_design`=pdd.`id_prod_demand_design`
     INNER JOIN tb_m_product p ON p.id_product=pdp.id_product AND p.product_code='931' -- hanya S
     GROUP BY dsg.`id_design`
