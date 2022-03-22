@@ -426,6 +426,12 @@
     <Compile Include="FormAdjustmentOGPick.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAgingProductList.Designer.vb">
+      <DependentUpon>FormAgingProductList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAgingProductList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAllocationHist.Designer.vb">
       <DependentUpon>FormAllocationHist.vb</DependentUpon>
     </Compile>
@@ -3865,6 +3871,12 @@
       <DependentUpon>FormPayoutZaloraReconSummary.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPayoutZaloraReconSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPeminjaman.Designer.vb">
+      <DependentUpon>FormPeminjaman.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPeminjaman.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPIBInput.Designer.vb">
@@ -10902,6 +10914,9 @@
     <EmbeddedResource Include="FormAdjustmentOGPick.resx">
       <DependentUpon>FormAdjustmentOGPick.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAgingProductList.resx">
+      <DependentUpon>FormAgingProductList.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAllocationHist.resx">
       <DependentUpon>FormAllocationHist.vb</DependentUpon>
     </EmbeddedResource>
@@ -12669,6 +12684,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPayoutZaloraReconSummary.resx">
       <DependentUpon>FormPayoutZaloraReconSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPeminjaman.resx">
+      <DependentUpon>FormPeminjaman.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPIBInput.resx">
       <DependentUpon>FormPIBInput.vb</DependentUpon>
