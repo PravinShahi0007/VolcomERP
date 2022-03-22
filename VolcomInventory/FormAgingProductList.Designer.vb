@@ -40,6 +40,20 @@ Partial Class FormAgingProductList
         Me.LabelControl35 = New DevExpress.XtraEditors.LabelControl()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumndesign_code = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnclass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnseason = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndelivery = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_group_desc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstore_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnfirst_del = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnage = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumninput_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlSOH, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlSOH.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -246,11 +260,141 @@ Partial Class FormAgingProductList
         '
         'GVList
         '
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumndesign_code, Me.GridColumnclass, Me.GridColumndesign_name, Me.GridColumncolor, Me.GridColumnseason, Me.GridColumndelivery, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumncomp_group_desc, Me.GridColumnstore_type, Me.GridColumnfirst_del, Me.GridColumnage, Me.GridColumninput_date, Me.GridColumnnote})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVList.OptionsFind.AlwaysVisible = True
+        Me.GVList.OptionsView.ColumnAutoWidth = False
         Me.GVList.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumndesign_code
+        '
+        Me.GridColumndesign_code.Caption = "Code"
+        Me.GridColumndesign_code.FieldName = "design_code"
+        Me.GridColumndesign_code.Name = "GridColumndesign_code"
+        Me.GridColumndesign_code.OptionsColumn.ReadOnly = True
+        Me.GridColumndesign_code.Visible = True
+        Me.GridColumndesign_code.VisibleIndex = 0
+        '
+        'GridColumnclass
+        '
+        Me.GridColumnclass.Caption = "Class"
+        Me.GridColumnclass.FieldName = "class"
+        Me.GridColumnclass.Name = "GridColumnclass"
+        Me.GridColumnclass.OptionsColumn.ReadOnly = True
+        Me.GridColumnclass.Visible = True
+        Me.GridColumnclass.VisibleIndex = 1
+        '
+        'GridColumndesign_name
+        '
+        Me.GridColumndesign_name.Caption = "Description"
+        Me.GridColumndesign_name.FieldName = "design_name"
+        Me.GridColumndesign_name.Name = "GridColumndesign_name"
+        Me.GridColumndesign_name.OptionsColumn.ReadOnly = True
+        Me.GridColumndesign_name.Visible = True
+        Me.GridColumndesign_name.VisibleIndex = 2
+        '
+        'GridColumncolor
+        '
+        Me.GridColumncolor.Caption = "Color"
+        Me.GridColumncolor.FieldName = "color"
+        Me.GridColumncolor.Name = "GridColumncolor"
+        Me.GridColumncolor.OptionsColumn.ReadOnly = True
+        Me.GridColumncolor.Visible = True
+        Me.GridColumncolor.VisibleIndex = 3
+        '
+        'GridColumnseason
+        '
+        Me.GridColumnseason.Caption = "Season"
+        Me.GridColumnseason.FieldName = "season"
+        Me.GridColumnseason.Name = "GridColumnseason"
+        Me.GridColumnseason.OptionsColumn.ReadOnly = True
+        Me.GridColumnseason.Visible = True
+        Me.GridColumnseason.VisibleIndex = 4
+        '
+        'GridColumndelivery
+        '
+        Me.GridColumndelivery.Caption = "Del"
+        Me.GridColumndelivery.FieldName = "delivery"
+        Me.GridColumndelivery.Name = "GridColumndelivery"
+        Me.GridColumndelivery.OptionsColumn.ReadOnly = True
+        Me.GridColumndelivery.Visible = True
+        Me.GridColumndelivery.VisibleIndex = 5
+        '
+        'GridColumncomp_number
+        '
+        Me.GridColumncomp_number.Caption = "Account"
+        Me.GridColumncomp_number.FieldName = "comp_number"
+        Me.GridColumncomp_number.Name = "GridColumncomp_number"
+        Me.GridColumncomp_number.OptionsColumn.ReadOnly = True
+        Me.GridColumncomp_number.Visible = True
+        Me.GridColumncomp_number.VisibleIndex = 6
+        '
+        'GridColumncomp_name
+        '
+        Me.GridColumncomp_name.Caption = "Acc. Description"
+        Me.GridColumncomp_name.FieldName = "comp_name"
+        Me.GridColumncomp_name.Name = "GridColumncomp_name"
+        Me.GridColumncomp_name.OptionsColumn.ReadOnly = True
+        Me.GridColumncomp_name.Visible = True
+        Me.GridColumncomp_name.VisibleIndex = 7
+        '
+        'GridColumncomp_group_desc
+        '
+        Me.GridColumncomp_group_desc.Caption = "Store Group"
+        Me.GridColumncomp_group_desc.FieldName = "comp_group_desc"
+        Me.GridColumncomp_group_desc.Name = "GridColumncomp_group_desc"
+        Me.GridColumncomp_group_desc.OptionsColumn.ReadOnly = True
+        Me.GridColumncomp_group_desc.Visible = True
+        Me.GridColumncomp_group_desc.VisibleIndex = 8
+        '
+        'GridColumnstore_type
+        '
+        Me.GridColumnstore_type.Caption = "Store Type"
+        Me.GridColumnstore_type.FieldName = "store_type"
+        Me.GridColumnstore_type.Name = "GridColumnstore_type"
+        Me.GridColumnstore_type.OptionsColumn.ReadOnly = True
+        Me.GridColumnstore_type.Visible = True
+        Me.GridColumnstore_type.VisibleIndex = 9
+        '
+        'GridColumnfirst_del
+        '
+        Me.GridColumnfirst_del.Caption = "First Del"
+        Me.GridColumnfirst_del.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnfirst_del.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnfirst_del.FieldName = "first_del"
+        Me.GridColumnfirst_del.Name = "GridColumnfirst_del"
+        Me.GridColumnfirst_del.OptionsColumn.ReadOnly = True
+        Me.GridColumnfirst_del.Visible = True
+        Me.GridColumnfirst_del.VisibleIndex = 10
+        '
+        'GridColumnage
+        '
+        Me.GridColumnage.Caption = "Age"
+        Me.GridColumnage.DisplayFormat.FormatString = "N0"
+        Me.GridColumnage.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnage.FieldName = "age"
+        Me.GridColumnage.Name = "GridColumnage"
+        Me.GridColumnage.OptionsColumn.ReadOnly = True
+        Me.GridColumnage.Visible = True
+        Me.GridColumnage.VisibleIndex = 11
+        '
+        'GridColumninput_date
+        '
+        Me.GridColumninput_date.Caption = "Input Date"
+        Me.GridColumninput_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumninput_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumninput_date.FieldName = "input_date"
+        Me.GridColumninput_date.Name = "GridColumninput_date"
+        Me.GridColumninput_date.OptionsColumn.ReadOnly = True
+        '
+        'GridColumnnote
+        '
+        Me.GridColumnnote.Caption = "Note"
+        Me.GridColumnnote.FieldName = "note"
+        Me.GridColumnnote.Name = "GridColumnnote"
+        Me.GridColumnnote.OptionsColumn.ReadOnly = True
         '
         'FormAgingProductList
         '
@@ -301,4 +445,18 @@ Partial Class FormAgingProductList
     Friend WithEvents LabelControl35 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCList As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVList As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumndesign_code As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnclass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndesign_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncolor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnseason As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndelivery As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_group_desc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstore_type As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnfirst_del As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnage As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumninput_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
 End Class

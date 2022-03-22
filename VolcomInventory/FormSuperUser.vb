@@ -112,7 +112,7 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        FormStoreDisplay.ShowDialog()
+        FormAgingProductList.ShowDialog()
         'Dim m As New ClassSendEmail()
         'm.design_code = "RTS15250"
         'm.design = "P49 - PS A YANI PONTIANAK"
