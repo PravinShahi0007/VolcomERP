@@ -8929,6 +8929,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormBSP.printList()
         ElseIf formName = "FormQCReport1" Then
             print(FormQCReport1.GCQCReport, "List QC Report 1")
+        ElseIf formName = "FormAgingProductList" Then
+            print(FormAgingProductList.GCList, "Product Age List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -10007,6 +10009,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormDesignOrderView" Then
             FormDesignOrderView.Close()
             FormDesignOrderView.Dispose()
+        ElseIf formName = "FormAgingProductList" Then
+            FormAgingProductList.Close()
+            FormAgingProductList.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
