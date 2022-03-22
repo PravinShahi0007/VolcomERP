@@ -64,12 +64,12 @@ WHERE pps.`id_sni_pps`='" & id_pps & "'"
                 '
                 If is_submit = "1" Then
                     BPrint.Visible = True
-                    PCAddBudget.Visible = False
+                    BGetCOP.Visible = False
                     PCAddDel.Visible = False
                     BSave.Visible = False
                 Else
                     BPrint.Visible = False
-                    PCAddBudget.Visible = True
+                    BGetCOP.Visible = True
                     PCAddDel.Visible = True
                     BSave.Visible = True
                 End If
