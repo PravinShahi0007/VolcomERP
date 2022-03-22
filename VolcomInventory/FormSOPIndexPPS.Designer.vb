@@ -392,7 +392,7 @@ Partial Class FormSOPIndexPPS
         'DeleteModulToolStripMenuItem
         '
         Me.DeleteModulToolStripMenuItem.Name = "DeleteModulToolStripMenuItem"
-        Me.DeleteModulToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
+        Me.DeleteModulToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.DeleteModulToolStripMenuItem.Text = "Remove"
         '
         'GVList
@@ -444,30 +444,30 @@ Partial Class FormSOPIndexPPS
         Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn15.Caption = "Kode Sub Prosedur"
+        Me.GridColumn15.Caption = "Kode Sub Prosedur / Subject"
         Me.GridColumn15.FieldName = "sop_prosedur_sub_code"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 2
-        Me.GridColumn15.Width = 113
+        Me.GridColumn15.Width = 167
         '
         'GridColumn7
         '
-        Me.GridColumn7.Caption = "Sub Prosedur"
+        Me.GridColumn7.Caption = "Sub Prosedur / Subject"
         Me.GridColumn7.FieldName = "sop_prosedur_sub"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 3
-        Me.GridColumn7.Width = 204
+        Me.GridColumn7.Width = 197
         '
         'GridColumn9
         '
-        Me.GridColumn9.Caption = "Nama SOP"
+        Me.GridColumn9.Caption = "Nama SOP / Sub Subject"
         Me.GridColumn9.FieldName = "sop_name"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 4
-        Me.GridColumn9.Width = 430
+        Me.GridColumn9.Width = 418
         '
         'GridColumn10
         '

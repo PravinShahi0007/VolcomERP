@@ -19,9 +19,12 @@ Partial Class FormSOPCat
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.XTCCat = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPProsedur = New DevExpress.XtraTab.XtraTabPage()
         Me.GCProsedur = New DevExpress.XtraGrid.GridControl()
+        Me.CM = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DeleteModulToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVProsedur = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -42,6 +45,8 @@ Partial Class FormSOPCat
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPSubProsedur = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSubProsedur = New DevExpress.XtraGrid.GridControl()
+        Me.CM2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSubProsedur = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -57,10 +62,12 @@ Partial Class FormSOPCat
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TESProsedur = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCCat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCCat.SuspendLayout()
         Me.XTPProsedur.SuspendLayout()
         CType(Me.GCProsedur, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CM.SuspendLayout()
         CType(Me.GVProsedur, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCAddMasterProsedur, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAddMasterProsedur.SuspendLayout()
@@ -72,6 +79,7 @@ Partial Class FormSOPCat
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSubProsedur.SuspendLayout()
         CType(Me.GCSubProsedur, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CM2.SuspendLayout()
         CType(Me.GVSubProsedur, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -103,6 +111,7 @@ Partial Class FormSOPCat
         '
         'GCProsedur
         '
+        Me.GCProsedur.ContextMenuStrip = Me.CM
         Me.GCProsedur.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCProsedur.Location = New System.Drawing.Point(0, 52)
         Me.GCProsedur.MainView = Me.GVProsedur
@@ -110,6 +119,18 @@ Partial Class FormSOPCat
         Me.GCProsedur.Size = New System.Drawing.Size(1048, 338)
         Me.GCProsedur.TabIndex = 1
         Me.GCProsedur.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProsedur})
+        '
+        'CM
+        '
+        Me.CM.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteModulToolStripMenuItem})
+        Me.CM.Name = "CM"
+        Me.CM.Size = New System.Drawing.Size(118, 26)
+        '
+        'DeleteModulToolStripMenuItem
+        '
+        Me.DeleteModulToolStripMenuItem.Name = "DeleteModulToolStripMenuItem"
+        Me.DeleteModulToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteModulToolStripMenuItem.Text = "Remove"
         '
         'GVProsedur
         '
@@ -283,10 +304,11 @@ Partial Class FormSOPCat
         Me.XTPSubProsedur.Name = "XTPSubProsedur"
         Me.XTPSubProsedur.PageVisible = False
         Me.XTPSubProsedur.Size = New System.Drawing.Size(1048, 491)
-        Me.XTPSubProsedur.Text = "Master Sub Prosedur"
+        Me.XTPSubProsedur.Text = "Master Sub Prosedur / Subject"
         '
         'GCSubProsedur
         '
+        Me.GCSubProsedur.ContextMenuStrip = Me.CM2
         Me.GCSubProsedur.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCSubProsedur.Location = New System.Drawing.Point(0, 0)
         Me.GCSubProsedur.MainView = Me.GVSubProsedur
@@ -295,9 +317,21 @@ Partial Class FormSOPCat
         Me.GCSubProsedur.TabIndex = 2
         Me.GCSubProsedur.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSubProsedur})
         '
+        'CM2
+        '
+        Me.CM2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.CM2.Name = "CM"
+        Me.CM2.Size = New System.Drawing.Size(118, 26)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem1.Text = "Remove"
+        '
         'GVSubProsedur
         '
-        Me.GVSubProsedur.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
+        Me.GVSubProsedur.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn8, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
         Me.GVSubProsedur.GridControl = Me.GCSubProsedur
         Me.GVSubProsedur.Name = "GVSubProsedur"
         Me.GVSubProsedur.OptionsView.ShowGroupPanel = False
@@ -310,7 +344,7 @@ Partial Class FormSOPCat
         '
         'GridColumn10
         '
-        Me.GridColumn10.Caption = "Nama Sub Prosedur"
+        Me.GridColumn10.Caption = "Nama Sub Prosedur / Subject"
         Me.GridColumn10.FieldName = "sop_prosedur_sub"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
@@ -323,7 +357,7 @@ Partial Class FormSOPCat
         Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn11.Caption = "Kode Sub Prosedur"
+        Me.GridColumn11.Caption = "Kode Sub Prosedur / Subject"
         Me.GridColumn11.FieldName = "sop_prosedur_sub_code"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
@@ -385,11 +419,11 @@ Partial Class FormSOPCat
         Me.BAddSubProsedur.Name = "BAddSubProsedur"
         Me.BAddSubProsedur.Size = New System.Drawing.Size(1044, 35)
         Me.BAddSubProsedur.TabIndex = 10
-        Me.BAddSubProsedur.Text = "Add Sub Prosedur"
+        Me.BAddSubProsedur.Text = "Add Sub Prosedur / Subject"
         '
         'TESKodeProsedur
         '
-        Me.TESKodeProsedur.Location = New System.Drawing.Point(108, 13)
+        Me.TESKodeProsedur.Location = New System.Drawing.Point(154, 13)
         Me.TESKodeProsedur.Name = "TESKodeProsedur"
         Me.TESKodeProsedur.Properties.ReadOnly = True
         Me.TESKodeProsedur.Size = New System.Drawing.Size(92, 20)
@@ -397,7 +431,7 @@ Partial Class FormSOPCat
         '
         'TESub
         '
-        Me.TESub.Location = New System.Drawing.Point(108, 67)
+        Me.TESub.Location = New System.Drawing.Point(154, 67)
         Me.TESub.Name = "TESub"
         Me.TESub.Size = New System.Drawing.Size(385, 20)
         Me.TESub.TabIndex = 5
@@ -406,13 +440,13 @@ Partial Class FormSOPCat
         '
         Me.LabelControl5.Location = New System.Drawing.Point(11, 70)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(64, 13)
+        Me.LabelControl5.Size = New System.Drawing.Size(110, 13)
         Me.LabelControl5.TabIndex = 4
-        Me.LabelControl5.Text = "Sub Prosedur"
+        Me.LabelControl5.Text = "Sub Prosedur / Subject"
         '
         'TEKodeSub
         '
-        Me.TEKodeSub.Location = New System.Drawing.Point(108, 41)
+        Me.TEKodeSub.Location = New System.Drawing.Point(154, 41)
         Me.TEKodeSub.Name = "TEKodeSub"
         Me.TEKodeSub.Size = New System.Drawing.Size(184, 20)
         Me.TEKodeSub.TabIndex = 3
@@ -421,13 +455,13 @@ Partial Class FormSOPCat
         '
         Me.LabelControl4.Location = New System.Drawing.Point(11, 44)
         Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(91, 13)
+        Me.LabelControl4.Size = New System.Drawing.Size(137, 13)
         Me.LabelControl4.TabIndex = 2
-        Me.LabelControl4.Text = "Kode Sub Prosedur"
+        Me.LabelControl4.Text = "Kode Sub Prosedur / Subject"
         '
         'TESProsedur
         '
-        Me.TESProsedur.Location = New System.Drawing.Point(206, 13)
+        Me.TESProsedur.Location = New System.Drawing.Point(252, 13)
         Me.TESProsedur.Name = "TESProsedur"
         Me.TESProsedur.Properties.ReadOnly = True
         Me.TESProsedur.Size = New System.Drawing.Size(287, 20)
@@ -441,6 +475,12 @@ Partial Class FormSOPCat
         Me.LabelControl3.TabIndex = 0
         Me.LabelControl3.Text = "Prosedur"
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "ID Sub"
+        Me.GridColumn8.FieldName = "id_sop_prosedur_sub"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
         'FormSOPCat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -451,12 +491,13 @@ Partial Class FormSOPCat
         Me.MinimizeBox = False
         Me.Name = "FormSOPCat"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "SOP Data Master Prosedur - Sub Prosedur"
+        Me.Text = "SOP Data Master Prosedur - Sub Prosedur / Subject"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.XTCCat, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCCat.ResumeLayout(False)
         Me.XTPProsedur.ResumeLayout(False)
         CType(Me.GCProsedur, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CM.ResumeLayout(False)
         CType(Me.GVProsedur, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCAddMasterProsedur, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAddMasterProsedur.ResumeLayout(False)
@@ -470,6 +511,7 @@ Partial Class FormSOPCat
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSubProsedur.ResumeLayout(False)
         CType(Me.GCSubProsedur, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CM2.ResumeLayout(False)
         CType(Me.GVSubProsedur, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
@@ -520,4 +562,9 @@ Partial Class FormSOPCat
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TESProsedur As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents CM As ContextMenuStrip
+    Friend WithEvents DeleteModulToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CM2 As ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
