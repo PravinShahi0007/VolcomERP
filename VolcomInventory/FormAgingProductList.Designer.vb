@@ -26,6 +26,9 @@ Partial Class FormAgingProductList
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEAccount = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewAcc = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportToXLSAcc = New DevExpress.XtraEditors.SimpleButton()
@@ -35,9 +38,6 @@ Partial Class FormAgingProductList
         Me.LabelControl29 = New DevExpress.XtraEditors.LabelControl()
         Me.DEUntilAcc = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl35 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControlSOH, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,6 +119,28 @@ Partial Class FormAgingProductList
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "Id Comp"
+        Me.GridColumn31.FieldName = "id_comp"
+        Me.GridColumn31.Name = "GridColumn31"
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "Account"
+        Me.GridColumn32.FieldName = "comp_number"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 0
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Description"
+        Me.GridColumn33.FieldName = "comp_name_label"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 1
         '
         'PanelControl4
         '
@@ -211,28 +233,6 @@ Partial Class FormAgingProductList
         Me.LabelControl35.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl35.TabIndex = 8915
         Me.LabelControl35.Text = "Account"
-        '
-        'GridColumn31
-        '
-        Me.GridColumn31.Caption = "Id Comp"
-        Me.GridColumn31.FieldName = "id_comp"
-        Me.GridColumn31.Name = "GridColumn31"
-        '
-        'GridColumn32
-        '
-        Me.GridColumn32.Caption = "Account"
-        Me.GridColumn32.FieldName = "comp_number"
-        Me.GridColumn32.Name = "GridColumn32"
-        Me.GridColumn32.Visible = True
-        Me.GridColumn32.VisibleIndex = 0
-        '
-        'GridColumn33
-        '
-        Me.GridColumn33.Caption = "Description"
-        Me.GridColumn33.FieldName = "comp_name_label"
-        Me.GridColumn33.Name = "GridColumn33"
-        Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 1
         '
         'GCList
         '
