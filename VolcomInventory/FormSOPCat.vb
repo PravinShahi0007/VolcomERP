@@ -1,7 +1,13 @@
 ﻿Public Class FormSOPCat
     Dim id_departement As String = "-1"
+    Public id_dep_view As String = "-1"
+
     Private Sub FormSOPCat_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_departement()
+        If Not id_dep_view = "-1" Then
+            SLEDepartement.EditValue = id_dep_view
+            view()
+        End If
     End Sub
 
     Sub load_departement()
@@ -10,6 +16,10 @@
     End Sub
 
     Private Sub Bview_Click(sender As Object, e As EventArgs) Handles Bview.Click
+        view()
+    End Sub
+
+    Sub view()
         load_prosedur()
 
         PCAddMasterProsedur.Visible = True
