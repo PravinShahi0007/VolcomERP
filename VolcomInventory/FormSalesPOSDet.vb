@@ -1379,7 +1379,7 @@ Public Class FormSalesPOSDet
     Sub getPotonganGWP()
         If action = "ins" Then
             'code here
-            If CheckEditInvType.EditValue = False Then
+            If CheckEditInvType.EditValue = False And id_menu <> "3" Then
                 GVItemList.ActiveFilterString = "[is_gwp]=1"
                 Dim potongan_gwp As Double = 0.0
                 Try
