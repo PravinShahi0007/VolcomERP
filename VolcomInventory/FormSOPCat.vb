@@ -111,4 +111,44 @@ WHERE id_sop_prosedur='" & GVProsedur.GetFocusedRowCellValue("id_sop_prosedur").
     Private Sub FormSOPCat_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        If GVSubProsedur.RowCount > 0 Then
+            'check
+            Dim q As String = "(SELECT id_sop_prosedur_sub FROM tb_sop_pps_det WHERE id_sop_prosedur_sub='" & GVSubProsedur.GetFocusedRowCellValue("id_sop_prosedur_sub").ToString & "')
+UNION ALL
+(SELECT id_sop_prosedur_sub FROM tb_sop WHERE id_sop_prosedur_sub='" & GVSubProsedur.GetFocusedRowCellValue("id_sop_prosedur_sub").ToString & "')"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                warningCustom("This sub prosedur / subject already used")
+            Else
+                execute_non_query("DELETE FROM tb_sop_prosedur_sub WHERE id_sop_prosedur_sub='" & GVSubProsedur.GetFocusedRowCellValue("id_sop_prosedur_sub").ToString & "'", True, "", "", "", "")
+                load_prosedur_sub()
+            End If
+        Else
+            warningCustom("No data found")
+        End If
+    End Sub
+
+    Private Sub DeleteModulToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteModulToolStripMenuItem.Click
+        If GVProsedur.RowCount > 0 Then
+            'check
+            Dim q As String = "SELECT id_sop_prosedur FROM tb_sop_prosedur_sub WHERE id_sop_prosedur='" & GVProsedur.GetFocusedRowCellValue("id_sop_prosedur").ToString & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                warningCustom("This prosedur already used, please delete all sub prosedur / subject.")
+            Else
+                execute_non_query("DELETE FROM tb_sop_prosedur WHERE id_sop_prosedur='" & GVProsedur.GetFocusedRowCellValue("id_sop_prosedur").ToString & "'", True, "", "", "", "")
+                view()
+            End If
+        Else
+            warningCustom("No data found")
+        End If
+    End Sub
+
+    Private Sub XTCCat_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCCat.SelectedPageChanged
+        If XTCCat.SelectedTabPageIndex = 1 Then
+            load_prosedur_sub()
+        End If
+    End Sub
 End Class
