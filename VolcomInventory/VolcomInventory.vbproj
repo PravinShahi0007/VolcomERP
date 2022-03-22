@@ -3873,6 +3873,12 @@
     <Compile Include="FormPayoutZaloraReconSummary.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPeminjaman.Designer.vb">
+      <DependentUpon>FormPeminjaman.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPeminjaman.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPIBInput.Designer.vb">
       <DependentUpon>FormPIBInput.vb</DependentUpon>
     </Compile>
@@ -12678,6 +12684,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPayoutZaloraReconSummary.resx">
       <DependentUpon>FormPayoutZaloraReconSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPeminjaman.resx">
+      <DependentUpon>FormPeminjaman.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPIBInput.resx">
       <DependentUpon>FormPIBInput.vb</DependentUpon>
