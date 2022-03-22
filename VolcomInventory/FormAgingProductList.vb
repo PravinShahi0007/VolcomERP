@@ -59,7 +59,7 @@
         If Not FormMain.SplashScreenManager1.IsSplashFormVisible Then
             FormMain.SplashScreenManager1.ShowWaitForm()
         End If
-
+        Dim query As String = ""
         FormMain.SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
     End Sub
