@@ -426,6 +426,12 @@
     <Compile Include="FormAdjustmentOGPick.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAgingProductList.Designer.vb">
+      <DependentUpon>FormAgingProductList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAgingProductList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAllocationHist.Designer.vb">
       <DependentUpon>FormAllocationHist.vb</DependentUpon>
     </Compile>
@@ -10907,6 +10913,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAdjustmentOGPick.resx">
       <DependentUpon>FormAdjustmentOGPick.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAgingProductList.resx">
+      <DependentUpon>FormAgingProductList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAllocationHist.resx">
       <DependentUpon>FormAllocationHist.vb</DependentUpon>
