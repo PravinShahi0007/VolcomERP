@@ -54,6 +54,7 @@ Partial Class FormAgingProductList
         Me.GridColumnage = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumninput_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnnote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncommerce_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlSOH, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlSOH.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -260,7 +261,7 @@ Partial Class FormAgingProductList
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumndesign_code, Me.GridColumnclass, Me.GridColumndesign_name, Me.GridColumncolor, Me.GridColumnseason, Me.GridColumndelivery, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumncomp_group_desc, Me.GridColumnstore_type, Me.GridColumnfirst_del, Me.GridColumnage, Me.GridColumninput_date, Me.GridColumnnote})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumndesign_code, Me.GridColumnclass, Me.GridColumndesign_name, Me.GridColumncolor, Me.GridColumnseason, Me.GridColumndelivery, Me.GridColumncomp_number, Me.GridColumncomp_name, Me.GridColumncomp_group_desc, Me.GridColumnstore_type, Me.GridColumnfirst_del, Me.GridColumnage, Me.GridColumninput_date, Me.GridColumnnote, Me.GridColumncommerce_type})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -367,7 +368,7 @@ Partial Class FormAgingProductList
         Me.GridColumnfirst_del.Name = "GridColumnfirst_del"
         Me.GridColumnfirst_del.OptionsColumn.ReadOnly = True
         Me.GridColumnfirst_del.Visible = True
-        Me.GridColumnfirst_del.VisibleIndex = 10
+        Me.GridColumnfirst_del.VisibleIndex = 11
         '
         'GridColumnage
         '
@@ -378,7 +379,7 @@ Partial Class FormAgingProductList
         Me.GridColumnage.Name = "GridColumnage"
         Me.GridColumnage.OptionsColumn.ReadOnly = True
         Me.GridColumnage.Visible = True
-        Me.GridColumnage.VisibleIndex = 11
+        Me.GridColumnage.VisibleIndex = 12
         '
         'GridColumninput_date
         '
@@ -395,6 +396,15 @@ Partial Class FormAgingProductList
         Me.GridColumnnote.FieldName = "note"
         Me.GridColumnnote.Name = "GridColumnnote"
         Me.GridColumnnote.OptionsColumn.ReadOnly = True
+        '
+        'GridColumncommerce_type
+        '
+        Me.GridColumncommerce_type.Caption = "Commerce Type"
+        Me.GridColumncommerce_type.FieldName = "commerce_type"
+        Me.GridColumncommerce_type.Name = "GridColumncommerce_type"
+        Me.GridColumncommerce_type.Visible = True
+        Me.GridColumncommerce_type.VisibleIndex = 10
+        Me.GridColumncommerce_type.Width = 115
         '
         'FormAgingProductList
         '
@@ -459,4 +469,5 @@ Partial Class FormAgingProductList
     Friend WithEvents GridColumnage As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumninput_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnnote As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncommerce_type As DevExpress.XtraGrid.Columns.GridColumn
 End Class
