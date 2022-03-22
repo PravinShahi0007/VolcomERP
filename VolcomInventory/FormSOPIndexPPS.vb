@@ -131,6 +131,7 @@ WHERE pps.id_report_status!=5 AND ppsd.id_sop_prosedur_sub='" & SLESubProsedur.E
     End Sub
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BCat.Click
+        FormSOPCat.id_dep_view = SLEDepartement.EditValue.ToString
         FormSOPCat.ShowDialog()
     End Sub
 
@@ -198,5 +199,11 @@ WHERE pps.id_report_status!=5 AND ppsd.id_sop_prosedur_sub='" & SLESubProsedur.E
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub DeleteModulToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteModulToolStripMenuItem.Click
+        If GVList.RowCount > 0 Then
+            GVList.DeleteSelectedRows()
+        End If
     End Sub
 End Class

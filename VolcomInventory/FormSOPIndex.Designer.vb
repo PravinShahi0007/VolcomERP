@@ -224,7 +224,7 @@ Partial Class FormSOPIndex
         '
         'GridColumn16
         '
-        Me.GridColumn16.Caption = "Sub Prosedur"
+        Me.GridColumn16.Caption = "Sub Prosedur / Subject"
         Me.GridColumn16.FieldName = "sop_prosedur_sub"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
@@ -232,7 +232,7 @@ Partial Class FormSOPIndex
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "Nama SOP"
+        Me.GridColumn2.Caption = "Nama SOP / Sub Subject"
         Me.GridColumn2.FieldName = "sop_name"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
@@ -361,7 +361,7 @@ Partial Class FormSOPIndex
         '
         'GridColumn20
         '
-        Me.GridColumn20.Caption = "Sub Prosedur"
+        Me.GridColumn20.Caption = "Sub Prosedur / Subject"
         Me.GridColumn20.FieldName = "sop_prosedur_sub"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
@@ -377,7 +377,7 @@ Partial Class FormSOPIndex
         '
         'GridColumn8
         '
-        Me.GridColumn8.Caption = "Nama SOP"
+        Me.GridColumn8.Caption = "Nama SOP / Sub Subject"
         Me.GridColumn8.FieldName = "sop_name"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
@@ -756,7 +756,7 @@ Partial Class FormSOPIndex
         '
         'GridColumn39
         '
-        Me.GridColumn39.Caption = "Nama SOP"
+        Me.GridColumn39.Caption = "Nama SOP / Sub Subject"
         Me.GridColumn39.FieldName = "sop_name"
         Me.GridColumn39.Name = "GridColumn39"
         Me.GridColumn39.Visible = True
@@ -822,7 +822,7 @@ Partial Class FormSOPIndex
         '
         'GridColumn44
         '
-        Me.GridColumn44.Caption = "Sub Prosedur"
+        Me.GridColumn44.Caption = "Sub Prosedur / Subject"
         Me.GridColumn44.FieldName = "sop_prosedur_sub"
         Me.GridColumn44.Name = "GridColumn44"
         Me.GridColumn44.Visible = True
@@ -830,7 +830,7 @@ Partial Class FormSOPIndex
         '
         'GridColumn45
         '
-        Me.GridColumn45.Caption = "Nama SOP"
+        Me.GridColumn45.Caption = "Nama SOP / Sub Subject"
         Me.GridColumn45.FieldName = "sop_name"
         Me.GridColumn45.Name = "GridColumn45"
         Me.GridColumn45.Visible = True
