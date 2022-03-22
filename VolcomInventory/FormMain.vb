@@ -17205,4 +17205,17 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBAgingProductList_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAgingProductList.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormAgingProductList.MdiParent = Me
+            FormAgingProductList.Show()
+            FormAgingProductList.WindowState = FormWindowState.Maximized
+            FormAgingProductList.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
