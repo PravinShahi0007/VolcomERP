@@ -8929,6 +8929,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormBSP.printList()
         ElseIf formName = "FormQCReport1" Then
             print(FormQCReport1.GCQCReport, "List QC Report 1")
+        ElseIf formName = "FormAgingProductList" Then
+            print(FormAgingProductList.GCList, "Product Age List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -10007,6 +10009,9 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
         ElseIf formName = "FormDesignOrderView" Then
             FormDesignOrderView.Close()
             FormDesignOrderView.Dispose()
+        ElseIf formName = "FormAgingProductList" Then
+            FormAgingProductList.Close()
+            FormAgingProductList.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -17200,6 +17205,19 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
             FormDesignOrderView.Show()
             FormDesignOrderView.WindowState = FormWindowState.Maximized
             FormDesignOrderView.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAgingProductList_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAgingProductList.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormAgingProductList.MdiParent = Me
+            FormAgingProductList.Show()
+            FormAgingProductList.WindowState = FormWindowState.Maximized
+            FormAgingProductList.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
