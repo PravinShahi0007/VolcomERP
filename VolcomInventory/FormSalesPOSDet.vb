@@ -204,11 +204,11 @@ Public Class FormSalesPOSDet
             DEStart.Properties.MinValue = data_closing(0)("first_date")
             DEEnd.Properties.MinValue = data_closing(0)("first_date")
             'maximum date
-            'Dim tgl_sekarang As DateTime = getTimeDB()
-            'DEStart.Properties.MaxValue = tgl_sekarang
-            'DEEnd.Properties.MaxValue = tgl_sekarang
-            'DEStocktake.Properties.MaxValue = tgl_sekarang
-            'DEStocktake.EditValue = Nothing
+            Dim tgl_sekarang As DateTime = getTimeDB()
+            DEStart.Properties.MaxValue = tgl_sekarang
+            DEEnd.Properties.MaxValue = tgl_sekarang
+            DEStocktake.Properties.MaxValue = tgl_sekarang
+            DEStocktake.EditValue = Nothing
 
             'credit note ol store base on return centre
             If id_menu = "5" And is_use_return_centre = "1" Then
