@@ -2,8 +2,11 @@
     Public id_kp As String = "-1"
     Public is_locked As String = "2"
     Public is_purc_mat As String = "2"
-    Dim is_void As String = "2"
 
+    Public is_view As String = "-1"
+
+    Dim is_void As String = "2"
+    Dim is_submit As String = "-1"
     Private Sub FormProductionkp_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -16,6 +19,7 @@
         load_revision()
 
         load_head()
+        '
     End Sub
 
     Sub load_revision()
@@ -25,7 +29,7 @@
 
     Sub load_head()
         'view yang revisi terakhir
-        Dim query As String = "SELECT kp.is_locked,kp.is_void,kp.is_purc_mat,c.phone,c.fax,kp.number,cc.`contact_person`,c.`comp_number`,c.`comp_name`,c.`address_primary`,kp.`date_created`,LPAD(kp.`revision`,2,'0') AS revision
+        Dim query As String = "SELECT kp.is_submit,kp.is_locked,kp.is_void,kp.is_purc_mat,c.phone,c.fax,kp.number,cc.`contact_person`,c.`comp_number`,c.`comp_name`,c.`address_primary`,kp.`date_created`,LPAD(kp.`revision`,2,'0') AS revision
 FROM tb_prod_order_kp kp
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=kp.id_comp_contact
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
@@ -48,9 +52,25 @@ WHERE id_prod_order_kp='" & id_kp & "'"
             TEFax.EditValue = data.Rows(0)("fax")
 
             is_locked = data.Rows(0)("is_locked").ToString
+            is_submit = data.Rows(0)("is_submit").ToString
             'load_det
             load_det()
             '
+        End If
+
+        If is_submit = "1" Then
+            BMark.Visible = True
+            BLock.Visible = False
+            BPrintKP.Visible = True
+        Else
+            BMark.Visible = False
+            BLock.Visible = True
+            BPrintKP.Visible = False
+        End If
+
+        If is_view = "1" Then
+            is_locked = "1"
+            BPrintKP.Visible = False
         End If
 
         If is_locked = "1" Then
@@ -60,25 +80,20 @@ WHERE id_prod_order_kp='" & id_kp & "'"
             BRevise.Visible = True
             Bdel.Enabled = False
             PCDel.Visible = False
+            GridColumnProto2Sample.OptionsColumn.ReadOnly = True
         Else
             BLock.Visible = True
             BUpdate.Visible = True
             BRevise.Visible = False
             Bdel.Enabled = True
             PCDel.Visible = True
+            GridColumnProto2Sample.OptionsColumn.ReadOnly = False
         End If
 
         'void
         If is_void = "1" Then
             PCDel.Visible = False
             PCControl.Visible = False
-        End If
-
-        'prevent edit lead time
-        If is_locked = "1" Then
-            GridColumnProto2Sample.OptionsColumn.ReadOnly = True
-        Else
-            GridColumnProto2Sample.OptionsColumn.ReadOnly = False
         End If
     End Sub
 
@@ -193,10 +208,39 @@ ORDER BY po.`id_prod_order` ASC"
     End Sub
 
     Private Sub BLock_Click(sender As Object, e As EventArgs) Handles BLock.Click
-        Dim query As String = "UPDATE tb_prod_order_kp SET is_locked='1' WHERE id_prod_order_kp='" & id_kp & "'"
-        execute_non_query(query, True, "", "", "", "")
-        infoCustom("KP locked")
-        load_head()
+        'Dim query As String = "UPDATE tb_prod_order_kp SET is_locked='1' WHERE id_prod_order_kp='" & id_kp & "'"
+        'execute_non_query(query, True, "", "", "", "")
+        'infoCustom("KP locked")
+        'load_head()
+
+        Dim is_attach_ok As Boolean = True
+        'cek attachment
+        Dim qc As String = "SELECT * FROM tb_doc WHERE id_report='" & id_kp & "' AND report_mark_type='253'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count <= 0 Then
+            is_attach_ok = False
+        End If
+
+        If is_attach_ok Then
+            Dim query As String = "UPDATE tb_prod_order_kp SET is_submit='1' WHERE id_prod_order_ko='" & id_kp & "'"
+            execute_non_query(query, True, "", "", "", "")
+            'submit
+            submit_who_prepared("253", id_kp, id_user)
+            '
+            infoCustom("KP Submitted, waiting approval")
+            load_head()
+        Else
+            stopCustom("Please make sure SKP have attached signed copy")
+        End If
+
+        'If Not id_ko_template = "0" Then
+        '    Dim query As String = "UPDATE tb_prod_order_ko SET is_locked='1' WHERE id_prod_order_ko='" & id_ko & "'"
+        '    execute_non_query(query, True, "", "", "", "")
+        '    infoCustom("KO locked")
+        '    load_head()
+        'Else
+        '    stopCustom("Please select Contract Template and Update")
+        'End If
     End Sub
 
     Private Sub BPrintkp_Click(sender As Object, e As EventArgs) Handles BPrintKP.Click
@@ -310,5 +354,11 @@ VALUES" + query
         FormDocumentUpload.report_mark_type = "253"
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.id_report = id_kp
+        FormReportMark.report_mark_type = "253"
+        FormReportMark.ShowDialog()
     End Sub
 End Class

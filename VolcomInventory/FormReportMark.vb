@@ -603,6 +603,9 @@
         ElseIf report_mark_type = "252" Then
             'SKO
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_prod_order_ko WHERE id_prod_order_ko = '{0}'", id_report)
+        ElseIf report_mark_type = "253" Then
+            'SKP
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_prod_order_kp WHERE id_prod_order_kp = '{0}'", id_report)
         ElseIf report_mark_type = "254" Or report_mark_type = "256" Then
             ' sales volcom store
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_sales_branch WHERE id_sales_branch = '{0}'", id_report)
@@ -9834,6 +9837,20 @@ WHERE (pnsd.id_pn_summary_type=1 OR pnsd.id_pn_summary_type=3) AND pnsd.id_pn_su
 
             'update status
             query = String.Format("UPDATE tb_prod_order_ko SET id_report_status='{0}' WHERE id_prod_order_ko ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "253" Then
+            'KP
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'complete 
+                execute_non_query("UPDATE tb_prod_order_kp SET is_locked=1 WHERE id_prod_order_kp='" & id_report & "'", True, "", "", "", "")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_prod_order_kp SET id_report_status='{0}' WHERE id_prod_order_kp ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         ElseIf report_mark_type = "254" Then
             'volcom store sales
