@@ -4183,6 +4183,39 @@ WHERE tb.id_report_status='6' AND IF(ISNULL(rec.id_prod_order),2,1)=2 "
                                FROM tb_report_mark_cancel_report rmcr
                                " & generate_left_join_cancel("query") & "
                                INNER JOIN " & table_name & " tb ON tb." & field_id & "=rmcr.id_report WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'"
+            ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
+                'receiving qc
+                query_view = "SELECT 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created FROM " & table_name & " tb 
+LEFT JOIN 
+(
+    SELECT id_prod_order
+    FROM tb_prod_order_ret_out
+    WHERE id_report_status!=5
+    GROUP BY id_prod_order
+)ret_out ON ret_out.id_prod_order=tb.id_prod_order
+LEFT JOIN
+(
+    SELECT id_prod_order
+    FROM tb_qc_report1
+    WHERE id_report_status!=5
+    GROUP BY id_prod_order
+)qcr1 ON qcr1.id_prod_order=tb.id_prod_order
+LEFT JOIN
+(
+    SELECT id_prod_order
+    FROM tb_prod_fc
+    WHERE id_report_status!=5
+    GROUP BY id_prod_order
+)qcr2 ON qcr2.id_prod_order=tb.id_prod_order
+WHERE tb.id_report_status='6' AND ISNULL(qcr2.id_prod_order) AND ISNULL(qcr1.id_prod_order) AND ISNULL(ret_out.id_prod_order) "
+                If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
+                    query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
+                End If
+                query_view_blank = "SELECT tb. " & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created FROM " & table_name & " tb WHERE tb.id_report_status='-1'"
+                query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr " & generate_left_join_cancel("column") & "
+                               FROM tb_report_mark_cancel_report rmcr
+                               " & generate_left_join_cancel("query") & "
+                               INNER JOIN " & table_name & " tb ON tb." & field_id & "=rmcr.id_report WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'"
             Else
                 query_view = "SELECT 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created FROM " & table_name & " tb WHERE tb.id_report_status='6'"
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya

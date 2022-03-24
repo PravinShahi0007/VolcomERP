@@ -2301,6 +2301,15 @@
                     INNER JOIN tb_report_mark rm ON rm.id_report = pr.id_fg_propose_price_rev AND rm.report_mark_type=188 AND rm.id_report_status=1
                     INNER JOIN tb_fg_propose_price_rev_det prd ON prd.id_fg_propose_price_rev = pr.id_fg_propose_price_rev
                     WHERE pr.id_fg_propose_price_rev=" + id_report_trans + " "
+                ElseIf rmt = "394" Then
+                    'drop changes via pd
+                    query = "INSERT INTO tb_log_line_list(log_date, id_user_modified, id_user_created, report_mark_type, id_report, report_number, report_date, id_design, note) 
+                    SELECT NOW(), '" + id_user + "', rm.id_user,394 AS `report_mark_type`, pddr.id_design, '-', pdr.created_date, pddr.id_design, CONCAT('Drop via PD Revisi : ',pd.prod_demand_number,'/Rev ',pdr.rev_count) AS note
+                    FROM tb_prod_demand_rev pdr
+                    INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdr.id_prod_demand
+                    INNER JOIN tb_report_mark rm ON rm.id_report = pdr.id_prod_demand_rev AND rm.report_mark_type= pdr.report_mark_type AND rm.id_report_status=1
+                    INNER JOIN tb_prod_demand_design_rev pddr ON pddr.id_prod_demand_rev = pdr.id_prod_demand_rev
+                    WHERE pdr.id_prod_demand_rev=" + id_report_trans + " AND pddr.id_pd_status_rev=2 "
                 End If
                 execute_non_query(query, True, "", "", "", "")
             End If
