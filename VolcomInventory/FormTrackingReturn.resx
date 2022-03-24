@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BandedGridColumn14.UnboundExpression" xml:space="preserve">
+    <value>[sales_return_qc_det_qty_g78] + [sales_return_qc_det_qty_s78] + [sales_return_qc_det_qty_rm2] + [sales_return_qc_det_qty_gc1] + [sales_return_qc_det_qty_gon] + [sales_return_qc_det_qty_gos] + [sales_return_qc_det_qty_gm1]</value>
+  </data>
 </root>

@@ -5989,6 +5989,12 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 'log perubahan line list
                 Dim cd As New ClassDesign()
                 cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
+
+                'log perubahan line list (drop)
+                Try
+                    cd.insertLogLineList("394", id_report, True, "", "", "", "", "", "")
+                Catch ex As Exception
+                End Try
             End If
 
             'update status
