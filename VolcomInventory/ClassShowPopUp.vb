@@ -368,6 +368,9 @@
         ElseIf report_mark_type = "252" Then
             'ko
             FormProductionKO.Close()
+        ElseIf report_mark_type = "253" Then
+            'kp
+            FormProductionKP.Close()
         ElseIf report_mark_type = "254" Or report_mark_type = "256" Then
             FormSalesBranchDet.Close()
         ElseIf report_mark_type = "259" Then
@@ -1459,6 +1462,10 @@ GROUP BY rec.`id_prod_order`"
             FormProductionKO.id_ko = id_report
             FormProductionKO.is_view = "1"
             FormProductionKO.ShowDialog()
+        ElseIf report_mark_type = "253" Then 'KP
+            FormProductionKP.id_kp = id_report
+            FormProductionKP.is_view = "1"
+            FormProductionKP.ShowDialog()
         ElseIf report_mark_type = "254" Or report_mark_type = "256" Then
             FormSalesBranchDet.action = "upd"
             FormSalesBranchDet.id = id_report
@@ -2785,6 +2792,12 @@ GROUP BY rec.`id_prod_order`"
             'KO
             table_name = "tb_prod_order_ko"
             field_id = "id_prod_order_ko"
+            field_number = "number"
+            field_date = "date_created"
+        ElseIf report_mark_type = "253" Then
+            'KP
+            table_name = "tb_prod_order_kp"
+            field_id = "id_prod_order_kp"
             field_number = "number"
             field_date = "date_created"
         ElseIf report_mark_type = "254" Or report_mark_type = "256" Then
