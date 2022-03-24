@@ -224,6 +224,12 @@
         check_but()
         calculate()
         allow_status()
+
+        Dim csp As New ClassSalesPOS()
+        If Not csp.isBalanceJournal(report_mark_type, id_sales_pos) Then
+            stopCustom("Can't proceed, because journal it's not balance. ")
+            Close()
+        End If
     End Sub
     Sub check_do()
         'TEDO.Text = ""

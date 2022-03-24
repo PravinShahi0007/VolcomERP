@@ -1547,6 +1547,12 @@ Public Class FormSalesPOSDet
     End Sub
 
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
+        Dim csp As New ClassSalesPOS()
+        If Not csp.isBalanceJournal(report_mark_type, id_sales_pos) Then
+            stopCustom("Can't print because journal it's not balance ")
+            Exit Sub
+        End If
+
         Cursor = Cursors.WaitCursor
         If LEPrintOpt.EditValue = "1" Then
             ReportSalesInvoiceNew.id_sales_pos = id_sales_pos
