@@ -69,6 +69,16 @@ LEFT JOIN
 WHERE ct.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
 HAVING sts!='ok'
 UNION ALL
+SELECT '' AS id_acc_trans,'' AS id_report,'' AS report_number,'' AS report_mark_type,'' AS `employee_name`,'' AS `date_created`,'' AS `date_reference`,'' AS `bill_type`,'' AS `acc_trans_number`,0 AS debit,0 AS credit,IF(ISNULL(tb.id_coa_tag),'Please do closing previous month','ok') AS sts
+FROM `tb_coa_tag` ct 
+LEFT JOIN
+(
+	SELECT id_coa_tag FROM `tb_closing_log` WHERE id_coa_tag='" & SLEUnit.EditValue.ToString & "'
+	AND DATE_FORMAT(date_until,'%Y%m')=DATE_FORMAT(DATE_SUB('" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "',INTERVAL 1 MONTH),'%Y%m') AND note='Closing End'
+)tb ON ct.id_coa_tag=ct.id_coa_tag 
+WHERE ct.id_coa_tag='" & SLEUnit.EditValue.ToString & "'
+HAVING sts!='ok'
+UNION ALL
 SELECT '' AS id_acc_trans,'' AS id_report,'' AS report_number,'' AS report_mark_type,'' AS `employee_name`,'' AS `date_created`,'' AS `date_reference`,'' AS `bill_type`,'' AS `acc_trans_number`,IF(IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0)<0,IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0),0) * -1 AS debit,IF(IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0)>0,IFNULL(SUM(trx.this_month),0.00)-IF(c.minus_with>0,minus.this_month,0),0) AS credit,'Branch vs Kantor pusat tidak balance' AS sts 
 FROM `tb_consolidation` c
 LEFT JOIN
