@@ -83,6 +83,9 @@ Partial Class FormDebitNoteDet
         Me.GCClaimPcs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCAmo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.CMViewQCReport = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ViewQCReportSummaryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,6 +122,7 @@ Partial Class FormDebitNoteDet
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIMDescription, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMViewQCReport.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -579,6 +583,7 @@ Partial Class FormDebitNoteDet
         '
         'GCItemList
         '
+        Me.GCItemList.ContextMenuStrip = Me.CMViewQCReport
         Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCItemList.Location = New System.Drawing.Point(20, 2)
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
@@ -594,7 +599,7 @@ Partial Class FormDebitNoteDet
         Me.GVItemList.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVItemList.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVItemList.ColumnPanelRowHeight = 50
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn13, Me.GridColumn12, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GCKurs, Me.GCClaimPercent, Me.GridColumn10, Me.GridColumn8, Me.GCPriceUSD, Me.GCClaimUSD, Me.GCAmoUSD, Me.GCPriceUnit, Me.GridColumn9, Me.GCClaimPcs, Me.GCAmo})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn13, Me.GridColumn12, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GCKurs, Me.GCClaimPercent, Me.GridColumn10, Me.GridColumn8, Me.GCPriceUSD, Me.GCClaimUSD, Me.GCAmoUSD, Me.GCPriceUnit, Me.GridColumn9, Me.GCClaimPcs, Me.GCAmo})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -838,6 +843,24 @@ Partial Class FormDebitNoteDet
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
+        'CMViewQCReport
+        '
+        Me.CMViewQCReport.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewQCReportSummaryToolStripMenuItem})
+        Me.CMViewQCReport.Name = "CMViewQCReport"
+        Me.CMViewQCReport.Size = New System.Drawing.Size(212, 26)
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "reff"
+        Me.GridColumn2.FieldName = "id_reff"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
+        'ViewQCReportSummaryToolStripMenuItem
+        '
+        Me.ViewQCReportSummaryToolStripMenuItem.Name = "ViewQCReportSummaryToolStripMenuItem"
+        Me.ViewQCReportSummaryToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
+        Me.ViewQCReportSummaryToolStripMenuItem.Text = "View QC Report Summary"
+        '
         'FormDebitNoteDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -892,6 +915,7 @@ Partial Class FormDebitNoteDet
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIMDescription, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMViewQCReport.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -958,4 +982,7 @@ Partial Class FormDebitNoteDet
     Friend WithEvents GCPriceUSD As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCClaimUSD As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCAmoUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMViewQCReport As ContextMenuStrip
+    Friend WithEvents ViewQCReportSummaryToolStripMenuItem As ToolStripMenuItem
 End Class

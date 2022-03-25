@@ -522,6 +522,26 @@ WHERE dn.id_debit_note='" & id_dn & "'"
         Cursor = Cursors.Default
     End Sub
 
+    Private Sub ViewQCReportSummaryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewQCReportSummaryToolStripMenuItem.Click
+        If GVItemList.RowCount > 0 Then
+            Dim q As String = "SELECT sd.id_prod_fc_sum
+FROM `tb_prod_fc_sum_det` sd
+INNER JOIN `tb_prod_fc_sum` s ON s.id_prod_fc_sum=sd.id_prod_fc_sum
+WHERE sd.id_prod_fc='" & GVItemList.GetFocusedRowCellValue("id_reff").ToString & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                Dim qcp As New ClassShowPopUp
+                qcp.id_report = dt.Rows(0)("id_prod_fc_sum").ToString
+                qcp.report_mark_type = "222"
+                qcp.show()
+            Else
+                warningCustom("Summary not found")
+            End If
+        Else
+            warningCustom("Summary not found")
+        End If
+    End Sub
+
     'Private Sub GVItemList_CustomDrawFooter(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVItemList.CustomDrawFooter
     '    Dim stringFormat As StringFormat = New StringFormat()
     '    stringFormat.Alignment = StringAlignment.Near
