@@ -329,4 +329,16 @@ Public Class ClassSalesPOS
             qty.Font = font_row_style
         Next
     End Sub
+
+    Function isBalanceJournal(ByVal rmt_par As String, ByVal id_report_par As String) As Boolean
+        Dim query As String = "SELECT IFNULL(SUM(d.debit),0) AS `debit`, IFNULL(SUM(d.credit),0) AS `credit`
+        FROM tb_a_acc_trans_draft d WHERE d.report_mark_type=" + rmt_par + " AND d.id_report=" + id_report_par + "
+        HAVING debit!=credit "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count <= 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 End Class

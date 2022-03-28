@@ -364,14 +364,24 @@ Public Class FormProductionRecDet
         'End If
         BScan.Enabled = False
         BDelete.Enabled = False
-        BSave.Enabled = False
-        TEDODate.Properties.ReadOnly = True
-        DEArrive.Properties.ReadOnly = True
-        TEDONumber.Properties.ReadOnly = True
-        MENote.Properties.ReadOnly = True
         GVListPurchase.OptionsBehavior.Editable = False
         BtnInfoSrs.Enabled = False
         GVListPurchase.OptionsCustomization.AllowGroup = True
+
+        If LEReportStatus.EditValue.ToString = "1" Then
+            BSave.Enabled = True
+            TEDODate.Properties.ReadOnly = False
+            DEArrive.Properties.ReadOnly = False
+            TEDONumber.Properties.ReadOnly = False
+            MENote.Properties.ReadOnly = False
+        Else
+            BSave.Enabled = False
+            TEDODate.Properties.ReadOnly = True
+            DEArrive.Properties.ReadOnly = True
+            TEDONumber.Properties.ReadOnly = True
+            MENote.Properties.ReadOnly = True
+        End If
+
 
         'attachment
         If check_attach_report_status(LEReportStatus.EditValue.ToString, "28", id_receive) Then
@@ -393,6 +403,8 @@ Public Class FormProductionRecDet
             BPrint.Enabled = True
 
             SLERecType.Properties.ReadOnly = True
+
+            '
         Else
             GridColumnPOQty.OptionsColumn.AllowShowHide = True
             GridColumnRemainingQty.OptionsColumn.AllowShowHide = True
@@ -522,7 +534,7 @@ GROUP BY rec.`id_prod_order`"
         End Try
 
         If do_date = "" Then
-            do_date = "0000-00-00"
+            do_date = "0001-01-01"
         Else
             do_date = DateTime.Parse(TEDODate.EditValue.ToString).ToString("yyyy-MM-dd")
         End If
@@ -532,13 +544,13 @@ GROUP BY rec.`id_prod_order`"
         Catch ex As Exception
         End Try
         If arrive_date = "" Then
-            arrive_date = "0000-00-00"
+            arrive_date = "0001-01-01"
         Else
             arrive_date = DateTime.Parse(DEArrive.EditValue.ToString).ToString("yyyy-MM-dd")
         End If
 
-        do_number = TEDONumber.Text
-        rec_note = MENote.Text
+        do_number = addSlashes(TEDONumber.Text)
+        rec_note = addSlashes(MENote.Text)
         rec_stats = LEReportStatus.EditValue
         id_pl_cat = SLERecType.EditValue.ToString
 
@@ -586,6 +598,8 @@ GROUP BY rec.`id_prod_order`"
 
             If err_txt = "1" Or Not formIsValidInGroup(EPSampleRec, GroupGeneralHeader) Or id_order = "-1" Then
                 errorInput()
+            ElseIf do_date = "0001-01-01" Or arrive_date = "0001-01-01"
+                warningCustom("Please put proper date on arrive and delivery date")
             ElseIf Not cond_memo Then
                 stopCustom("Received should be equal to " + qty_limit.ToString)
             Else
@@ -595,7 +609,7 @@ GROUP BY rec.`id_prod_order`"
                     BSave.Enabled = False
                     Try
                         'insert rec
-                        If do_date = "0000-00-00" Then
+                        If do_date = "0001-01-01" Then
                             query = String.Format("INSERT INTO tb_prod_order_rec(id_prod_order, delivery_order_number, delivery_order_date, arrive_date, prod_order_rec_date, prod_order_rec_note ,id_report_status, id_comp_contact_to , id_comp_contact_from, is_over_tol, id_prod_over_memo, id_pl_category,claim_percent) VALUES('{0}','{1}',NULL, '{2}',DATE(NOW()),'{3}','{4}','{5}', '{6}','{7}',{8},'{9}','{10}'); SELECT LAST_INSERT_ID(); ", id_order, do_number, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, is_over_tol, id_prod_over_memo, id_pl_cat, claim_percent)
                             id_rec_new = execute_query(query, 0, True, "", "", "", "")
                         Else
@@ -653,26 +667,32 @@ GROUP BY rec.`id_prod_order`"
             'rec_number = TERecNumber.Text
             If err_txt = "1" Or Not formIsValidInGroup(EPSampleRec, GroupGeneralHeader) Then
                 errorInput()
+            ElseIf do_date = "0001-01-01" Or arrive_date = "0001-01-01"
+                warningCustom("Please put proper date on arrive and delivery date")
             Else
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     Try
                         'UPDATE rec
-                        If do_date = "0000-00-00" Then
-                            query = String.Format("UPDATE tb_prod_order_rec SET delivery_order_number='{0}',delivery_order_date=null, arrive_date='{1}',prod_order_rec_note='{2}',id_report_status='{3}',id_comp_contact_to='{4}', id_comp_contact_from = '{5}',id_pl_category='{7}',claim_percent='{8}' WHERE id_prod_order_rec='{6}'", do_number, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, id_receive, id_pl_cat, claim_percent)
-                            execute_non_query(query, True, "", "", "", "")
-                        Else
-                            query = String.Format("UPDATE tb_prod_order_rec SET delivery_order_number='{0}',delivery_order_date='{1}', arrive_date='{2}',prod_order_rec_note='{3}',id_report_status='{4}',id_comp_contact_to='{5}', id_comp_contact_from = '{6}',id_pl_category='{8}',claim_percent='{9}' WHERE id_prod_order_rec='{7}'", do_number, do_date, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, id_receive, id_pl_cat, claim_percent)
-                            execute_non_query(query, True, "", "", "", "")
-                        End If
+                        'If do_date = "0000-00-00" Then
+                        '    query = String.Format("UPDATE tb_prod_order_rec SET delivery_order_number='{0}',delivery_order_date=null, arrive_date='{1}',prod_order_rec_note='{2}',id_report_status='{3}',id_comp_contact_to='{4}', id_comp_contact_from = '{5}',id_pl_category='{7}',claim_percent='{8}' WHERE id_prod_order_rec='{6}'", do_number, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, id_receive, id_pl_cat, claim_percent)
+                        '    execute_non_query(query, True, "", "", "", "")
+                        'Else
+                        '    query = String.Format("UPDATE tb_prod_order_rec SET delivery_order_number='{0}',delivery_order_date='{1}', arrive_date='{2}',prod_order_rec_note='{3}',id_report_status='{4}',id_comp_contact_to='{5}', id_comp_contact_from = '{6}',id_pl_category='{8}',claim_percent='{9}' WHERE id_prod_order_rec='{7}'", do_number, do_date, arrive_date, rec_note, rec_stats, id_comp_to, id_comp_from, id_receive, id_pl_cat, claim_percent)
+                        '    execute_non_query(query, True, "", "", "", "")
+                        'End If
 
-                        'rec detail
-                        For i As Integer = 0 To ((GVListPurchase.RowCount - 1) - GetGroupRowCount(GVListPurchase))
-                            query = String.Format("UPDATE tb_prod_order_rec_det SET prod_order_rec_det_qty='{0}',prod_order_rec_det_note='{1}' WHERE id_prod_order_rec_det='{2}'", decimalSQL(GVListPurchase.GetRowCellValue(i, "prod_order_rec_det_qty").ToString), GVListPurchase.GetRowCellValue(i, "prod_order_rec_det_note").ToString, GVListPurchase.GetRowCellValue(i, "id_prod_order_rec_det").ToString)
-                            execute_non_query(query, True, "", "", "", "")
-                        Next
+                        ''rec detail
+                        'For i As Integer = 0 To ((GVListPurchase.RowCount - 1) - GetGroupRowCount(GVListPurchase))
+                        '    query = String.Format("UPDATE tb_prod_order_rec_det SET prod_order_rec_det_qty='{0}',prod_order_rec_det_note='{1}' WHERE id_prod_order_rec_det='{2}'", decimalSQL(GVListPurchase.GetRowCellValue(i, "prod_order_rec_det_qty").ToString), GVListPurchase.GetRowCellValue(i, "prod_order_rec_det_note").ToString, GVListPurchase.GetRowCellValue(i, "id_prod_order_rec_det").ToString)
+                        '    execute_non_query(query, True, "", "", "", "")
+                        'Next
 
+                        'update
+                        query = String.Format("UPDATE tb_prod_order_rec SET delivery_order_number='{0}',delivery_order_date='{1}', arrive_date='{2}',prod_order_rec_note='{3}' WHERE id_prod_order_rec='{6}'", do_number, do_date, arrive_date, rec_note, claim_percent, id_receive)
+                        execute_non_query(query, True, "", "", "", "")
+                        '
                         FormProductionRec.view_prod_order_rec()
                         FormProductionRec.view_prod_order()
                         FormProductionRec.GVProdRec.FocusedRowHandle = find_row(FormProductionRec.GVProdRec, "id_prod_order_rec", id_receive)

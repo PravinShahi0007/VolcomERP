@@ -885,7 +885,7 @@ Partial Class FormViewSalesPOS
         Me.TxtTaxBase.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtTaxBase.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TxtTaxBase.Properties.EditValueChangedDelay = 1
-        Me.TxtTaxBase.Properties.Mask.EditMask = "N2"
+        Me.TxtTaxBase.Properties.Mask.EditMask = "N0"
         Me.TxtTaxBase.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TxtTaxBase.Properties.Mask.SaveLiteral = False
         Me.TxtTaxBase.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -916,7 +916,7 @@ Partial Class FormViewSalesPOS
         Me.TxtNetto.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtNetto.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TxtNetto.Properties.EditValueChangedDelay = 1
-        Me.TxtNetto.Properties.Mask.EditMask = "N2"
+        Me.TxtNetto.Properties.Mask.EditMask = "N0"
         Me.TxtNetto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TxtNetto.Properties.Mask.SaveLiteral = False
         Me.TxtNetto.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -931,7 +931,7 @@ Partial Class FormViewSalesPOS
         Me.TxtVatTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtVatTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TxtVatTot.Properties.EditValueChangedDelay = 1
-        Me.TxtVatTot.Properties.Mask.EditMask = "N2"
+        Me.TxtVatTot.Properties.Mask.EditMask = "N0"
         Me.TxtVatTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TxtVatTot.Properties.Mask.SaveLiteral = False
         Me.TxtVatTot.Properties.Mask.UseMaskAsDisplayFormat = True

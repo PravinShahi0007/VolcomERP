@@ -650,6 +650,7 @@
     Private Sub DEEnd_EditValueChanged(sender As Object, e As EventArgs) Handles DEEnd.EditValueChanged
         If id_emp_uni_ex = "0" Then
             load_kurs()
+            load_vat()
         End If
     End Sub
 
@@ -673,5 +674,23 @@
 
         'PPN
         TxtPPN.EditValue = TxtTotal.EditValue * (ppn_pros / (100 + ppn_pros))
+    End Sub
+
+    Sub load_vat()
+        Cursor = Cursors.WaitCursor
+        Dim end_period As String = "1991-01-01"
+        Try
+            end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim query As String = "SELECT v.vat FROM tb_m_vat v WHERE '" + end_period + "'>=v.start_period AND '" + end_period + "'<=v.end_period "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            TxtPPNPros.EditValue = data.Rows(0)("vat")
+        Else
+            TxtPPNPros.EditValue = 0.00
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -484,4 +484,94 @@ WHERE pn.id_report_status!=3 AND pnsd.id_pn_summary='" & id_sum & "'"
         Catch ex As Exception
         End Try
     End Sub
+
+    Private Sub BRefresh_Click(sender As Object, e As EventArgs) Handles BRefresh.Click
+        view_xls()
+    End Sub
+
+    Sub view_xls()
+        Dim q As String = "
+SET @numb=0;
+SELECT  @numb:=@numb+1 AS 'No',py.number AS 'Transaction ID'
+,IF(c.id_bank=1,'BCA',IF(pnsd.is_rtgs=1,'RTG','LLG')) AS 'Transfer Type'
+,bca.bank_no AS 'Debited Acc.','' AS 'Beneficiary ID'
+,c.bank_rek AS 'Credited Acc.',SUM(pyd.`value`) AS 'Amount'
+,DATE_FORMAT(pns.date_payment,'%d%m%Y') AS 'Eff. Date'
+,'' AS 'Transaction Purpose'
+,'' AS 'Currency'
+,'OUR' AS 'Charges Type'
+,bca.bank_no AS 'Charges Acc.'
+,'' AS 'Remark 1'
+,'' AS 'Remark 2'
+,kb.kode_bank AS 'Receiver Bank Cd'
+,kb.nama_bank AS 'Receiver Bank Name'
+,c.bank_attn_name AS 'Receivier Name'
+,'' AS 'Receiver Cust. Type'
+,'' AS 'Receiver Cust. Residen'
+,'' AS 'Transaction Cd'
+,IFNULL(email.email,'') AS 'Beneficiary Email'
+,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name
+FROM tb_pn py
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN tb_kode_bank kb ON kb.id=c.id_bank
+INNER JOIN `tb_lookup_report_mark_type` rm ON rm.`report_mark_type`=py.`report_mark_type`
+INNER JOIN `tb_lookup_pay_type` pt ON pt.`id_pay_type`=py.`id_pay_type`
+INNER JOIN tb_m_user usr ON usr.id_user=py.id_user_created
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
+INNER JOIN tb_pn_det pyd ON pyd.id_pn=py.id_pn AND pyd.`id_currency`='1' AND pyd.`is_include_total`=1
+INNER JOIN tb_pn_summary_det pnsd ON pnsd.`id_pn`=pyd.`id_pn` AND pnsd.`id_pn_summary`='" & id_sum & "' AND py.id_report_status!=5
+INNER JOIN tb_pn_summary pns ON pns.id_pn_summary=pnsd.id_pn_summary
+INNER JOIN `tb_list_account_bank` bca ON bca.id_list_account_bank=1
+JOIN 
+(
+	SELECT GROUP_CONCAT(emp.email_external SEPARATOR ',') AS email FROM tb_pn_summary_beneficiary b
+	INNER JOIN tb_m_employee emp ON emp.id_employee=b.id_employee AND emp.id_employee_active=1
+)email
+GROUP BY py.id_pn"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCExportData.DataSource = dt
+        GVExportData.BestFitColumns()
+    End Sub
+
+    Private Sub BExportXLS_Click(sender As Object, e As EventArgs) Handles BExportXLS.Click
+        If GVExportData.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            path = path + TEPayNumber.Text + "_bca_export.xlsx"
+            exportToXLS(path, "Data", GCExportData)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Sub exportToXLS(ByVal path_par As String, ByVal sheet_name_par As String, ByVal gc_par As DevExpress.XtraGrid.GridControl)
+        Cursor = Cursors.WaitCursor
+        Dim path As String = path_par
+
+        ' Customize export options 
+        CType(gc_par.MainView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsPrint.PrintHeader = True
+        Dim advOptions As DevExpress.XtraPrinting.XlsxExportOptionsEx = New DevExpress.XtraPrinting.XlsxExportOptionsEx()
+        advOptions.ShowGroupSummaries = DevExpress.Utils.DefaultBoolean.True
+        advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.True
+        advOptions.SheetName = sheet_name_par
+        advOptions.ExportType = DevExpress.Export.ExportType.DataAware
+
+        Try
+            gc_par.ExportToXlsx(path, advOptions)
+            Process.Start(path)
+            ' Open the created XLSX file with the default application. 
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+
+    End Sub
 End Class

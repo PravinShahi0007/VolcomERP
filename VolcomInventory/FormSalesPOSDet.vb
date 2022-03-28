@@ -1547,6 +1547,12 @@ Public Class FormSalesPOSDet
     End Sub
 
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
+        Dim csp As New ClassSalesPOS()
+        If Not csp.isBalanceJournal(report_mark_type, id_sales_pos) Then
+            stopCustom("Can't print because journal it's not balance ")
+            Exit Sub
+        End If
+
         Cursor = Cursors.WaitCursor
         If LEPrintOpt.EditValue = "1" Then
             ReportSalesInvoiceNew.id_sales_pos = id_sales_pos
@@ -2477,6 +2483,7 @@ Public Class FormSalesPOSDet
         'viewDetail()
         If action = "ins" Then
             load_kurs()
+            load_vat()
 
             If id_do = "-1" Then
                 viewDetail()
@@ -3513,6 +3520,24 @@ GROUP BY r.id_sales_pos_recon "
         FROM tb_m_comp_group cg WHERE cg.id_comp_group=" + id_comp_group_par + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         DEDueDate.Properties.MinValue = data.Rows(0)("date_min")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub load_vat()
+        Cursor = Cursors.WaitCursor
+        Dim end_period As String = "1991-01-01"
+        Try
+            end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim query As String = "SELECT v.vat FROM tb_m_vat v WHERE '" + end_period + "'>=v.start_period AND '" + end_period + "'<=v.end_period "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            SPVat.EditValue = data.Rows(0)("vat")
+        Else
+            SPVat.EditValue = 0.00
+        End If
         Cursor = Cursors.Default
     End Sub
 End Class
