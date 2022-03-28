@@ -228,6 +228,7 @@
         Dim csp As New ClassSalesPOS()
         If Not csp.isBalanceJournal(report_mark_type, id_sales_pos) Then
             stopCustom("Can't proceed, because journal it's not balance. ")
+            viewDraftJournal()
             Close()
         End If
     End Sub
@@ -441,6 +442,10 @@
     End Sub
 
     Private Sub BtnDraft_Click(sender As Object, e As EventArgs) Handles BtnDraft.Click
+        viewDraftJournal()
+    End Sub
+
+    Sub viewDraftJournal()
         Cursor = Cursors.WaitCursor
         FormAccountingDraftJournal.is_view = "1"
         FormAccountingDraftJournal.id_report = id_sales_pos
