@@ -19,7 +19,6 @@ Partial Class FormFGTrfNew
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.RepositoryItemProgressBar1 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GCFGTrf = New DevExpress.XtraGrid.GridControl()
         Me.GVFGTrf = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -35,7 +34,7 @@ Partial Class FormFGTrfNew
         Me.GridColumnUpdatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotalTrf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnpreparedby = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip()
         Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.XTCTrf = New DevExpress.XtraTab.XtraTabControl()
@@ -66,6 +65,7 @@ Partial Class FormFGTrfNew
         Me.GridColumnReference = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrintedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrintedDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControlNavPrepare = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditRefresh = New DevExpress.XtraEditors.CheckEdit()
@@ -76,8 +76,7 @@ Partial Class FormFGTrfNew
         Me.TxtNoParam = New DevExpress.XtraEditors.ButtonEdit()
         Me.BtnViewNewPrepare = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
-        Me.GridColumnorder_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TimerMonitor = New System.Windows.Forms.Timer()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFGTrf, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVFGTrf, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -421,6 +420,8 @@ Partial Class FormFGTrfNew
         Me.GridColumnDSalesTargetNote.Caption = "Note"
         Me.GridColumnDSalesTargetNote.FieldName = "sales_order_note"
         Me.GridColumnDSalesTargetNote.Name = "GridColumnDSalesTargetNote"
+        Me.GridColumnDSalesTargetNote.Visible = True
+        Me.GridColumnDSalesTargetNote.VisibleIndex = 9
         Me.GridColumnDSalesTargetNote.Width = 111
         '
         'GridColumnReportStatus
@@ -446,7 +447,7 @@ Partial Class FormFGTrfNew
         Me.GridColumn9.FieldName = "so_completness"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 11
+        Me.GridColumn9.VisibleIndex = 12
         Me.GridColumn9.Width = 167
         '
         'GridColumnIdSalesOrder
@@ -511,7 +512,7 @@ Partial Class FormFGTrfNew
         Me.GridColumnPrintedBy.Name = "GridColumnPrintedBy"
         Me.GridColumnPrintedBy.OptionsColumn.AllowEdit = False
         Me.GridColumnPrintedBy.Visible = True
-        Me.GridColumnPrintedBy.VisibleIndex = 9
+        Me.GridColumnPrintedBy.VisibleIndex = 10
         Me.GridColumnPrintedBy.Width = 117
         '
         'GridColumnPrintedDate
@@ -523,8 +524,17 @@ Partial Class FormFGTrfNew
         Me.GridColumnPrintedDate.Name = "GridColumnPrintedDate"
         Me.GridColumnPrintedDate.OptionsColumn.AllowEdit = False
         Me.GridColumnPrintedDate.Visible = True
-        Me.GridColumnPrintedDate.VisibleIndex = 10
+        Me.GridColumnPrintedDate.VisibleIndex = 11
         Me.GridColumnPrintedDate.Width = 117
+        '
+        'GridColumnorder_type
+        '
+        Me.GridColumnorder_type.Caption = "Type"
+        Me.GridColumnorder_type.FieldName = "order_type"
+        Me.GridColumnorder_type.Name = "GridColumnorder_type"
+        Me.GridColumnorder_type.OptionsColumn.AllowEdit = False
+        Me.GridColumnorder_type.Visible = True
+        Me.GridColumnorder_type.VisibleIndex = 1
         '
         'GridView2
         '
@@ -615,15 +625,6 @@ Partial Class FormFGTrfNew
         '
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
-        '
-        'GridColumnorder_type
-        '
-        Me.GridColumnorder_type.Caption = "Type"
-        Me.GridColumnorder_type.FieldName = "order_type"
-        Me.GridColumnorder_type.Name = "GridColumnorder_type"
-        Me.GridColumnorder_type.OptionsColumn.AllowEdit = False
-        Me.GridColumnorder_type.Visible = True
-        Me.GridColumnorder_type.VisibleIndex = 1
         '
         'FormFGTrfNew
         '
