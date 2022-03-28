@@ -81,6 +81,11 @@ Partial Class FormBankWithdrawalSum
         Me.BGenerate = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCBBKSummary = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPExportBCA = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,6 +120,11 @@ Partial Class FormBankWithdrawalSum
         CType(Me.XTCBBKSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCBBKSummary.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
+        Me.XTPExportBCA.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -718,7 +728,7 @@ Partial Class FormBankWithdrawalSum
         Me.XTCBBKSummary.SelectedTabPage = Me.XTPSummary
         Me.XTCBBKSummary.Size = New System.Drawing.Size(936, 332)
         Me.XTCBBKSummary.TabIndex = 22
-        Me.XTCBBKSummary.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary})
+        Me.XTCBBKSummary.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPExportBCA})
         '
         'XTPSummary
         '
@@ -727,6 +737,47 @@ Partial Class FormBankWithdrawalSum
         Me.XTPSummary.Name = "XTPSummary"
         Me.XTPSummary.Size = New System.Drawing.Size(930, 304)
         Me.XTPSummary.Text = "Summary"
+        '
+        'XTPExportBCA
+        '
+        Me.XTPExportBCA.Controls.Add(Me.GridControl1)
+        Me.XTPExportBCA.Controls.Add(Me.PanelControl4)
+        Me.XTPExportBCA.Controls.Add(Me.PanelControl1)
+        Me.XTPExportBCA.Name = "XTPExportBCA"
+        Me.XTPExportBCA.Size = New System.Drawing.Size(930, 304)
+        Me.XTPExportBCA.Text = "Export Data"
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 263)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(930, 41)
+        Me.PanelControl4.TabIndex = 1
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(930, 41)
+        Me.PanelControl1.TabIndex = 0
+        '
+        'GridControl1
+        '
+        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridControl1.Location = New System.Drawing.Point(0, 41)
+        Me.GridControl1.MainView = Me.GridView1
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.Size = New System.Drawing.Size(930, 222)
+        Me.GridControl1.TabIndex = 2
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        '
+        'GridView1
+        '
+        Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'FormBankWithdrawalSum
         '
@@ -779,6 +830,11 @@ Partial Class FormBankWithdrawalSum
         CType(Me.XTCBBKSummary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCBBKSummary.ResumeLayout(False)
         Me.XTPSummary.ResumeLayout(False)
+        Me.XTPExportBCA.ResumeLayout(False)
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -843,4 +899,9 @@ Partial Class FormBankWithdrawalSum
     Friend WithEvents XTPSummary As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents BAttachmentMutasi As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TolakToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents XTPExportBCA As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

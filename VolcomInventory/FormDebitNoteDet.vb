@@ -526,7 +526,7 @@ WHERE dn.id_debit_note='" & id_dn & "'"
         If GVItemList.RowCount > 0 Then
             Dim q As String = "SELECT sd.id_prod_fc_sum
 FROM `tb_prod_fc_sum_det` sd
-INNER JOIN `tb_prod_fc_sum` s ON s.id_prod_fc_sum=sd.id_prod_fc_sum
+INNER JOIN `tb_prod_fc_sum` s ON s.id_prod_fc_sum=sd.id_prod_fc_sum AND s.id_report_status=6
 WHERE sd.id_prod_fc='" & GVItemList.GetFocusedRowCellValue("id_reff").ToString & "'"
             Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
             If dt.Rows.Count > 0 Then
