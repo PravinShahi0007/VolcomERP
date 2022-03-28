@@ -82,10 +82,11 @@ Partial Class FormBankWithdrawalSum
         Me.XTCBBKSummary = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPExportBCA = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCExportData = New DevExpress.XtraGrid.GridControl()
+        Me.GVExportData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BCreatePay = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,10 +122,11 @@ Partial Class FormBankWithdrawalSum
         Me.XTCBBKSummary.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
         Me.XTPExportBCA.SuspendLayout()
+        CType(Me.GCExportData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVExportData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -740,20 +742,57 @@ Partial Class FormBankWithdrawalSum
         '
         'XTPExportBCA
         '
-        Me.XTPExportBCA.Controls.Add(Me.GridControl1)
+        Me.XTPExportBCA.Controls.Add(Me.GCExportData)
         Me.XTPExportBCA.Controls.Add(Me.PanelControl4)
         Me.XTPExportBCA.Controls.Add(Me.PanelControl1)
         Me.XTPExportBCA.Name = "XTPExportBCA"
         Me.XTPExportBCA.Size = New System.Drawing.Size(930, 304)
         Me.XTPExportBCA.Text = "Export Data"
         '
+        'GCExportData
+        '
+        Me.GCExportData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCExportData.Location = New System.Drawing.Point(0, 41)
+        Me.GCExportData.MainView = Me.GVExportData
+        Me.GCExportData.Name = "GCExportData"
+        Me.GCExportData.Size = New System.Drawing.Size(930, 222)
+        Me.GCExportData.TabIndex = 2
+        Me.GCExportData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVExportData})
+        '
+        'GVExportData
+        '
+        Me.GVExportData.GridControl = Me.GCExportData
+        Me.GVExportData.Name = "GVExportData"
+        Me.GVExportData.OptionsView.ShowGroupPanel = False
+        '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.BCreatePay)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl4.Location = New System.Drawing.Point(0, 263)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(930, 41)
         Me.PanelControl4.TabIndex = 1
+        '
+        'BCreatePay
+        '
+        Me.BCreatePay.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreatePay.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreatePay.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreatePay.Appearance.Options.UseBackColor = True
+        Me.BCreatePay.Appearance.Options.UseFont = True
+        Me.BCreatePay.Appearance.Options.UseForeColor = True
+        Me.BCreatePay.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BCreatePay.Location = New System.Drawing.Point(2, 2)
+        Me.BCreatePay.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreatePay.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreatePay.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreatePay.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreatePay.Name = "BCreatePay"
+        Me.BCreatePay.Size = New System.Drawing.Size(926, 37)
+        Me.BCreatePay.TabIndex = 20
+        Me.BCreatePay.Text = "Export XLS"
+        Me.BCreatePay.Visible = False
         '
         'PanelControl1
         '
@@ -762,22 +801,6 @@ Partial Class FormBankWithdrawalSum
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(930, 41)
         Me.PanelControl1.TabIndex = 0
-        '
-        'GridControl1
-        '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 41)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(930, 222)
-        Me.GridControl1.TabIndex = 2
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
-        '
-        'GridView1
-        '
-        Me.GridView1.GridControl = Me.GridControl1
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'FormBankWithdrawalSum
         '
@@ -831,10 +854,11 @@ Partial Class FormBankWithdrawalSum
         Me.XTCBBKSummary.ResumeLayout(False)
         Me.XTPSummary.ResumeLayout(False)
         Me.XTPExportBCA.ResumeLayout(False)
+        CType(Me.GCExportData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVExportData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -902,6 +926,7 @@ Partial Class FormBankWithdrawalSum
     Friend WithEvents XTPExportBCA As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCExportData As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVExportData As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents BCreatePay As DevExpress.XtraEditors.SimpleButton
 End Class
