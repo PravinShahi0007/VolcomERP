@@ -57,24 +57,22 @@ Partial Class FormPeminjaman
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "GridColumn1"
+        Me.GridColumn1.Caption = "ID"
         Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "GridColumn2"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.VisibleIndex = 0
         '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "GridColumn3"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.VisibleIndex = 1
         '
         'FormPeminjaman
         '

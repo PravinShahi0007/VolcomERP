@@ -50,6 +50,7 @@ Partial Class FormProductionKP
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.ImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PCControl = New DevExpress.XtraEditors.PanelControl()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrintKP = New DevExpress.XtraEditors.SimpleButton()
         Me.BUpdate = New DevExpress.XtraEditors.SimpleButton()
@@ -315,6 +316,7 @@ Partial Class FormProductionKP
         Me.TETermOrder.Size = New System.Drawing.Size(330, 20)
         Me.TETermOrder.TabIndex = 8913
         Me.TETermOrder.TabStop = False
+        Me.TETermOrder.Visible = False
         '
         'LabelControl7
         '
@@ -323,6 +325,7 @@ Partial Class FormProductionKP
         Me.LabelControl7.Size = New System.Drawing.Size(55, 13)
         Me.LabelControl7.TabIndex = 8912
         Me.LabelControl7.Text = "Term Order"
+        Me.LabelControl7.Visible = False
         '
         'DEDateCreated
         '
@@ -417,6 +420,7 @@ Partial Class FormProductionKP
         '
         'PCControl
         '
+        Me.PCControl.Controls.Add(Me.BMark)
         Me.PCControl.Controls.Add(Me.BAttachment)
         Me.PCControl.Controls.Add(Me.BPrintKP)
         Me.PCControl.Controls.Add(Me.BUpdate)
@@ -427,12 +431,23 @@ Partial Class FormProductionKP
         Me.PCControl.Size = New System.Drawing.Size(875, 41)
         Me.PCControl.TabIndex = 2
         '
+        'BMark
+        '
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.ImageIndex = 4
+        Me.BMark.ImageList = Me.ImageCollection
+        Me.BMark.Location = New System.Drawing.Point(2, 2)
+        Me.BMark.Name = "BMark"
+        Me.BMark.Size = New System.Drawing.Size(96, 37)
+        Me.BMark.TabIndex = 8914
+        Me.BMark.Text = "Mark"
+        '
         'BAttachment
         '
         Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAttachment.ImageIndex = 16
         Me.BAttachment.ImageList = Me.ImageCollection
-        Me.BAttachment.Location = New System.Drawing.Point(475, 2)
+        Me.BAttachment.Location = New System.Drawing.Point(467, 2)
         Me.BAttachment.Name = "BAttachment"
         Me.BAttachment.Size = New System.Drawing.Size(96, 37)
         Me.BAttachment.TabIndex = 8913
@@ -443,7 +458,7 @@ Partial Class FormProductionKP
         Me.BPrintKP.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPrintKP.ImageIndex = 6
         Me.BPrintKP.ImageList = Me.ImageCollection
-        Me.BPrintKP.Location = New System.Drawing.Point(571, 2)
+        Me.BPrintKP.Location = New System.Drawing.Point(563, 2)
         Me.BPrintKP.Name = "BPrintKP"
         Me.BPrintKP.Size = New System.Drawing.Size(96, 37)
         Me.BPrintKP.TabIndex = 8910
@@ -454,7 +469,7 @@ Partial Class FormProductionKP
         Me.BUpdate.Dock = System.Windows.Forms.DockStyle.Right
         Me.BUpdate.ImageIndex = 7
         Me.BUpdate.ImageList = Me.ImageCollection
-        Me.BUpdate.Location = New System.Drawing.Point(667, 2)
+        Me.BUpdate.Location = New System.Drawing.Point(659, 2)
         Me.BUpdate.Name = "BUpdate"
         Me.BUpdate.Size = New System.Drawing.Size(99, 37)
         Me.BUpdate.TabIndex = 8911
@@ -463,13 +478,13 @@ Partial Class FormProductionKP
         'BLock
         '
         Me.BLock.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BLock.ImageIndex = 17
+        Me.BLock.ImageIndex = 4
         Me.BLock.ImageList = Me.ImageCollection
-        Me.BLock.Location = New System.Drawing.Point(766, 2)
+        Me.BLock.Location = New System.Drawing.Point(758, 2)
         Me.BLock.Name = "BLock"
-        Me.BLock.Size = New System.Drawing.Size(107, 37)
+        Me.BLock.Size = New System.Drawing.Size(115, 37)
         Me.BLock.TabIndex = 8909
-        Me.BLock.Text = "Lock"
+        Me.BLock.Text = "Submit"
         '
         'PCDel
         '
@@ -954,4 +969,5 @@ Partial Class FormProductionKP
     Friend WithEvents GridColumnProto2Sample As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RIDESampleProto2 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
 End Class
