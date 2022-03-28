@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormBankWithdrawalSum
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormBankWithdrawalSum
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBankWithdrawalSum))
@@ -85,8 +85,11 @@ Partial Class FormBankWithdrawalSum
         Me.GCExportData = New DevExpress.XtraGrid.GridControl()
         Me.GVExportData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.BCreatePay = New DevExpress.XtraEditors.SimpleButton()
+        Me.BExportXLS = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
+        Me.CMSetupBCA = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,6 +130,8 @@ Partial Class FormBankWithdrawalSum
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        Me.CMSetupBCA.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -763,44 +768,67 @@ Partial Class FormBankWithdrawalSum
         '
         Me.GVExportData.GridControl = Me.GCExportData
         Me.GVExportData.Name = "GVExportData"
+        Me.GVExportData.OptionsView.ColumnAutoWidth = False
         Me.GVExportData.OptionsView.ShowGroupPanel = False
         '
         'PanelControl4
         '
-        Me.PanelControl4.Controls.Add(Me.BCreatePay)
+        Me.PanelControl4.Controls.Add(Me.BExportXLS)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl4.Location = New System.Drawing.Point(0, 263)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(930, 41)
         Me.PanelControl4.TabIndex = 1
         '
-        'BCreatePay
+        'BExportXLS
         '
-        Me.BCreatePay.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BCreatePay.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BCreatePay.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BCreatePay.Appearance.Options.UseBackColor = True
-        Me.BCreatePay.Appearance.Options.UseFont = True
-        Me.BCreatePay.Appearance.Options.UseForeColor = True
-        Me.BCreatePay.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BCreatePay.Location = New System.Drawing.Point(2, 2)
-        Me.BCreatePay.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BCreatePay.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BCreatePay.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BCreatePay.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BCreatePay.Name = "BCreatePay"
-        Me.BCreatePay.Size = New System.Drawing.Size(926, 37)
-        Me.BCreatePay.TabIndex = 20
-        Me.BCreatePay.Text = "Export XLS"
-        Me.BCreatePay.Visible = False
+        Me.BExportXLS.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BExportXLS.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BExportXLS.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BExportXLS.Appearance.Options.UseBackColor = True
+        Me.BExportXLS.Appearance.Options.UseFont = True
+        Me.BExportXLS.Appearance.Options.UseForeColor = True
+        Me.BExportXLS.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BExportXLS.Location = New System.Drawing.Point(2, 2)
+        Me.BExportXLS.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BExportXLS.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BExportXLS.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BExportXLS.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BExportXLS.Name = "BExportXLS"
+        Me.BExportXLS.Size = New System.Drawing.Size(926, 37)
+        Me.BExportXLS.TabIndex = 20
+        Me.BExportXLS.Text = "Export XLS"
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BRefresh)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(930, 41)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BRefresh
+        '
+        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefresh.Image = CType(resources.GetObject("BRefresh.Image"), System.Drawing.Image)
+        Me.BRefresh.Location = New System.Drawing.Point(813, 2)
+        Me.BRefresh.Name = "BRefresh"
+        Me.BRefresh.Size = New System.Drawing.Size(115, 37)
+        Me.BRefresh.TabIndex = 21
+        Me.BRefresh.Text = "Refresh"
+        '
+        'CMSetupBCA
+        '
+        Me.CMSetupBCA.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.CMSetupBCA.Name = "ContextMenuStripYM"
+        Me.CMSetupBCA.Size = New System.Drawing.Size(153, 48)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem1.Text = "Setup"
         '
         'FormBankWithdrawalSum
         '
@@ -859,6 +887,8 @@ Partial Class FormBankWithdrawalSum
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.CMSetupBCA.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -928,5 +958,8 @@ Partial Class FormBankWithdrawalSum
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GCExportData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVExportData As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents BCreatePay As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BExportXLS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BRefresh As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents CMSetupBCA As ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
 End Class
