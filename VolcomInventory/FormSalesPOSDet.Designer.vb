@@ -1407,7 +1407,7 @@ Partial Class FormSalesPOSDet
         Me.TxtNetto.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtNetto.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TxtNetto.Properties.EditValueChangedDelay = 1
-        Me.TxtNetto.Properties.Mask.EditMask = "N2"
+        Me.TxtNetto.Properties.Mask.EditMask = "N0"
         Me.TxtNetto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TxtNetto.Properties.Mask.SaveLiteral = False
         Me.TxtNetto.Properties.Mask.UseMaskAsDisplayFormat = True
