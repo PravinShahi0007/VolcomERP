@@ -756,6 +756,7 @@ Partial Class FormBankWithdrawalSum
         '
         'GCExportData
         '
+        Me.GCExportData.ContextMenuStrip = Me.CMSetupBCA
         Me.GCExportData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCExportData.Location = New System.Drawing.Point(0, 41)
         Me.GCExportData.MainView = Me.GVExportData
@@ -822,12 +823,12 @@ Partial Class FormBankWithdrawalSum
         '
         Me.CMSetupBCA.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
         Me.CMSetupBCA.Name = "ContextMenuStripYM"
-        Me.CMSetupBCA.Size = New System.Drawing.Size(153, 48)
+        Me.CMSetupBCA.Size = New System.Drawing.Size(105, 26)
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(104, 22)
         Me.ToolStripMenuItem1.Text = "Setup"
         '
         'FormBankWithdrawalSum
