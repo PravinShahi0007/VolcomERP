@@ -922,6 +922,7 @@ Partial Class FormSalesDelOrder
         Me.TxtNoParam.Location = New System.Drawing.Point(38, 9)
         Me.TxtNoParam.Name = "TxtNoParam"
         Me.TxtNoParam.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.TxtNoParam.Properties.ReadOnly = True
         Me.TxtNoParam.Size = New System.Drawing.Size(230, 20)
         Me.TxtNoParam.TabIndex = 3
         '
