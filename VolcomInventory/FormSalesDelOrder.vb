@@ -594,4 +594,30 @@
             e.DisplayText = (view.GetRowGroupIndexByRowHandle(rowHandle) + 1).ToString()
         End If
     End Sub
+
+    Sub printSOGen()
+        Cursor = Cursors.WaitCursor
+        ReportSalesOrderViewRef.dt = GCNewPrepare.DataSource
+        Dim Report As New ReportSalesOrderViewRef()
+
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVNewPrepare.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVNewPrepare.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleBanded(Report.GVNewPrepare)
+
+        'Parse val
+        Report.LabelRef.Text = TxtNoParam.Text
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
