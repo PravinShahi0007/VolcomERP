@@ -10,6 +10,7 @@
 
     Sub actionLoad()
         viewLineType()
+        TxtReason.Text = ""
         Dim query As String = "SELECT  dp.id_prod_demand_design_rev, pdd.id_prod_demand_design, pdd.id_design,d.design_code AS `code`, d.design_display_name AS `name`, po.prod_order_number,
         IFNULL(po.ordered,0) AS `ordered`,
         IFNULL(rec.received,0) AS `received`,
@@ -183,8 +184,6 @@
                 'insert detail
                 Dim query_det_new As String = "CALL generate_pd_drop_line_list('" + FormProdDemandRevDet.id + "','" + GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString + "')"
                 execute_non_query(query_det_new, True, "", "", "", "")
-                FormProdDemandRevDet.viewDetail()
-                actionLoad()
 
                 'update reason
                 Dim note As String = TxtReason.Text
@@ -192,6 +191,9 @@
                 Dim id_pd_rev As String = FormProdDemandRevDet.id
                 Dim id_pdd As String = GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
                 pd.updateNotePDRevDetail(id_pd_rev, id_pdd, note)
+
+                FormProdDemandRevDet.viewDetail()
+                actionLoad()
             End If
         Else
             stopCustom("No item selected")
