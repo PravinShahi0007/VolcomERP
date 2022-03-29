@@ -22,13 +22,13 @@
 	        GROUP BY i.id_departement,i.id_item
         ) a 
         LEFT JOIN (
-	        SELECT a.id_item, a.avg_cost 
-	        FROM (
-		        SELECT a.id_item, a.avg_cost 
-		        FROM tb_item_avg_cost a
-		        ORDER BY a.id_item_avg_cost DESC
-	        ) a
-	        GROUP BY a.id_item
+	        SELECT avg_cost.id_item, avg_cost.avg_cost 
+            FROM tb_item_avg_cost avg_cost
+            INNER JOIN (
+	            SELECT a.id_item,MAX(a.id_item_avg_cost) AS id_item_avg_cost
+	            FROM tb_item_avg_cost a
+	            GROUP BY a.id_item
+            ) a ON a.id_item_avg_cost=avg_cost.id_item_avg_cost
         ) cst ON cst.id_item = a.id_item
         INNER JOIN tb_item im ON im.id_item = a.id_item
         INNER JOIN tb_m_uom uom ON uom.id_uom=im.id_uom_stock
@@ -49,13 +49,13 @@
 	        GROUP BY i.id_departement,i.id_item
         ) a 
         LEFT JOIN (
-	        SELECT a.id_item, a.avg_cost 
-	        FROM (
-		        SELECT a.id_item, a.avg_cost 
-		        FROM tb_item_avg_cost a
-		        ORDER BY a.id_item_avg_cost DESC
-	        ) a
-	        GROUP BY a.id_item
+	        SELECT avg_cost.id_item, avg_cost.avg_cost 
+            FROM tb_item_avg_cost avg_cost
+            INNER JOIN (
+	            SELECT a.id_item,MAX(a.id_item_avg_cost) AS id_item_avg_cost
+	            FROM tb_item_avg_cost a
+	            GROUP BY a.id_item
+            ) a ON a.id_item_avg_cost=avg_cost.id_item_avg_cost
         ) cst ON cst.id_item = a.id_item
         INNER JOIN tb_item im ON im.id_item = a.id_item
         INNER JOIN tb_m_uom uom ON uom.id_uom=im.id_uom_stock
