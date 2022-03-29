@@ -36,13 +36,23 @@
                                 INNER JOIN tb_a_asset_po po ON po.id_asset_po=pod.id_asset_po 
                                 LEFT JOIN
                                 (
-                                    SELECT a.id_asset,emp.`employee_name`,emp.`id_employee`,dep.`departement`,dep.`id_departement` FROM
+                                    SELECT a.id_asset,a.location,emp.`employee_name`,emp.`id_employee`,dep.`departement`,dep.`id_departement` 
+                                    FROM
+                                    tb_a_asset_log a
+                                    INNER JOIN
                                     (
-	                                    SELECT * FROM tb_a_asset_log WHERE id_asset='" & id_asset & "' ORDER BY `date` DESC 
-                                    )a 
+                                        SELECT a.id_asset,MAX(a.`id_asset_log`) AS `id_asset_log`
+                                        FROM tb_a_asset_log a
+                                        INNER JOIN (
+	                                        SELECT a.id_asset,MAX(a.`date`) AS `date`
+	                                        FROM tb_a_asset_log a
+                                            WHERE a.id_asset='" & id_asset & "'
+	                                        GROUP BY a.id_asset
+                                        )alog ON alog.id_asset=a.id_asset AND alog.date=a.date
+                                       GROUP BY a.id_asset
+                                    )alog ON alog.id_asset_log=a.id_asset_log
                                     LEFT JOIN tb_m_employee emp ON emp.`id_employee`=a.id_employee
                                     INNER JOIN tb_m_departement dep ON dep.`id_departement`=a.id_departement
-                                    GROUP BY a.id_asset
                                 )cur_user ON cur_user.id_asset=ass.id_asset
                                 LEFT JOIN tb_m_employee emp ON emp.`id_employee`=ass.id_employee
                                 INNER JOIN tb_m_user usr ON usr.id_user=ass.id_user_created
