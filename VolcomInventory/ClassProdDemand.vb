@@ -764,4 +764,9 @@
         gv.Columns("TOTAL QTY").SummaryItem.DisplayFormat = "{0:n0}"
         gv.BestFitColumns()
     End Sub
+
+    Sub updateNotePDRevDetail(ByVal id_revision_par As String, ByVal id_pdd_par As String, ByVal note_par As String)
+        Dim query As String = "UPDATE tb_prod_demand_design_rev SET note='" + addSlashes(note_par) + "' WHERE id_prod_demand_rev='" + id_revision_par + "' AND id_prod_demand_design='" + id_pdd_par + "' "
+        execute_non_query(query, True, "", "", "", "")
+    End Sub
 End Class
