@@ -1,4 +1,6 @@
-﻿Public Class FormSalesDelOrder 
+﻿Imports DevExpress.XtraReports.UI
+
+Public Class FormSalesDelOrder
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
@@ -324,7 +326,6 @@
             Else
                 Dim rf As New ClassSalesOrder()
                 rf.viewReff(id_sales_order_gen, "-1", GCNewPrepare, GVNewPrepare)
-                id_sales_order_gen = "-1"
             End If
         End If
         Cursor = Cursors.Default
@@ -593,5 +594,52 @@
             Dim rowHandle As Integer = view.GetRowHandle(e.ListSourceRowIndex)
             e.DisplayText = (view.GetRowGroupIndexByRowHandle(rowHandle) + 1).ToString()
         End If
+    End Sub
+
+    Private Report As ReportSalesOrderViewRef
+    Sub printSOGen()
+        Cursor = Cursors.WaitCursor
+        ReportSalesOrderViewRef.dt = GCNewPrepare.DataSource
+        Report = New ReportSalesOrderViewRef()
+
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVNewPrepare.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVNewPrepare.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleBanded(Report.GVNewPrepare)
+
+        'Parse val
+        Report.LabelRef.Text = TxtNoParam.Text
+
+        'Show the report's preview. 
+        AddHandler Report.PrintingSystem.EndPrint, AddressOf PrintingSystem_EndPrint
+        Report.ShowPreviewDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub PrintingSystem_EndPrint(ByVal sender As Object, ByVal e As EventArgs)
+        Cursor = Cursors.WaitCursor
+
+        If id_sales_order_gen <> "-1" Then
+            Dim qso As String = "SELECT so.id_sales_order 
+            FROM tb_sales_order so
+            WHERE so.id_sales_order_gen=" + id_sales_order_gen + " "
+            Dim dso As DataTable = execute_query(qso, -1, True, "", "", "", "")
+            For i As Integer = 0 To dso.Rows.Count - 1
+                Dim id_sales_order As String = dso.Rows(i)("id_sales_order").ToString
+
+                'insert log
+                Dim query As String = "INSERT INTO tb_sales_order_log_print(id_sales_order, id_user, log_date) VALUES('" + id_sales_order + "','" + id_user + "', NOW()) "
+                execute_non_query(query, True, "", "", "", "")
+            Next
+        End If
+        Report.ClosePreview()
+        Cursor = Cursors.Default
     End Sub
 End Class
