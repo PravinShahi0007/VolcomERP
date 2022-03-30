@@ -61,8 +61,8 @@
             LEFT JOIN (
                 SELECT a.id_sales_order, a.log_date AS `printed_date`, e.employee_name AS `printed_by` 
                 FROM (
-                SELECT * FROM tb_sales_order_log_print lp
-                ORDER BY lp.log_date ASC
+                    SELECT * FROM tb_sales_order_log_print lp
+                    ORDER BY lp.log_date ASC
                 ) a 
                 INNER JOIN tb_m_user u ON u.id_user = a.id_user
                 INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee

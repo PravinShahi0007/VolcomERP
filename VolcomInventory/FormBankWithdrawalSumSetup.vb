@@ -40,10 +40,17 @@ WHERE c.id_comp='" & id_comp & "'"
             TEBankNo.Text = dt.Rows(0)("bank_rek").ToString
             '
         End If
+        '
+        load_trx()
+    End Sub
+
+    Sub load_trx()
+
     End Sub
 
     Sub load_kode_bank()
         Dim query As String = "SELECT id,nama_bank,kode_bank FROM `tb_kode_bank` WHERE id!=0 AND kode_bank!='INT'"
+        viewSearchLookupQuery(SLEBankAccount, query, "id", "nama_bank", "id")
         viewSearchLookupQuery(SLEBankAccount, query, "id", "nama_bank", "id")
     End Sub
 

@@ -60,13 +60,22 @@
                                 LEFT JOIN tb_m_employee emp_last ON emp_last.id_employee=usr_last.id_employee
                                 LEFT JOIN
                                 (
-                                    SELECT a.id_asset,a.location,emp.`employee_name`,emp.`id_employee`,dep.`departement`,dep.`id_departement` FROM
+                                    SELECT a.id_asset,a.location,emp.`employee_name`,emp.`id_employee`,dep.`departement`,dep.`id_departement` 
+                                    FROM
+                                    tb_a_asset_log a
+                                    INNER JOIN
                                     (
-	                                    SELECT * FROM tb_a_asset_log ORDER BY `date` DESC ,id_asset_log DESC
-                                    )a 
+                                        SELECT a.id_asset,MAX(a.`id_asset_log`) AS `id_asset_log`
+                                        FROM tb_a_asset_log a
+                                        INNER JOIN (
+	                                    SELECT a.id_asset,MAX(a.`date`) AS `date`
+	                                    FROM tb_a_asset_log a
+	                                    GROUP BY a.id_asset
+                                        )alog ON alog.id_asset=a.id_asset AND alog.date=a.date
+                                       GROUP BY a.id_asset
+                                    )alog ON alog.id_asset_log=a.id_asset_log
                                     LEFT JOIN tb_m_employee emp ON emp.`id_employee`=a.id_employee
                                     INNER JOIN tb_m_departement dep ON dep.`id_departement`=a.id_departement
-                                    GROUP BY a.id_asset
                                 )cur_user ON cur_user.id_asset=ass.id_asset
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=pod.id_departement
                                 INNER JOIN tb_a_asset_cat cat ON cat.id_asset_cat=ass.id_asset_cat " & where_string

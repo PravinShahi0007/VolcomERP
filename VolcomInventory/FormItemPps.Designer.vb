@@ -22,6 +22,8 @@ Partial Class FormItemPps
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormItemPps))
         Me.SLEVMItems = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_display_type = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndisplay_type = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.MEDefDesc = New DevExpress.XtraEditors.MemoEdit()
@@ -29,21 +31,37 @@ Partial Class FormItemPps
         Me.TEConvertion = New DevExpress.XtraEditors.TextEdit()
         Me.SLEUOMStock = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEVendorType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLEPurchaseCategory = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEItemType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEUOM = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLECat = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TEDesc = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -58,24 +76,6 @@ Partial Class FormItemPps
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDate = New DevExpress.XtraEditors.DateEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.GridColumnid_display_type = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumndisplay_type = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SLEVMItems.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEDefDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,6 +124,20 @@ Partial Class FormItemPps
         Me.GridView8.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView8.OptionsView.ShowGroupPanel = False
         '
+        'GridColumnid_display_type
+        '
+        Me.GridColumnid_display_type.Caption = "id"
+        Me.GridColumnid_display_type.FieldName = "id_display_type"
+        Me.GridColumnid_display_type.Name = "GridColumnid_display_type"
+        '
+        'GridColumndisplay_type
+        '
+        Me.GridColumndisplay_type.Caption = "Type"
+        Me.GridColumndisplay_type.FieldName = "display_type"
+        Me.GridColumndisplay_type.Name = "GridColumndisplay_type"
+        Me.GridColumndisplay_type.Visible = True
+        Me.GridColumndisplay_type.VisibleIndex = 0
+        '
         'LabelControl12
         '
         Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -146,6 +160,7 @@ Partial Class FormItemPps
         '
         Me.MEDefDesc.Location = New System.Drawing.Point(116, 43)
         Me.MEDefDesc.Name = "MEDefDesc"
+        Me.MEDefDesc.Properties.MaxLength = 499
         Me.MEDefDesc.Size = New System.Drawing.Size(367, 66)
         Me.MEDefDesc.TabIndex = 8938
         '
@@ -194,6 +209,20 @@ Partial Class FormItemPps
         Me.GridView7.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView7.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "ID UOM"
+        Me.GridColumn25.FieldName = "id_uom"
+        Me.GridColumn25.Name = "GridColumn25"
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "UOM"
+        Me.GridColumn26.FieldName = "uom"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 0
+        '
         'LabelControl9
         '
         Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -239,6 +268,20 @@ Partial Class FormItemPps
         Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView6.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "ID Vendor Type"
+        Me.GridColumn13.FieldName = "id_vendor_type"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Vendor Type"
+        Me.GridColumn14.FieldName = "vendor_type"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        '
         'SLEPurchaseCategory
         '
         Me.SLEPurchaseCategory.Location = New System.Drawing.Point(116, 115)
@@ -255,6 +298,48 @@ Partial Class FormItemPps
         Me.GridView5.Name = "GridView5"
         Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView5.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "ID Purchase Category"
+        Me.GridColumn11.FieldName = "id_item_cat_detail"
+        Me.GridColumn11.Name = "GridColumn11"
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "ID Cat"
+        Me.GridColumn18.FieldName = "id_item_cat"
+        Me.GridColumn18.Name = "GridColumn18"
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "ID Vendor Type"
+        Me.GridColumn17.FieldName = "id_vendor_type"
+        Me.GridColumn17.Name = "GridColumn17"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Purchase Category"
+        Me.GridColumn12.FieldName = "item_cat_detail"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 0
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Budget Category"
+        Me.GridColumn16.FieldName = "item_cat"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 2
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Vendor Type"
+        Me.GridColumn15.FieldName = "vendor_type"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 1
         '
         'LabelControl5
         '
@@ -282,6 +367,20 @@ Partial Class FormItemPps
         Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView3.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Item Type"
+        Me.GridColumn9.FieldName = "id_item_type"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Item Type"
+        Me.GridColumn10.FieldName = "item_type"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
+        '
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -308,6 +407,20 @@ Partial Class FormItemPps
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID UOM"
+        Me.GridColumn1.FieldName = "id_uom"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "UOM"
+        Me.GridColumn3.FieldName = "uom"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
+        '
         'SLECat
         '
         Me.SLECat.Enabled = False
@@ -325,6 +438,20 @@ Partial Class FormItemPps
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "ID Cat"
+        Me.GridColumn2.FieldName = "id_item_cat"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Item Category"
+        Me.GridColumn4.FieldName = "item_cat"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
         '
         'LabelControl2
         '
@@ -347,6 +474,7 @@ Partial Class FormItemPps
         Me.TEDesc.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.TEDesc.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TEDesc.Properties.EditValueChangedDelay = 1
+        Me.TEDesc.Properties.MaxLength = 199
         Me.TEDesc.Size = New System.Drawing.Size(367, 20)
         Me.TEDesc.TabIndex = 8921
         Me.TEDesc.TabStop = False
@@ -509,132 +637,6 @@ Partial Class FormItemPps
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(495, 285)
         Me.PanelControl3.TabIndex = 8947
-        '
-        'GridColumnid_display_type
-        '
-        Me.GridColumnid_display_type.Caption = "id"
-        Me.GridColumnid_display_type.FieldName = "id_display_type"
-        Me.GridColumnid_display_type.Name = "GridColumnid_display_type"
-        '
-        'GridColumndisplay_type
-        '
-        Me.GridColumndisplay_type.Caption = "Type"
-        Me.GridColumndisplay_type.FieldName = "display_type"
-        Me.GridColumndisplay_type.Name = "GridColumndisplay_type"
-        Me.GridColumndisplay_type.Visible = True
-        Me.GridColumndisplay_type.VisibleIndex = 0
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "ID Cat"
-        Me.GridColumn2.FieldName = "id_item_cat"
-        Me.GridColumn2.Name = "GridColumn2"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Item Category"
-        Me.GridColumn4.FieldName = "item_cat"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID UOM"
-        Me.GridColumn1.FieldName = "id_uom"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "UOM"
-        Me.GridColumn3.FieldName = "uom"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 0
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Item Type"
-        Me.GridColumn9.FieldName = "id_item_type"
-        Me.GridColumn9.Name = "GridColumn9"
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Item Type"
-        Me.GridColumn10.FieldName = "item_type"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 0
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "ID Purchase Category"
-        Me.GridColumn11.FieldName = "id_item_cat_detail"
-        Me.GridColumn11.Name = "GridColumn11"
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "ID Cat"
-        Me.GridColumn18.FieldName = "id_item_cat"
-        Me.GridColumn18.Name = "GridColumn18"
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "ID Vendor Type"
-        Me.GridColumn17.FieldName = "id_vendor_type"
-        Me.GridColumn17.Name = "GridColumn17"
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Purchase Category"
-        Me.GridColumn12.FieldName = "item_cat_detail"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 0
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Budget Category"
-        Me.GridColumn16.FieldName = "item_cat"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 2
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "Vendor Type"
-        Me.GridColumn15.FieldName = "vendor_type"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 1
-        '
-        'GridColumn25
-        '
-        Me.GridColumn25.Caption = "ID UOM"
-        Me.GridColumn25.FieldName = "id_uom"
-        Me.GridColumn25.Name = "GridColumn25"
-        '
-        'GridColumn26
-        '
-        Me.GridColumn26.Caption = "UOM"
-        Me.GridColumn26.FieldName = "uom"
-        Me.GridColumn26.Name = "GridColumn26"
-        Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 0
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "ID Vendor Type"
-        Me.GridColumn13.FieldName = "id_vendor_type"
-        Me.GridColumn13.Name = "GridColumn13"
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "Vendor Type"
-        Me.GridColumn14.FieldName = "vendor_type"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 0
         '
         'FormItemPps
         '
