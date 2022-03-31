@@ -21,16 +21,19 @@
         FROM tb_payout_zalora z 
         INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = z.id_report_status
         LEFT JOIN (
-	        SELECT a.id_report, a.id_user, a.username, a.employee_name 
-	        FROM (
-		        SELECT rm.id_report, rm.id_user, u.username, e.employee_name
-		        FROM tb_report_mark rm 
-		        INNER JOIN tb_m_user u ON u.id_user = rm.id_user
-		        INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
-		        WHERE (rm.report_mark_type=282) AND rm.id_report_status>1 AND rm.id_mark=2
-		        ORDER BY rm.report_mark_datetime DESC
-	        ) a
-	        GROUP BY a.id_report
+	        SELECT rm.id_report, rm.id_user, u.username, e.employee_name  
+            FROM tb_report_mark rm
+            INNER JOIN 
+            (
+	            SELECT MAX(rm.id_report) AS `id_report`, MAX(rm.report_mark_datetime) AS report_mark_datetime
+	            FROM tb_report_mark rm 
+	            WHERE (rm.report_mark_type=282) AND rm.id_report_status>1 AND rm.id_mark=2
+	            GROUP BY rm.id_report
+            ) rmmax ON rmmax.id_report = rm.id_report AND rmmax.report_mark_datetime = rm.report_mark_datetime
+            INNER JOIN tb_m_user u ON u.id_user = rm.id_user
+            INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+            WHERE (rm.report_mark_type=282) AND rm.id_report_status>1 AND rm.id_mark=2
+            GROUP BY rm.id_report
         ) la ON la.id_report = z.`id_payout_zalora`
         WHERE z.id_payout_zalora>0 "
         query += condition + " "

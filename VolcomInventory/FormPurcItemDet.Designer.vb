@@ -263,6 +263,7 @@ Partial Class FormPurcItemDet
         '
         Me.MEDefDesc.Location = New System.Drawing.Point(109, 70)
         Me.MEDefDesc.Name = "MEDefDesc"
+        Me.MEDefDesc.Properties.MaxLength = 499
         Me.MEDefDesc.Size = New System.Drawing.Size(367, 66)
         Me.MEDefDesc.TabIndex = 8916
         '
@@ -647,6 +648,7 @@ Partial Class FormPurcItemDet
         Me.TEDesc.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.TEDesc.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TEDesc.Properties.EditValueChangedDelay = 1
+        Me.TEDesc.Properties.MaxLength = 199
         Me.TEDesc.Size = New System.Drawing.Size(367, 20)
         Me.TEDesc.TabIndex = 8895
         Me.TEDesc.TabStop = False

@@ -44,13 +44,13 @@
                 INNER JOIN tb_m_uom uom ON uom.id_uom = i.id_uom
                 LEFT JOIN tb_m_uom uom_stock ON uom_stock.id_uom = i.id_uom_stock
                 LEFT JOIN (
-	                SELECT a.id_item, a.avg_cost 
-	                FROM (
-		                SELECT a.id_item, a.avg_cost 
-		                FROM tb_item_avg_cost a
-		                ORDER BY a.id_item_avg_cost DESC
-	                ) a
-	                GROUP BY a.id_item
+	                SELECT avg_cost.id_item, avg_cost.avg_cost 
+                    FROM tb_item_avg_cost avg_cost
+                    INNER JOIN (
+	                    SELECT a.id_item,MAX(a.id_item_avg_cost) AS id_item_avg_cost
+	                    FROM tb_item_avg_cost a
+	                    GROUP BY a.id_item
+                    ) a ON a.id_item_avg_cost=avg_cost.id_item_avg_cost
                 ) t ON t.id_item = i.id_item
                 WHERE i.id_item NOT IN (" + in_item + ")
             ", -1, True, "", "", "", "")

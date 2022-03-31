@@ -125,6 +125,8 @@ Partial Class FormPurcReqDet
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BSetShipping = New DevExpress.XtraEditors.SimpleButton()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TENoteIA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -176,6 +178,8 @@ Partial Class FormPurcReqDet
         CType(Me.TENoteIC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEICApproval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -593,7 +597,7 @@ Partial Class FormPurcReqDet
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
-        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RISLEItem, Me.RISLEShipTo, Me.RICEFixedAssetGrid, Me.RepositoryItemCheckEdit1})
+        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RISLEItem, Me.RISLEShipTo, Me.RICEFixedAssetGrid, Me.RepositoryItemCheckEdit1, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2})
         Me.GCItemList.Size = New System.Drawing.Size(955, 180)
         Me.GCItemList.TabIndex = 3
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
@@ -816,6 +820,7 @@ Partial Class FormPurcReqDet
         'GridColumn20
         '
         Me.GridColumn20.Caption = "Item Detail"
+        Me.GridColumn20.ColumnEdit = Me.RepositoryItemTextEdit2
         Me.GridColumn20.FieldName = "item_detail"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
@@ -825,6 +830,7 @@ Partial Class FormPurcReqDet
         'GridColumnRemark
         '
         Me.GridColumnRemark.Caption = "Remark"
+        Me.GridColumnRemark.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnRemark.FieldName = "remark"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
@@ -1257,6 +1263,18 @@ Partial Class FormPurcReqDet
         Me.BSetShipping.TabStop = False
         Me.BSetShipping.Text = "Set blank shipping destination to Volcom"
         '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.MaxLength = 199
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
+        'RepositoryItemTextEdit2
+        '
+        Me.RepositoryItemTextEdit2.AutoHeight = False
+        Me.RepositoryItemTextEdit2.MaxLength = 499
+        Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
+        '
         'FormPurcReqDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1331,6 +1349,8 @@ Partial Class FormPurcReqDet
         CType(Me.TENoteIC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEICApproval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1439,4 +1459,6 @@ Partial Class FormPurcReqDet
     Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStockCard As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

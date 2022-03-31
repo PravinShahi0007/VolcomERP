@@ -511,6 +511,7 @@ SELECT  @numb:=@numb+1 AS 'No',py.number AS 'Transaction ID'
 ,'' AS 'Transaction Cd'
 ,IFNULL(email.email,'') AS 'Beneficiary Email'
 ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name
+,c.id_comp,pnsd.id_pn_summary_det
 FROM tb_pn py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -533,6 +534,9 @@ GROUP BY py.id_pn"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCExportData.DataSource = dt
         GVExportData.BestFitColumns()
+        GVExportData.Columns("comp_name").Visible = False
+        GVExportData.Columns("id_comp").Visible = False
+        GVExportData.Columns("id_pn_summary_det").Visible = False
     End Sub
 
     Private Sub BExportXLS_Click(sender As Object, e As EventArgs) Handles BExportXLS.Click
@@ -572,6 +576,10 @@ GROUP BY py.id_pn"
     End Sub
 
     Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
-
+        If GVExportData.RowCount > 0 Then
+            FormBankWithdrawalSumSetup.id_summary_det = GVExportData.GetFocusedRowCellValue("id_pn_summary_det").ToString
+            FormBankWithdrawalSumSetup.id_comp = GVExportData.GetFocusedRowCellValue("id_comp").ToString
+            FormBankWithdrawalSumSetup.ShowDialog()
+        End If
     End Sub
 End Class
