@@ -7089,6 +7089,12 @@
     <Compile Include="FormSampleDevelopmentVerifyCPS2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSampleDevTargetAdd.Designer.vb">
+      <DependentUpon>FormSampleDevTargetAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSampleDevTargetAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSampleDevTargetPps.Designer.vb">
       <DependentUpon>FormSampleDevTargetPps.vb</DependentUpon>
     </Compile>
