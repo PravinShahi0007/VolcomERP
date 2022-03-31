@@ -1750,7 +1750,6 @@ Partial Class FormSampleDevelopment
         Me.BProposeSampleDev.Size = New System.Drawing.Size(1111, 28)
         Me.BProposeSampleDev.TabIndex = 141
         Me.BProposeSampleDev.Text = "Propose"
-        Me.BProposeSampleDev.Visible = False
         '
         'PanelControl2
         '
