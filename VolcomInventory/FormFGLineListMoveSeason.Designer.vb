@@ -36,6 +36,8 @@ Partial Class FormFGLineListMoveSeason
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelSeasonFrom = New DevExpress.XtraEditors.LabelControl()
+        Me.MEReason = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PBC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -44,6 +46,7 @@ Partial Class FormFGLineListMoveSeason
         CType(Me.LEPlanStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLESeasonFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PBC
@@ -77,7 +80,7 @@ Partial Class FormFGLineListMoveSeason
         '
         Me.PanelControl1.Controls.Add(Me.BtnUpdateRec)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 76)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 159)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(297, 28)
         Me.PanelControl1.TabIndex = 8907
@@ -149,7 +152,7 @@ Partial Class FormFGLineListMoveSeason
         Me.SLESeasonFrom.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SLESeasonFrom.Enabled = False
-        Me.SLESeasonFrom.Location = New System.Drawing.Point(79, 106)
+        Me.SLESeasonFrom.Location = New System.Drawing.Point(79, 218)
         Me.SLESeasonFrom.Name = "SLESeasonFrom"
         Me.SLESeasonFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLESeasonFrom.Properties.Appearance.Options.UseFont = True
@@ -190,17 +193,35 @@ Partial Class FormFGLineListMoveSeason
         '
         'LabelSeasonFrom
         '
-        Me.LabelSeasonFrom.Location = New System.Drawing.Point(12, 109)
+        Me.LabelSeasonFrom.Location = New System.Drawing.Point(12, 221)
         Me.LabelSeasonFrom.Name = "LabelSeasonFrom"
         Me.LabelSeasonFrom.Size = New System.Drawing.Size(24, 13)
         Me.LabelSeasonFrom.TabIndex = 8912
         Me.LabelSeasonFrom.Text = "From"
         '
+        'MEReason
+        '
+        Me.MEReason.Location = New System.Drawing.Point(79, 68)
+        Me.MEReason.Name = "MEReason"
+        Me.MEReason.Properties.MaxLength = 99
+        Me.MEReason.Size = New System.Drawing.Size(206, 70)
+        Me.MEReason.TabIndex = 8913
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(10, 70)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl1.TabIndex = 8914
+        Me.LabelControl1.Text = "Reason"
+        '
         'FormFGLineListMoveSeason
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(297, 104)
+        Me.ClientSize = New System.Drawing.Size(297, 187)
+        Me.Controls.Add(Me.LabelControl1)
+        Me.Controls.Add(Me.MEReason)
         Me.Controls.Add(Me.LabelSeasonFrom)
         Me.Controls.Add(Me.SLESeasonFrom)
         Me.Controls.Add(Me.LEPlanStatus)
@@ -223,6 +244,7 @@ Partial Class FormFGLineListMoveSeason
         CType(Me.LEPlanStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLESeasonFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -245,4 +267,6 @@ Partial Class FormFGLineListMoveSeason
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelSeasonFrom As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents MEReason As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
 End Class
