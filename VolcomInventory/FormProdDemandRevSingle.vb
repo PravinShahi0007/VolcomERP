@@ -10,6 +10,7 @@
 
     Sub actionLoad()
         viewLineType()
+        TxtReason.Text = ""
         Dim query As String = "SELECT  dp.id_prod_demand_design_rev, pdd.id_prod_demand_design, pdd.id_design,d.design_code AS `code`, d.design_display_name AS `name`, po.prod_order_number,
         IFNULL(po.ordered,0) AS `ordered`,
         IFNULL(rec.received,0) AS `received`,
@@ -140,6 +141,12 @@
                     'insert detail
                     Dim query_det_new As String = "CALL generate_pd_rev_line_list('" + FormProdDemandRevDet.id + "','" + GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString + "', '" + SLETypeLineList.EditValue.ToString + "', '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "', " + is_cancel_po + ", '" + cancel_po_note + "')"
                     execute_non_query(query_det_new, True, "", "", "", "")
+
+                    'update reason
+                    Dim note As String = TxtReason.Text
+                    Dim pd As New ClassProdDemand()
+                    pd.updateNotePDRevDetail(FormProdDemandRevDet.id, GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString, note)
+
                     FormProdDemandRevDet.viewDetail()
                     actionLoad()
                 End If
@@ -147,6 +154,12 @@
                 'insert detail
                 Dim query_det_new As String = "CALL generate_pd_rev_line_list('" + FormProdDemandRevDet.id + "','" + GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString + "', '" + SLETypeLineList.EditValue.ToString + "', '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "', " + is_cancel_po + ", '" + cancel_po_note + "')"
                 execute_non_query(query_det_new, True, "", "", "", "")
+
+                'update reason
+                Dim note As String = TxtReason.Text
+                Dim pd As New ClassProdDemand()
+                pd.updateNotePDRevDetail(FormProdDemandRevDet.id, GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString, note)
+
                 FormProdDemandRevDet.viewDetail()
                 actionLoad()
             End If
@@ -157,6 +170,11 @@
     End Sub
 
     Private Sub BtnDrop_Click(sender As Object, e As EventArgs) Handles BtnDrop.Click
+        If TxtReason.Text = "" Then
+            warningCustom("Please input reason")
+            Exit Sub
+        End If
+
         Cursor = Cursors.WaitCursor
         If GVDesign.RowCount > 0 And GVDesign.FocusedRowHandle >= 0 Then
             If GVDesign.GetFocusedRowCellValue("received") > 0 Then
@@ -166,6 +184,14 @@
                 'insert detail
                 Dim query_det_new As String = "CALL generate_pd_drop_line_list('" + FormProdDemandRevDet.id + "','" + GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString + "')"
                 execute_non_query(query_det_new, True, "", "", "", "")
+
+                'update reason
+                Dim note As String = TxtReason.Text
+                Dim pd As New ClassProdDemand()
+                Dim id_pd_rev As String = FormProdDemandRevDet.id
+                Dim id_pdd As String = GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
+                pd.updateNotePDRevDetail(id_pd_rev, id_pdd, note)
+
                 FormProdDemandRevDet.viewDetail()
                 actionLoad()
             End If

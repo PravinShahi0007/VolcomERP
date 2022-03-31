@@ -42,6 +42,8 @@ Partial Class FormProdDemandRevSingle
         Me.GridColumncurrent_cost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncurrent_add_cost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncurrent_size_chart = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtReason = New DevExpress.XtraEditors.TextEdit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,6 +52,7 @@ Partial Class FormProdDemandRevSingle
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtReason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemTextEdit1
@@ -67,14 +70,16 @@ Partial Class FormProdDemandRevSingle
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.TxtReason)
+        Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.SLETypeLineList)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.BtnDrop)
         Me.PanelControl1.Controls.Add(Me.BtnRevise)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 326)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 307)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(717, 43)
+        Me.PanelControl1.Size = New System.Drawing.Size(717, 62)
         Me.PanelControl1.TabIndex = 0
         '
         'SLETypeLineList
@@ -82,13 +87,13 @@ Partial Class FormProdDemandRevSingle
         Me.SLETypeLineList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SLETypeLineList.Enabled = False
-        Me.SLETypeLineList.Location = New System.Drawing.Point(92, 12)
+        Me.SLETypeLineList.Location = New System.Drawing.Point(12, 30)
         Me.SLETypeLineList.Name = "SLETypeLineList"
         Me.SLETypeLineList.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLETypeLineList.Properties.NullText = ""
         Me.SLETypeLineList.Properties.ShowFooter = False
         Me.SLETypeLineList.Properties.View = Me.GridView4
-        Me.SLETypeLineList.Size = New System.Drawing.Size(238, 20)
+        Me.SLETypeLineList.Size = New System.Drawing.Size(197, 20)
         Me.SLETypeLineList.TabIndex = 95
         '
         'GridView4
@@ -127,11 +132,12 @@ Partial Class FormProdDemandRevSingle
         Me.BtnDrop.Appearance.Options.UseFont = True
         Me.BtnDrop.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDrop.Image = CType(resources.GetObject("BtnDrop.Image"), System.Drawing.Image)
+        Me.BtnDrop.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
         Me.BtnDrop.Location = New System.Drawing.Point(525, 2)
         Me.BtnDrop.LookAndFeel.SkinName = "Office 2007 Pink"
         Me.BtnDrop.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnDrop.Name = "BtnDrop"
-        Me.BtnDrop.Size = New System.Drawing.Size(95, 39)
+        Me.BtnDrop.Size = New System.Drawing.Size(95, 58)
         Me.BtnDrop.TabIndex = 1
         Me.BtnDrop.Text = "Drop"
         '
@@ -141,20 +147,22 @@ Partial Class FormProdDemandRevSingle
         Me.BtnRevise.Appearance.Options.UseFont = True
         Me.BtnRevise.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnRevise.Image = CType(resources.GetObject("BtnRevise.Image"), System.Drawing.Image)
+        Me.BtnRevise.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter
         Me.BtnRevise.Location = New System.Drawing.Point(620, 2)
         Me.BtnRevise.LookAndFeel.SkinName = "Office 2007 Green"
         Me.BtnRevise.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnRevise.Name = "BtnRevise"
-        Me.BtnRevise.Size = New System.Drawing.Size(95, 39)
+        Me.BtnRevise.Size = New System.Drawing.Size(95, 58)
         Me.BtnRevise.TabIndex = 0
         Me.BtnRevise.Text = "Revise"
         '
         'GCDesign
         '
+        Me.GCDesign.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCDesign.Location = New System.Drawing.Point(0, 0)
         Me.GCDesign.MainView = Me.GVDesign
         Me.GCDesign.Name = "GCDesign"
-        Me.GCDesign.Size = New System.Drawing.Size(717, 326)
+        Me.GCDesign.Size = New System.Drawing.Size(717, 307)
         Me.GCDesign.TabIndex = 1
         Me.GCDesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDesign})
         '
@@ -277,6 +285,22 @@ Partial Class FormProdDemandRevSingle
         Me.GridColumncurrent_size_chart.FieldName = "current_size_chart"
         Me.GridColumncurrent_size_chart.Name = "GridColumncurrent_size_chart"
         '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(212, 15)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl2.TabIndex = 96
+        Me.LabelControl2.Text = "Reason"
+        '
+        'TxtReason
+        '
+        Me.TxtReason.Location = New System.Drawing.Point(212, 30)
+        Me.TxtReason.Name = "TxtReason"
+        Me.TxtReason.Properties.MaxLength = 99
+        Me.TxtReason.Size = New System.Drawing.Size(298, 20)
+        Me.TxtReason.TabIndex = 97
+        '
         'FormProdDemandRevSingle
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -298,6 +322,7 @@ Partial Class FormProdDemandRevSingle
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtReason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -324,4 +349,6 @@ Partial Class FormProdDemandRevSingle
     Friend WithEvents GridColumncurrent_cost As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncurrent_add_cost As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncurrent_size_chart As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TxtReason As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
 End Class

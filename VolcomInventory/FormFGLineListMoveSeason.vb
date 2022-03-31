@@ -53,6 +53,11 @@
     End Sub
 
     Private Sub BtnUpdateRec_Click(sender As Object, e As EventArgs) Handles BtnUpdateRec.Click
+        If MEReason.Text = "" Then
+            warningCustom("Please input reason")
+            Exit Sub
+        End If
+
         'cek jika drop
         If LEPlanStatus.EditValue.ToString = "2" Then
             Dim dsg_cek As String = ""
@@ -113,23 +118,21 @@
                 Cursor = Cursors.WaitCursor
                 Dim id_lookup_status_order As String = LEPlanStatus.EditValue.ToString
                 Dim id_season_to As String = SLESeason.EditValue.ToString
+                Dim reason As String = addSlashes(MEReason.Text)
                 For i As Integer = 0 To ((FormFGLineList.BGVLineList.RowCount - 1) - GetGroupRowCount(FormFGLineList.BGVLineList))
                     Dim id_design As String = FormFGLineList.BGVLineList.GetRowCellValue(i, "id_design").ToString
                     Dim in_store_date_old As String = DateTime.Parse(FormFGLineList.BGVLineList.GetRowCellValue(i, "IN STORE DATE").ToString).ToString("dd MMMM yyyy")
                     Dim id_season_from As String = SLESeasonFrom.EditValue.ToString
 
                     'update line list status
-                    Dim note As String = ""
                     Dim id_delivery As String = ""
                     Dim query_upd As String = "UPDATE tb_m_design SET id_lookup_status_order='" + id_lookup_status_order + "' "
                     If id_lookup_status_order = "2" Then 'drop
                         query_upd += ", id_active=2 "
-                        note = "Drop article"
                     ElseIf id_lookup_status_order = "3" Then 'move
                         Dim query_get_del As String = "SELECT id_delivery FROM tb_season_delivery WHERE id_season='" + id_season_to + "' LIMIT 1 "
                         id_delivery = execute_query(query_get_del, 0, True, "", "", "", "")
                         query_upd += ",id_season='" + id_season_to + "', id_delivery='" + id_delivery + "', id_delivery_act='" + id_delivery + "', id_season_move=IF(ISNULL(id_season_move),'" + id_season_from + "',id_season_move) "
-                        note = "Move season " + addSlashes(SLESeasonFrom.Text) + "=>" + addSlashes(SLESeason.Text)
                     Else
                         query_upd += ", id_season='" + id_season_to + "', id_season_move=NULL "
                     End If
@@ -143,7 +146,7 @@
 
                     'log line list
                     Dim now_date As String = DateTime.Parse(getTimeDB.ToString).ToString("yyyy-MM-dd")
-                    upd.insertLogLineList("394", id_design, False, id_user, id_user, "-", now_date, id_design, note)
+                    upd.insertLogLineList("394", id_design, False, id_user, id_user, "-", now_date, id_design, reason)
 
                     'store display
                     Try

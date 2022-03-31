@@ -5991,10 +5991,7 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                 cd.insertLogLineList(report_mark_type, id_report, True, "", "", "", "", "", "")
 
                 'log perubahan line list (drop)
-                Try
-                    cd.insertLogLineList("394", id_report, True, "", "", "", "", "", "")
-                Catch ex As Exception
-                End Try
+                cd.insertLogLineList("402", id_report, True, "", "", "", "", "", "")
             End If
 
             'update status
