@@ -367,4 +367,8 @@ ORDER BY kp.id_prod_order_cps2 DESC"
             End If
         End If
     End Sub
+
+    Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+
+    End Sub
 End Class
