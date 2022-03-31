@@ -34,7 +34,7 @@
 
         If data_check.Rows.Count = 0 Then
             Dim query As String = "
-                SELECT 'DEL' AS `type`,  d.pl_sales_order_del_number AS `no_reff`, d.pl_sales_order_del_date AS `tanggal`,  w.comp_number AS `asal`, s.comp_number AS `tujuan`,p.product_full_code AS `kode` , ROUND(dd.pl_sales_order_del_det_qty, 0) AS `qty`, ROUND(dd.design_price, 0) AS `harga`
+                (SELECT 'DEL' AS `type`,  d.pl_sales_order_del_number AS `no_reff`, d.pl_sales_order_del_date AS `tanggal`,  w.comp_number AS `asal`, s.comp_number AS `tujuan`,p.product_full_code AS `kode` , ROUND(dd.pl_sales_order_del_det_qty, 0) AS `qty`, ROUND(dd.design_price, 0) AS `harga`
                 FROM tb_pl_sales_order_del d
                 INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
                 INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = d.id_comp_contact_from
@@ -43,9 +43,22 @@
                 INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
                 INNER JOIN tb_m_product p ON p.id_product = dd.id_product
                 WHERE d.pl_sales_order_del_date>='" + date_from + "' AND d.pl_sales_order_del_date<='" + date_to + "' 
-                AND s.id_comp_group='" + id_comp_group + "' AND d.id_report_status=6 
+                AND s.id_comp_group='" + id_comp_group + "' AND d.id_report_status=6 AND d.is_combine=2)
+                UNION ALL
+                (SELECT 'DEL' AS `type`,  dc.combine_number AS `no_reff`, dc.combine_date AS `tanggal`,  w.comp_number AS `asal`, s.comp_number AS `tujuan`,p.product_full_code AS `kode` , ROUND(SUM(dd.pl_sales_order_del_det_qty), 0) AS `qty`, ROUND(dd.design_price, 0) AS `harga`
+                FROM tb_pl_sales_order_del d
+                INNER JOIN tb_pl_sales_order_del_combine dc ON dc.id_combine = d.id_combine
+                INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
+                INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = d.id_comp_contact_from
+                INNER JOIN tb_m_comp w ON w.id_comp = wc.id_comp
+                INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = d.id_store_contact_to
+                INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+                INNER JOIN tb_m_product p ON p.id_product = dd.id_product
+                WHERE d.pl_sales_order_del_date>='" + date_from + "' AND d.pl_sales_order_del_date<='" + date_to + "' 
+                AND s.id_comp_group='" + id_comp_group + "' AND d.id_report_status=6 AND d.is_combine=1 
+                GROUP BY no_reff, tanggal,asal,tujuan, kode, harga)
                 UNION ALL 
-                SELECT 'RTS' AS `type`, r.sales_return_number AS `no_reff`, r.sales_return_date AS `tanggal`, s.comp_number AS `asal`, w.comp_number AS `tujuan`, p.product_full_code AS `kode` , ROUND(rd.sales_return_det_qty, 0) AS `qty`, ROUND(rd.design_price, 0) AS `harga`
+                (SELECT 'RTS' AS `type`, r.sales_return_number AS `no_reff`, r.sales_return_date AS `tanggal`, s.comp_number AS `asal`, w.comp_number AS `tujuan`, p.product_full_code AS `kode` , ROUND(rd.sales_return_det_qty, 0) AS `qty`, ROUND(rd.design_price, 0) AS `harga`
                 FROM tb_sales_return r
                 INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return
                 INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = r.id_comp_contact_to
@@ -54,7 +67,7 @@
                 INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
                 INNER JOIN tb_m_product p ON p.id_product = rd.id_product
                 WHERE r.sales_return_date>='" + date_from + "' AND r.sales_return_date<='" + date_to + "'
-                AND s.id_comp_group='" + id_comp_group + "' AND r.id_report_status=6 AND r.id_ret_type <> 2
+                AND s.id_comp_group='" + id_comp_group + "' AND r.id_report_status=6 AND r.id_ret_type <> 2)
             "
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
