@@ -67,6 +67,20 @@ WHERE note='Closing End' AND id_coa_tag='" & id_coa_tag & "'"
         Return ret_var
     End Function
 
+    Function get_current_vat()
+        Dim ret_var, query As String
+        ret_var = ""
+
+        Try
+            query = "SELECT vat FROM `tb_m_vat` WHERE DATE(NOW())>=DATE(start_period) AND DATE(NOW())<=DATE(end_period)"
+            ret_var = execute_query(query, 0, True, "", "", "", "")
+        Catch ex As Exception
+            ret_var = ""
+        End Try
+
+        Return ret_var
+    End Function
+
     Function get_purc_setup_field(ByVal field As String)
         'opt as var choose field
         Dim ret_var, query As String

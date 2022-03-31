@@ -111,7 +111,7 @@
                             newRow("value_bef_kurs") = GVDPKhusus.GetRowCellValue(i, "amount") * -1
                             '
                             newRow("pph_percent") = 0
-                            newRow("vat") = Decimal.Round(GVDPKhusus.GetRowCellValue(i, "amount") * (Decimal.Parse(get_setup_field("vat_inv_default")) / 100) * -1)
+                            newRow("vat") = Decimal.Round(GVDPKhusus.GetRowCellValue(i, "amount") * (Decimal.Parse(get_current_vat()) / 100) * -1)
                             newRow("inv_number") = GVDPKhusus.GetRowCellValue(i, "inv_number").ToString
                             newRow("note") = GVDPKhusus.GetRowCellValue(i, "note").ToString
                             TryCast(FormInvoiceFGPODP.GCList.DataSource, DataTable).Rows.Add(newRow)

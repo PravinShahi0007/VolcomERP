@@ -93,7 +93,7 @@ GROUP BY pl.`id_mat_purc_list`"
                 'header vendor,etc
                 id_comp_to = FormMatPurchase.GVListMatPD.GetRowCellValue(0, "id_comp_contact").ToString
 
-                Dim vat_opt As String = Decimal.Parse(get_setup_field("vat_inv_default").ToString)
+                Dim vat_opt As String = Decimal.Parse(get_current_vat())
                 TEVat.EditValue = If(FormMatPurchase.GVListMatPD.GetRowCellValue(0, "id_tax").ToString = "2", vat_opt, 0)
 
                 TECompCode.Text = FormMatPurchase.GVListMatPD.GetRowCellValue(0, "comp_number").ToString

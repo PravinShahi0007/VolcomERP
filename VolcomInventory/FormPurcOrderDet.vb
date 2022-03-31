@@ -132,7 +132,7 @@ WHERE po.id_purc_order='" & id_po & "'"
                     TEVATPercent.ReadOnly = True
                     TEDPPPercent.ReadOnly = True
 
-                    Dim vat_opt As Decimal = Decimal.Parse(get_setup_field("vat_inv_default").ToString)
+                    Dim vat_opt As Decimal = Decimal.Parse(get_current_vat())
                     TEVATPercent.EditValue = vat_opt
                 End If
                 TEPKP.Text = data.Rows(0)("tax").ToString
