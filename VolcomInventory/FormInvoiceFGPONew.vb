@@ -30,7 +30,7 @@ INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
 INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country`
 LEFT JOIN
 (
-    SELECT * FROM 
+    SELECT kod.id_prod_order,kod.id_prod_order_ko FROM 
     tb_prod_order_ko_det kod
     INNER JOIN
     (
