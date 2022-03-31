@@ -14585,6 +14585,9 @@
     <EmbeddedResource Include="FormSampleDevelopmentVerifyCPS2.resx">
       <DependentUpon>FormSampleDevelopmentVerifyCPS2.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSampleDevTargetAdd.resx">
+      <DependentUpon>FormSampleDevTargetAdd.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSampleDevTargetPps.resx">
       <DependentUpon>FormSampleDevTargetPps.vb</DependentUpon>
     </EmbeddedResource>
