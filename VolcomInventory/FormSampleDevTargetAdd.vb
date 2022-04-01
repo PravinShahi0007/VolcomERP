@@ -51,10 +51,59 @@ ORDER BY dsg.id_design DESC"
     End Sub
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
-        Dim newRow As DataRow = (TryCast(FormSampleDevTargetPps.GCPps.DataSource, DataTable)).NewRow()
-        newRow("id_design") = SLEDesignStockStore.EditValue.ToString
-        newRow("design_display_name") = SLEDesignStockStore.Text
-        TryCast(FormSampleDevTargetPps.GCPps.DataSource, DataTable).Rows.Add(newRow)
-        Close()
+        'check on list
+        Dim is_ok As Boolean = True
+        For i As Integer = 0 To FormSampleDevTargetPps.GVPps.RowCount - 1
+            If SLEDesignStockStore.EditValue.ToString = FormSampleDevTargetPps.GVPps.GetRowCellValue(i, "id_design").ToString Then
+                is_ok = False
+                warningCustom("Design already listed")
+            End If
+        Next
+        If is_ok Then
+            Dim newRow As DataRow = (TryCast(FormSampleDevTargetPps.GCPps.DataSource, DataTable)).NewRow()
+            newRow("id_design") = SLEDesignStockStore.EditValue.ToString
+            newRow("design_display_name") = SLEDesignStockStore.Text
+            newRow("labdip") = DELabDip.EditValue
+            newRow("strike_off_1") = DEStrikeOff1.EditValue
+            newRow("proto_sample_1") = DEProtoSample1.EditValue
+            newRow("strike_off_2") = DEStrikeOff2.EditValue
+            newRow("proto_sample_2") = DEProtoSample2.EditValue
+            newRow("copy_proto_sample_2") = DECopyProtoSample2.EditValue
+            TryCast(FormSampleDevTargetPps.GCPps.DataSource, DataTable).Rows.Add(newRow)
+        End If
+    End Sub
+
+    Private Sub DELabDip_EditValueChanged(sender As Object, e As EventArgs) Handles DELabDip.EditValueChanged
+        DEStrikeOff1.Properties.MinValue = DELabDip.EditValue
+        DEProtoSample1.Properties.MinValue = DELabDip.EditValue
+        DEStrikeOff2.Properties.MinValue = DELabDip.EditValue
+        DEProtoSample2.Properties.MinValue = DELabDip.EditValue
+        DECopyProtoSample2.Properties.MinValue = DELabDip.EditValue
+    End Sub
+
+    Private Sub DEStrikeOff1_EditValueChanged(sender As Object, e As EventArgs) Handles DEStrikeOff1.EditValueChanged
+        DEProtoSample1.Properties.MinValue = DELabDip.EditValue
+        DEStrikeOff2.Properties.MinValue = DELabDip.EditValue
+        DEProtoSample2.Properties.MinValue = DELabDip.EditValue
+        DECopyProtoSample2.Properties.MinValue = DELabDip.EditValue
+    End Sub
+
+    Private Sub DEProtoSample1_EditValueChanged(sender As Object, e As EventArgs) Handles DEProtoSample1.EditValueChanged
+        DEStrikeOff2.Properties.MinValue = DELabDip.EditValue
+        DEProtoSample2.Properties.MinValue = DELabDip.EditValue
+        DECopyProtoSample2.Properties.MinValue = DELabDip.EditValue
+    End Sub
+
+    Private Sub DEStrikeOff2_EditValueChanged(sender As Object, e As EventArgs) Handles DEStrikeOff2.EditValueChanged
+        DEProtoSample2.Properties.MinValue = DELabDip.EditValue
+        DECopyProtoSample2.Properties.MinValue = DELabDip.EditValue
+    End Sub
+
+    Private Sub DEProtoSample2_EditValueChanged(sender As Object, e As EventArgs) Handles DEProtoSample2.EditValueChanged
+        DECopyProtoSample2.Properties.MinValue = DELabDip.EditValue
+    End Sub
+
+    Private Sub FormSampleDevTargetAdd_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class

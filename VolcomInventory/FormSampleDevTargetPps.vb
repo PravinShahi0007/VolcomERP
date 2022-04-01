@@ -48,10 +48,29 @@ WHERE ppsd.id_sample_dev_pps='" & id_pps & "'"
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        If id_pps = "-1" Then
-
+        If GVPps.RowCount = 0 Then
+            warningCustom("No data found, please put some design.")
         Else
+            If id_pps = "-1" Then
+                'new
+                Dim q As String = "INSERT INTO `tb_sample_dev_pps`(created_date,created_by,note,id_report_status)
+VALUES(NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
+                id_pps = execute_query(q, 0, True, "", "", "", "")
+                'detail
+                q = "INSERT INTO `tb_sample_dev_pps_det`(`id_sample_dev_pps`,`id_design`,`labdip`,`strike_off_1`,`proto_sample_1`,`strike_off_2`,`proto_sample_2`,`copy_proto_sample_2`)"
+                For i = 0 To GVPps.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
 
+                Next
+            Else
+
+            End If
         End If
+    End Sub
+
+    Private Sub FormSampleDevTargetPps_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class

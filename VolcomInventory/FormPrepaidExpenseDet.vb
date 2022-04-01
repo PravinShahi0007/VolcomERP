@@ -52,7 +52,9 @@
         '
         If Not id_polis_reg = "-1" Then
             DEDueDate.Enabled = False
-
+            '
+            DEDateReff.EditValue = FormPrepaidExpensePolis.DEDateReff
+            '
             TEInvNo.Text = addSlashes(FormPrepaidExpensePolis.TEInvNumber.Text)
             id_comp = FormPrepaidExpensePolis.id_comp
             TxtCompNumber.Text = get_company_x(FormPrepaidExpensePolis.id_comp, "2")
@@ -94,7 +96,7 @@ WHERE reg.id_polis_reg='" & id_polis_reg & "' AND regd.vendor_dipilih='" & FormP
                 'End If
 
                 GVData.SetRowCellValue(GVData.RowCount - 1, "id_expense_type", "1")
-                GVData.SetRowCellValue(GVData.RowCount - 1, "id_b_expense", "65")
+                GVData.SetRowCellValue(GVData.RowCount - 1, "id_b_expense", FormPrepaidExpensePolis.SLEBudget.EditValue.ToString)
                 GVData.SetRowCellValue(GVData.RowCount - 1, "cc", dtg.Rows(i)("id_store").ToString)
                 '2638
                 GVData.SetRowCellValue(GVData.RowCount - 1, "id_acc_biaya", "2638")
