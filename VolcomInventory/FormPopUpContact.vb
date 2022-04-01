@@ -1186,10 +1186,11 @@
             FormPurcOrderDet.MEAdrressCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "3")
             '
             If GVCompany.GetFocusedRowCellValue("id_tax").ToString = "2" Then
+                FormPurcOrderDet.TEVATPercent.EditValue = Decimal.Parse(get_current_vat()) 'default
                 FormPurcOrderDet.TEVATPercent.ReadOnly = False
                 FormPurcOrderDet.TEDPPPercent.ReadOnly = False
             Else
-                FormPurcOrderDet.TEVATPercent.EditValue = Decimal.Parse(get_current_vat()) 'default
+                FormPurcOrderDet.TEVATPercent.EditValue = 0
                 FormPurcOrderDet.TEVATPercent.ReadOnly = True
                 FormPurcOrderDet.TEDPPPercent.ReadOnly = True
             End If
