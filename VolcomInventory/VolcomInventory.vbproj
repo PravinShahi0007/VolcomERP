@@ -10600,6 +10600,12 @@
     <Compile Include="ReportSampleDelRec.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSampleDevTarget.Designer.vb">
+      <DependentUpon>ReportSampleDevTarget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSampleDevTarget.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSampleExpense.Designer.vb">
       <DependentUpon>ReportSampleExpense.vb</DependentUpon>
     </Compile>

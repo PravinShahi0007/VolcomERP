@@ -21,10 +21,10 @@ Partial Class FormSampleDevTargetPps
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSampleDevTargetPps))
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAttach = New DevExpress.XtraEditors.SimpleButton()
         Me.BRelease = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -48,7 +48,7 @@ Partial Class FormSampleDevTargetPps
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,16 +64,16 @@ Partial Class FormSampleDevTargetPps
         CType(Me.GVPps, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCAddDel.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl7
         '
-        Me.PanelControl7.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl7.Controls.Add(Me.BAttach)
         Me.PanelControl7.Controls.Add(Me.BRelease)
         Me.PanelControl7.Controls.Add(Me.BtnPrint)
-        Me.PanelControl7.Controls.Add(Me.BCancel)
+        Me.PanelControl7.Controls.Add(Me.BMark)
         Me.PanelControl7.Controls.Add(Me.BtnCancel)
         Me.PanelControl7.Controls.Add(Me.BtnSave)
         Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -82,17 +82,17 @@ Partial Class FormSampleDevTargetPps
         Me.PanelControl7.Size = New System.Drawing.Size(1022, 48)
         Me.PanelControl7.TabIndex = 5
         '
-        'SimpleButton1
+        'BAttach
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.ImageIndex = 6
-        Me.SimpleButton1.Location = New System.Drawing.Point(634, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(110, 44)
-        Me.SimpleButton1.TabIndex = 22
-        Me.SimpleButton1.TabStop = False
-        Me.SimpleButton1.Text = "Attachment"
+        Me.BAttach.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttach.Image = CType(resources.GetObject("BAttach.Image"), System.Drawing.Image)
+        Me.BAttach.ImageIndex = 6
+        Me.BAttach.Location = New System.Drawing.Point(634, 2)
+        Me.BAttach.Name = "BAttach"
+        Me.BAttach.Size = New System.Drawing.Size(110, 44)
+        Me.BAttach.TabIndex = 22
+        Me.BAttach.TabStop = False
+        Me.BAttach.Text = "Attachment"
         '
         'BRelease
         '
@@ -119,18 +119,18 @@ Partial Class FormSampleDevTargetPps
         Me.BtnPrint.TabStop = False
         Me.BtnPrint.Text = "Print"
         '
-        'BCancel
+        'BMark
         '
-        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BCancel.Image = CType(resources.GetObject("BCancel.Image"), System.Drawing.Image)
-        Me.BCancel.ImageIndex = 4
-        Me.BCancel.Location = New System.Drawing.Point(2, 2)
-        Me.BCancel.Name = "BCancel"
-        Me.BCancel.Size = New System.Drawing.Size(101, 44)
-        Me.BCancel.TabIndex = 19
-        Me.BCancel.TabStop = False
-        Me.BCancel.Text = "Mark"
-        Me.BCancel.Visible = False
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.Image = CType(resources.GetObject("BMark.Image"), System.Drawing.Image)
+        Me.BMark.ImageIndex = 4
+        Me.BMark.Location = New System.Drawing.Point(2, 2)
+        Me.BMark.Name = "BMark"
+        Me.BMark.Size = New System.Drawing.Size(101, 44)
+        Me.BMark.TabIndex = 19
+        Me.BMark.TabStop = False
+        Me.BMark.Text = "Mark"
+        Me.BMark.Visible = False
         '
         'BtnCancel
         '
@@ -338,15 +338,15 @@ Partial Class FormSampleDevTargetPps
         Me.RepositoryItemDateEdit1.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
         '
-        'PanelControl3
+        'PCAddDel
         '
-        Me.PanelControl3.Controls.Add(Me.BDel)
-        Me.PanelControl3.Controls.Add(Me.BAdd)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 46)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1022, 43)
-        Me.PanelControl3.TabIndex = 9
+        Me.PCAddDel.Controls.Add(Me.BDel)
+        Me.PCAddDel.Controls.Add(Me.BAdd)
+        Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCAddDel.Location = New System.Drawing.Point(0, 46)
+        Me.PCAddDel.Name = "PCAddDel"
+        Me.PCAddDel.Size = New System.Drawing.Size(1022, 43)
+        Me.PCAddDel.TabIndex = 9
         '
         'BDel
         '
@@ -378,7 +378,7 @@ Partial Class FormSampleDevTargetPps
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1022, 499)
         Me.Controls.Add(Me.GCPps)
-        Me.Controls.Add(Me.PanelControl3)
+        Me.Controls.Add(Me.PCAddDel)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl7)
@@ -403,8 +403,8 @@ Partial Class FormSampleDevTargetPps
         CType(Me.GVPps, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCAddDel.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -412,10 +412,10 @@ Partial Class FormSampleDevTargetPps
     Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BRelease As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAttach As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
@@ -435,7 +435,7 @@ Partial Class FormSampleDevTargetPps
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCAddDel As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BDel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
