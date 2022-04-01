@@ -21,25 +21,23 @@ Partial Class FormSampleDevTargetPps
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSampleDevTargetPps))
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BRelease = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.SearchLookUpEdit2 = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
         Me.GCPps = New DevExpress.XtraGrid.GridControl()
         Me.GVPps = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -47,22 +45,21 @@ Partial Class FormSampleDevTargetPps
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCPps, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPps, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,6 +81,18 @@ Partial Class FormSampleDevTargetPps
         Me.PanelControl7.Name = "PanelControl7"
         Me.PanelControl7.Size = New System.Drawing.Size(1022, 48)
         Me.PanelControl7.TabIndex = 5
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.ImageIndex = 6
+        Me.SimpleButton1.Location = New System.Drawing.Point(634, 2)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(110, 44)
+        Me.SimpleButton1.TabIndex = 22
+        Me.SimpleButton1.TabStop = False
+        Me.SimpleButton1.Text = "Attachment"
         '
         'BRelease
         '
@@ -147,29 +156,40 @@ Partial Class FormSampleDevTargetPps
         Me.BtnSave.TabStop = False
         Me.BtnSave.Text = "Save"
         '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.ImageIndex = 6
-        Me.SimpleButton1.Location = New System.Drawing.Point(634, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(110, 44)
-        Me.SimpleButton1.TabIndex = 22
-        Me.SimpleButton1.TabStop = False
-        Me.SimpleButton1.Text = "Attachment"
-        '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.SearchLookUpEdit2)
-        Me.PanelControl1.Controls.Add(Me.SearchLookUpEdit1)
-        Me.PanelControl1.Controls.Add(Me.LabelControl3)
+        Me.PanelControl1.Controls.Add(Me.SLEVendor)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1022, 73)
+        Me.PanelControl1.Size = New System.Drawing.Size(1022, 46)
         Me.PanelControl1.TabIndex = 6
+        '
+        'SLEVendor
+        '
+        Me.SLEVendor.Location = New System.Drawing.Point(81, 12)
+        Me.SLEVendor.Name = "SLEVendor"
+        Me.SLEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendor.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEVendor.Size = New System.Drawing.Size(348, 20)
+        Me.SLEVendor.TabIndex = 4
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(20, 15)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl2.TabIndex = 2
+        Me.LabelControl2.Text = "Vendor"
         '
         'PanelControl2
         '
@@ -181,13 +201,6 @@ Partial Class FormSampleDevTargetPps
         Me.PanelControl2.Size = New System.Drawing.Size(1022, 95)
         Me.PanelControl2.TabIndex = 7
         '
-        'MemoEdit1
-        '
-        Me.MemoEdit1.Location = New System.Drawing.Point(60, 14)
-        Me.MemoEdit1.Name = "MemoEdit1"
-        Me.MemoEdit1.Size = New System.Drawing.Size(521, 68)
-        Me.MemoEdit1.TabIndex = 0
-        '
         'LabelControl1
         '
         Me.LabelControl1.Location = New System.Drawing.Point(20, 16)
@@ -196,62 +209,21 @@ Partial Class FormSampleDevTargetPps
         Me.LabelControl1.TabIndex = 1
         Me.LabelControl1.Text = "Note"
         '
-        'LabelControl2
+        'MemoEdit1
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(20, 15)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(34, 13)
-        Me.LabelControl2.TabIndex = 2
-        Me.LabelControl2.Text = "Vendor"
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(20, 41)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl3.TabIndex = 3
-        Me.LabelControl3.Text = "Type"
-        '
-        'SearchLookUpEdit1
-        '
-        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(81, 12)
-        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
-        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit1.Properties.View = Me.SearchLookUpEdit1View
-        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(348, 20)
-        Me.SearchLookUpEdit1.TabIndex = 4
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'SearchLookUpEdit2
-        '
-        Me.SearchLookUpEdit2.Location = New System.Drawing.Point(81, 38)
-        Me.SearchLookUpEdit2.Name = "SearchLookUpEdit2"
-        Me.SearchLookUpEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit2.Properties.View = Me.GridView1
-        Me.SearchLookUpEdit2.Size = New System.Drawing.Size(206, 20)
-        Me.SearchLookUpEdit2.TabIndex = 5
-        '
-        'GridView1
-        '
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.MemoEdit1.Location = New System.Drawing.Point(60, 14)
+        Me.MemoEdit1.Name = "MemoEdit1"
+        Me.MemoEdit1.Size = New System.Drawing.Size(521, 68)
+        Me.MemoEdit1.TabIndex = 0
         '
         'GCPps
         '
         Me.GCPps.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCPps.Location = New System.Drawing.Point(0, 116)
+        Me.GCPps.Location = New System.Drawing.Point(0, 89)
         Me.GCPps.MainView = Me.GVPps
         Me.GCPps.Name = "GCPps"
         Me.GCPps.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1})
-        Me.GCPps.Size = New System.Drawing.Size(1022, 240)
+        Me.GCPps.Size = New System.Drawing.Size(1022, 267)
         Me.GCPps.TabIndex = 8
         Me.GCPps.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPps})
         '
@@ -266,6 +238,12 @@ Partial Class FormSampleDevTargetPps
         '
         Me.GridColumn1.Caption = "ID det"
         Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "ID Design"
+        Me.GridColumn9.FieldName = "id_design"
+        Me.GridColumn9.Name = "GridColumn9"
         '
         'GridColumn2
         '
@@ -328,12 +306,6 @@ Partial Class FormSampleDevTargetPps
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 6
         '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "ID Design"
-        Me.GridColumn9.FieldName = "id_design"
-        Me.GridColumn9.Name = "GridColumn9"
-        '
         'RepositoryItemDateEdit1
         '
         Me.RepositoryItemDateEdit1.AutoHeight = False
@@ -348,10 +320,22 @@ Partial Class FormSampleDevTargetPps
         Me.PanelControl3.Controls.Add(Me.BDel)
         Me.PanelControl3.Controls.Add(Me.BAdd)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 73)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 46)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(1022, 43)
         Me.PanelControl3.TabIndex = 9
+        '
+        'BDel
+        '
+        Me.BDel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDel.Image = CType(resources.GetObject("BDel.Image"), System.Drawing.Image)
+        Me.BDel.ImageIndex = 7
+        Me.BDel.Location = New System.Drawing.Point(856, 2)
+        Me.BDel.Name = "BDel"
+        Me.BDel.Size = New System.Drawing.Size(82, 39)
+        Me.BDel.TabIndex = 18
+        Me.BDel.TabStop = False
+        Me.BDel.Text = "Delete"
         '
         'BAdd
         '
@@ -365,17 +349,19 @@ Partial Class FormSampleDevTargetPps
         Me.BAdd.TabStop = False
         Me.BAdd.Text = "Add"
         '
-        'BDel
+        'GridColumn10
         '
-        Me.BDel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BDel.Image = CType(resources.GetObject("BDel.Image"), System.Drawing.Image)
-        Me.BDel.ImageIndex = 7
-        Me.BDel.Location = New System.Drawing.Point(856, 2)
-        Me.BDel.Name = "BDel"
-        Me.BDel.Size = New System.Drawing.Size(82, 39)
-        Me.BDel.TabIndex = 18
-        Me.BDel.TabStop = False
-        Me.BDel.Text = "Delete"
+        Me.GridColumn10.Caption = "ID"
+        Me.GridColumn10.FieldName = "id_comp"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Vendor"
+        Me.GridColumn11.FieldName = "comp_name"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
         '
         'FormSampleDevTargetPps
         '
@@ -398,14 +384,12 @@ Partial Class FormSampleDevTargetPps
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
         CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCPps, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPps, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -427,11 +411,8 @@ Partial Class FormSampleDevTargetPps
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
-    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SearchLookUpEdit2 As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLEVendor As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GCPps As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVPps As DevExpress.XtraGrid.Views.Grid.GridView
@@ -448,4 +429,6 @@ Partial Class FormSampleDevTargetPps
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BDel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
