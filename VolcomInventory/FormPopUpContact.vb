@@ -304,7 +304,7 @@
             Close()
         ElseIf id_pop_up = "1" Then
             FormSamplePurchaseDet.id_comp_to = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
-            FormSamplePurchaseDet.TEVat.EditValue = If(GVCompany.GetFocusedRowCellDisplayText("id_tax").ToString = "2", 10, 0)
+            FormSamplePurchaseDet.TEVat.EditValue = If(GVCompany.GetFocusedRowCellDisplayText("id_tax").ToString = "2", Decimal.Parse(get_current_vat()), 0)
             FormSamplePurchaseDet.TECompCode.Text = GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString
             FormSamplePurchaseDet.TECompName.Text = GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString
             FormSamplePurchaseDet.TECompAttn.Text = GVCompanyContactList.GetFocusedRowCellDisplayText("contact_person").ToString
@@ -388,7 +388,7 @@
             Close()
         ElseIf id_pop_up = "14" Then
             FormMatPurchaseDet.id_comp_to = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
-            FormMatPurchaseDet.TEVat.EditValue = If(GVCompany.GetFocusedRowCellDisplayText("id_tax").ToString = "2", 10, 0)
+            FormMatPurchaseDet.TEVat.EditValue = If(GVCompany.GetFocusedRowCellDisplayText("id_tax").ToString = "2", Decimal.Parse(get_current_vat()), 0)
             FormMatPurchaseDet.TECompCode.Text = GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString
             FormMatPurchaseDet.TECompName.Text = GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString
             FormMatPurchaseDet.MECompAddress.Text = GVCompany.GetFocusedRowCellValue("address_primary").ToString
@@ -1189,6 +1189,7 @@
                 FormPurcOrderDet.TEVATPercent.ReadOnly = False
                 FormPurcOrderDet.TEDPPPercent.ReadOnly = False
             Else
+                FormPurcOrderDet.TEVATPercent.EditValue = Decimal.Parse(get_current_vat()) 'default
                 FormPurcOrderDet.TEVATPercent.ReadOnly = True
                 FormPurcOrderDet.TEDPPPercent.ReadOnly = True
             End If

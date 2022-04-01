@@ -7089,6 +7089,18 @@
     <Compile Include="FormSampleDevelopmentVerifyCPS2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSampleDevTargetAdd.Designer.vb">
+      <DependentUpon>FormSampleDevTargetAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSampleDevTargetAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSampleDevTargetPps.Designer.vb">
+      <DependentUpon>FormSampleDevTargetPps.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSampleDevTargetPps.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSampleExpense.Designer.vb">
       <DependentUpon>FormSampleExpense.vb</DependentUpon>
     </Compile>
@@ -14572,6 +14584,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSampleDevelopmentVerifyCPS2.resx">
       <DependentUpon>FormSampleDevelopmentVerifyCPS2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSampleDevTargetAdd.resx">
+      <DependentUpon>FormSampleDevTargetAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSampleDevTargetPps.resx">
+      <DependentUpon>FormSampleDevTargetPps.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSampleExpense.resx">
       <DependentUpon>FormSampleExpense.vb</DependentUpon>
