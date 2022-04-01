@@ -34,10 +34,10 @@ Partial Class FormSampleDevTargetAdd
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEDesignStockStore = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GVSLEDesgSearch = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnCodeSearch = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.DELabDip.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DELabDip.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStrikeOff1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -199,25 +199,6 @@ Partial Class FormSampleDevTargetAdd
         Me.GVSLEDesgSearch.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GVSLEDesgSearch.OptionsView.ShowGroupPanel = False
         '
-        'BAdd
-        '
-        Me.BAdd.Appearance.BackColor = System.Drawing.Color.LightSeaGreen
-        Me.BAdd.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BAdd.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BAdd.Appearance.Options.UseBackColor = True
-        Me.BAdd.Appearance.Options.UseFont = True
-        Me.BAdd.Appearance.Options.UseForeColor = True
-        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BAdd.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.BAdd.Location = New System.Drawing.Point(0, 207)
-        Me.BAdd.LookAndFeel.SkinName = "Metropolis"
-        Me.BAdd.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BAdd.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(387, 28)
-        Me.BAdd.TabIndex = 8939
-        Me.BAdd.Text = "Add"
-        '
         'GridColumnCodeSearch
         '
         Me.GridColumnCodeSearch.Caption = "Code"
@@ -248,6 +229,25 @@ Partial Class FormSampleDevTargetAdd
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 2
         Me.GridColumn9.Width = 146
+        '
+        'BAdd
+        '
+        Me.BAdd.Appearance.BackColor = System.Drawing.Color.LightSeaGreen
+        Me.BAdd.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BAdd.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BAdd.Appearance.Options.UseBackColor = True
+        Me.BAdd.Appearance.Options.UseFont = True
+        Me.BAdd.Appearance.Options.UseForeColor = True
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BAdd.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BAdd.Location = New System.Drawing.Point(0, 207)
+        Me.BAdd.LookAndFeel.SkinName = "Metropolis"
+        Me.BAdd.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BAdd.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(387, 28)
+        Me.BAdd.TabIndex = 8939
+        Me.BAdd.Text = "Add"
         '
         'FormSampleDevTargetAdd
         '

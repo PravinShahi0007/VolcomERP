@@ -30,10 +30,12 @@ Partial Class FormSampleDevTargetPps
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.GCPps = New DevExpress.XtraGrid.GridControl()
         Me.GVPps = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -49,8 +51,6 @@ Partial Class FormSampleDevTargetPps
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,7 +59,7 @@ Partial Class FormSampleDevTargetPps
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCPps, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPps, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -183,6 +183,20 @@ Partial Class FormSampleDevTargetPps
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "ID"
+        Me.GridColumn10.FieldName = "id_comp"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Vendor"
+        Me.GridColumn11.FieldName = "comp_name"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        '
         'LabelControl2
         '
         Me.LabelControl2.Location = New System.Drawing.Point(20, 15)
@@ -194,7 +208,7 @@ Partial Class FormSampleDevTargetPps
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
-        Me.PanelControl2.Controls.Add(Me.MemoEdit1)
+        Me.PanelControl2.Controls.Add(Me.MENote)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 356)
         Me.PanelControl2.Name = "PanelControl2"
@@ -209,12 +223,12 @@ Partial Class FormSampleDevTargetPps
         Me.LabelControl1.TabIndex = 1
         Me.LabelControl1.Text = "Note"
         '
-        'MemoEdit1
+        'MENote
         '
-        Me.MemoEdit1.Location = New System.Drawing.Point(60, 14)
-        Me.MemoEdit1.Name = "MemoEdit1"
-        Me.MemoEdit1.Size = New System.Drawing.Size(521, 68)
-        Me.MemoEdit1.TabIndex = 0
+        Me.MENote.Location = New System.Drawing.Point(60, 14)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(521, 68)
+        Me.MENote.TabIndex = 0
         '
         'GCPps
         '
@@ -232,6 +246,8 @@ Partial Class FormSampleDevTargetPps
         Me.GVPps.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn9, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
         Me.GVPps.GridControl = Me.GCPps
         Me.GVPps.Name = "GVPps"
+        Me.GVPps.OptionsBehavior.Editable = False
+        Me.GVPps.OptionsBehavior.ReadOnly = True
         Me.GVPps.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -248,6 +264,7 @@ Partial Class FormSampleDevTargetPps
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Design"
+        Me.GridColumn2.FieldName = "design_display_name"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
@@ -257,6 +274,7 @@ Partial Class FormSampleDevTargetPps
         Me.GridColumn3.Caption = "Lab Dip"
         Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn3.FieldName = "labdip"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
@@ -266,6 +284,7 @@ Partial Class FormSampleDevTargetPps
         Me.GridColumn4.Caption = "Strike Off 1"
         Me.GridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn4.FieldName = "strike_off_1"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
@@ -275,6 +294,7 @@ Partial Class FormSampleDevTargetPps
         Me.GridColumn5.Caption = "Proto Sample 1"
         Me.GridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn5.FieldName = "proto_sample_1"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
@@ -284,6 +304,7 @@ Partial Class FormSampleDevTargetPps
         Me.GridColumn6.Caption = "Strike Off 2"
         Me.GridColumn6.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn6.FieldName = "strike_off_2"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
@@ -293,6 +314,7 @@ Partial Class FormSampleDevTargetPps
         Me.GridColumn7.Caption = "Proto Sample 2"
         Me.GridColumn7.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn7.FieldName = "proto_sample_2"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 5
@@ -302,6 +324,7 @@ Partial Class FormSampleDevTargetPps
         Me.GridColumn8.Caption = "Copy Proto Sample 2"
         Me.GridColumn8.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn8.FieldName = "copy_proto_sample_2"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 6
@@ -349,20 +372,6 @@ Partial Class FormSampleDevTargetPps
         Me.BAdd.TabStop = False
         Me.BAdd.Text = "Add"
         '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "ID"
-        Me.GridColumn10.FieldName = "id_comp"
-        Me.GridColumn10.Name = "GridColumn10"
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Vendor"
-        Me.GridColumn11.FieldName = "comp_name"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
-        '
         'FormSampleDevTargetPps
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -389,7 +398,7 @@ Partial Class FormSampleDevTargetPps
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCPps, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPps, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -410,7 +419,7 @@ Partial Class FormSampleDevTargetPps
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SLEVendor As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
