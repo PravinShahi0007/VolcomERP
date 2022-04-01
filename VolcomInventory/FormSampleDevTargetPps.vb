@@ -56,13 +56,16 @@ WHERE ppsd.id_sample_dev_pps='" & id_pps & "'"
                 Dim q As String = "INSERT INTO `tb_sample_dev_pps`(created_date,created_by,note,id_report_status)
 VALUES(NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
                 id_pps = execute_query(q, 0, True, "", "", "", "")
+
+                execute_non_query("CALL gen_number('" & id_pps & "','403')", True, "", "", "", "")
+
                 'detail
                 q = "INSERT INTO `tb_sample_dev_pps_det`(`id_sample_dev_pps`,`id_design`,`labdip`,`strike_off_1`,`proto_sample_1`,`strike_off_2`,`proto_sample_2`,`copy_proto_sample_2`)"
                 For i = 0 To GVPps.RowCount - 1
                     If Not i = 0 Then
                         q += ","
                     End If
-
+                    q += "('" & id_pps & "')"
                 Next
             Else
 
