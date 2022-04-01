@@ -140,6 +140,14 @@ WHERE pn.`id_report_status`!=6 AND pn.`id_report_status`!=5 AND (pnd.`report_mar
                 Close()
             End If
 
+            'cek receiving maret tapi PO masih PPN 10%
+            Dim qc As String = "SELECT * FROM tb_purc_order WHERE id_purc_order='" & id_purc_order & "' AND (vat_percent='10' OR vat_percent='1')"
+            Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            If dtc.Rows.Count > 0 Then
+                stopCustom("PO still using 10% vat, please revise PO.")
+                Close()
+            End If
+
             'purc order detail
             TxtDO.Focus()
             TxtNumber.Text = "[auto generate]"

@@ -1189,6 +1189,7 @@
                 FormPurcOrderDet.TEVATPercent.ReadOnly = False
                 FormPurcOrderDet.TEDPPPercent.ReadOnly = False
             Else
+                FormPurcOrderDet.TEVATPercent.EditValue = Decimal.Parse(get_current_vat()) 'default
                 FormPurcOrderDet.TEVATPercent.ReadOnly = True
                 FormPurcOrderDet.TEDPPPercent.ReadOnly = True
             End If
