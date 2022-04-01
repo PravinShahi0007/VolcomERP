@@ -47,6 +47,11 @@ Partial Class FormSampleDevTargetPps
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -60,6 +65,10 @@ Partial Class FormSampleDevTargetPps
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCPps, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPps, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl7
@@ -238,16 +247,17 @@ Partial Class FormSampleDevTargetPps
         'GCPps
         '
         Me.GCPps.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCPps.Location = New System.Drawing.Point(0, 73)
+        Me.GCPps.Location = New System.Drawing.Point(0, 116)
         Me.GCPps.MainView = Me.GVPps
         Me.GCPps.Name = "GCPps"
-        Me.GCPps.Size = New System.Drawing.Size(1022, 283)
+        Me.GCPps.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1})
+        Me.GCPps.Size = New System.Drawing.Size(1022, 240)
         Me.GCPps.TabIndex = 8
         Me.GCPps.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPps})
         '
         'GVPps
         '
-        Me.GVPps.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
+        Me.GVPps.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn9, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
         Me.GVPps.GridControl = Me.GCPps
         Me.GVPps.Name = "GVPps"
         Me.GVPps.OptionsView.ShowGroupPanel = False
@@ -267,6 +277,8 @@ Partial Class FormSampleDevTargetPps
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Lab Dip"
+        Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
@@ -274,6 +286,8 @@ Partial Class FormSampleDevTargetPps
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Strike Off 1"
+        Me.GridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
@@ -281,6 +295,8 @@ Partial Class FormSampleDevTargetPps
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Proto Sample 1"
+        Me.GridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
@@ -288,6 +304,8 @@ Partial Class FormSampleDevTargetPps
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Strike Off 2"
+        Me.GridColumn6.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
@@ -295,6 +313,8 @@ Partial Class FormSampleDevTargetPps
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Proto Sample 2"
+        Me.GridColumn7.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 5
@@ -302,9 +322,60 @@ Partial Class FormSampleDevTargetPps
         'GridColumn8
         '
         Me.GridColumn8.Caption = "Copy Proto Sample 2"
+        Me.GridColumn8.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 6
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "ID Design"
+        Me.GridColumn9.FieldName = "id_design"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'RepositoryItemDateEdit1
+        '
+        Me.RepositoryItemDateEdit1.AutoHeight = False
+        Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit1.Mask.EditMask = "dd MMMM yyyy"
+        Me.RepositoryItemDateEdit1.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.BDel)
+        Me.PanelControl3.Controls.Add(Me.BAdd)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 73)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1022, 43)
+        Me.PanelControl3.TabIndex = 9
+        '
+        'BAdd
+        '
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAdd.Image = CType(resources.GetObject("BAdd.Image"), System.Drawing.Image)
+        Me.BAdd.ImageIndex = 7
+        Me.BAdd.Location = New System.Drawing.Point(938, 2)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(82, 39)
+        Me.BAdd.TabIndex = 17
+        Me.BAdd.TabStop = False
+        Me.BAdd.Text = "Add"
+        '
+        'BDel
+        '
+        Me.BDel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDel.Image = CType(resources.GetObject("BDel.Image"), System.Drawing.Image)
+        Me.BDel.ImageIndex = 7
+        Me.BDel.Location = New System.Drawing.Point(856, 2)
+        Me.BDel.Name = "BDel"
+        Me.BDel.Size = New System.Drawing.Size(82, 39)
+        Me.BDel.TabIndex = 18
+        Me.BDel.TabStop = False
+        Me.BDel.Text = "Delete"
         '
         'FormSampleDevTargetPps
         '
@@ -312,6 +383,7 @@ Partial Class FormSampleDevTargetPps
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1022, 499)
         Me.Controls.Add(Me.GCPps)
+        Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl7)
@@ -336,6 +408,10 @@ Partial Class FormSampleDevTargetPps
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCPps, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPps, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -367,4 +443,9 @@ Partial Class FormSampleDevTargetPps
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BDel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
 End Class

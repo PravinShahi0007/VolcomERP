@@ -371,4 +371,8 @@ ORDER BY kp.id_prod_order_cps2 DESC"
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
 
     End Sub
+
+    Private Sub BProposeSampleDev_Click(sender As Object, e As EventArgs) Handles BProposeSampleDev.Click
+        FormSampleDevTargetPps.ShowDialog()
+    End Sub
 End Class

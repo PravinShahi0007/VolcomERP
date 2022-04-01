@@ -168,27 +168,27 @@ Partial Class FormSampleDevelopment
         Me.XtraTabControl3 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPPPSTarget = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.GCPpsTarget = New DevExpress.XtraGrid.GridControl()
         Me.GVPpsTarget = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BView = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BProposeSampleDev = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.BProposeSampleDev = New DevExpress.XtraEditors.SimpleButton()
+        Me.BView = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -250,16 +250,16 @@ Partial Class FormSampleDevelopment
         CType(Me.XtraTabControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl3.SuspendLayout()
         Me.XTPPPSTarget.SuspendLayout()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
         CType(Me.GCPpsTarget, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPpsTarget, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlNavLineList
@@ -1669,21 +1669,6 @@ Partial Class FormSampleDevelopment
         Me.XTPPPSTarget.Size = New System.Drawing.Size(1111, 409)
         Me.XTPPPSTarget.Text = "Propose Target"
         '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.LabelControl6)
-        Me.PanelControl2.Controls.Add(Me.DEUntil)
-        Me.PanelControl2.Controls.Add(Me.LabelControl5)
-        Me.PanelControl2.Controls.Add(Me.DEFrom)
-        Me.PanelControl2.Controls.Add(Me.SearchLookUpEdit1)
-        Me.PanelControl2.Controls.Add(Me.LabelControl2)
-        Me.PanelControl2.Controls.Add(Me.BView)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1111, 47)
-        Me.PanelControl2.TabIndex = 0
-        '
         'GCPpsTarget
         '
         Me.GCPpsTarget.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1700,6 +1685,12 @@ Partial Class FormSampleDevelopment
         Me.GVPpsTarget.GridControl = Me.GCPpsTarget
         Me.GVPpsTarget.Name = "GVPpsTarget"
         Me.GVPpsTarget.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "ID"
+        Me.GridColumn26.FieldName = "id_sample_dev_pps"
+        Me.GridColumn26.Name = "GridColumn26"
         '
         'GridColumn19
         '
@@ -1725,13 +1716,96 @@ Partial Class FormSampleDevelopment
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 3
         '
-        'BView
+        'GridColumn27
         '
-        Me.BView.Location = New System.Drawing.Point(619, 11)
-        Me.BView.Name = "BView"
-        Me.BView.Size = New System.Drawing.Size(52, 23)
-        Me.BView.TabIndex = 0
-        Me.BView.Text = "view"
+        Me.GridColumn27.Caption = "Vendor"
+        Me.GridColumn27.FieldName = "comp_name"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 1
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Report Status"
+        Me.GridColumn25.FieldName = "report_status"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 4
+        '
+        'BProposeSampleDev
+        '
+        Me.BProposeSampleDev.Appearance.BackColor = System.Drawing.Color.LightSeaGreen
+        Me.BProposeSampleDev.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BProposeSampleDev.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BProposeSampleDev.Appearance.Options.UseBackColor = True
+        Me.BProposeSampleDev.Appearance.Options.UseFont = True
+        Me.BProposeSampleDev.Appearance.Options.UseForeColor = True
+        Me.BProposeSampleDev.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BProposeSampleDev.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BProposeSampleDev.Location = New System.Drawing.Point(0, 381)
+        Me.BProposeSampleDev.LookAndFeel.SkinName = "Metropolis"
+        Me.BProposeSampleDev.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BProposeSampleDev.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BProposeSampleDev.Name = "BProposeSampleDev"
+        Me.BProposeSampleDev.Size = New System.Drawing.Size(1111, 28)
+        Me.BProposeSampleDev.TabIndex = 141
+        Me.BProposeSampleDev.Text = "Propose"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.LabelControl6)
+        Me.PanelControl2.Controls.Add(Me.DEUntil)
+        Me.PanelControl2.Controls.Add(Me.LabelControl5)
+        Me.PanelControl2.Controls.Add(Me.DEFrom)
+        Me.PanelControl2.Controls.Add(Me.SearchLookUpEdit1)
+        Me.PanelControl2.Controls.Add(Me.LabelControl2)
+        Me.PanelControl2.Controls.Add(Me.BView)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1111, 47)
+        Me.PanelControl2.TabIndex = 0
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(210, 16)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl6.TabIndex = 8929
+        Me.LabelControl6.Text = "Created Date"
+        '
+        'DEUntil
+        '
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Location = New System.Drawing.Point(455, 13)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Size = New System.Drawing.Size(158, 20)
+        Me.DEUntil.TabIndex = 8928
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(445, 16)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl5.TabIndex = 8927
+        Me.LabelControl5.Text = "-"
+        '
+        'DEFrom
+        '
+        Me.DEFrom.EditValue = Nothing
+        Me.DEFrom.Location = New System.Drawing.Point(281, 13)
+        Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFrom.Size = New System.Drawing.Size(158, 20)
+        Me.DEFrom.TabIndex = 8926
         '
         'SearchLookUpEdit1
         '
@@ -1785,88 +1859,13 @@ Partial Class FormSampleDevelopment
         Me.LabelControl2.TabIndex = 8906
         Me.LabelControl2.Text = "Vendor"
         '
-        'GridColumn25
+        'BView
         '
-        Me.GridColumn25.Caption = "Report Status"
-        Me.GridColumn25.FieldName = "report_status"
-        Me.GridColumn25.Name = "GridColumn25"
-        Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 4
-        '
-        'GridColumn26
-        '
-        Me.GridColumn26.Caption = "ID"
-        Me.GridColumn26.FieldName = "id_sample_dev_pps"
-        Me.GridColumn26.Name = "GridColumn26"
-        '
-        'GridColumn27
-        '
-        Me.GridColumn27.Caption = "Vendor"
-        Me.GridColumn27.FieldName = "comp_name"
-        Me.GridColumn27.Name = "GridColumn27"
-        Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 1
-        '
-        'DEUntil
-        '
-        Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(455, 13)
-        Me.DEUntil.Name = "DEUntil"
-        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntil.Size = New System.Drawing.Size(158, 20)
-        Me.DEUntil.TabIndex = 8928
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Location = New System.Drawing.Point(445, 16)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(4, 13)
-        Me.LabelControl5.TabIndex = 8927
-        Me.LabelControl5.Text = "-"
-        '
-        'DEFrom
-        '
-        Me.DEFrom.EditValue = Nothing
-        Me.DEFrom.Location = New System.Drawing.Point(281, 13)
-        Me.DEFrom.Name = "DEFrom"
-        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEFrom.Size = New System.Drawing.Size(158, 20)
-        Me.DEFrom.TabIndex = 8926
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(210, 16)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(65, 13)
-        Me.LabelControl6.TabIndex = 8929
-        Me.LabelControl6.Text = "Created Date"
-        '
-        'BProposeSampleDev
-        '
-        Me.BProposeSampleDev.Appearance.BackColor = System.Drawing.Color.LightSeaGreen
-        Me.BProposeSampleDev.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BProposeSampleDev.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BProposeSampleDev.Appearance.Options.UseBackColor = True
-        Me.BProposeSampleDev.Appearance.Options.UseFont = True
-        Me.BProposeSampleDev.Appearance.Options.UseForeColor = True
-        Me.BProposeSampleDev.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BProposeSampleDev.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.BProposeSampleDev.Location = New System.Drawing.Point(0, 381)
-        Me.BProposeSampleDev.LookAndFeel.SkinName = "Metropolis"
-        Me.BProposeSampleDev.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BProposeSampleDev.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BProposeSampleDev.Name = "BProposeSampleDev"
-        Me.BProposeSampleDev.Size = New System.Drawing.Size(1111, 28)
-        Me.BProposeSampleDev.TabIndex = 141
-        Me.BProposeSampleDev.Text = "Propose"
-        Me.BProposeSampleDev.Visible = False
+        Me.BView.Location = New System.Drawing.Point(619, 11)
+        Me.BView.Name = "BView"
+        Me.BView.Size = New System.Drawing.Size(52, 23)
+        Me.BView.TabIndex = 0
+        Me.BView.Text = "view"
         '
         'FormSampleDevelopment
         '
@@ -1944,17 +1943,17 @@ Partial Class FormSampleDevelopment
         CType(Me.XtraTabControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl3.ResumeLayout(False)
         Me.XTPPPSTarget.ResumeLayout(False)
+        CType(Me.GCPpsTarget, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPpsTarget, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.GCPpsTarget, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVPpsTarget, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
