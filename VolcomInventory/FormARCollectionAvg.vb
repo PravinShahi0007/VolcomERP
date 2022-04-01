@@ -53,14 +53,16 @@
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
         INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
         INNER JOIN (
-	        SELECT * FROM (
-		        SELECT r.id_rec_payment AS `id_bbm`,r.number AS `bbm_number`,rd.id_report, rd.report_mark_type, r.date_received
-		        FROM tb_rec_payment_det rd
-		        INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
-		        WHERE r.id_report_status=6 AND r.type_rec=1
-		        ORDER BY r.id_rec_payment DESC
-	        ) r 
-	        GROUP BY r.id_report, r.report_mark_type
+            SELECT r.id_rec_payment AS `id_bbm`,r.number AS `bbm_number`,rmmax.id_report, rmmax.report_mark_type, r.date_received
+            FROM tb_rec_payment r 
+            INNER JOIN (
+	            SELECT rd.id_report, rd.report_mark_type, MAX(rd.id_rec_payment) AS `id_rec_payment`
+	            FROM tb_rec_payment_det rd
+	            INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
+	            WHERE r.id_report_status=6 AND r.type_rec=1
+	            GROUP BY rd.id_report, rd.report_mark_type
+            ) rmmax ON rmmax.id_rec_payment = r.id_rec_payment
+            WHERE r.id_report_status=6 AND r.type_rec=1
         ) r ON r.id_report = sp.id_sales_pos AND r.report_mark_type = sp.report_mark_type
         WHERE sp.is_close_rec_payment=1
         " + cond_year + "
@@ -90,14 +92,16 @@
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
         INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
         INNER JOIN (
-	        SELECT * FROM (
-		        SELECT r.id_rec_payment AS `id_bbm`,r.number AS `bbm_number`,rd.id_report, rd.report_mark_type, r.date_received
-		        FROM tb_rec_payment_det rd
-		        INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
-		        WHERE r.id_report_status=6 AND r.type_rec=1
-		        ORDER BY r.id_rec_payment DESC
-	        ) r 
-	        GROUP BY r.id_report, r.report_mark_type
+            SELECT r.id_rec_payment AS `id_bbm`,r.number AS `bbm_number`,rmmax.id_report, rmmax.report_mark_type, r.date_received
+            FROM tb_rec_payment r 
+            INNER JOIN (
+                SELECT rd.id_report, rd.report_mark_type, MAX(rd.id_rec_payment) AS `id_rec_payment`
+                FROM tb_rec_payment_det rd
+                INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
+                WHERE r.id_report_status=6 AND r.type_rec=1
+                GROUP BY rd.id_report, rd.report_mark_type
+            ) rmmax ON rmmax.id_rec_payment = r.id_rec_payment
+            WHERE r.id_report_status=6 AND r.type_rec=1
         ) r ON r.id_report = sp.id_sales_pos AND r.report_mark_type = sp.report_mark_type
         WHERE sp.is_close_rec_payment=1
         " + cond_year + "

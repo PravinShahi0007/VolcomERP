@@ -205,16 +205,19 @@ INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=rec_py.id_report_status
 INNER JOIN tb_coa_tag ct ON ct.id_coa_tag = rec_py.id_coa_tag
 LEFT JOIN (
-	SELECT a.id_report, a.id_user, a.username, a.employee_name 
-	FROM (
-		SELECT rm.id_report, rm.id_user, u.username, e.employee_name
-		FROM tb_report_mark rm 
-		INNER JOIN tb_m_user u ON u.id_user = rm.id_user
-		INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
-		WHERE (rm.report_mark_type=162) AND rm.id_report_status>1 AND rm.id_mark=2
-		ORDER BY rm.report_mark_datetime DESC
-	) a
-	GROUP BY a.id_report
+	SELECT rm.id_report, rm.id_user, u.username, e.employee_name  
+    FROM tb_report_mark rm
+    INNER JOIN 
+    (
+	    SELECT MAX(rm.id_report) AS `id_report`, MAX(rm.report_mark_datetime) AS report_mark_datetime
+	    FROM tb_report_mark rm 
+	    WHERE (rm.report_mark_type=162) AND rm.id_report_status>1 AND rm.id_mark=2
+	    GROUP BY rm.id_report
+    ) rmmax ON rmmax.id_report = rm.id_report AND rmmax.report_mark_datetime = rm.report_mark_datetime
+    INNER JOIN tb_m_user u ON u.id_user = rm.id_user
+    INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+    WHERE (rm.report_mark_type=162) AND rm.id_report_status>1 AND rm.id_mark=2
+    GROUP BY rm.id_report
 ) la ON la.id_report = rec_py.`id_rec_payment`
 WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
