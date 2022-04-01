@@ -119,9 +119,9 @@
 			            WHERE d.id_code = 30
 		            ) cls ON dd.id_design = cls.id_design
 		            WHERE dd.id_emp_uni_design = " + id_emp_uni_design + "
-		            ORDER BY dd.`no` ASC, pc.id_code_detail ASC
             ) AS tb
-            GROUP BY tb.id_design"
+            GROUP BY tb.id_design
+            ORDER BY `no` ASC, `name` ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
     End Sub
