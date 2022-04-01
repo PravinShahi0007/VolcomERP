@@ -357,9 +357,9 @@
                     Try
                         Dim vios As New ClassShopifyApi()
                         vios.upd_price_by_variant(GVData.GetRowCellValue(i, "variant_id").ToString, GVData.GetRowCellValue(i, "normal_price").ToString, GVData.GetRowCellValue(i, "propose_price").ToString)
-                        execute_non_query("INSERT INTO tb_ol_store_mkd_price(id_report, report_mark_type, id_product, sync_date, sync_note) VALUES('" + id_report + "', '" + rmt + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', NOW(), 'OK')", True, "", "", "", "")
+                        execute_non_query("INSERT INTO tb_ol_store_mkd_price(id_report, report_mark_type, id_product, sync_date, sync_note) VALUES('" + GVData.GetRowCellValue(i, "id_report").ToString + "', '" + GVData.GetRowCellValue(i, "rmt").ToString + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', NOW(), 'OK')", True, "", "", "", "")
                     Catch ex As Exception
-                        execute_non_query("INSERT INTO tb_ol_store_mkd_price(id_report, report_mark_type, id_product, sync_date, sync_note) VALUES('" + id_report + "', '" + rmt + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', NOW(), 'Failed:" + addSlashes(ex.ToString) + "')", True, "", "", "", "")
+                        execute_non_query("INSERT INTO tb_ol_store_mkd_price(id_report, report_mark_type, id_product, sync_date, sync_note) VALUES('" + GVData.GetRowCellValue(i, "id_report").ToString + "', '" + GVData.GetRowCellValue(i, "rmt").ToString + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', NOW(), 'Failed:" + addSlashes(ex.ToString) + "')", True, "", "", "", "")
                     End Try
                 Next
                 GVData.ActiveFilterString = ""
