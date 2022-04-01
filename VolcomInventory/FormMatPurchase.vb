@@ -366,13 +366,19 @@ FROM
 	IFNULL(pdpo.prod_demand_number,newest_pd.prod_demand_number) AS prod_demand_number,
     IFNULL(pdpo.id_delivery,newest_pd.id_delivery) AS id_delivery
 	FROM (
-		SELECT * FROM (
-			SELECT pdd.id_delivery,pd.id_prod_demand,pdd.`id_design`,pdd.`id_prod_demand_design`,pdp.`id_product`,pdp.`id_prod_demand_product`,pdp.`prod_demand_product_qty`,pd.`prod_demand_number` FROM tb_prod_demand pd
-			INNER JOIN tb_prod_demand_design pdd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
-			INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_design`=pdd.`id_prod_demand_design`
-			WHERE pd.id_report_status=6 AND pd.`is_pd`=1 AND pd.`is_void_pd`=2
-			ORDER BY pdp.id_prod_demand_product DESC
-		) pd GROUP BY id_product
+		SELECT pdd.id_delivery,pdd.id_prod_demand,pdd.`id_design`,pdd.`id_prod_demand_design`,pdp.`id_product`,pdp.`id_prod_demand_product`,pdp.`prod_demand_product_qty`,pd.`prod_demand_number` 
+        FROM tb_prod_demand_product pdp
+        INNER JOIN
+        (
+	        SELECT pdp.id_product,MAX(pdp.id_prod_demand_product) AS id_prod_demand_product
+	        FROM tb_prod_demand pd
+	        INNER JOIN tb_prod_demand_design pdd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
+	        INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_design`=pdd.`id_prod_demand_design`
+	        WHERE pd.id_report_status=6 AND pd.`is_pd`=1 AND pd.`is_void_pd`=2
+	        GROUP BY id_product
+        )pdpm ON pdpm.id_product=pdp.id_product AND pdpm.id_prod_demand_product=pdp.id_prod_demand_product
+        INNER JOIN tb_prod_demand_design pdd ON pdp.`id_prod_demand_design`=pdd.`id_prod_demand_design`
+        INNER JOIN tb_prod_demand pd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
 	) newest_pd 
 	LEFT JOIN
 	(
