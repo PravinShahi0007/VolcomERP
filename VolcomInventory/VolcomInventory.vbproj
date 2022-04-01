@@ -16551,6 +16551,9 @@
       <DependentUpon>ReportSampleDelRec.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportSampleDevTarget.resx">
+      <DependentUpon>ReportSampleDevTarget.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportSampleExpense.resx">
       <DependentUpon>ReportSampleExpense.vb</DependentUpon>
     </EmbeddedResource>
