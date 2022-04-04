@@ -13,7 +13,7 @@
 
     Sub viewDesign()
         Dim query As String = ""
-        query += "SELECT dsg.id_design,dsg.design_display_name
+        query += "SELECT dsg.id_design
 ,dsg.design_code
 ,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS  design_display_name
 FROM tb_m_design dsg
