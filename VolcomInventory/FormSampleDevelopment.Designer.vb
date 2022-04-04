@@ -174,19 +174,19 @@ Partial Class FormSampleDevelopment
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIMemoVendor = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BProposeSampleDev = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEVendorPPS = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
-        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -252,14 +252,15 @@ Partial Class FormSampleDevelopment
         Me.XTPPPSTarget.SuspendLayout()
         CType(Me.GCPpsTarget, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPpsTarget, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIMemoVendor, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.SLEVendorPPS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlNavLineList
@@ -1675,6 +1676,7 @@ Partial Class FormSampleDevelopment
         Me.GCPpsTarget.Location = New System.Drawing.Point(0, 47)
         Me.GCPpsTarget.MainView = Me.GVPpsTarget
         Me.GCPpsTarget.Name = "GCPpsTarget"
+        Me.GCPpsTarget.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIMemoVendor})
         Me.GCPpsTarget.Size = New System.Drawing.Size(1111, 334)
         Me.GCPpsTarget.TabIndex = 1
         Me.GCPpsTarget.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPpsTarget})
@@ -1684,6 +1686,9 @@ Partial Class FormSampleDevelopment
         Me.GVPpsTarget.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn26, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn27, Me.GridColumn25})
         Me.GVPpsTarget.GridControl = Me.GCPpsTarget
         Me.GVPpsTarget.Name = "GVPpsTarget"
+        Me.GVPpsTarget.OptionsBehavior.Editable = False
+        Me.GVPpsTarget.OptionsBehavior.ReadOnly = True
+        Me.GVPpsTarget.OptionsView.RowAutoHeight = True
         Me.GVPpsTarget.OptionsView.ShowGroupPanel = False
         '
         'GridColumn26
@@ -1711,15 +1716,20 @@ Partial Class FormSampleDevelopment
         'GridColumn21
         '
         Me.GridColumn21.Caption = "Design"
-        Me.GridColumn21.FieldName = "design_display_name"
+        Me.GridColumn21.ColumnEdit = Me.RIMemoVendor
+        Me.GridColumn21.FieldName = "display_name"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 3
         '
+        'RIMemoVendor
+        '
+        Me.RIMemoVendor.Name = "RIMemoVendor"
+        '
         'GridColumn27
         '
         Me.GridColumn27.Caption = "Vendor"
-        Me.GridColumn27.FieldName = "comp_name"
+        Me.GridColumn27.FieldName = "vendor"
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
         Me.GridColumn27.VisibleIndex = 1
@@ -1753,11 +1763,11 @@ Partial Class FormSampleDevelopment
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.SLEVendorPPS)
         Me.PanelControl2.Controls.Add(Me.LabelControl6)
         Me.PanelControl2.Controls.Add(Me.DEUntil)
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
         Me.PanelControl2.Controls.Add(Me.DEFrom)
-        Me.PanelControl2.Controls.Add(Me.SearchLookUpEdit1)
         Me.PanelControl2.Controls.Add(Me.LabelControl2)
         Me.PanelControl2.Controls.Add(Me.BView)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
@@ -1765,6 +1775,37 @@ Partial Class FormSampleDevelopment
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1111, 47)
         Me.PanelControl2.TabIndex = 0
+        '
+        'SLEVendorPPS
+        '
+        Me.SLEVendorPPS.Location = New System.Drawing.Point(56, 13)
+        Me.SLEVendorPPS.Name = "SLEVendorPPS"
+        Me.SLEVendorPPS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendorPPS.Properties.View = Me.GridView3
+        Me.SLEVendorPPS.Size = New System.Drawing.Size(148, 20)
+        Me.SLEVendorPPS.TabIndex = 8930
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn22, Me.GridColumn23})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "ID"
+        Me.GridColumn22.FieldName = "id_comp"
+        Me.GridColumn22.Name = "GridColumn22"
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Vendor"
+        Me.GridColumn23.FieldName = "comp_name"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 0
         '
         'LabelControl6
         '
@@ -1806,49 +1847,6 @@ Partial Class FormSampleDevelopment
         Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEFrom.Size = New System.Drawing.Size(158, 20)
         Me.DEFrom.TabIndex = 8926
-        '
-        'SearchLookUpEdit1
-        '
-        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(56, 13)
-        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
-        Me.SearchLookUpEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SearchLookUpEdit1.Properties.Appearance.Options.UseFont = True
-        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit1.Properties.View = Me.GridView3
-        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(148, 20)
-        Me.SearchLookUpEdit1.TabIndex = 8907
-        '
-        'GridView3
-        '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn22, Me.GridColumn23, Me.GridColumn24})
-        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView3.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.Caption = "Id Comp"
-        Me.GridColumn22.FieldName = "id_comp"
-        Me.GridColumn22.Name = "GridColumn22"
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.Caption = "Comp Number"
-        Me.GridColumn23.FieldName = "comp_number"
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 0
-        Me.GridColumn23.Width = 188
-        '
-        'GridColumn24
-        '
-        Me.GridColumn24.Caption = "Comp Name"
-        Me.GridColumn24.FieldName = "comp_name"
-        Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 1
-        Me.GridColumn24.Width = 504
         '
         'LabelControl2
         '
@@ -1945,15 +1943,16 @@ Partial Class FormSampleDevelopment
         Me.XTPPPSTarget.ResumeLayout(False)
         CType(Me.GCPpsTarget, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPpsTarget, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIMemoVendor, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.SLEVendorPPS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2114,11 +2113,6 @@ Partial Class FormSampleDevelopment
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
@@ -2126,4 +2120,9 @@ Partial Class FormSampleDevelopment
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
     Friend WithEvents BProposeSampleDev As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEVendorPPS As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RIMemoVendor As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class

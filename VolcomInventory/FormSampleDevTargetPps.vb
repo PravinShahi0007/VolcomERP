@@ -1,7 +1,45 @@
 ﻿Public Class FormSampleDevTargetPps
     Public id_pps As String = "-1"
+    Public is_view As String = "-1"
+
+    Dim id_report_status As String = "-1"
+
     Private Sub FormSampleDevTargetPps_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_head()
+    End Sub
+
+    Sub load_head()
         view_vendor()
+
+        If id_pps = "-1" Then
+            'new
+            BAttach.Visible = False
+            BtnPrint.Visible = False
+            BMark.Visible = False
+        Else
+            'update
+            BAttach.Visible = True
+            BtnPrint.Visible = True
+            BMark.Visible = True
+            '
+            SLEVendor.Properties.ReadOnly = True
+            MENote.Properties.ReadOnly = True
+            '
+            Dim q As String = "SELECT * FROM tb_sample_dev_pps pps
+WHERE pps.id_sample_dev_pps='" & id_pps & "'"
+            Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                SLEVendor.EditValue = dt.Rows(0)("id_comp").ToString
+                MENote.Text = dt.Rows(0)("note").ToString
+                '
+                id_report_status = dt.Rows(0)("id_report_status").ToString
+                '
+                If id_report_status = "6" Or id_report_status = "5" Then
+                    is_view = "1"
+                End If
+            End If
+        End If
+
         load_det()
     End Sub
 
@@ -48,10 +86,95 @@ WHERE ppsd.id_sample_dev_pps='" & id_pps & "'"
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        If id_pps = "-1" Then
-
+        If GVPps.RowCount = 0 Then
+            warningCustom("No data found, please put some design.")
         Else
+            If id_pps = "-1" Then
+                'new
+                Dim q As String = "INSERT INTO `tb_sample_dev_pps`(created_date,id_comp,created_by,note,id_report_status)
+VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
+                id_pps = execute_query(q, 0, True, "", "", "", "")
 
+                execute_non_query("CALL gen_number('" & id_pps & "','403')", True, "", "", "", "")
+
+                'detail
+                q = "INSERT INTO `tb_sample_dev_pps_det`(`id_sample_dev_pps`,`id_design`,`labdip`,`strike_off_1`,`proto_sample_1`,`strike_off_2`,`proto_sample_2`,`copy_proto_sample_2`) VALUES"
+                For i = 0 To GVPps.RowCount - 1
+                    If Not i = 0 Then
+                        q += ","
+                    End If
+                    q += "('" & id_pps & "','" & GVPps.GetRowCellValue(i, "id_design").ToString & "','" & Date.Parse(GVPps.GetRowCellValue(i, "labdip").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "strike_off_1").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "proto_sample_1").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "strike_off_2").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "proto_sample_2").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "copy_proto_sample_2").ToString).ToString("yyyy-MM-dd") & "')"
+                Next
+
+                execute_non_query(q, True, "", "", "", "")
+
+                submit_who_prepared("403", id_pps, id_user)
+
+                Close()
+            Else
+                'no edit pls
+            End If
         End If
+    End Sub
+
+    Private Sub FormSampleDevTargetPps_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = "403"
+        FormReportMark.id_report = id_pps
+        FormReportMark.is_view = is_view
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        If Not check_allow_print(id_report_status, "403", id_pps) Then
+            warningCustom("Can't print, please complete internal approval on system first")
+        Else
+            Cursor = Cursors.WaitCursor
+            ReportSampleDevTarget.id_pps = id_pps
+            ReportSampleDevTarget.dt = GCPps.DataSource
+            Dim Report As New ReportSampleDevTarget()
+            ' ...
+            ' creating and saving the view's layout to a new memory stream 
+            '
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVPps.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVPps.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVPps)
+            Report.GVPps.BestFitColumns()
+
+            Dim query As String = "SELECT DATE_FORMAT(pps.created_date,'%d %M %Y') AS created_date,c.comp_name AS vendor,pps.number,pps.note
+FROM tb_sample_dev_pps pps
+INNER JOIN tb_m_comp c ON c.id_comp=pps.id_comp
+WHERE pps.id_sample_dev_pps='" & id_pps & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            Report.DataSource = data
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BAttach_Click(sender As Object, e As EventArgs) Handles BAttach.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = "403"
+        FormDocumentUpload.id_report = id_pps
+        If is_view = "1" Or Not check_edit_report_status(id_report_status, "403", id_pps) Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

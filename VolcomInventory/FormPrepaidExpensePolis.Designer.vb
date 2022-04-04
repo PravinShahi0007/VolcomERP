@@ -42,6 +42,13 @@ Partial Class FormPrepaidExpensePolis
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEDateReff = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEBudget = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.TEDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEInvNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -51,6 +58,10 @@ Partial Class FormPrepaidExpensePolis
         CType(Me.TEPPN3PLInv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECOABiaya.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDateReff.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDateReff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BImport
@@ -62,7 +73,7 @@ Partial Class FormPrepaidExpensePolis
         Me.BImport.Appearance.Options.UseFont = True
         Me.BImport.Appearance.Options.UseForeColor = True
         Me.BImport.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BImport.Location = New System.Drawing.Point(0, 195)
+        Me.BImport.Location = New System.Drawing.Point(0, 250)
         Me.BImport.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
         Me.BImport.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BImport.Name = "BImport"
@@ -251,11 +262,76 @@ Partial Class FormPrepaidExpensePolis
         Me.GridColumn6.VisibleIndex = 1
         Me.GridColumn6.Width = 1216
         '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(12, 194)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(47, 13)
+        Me.LabelControl8.TabIndex = 122
+        Me.LabelControl8.Text = "Reff Date"
+        '
+        'DEDateReff
+        '
+        Me.DEDateReff.EditValue = Nothing
+        Me.DEDateReff.Location = New System.Drawing.Point(93, 191)
+        Me.DEDateReff.Name = "DEDateReff"
+        Me.DEDateReff.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DEDateReff.Properties.Appearance.Options.UseFont = True
+        Me.DEDateReff.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDateReff.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDateReff.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEDateReff.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDateReff.Size = New System.Drawing.Size(174, 20)
+        Me.DEDateReff.TabIndex = 121
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(12, 220)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl9.TabIndex = 120
+        Me.LabelControl9.Text = "Budget"
+        '
+        'SLEBudget
+        '
+        Me.SLEBudget.Location = New System.Drawing.Point(93, 217)
+        Me.SLEBudget.Name = "SLEBudget"
+        Me.SLEBudget.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEBudget.Properties.View = Me.GridView2
+        Me.SLEBudget.Size = New System.Drawing.Size(338, 20)
+        Me.SLEBudget.TabIndex = 119
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "ID"
+        Me.GridColumn7.FieldName = "id_b_expense"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Expense"
+        Me.GridColumn8.FieldName = "item_cat_main"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        '
         'FormPrepaidExpensePolis
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(449, 229)
+        Me.ClientSize = New System.Drawing.Size(449, 284)
+        Me.Controls.Add(Me.LabelControl8)
+        Me.Controls.Add(Me.DEDateReff)
+        Me.Controls.Add(Me.LabelControl9)
+        Me.Controls.Add(Me.SLEBudget)
         Me.Controls.Add(Me.LabelControl7)
         Me.Controls.Add(Me.SLECOABiaya)
         Me.Controls.Add(Me.TEDesc)
@@ -286,6 +362,10 @@ Partial Class FormPrepaidExpensePolis
         CType(Me.TEPPN3PLInv.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECOABiaya.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDateReff.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDateReff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -314,4 +394,11 @@ Partial Class FormPrepaidExpensePolis
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEDateReff As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEBudget As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
