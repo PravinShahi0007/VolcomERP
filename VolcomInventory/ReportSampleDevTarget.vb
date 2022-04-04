@@ -5,6 +5,6 @@
 
     Private Sub ReportSampleDevTarget_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         GCPps.DataSource = dt
-        load_mark_horz("403", id_pps, LVendor.Text, "2", XrTable1)
+        load_mark_horz("403", id_pps, LVendor.Text, "2", XrTable8)
     End Sub
 End Class

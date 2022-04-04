@@ -795,6 +795,9 @@
         ElseIf report_mark_type = "353" Then
             'store display
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_display_pps WHERE id_display_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "403" Then
+            'sample target dev pps
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_sample_dev_pps WHERE id_sample_dev_pps = '{0}'", id_report)
         End If
         data = execute_query(query, -1, True, "", "", "", "")
 
@@ -12015,6 +12018,21 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_report & "'"
             End If
 
             query = String.Format("UPDATE tb_display_pps SET id_report_status = '{0}' WHERE id_display_pps = '{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "403" Then
+            'sample target dev pps
+
+            If id_status_reportx = "6" Then
+                'complete
+                Dim q As String = "INSERT INTO `tb_sample_dev_tracking`(`id_design`,`id_comp`,`labdip`,`strike_off_1`,`proto_sample_1`,`strike_off_2`,`proto_sample_2`,`copy_proto_sample_2`)
+SELECT ppsd.id_design,pps.id_comp,ppsd.labdip,ppsd.strike_off_1,ppsd.proto_sample_1,ppsd.strike_off_2,ppsd.proto_sample_2,ppsd.copy_proto_sample_2
+FROM `tb_sample_dev_pps_det` ppsd 
+INNER JOIN `tb_sample_dev_pps` pps ON pps.id_sample_dev_pps=ppsd.id_sample_dev_pps
+WHERE ppsd.id_sample_dev_pps='" & id_report & "'"
+                execute_non_query(q, True, "", "", "", "")
+            End If
+
+            query = String.Format("UPDATE tb_sample_dev_pps SET id_report_status = '{0}' WHERE tb_sample_dev_pps = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 
