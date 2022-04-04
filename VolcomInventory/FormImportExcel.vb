@@ -3366,16 +3366,24 @@ WHERE awbill_no != '' AND awbill_type='2' AND is_lock='2' AND is_old_ways=1
             INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
             LEFT JOIN (
-				SELECT prc.id_design, prc.id_design_price, prc.design_price , prc.id_design_cat, prc.design_cat, prc.`price_type`
-				FROM (
-					SELECT prc.id_design, prc.id_design_price, prc.design_price, cat.id_design_cat, cat.design_cat, prct.design_price_type AS `price_type`  
-					FROM tb_m_design_price prc
-					INNER JOIN tb_lookup_design_price_type prct ON prct.id_design_price_type = prc.id_design_price_type
-					INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = prct.id_design_cat
-					WHERE design_price_start_date<=DATE(NOW()) AND is_active_wh = 1 AND is_design_cost=0
-					ORDER BY design_price_start_date DESC, id_design_price DESC
-				) prc
-				GROUP BY id_design
+                SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+                price.id_design_price_type, price_type.design_price_type AS `price_type`,
+                cat.id_design_cat, cat.design_cat 
+                FROM tb_m_design_price price 
+                INNER JOIN (
+	                SELECT MAX(price.id_design) AS `id_design`, MAX(price.id_design_price) AS  `id_design_price`
+	                FROM tb_m_design_price price
+	                INNER JOIN (
+		                Select MAX(price.id_design) AS `id_design`, MAX(price.design_price_start_date) AS `design_price_start_date`
+		                From tb_m_design_price price 
+		                WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+		                GROUP BY price.id_design
+	                ) maxdate ON maxdate.id_design = price.id_design AND maxdate.design_price_start_date = price.design_price_start_date
+	                WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+	                GROUP BY price.id_design
+                ) pricemax ON pricemax.id_design_price = price.id_design_price
+                INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+                INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
 			) p ON p.id_design = d.id_design
             WHERE d.id_lookup_status_order!=2 
             ORDER BY d.design_display_name ASC, cd.id_code_detail ASC "

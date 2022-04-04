@@ -36,8 +36,8 @@ Partial Class FormSampleDevTargetAdd
         Me.GVSLEDesgSearch = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnCodeSearch = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.DELabDip.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DELabDip.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStrikeOff1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -188,12 +188,12 @@ Partial Class FormSampleDevTargetAdd
         Me.SLEDesignStockStore.Name = "SLEDesignStockStore"
         Me.SLEDesignStockStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEDesignStockStore.Properties.View = Me.GVSLEDesgSearch
-        Me.SLEDesignStockStore.Size = New System.Drawing.Size(220, 20)
+        Me.SLEDesignStockStore.Size = New System.Drawing.Size(246, 20)
         Me.SLEDesignStockStore.TabIndex = 8938
         '
         'GVSLEDesgSearch
         '
-        Me.GVSLEDesgSearch.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCodeSearch, Me.GridColumn7, Me.GridColumn9})
+        Me.GVSLEDesgSearch.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnCodeSearch, Me.GridColumn7})
         Me.GVSLEDesgSearch.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GVSLEDesgSearch.Name = "GVSLEDesgSearch"
         Me.GVSLEDesgSearch.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -211,24 +211,11 @@ Partial Class FormSampleDevTargetAdd
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Description"
-        Me.GridColumn7.FieldName = "display_name"
+        Me.GridColumn7.FieldName = "design_display_name"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 1
         Me.GridColumn7.Width = 360
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn9.Caption = "Color"
-        Me.GridColumn9.FieldName = "color"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 2
-        Me.GridColumn9.Width = 146
         '
         'BAdd
         '
@@ -248,6 +235,12 @@ Partial Class FormSampleDevTargetAdd
         Me.BAdd.Size = New System.Drawing.Size(387, 28)
         Me.BAdd.TabIndex = 8939
         Me.BAdd.Text = "Add"
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID"
+        Me.GridColumn1.FieldName = "id_design"
+        Me.GridColumn1.Name = "GridColumn1"
         '
         'FormSampleDevTargetAdd
         '
@@ -311,6 +304,6 @@ Partial Class FormSampleDevTargetAdd
     Friend WithEvents GVSLEDesgSearch As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnCodeSearch As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

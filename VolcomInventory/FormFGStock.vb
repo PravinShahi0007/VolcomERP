@@ -1882,16 +1882,24 @@
 	      GROUP BY dc.id_design
 	    ) cls ON cls.id_design = d.id_design
         LEFT JOIN (
-		    SELECT prc.id_design, prc.id_design_price, prc.design_price, prc.id_design_cat,prc.design_cat, prc.design_price_type
-		    FROM (
-			    SELECT prc.id_design, prc.id_design_price, prc.design_price, cat.id_design_cat, cat.design_cat, pt.design_price_type
-			    FROM tb_m_design_price prc
-			    INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
-			    INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = pt.id_design_cat
-			    WHERE design_price_start_date<=NOW() AND is_active_wh=1 AND is_design_cost=0
-			    ORDER BY design_price_start_date DESC, id_design_price DESC
-		    ) prc
-		    GROUP BY id_design
+            SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+            price.id_design_price_type, price_type.design_price_type,
+            cat.id_design_cat, cat.design_cat 
+            FROM tb_m_design_price price 
+            INNER JOIN (
+	            SELECT MAX(price.id_design) AS `id_design`, MAX(price.id_design_price) AS  `id_design_price`
+	            FROM tb_m_design_price price
+	            INNER JOIN (
+		            Select MAX(price.id_design) AS `id_design`, MAX(price.design_price_start_date) AS `design_price_start_date`
+		            From tb_m_design_price price 
+		            WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+		            GROUP BY price.id_design
+	            ) maxdate ON maxdate.id_design = price.id_design AND maxdate.design_price_start_date = price.design_price_start_date
+	            WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+	            GROUP BY price.id_design
+            ) pricemax ON pricemax.id_design_price = price.id_design_price
+            INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+            INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
 	    ) prc ON prc.id_design = d.id_design
         GROUP BY f.id_product 
         HAVING (`Total|Available Qty`!=0 OR `Total|Reserved Qty`!=0 OR `Total|Total Qty`!=0)

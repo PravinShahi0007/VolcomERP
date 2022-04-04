@@ -299,13 +299,23 @@
                     kurs_trans = decimalSQL(data_kurs.Rows(0)("kurs_trans").ToString)
                 End If
 
+                'get vat
+                Dim query_vat As String = "SELECT v.vat FROM tb_m_vat v WHERE '" + ol_order_date + "'>=v.start_period AND '" + ol_order_date + "'<=v.end_period "
+                Dim data_vat As DataTable = execute_query(query_vat, -1, True, "", "", "", "")
+                Dim vat_active As String = ""
+                If data_vat.Rows.Count > 0 Then
+                    vat_active = decimalSQL(data_vat.Rows(0)("vat").ToString)
+                Else
+                    vat_active = "10"
+                End If
+
                 'main
                 Dim query_inv As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code, id_acc_ar, id_acc_sales, id_acc_sales_return, kurs_trans, potongan_gwp) 
                 SELECT del.id_store_contact_to AS id_store_contact_from,NULL AS id_comp_contact_bill , '" + header_number_sales("6") + "' AS sales_pos_number, 
                 DATE(NOW()) AS sales_pos_date, 
                 '' AS sales_pos_note, 6 AS id_report_status, 0 AS id_so_type, 0 AS sales_pos_total, DATE_ADD(DATE(so.sales_order_ol_shop_date),INTERVAL IFNULL(sd.due,0) DAY) AS sales_pos_due_date, 
                 so.sales_order_ol_shop_date AS sales_pos_start_period,so.sales_order_ol_shop_date AS sales_pos_end_period,
-                c.comp_commission AS sales_pos_discount, SUM(sod.discount) AS sales_pos_potongan, o.vat_inv_default AS sales_pos_vat, del.id_pl_sales_order_del, 1 AS id_memo_type,0 AS id_inv_type, NULL AS id_sales_pos_ref, 48 AS report_mark_type,o.is_use_unique_code_all AS is_use_unique_code, 
+                c.comp_commission AS sales_pos_discount, SUM(sod.discount) AS sales_pos_potongan,'" + vat_active + "' AS sales_pos_vat, del.id_pl_sales_order_del, 1 AS id_memo_type,0 AS id_inv_type, NULL AS id_sales_pos_ref, 48 AS report_mark_type,o.is_use_unique_code_all AS is_use_unique_code, 
                 c.id_acc_ar, c.id_acc_sales, c.id_acc_sales_return, '" + kurs_trans + "',
                 IFNULL(SUM(CASE WHEN rg.is_md=2 THEN sod.design_price * sod.sales_order_det_qty END),0) AS `potongan_gwp`
                 FROM tb_pl_sales_order_del del 

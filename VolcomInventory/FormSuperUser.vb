@@ -112,6 +112,57 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+        'set ppn 11%
+        'Dim ql As String = "SELECT a.id_sales_pos, a.report_mark_type, sp.sales_pos_number
+        'FROM tb_temp_inv_10_to_11 a 
+        'INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = a.id_sales_pos
+        'WHERE a.report_mark_type=48 AND a.is_process=2 LIMIT 80 "
+        'Dim dl As DataTable = execute_query(ql, -1, True, "", "", "", "")
+        'If dl.Rows.Count > 0 Then
+        '    For i As Integer = 0 To dl.Rows.Count - 1
+        '        Dim id_report As String = dl.Rows(i)("id_sales_pos").ToString
+        '        Dim report_mark_type As String = dl.Rows(i)("report_mark_type").ToString
+        '        Dim report_number As String = dl.Rows(i)("sales_pos_number").ToString
+
+        '        'update ppn
+        '        execute_non_query("UPDATE tb_sales_pos sp SET sales_pos_vat='11' WHERE sp.id_sales_pos='" + id_report + "' AND sp.report_mark_type='" + report_mark_type + "' ", True, "", "", "", "")
+
+        '        'delete draft
+        '        execute_non_query("DELETE FROM tb_a_acc_trans_draft WHERE report_mark_type='" + report_mark_type + "' AND id_report='" + id_report + "' ", True, "", "", "", "")
+
+        '        'insert draft
+        '        Dim acc As New ClassAccounting()
+        '        acc.generateJournalSalesDraftWithMapping(id_report, report_mark_type)
+
+
+        '        'get id acc trans
+        '        Dim qtrans As String = "SELECT id_acc_trans FROM tb_a_acc_trans WHERE report_number='" + report_number + "' "
+        '        Dim dtrans As DataTable = execute_query(qtrans, -1, True, "", "", "", "")
+        '        If dtrans.Rows.Count > 0 Then
+        '            Dim id_acc_trans As String = dtrans.Rows(0)("id_acc_trans").ToString
+
+        '            'delete trans det
+        '            execute_non_query("DELETE FROM tb_a_acc_trans_det WHERE id_acc_trans='" + id_acc_trans + "' ", True, "", "", "", "")
+
+        '            'insert trans det
+        '            'det journal
+        '            Dim qd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number, id_status_open) 
+        '            SELECT '" + id_acc_trans + "', d.id_acc, d.id_comp, d.qty, d.debit, d.credit, d.acc_trans_det_note, d.report_mark_type, d.id_report, d.report_number, '1'
+        '            FROM tb_a_acc_trans_draft d
+        '            WHERE d.report_mark_type='" + report_mark_type + "' AND d.id_report='" + id_report + "' "
+        '            execute_non_query(qd, True, "", "", "", "")
+
+        '            'update status draft
+        '            Dim qupd As String = "UPDATE tb_a_acc_trans_draft SET id_status_open=2 WHERE report_mark_type='" + report_mark_type + "' AND id_report='" + id_report + "'  "
+        '            execute_non_query(qupd, True, "", "", "", "")
+
+        '            'update is_process
+        '            execute_non_query("UPDATE tb_temp_inv_10_to_11 SET is_process=1 WHERE report_mark_type='" + report_mark_type + "' AND id_sales_pos='" + id_report + "' ", True, "", "", "", "")
+        '        End If
+        '    Next
+
+        'End If
+
         'Dim m As New ClassSendEmail()
         'm.design_code = "RTS15250"
         'm.design = "P49 - PS A YANI PONTIANAK"
