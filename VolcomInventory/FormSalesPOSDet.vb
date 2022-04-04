@@ -343,6 +343,15 @@ Public Class FormSalesPOSDet
                 BtnImport.Visible = False
                 BtnLoadFromProbList.Visible = True
                 DeleteToolStripMenuItem.Visible = False
+
+                'get vat
+                Dim qvat As String = "SELECT sp.sales_pos_vat FROM tb_ol_store_return_refuse_det rrd 
+                INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos_det = rrd.id_sales_pos_det_cn
+                INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = spd.id_sales_pos
+                WHERE rrd.id_return_refuse=" + id_return_refuse + "
+                LIMIT 1 "
+                Dim dvat As DataTable = execute_query(qvat, -1, True, "", "", "", "")
+                SPVat.EditValue = dvat.Rows(0)("sales_pos_vat")
             End If
 
             'from bap
@@ -3524,20 +3533,22 @@ GROUP BY r.id_sales_pos_recon "
     End Sub
 
     Sub load_vat()
-        Cursor = Cursors.WaitCursor
-        Dim end_period As String = "1991-01-01"
-        Try
-            end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
-        Catch ex As Exception
-        End Try
+        If id_menu <> "2" And id_menu <> "5" And id_menu <> "6" Then
+            Cursor = Cursors.WaitCursor
+            Dim end_period As String = "1991-01-01"
+            Try
+                end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
 
-        Dim query As String = "SELECT v.vat FROM tb_m_vat v WHERE '" + end_period + "'>=v.start_period AND '" + end_period + "'<=v.end_period "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        If data.Rows.Count > 0 Then
-            SPVat.EditValue = data.Rows(0)("vat")
-        Else
-            SPVat.EditValue = 0.00
+            Dim query As String = "SELECT v.vat FROM tb_m_vat v WHERE '" + end_period + "'>=v.start_period AND '" + end_period + "'<=v.end_period "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                SPVat.EditValue = data.Rows(0)("vat")
+            Else
+                SPVat.EditValue = 0.00
+            End If
+            Cursor = Cursors.Default
         End If
-        Cursor = Cursors.Default
     End Sub
 End Class
