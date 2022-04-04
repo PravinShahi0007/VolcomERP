@@ -209,16 +209,19 @@
                 WHERE m.report_mark_type=227 
             ) w ON w.id_report = sp.id_sales_pos
             LEFT JOIN (
-                SELECT * FROM (
-	                SELECT m.id_mail_manage AS `id_mail_notice_no`, m.number AS `mail_notice_no`, 
-	                m.updated_date AS `mail_notice_date`,md.id_report, stt.mail_status AS `mail_notice_status`
+                SELECT  m.id_mail_manage AS `id_mail_notice_no`, m.number AS `mail_notice_no`, 
+                m.updated_date AS `mail_notice_date`,n.id_report, stt.mail_status AS `mail_notice_status`
+                FROM tb_mail_manage m
+                INNER JOIN (
+	                SELECT md.id_report, MAX(m.id_mail_manage) AS `id_mail_manage`
 	                FROM tb_mail_manage_det md
 	                INNER JOIN tb_mail_manage m ON m.id_mail_manage = md.id_mail_manage
 	                INNER JOIN tb_lookup_mail_status stt ON stt.id_mail_status = m.id_mail_status
 	                WHERE m.report_mark_type=226
-	                ORDER BY m.id_mail_manage DESC
-                ) n 
-                GROUP BY n.id_report
+	                GROUP BY md.id_report
+                ) n ON n.id_mail_manage = m.id_mail_manage
+                INNER JOIN tb_lookup_mail_status stt ON stt.id_mail_status = m.id_mail_status
+                WHERE m.report_mark_type=226
             ) n ON n.id_report = sp.id_sales_pos
             LEFT JOIN (
                 SELECT * FROM (
