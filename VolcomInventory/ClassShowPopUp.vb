@@ -563,6 +563,9 @@
         ElseIf report_mark_type = "353" Then
             'store display
             FormStoreDisplayDet.Close()
+        ElseIf report_mark_type = "403" Then
+            'sample dev target pps
+            FormSampleDevTargetPps.Close()
         End If
     End Sub
     Sub show()
@@ -1792,6 +1795,11 @@ GROUP BY rec.`id_prod_order`"
             FormStoreDisplayDet.is_view = "1"
             FormStoreDisplayDet.action = "upd"
             FormStoreDisplayDet.id = id_report
+            FormStoreDisplayDet.ShowDialog()
+        ElseIf report_mark_type = "403" Then
+            'sample dev target pps
+            FormSampleDevTargetPps.is_view = "1"
+            FormSampleDevTargetPps.id_pps = id_report
             FormStoreDisplayDet.ShowDialog()
         Else
             'MsgBox(id_report)
@@ -3192,6 +3200,12 @@ GROUP BY rec.`id_prod_order`"
             'store display
             table_name = "tb_display_pps"
             field_id = "id_display_pps"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "403" Then
+            'sample dev target pps
+            table_name = "tb_sample_dev_pps"
+            field_id = "id_sample_dev_pps"
             field_number = "number"
             field_date = "created_date"
         Else
