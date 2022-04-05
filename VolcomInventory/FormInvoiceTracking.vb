@@ -313,16 +313,17 @@
                GROUP BY pyd.id_report, pyd.report_mark_type
             ) pyd_op ON pyd_op.id_report = sp.id_invoice_ship AND pyd_op.report_mark_type = sp.report_mark_type
             LEFT JOIN (
-               SELECT * FROM  (
-                  SELECT r.id_rec_payment AS `id_bbm`, rd.id_report, r.number AS `bbm_number`, r.value AS `bbm_value`,
-                  r.date_created AS `bbm_created_date`,
-                  r.date_received AS `bbm_received_date`
-                  FROM tb_rec_payment_det rd
-                  INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
-                  WHERE rd.report_mark_type IN (249) AND r.id_report_status=6
-                  ORDER BY r.id_rec_payment DESC
-               ) rm
-               GROUP BY rm.id_report
+                SELECT r.id_rec_payment AS `id_bbm`, rm.id_report, r.`number` AS `bbm_number`, r.`value` AS `bbm_value`,
+                r.date_created AS `bbm_created_date`,
+                r.date_received AS `bbm_received_date` 
+                FROM tb_rec_payment r
+                INNER JOIN (
+	                SELECT rd.id_report, MAX(r.id_rec_payment) AS `id_rec_payment`
+	                FROM tb_rec_payment_det rd
+	                INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
+	                WHERE rd.report_mark_type IN (249) AND r.id_report_status=6
+	                GROUP BY rd.id_report
+                ) rm ON rm.id_rec_payment = r.id_rec_payment
             ) bbm ON bbm.id_report = sp.id_invoice_ship
             LEFT JOIN (
                SELECT od.id, od.sales_order_ol_shop_number AS `ol_store_order` FROM tb_ol_store_order od
