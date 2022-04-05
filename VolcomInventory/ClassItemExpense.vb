@@ -19,6 +19,7 @@
         Dim join_dp As String = ""
         Dim col_pay_pending = ""
         Dim join_pay_pending = ""
+
         If is_for_payment Then
             'dp
             col_dp = ", IFNULL(edp.total,0) AS `total_dp` "
