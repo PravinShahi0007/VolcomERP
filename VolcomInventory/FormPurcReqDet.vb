@@ -228,6 +228,13 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
             Else
                 BtnPrint.Visible = True
             End If
+
+            If id_report_status = "6" Or id_report_status = "5" Then
+                BCancelPR.Visible = False
+            Else
+                BCancelPR.Visible = True
+            End If
+
             BMark.Visible = True
         End If
 
@@ -236,6 +243,7 @@ SELECT id_comp,comp_number,comp_name,address_primary FROM `tb_m_comp` WHERE is_a
             BtnCancel.Visible = False
             BtnSave.Visible = False
             BtnPrint.Visible = False
+            BCancelPR.Visible = False
         End If
     End Sub
 
@@ -794,6 +802,22 @@ GROUP BY req.`id_purc_req`"
     Private Sub GVItemList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVItemList.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub BCancelPR_Click(sender As Object, e As EventArgs) Handles BCancelPR.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancell this PR ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "UPDATE tb_purc_req SET id_report_status=5 WHERE id_purc_req='" + id_req + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+            'nonaktif mark
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", rmt, id_req)
+            execute_non_query(queryrm, True, "", "", "", "")
+
+            load_form()
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class
