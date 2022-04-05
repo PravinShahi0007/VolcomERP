@@ -251,21 +251,17 @@
                 ) rm ON rm.id_rec_payment = r.id_rec_payment
             ) bbm ON bbm.id_report = sp.id_sales_pos
             LEFT JOIN (
-                SELECT bbk.id_report, bbk.id_pn AS `id_bbk`, bbk.number AS `bbk_number`, 
-                bbk.date_created AS `bbk_created_date`, bbk.date_payment AS `bbk_payment_date`, bbk.value AS `bbk_value`, bbk.report_status AS `bbk_status`
-                FROM (
-	                SELECT bkd.id_report, bk.id_pn, bk.number, bk.date_created, bk.date_payment, bk.value, stt.report_status
+                SELECT bkm.id_report, bk.id_pn AS `id_bbk`, bk.number AS `bbk_number`, 
+                bk.date_created AS `bbk_created_date`, bk.date_payment AS `bbk_payment_date`, bk.value AS `bbk_value`, stt.report_status AS `bbk_status`
+                FROM tb_pn bk
+                INNER JOIN (
+	                SELECT bkd.id_report, MAX(bk.id_pn) AS `id_pn`
 	                FROM tb_pn bk
 	                INNER JOIN tb_pn_det bkd ON bkd.id_pn = bk.id_pn
-	                INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = bkd.id_report
-	                INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
-	                INNER JOIN tb_sales_pos_det invd ON invd.id_sales_pos_det = spd.id_sales_pos_det_ref
-	                INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = invd.id_pl_sales_order_del_det
-	                INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = bk.id_report_status
 	                WHERE bkd.report_mark_type=118 AND bk.id_report_status=6
-	                ORDER BY bk.id_pn DESC
-                ) bbk
-                GROUP BY bbk.id_report
+	                GROUP BY bkd.id_report
+                ) bkm ON bkm.id_pn = bk.id_pn
+                INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = bk.id_report_status
             ) bbk ON bbk.id_report = sp.id_sales_pos
             LEFT JOIN tb_propose_delay_payment mem ON mem.id_propose_delay_payment = sp.id_propose_delay_payment
             LEFT JOIN tb_pl_sales_order_del del ON del.id_pl_sales_order_del = sp.id_pl_sales_order_del
