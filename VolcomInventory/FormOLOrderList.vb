@@ -59,14 +59,16 @@
 	        ) dord_item ON dord_item.id_sales_order = a.id_sales_order
 	        LEFT JOIN tb_store_priority_order pri ON pri.id_comp = d.id_comp
             LEFT JOIN (
-                SELECT a.id_sales_order, a.log_date AS `printed_date`, e.employee_name AS `printed_by` 
-                FROM (
-                    SELECT * FROM tb_sales_order_log_print lp
-                    ORDER BY lp.log_date ASC
-                ) a 
-                INNER JOIN tb_m_user u ON u.id_user = a.id_user
+                SELECT a.id_sales_order, lp.log_date AS `printed_date`, e.employee_name AS `printed_by` 
+                FROM tb_sales_order_log_print lp
+                INNER JOIN (
+	                SELECT so.id_sales_order, MAX(lp.id_log) AS `id_log` 
+	                FROM tb_sales_order_log_print lp
+	                INNER JOIN tb_sales_order so ON so.id_sales_order = lp.id_sales_order
+	                GROUP BY so.id_sales_order
+                ) a ON a.id_log = lp.id_log
+                INNER JOIN tb_m_user u ON u.id_user = lp.id_user
                 INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
-                GROUP BY a.id_sales_order
             ) lp ON lp.id_sales_order = a.id_sales_order 
 	        WHERE a.id_sales_order>0 
 	        AND a.id_so_status!=5 AND a.id_report_status='6' AND a.id_prepare_status='1' 
