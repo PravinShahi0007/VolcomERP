@@ -891,7 +891,7 @@ ORDER BY awbd.id_awbill ASC,awbd.id_pl_sales_order_del ASC"
 -- ,awb.`weight_calc` AS volume
 ,ROUND((awb.width* awb.length* awb.height)/" & div_by & ",2) AS volume
 ,c.id_sub_district
-,IF(ISNULL(sp.id_sales_pos),2,IF(sp.netto>0,IF(IFNULL(rec.value,0)=0,2,1),1)) AS paid
+,IF(ISNULL(pl_release.id_pl_sales_order_del),IF(ISNULL(sp.id_sales_pos),2,IF(sp.netto>0,IF(IFNULL(rec.value,0)=0,2,1),1)),1) AS paid
 FROM tb_wh_awbill_det awbd
 INNER JOIN tb_wh_awbill awb ON awb.`id_awbill`=awbd.`id_awbill` AND awb.`is_old_ways`=2 AND step=2 AND awb.`id_report_status`!=5 
 -- AND awb.id_del_type='" & SLEDelType.EditValue.ToString & "'
@@ -904,6 +904,11 @@ LEFT JOIN
 	INNER JOIN tb_m_comp AS c ON cc.id_comp = c.id_comp
 	INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=c.`id_comp_group` AND cg.is_wholesale=1
 )sp ON sp.`id_pl_sales_order_del`=pl.`id_pl_sales_order_del`
+LEFT JOIN
+(
+    SELECT id_pl_sales_order_del
+    FROM `tb_pl_sales_order_del_send`
+)pl_release ON pl_release.id_pl_sales_order_del=pl.id_pl_sales_order_del
 LEFT JOIN
 (
 	SELECT r.`number`,r.`id_rec_payment`,rd.`id_report`,rd.`report_mark_type`,pl.`id_sales_order`,rd.`value`

@@ -440,55 +440,90 @@
         INNER JOIN tb_season ss ON ss.id_season = d.id_season
         INNER JOIN tb_season_delivery sd ON sd.id_delivery = d.id_delivery
         LEFT JOIN (
-	        SELECT * FROM (
-		        SELECT prc.id_design, prc.design_price 
-		        FROM tb_m_design_price prc
-		        WHERE prc.design_price>0 AND prc.id_design_price_type=1 AND prc.design_price_start_date<=NOW()
-		        ORDER BY prc.design_price_start_date DESC, prc.id_design_price DESC
-	        ) p
-	        GROUP BY p.id_design
+	        SELECT prc.id_design, prc.design_price 
+            FROM tb_m_design_price prc
+            INNER JOIN (
+	            SELECT prc.id_design, MAX(prc.id_design_price) AS `id_design_price`
+	            FROM tb_m_design_price prc
+	            INNER JOIN (
+		            SELECT prc.id_design, MAX(prc.design_price_start_date) AS `design_price_start_date`
+		            FROM tb_m_design_price prc
+		            WHERE prc.design_price>0 AND prc.id_design_price_type=1 AND prc.design_price_start_date<=NOW()
+		            GROUP BY prc.id_design
+	            ) maxdate ON maxdate.id_design = prc.id_design AND maxdate.design_price_start_date = prc.design_price_start_date
+	            WHERE prc.design_price>0 AND prc.id_design_price_type=1 AND prc.design_price_start_date<=NOW()
+	            GROUP BY prc.id_design
+            ) p ON p.id_design_price = prc.id_design_price
         ) np ON np.id_design = d.id_design
         LEFT JOIN (
-	        SELECT * FROM (
-		        SELECT prc.id_design, prc.design_price 
-		        FROM tb_m_design_price prc
-		        WHERE prc.design_price>0 AND prc.id_design_price_type=2 AND prc.design_price_start_date<=NOW()
-		        ORDER BY prc.design_price_start_date DESC, prc.id_design_price DESC
-	        ) p
-	        GROUP BY p.id_design
+	        SELECT prc.id_design, prc.design_price 
+            FROM tb_m_design_price prc
+            INNER JOIN (
+	            SELECT prc.id_design, MAX(prc.id_design_price) AS `id_design_price`
+	            FROM tb_m_design_price prc
+	            INNER JOIN (
+		            SELECT prc.id_design, MAX(prc.design_price_start_date) AS `design_price_start_date`
+		            FROM tb_m_design_price prc
+		            WHERE prc.design_price>0 AND prc.id_design_price_type=2 AND prc.design_price_start_date<=NOW()
+		            GROUP BY prc.id_design
+	            ) maxdate ON maxdate.id_design = prc.id_design AND maxdate.design_price_start_date = prc.design_price_start_date
+	            WHERE prc.design_price>0 AND prc.id_design_price_type=2 AND prc.design_price_start_date<=NOW()
+	            GROUP BY prc.id_design
+            ) p ON p.id_design_price = prc.id_design_price
         ) mp ON mp.id_design = d.id_design
         LEFT JOIN (
-	        SELECT * FROM (
-		        SELECT prc.id_design, prc.design_price 
-		        FROM tb_m_design_price prc
-		        WHERE prc.design_price>0 AND prc.id_design_price_type=3 AND prc.design_price_start_date<=NOW()
-		        ORDER BY prc.design_price_start_date DESC, prc.id_design_price DESC
-	        ) p
-	        GROUP BY p.id_design
+	        SELECT prc.id_design, prc.design_price 
+            FROM tb_m_design_price prc
+            INNER JOIN (
+	            SELECT prc.id_design, MAX(prc.id_design_price) AS `id_design_price`
+	            FROM tb_m_design_price prc
+	            INNER JOIN (
+		            SELECT prc.id_design, MAX(prc.design_price_start_date) AS `design_price_start_date`
+		            FROM tb_m_design_price prc
+		            WHERE prc.design_price>0 AND prc.id_design_price_type=3 AND prc.design_price_start_date<=NOW()
+		            GROUP BY prc.id_design
+	            ) maxdate ON maxdate.id_design = prc.id_design AND maxdate.design_price_start_date = prc.design_price_start_date
+	            WHERE prc.design_price>0 AND prc.id_design_price_type=3 AND prc.design_price_start_date<=NOW()
+	            GROUP BY prc.id_design
+            ) p ON p.id_design_price = prc.id_design_price
         ) ep ON ep.id_design = d.id_design
         LEFT JOIN (
-	        SELECT * FROM (
-		        SELECT prc.id_design, prc.design_price 
-		        FROM tb_m_design_price prc
-		        WHERE prc.design_price>0 AND prc.id_design_price_type=4 AND prc.design_price_start_date<=NOW()
-		        ORDER BY prc.design_price_start_date DESC, prc.id_design_price DESC
-	        ) p
-	        GROUP BY p.id_design
+	        SELECT prc.id_design, prc.design_price 
+            FROM tb_m_design_price prc
+            INNER JOIN (
+	            SELECT prc.id_design, MAX(prc.id_design_price) AS `id_design_price`
+	            FROM tb_m_design_price prc
+	            INNER JOIN (
+		            SELECT prc.id_design, MAX(prc.design_price_start_date) AS `design_price_start_date`
+		            FROM tb_m_design_price prc
+		            WHERE prc.design_price>0 AND prc.id_design_price_type=4 AND prc.design_price_start_date<=NOW()
+		            GROUP BY prc.id_design
+	            ) maxdate ON maxdate.id_design = prc.id_design AND maxdate.design_price_start_date = prc.design_price_start_date
+	            WHERE prc.design_price>0 AND prc.id_design_price_type=4 AND prc.design_price_start_date<=NOW()
+	            GROUP BY prc.id_design
+            ) p ON p.id_design_price = prc.id_design_price
         ) sp ON sp.id_design = d.id_design
         LEFT JOIN( 
-          Select * FROM ( 
-	          Select price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
-	          price.id_design_price_type, price_type.design_price_type,
-	          cat.id_design_cat, cat.design_cat
-	          From tb_m_design_price price 
-	          INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
-	          INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
-	          WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
-	          ORDER BY price.design_price_start_date DESC, price.id_design_price DESC 
-          ) a 
-          GROUP BY a.id_design 
+            SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+            price.id_design_price_type, price_type.design_price_type,
+            cat.id_design_cat, cat.design_cat 
+            FROM tb_m_design_price price 
+            INNER JOIN (
+	            SELECT MAX(price.id_design) AS `id_design`, MAX(price.id_design_price) AS  `id_design_price`
+	            FROM tb_m_design_price price
+	            INNER JOIN (
+		            Select MAX(price.id_design) AS `id_design`, MAX(price.design_price_start_date) AS `design_price_start_date`
+		            From tb_m_design_price price 
+		            WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+		            GROUP BY price.id_design
+	            ) maxdate ON maxdate.id_design = price.id_design AND maxdate.design_price_start_date = price.design_price_start_date
+	            WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+	            GROUP BY price.id_design
+            ) pricemax ON pricemax.id_design_price = price.id_design_price
+            INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+            INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
         ) last_prc ON last_prc.id_design = d.id_design 
-         WHERE d.id_lookup_status_order!=2 AND d.design_code!=''
+        WHERE d.id_lookup_status_order!=2 AND d.design_code!=''
         " + cond_season + "
         " + cond_del + "
         " + cond_class + "
@@ -531,16 +566,22 @@
 	        GROUP BY dc.id_design
         ) cd ON cd.id_design = d.id_design
         LEFT JOIN (
-		    SELECT prc.id_design, prc.id_design_price, prc.design_price, prc.id_design_cat,prc.design_cat, prc.design_price_type
-		    FROM (
-			    SELECT prc.id_design, prc.id_design_price, prc.design_price, cat.id_design_cat, cat.design_cat, pt.design_price_type
-			    FROM tb_m_design_price prc
-			    INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type
-			    INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = pt.id_design_cat
-			    WHERE design_price_start_date<='" + date_from_selected + "' AND is_active_wh=1 AND is_design_cost=0
-			    ORDER BY design_price_start_date DESC, id_design_price DESC
-		    ) prc
-		    GROUP BY id_design
+            SELECT price.id_design, price.id_design_price, price.design_price, cat.id_design_cat,cat.design_cat, price_type.design_price_type
+            FROM tb_m_design_price price 
+            INNER JOIN (
+	            SELECT MAX(price.id_design) AS `id_design`, MAX(price.id_design_price) AS  `id_design_price`
+	            FROM tb_m_design_price price
+	            INNER JOIN (
+		            Select MAX(price.id_design) AS `id_design`, MAX(price.design_price_start_date) AS `design_price_start_date`
+		            From tb_m_design_price price 
+		            WHERE price.is_active_wh =1 AND price.design_price_start_date <= '" + date_from_selected + "' AND is_design_cost=0
+		            GROUP BY price.id_design
+	            ) maxdate ON maxdate.id_design = price.id_design AND maxdate.design_price_start_date = price.design_price_start_date
+	            WHERE price.is_active_wh =1 AND price.design_price_start_date <= '" + date_from_selected + "' AND is_design_cost=0
+	            GROUP BY price.id_design
+            ) pricemax ON pricemax.id_design_price = price.id_design_price
+            INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+            INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
 	    ) prc ON prc.id_design = d.id_design
         WHERE de.id_design_extended_eos IN (
 	         SELECT MAX(de.id_design_extended_eos) FROM tb_design_extended_eos de

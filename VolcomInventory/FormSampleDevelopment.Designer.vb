@@ -167,6 +167,49 @@ Partial Class FormSampleDevelopment
         Me.XTPDevelopment = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraTabControl3 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCTracker = New DevExpress.XtraGrid.GridControl()
+        Me.GVTracker = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLESeasonTracker = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEVendorTracker = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.BViewTarget = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPPSTarget = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPpsTarget = New DevExpress.XtraGrid.GridControl()
         Me.GVPpsTarget = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -249,6 +292,15 @@ Partial Class FormSampleDevelopment
         Me.XTPDevelopment.SuspendLayout()
         CType(Me.XtraTabControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl3.SuspendLayout()
+        Me.XTPSummary.SuspendLayout()
+        CType(Me.GCTracker, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVTracker, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.SLESeasonTracker.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEVendorTracker.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPPPSTarget.SuspendLayout()
         CType(Me.GCPpsTarget, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPpsTarget, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1657,9 +1709,372 @@ Partial Class FormSampleDevelopment
         '
         'XTPSummary
         '
+        Me.XTPSummary.Controls.Add(Me.GCTracker)
+        Me.XTPSummary.Controls.Add(Me.PanelControl3)
         Me.XTPSummary.Name = "XTPSummary"
         Me.XTPSummary.Size = New System.Drawing.Size(1111, 409)
         Me.XTPSummary.Text = "Summary"
+        '
+        'GCTracker
+        '
+        Me.GCTracker.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCTracker.Location = New System.Drawing.Point(0, 47)
+        Me.GCTracker.MainView = Me.GVTracker
+        Me.GCTracker.Name = "GCTracker"
+        Me.GCTracker.Size = New System.Drawing.Size(1111, 362)
+        Me.GCTracker.TabIndex = 2
+        Me.GCTracker.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVTracker})
+        '
+        'GVTracker
+        '
+        Me.GVTracker.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand2, Me.gridBand3, Me.gridBand4, Me.gridBand5, Me.gridBand6, Me.gridBand7, Me.gridBand8})
+        Me.GVTracker.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15})
+        Me.GVTracker.GridControl = Me.GCTracker
+        Me.GVTracker.Name = "GVTracker"
+        Me.GVTracker.OptionsView.ShowGroupPanel = False
+        '
+        'GridBand2
+        '
+        Me.GridBand2.Caption = "Detail"
+        Me.GridBand2.Columns.Add(Me.GridColumn32)
+        Me.GridBand2.Columns.Add(Me.GridColumn33)
+        Me.GridBand2.Columns.Add(Me.GridColumn34)
+        Me.GridBand2.Name = "GridBand2"
+        Me.GridBand2.VisibleIndex = 0
+        Me.GridBand2.Width = 150
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "ID"
+        Me.GridColumn32.Name = "GridColumn32"
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Design"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Vendor"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Lab Dip"
+        Me.gridBand3.Columns.Add(Me.GridColumn35)
+        Me.gridBand3.Columns.Add(Me.GridColumn36)
+        Me.gridBand3.Columns.Add(Me.GridColumn37)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 1
+        Me.gridBand3.Width = 225
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "Target"
+        Me.GridColumn35.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn35.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Update"
+        Me.GridColumn36.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Actual"
+        Me.GridColumn37.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn37.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "Strike Off 1"
+        Me.gridBand4.Columns.Add(Me.GridColumn38)
+        Me.gridBand4.Columns.Add(Me.GridColumn39)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn2)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 2
+        Me.gridBand4.Width = 225
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "Target"
+        Me.GridColumn38.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn38.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "Update"
+        Me.GridColumn39.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn39.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.Visible = True
+        '
+        'BandedGridColumn2
+        '
+        Me.BandedGridColumn2.Caption = "Actual"
+        Me.BandedGridColumn2.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.Visible = True
+        '
+        'gridBand5
+        '
+        Me.gridBand5.Caption = "Proto Sample 1"
+        Me.gridBand5.Columns.Add(Me.BandedGridColumn3)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumn4)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumn5)
+        Me.gridBand5.Name = "gridBand5"
+        Me.gridBand5.VisibleIndex = 3
+        Me.gridBand5.Width = 225
+        '
+        'BandedGridColumn3
+        '
+        Me.BandedGridColumn3.Caption = "Target"
+        Me.BandedGridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.Visible = True
+        '
+        'BandedGridColumn4
+        '
+        Me.BandedGridColumn4.Caption = "Update"
+        Me.BandedGridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn4.Name = "BandedGridColumn4"
+        Me.BandedGridColumn4.Visible = True
+        '
+        'BandedGridColumn5
+        '
+        Me.BandedGridColumn5.Caption = "Actual"
+        Me.BandedGridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn5.Name = "BandedGridColumn5"
+        Me.BandedGridColumn5.Visible = True
+        '
+        'gridBand6
+        '
+        Me.gridBand6.Caption = "Strike Off 2"
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn7)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn8)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn9)
+        Me.gridBand6.Name = "gridBand6"
+        Me.gridBand6.VisibleIndex = 4
+        Me.gridBand6.Width = 225
+        '
+        'BandedGridColumn7
+        '
+        Me.BandedGridColumn7.Caption = "Target"
+        Me.BandedGridColumn7.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn7.Name = "BandedGridColumn7"
+        Me.BandedGridColumn7.Visible = True
+        '
+        'BandedGridColumn8
+        '
+        Me.BandedGridColumn8.Caption = "Update"
+        Me.BandedGridColumn8.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn8.Name = "BandedGridColumn8"
+        Me.BandedGridColumn8.Visible = True
+        '
+        'BandedGridColumn9
+        '
+        Me.BandedGridColumn9.Caption = "Actual"
+        Me.BandedGridColumn9.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn9.Name = "BandedGridColumn9"
+        Me.BandedGridColumn9.Visible = True
+        '
+        'gridBand7
+        '
+        Me.gridBand7.Caption = "Proto Sample 2"
+        Me.gridBand7.Columns.Add(Me.BandedGridColumn10)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumn11)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumn12)
+        Me.gridBand7.Name = "gridBand7"
+        Me.gridBand7.VisibleIndex = 5
+        Me.gridBand7.Width = 225
+        '
+        'BandedGridColumn10
+        '
+        Me.BandedGridColumn10.Caption = "Target"
+        Me.BandedGridColumn10.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn10.Name = "BandedGridColumn10"
+        Me.BandedGridColumn10.Visible = True
+        '
+        'BandedGridColumn11
+        '
+        Me.BandedGridColumn11.Caption = "Update"
+        Me.BandedGridColumn11.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn11.Name = "BandedGridColumn11"
+        Me.BandedGridColumn11.Visible = True
+        '
+        'BandedGridColumn12
+        '
+        Me.BandedGridColumn12.Caption = "Actual"
+        Me.BandedGridColumn12.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn12.Name = "BandedGridColumn12"
+        Me.BandedGridColumn12.Visible = True
+        '
+        'gridBand8
+        '
+        Me.gridBand8.Caption = "Copy Proto Sample 2"
+        Me.gridBand8.Columns.Add(Me.BandedGridColumn13)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumn14)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumn15)
+        Me.gridBand8.Name = "gridBand8"
+        Me.gridBand8.VisibleIndex = 6
+        Me.gridBand8.Width = 225
+        '
+        'BandedGridColumn13
+        '
+        Me.BandedGridColumn13.Caption = "Target"
+        Me.BandedGridColumn13.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn13.Name = "BandedGridColumn13"
+        Me.BandedGridColumn13.Visible = True
+        '
+        'BandedGridColumn14
+        '
+        Me.BandedGridColumn14.Caption = "Update"
+        Me.BandedGridColumn14.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn14.Name = "BandedGridColumn14"
+        Me.BandedGridColumn14.Visible = True
+        '
+        'BandedGridColumn15
+        '
+        Me.BandedGridColumn15.Caption = "Actual"
+        Me.BandedGridColumn15.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn15.Name = "BandedGridColumn15"
+        Me.BandedGridColumn15.Visible = True
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.SLESeasonTracker)
+        Me.PanelControl3.Controls.Add(Me.LabelControl7)
+        Me.PanelControl3.Controls.Add(Me.SLEVendorTracker)
+        Me.PanelControl3.Controls.Add(Me.LabelControl10)
+        Me.PanelControl3.Controls.Add(Me.BViewTarget)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1111, 47)
+        Me.PanelControl3.TabIndex = 1
+        '
+        'SLESeasonTracker
+        '
+        Me.SLESeasonTracker.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SLESeasonTracker.Location = New System.Drawing.Point(56, 13)
+        Me.SLESeasonTracker.Name = "SLESeasonTracker"
+        Me.SLESeasonTracker.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLESeasonTracker.Properties.Appearance.Options.UseFont = True
+        Me.SLESeasonTracker.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLESeasonTracker.Properties.View = Me.GridView5
+        Me.SLESeasonTracker.Size = New System.Drawing.Size(154, 20)
+        Me.SLESeasonTracker.TabIndex = 8932
+        '
+        'GridView5
+        '
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn29, Me.GridColumn30, Me.GridColumn31})
+        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView5.Name = "GridView5"
+        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView5.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Id Season"
+        Me.GridColumn29.FieldName = "id_season"
+        Me.GridColumn29.Name = "GridColumn29"
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Range"
+        Me.GridColumn30.FieldName = "range"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 0
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "Season"
+        Me.GridColumn31.FieldName = "season"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 1
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(15, 16)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(35, 13)
+        Me.LabelControl7.TabIndex = 8931
+        Me.LabelControl7.Text = "Season"
+        '
+        'SLEVendorTracker
+        '
+        Me.SLEVendorTracker.Location = New System.Drawing.Point(256, 13)
+        Me.SLEVendorTracker.Name = "SLEVendorTracker"
+        Me.SLEVendorTracker.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendorTracker.Properties.View = Me.GridView4
+        Me.SLEVendorTracker.Size = New System.Drawing.Size(148, 20)
+        Me.SLEVendorTracker.TabIndex = 8930
+        '
+        'GridView4
+        '
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn24, Me.GridColumn28})
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "ID"
+        Me.GridColumn24.FieldName = "id_comp"
+        Me.GridColumn24.Name = "GridColumn24"
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Vendor"
+        Me.GridColumn28.FieldName = "comp_name"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 0
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(216, 16)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl10.TabIndex = 8906
+        Me.LabelControl10.Text = "Vendor"
+        '
+        'BViewTarget
+        '
+        Me.BViewTarget.Location = New System.Drawing.Point(410, 11)
+        Me.BViewTarget.Name = "BViewTarget"
+        Me.BViewTarget.Size = New System.Drawing.Size(52, 23)
+        Me.BViewTarget.TabIndex = 0
+        Me.BViewTarget.Text = "view"
         '
         'XTPPPSTarget
         '
@@ -1940,6 +2355,16 @@ Partial Class FormSampleDevelopment
         Me.XTPDevelopment.ResumeLayout(False)
         CType(Me.XtraTabControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl3.ResumeLayout(False)
+        Me.XTPSummary.ResumeLayout(False)
+        CType(Me.GCTracker, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVTracker, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.SLESeasonTracker.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEVendorTracker.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPPPSTarget.ResumeLayout(False)
         CType(Me.GCPpsTarget, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPpsTarget, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2125,4 +2550,47 @@ Partial Class FormSampleDevelopment
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RIMemoVendor As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SLESeasonTracker As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEVendorTracker As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BViewTarget As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCTracker As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVTracker As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn12 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn13 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn15 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

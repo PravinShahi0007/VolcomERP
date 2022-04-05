@@ -21,6 +21,7 @@
             BAttach.Visible = True
             BtnPrint.Visible = True
             BMark.Visible = True
+            BRelease.Visible = True
             '
             SLEVendor.Properties.ReadOnly = True
             MENote.Properties.ReadOnly = True
@@ -36,6 +37,7 @@ WHERE pps.id_sample_dev_pps='" & id_pps & "'"
                 '
                 If id_report_status = "6" Or id_report_status = "5" Then
                     is_view = "1"
+                    BRelease.Visible = False
                 End If
             End If
         End If
@@ -176,5 +178,35 @@ WHERE pps.id_sample_dev_pps='" & id_pps & "'"
         End If
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BRelease_Click(sender As Object, e As EventArgs) Handles BRelease.Click
+        'check attachment dan approval
+        Dim is_ok As Boolean = True
+        'check attachment
+        Dim qc As String = "SELECT * FROM tb_doc WHERE report_mark_type='403' AND id_report='" & id_pps & "'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count = 0 Then
+            is_ok = False
+            warningCustom("Please attach signed copy of this document")
+        End If
+        'status approval
+        If Not id_report_status = "3" Then
+            is_ok = False
+            warningCustom("Please complete approval first")
+        End If
+        '
+        If is_ok Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to complete ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                FormReportMark.id_report = id_pps
+                FormReportMark.report_mark_type = "403"
+                FormReportMark.change_status("6")
+                '
+                load_head()
+                Cursor = Cursors.Default
+            End If
+        End If
     End Sub
 End Class

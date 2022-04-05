@@ -83,7 +83,9 @@ Partial Class FormPurcReqDet
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudgetRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -125,8 +127,7 @@ Partial Class FormPurcReqDet
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BSetShipping = New DevExpress.XtraEditors.SimpleButton()
-        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.BCancelPR = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TENoteIA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -157,6 +158,8 @@ Partial Class FormPurcReqDet
         CType(Me.RISLEItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEFixedAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLEShipTo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEFixedAssetGrid, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -178,19 +181,15 @@ Partial Class FormPurcReqDet
         CType(Me.TENoteIC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEICApproval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.TENoteIA)
+        Me.PanelControl1.Controls.Add(Me.BCancelPR)
         Me.PanelControl1.Controls.Add(Me.BtnAttachment)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
-        Me.PanelControl1.Controls.Add(Me.SLEIAApproval)
         Me.PanelControl1.Controls.Add(Me.BMark)
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
-        Me.PanelControl1.Controls.Add(Me.LabelControl11)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 515)
@@ -203,7 +202,7 @@ Partial Class FormPurcReqDet
         Me.TENoteIA.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TENoteIA.EditValue = ""
-        Me.TENoteIA.Location = New System.Drawing.Point(337, 11)
+        Me.TENoteIA.Location = New System.Drawing.Point(257, 10)
         Me.TENoteIA.Name = "TENoteIA"
         Me.TENoteIA.Properties.EditValueChangedDelay = 1
         Me.TENoteIA.Properties.ReadOnly = True
@@ -259,7 +258,7 @@ Partial Class FormPurcReqDet
         'SLEIAApproval
         '
         Me.SLEIAApproval.Enabled = False
-        Me.SLEIAApproval.Location = New System.Drawing.Point(154, 11)
+        Me.SLEIAApproval.Location = New System.Drawing.Point(74, 10)
         Me.SLEIAApproval.Name = "SLEIAApproval"
         Me.SLEIAApproval.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEIAApproval.Properties.View = Me.GridView3
@@ -316,7 +315,7 @@ Partial Class FormPurcReqDet
         'LabelControl11
         '
         Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(91, 14)
+        Me.LabelControl11.Location = New System.Drawing.Point(11, 13)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl11.TabIndex = 8910
@@ -827,6 +826,12 @@ Partial Class FormPurcReqDet
         Me.GridColumn20.VisibleIndex = 3
         Me.GridColumn20.Width = 219
         '
+        'RepositoryItemTextEdit2
+        '
+        Me.RepositoryItemTextEdit2.AutoHeight = False
+        Me.RepositoryItemTextEdit2.MaxLength = 499
+        Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
+        '
         'GridColumnRemark
         '
         Me.GridColumnRemark.Caption = "Remark"
@@ -836,6 +841,12 @@ Partial Class FormPurcReqDet
         Me.GridColumnRemark.Visible = True
         Me.GridColumnRemark.VisibleIndex = 4
         Me.GridColumnRemark.Width = 102
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.MaxLength = 199
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
         'GridColumn31
         '
@@ -1050,8 +1061,11 @@ Partial Class FormPurcReqDet
         '
         'PCAddDel
         '
+        Me.PCAddDel.Controls.Add(Me.TENoteIA)
         Me.PCAddDel.Controls.Add(Me.BtnDel)
         Me.PCAddDel.Controls.Add(Me.BtnAdd)
+        Me.PCAddDel.Controls.Add(Me.SLEIAApproval)
+        Me.PCAddDel.Controls.Add(Me.LabelControl11)
         Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCAddDel.Location = New System.Drawing.Point(0, 117)
         Me.PCAddDel.Name = "PCAddDel"
@@ -1263,17 +1277,18 @@ Partial Class FormPurcReqDet
         Me.BSetShipping.TabStop = False
         Me.BSetShipping.Text = "Set blank shipping destination to Volcom"
         '
-        'RepositoryItemTextEdit1
+        'BCancelPR
         '
-        Me.RepositoryItemTextEdit1.AutoHeight = False
-        Me.RepositoryItemTextEdit1.MaxLength = 199
-        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
-        '
-        'RepositoryItemTextEdit2
-        '
-        Me.RepositoryItemTextEdit2.AutoHeight = False
-        Me.RepositoryItemTextEdit2.MaxLength = 499
-        Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
+        Me.BCancelPR.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BCancelPR.ImageIndex = 1
+        Me.BCancelPR.ImageList = Me.LargeImageCollection
+        Me.BCancelPR.Location = New System.Drawing.Point(77, 2)
+        Me.BCancelPR.Name = "BCancelPR"
+        Me.BCancelPR.Size = New System.Drawing.Size(102, 37)
+        Me.BCancelPR.TabIndex = 17
+        Me.BCancelPR.TabStop = False
+        Me.BCancelPR.Text = "Cancel PR"
+        Me.BCancelPR.Visible = False
         '
         'FormPurcReqDet
         '
@@ -1294,7 +1309,6 @@ Partial Class FormPurcReqDet
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
         CType(Me.TENoteIA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEIAApproval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1325,6 +1339,8 @@ Partial Class FormPurcReqDet
         CType(Me.RISLEItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEFixedAsset, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLEShipTo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEFixedAssetGrid, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1332,6 +1348,7 @@ Partial Class FormPurcReqDet
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAddDel.ResumeLayout(False)
+        Me.PCAddDel.PerformLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1349,8 +1366,6 @@ Partial Class FormPurcReqDet
         CType(Me.TENoteIC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEICApproval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1461,4 +1476,5 @@ Partial Class FormPurcReqDet
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents BCancelPR As DevExpress.XtraEditors.SimpleButton
 End Class
