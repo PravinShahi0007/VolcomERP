@@ -117,68 +117,69 @@
     End Sub
 
     Sub loadUnpaidInvoice(ByVal cond As String)
-        Cursor = Cursors.WaitCursor
-        Dim id_comp_group As String = SLEStoreGroupUnpaid.EditValue.ToString
+        'not used
+        'Cursor = Cursors.WaitCursor
+        'Dim id_comp_group As String = SLEStoreGroupUnpaid.EditValue.ToString
 
-        If id_comp_group = "0" Then
-            stopCustom("Please select store group first")
-        Else
-            Dim query As String = "SELECT 'no' AS is_check,sp.is_close_rec_payment,sp.`id_sales_pos`,sp.sales_pos_note,sp.`sales_pos_number`,sp.`id_memo_type`,typ.`memo_type`,typ.`is_receive_payment`,sp.`sales_pos_date`,sp.`id_store_contact_from`, c.id_comp,c.comp_number,c.`comp_name`, cg.comp_group,sp.`sales_pos_due_date`, sp.`sales_pos_start_period`, sp.`sales_pos_end_period`
-            ,sp.`sales_pos_total`,sp.`sales_pos_discount`,sp.`sales_pos_vat`,sp.`sales_pos_potongan`, sp.sales_pos_total_qty, IFNULL(pyd.`value`,0.00) AS total_rec, 
-            CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS total_due,
-            CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
-            ,sp.report_mark_type,rmt.report_mark_type_name
-            ,DATEDIFF(NOW(),sp.`sales_pos_due_date`) AS due_days,
-            mail_warning_no, mail_warning_date, mail_warning_status,
-            mail_notice_no, mail_notice_date, mail_notice_status
-            FROM tb_sales_pos sp 
-            INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
-            INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
-            INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
-            INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
-            INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
-            LEFT JOIN (
-	            SELECT pyd.id_report, pyd.report_mark_type, 
-	            COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS `total_pending`,
-	            SUM(pyd.value) AS  `value`
-	            FROM tb_rec_payment_det pyd
-	            INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
-	            WHERE py.`id_report_status`=6
-	            GROUP BY pyd.id_report, pyd.report_mark_type
-            ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
-            LEFT JOIN (
-                SELECT * FROM (
-	                SELECT m.id_mail_manage, m.number AS `mail_warning_no`, 
-	                m.updated_date AS `mail_warning_date`,md.id_report, stt.mail_status AS `mail_warning_status`
-	                FROM tb_mail_manage_det md
-	                INNER JOIN tb_mail_manage m ON m.id_mail_manage = md.id_mail_manage
-	                INNER JOIN tb_lookup_mail_status stt ON stt.id_mail_status = m.id_mail_status
-	                WHERE m.report_mark_type=227
-	                ORDER BY m.id_mail_manage DESC
-                ) w 
-                GROUP BY w.id_report
-            ) w ON w.id_report = sp.id_sales_pos
-            LEFT JOIN (
-                SELECT * FROM (
-	                SELECT m.id_mail_manage, m.number AS `mail_notice_no`, 
-	                m.updated_date AS `mail_notice_date`,md.id_report, stt.mail_status AS `mail_notice_status`
-	                FROM tb_mail_manage_det md
-	                INNER JOIN tb_mail_manage m ON m.id_mail_manage = md.id_mail_manage
-	                INNER JOIN tb_lookup_mail_status stt ON stt.id_mail_status = m.id_mail_status
-	                WHERE m.report_mark_type=226
-	                ORDER BY m.id_mail_manage DESC
-                ) n 
-                GROUP BY n.id_report
-            ) n ON n.id_report = sp.id_sales_pos
-            WHERE sp.`id_report_status`='6' AND sp.is_close_rec_payment=2 AND c.id_comp_group='" + id_comp_group + "' 
-            " + cond + "
-            GROUP BY sp.`id_sales_pos` 
-            ORDER BY id_sales_pos ASC "
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            GCUnpaid.DataSource = data
-            GVUnpaid.BestFitColumns()
-        End If
-        Cursor = Cursors.Default
+        'If id_comp_group = "0" Then
+        '    stopCustom("Please select store group first")
+        'Else
+        '    Dim query As String = "SELECT 'no' AS is_check,sp.is_close_rec_payment,sp.`id_sales_pos`,sp.sales_pos_note,sp.`sales_pos_number`,sp.`id_memo_type`,typ.`memo_type`,typ.`is_receive_payment`,sp.`sales_pos_date`,sp.`id_store_contact_from`, c.id_comp,c.comp_number,c.`comp_name`, cg.comp_group,sp.`sales_pos_due_date`, sp.`sales_pos_start_period`, sp.`sales_pos_end_period`
+        '    ,sp.`sales_pos_total`,sp.`sales_pos_discount`,sp.`sales_pos_vat`,sp.`sales_pos_potongan`, sp.sales_pos_total_qty, IFNULL(pyd.`value`,0.00) AS total_rec, 
+        '    CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-IFNULL(pyd.`value`,0.00) AS total_due,
+        '    CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
+        '    ,sp.report_mark_type,rmt.report_mark_type_name
+        '    ,DATEDIFF(NOW(),sp.`sales_pos_due_date`) AS due_days,
+        '    mail_warning_no, mail_warning_date, mail_warning_status,
+        '    mail_notice_no, mail_notice_date, mail_notice_status
+        '    FROM tb_sales_pos sp 
+        '    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`= IF(sp.id_memo_type=8 OR sp.id_memo_type=9, sp.id_comp_contact_bill,sp.`id_store_contact_from`)
+        '    INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
+        '    INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+        '    INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        '    INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
+        '    LEFT JOIN (
+        '     SELECT pyd.id_report, pyd.report_mark_type, 
+        '     COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS `total_pending`,
+        '     SUM(pyd.value) AS  `value`
+        '     FROM tb_rec_payment_det pyd
+        '     INNER JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment`
+        '     WHERE py.`id_report_status`=6
+        '     GROUP BY pyd.id_report, pyd.report_mark_type
+        '    ) pyd ON pyd.id_report = sp.id_sales_pos AND pyd.report_mark_type = sp.report_mark_type
+        '    LEFT JOIN (
+        '        SELECT * FROM (
+        '         SELECT m.id_mail_manage, m.number AS `mail_warning_no`, 
+        '         m.updated_date AS `mail_warning_date`,md.id_report, stt.mail_status AS `mail_warning_status`
+        '         FROM tb_mail_manage_det md
+        '         INNER JOIN tb_mail_manage m ON m.id_mail_manage = md.id_mail_manage
+        '         INNER JOIN tb_lookup_mail_status stt ON stt.id_mail_status = m.id_mail_status
+        '         WHERE m.report_mark_type=227
+        '         ORDER BY m.id_mail_manage DESC
+        '        ) w 
+        '        GROUP BY w.id_report
+        '    ) w ON w.id_report = sp.id_sales_pos
+        '    LEFT JOIN (
+        '        SELECT * FROM (
+        '         SELECT m.id_mail_manage, m.number AS `mail_notice_no`, 
+        '         m.updated_date AS `mail_notice_date`,md.id_report, stt.mail_status AS `mail_notice_status`
+        '         FROM tb_mail_manage_det md
+        '         INNER JOIN tb_mail_manage m ON m.id_mail_manage = md.id_mail_manage
+        '         INNER JOIN tb_lookup_mail_status stt ON stt.id_mail_status = m.id_mail_status
+        '         WHERE m.report_mark_type=226
+        '         ORDER BY m.id_mail_manage DESC
+        '        ) n 
+        '        GROUP BY n.id_report
+        '    ) n ON n.id_report = sp.id_sales_pos
+        '    WHERE sp.`id_report_status`='6' AND sp.is_close_rec_payment=2 AND c.id_comp_group='" + id_comp_group + "' 
+        '    " + cond + "
+        '    GROUP BY sp.`id_sales_pos` 
+        '    ORDER BY id_sales_pos ASC "
+        '    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        '    GCUnpaid.DataSource = data
+        '    GVUnpaid.BestFitColumns()
+        'End If
+        'Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnAlreadyProcessed_Click(sender As Object, e As EventArgs) Handles BtnAlreadyProcessed.Click
