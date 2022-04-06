@@ -153,6 +153,14 @@ Public Class FormSalesBranchDet
                 BtnAdd.Visible = False
                 GridColumnvalue.OptionsColumn.ReadOnly = False
                 viewDetailCN()
+
+                'load main
+                Dim qref As String = "SELECT sb.rev_normal_ppn_pros, sb.rev_sale_ppn_pros 
+                FROM tb_sales_branch sb 
+                WHERE sb.id_sales_branch=2 "
+                Dim dref As DataTable = execute_query(qref, -1, True, "", "", "", "")
+                TxtProsPPNNormal.EditValue = dref.Rows(0)("rev_normal_ppn_pros")
+                TxtProsPPNSale.EditValue = dref.Rows(0)("rev_sale_ppn_pros")
             End If
         Else
             Dim sb As New ClassSalesBranch()
@@ -1022,6 +1030,9 @@ Public Class FormSalesBranchDet
 
     Private Sub DESalesDate_EditValueChanged(sender As Object, e As EventArgs) Handles DESalesDate.EditValueChanged
         load_kurs()
+        If rmt = "254" Then
+            load_vat()
+        End If
     End Sub
 
     Sub loadFromPOS()
@@ -1104,5 +1115,25 @@ Public Class FormSalesBranchDet
         TxtSaleSales.ReadOnly = True
         BtnAdd.Enabled = False
         BtnDelete.Enabled = False
+    End Sub
+
+    Sub load_vat()
+        Cursor = Cursors.WaitCursor
+        Dim end_period As String = "1991-01-01"
+        Try
+            end_period = DateTime.Parse(DESalesDate.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim query As String = "SELECT v.vat FROM tb_m_vat v WHERE '" + end_period + "'>=v.start_period AND '" + end_period + "'<=v.end_period "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            TxtProsPPNNormal.EditValue = data.Rows(0)("vat")
+            TxtProsPPNSale.EditValue = data.Rows(0)("vat")
+        Else
+            TxtProsPPNNormal.EditValue = 0.00
+            TxtProsPPNSale.EditValue = 0.00
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class
