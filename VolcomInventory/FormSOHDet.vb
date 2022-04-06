@@ -50,6 +50,7 @@
         confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you suere want to import SOH from erp?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
         If confirm = Windows.Forms.DialogResult.Yes Then
+            execute_non_query("DELETE FROM tb_soh_on_hand WHERE id_soh = " + id_soh + "", True, "", "", "", "")
             execute_non_query("CALL import_soh_compare(" + id_soh + ")", True, "", "", "", "")
 
             action_load()
