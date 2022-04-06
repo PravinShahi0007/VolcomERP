@@ -4215,26 +4215,26 @@ WHERE tb.id_report_status='6' AND IF(ISNULL(rec.id_prod_order),2,1)=2 "
                 query_view = "SELECT 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created FROM " & table_name & " tb 
 LEFT JOIN 
 (
-    SELECT id_prod_order
+    SELECT id_prod_order_rec
     FROM tb_prod_order_ret_out
     WHERE id_report_status!=5
-    GROUP BY id_prod_order
-)ret_out ON ret_out.id_prod_order=tb.id_prod_order
+    GROUP BY id_prod_order_rec
+)ret_out ON ret_out.id_prod_order_rec=tb.id_prod_order_rec
 LEFT JOIN
 (
-    SELECT id_prod_order
+    SELECT id_prod_order_rec
     FROM tb_qc_report1
     WHERE id_report_status!=5
-    GROUP BY id_prod_order
-)qcr1 ON qcr1.id_prod_order=tb.id_prod_order
+    GROUP BY id_prod_order_rec
+)qcr1 ON qcr1.id_prod_order_rec=tb.id_prod_order_rec
 LEFT JOIN
 (
-    SELECT id_prod_order
+    SELECT id_prod_order_rec
     FROM tb_prod_fc
     WHERE id_report_status!=5
-    GROUP BY id_prod_order
-)qcr2 ON qcr2.id_prod_order=tb.id_prod_order
-WHERE tb.id_report_status='6' AND ISNULL(qcr2.id_prod_order) AND ISNULL(qcr1.id_prod_order) AND ISNULL(ret_out.id_prod_order) "
+    GROUP BY id_prod_order_rec
+)qcr2 ON qcr2.id_prod_order_rec=tb.id_prod_order_rec
+WHERE tb.id_report_status='6' AND ISNULL(qcr2.id_prod_order_rec) AND ISNULL(qcr1.id_prod_order_rec) AND ISNULL(ret_out.id_prod_order_rec) "
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
                     query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
                 End If
