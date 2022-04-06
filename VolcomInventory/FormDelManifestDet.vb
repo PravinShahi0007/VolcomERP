@@ -1208,11 +1208,17 @@ WHERE del.id_del_manifest='" + id_del_manifest + "'"
     Private Sub TEComp_KeyUp(sender As Object, e As KeyEventArgs) Handles TEComp.KeyUp
         If e.KeyCode = Keys.Enter Then
             '
-            Dim qc As String = "SELECT * FROM tb_m_comp c WHERE c.comp_number='" & addSlashes(TEComp.Text) & "' AND c.id_comp_cat='6'"
+            Dim qc As String = "SELECT c.*,cg.is_wholesale FROM tb_m_comp c INNER JOIN tb_m_comp_group cg ON cg.id_comp_group=c.id_comp_group WHERE c.comp_number='" & addSlashes(TEComp.Text) & "' AND c.id_comp_cat='6'"
             Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
             If dtc.Rows.Count > 0 Then
-                SLEComp.EditValue = dtc.Rows(0)("id_comp").ToString
-                gen_offline()
+                '
+                If dtc.Rows(0)("is_wholesale").ToString = "1" And Not SLEDelType.EditValue.ToString = "6" Then
+                    'wholesale tapi gk milih tipe pengiriman wholesale
+                    warningCustom("Please choose wholesale delivery type")
+                Else
+                    SLEComp.EditValue = dtc.Rows(0)("id_comp").ToString
+                    gen_offline()
+                End If
             Else
                 FormError.LabelContent.Text = "Store not found."
                 FormError.ShowDialog()

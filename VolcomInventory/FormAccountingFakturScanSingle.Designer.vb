@@ -120,6 +120,7 @@ Partial Class FormAccountingFakturScanSingle
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -575,7 +576,7 @@ Partial Class FormAccountingFakturScanSingle
         '
         'GVFK
         '
-        Me.GVFK.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn0})
+        Me.GVFK.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn0})
         Me.GVFK.GridControl = Me.GCFK
         Me.GVFK.Name = "GVFK"
         Me.GVFK.OptionsPrint.PrintHeader = False
@@ -1011,6 +1012,14 @@ Partial Class FormAccountingFakturScanSingle
         Me.DeleteRowToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.DeleteRowToolStripMenuItem.Text = "Delete row"
         '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "GridColumn20"
+        Me.GridColumn20.FieldName = "col20"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 19
+        '
         'FormAccountingFakturScanSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1164,4 +1173,5 @@ Partial Class FormAccountingFakturScanSingle
     Friend WithEvents BtnImportFKDetail As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnFAPR As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTglApproval As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

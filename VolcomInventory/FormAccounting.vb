@@ -12,6 +12,7 @@ Public Class FormAccounting
 
     Private Sub FormAccounting_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
+        check_but()
         checkFormAccess(Name)
         button_main(bnew_active, bedit_active, bdel_active)
     End Sub

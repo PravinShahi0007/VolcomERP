@@ -74,6 +74,10 @@ SELECT id_tax_report,tax_report FROM `tb_lookup_tax_report`"
             LEActive.ItemIndex = LEActive.Properties.GetDataSourceRowIndex("id_status", data.Rows(0)("id_status").ToString)
             LEDetail.ItemIndex = LEDetail.Properties.GetDataSourceRowIndex("id_is_det", data.Rows(0)("id_is_det").ToString)
             LEType.ItemIndex = LEType.Properties.GetDataSourceRowIndex("id_dc", data.Rows(0)("id_dc").ToString)
+
+            SLEConsolidationCat.EditValue = data.Rows(0)("id_consolidation").ToString
+            SLETaxReport.EditValue = data.Rows(0)("id_tax_report").ToString
+            'cek editnya belom
             MEAccDesc.Text = data.Rows(0)("acc_description").ToString
 
             LECOAType.Properties.ReadOnly = True
@@ -216,7 +220,23 @@ SELECT id_tax_report,tax_report FROM `tb_lookup_tax_report`"
                 Close()
             Else
                 'edit
-                query = String.Format("UPDATE tb_a_acc SET acc_description='{0}',id_acc_cat='{1}',id_is_det='{2}',id_status='{3}',id_dc='{5}' WHERE id_acc='{4}'", addSlashes(MEAccDesc.Text), LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, id_acc, LEType.EditValue.ToString)
+                Dim is_tax_report As String = "2"
+                Dim id_tax_report As String = "NULL"
+                Dim id_consolidation As String = "NULL"
+                '
+                If LEDetail.EditValue.ToString = "2" Then
+                    'tax
+                    If Not SLETaxReport.EditValue.ToString = "0" Then
+                        is_tax_report = "1"
+                        id_tax_report = "'" & SLETaxReport.EditValue.ToString & "'"
+                    End If
+                    'consolidation
+                    If Not SLEConsolidationCat.EditValue.ToString = "0" Then
+                        id_consolidation = "'" & SLEConsolidationCat.EditValue.ToString & "'"
+                    End If
+                End If
+
+                query = String.Format("UPDATE tb_a_acc SET acc_description='{0}',id_acc_cat='{1}',id_is_det='{2}',id_status='{3}',id_dc='{5}',is_tax_report='{6}',id_tax_report={7},id_consolidation={8} WHERE id_acc='{4}'", addSlashes(MEAccDesc.Text), LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, id_acc, LEType.EditValue.ToString, is_tax_report, id_tax_report, id_consolidation)
                 execute_non_query(query, True, "", "", "", "")
                 FormAccounting.view_acc()
                 FormAccounting.CreateNodes(FormAccounting.TreeList1)

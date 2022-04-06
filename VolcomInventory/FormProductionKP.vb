@@ -213,25 +213,13 @@ ORDER BY po.`id_prod_order` ASC"
         'infoCustom("KP locked")
         'load_head()
 
-        Dim is_attach_ok As Boolean = True
-        'cek attachment
-        Dim qc As String = "SELECT * FROM tb_doc WHERE id_report='" & id_kp & "' AND report_mark_type='253'"
-        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
-        If dtc.Rows.Count <= 0 Then
-            is_attach_ok = False
-        End If
-
-        If is_attach_ok Then
-            Dim query As String = "UPDATE tb_prod_order_kp SET is_submit='1' WHERE id_prod_order_ko='" & id_kp & "'"
-            execute_non_query(query, True, "", "", "", "")
-            'submit
-            submit_who_prepared("253", id_kp, id_user)
-            '
-            infoCustom("KP Submitted, waiting approval")
-            load_head()
-        Else
-            stopCustom("Please make sure SKP have attached signed copy")
-        End If
+        Dim query As String = "UPDATE tb_prod_order_kp SET is_submit='1' WHERE id_prod_order_ko='" & id_kp & "'"
+        execute_non_query(query, True, "", "", "", "")
+        'submit
+        submit_who_prepared("253", id_kp, id_user)
+        '
+        infoCustom("KP Submitted, waiting approval")
+        load_head()
 
         'If Not id_ko_template = "0" Then
         '    Dim query As String = "UPDATE tb_prod_order_ko SET is_locked='1' WHERE id_prod_order_ko='" & id_ko & "'"
@@ -357,8 +345,20 @@ VALUES" + query
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
-        FormReportMark.id_report = id_kp
-        FormReportMark.report_mark_type = "253"
-        FormReportMark.ShowDialog()
+        Dim is_attach_ok As Boolean = True
+        'cek attachment
+        Dim qc As String = "SELECT * FROM tb_doc WHERE id_report='" & id_kp & "' AND report_mark_type='253'"
+        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dtc.Rows.Count <= 0 Then
+            is_attach_ok = False
+        End If
+
+        If is_attach_ok Then
+            FormReportMark.id_report = id_kp
+            FormReportMark.report_mark_type = "253"
+            FormReportMark.ShowDialog()
+        Else
+            stopCustom("Please make sure SKP have attached signed copy")
+        End If
     End Sub
 End Class
