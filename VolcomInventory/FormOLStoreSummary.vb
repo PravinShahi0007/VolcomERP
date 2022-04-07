@@ -637,7 +637,10 @@
             FROM tb_ol_store_ret_det rd
             INNER JOIN tb_ol_store_ret r ON r.id_ol_store_ret = rd.id_ol_store_ret
             INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = rd.id_sales_order_det
+            INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
             WHERE r.id_report_status!=5
+            " + cond_date + "
             GROUP BY rd.id_sales_order_det
         ) prt ON prt.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
@@ -655,7 +658,10 @@
                 WHERE !ISNULL(d.id_ol_store_cust_ret)
                 GROUP BY d.id_ol_store_cust_ret
             ) aw ON aw.id_ol_store_cust_ret = c.id_ol_store_cust_ret
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = rd.id_sales_order_det
+            INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
             WHERE c.id_report_status!=5
+            " + cond_date + "
             GROUP BY rd.id_sales_order_det
         ) ret_cust ON ret_cust.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
@@ -669,6 +675,7 @@
             INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
             INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp AND c.id_commerce_type=2
             WHERE so.id_report_status=6 
+            " + cond_date + "
             GROUP BY sod.id_sales_order_det
         ) awb_del ON awb_del.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
@@ -691,6 +698,7 @@
             ) req ON req.id_ol_store_ret_req = r.id_ol_store_ret_req AND req.id_store=c.id_comp
             INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
             WHERE r.id_report_status=6
+            " + cond_date + "
             GROUP BY rd.id_sales_order_det
         ) ret_request ON ret_request.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
@@ -709,7 +717,7 @@
 	            INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
 	            INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = bk.id_report_status
 	            WHERE bkd.report_mark_type=118 AND bk.id_report_status!=5 
-	            AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_from_selected + "')
+	            " + cond_date + "
 	            GROUP BY dd.id_sales_order_det
             ) bbk ON bbk.id_pn = bk.id_pn
             INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = bk.id_report_status
@@ -720,7 +728,10 @@
             FROM tb_ol_store_return_refuse_det d
             INNER JOIN tb_ol_store_return_refuse h ON h.id_return_refuse = d.id_return_refuse
             INNER JOIN tb_lookup_report_status stt  ON stt.id_report_status = h.id_report_status
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
+	        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
             WHERE h.id_report_status!=5
+            " + cond_date + "
             GROUP BY d.id_sales_order_det
         ) rrf ON rrf.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
@@ -732,7 +743,10 @@
             INNER JOIN tb_sales_pos_det cnd ON cnd.id_sales_pos_det = d.id_cn_det
             INNER JOIN tb_sales_pos_det invd ON invd.id_sales_pos_det = cnd.id_sales_pos_det_ref
             INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = invd.id_pl_sales_order_del_det
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+	        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
             WHERE h.id_report_status!=5 AND !ISNULL(d.id_cn_det)
+            " + cond_date + "
             GROUP BY dd.id_sales_order_det
         ) ccn ON ccn.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
