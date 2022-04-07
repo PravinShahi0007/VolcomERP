@@ -460,22 +460,26 @@
         LEFT JOIN tb_promo_zalora_det pzd ON pzd.id_promo_zalora_det = sod.id_promo_zalora_det
         LEFT JOIN tb_promo_zalora pz ON pz.id_promo_zalora = pzd.id_promo_zalora
         LEFT JOIN (
-            SELECT * FROM (
-	            SELECT stt.id_sales_order_det, stt.`status`, stt.status_date 
+            SELECT stt.id_sales_order_det, stt.`status`, stt.status_date, MAX(stt.input_status_date) AS `input_status_date`
+            FROM tb_sales_order_det_status stt
+            INNER JOIN (
+	            SELECT stt.id_sales_order_det, MAX(stt.status_date) AS `status_date`
 	            FROM tb_sales_order_det_status stt
-                WHERE stt.is_internal=2
-	            ORDER BY stt.status_date DESC
-            ) a
-            GROUP BY a.id_sales_order_det
+	            WHERE stt.is_internal=2
+	            GROUP BY stt.id_sales_order_det
+            ) a ON a.id_sales_order_det = stt.id_sales_order_det AND a.status_date = stt.status_date
+            GROUP BY stt.id_sales_order_det
         ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
-            SELECT * FROM (
-	            SELECT stt.id_sales_order_det, stt.`status`, stt.status_date 
+            SELECT stt.id_sales_order_det, stt.`status`, stt.status_date, MAX(stt.input_status_date) AS `input_status_date`
+            FROM tb_sales_order_det_status stt
+            INNER JOIN (
+	            SELECT stt.id_sales_order_det, MAX(stt.status_date) AS `status_date`
 	            FROM tb_sales_order_det_status stt
-                WHERE stt.is_internal=1
-	            ORDER BY stt.status_date DESC
-            ) a
-            GROUP BY a.id_sales_order_det
+	            WHERE stt.is_internal=1
+	            GROUP BY stt.id_sales_order_det
+            ) a ON a.id_sales_order_det = stt.id_sales_order_det AND a.status_date = stt.status_date
+            GROUP BY stt.id_sales_order_det
         ) stt_internal ON stt_internal.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
             SELECT so.id_sales_order, so.sales_order_date, del.id_pl_sales_order_del, so.sales_order_number
