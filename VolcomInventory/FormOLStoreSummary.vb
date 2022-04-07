@@ -429,6 +429,17 @@
             cond_having = "AND (DATE(ol_store_date)>='" + upd_date_from_selected + "' AND DATE(ol_store_date)<='" + upd_date_until_selected + "') "
         End If
 
+        'type date
+        Dim date_from As String = ""
+        Dim date_until As String = ""
+        If type_par = "1" Then
+            date_from = date_from_selected
+            date_until = date_until_selected
+        ElseIf type_par = "2" Then
+            date_from = upd_date_from_selected
+            date_until = upd_date_until_selected
+        End If
+
         Dim id_vios As String = get_setup_field("shopify_comp_group").ToString
         Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name,
         IFNULL(so.id_sales_order,0) AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`, c.id_comp_group,cg.description AS `store_group`,CONCAT(c.comp_number,' - ', c.comp_name) AS `store`, CONCAT(w.comp_number,' - ', w.comp_name) AS `wh`,
@@ -563,18 +574,16 @@
            GROUP BY cnd.id_sales_pos_det_ref    
         ) cn ON cn.id_sales_pos_det_ref = inv.id_sales_pos_det
         LEFT JOIN (
-          SELECT a.id_report, a.id_rec_payment, a.`number`,a.date_created, SUM(a.`value`) AS `amount`
-          FROM
-          (
-             SELECT rd.id_report, r.id_rec_payment, r.`number`, r.date_created,rd.`value`
-             FROM tb_rec_payment_det rd
-             INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
-             INNER JOIN tb_sales_pos p ON p.id_sales_pos = rd.id_report
-             INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = p.id_store_contact_from 
-             WHERE (rd.report_mark_type=48 OR rd.report_mark_type=54 OR rd.report_mark_type=118) AND r.id_report_status=6
-             ORDER BY r.id_rec_payment DESC
-          ) a
-          GROUP BY a.id_report
+            SELECT a.id_report, r.id_rec_payment, r.`number`,r.date_created
+            FROM tb_rec_payment r
+            INNER JOIN 
+            (
+	            SELECT rd.id_report, MAX(r.id_rec_payment) AS `id_rec_payment`
+	            FROM tb_rec_payment_det rd
+	            INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
+	            WHERE (rd.report_mark_type=48 OR rd.report_mark_type=54 OR rd.report_mark_type=118) AND r.id_report_status=6
+	            GROUP BY rd.id_report
+            ) a ON a.id_rec_payment = r.id_rec_payment
         ) rec_pay ON rec_pay.id_report = inv.id_sales_pos
         LEFT JOIN (
             SELECT rd.id_sales_order_det, r.id_ol_store_ret AS `id_pre_return`, 
@@ -639,21 +648,25 @@
             GROUP BY rd.id_sales_order_det
         ) ret_request ON ret_request.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
-            SELECT bbk.id_sales_order_det, bbk.id_pn AS `id_bbk`, bbk.number AS `bbk_number`, 
-            bbk.date_created AS `bbk_created_date`,  bbk.report_status AS `bbk_status`
-            FROM (
-	            SELECT dd.id_sales_order_det, bk.id_pn, bk.number, bk.date_created, stt.report_status
+            SELECT bbk.id_sales_order_det, bk.id_pn AS `id_bbk`, bk.number AS `bbk_number`, 
+            bk.date_created AS `bbk_created_date`,  stt.report_status AS `bbk_status`
+            FROM tb_pn bk
+            INNER JOIN (
+	            SELECT dd.id_sales_order_det, MAX(bk.id_pn) AS `id_pn`
 	            FROM tb_pn bk
 	            INNER JOIN tb_pn_det bkd ON bkd.id_pn = bk.id_pn
 	            INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = bkd.id_report
 	            INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
 	            INNER JOIN tb_sales_pos_det invd ON invd.id_sales_pos_det = spd.id_sales_pos_det_ref
 	            INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = invd.id_pl_sales_order_del_det
-                INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = bk.id_report_status
-	            WHERE bkd.report_mark_type=118 AND bk.id_report_status!=5
-	            ORDER BY bk.id_pn DESC
-            ) bbk
-            GROUP BY bbk.id_sales_order_det
+	            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+	            INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+	            INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = bk.id_report_status
+	            WHERE bkd.report_mark_type=118 AND bk.id_report_status!=5 
+	            AND (so.sales_order_date>='" + date_from + "' AND so.sales_order_date<='" + date_until + "')
+	            GROUP BY dd.id_sales_order_det
+            ) bbk ON bbk.id_pn = bk.id_pn
+            INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = bk.id_report_status
         ) refund ON refund.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
             SELECT ish.id_report,ish.id_invoice_ship, ish.`number` AS `invoice_ship_number`, 
