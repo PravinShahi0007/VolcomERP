@@ -467,6 +467,11 @@
         ccn.`id_cancel_cn`, ccn.`cancel_cn_number`, ccn.`cancel_cn_date`, ccn.cancel_cn_status, vios.checkout_id,cd.class, cd.color, cd.sht
         FROM tb_sales_order so
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+        INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
+        INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = so.id_warehouse_contact_to
+        INNER JOIN tb_m_comp w ON w.id_comp = wc.id_comp
         LEFT JOIN tb_ol_promo_collection prm ON prm.id_ol_promo_collection = sod.id_ol_promo_collection
         LEFT JOIN tb_promo_zalora_det pzd ON pzd.id_promo_zalora_det = sod.id_promo_zalora_det
         LEFT JOIN tb_promo_zalora pz ON pz.id_promo_zalora = pzd.id_promo_zalora
@@ -697,11 +702,6 @@
             WHERE h.id_report_status!=5 AND !ISNULL(d.id_cn_det)
             GROUP BY dd.id_sales_order_det
         ) ccn ON ccn.id_sales_order_det = sod.id_sales_order_det
-        INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
-        INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
-        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
-        INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = so.id_warehouse_contact_to
-        INNER JOIN tb_m_comp w ON w.id_comp = wc.id_comp
         LEFT JOIN (
             SELECT od.id AS `id_order`, od.checkout_id 
             FROM tb_ol_store_order od 
