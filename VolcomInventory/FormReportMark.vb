@@ -12032,7 +12032,7 @@ WHERE ppsd.id_sample_dev_pps='" & id_report & "'"
                 execute_non_query(q, True, "", "", "", "")
             End If
 
-            query = String.Format("UPDATE tb_sample_dev_pps SET id_report_status = '{0}' WHERE tb_sample_dev_pps = '{1}'", id_status_reportx, id_report)
+            query = String.Format("UPDATE tb_sample_dev_pps SET id_report_status = '{0}' WHERE id_sample_dev_pps = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 
