@@ -576,7 +576,11 @@
            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
            LEFT JOIN tb_wh_awbill_det_in sjd ON sjd.id_wh_awb_det = ret.id_wh_awb_det
            LEFT JOIN tb_wh_awbill sj ON sj.id_awbill = sjd.id_awbill
+           INNER JOIN tb_sales_return_order_det rod ON rod.id_sales_return_order_det = retd.id_sales_return_order_det
+           INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = rod.id_sales_order_det
+           INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
            WHERE ret.id_report_status!=5 AND c.id_commerce_type=2
+           AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "')
         ) ret ON ret.id_sales_return_order_det = ro.id_sales_return_order_det
         LEFT JOIN (
            SELECT invd.id_pl_sales_order_del_det, invd.id_sales_pos_det,
