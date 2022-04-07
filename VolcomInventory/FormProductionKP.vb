@@ -213,7 +213,7 @@ ORDER BY po.`id_prod_order` ASC"
         'infoCustom("KP locked")
         'load_head()
 
-        Dim query As String = "UPDATE tb_prod_order_kp SET is_submit='1' WHERE id_prod_order_ko='" & id_kp & "'"
+        Dim query As String = "UPDATE tb_prod_order_kp SET is_submit='1' WHERE id_prod_order_kp='" & id_kp & "'"
         execute_non_query(query, True, "", "", "", "")
         'submit
         submit_who_prepared("253", id_kp, id_user)
@@ -267,7 +267,7 @@ WHERE id_prod_order_kp='" & SLERevision.EditValue.ToString & "'"
             Report.LQtyOrder.Text = Decimal.Parse(GVProd.Columns("qty_order").SummaryItem.SummaryValue.ToString).ToString("N0")
             '
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            If Not is_locked = "1" Then
+            If Not is_submit = "1" Then
                 Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.Print, DevExpress.XtraPrinting.CommandVisibility.None)
                 Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.PrintDirect, DevExpress.XtraPrinting.CommandVisibility.None)
                 Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.SendFile, DevExpress.XtraPrinting.CommandVisibility.None)
