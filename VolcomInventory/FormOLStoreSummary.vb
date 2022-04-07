@@ -590,7 +590,11 @@
            INNER JOIN tb_lookup_report_status inv_stt ON inv_stt.id_report_status = inv.id_report_status
            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = inv.id_store_contact_from
            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+           INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = invd.id_pl_sales_order_del_det
+           INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+           INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
            WHERE inv.id_report_status!=5 AND c.id_commerce_type=2
+           AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "')
         ) inv ON inv.id_pl_sales_order_del_det = del.id_pl_sales_order_del_det
         LEFT JOIN (
            SELECT cnd.id_sales_pos_det_ref, cn.id_sales_pos,cn.sales_pos_number, cn.sales_pos_date, cn_stt.report_status
@@ -599,7 +603,12 @@
            INNER JOIN tb_lookup_report_status cn_stt ON cn_stt.id_report_status = cn.id_report_status 
            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = cn.id_store_contact_from
            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+           INNER JOIN tb_sales_pos_det invd ON invd.id_sales_pos_det = cnd.id_sales_pos_det_ref
+           INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = invd.id_pl_sales_order_del_det
+           INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+           INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
            WHERE cn.id_report_status!=5 AND cn.report_mark_type=118 AND c.id_commerce_type=2
+           AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "')
            GROUP BY cnd.id_sales_pos_det_ref    
         ) cn ON cn.id_sales_pos_det_ref = inv.id_sales_pos_det
         LEFT JOIN (
