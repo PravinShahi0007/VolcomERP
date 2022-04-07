@@ -1,6 +1,7 @@
 ﻿Public Class FormSampleDevTargetPps
     Public id_pps As String = "-1"
     Public is_view As String = "-1"
+    Public is_changes As String = "-1"
 
     Dim id_report_status As String = "-1"
 
@@ -8,20 +9,59 @@
         load_head()
     End Sub
 
+    Sub load_type()
+        Dim q As String = "SELECT '1' AS id_type,'Target' AS `type`
+UNION ALL
+SELECT '2' AS id_type,'Updates' AS `type`
+UNION ALL
+SELECT '3' AS id_type,'Actual' AS `type`
+"
+        viewSearchLookupQuery(SLEType, q, "id_type", "type", "id_type")
+    End Sub
+
     Sub load_head()
+        load_type()
         view_vendor()
 
         If id_pps = "-1" Then
             'new
+            PCAddDel.Visible = True
+            '
+            BtnSave.Visible = True
             BAttach.Visible = False
             BtnPrint.Visible = False
             BMark.Visible = False
+            '
+            load_det()
+            '
+            If is_changes = "1" Then
+                SLEVendor.Properties.ReadOnly = True
+                PCAddDel.Visible = False
+                '
+                SLEVendor.EditValue = FormSampleDevelopment.GVTracker.GetRowCellValue(0, "id_comp").ToString
+                For i = 0 To FormSampleDevelopment.GVTracker.RowCount - 1
+                    Dim newRow As DataRow = (TryCast(GCPps.DataSource, DataTable)).NewRow()
+                    newRow("id_design") = FormSampleDevelopment.GVTracker.GetRowCellValue(i, "id_design").ToString
+                    newRow("design_display_name") = FormSampleDevelopment.GVTracker.GetRowCellValue(i, "design_display_name").ToString
+                    newRow("labdip") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "labdip_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "labdip"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "labdip_upd"))
+                    newRow("strike_off_1") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_1_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_1"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_1_upd"))
+                    newRow("proto_sample_1") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_1_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_1"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_1_upd"))
+                    newRow("strike_off_2") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_2_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_2"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_2_upd"))
+                    newRow("proto_sample_2") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_2_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_2"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_2_upd"))
+                    newRow("copy_proto_sample_2") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "copy_proto_sample_2_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "copy_proto_sample_2"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "copy_proto_sample_2_upd"))
+                    TryCast(GCPps.DataSource, DataTable).Rows.Add(newRow)
+                Next
+                SLEType.EditValue = "2"
+            End If
         Else
             'update
+            BtnSave.Visible = False
             BAttach.Visible = True
             BtnPrint.Visible = True
             BMark.Visible = True
             BRelease.Visible = True
+            '
+            PCAddDel.Visible = False
             '
             SLEVendor.Properties.ReadOnly = True
             MENote.Properties.ReadOnly = True
@@ -34,15 +74,19 @@ WHERE pps.id_sample_dev_pps='" & id_pps & "'"
                 MENote.Text = dt.Rows(0)("note").ToString
                 '
                 id_report_status = dt.Rows(0)("id_report_status").ToString
+                SLEType.EditValue = dt.Rows(0)("id_type").ToString
+                '
+                If dt.Rows(0)("id_type").ToString = "2" Then
+                    is_changes = "1"
+                End If
                 '
                 If id_report_status = "6" Or id_report_status = "5" Then
                     is_view = "1"
                     BRelease.Visible = False
                 End If
             End If
+            load_det()
         End If
-
-        load_det()
     End Sub
 
     Sub view_vendor()
@@ -92,27 +136,56 @@ WHERE ppsd.id_sample_dev_pps='" & id_pps & "'"
             warningCustom("No data found, please put some design.")
         Else
             If id_pps = "-1" Then
-                'new
-                Dim q As String = "INSERT INTO `tb_sample_dev_pps`(created_date,id_comp,created_by,note,id_report_status)
-VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
-                id_pps = execute_query(q, 0, True, "", "", "", "")
+                'check sudah ada apa belum
+                Dim is_ok As Boolean = True
 
-                execute_non_query("CALL gen_number('" & id_pps & "','403')", True, "", "", "", "")
+                If SLEType.EditValue.ToString = "1" Then
+                    'pps target
+                    Dim ids As String = ""
+                    For i = 0 To GVPps.RowCount - 1
+                        If Not i = 0 Then
+                            ids += ","
+                        End If
+                        ids += GVPps.GetRowCellValue(i, "id_design").ToString
+                    Next
 
-                'detail
-                q = "INSERT INTO `tb_sample_dev_pps_det`(`id_sample_dev_pps`,`id_design`,`labdip`,`strike_off_1`,`proto_sample_1`,`strike_off_2`,`proto_sample_2`,`copy_proto_sample_2`) VALUES"
-                For i = 0 To GVPps.RowCount - 1
-                    If Not i = 0 Then
-                        q += ","
+                    Dim qc As String = "SELECT id_design AS id_design FROM tb_sample_dev_tracking WHERE id_comp='" & SLEVendor.EditValue.ToString & "' AND id_design IN (" & ids & ")
+UNION ALL
+SELECT ppsd.id_design AS id_design FROM tb_sample_dev_pps pps
+INNER JOIN tb_sample_dev_pps_det ppsd ON ppsd.id_sample_dev_pps=pps.id_sample_dev_pps
+WHERE pps.id_comp='" & SLEVendor.EditValue.ToString & "' AND ppsd.id_design IN (" & ids & ") AND pps.id_report_status!=5 AND pps.id_type=1"
+                    Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                    If dtc.Rows.Count > 0 Then
+                        warningCustom("Beberapa artikel sudah pernah diajukan")
+                        is_ok = False
                     End If
-                    q += "('" & id_pps & "','" & GVPps.GetRowCellValue(i, "id_design").ToString & "','" & Date.Parse(GVPps.GetRowCellValue(i, "labdip").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "strike_off_1").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "proto_sample_1").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "strike_off_2").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "proto_sample_2").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "copy_proto_sample_2").ToString).ToString("yyyy-MM-dd") & "')"
-                Next
+                ElseIf SLEType.EditValue.ToString = "2" Then
+                    'changes
+                End If
 
-                execute_non_query(q, True, "", "", "", "")
+                '
+                If is_ok Then
+                    Dim q As String = "INSERT INTO `tb_sample_dev_pps`(created_date,id_comp,created_by,note,id_report_status,id_type)
+VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSlashes(MENote.Text) & "','1','" & SLEType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
+                    id_pps = execute_query(q, 0, True, "", "", "", "")
 
-                submit_who_prepared("403", id_pps, id_user)
+                    execute_non_query("CALL gen_number('" & id_pps & "','403')", True, "", "", "", "")
 
-                Close()
+                    'detail
+                    q = "INSERT INTO `tb_sample_dev_pps_det`(`id_sample_dev_pps`,`id_design`,`labdip`,`strike_off_1`,`proto_sample_1`,`strike_off_2`,`proto_sample_2`,`copy_proto_sample_2`) VALUES"
+                    For i = 0 To GVPps.RowCount - 1
+                        If Not i = 0 Then
+                            q += ","
+                        End If
+                        q += "('" & id_pps & "','" & GVPps.GetRowCellValue(i, "id_design").ToString & "','" & Date.Parse(GVPps.GetRowCellValue(i, "labdip").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "strike_off_1").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "proto_sample_1").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "strike_off_2").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "proto_sample_2").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "copy_proto_sample_2").ToString).ToString("yyyy-MM-dd") & "')"
+                    Next
+
+                    execute_non_query(q, True, "", "", "", "")
+
+                    submit_who_prepared("403", id_pps, id_user)
+
+                    Close()
+                End If
             Else
                 'no edit pls
             End If
@@ -155,7 +228,7 @@ VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSl
             ReportStyleGridview(Report.GVPps)
             Report.GVPps.BestFitColumns()
 
-            Dim query As String = "SELECT DATE_FORMAT(pps.created_date,'%d %M %Y') AS created_date,c.comp_name AS vendor,pps.number,pps.note
+            Dim query As String = "SELECT IF(pps.id_type=1,'New Target',IF(pps.id_type=2,'Update','Actual')) AS type,DATE_FORMAT(pps.created_date,'%d %M %Y') AS created_date,c.comp_name AS vendor,pps.number,pps.note
 FROM tb_sample_dev_pps pps
 INNER JOIN tb_m_comp c ON c.id_comp=pps.id_comp
 WHERE pps.id_sample_dev_pps='" & id_pps & "'"
@@ -207,6 +280,13 @@ WHERE pps.id_sample_dev_pps='" & id_pps & "'"
                 load_head()
                 Cursor = Cursors.Default
             End If
+        End If
+    End Sub
+
+    Private Sub GVPps_DoubleClick(sender As Object, e As EventArgs) Handles GVPps.DoubleClick
+        If Not is_view = "1" And GVPps.RowCount > 0 Then
+            FormSampleDevTargetAdd.is_change = "1"
+            FormSampleDevTargetAdd.ShowDialog()
         End If
     End Sub
 End Class
