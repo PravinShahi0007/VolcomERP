@@ -1134,7 +1134,7 @@
         Cursor = Cursors.WaitCursor
         Dim id_promo As String = SLEPromoDetail.EditValue.ToString
         Dim query As String = "SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 
-        n.nomer_urut,prod.id_design, d.design_code AS `code`, d.design_display_name AS `name`, pd.design_price,dcd.class, dcd.color, dcd.sht,
+        0 AS `nomer_urut`,prod.id_design, d.design_code AS `code`, d.design_display_name AS `name`, pd.design_price,dcd.class, dcd.color, dcd.sht,
         SUBSTRING(prod.product_full_code, 10, 1) AS `size_type`,
         IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='1' THEN pd.qty END),0) AS `qty1`,
         IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='2' THEN pd.qty END),0) AS `qty2`,
@@ -1208,18 +1208,6 @@
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
         LEFT JOIN tb_m_design_price prc ON prc.id_design_price = pd.id_design_price
         LEFT JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type 
-        INNER JOIN (
-          SELECT @nomer:=@nomer+1 AS `nomer_urut`,a.id_design FROM (
-             SELECT d.id_design
-             FROM tb_ol_promo_collection_sku pd
-             INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
-             INNER JOIN tb_m_design d ON d.id_design = prod.id_design
-             WHERE pd.id_ol_promo_collection=" + id_promo + "
-             GROUP BY prod.id_design
-             ORDER BY d.design_display_name ASC 
-          ) a
-          JOIN (SELECT @nomer:=0 AS `nox`) AS `n`
-        ) n ON n.id_design = prod.id_design
         LEFT JOIN (
 	        SELECT d.id_design,  SUBSTRING(prod.product_full_code, 10, 1) AS `size_type`,
 	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='1' THEN spd.sales_pos_det_qty END),0) AS `qty1`,
@@ -1852,5 +1840,9 @@ WHERE !ISNULL(od.id_ol_store_oos) AND od.sales_order_det_qty!= od.ol_order_qty "
         End If
     End Sub
 
-
+    Private Sub GVPromoDetail_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVPromoDetail.CustomColumnDisplayText
+        If e.Column.FieldName = "nomer_urut" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
 End Class
