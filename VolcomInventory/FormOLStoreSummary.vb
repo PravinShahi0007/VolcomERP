@@ -476,12 +476,23 @@
         LEFT JOIN tb_promo_zalora_det pzd ON pzd.id_promo_zalora_det = sod.id_promo_zalora_det
         LEFT JOIN tb_promo_zalora pz ON pz.id_promo_zalora = pzd.id_promo_zalora
         LEFT JOIN (
+            SELECT ish.id_report,ish.id_invoice_ship, ish.`number` AS `invoice_ship_number`, 
+            stt.report_status AS `invoice_ship_status`, ish.created_date AS `invoice_ship_date`, ish.value AS `invoice_ship_value`
+            FROM tb_invoice_ship ish
+            INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = ish.id_report_status
+            WHERE ish.id_report_status=6 
+            GROUP BY ish.id_report
+        ) ish ON ish.id_report = so.id_sales_order_ol_shop
+        LEFT JOIN (
             SELECT stt.id_sales_order_det, stt.`status`, stt.status_date, MAX(stt.input_status_date) AS `input_status_date`
             FROM tb_sales_order_det_status stt
             INNER JOIN (
 	            SELECT stt.id_sales_order_det, MAX(stt.status_date) AS `status_date`
 	            FROM tb_sales_order_det_status stt
-	            WHERE stt.is_internal=2
+                INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = stt.id_sales_order_det
+                INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+	            WHERE stt.is_internal=2 
+                AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "')
 	            GROUP BY stt.id_sales_order_det
             ) a ON a.id_sales_order_det = stt.id_sales_order_det AND a.status_date = stt.status_date
             GROUP BY stt.id_sales_order_det
@@ -492,7 +503,10 @@
             INNER JOIN (
 	            SELECT stt.id_sales_order_det, MAX(stt.status_date) AS `status_date`
 	            FROM tb_sales_order_det_status stt
-	            WHERE stt.is_internal=1
+                INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = stt.id_sales_order_det
+                INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+	            WHERE stt.is_internal=1 
+                AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "')
 	            GROUP BY stt.id_sales_order_det
             ) a ON a.id_sales_order_det = stt.id_sales_order_det AND a.status_date = stt.status_date
             GROUP BY stt.id_sales_order_det
@@ -533,7 +547,10 @@
            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = del.id_store_contact_to
            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
            INNER JOIN tb_lookup_report_status del_stt ON del_stt.id_report_status = del.id_report_status
-           WHERE del.id_report_status!=5 AND c.id_commerce_type=2
+           INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = deld.id_sales_order_det
+           INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+           WHERE del.id_report_status!=5 AND c.id_commerce_type=2 
+           AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "')
         ) del ON del.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
            SELECT rod.id_sales_order_det, rod.id_sales_return_order_det,
@@ -543,7 +560,10 @@
            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ro.id_store_contact_to
            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
            INNER JOIN tb_lookup_report_status ro_stt ON ro_stt.id_report_status = ro.id_report_status
+           INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = rod.id_sales_order_det
+           INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
            WHERE ro.id_report_status!=5 AND c.id_commerce_type=2
+           AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "')
         ) ro ON ro.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
            SELECT retd.id_sales_return_order_det, retd.id_sales_return_det,
@@ -668,19 +688,11 @@
 	            INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
 	            INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = bk.id_report_status
 	            WHERE bkd.report_mark_type=118 AND bk.id_report_status!=5 
-	            AND (so.sales_order_date>='" + date_from + "' AND so.sales_order_date<='" + date_until + "')
+	            AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_from_selected + "')
 	            GROUP BY dd.id_sales_order_det
             ) bbk ON bbk.id_pn = bk.id_pn
             INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = bk.id_report_status
         ) refund ON refund.id_sales_order_det = sod.id_sales_order_det
-        LEFT JOIN (
-            SELECT ish.id_report,ish.id_invoice_ship, ish.`number` AS `invoice_ship_number`, 
-            stt.report_status AS `invoice_ship_status`, ish.created_date AS `invoice_ship_date`, ish.value AS `invoice_ship_value`
-            FROM tb_invoice_ship ish
-            INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = ish.id_report_status
-            WHERE ish.id_report_status=6 
-            GROUP BY ish.id_report
-        ) ish ON ish.id_report = so.id_sales_order_ol_shop
         LEFT JOIN (
             SELECT d.id_sales_order_det, h.id_return_refuse, h.`number` AS `return_refuse_number`, 
             h.created_date AS `return_refuse_date`,stt.report_status AS `return_refuse_status`
@@ -715,7 +727,7 @@
         " + cond_having + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
-        GVDetail.BestFitColumns()
+        'GVDetail.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
