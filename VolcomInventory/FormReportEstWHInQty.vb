@@ -90,7 +90,8 @@ SELECT '3' AS opt,'Estimate in Store Date' AS type"
     End Sub
 
     Private Sub BViewSum_Click(sender As Object, e As EventArgs) Handles BViewSum.Click
-        load_data()
+        'menu tidak dipakai
+        'load_data()
     End Sub
 
     Private Sub GVWorkOrder_DoubleClick(sender As Object, e As EventArgs) Handles GVWorkOrder.DoubleClick
@@ -112,7 +113,8 @@ SELECT '3' AS opt,'Estimate in Store Date' AS type"
     End Sub
 
     Private Sub BSearchReport_Click(sender As Object, e As EventArgs) Handles BSearchReport.Click
-        view_report()
+        'menu tidak dipakai
+        'view_report()
     End Sub
 
     Sub view_report()
