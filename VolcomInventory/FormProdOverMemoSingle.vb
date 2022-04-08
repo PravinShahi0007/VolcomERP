@@ -115,15 +115,16 @@
                             GROUP BY recd.id_prod_order_det 
                         ) rec On rec.id_prod_order_det=pod.id_prod_order_det 
                         LEFT JOIN(
-                            SELECT a.id_prod_order, a.memo_number, a.created_date, a.expired_date 
-                            FROM (
-	                            SELECT md.id_prod_order, m.memo_number, m.created_date, ADDTIME(m.created_date,CONCAT(m.lead_time,':00:00')) AS `expired_date`
+                            SELECT a.id_prod_order, m.memo_number, m.created_date ,ADDTIME(m.created_date,CONCAT(m.lead_time,':00:00')) AS `expired_date`
+                            FROM tb_prod_over_memo_det a
+                            INNER JOIN tb_prod_over_memo m ON m.id_prod_over_memo = a.id_prod_over_memo
+                            INNER JOIN(
+	                            SELECT md.id_prod_order,MIN(m.id_prod_over_memo) AS id_prod_over_memo
 	                            FROM tb_prod_over_memo_det md
 	                            INNER JOIN tb_prod_over_memo m ON m.id_prod_over_memo = md.id_prod_over_memo
 	                            WHERE m.id_report_status!=5 AND ADDTIME(m.created_date,CONCAT(m.lead_time,':00:00'))> NOW()
-	                            ORDER BY m.id_prod_over_memo ASC
-                            ) a 
-                            GROUP BY a.id_prod_order
+	                            GROUP BY md.id_prod_order
+                            )mm ON mm.id_prod_order=a.id_prod_order AND mm.id_prod_over_memo=a.id_prod_over_memo
                         ) mm ON mm.id_prod_order = a.id_prod_order
                         WHERE 1=1 AND a.id_report_status=6 AND a.is_closing_rec=2 " & query_where & " GROUP BY a.id_prod_order
 HAVING qty_rec=qty_max_order"

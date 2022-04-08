@@ -45,8 +45,11 @@
     End Sub
 
     Sub viewvendorpps()
-        Dim q As String = "SELECT id_comp,CONCAT(comp_number,' - ',comp_name) AS comp_name FROM tb_m_comp where is_active=1 AND id_comp_cat=1"
+        Dim q As String = "SELECT 0 AS id_comp,'All Vendor' AS comp_name
+UNION ALL
+SELECT id_comp,CONCAT(comp_number,' - ',comp_name) AS comp_name FROM tb_m_comp where is_active=1 AND id_comp_cat=1"
         viewSearchLookupQuery(SLEVendorPPS, q, "id_comp", "comp_name", "id_comp")
+        viewSearchLookupQuery(SLEVendorTracker, q, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Sub viewSeasonPo()
@@ -379,7 +382,7 @@ ORDER BY kp.id_prod_order_cps2 DESC"
     End Sub
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
-        Dim q As String = "SELECT pps.id_sample_dev_pps,pps.created_date,c.comp_name AS vendor,pps.number,pps.note,sts.report_status,GROUP_CONCAT(dsg.design_code,' - ',CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) SEPARATOR '\n') AS display_name
+        Dim q As String = "SELECT IF(pps.id_type=1,'New Target',IF(pps.id_type=2,'Update','Actual')) AS type, pps.id_sample_dev_pps,pps.created_date,c.comp_name AS vendor,pps.number,pps.note,sts.report_status,GROUP_CONCAT(dsg.design_code,' - ',CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) SEPARATOR '\n') AS display_name
 FROM tb_sample_dev_pps pps
 INNER JOIN tb_sample_dev_pps_det ppsd ON ppsd.id_sample_dev_pps=pps.id_sample_dev_pps
 INNER JOIN tb_m_comp c ON c.id_comp=pps.id_comp
@@ -404,7 +407,8 @@ LEFT JOIN (
 	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
 	AND cd.id_code IN (32,30,14, 43, 34, 5)
 	GROUP BY dc.id_design
-) cd ON cd.id_design = dsg.id_design"
+) cd ON cd.id_design = dsg.id_design
+GROUP BY pps.id_sample_dev_pps"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCPpsTarget.DataSource = dt
         GVPpsTarget.BestFitColumns()
@@ -422,7 +426,13 @@ LEFT JOIN (
     End Sub
 
     Private Sub BViewTarget_Click(sender As Object, e As EventArgs) Handles BViewTarget.Click
-        Dim q As String = "SELECT t.*,CONCAT(c.comp_number,' - ',c.comp_name) AS vendor,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS  design_display_name
+        Dim qw As String = ""
+
+        If Not SLEVendorTracker.EditValue.ToString = "0" Then
+            qw = ""
+        End If
+
+        Dim q As String = "SELECT 'no' AS is_check,t.*,CONCAT(c.comp_number,' - ',c.comp_name) AS vendor,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS  design_display_name
 FROM `tb_sample_dev_tracking` t
 INNER JOIN tb_m_design dsg ON dsg.id_design=t.id_design
 INNER JOIN tb_season s ON s.id_season=dsg.id_season
@@ -448,5 +458,31 @@ INNER JOIN tb_m_comp c ON c.id_comp=t.id_comp"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
         GCTracker.DataSource = dt
         GVTracker.BestFitColumns()
+    End Sub
+
+    Private Sub BTrackingChanges_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub ProposeChangesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProposeChangesToolStripMenuItem.Click
+        GVTracker.ActiveFilterString = "[is_check]='yes'"
+        If GVTracker.RowCount = 0 Then
+            warningCustom("No item selected")
+        Else
+            Dim is_ok As Boolean = True
+            For i = 0 To GVTracker.RowCount - 1
+                If Not GVTracker.GetRowCellValue(0, "id_comp").ToString = GVTracker.GetRowCellValue(i, "id_comp").ToString Then
+                    warningCustom("Harap memilih dari vendor yang sama")
+                    is_ok = False
+                    Exit For
+                End If
+            Next
+            '
+            If is_ok Then
+                FormSampleDevTargetPps.is_changes = "1"
+                FormSampleDevTargetPps.ShowDialog()
+            End If
+        End If
+        GVTracker.ActiveFilterString = ""
     End Sub
 End Class

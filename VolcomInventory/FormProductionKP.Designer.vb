@@ -124,8 +124,8 @@ Partial Class FormProductionKP
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.PanelControl4)
         Me.PanelControl1.Controls.Add(Me.PanelControl3)
+        Me.PanelControl1.Controls.Add(Me.PanelControl4)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"

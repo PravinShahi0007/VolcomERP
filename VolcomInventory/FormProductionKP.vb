@@ -292,16 +292,24 @@ SELECT `id_prod_order_kp_reff`,`number`,(SELECT COUNT(id_prod_order_kp) FROM tb_
                 Dim q_det As String = "SELECT kpd.`revision`,kpd.`id_prod_order`,kpd.`id_purc_order`,IF(ISNULL(kpd.id_prod_order),IFNULL(kopurc.lead_time_prod,kpd.lead_time_prod),IFNULL(koprod.lead_time_prod,kpd.lead_time_prod)) AS lead_time_prod,kpd.`sample_proto_2`
 FROM tb_prod_order_kp_det kpd
 LEFT JOIN (
-	SELECT lead_time_prod,id_prod_order FROM (
-	    SELECT * FROM tb_prod_order_ko_det
-	    ORDER BY id_prod_order_ko_det DESC
-	)ko GROUP BY ko.id_prod_order
+    SELECT kop.lead_time_prod,kop.id_prod_order 
+    FROM tb_prod_order_ko_det kop
+    INNER JOIN (
+	    SELECT kod.id_prod_order,MAX(kod.id_prod_order_ko_det) AS id_prod_order_ko_det
+	    FROM tb_prod_order_ko_det kod
+        INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order)
+	    GROUP BY kod.id_prod_order
+    )koprod ON koprod.id_prod_order_ko_det=kop.id_prod_order_ko_det
 )koprod ON koprod.id_prod_order=kpd.id_prod_order
 LEFT JOIN (
-	SELECT lead_time_prod,id_purc_order FROM (
-	    SELECT * FROM tb_prod_order_ko_det
-	    ORDER BY id_prod_order_ko_det DESC
-	)ko GROUP BY ko.id_purc_order
+	SELECT kop.lead_time_prod,kop.id_purc_order 
+    FROM tb_prod_order_ko_det kop
+    INNER JOIN (
+        SELECT kod.id_purc_order,MAX(kod.id_prod_order_ko_det) AS id_prod_order_ko_det
+        FROM tb_prod_order_ko_det kod
+        INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_purc_order)
+        GROUP BY kod.id_purc_order
+    )kopurc ON kopurc.id_prod_order_ko_det=kop.id_prod_order_ko_det
 )kopurc ON kopurc.id_purc_order=kpd.id_purc_order
 WHERE id_prod_order_kp='" & id_kp & "'"
                 Dim data_det As DataTable = execute_query(q_det, -1, True, "", "", "", "")

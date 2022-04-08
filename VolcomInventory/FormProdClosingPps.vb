@@ -98,12 +98,16 @@ LEFT JOIN
     GROUP BY pod.`id_prod_order`
 ) pod ON pod.id_prod_order=cd.`id_prod_order`
 LEFT JOIN (
-    SELECT id_prod_order,lead_time_prod,lead_time_payment FROM (
-	    SELECT kod.* FROM tb_prod_order_ko_det kod
-	    INNER JOIN tb_prod_order_close_det pocd ON pocd.`id_prod_order`=kod.`id_prod_order` AND pocd.`id_prod_order_close`='" & id_pps & "'
-	    INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko` AND ko.`is_void`!=1
-	    ORDER BY id_prod_order_ko_det DESC
-    )ko GROUP BY ko.id_prod_order
+    SELECT kod.id_prod_order,kod.lead_time_prod,kod.lead_time_payment
+    FROM tb_prod_order_ko_det kod
+    INNER JOIN 
+    (
+	    SELECT id_prod_order,MAX(id_prod_order_ko_det) AS id_prod_order_ko_det
+	    FROM tb_prod_order_ko_det
+	    GROUP BY id_prod_order
+    )ko ON ko.id_prod_order_ko_det=kod.id_prod_order_ko_det
+    INNER JOIN tb_prod_order_close_det pocd ON pocd.`id_prod_order`=kod.`id_prod_order` AND pocd.`id_prod_order_close`='" & id_pps & "'
+    INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko` AND ko.is_locked=1 AND ko.is_void=2
 ) ko ON ko.id_prod_order=po.id_prod_order
 INNER JOIN tb_m_claim_late_det ld ON DATEDIFF(r.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY))>=ld.`min_late` AND IF(ld.max_late=0,TRUE,DATEDIFF(r.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY))<=ld.max_late)
 WHERE cd.`id_prod_order_close`='" & id_pps & "' AND  ld.`claim_percent` > 0
@@ -225,12 +229,16 @@ LEFT JOIN
 	INNER JOIN tb_prod_order_close_det pocd ON pocd.`id_prod_order`=rec.`id_prod_order` AND pocd.`id_prod_order_close`='" & id_pps & "'
 	LEFT JOIN tb_prod_order_wo wo ON wo.id_prod_order=rec.id_prod_order AND wo.is_main_vendor='1' 
 	LEFT JOIN (
-	    SELECT id_prod_order,lead_time_prod,lead_time_payment FROM (
-		    SELECT kod.* FROM tb_prod_order_ko_det kod
-		    INNER JOIN tb_prod_order_close_det pocd ON pocd.`id_prod_order`=kod.`id_prod_order` AND pocd.`id_prod_order_close`='" & id_pps & "'
-		    INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko` AND ko.`is_void`!=1
-		    ORDER BY id_prod_order_ko_det DESC
-	    )ko GROUP BY ko.id_prod_order
+	    SELECT kod.id_prod_order,kod.lead_time_prod,kod.lead_time_payment
+        FROM tb_prod_order_ko_det kod
+        INNER JOIN 
+        (
+	        SELECT id_prod_order,MAX(id_prod_order_ko_det) AS id_prod_order_ko_det
+	        FROM tb_prod_order_ko_det
+	        GROUP BY id_prod_order
+        )ko ON ko.id_prod_order_ko_det=kod.id_prod_order_ko_det
+        INNER JOIN tb_prod_order_close_det pocd ON pocd.`id_prod_order`=kod.`id_prod_order` AND pocd.`id_prod_order_close`='" & id_pps & "'
+        INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko` AND ko.is_locked=1 AND ko.is_void=2
 	) ko ON ko.id_prod_order=rec.id_prod_order
 	INNER JOIN tb_m_claim_late_det ld ON DATEDIFF(rec.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY))>=ld.`min_late` AND IF(ld.max_late=0,TRUE,DATEDIFF(rec.`arrive_date`,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL IFNULL(ko.lead_time_prod,wo.`prod_order_wo_lead_time`) DAY))<=ld.max_late)
 	GROUP BY rec.id_prod_order
