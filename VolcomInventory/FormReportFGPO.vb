@@ -144,10 +144,14 @@ LEFT JOIN
 	GROUP BY retd.`id_prod_order_det`
 ) qty_claim ON qty_claim.id_prod_order_det=pod.id_prod_order_det 
 LEFT JOIN (
-	SELECT * FROM (
-	    SELECT * FROM tb_prod_order_ko_det
-	    ORDER BY id_prod_order_ko_det DESC
-	)ko GROUP BY ko.id_prod_order
+	SELECT kod.* 
+    FROM tb_prod_order_ko_det kod
+    INNER JOIN(
+	    SELECT kod.id_prod_order,MAX(kod.id_prod_order_ko_det) AS id_prod_order_ko_det
+	    FROM tb_prod_order_ko_det kod
+	    INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order)
+	    GROUP BY kod.id_prod_order
+    )ko ON kod.id_prod_order_ko_det=ko.id_prod_order_ko_det
 ) ko ON ko.id_prod_order=a.id_prod_order 
 LEFT JOIN
 (
