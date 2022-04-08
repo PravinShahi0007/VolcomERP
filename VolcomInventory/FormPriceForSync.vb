@@ -13,33 +13,54 @@
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
             INNER JOIN tb_m_design d ON p.id_design = d.id_design
             INNER JOIN (
-                SELECT * FROM (
-                    SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, price_type.design_price_type
-                    FROM tb_m_design_price price 
-                    INNER JOIN tb_lookup_design_price_type price_type ON price.id_design_price_type = price_type.id_design_price_type 
-                    WHERE price.is_active_wh=1 AND price.design_price_start_date <= DATE(NOW())
-                    ORDER BY price.design_price_start_date DESC, price.id_design_price DESC
-                 ) a 
-                GROUP BY a.id_design
+                SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+                price.id_design_price_type, price_type.design_price_type,
+                cat.id_design_cat, cat.design_cat 
+                FROM tb_m_design_price price 
+                INNER JOIN (
+	                SELECT MAX(price.id_design) AS `id_design`, MAX(price.id_design_price) AS  `id_design_price`
+	                FROM tb_m_design_price price
+	                INNER JOIN (
+		                Select MAX(price.id_design) AS `id_design`, MAX(price.design_price_start_date) AS `design_price_start_date`
+		                From tb_m_design_price price 
+		                WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+		                GROUP BY price.id_design
+	                ) maxdate ON maxdate.id_design = price.id_design AND maxdate.design_price_start_date = price.design_price_start_date
+	                WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+	                GROUP BY price.id_design
+                ) pricemax ON pricemax.id_design_price = price.id_design_price
+                INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+                INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
             ) prc ON prc.id_design = d.id_design
             INNER JOIN (
-                SELECT * FROM (
-                    SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, price_type.design_price_type
-                    FROM tb_m_design_price price 
-                    INNER JOIN tb_lookup_design_price_type price_type ON price.id_design_price_type = price_type.id_design_price_type 
-                    WHERE price.is_active_wh=1 AND price.design_price_start_date <= DATE(NOW()) AND price.id_design_price_type = 1
-                    ORDER BY price.design_price_start_date DESC, price.id_design_price DESC
-                 ) a 
-                GROUP BY a.id_design
+                SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+                price.id_design_price_type, price_type.design_price_type,
+                cat.id_design_cat, cat.design_cat 
+                FROM tb_m_design_price price 
+                INNER JOIN (
+	                SELECT MAX(price.id_design) AS `id_design`, MAX(price.id_design_price) AS  `id_design_price`
+	                FROM tb_m_design_price price
+	                INNER JOIN (
+		                Select MAX(price.id_design) AS `id_design`, MAX(price.design_price_start_date) AS `design_price_start_date`
+		                From tb_m_design_price price 
+		                WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() AND price.id_design_price_type=1
+		                GROUP BY price.id_design
+	                ) maxdate ON maxdate.id_design = price.id_design AND maxdate.design_price_start_date = price.design_price_start_date
+	                WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+	                GROUP BY price.id_design
+                ) pricemax ON pricemax.id_design_price = price.id_design_price
+                INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+                INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
             ) prn ON prn.id_design = d.id_design
             INNER JOIN (
-                SELECT *
-                FROM (
-                    SELECT sku, compare_price, design_price
-                    FROM tb_m_price_shopify
-                    ORDER BY `date` DESC
-                ) AS t
-                GROUP BY sku
+                SELECT a.sku, a.compare_price, a.design_price, a.`date`
+                FROM tb_m_price_shopify a 
+                INNER JOIN (
+	                SELECT sku, MAX(`date`) AS `date`
+	                FROM tb_m_price_shopify
+	                GROUP BY sku
+                ) b ON b.sku = a.sku AND b.`date` = a.`date`
+                GROUP BY a.sku
             ) prw ON prw.sku = p.product_full_code
             INNER JOIN tb_m_product_shopify s ON p.product_full_code = s.sku
             WHERE p.id_product > 0 AND s.variant_id IS NOT NULL
