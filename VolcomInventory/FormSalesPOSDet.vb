@@ -1848,27 +1848,28 @@ Public Class FormSalesPOSDet
     End Sub
 
     Sub load_data_pos()
-        Cursor = Cursors.WaitCursor
-        Dim start_period As String = "1945-01-01"
-        Try
-            start_period = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
-        Catch ex As Exception
-        End Try
-        Dim end_period As String = "9999-12-01"
-        Try
-            end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
-        Catch ex As Exception
-        End Try
+        ' not used
+        'Cursor = Cursors.WaitCursor
+        'Dim start_period As String = "1945-01-01"
+        'Try
+        '    start_period = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
+        'Catch ex As Exception
+        'End Try
+        'Dim end_period As String = "9999-12-01"
+        'Try
+        '    end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+        'Catch ex As Exception
+        'End Try
 
-        If id_comp = "-1" Or start_period = "1945-01-01" Or end_period = "9999-12-01" Then
-            stopCustom("Please complete data store & sales period")
-        Else
-            FormSalesPOSCheck.id_store = id_comp
-            FormSalesPOSCheck.start_period = start_period
-            FormSalesPOSCheck.end_period = end_period
-            FormSalesPOSCheck.ShowDialog()
-        End If
-        Cursor = Cursors.Default
+        'If id_comp = "-1" Or start_period = "1945-01-01" Or end_period = "9999-12-01" Then
+        '    stopCustom("Please complete data store & sales period")
+        'Else
+        '    FormSalesPOSCheck.id_store = id_comp
+        '    FormSalesPOSCheck.start_period = start_period
+        '    FormSalesPOSCheck.end_period = end_period
+        '    FormSalesPOSCheck.ShowDialog()
+        'End If
+        'Cursor = Cursors.Default
     End Sub
 
     Public is_continue_load As Boolean = True

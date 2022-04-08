@@ -230,9 +230,10 @@
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-        Cursor = Cursors.WaitCursor
-        FormSalesPOSNoStockAdd.ShowDialog()
-        Cursor = Cursors.Default
+        ' not used
+        'Cursor = Cursors.WaitCursor
+        'FormSalesPOSNoStockAdd.ShowDialog()
+        'Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click

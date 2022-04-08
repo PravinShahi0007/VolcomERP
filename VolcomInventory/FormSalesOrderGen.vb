@@ -385,18 +385,25 @@
                             query_so_det += "SELECT " + id_so_created + ", det.id_product, prc.id_design_price, prc.design_price, det.sales_order_gen_det_qty, '' "
                             query_so_det += "FROM tb_sales_order_gen_det det "
                             query_so_det += "INNER JOIN tb_m_product prod ON prod.id_product = det.id_product "
-                            query_so_det += "LEFT JOIN ( "
-                            query_so_det += "SELECT * FROM ( "
-                            query_so_det += "SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, price_type.design_price_type "
-                            query_so_det += "FROM tb_m_design_price price "
-                            query_so_det += "INNER JOIN tb_lookup_design_price_type price_type  "
-                            query_so_det += "ON price.id_design_price_type = price_type.id_design_price_type "
-                            query_so_det += "INNER JOIN tb_lookup_currency curr ON curr.id_currency = price.id_currency "
-                            query_so_det += "INNER JOIN tb_m_user `user` ON user.id_user = price.id_user "
-                            query_so_det += "INNER JOIN tb_m_employee emp ON emp.id_employee = user.id_employee "
-                            query_so_det += "WHERE price.is_active_wh='1' AND price.design_price_start_date <= NOW() "
-                            query_so_det += "ORDER BY price.design_price_start_date DESC ) a "
-                            query_so_det += "GROUP BY a.id_design "
+                            query_so_det += "LEFT JOIN ( 
+                                SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+                                price.id_design_price_type, price_type.design_price_type,
+                                cat.id_design_cat, cat.design_cat 
+                                FROM tb_m_design_price price 
+                                INNER JOIN (
+	                                SELECT MAX(price.id_design) AS `id_design`, MAX(price.id_design_price) AS  `id_design_price`
+	                                FROM tb_m_design_price price
+	                                INNER JOIN (
+		                                Select MAX(price.id_design) AS `id_design`, MAX(price.design_price_start_date) AS `design_price_start_date`
+		                                From tb_m_design_price price 
+		                                WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+		                                GROUP BY price.id_design
+	                                ) maxdate ON maxdate.id_design = price.id_design AND maxdate.design_price_start_date = price.design_price_start_date
+	                                WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+	                                GROUP BY price.id_design
+                                ) pricemax ON pricemax.id_design_price = price.id_design_price
+                                INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+                                INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat "
                             query_so_det += ") prc ON prc.id_design = prod.id_design "
                             query_so_det += "WHERE det.id_sales_order_gen = '" + id_sales_order_gen + "' AND det.id_comp_contact_from='" + data_main_view.Rows(i)("id_comp_contact_from").ToString + "' AND det.id_comp_contact_to='" + data_main_view.Rows(i)("id_comp_contact_to").ToString + "' AND det.sales_order_gen_det_qty>0 "
                             execute_non_query(query_so_det, True, "", "", "", "")
