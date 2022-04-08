@@ -207,11 +207,17 @@ WHERE dep.id_departement=4", 0, True, "", "", "", "")
                 'get latest leadtime from KO
                 Dim lead_time As String = ""
                 '
-                Dim q_lead_time As String = "SELECT lead_time_prod FROM (
-                                                SELECT * FROM tb_prod_order_ko_det
-                                                WHERE id_prod_order='" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "'
-                                                ORDER BY id_prod_order_ko_det DESC
-                                            )ko GROUP BY ko.id_prod_order"
+                Dim q_lead_time As String = "SELECT kod.lead_time_prod FROM 
+tb_prod_order_ko_det kod
+INNER JOIN
+(
+	SELECT kod.id_prod_order,MAX(kod.id_prod_order_ko_det) AS id_prod_order_ko_det
+	FROM tb_prod_order_ko_det kod
+    INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order)
+	WHERE kod.id_prod_order='" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "'
+	GROUP BY kod.id_prod_order
+)ko ON ko.id_prod_order_ko_det=kod.id_prod_order_ko_det
+"
                 Dim data_lead_time As DataTable = execute_query(q_lead_time, -1, True, "", "", "", "")
                 If data_lead_time.Rows.Count > 0 Then
                     lead_time = data_lead_time.Rows(0)("lead_time_prod").ToString

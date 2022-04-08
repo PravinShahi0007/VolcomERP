@@ -415,11 +415,14 @@ LEFT JOIN (
     WHERE id_report_status=6 AND is_main_vendor=1
 ) wo ON wo.id_prod_order=b.id_prod_order "
         query += "LEFT JOIN (
-                    SELECT * FROM (
-	                    SELECT kod.* FROM tb_prod_order_ko_det kod
-	                    INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_void=2
-	                    ORDER BY id_prod_order_ko_det DESC
-                    )ko GROUP BY ko.id_prod_order
+                    SELECT kod.* FROM 
+                    tb_prod_order_ko_det kod
+                    INNER JOIN(
+                        SELECT id_prod_order,MAX(id_prod_order_ko_det) AS id_prod_order_ko_det
+                        FROM tb_prod_order_ko_det kod
+                        INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order)
+                        GROUP BY id_prod_order
+                    )ko ON ko.id_prod_order_ko_det=kod.id_prod_order_ko_det
                 ) ko ON ko.id_prod_order=a.id_prod_order "
         query += query_where
         query += "GROUP BY a.id_prod_order_rec "
@@ -464,11 +467,14 @@ LEFT JOIN (
     WHERE id_report_status=6 AND is_main_vendor=1
 ) wo ON wo.id_prod_order=b.id_prod_order "
         query += "LEFT JOIN (
-                    SELECT * FROM (
-	                    SELECT kod.* FROM tb_prod_order_ko_det kod
-	                    INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_void=2
-	                    ORDER BY id_prod_order_ko_det DESC
-                    )ko GROUP BY ko.id_prod_order
+                    SELECT kod.* FROM 
+                    tb_prod_order_ko_det kod
+                    INNER JOIN(
+                        SELECT id_prod_order,MAX(id_prod_order_ko_det) AS id_prod_order_ko_det
+                        FROM tb_prod_order_ko_det kod
+                        INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order)
+                        GROUP BY id_prod_order
+                    )ko ON ko.id_prod_order_ko_det=kod.id_prod_order_ko_det
                 ) ko ON ko.id_prod_order=a.id_prod_order "
         query += query_where
         query += "GROUP BY a.id_prod_order_rec "
@@ -546,11 +552,14 @@ LEFT JOIN (
     WHERE id_report_status=6 AND is_main_vendor=1
 ) wo ON wo.id_prod_order=b.id_prod_order "
         query += "LEFT JOIN (
-                    SELECT * FROM (
-	                    SELECT kod.* FROM tb_prod_order_ko_det kod
-	                    INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_void=2
-	                    ORDER BY id_prod_order_ko_det DESC
-                    )ko GROUP BY ko.id_prod_order
+                    SELECT kod.* FROM 
+                    tb_prod_order_ko_det kod
+                    INNER JOIN(
+                        SELECT id_prod_order,MAX(id_prod_order_ko_det) AS id_prod_order_ko_det
+                        FROM tb_prod_order_ko_det kod
+                        INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order)
+                        GROUP BY id_prod_order
+                    )ko ON ko.id_prod_order_ko_det=kod.id_prod_order_ko_det
                 ) ko ON ko.id_prod_order=a.id_prod_order "
         query += query_where
         query += "GROUP BY a.id_prod_order_rec "

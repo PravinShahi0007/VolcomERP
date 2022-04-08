@@ -187,18 +187,23 @@ WHERE cl.`is_active`='1'"
                         )pln ON pln.id_prod_order=a.id_prod_order
                         LEFT JOIN (
                             SELECT wo.id_prod_order, wo.prod_order_wo_del_date,wo.id_ovh_price,  cur.currency, wo.prod_order_wo_vat, wod.prod_order_wo_det_price, wo.`prod_order_wo_kurs`
-                        FROM tb_prod_order_wo wo
-                        INNER JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo = wo.id_prod_order_wo
-                        INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det = wod.id_prod_order_det
-                        INNER JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
-                        WHERE wo.is_main_vendor=1 
-                        GROUP BY wo.id_prod_order_wo
+                            FROM tb_prod_order_wo wo
+                            INNER JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo = wo.id_prod_order_wo
+                            INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det = wod.id_prod_order_det
+                            INNER JOIN tb_lookup_currency cur ON cur.id_currency=wo.id_currency
+                            WHERE wo.is_main_vendor=1 
+                            GROUP BY wo.id_prod_order_wo
                         ) wo_price ON wo_price.id_prod_order=a.id_prod_order
                         LEFT JOIN (
-	                        SELECT id_prod_order,lead_time_prod,lead_time_payment FROM (
-	                        SELECT * FROM tb_prod_order_ko_det
-	                        ORDER BY id_prod_order_ko_det DESC
-                        )ko GROUP BY ko.id_prod_order
+	                        SELECT kod.id_prod_order,kod.lead_time_prod,kod.lead_time_payment
+                            FROM tb_prod_order_ko_det kod
+                            INNER JOIN 
+                            (
+	                            SELECT kod.id_prod_order,MAX(kod.id_prod_order_ko_det) AS id_prod_order_ko_det
+	                            FROM tb_prod_order_ko_det kod
+                                INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_purc_order)
+	                            GROUP BY kod.id_prod_order
+                            )ko ON ko.id_prod_order_ko_det=kod.id_prod_order_ko_det
                         ) ko ON ko.id_prod_order=a.id_prod_order
                         LEFT JOIN
                         (
