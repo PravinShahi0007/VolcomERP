@@ -33,11 +33,14 @@ WHERE po.id_report_status='6'"
                                 LEFT JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
                                 LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` 
                                 LEFT JOIN (
-	                                SELECT * FROM (
-		                                SELECT * FROM tb_prod_order_ko_det
-                                        WHERE id_prod_order='" & id_fgpo & "'
-		                                ORDER BY id_prod_order_ko_det DESC
-	                                )ko GROUP BY ko.id_prod_order
+	                                SELECT kod.* FROM 
+                                    tb_prod_order_ko_det kod 
+                                    INNER JOIN(
+	                                    SELECT kod.id_prod_order,MAX(kod.id_prod_order_ko_det) AS id_prod_order_ko_det
+	                                    FROM tb_prod_order_ko_det kod
+	                                    INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order) AND kod.id_prod_order='" & id_fgpo & "'
+	                                    GROUP BY kod.id_prod_order
+                                    )ko ON ko.id_prod_order_ko_det=kod.id_prod_order_ko_det
                                 ) ko ON ko.id_prod_order=po.id_prod_order
                                 LEFT JOIN  
                                 ( 

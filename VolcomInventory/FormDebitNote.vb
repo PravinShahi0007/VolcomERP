@@ -361,13 +361,19 @@ FROM
         SELECT ko.`id_prod_order`,ko.`id_claim_reject`,ko.po_type,ko.code_detail_name AS dsg_cat
         FROM (
 		    (SELECT kod.`id_prod_order`,ko.`id_claim_reject`,'Domestic' AS po_type,cd.`code_detail_name` FROM tb_prod_order_ko_det kod
-		    INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko` AND ko.is_void='2' AND is_locked='1'
-		    INNER JOIN tb_prod_order po  ON po.`id_prod_order`=kod.`id_prod_order`
-		    INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
-		    INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
-		    INNER JOIN tb_m_design_code dc ON dc.id_design=dsg.`id_design`
-		    INNER JOIN tb_m_code_detail cd ON dc.id_code_detail=cd.id_code_detail AND cd.id_code='31'
-		    ORDER BY kod.id_prod_order_ko_det DESC)
+            INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko` AND ko.is_void='2' AND is_locked='1'
+            INNER JOIN tb_prod_order po  ON po.`id_prod_order`=kod.`id_prod_order`
+            INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+            INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+            INNER JOIN tb_m_design_code dc ON dc.id_design=dsg.`id_design`
+            INNER JOIN tb_m_code_detail cd ON dc.id_code_detail=cd.id_code_detail AND cd.id_code='31'
+            INNER JOIN
+            (
+	            SELECT kod.id_prod_order,MAX(kod.id_prod_order_ko_det) AS id_prod_order_ko_det
+	            FROM tb_prod_order_ko_det kod
+	            INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order)
+	            GROUP BY kod.id_prod_order
+            )koh ON koh.id_prod_order_ko_det=kod.id_prod_order_ko_det)
 		    UNION ALL
 		    (SELECT po.id_prod_order,IF(cd.id_code_detail=3822,4,3) AS id_claim_reject,'International' AS po_type,cd.`code_detail_name`
 		    FROM tb_prod_order po 
