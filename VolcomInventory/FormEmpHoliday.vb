@@ -19,6 +19,7 @@
     Sub load_year_sum()
         Dim query As String = "SELECT YEAR(emp_holiday_date) AS `year` FROM tb_emp_holiday GROUP BY YEAR(emp_holiday_date) ORDER BY `year` DESC"
         viewSearchLookupQuery(SLEYearSum, query, "year", "year", "year")
+        viewSearchLookupQuery(SLEYearWorkingDay, query, "year", "year", "year")
     End Sub
     Sub load_religion()
         Dim query As String = "SELECT '0' AS id_religion,'ALL' AS religion UNION SELECT id_religion,religion FROM tb_lookup_religion"
@@ -90,5 +91,73 @@
 
     Private Sub BSearchSum_Click(sender As Object, e As EventArgs) Handles BSearchSum.Click
         view_holiday_sum()
+    End Sub
+
+    Private Sub BViewWorkingDay_Click(sender As Object, e As EventArgs) Handles BViewWorkingDay.Click
+        view_working_date()
+    End Sub
+
+    Sub view_working_date()
+        Dim date_search As String
+        If SLEYearWorkingDay.EditValue.ToString = "ALL" Then
+            date_search = " Like '%%' "
+        Else
+            date_search = " = '" + SLEYearWorkingDay.EditValue.ToString + "'"
+        End If
+
+        Dim q As String = "SELECT * 
+FROM tb_working_date
+WHERE YEAR(working_date) " & date_search
+        Dim dtc As DataTable = execute_query(q, -1, True, "", "", "", "")
+        GCWorkingDate.DataSource = dtc
+        GVWorkingDate.BestFitColumns()
+    End Sub
+
+    Private Sub BGenerate_Click(sender As Object, e As EventArgs) Handles BGenerate.Click
+        If SLEYearWorkingDay.EditValue.ToString = "ALL" Then
+            warningCustom("Please select year")
+        Else
+            Dim q As String = "DELETE FROM tb_working_date WHERE YEAR(working_date)='" & SLEYearWorkingDay.EditValue.ToString & "'"
+            execute_non_query(q, True, "", "", "", "")
+            '
+            Dim date_start As Date = Date.Parse(SLEYearWorkingDay.EditValue.ToString & "-01-01")
+            Dim date_end As String = Date.Parse(SLEYearWorkingDay.EditValue.ToString & "-12-31")
+
+            Dim CurrD As Date = date_start
+
+            While (CurrD <= date_end)
+                'check if holiday or sabtu minggu
+                If CurrD.DayOfWeek = DayOfWeek.Saturday Or CurrD.DayOfWeek = DayOfWeek.Sunday Then
+                    'skip
+                Else
+                    'check if holiday 
+                    Dim qc As String = "SELECT '" & Date.Parse(CurrD.ToString).ToString("yyyy-MM-dd") & "' FROM `tb_emp_holiday` WHERE id_religion=0 AND DATE(emp_holiday_date)=DATE('" & Date.Parse(CurrD.ToString).ToString("yyyy-MM-dd") & "')"
+                    Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                    If dtc.Rows.Count = 0 Then
+                        'not holiday
+                        execute_non_query("INSERT INTO tb_working_date(working_date) VALUES('" & Date.Parse(CurrD.ToString).ToString("yyyy-MM-dd") & "')", True, "", "", "", "")
+                    End If
+                End If
+                CurrD = CurrD.AddDays(1)
+            End While
+
+            view_working_date()
+        End If
+    End Sub
+
+    Private Sub BViewEx_Click(sender As Object, e As EventArgs) Handles BViewEx.Click
+        If TEHMinus.EditValue > 0 Then
+            Dim q As String = "SELECT tb.* FROM
+(
+	SELECT * 
+	FROM tb_working_date
+	WHERE working_date<DATE('" & Date.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd") & "')
+	ORDER BY working_date DESC LIMIT 3
+)tb
+ORDER BY tb.working_date ASC LIMIT 1"
+            Dim dtc As DataTable = execute_query(q, -1, True, "", "", "", "")
+            GCWorkingDate.DataSource = dtc
+            GVWorkingDate.BestFitColumns()
+        End If
     End Sub
 End Class

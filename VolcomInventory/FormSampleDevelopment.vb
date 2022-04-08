@@ -493,4 +493,30 @@ INNER JOIN tb_m_comp c ON c.id_comp=t.id_comp"
         End If
         GVTracker.ActiveFilterString = ""
     End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        Dim q As String = "SELECT tb.id_comp
+FROM
+(
+	(SELECT id_comp,id_design,'Lab dip' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
+	FROM `tb_sample_dev_tracking` WHERE ISNULL(labdip_act) AND DATE(IF(ISNULL(labdip_upd),labdip,labdip_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
+	UNION ALL
+	(SELECT id_comp,id_design,'Strike Off 1' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
+	FROM `tb_sample_dev_tracking` WHERE ISNULL(strike_off_1_act) AND DATE(IF(ISNULL(strike_off_1_upd),strike_off_1,strike_off_1_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
+	UNION ALL
+	(SELECT id_comp,id_design,'Proto Sample 1' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
+	FROM `tb_sample_dev_tracking` WHERE ISNULL(proto_sample_1_act) AND DATE(IF(ISNULL(proto_sample_1_upd),proto_sample_1,proto_sample_1_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
+	UNION ALL
+	(SELECT id_comp,id_design,'Lab dip' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
+	FROM `tb_sample_dev_tracking` WHERE ISNULL(strike_off_2_act) AND DATE(IF(ISNULL(strike_off_2_upd),strike_off_2,strike_off_2_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
+	UNION ALL
+	(SELECT id_comp,id_design,'Strike Off 2' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
+	FROM `tb_sample_dev_tracking` WHERE ISNULL(proto_sample_2_act) AND DATE(IF(ISNULL(proto_sample_2_upd),proto_sample_2,proto_sample_2_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
+	UNION ALL
+	(SELECT id_comp,id_design,'Copy Proto Sample 2' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
+	FROM `tb_sample_dev_tracking` WHERE ISNULL(copy_proto_sample_2_act) AND DATE(IF(ISNULL(copy_proto_sample_2_upd),copy_proto_sample_2,copy_proto_sample_2_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
+)tb 
+GROUP BY tb.id_comp"
+        'Dim date As String
+    End Sub
 End Class
