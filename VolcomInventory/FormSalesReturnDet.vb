@@ -1921,16 +1921,24 @@ Public Class FormSalesReturnDet
                 INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
                 INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
                 LEFT JOIN( 
-                  Select * FROM ( 
-                  Select price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
-                  price.id_design_price_type, price_type.design_price_type,
-                  cat.id_design_cat, cat.design_cat
-                  From tb_m_design_price price 
-                  INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
-                  INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
-                  WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
-                  ORDER BY price.design_price_start_date DESC, price.id_design_price DESC ) a 
-                  GROUP BY a.id_design 
+                    SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+                    price.id_design_price_type, price_type.design_price_type,
+                    cat.id_design_cat, cat.design_cat 
+                    FROM tb_m_design_price price 
+                    INNER JOIN (
+	                    SELECT MAX(price.id_design) AS `id_design`, MAX(price.id_design_price) AS  `id_design_price`
+	                    FROM tb_m_design_price price
+	                    INNER JOIN (
+		                    Select MAX(price.id_design) AS `id_design`, MAX(price.design_price_start_date) AS `design_price_start_date`
+		                    From tb_m_design_price price 
+		                    WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+		                    GROUP BY price.id_design
+	                    ) maxdate ON maxdate.id_design = price.id_design AND maxdate.design_price_start_date = price.design_price_start_date
+	                    WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+	                    GROUP BY price.id_design
+                    ) pricemax ON pricemax.id_design_price = price.id_design_price
+                    INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+                    INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
                 ) prc ON prc.id_design = p.id_design 
                 WHERE c.id_comp=" + id_store + " AND p.product_full_code='" + addSlashes(code_list) + "' HAVING qty_avl>0 "
                 Dim dcr As DataTable = execute_query(qcr, -1, True, "", "", "", "")
