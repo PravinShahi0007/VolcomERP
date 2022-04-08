@@ -53,13 +53,14 @@
                 INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
             ) prn ON prn.id_design = d.id_design
             INNER JOIN (
-                SELECT *
-                FROM (
-                    SELECT sku, compare_price, design_price
-                    FROM tb_m_price_shopify
-                    ORDER BY `date` DESC
-                ) AS t
-                GROUP BY sku
+                SELECT a.sku, a.compare_price, a.design_price, a.`date`
+                FROM tb_m_price_shopify a 
+                INNER JOIN (
+	                SELECT sku, MAX(`date`) AS `date`
+	                FROM tb_m_price_shopify
+	                GROUP BY sku
+                ) b ON b.sku = a.sku AND b.`date` = a.`date`
+                GROUP BY a.sku
             ) prw ON prw.sku = p.product_full_code
             INNER JOIN tb_m_product_shopify s ON p.product_full_code = s.sku
             WHERE p.id_product > 0 AND s.variant_id IS NOT NULL
