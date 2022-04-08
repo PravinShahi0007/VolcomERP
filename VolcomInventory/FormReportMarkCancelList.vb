@@ -72,7 +72,7 @@
                         LEFT JOIN tb_m_user usr_void ON usr_void.`id_user`=rmc.`void_by`
                         LEFT JOIN tb_m_employee emp_void ON emp_void.`id_employee`=usr_void.`id_employee`
                         INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=rmc.report_mark_type
-                        WHERE emp.`id_departement` LIKE '" & dep & "'"
+                        WHERE rmc.`created_dep` LIKE '" & dep & "'"
 
         If Not is_admin = "1" Then
             query_cancel += " AND rmc.created_by='" & id_user & "'"
