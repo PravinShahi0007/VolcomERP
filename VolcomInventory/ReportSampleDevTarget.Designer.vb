@@ -78,6 +78,15 @@ Partial Public Class ReportSampleDevTarget
         Me.XrTable8 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow8 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTable12 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow12 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTable13 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow13 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTable14 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow14 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.GCPps, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPps, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,6 +102,9 @@ Partial Public Class ReportSampleDevTarget
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable12, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -243,8 +255,8 @@ Partial Public Class ReportSampleDevTarget
         '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable9, Me.XrTable10, Me.XrTable11, Me.XrTable7, Me.XrTable6, Me.XrTable5, Me.XrTable4, Me.XrTable3, Me.XrTable2, Me.XrTable1, Me.XrPictureBox1})
-        Me.ReportHeader.HeightF = 217.1354!
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable12, Me.XrTable13, Me.XrTable14, Me.XrTable9, Me.XrTable10, Me.XrTable11, Me.XrTable7, Me.XrTable6, Me.XrTable5, Me.XrTable4, Me.XrTable3, Me.XrTable2, Me.XrTable1, Me.XrPictureBox1})
+        Me.ReportHeader.HeightF = 235.8854!
         Me.ReportHeader.Name = "ReportHeader"
         '
         'XrTable9
@@ -590,6 +602,75 @@ Partial Public Class ReportSampleDevTarget
         Me.XrTableCell8.Visible = False
         Me.XrTableCell8.Weight = 2.99999986405489R
         '
+        'XrTable12
+        '
+        Me.XrTable12.LocationFloat = New DevExpress.Utils.PointFloat(402.0416!, 199.4792!)
+        Me.XrTable12.Name = "XrTable12"
+        Me.XrTable12.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow12})
+        Me.XrTable12.SizeF = New System.Drawing.SizeF(90.12503!, 17.44792!)
+        Me.XrTable12.StylePriority.UseTextAlignment = False
+        Me.XrTable12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrTableRow12
+        '
+        Me.XrTableRow12.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell9})
+        Me.XrTableRow12.Name = "XrTableRow12"
+        Me.XrTableRow12.Weight = 1.0R
+        '
+        'XrTableCell9
+        '
+        Me.XrTableCell9.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell9.Name = "XrTableCell9"
+        Me.XrTableCell9.StylePriority.UseFont = False
+        Me.XrTableCell9.Text = "Type"
+        Me.XrTableCell9.Weight = 1.0R
+        '
+        'XrTable13
+        '
+        Me.XrTable13.LocationFloat = New DevExpress.Utils.PointFloat(492.1667!, 199.4792!)
+        Me.XrTable13.Name = "XrTable13"
+        Me.XrTable13.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow13})
+        Me.XrTable13.SizeF = New System.Drawing.SizeF(22.41669!, 17.44792!)
+        Me.XrTable13.StylePriority.UseTextAlignment = False
+        Me.XrTable13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        '
+        'XrTableRow13
+        '
+        Me.XrTableRow13.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell12})
+        Me.XrTableRow13.Name = "XrTableRow13"
+        Me.XrTableRow13.Weight = 1.0R
+        '
+        'XrTableCell12
+        '
+        Me.XrTableCell12.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell12.Name = "XrTableCell12"
+        Me.XrTableCell12.StylePriority.UseFont = False
+        Me.XrTableCell12.Text = ":"
+        Me.XrTableCell12.Weight = 1.0R
+        '
+        'XrTable14
+        '
+        Me.XrTable14.LocationFloat = New DevExpress.Utils.PointFloat(514.5833!, 199.4792!)
+        Me.XrTable14.Name = "XrTable14"
+        Me.XrTable14.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow14})
+        Me.XrTable14.SizeF = New System.Drawing.SizeF(222.4166!, 17.44791!)
+        Me.XrTable14.StylePriority.UseTextAlignment = False
+        Me.XrTable14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrTableRow14
+        '
+        Me.XrTableRow14.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell13})
+        Me.XrTableRow14.Name = "XrTableRow14"
+        Me.XrTableRow14.Weight = 1.0R
+        '
+        'XrTableCell13
+        '
+        Me.XrTableCell13.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell13.Name = "XrTableCell13"
+        Me.XrTableCell13.StylePriority.UseFont = False
+        Me.XrTableCell13.Text = "[type]"
+        Me.XrTableCell13.Weight = 1.0R
+        '
         'ReportSampleDevTarget
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.PageFooter, Me.ReportFooter})
@@ -614,6 +695,9 @@ Partial Public Class ReportSampleDevTarget
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -675,4 +759,13 @@ Partial Public Class ReportSampleDevTarget
     Friend WithEvents XrTable11 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow11 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell11 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTable12 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow12 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell9 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTable13 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow13 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell12 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTable14 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow14 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell13 As DevExpress.XtraReports.UI.XRTableCell
 End Class

@@ -108,6 +108,7 @@ Partial Class FormInvMat
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCMatInv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMatInv.SuspendLayout()
         Me.XTPListPackingList.SuspendLayout()
@@ -350,7 +351,7 @@ Partial Class FormInvMat
         '
         'GVInvoice
         '
-        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19})
+        Me.GVInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn45, Me.GridColumn4, Me.GridColumn5, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19})
         Me.GVInvoice.GridControl = Me.GCInvoice
         Me.GVInvoice.Name = "GVInvoice"
         Me.GVInvoice.OptionsBehavior.Editable = False
@@ -389,7 +390,7 @@ Partial Class FormInvMat
         Me.GridColumn4.FieldName = "employee_name"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
+        Me.GridColumn4.VisibleIndex = 5
         Me.GridColumn4.Width = 183
         '
         'GridColumn5
@@ -398,7 +399,7 @@ Partial Class FormInvMat
         Me.GridColumn5.FieldName = "report_status"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 8
+        Me.GridColumn5.VisibleIndex = 9
         Me.GridColumn5.Width = 235
         '
         'GridColumn14
@@ -413,7 +414,7 @@ Partial Class FormInvMat
         Me.GridColumn14.FieldName = "amount"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 5
+        Me.GridColumn14.VisibleIndex = 6
         Me.GridColumn14.Width = 230
         '
         'GridColumn15
@@ -428,7 +429,7 @@ Partial Class FormInvMat
         Me.GridColumn15.FieldName = "amount_vat"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 6
+        Me.GridColumn15.VisibleIndex = 7
         '
         'GridColumn16
         '
@@ -442,7 +443,7 @@ Partial Class FormInvMat
         Me.GridColumn16.FieldName = "total_amount"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 7
+        Me.GridColumn16.VisibleIndex = 8
         '
         'GridColumn17
         '
@@ -1064,6 +1065,16 @@ Partial Class FormInvMat
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
         '
+        'GridColumn45
+        '
+        Me.GridColumn45.Caption = "Reff Date"
+        Me.GridColumn45.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn45.FieldName = "ref_date"
+        Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.Visible = True
+        Me.GridColumn45.VisibleIndex = 4
+        '
         'FormInvMat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1204,4 +1215,5 @@ Partial Class FormInvMat
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BTransListExportExcel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

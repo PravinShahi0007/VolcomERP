@@ -4566,17 +4566,24 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                         INNER JOIN tb_m_product p ON p.id_product = td.id_product
                         INNER JOIN tb_m_design d ON d.id_design = p.id_design
                         LEFT JOIN( 
-                            SELECT * FROM ( 
-	                        SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
-	                        price.id_design_price_type, price_type.design_price_type,
-	                        cat.id_design_cat, cat.design_cat
-	                        FROM tb_m_design_price price 
-	                        INNER JOIN tb_lookup_design_price_type price_type ON price.id_design_price_type = price_type.id_design_price_type 
-	                        INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
-	                        WHERE price.is_active_wh ='1' AND price.design_price_start_date <= NOW() 
-	                        ORDER BY price.design_price_start_date DESC, price.id_design_price DESC 
-                            ) a 
-                            GROUP BY a.id_design 
+                            SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+                            price.id_design_price_type, price_type.design_price_type,
+                            cat.id_design_cat, cat.design_cat 
+                            FROM tb_m_design_price price 
+                            INNER JOIN (
+	                            SELECT MAX(price.id_design) AS `id_design`, MAX(price.id_design_price) AS  `id_design_price`
+	                            FROM tb_m_design_price price
+	                            INNER JOIN (
+		                            Select MAX(price.id_design) AS `id_design`, MAX(price.design_price_start_date) AS `design_price_start_date`
+		                            From tb_m_design_price price 
+		                            WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+		                            GROUP BY price.id_design
+	                            ) maxdate ON maxdate.id_design = price.id_design AND maxdate.design_price_start_date = price.design_price_start_date
+	                            WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+	                            GROUP BY price.id_design
+                            ) pricemax ON pricemax.id_design_price = price.id_design_price
+                            INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+                            INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
                         ) sod ON sod.id_design = d.id_design 
                                                 WHERE t.id_fg_repair=" & id_report & " AND d.is_old_design=2  AND t.is_use_unique_code=1 AND t.is_to_vendor=2 "
                 execute_non_query(quniq, True, "", "", "", "")
@@ -4649,17 +4656,24 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                         INNER JOIN tb_m_product p ON p.id_product = td.id_product
                         INNER JOIN tb_m_design d ON d.id_design = p.id_design
                         LEFT JOIN( 
-                            SELECT * FROM ( 
-	                        SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
-	                        price.id_design_price_type, price_type.design_price_type,
-	                        cat.id_design_cat, cat.design_cat
-	                        FROM tb_m_design_price price 
-	                        INNER JOIN tb_lookup_design_price_type price_type ON price.id_design_price_type = price_type.id_design_price_type 
-	                        INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
-	                        WHERE price.is_active_wh ='1' AND price.design_price_start_date <= NOW() 
-	                        ORDER BY price.design_price_start_date DESC, price.id_design_price DESC 
-                            ) a 
-                            GROUP BY a.id_design 
+                            SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+                            price.id_design_price_type, price_type.design_price_type,
+                            cat.id_design_cat, cat.design_cat 
+                            FROM tb_m_design_price price 
+                            INNER JOIN (
+	                            SELECT MAX(price.id_design) AS `id_design`, MAX(price.id_design_price) AS  `id_design_price`
+	                            FROM tb_m_design_price price
+	                            INNER JOIN (
+		                            Select MAX(price.id_design) AS `id_design`, MAX(price.design_price_start_date) AS `design_price_start_date`
+		                            From tb_m_design_price price 
+		                            WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+		                            GROUP BY price.id_design
+	                            ) maxdate ON maxdate.id_design = price.id_design AND maxdate.design_price_start_date = price.design_price_start_date
+	                            WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+	                            GROUP BY price.id_design
+                            ) pricemax ON pricemax.id_design_price = price.id_design_price
+                            INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+                            INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
                         ) sod ON sod.id_design = d.id_design 
                         WHERE t.id_fg_repair_rec=" & id_report & " AND d.is_old_design=2 AND t.is_use_unique_code=1 "
                 execute_non_query(quniq, True, "", "", "", "")
@@ -4733,17 +4747,24 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                         INNER JOIN tb_m_product p ON p.id_product = td.id_product
                         INNER JOIN tb_m_design d ON d.id_design = p.id_design
                         LEFT JOIN( 
-                            SELECT * FROM ( 
-	                        SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
-	                        price.id_design_price_type, price_type.design_price_type,
-	                        cat.id_design_cat, cat.design_cat
-	                        FROM tb_m_design_price price 
-	                        INNER JOIN tb_lookup_design_price_type price_type ON price.id_design_price_type = price_type.id_design_price_type 
-	                        INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
-	                        WHERE price.is_active_wh ='1' AND price.design_price_start_date <= NOW() 
-	                        ORDER BY price.design_price_start_date DESC, price.id_design_price DESC 
-                            ) a 
-                            GROUP BY a.id_design 
+                            SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+                            price.id_design_price_type, price_type.design_price_type,
+                            cat.id_design_cat, cat.design_cat 
+                            FROM tb_m_design_price price 
+                            INNER JOIN (
+	                            SELECT MAX(price.id_design) AS `id_design`, MAX(price.id_design_price) AS  `id_design_price`
+	                            FROM tb_m_design_price price
+	                            INNER JOIN (
+		                            Select MAX(price.id_design) AS `id_design`, MAX(price.design_price_start_date) AS `design_price_start_date`
+		                            From tb_m_design_price price 
+		                            WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+		                            GROUP BY price.id_design
+	                            ) maxdate ON maxdate.id_design = price.id_design AND maxdate.design_price_start_date = price.design_price_start_date
+	                            WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+	                            GROUP BY price.id_design
+                            ) pricemax ON pricemax.id_design_price = price.id_design_price
+                            INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+                            INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat 
                         ) sod ON sod.id_design = d.id_design 
                         WHERE t.id_fg_repair_return=" & id_report & " AND d.is_old_design=2 AND t.is_use_unique_code=1 AND t.is_from_vendor=2 "
                 execute_non_query(quniq, True, "", "", "", "")
@@ -4820,17 +4841,24 @@ WHERE a.id_adj_in_fg = '" & id_report & "'"
                         INNER JOIN tb_m_product p ON p.id_product = td.id_product
                         INNER JOIN tb_m_design d ON d.id_design = p.id_design
                         LEFT JOIN( 
-                            SELECT * FROM ( 
-	                        SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
-	                        price.id_design_price_type, price_type.design_price_type,
-	                        cat.id_design_cat, cat.design_cat
-	                        FROM tb_m_design_price price 
-	                        INNER JOIN tb_lookup_design_price_type price_type ON price.id_design_price_type = price_type.id_design_price_type 
-	                        INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
-	                        WHERE price.is_active_wh ='1' AND price.design_price_start_date <= NOW() 
-	                        ORDER BY price.design_price_start_date DESC, price.id_design_price DESC 
-                            ) a 
-                            GROUP BY a.id_design 
+                            SELECT price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+                            price.id_design_price_type, price_type.design_price_type,
+                            cat.id_design_cat, cat.design_cat 
+                            FROM tb_m_design_price price 
+                            INNER JOIN (
+	                            SELECT MAX(price.id_design) AS `id_design`, MAX(price.id_design_price) AS  `id_design_price`
+	                            FROM tb_m_design_price price
+	                            INNER JOIN (
+		                            Select MAX(price.id_design) AS `id_design`, MAX(price.design_price_start_date) AS `design_price_start_date`
+		                            From tb_m_design_price price 
+		                            WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+		                            GROUP BY price.id_design
+	                            ) maxdate ON maxdate.id_design = price.id_design AND maxdate.design_price_start_date = price.design_price_start_date
+	                            WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+	                            GROUP BY price.id_design
+                            ) pricemax ON pricemax.id_design_price = price.id_design_price
+                            INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+                            INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
                         ) sod ON sod.id_design = d.id_design 
                         WHERE t.id_fg_repair_return_rec=" & id_report & " AND d.is_old_design=2 AND t.is_use_unique_code=1 "
                 execute_non_query(quniq, True, "", "", "", "")
@@ -12023,16 +12051,32 @@ WHERE ppsd.id_kontrak_rider_pps='" & id_report & "'"
             'sample target dev pps
 
             If id_status_reportx = "6" Then
-                'complete
-                Dim q As String = "INSERT INTO `tb_sample_dev_tracking`(`id_design`,`id_comp`,`labdip`,`strike_off_1`,`proto_sample_1`,`strike_off_2`,`proto_sample_2`,`copy_proto_sample_2`)
+                Dim qv As String = "SELECT id_type FORM tb_sample_dev_pps WHERE id_sample_dev_pps ='" & id_report & "'"
+                Dim dtv As DataTable = execute_query(qv, -1, True, "", "", "", "")
+                If dtv.Rows.Count > 0 Then
+                    If dtv.Rows(0)("id_type").ToString = "1" Then
+                        'complete new target
+                        Dim q As String = "INSERT INTO `tb_sample_dev_tracking`(`id_design`,`id_comp`,`labdip`,`strike_off_1`,`proto_sample_1`,`strike_off_2`,`proto_sample_2`,`copy_proto_sample_2`)
 SELECT ppsd.id_design,pps.id_comp,ppsd.labdip,ppsd.strike_off_1,ppsd.proto_sample_1,ppsd.strike_off_2,ppsd.proto_sample_2,ppsd.copy_proto_sample_2
 FROM `tb_sample_dev_pps_det` ppsd 
 INNER JOIN `tb_sample_dev_pps` pps ON pps.id_sample_dev_pps=ppsd.id_sample_dev_pps
 WHERE ppsd.id_sample_dev_pps='" & id_report & "'"
-                execute_non_query(q, True, "", "", "", "")
+                        execute_non_query(q, True, "", "", "", "")
+                    ElseIf dtv.Rows(0)("id_type").ToString = "2" Then
+                        'updates
+                        'pakai update select
+                        qv = "UPDATE `tb_sample_dev_tracking` tr
+INNER JOIN tb_sample_dev_pps_det ppsd ON tr.id_design=ppsd.id_design 
+INNER JOIN tb_sample_dev_pps pps ON pps.id_sample_dev_pps=ppsd.id_sample_dev_pps AND tr.id_comp=pps.id_comp
+SET tr.`labdip_upd`=ppsd.`labdip`,tr.`strike_off_1_upd`=ppsd.`strike_off_1`,tr.`proto_sample_1_upd`=ppsd.`proto_sample_1`,tr.`strike_off_2_upd`=ppsd.`strike_off_2`,tr.`proto_sample_2_upd`=ppsd.`proto_sample_2`,tr.`copy_proto_sample_2_upd`=ppsd.`copy_proto_sample_2`
+WHERE ppsd.id_sample_dev_pps='6'"
+                        execute_non_query(qv, True, "", "", "", "")
+                    End If
+                End If
+
             End If
 
-            query = String.Format("UPDATE tb_sample_dev_pps SET id_report_status = '{0}' WHERE tb_sample_dev_pps = '{1}'", id_status_reportx, id_report)
+            query = String.Format("UPDATE tb_sample_dev_pps SET id_report_status = '{0}' WHERE id_sample_dev_pps = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
         End If
 

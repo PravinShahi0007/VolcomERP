@@ -295,13 +295,19 @@ GROUP BY recd.id_prod_order_det
                         INNER JOIN tb_prod_order_ko_det kod ON kod.`id_prod_order_ko_det`=ko.id_prod_order_ko_det 
                     ) ko ON ko.id_prod_order=a.id_prod_order "
         query += "LEFT JOIN (
-	                    SELECT * FROM (
-		                    SELECT * FROM tb_prod_order_kp_det
-		                    ORDER BY id_prod_order_kp_det DESC
-	                    )kp GROUP BY kp.id_prod_order
+	                    SELECT kp.* FROM 
+                        INNER JOIN tb_prod_order_kp kp
+                        INNER JOIN
+                        (
+	                        SELECT kpd.id_prod_order,MAX(kpd.id_prod_order_kp) AS id_prod_order_kp
+	                        FROM tb_prod_order_kp_det kpd
+                            INNER JOIN tb_prod_order_kp kp ON kp.id_prod_order_kp=kpd.id_prod_order_kp AND kp.is_locked=1 AND kp.is_void=2 AND NOT ISNULL(kpd.id_prod_order) 
+	                        GROUP BY kpd.id_prod_order
+                        )kph ON kph.id_prod_order_kp=kp.id_prod_order_kp
                     ) kp ON kp.id_prod_order=a.id_prod_order "
         query += "LEFT JOIN
-                 (SELECT mark.id_report_mark,mark.id_report,emp.employee_name,maxd.report_mark_datetime,mark.report_number
+                 (
+                    SELECT mark.id_report_mark,mark.id_report,emp.employee_name,maxd.report_mark_datetime,mark.report_number
                     FROM tb_report_mark mark
                     INNER JOIN tb_m_employee emp ON emp.`id_employee`=mark.id_employee
                     INNER JOIN 

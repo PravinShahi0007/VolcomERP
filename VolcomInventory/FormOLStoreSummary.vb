@@ -429,6 +429,17 @@
             cond_having = "AND (DATE(ol_store_date)>='" + upd_date_from_selected + "' AND DATE(ol_store_date)<='" + upd_date_until_selected + "') "
         End If
 
+        'type date
+        Dim date_from As String = ""
+        Dim date_until As String = ""
+        If type_par = "1" Then
+            date_from = date_from_selected
+            date_until = date_until_selected
+        ElseIf type_par = "2" Then
+            date_from = upd_date_from_selected
+            date_until = upd_date_until_selected
+        End If
+
         Dim id_vios As String = get_setup_field("shopify_comp_group").ToString
         Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name,
         IFNULL(so.id_sales_order,0) AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`, c.id_comp_group,cg.description AS `store_group`,CONCAT(c.comp_number,' - ', c.comp_name) AS `store`, CONCAT(w.comp_number,' - ', w.comp_name) AS `wh`,
@@ -456,26 +467,49 @@
         ccn.`id_cancel_cn`, ccn.`cancel_cn_number`, ccn.`cancel_cn_date`, ccn.cancel_cn_status, vios.checkout_id,cd.class, cd.color, cd.sht
         FROM tb_sales_order so
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+        INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
+        INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = so.id_warehouse_contact_to
+        INNER JOIN tb_m_comp w ON w.id_comp = wc.id_comp
         LEFT JOIN tb_ol_promo_collection prm ON prm.id_ol_promo_collection = sod.id_ol_promo_collection
         LEFT JOIN tb_promo_zalora_det pzd ON pzd.id_promo_zalora_det = sod.id_promo_zalora_det
         LEFT JOIN tb_promo_zalora pz ON pz.id_promo_zalora = pzd.id_promo_zalora
         LEFT JOIN (
-            SELECT * FROM (
-	            SELECT stt.id_sales_order_det, stt.`status`, stt.status_date 
+            SELECT ish.id_report,ish.id_invoice_ship, ish.`number` AS `invoice_ship_number`, 
+            stt.report_status AS `invoice_ship_status`, ish.created_date AS `invoice_ship_date`, ish.value AS `invoice_ship_value`
+            FROM tb_invoice_ship ish
+            INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = ish.id_report_status
+            WHERE ish.id_report_status=6 
+            GROUP BY ish.id_report
+        ) ish ON ish.id_report = so.id_sales_order_ol_shop
+        LEFT JOIN (
+            SELECT stt.id_sales_order_det, stt.`status`, stt.status_date, MAX(stt.input_status_date) AS `input_status_date`
+            FROM tb_sales_order_det_status stt
+            INNER JOIN (
+	            SELECT stt.id_sales_order_det, MAX(stt.status_date) AS `status_date`
 	            FROM tb_sales_order_det_status stt
-                WHERE stt.is_internal=2
-	            ORDER BY stt.status_date DESC
-            ) a
-            GROUP BY a.id_sales_order_det
+                INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = stt.id_sales_order_det
+                INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+	            WHERE stt.is_internal=2 
+                " + cond_date + "
+	            GROUP BY stt.id_sales_order_det
+            ) a ON a.id_sales_order_det = stt.id_sales_order_det AND a.status_date = stt.status_date
+            GROUP BY stt.id_sales_order_det
         ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
-            SELECT * FROM (
-	            SELECT stt.id_sales_order_det, stt.`status`, stt.status_date 
+            SELECT stt.id_sales_order_det, stt.`status`, stt.status_date, MAX(stt.input_status_date) AS `input_status_date`
+            FROM tb_sales_order_det_status stt
+            INNER JOIN (
+	            SELECT stt.id_sales_order_det, MAX(stt.status_date) AS `status_date`
 	            FROM tb_sales_order_det_status stt
-                WHERE stt.is_internal=1
-	            ORDER BY stt.status_date DESC
-            ) a
-            GROUP BY a.id_sales_order_det
+                INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = stt.id_sales_order_det
+                INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+	            WHERE stt.is_internal=1 
+                " + cond_date + "
+	            GROUP BY stt.id_sales_order_det
+            ) a ON a.id_sales_order_det = stt.id_sales_order_det AND a.status_date = stt.status_date
+            GROUP BY stt.id_sales_order_det
         ) stt_internal ON stt_internal.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
             SELECT so.id_sales_order, so.sales_order_date, del.id_pl_sales_order_del, so.sales_order_number
@@ -484,7 +518,7 @@
             INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
             LEFT JOIN tb_pl_sales_order_del del ON del.id_sales_order = so.id_sales_order AND del.id_report_status=6 
             WHERE  so.id_report_status=6 AND so.id_prepare_status=2 AND c.id_commerce_type=2 AND ISNULL(del.id_pl_sales_order_del)
-            AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "')
+            " + cond_date + "
             GROUP BY so.id_sales_order
         ) oc ON oc.id_sales_order = so.id_sales_order
         INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
@@ -513,7 +547,10 @@
            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = del.id_store_contact_to
            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
            INNER JOIN tb_lookup_report_status del_stt ON del_stt.id_report_status = del.id_report_status
-           WHERE del.id_report_status!=5 AND c.id_commerce_type=2
+           INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = deld.id_sales_order_det
+           INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+           WHERE del.id_report_status!=5 AND c.id_commerce_type=2 
+           " + cond_date + "
         ) del ON del.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
            SELECT rod.id_sales_order_det, rod.id_sales_return_order_det,
@@ -523,7 +560,10 @@
            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ro.id_store_contact_to
            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
            INNER JOIN tb_lookup_report_status ro_stt ON ro_stt.id_report_status = ro.id_report_status
+           INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = rod.id_sales_order_det
+           INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
            WHERE ro.id_report_status!=5 AND c.id_commerce_type=2
+          " + cond_date + "
         ) ro ON ro.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
            SELECT retd.id_sales_return_order_det, retd.id_sales_return_det,
@@ -536,7 +576,11 @@
            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
            LEFT JOIN tb_wh_awbill_det_in sjd ON sjd.id_wh_awb_det = ret.id_wh_awb_det
            LEFT JOIN tb_wh_awbill sj ON sj.id_awbill = sjd.id_awbill
+           INNER JOIN tb_sales_return_order_det rod ON rod.id_sales_return_order_det = retd.id_sales_return_order_det
+           INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = rod.id_sales_order_det
+           INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
            WHERE ret.id_report_status!=5 AND c.id_commerce_type=2
+           " + cond_date + "
         ) ret ON ret.id_sales_return_order_det = ro.id_sales_return_order_det
         LEFT JOIN (
            SELECT invd.id_pl_sales_order_del_det, invd.id_sales_pos_det,
@@ -546,7 +590,11 @@
            INNER JOIN tb_lookup_report_status inv_stt ON inv_stt.id_report_status = inv.id_report_status
            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = inv.id_store_contact_from
            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+           INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = invd.id_pl_sales_order_del_det
+           INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+           INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
            WHERE inv.id_report_status!=5 AND c.id_commerce_type=2
+           " + cond_date + "
         ) inv ON inv.id_pl_sales_order_del_det = del.id_pl_sales_order_del_det
         LEFT JOIN (
            SELECT cnd.id_sales_pos_det_ref, cn.id_sales_pos,cn.sales_pos_number, cn.sales_pos_date, cn_stt.report_status
@@ -555,30 +603,44 @@
            INNER JOIN tb_lookup_report_status cn_stt ON cn_stt.id_report_status = cn.id_report_status 
            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = cn.id_store_contact_from
            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+           INNER JOIN tb_sales_pos_det invd ON invd.id_sales_pos_det = cnd.id_sales_pos_det_ref
+           INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = invd.id_pl_sales_order_del_det
+           INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+           INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
            WHERE cn.id_report_status!=5 AND cn.report_mark_type=118 AND c.id_commerce_type=2
+           " + cond_date + "
            GROUP BY cnd.id_sales_pos_det_ref    
         ) cn ON cn.id_sales_pos_det_ref = inv.id_sales_pos_det
         LEFT JOIN (
-          SELECT a.id_report, a.id_rec_payment, a.`number`,a.date_created, SUM(a.`value`) AS `amount`
-          FROM
-          (
-             SELECT rd.id_report, r.id_rec_payment, r.`number`, r.date_created,rd.`value`
-             FROM tb_rec_payment_det rd
-             INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
-             INNER JOIN tb_sales_pos p ON p.id_sales_pos = rd.id_report
-             INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = p.id_store_contact_from 
-             WHERE (rd.report_mark_type=48 OR rd.report_mark_type=54 OR rd.report_mark_type=118) AND r.id_report_status=6
-             ORDER BY r.id_rec_payment DESC
-          ) a
-          GROUP BY a.id_report
-        ) rec_pay ON rec_pay.id_report = inv.id_sales_pos
+            SELECT a.id_pl_sales_order_del_det, r.id_rec_payment, r.`number`,r.date_created
+            FROM tb_rec_payment r
+            INNER JOIN 
+            (
+               SELECT dd.id_pl_sales_order_del_det, MAX(r.id_rec_payment) AS `id_rec_payment`
+               FROM tb_rec_payment_det rd
+               INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
+               INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = rd.id_report
+               INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
+               INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = spd.id_pl_sales_order_del_det
+  	            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+  	            INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+	            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = sp.id_store_contact_from
+	            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+               WHERE (rd.report_mark_type=48 OR rd.report_mark_type=54) AND r.id_report_status=6
+               AND c.id_commerce_type=2 " + cond_date + "
+               GROUP BY dd.id_pl_sales_order_del_det
+            ) a ON a.id_rec_payment = r.id_rec_payment
+        ) rec_pay ON rec_pay.id_pl_sales_order_del_det = del.id_pl_sales_order_del_det
         LEFT JOIN (
             SELECT rd.id_sales_order_det, r.id_ol_store_ret AS `id_pre_return`, 
             r.number AS `pre_return_number`, r.rec_date AS `pre_return_date`, stt.id_report_status, stt.report_status AS `pre_return_status`
             FROM tb_ol_store_ret_det rd
             INNER JOIN tb_ol_store_ret r ON r.id_ol_store_ret = rd.id_ol_store_ret
             INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = rd.id_sales_order_det
+            INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
             WHERE r.id_report_status!=5
+            " + cond_date + "
             GROUP BY rd.id_sales_order_det
         ) prt ON prt.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
@@ -596,7 +658,10 @@
                 WHERE !ISNULL(d.id_ol_store_cust_ret)
                 GROUP BY d.id_ol_store_cust_ret
             ) aw ON aw.id_ol_store_cust_ret = c.id_ol_store_cust_ret
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = rd.id_sales_order_det
+            INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
             WHERE c.id_report_status!=5
+            " + cond_date + "
             GROUP BY rd.id_sales_order_det
         ) ret_cust ON ret_cust.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
@@ -610,6 +675,7 @@
             INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
             INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp AND c.id_commerce_type=2
             WHERE so.id_report_status=6 
+            " + cond_date + "
             GROUP BY sod.id_sales_order_det
         ) awb_del ON awb_del.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
@@ -632,40 +698,40 @@
             ) req ON req.id_ol_store_ret_req = r.id_ol_store_ret_req AND req.id_store=c.id_comp
             INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
             WHERE r.id_report_status=6
+            " + cond_date + "
             GROUP BY rd.id_sales_order_det
         ) ret_request ON ret_request.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
-            SELECT bbk.id_sales_order_det, bbk.id_pn AS `id_bbk`, bbk.number AS `bbk_number`, 
-            bbk.date_created AS `bbk_created_date`,  bbk.report_status AS `bbk_status`
-            FROM (
-	            SELECT dd.id_sales_order_det, bk.id_pn, bk.number, bk.date_created, stt.report_status
+            SELECT bbk.id_sales_order_det, bk.id_pn AS `id_bbk`, bk.number AS `bbk_number`, 
+            bk.date_created AS `bbk_created_date`,  stt.report_status AS `bbk_status`
+            FROM tb_pn bk
+            INNER JOIN (
+	            SELECT dd.id_sales_order_det, MAX(bk.id_pn) AS `id_pn`
 	            FROM tb_pn bk
 	            INNER JOIN tb_pn_det bkd ON bkd.id_pn = bk.id_pn
 	            INNER JOIN tb_sales_pos sp ON sp.id_sales_pos = bkd.id_report
 	            INNER JOIN tb_sales_pos_det spd ON spd.id_sales_pos = sp.id_sales_pos
 	            INNER JOIN tb_sales_pos_det invd ON invd.id_sales_pos_det = spd.id_sales_pos_det_ref
 	            INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = invd.id_pl_sales_order_del_det
-                INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = bk.id_report_status
-	            WHERE bkd.report_mark_type=118 AND bk.id_report_status!=5
-	            ORDER BY bk.id_pn DESC
-            ) bbk
-            GROUP BY bbk.id_sales_order_det
+	            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+	            INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+	            INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = bk.id_report_status
+	            WHERE bkd.report_mark_type=118 AND bk.id_report_status!=5 
+	            " + cond_date + "
+	            GROUP BY dd.id_sales_order_det
+            ) bbk ON bbk.id_pn = bk.id_pn
+            INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = bk.id_report_status
         ) refund ON refund.id_sales_order_det = sod.id_sales_order_det
-        LEFT JOIN (
-            SELECT ish.id_report,ish.id_invoice_ship, ish.`number` AS `invoice_ship_number`, 
-            stt.report_status AS `invoice_ship_status`, ish.created_date AS `invoice_ship_date`, ish.value AS `invoice_ship_value`
-            FROM tb_invoice_ship ish
-            INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = ish.id_report_status
-            WHERE ish.id_report_status=6 
-            GROUP BY ish.id_report
-        ) ish ON ish.id_report = so.id_sales_order_ol_shop
         LEFT JOIN (
             SELECT d.id_sales_order_det, h.id_return_refuse, h.`number` AS `return_refuse_number`, 
             h.created_date AS `return_refuse_date`,stt.report_status AS `return_refuse_status`
             FROM tb_ol_store_return_refuse_det d
             INNER JOIN tb_ol_store_return_refuse h ON h.id_return_refuse = d.id_return_refuse
             INNER JOIN tb_lookup_report_status stt  ON stt.id_report_status = h.id_report_status
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = d.id_sales_order_det
+	        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
             WHERE h.id_report_status!=5
+            " + cond_date + "
             GROUP BY d.id_sales_order_det
         ) rrf ON rrf.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN (
@@ -677,14 +743,12 @@
             INNER JOIN tb_sales_pos_det cnd ON cnd.id_sales_pos_det = d.id_cn_det
             INNER JOIN tb_sales_pos_det invd ON invd.id_sales_pos_det = cnd.id_sales_pos_det_ref
             INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = invd.id_pl_sales_order_del_det
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+	        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
             WHERE h.id_report_status!=5 AND !ISNULL(d.id_cn_det)
+            " + cond_date + "
             GROUP BY dd.id_sales_order_det
         ) ccn ON ccn.id_sales_order_det = sod.id_sales_order_det
-        INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
-        INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
-        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
-        INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = so.id_warehouse_contact_to
-        INNER JOIN tb_m_comp w ON w.id_comp = wc.id_comp
         LEFT JOIN (
             SELECT od.id AS `id_order`, od.checkout_id 
             FROM tb_ol_store_order od 
@@ -698,7 +762,7 @@
         " + cond_having + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
-        GVDetail.BestFitColumns()
+        'GVDetail.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
@@ -1117,7 +1181,7 @@
         Cursor = Cursors.WaitCursor
         Dim id_promo As String = SLEPromoDetail.EditValue.ToString
         Dim query As String = "SELECT pd.id_ol_promo_collection_sku, pd.id_ol_promo_collection, 
-        n.nomer_urut,prod.id_design, d.design_code AS `code`, d.design_display_name AS `name`, pd.design_price,dcd.class, dcd.color, dcd.sht,
+        0 AS `nomer_urut`,prod.id_design, d.design_code AS `code`, d.design_display_name AS `name`, pd.design_price,dcd.class, dcd.color, dcd.sht,
         SUBSTRING(prod.product_full_code, 10, 1) AS `size_type`,
         IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='1' THEN pd.qty END),0) AS `qty1`,
         IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='2' THEN pd.qty END),0) AS `qty2`,
@@ -1191,18 +1255,6 @@
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
         LEFT JOIN tb_m_design_price prc ON prc.id_design_price = pd.id_design_price
         LEFT JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type 
-        INNER JOIN (
-          SELECT @nomer:=@nomer+1 AS `nomer_urut`,a.id_design FROM (
-             SELECT d.id_design
-             FROM tb_ol_promo_collection_sku pd
-             INNER JOIN tb_m_product prod ON prod.id_product = pd.id_product
-             INNER JOIN tb_m_design d ON d.id_design = prod.id_design
-             WHERE pd.id_ol_promo_collection=" + id_promo + "
-             GROUP BY prod.id_design
-             ORDER BY d.design_display_name ASC 
-          ) a
-          JOIN (SELECT @nomer:=0 AS `nox`) AS `n`
-        ) n ON n.id_design = prod.id_design
         LEFT JOIN (
 	        SELECT d.id_design,  SUBSTRING(prod.product_full_code, 10, 1) AS `size_type`,
 	        IFNULL(SUM(CASE WHEN SUBSTRING(cd.code,2,1)='1' THEN spd.sales_pos_det_qty END),0) AS `qty1`,
@@ -1835,5 +1887,9 @@ WHERE !ISNULL(od.id_ol_store_oos) AND od.sales_order_det_qty!= od.ol_order_qty "
         End If
     End Sub
 
-
+    Private Sub GVPromoDetail_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVPromoDetail.CustomColumnDisplayText
+        If e.Column.FieldName = "nomer_urut" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
 End Class

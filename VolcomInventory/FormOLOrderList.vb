@@ -30,53 +30,53 @@
         End If
         Dim query As String = "SELECT a.sales_order_ol_shop_number,a.customer_name, a.sales_order_ol_shop_date, a.id_sales_order AS `id_sales_order_single`,GROUP_CONCAT(DISTINCT a.id_sales_order) AS `id_sales_order`,
         GROUP_CONCAT(DISTINCT a.sales_order_number) AS `sales_order_number`, a.id_comp_group, a.comp_group_desc, a.printed_date, a.printed_by,
-        GROUP_CONCAT(DISTINCT a.tracking_code) AS `tracking_code`
+        GROUP_CONCAT(DISTINCT a.tracking_code) AS `tracking_code`,IFNULL(pri.indeks_order,0) AS `indeks_order`, a.id_comp
         FROM (
-	        SELECT a.id_sales_order, a.sales_order_number, a.sales_order_ol_shop_number, a.customer_name, a.sales_order_ol_shop_date, cg.id_comp_group,cg.comp_group, cg.description AS `comp_group_desc`,
-	        CAST((IFNULL(dord_item.tot_do, 0.00)/IFNULL(so_item.tot_so,0.00)*100) AS DECIMAL(5,2)) AS so_completness,
-	        IFNULL(pri.indeks_order,0) AS `indeks_order`, lp.printed_date, IFNULL(lp.printed_by,'-') AS `printed_by`, a.tracking_code
-	        FROM tb_sales_order a 
-	        INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to 
-	        INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
-	        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = d.id_comp_group
-	        LEFT JOIN ( 
-	          SELECT so_det.id_sales_order, SUM(so_det.sales_order_det_qty) AS tot_so  
-	          FROM tb_sales_order_det so_det 
-	          INNER JOIN tb_sales_order so ON so.id_sales_order = so_det.id_sales_order
-	          INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = so.id_store_contact_to 
-	          INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
-	          WHERE so.id_report_status=6 AND d.id_commerce_type=2
-	          GROUP BY so_det.id_sales_order 
-	        ) so_item ON so_item.id_sales_order = a.id_sales_order 
-	        LEFT JOIN ( 
-	          SELECT dord.id_sales_order, SUM(dord_det.pl_sales_order_del_det_qty) AS tot_do 
-	          FROM tb_pl_sales_order_del_det dord_det 
-	          INNER JOIN tb_pl_sales_order_del dord ON dord.id_pl_sales_order_del = dord_det.id_pl_sales_order_del 
-	          INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = dord.id_store_contact_to
-	          INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
-	          WHERE dord.id_report_status!='5' AND d.id_commerce_type=2
-	          GROUP BY dord.id_sales_order 
-	        ) dord_item ON dord_item.id_sales_order = a.id_sales_order
-	        LEFT JOIN tb_store_priority_order pri ON pri.id_comp = d.id_comp
-            LEFT JOIN (
-                SELECT a.id_sales_order, lp.log_date AS `printed_date`, e.employee_name AS `printed_by` 
-                FROM tb_sales_order_log_print lp
-                INNER JOIN (
-	                SELECT so.id_sales_order, MAX(lp.id_log) AS `id_log` 
-	                FROM tb_sales_order_log_print lp
-	                INNER JOIN tb_sales_order so ON so.id_sales_order = lp.id_sales_order
-	                GROUP BY so.id_sales_order
-                ) a ON a.id_log = lp.id_log
-                INNER JOIN tb_m_user u ON u.id_user = lp.id_user
-                INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
-            ) lp ON lp.id_sales_order = a.id_sales_order 
-	        WHERE a.id_sales_order>0 
-	        AND a.id_so_status!=5 AND a.id_report_status='6' AND a.id_prepare_status='1' 
-	        AND d.id_commerce_type=2 " + cond_group + "
-	        HAVING so_completness<100
-	        ORDER BY indeks_order ASC, id_sales_order ASC 
+          SELECT a.id_sales_order, a.sales_order_number, a.sales_order_ol_shop_number, a.customer_name, a.sales_order_ol_shop_date, cg.id_comp_group,cg.comp_group, cg.description AS `comp_group_desc`,
+          CAST((IFNULL(dord_item.tot_do, 0.00)/IFNULL(so_item.tot_so,0.00)*100) AS DECIMAL(5,2)) AS so_completness,
+          lp.printed_date, IFNULL(lp.printed_by,'-') AS `printed_by`, a.tracking_code, c.id_comp
+          FROM tb_sales_order a 
+          INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to 
+          INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
+          INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = d.id_comp_group
+          LEFT JOIN ( 
+            SELECT so_det.id_sales_order, SUM(so_det.sales_order_det_qty) AS tot_so  
+            FROM tb_sales_order_det so_det 
+            INNER JOIN tb_sales_order so ON so.id_sales_order = so_det.id_sales_order
+            INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = so.id_store_contact_to 
+            INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
+            WHERE so.id_report_status=6 AND d.id_commerce_type=2
+            GROUP BY so_det.id_sales_order 
+          ) so_item ON so_item.id_sales_order = a.id_sales_order 
+          LEFT JOIN ( 
+            SELECT dord.id_sales_order, SUM(dord_det.pl_sales_order_del_det_qty) AS tot_do 
+            FROM tb_pl_sales_order_del_det dord_det 
+            INNER JOIN tb_pl_sales_order_del dord ON dord.id_pl_sales_order_del = dord_det.id_pl_sales_order_del 
+            INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = dord.id_store_contact_to
+            INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
+            WHERE dord.id_report_status!='5' AND d.id_commerce_type=2
+            GROUP BY dord.id_sales_order 
+          ) dord_item ON dord_item.id_sales_order = a.id_sales_order
+           LEFT JOIN (
+               SELECT a.id_sales_order, lp.log_date AS `printed_date`, e.employee_name AS `printed_by` 
+               FROM tb_sales_order_log_print lp
+               INNER JOIN (
+                  SELECT so.id_sales_order, MAX(lp.id_log) AS `id_log` 
+                  FROM tb_sales_order_log_print lp
+                  INNER JOIN tb_sales_order so ON so.id_sales_order = lp.id_sales_order
+                  GROUP BY so.id_sales_order
+               ) a ON a.id_log = lp.id_log
+               INNER JOIN tb_m_user u ON u.id_user = lp.id_user
+               INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+           ) lp ON lp.id_sales_order = a.id_sales_order 
+          WHERE a.id_sales_order>0 
+          AND a.id_so_status!=5 AND a.id_report_status='6' AND a.id_prepare_status='1' 
+          AND d.id_commerce_type=2 
+          HAVING so_completness<100
         ) a
-        GROUP BY a.sales_order_ol_shop_number, a.tracking_code "
+        LEFT JOIN tb_store_priority_order pri ON pri.id_comp = a.id_comp
+        GROUP BY a.sales_order_ol_shop_number, a.tracking_code 
+        ORDER BY indeks_order ASC, id_sales_order ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()

@@ -214,12 +214,14 @@
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
         LEFT JOIN (
-            SELECT * FROM (
-	            SELECT stt.id_sales_order_det, stt.`status`, stt.status_date 
+            SELECT stt.id_sales_order_det, stt.`status`, stt.status_date
+            FROM tb_sales_order_det_status stt
+            INNER JOIN (
+	            SELECT stt.id_sales_order_det, MAX(stt.status_date) AS `status_date`
 	            FROM tb_sales_order_det_status stt
-	            ORDER BY stt.status_date DESC
-            ) a
-            GROUP BY a.id_sales_order_det
+	            GROUP BY stt.id_sales_order_det
+            ) a ON a.id_sales_order_det = stt.id_sales_order_det AND a.status_date = stt.status_date
+            GROUP BY stt.id_sales_order_det
         ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_lookup_prepare_status stt ON stt.id_prepare_status = so.id_prepare_status
         WHERE so.id_report_status=6 " + comp + " AND c.id_commerce_type=2 " + comp_grp + "

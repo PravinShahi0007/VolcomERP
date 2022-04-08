@@ -585,13 +585,6 @@ Partial Class FormOLStoreSummary
         Me.XTPZaloraPromoDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDetailZalPrm = New DevExpress.XtraGrid.GridControl()
         Me.GVDetailZalPrm = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.RepositoryItemHyperLinkEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
-        Me.RepositoryItemHyperLinkEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
-        Me.PanelControl13 = New DevExpress.XtraEditors.PanelControl()
-        Me.TxtPromoZaloraID = New DevExpress.XtraEditors.TextEdit()
-        Me.BtnBrowseZaloraPromo = New DevExpress.XtraEditors.ButtonEdit()
-        Me.BtnExportToXLSOLStore = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
         Me.GridColumnid_promo_zaloradet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndiscount_codezaldet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_sales_orderzalprmdet = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -608,6 +601,13 @@ Partial Class FormOLStoreSummary
         Me.GridColumndesign_priceprmzal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndiscount_fee = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_order_det_qtyzalprm = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemHyperLinkEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.RepositoryItemHyperLinkEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.PanelControl13 = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtPromoZaloraID = New DevExpress.XtraEditors.TextEdit()
+        Me.BtnBrowseZaloraPromo = New DevExpress.XtraEditors.ButtonEdit()
+        Me.BtnExportToXLSOLStore = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1225,11 +1225,11 @@ Partial Class FormOLStoreSummary
         'GCDetail
         '
         Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDetail.Location = New System.Drawing.Point(0, 104)
+        Me.GCDetail.Location = New System.Drawing.Point(0, 78)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
         Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2, Me.RepositoryItemImageEdit2, Me.RepositoryItemHyperLinkEdit2, Me.RepositoryItemCheckEdit2, Me.RepositoryItemSearchLookUpEdit1, Me.RepoAttachDetail, Me.RepositoryItemTextEdit3, Me.RepoBtnDetailSO, Me.RepoBtnAttachSO, Me.RepoBtnDetailDel, Me.RepoBtnDetailRO, Me.RepoBtnDetailRet, Me.RepoBtnDetailInv, Me.RepoBtnDetailCN, Me.RepoBtnDetailRecPayment, Me.RepoBtnRetPayment, Me.RepoBtnDetailOrder, Me.RepoBtnDetailPickup, Me.RepoBtnDetailPreReturn, Me.RepoBtnRetCust, Me.RepoBtnDetailRetRequest, Me.RepoBtnRefund, Me.LinkProposedPromo, Me.RepoBtnInvoiceShip, Me.RepoBtnViewShippingLabel, Me.RepoBtnRRF, Me.RepoBtnCancelCN})
-        Me.GCDetail.Size = New System.Drawing.Size(1225, 365)
+        Me.GCDetail.Size = New System.Drawing.Size(1225, 391)
         Me.GCDetail.TabIndex = 2
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
@@ -2895,13 +2895,13 @@ Partial Class FormOLStoreSummary
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1225, 104)
+        Me.PanelControl2.Size = New System.Drawing.Size(1225, 78)
         Me.PanelControl2.TabIndex = 1
         '
         'BtnExportToXLS
         '
         Me.BtnExportToXLS.Image = CType(resources.GetObject("BtnExportToXLS.Image"), System.Drawing.Image)
-        Me.BtnExportToXLS.Location = New System.Drawing.Point(566, 66)
+        Me.BtnExportToXLS.Location = New System.Drawing.Point(656, 26)
         Me.BtnExportToXLS.LookAndFeel.SkinName = "Blue"
         Me.BtnExportToXLS.Name = "BtnExportToXLS"
         Me.BtnExportToXLS.Size = New System.Drawing.Size(108, 20)
@@ -2911,7 +2911,7 @@ Partial Class FormOLStoreSummary
         'BtnViewUpdated
         '
         Me.BtnViewUpdated.Image = CType(resources.GetObject("BtnViewUpdated.Image"), System.Drawing.Image)
-        Me.BtnViewUpdated.Location = New System.Drawing.Point(419, 66)
+        Me.BtnViewUpdated.Location = New System.Drawing.Point(419, 220)
         Me.BtnViewUpdated.LookAndFeel.SkinName = "Blue"
         Me.BtnViewUpdated.Name = "BtnViewUpdated"
         Me.BtnViewUpdated.Size = New System.Drawing.Size(141, 20)
@@ -2920,7 +2920,7 @@ Partial Class FormOLStoreSummary
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(240, 69)
+        Me.LabelControl9.Location = New System.Drawing.Point(240, 223)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl9.TabIndex = 11
@@ -2929,7 +2929,7 @@ Partial Class FormOLStoreSummary
         'DEUpdatedUntil
         '
         Me.DEUpdatedUntil.EditValue = Nothing
-        Me.DEUpdatedUntil.Location = New System.Drawing.Point(272, 66)
+        Me.DEUpdatedUntil.Location = New System.Drawing.Point(272, 220)
         Me.DEUpdatedUntil.Name = "DEUpdatedUntil"
         Me.DEUpdatedUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUpdatedUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -2941,7 +2941,7 @@ Partial Class FormOLStoreSummary
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(16, 69)
+        Me.LabelControl8.Location = New System.Drawing.Point(16, 223)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(68, 13)
         Me.LabelControl8.TabIndex = 9
@@ -2950,7 +2950,7 @@ Partial Class FormOLStoreSummary
         'DEUpdatedFrom
         '
         Me.DEUpdatedFrom.EditValue = Nothing
-        Me.DEUpdatedFrom.Location = New System.Drawing.Point(93, 66)
+        Me.DEUpdatedFrom.Location = New System.Drawing.Point(93, 220)
         Me.DEUpdatedFrom.Name = "DEUpdatedFrom"
         Me.DEUpdatedFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUpdatedFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -3008,7 +3008,7 @@ Partial Class FormOLStoreSummary
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl3.Location = New System.Drawing.Point(1031, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(192, 100)
+        Me.PanelControl3.Size = New System.Drawing.Size(192, 74)
         Me.PanelControl3.TabIndex = 5
         '
         'BtnTrackOrder
@@ -3032,12 +3032,12 @@ Partial Class FormOLStoreSummary
         'BtnViewDetail
         '
         Me.BtnViewDetail.Image = CType(resources.GetObject("BtnViewDetail.Image"), System.Drawing.Image)
-        Me.BtnViewDetail.Location = New System.Drawing.Point(419, 40)
+        Me.BtnViewDetail.Location = New System.Drawing.Point(574, 26)
         Me.BtnViewDetail.LookAndFeel.SkinName = "Blue"
         Me.BtnViewDetail.Name = "BtnViewDetail"
-        Me.BtnViewDetail.Size = New System.Drawing.Size(141, 20)
+        Me.BtnViewDetail.Size = New System.Drawing.Size(78, 20)
         Me.BtnViewDetail.TabIndex = 3
-        Me.BtnViewDetail.Text = "View by Order Date"
+        Me.BtnViewDetail.Text = "View"
         '
         'LabelControl4
         '
@@ -3057,7 +3057,7 @@ Partial Class FormOLStoreSummary
         Me.DEUntilDetail.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEUntilDetail.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEUntilDetail.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEUntilDetail.Size = New System.Drawing.Size(141, 20)
+        Me.DEUntilDetail.Size = New System.Drawing.Size(288, 20)
         Me.DEUntilDetail.TabIndex = 2
         '
         'SLECompDetail
@@ -5924,61 +5924,6 @@ Partial Class FormOLStoreSummary
         Me.GVDetailZalPrm.OptionsView.ShowGroupPanel = False
         Me.GVDetailZalPrm.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnorder_nozal, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
-        'RepositoryItemHyperLinkEdit5
-        '
-        Me.RepositoryItemHyperLinkEdit5.AutoHeight = False
-        Me.RepositoryItemHyperLinkEdit5.Name = "RepositoryItemHyperLinkEdit5"
-        '
-        'RepositoryItemHyperLinkEdit4
-        '
-        Me.RepositoryItemHyperLinkEdit4.AutoHeight = False
-        Me.RepositoryItemHyperLinkEdit4.Name = "RepositoryItemHyperLinkEdit4"
-        '
-        'PanelControl13
-        '
-        Me.PanelControl13.Controls.Add(Me.TxtPromoZaloraID)
-        Me.PanelControl13.Controls.Add(Me.BtnBrowseZaloraPromo)
-        Me.PanelControl13.Controls.Add(Me.BtnExportToXLSOLStore)
-        Me.PanelControl13.Controls.Add(Me.LabelControl22)
-        Me.PanelControl13.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl13.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl13.Name = "PanelControl13"
-        Me.PanelControl13.Size = New System.Drawing.Size(1199, 47)
-        Me.PanelControl13.TabIndex = 0
-        '
-        'TxtPromoZaloraID
-        '
-        Me.TxtPromoZaloraID.Location = New System.Drawing.Point(52, 57)
-        Me.TxtPromoZaloraID.Name = "TxtPromoZaloraID"
-        Me.TxtPromoZaloraID.Size = New System.Drawing.Size(100, 20)
-        Me.TxtPromoZaloraID.TabIndex = 16
-        '
-        'BtnBrowseZaloraPromo
-        '
-        Me.BtnBrowseZaloraPromo.Location = New System.Drawing.Point(52, 13)
-        Me.BtnBrowseZaloraPromo.Name = "BtnBrowseZaloraPromo"
-        Me.BtnBrowseZaloraPromo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.BtnBrowseZaloraPromo.Size = New System.Drawing.Size(294, 20)
-        Me.BtnBrowseZaloraPromo.TabIndex = 15
-        '
-        'BtnExportToXLSOLStore
-        '
-        Me.BtnExportToXLSOLStore.Image = CType(resources.GetObject("BtnExportToXLSOLStore.Image"), System.Drawing.Image)
-        Me.BtnExportToXLSOLStore.Location = New System.Drawing.Point(352, 13)
-        Me.BtnExportToXLSOLStore.LookAndFeel.SkinName = "Blue"
-        Me.BtnExportToXLSOLStore.Name = "BtnExportToXLSOLStore"
-        Me.BtnExportToXLSOLStore.Size = New System.Drawing.Size(108, 20)
-        Me.BtnExportToXLSOLStore.TabIndex = 14
-        Me.BtnExportToXLSOLStore.Text = "Export to XLS"
-        '
-        'LabelControl22
-        '
-        Me.LabelControl22.Location = New System.Drawing.Point(16, 16)
-        Me.LabelControl22.Name = "LabelControl22"
-        Me.LabelControl22.Size = New System.Drawing.Size(30, 13)
-        Me.LabelControl22.TabIndex = 0
-        Me.LabelControl22.Text = "Promo"
-        '
         'GridColumnid_promo_zaloradet
         '
         Me.GridColumnid_promo_zaloradet.Caption = "id_promo_zalora"
@@ -6125,6 +6070,61 @@ Partial Class FormOLStoreSummary
         Me.GridColumnsales_order_det_qtyzalprm.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", "{0:N0}")})
         Me.GridColumnsales_order_det_qtyzalprm.Visible = True
         Me.GridColumnsales_order_det_qtyzalprm.VisibleIndex = 11
+        '
+        'RepositoryItemHyperLinkEdit5
+        '
+        Me.RepositoryItemHyperLinkEdit5.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit5.Name = "RepositoryItemHyperLinkEdit5"
+        '
+        'RepositoryItemHyperLinkEdit4
+        '
+        Me.RepositoryItemHyperLinkEdit4.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit4.Name = "RepositoryItemHyperLinkEdit4"
+        '
+        'PanelControl13
+        '
+        Me.PanelControl13.Controls.Add(Me.TxtPromoZaloraID)
+        Me.PanelControl13.Controls.Add(Me.BtnBrowseZaloraPromo)
+        Me.PanelControl13.Controls.Add(Me.BtnExportToXLSOLStore)
+        Me.PanelControl13.Controls.Add(Me.LabelControl22)
+        Me.PanelControl13.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl13.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl13.Name = "PanelControl13"
+        Me.PanelControl13.Size = New System.Drawing.Size(1199, 47)
+        Me.PanelControl13.TabIndex = 0
+        '
+        'TxtPromoZaloraID
+        '
+        Me.TxtPromoZaloraID.Location = New System.Drawing.Point(52, 57)
+        Me.TxtPromoZaloraID.Name = "TxtPromoZaloraID"
+        Me.TxtPromoZaloraID.Size = New System.Drawing.Size(100, 20)
+        Me.TxtPromoZaloraID.TabIndex = 16
+        '
+        'BtnBrowseZaloraPromo
+        '
+        Me.BtnBrowseZaloraPromo.Location = New System.Drawing.Point(52, 13)
+        Me.BtnBrowseZaloraPromo.Name = "BtnBrowseZaloraPromo"
+        Me.BtnBrowseZaloraPromo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.BtnBrowseZaloraPromo.Size = New System.Drawing.Size(294, 20)
+        Me.BtnBrowseZaloraPromo.TabIndex = 15
+        '
+        'BtnExportToXLSOLStore
+        '
+        Me.BtnExportToXLSOLStore.Image = CType(resources.GetObject("BtnExportToXLSOLStore.Image"), System.Drawing.Image)
+        Me.BtnExportToXLSOLStore.Location = New System.Drawing.Point(352, 13)
+        Me.BtnExportToXLSOLStore.LookAndFeel.SkinName = "Blue"
+        Me.BtnExportToXLSOLStore.Name = "BtnExportToXLSOLStore"
+        Me.BtnExportToXLSOLStore.Size = New System.Drawing.Size(108, 20)
+        Me.BtnExportToXLSOLStore.TabIndex = 14
+        Me.BtnExportToXLSOLStore.Text = "Export to XLS"
+        '
+        'LabelControl22
+        '
+        Me.LabelControl22.Location = New System.Drawing.Point(16, 16)
+        Me.LabelControl22.Name = "LabelControl22"
+        Me.LabelControl22.Size = New System.Drawing.Size(30, 13)
+        Me.LabelControl22.TabIndex = 0
+        Me.LabelControl22.Text = "Promo"
         '
         'FormOLStoreSummary
         '

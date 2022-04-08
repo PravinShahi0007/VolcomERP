@@ -137,11 +137,14 @@ INNER JOIN tb_m_region reg ON reg.`id_region`=st.`id_region`
 INNER JOIN tb_m_country co ON co.`id_country`=reg.`id_country`
 LEFT JOIN
 (
-    SELECT * FROM (
-		SELECT kod.* FROM tb_prod_order_ko_det kod
+    SELECT kod.* FROM 
+    tb_prod_order_ko_det kod
+    INNER JOIN(
+        SELECT id_prod_order,MAX(id_prod_order_ko_det) AS id_prod_order_ko_det
+        FROM tb_prod_order_ko_det kod
         INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order)
-		ORDER BY kod.id_prod_order_ko_det DESC
-	)ko GROUP BY ko.id_prod_order
+        GROUP BY id_prod_order
+    )ko ON ko.id_prod_order_ko_det=kod.id_prod_order_ko_det
 )ko ON ko.id_prod_order=po.id_prod_order
 LEFT JOIN
 (
