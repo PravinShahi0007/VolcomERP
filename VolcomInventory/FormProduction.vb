@@ -299,9 +299,10 @@ GROUP BY recd.id_prod_order_det
                         INNER JOIN tb_prod_order_kp kp
                         INNER JOIN
                         (
-	                        SELECT id_prod_order,MAX(id_prod_order_kp) AS id_prod_order_kp
-	                        FROM tb_prod_order_kp_det
-	                        GROUP BY id_prod_order
+	                        SELECT kpd.id_prod_order,MAX(kpd.id_prod_order_kp) AS id_prod_order_kp
+	                        FROM tb_prod_order_kp_det kpd
+                            INNER JOIN tb_prod_order_kp kp ON kp.id_prod_order_kp=kpd.id_prod_order_kp AND kp.is_locked=1 AND kp.is_void=2 AND NOT ISNULL(kpd.id_prod_order) 
+	                        GROUP BY kpd.id_prod_order
                         )kph ON kph.id_prod_order_kp=kp.id_prod_order_kp
                     ) kp ON kp.id_prod_order=a.id_prod_order "
         query += "LEFT JOIN
