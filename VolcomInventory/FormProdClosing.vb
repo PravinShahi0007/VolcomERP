@@ -201,7 +201,7 @@ WHERE cl.`is_active`='1'"
                             (
 	                            SELECT kod.id_prod_order,MAX(kod.id_prod_order_ko_det) AS id_prod_order_ko_det
 	                            FROM tb_prod_order_ko_det kod
-                                INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_purc_order)
+                                INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order)
 	                            GROUP BY kod.id_prod_order
                             )ko ON ko.id_prod_order_ko_det=kod.id_prod_order_ko_det
                         ) ko ON ko.id_prod_order=a.id_prod_order

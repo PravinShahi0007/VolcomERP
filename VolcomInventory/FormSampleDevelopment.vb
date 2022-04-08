@@ -203,16 +203,24 @@ LEFT JOIN (
 	GROUP BY wo.id_prod_order_wo
 ) wo_price ON wo_price.id_prod_order= a.id_prod_order 
 LEFT JOIN (
-    SELECT * FROM (
-	    SELECT * FROM tb_prod_order_ko_det
-	    ORDER BY id_prod_order_ko_det DESC
-    )ko GROUP BY ko.id_prod_order
+    SELECT kod.* FROM 
+    tb_prod_order_ko_det kod 
+    INNER JOIN(
+	    SELECT kod.id_prod_order,MAX(kod.id_prod_order_ko_det) AS id_prod_order_ko_det
+	    FROM tb_prod_order_ko_det kod
+	    INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=kod.id_prod_order_ko AND ko.is_locked=1 AND ko.is_void=2 AND NOT ISNULL(kod.id_prod_order) 
+	    GROUP BY kod.id_prod_order
+    )ko ON ko.id_prod_order_ko_det=kod.id_prod_order_ko_det
 ) ko ON ko.id_prod_order=a.id_prod_order 
 LEFT JOIN (
-    SELECT * FROM (
-	    SELECT * FROM tb_prod_order_kp_det
-	    ORDER BY id_prod_order_kp_det DESC
-    )kp GROUP BY kp.id_prod_order
+    SELECT kpd.* FROM 
+    tb_prod_order_kp_det kpd 
+    INNER JOIN(
+        SELECT kpd.id_prod_order,MAX(kpd.id_prod_order_kp_det) AS id_prod_order_kp_det
+        FROM tb_prod_order_kp_det kpd
+        INNER JOIN tb_prod_order_kp kp ON kp.id_prod_order_kp=kpd.id_prod_order_kp AND kp.is_locked=1 AND kp.is_void=2 AND NOT ISNULL(kpd.id_prod_order) 
+        GROUP BY kpd.id_prod_order
+    )kp ON kp.id_prod_order_kp_det=kpd.id_prod_order_kp_det
 ) kp ON kp.id_prod_order=a.id_prod_order 
 LEFT JOIN
 (
