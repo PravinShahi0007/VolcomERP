@@ -303,7 +303,7 @@ GROUP BY recd.id_prod_order_det
 	                        FROM tb_prod_order_kp_det kpd
                             INNER JOIN tb_prod_order_kp kp ON kp.id_prod_order_kp=kpd.id_prod_order_kp AND kp.is_locked=1 AND kp.is_void=2 AND NOT ISNULL(kpd.id_prod_order) 
 	                        GROUP BY kpd.id_prod_order
-                        )kph ON kph.id_prod_order_kp_det=kp.id_prod_order_kp_det
+                        )kph ON kph.id_prod_order_kp_det=kpd.id_prod_order_kp_det
                     ) kp ON kp.id_prod_order=a.id_prod_order "
         query += "LEFT JOIN
                  (
