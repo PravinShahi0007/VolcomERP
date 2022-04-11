@@ -60,6 +60,27 @@ Partial Class FormEmpHoliday
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BViewWorkingDay = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEYearWorkingDay = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.BGenerate = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCWorkingDate = New DevExpress.XtraGrid.GridControl()
+        Me.GVWorkingDate = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemPictureEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.BViewEx = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEHMinus = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEReligion.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,6 +101,17 @@ Partial Class FormEmpHoliday
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLEYearSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage1.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.SLEYearWorkingDay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCWorkingDate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVWorkingDate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemPictureEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEHMinus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -259,7 +291,7 @@ Partial Class FormEmpHoliday
         Me.XTCHoliday.SelectedTabPage = Me.XTPList
         Me.XTCHoliday.Size = New System.Drawing.Size(728, 326)
         Me.XTCHoliday.TabIndex = 4
-        Me.XTCHoliday.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPList, Me.XTPView})
+        Me.XTCHoliday.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPList, Me.XTPView, Me.XtraTabPage1})
         '
         'XTPList
         '
@@ -466,6 +498,185 @@ Partial Class FormEmpHoliday
         Me.LabelControl3.TabIndex = 8897
         Me.LabelControl3.Text = "Year"
         '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Controls.Add(Me.GCWorkingDate)
+        Me.XtraTabPage1.Controls.Add(Me.PanelControl3)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(722, 298)
+        Me.XtraTabPage1.Text = "List Working Day"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.DEFrom)
+        Me.PanelControl3.Controls.Add(Me.LabelControl5)
+        Me.PanelControl3.Controls.Add(Me.TEHMinus)
+        Me.PanelControl3.Controls.Add(Me.BViewEx)
+        Me.PanelControl3.Controls.Add(Me.LabelControl4)
+        Me.PanelControl3.Controls.Add(Me.BGenerate)
+        Me.PanelControl3.Controls.Add(Me.BViewWorkingDay)
+        Me.PanelControl3.Controls.Add(Me.SLEYearWorkingDay)
+        Me.PanelControl3.Controls.Add(Me.LabelControl2)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(722, 47)
+        Me.PanelControl3.TabIndex = 6
+        '
+        'BViewWorkingDay
+        '
+        Me.BViewWorkingDay.Location = New System.Drawing.Point(224, 10)
+        Me.BViewWorkingDay.Name = "BViewWorkingDay"
+        Me.BViewWorkingDay.Size = New System.Drawing.Size(59, 23)
+        Me.BViewWorkingDay.TabIndex = 8904
+        Me.BViewWorkingDay.Text = "View"
+        '
+        'SLEYearWorkingDay
+        '
+        Me.SLEYearWorkingDay.Location = New System.Drawing.Point(52, 12)
+        Me.SLEYearWorkingDay.Name = "SLEYearWorkingDay"
+        Me.SLEYearWorkingDay.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEYearWorkingDay.Properties.View = Me.GridView2
+        Me.SLEYearWorkingDay.Size = New System.Drawing.Size(166, 20)
+        Me.SLEYearWorkingDay.TabIndex = 8898
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Year"
+        Me.GridColumn11.FieldName = "year"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(15, 15)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(22, 13)
+        Me.LabelControl2.TabIndex = 8897
+        Me.LabelControl2.Text = "Year"
+        '
+        'BGenerate
+        '
+        Me.BGenerate.Location = New System.Drawing.Point(289, 9)
+        Me.BGenerate.Name = "BGenerate"
+        Me.BGenerate.Size = New System.Drawing.Size(59, 23)
+        Me.BGenerate.TabIndex = 8905
+        Me.BGenerate.Text = "generate"
+        '
+        'GCWorkingDate
+        '
+        Me.GCWorkingDate.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCWorkingDate.Location = New System.Drawing.Point(0, 47)
+        Me.GCWorkingDate.MainView = Me.GVWorkingDate
+        Me.GCWorkingDate.Name = "GCWorkingDate"
+        Me.GCWorkingDate.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemPictureEdit2})
+        Me.GCWorkingDate.Size = New System.Drawing.Size(722, 251)
+        Me.GCWorkingDate.TabIndex = 7
+        Me.GCWorkingDate.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVWorkingDate})
+        '
+        'GVWorkingDate
+        '
+        Me.GVWorkingDate.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16})
+        Me.GVWorkingDate.GridControl = Me.GCWorkingDate
+        Me.GVWorkingDate.Name = "GVWorkingDate"
+        Me.GVWorkingDate.OptionsBehavior.Editable = False
+        Me.GVWorkingDate.OptionsFind.AlwaysVisible = True
+        Me.GVWorkingDate.OptionsView.ShowGroupPanel = False
+        Me.GVWorkingDate.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn15, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Id Holiday"
+        Me.GridColumn12.FieldName = "id_emp_holiday"
+        Me.GridColumn12.Name = "GridColumn12"
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Id Religion"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Religion"
+        Me.GridColumn14.FieldName = "religion"
+        Me.GridColumn14.Name = "GridColumn14"
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Working Date"
+        Me.GridColumn15.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn15.FieldName = "working_date"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 0
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Holiday"
+        Me.GridColumn16.FieldName = "emp_holiday_desc"
+        Me.GridColumn16.Name = "GridColumn16"
+        '
+        'RepositoryItemPictureEdit2
+        '
+        Me.RepositoryItemPictureEdit2.Name = "RepositoryItemPictureEdit2"
+        Me.RepositoryItemPictureEdit2.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(359, 15)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(47, 13)
+        Me.LabelControl4.TabIndex = 8906
+        Me.LabelControl4.Text = "Search H-"
+        '
+        'BViewEx
+        '
+        Me.BViewEx.Location = New System.Drawing.Point(621, 10)
+        Me.BViewEx.Name = "BViewEx"
+        Me.BViewEx.Size = New System.Drawing.Size(59, 23)
+        Me.BViewEx.TabIndex = 8907
+        Me.BViewEx.Text = "View"
+        '
+        'TEHMinus
+        '
+        Me.TEHMinus.Location = New System.Drawing.Point(412, 11)
+        Me.TEHMinus.Name = "TEHMinus"
+        Me.TEHMinus.Size = New System.Drawing.Size(32, 20)
+        Me.TEHMinus.TabIndex = 8908
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(450, 15)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(22, 13)
+        Me.LabelControl5.TabIndex = 8909
+        Me.LabelControl5.Text = "from"
+        '
+        'DEFrom
+        '
+        Me.DEFrom.EditValue = Nothing
+        Me.DEFrom.Location = New System.Drawing.Point(478, 11)
+        Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFrom.Size = New System.Drawing.Size(137, 20)
+        Me.DEFrom.TabIndex = 8929
+        '
         'FormEmpHoliday
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -499,6 +710,18 @@ Partial Class FormEmpHoliday
         Me.PanelControl2.PerformLayout()
         CType(Me.SLEYearSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage1.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.SLEYearWorkingDay.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCWorkingDate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVWorkingDate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemPictureEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEHMinus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -544,4 +767,25 @@ Partial Class FormEmpHoliday
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BGenerate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BViewWorkingDay As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEYearWorkingDay As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCWorkingDate As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVWorkingDate As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemPictureEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEHMinus As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BViewEx As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
 End Class

@@ -296,7 +296,7 @@ GROUP BY recd.id_prod_order_det
                     ) ko ON ko.id_prod_order=a.id_prod_order "
         query += "LEFT JOIN (
 	                    SELECT kp.* FROM 
-                        INNER JOIN tb_prod_order_kp kp
+                        tb_prod_order_kp kp
                         INNER JOIN
                         (
 	                        SELECT kpd.id_prod_order,MAX(kpd.id_prod_order_kp) AS id_prod_order_kp
