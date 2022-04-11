@@ -21,6 +21,9 @@ Partial Class FormSampleDevelopment
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSampleDevelopment))
+        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleContains1 As DevExpress.XtraEditors.FormatConditionRuleContains = New DevExpress.XtraEditors.FormatConditionRuleContains()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNavLineList = New DevExpress.XtraEditors.PanelControl()
         Me.PCNavLineList = New DevExpress.XtraEditors.PanelControl()
         Me.SLESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -239,8 +242,16 @@ Partial Class FormSampleDevelopment
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPTestMail = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCUpdate = New DevExpress.XtraGrid.GridControl()
+        Me.GVUpdate = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -324,9 +335,24 @@ Partial Class FormSampleDevelopment
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPTestMail.SuspendLayout()
+        CType(Me.GCUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'GridColumn45
+        '
+        Me.GridColumn45.AppearanceCell.ForeColor = System.Drawing.Color.White
+        Me.GridColumn45.AppearanceCell.Options.UseForeColor = True
+        Me.GridColumn45.Caption = "ID"
+        Me.GridColumn45.FieldName = "id_design"
+        Me.GridColumn45.MinWidth = 10
+        Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.Visible = True
+        Me.GridColumn45.VisibleIndex = 0
+        Me.GridColumn45.Width = 10
         '
         'PanelControlNavLineList
         '
@@ -1718,7 +1744,7 @@ Partial Class FormSampleDevelopment
         Me.XtraTabControl3.SelectedTabPage = Me.XTPSummary
         Me.XtraTabControl3.Size = New System.Drawing.Size(1117, 437)
         Me.XtraTabControl3.TabIndex = 0
-        Me.XtraTabControl3.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPPPSTarget})
+        Me.XtraTabControl3.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPPPSTarget, Me.XTPTestMail})
         '
         'XTPSummary
         '
@@ -2068,8 +2094,6 @@ Partial Class FormSampleDevelopment
         '
         'PanelControl3
         '
-        Me.PanelControl3.Controls.Add(Me.DateEdit1)
-        Me.PanelControl3.Controls.Add(Me.SimpleButton1)
         Me.PanelControl3.Controls.Add(Me.SLESeasonTracker)
         Me.PanelControl3.Controls.Add(Me.LabelControl7)
         Me.PanelControl3.Controls.Add(Me.SLEVendorTracker)
@@ -2390,25 +2414,103 @@ Partial Class FormSampleDevelopment
         Me.BView.TabIndex = 0
         Me.BView.Text = "view"
         '
+        'XTPTestMail
+        '
+        Me.XTPTestMail.Controls.Add(Me.GCUpdate)
+        Me.XTPTestMail.Controls.Add(Me.PanelControl4)
+        Me.XTPTestMail.Name = "XTPTestMail"
+        Me.XTPTestMail.Size = New System.Drawing.Size(1111, 409)
+        Me.XTPTestMail.Text = "Send Update"
+        '
+        'GCUpdate
+        '
+        Me.GCUpdate.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCUpdate.Location = New System.Drawing.Point(0, 47)
+        Me.GCUpdate.MainView = Me.GVUpdate
+        Me.GCUpdate.Name = "GCUpdate"
+        Me.GCUpdate.Size = New System.Drawing.Size(1111, 362)
+        Me.GCUpdate.TabIndex = 1
+        Me.GCUpdate.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVUpdate})
+        '
+        'GVUpdate
+        '
+        Me.GVUpdate.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn45, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44})
+        GridFormatRule1.ApplyToRow = True
+        GridFormatRule1.Column = Me.GridColumn45
+        GridFormatRule1.Name = "Format0"
+        FormatConditionRuleContains1.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        FormatConditionRuleContains1.Appearance.Options.UseFont = True
+        FormatConditionRuleContains1.Values = CType(resources.GetObject("FormatConditionRuleContains1.Values"), System.Collections.IList)
+        GridFormatRule1.Rule = FormatConditionRuleContains1
+        Me.GVUpdate.FormatRules.Add(GridFormatRule1)
+        Me.GVUpdate.GridControl = Me.GCUpdate
+        Me.GVUpdate.Name = "GVUpdate"
+        Me.GVUpdate.OptionsPrint.PrintHeader = False
+        Me.GVUpdate.OptionsPrint.UsePrintStyles = False
+        Me.GVUpdate.OptionsView.ShowColumnHeaders = False
+        Me.GVUpdate.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.Caption = "Tahapan"
+        Me.GridColumn40.FieldName = "tahapan"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 1
+        Me.GridColumn40.Width = 182
+        '
+        'GridColumn41
+        '
+        Me.GridColumn41.Caption = "Artikel"
+        Me.GridColumn41.FieldName = "design_display_name"
+        Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.Visible = True
+        Me.GridColumn41.VisibleIndex = 2
+        Me.GridColumn41.Width = 182
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.Caption = "Confirm ? (yes/no)"
+        Me.GridColumn42.FieldName = "confirm"
+        Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.Visible = True
+        Me.GridColumn42.VisibleIndex = 3
+        Me.GridColumn42.Width = 182
+        '
+        'GridColumn43
+        '
+        Me.GridColumn43.Caption = "Reason"
+        Me.GridColumn43.FieldName = "reason"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 4
+        Me.GridColumn43.Width = 182
+        '
+        'GridColumn44
+        '
+        Me.GridColumn44.Caption = "New Dates if not confirm"
+        Me.GridColumn44.FieldName = "new_dates"
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 5
+        Me.GridColumn44.Width = 182
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(1111, 47)
+        Me.PanelControl4.TabIndex = 0
+        '
         'SimpleButton1
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(1042, 11)
+        Me.SimpleButton1.Location = New System.Drawing.Point(1043, 10)
         Me.SimpleButton1.Name = "SimpleButton1"
         Me.SimpleButton1.Size = New System.Drawing.Size(52, 23)
-        Me.SimpleButton1.TabIndex = 8933
+        Me.SimpleButton1.TabIndex = 8935
         Me.SimpleButton1.Text = "test mail"
-        '
-        'DateEdit1
-        '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(878, 13)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit1.Size = New System.Drawing.Size(158, 20)
-        Me.DateEdit1.TabIndex = 8934
         '
         'FormSampleDevelopment
         '
@@ -2510,8 +2612,11 @@ Partial Class FormSampleDevelopment
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPTestMail.ResumeLayout(False)
+        CType(Me.GCUpdate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVUpdate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -2734,6 +2839,15 @@ Partial Class FormSampleDevelopment
     Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents XTPTestMail As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCUpdate As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVUpdate As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

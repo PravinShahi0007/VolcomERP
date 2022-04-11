@@ -494,7 +494,7 @@ INNER JOIN tb_m_comp c ON c.id_comp=t.id_comp"
         GVTracker.ActiveFilterString = ""
     End Sub
 
-    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+    Private Sub SimpleButton1_Click_1(sender As Object, e As EventArgs) Handles SimpleButton1.Click
         Dim q As String = "SELECT tb.id_comp
 FROM
 (
@@ -517,6 +517,16 @@ FROM
 	FROM `tb_sample_dev_tracking` WHERE ISNULL(copy_proto_sample_2_act) AND DATE(IF(ISNULL(copy_proto_sample_2_upd),copy_proto_sample_2,copy_proto_sample_2_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
 )tb 
 GROUP BY tb.id_comp"
-        'Dim date As String
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            'per vendor
+            For i = 0 To dt.Rows.Count - 1
+                Dim mail As ClassSendEmail = New ClassSendEmail()
+                mail.report_mark_type = "404"
+                'id_comp
+                mail.par1 = dt.Rows(i)("id_comp").ToString
+                mail.send_email()
+            Next
+        End If
     End Sub
 End Class
