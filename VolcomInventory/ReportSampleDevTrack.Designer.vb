@@ -107,7 +107,10 @@ Partial Public Class ReportSampleDevTrack
         '
         'XrTableCell4
         '
+        Me.XrTableCell4.ForeColor = System.Drawing.Color.Transparent
         Me.XrTableCell4.Name = "XrTableCell4"
+        Me.XrTableCell4.StylePriority.UseForeColor = False
+        Me.XrTableCell4.Text = "id"
         Me.XrTableCell4.Weight = 0.1R
         '
         'XrTableCell5

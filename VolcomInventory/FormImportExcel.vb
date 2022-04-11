@@ -153,6 +153,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select `Seller SKU` from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Seller SKU]='') GROUP BY `Seller SKU` ", oledbconn)
         ElseIf id_pop_up = "63" Then
             MyCommand = New OleDbDataAdapter("select Code, Account, SUM(Qty) AS Qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Code]='') GROUP BY Code,Account", oledbconn)
+        ElseIf id_pop_up = "65" Then
+            MyCommand = New OleDbDataAdapter("select [id] AS id_design,[Tahapan] AS tahapan,[Artikel] AS artikel,[Confirm (yes/no)] AS confirm,[Reason not confirm] AS reason,[New Date (If not confirm)] AS new_date from [" & CBWorksheetName.SelectedItem.ToString & "A2:ZZ] WHERE [Confirm (yes/no)]='no'", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -4808,6 +4810,53 @@ GROUP BY ol.checkout_id
             GVData.Columns("qty").DisplayFormat.FormatString = "{0:n0}"
             GVData.Columns("qty_erp").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("qty_erp").DisplayFormat.FormatString = "{0:n0}"
+        ElseIf id_pop_up = "65" Then
+            Dim qry As String = "SELECT d.id_design,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color)  AS design_display_name 
+FROM tb_m_design d 
+INNER JOIN tb_season s ON s.id_season=d.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43, 34)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = d.id_design
+WHERE d.id_lookup_status_order!=2 "
+            Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb2 = dt.AsEnumerable()
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("id_design").ToString Equals table_tmp("id_design").ToString
+                        Into Group
+                        From y1 In Group.DefaultIfEmpty()
+                        Select New With
+                        {
+                            .id_design = If(y1 Is Nothing, "", y1("id_design")),
+                            .description = If(y1 Is Nothing, "", y1("design_display_name")),
+                            .tahapan = table1("tahapan"),
+                            .reason = table1("reason"),
+                            .new_date = Date.Parse(table1("new_date").ToString)
+                        }
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("id_design").Visible = False
+            GVData.Columns("new_date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("new_date").DisplayFormat.FormatString = "dd MMMM yyyy"
         End If
         data_temp.Dispose()
         oledbconn.Close()

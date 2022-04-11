@@ -529,4 +529,9 @@ GROUP BY tb.id_comp"
             Next
         End If
     End Sub
+
+    Private Sub BUpdatePps_Click(sender As Object, e As EventArgs) Handles BUpdatePps.Click
+        FormSampleDevTargetPps.is_changes = "1"
+        FormSampleDevTargetPps.ShowDialog()
+    End Sub
 End Class

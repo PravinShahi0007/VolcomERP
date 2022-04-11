@@ -21,8 +21,8 @@ Partial Class FormSampleDevelopment
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSampleDevelopment))
-        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleContains1 As DevExpress.XtraEditors.FormatConditionRuleContains = New DevExpress.XtraEditors.FormatConditionRuleContains()
+        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleContains2 As DevExpress.XtraEditors.FormatConditionRuleContains = New DevExpress.XtraEditors.FormatConditionRuleContains()
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNavLineList = New DevExpress.XtraEditors.PanelControl()
         Me.PCNavLineList = New DevExpress.XtraEditors.PanelControl()
@@ -230,6 +230,7 @@ Partial Class FormSampleDevelopment
         Me.RIMemoVendor = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BUpdatePps = New DevExpress.XtraEditors.SimpleButton()
         Me.BProposeSampleDev = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEVendorPPS = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -2205,6 +2206,7 @@ Partial Class FormSampleDevelopment
         'XTPPPSTarget
         '
         Me.XTPPPSTarget.Controls.Add(Me.GCPpsTarget)
+        Me.XTPPPSTarget.Controls.Add(Me.BUpdatePps)
         Me.XTPPPSTarget.Controls.Add(Me.BProposeSampleDev)
         Me.XTPPPSTarget.Controls.Add(Me.PanelControl2)
         Me.XTPPPSTarget.Name = "XTPPPSTarget"
@@ -2218,7 +2220,7 @@ Partial Class FormSampleDevelopment
         Me.GCPpsTarget.MainView = Me.GVPpsTarget
         Me.GCPpsTarget.Name = "GCPpsTarget"
         Me.GCPpsTarget.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIMemoVendor})
-        Me.GCPpsTarget.Size = New System.Drawing.Size(1111, 334)
+        Me.GCPpsTarget.Size = New System.Drawing.Size(1111, 306)
         Me.GCPpsTarget.TabIndex = 1
         Me.GCPpsTarget.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPpsTarget})
         '
@@ -2291,6 +2293,25 @@ Partial Class FormSampleDevelopment
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 5
         '
+        'BUpdatePps
+        '
+        Me.BUpdatePps.Appearance.BackColor = System.Drawing.Color.LightSeaGreen
+        Me.BUpdatePps.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BUpdatePps.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BUpdatePps.Appearance.Options.UseBackColor = True
+        Me.BUpdatePps.Appearance.Options.UseFont = True
+        Me.BUpdatePps.Appearance.Options.UseForeColor = True
+        Me.BUpdatePps.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BUpdatePps.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BUpdatePps.Location = New System.Drawing.Point(0, 353)
+        Me.BUpdatePps.LookAndFeel.SkinName = "Metropolis"
+        Me.BUpdatePps.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BUpdatePps.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BUpdatePps.Name = "BUpdatePps"
+        Me.BUpdatePps.Size = New System.Drawing.Size(1111, 28)
+        Me.BUpdatePps.TabIndex = 142
+        Me.BUpdatePps.Text = "Propose Updates"
+        '
         'BProposeSampleDev
         '
         Me.BProposeSampleDev.Appearance.BackColor = System.Drawing.Color.LightSeaGreen
@@ -2308,7 +2329,7 @@ Partial Class FormSampleDevelopment
         Me.BProposeSampleDev.Name = "BProposeSampleDev"
         Me.BProposeSampleDev.Size = New System.Drawing.Size(1111, 28)
         Me.BProposeSampleDev.TabIndex = 141
-        Me.BProposeSampleDev.Text = "Propose New Target"
+        Me.BProposeSampleDev.Text = "Propose New"
         '
         'PanelControl2
         '
@@ -2435,14 +2456,14 @@ Partial Class FormSampleDevelopment
         'GVUpdate
         '
         Me.GVUpdate.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn45, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44})
-        GridFormatRule1.ApplyToRow = True
-        GridFormatRule1.Column = Me.GridColumn45
-        GridFormatRule1.Name = "Format0"
-        FormatConditionRuleContains1.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        FormatConditionRuleContains1.Appearance.Options.UseFont = True
-        FormatConditionRuleContains1.Values = CType(resources.GetObject("FormatConditionRuleContains1.Values"), System.Collections.IList)
-        GridFormatRule1.Rule = FormatConditionRuleContains1
-        Me.GVUpdate.FormatRules.Add(GridFormatRule1)
+        GridFormatRule2.ApplyToRow = True
+        GridFormatRule2.Column = Me.GridColumn45
+        GridFormatRule2.Name = "Format0"
+        FormatConditionRuleContains2.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        FormatConditionRuleContains2.Appearance.Options.UseFont = True
+        FormatConditionRuleContains2.Values = CType(resources.GetObject("FormatConditionRuleContains2.Values"), System.Collections.IList)
+        GridFormatRule2.Rule = FormatConditionRuleContains2
+        Me.GVUpdate.FormatRules.Add(GridFormatRule2)
         Me.GVUpdate.GridControl = Me.GCUpdate
         Me.GVUpdate.Name = "GVUpdate"
         Me.GVUpdate.OptionsPrint.PrintHeader = False
@@ -2850,4 +2871,5 @@ Partial Class FormSampleDevelopment
     Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BUpdatePps As DevExpress.XtraEditors.SimpleButton
 End Class
