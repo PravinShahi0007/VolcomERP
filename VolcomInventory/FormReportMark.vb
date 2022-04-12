@@ -6825,7 +6825,6 @@ INNER JOIN `tb_sni_pps` pps ON pps.id_sni_pps=l.id_sni_pps AND pps.id_report_sta
 
                 'budget used
 
-
                 ' select user prepared
                 Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
                 Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
@@ -6892,6 +6891,7 @@ HAVING amo>0"
                     SELECT " + id_acc_trans + " AS `id_trans`,o.acc_coa_receive AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCostUnit(dd.id_item,(SELECT id_coa_tag FROM tb_m_departement WHERE id_departement=r.id_departement))) AS `credit`, '' AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.`number`, 1 AS `id_comp`
                     FROM tb_item_del_det dd
                     INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
+                    INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
                     JOIN tb_opt_purchasing o
                     WHERE dd.id_item_del=" + id_report + "
                     GROUP BY dd.id_item_del "
