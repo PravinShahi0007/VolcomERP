@@ -56,6 +56,18 @@ Partial Class FormSampleDevTargetPps
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPNew = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPUpdate = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCChanges = New DevExpress.XtraGrid.GridControl()
+        Me.GVChanges = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,6 +85,14 @@ Partial Class FormSampleDevTargetPps
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAddDel.SuspendLayout()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl1.SuspendLayout()
+        Me.XTPNew.SuspendLayout()
+        Me.XTPUpdate.SuspendLayout()
+        CType(Me.GCChanges, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVChanges, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl7
@@ -282,11 +302,11 @@ Partial Class FormSampleDevTargetPps
         'GCPps
         '
         Me.GCPps.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCPps.Location = New System.Drawing.Point(0, 112)
+        Me.GCPps.Location = New System.Drawing.Point(0, 0)
         Me.GCPps.MainView = Me.GVPps
         Me.GCPps.Name = "GCPps"
         Me.GCPps.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1})
-        Me.GCPps.Size = New System.Drawing.Size(1022, 244)
+        Me.GCPps.Size = New System.Drawing.Size(1016, 216)
         Me.GCPps.TabIndex = 8
         Me.GCPps.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPps})
         '
@@ -421,12 +441,109 @@ Partial Class FormSampleDevTargetPps
         Me.BAdd.TabStop = False
         Me.BAdd.Text = "Add"
         '
+        'XtraTabControl1
+        '
+        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 112)
+        Me.XtraTabControl1.Name = "XtraTabControl1"
+        Me.XtraTabControl1.SelectedTabPage = Me.XTPNew
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1022, 244)
+        Me.XtraTabControl1.TabIndex = 10
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPNew, Me.XTPUpdate})
+        '
+        'XTPNew
+        '
+        Me.XTPNew.Controls.Add(Me.GCPps)
+        Me.XTPNew.Name = "XTPNew"
+        Me.XTPNew.Size = New System.Drawing.Size(1016, 216)
+        Me.XTPNew.Text = "Target"
+        '
+        'XTPUpdate
+        '
+        Me.XTPUpdate.Controls.Add(Me.GCChanges)
+        Me.XTPUpdate.Name = "XTPUpdate"
+        Me.XTPUpdate.Size = New System.Drawing.Size(1016, 216)
+        Me.XTPUpdate.Text = "Update"
+        '
+        'GCChanges
+        '
+        Me.GCChanges.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCChanges.Location = New System.Drawing.Point(0, 0)
+        Me.GCChanges.MainView = Me.GVChanges
+        Me.GCChanges.Name = "GCChanges"
+        Me.GCChanges.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit2})
+        Me.GCChanges.Size = New System.Drawing.Size(1016, 216)
+        Me.GCChanges.TabIndex = 9
+        Me.GCChanges.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVChanges})
+        '
+        'GVChanges
+        '
+        Me.GVChanges.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn20, Me.GridColumn18, Me.GridColumn17})
+        Me.GVChanges.GridControl = Me.GCChanges
+        Me.GVChanges.Name = "GVChanges"
+        Me.GVChanges.OptionsBehavior.Editable = False
+        Me.GVChanges.OptionsBehavior.ReadOnly = True
+        Me.GVChanges.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "ID det"
+        Me.GridColumn14.Name = "GridColumn14"
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "ID Design"
+        Me.GridColumn15.FieldName = "id_design"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Design"
+        Me.GridColumn16.FieldName = "design_display_name"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 0
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Step"
+        Me.GridColumn20.FieldName = "type"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 1
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Current Update Date"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 2
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "New Update Date"
+        Me.GridColumn17.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn17.FieldName = "labdip"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 3
+        '
+        'RepositoryItemDateEdit2
+        '
+        Me.RepositoryItemDateEdit2.AutoHeight = False
+        Me.RepositoryItemDateEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit2.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit2.Mask.EditMask = "dd MMMM yyyy"
+        Me.RepositoryItemDateEdit2.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemDateEdit2.Name = "RepositoryItemDateEdit2"
+        '
         'FormSampleDevTargetPps
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1022, 499)
-        Me.Controls.Add(Me.GCPps)
+        Me.Controls.Add(Me.XtraTabControl1)
         Me.Controls.Add(Me.PCAddDel)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
@@ -456,6 +573,14 @@ Partial Class FormSampleDevTargetPps
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAddDel.ResumeLayout(False)
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl1.ResumeLayout(False)
+        Me.XTPNew.ResumeLayout(False)
+        Me.XTPUpdate.ResumeLayout(False)
+        CType(Me.GCChanges, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVChanges, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -496,4 +621,16 @@ Partial Class FormSampleDevTargetPps
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPNew As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPUpdate As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCChanges As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVChanges As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemDateEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
 End Class

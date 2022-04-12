@@ -34,6 +34,8 @@ Partial Public Class ReportSampleDevTrack
         Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XT1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -54,7 +56,7 @@ Partial Public Class ReportSampleDevTrack
         Me.XT1.Name = "XT1"
         Me.XT1.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
         Me.XT1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1, Me.XRRow})
-        Me.XT1.SizeF = New System.Drawing.SizeF(736.0!, 62.5!)
+        Me.XT1.SizeF = New System.Drawing.SizeF(760.0!, 62.5!)
         Me.XT1.StylePriority.UseBorders = False
         Me.XT1.StylePriority.UsePadding = False
         Me.XT1.StylePriority.UseTextAlignment = False
@@ -62,7 +64,7 @@ Partial Public Class ReportSampleDevTrack
         '
         'XrTableRow1
         '
-        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1, Me.XrTableCell9, Me.XrTableCell11})
+        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1, Me.XrTableCell9, Me.XrTableCell11, Me.XrTableCell2})
         Me.XrTableRow1.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableRow1.Name = "XrTableRow1"
         Me.XrTableRow1.StylePriority.UseFont = False
@@ -70,7 +72,7 @@ Partial Public Class ReportSampleDevTrack
         '
         'XrTableCell1
         '
-        Me.XrTableCell1.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
+        Me.XrTableCell1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrTableCell1.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell1.Name = "XrTableCell1"
         Me.XrTableCell1.StylePriority.UseBorders = False
@@ -98,7 +100,7 @@ Partial Public Class ReportSampleDevTrack
         'XRRow
         '
         Me.XRRow.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.XRRow.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell4, Me.XrTableCell5, Me.XrTableCell6, Me.XrTableCell8, Me.XrTableCell10, Me.XrTableCell12})
+        Me.XRRow.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell4, Me.XrTableCell5, Me.XrTableCell6, Me.XrTableCell8, Me.XrTableCell10, Me.XrTableCell12, Me.XrTableCell3})
         Me.XRRow.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
         Me.XRRow.Name = "XRRow"
         Me.XRRow.StylePriority.UseBackColor = False
@@ -107,8 +109,12 @@ Partial Public Class ReportSampleDevTrack
         '
         'XrTableCell4
         '
+        Me.XrTableCell4.BackColor = System.Drawing.Color.Transparent
+        Me.XrTableCell4.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrTableCell4.ForeColor = System.Drawing.Color.Transparent
         Me.XrTableCell4.Name = "XrTableCell4"
+        Me.XrTableCell4.StylePriority.UseBackColor = False
+        Me.XrTableCell4.StylePriority.UseBorders = False
         Me.XrTableCell4.StylePriority.UseForeColor = False
         Me.XrTableCell4.Text = "id"
         Me.XrTableCell4.Weight = 0.1R
@@ -145,22 +151,43 @@ Partial Public Class ReportSampleDevTrack
         '
         'TopMargin
         '
-        Me.TopMargin.HeightF = 28.125!
+        Me.TopMargin.HeightF = 28.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 16.66667!
+        Me.BottomMargin.HeightF = 17.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'XrTableCell2
+        '
+        Me.XrTableCell2.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTableCell2.Name = "XrTableCell2"
+        Me.XrTableCell2.StylePriority.UseBorders = False
+        Me.XrTableCell2.StylePriority.UseTextAlignment = False
+        Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell2.Weight = 0.24000000000000221R
+        '
+        'XrTableCell3
+        '
+        Me.XrTableCell3.BackColor = System.Drawing.Color.Transparent
+        Me.XrTableCell3.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTableCell3.ForeColor = System.Drawing.Color.Transparent
+        Me.XrTableCell3.Name = "XrTableCell3"
+        Me.XrTableCell3.StylePriority.UseBackColor = False
+        Me.XrTableCell3.StylePriority.UseBorders = False
+        Me.XrTableCell3.StylePriority.UseForeColor = False
+        Me.XrTableCell3.Text = "vendor"
+        Me.XrTableCell3.Weight = 0.24000064417055755R
+        '
         'ReportSampleDevTrack
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin})
-        Me.Margins = New System.Drawing.Printing.Margins(48, 43, 28, 17)
+        Me.Margins = New System.Drawing.Printing.Margins(24, 43, 28, 17)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -185,4 +212,6 @@ Partial Public Class ReportSampleDevTrack
     Friend WithEvents XrTableCell8 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell10 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell12 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell2 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell3 As DevExpress.XtraReports.UI.XRTableCell
 End Class
