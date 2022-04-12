@@ -4883,6 +4883,7 @@ WHERE d.id_lookup_status_order!=2 "
 
             'Customize column
             GVData.Columns("id_design").Visible = False
+            GVData.Columns("id_comp").Visible = False
             GVData.Columns("new_date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
             GVData.Columns("new_date").DisplayFormat.FormatString = "dd MMMM yyyy"
         End If
@@ -8057,17 +8058,19 @@ WHERE d.id_lookup_status_order!=2 "
                         PBC.Properties.Step = 1
                         PBC.Properties.PercentView = True
 
+                        FormSampleDevTargetPps.SLEVendor.EditValue = GVData.GetRowCellValue(0, "id_comp").ToString
+
                         'detail data
                         Dim id_bsp As String = FormBSPDet.id
                         For i As Integer = 0 To GVData.RowCount - 1
-                            Dim newRow As DataRow = (TryCast(FormSampleDevTargetPps.GCPps.DataSource, DataTable)).NewRow()
+                            Dim newRow As DataRow = (TryCast(FormSampleDevTargetPps.GCChanges.DataSource, DataTable)).NewRow()
                             newRow("id_design") = GVData.GetRowCellValue(i, "id_design").ToString
-                            newRow("design_display_name") = GVData.GetRowCellValue(i, "design_display_name").ToString
+                            newRow("design_display_name") = GVData.GetRowCellValue(i, "description").ToString
                             newRow("tahapan") = GVData.GetRowCellValue(i, "tahapan").ToString
                             newRow("reason") = GVData.GetRowCellValue(i, "reason").ToString
                             newRow("current_date") = GVData.GetRowCellValue(i, "current_date").ToString
                             newRow("new_date") = GVData.GetRowCellValue(i, "new_date").ToString
-                            TryCast(FormSampleDevTargetPps.GCPps.DataSource, DataTable).Rows.Add(newRow)
+                            TryCast(FormSampleDevTargetPps.GCChanges.DataSource, DataTable).Rows.Add(newRow)
 
                             PBC.PerformStep()
                             PBC.Update()

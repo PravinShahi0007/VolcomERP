@@ -35,6 +35,7 @@ SELECT '3' AS id_type,'Actual' AS `type`
             load_det()
             '
             If is_changes = "1" Then
+                PCAddDel.Visible = False
                 load_det_changes()
                 'SLEVendor.Properties.ReadOnly = True
                 'PCAddDel.Visible = False
@@ -53,6 +54,7 @@ SELECT '3' AS id_type,'Actual' AS `type`
                 '    TryCast(GCPps.DataSource, DataTable).Rows.Add(newRow)
                 'Next
 
+                SLEVendor.Properties.ReadOnly = True
                 SLEType.EditValue = "2"
                 FormImportExcel.id_pop_up = "65"
                 FormImportExcel.ShowDialog()
@@ -97,8 +99,10 @@ WHERE pps.id_sample_dev_pps='" & id_pps & "'"
 
         If is_changes = "1" Then
             XTPUpdate.PageVisible = True
+            XTPNew.PageVisible = False
         Else
             XTPUpdate.PageVisible = False
+            XTPNew.PageVisible = True
         End If
     End Sub
 
@@ -162,8 +166,8 @@ LEFT JOIN (
 ) cd ON cd.id_design = dsg.id_design
 WHERE ppsd.id_sample_dev_pps='" & id_pps & "'"
         Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
-        GCPps.DataSource = dt
-        GVPps.BestFitColumns()
+        GCChanges.DataSource = dt
+        GVChanges.BestFitColumns()
     End Sub
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
@@ -175,62 +179,123 @@ WHERE ppsd.id_sample_dev_pps='" & id_pps & "'"
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        If GVPps.RowCount = 0 Then
-            warningCustom("No data found, please put some design.")
-        Else
-            If id_pps = "-1" Then
-                'check sudah ada apa belum
-                Dim is_ok As Boolean = True
+        If is_changes = "1" Then
+            If GVChanges.RowCount = 0 Then
+                warningCustom("No data found.")
+            Else
+                If id_pps = "-1" Then
+                    'check sudah ada apa belum
+                    Dim is_ok As Boolean = True
 
-                If SLEType.EditValue.ToString = "1" Then
-                    'pps target
-                    Dim ids As String = ""
-                    For i = 0 To GVPps.RowCount - 1
-                        If Not i = 0 Then
-                            ids += ","
-                        End If
-                        ids += GVPps.GetRowCellValue(i, "id_design").ToString
-                    Next
+                    If SLEType.EditValue.ToString = "1" Then
+                        'pps target
+                        Dim ids As String = ""
+                        For i = 0 To GVPps.RowCount - 1
+                            If Not i = 0 Then
+                                ids += ","
+                            End If
+                            ids += GVPps.GetRowCellValue(i, "id_design").ToString
+                        Next
 
-                    Dim qc As String = "SELECT id_design AS id_design FROM tb_sample_dev_tracking WHERE id_comp='" & SLEVendor.EditValue.ToString & "' AND id_design IN (" & ids & ")
+                        Dim qc As String = "SELECT id_design AS id_design FROM tb_sample_dev_tracking WHERE id_comp='" & SLEVendor.EditValue.ToString & "' AND id_design IN (" & ids & ")
 UNION ALL
 SELECT ppsd.id_design AS id_design FROM tb_sample_dev_pps pps
 INNER JOIN tb_sample_dev_pps_det ppsd ON ppsd.id_sample_dev_pps=pps.id_sample_dev_pps
 WHERE pps.id_comp='" & SLEVendor.EditValue.ToString & "' AND ppsd.id_design IN (" & ids & ") AND pps.id_report_status!=5 AND pps.id_type=1"
-                    Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
-                    If dtc.Rows.Count > 0 Then
-                        warningCustom("Beberapa artikel sudah pernah diajukan")
-                        is_ok = False
-                    End If
-                ElseIf SLEType.EditValue.ToString = "2" Then
-                    'changes
-                End If
-
-                '
-                If is_ok Then
-                    Dim q As String = "INSERT INTO `tb_sample_dev_pps`(created_date,id_comp,created_by,note,id_report_status,id_type)
-VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSlashes(MENote.Text) & "','1','" & SLEType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
-                    id_pps = execute_query(q, 0, True, "", "", "", "")
-
-                    execute_non_query("CALL gen_number('" & id_pps & "','403')", True, "", "", "", "")
-
-                    'detail
-                    q = "INSERT INTO `tb_sample_dev_pps_det`(`id_sample_dev_pps`,`id_design`,`labdip`,`strike_off_1`,`proto_sample_1`,`strike_off_2`,`proto_sample_2`,`copy_proto_sample_2`) VALUES"
-                    For i = 0 To GVPps.RowCount - 1
-                        If Not i = 0 Then
-                            q += ","
+                        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                        If dtc.Rows.Count > 0 Then
+                            warningCustom("Beberapa artikel sudah pernah diajukan")
+                            is_ok = False
                         End If
-                        q += "('" & id_pps & "','" & GVPps.GetRowCellValue(i, "id_design").ToString & "','" & Date.Parse(GVPps.GetRowCellValue(i, "labdip").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "strike_off_1").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "proto_sample_1").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "strike_off_2").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "proto_sample_2").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "copy_proto_sample_2").ToString).ToString("yyyy-MM-dd") & "')"
-                    Next
+                    ElseIf SLEType.EditValue.ToString = "2" Then
+                        'changes
+                    End If
 
-                    execute_non_query(q, True, "", "", "", "")
+                    '
+                    If is_ok Then
+                        Dim q As String = "INSERT INTO `tb_sample_dev_pps`(created_date,id_comp,created_by,note,id_report_status,id_type)
+VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSlashes(MENote.Text) & "','1','" & SLEType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
+                        id_pps = execute_query(q, 0, True, "", "", "", "")
 
-                    submit_who_prepared("403", id_pps, id_user)
+                        execute_non_query("CALL gen_number('" & id_pps & "','403')", True, "", "", "", "")
 
-                    Close()
+                        'detail
+                        q = "INSERT INTO `tb_sample_dev_pps_det`(`id_sample_dev_pps`,`id_design`,`labdip`,`strike_off_1`,`proto_sample_1`,`strike_off_2`,`proto_sample_2`,`copy_proto_sample_2`) VALUES"
+                        For i = 0 To GVPps.RowCount - 1
+                            If Not i = 0 Then
+                                q += ","
+                            End If
+                            q += "('" & id_pps & "','" & GVPps.GetRowCellValue(i, "id_design").ToString & "','" & Date.Parse(GVPps.GetRowCellValue(i, "labdip").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "strike_off_1").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "proto_sample_1").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "strike_off_2").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "proto_sample_2").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "copy_proto_sample_2").ToString).ToString("yyyy-MM-dd") & "')"
+                        Next
+
+                        execute_non_query(q, True, "", "", "", "")
+
+                        submit_who_prepared("403", id_pps, id_user)
+
+                        Close()
+                    End If
+                Else
+                    'no edit pls
                 End If
+            End If
+        Else
+            If GVPps.RowCount = 0 Then
+                warningCustom("No data found, please put some design.")
             Else
-                'no edit pls
+                If id_pps = "-1" Then
+                    'check sudah ada apa belum
+                    Dim is_ok As Boolean = True
+
+                    If SLEType.EditValue.ToString = "1" Then
+                        'pps target
+                        Dim ids As String = ""
+                        For i = 0 To GVPps.RowCount - 1
+                            If Not i = 0 Then
+                                ids += ","
+                            End If
+                            ids += GVPps.GetRowCellValue(i, "id_design").ToString
+                        Next
+
+                        Dim qc As String = "SELECT id_design AS id_design FROM tb_sample_dev_tracking WHERE id_comp='" & SLEVendor.EditValue.ToString & "' AND id_design IN (" & ids & ")
+UNION ALL
+SELECT ppsd.id_design AS id_design FROM tb_sample_dev_pps pps
+INNER JOIN tb_sample_dev_pps_det ppsd ON ppsd.id_sample_dev_pps=pps.id_sample_dev_pps
+WHERE pps.id_comp='" & SLEVendor.EditValue.ToString & "' AND ppsd.id_design IN (" & ids & ") AND pps.id_report_status!=5 AND pps.id_type=1"
+                        Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                        If dtc.Rows.Count > 0 Then
+                            warningCustom("Beberapa artikel sudah pernah diajukan")
+                            is_ok = False
+                        End If
+                    ElseIf SLEType.EditValue.ToString = "2" Then
+                        'changes
+                    End If
+
+                    '
+                    If is_ok Then
+                        Dim q As String = "INSERT INTO `tb_sample_dev_pps`(created_date,id_comp,created_by,note,id_report_status,id_type)
+VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSlashes(MENote.Text) & "','1','" & SLEType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
+                        id_pps = execute_query(q, 0, True, "", "", "", "")
+
+                        execute_non_query("CALL gen_number('" & id_pps & "','403')", True, "", "", "", "")
+
+                        'detail
+                        q = "INSERT INTO `tb_sample_dev_pps_det`(`id_sample_dev_pps`,`id_design`,`labdip`,`strike_off_1`,`proto_sample_1`,`strike_off_2`,`proto_sample_2`,`copy_proto_sample_2`) VALUES"
+                        For i = 0 To GVPps.RowCount - 1
+                            If Not i = 0 Then
+                                q += ","
+                            End If
+                            q += "('" & id_pps & "','" & GVPps.GetRowCellValue(i, "id_design").ToString & "','" & Date.Parse(GVPps.GetRowCellValue(i, "labdip").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "strike_off_1").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "proto_sample_1").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "strike_off_2").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "proto_sample_2").ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(GVPps.GetRowCellValue(i, "copy_proto_sample_2").ToString).ToString("yyyy-MM-dd") & "')"
+                        Next
+
+                        execute_non_query(q, True, "", "", "", "")
+
+                        submit_who_prepared("403", id_pps, id_user)
+
+                        Close()
+                    End If
+                Else
+                    'no edit pls
+                End If
             End If
         End If
     End Sub
@@ -331,5 +396,9 @@ WHERE pps.id_sample_dev_pps='" & id_pps & "'"
             FormSampleDevTargetAdd.is_change = "1"
             FormSampleDevTargetAdd.ShowDialog()
         End If
+    End Sub
+
+    Private Sub BGetTemplate_Click(sender As Object, e As EventArgs) Handles BGetTemplate.Click
+
     End Sub
 End Class

@@ -54,6 +54,8 @@ Partial Class FormSampleDevTargetPps
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
+        Me.BImportData = New DevExpress.XtraEditors.SimpleButton()
+        Me.BGetTemplate = New DevExpress.XtraEditors.SimpleButton()
         Me.BDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
@@ -67,6 +69,7 @@ Partial Class FormSampleDevTargetPps
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
@@ -409,6 +412,8 @@ Partial Class FormSampleDevTargetPps
         '
         'PCAddDel
         '
+        Me.PCAddDel.Controls.Add(Me.BImportData)
+        Me.PCAddDel.Controls.Add(Me.BGetTemplate)
         Me.PCAddDel.Controls.Add(Me.BDel)
         Me.PCAddDel.Controls.Add(Me.BAdd)
         Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
@@ -416,6 +421,30 @@ Partial Class FormSampleDevTargetPps
         Me.PCAddDel.Name = "PCAddDel"
         Me.PCAddDel.Size = New System.Drawing.Size(1022, 43)
         Me.PCAddDel.TabIndex = 9
+        '
+        'BImportData
+        '
+        Me.BImportData.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BImportData.Image = CType(resources.GetObject("BImportData.Image"), System.Drawing.Image)
+        Me.BImportData.ImageIndex = 7
+        Me.BImportData.Location = New System.Drawing.Point(122, 2)
+        Me.BImportData.Name = "BImportData"
+        Me.BImportData.Size = New System.Drawing.Size(120, 39)
+        Me.BImportData.TabIndex = 20
+        Me.BImportData.TabStop = False
+        Me.BImportData.Text = "Import Data"
+        '
+        'BGetTemplate
+        '
+        Me.BGetTemplate.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BGetTemplate.Image = CType(resources.GetObject("BGetTemplate.Image"), System.Drawing.Image)
+        Me.BGetTemplate.ImageIndex = 7
+        Me.BGetTemplate.Location = New System.Drawing.Point(2, 2)
+        Me.BGetTemplate.Name = "BGetTemplate"
+        Me.BGetTemplate.Size = New System.Drawing.Size(120, 39)
+        Me.BGetTemplate.TabIndex = 19
+        Me.BGetTemplate.TabStop = False
+        Me.BGetTemplate.Text = "Get Template"
         '
         'BDel
         '
@@ -478,7 +507,7 @@ Partial Class FormSampleDevTargetPps
         '
         'GVChanges
         '
-        Me.GVChanges.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn20, Me.GridColumn18, Me.GridColumn17})
+        Me.GVChanges.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn20, Me.GridColumn18, Me.GridColumn17, Me.GridColumn19})
         Me.GVChanges.GridControl = Me.GCChanges
         Me.GVChanges.Name = "GVChanges"
         Me.GVChanges.OptionsBehavior.Editable = False
@@ -507,7 +536,7 @@ Partial Class FormSampleDevTargetPps
         'GridColumn20
         '
         Me.GridColumn20.Caption = "Step"
-        Me.GridColumn20.FieldName = "type"
+        Me.GridColumn20.FieldName = "tahapan"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 1
@@ -515,6 +544,7 @@ Partial Class FormSampleDevTargetPps
         'GridColumn18
         '
         Me.GridColumn18.Caption = "Current Update Date"
+        Me.GridColumn18.FieldName = "current_date"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 2
@@ -524,10 +554,18 @@ Partial Class FormSampleDevTargetPps
         Me.GridColumn17.Caption = "New Update Date"
         Me.GridColumn17.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn17.FieldName = "labdip"
+        Me.GridColumn17.FieldName = "new_date"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 3
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Reason"
+        Me.GridColumn19.FieldName = "reason"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 4
         '
         'RepositoryItemDateEdit2
         '
@@ -633,4 +671,7 @@ Partial Class FormSampleDevTargetPps
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemDateEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BImportData As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BGetTemplate As DevExpress.XtraEditors.SimpleButton
 End Class

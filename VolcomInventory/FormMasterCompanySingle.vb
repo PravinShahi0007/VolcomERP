@@ -347,20 +347,16 @@ WHERE comp.id_comp = '{0}'", id_company)
 
             LECountry.EditValue = Nothing
             LECountry.ItemIndex = LECountry.Properties.GetDataSourceRowIndex("id_country", id_country)
-            'view_region(LERegion, LECountry.EditValue.ToString)
-            MsgBox("2")
+            view_region(LERegion, LECountry.EditValue.ToString)
             LERegion.EditValue = Nothing
             LERegion.ItemIndex = LERegion.Properties.GetDataSourceRowIndex("id_region", id_region)
-            'view_state(LEState, LERegion.EditValue.ToString)
-            MsgBox("3")
+            view_state(LEState, LERegion.EditValue.ToString)
             LEState.EditValue = Nothing
             LEState.ItemIndex = LEState.Properties.GetDataSourceRowIndex("id_state", id_state)
-            'view_city(LECity, LEState.EditValue.ToString)
-            MsgBox("4")
+            view_city(LECity, LEState.EditValue.ToString)
             LECity.EditValue = Nothing
             LECity.ItemIndex = LECity.Properties.GetDataSourceRowIndex("id_city", id_city)
-            'view_district(LEDistrict, LECity.EditValue.ToString)
-            MsgBox("5")
+            view_district(LEDistrict, LECity.EditValue.ToString)
             LEDistrict.EditValue = Nothing
             LEDistrict.ItemIndex = LEDistrict.Properties.GetDataSourceRowIndex("id_sub_district", id_sub_district)
 
