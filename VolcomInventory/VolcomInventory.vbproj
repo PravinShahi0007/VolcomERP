@@ -10606,6 +10606,12 @@
     <Compile Include="ReportSampleDevTarget.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSampleDevTrack.Designer.vb">
+      <DependentUpon>ReportSampleDevTrack.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSampleDevTrack.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSampleExpense.Designer.vb">
       <DependentUpon>ReportSampleExpense.vb</DependentUpon>
     </Compile>
@@ -16553,6 +16559,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSampleDevTarget.resx">
       <DependentUpon>ReportSampleDevTarget.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSampleDevTrack.resx">
+      <DependentUpon>ReportSampleDevTrack.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSampleExpense.resx">
       <DependentUpon>ReportSampleExpense.vb</DependentUpon>

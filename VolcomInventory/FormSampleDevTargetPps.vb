@@ -35,23 +35,26 @@ SELECT '3' AS id_type,'Actual' AS `type`
             load_det()
             '
             If is_changes = "1" Then
-                SLEVendor.Properties.ReadOnly = True
-                PCAddDel.Visible = False
-                '
-                SLEVendor.EditValue = FormSampleDevelopment.GVTracker.GetRowCellValue(0, "id_comp").ToString
-                For i = 0 To FormSampleDevelopment.GVTracker.RowCount - 1
-                    Dim newRow As DataRow = (TryCast(GCPps.DataSource, DataTable)).NewRow()
-                    newRow("id_design") = FormSampleDevelopment.GVTracker.GetRowCellValue(i, "id_design").ToString
-                    newRow("design_display_name") = FormSampleDevelopment.GVTracker.GetRowCellValue(i, "design_display_name").ToString
-                    newRow("labdip") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "labdip_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "labdip"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "labdip_upd"))
-                    newRow("strike_off_1") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_1_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_1"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_1_upd"))
-                    newRow("proto_sample_1") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_1_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_1"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_1_upd"))
-                    newRow("strike_off_2") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_2_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_2"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_2_upd"))
-                    newRow("proto_sample_2") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_2_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_2"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_2_upd"))
-                    newRow("copy_proto_sample_2") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "copy_proto_sample_2_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "copy_proto_sample_2"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "copy_proto_sample_2_upd"))
-                    TryCast(GCPps.DataSource, DataTable).Rows.Add(newRow)
-                Next
+                'SLEVendor.Properties.ReadOnly = True
+                'PCAddDel.Visible = False
+                ''
+                'SLEVendor.EditValue = FormSampleDevelopment.GVTracker.GetRowCellValue(0, "id_comp").ToString
+                'For i = 0 To FormSampleDevelopment.GVTracker.RowCount - 1
+                '    Dim newRow As DataRow = (TryCast(GCPps.DataSource, DataTable)).NewRow()
+                '    newRow("id_design") = FormSampleDevelopment.GVTracker.GetRowCellValue(i, "id_design").ToString
+                '    newRow("design_display_name") = FormSampleDevelopment.GVTracker.GetRowCellValue(i, "design_display_name").ToString
+                '    newRow("labdip") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "labdip_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "labdip"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "labdip_upd"))
+                '    newRow("strike_off_1") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_1_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_1"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_1_upd"))
+                '    newRow("proto_sample_1") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_1_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_1"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_1_upd"))
+                '    newRow("strike_off_2") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_2_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_2"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "strike_off_2_upd"))
+                '    newRow("proto_sample_2") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_2_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_2"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "proto_sample_2_upd"))
+                '    newRow("copy_proto_sample_2") = If(FormSampleDevelopment.GVTracker.GetRowCellValue(i, "copy_proto_sample_2_upd").ToString = "", FormSampleDevelopment.GVTracker.GetRowCellValue(i, "copy_proto_sample_2"), FormSampleDevelopment.GVTracker.GetRowCellValue(i, "copy_proto_sample_2_upd"))
+                '    TryCast(GCPps.DataSource, DataTable).Rows.Add(newRow)
+                'Next
+
                 SLEType.EditValue = "2"
+                FormImportExcel.id_pop_up = "65"
+                FormImportExcel.ShowDialog()
             End If
         Else
             'update

@@ -18,6 +18,8 @@
     Private Sub FormOLStoreDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCompGroup()
         viewDetail()
+        stopCustom("This feature is not used, please contact Administrator")
+        Close()
     End Sub
 
     Sub viewDetail()

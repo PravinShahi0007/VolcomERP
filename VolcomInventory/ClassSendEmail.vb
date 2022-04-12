@@ -1,5 +1,8 @@
-﻿Imports System.IO
+﻿Imports System.Globalization
+Imports System.IO
 Imports System.Net.Mail
+Imports System.Net.Mime
+Imports DevExpress.XtraPrinting
 
 Public Class ClassSendEmail
     Public id_report As String = "-1"
@@ -5963,7 +5966,45 @@ INNER JOIN `tb_sni_pps` pps ON pps.id_sni_pps=l.id_sni_pps AND pps.id_report_sta
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
 
+            Dim query As String = "SELECT c.comp_name AS comp_name,DATE_FORMAT(NOW(),'%d %M %Y') AS dte FROM tb_m_comp c WHERE c.id_comp='" & par1 & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            'attach
+            'Dim Mem As New MemoryStream()
+            'Dim exportOptions As New XlsxExportOptionsEx()
+            'exportOptions.ExportMode = DevExpress.Export.ExportType.WYSIWYG
+
+            'FormSampleDevelopment.GVUpdate.ExportToXlsx(Mem, exportOptions)
+            '' Create a new attachment and put the PDF report into it.
+            'Mem.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Dim now_date As String = Date.Parse(data.Rows(0)("dte").ToString).ToString("dd MMMM yyyy")
+
+            'Dim Att = New Attachment(Mem, data.Rows(0)("comp_name").ToString & " " & now_date & ".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+            'mail.Attachments.Add(Att)
+
+            Dim Report As New ReportSampleDevTrack()
+            Report.DataSource = data
+            Report.id_comp = par1
+            ' Create a new memory stream and export the report into it as PDF.
+            Dim Mem As New MemoryStream()
+
+            Report.ExportToXlsx(Mem)
+            ' Create a new attachment and put the PDF report into it.
+            Mem.Seek(0, SeekOrigin.Begin)
+            Dim Att = New Attachment(Mem, data.Rows(0)("comp_name").ToString & " " & data.Rows(0)("dte").ToString & ".xlsx", "application/ms-excel")
+            mail.Attachments.Add(Att)
+
             'Send to
+            'to vendor
+            Dim qv As String = "SELECT email,name FROM tb_mail_to_group c
+WHERE c.id_comp='" & par1 & "' AND report_mark_type='404'"
+            Dim dtv As DataTable = execute_query(qv, -1, True, "", "", "", "")
+            For i = 0 To dtv.Rows.Count - 1
+                Dim vendor_mail As MailAddress = New MailAddress(dtv.Rows(i)("email").ToString, dtv.Rows(i)("name").ToString)
+                mail.To.Add(vendor_mail)
+            Next
+
             Dim query_send_mail As String = "SELECT IF(md.id_user=0,SUBSTRING_INDEX(external_recipient,';',-1),emp.`email_external`) AS email_external, IF(md.id_user=0,SUBSTRING_INDEX(external_recipient,';',1),emp.`employee_name`) AS employee_name
             FROM tb_mail_to md
             LEFT JOIN tb_m_user usr ON usr.`id_user`=md.id_user
@@ -5986,26 +6027,6 @@ INNER JOIN `tb_sni_pps` pps ON pps.id_sni_pps=l.id_sni_pps AND pps.id_report_sta
                 Dim to_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
                 mail.CC.Add(to_mail)
             Next
-
-            Dim query As String = "(SELECT id_comp,id_design,'Lab dip' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
-FROM `tb_sample_dev_tracking` WHERE ISNULL(labdip_act) AND DATE(IF(ISNULL(labdip_upd),labdip,labdip_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
-UNION ALL
-(SELECT id_comp,id_design,'Strike Off 1' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
-FROM `tb_sample_dev_tracking` WHERE ISNULL(strike_off_1_act) AND DATE(IF(ISNULL(strike_off_1_upd),strike_off_1,strike_off_1_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
-UNION ALL
-(SELECT id_comp,id_design,'Proto Sample 1' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
-FROM `tb_sample_dev_tracking` WHERE ISNULL(proto_sample_1_act) AND DATE(IF(ISNULL(proto_sample_1_upd),proto_sample_1,proto_sample_1_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
-UNION ALL
-(SELECT id_comp,id_design,'Lab dip' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
-FROM `tb_sample_dev_tracking` WHERE ISNULL(strike_off_2_act) AND DATE(IF(ISNULL(strike_off_2_upd),strike_off_2,strike_off_2_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
-UNION ALL
-(SELECT id_comp,id_design,'Strike Off 2' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
-FROM `tb_sample_dev_tracking` WHERE ISNULL(proto_sample_2_act) AND DATE(IF(ISNULL(proto_sample_2_upd),proto_sample_2,proto_sample_2_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
-UNION ALL
-(SELECT id_comp,id_design,'Copy Proto Sample 2' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
-FROM `tb_sample_dev_tracking` WHERE ISNULL(copy_proto_sample_2_act) AND DATE(IF(ISNULL(copy_proto_sample_2_upd),copy_proto_sample_2,copy_proto_sample_2_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))"
-
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             mail.Subject = subj
             mail.IsBodyHtml = True
@@ -6047,24 +6068,9 @@ FROM `tb_sample_dev_tracking` WHERE ISNULL(copy_proto_sample_2_act) AND DATE(IF(
 
          <tr>
             <td style='padding:15.0pt 15.0pt 5.0pt 15.0pt' colspan='3'>
-                <p style='font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Dear Team,</p>
-                <p style='margin-bottom:5pt; line-height:20.25pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Telah disetujui perubahan ECOP untuk artikel KIDS di bawah ini : 
-                <table width='100%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='background:white; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
-                    <tr>
-                      <th>SNI Propose Budget Number</th>
-                      <th>Design Code</th>
-                      <th>Design</th>
-                    </tr>"
-            For i = 0 To data.Rows.Count - 1
-                mail.Body += "<tr>
-                      <td>" & data.Rows(i)("number").ToString & "</td>
-                      <td>" & data.Rows(i)("design_code").ToString & "</td>
-                      <td>" & data.Rows(i)("design_name").ToString & "</td>
-                    </tr>"
-            Next
-
-            mail.Body += "</table>
-                Mohon konfirmasinya untuk perubahan cost estimasi SNI pada sistem ERP.
+                <p style='font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Dear " & data.Rows(0)("comp_name").ToString & ",</p>
+                <p style='margin-bottom:5pt; line-height:20.25pt; font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060; border-spacing:0 7px;'>Berikut kami kirimkan daftar target penyelesaian sample untuk tanggal " & Date.Parse(data.Rows(0)("dte").ToString).ToString("dd MMMM yyyy", New CultureInfo("id-ID")) & ". Detail terlampir.
+                Mohon konfirmasinya untuk target pengerjaan sample tersebut.
                 <br><br>
                 Terima kasih atas perhatian dan kerjasamanya. 
 </p>
