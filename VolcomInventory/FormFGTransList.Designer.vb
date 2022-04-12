@@ -5021,10 +5021,10 @@ Partial Class FormFGTransList
         '
         Me.XTCSales.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCSales.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
-        Me.XTCSales.Location = New System.Drawing.Point(0, 149)
+        Me.XTCSales.Location = New System.Drawing.Point(0, 150)
         Me.XTCSales.Name = "XTCSales"
         Me.XTCSales.SelectedTabPage = Me.XTPSalesBarcode
-        Me.XTCSales.Size = New System.Drawing.Size(1165, 345)
+        Me.XTCSales.Size = New System.Drawing.Size(1165, 344)
         Me.XTCSales.TabIndex = 10
         Me.XTCSales.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSalesBarcode, Me.XTPSalesMainCode})
         '
@@ -5032,7 +5032,7 @@ Partial Class FormFGTransList
         '
         Me.XTPSalesBarcode.Controls.Add(Me.GCSales)
         Me.XTPSalesBarcode.Name = "XTPSalesBarcode"
-        Me.XTPSalesBarcode.Size = New System.Drawing.Size(1136, 339)
+        Me.XTPSalesBarcode.Size = New System.Drawing.Size(1136, 338)
         Me.XTPSalesBarcode.Text = "By Barcode"
         '
         'GCSales
@@ -5041,7 +5041,7 @@ Partial Class FormFGTransList
         Me.GCSales.Location = New System.Drawing.Point(0, 0)
         Me.GCSales.MainView = Me.GVSales
         Me.GCSales.Name = "GCSales"
-        Me.GCSales.Size = New System.Drawing.Size(1136, 339)
+        Me.GCSales.Size = New System.Drawing.Size(1136, 338)
         Me.GCSales.TabIndex = 9
         Me.GCSales.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSales})
         '
@@ -5661,7 +5661,7 @@ Partial Class FormFGTransList
         Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl6.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl6.Name = "GroupControl6"
-        Me.GroupControl6.Size = New System.Drawing.Size(1165, 149)
+        Me.GroupControl6.Size = New System.Drawing.Size(1165, 150)
         Me.GroupControl6.TabIndex = 8
         '
         'PanelControl2
@@ -5670,7 +5670,7 @@ Partial Class FormFGTransList
         Me.PanelControl2.Controls.Add(Me.LabelControl32)
         Me.PanelControl2.Controls.Add(Me.BtnExportToXLSSal)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(20, 106)
+        Me.PanelControl2.Location = New System.Drawing.Point(20, 107)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1143, 42)
         Me.PanelControl2.TabIndex = 8931
@@ -5718,7 +5718,7 @@ Partial Class FormFGTransList
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1143, 104)
+        Me.PanelControl1.Size = New System.Drawing.Size(1143, 105)
         Me.PanelControl1.TabIndex = 8930
         '
         'CEIncludePrmUni
@@ -5814,11 +5814,10 @@ Partial Class FormFGTransList
         '
         'CEPromo
         '
-        Me.CEPromo.EditValue = True
-        Me.CEPromo.Location = New System.Drawing.Point(259, 124)
+        Me.CEPromo.Location = New System.Drawing.Point(346, 66)
         Me.CEPromo.Name = "CEPromo"
-        Me.CEPromo.Properties.Caption = "Include GWP"
-        Me.CEPromo.Size = New System.Drawing.Size(81, 19)
+        Me.CEPromo.Properties.Caption = "Include Invoice Nol"
+        Me.CEPromo.Size = New System.Drawing.Size(125, 19)
         Me.CEPromo.TabIndex = 8926
         '
         'LabelControl3
