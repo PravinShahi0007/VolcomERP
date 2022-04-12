@@ -2,7 +2,7 @@
     Public id_comp As String = "-1"
     Private Sub ReportSampleDevTrack_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         'table
-        Dim qv As String = "(SELECT t.id_design AS id_design,'Lab dip' AS tahapan,CONCAT(dsg.design_code,' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name,'' AS confirm,'' AS reason,'' AS new_dates
+        Dim qv As String = "(SELECT t.id_design AS id_design,'Lab dip' AS tahapan,CONCAT(dsg.design_code,' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name,'' AS confirm,'' AS reason,'' AS new_dates,'" & id_comp & "' AS id_comp
 FROM `tb_sample_dev_tracking` t
 INNER JOIN tb_m_design dsg ON dsg.id_design=t.id_design
 INNER JOIN tb_season s ON s.id_season=dsg.id_season
@@ -26,7 +26,7 @@ LEFT JOIN (
 ) cd ON cd.id_design = dsg.id_design
 WHERE ISNULL(t.labdip_act) AND DATE(IF(ISNULL(t.labdip_upd),t.labdip,t.labdip_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AND t.id_comp='" & id_comp & "')
 UNION ALL
-(SELECT t.id_design AS id_design,'Strike Off 1' AS tahapan,CONCAT(dsg.design_code,' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name,'' AS confirm,'' AS reason,'' AS new_dates
+(SELECT t.id_design AS id_design,'Strike Off 1' AS tahapan,CONCAT(dsg.design_code,' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name,'' AS confirm,'' AS reason,'' AS new_dates,'" & id_comp & "' AS id_comp
 FROM `tb_sample_dev_tracking` t
 INNER JOIN tb_m_design dsg ON dsg.id_design=t.id_design
 INNER JOIN tb_season s ON s.id_season=dsg.id_season
@@ -49,7 +49,7 @@ LEFT JOIN (
 	GROUP BY dc.id_design
 ) cd ON cd.id_design = dsg.id_design WHERE ISNULL(t.strike_off_1_act) AND DATE(IF(ISNULL(t.strike_off_1_upd),t.strike_off_1,t.strike_off_1_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AND t.id_comp='" & id_comp & "')
 UNION ALL
-(SELECT t.id_design AS id_design,'Proto Sample 1' AS tahapan,CONCAT(dsg.design_code,' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name,'' AS confirm,'' AS reason,'' AS new_dates
+(SELECT t.id_design AS id_design,'Proto Sample 1' AS tahapan,CONCAT(dsg.design_code,' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name,'' AS confirm,'' AS reason,'' AS new_dates,'" & id_comp & "' AS id_comp
 FROM `tb_sample_dev_tracking` t
 INNER JOIN tb_m_design dsg ON dsg.id_design=t.id_design
 INNER JOIN tb_season s ON s.id_season=dsg.id_season
@@ -72,7 +72,7 @@ LEFT JOIN (
 	GROUP BY dc.id_design
 ) cd ON cd.id_design = dsg.id_design WHERE ISNULL(t.proto_sample_1_act) AND DATE(IF(ISNULL(t.proto_sample_1_upd),t.proto_sample_1,t.proto_sample_1_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AND t.id_comp='" & id_comp & "')
 UNION ALL
-(SELECT t.id_design AS id_design,'Lab dip' AS typ,CONCAT(dsg.design_code,' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name,'' AS confirm,'' AS reason,'' AS new_dates
+(SELECT t.id_design AS id_design,'Lab dip' AS typ,CONCAT(dsg.design_code,' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name,'' AS confirm,'' AS reason,'' AS new_dates,'" & id_comp & "' AS id_comp
 FROM `tb_sample_dev_tracking` t
 INNER JOIN tb_m_design dsg ON dsg.id_design=t.id_design
 INNER JOIN tb_season s ON s.id_season=dsg.id_season
@@ -95,7 +95,7 @@ LEFT JOIN (
 	GROUP BY dc.id_design
 ) cd ON cd.id_design = dsg.id_design WHERE ISNULL(t.strike_off_2_act) AND DATE(IF(ISNULL(t.strike_off_2_upd),t.strike_off_2,t.strike_off_2_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AND t.id_comp='" & id_comp & "')
 UNION ALL
-(SELECT t.id_design AS id_design,'Strike Off 2' AS tahapan,CONCAT(dsg.design_code,' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name,'' AS confirm,'' AS reason,'' AS new_dates
+(SELECT t.id_design AS id_design,'Strike Off 2' AS tahapan,CONCAT(dsg.design_code,' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name,'' AS confirm,'' AS reason,'' AS new_dates,'" & id_comp & "' AS id_comp
 FROM `tb_sample_dev_tracking` t
 INNER JOIN tb_m_design dsg ON dsg.id_design=t.id_design
 INNER JOIN tb_season s ON s.id_season=dsg.id_season
@@ -118,7 +118,7 @@ LEFT JOIN (
 	GROUP BY dc.id_design
 ) cd ON cd.id_design = dsg.id_design WHERE ISNULL(t.proto_sample_2_act) AND DATE(IF(ISNULL(t.proto_sample_2_upd),t.proto_sample_2,t.proto_sample_2_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AND t.id_comp='" & id_comp & "')
 UNION ALL
-(SELECT t.id_design AS id_design,'Copy Proto Sample 2' AS tahapan,CONCAT(dsg.design_code,' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name,'' AS confirm,'' AS reason,'' AS new_dates
+(SELECT t.id_design AS id_design,'Copy Proto Sample 2' AS tahapan,CONCAT(dsg.design_code,' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS design_display_name,'' AS confirm,'' AS reason,'' AS new_dates,'" & id_comp & "' AS id_comp
 FROM `tb_sample_dev_tracking` t
 INNER JOIN tb_m_design dsg ON dsg.id_design=t.id_design
 INNER JOIN tb_season s ON s.id_season=dsg.id_season
@@ -194,5 +194,12 @@ LEFT JOIN (
         new_dates.Text = ""
         new_dates.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         new_dates.Font = font_row_style
+
+        'id_design
+        Dim vendor As DevExpress.XtraReports.UI.XRTableCell = row.Cells.Item(6)
+        vendor.ForeColor = Color.Transparent
+        vendor.Text = dt.Rows(row_i)("id_comp").ToString
+        vendor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        vendor.Font = font_row_style
     End Sub
 End Class

@@ -154,7 +154,7 @@ Public Class FormImportExcel
         ElseIf id_pop_up = "63" Then
             MyCommand = New OleDbDataAdapter("select Code, Account, SUM(Qty) AS Qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Code]='') GROUP BY Code,Account", oledbconn)
         ElseIf id_pop_up = "65" Then
-            MyCommand = New OleDbDataAdapter("select [id] AS id_design,[Tahapan] AS tahapan,[Artikel] AS artikel,[Confirm (yes/no)] AS confirm,[Reason not confirm] AS reason,[New Date (If not confirm)] AS new_date from [" & CBWorksheetName.SelectedItem.ToString & "A2:ZZ] WHERE [Confirm (yes/no)]='no'", oledbconn)
+            MyCommand = New OleDbDataAdapter("select [id] AS id_design,[Tahapan] AS tahapan,[Artikel] AS artikel,[Confirm (yes/no)] AS confirm,[Reason not confirm] AS reason,[New Date (If not confirm)] AS new_date,[vendor] AS id_comp from [" & CBWorksheetName.SelectedItem.ToString & "A2:ZZ] WHERE [Confirm (yes/no)]='no'", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -4811,8 +4811,33 @@ GROUP BY ol.checkout_id
             GVData.Columns("qty_erp").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("qty_erp").DisplayFormat.FormatString = "{0:n0}"
         ElseIf id_pop_up = "65" Then
-            Dim qry As String = "SELECT d.id_design,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color)  AS design_display_name 
-FROM tb_m_design d 
+            Dim qry As String = "SELECT tb.*,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color)  AS design_display_name 
+FROM(
+(SELECT t.id_design AS id_design,t.id_comp,'Lab dip' AS tahapan,DATE(IF(ISNULL(t.labdip_upd),t.labdip,t.labdip_upd)) AS cur_date
+FROM `tb_sample_dev_tracking` t
+WHERE ISNULL(t.labdip_act))
+UNION ALL
+(SELECT t.id_design AS id_design,t.id_comp,'Strike Off 1' AS tahapan,DATE(IF(ISNULL(t.strike_off_1_upd),t.strike_off_1,t.strike_off_1_upd)) AS cur_date
+FROM `tb_sample_dev_tracking` t
+WHERE ISNULL(t.strike_off_1_act))
+UNION ALL
+(SELECT t.id_design AS id_design,t.id_comp,'Proto Sample 1' AS tahapan,DATE(IF(ISNULL(t.proto_sample_1_upd),t.proto_sample_1,t.proto_sample_1_upd)) AS cur_date
+FROM `tb_sample_dev_tracking` t
+WHERE ISNULL(t.proto_sample_1_act))
+UNION ALL
+(SELECT t.id_design AS id_design,t.id_comp,'Strike Off 2' AS tahapan,DATE(IF(ISNULL(t.strike_off_2_upd),t.strike_off_2,t.strike_off_2_upd)) AS cur_date
+FROM `tb_sample_dev_tracking` t
+WHERE ISNULL(t.strike_off_2_act))
+UNION ALL
+(SELECT t.id_design AS id_design,t.id_comp,'Proto Sample 2' AS tahapan,DATE(IF(ISNULL(t.proto_sample_2_upd),t.proto_sample_2,t.proto_sample_2_upd)) AS cur_date
+FROM `tb_sample_dev_tracking` t
+WHERE ISNULL(t.proto_sample_2_act))
+UNION ALL
+(SELECT t.id_design AS id_design,t.id_comp,'Copy Proto Sample 2' AS tahapan,DATE(IF(ISNULL(t.copy_proto_sample_2_upd),t.copy_proto_sample_2,t.copy_proto_sample_2_upd)) AS cur_date
+FROM `tb_sample_dev_tracking` t
+WHERE ISNULL(t.copy_proto_sample_2_act))
+) tb
+INNER JOIN tb_m_design d ON tb.id_design=d.id_design
 INNER JOIN tb_season s ON s.id_season=d.id_season
 INNER JOIN tb_range r ON r.id_range=s.id_range
 LEFT JOIN (
@@ -4837,16 +4862,19 @@ WHERE d.id_lookup_status_order!=2 "
             Dim tb1 = data_temp.AsEnumerable()
             Dim tb2 = dt.AsEnumerable()
             Dim query = From table1 In tb1
-                        Group Join table_tmp In tb2 On table1("id_design").ToString Equals table_tmp("id_design").ToString
+                        Group Join table_tmp In tb2 On table1("id_design").ToString Equals table_tmp("id_design").ToString And table1("id_comp").ToString Equals table_tmp("id_comp").ToString And table1("tahapan").ToString Equals table_tmp("tahapan").ToString
                         Into Group
                         From y1 In Group.DefaultIfEmpty()
                         Select New With
                         {
                             .id_design = If(y1 Is Nothing, "", y1("id_design")),
+                            .id_comp = If(y1 Is Nothing, "", y1("id_comp")),
                             .description = If(y1 Is Nothing, "", y1("design_display_name")),
                             .tahapan = table1("tahapan"),
                             .reason = table1("reason"),
-                            .new_date = Date.Parse(table1("new_date").ToString)
+                            .current_date = If(y1 Is Nothing, "", y1("cur_date")),
+                            .new_date = Date.Parse(table1("new_date").ToString),
+                            .status = If(y1 Is Nothing, "Not Ok", "Ok")
                         }
             GCData.DataSource = Nothing
             GCData.DataSource = query.ToList()
@@ -4855,6 +4883,7 @@ WHERE d.id_lookup_status_order!=2 "
 
             'Customize column
             GVData.Columns("id_design").Visible = False
+            GVData.Columns("id_comp").Visible = False
             GVData.Columns("new_date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
             GVData.Columns("new_date").DisplayFormat.FormatString = "dd MMMM yyyy"
         End If
@@ -8017,6 +8046,43 @@ WHERE d.id_lookup_status_order!=2 "
                         infoCustom("Import Success")
                         Close()
                     End If
+                End If
+            ElseIf id_pop_up = "65" Then
+                makeSafeGV(GVData)
+                GVData.ActiveFilterString = "[status] = 'ok' "
+                If GVData.RowCount > 0 Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Only ok data will imported, continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = DialogResult.Yes Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+
+                        FormSampleDevTargetPps.SLEVendor.EditValue = GVData.GetRowCellValue(0, "id_comp").ToString
+
+                        'detail data
+                        Dim id_bsp As String = FormBSPDet.id
+                        For i As Integer = 0 To GVData.RowCount - 1
+                            Dim newRow As DataRow = (TryCast(FormSampleDevTargetPps.GCChanges.DataSource, DataTable)).NewRow()
+                            newRow("id_design") = GVData.GetRowCellValue(i, "id_design").ToString
+                            newRow("design_display_name") = GVData.GetRowCellValue(i, "description").ToString
+                            newRow("tahapan") = GVData.GetRowCellValue(i, "tahapan").ToString
+                            newRow("reason") = GVData.GetRowCellValue(i, "reason").ToString
+                            newRow("current_date") = GVData.GetRowCellValue(i, "current_date").ToString
+                            newRow("new_date") = GVData.GetRowCellValue(i, "new_date").ToString
+                            TryCast(FormSampleDevTargetPps.GCChanges.DataSource, DataTable).Rows.Add(newRow)
+
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+
+                        'refresh
+                        infoCustom("Import Success")
+                        Close()
+                    End If
+                Else
+                    stopCustom("There is no data for import process, please make sure your input !")
+                    makeSafeGV(GVData)
                 End If
             End If
         End If
