@@ -21,8 +21,8 @@ Partial Class FormSampleDevelopment
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSampleDevelopment))
-        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleContains2 As DevExpress.XtraEditors.FormatConditionRuleContains = New DevExpress.XtraEditors.FormatConditionRuleContains()
+        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleContains1 As DevExpress.XtraEditors.FormatConditionRuleContains = New DevExpress.XtraEditors.FormatConditionRuleContains()
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNavLineList = New DevExpress.XtraEditors.PanelControl()
         Me.PCNavLineList = New DevExpress.XtraEditors.PanelControl()
@@ -2259,6 +2259,8 @@ Partial Class FormSampleDevelopment
         'GridColumn20
         '
         Me.GridColumn20.Caption = "Created Date"
+        Me.GridColumn20.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn20.FieldName = "created_date"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
@@ -2456,14 +2458,14 @@ Partial Class FormSampleDevelopment
         'GVUpdate
         '
         Me.GVUpdate.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn45, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44})
-        GridFormatRule2.ApplyToRow = True
-        GridFormatRule2.Column = Me.GridColumn45
-        GridFormatRule2.Name = "Format0"
-        FormatConditionRuleContains2.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
-        FormatConditionRuleContains2.Appearance.Options.UseFont = True
-        FormatConditionRuleContains2.Values = CType(resources.GetObject("FormatConditionRuleContains2.Values"), System.Collections.IList)
-        GridFormatRule2.Rule = FormatConditionRuleContains2
-        Me.GVUpdate.FormatRules.Add(GridFormatRule2)
+        GridFormatRule1.ApplyToRow = True
+        GridFormatRule1.Column = Me.GridColumn45
+        GridFormatRule1.Name = "Format0"
+        FormatConditionRuleContains1.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold)
+        FormatConditionRuleContains1.Appearance.Options.UseFont = True
+        FormatConditionRuleContains1.Values = CType(resources.GetObject("FormatConditionRuleContains1.Values"), System.Collections.IList)
+        GridFormatRule1.Rule = FormatConditionRuleContains1
+        Me.GVUpdate.FormatRules.Add(GridFormatRule1)
         Me.GVUpdate.GridControl = Me.GCUpdate
         Me.GVUpdate.Name = "GVUpdate"
         Me.GVUpdate.OptionsPrint.PrintHeader = False

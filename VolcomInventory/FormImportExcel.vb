@@ -8153,6 +8153,39 @@ WHERE d.id_lookup_status_order!=2 "
                     stopCustom("There is no data for import process, please make sure your input !")
                     makeSafeGV(GVData)
                 End If
+            ElseIf id_pop_up = "66" Then
+                makeSafeGV(GVData)
+                GVData.ActiveFilterString = "[status] = 'Ok' "
+                If GVData.RowCount > 0 Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Only ok data will imported, continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = DialogResult.Yes Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+
+                        'detail data
+                        Dim id_bsp As String = FormBSPDet.id
+                        For i As Integer = 0 To GVData.RowCount - 1
+
+                            Dim q As String = "UPDATE `tb_sample_dev_pps_det` SET labdip=" & If(GVData.GetRowCellValue(i, "labdip").ToString = "", "NULL", "'" & Date.Parse(GVData.GetRowCellValue(i, "labdip").ToString).ToString("yyyy-MM-dd") & "'") & ",strike_off_1=" & If(GVData.GetRowCellValue(i, "strike_off_1").ToString = "", "NULL", "'" & Date.Parse(GVData.GetRowCellValue(i, "strike_off_1").ToString).ToString("yyyy-MM-dd") & "'") & ",proto_sample_1=" & If(GVData.GetRowCellValue(i, "proto_sample_1").ToString = "", "NULL", "'" & Date.Parse(GVData.GetRowCellValue(i, "proto_sample_1").ToString).ToString("yyyy-MM-dd") & "'") & ",strike_off_2=" & If(GVData.GetRowCellValue(i, "strike_off_2").ToString = "", "NULL", "'" & Date.Parse(GVData.GetRowCellValue(i, "strike_off_2").ToString).ToString("yyyy-MM-dd") & "'") & ",proto_sample_2=" & If(GVData.GetRowCellValue(i, "proto_sample_2").ToString = "", "NULL", "'" & Date.Parse(GVData.GetRowCellValue(i, "proto_sample_2").ToString).ToString("yyyy-MM-dd") & "'") & ",copy_proto_sample_2=" & If(GVData.GetRowCellValue(i, "copy_proto_sample_2").ToString = "", "NULL", "'" & Date.Parse(GVData.GetRowCellValue(i, "copy_proto_sample_2").ToString).ToString("yyyy-MM-dd") & "'") & "
+WHERE id_sample_dev_pps='" & FormSampleDevTargetPps.id_pps & "' AND id_design='" & GVData.GetRowCellValue(i, "id_design").ToString & "'"
+                            execute_non_query(q, True, "", "", "", "")
+
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+
+                        FormSampleDevTargetPps.load_det()
+
+                        'refresh
+                        infoCustom("Import Success")
+                        Close()
+                    End If
+                Else
+                    stopCustom("There is no data for import process, please make sure your input !")
+                    makeSafeGV(GVData)
+                End If
             End If
         End If
         Cursor = Cursors.Default
