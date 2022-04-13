@@ -25,6 +25,8 @@ SELECT '3' AS id_type,'Actual' AS `type`
 
         If id_pps = "-1" Then
             'new
+            BGetTemplate.Visible = False
+            BImportData.Visible = False
             PCAddDel.Visible = True
             '
             BtnSave.Visible = True
@@ -67,8 +69,6 @@ SELECT '3' AS id_type,'Actual' AS `type`
             BMark.Visible = True
             BRelease.Visible = True
             '
-            PCAddDel.Visible = False
-            '
             SLEVendor.Properties.ReadOnly = True
             MENote.Properties.ReadOnly = True
             '
@@ -88,6 +88,7 @@ WHERE pps.id_sample_dev_pps='" & id_pps & "'"
                 '
                 If id_report_status = "6" Or id_report_status = "5" Then
                     is_view = "1"
+                    PCAddDel.Visible = False
                     BRelease.Visible = False
                 End If
             End If
@@ -399,6 +400,26 @@ WHERE pps.id_sample_dev_pps='" & id_pps & "'"
     End Sub
 
     Private Sub BGetTemplate_Click(sender As Object, e As EventArgs) Handles BGetTemplate.Click
+        Cursor = Cursors.WaitCursor
+        Dim Report As New ReportSampleTargetTemplate()
+        Report.id_pps = id_pps
+        '
+        Dim q As String = "SELECT c.comp_name AS vendor,pps.number
+FROM tb_sample_dev_pps pps
+INNER JOIN tb_m_comp c ON c.id_comp=pps.id_comp
+WHERE pps.id_sample_dev_pps = '" & id_pps & "'"
+        Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+        Report.DataSource = dt
+        Report.Name = dt.Rows(0)("number").ToString
+        '
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
+    End Sub
 
+    Private Sub BImportData_Click(sender As Object, e As EventArgs) Handles BImportData.Click
+        FormImportExcel.id_pop_up = "66"
+        FormImportExcel.ShowDialog()
     End Sub
 End Class

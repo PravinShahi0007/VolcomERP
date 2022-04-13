@@ -58,6 +58,14 @@ WHERE id_prod_order_ko='" & id_ko & "'"
             '
         End If
 
+        'void
+        If is_void = "1" Then
+            PCDel.Visible = False
+            PCControl.Visible = False
+        Else
+            PCControl.Visible = True
+        End If
+
         If is_submit = "1" Then
             'submit
             BLock.Visible = False
@@ -77,14 +85,6 @@ WHERE id_prod_order_ko='" & id_ko & "'"
             BPrintKO.Visible = True
             '
             BMark.Visible = False
-        End If
-
-        'lock
-
-        'void
-        If is_void = "1" Then
-            PCDel.Visible = False
-            PCControl.Visible = False
         End If
 
         'prevent edit lead time
