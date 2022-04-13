@@ -155,6 +155,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select Code, Account, SUM(Qty) AS Qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Code]='') GROUP BY Code,Account", oledbconn)
         ElseIf id_pop_up = "65" Then
             MyCommand = New OleDbDataAdapter("select [id] AS id_design,[Tahapan] AS tahapan,[Artikel] AS artikel,[Confirm (yes/no)] AS confirm,[Reason not confirm] AS reason,[New Date (If not confirm)] AS new_date,[vendor] AS id_comp from [" & CBWorksheetName.SelectedItem.ToString & "A2:ZZ] WHERE [Confirm (yes/no)]='no'", oledbconn)
+        ElseIf id_pop_up = "66" Then
+            MyCommand = New OleDbDataAdapter("select [id] AS id_design,[Labdip] AS labdip,[Strike Off 1] AS strike_off_1,[Proto Sample 1] AS proto_sample_1,[Strike Off 2] AS strike_off_2,[Proto Sample 2] AS proto_sample_2,[Copy Proto Sample 2] AS copy_proto_sample_2 from [" & CBWorksheetName.SelectedItem.ToString & "A2:ZZ]", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -4886,6 +4888,73 @@ WHERE d.id_lookup_status_order!=2 "
             GVData.Columns("id_comp").Visible = False
             GVData.Columns("new_date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
             GVData.Columns("new_date").DisplayFormat.FormatString = "dd MMMM yyyy"
+        ElseIf id_pop_up = "66" Then
+            Dim qry As String = "SELECT tb.*,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color)  AS design_display_name 
+FROM(
+    SELECT ppsd.id_design,ppsd.`labdip`,ppsd.`strike_off_1`,ppsd.`proto_sample_1`,ppsd.`strike_off_2`,ppsd.`proto_sample_2`,ppsd.`copy_proto_sample_2`
+    FROM tb_sample_dev_pps_det ppsd
+    WHERE ppsd.id_sample_dev_pps='" & FormSampleDevTargetPps.id_pps & "'
+) tb
+INNER JOIN tb_m_design d ON tb.id_design=d.id_design
+INNER JOIN tb_season s ON s.id_season=d.id_season
+INNER JOIN tb_range r ON r.id_range=s.id_range
+LEFT JOIN (
+	SELECT dc.id_design, 
+	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
+	MAX(CASE WHEN cd.id_code=32 THEN cd.code_detail_name END) AS `division`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.id_code_detail END) AS `id_class`,
+	MAX(CASE WHEN cd.id_code=30 THEN cd.display_name END) AS `class`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.id_code_detail END) AS `id_color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.display_name END) AS `color`,
+	MAX(CASE WHEN cd.id_code=14 THEN cd.code_detail_name END) AS `color_desc`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.id_code_detail END) AS `id_sht`,
+	MAX(CASE WHEN cd.id_code=43 THEN cd.code_detail_name END) AS `sht`,
+	MAX(CASE WHEN cd.id_code=34 THEN cd.code_detail_name END) AS `prm`
+	FROM tb_m_design_code dc
+	INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail 
+	AND cd.id_code IN (32,30,14, 43, 34)
+	GROUP BY dc.id_design
+) cd ON cd.id_design = d.id_design
+WHERE d.id_lookup_status_order!=2 "
+            Dim dt As DataTable = execute_query(qry, -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb2 = dt.AsEnumerable()
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("id_design").ToString Equals table_tmp("id_design").ToString
+                        Into Group
+                        From y1 In Group.DefaultIfEmpty()
+                        Select New With
+                        {
+                            .id_design = If(y1 Is Nothing, "", y1("id_design")),
+                            .design_display_name = If(y1 Is Nothing, "", y1("design_display_name")),
+                            .labdip = If(table1("labdip").ToString = "", "", Date.Parse(table1("labdip").ToString)),
+                            .strike_off_1 = If(table1("strike_off_1").ToString = "", "", Date.Parse(table1("strike_off_1").ToString)),
+                            .proto_sample_1 = If(table1("proto_sample_1").ToString = "", "", Date.Parse(table1("proto_sample_1").ToString)),
+                            .strike_off_2 = If(table1("strike_off_2").ToString = "", "", Date.Parse(table1("strike_off_2").ToString)),
+                            .proto_sample_2 = If(table1("proto_sample_2").ToString = "", "", Date.Parse(table1("proto_sample_2").ToString)),
+                            .copy_proto_sample_2 = If(table1("copy_proto_sample_2").ToString = "", "", Date.Parse(table1("copy_proto_sample_2").ToString)),
+                            .status = If(y1 Is Nothing, "Not Ok", "Ok")
+                        }
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("id_design").Visible = False
+            GVData.Columns("design_display_name").Caption = "Artikel"
+            GVData.Columns("labdip").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("labdip").DisplayFormat.FormatString = "dd MMMM yyyy"
+            GVData.Columns("strike_off_1").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("strike_off_1").DisplayFormat.FormatString = "dd MMMM yyyy"
+            GVData.Columns("proto_sample_1").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("proto_sample_1").DisplayFormat.FormatString = "dd MMMM yyyy"
+            GVData.Columns("strike_off_2").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("strike_off_2").DisplayFormat.FormatString = "dd MMMM yyyy"
+            GVData.Columns("proto_sample_2").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("proto_sample_2").DisplayFormat.FormatString = "dd MMMM yyyy"
+            GVData.Columns("copy_proto_sample_2").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("copy_proto_sample_2").DisplayFormat.FormatString = "dd MMMM yyyy"
         End If
         data_temp.Dispose()
         oledbconn.Close()

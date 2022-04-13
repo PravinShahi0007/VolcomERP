@@ -56,7 +56,7 @@ Partial Public Class ReportSampleTargetTemplate
         Me.XT1.Name = "XT1"
         Me.XT1.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
         Me.XT1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1, Me.XRRow})
-        Me.XT1.SizeF = New System.Drawing.SizeF(761.9999!, 62.5!)
+        Me.XT1.SizeF = New System.Drawing.SizeF(761.5049!, 62.5!)
         Me.XT1.StylePriority.UseBorders = False
         Me.XT1.StylePriority.UsePadding = False
         Me.XT1.StylePriority.UseTextAlignment = False
@@ -84,7 +84,7 @@ Partial Public Class ReportSampleTargetTemplate
         Me.XrTableCell9.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrTableCell9.Name = "XrTableCell9"
         Me.XrTableCell9.StylePriority.UseBorders = False
-        Me.XrTableCell9.Text = "[comp_name]"
+        Me.XrTableCell9.Text = "[vendor]"
         Me.XrTableCell9.Weight = 5.82653771169964R
         '
         'XrTableCell11
@@ -95,7 +95,7 @@ Partial Public Class ReportSampleTargetTemplate
         Me.XrTableCell11.StylePriority.UseTextAlignment = False
         Me.XrTableCell11.Text = "[number]"
         Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell11.Weight = 1.673462288300362R
+        Me.XrTableCell11.Weight = 1.6685259370851115R
         '
         'XRRow
         '
@@ -123,43 +123,43 @@ Partial Public Class ReportSampleTargetTemplate
         '
         Me.XrTableCell5.Name = "XrTableCell5"
         Me.XrTableCell5.Text = "Artikel"
-        Me.XrTableCell5.Weight = 1.46052634190568R
+        Me.XrTableCell5.Weight = 2.228515971108493R
         '
         'XrTableCell6
         '
         Me.XrTableCell6.Name = "XrTableCell6"
         Me.XrTableCell6.Text = "Labdip"
-        Me.XrTableCell6.Weight = 1.00000008478048R
+        Me.XrTableCell6.Weight = 1.0724519125624712R
         '
         'XrTableCell7
         '
         Me.XrTableCell7.Name = "XrTableCell7"
         Me.XrTableCell7.Text = "Strike Off 1"
-        Me.XrTableCell7.Weight = 1.14490362260717R
+        Me.XrTableCell7.Weight = 1.1304141273225998R
         '
         'XrTableCell8
         '
         Me.XrTableCell8.Name = "XrTableCell8"
         Me.XrTableCell8.Text = "Proto Sample 1"
-        Me.XrTableCell8.Weight = 1.39107631699006R
+        Me.XrTableCell8.Weight = 1.5504698923614553R
         '
         'XrTableCell10
         '
         Me.XrTableCell10.Name = "XrTableCell10"
         Me.XrTableCell10.Text = "Strike Off 2"
-        Me.XrTableCell10.Weight = 1.27548247067952R
+        Me.XrTableCell10.Weight = 1.1595596099067607R
         '
         'XrTableCell13
         '
         Me.XrTableCell13.Name = "XrTableCell13"
         Me.XrTableCell13.Text = "Proto Sample 2"
-        Me.XrTableCell13.Weight = 1.85449825708704R
+        Me.XrTableCell13.Weight = 1.4342767856796628R
         '
         'XrTableCell12
         '
         Me.XrTableCell12.Name = "XrTableCell12"
         Me.XrTableCell12.Text = "Copy Proto Sample 2"
-        Me.XrTableCell12.Weight = 2.3340399423699818R
+        Me.XrTableCell12.Weight = 1.8779538260109858R
         '
         'TopMargin
         '
