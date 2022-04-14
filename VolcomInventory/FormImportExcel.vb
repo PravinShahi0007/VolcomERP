@@ -4943,6 +4943,8 @@ WHERE d.id_lookup_status_order!=2 "
             'check
             Dim err_text As String = ""
             For i = 0 To GVData.RowCount - 1
+                err_text = ""
+
                 If GVData.GetRowCellValue(i, "copy_proto_sample_2").ToString = "" Then
                     err_text = "Tanggal copy proto sample 2 tidak boleh kosong;"
                 End If
@@ -4977,6 +4979,9 @@ WHERE d.id_lookup_status_order!=2 "
                     End If
                 End If
                 '
+                If Not err_text = "" Then
+                    GVData.SetRowCellValue(i, "status", err_text)
+                End If
             Next
 
             'Customize column

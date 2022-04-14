@@ -69,6 +69,9 @@ SELECT '3' AS id_type,'Actual' AS `type`
             BMark.Visible = True
             BRelease.Visible = True
             '
+            BAdd.Visible = False
+            BDel.Visible = False
+            '
             SLEVendor.Properties.ReadOnly = True
             MENote.Properties.ReadOnly = True
             '

@@ -69,35 +69,39 @@ ORDER BY dsg.id_design DESC"
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         'check on list
         Dim is_ok As Boolean = True
-        If is_change = "1" Then
-            'no checking so far
-            If is_ok Then
-                FormSampleDevTargetPps.GVPps.SetFocusedRowCellValue("labdip", DELabDip.EditValue)
-                FormSampleDevTargetPps.GVPps.SetFocusedRowCellValue("strike_off_1", DELabDip.EditValue)
-                FormSampleDevTargetPps.GVPps.SetFocusedRowCellValue("proto_sample_1", DELabDip.EditValue)
-                FormSampleDevTargetPps.GVPps.SetFocusedRowCellValue("strike_off_2", DELabDip.EditValue)
-                FormSampleDevTargetPps.GVPps.SetFocusedRowCellValue("proto_sample_2", DELabDip.EditValue)
-                FormSampleDevTargetPps.GVPps.SetFocusedRowCellValue("copy_proto_sample_2", DELabDip.EditValue)
-                Close()
-            End If
+        If DECopyProtoSample2.Text = "" Then
+            warningCustom("Tanggal copy proto 2 harus memiliki tanggal")
         Else
-            For i As Integer = 0 To FormSampleDevTargetPps.GVPps.RowCount - 1
-                If SLEDesignStockStore.EditValue.ToString = FormSampleDevTargetPps.GVPps.GetRowCellValue(i, "id_design").ToString Then
-                    is_ok = False
-                    warningCustom("Design already listed")
+            If is_change = "1" Then
+                'no checking so far
+                If is_ok Then
+                    FormSampleDevTargetPps.GVPps.SetFocusedRowCellValue("labdip", DELabDip.EditValue)
+                    FormSampleDevTargetPps.GVPps.SetFocusedRowCellValue("strike_off_1", DEStrikeOff1.EditValue)
+                    FormSampleDevTargetPps.GVPps.SetFocusedRowCellValue("proto_sample_1", DEProtoSample1.EditValue)
+                    FormSampleDevTargetPps.GVPps.SetFocusedRowCellValue("strike_off_2", DEStrikeOff2.EditValue)
+                    FormSampleDevTargetPps.GVPps.SetFocusedRowCellValue("proto_sample_2", DEProtoSample2.EditValue)
+                    FormSampleDevTargetPps.GVPps.SetFocusedRowCellValue("copy_proto_sample_2", DECopyProtoSample2.EditValue)
+                    Close()
                 End If
-            Next
-            If is_ok Then
-                Dim newRow As DataRow = (TryCast(FormSampleDevTargetPps.GCPps.DataSource, DataTable)).NewRow()
-                newRow("id_design") = SLEDesignStockStore.EditValue.ToString
-                newRow("design_display_name") = SLEDesignStockStore.Text
-                newRow("labdip") = DELabDip.EditValue
-                newRow("strike_off_1") = DEStrikeOff1.EditValue
-                newRow("proto_sample_1") = DEProtoSample1.EditValue
-                newRow("strike_off_2") = DEStrikeOff2.EditValue
-                newRow("proto_sample_2") = DEProtoSample2.EditValue
-                newRow("copy_proto_sample_2") = DECopyProtoSample2.EditValue
-                TryCast(FormSampleDevTargetPps.GCPps.DataSource, DataTable).Rows.Add(newRow)
+            Else
+                For i As Integer = 0 To FormSampleDevTargetPps.GVPps.RowCount - 1
+                    If SLEDesignStockStore.EditValue.ToString = FormSampleDevTargetPps.GVPps.GetRowCellValue(i, "id_design").ToString Then
+                        is_ok = False
+                        warningCustom("Design already listed")
+                    End If
+                Next
+                If is_ok Then
+                    Dim newRow As DataRow = (TryCast(FormSampleDevTargetPps.GCPps.DataSource, DataTable)).NewRow()
+                    newRow("id_design") = SLEDesignStockStore.EditValue.ToString
+                    newRow("design_display_name") = SLEDesignStockStore.Text
+                    newRow("labdip") = DELabDip.EditValue
+                    newRow("strike_off_1") = DEStrikeOff1.EditValue
+                    newRow("proto_sample_1") = DEProtoSample1.EditValue
+                    newRow("strike_off_2") = DEStrikeOff2.EditValue
+                    newRow("proto_sample_2") = DEProtoSample2.EditValue
+                    newRow("copy_proto_sample_2") = DECopyProtoSample2.EditValue
+                    TryCast(FormSampleDevTargetPps.GCPps.DataSource, DataTable).Rows.Add(newRow)
+                End If
             End If
         End If
     End Sub
