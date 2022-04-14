@@ -199,19 +199,17 @@ VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSl
                         execute_non_query("CALL gen_number('" & id_pps & "','403')", True, "", "", "", "")
 
                         'detail
-                        q = "INSERT INTO `tb_sample_dev_pps_det`(`id_sample_dev_pps`,`id_design`,`labdip`,`strike_off_1`,`proto_sample_1`,`strike_off_2`,`proto_sample_2`,`copy_proto_sample_2`) VALUES"
+                        q = "INSERT INTO `tb_sample_dev_upd`(`id_sample_dev_pps`,`id_design`,`tahapan`,`current_date`,`new_date`,`reason`)"
                         For i = 0 To GVPps.RowCount - 1
                             If Not i = 0 Then
                                 q += ","
                             End If
 
-                            'q += "('" & id_pps & "','" & GVPps.GetRowCellValue(i, "id_design").ToString & "'," & labdip & "," & strike_off_1 & "," & proto_sample_1 & "," & strike_off_2 & "," & proto_sample_2 & "," & copy_proto_sample_2 & ")"
+                            q += "('" & id_pps & "','" & GVPps.GetRowCellValue(i, "id_design").ToString & "','" & GVPps.GetRowCellValue(i, "tahapan").ToString & "'," & If(GVPps.GetRowCellValue(i, "current_date").ToString = "", "NULL", "'" & Date.Parse(GVPps.GetRowCellValue(i, "current_date").ToString).ToString("yyyy-MM-dd") & "'") & ",'" & Date.Parse(GVPps.GetRowCellValue(i, "new_date").ToString).ToString("yyyy-MM-dd") & "','" & addSlashes(GVPps.GetRowCellValue(i, "reason").ToString) & "')"
                         Next
 
                         execute_non_query(q, True, "", "", "", "")
-
                         submit_who_prepared("403", id_pps, id_user)
-
                         Close()
                     End If
                 Else
