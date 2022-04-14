@@ -202,12 +202,12 @@ VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSl
 
                         'detail
                         q = "INSERT INTO `tb_sample_dev_upd`(`id_sample_dev_pps`,`id_design`,`tahapan`,`current_date`,`new_date`,`reason`) VALUES"
-                        For i = 0 To GVPps.RowCount - 1
+                        For i = 0 To GVChanges.RowCount - 1
                             If Not i = 0 Then
                                 q += ","
                             End If
 
-                            q += "('" & id_pps & "','" & GVPps.GetRowCellValue(i, "id_design").ToString & "','" & GVPps.GetRowCellValue(i, "tahapan").ToString & "'," & If(GVPps.GetRowCellValue(i, "current_date").ToString = "", "NULL", "'" & Date.Parse(GVPps.GetRowCellValue(i, "current_date").ToString).ToString("yyyy-MM-dd") & "'") & ",'" & Date.Parse(GVPps.GetRowCellValue(i, "new_date").ToString).ToString("yyyy-MM-dd") & "','" & addSlashes(GVPps.GetRowCellValue(i, "reason").ToString) & "')"
+                            q += "('" & id_pps & "','" & GVChanges.GetRowCellValue(i, "id_design").ToString & "','" & GVChanges.GetRowCellValue(i, "tahapan").ToString & "'," & If(GVChanges.GetRowCellValue(i, "current_date").ToString = "", "NULL", "'" & Date.Parse(GVChanges.GetRowCellValue(i, "current_date").ToString).ToString("yyyy-MM-dd") & "'") & ",'" & Date.Parse(GVChanges.GetRowCellValue(i, "new_date").ToString).ToString("yyyy-MM-dd") & "','" & addSlashes(GVChanges.GetRowCellValue(i, "reason").ToString) & "')"
                         Next
 
                         execute_non_query(q, True, "", "", "", "")
