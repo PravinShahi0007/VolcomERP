@@ -373,7 +373,7 @@ WHERE dsg.id_design = '{0}'", id_design)
                 End If
 
                 If is_ok Then
-                    If Not id_role_login = get_opt_prod_field("id_role_prod_manager") Then
+                    If Not id_role_login = get_opt_prod_field("id_role_prod_manager") And Not id_user = get_opt_prod_field("id_user_ast_mngr_prod") Then
                         stopCustom("You have no right to edit final COP.")
                     ElseIf TECOPCurrent.EditValue <= 0 Or TECOPMan.EditValue <= 0 Then
                         stopCustom("Please click get value COP by rate.")
@@ -700,7 +700,7 @@ WHERE `id_design`='" & id_design & "' "
         Dim query_cek As String = "SELECT * FROM tb_m_design WHERE id_design='" & id_design & "'"
         Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
         '
-        If Not id_role_login = get_opt_prod_field("id_role_prod_manager") Then
+        If Not id_role_login = get_opt_prod_field("id_role_prod_manager") And Not id_user = get_opt_prod_field("id_user_ast_mngr_prod") Then
             stopCustom("You have no access to do this.")
         ElseIf TECOPCurrent.EditValue = 0 Or TECOPMan.EditValue = 0 Then
             stopCustom("Please complete COP by rate")
