@@ -1771,19 +1771,19 @@ Partial Class FormSampleDevelopment
         '
         Me.CMTracking.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProposeChangesToolStripMenuItem, Me.SetActualToolStripMenuItem})
         Me.CMTracking.Name = "CMTracking"
-        Me.CMTracking.Size = New System.Drawing.Size(137, 48)
+        Me.CMTracking.Size = New System.Drawing.Size(141, 48)
         '
         'ProposeChangesToolStripMenuItem
         '
         Me.ProposeChangesToolStripMenuItem.Name = "ProposeChangesToolStripMenuItem"
-        Me.ProposeChangesToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
-        Me.ProposeChangesToolStripMenuItem.Text = "Set Updates"
+        Me.ProposeChangesToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.ProposeChangesToolStripMenuItem.Text = "Log Updates"
         '
         'SetActualToolStripMenuItem
         '
         Me.SetActualToolStripMenuItem.Name = "SetActualToolStripMenuItem"
-        Me.SetActualToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
-        Me.SetActualToolStripMenuItem.Text = "Set Actual"
+        Me.SetActualToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.SetActualToolStripMenuItem.Text = "Log Actual"
         '
         'GVTracker
         '
@@ -1810,6 +1810,8 @@ Partial Class FormSampleDevelopment
         Me.GridColumn32.Caption = "ID"
         Me.GridColumn32.FieldName = "id_sample_dev_tracking"
         Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.OptionsColumn.AllowEdit = False
+        Me.GridColumn32.OptionsColumn.ReadOnly = True
         '
         'BandedGridColumn17
         '
@@ -1836,6 +1838,8 @@ Partial Class FormSampleDevelopment
         Me.GridColumn33.Caption = "Design"
         Me.GridColumn33.FieldName = "design_display_name"
         Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.OptionsColumn.AllowEdit = False
+        Me.GridColumn33.OptionsColumn.ReadOnly = True
         Me.GridColumn33.Visible = True
         Me.GridColumn33.Width = 53
         '
@@ -1844,6 +1848,8 @@ Partial Class FormSampleDevelopment
         Me.GridColumn34.Caption = "Vendor"
         Me.GridColumn34.FieldName = "vendor"
         Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.OptionsColumn.AllowEdit = False
+        Me.GridColumn34.OptionsColumn.ReadOnly = True
         Me.GridColumn34.Visible = True
         Me.GridColumn34.Width = 54
         '
@@ -1864,6 +1870,8 @@ Partial Class FormSampleDevelopment
         Me.GridColumn35.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn35.FieldName = "labdip"
         Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.OptionsColumn.AllowEdit = False
+        Me.GridColumn35.OptionsColumn.ReadOnly = True
         Me.GridColumn35.Visible = True
         Me.GridColumn35.Width = 51
         '
@@ -1874,6 +1882,8 @@ Partial Class FormSampleDevelopment
         Me.GridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn36.FieldName = "labdip_upd"
         Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.OptionsColumn.AllowEdit = False
+        Me.GridColumn36.OptionsColumn.ReadOnly = True
         Me.GridColumn36.Visible = True
         Me.GridColumn36.Width = 51
         '
@@ -1884,6 +1894,8 @@ Partial Class FormSampleDevelopment
         Me.GridColumn37.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn37.FieldName = "labdip_act"
         Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.OptionsColumn.AllowEdit = False
+        Me.GridColumn37.OptionsColumn.ReadOnly = True
         Me.GridColumn37.Visible = True
         Me.GridColumn37.Width = 56
         '
@@ -1904,6 +1916,8 @@ Partial Class FormSampleDevelopment
         Me.GridColumn38.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn38.FieldName = "strike_off_1"
         Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.OptionsColumn.AllowEdit = False
+        Me.GridColumn38.OptionsColumn.ReadOnly = True
         Me.GridColumn38.Visible = True
         Me.GridColumn38.Width = 51
         '
@@ -1914,6 +1928,8 @@ Partial Class FormSampleDevelopment
         Me.GridColumn39.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn39.FieldName = "strike_off_1_upd"
         Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.OptionsColumn.AllowEdit = False
+        Me.GridColumn39.OptionsColumn.ReadOnly = True
         Me.GridColumn39.Visible = True
         Me.GridColumn39.Width = 51
         '
@@ -1924,6 +1940,8 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn2.FieldName = "strike_off_1_act"
         Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn2.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn2.Visible = True
         Me.BandedGridColumn2.Width = 56
         '
@@ -1944,6 +1962,8 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn3.FieldName = "proto_sample_1"
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn3.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn3.Visible = True
         Me.BandedGridColumn3.Width = 51
         '
@@ -1954,6 +1974,8 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn4.FieldName = "proto_sample_1_upd"
         Me.BandedGridColumn4.Name = "BandedGridColumn4"
+        Me.BandedGridColumn4.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn4.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn4.Visible = True
         Me.BandedGridColumn4.Width = 51
         '
@@ -1964,6 +1986,8 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn5.FieldName = "proto_sample_1_act"
         Me.BandedGridColumn5.Name = "BandedGridColumn5"
+        Me.BandedGridColumn5.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn5.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn5.Visible = True
         Me.BandedGridColumn5.Width = 56
         '
@@ -1984,6 +2008,8 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn7.FieldName = "strike_off_2"
         Me.BandedGridColumn7.Name = "BandedGridColumn7"
+        Me.BandedGridColumn7.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn7.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn7.Visible = True
         Me.BandedGridColumn7.Width = 51
         '
@@ -1994,6 +2020,8 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn8.FieldName = "strike_off_2_upd"
         Me.BandedGridColumn8.Name = "BandedGridColumn8"
+        Me.BandedGridColumn8.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn8.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn8.Visible = True
         Me.BandedGridColumn8.Width = 51
         '
@@ -2004,6 +2032,8 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn9.FieldName = "strike_off_2_act"
         Me.BandedGridColumn9.Name = "BandedGridColumn9"
+        Me.BandedGridColumn9.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn9.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn9.Visible = True
         Me.BandedGridColumn9.Width = 56
         '
@@ -2024,6 +2054,8 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn10.FieldName = "proto_sample_2"
         Me.BandedGridColumn10.Name = "BandedGridColumn10"
+        Me.BandedGridColumn10.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn10.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn10.Visible = True
         Me.BandedGridColumn10.Width = 51
         '
@@ -2034,6 +2066,8 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn11.FieldName = "proto_sample_2_upd"
         Me.BandedGridColumn11.Name = "BandedGridColumn11"
+        Me.BandedGridColumn11.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn11.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn11.Visible = True
         Me.BandedGridColumn11.Width = 51
         '
@@ -2044,6 +2078,8 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn12.FieldName = "proto_sample_2_act"
         Me.BandedGridColumn12.Name = "BandedGridColumn12"
+        Me.BandedGridColumn12.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn12.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn12.Visible = True
         Me.BandedGridColumn12.Width = 56
         '
@@ -2064,6 +2100,8 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn13.FieldName = "copy_proto_sample_2"
         Me.BandedGridColumn13.Name = "BandedGridColumn13"
+        Me.BandedGridColumn13.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn13.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn13.Visible = True
         Me.BandedGridColumn13.Width = 53
         '
@@ -2074,6 +2112,8 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn14.FieldName = "copy_proto_sample_2_upd"
         Me.BandedGridColumn14.Name = "BandedGridColumn14"
+        Me.BandedGridColumn14.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn14.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn14.Visible = True
         Me.BandedGridColumn14.Width = 53
         '
@@ -2084,6 +2124,8 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumn15.FieldName = "copy_proto_sample_2_act"
         Me.BandedGridColumn15.Name = "BandedGridColumn15"
+        Me.BandedGridColumn15.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn15.OptionsColumn.ReadOnly = True
         Me.BandedGridColumn15.Visible = True
         Me.BandedGridColumn15.Width = 57
         '
@@ -2092,6 +2134,8 @@ Partial Class FormSampleDevelopment
         Me.BandedGridColumn16.Caption = "ID design"
         Me.BandedGridColumn16.FieldName = "id_design"
         Me.BandedGridColumn16.Name = "BandedGridColumn16"
+        Me.BandedGridColumn16.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn16.OptionsColumn.ReadOnly = True
         '
         'PanelControl3
         '
@@ -2529,7 +2573,7 @@ Partial Class FormSampleDevelopment
         '
         'SimpleButton1
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(1043, 10)
+        Me.SimpleButton1.Location = New System.Drawing.Point(10, 10)
         Me.SimpleButton1.Name = "SimpleButton1"
         Me.SimpleButton1.Size = New System.Drawing.Size(52, 23)
         Me.SimpleButton1.TabIndex = 8935
