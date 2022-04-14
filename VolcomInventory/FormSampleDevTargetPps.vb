@@ -95,9 +95,11 @@ WHERE pps.id_sample_dev_pps='" & id_pps & "'"
                     BRelease.Visible = False
                 End If
             End If
-            load_det()
+
             If is_changes = "1" Then
                 load_det_changes()
+            Else
+                load_det()
             End If
         End If
 
@@ -199,7 +201,7 @@ VALUES(NOW(),'" & SLEVendor.EditValue.ToString & "','" & id_user & "','" & addSl
                         execute_non_query("CALL gen_number('" & id_pps & "','403')", True, "", "", "", "")
 
                         'detail
-                        q = "INSERT INTO `tb_sample_dev_upd`(`id_sample_dev_pps`,`id_design`,`tahapan`,`current_date`,`new_date`,`reason`)"
+                        q = "INSERT INTO `tb_sample_dev_upd`(`id_sample_dev_pps`,`id_design`,`tahapan`,`current_date`,`new_date`,`reason`) VALUES"
                         For i = 0 To GVPps.RowCount - 1
                             If Not i = 0 Then
                                 q += ","

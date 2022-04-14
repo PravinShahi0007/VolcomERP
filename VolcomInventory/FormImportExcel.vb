@@ -4876,7 +4876,7 @@ WHERE d.id_lookup_status_order!=2 "
                             .reason = table1("reason"),
                             .current_date = If(y1 Is Nothing, "", y1("cur_date")),
                             .new_date = Date.Parse(table1("new_date").ToString),
-                            .status = If(y1 Is Nothing, "Data not found", If(Date.Parse(y1("new_date").ToString) > Date.Parse(y1("next_date").ToString), "Tanggal yang diajukan lebih besar dari tanggal step selanjutnya", "Ok"))
+                            .status = If(y1 Is Nothing, "Data not found", If(Date.Parse(table1("new_date").ToString) >= Date.Parse(y1("next_date").ToString), "Tanggal yang diajukan lebih besar atau sama dengan tanggal step selanjutnya", "Ok"))
                         }
             GCData.DataSource = Nothing
             GCData.DataSource = query.ToList()
@@ -4888,6 +4888,8 @@ WHERE d.id_lookup_status_order!=2 "
             GVData.Columns("id_comp").Visible = False
             GVData.Columns("new_date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
             GVData.Columns("new_date").DisplayFormat.FormatString = "dd MMMM yyyy"
+            GVData.Columns("current_date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("current_date").DisplayFormat.FormatString = "dd MMMM yyyy"
         ElseIf id_pop_up = "66" Then
             Dim qry As String = "SELECT tb.*,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',d.design_name,' ',cd.color)  AS design_display_name 
 FROM(
