@@ -34,10 +34,10 @@ Partial Class FormSampleDevTargetAdd
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEDesignStockStore = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GVSLEDesgSearch = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCodeSearch = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.DELabDip.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DELabDip.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStrikeOff1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -199,6 +199,12 @@ Partial Class FormSampleDevTargetAdd
         Me.GVSLEDesgSearch.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GVSLEDesgSearch.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID"
+        Me.GridColumn1.FieldName = "id_design"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
         'GridColumnCodeSearch
         '
         Me.GridColumnCodeSearch.Caption = "Code"
@@ -232,21 +238,15 @@ Partial Class FormSampleDevTargetAdd
         Me.BAdd.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BAdd.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(387, 28)
+        Me.BAdd.Size = New System.Drawing.Size(389, 28)
         Me.BAdd.TabIndex = 8939
         Me.BAdd.Text = "Add"
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID"
-        Me.GridColumn1.FieldName = "id_design"
-        Me.GridColumn1.Name = "GridColumn1"
         '
         'FormSampleDevTargetAdd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(387, 235)
+        Me.ClientSize = New System.Drawing.Size(389, 235)
         Me.Controls.Add(Me.BAdd)
         Me.Controls.Add(Me.SLEDesignStockStore)
         Me.Controls.Add(Me.DECopyProtoSample2)

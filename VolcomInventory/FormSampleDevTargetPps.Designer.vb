@@ -544,6 +544,8 @@ Partial Class FormSampleDevTargetPps
         'GridColumn18
         '
         Me.GridColumn18.Caption = "Current Update Date"
+        Me.GridColumn18.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn18.FieldName = "current_date"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
