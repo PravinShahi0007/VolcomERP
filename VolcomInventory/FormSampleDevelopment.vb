@@ -33,6 +33,7 @@
 
     Private Sub FormSampleDevelopment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSeason()
+        viewSeasonTracker()
         '
         viewDesign()
         viewVendor()
@@ -106,6 +107,13 @@ SELECT id_comp,CONCAT(comp_number,' - ',comp_name) AS comp_name FROM tb_m_comp w
         query += "WHERE b.id_range >0 "
         query += "ORDER BY b.range DESC"
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
+    End Sub
+
+    Sub viewSeasonTracker()
+        Dim query As String = "(SELECT 0 AS id_season,'ALL' AS season) UNION ALL (SELECT a.id_season,a.season FROM tb_season a "
+        query += "INNER JOIN tb_range b ON a.id_range = b.id_range "
+        query += "WHERE b.id_range >0 "
+        query += "ORDER BY b.range DESC)"
         viewSearchLookupQuery(SLESeasonTracker, query, "id_season", "season", "id_season")
     End Sub
 
@@ -465,13 +473,17 @@ GROUP BY pps.id_sample_dev_pps)"
         Dim qw As String = ""
 
         If Not SLEVendorTracker.EditValue.ToString = "0" Then
-            qw = ""
+            qw += " AND t.id_comp='" & SLEVendorTracker.EditValue.ToString & "'"
         End If
 
-        Dim q As String = "SELECT 'no' AS is_check,t.*,CONCAT(c.comp_number,' - ',c.comp_name) AS vendor,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS  design_display_name
+        If Not SLESeasonTracker.EditValue.ToString = "0" Then
+            qw += " AND s.id_season='" & SLESeasonTracker.EditValue.ToString & "'"
+        End If
+
+        Dim q As String = "SELECT DATE(NOW()) AS cur_date,'no' AS is_check,t.*,CONCAT(c.comp_number,' - ',c.comp_name) AS vendor,CONCAT(IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) AS  design_display_name
 FROM `tb_sample_dev_tracking` t
 INNER JOIN tb_m_design dsg ON dsg.id_design=t.id_design
-INNER JOIN tb_season s ON s.id_season=dsg.id_season
+INNER JOIN tb_season s ON s.id_season=dsg.id_season " & qw & "
 INNER JOIN tb_range r ON r.id_range=s.id_range
 LEFT JOIN (
 	SELECT dc.id_design, 
