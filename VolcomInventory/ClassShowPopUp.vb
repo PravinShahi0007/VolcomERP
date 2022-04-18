@@ -566,6 +566,9 @@
         ElseIf report_mark_type = "403" Then
             'sample dev target pps
             FormSampleDevTargetPps.Close()
+        ElseIf report_mark_type = "405" Then
+            'ko revisi approval
+            FormProductionKOApp.Close()
         End If
     End Sub
     Sub show()
@@ -1798,6 +1801,11 @@ GROUP BY rec.`id_prod_order`"
             FormStoreDisplayDet.ShowDialog()
         ElseIf report_mark_type = "403" Then
             'sample dev target pps
+            FormSampleDevTargetPps.is_view = "1"
+            FormSampleDevTargetPps.id_pps = id_report
+            FormStoreDisplayDet.ShowDialog()
+        ElseIf report_mark_type = "405" Then
+            'ko revisi approval
             FormSampleDevTargetPps.is_view = "1"
             FormSampleDevTargetPps.id_pps = id_report
             FormStoreDisplayDet.ShowDialog()

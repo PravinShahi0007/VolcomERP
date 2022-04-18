@@ -26,6 +26,7 @@ Partial Class FormProduction
         Me.GCProd = New DevExpress.XtraGrid.GridControl()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewReceivingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVProd = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -304,7 +305,22 @@ Partial Class FormProduction
         Me.GridColumn93 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewAttachFGPO = New DevExpress.XtraEditors.SimpleButton()
-        Me.UpdateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPKOList = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPKOListApp = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCKOApproval = New DevExpress.XtraGrid.GridControl()
+        Me.GVKOApproval = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn104 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn105 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn107 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn108 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn109 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GridColumn110 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemProgressBar6 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
+        Me.GridColumn111 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -399,6 +415,16 @@ Partial Class FormProduction
         Me.PanelControl8.SuspendLayout()
         CType(Me.SLEVendorAttachment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl1.SuspendLayout()
+        Me.XTPKOList.SuspendLayout()
+        Me.XTPKOListApp.SuspendLayout()
+        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl9.SuspendLayout()
+        CType(Me.GCKOApproval, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVKOApproval, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemProgressBar6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCTabProduction
@@ -437,13 +463,19 @@ Partial Class FormProduction
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewReceivingToolStripMenuItem, Me.UpdateToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(246, 70)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(246, 48)
         '
         'ViewReceivingToolStripMenuItem
         '
         Me.ViewReceivingToolStripMenuItem.Name = "ViewReceivingToolStripMenuItem"
         Me.ViewReceivingToolStripMenuItem.Size = New System.Drawing.Size(245, 22)
         Me.ViewReceivingToolStripMenuItem.Text = "View Receiving QC"
+        '
+        'UpdateToolStripMenuItem
+        '
+        Me.UpdateToolStripMenuItem.Name = "UpdateToolStripMenuItem"
+        Me.UpdateToolStripMenuItem.Size = New System.Drawing.Size(245, 22)
+        Me.UpdateToolStripMenuItem.Text = "Update Manual Estimate Rec QC"
         '
         'GVProd
         '
@@ -2309,8 +2341,7 @@ Partial Class FormProduction
         '
         'XTPFGPOKO
         '
-        Me.XTPFGPOKO.Controls.Add(Me.GCKO)
-        Me.XTPFGPOKO.Controls.Add(Me.PanelControl5)
+        Me.XTPFGPOKO.Controls.Add(Me.XtraTabControl1)
         Me.XTPFGPOKO.Name = "XTPFGPOKO"
         Me.XTPFGPOKO.Size = New System.Drawing.Size(992, 443)
         Me.XTPFGPOKO.Text = "Konfirmasi Order (SKO)"
@@ -2322,7 +2353,7 @@ Partial Class FormProduction
         Me.GCKO.MainView = Me.GVKO
         Me.GCKO.Name = "GCKO"
         Me.GCKO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar2, Me.RepositoryItemMemoEdit2})
-        Me.GCKO.Size = New System.Drawing.Size(992, 405)
+        Me.GCKO.Size = New System.Drawing.Size(986, 377)
         Me.GCKO.TabIndex = 10
         Me.GCKO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVKO})
         '
@@ -2427,7 +2458,7 @@ Partial Class FormProduction
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(992, 38)
+        Me.PanelControl5.Size = New System.Drawing.Size(986, 38)
         Me.PanelControl5.TabIndex = 4
         '
         'BEditKO
@@ -2435,7 +2466,7 @@ Partial Class FormProduction
         Me.BEditKO.Dock = System.Windows.Forms.DockStyle.Right
         Me.BEditKO.ImageIndex = 2
         Me.BEditKO.ImageList = Me.LargeImageCollection
-        Me.BEditKO.Location = New System.Drawing.Point(900, 2)
+        Me.BEditKO.Location = New System.Drawing.Point(894, 2)
         Me.BEditKO.Name = "BEditKO"
         Me.BEditKO.Size = New System.Drawing.Size(90, 34)
         Me.BEditKO.TabIndex = 8906
@@ -3082,11 +3113,154 @@ Partial Class FormProduction
         Me.BViewAttachFGPO.TabIndex = 8903
         Me.BViewAttachFGPO.Text = "Search"
         '
-        'UpdateToolStripMenuItem
+        'XtraTabControl1
         '
-        Me.UpdateToolStripMenuItem.Name = "UpdateToolStripMenuItem"
-        Me.UpdateToolStripMenuItem.Size = New System.Drawing.Size(245, 22)
-        Me.UpdateToolStripMenuItem.Text = "Update Manual Estimate Rec QC"
+        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraTabControl1.Name = "XtraTabControl1"
+        Me.XtraTabControl1.SelectedTabPage = Me.XTPKOList
+        Me.XtraTabControl1.Size = New System.Drawing.Size(992, 443)
+        Me.XtraTabControl1.TabIndex = 11
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPKOList, Me.XTPKOListApp})
+        '
+        'XTPKOList
+        '
+        Me.XTPKOList.Controls.Add(Me.GCKO)
+        Me.XTPKOList.Controls.Add(Me.PanelControl5)
+        Me.XTPKOList.Name = "XTPKOList"
+        Me.XTPKOList.Size = New System.Drawing.Size(986, 415)
+        Me.XTPKOList.Text = "List"
+        '
+        'XTPKOListApp
+        '
+        Me.XTPKOListApp.Controls.Add(Me.GCKOApproval)
+        Me.XTPKOListApp.Controls.Add(Me.PanelControl9)
+        Me.XTPKOListApp.Name = "XTPKOListApp"
+        Me.XTPKOListApp.Size = New System.Drawing.Size(986, 415)
+        Me.XTPKOListApp.Text = "Revise Approval"
+        '
+        'PanelControl9
+        '
+        Me.PanelControl9.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl9.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl9.Name = "PanelControl9"
+        Me.PanelControl9.Size = New System.Drawing.Size(986, 49)
+        Me.PanelControl9.TabIndex = 5
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.ImageList = Me.LargeImageCollection
+        Me.SimpleButton1.Location = New System.Drawing.Point(872, 2)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(112, 45)
+        Me.SimpleButton1.TabIndex = 8906
+        Me.SimpleButton1.Text = "Refresh"
+        Me.SimpleButton1.Visible = False
+        '
+        'GCKOApproval
+        '
+        Me.GCKOApproval.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCKOApproval.Location = New System.Drawing.Point(0, 49)
+        Me.GCKOApproval.MainView = Me.GVKOApproval
+        Me.GCKOApproval.Name = "GCKOApproval"
+        Me.GCKOApproval.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar6, Me.RepositoryItemMemoEdit4})
+        Me.GCKOApproval.Size = New System.Drawing.Size(986, 366)
+        Me.GCKOApproval.TabIndex = 11
+        Me.GCKOApproval.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVKOApproval})
+        '
+        'GVKOApproval
+        '
+        Me.GVKOApproval.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn104, Me.GridColumn111, Me.GridColumn105, Me.GridColumn107, Me.GridColumn108, Me.GridColumn109, Me.GridColumn110})
+        Me.GVKOApproval.GridControl = Me.GCKOApproval
+        Me.GVKOApproval.Name = "GVKOApproval"
+        Me.GVKOApproval.OptionsBehavior.Editable = False
+        Me.GVKOApproval.OptionsFind.AlwaysVisible = True
+        Me.GVKOApproval.OptionsView.ColumnAutoWidth = False
+        Me.GVKOApproval.OptionsView.RowAutoHeight = True
+        Me.GVKOApproval.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn104
+        '
+        Me.GridColumn104.Caption = "ID KO"
+        Me.GridColumn104.FieldName = "tb_prod_order_ko_app"
+        Me.GridColumn104.Name = "GridColumn104"
+        '
+        'GridColumn105
+        '
+        Me.GridColumn105.Caption = "KO Number"
+        Me.GridColumn105.FieldName = "number"
+        Me.GridColumn105.Name = "GridColumn105"
+        Me.GridColumn105.Visible = True
+        Me.GridColumn105.VisibleIndex = 0
+        '
+        'GridColumn107
+        '
+        Me.GridColumn107.Caption = "Vendor"
+        Me.GridColumn107.FieldName = "comp_name"
+        Me.GridColumn107.Name = "GridColumn107"
+        Me.GridColumn107.Visible = True
+        Me.GridColumn107.VisibleIndex = 2
+        '
+        'GridColumn108
+        '
+        Me.GridColumn108.Caption = "Created Date"
+        Me.GridColumn108.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn108.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn108.FieldName = "date_created"
+        Me.GridColumn108.Name = "GridColumn108"
+        Me.GridColumn108.Visible = True
+        Me.GridColumn108.VisibleIndex = 3
+        '
+        'GridColumn109
+        '
+        Me.GridColumn109.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn109.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn109.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn109.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn109.Caption = "Design List"
+        Me.GridColumn109.ColumnEdit = Me.RepositoryItemMemoEdit4
+        Me.GridColumn109.FieldName = "design_list"
+        Me.GridColumn109.Name = "GridColumn109"
+        Me.GridColumn109.Visible = True
+        Me.GridColumn109.VisibleIndex = 3
+        '
+        'RepositoryItemMemoEdit4
+        '
+        Me.RepositoryItemMemoEdit4.Name = "RepositoryItemMemoEdit4"
+        '
+        'GridColumn110
+        '
+        Me.GridColumn110.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn110.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn110.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn110.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn110.Caption = "Status"
+        Me.GridColumn110.FieldName = "status"
+        Me.GridColumn110.Name = "GridColumn110"
+        Me.GridColumn110.Visible = True
+        Me.GridColumn110.VisibleIndex = 5
+        '
+        'RepositoryItemProgressBar6
+        '
+        Me.RepositoryItemProgressBar6.Appearance.BackColor = System.Drawing.Color.Lime
+        Me.RepositoryItemProgressBar6.EndColor = System.Drawing.Color.Green
+        Me.RepositoryItemProgressBar6.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.RepositoryItemProgressBar6.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.RepositoryItemProgressBar6.Name = "RepositoryItemProgressBar6"
+        Me.RepositoryItemProgressBar6.ProgressViewStyle = DevExpress.XtraEditors.Controls.ProgressViewStyle.Solid
+        Me.RepositoryItemProgressBar6.ShowTitle = True
+        Me.RepositoryItemProgressBar6.StartColor = System.Drawing.Color.Green
+        Me.RepositoryItemProgressBar6.Step = 1
+        '
+        'GridColumn111
+        '
+        Me.GridColumn111.Caption = "ID Prod Order KO"
+        Me.GridColumn111.FieldName = "id_prod_order_ko"
+        Me.GridColumn111.Name = "GridColumn111"
         '
         'FormProduction
         '
@@ -3204,6 +3378,16 @@ Partial Class FormProduction
         Me.PanelControl8.PerformLayout()
         CType(Me.SLEVendorAttachment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl1.ResumeLayout(False)
+        Me.XTPKOList.ResumeLayout(False)
+        Me.XTPKOListApp.ResumeLayout(False)
+        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl9.ResumeLayout(False)
+        CType(Me.GCKOApproval, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVKOApproval, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemProgressBar6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3491,4 +3675,20 @@ Partial Class FormProduction
     Friend WithEvents GridColumn102 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn103 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents UpdateToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPKOList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPKOListApp As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl9 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCKOApproval As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVKOApproval As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn104 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn105 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn107 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn108 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn109 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemMemoEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents GridColumn110 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemProgressBar6 As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
+    Friend WithEvents GridColumn111 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -765,6 +765,7 @@ GROUP BY id_prod_order_ko_reff) AND is_purc_mat=2 " & query_where & " GROUP BY k
             query_where += " AND c.id_comp='" & SLEVendorKP.EditValue.ToString & "'"
         End If
         '
+
         Dim query As String = "SELECT kp.*,IF(kp.is_void='1','Void','-') AS status,c.`comp_name` ,GROUP_CONCAT(dsg.design_code,' - ',dsg.design_display_name SEPARATOR '\n') AS design_list
 FROM tb_prod_order_kp kp
 INNER JOIN tb_prod_order_kp_det kpd ON kpd.id_prod_order_kp=kp.id_prod_order_kp
@@ -922,5 +923,9 @@ LEFT JOIN (
             FormProductionManualETA.id_prod_order = GVProd.GetFocusedRowCellValue("id_prod_order").ToString
             FormProductionManualETA.ShowDialog()
         End If
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+
     End Sub
 End Class

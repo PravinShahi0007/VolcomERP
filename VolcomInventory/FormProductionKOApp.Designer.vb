@@ -22,10 +22,10 @@ Partial Class FormProductionKOApp
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionKOApp))
         Me.PCControl = New DevExpress.XtraEditors.PanelControl()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCKO = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PCControl, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCControl.SuspendLayout()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCKO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PCControl
@@ -48,20 +48,20 @@ Partial Class FormProductionKOApp
         Me.BMark.TabIndex = 8913
         Me.BMark.Text = "Mark"
         '
-        'PanelControl1
+        'PCKO
         '
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(954, 466)
-        Me.PanelControl1.TabIndex = 3
+        Me.PCKO.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PCKO.Location = New System.Drawing.Point(0, 0)
+        Me.PCKO.Name = "PCKO"
+        Me.PCKO.Size = New System.Drawing.Size(954, 466)
+        Me.PCKO.TabIndex = 3
         '
         'FormProductionKOApp
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(954, 507)
-        Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.PCKO)
         Me.Controls.Add(Me.PCControl)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -71,12 +71,12 @@ Partial Class FormProductionKOApp
         Me.Text = "Revise SKO approval"
         CType(Me.PCControl, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCControl.ResumeLayout(False)
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCKO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents PCControl As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCKO As DevExpress.XtraEditors.PanelControl
 End Class
