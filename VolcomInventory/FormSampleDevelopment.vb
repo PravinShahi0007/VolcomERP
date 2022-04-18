@@ -501,25 +501,7 @@ INNER JOIN tb_m_comp c ON c.id_comp=t.id_comp"
     End Sub
 
     Private Sub ProposeChangesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProposeChangesToolStripMenuItem.Click
-        GVTracker.ActiveFilterString = "[is_check]='yes'"
-        If GVTracker.RowCount = 0 Then
-            warningCustom("No item selected")
-        Else
-            Dim is_ok As Boolean = True
-            For i = 0 To GVTracker.RowCount - 1
-                If Not GVTracker.GetRowCellValue(0, "id_comp").ToString = GVTracker.GetRowCellValue(i, "id_comp").ToString Then
-                    warningCustom("Harap memilih dari vendor yang sama")
-                    is_ok = False
-                    Exit For
-                End If
-            Next
-            '
-            If is_ok Then
-                FormSampleDevTargetPps.is_changes = "1"
-                FormSampleDevTargetPps.ShowDialog()
-            End If
-        End If
-        GVTracker.ActiveFilterString = ""
+
     End Sub
 
     Private Sub SimpleButton1_Click_1(sender As Object, e As EventArgs) Handles SimpleButton1.Click
@@ -561,5 +543,27 @@ GROUP BY tb.id_comp"
     Private Sub BUpdatePps_Click(sender As Object, e As EventArgs) Handles BUpdatePps.Click
         FormSampleDevTargetPps.is_changes = "1"
         FormSampleDevTargetPps.ShowDialog()
+    End Sub
+
+    Private Sub InputActualToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InputActualToolStripMenuItem.Click
+        GVTracker.ActiveFilterString = "[is_check]='yes'"
+        If GVTracker.RowCount = 0 Then
+            warningCustom("Centang artikel terlebih dahulu")
+        Else
+            Dim is_ok As Boolean = True
+            For i = 0 To GVTracker.RowCount - 1
+                If Not GVTracker.GetRowCellValue(0, "id_comp").ToString = GVTracker.GetRowCellValue(i, "id_comp").ToString Then
+                    warningCustom("Harap memilih dari vendor yang sama")
+                    is_ok = False
+                    Exit For
+                End If
+            Next
+            '
+            If is_ok Then
+                FormSampleDevTargetPps.is_actual = "1"
+                FormSampleDevTargetPps.ShowDialog()
+            End If
+        End If
+        GVTracker.ActiveFilterString = ""
     End Sub
 End Class

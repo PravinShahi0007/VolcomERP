@@ -8,11 +8,13 @@
         viewAdjIn()
         viewAdjOut()
     End Sub
+
     Private Sub FormSampleReturn_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         checkFormAccess(Name)
         button_main(bnew_active, bedit_active, bdel_active)
     End Sub
+
     Private Sub FormSampleReturn_Deactivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
     End Sub
