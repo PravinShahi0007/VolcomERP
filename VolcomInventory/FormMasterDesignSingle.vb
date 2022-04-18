@@ -1187,6 +1187,7 @@
                 LESeason.Enabled = True
                 SLESeasonOrigin.Enabled = True
                 BtnAddSeasonOrign.Enabled = True
+                SLUECoolStorage.Enabled = True
             Else
                 BtnReviseStyle.Visible = True
                 TEName.Enabled = False
@@ -1205,6 +1206,7 @@
                 LESeason.Enabled = False
                 SLESeasonOrigin.Enabled = False
                 BtnAddSeasonOrign.Enabled = False
+                SLUECoolStorage.Enabled = False
             End If
             PictureEdit1.Properties.ReadOnly = False
             XTPLineList.PageVisible = False
@@ -1229,7 +1231,6 @@
             DEInStoreDet.Enabled = False
             BtnAddRetCode.Enabled = False
             SLELinePlan.Enabled = False
-            SLUECoolStorage.Enabled = True
 
             'comment
             PanelControlComment.Visible = True

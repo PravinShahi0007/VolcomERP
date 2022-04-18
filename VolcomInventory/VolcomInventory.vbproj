@@ -4347,6 +4347,12 @@
     <Compile Include="FormProductionKO.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionKOApp.Designer.vb">
+      <DependentUpon>FormProductionKOApp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionKOApp.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionKP.Designer.vb">
       <DependentUpon>FormProductionKP.vb</DependentUpon>
     </Compile>
@@ -12958,6 +12964,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionKO.resx">
       <DependentUpon>FormProductionKO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionKOApp.resx">
+      <DependentUpon>FormProductionKOApp.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionKP.resx">
       <DependentUpon>FormProductionKP.vb</DependentUpon>
