@@ -56,7 +56,7 @@ Public Class FormFGRepairDet
             XTPSummary.PageVisible = True
             XtraTabControl1.SelectedTabPageIndex = 1
             GVScan.OptionsBehavior.AutoExpandAllGroups = True
-            BMark.Enabled = False
+            BMark.Enabled = True
             DDBPrint.Enabled = True
 
             'query view based on edit id's
@@ -506,10 +506,45 @@ Public Class FormFGRepairDet
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
-        FormReportMark.report_mark_type = rmt
-        FormReportMark.id_report = id_fg_repair
-        FormReportMark.form_origin = Name
-        FormReportMark.ShowDialog()
+
+        'cek reserved
+        Dim qstock As String = "SELECT IFNULL(SUM(f.storage_product_qty),0) AS `qty_reserved` 
+        FROM tb_storage_fg f WHERE f.report_mark_type=91 AND f.id_report=" + id_fg_repair + " AND f.id_stock_status=2 "
+        Dim dstock As DataTable = execute_query(qstock, -1, True, "", "", "", "")
+        Dim qty_reserved As Decimal = dstock.Rows(0)("qty_reserved")
+
+        'cek unique
+        Dim cond_unique As Boolean
+        If FormFGRepair.is_to_vendor = True Then
+            cond_unique = True
+        Else
+            Dim quniq As String = "SELECT * FROM tb_m_unique_code a WHERE a.report_mark_type=" + rmt + " AND a.id_report=" + id_fg_repair + " AND a.id_report_status=1 "
+            Dim duniq As DataTable = execute_query(quniq, -1, True, "", "", "", "")
+            If duniq.Rows.Count > 0 Then
+                cond_unique = True
+            Else
+                cond_unique = False
+            End If
+        End If
+
+        Dim allow_mark As Boolean
+        If id_report_status = "5" Or id_report_status = "6" Then
+            allow_mark = True
+        Else
+            If qty_reserved > 0 And cond_unique Then
+                allow_mark = True
+            Else
+                allow_mark = False
+            End If
+        End If
+
+        If allow_mark Then
+            FormReportMark.report_mark_type = rmt
+            FormReportMark.id_report = id_fg_repair
+            FormReportMark.form_origin = Name
+            FormReportMark.ShowDialog()
+        End If
+
         Cursor = Cursors.Default
     End Sub
 

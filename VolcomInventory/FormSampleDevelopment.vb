@@ -501,25 +501,7 @@ INNER JOIN tb_m_comp c ON c.id_comp=t.id_comp"
     End Sub
 
     Private Sub ProposeChangesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProposeChangesToolStripMenuItem.Click
-        GVTracker.ActiveFilterString = "[is_check]='yes'"
-        If GVTracker.RowCount = 0 Then
-            warningCustom("No item selected")
-        Else
-            Dim is_ok As Boolean = True
-            For i = 0 To GVTracker.RowCount - 1
-                If Not GVTracker.GetRowCellValue(0, "id_comp").ToString = GVTracker.GetRowCellValue(i, "id_comp").ToString Then
-                    warningCustom("Harap memilih dari vendor yang sama")
-                    is_ok = False
-                    Exit For
-                End If
-            Next
-            '
-            If is_ok Then
-                FormSampleDevTargetPps.is_changes = "1"
-                FormSampleDevTargetPps.ShowDialog()
-            End If
-        End If
-        GVTracker.ActiveFilterString = ""
+
     End Sub
 
     Private Sub SimpleButton1_Click_1(sender As Object, e As EventArgs) Handles SimpleButton1.Click
@@ -535,10 +517,10 @@ FROM
 	(SELECT id_comp,id_design,'Proto Sample 1' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
 	FROM `tb_sample_dev_tracking` WHERE ISNULL(proto_sample_1_act) AND DATE(IF(ISNULL(proto_sample_1_upd),proto_sample_1,proto_sample_1_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
 	UNION ALL
-	(SELECT id_comp,id_design,'Lab dip' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
+	(SELECT id_comp,id_design,'Strike Off 2' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
 	FROM `tb_sample_dev_tracking` WHERE ISNULL(strike_off_2_act) AND DATE(IF(ISNULL(strike_off_2_upd),strike_off_2,strike_off_2_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
 	UNION ALL
-	(SELECT id_comp,id_design,'Strike Off 2' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
+	(SELECT id_comp,id_design,'Proto Sample 2' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
 	FROM `tb_sample_dev_tracking` WHERE ISNULL(proto_sample_2_act) AND DATE(IF(ISNULL(proto_sample_2_upd),proto_sample_2,proto_sample_2_upd))=DATE_ADD(DATE(NOW()),INTERVAL 7 DAY))
 	UNION ALL
 	(SELECT id_comp,id_design,'Copy Proto Sample 2' AS typ,DATE_ADD(DATE(NOW()),INTERVAL 7 DAY) AS dday
@@ -561,5 +543,27 @@ GROUP BY tb.id_comp"
     Private Sub BUpdatePps_Click(sender As Object, e As EventArgs) Handles BUpdatePps.Click
         FormSampleDevTargetPps.is_changes = "1"
         FormSampleDevTargetPps.ShowDialog()
+    End Sub
+
+    Private Sub InputActualToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InputActualToolStripMenuItem.Click
+        GVTracker.ActiveFilterString = "[is_check]='yes'"
+        If GVTracker.RowCount = 0 Then
+            warningCustom("Centang artikel terlebih dahulu")
+        Else
+            Dim is_ok As Boolean = True
+            For i = 0 To GVTracker.RowCount - 1
+                If Not GVTracker.GetRowCellValue(0, "id_comp").ToString = GVTracker.GetRowCellValue(i, "id_comp").ToString Then
+                    warningCustom("Harap memilih dari vendor yang sama")
+                    is_ok = False
+                    Exit For
+                End If
+            Next
+            '
+            If is_ok Then
+                FormSampleDevTargetPps.is_actual = "1"
+                FormSampleDevTargetPps.ShowDialog()
+            End If
+        End If
+        GVTracker.ActiveFilterString = ""
     End Sub
 End Class

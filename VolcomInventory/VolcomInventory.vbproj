@@ -7077,6 +7077,12 @@
     <Compile Include="FormSampleDelSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSampleDevActual.Designer.vb">
+      <DependentUpon>FormSampleDevActual.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSampleDevActual.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSampleDevelopment.Designer.vb">
       <DependentUpon>FormSampleDevelopment.vb</DependentUpon>
     </Compile>
@@ -14602,6 +14608,9 @@
     <EmbeddedResource Include="FormSampleDelSingle.resx">
       <DependentUpon>FormSampleDelSingle.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSampleDevActual.resx">
+      <DependentUpon>FormSampleDevActual.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSampleDevelopment.resx">
       <DependentUpon>FormSampleDevelopment.vb</DependentUpon>
