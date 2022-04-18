@@ -8,21 +8,31 @@
     End Sub
 
     Sub load_ko()
-        Try
-            FormProductionKO.Dispose()
-        Catch ex As Exception
-        End Try
+        Dim s As String = "SELECT id_prod_order_ko FROM tb_prod_order_ko_app WHERE id_prod_order_ko_app='" & id_pps & "'"
+        Dim dt As DataTable = execute_query(s, -1, True, "", "", "", "")
+        If dt.Rows.Count > 0 Then
+            id_ko = dt.Rows(0)("id_prod_order_ko").ToString
 
-        PCKO.Controls.Clear()
-        FormProductionKO.TopLevel = False
-        PCKO.Controls.Add(FormProductionKO)
-        FormProductionKO.id_ko = id_ko
-        FormProductionKO.is_view = "1"
-        FormProductionKO.Show()
-        FormProductionKO.ControlBox = False
-        FormProductionKO.FormBorderStyle = Windows.Forms.FormBorderStyle.None
-        FormProductionKO.Focus()
-        FormProductionKO.Dock = DockStyle.Fill
+            Try
+                FormProductionKO.Dispose()
+            Catch ex As Exception
+            End Try
+
+            XTPKO.Controls.Clear()
+            FormProductionKO.TopLevel = False
+            XTPKO.Controls.Add(FormProductionKO)
+            FormProductionKO.id_ko = id_ko
+            FormProductionKO.is_view = "1"
+            FormProductionKO.is_popup = True
+            FormProductionKO.Show()
+            FormProductionKO.ControlBox = False
+            FormProductionKO.FormBorderStyle = FormBorderStyle.None
+            FormProductionKO.Focus()
+            FormProductionKO.Dock = DockStyle.Fill
+        Else
+            warningCustom("KO not found")
+            Close()
+        End If
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click

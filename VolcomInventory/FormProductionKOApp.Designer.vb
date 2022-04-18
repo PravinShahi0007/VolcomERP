@@ -22,19 +22,21 @@ Partial Class FormProductionKOApp
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionKOApp))
         Me.PCControl = New DevExpress.XtraEditors.PanelControl()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.PCKO = New DevExpress.XtraEditors.PanelControl()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPKO = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.PCControl, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCControl.SuspendLayout()
-        CType(Me.PCKO, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PCControl
         '
         Me.PCControl.Controls.Add(Me.BMark)
         Me.PCControl.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCControl.Location = New System.Drawing.Point(0, 466)
+        Me.PCControl.Location = New System.Drawing.Point(0, 440)
         Me.PCControl.Name = "PCControl"
-        Me.PCControl.Size = New System.Drawing.Size(954, 41)
+        Me.PCControl.Size = New System.Drawing.Size(909, 41)
         Me.PCControl.TabIndex = 2
         '
         'BMark
@@ -48,35 +50,45 @@ Partial Class FormProductionKOApp
         Me.BMark.TabIndex = 8913
         Me.BMark.Text = "Mark"
         '
-        'PCKO
+        'XtraTabControl1
         '
-        Me.PCKO.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PCKO.Location = New System.Drawing.Point(0, 0)
-        Me.PCKO.Name = "PCKO"
-        Me.PCKO.Size = New System.Drawing.Size(954, 466)
-        Me.PCKO.TabIndex = 3
+        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraTabControl1.Name = "XtraTabControl1"
+        Me.XtraTabControl1.SelectedTabPage = Me.XTPKO
+        Me.XtraTabControl1.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[False]
+        Me.XtraTabControl1.Size = New System.Drawing.Size(909, 440)
+        Me.XtraTabControl1.TabIndex = 3
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPKO})
+        '
+        'XTPKO
+        '
+        Me.XTPKO.Name = "XTPKO"
+        Me.XTPKO.Size = New System.Drawing.Size(903, 434)
+        Me.XTPKO.Text = "XtraTabPage1"
         '
         'FormProductionKOApp
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(954, 507)
-        Me.Controls.Add(Me.PCKO)
+        Me.ClientSize = New System.Drawing.Size(909, 481)
+        Me.Controls.Add(Me.XtraTabControl1)
         Me.Controls.Add(Me.PCControl)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProductionKOApp"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Revise SKO approval"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PCControl, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCControl.ResumeLayout(False)
-        CType(Me.PCKO, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents PCControl As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PCKO As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPKO As DevExpress.XtraTab.XtraTabPage
 End Class

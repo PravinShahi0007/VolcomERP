@@ -927,14 +927,18 @@ LEFT JOIN (
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
         Dim q As String = "SELECT ka.id_prod_order_ko_app,MAX(ko.number) AS ko_number,GROUP_CONCAT(DISTINCT CONCAT(dsg.design_code,' - ',IF(r.is_md=1,'',CONCAT(cd.prm,' ')),cd.class,' ',dsg.design_name,' ',cd.color) SEPARATOR '\n') AS design_list
+,c.comp_name AS vendor, sts.report_status,ka.created_date
 FROM `tb_prod_order_ko_app` ka
 INNER JOIN tb_prod_order_ko ko ON ko.id_prod_order_ko=ka.id_prod_order_ko
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ko.id_comp_contact
+INNER JOIN tb_m_comp c ON cc.id_comp=c.id_comp
 INNER JOIN tb_prod_order_ko_det kod ON kod.id_prod_order_ko=ko.id_prod_order_ko
 INNER JOIN tb_prod_order po ON po.id_prod_order=kod.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
 INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
 INNER JOIN tb_season s ON s.id_season=dsg.id_season
 INNER JOIN tb_range r ON r.id_range=s.id_range
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=ka.id_report_status
 LEFT JOIN (
 	SELECT dc.id_design, 
 	MAX(CASE WHEN cd.id_code=32 THEN cd.id_code_detail END) AS `id_division`,
@@ -957,6 +961,13 @@ GROUP BY ka.id_prod_order_ko_app"
         If dt.Rows.Count > 0 Then
             GCKOApproval.DataSource = dt
             GVKOApproval.BestFitColumns()
+        End If
+    End Sub
+
+    Private Sub GVKOApproval_DoubleClick(sender As Object, e As EventArgs) Handles GVKOApproval.DoubleClick
+        If GVKOApproval.RowCount > 0 Then
+            FormProductionKOApp.id_pps = GVKOApproval.GetFocusedRowCellValue("id_prod_order_ko_app")
+            FormProductionKOApp.ShowDialog()
         End If
     End Sub
 End Class

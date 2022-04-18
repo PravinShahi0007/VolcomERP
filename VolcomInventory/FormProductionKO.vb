@@ -5,6 +5,7 @@
     Dim is_void As String = "2"
     Public is_view As String = "-1"
     Public is_purc_mat As String = "2"
+    Public is_popup As Boolean = False
 
     Private Sub FormProductionKO_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
@@ -92,6 +93,13 @@ WHERE id_prod_order_ko='" & id_ko & "'"
             GridColumnLeadTime.OptionsColumn.ReadOnly = True
         Else
             GridColumnLeadTime.OptionsColumn.ReadOnly = False
+        End If
+
+        If is_popup Then
+            BRevise.Visible = False
+            PCControl.Visible = False
+            BrefreshTemplateContract.Visible = False
+            BManageContractVendor.Visible = False
         End If
     End Sub
 
@@ -300,8 +308,9 @@ WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
                 If dtqc.Rows.Count > 0 Then
                     warningCustom("Proposal revisi sudah pernah diajukan.")
                 Else
-                    qqc = "INSERT INTO `tb_prod_order_ko_app`(`id_prod_order_ko`,`created_date`,`created_by`,`id_report_status`) VALUES('" & id_ko & "',NOW(),'" & id_user & "','1')"
-                    execute_non_query(qqc, True, "", "", "", "")
+                    qqc = "INSERT INTO `tb_prod_order_ko_app`(`id_prod_order_ko`,`created_date`,`created_by`,`id_report_status`) VALUES('" & id_ko & "',NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID(); "
+                    Dim id_pps As String = execute_query(qqc, 0, True, "", "", "", "")
+                    submit_who_prepared("405", id_pps, id_user)
                     infoCustom("Proposal revisi diajukan, menunggu persetujuan")
                 End If
 
