@@ -722,6 +722,7 @@ Partial Class FormFGTransList
         Me.DEFromRepair = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl35 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl36 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnrepair_type = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSvcLevel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLevel.SuspendLayout()
         Me.XTPRec.SuspendLayout()
@@ -5292,7 +5293,7 @@ Partial Class FormFGTransList
         '
         Me.XTPSalesMainCode.Controls.Add(Me.GCSalesMain)
         Me.XTPSalesMainCode.Name = "XTPSalesMainCode"
-        Me.XTPSalesMainCode.Size = New System.Drawing.Size(1136, 339)
+        Me.XTPSalesMainCode.Size = New System.Drawing.Size(1136, 338)
         Me.XTPSalesMainCode.Text = "By Main Code"
         '
         'GCSalesMain
@@ -5301,7 +5302,7 @@ Partial Class FormFGTransList
         Me.GCSalesMain.Location = New System.Drawing.Point(0, 0)
         Me.GCSalesMain.MainView = Me.GVSalesMain
         Me.GCSalesMain.Name = "GCSalesMain"
-        Me.GCSalesMain.Size = New System.Drawing.Size(1136, 339)
+        Me.GCSalesMain.Size = New System.Drawing.Size(1136, 338)
         Me.GCSalesMain.TabIndex = 10
         Me.GCSalesMain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesMain})
         '
@@ -7306,7 +7307,7 @@ Partial Class FormFGTransList
         '
         'GVRepair
         '
-        Me.GVRepair.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_fg_repair, Me.GridColumnfg_repair_number, Me.GridColumnfg_repair_date, Me.GridColumncomp_number_from, Me.GridColumncomp_name_from, Me.GridColumncomp_number_to, Me.GridColumncomp_name_to, Me.GridColumnid_productrep, Me.GridColumncoderep, Me.GridColumnnamerep, Me.GridColumncolorrep, Me.GridColumnshtrep, Me.GridColumnsizerep, Me.GridColumnqtyrep, Me.GridColumnfg_repair_note, Me.GridColumnclassrep, Me.GridColumnrec_wh, Me.GridColumnreport_statusrepair})
+        Me.GVRepair.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_fg_repair, Me.GridColumnfg_repair_number, Me.GridColumnfg_repair_date, Me.GridColumncomp_number_from, Me.GridColumncomp_name_from, Me.GridColumncomp_number_to, Me.GridColumncomp_name_to, Me.GridColumnid_productrep, Me.GridColumncoderep, Me.GridColumnnamerep, Me.GridColumncolorrep, Me.GridColumnshtrep, Me.GridColumnsizerep, Me.GridColumnqtyrep, Me.GridColumnfg_repair_note, Me.GridColumnclassrep, Me.GridColumnrec_wh, Me.GridColumnreport_statusrepair, Me.GridColumnrepair_type})
         Me.GVRepair.GridControl = Me.GCRepair
         Me.GVRepair.Name = "GVRepair"
         Me.GVRepair.OptionsBehavior.ReadOnly = True
@@ -7345,7 +7346,7 @@ Partial Class FormFGTransList
         Me.GridColumncomp_number_from.FieldName = "comp_number_from"
         Me.GridColumncomp_number_from.Name = "GridColumncomp_number_from"
         Me.GridColumncomp_number_from.Visible = True
-        Me.GridColumncomp_number_from.VisibleIndex = 2
+        Me.GridColumncomp_number_from.VisibleIndex = 3
         '
         'GridColumncomp_name_from
         '
@@ -7353,7 +7354,7 @@ Partial Class FormFGTransList
         Me.GridColumncomp_name_from.FieldName = "comp_name_from"
         Me.GridColumncomp_name_from.Name = "GridColumncomp_name_from"
         Me.GridColumncomp_name_from.Visible = True
-        Me.GridColumncomp_name_from.VisibleIndex = 3
+        Me.GridColumncomp_name_from.VisibleIndex = 4
         '
         'GridColumncomp_number_to
         '
@@ -7361,7 +7362,7 @@ Partial Class FormFGTransList
         Me.GridColumncomp_number_to.FieldName = "comp_number_to"
         Me.GridColumncomp_number_to.Name = "GridColumncomp_number_to"
         Me.GridColumncomp_number_to.Visible = True
-        Me.GridColumncomp_number_to.VisibleIndex = 4
+        Me.GridColumncomp_number_to.VisibleIndex = 5
         '
         'GridColumncomp_name_to
         '
@@ -7369,7 +7370,7 @@ Partial Class FormFGTransList
         Me.GridColumncomp_name_to.FieldName = "comp_name_to"
         Me.GridColumncomp_name_to.Name = "GridColumncomp_name_to"
         Me.GridColumncomp_name_to.Visible = True
-        Me.GridColumncomp_name_to.VisibleIndex = 5
+        Me.GridColumncomp_name_to.VisibleIndex = 6
         '
         'GridColumnid_productrep
         '
@@ -7383,7 +7384,7 @@ Partial Class FormFGTransList
         Me.GridColumncoderep.FieldName = "code"
         Me.GridColumncoderep.Name = "GridColumncoderep"
         Me.GridColumncoderep.Visible = True
-        Me.GridColumncoderep.VisibleIndex = 6
+        Me.GridColumncoderep.VisibleIndex = 7
         '
         'GridColumnnamerep
         '
@@ -7391,7 +7392,7 @@ Partial Class FormFGTransList
         Me.GridColumnnamerep.FieldName = "name"
         Me.GridColumnnamerep.Name = "GridColumnnamerep"
         Me.GridColumnnamerep.Visible = True
-        Me.GridColumnnamerep.VisibleIndex = 8
+        Me.GridColumnnamerep.VisibleIndex = 9
         '
         'GridColumncolorrep
         '
@@ -7399,7 +7400,7 @@ Partial Class FormFGTransList
         Me.GridColumncolorrep.FieldName = "color"
         Me.GridColumncolorrep.Name = "GridColumncolorrep"
         Me.GridColumncolorrep.Visible = True
-        Me.GridColumncolorrep.VisibleIndex = 10
+        Me.GridColumncolorrep.VisibleIndex = 11
         '
         'GridColumnshtrep
         '
@@ -7407,7 +7408,7 @@ Partial Class FormFGTransList
         Me.GridColumnshtrep.FieldName = "sht"
         Me.GridColumnshtrep.Name = "GridColumnshtrep"
         Me.GridColumnshtrep.Visible = True
-        Me.GridColumnshtrep.VisibleIndex = 9
+        Me.GridColumnshtrep.VisibleIndex = 10
         '
         'GridColumnsizerep
         '
@@ -7415,7 +7416,7 @@ Partial Class FormFGTransList
         Me.GridColumnsizerep.FieldName = "size"
         Me.GridColumnsizerep.Name = "GridColumnsizerep"
         Me.GridColumnsizerep.Visible = True
-        Me.GridColumnsizerep.VisibleIndex = 11
+        Me.GridColumnsizerep.VisibleIndex = 12
         '
         'GridColumnqtyrep
         '
@@ -7426,7 +7427,7 @@ Partial Class FormFGTransList
         Me.GridColumnqtyrep.Name = "GridColumnqtyrep"
         Me.GridColumnqtyrep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnqtyrep.Visible = True
-        Me.GridColumnqtyrep.VisibleIndex = 13
+        Me.GridColumnqtyrep.VisibleIndex = 14
         '
         'GridColumnfg_repair_note
         '
@@ -7434,7 +7435,7 @@ Partial Class FormFGTransList
         Me.GridColumnfg_repair_note.FieldName = "fg_repair_note"
         Me.GridColumnfg_repair_note.Name = "GridColumnfg_repair_note"
         Me.GridColumnfg_repair_note.Visible = True
-        Me.GridColumnfg_repair_note.VisibleIndex = 14
+        Me.GridColumnfg_repair_note.VisibleIndex = 15
         '
         'GridColumnclassrep
         '
@@ -7442,7 +7443,7 @@ Partial Class FormFGTransList
         Me.GridColumnclassrep.FieldName = "class"
         Me.GridColumnclassrep.Name = "GridColumnclassrep"
         Me.GridColumnclassrep.Visible = True
-        Me.GridColumnclassrep.VisibleIndex = 7
+        Me.GridColumnclassrep.VisibleIndex = 8
         '
         'GridColumnrec_wh
         '
@@ -7450,7 +7451,7 @@ Partial Class FormFGTransList
         Me.GridColumnrec_wh.FieldName = "rec_wh"
         Me.GridColumnrec_wh.Name = "GridColumnrec_wh"
         Me.GridColumnrec_wh.Visible = True
-        Me.GridColumnrec_wh.VisibleIndex = 12
+        Me.GridColumnrec_wh.VisibleIndex = 13
         '
         'GridColumnreport_statusrepair
         '
@@ -7458,7 +7459,7 @@ Partial Class FormFGTransList
         Me.GridColumnreport_statusrepair.FieldName = "report_status"
         Me.GridColumnreport_statusrepair.Name = "GridColumnreport_statusrepair"
         Me.GridColumnreport_statusrepair.Visible = True
-        Me.GridColumnreport_statusrepair.VisibleIndex = 15
+        Me.GridColumnreport_statusrepair.VisibleIndex = 16
         '
         'GroupControl10
         '
@@ -7575,6 +7576,14 @@ Partial Class FormFGTransList
         Me.LabelControl36.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl36.TabIndex = 8892
         Me.LabelControl36.Text = "From"
+        '
+        'GridColumnrepair_type
+        '
+        Me.GridColumnrepair_type.Caption = "Type"
+        Me.GridColumnrepair_type.FieldName = "repair_type"
+        Me.GridColumnrepair_type.Name = "GridColumnrepair_type"
+        Me.GridColumnrepair_type.Visible = True
+        Me.GridColumnrepair_type.VisibleIndex = 2
         '
         'FormFGTransList
         '
@@ -8492,4 +8501,5 @@ Partial Class FormFGTransList
     Friend WithEvents GridColumncomp_group_descrts As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncomp_grouprtscode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncomp_group_desctrscode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnrepair_type As DevExpress.XtraGrid.Columns.GridColumn
 End Class

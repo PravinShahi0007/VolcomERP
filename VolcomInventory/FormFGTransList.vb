@@ -1419,7 +1419,7 @@
         cf.comp_number AS `comp_number_from`, cf.comp_name AS `comp_name_from`,
         ct.comp_number AS `comp_number_to`, ct.comp_name AS `comp_name_to`,
         p.id_product, p.product_full_code AS `code`, cd.class,p.product_display_name AS `name`, cd.color, cd.sht, sz.code_detail_name AS `size`, YEAR(d.design_first_rec_wh) AS `rec_wh`,
-        COUNT(rd.id_product) AS `qty`,r.fg_repair_note, stt.report_status
+        COUNT(rd.id_product) AS `qty`,r.fg_repair_note, stt.report_status, IF(r.is_to_vendor=1,'Repair to Vendor', 'Repair to QC') AS `repair_type`
         FROM tb_fg_repair r
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
         INNER JOIN tb_fg_repair_det rd ON rd.id_fg_repair = r.id_fg_repair
@@ -1445,7 +1445,7 @@
 	        AND cd.id_code IN (32,30,14, 43)
 	        GROUP BY dc.id_design
         ) cd ON cd.id_design = d.id_design
-        WHERE r.is_to_vendor=2 AND (r.fg_repair_date>='" + date_from_selected + "' AND r.fg_repair_date<='" + date_until_selected + "') " + where_status
+        WHERE (r.fg_repair_date>='" + date_from_selected + "' AND r.fg_repair_date<='" + date_until_selected + "') " + where_status
         query += "GROUP BY rd.id_fg_repair, rd.id_product 
         ORDER BY id_fg_repair ASC, class ASC, name ASC, code ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
