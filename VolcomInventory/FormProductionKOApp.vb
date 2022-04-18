@@ -1,6 +1,7 @@
 ﻿Public Class FormProductionKOApp
     Public id_ko As String = "-1"
     Public id_pps As String = "-1"
+    Public is_view As String = "-1"
 
     Private Sub FormProductionKOApp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_ko()
@@ -11,6 +12,7 @@
             FormProductionKO.Dispose()
         Catch ex As Exception
         End Try
+
         PCKO.Controls.Clear()
         FormProductionKO.TopLevel = False
         PCKO.Controls.Add(FormProductionKO)
@@ -25,7 +27,7 @@
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         FormReportMark.id_report = id_pps
-        FormReportMark.is_view = "1"
+        FormReportMark.is_view = is_view
         FormReportMark.report_mark_type = "405"
         FormReportMark.ShowDialog()
     End Sub

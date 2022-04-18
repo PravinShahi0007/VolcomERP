@@ -295,7 +295,7 @@ WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
             If dtc.Rows.Count > 0 Then
                 'konfirmasi QC
                 'cek konfirmasi QC sudah ada belum
-                Dim qqc As String = "SELECT * FROM tb_prod_order_ko_app WHERE id_prod_order_ko='' AND id_report_status!=5"
+                Dim qqc As String = "SELECT * FROM tb_prod_order_ko_app WHERE id_prod_order_ko='" & id_ko & "' AND id_report_status!=5"
                 Dim dtqc As DataTable = execute_query(qqc, -1, True, "", "", "", "")
                 If dtqc.Rows.Count > 0 Then
                     warningCustom("Proposal revisi sudah pernah diajukan.")
