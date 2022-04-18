@@ -253,6 +253,8 @@ Partial Class FormSampleDevelopment
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BandedGridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.InputActualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1769,9 +1771,9 @@ Partial Class FormSampleDevelopment
         '
         'CMTracking
         '
-        Me.CMTracking.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProposeChangesToolStripMenuItem, Me.SetActualToolStripMenuItem})
+        Me.CMTracking.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProposeChangesToolStripMenuItem, Me.SetActualToolStripMenuItem, Me.InputActualToolStripMenuItem})
         Me.CMTracking.Name = "CMTracking"
-        Me.CMTracking.Size = New System.Drawing.Size(141, 48)
+        Me.CMTracking.Size = New System.Drawing.Size(153, 92)
         '
         'ProposeChangesToolStripMenuItem
         '
@@ -1788,7 +1790,7 @@ Partial Class FormSampleDevelopment
         'GVTracker
         '
         Me.GVTracker.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand2, Me.gridBand3, Me.gridBand4, Me.gridBand5, Me.gridBand6, Me.gridBand7, Me.gridBand8})
-        Me.GVTracker.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn17, Me.GridColumn32, Me.BandedGridColumn16, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15})
+        Me.GVTracker.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn17, Me.GridColumn32, Me.BandedGridColumn16, Me.BandedGridColumn18, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15})
         Me.GVTracker.GridControl = Me.GCTracker
         Me.GVTracker.Name = "GVTracker"
         Me.GVTracker.OptionsView.ColumnAutoWidth = False
@@ -2341,9 +2343,9 @@ Partial Class FormSampleDevelopment
         '
         'BUpdatePps
         '
-        Me.BUpdatePps.Appearance.BackColor = System.Drawing.Color.LightSeaGreen
+        Me.BUpdatePps.Appearance.BackColor = System.Drawing.Color.Yellow
         Me.BUpdatePps.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BUpdatePps.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BUpdatePps.Appearance.ForeColor = System.Drawing.Color.Black
         Me.BUpdatePps.Appearance.Options.UseBackColor = True
         Me.BUpdatePps.Appearance.Options.UseFont = True
         Me.BUpdatePps.Appearance.Options.UseForeColor = True
@@ -2578,6 +2580,18 @@ Partial Class FormSampleDevelopment
         Me.SimpleButton1.Size = New System.Drawing.Size(52, 23)
         Me.SimpleButton1.TabIndex = 8935
         Me.SimpleButton1.Text = "test mail"
+        '
+        'BandedGridColumn18
+        '
+        Me.BandedGridColumn18.Caption = "Current Date"
+        Me.BandedGridColumn18.FieldName = "cur_date"
+        Me.BandedGridColumn18.Name = "BandedGridColumn18"
+        '
+        'InputActualToolStripMenuItem
+        '
+        Me.InputActualToolStripMenuItem.Name = "InputActualToolStripMenuItem"
+        Me.InputActualToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.InputActualToolStripMenuItem.Text = "Input Actual"
         '
         'FormSampleDevelopment
         '
@@ -2918,4 +2932,6 @@ Partial Class FormSampleDevelopment
     Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BUpdatePps As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BandedGridColumn18 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents InputActualToolStripMenuItem As ToolStripMenuItem
 End Class
