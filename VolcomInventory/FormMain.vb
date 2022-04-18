@@ -8332,6 +8332,8 @@ WHERE pddr.id_prod_demand_design='" & FormProduction.GVDesign.GetFocusedRowCellV
                 print(FormFGTransList.GCRepair, "Repair (" + FormFGTransList.DEFromRepair.Text + " - " + FormFGTransList.DEUntilRepair.Text + ")")
             ElseIf page = "repair_rec" Then
                 print(FormFGTransList.GCRepairRec, "Receive Repair (" + FormFGTransList.DEFromRepairRec.Text + " - " + FormFGTransList.DEUntilRepairRec.Text + ")")
+            ElseIf page = "return_repair" Then
+                print(FormFGTransList.GCReturnRepair, "Return Repair (" + FormFGTransList.DEFromReturnRepair.Text + " - " + FormFGTransList.DEUntilReturnRepair.Text + ")")
             End If
         ElseIf formName = "FormProdClosing" Then
             print_raw(FormProdClosing.GCProd, "")
