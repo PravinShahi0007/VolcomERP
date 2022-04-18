@@ -135,12 +135,12 @@
 
                     Dim is_ok As Boolean = True
 
-                    Dim qc As String = "SELECT id_coa_tag FROM tb_m_employee e
+                    Dim qc As String = "SELECT id_coa_tag,is_office_dept FROM tb_m_employee e
 INNER JOIN tb_m_departement d ON d.id_departement=e.id_departement
 WHERE e.id_employee='" & id_employee & "'"
                     Dim dtc As DataTable = execute_query(qc, -1, True, "", "", "", "")
                     If dtc.Rows.Count > 0 Then
-                        If dtc.Rows(0)("id_coa_tag").ToString = "1" Then
+                        If dtc.Rows(0)("id_coa_tag").ToString = "1" And dtc.Rows(0)("is_office_dept").ToString = "1" Then
                             'office
                             If total_min < get_opt_emp_field("min_leave_minutes") And is_no_min_hour(FormEmpLeaveDet.LELeaveType.EditValue.ToString) = "2" Then
                                 stopCustom("Hanya dapat mengajukan dengan lama minimal " & (Decimal.Parse(get_opt_emp_field("min_leave_minutes").ToString) / 60).ToString & " jam")
