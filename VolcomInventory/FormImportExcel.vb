@@ -3684,7 +3684,7 @@ INNER JOIN tb_m_city ct ON ct.`id_city`=sd.`id_city`"
                                 .shipping_region = table1("Provinsi").ToString,
                                 .shipping_district = "",
                                 .payment_method = "",
-                                .Status = If(Not o1 Is Nothing Or table1("Status Pesanan").ToString <> "Perlu Dikirim" Or table1("Jumlah") = 0 Or table1("Jumlah").ToString = "", If(Not o1 Is Nothing, "Order already exist;", "") + If(table1("Status Pesanan").ToString <> "Perlu Dikirim", "Invalid status;", "") + If(table1("Jumlah") = 0 Or table1("Jumlah").ToString = "", "Qty not valid;", ""), "OK")
+                                .Status = If(Not o1 Is Nothing Or table1("Status Pesanan").ToString <> "Perlu Dikirim" Or table1("Jumlah") = 0 Or table1("Jumlah").ToString = "" Or table1("No# Resi").ToString = "", If(Not o1 Is Nothing, "Order already exist;", "") + If(table1("Status Pesanan").ToString <> "Perlu Dikirim", "Invalid status;", "") + If(table1("Jumlah") = 0 Or table1("Jumlah").ToString = "", "Qty not valid;", "") + If(table1("No# Resi").ToString = "", "Tracking code not valid;", ""), "OK")
                             }
                 '.discount_allocations_amo = Decimal.Parse(Trim(table1("Diskon Dari Penjual").ToString.Replace("Rp", "").Replace(".", "").Replace(",", ""))),
 
