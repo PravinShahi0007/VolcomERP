@@ -17,6 +17,8 @@ Public Class FormWHDelEmptyDet
     Private Sub FormWHDelEmptyDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
         actionLoad()
+        stopCustom("This menu is not used")
+        Close()
     End Sub
 
     Sub viewReportStatus()

@@ -15,6 +15,8 @@
         viewSeason()
         actionLoad()
         WindowState = FormWindowState.Maximized
+        stopCustom("This menu is not used")
+        Close()
     End Sub
 
     'view season

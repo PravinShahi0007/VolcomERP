@@ -199,7 +199,9 @@
     Private Sub TextEdit1_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtDesignCode.KeyDown
         If e.KeyCode = Keys.Enter Then
             Cursor = Cursors.WaitCursor
-            Dim query As String = "CALL view_all_design_param('AND design_code=''" + addSlashes(TxtDesignCode.Text) + "''')"
+            Dim query As String = "SELECT d.id_design, d.design_code, d.design_display_name
+            FROM tb_m_design d 
+            WHERE d.design_code='" + addSlashes(TxtDesignCode.Text) + "' "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count = 0 Or TxtDesignCode.Text = "" Then
                 stopCustom("Design not found !")
