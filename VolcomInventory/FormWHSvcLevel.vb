@@ -45,7 +45,7 @@
         Catch ex As Exception
         End Try
 
-        Dim query As String = "CALL view_svc_level_code_lite('" + date_from_selected + "','" + date_until_selected + "', '" + id_design_selected + "') "
+        Dim query As String = "CALL view_svc_level_code('" + date_from_selected + "','" + date_until_selected + "', '" + id_design_selected + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCByCode.DataSource = data
     End Sub
