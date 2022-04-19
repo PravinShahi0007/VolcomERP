@@ -303,6 +303,7 @@ Partial Class FormSampleDevelopment
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BProposeActual = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2540,6 +2541,7 @@ Partial Class FormSampleDevelopment
         'XTPPPSTarget
         '
         Me.XTPPPSTarget.Controls.Add(Me.GCPpsTarget)
+        Me.XTPPPSTarget.Controls.Add(Me.BProposeActual)
         Me.XTPPPSTarget.Controls.Add(Me.BUpdatePps)
         Me.XTPPPSTarget.Controls.Add(Me.BProposeSampleDev)
         Me.XTPPPSTarget.Controls.Add(Me.PanelControl2)
@@ -2554,7 +2556,7 @@ Partial Class FormSampleDevelopment
         Me.GCPpsTarget.MainView = Me.GVPpsTarget
         Me.GCPpsTarget.Name = "GCPpsTarget"
         Me.GCPpsTarget.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIMemoVendor})
-        Me.GCPpsTarget.Size = New System.Drawing.Size(1111, 306)
+        Me.GCPpsTarget.Size = New System.Drawing.Size(1111, 278)
         Me.GCPpsTarget.TabIndex = 1
         Me.GCPpsTarget.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPpsTarget})
         '
@@ -2868,6 +2870,25 @@ Partial Class FormSampleDevelopment
         Me.SimpleButton1.Size = New System.Drawing.Size(52, 23)
         Me.SimpleButton1.TabIndex = 8935
         Me.SimpleButton1.Text = "test mail"
+        '
+        'BProposeActual
+        '
+        Me.BProposeActual.Appearance.BackColor = System.Drawing.Color.OrangeRed
+        Me.BProposeActual.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BProposeActual.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.BProposeActual.Appearance.Options.UseBackColor = True
+        Me.BProposeActual.Appearance.Options.UseFont = True
+        Me.BProposeActual.Appearance.Options.UseForeColor = True
+        Me.BProposeActual.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BProposeActual.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BProposeActual.Location = New System.Drawing.Point(0, 325)
+        Me.BProposeActual.LookAndFeel.SkinName = "Metropolis"
+        Me.BProposeActual.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BProposeActual.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BProposeActual.Name = "BProposeActual"
+        Me.BProposeActual.Size = New System.Drawing.Size(1111, 28)
+        Me.BProposeActual.TabIndex = 143
+        Me.BProposeActual.Text = "Propose Actual"
         '
         'FormSampleDevelopment
         '
@@ -3210,4 +3231,5 @@ Partial Class FormSampleDevelopment
     Friend WithEvents BUpdatePps As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BandedGridColumn18 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents InputActualToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BProposeActual As DevExpress.XtraEditors.SimpleButton
 End Class

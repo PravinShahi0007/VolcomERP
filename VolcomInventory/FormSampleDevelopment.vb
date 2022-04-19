@@ -578,4 +578,8 @@ GROUP BY tb.id_comp"
         End If
         GVTracker.ActiveFilterString = ""
     End Sub
+
+    Private Sub BProposeActual_Click(sender As Object, e As EventArgs) Handles BProposeActual.Click
+
+    End Sub
 End Class
