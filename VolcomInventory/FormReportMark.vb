@@ -11059,6 +11059,14 @@ WHERE pd.is_pd=2 AND dsg.id_design='" & dt.Rows(i)("id_design").ToString & "'"
                     WHERE id_report = " + id_report + " AND report_mark_type IN (340, 343)
                 "
                 execute_non_query(query_revert, True, "", "", "", "")
+
+                'cancel closing unique not found
+                Try
+                    Dim sts As New ClassStockTakeStore()
+                    sts.cancelClosedStockTake(id_report)
+                Catch ex As Exception
+                    stopCustom("Failed to cancel closing unique code : " + ex.ToString)
+                End Try
             End If
 
             'update status
