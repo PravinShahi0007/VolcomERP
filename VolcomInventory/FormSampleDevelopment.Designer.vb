@@ -71,6 +71,24 @@ Partial Class FormSampleDevelopment
         Dim FormatConditionRuleValue24 As DevExpress.XtraEditors.FormatConditionRuleValue = New DevExpress.XtraEditors.FormatConditionRuleValue()
         Dim GridFormatRule25 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim FormatConditionRuleContains1 As DevExpress.XtraEditors.FormatConditionRuleContains = New DevExpress.XtraEditors.FormatConditionRuleContains()
+        Me.GridColumnActual1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnActual2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnActual3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnActual4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnActual5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnActual6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnTarget1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnUpdate1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnTarget2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnUpdate2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnTarget3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnUpdate3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnTarget4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnUpdate4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnTarget5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnUpdate5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnTarget6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnUpdate6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNavLineList = New DevExpress.XtraEditors.PanelControl()
         Me.PCNavLineList = New DevExpress.XtraEditors.PanelControl()
@@ -231,29 +249,11 @@ Partial Class FormSampleDevelopment
         Me.GridColumn33 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumnTarget1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnUpdate1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnActual1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumnTarget2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnUpdate2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnActual2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumnTarget3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnUpdate3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnActual3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumnTarget4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnUpdate4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnActual4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumnTarget5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnUpdate5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnActual5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumnTarget6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnUpdate6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnActual6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -392,6 +392,222 @@ Partial Class FormSampleDevelopment
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'GridColumnActual1
+        '
+        Me.GridColumnActual1.Caption = "Actual"
+        Me.GridColumnActual1.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnActual1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnActual1.FieldName = "labdip_act"
+        Me.GridColumnActual1.Name = "GridColumnActual1"
+        Me.GridColumnActual1.OptionsColumn.AllowEdit = False
+        Me.GridColumnActual1.OptionsColumn.ReadOnly = True
+        Me.GridColumnActual1.Visible = True
+        Me.GridColumnActual1.Width = 56
+        '
+        'GridColumnActual2
+        '
+        Me.GridColumnActual2.Caption = "Actual"
+        Me.GridColumnActual2.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnActual2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnActual2.FieldName = "strike_off_1_act"
+        Me.GridColumnActual2.Name = "GridColumnActual2"
+        Me.GridColumnActual2.OptionsColumn.AllowEdit = False
+        Me.GridColumnActual2.OptionsColumn.ReadOnly = True
+        Me.GridColumnActual2.Visible = True
+        Me.GridColumnActual2.Width = 56
+        '
+        'GridColumnActual3
+        '
+        Me.GridColumnActual3.Caption = "Actual"
+        Me.GridColumnActual3.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnActual3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnActual3.FieldName = "proto_sample_1_act"
+        Me.GridColumnActual3.Name = "GridColumnActual3"
+        Me.GridColumnActual3.OptionsColumn.AllowEdit = False
+        Me.GridColumnActual3.OptionsColumn.ReadOnly = True
+        Me.GridColumnActual3.Visible = True
+        Me.GridColumnActual3.Width = 56
+        '
+        'GridColumnActual4
+        '
+        Me.GridColumnActual4.Caption = "Actual"
+        Me.GridColumnActual4.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnActual4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnActual4.FieldName = "strike_off_2_act"
+        Me.GridColumnActual4.Name = "GridColumnActual4"
+        Me.GridColumnActual4.OptionsColumn.AllowEdit = False
+        Me.GridColumnActual4.OptionsColumn.ReadOnly = True
+        Me.GridColumnActual4.Visible = True
+        Me.GridColumnActual4.Width = 56
+        '
+        'GridColumnActual5
+        '
+        Me.GridColumnActual5.Caption = "Actual"
+        Me.GridColumnActual5.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnActual5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnActual5.FieldName = "proto_sample_2_act"
+        Me.GridColumnActual5.Name = "GridColumnActual5"
+        Me.GridColumnActual5.OptionsColumn.AllowEdit = False
+        Me.GridColumnActual5.OptionsColumn.ReadOnly = True
+        Me.GridColumnActual5.Visible = True
+        Me.GridColumnActual5.Width = 56
+        '
+        'GridColumnActual6
+        '
+        Me.GridColumnActual6.Caption = "Actual"
+        Me.GridColumnActual6.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnActual6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnActual6.FieldName = "copy_proto_sample_2_act"
+        Me.GridColumnActual6.Name = "GridColumnActual6"
+        Me.GridColumnActual6.OptionsColumn.AllowEdit = False
+        Me.GridColumnActual6.OptionsColumn.ReadOnly = True
+        Me.GridColumnActual6.Visible = True
+        Me.GridColumnActual6.Width = 57
+        '
+        'GridColumnTarget1
+        '
+        Me.GridColumnTarget1.Caption = "Target"
+        Me.GridColumnTarget1.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnTarget1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnTarget1.FieldName = "labdip"
+        Me.GridColumnTarget1.Name = "GridColumnTarget1"
+        Me.GridColumnTarget1.OptionsColumn.AllowEdit = False
+        Me.GridColumnTarget1.OptionsColumn.ReadOnly = True
+        Me.GridColumnTarget1.Visible = True
+        Me.GridColumnTarget1.Width = 51
+        '
+        'GridColumnUpdate1
+        '
+        Me.GridColumnUpdate1.Caption = "Update"
+        Me.GridColumnUpdate1.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnUpdate1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnUpdate1.FieldName = "labdip_upd"
+        Me.GridColumnUpdate1.Name = "GridColumnUpdate1"
+        Me.GridColumnUpdate1.OptionsColumn.AllowEdit = False
+        Me.GridColumnUpdate1.OptionsColumn.ReadOnly = True
+        Me.GridColumnUpdate1.Visible = True
+        Me.GridColumnUpdate1.Width = 51
+        '
+        'GridColumnTarget2
+        '
+        Me.GridColumnTarget2.Caption = "Target"
+        Me.GridColumnTarget2.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnTarget2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnTarget2.FieldName = "strike_off_1"
+        Me.GridColumnTarget2.Name = "GridColumnTarget2"
+        Me.GridColumnTarget2.OptionsColumn.AllowEdit = False
+        Me.GridColumnTarget2.OptionsColumn.ReadOnly = True
+        Me.GridColumnTarget2.Visible = True
+        Me.GridColumnTarget2.Width = 51
+        '
+        'GridColumnUpdate2
+        '
+        Me.GridColumnUpdate2.Caption = "Update"
+        Me.GridColumnUpdate2.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnUpdate2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnUpdate2.FieldName = "strike_off_1_upd"
+        Me.GridColumnUpdate2.Name = "GridColumnUpdate2"
+        Me.GridColumnUpdate2.OptionsColumn.AllowEdit = False
+        Me.GridColumnUpdate2.OptionsColumn.ReadOnly = True
+        Me.GridColumnUpdate2.Visible = True
+        Me.GridColumnUpdate2.Width = 51
+        '
+        'GridColumnTarget3
+        '
+        Me.GridColumnTarget3.Caption = "Target"
+        Me.GridColumnTarget3.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnTarget3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnTarget3.FieldName = "proto_sample_1"
+        Me.GridColumnTarget3.Name = "GridColumnTarget3"
+        Me.GridColumnTarget3.OptionsColumn.AllowEdit = False
+        Me.GridColumnTarget3.OptionsColumn.ReadOnly = True
+        Me.GridColumnTarget3.Visible = True
+        Me.GridColumnTarget3.Width = 51
+        '
+        'GridColumnUpdate3
+        '
+        Me.GridColumnUpdate3.Caption = "Update"
+        Me.GridColumnUpdate3.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnUpdate3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnUpdate3.FieldName = "proto_sample_1_upd"
+        Me.GridColumnUpdate3.Name = "GridColumnUpdate3"
+        Me.GridColumnUpdate3.OptionsColumn.AllowEdit = False
+        Me.GridColumnUpdate3.OptionsColumn.ReadOnly = True
+        Me.GridColumnUpdate3.Visible = True
+        Me.GridColumnUpdate3.Width = 51
+        '
+        'GridColumnTarget4
+        '
+        Me.GridColumnTarget4.Caption = "Target"
+        Me.GridColumnTarget4.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnTarget4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnTarget4.FieldName = "strike_off_2"
+        Me.GridColumnTarget4.Name = "GridColumnTarget4"
+        Me.GridColumnTarget4.OptionsColumn.AllowEdit = False
+        Me.GridColumnTarget4.OptionsColumn.ReadOnly = True
+        Me.GridColumnTarget4.Visible = True
+        Me.GridColumnTarget4.Width = 51
+        '
+        'GridColumnUpdate4
+        '
+        Me.GridColumnUpdate4.Caption = "Update"
+        Me.GridColumnUpdate4.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnUpdate4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnUpdate4.FieldName = "strike_off_2_upd"
+        Me.GridColumnUpdate4.Name = "GridColumnUpdate4"
+        Me.GridColumnUpdate4.OptionsColumn.AllowEdit = False
+        Me.GridColumnUpdate4.OptionsColumn.ReadOnly = True
+        Me.GridColumnUpdate4.Visible = True
+        Me.GridColumnUpdate4.Width = 51
+        '
+        'GridColumnTarget5
+        '
+        Me.GridColumnTarget5.Caption = "Target"
+        Me.GridColumnTarget5.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnTarget5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnTarget5.FieldName = "proto_sample_2"
+        Me.GridColumnTarget5.Name = "GridColumnTarget5"
+        Me.GridColumnTarget5.OptionsColumn.AllowEdit = False
+        Me.GridColumnTarget5.OptionsColumn.ReadOnly = True
+        Me.GridColumnTarget5.Visible = True
+        Me.GridColumnTarget5.Width = 51
+        '
+        'GridColumnUpdate5
+        '
+        Me.GridColumnUpdate5.Caption = "Update"
+        Me.GridColumnUpdate5.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnUpdate5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnUpdate5.FieldName = "proto_sample_2_upd"
+        Me.GridColumnUpdate5.Name = "GridColumnUpdate5"
+        Me.GridColumnUpdate5.OptionsColumn.AllowEdit = False
+        Me.GridColumnUpdate5.OptionsColumn.ReadOnly = True
+        Me.GridColumnUpdate5.Visible = True
+        Me.GridColumnUpdate5.Width = 51
+        '
+        'GridColumnTarget6
+        '
+        Me.GridColumnTarget6.Caption = "Target"
+        Me.GridColumnTarget6.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnTarget6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnTarget6.FieldName = "copy_proto_sample_2"
+        Me.GridColumnTarget6.Name = "GridColumnTarget6"
+        Me.GridColumnTarget6.OptionsColumn.AllowEdit = False
+        Me.GridColumnTarget6.OptionsColumn.ReadOnly = True
+        Me.GridColumnTarget6.Visible = True
+        Me.GridColumnTarget6.Width = 53
+        '
+        'GridColumnUpdate6
+        '
+        Me.GridColumnUpdate6.Caption = "Update"
+        Me.GridColumnUpdate6.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnUpdate6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnUpdate6.FieldName = "copy_proto_sample_2_upd"
+        Me.GridColumnUpdate6.Name = "GridColumnUpdate6"
+        Me.GridColumnUpdate6.OptionsColumn.AllowEdit = False
+        Me.GridColumnUpdate6.OptionsColumn.ReadOnly = True
+        Me.GridColumnUpdate6.Visible = True
+        Me.GridColumnUpdate6.Width = 53
         '
         'GridColumn45
         '
@@ -1843,6 +2059,10 @@ Partial Class FormSampleDevelopment
         '
         'GVTracker
         '
+        Me.GVTracker.Appearance.BandPanel.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.GVTracker.Appearance.BandPanel.Options.UseFont = True
+        Me.GVTracker.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.GVTracker.Appearance.HeaderPanel.Options.UseFont = True
         Me.GVTracker.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand2, Me.gridBand3, Me.gridBand4, Me.gridBand5, Me.gridBand6, Me.gridBand7, Me.gridBand8})
         Me.GVTracker.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn17, Me.GridColumn32, Me.BandedGridColumn16, Me.BandedGridColumn18, Me.GridColumn33, Me.GridColumn34, Me.GridColumnTarget1, Me.GridColumnUpdate1, Me.GridColumnActual1, Me.GridColumnTarget2, Me.GridColumnUpdate2, Me.GridColumnActual2, Me.GridColumnTarget3, Me.GridColumnUpdate3, Me.GridColumnActual3, Me.GridColumnTarget4, Me.GridColumnUpdate4, Me.GridColumnActual4, Me.GridColumnTarget5, Me.GridColumnUpdate5, Me.GridColumnActual5, Me.GridColumnTarget6, Me.GridColumnUpdate6, Me.GridColumnActual6})
         GridFormatRule1.Column = Me.GridColumnActual1
@@ -2143,42 +2363,6 @@ Partial Class FormSampleDevelopment
         Me.gridBand3.VisibleIndex = 1
         Me.gridBand3.Width = 158
         '
-        'GridColumnTarget1
-        '
-        Me.GridColumnTarget1.Caption = "Target"
-        Me.GridColumnTarget1.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnTarget1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnTarget1.FieldName = "labdip"
-        Me.GridColumnTarget1.Name = "GridColumnTarget1"
-        Me.GridColumnTarget1.OptionsColumn.AllowEdit = False
-        Me.GridColumnTarget1.OptionsColumn.ReadOnly = True
-        Me.GridColumnTarget1.Visible = True
-        Me.GridColumnTarget1.Width = 51
-        '
-        'GridColumnUpdate1
-        '
-        Me.GridColumnUpdate1.Caption = "Update"
-        Me.GridColumnUpdate1.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnUpdate1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnUpdate1.FieldName = "labdip_upd"
-        Me.GridColumnUpdate1.Name = "GridColumnUpdate1"
-        Me.GridColumnUpdate1.OptionsColumn.AllowEdit = False
-        Me.GridColumnUpdate1.OptionsColumn.ReadOnly = True
-        Me.GridColumnUpdate1.Visible = True
-        Me.GridColumnUpdate1.Width = 51
-        '
-        'GridColumnActual1
-        '
-        Me.GridColumnActual1.Caption = "Actual"
-        Me.GridColumnActual1.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnActual1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnActual1.FieldName = "labdip_act"
-        Me.GridColumnActual1.Name = "GridColumnActual1"
-        Me.GridColumnActual1.OptionsColumn.AllowEdit = False
-        Me.GridColumnActual1.OptionsColumn.ReadOnly = True
-        Me.GridColumnActual1.Visible = True
-        Me.GridColumnActual1.Width = 56
-        '
         'gridBand4
         '
         Me.gridBand4.Caption = "Strike Off 1"
@@ -2188,42 +2372,6 @@ Partial Class FormSampleDevelopment
         Me.gridBand4.Name = "gridBand4"
         Me.gridBand4.VisibleIndex = 2
         Me.gridBand4.Width = 158
-        '
-        'GridColumnTarget2
-        '
-        Me.GridColumnTarget2.Caption = "Target 2"
-        Me.GridColumnTarget2.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnTarget2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnTarget2.FieldName = "strike_off_1"
-        Me.GridColumnTarget2.Name = "GridColumnTarget2"
-        Me.GridColumnTarget2.OptionsColumn.AllowEdit = False
-        Me.GridColumnTarget2.OptionsColumn.ReadOnly = True
-        Me.GridColumnTarget2.Visible = True
-        Me.GridColumnTarget2.Width = 51
-        '
-        'GridColumnUpdate2
-        '
-        Me.GridColumnUpdate2.Caption = "Update 2"
-        Me.GridColumnUpdate2.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnUpdate2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnUpdate2.FieldName = "strike_off_1_upd"
-        Me.GridColumnUpdate2.Name = "GridColumnUpdate2"
-        Me.GridColumnUpdate2.OptionsColumn.AllowEdit = False
-        Me.GridColumnUpdate2.OptionsColumn.ReadOnly = True
-        Me.GridColumnUpdate2.Visible = True
-        Me.GridColumnUpdate2.Width = 51
-        '
-        'GridColumnActual2
-        '
-        Me.GridColumnActual2.Caption = "Actual 2"
-        Me.GridColumnActual2.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnActual2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnActual2.FieldName = "strike_off_1_act"
-        Me.GridColumnActual2.Name = "GridColumnActual2"
-        Me.GridColumnActual2.OptionsColumn.AllowEdit = False
-        Me.GridColumnActual2.OptionsColumn.ReadOnly = True
-        Me.GridColumnActual2.Visible = True
-        Me.GridColumnActual2.Width = 56
         '
         'gridBand5
         '
@@ -2235,42 +2383,6 @@ Partial Class FormSampleDevelopment
         Me.gridBand5.VisibleIndex = 3
         Me.gridBand5.Width = 158
         '
-        'GridColumnTarget3
-        '
-        Me.GridColumnTarget3.Caption = "Target 3"
-        Me.GridColumnTarget3.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnTarget3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnTarget3.FieldName = "proto_sample_1"
-        Me.GridColumnTarget3.Name = "GridColumnTarget3"
-        Me.GridColumnTarget3.OptionsColumn.AllowEdit = False
-        Me.GridColumnTarget3.OptionsColumn.ReadOnly = True
-        Me.GridColumnTarget3.Visible = True
-        Me.GridColumnTarget3.Width = 51
-        '
-        'GridColumnUpdate3
-        '
-        Me.GridColumnUpdate3.Caption = "Update 3"
-        Me.GridColumnUpdate3.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnUpdate3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnUpdate3.FieldName = "proto_sample_1_upd"
-        Me.GridColumnUpdate3.Name = "GridColumnUpdate3"
-        Me.GridColumnUpdate3.OptionsColumn.AllowEdit = False
-        Me.GridColumnUpdate3.OptionsColumn.ReadOnly = True
-        Me.GridColumnUpdate3.Visible = True
-        Me.GridColumnUpdate3.Width = 51
-        '
-        'GridColumnActual3
-        '
-        Me.GridColumnActual3.Caption = "Actual 3"
-        Me.GridColumnActual3.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnActual3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnActual3.FieldName = "proto_sample_1_act"
-        Me.GridColumnActual3.Name = "GridColumnActual3"
-        Me.GridColumnActual3.OptionsColumn.AllowEdit = False
-        Me.GridColumnActual3.OptionsColumn.ReadOnly = True
-        Me.GridColumnActual3.Visible = True
-        Me.GridColumnActual3.Width = 56
-        '
         'gridBand6
         '
         Me.gridBand6.Caption = "Strike Off 2"
@@ -2280,42 +2392,6 @@ Partial Class FormSampleDevelopment
         Me.gridBand6.Name = "gridBand6"
         Me.gridBand6.VisibleIndex = 4
         Me.gridBand6.Width = 158
-        '
-        'GridColumnTarget4
-        '
-        Me.GridColumnTarget4.Caption = "Target 4"
-        Me.GridColumnTarget4.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnTarget4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnTarget4.FieldName = "strike_off_2"
-        Me.GridColumnTarget4.Name = "GridColumnTarget4"
-        Me.GridColumnTarget4.OptionsColumn.AllowEdit = False
-        Me.GridColumnTarget4.OptionsColumn.ReadOnly = True
-        Me.GridColumnTarget4.Visible = True
-        Me.GridColumnTarget4.Width = 51
-        '
-        'GridColumnUpdate4
-        '
-        Me.GridColumnUpdate4.Caption = "Update 4"
-        Me.GridColumnUpdate4.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnUpdate4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnUpdate4.FieldName = "strike_off_2_upd"
-        Me.GridColumnUpdate4.Name = "GridColumnUpdate4"
-        Me.GridColumnUpdate4.OptionsColumn.AllowEdit = False
-        Me.GridColumnUpdate4.OptionsColumn.ReadOnly = True
-        Me.GridColumnUpdate4.Visible = True
-        Me.GridColumnUpdate4.Width = 51
-        '
-        'GridColumnActual4
-        '
-        Me.GridColumnActual4.Caption = "Actual 4"
-        Me.GridColumnActual4.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnActual4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnActual4.FieldName = "strike_off_2_act"
-        Me.GridColumnActual4.Name = "GridColumnActual4"
-        Me.GridColumnActual4.OptionsColumn.AllowEdit = False
-        Me.GridColumnActual4.OptionsColumn.ReadOnly = True
-        Me.GridColumnActual4.Visible = True
-        Me.GridColumnActual4.Width = 56
         '
         'gridBand7
         '
@@ -2327,42 +2403,6 @@ Partial Class FormSampleDevelopment
         Me.gridBand7.VisibleIndex = 5
         Me.gridBand7.Width = 158
         '
-        'GridColumnTarget5
-        '
-        Me.GridColumnTarget5.Caption = "Target 5"
-        Me.GridColumnTarget5.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnTarget5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnTarget5.FieldName = "proto_sample_2"
-        Me.GridColumnTarget5.Name = "GridColumnTarget5"
-        Me.GridColumnTarget5.OptionsColumn.AllowEdit = False
-        Me.GridColumnTarget5.OptionsColumn.ReadOnly = True
-        Me.GridColumnTarget5.Visible = True
-        Me.GridColumnTarget5.Width = 51
-        '
-        'GridColumnUpdate5
-        '
-        Me.GridColumnUpdate5.Caption = "Update 5"
-        Me.GridColumnUpdate5.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnUpdate5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnUpdate5.FieldName = "proto_sample_2_upd"
-        Me.GridColumnUpdate5.Name = "GridColumnUpdate5"
-        Me.GridColumnUpdate5.OptionsColumn.AllowEdit = False
-        Me.GridColumnUpdate5.OptionsColumn.ReadOnly = True
-        Me.GridColumnUpdate5.Visible = True
-        Me.GridColumnUpdate5.Width = 51
-        '
-        'GridColumnActual5
-        '
-        Me.GridColumnActual5.Caption = "Actual 5"
-        Me.GridColumnActual5.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnActual5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnActual5.FieldName = "proto_sample_2_act"
-        Me.GridColumnActual5.Name = "GridColumnActual5"
-        Me.GridColumnActual5.OptionsColumn.AllowEdit = False
-        Me.GridColumnActual5.OptionsColumn.ReadOnly = True
-        Me.GridColumnActual5.Visible = True
-        Me.GridColumnActual5.Width = 56
-        '
         'gridBand8
         '
         Me.gridBand8.Caption = "Copy Proto Sample 2"
@@ -2372,42 +2412,6 @@ Partial Class FormSampleDevelopment
         Me.gridBand8.Name = "gridBand8"
         Me.gridBand8.VisibleIndex = 6
         Me.gridBand8.Width = 163
-        '
-        'GridColumnTarget6
-        '
-        Me.GridColumnTarget6.Caption = "Target 6"
-        Me.GridColumnTarget6.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnTarget6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnTarget6.FieldName = "copy_proto_sample_2"
-        Me.GridColumnTarget6.Name = "GridColumnTarget6"
-        Me.GridColumnTarget6.OptionsColumn.AllowEdit = False
-        Me.GridColumnTarget6.OptionsColumn.ReadOnly = True
-        Me.GridColumnTarget6.Visible = True
-        Me.GridColumnTarget6.Width = 53
-        '
-        'GridColumnUpdate6
-        '
-        Me.GridColumnUpdate6.Caption = "Update 6"
-        Me.GridColumnUpdate6.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnUpdate6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnUpdate6.FieldName = "copy_proto_sample_2_upd"
-        Me.GridColumnUpdate6.Name = "GridColumnUpdate6"
-        Me.GridColumnUpdate6.OptionsColumn.AllowEdit = False
-        Me.GridColumnUpdate6.OptionsColumn.ReadOnly = True
-        Me.GridColumnUpdate6.Visible = True
-        Me.GridColumnUpdate6.Width = 53
-        '
-        'GridColumnActual6
-        '
-        Me.GridColumnActual6.Caption = "Actual 6"
-        Me.GridColumnActual6.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnActual6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnActual6.FieldName = "copy_proto_sample_2_act"
-        Me.GridColumnActual6.Name = "GridColumnActual6"
-        Me.GridColumnActual6.OptionsColumn.AllowEdit = False
-        Me.GridColumnActual6.OptionsColumn.ReadOnly = True
-        Me.GridColumnActual6.Visible = True
-        Me.GridColumnActual6.Width = 57
         '
         'BandedGridColumn16
         '
