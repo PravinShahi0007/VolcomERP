@@ -11064,6 +11064,14 @@ WHERE pd.is_pd=2 AND dsg.id_design='" & dt.Rows(i)("id_design").ToString & "'"
             'update status
             query = String.Format("UPDATE tb_st_store_bap SET id_report_status = '{0}' WHERE id_st_store_bap = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+
+            'closing unique not found
+            Try
+                Dim sts As New ClassStockTakeStore()
+                sts.checkClosedStockTake(id_report)
+            Catch ex As Exception
+                stopCustom("Failed to identify unique code : " + ex.ToString)
+            End Try
         ElseIf report_mark_type = "321" Then
             'SNI Rec
             If id_status_reportx = "3" Then
