@@ -912,6 +912,7 @@ WHERE bdg.`id_b_expense`='" & GVPurcReq.GetRowCellValue(i, "id_b_expense").ToStr
             rmt = "202" 'capex
         End If
 
+        FormDocumentUpload.is_view = is_view
         FormDocumentUpload.id_report = id_po
         FormDocumentUpload.report_mark_type = rmt
         FormDocumentUpload.ShowDialog()
